@@ -86,6 +86,8 @@ fn frame(
     entities: Query<Entity>,
     colliders: Query<&Collider>,
     mut text: Query<(&mut Text, &mut Node), With<DebugOverlay>>,
+    bikes: Query<(&crate::game::Rider, &crate::vehicle::BikeState)>,
+    tuning: Res<crate::vehicle::Tuning>,
 ) {
     let now = Instant::now();
     let ms = now.duration_since(metrics.last_frame).as_secs_f32() * 1000.0;
@@ -126,6 +128,17 @@ fn frame(
             metrics.entities,
             metrics.colliders
         );
+        if let Some((_, b)) = bikes.iter().find(|(r, _)| r.id == 0) {
+            text.push_str(&format!(
+                "\nF5 {} / F6 assist {:.2}\nRPM {:.0} gear {} slip {:.2} wheels {:?}",
+                tuning.presets[tuning.selected].id,
+                tuning.assist,
+                b.rpm,
+                b.gear + 1,
+                b.slip,
+                b.grounded
+            ));
+        }
     }
 }
 pub struct RoadDiagnosticsPlugin;

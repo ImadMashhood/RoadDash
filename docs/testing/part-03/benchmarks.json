@@ -1,0 +1,27 @@
+{
+  "fixed_hz": 60,
+  "scenarios": [
+    {
+      "brake_distance_from_10s_speed_m": 93.17546081542969,
+      "preset": 0,
+      "steady_slip_angle": -0.0005347484839148819,
+      "steady_turn_yaw_rate": -0.14067493379116058,
+      "zero_to_100_seconds": 4.583333492279053
+    },
+    {
+      "brake_distance_from_10s_speed_m": 97.22781372070312,
+      "preset": 1,
+      "steady_slip_angle": -0.001245638937689364,
+      "steady_turn_yaw_rate": -0.14508873224258423,
+      "zero_to_100_seconds": 4.150000095367432
+    },
+    {
+      "brake_distance_from_10s_speed_m": 111.90765380859375,
+      "preset": 2,
+      "steady_slip_angle": 0.0007377867586910725,
+      "steady_turn_yaw_rate": -0.15923888981342316,
+      "zero_to_100_seconds": 3.9166667461395264
+    }
+  ],
+  "soak_simulated_seconds": 600
+}

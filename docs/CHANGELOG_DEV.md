@@ -60,3 +60,20 @@ No later gameplay part is automatically completed by this foundation work.
 - Prior foundation CI follow-up: Ubuntu passed; Windows builds/Rust tests passed
   but the metadata audit used cp1252. Switched metadata/text decoding to UTF-8,
   added a locale regression and kept the new remote acceptance gate open.
+
+## 2026-10-30 — Part 03 dynamic vehicle and requested gameplay corrections
+
+Native default now uses dynamic chassis/two-wheel suspension with three validated
+handling presets, RPM/gears/combined traction, weaker assistance and bounded
+telemetry. AI/player share intentions. Direct three-hit combos replace broad
+proximity knockouts; relative impacts distinguish nudges from wipeouts. Original
+cow/pedestrian articulated knockdowns have bounded safe lifecycle. Low sidewalks
+support bikes; US traffic lanes and launch grace prevent start pileups. Minimap
+colors match racer shirts only. Added curve-only outer hill rails, trees and
+procedural building/cross-traffic/pedestrian detail. Fixed stale dynamic remount
+velocity and preserved class dry wreck mass discovered during verification.
+
+Detailed actual commands, measurements, native receipts and open gates:
+[Part 03](testing/PART_03.md). No new dependency or third-party media. R03 studied
+as reference only with unresolved reuse license; no code imported. Ten human
+rides/beginner/fun acceptance remain open; no Part 04 advancement.

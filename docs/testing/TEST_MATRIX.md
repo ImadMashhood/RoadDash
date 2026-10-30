@@ -49,3 +49,19 @@ release/exhaustion, four grass AI/player cases, cow lift, solid slope slide and
 checks. Native smoke includes both farm and hill recovery, city, hills and F4
 inspector captures, active audio sinks and results. World-tour/result teleports
 are presentation fixtures only; race validation is the separate controller test.
+
+## Part 03 additions (2026-10-30)
+
+Receipt: [PART_03.md](PART_03.md). Regular headless checks explicitly cover:
+three preset acceleration/braking and wheel support; dynamic acceleration/braking
+at 30/60/120 FPS; leaning/inverted self-righting; stationary and moving curb hits;
+eight-rider grid; no lane-zero magnet; dry wreck mass and stationary remount;
+direct combo timing/duplicates/geometry and matched-speed contact thresholds;
+NPC topologies/budget/reset/occupied respawn; shirt-color minimap identities.
+Explicit ignored soak runs 600 simulated seconds of alternating steering and
+records numeric acceleration/braking/steady-turn data. CI runs it on Linux.
+`--validate-handling content/handling.json` validates the pure authoring contract.
+Native `--smoke-test` and `--actor-smoke-test` run serially with graphics/audio;
+they exercise scripted scene/recovery and distinct ragdoll topologies. They do
+not replace manual ten-ride feedback, beginner finish, tactile control testing,
+free-form crowd collisions or actual Windows hardware runs.

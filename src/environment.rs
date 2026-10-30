@@ -25,6 +25,8 @@ pub struct HazardZone {
 #[derive(Component)]
 pub struct Pedestrian;
 #[derive(Component)]
+pub struct PedestrianLimb(pub f32);
+#[derive(Component)]
 pub struct CrossTraffic;
 #[derive(Component)]
 pub struct ZoneProp(pub Sector);
@@ -35,6 +37,7 @@ pub struct Patrol {
     pub extent: f32,
     pub speed: f32,
     pub phase: f32,
+    pub one_way: bool,
 }
 #[derive(Resource, Default)]
 pub struct TrackInspector {
@@ -232,8 +235,9 @@ pub fn build(
         random = ((random >> ((random >> 28) + 4)) ^ random).wrapping_mul(277803737);
         random = (random >> 22) ^ random;
         let sector = track.sector(d);
-        if sector == Sector::Hills {
-            for lane in [-10.8, 10.8] {
+        if sector == Sector::Hills && track.curvature(d).abs() > 0.0025 {
+            {
+                let lane = 10.8 * track.curvature(d).signum();
                 let (v, r) = track.sample(d, lane);
                 block(
                     commands,
@@ -348,25 +352,61 @@ pub fn build(
                                 .entity(e)
                                 .insert((ZoneProp(sector), SceneryFootprint { radius: 10.0 }));
                             for level in 0..(height / 3.0) as usize {
-                                block(
-                                    commands,
-                                    art,
-                                    window.clone(),
-                                    v.with_y(floor + 2.0 + level as f32 * 3.0)
-                                        + r * Vec3::X * side * 6.56,
-                                    Vec3::new(0.04, 1.3, 11.0),
-                                    r,
-                                    false,
-                                );
+                                for pane in [-4.0, 0.0, 4.0] {
+                                    block(
+                                        commands,
+                                        art,
+                                        window.clone(),
+                                        v.with_y(floor + 2.0 + level as f32 * 3.0)
+                                            + r * Vec3::X * side * 6.56
+                                            + r * Vec3::Z * pane,
+                                        Vec3::new(0.04, 1.3, 2.8),
+                                        r,
+                                        false,
+                                    );
+                                }
                             }
+                            block(
+                                commands,
+                                art,
+                                art.dark.clone(),
+                                v.with_y(floor + 1.4) + r * Vec3::X * side * 6.58,
+                                Vec3::new(0.1, 2.8, 2.0),
+                                r,
+                                false,
+                            );
+                            block(
+                                commands,
+                                art,
+                                art.metal.clone(),
+                                v.with_y(floor + height + 0.2),
+                                Vec3::new(13.5, 0.4, 15.5),
+                                r,
+                                false,
+                            );
                         }
                     }
                     Sector::Hills => {}
                 }
-                if sector != Sector::City && i % 6 == 0 {
-                    let (v, _) = track.sample(d, side * (32.0 + noise * 50.0));
-                    let h = 5.0 + noise * 5.0;
-                    if track.scenery_fits(v, h * 0.4, 5.0) {
+                if i % 3 == 0 {
+                    let (v, _) = track.sample(
+                        d,
+                        side * (if sector == Sector::City {
+                            13.4
+                        } else {
+                            23.0 + noise * 40.0
+                        }),
+                    );
+                    let h = if sector == Sector::City {
+                        4.0 + noise * 2.0
+                    } else {
+                        5.0 + noise * 5.0
+                    };
+                    if track.scenery_fits(
+                        v,
+                        h * 0.4,
+                        if sector == Sector::City { 1.5 } else { 5.0 },
+                    ) {
                         let v = v.with_y(track.terrain_height(v.x, v.z));
                         let e = block(
                             commands,
@@ -378,17 +418,30 @@ pub fn build(
                             true,
                         );
                         commands.entity(e).insert(SceneryFootprint { radius: 0.5 });
+                        let broad = noise > 0.65;
                         let e = world::part(
                             commands,
-                            cone.clone(),
+                            if broad {
+                                art.sphere.clone()
+                            } else {
+                                cone.clone()
+                            },
                             leaf.clone(),
                             v + Vec3::Y * h * 0.8,
-                            Vec3::new(h * 0.4, h, h * 0.4),
+                            if broad {
+                                Vec3::splat(h * 0.4)
+                            } else {
+                                Vec3::new(h * 0.4, h, h * 0.4)
+                            },
                             Quat::IDENTITY,
                         );
                         commands.entity(e).insert((
                             RigidBody::Fixed,
-                            Collider::cone(0.5, 1.0),
+                            if broad {
+                                Collider::ball(1.0)
+                            } else {
+                                Collider::cone(0.5, 1.0)
+                            },
                             Obstacle,
                             SceneryFootprint { radius: h * 0.4 },
                         ));
@@ -399,7 +452,7 @@ pub fn build(
         if sector == Sector::City && !near_crossing {
             for side in [-1.0, 1.0] {
                 let (v, r) = track.sample(d, side * 9.0);
-                block(
+                let sidewalk = block(
                     commands,
                     art,
                     concrete.clone(),
@@ -408,6 +461,9 @@ pub fn build(
                     r,
                     true,
                 );
+                commands
+                    .entity(sidewalk)
+                    .insert((Ground, crate::vehicle::RideableStep));
                 if i % 9 == 0 {
                     spawn_pedestrian(commands, art, v + Vec3::Y * 0.2, r, d);
                 }
@@ -467,8 +523,9 @@ pub fn build(
                     false,
                 );
                 for offset in [-18.0, 18.0] {
-                    let center = p + q * Vec3::Z * 0.5;
-                    let axis = q * Vec3::X;
+                    let sign = if offset < 0.0 { 1.0 } else { -1.0 };
+                    let center = p + q * Vec3::Z * sign * 2.4;
+                    let axis = q * Vec3::X * sign;
                     let root = commands
                         .spawn((
                             Transform::from_translation(center + axis * offset),
@@ -488,6 +545,7 @@ pub fn build(
                                 extent: 47.0,
                                 speed: 9.0,
                                 phase: offset / 47.0,
+                                one_way: true,
                             },
                         ))
                         .id();
@@ -499,7 +557,40 @@ pub fn build(
                         Vec3::new(1.9, 1.3, 3.9),
                         Quat::IDENTITY,
                     );
-                    crate::runtime::attach_visuals(commands, root, &[child]);
+                    let mut parts = vec![
+                        child,
+                        world::part(
+                            commands,
+                            art.cube.clone(),
+                            window.clone(),
+                            Vec3::new(0.0, 1.5, -0.1),
+                            Vec3::new(1.6, 0.65, 1.8),
+                            Quat::IDENTITY,
+                        ),
+                    ];
+                    for x in [-0.9, 0.9] {
+                        for z in [-1.2, 1.2] {
+                            parts.push(world::part(
+                                commands,
+                                art.wheel.clone(),
+                                art.dark.clone(),
+                                Vec3::new(x, 0.42, z),
+                                Vec3::ONE,
+                                Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+                            ));
+                        }
+                    }
+                    for x in [-0.6, 0.6] {
+                        parts.push(world::part(
+                            commands,
+                            art.cube.clone(),
+                            art.white.clone(),
+                            Vec3::new(x, 0.8, 1.97),
+                            Vec3::new(0.4, 0.2, 0.04),
+                            Quat::IDENTITY,
+                        ));
+                    }
+                    crate::runtime::attach_visuals(commands, root, &parts);
                 }
             }
             PropKind::Cliff | PropKind::AnimalCrossing => {
@@ -594,6 +685,10 @@ fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
             ));
         }
     }
+    commands.entity(root).insert(crate::npc::Npc::new(
+        crate::npc::NpcKind::Cow,
+        Transform::from_translation(p).with_rotation(q),
+    ));
     crate::runtime::attach_visuals(commands, root, &parts);
 }
 fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: f32) {
@@ -615,10 +710,15 @@ fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: 
                 extent: 12.0,
                 speed: 1.2,
                 phase: seed.sin(),
+                one_way: false,
             },
             ActiveEvents::COLLISION_EVENTS,
         ))
         .id();
+    commands.entity(root).insert(crate::npc::Npc::new(
+        crate::npc::NpcKind::Pedestrian,
+        Transform::from_translation(p).with_rotation(q),
+    ));
     let body = world::part(
         commands,
         art.cube.clone(),
@@ -635,19 +735,44 @@ fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: 
         Vec3::splat(0.22),
         Quat::IDENTITY,
     );
-    crate::runtime::attach_visuals(commands, root, &[body, head]);
+    let mut parts = vec![body, head];
+    for side in [-1.0, 1.0] {
+        let leg = world::part(
+            commands,
+            art.cube.clone(),
+            art.dark.clone(),
+            Vec3::new(side * 0.13, 0.25, 0.0),
+            Vec3::new(0.18, 0.5, 0.22),
+            Quat::IDENTITY,
+        );
+        commands.entity(leg).insert(PedestrianLimb(side));
+        parts.push(leg);
+        let arm = world::part(
+            commands,
+            art.cube.clone(),
+            art.colors[4].clone(),
+            Vec3::new(side * 0.32, 0.95, 0.0),
+            Vec3::new(0.16, 0.65, 0.18),
+            Quat::IDENTITY,
+        );
+        commands.entity(arm).insert(PedestrianLimb(-side));
+        parts.push(arm);
+    }
+    crate::runtime::attach_visuals(commands, root, &parts);
 }
 pub fn patrol(
     race: Res<Race>,
     track: Res<Track>,
-    mut actors: Query<(&Patrol, &mut Transform, Option<&CrossTraffic>)>,
+    mut actors: Query<(&Patrol, &mut Transform, Option<&CrossTraffic>), Without<ColliderDisabled>>,
 ) {
     if race.phase != Phase::Racing {
         return;
     }
     for (path, mut t, car) in &mut actors {
         let phase = (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.0);
-        let f = if phase < 2.0 {
+        let f = if path.one_way {
+            phase.rem_euclid(2.0) - 1.0
+        } else if phase < 2.0 {
             phase - 1.0
         } else {
             3.0 - phase
@@ -657,7 +782,11 @@ pub fn patrol(
         if car.is_none() {
             t.translation.y = track.terrain_height(p.x, p.z) + 0.2;
         }
-        let direction = if phase < 2.0 { 1.0 } else { -1.0 };
+        let direction = if path.one_way || phase < 2.0 {
+            1.0
+        } else {
+            -1.0
+        };
         t.rotation =
             Quat::from_rotation_y((path.axis.x * direction).atan2(path.axis.z * direction));
     }
@@ -717,6 +846,26 @@ pub fn inspector(
             0.5,
             Color::srgb(0.2, 1.0, 0.8),
         );
+    }
+}
+
+pub fn animate_civilians(
+    time: Res<Time>,
+    race: Res<Race>,
+    visuals: Query<&crate::runtime::VisualRoot>,
+    npcs: Query<&crate::npc::Npc>,
+    mut limbs: Query<(&PedestrianLimb, &ChildOf, &mut Transform)>,
+) {
+    for (limb, parent, mut t) in &mut limbs {
+        if let Ok(visual) = visuals.get(parent.parent())
+            && let Ok(npc) = npcs.get(visual.owner)
+        {
+            t.rotation = Quat::from_rotation_x(if race.phase == Phase::Racing && npc.active() {
+                (time.elapsed_secs() * 9.0).sin() * limb.0 * 0.45
+            } else {
+                0.0
+            });
+        }
     }
 }
 

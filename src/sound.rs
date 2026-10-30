@@ -132,6 +132,7 @@ pub fn update(
     sounds: Res<Sounds>,
     muted: Res<Muted>,
     riders: Query<(&Rider, &Recovery, &Transform)>,
+    bike_states: Query<(&Rider, &crate::vehicle::BikeState)>,
     mut cues: MessageReader<AudioCue>,
     mut sinks: Query<(&mut AudioSink, Option<&LoopSound>)>,
     mut last_count: Local<i32>,
@@ -179,7 +180,10 @@ pub fn update(
         };
         sink.set_volume(Volume::Linear(volume));
         if matches!(loop_sound, LoopSound::Engine) {
-            sink.set_speed(0.85 + (player.speed % 12.0) * 0.075 + player.speed * 0.012);
+            sink.set_speed(bike_states.iter().find(|(r, _)| r.id == 0).map_or(
+                0.85 + (player.speed % 12.0) * 0.075 + player.speed * 0.012,
+                |(_, b)| 0.7 + b.rpm / 6500.0,
+            ));
         }
     }
     for cue in cues.read() {

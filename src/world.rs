@@ -3,6 +3,13 @@ use bevy::prelude::*;
 #[cfg(test)]
 use bevy_rapier3d::prelude::*;
 
+pub const RIDER_COLORS: [u32; 8] = [
+    0x23e3bd, 0xff644a, 0x77aaff, 0xffcb55, 0xc792ff, 0xeb6ab0, 0xb3df60, 0xfaf6ed,
+];
+pub fn shirt_color(index: usize) -> Color {
+    let hex = RIDER_COLORS[index % 8];
+    Color::srgb_u8((hex >> 16) as u8, (hex >> 8) as u8, hex as u8)
+}
 #[derive(Resource)]
 pub struct Art {
     pub cube: Handle<Mesh>,
@@ -63,17 +70,7 @@ pub fn setup_world(
             ..default()
         }),
         white: materials.add(Color::srgb(0.85, 0.9, 0.89)),
-        colors: [
-            0x23e3bd, 0xff644a, 0x77aaff, 0xffcb55, 0xc792ff, 0xeb6ab0, 0xb3df60, 0xfaf6ed,
-        ]
-        .map(|hex| {
-            materials.add(Color::srgb_u8(
-                (hex >> 16) as u8,
-                (hex >> 8) as u8,
-                hex as u8,
-            ))
-        })
-        .to_vec(),
+        colors: (0..8).map(|i| materials.add(shirt_color(i))).collect(),
     };
     commands.insert_resource(ClearColor(Color::srgb(0.39, 0.62, 0.72)));
     commands.insert_resource(AmbientLight {
@@ -103,6 +100,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         .id();
     let mut children = Vec::new();
     for z in [-0.78, 0.78] {
+        let wheel_start = children.len();
         children.push(part(
             commands,
             art.wheel.clone(),
@@ -119,6 +117,11 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
             Vec3::new(0.52, 1.05, 0.52),
             Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
         ));
+        for e in &children[wheel_start..] {
+            commands
+                .entity(*e)
+                .insert(crate::vehicle::WheelVisual(z > 0.0));
+        }
     }
     for (p, s, mat) in [
         (
@@ -227,9 +230,10 @@ pub fn animate_riders(
             } else {
                 0.0
             };
-            transform.translation.x = arm.0 * (0.36 + extension * 0.45);
+            transform.translation.x = arm.0 * (0.36 + extension * 0.8);
             transform.rotation =
-                Quat::from_rotation_y(arm.0 * extension * 1.5) * Quat::from_rotation_x(0.35);
+                Quat::from_rotation_z(-arm.0 * extension * std::f32::consts::FRAC_PI_2)
+                    * Quat::from_rotation_x(0.35);
         }
     }
 }

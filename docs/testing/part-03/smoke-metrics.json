@@ -1,0 +1,93 @@
+{
+  "active_fixed_ticks": 848,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 1837,
+  "entities": 8849,
+  "fixed_recovery_stages": [
+    true,
+    true,
+    true
+  ],
+  "fixed_ticks": 948,
+  "last_gameplay_ms": 0.6025669574737549,
+  "last_physics_ms": 2.735366106033325,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "recovery_at_run_capture": {
+    "farm_distance_and_height_delta_m": [
+      1.7288867235183716,
+      0.6011765003204346
+    ],
+    "hill_distance_and_height_delta_m": [
+      2.09259295463562,
+      1.1031723022460938
+    ]
+  },
+  "render_frames": 949,
+  "render_running_captured": true,
+  "target_hz": 60.0,
+  "track": {
+    "closed": false,
+    "collision_triangles": 133540,
+    "gates": 9,
+    "id": "valley-run-01",
+    "length_m": 6847.3076171875,
+    "render_triangles": 144620
+  },
+  "vehicle": {
+    "bike_id": "prototype-bike-01",
+    "crash_state": "Riding",
+    "dt": 0.01666666753590107,
+    "gear": 1,
+    "grip_force_n": 5231.78125,
+    "grounded": [
+      true,
+      true
+    ],
+    "health": 100.0,
+    "intent": {
+      "brake": false,
+      "nitro": false,
+      "steer": 0.0,
+      "throttle": false
+    },
+    "lane": 0.14322790503501892,
+    "lean": 0.0,
+    "position": [
+      0.5376694202423096,
+      110.11772918701172,
+      2596.6044921875
+    ],
+    "preset": "balanced",
+    "rider_id": 0,
+    "rpm": 1200.0,
+    "slip": 0.0,
+    "slip_angle": 0.0,
+    "speed_mps": 0.010178117081522942,
+    "spring_force_n": [
+      1760.987548828125,
+      1726.8663330078125
+    ],
+    "surface_mu": 1.5,
+    "suspension_m": [
+      0.019379377365112305,
+      0.0176733136177063
+    ],
+    "tick": 848,
+    "tire_force_n": [
+      0.0,
+      0.0
+    ],
+    "velocity": [
+      -0.010144658386707306,
+      0.043850481510162354,
+      0.0008245999924838543
+    ],
+    "yaw_rate": 0.0
+  },
+  "wall_frame_average_ms": 7.908552646636963,
+  "wall_frame_p95_ms": 16.956905364990234
+}

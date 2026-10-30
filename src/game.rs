@@ -179,9 +179,13 @@ pub struct Rider {
     pub impact_cooldown: f32,
     pub motion_velocity: Vec3,
     pub gates: crate::track::GateProgress,
+    pub hits: rr_core::HitChain,
+    pub side_velocity: f32,
+    pub drive_intent: rr_core::VehicleIntent,
+    pub bike_mass: f32,
 }
 impl Rider {
-    fn new(id: usize) -> Self {
+    pub(crate) fn new(id: usize) -> Self {
         Self {
             id,
             progress: -8.0 - (id / 2) as f32 * 4.0,
@@ -200,6 +204,10 @@ impl Rider {
             impact_cooldown: 0.0,
             motion_velocity: Vec3::ZERO,
             gates: default(),
+            hits: default(),
+            side_velocity: 0.0,
+            drive_intent: default(),
+            bike_mass: 170.0,
         }
     }
 }
@@ -245,7 +253,7 @@ pub fn setup_race(
     for i in 0..12 {
         let progress = 100.0 + i as f32 * track.length / 12.0;
         let lane = if i % 3 == 0 { 3.1 } else { -3.1 };
-        let speed = if lane > 0.0 { -13.0 } else { 18.0 };
+        let speed = if lane > 0.0 { 18.0 } else { -13.0 };
         let root = commands
             .spawn((
                 Transform::default(),
@@ -403,13 +411,20 @@ pub fn drive(
     mut traffic: Query<(&mut Traffic, &mut Transform), Without<Rider>>,
     mut commands: Commands,
     mut profile: ResMut<Profile>,
-    (content, persistence): (Res<GameContent>, Res<Persistence>),
+    (content, persistence, adapter): (
+        Res<GameContent>,
+        Res<Persistence>,
+        Res<crate::vehicle::VehiclePhysicsAdapter>,
+    ),
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
     ground: Query<(), With<world::Ground>>,
     owned: Query<&recovery::OwnedBody>,
-    mut swept: MessageWriter<recovery::SweptContact>,
+    (mut swept, mut attacks): (
+        MessageWriter<recovery::SweptContact>,
+        MessageWriter<crate::combat::AttackAttempt>,
+    ),
 ) {
     // Physics has its own clock: pause debris together with the race.
     for mut config in &mut physics {
@@ -420,6 +435,7 @@ pub fn drive(
         return;
     }
     let dt = time.delta_secs();
+    let dynamic = *adapter == crate::vehicle::VehiclePhysicsAdapter::Dynamic;
     let player_intent = controls.buffer.held;
     let player_attack = controls
         .buffer
@@ -455,7 +471,7 @@ pub fn drive(
         })
         .collect();
     let player_progress = snapshots.iter().find(|s| s.1 == 0).map_or(0.0, |s| s.2);
-    let mut hits: Vec<(Entity, f32, bool)> = Vec::new();
+
     for (entity, mut r, mut recovery, mut transform, mut visibility) in &mut riders {
         if recovery.stage != RecoveryStage::Riding {
             *visibility = Visibility::Hidden;
@@ -506,20 +522,22 @@ pub fn drive(
             };
             let on_grass = r.lane.abs() > track.half_width(r.progress);
             let target = if on_grass { target.min(32.0) } else { target };
-            if throttle && r.speed < target {
-                let acceleration = if boost {
-                    tuning.nitro_acceleration_mps2
-                } else {
-                    tuning.acceleration_mps2
-                };
-                r.speed = (r.speed
-                    + dt * acceleration * track.surface(r.progress, r.lane).traction())
-                .min(target);
-            } else if r.speed > target || !throttle {
-                r.speed = (r.speed - dt * tuning.coast_drag_mps2).max(0.0);
-            }
-            if brake {
-                r.speed = (r.speed - dt * tuning.brake_mps2).max(0.0);
+            if !dynamic {
+                if throttle && r.speed < target {
+                    let acceleration = if boost {
+                        tuning.nitro_acceleration_mps2
+                    } else {
+                        tuning.acceleration_mps2
+                    };
+                    r.speed = (r.speed
+                        + dt * acceleration * track.surface(r.progress, r.lane).traction())
+                    .min(target);
+                } else if r.speed > target || !throttle {
+                    r.speed = (r.speed - dt * tuning.coast_drag_mps2).max(0.0);
+                }
+                if brake {
+                    r.speed = (r.speed - dt * tuning.brake_mps2).max(0.0);
+                }
             }
             if boost {
                 r.nitro = (r.nitro - dt * 25.0).max(0.0);
@@ -530,7 +548,9 @@ pub fn drive(
             if is_player {
                 steer = player_intent.steer;
                 // High speed on a tight curve pushes the rider toward the outside shoulder.
-                r.lane += track.curvature(r.progress) * r.speed * r.speed * dt * 0.10;
+                if !dynamic {
+                    r.lane += track.curvature(r.progress) * r.speed * r.speed * dt * 0.025;
+                }
             } else {
                 let mut desired =
                     ((race.elapsed * 0.28 + r.id as f32 * 2.4).sin() * 3.4).clamp(-4.5, 4.5);
@@ -540,26 +560,46 @@ pub fn drive(
                         desired = -car.lane;
                     }
                 }
-                steer = ((desired - r.lane) * 1.5).clamp(-1.0, 1.0);
+                steer = if race.elapsed < 3.0 {
+                    0.0
+                } else {
+                    ((desired - r.lane) * 1.5).clamp(-1.0, 1.0)
+                };
             }
-            r.lane +=
-                steer * (tuning.steering_rate_base + r.speed * tuning.steering_rate_speed) * dt;
+            r.drive_intent = rr_core::VehicleIntent {
+                throttle,
+                brake,
+                steer,
+                nitro: boost,
+            };
+            if !dynamic {
+                r.lane += r.side_velocity * dt;
+
+                r.lane +=
+                    steer * (tuning.steering_rate_base + r.speed * tuning.steering_rate_speed) * dt;
+            }
+            r.side_velocity *= (-dt * 2.5).exp();
             r.lean = r.lean.lerp(
                 steer * 0.40 - track.curvature(r.progress) * r.speed * 0.55,
                 (dt * 8.0).min(1.0),
             );
-            if on_grass {
+            if on_grass && !dynamic {
                 r.speed = (r.speed - dt * 1.8).max(0.0);
             }
-            r.progress += r.speed * dt;
-            if !track.definition.closed && r.progress >= track.length {
+            if !dynamic {
+                r.progress += r.speed * dt;
+            }
+            if !dynamic && !track.definition.closed && r.progress >= track.length {
                 r.progress = track.length;
                 r.speed = 0.0;
             }
             // Human and AI share damage and cooldown rules. Attack only one side at once.
             let attack_side = if is_player {
                 player_attack
-            } else if (race.elapsed * 1.7 + r.id as f32).sin() > 0.94 {
+            } else if race.elapsed > 3.0
+                && r.speed > 6.0
+                && (race.elapsed * 2.8 + r.id as f32).sin() > 0.88
+            {
                 if r.lane > 0.0 { -1.0 } else { 1.0 }
             } else {
                 0.0
@@ -567,24 +607,14 @@ pub fn drive(
             if attack_side != 0.0 && r.attack <= 0.0 {
                 r.attack = 0.65;
                 r.attack_side = attack_side;
-                for &(other, _, progress, lane, _, crashed, _) in &snapshots {
-                    let gap = wrapped_gap(progress - r.progress, track.length);
-                    if other != entity
-                        && !crashed
-                        && gap.abs() < 3.2
-                        && (lane - r.lane).abs() < 2.8
-                        && (lane - r.lane) * attack_side > 0.0
-                    {
-                        hits.push((other, 38.0, is_player));
-                        if is_player {
-                            race.message = "HIT / KEEP THE PRESSURE ON".into();
-                            race.message_time = 1.2;
-                        }
-                    }
-                }
+                attacks.write(crate::combat::AttackAttempt(entity, attack_side));
             }
             if r.health <= 0.0 {
-                let (origin, rotation) = track.sample(r.progress, r.lane);
+                let (origin, rotation) = if dynamic {
+                    (transform.translation, transform.rotation)
+                } else {
+                    track.sample(r.progress, r.lane)
+                };
                 recovery::crash(
                     &mut commands,
                     &art,
@@ -606,14 +636,23 @@ pub fn drive(
             }
         }
         let (p, q) = track.sample(r.progress, r.lane);
-        let mut destination = p + Vec3::Y * r.hop_height;
-        let delta = destination - transform.translation;
-        r.motion_velocity = if active && dt > 0.0 {
-            delta / dt
+        let mut destination = if dynamic && active {
+            transform.translation
         } else {
-            Vec3::ZERO
+            p + Vec3::Y * r.hop_height
         };
-        if active
+        let delta = destination - transform.translation;
+        if !dynamic {
+            r.motion_velocity = if active && dt > 0.0 && delta.length() < 5.0 {
+                delta / dt
+            } else if active {
+                q * Vec3::Z * r.speed + Vec3::Y * r.hop_velocity
+            } else {
+                Vec3::ZERO
+            };
+        }
+        if !dynamic
+            && active
             && delta.length_squared() > 0.0000001
             && recovery.stage == RecoveryStage::Riding
             && let Ok(context) = context.single()
@@ -682,41 +721,27 @@ pub fn drive(
                 }
             }
         }
-        transform.translation = destination;
-        transform.rotation =
-            q * Quat::from_rotation_z(r.lean) * Quat::from_rotation_x(-r.hop_velocity * 0.025);
-    }
-    for (victim, damage, player_attack) in hits {
-        if let Ok((_, mut r, mut recovery, transform, mut visibility)) = riders.get_mut(victim)
-            && r.immunity <= 0.0
-            && r.crashed <= 0.0
-        {
-            r.health -= damage;
-            audio.write(AudioCue::new(Cue::Punch, transform.translation));
-            if r.health <= 0.0 {
-                recovery::crash(
-                    &mut commands,
-                    &art,
-                    victim,
-                    &mut r,
-                    &mut recovery,
-                    transform.translation,
-                    transform.rotation,
-                    Vec3::ZERO,
-                    &context,
-                );
-                *visibility = Visibility::Hidden;
-                audio.write(AudioCue::new(Cue::Crash, transform.translation));
-                if r.id != 0 && player_attack {
-                    race.takedowns += 1;
-                    race.message = "TAKEDOWN / +100 CREDITS".into();
-                    race.message_time = 2.0;
-                } else if r.id == 0 {
-                    race.message = "KNOCKED OFF / GETTING BACK UP".into();
-                    race.message_time = 3.5;
-                    race.shake = 1.0;
+        if !dynamic || !active {
+            if let Ok(ctx) = context.single() {
+                let predicate = |e| ground.contains(e);
+                if let Some((_, hit)) = ctx.cast_ray_and_get_normal(
+                    destination + Vec3::Y * 0.7,
+                    -Vec3::Y,
+                    1.2,
+                    true,
+                    QueryFilter::default()
+                        .exclude_rigid_body(entity)
+                        .predicate(&predicate),
+                ) {
+                    let height = destination.y + 0.7 - hit.time_of_impact;
+                    if height - destination.y <= 0.35 {
+                        destination.y = height + r.hop_height;
+                    }
                 }
             }
+            transform.translation = destination;
+            transform.rotation =
+                q * Quat::from_rotation_z(r.lean) * Quat::from_rotation_x(-r.hop_velocity * 0.025);
         }
     }
     if active && race.phase != Phase::Finished {
@@ -877,7 +902,7 @@ pub fn camera_occlusion(
 }
 
 #[cfg(test)]
-mod tests {
+pub(crate) mod tests {
     use super::*;
     use crate::track::ROAD_HALF;
     #[test]
@@ -894,7 +919,7 @@ mod tests {
             assert!(r.lane.abs() < ROAD_HALF);
         }
     }
-    fn simulation() -> App {
+    pub(crate) fn simulation() -> App {
         let mut app = App::new();
         app.add_plugins((
             MinimalPlugins,
@@ -1046,12 +1071,13 @@ mod tests {
             .world_mut()
             .spawn((rival, Transform::default(), Visibility::default()))
             .id();
-        for expected in [62.0, 24.0, 0.0] {
+        for expected in [200.0 / 3.0, 100.0 / 3.0, 0.0] {
             {
                 let mut q = app.world_mut().query::<&mut Rider>();
                 for mut r in q.iter_mut(app.world_mut()) {
                     r.attack = 0.0;
                     r.progress = -8.0;
+                    r.lane = if r.id == 0 { -2.0 } else { -3.7 };
                     r.speed = 0.0;
                 }
             }
@@ -1059,7 +1085,8 @@ mod tests {
             keys.release(KeyCode::KeyJ);
             keys.press(KeyCode::KeyJ);
             step(&mut app, 1);
-            assert_eq!(app.world().get::<Rider>(rival_id).unwrap().health, expected);
+            assert!((app.world().get::<Rider>(rival_id).unwrap().health - expected).abs() < 0.001);
+            step(&mut app, 20);
         }
         assert!(app.world().get::<Rider>(rival_id).unwrap().crashed > 0.0);
         assert_eq!(app.world().resource::<Race>().takedowns, 1);
@@ -1160,7 +1187,7 @@ mod tests {
         assert!((left - right).dot(screen_right) < 0.0, "A moved right");
     }
     #[test]
-    fn bike_contact_ragdolls_the_victim_and_launches_attacker_with_a_bounce() {
+    fn fast_rear_contact_ragdolls_victim_without_launching_the_attacker() {
         let mut app = simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         {
@@ -1188,27 +1215,9 @@ mod tests {
             app.world().get::<Recovery>(victim).unwrap().stage,
             RecoveryStage::Falling
         );
-        assert!(player(&mut app).hop_velocity > 4.0);
-        let mut highest: f32 = 0.0;
-        let mut saw_down = false;
-        let mut bounced = false;
-        for _ in 0..120 {
-            step(&mut app, 1);
-            let r = player(&mut app);
-            highest = highest.max(r.hop_height);
-            if r.hop_velocity < -1.0 {
-                saw_down = true;
-            }
-            if saw_down && r.hop_velocity > 0.5 {
-                bounced = true;
-            }
-        }
-        assert!(
-            (0.9..1.8).contains(&highest),
-            "unexpected launch height {highest}"
-        );
-        assert!(bounced, "bike did not bounce on landing");
+        assert_eq!(player(&mut app).hop_velocity, 0.0);
     }
+
     #[test]
     fn crash_camera_tracks_the_moving_torso_instead_of_the_road_position() {
         let mut app = simulation();
@@ -2074,5 +2083,82 @@ mod tests {
         assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
         assert_eq!(player(&mut app).gates.next, 1);
         assert_eq!(player(&mut app).gates.completed_laps, 0);
+    }
+    #[test]
+    fn matched_speed_contacts_and_small_side_taps_do_not_cause_wipeouts() {
+        for (side, relative) in [(false, 0.0), (false, 3.0), (true, 1.5)] {
+            let mut app = simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let (p, q) = app.world().resource::<Track>().sample(10.0, -2.0);
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let other = app
+                .world_mut()
+                .spawn((
+                    Rider::new(1),
+                    Recovery::default(),
+                    Transform::from_translation(
+                        p + q * if side { Vec3::X * 0.7 } else { Vec3::Z * 2.0 },
+                    ),
+                    Visibility::default(),
+                ))
+                .id();
+            {
+                let world = app.world_mut();
+                let mut r = world.get_mut::<Rider>(owner).unwrap();
+                r.speed = 25.0;
+                r.motion_velocity = q
+                    * (Vec3::Z * (25.0 + if side { 0.0 } else { relative })
+                        + Vec3::X * if side { relative } else { 0.0 });
+            }
+            app.world_mut()
+                .get_mut::<Transform>(owner)
+                .unwrap()
+                .translation = p;
+            app.world_mut()
+                .get_mut::<Rider>(other)
+                .unwrap()
+                .motion_velocity = q * Vec3::Z * 25.0;
+            app.world_mut()
+                .resource_mut::<Messages<recovery::SweptContact>>()
+                .write(recovery::SweptContact(owner, other));
+            app.world_mut().run_schedule(FixedUpdate);
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            assert_eq!(
+                app.world().get::<Recovery>(other).unwrap().stage,
+                RecoveryStage::Riding
+            );
+        }
+    }
+    #[test]
+    fn crowded_grid_has_no_immediate_combat_knockout() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        for id in 1..8 {
+            let r = Rider::new(id);
+            let (p, q) = app.world().resource::<Track>().sample(r.progress, r.lane);
+            app.world_mut().spawn((
+                r,
+                Transform::from_translation(p).with_rotation(q),
+                Visibility::default(),
+                recovery::bike_body(),
+            ));
+        }
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        step(&mut app, 120);
+        assert!(
+            app.world_mut()
+                .query::<&Recovery>()
+                .iter(app.world())
+                .all(|r| r.stage == RecoveryStage::Riding)
+        );
     }
 }

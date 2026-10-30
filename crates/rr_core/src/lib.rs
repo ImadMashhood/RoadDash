@@ -106,6 +106,93 @@ pub fn race_award(place: usize, takedowns: u32) -> u32 {
         .saturating_add(takedowns.saturating_mul(100))
 }
 
+/// Hits form a chain when each accepted direct strike is within three seconds
+/// of the previous one (0, 2, 4 seconds is a knockout). Duplicate contact in the
+/// same attack instant cannot advance the chain twice.
+#[derive(Clone, Copy, Debug, Default)]
+pub struct HitChain {
+    pub count: u8,
+    pub last: Option<f32>,
+}
+impl HitChain {
+    pub fn expire(&mut self, now: f32) -> bool {
+        if self.last.is_some_and(|last| now - last > 3.0) {
+            *self = Self::default();
+            true
+        } else {
+            false
+        }
+    }
+    pub fn direct_hit(&mut self, now: f32) -> bool {
+        self.expire(now);
+        if self.last.is_some_and(|last| now - last < 0.25) {
+            return false;
+        }
+        self.last = Some(now);
+        self.count = (self.count + 1).min(3);
+        self.count == 3
+    }
+}
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum ContactSeverity {
+    Nudge,
+    Wipeout,
+}
+/// Relative *closing* velocity along the impact normal. Absolute speed alone
+/// must not knock out two riders travelling together.
+pub fn bike_contact_severity(closing_mps: f32, longitudinal: bool) -> ContactSeverity {
+    let threshold = if longitudinal { 50.0 / 3.6 } else { 6.0 };
+    if closing_mps >= threshold {
+        ContactSeverity::Wipeout
+    } else {
+        ContactSeverity::Nudge
+    }
+}
+pub fn direct_strike_geometry(lateral: f32, longitudinal: f32, height: f32, side: f32) -> bool {
+    (0.65..=1.9).contains(&lateral.abs())
+        && lateral * side > 0.0
+        && longitudinal.abs() <= 0.9
+        && height.abs() <= 0.9
+}
+#[cfg(test)]
+mod combat_rule_tests {
+    use super::*;
+    #[test]
+    fn successive_hits_expire_by_gap_not_total_duration() {
+        let mut c = HitChain::default();
+        assert!(!c.direct_hit(0.0));
+        assert!(!c.direct_hit(2.0));
+        assert!(c.direct_hit(4.0));
+        let mut c = HitChain::default();
+        c.direct_hit(0.0);
+        c.direct_hit(3.01);
+        assert_eq!(c.count, 1);
+        c.direct_hit(3.01);
+        assert_eq!(c.count, 1);
+    }
+    #[test]
+    fn impact_classification_uses_relative_normal_speed() {
+        assert_eq!(
+            bike_contact_severity(49.0 / 3.6, true),
+            ContactSeverity::Nudge
+        );
+        assert_eq!(
+            bike_contact_severity(50.0 / 3.6, true),
+            ContactSeverity::Wipeout
+        );
+        assert_eq!(bike_contact_severity(1.5, false), ContactSeverity::Nudge);
+        assert_eq!(bike_contact_severity(8.0, false), ContactSeverity::Wipeout);
+        assert_eq!(bike_contact_severity(-30.0, true), ContactSeverity::Nudge);
+    }
+    #[test]
+    fn direct_strikes_require_side_by_side_reach() {
+        assert!(direct_strike_geometry(1.7, 0.5, 0.1, 1.0));
+        assert!(!direct_strike_geometry(1.7, 1.5, 0.1, 1.0));
+        assert!(!direct_strike_geometry(2.8, 0.0, 0.0, 1.0));
+        assert!(!direct_strike_geometry(1.7, 0.0, 0.0, -1.0));
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

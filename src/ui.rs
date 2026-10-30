@@ -53,7 +53,11 @@ fn map_point(track: &Track, p: Vec3) -> (f32, f32) {
     )
 }
 
-pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
+pub fn setup_ui(
+    mut commands: Commands,
+    track: Res<Track>,
+    content: Res<crate::content::GameContent>,
+) {
     let hud = commands
         .spawn((
             Node {
@@ -212,7 +216,9 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
                         height: px(if id == 0 { 8 } else { 5 }),
                         ..default()
                     },
-                    BackgroundColor(if id == 0 { MINT } else { WHITE }),
+                    BackgroundColor(crate::world::shirt_color(
+                        content.0.riders[id].palette_index,
+                    )),
                     BorderRadius::all(px(5)),
                     MapDot(id),
                 ))
@@ -397,5 +403,35 @@ pub fn buttons(
         if *interaction == Interaction::Pressed {
             action.0 = true;
         }
+    }
+}
+
+#[cfg(test)]
+mod map_tests {
+    use super::*;
+    #[test]
+    fn every_racer_dot_uses_the_same_palette_as_their_shirt() {
+        let mut app = App::new();
+        app.add_plugins(MinimalPlugins)
+            .init_resource::<Track>()
+            .init_resource::<crate::content::GameContent>()
+            .init_resource::<Assets<Mesh>>()
+            .init_resource::<Assets<StandardMaterial>>()
+            .add_systems(Startup, (crate::world::setup_world, setup_ui).chain());
+        app.update();
+        let world = app.world_mut();
+        let content = world.resource::<crate::content::GameContent>();
+        let expected: Vec<_> = content
+            .0
+            .riders
+            .iter()
+            .map(|r| crate::world::shirt_color(r.palette_index))
+            .collect();
+        let mut count = 0;
+        for (dot, color) in world.query::<(&MapDot, &BackgroundColor)>().iter(world) {
+            assert_eq!(color.0, expected[dot.0]);
+            count += 1;
+        }
+        assert_eq!(count, 8);
     }
 }
