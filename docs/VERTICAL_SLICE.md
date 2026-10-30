@@ -3,7 +3,8 @@
 Locked design target, 2026-10-30 (Part 00). This defines future acceptance, not
 completion of Parts 02-09.
 
-- One authored approximately three-minute town -> farm -> cliff/coastal route.
+- One authored approximately three-minute point-to-point farmland -> city -> hills route.
+  Updated by the user on 2026-10-30; the earlier town/farm/cliff order is superseded.
 - One working bike tuning ID and two cosmetic variants, original art only.
 - Player plus at least three opponents, live traffic and fair shared controls.
 - Punches and kicks, readable damage/knockoff, independent physical rider/bike.

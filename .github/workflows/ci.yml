@@ -27,6 +27,8 @@ jobs:
       - run: cargo clippy --workspace --locked --all-targets -- -D warnings
       - run: cargo test --workspace --locked
       - run: cargo build --locked
+      - run: cargo run --locked -- --validate-track content/tracks/valley.json
+      - run: cargo run --locked -- --validate-track content/tracks/handling.json
       - run: cargo check --locked --no-default-features --features offline
       - run: cargo check --locked --features debug_physics
       - run: python tools/sync_progress.py --check

@@ -110,6 +110,49 @@ fn detached_origin(
     origin
 }
 
+/// Passive tissue approximation: anatomical stops, low-strength restorative
+/// torque and velocity damping. Hinge axes cannot twist like ball joints.
+fn anatomical_joint(part: usize, anchor1: Vec3, anchor2: Vec3) -> GenericJoint {
+    let hinge = matches!(part, 4 | 6 | 8 | 10);
+    let mut joint = GenericJointBuilder::new(if hinge {
+        JointAxesMask::LOCKED_REVOLUTE_AXES
+    } else {
+        JointAxesMask::LIN_AXES
+    })
+    .local_anchor1(anchor1)
+    .local_anchor2(anchor2)
+    .build();
+    let limits = match part {
+        1 => [[-0.6, 0.7], [-0.75, 0.75], [-0.45, 0.45]],
+        2 => [[-0.45, 0.6], [-0.3, 0.3], [-0.3, 0.3]],
+        3 => [[-1.5, 1.8], [-0.5, 0.5], [-2.2, 0.35]],
+        5 => [[-1.5, 1.8], [-0.5, 0.5], [-0.35, 2.2]],
+        4 | 6 => [[-2.35, 0.03], [0.0, 0.0], [0.0, 0.0]],
+        8 | 10 => [[-0.03, 2.45], [0.0, 0.0], [0.0, 0.0]],
+        _ => [[-1.6, 0.5], [-0.35, 0.35], [-0.5, 0.5]],
+    };
+    for (axis, range) in [JointAxis::AngX, JointAxis::AngY, JointAxis::AngZ]
+        .into_iter()
+        .zip(limits)
+    {
+        if hinge && axis != JointAxis::AngX {
+            continue;
+        }
+        joint.set_limits(axis, range);
+        let rest = if hinge && part < 7 {
+            -0.15
+        } else if hinge {
+            0.15
+        } else {
+            0.0
+        };
+        joint.set_motor_model(axis, MotorModel::ForceBased);
+        joint.set_motor_position(axis, rest, if hinge { 3.0 } else { 5.0 }, 1.8);
+        joint.set_motor_max_force(axis, if hinge { 8.0 } else { 12.0 });
+    }
+    joint.set_contacts_enabled(false);
+    joint
+}
 /// A real articulated rigid-body ragdoll. Adjacent body parts cannot collide;
 /// ball joints constrain translation while allowing the limbs to tumble.
 #[allow(clippy::too_many_arguments)]
@@ -253,22 +296,11 @@ pub fn crash(
         );
         crate::runtime::attach_visuals(commands, e, &[visual]);
         if let Some((parent, anchor)) = parent {
-            let mut joint = SphericalJointBuilder::new()
-                .local_anchor1(*anchor - specs[*parent].0)
-                .local_anchor2(*anchor - *p)
-                .limits(JointAxis::AngX, [-1.4, 1.4])
-                .limits(JointAxis::AngY, [-0.7, 0.7])
-                .limits(JointAxis::AngZ, [-1.1, 1.1])
-                .build();
-            joint.set_contacts_enabled(false);
-            if matches!(i, 4 | 6 | 8 | 10) {
-                joint.set_limits(JointAxis::AngX, [-0.1, 2.2]);
-                joint.set_limits(JointAxis::AngY, [-0.05, 0.05]);
-                joint.set_limits(JointAxis::AngZ, [-0.05, 0.05]);
-            }
-            commands
-                .entity(e)
-                .insert(ImpulseJoint::new(bodies[*parent], joint));
+            let joint = anatomical_joint(i, *anchor - specs[*parent].0, *anchor - *p);
+            commands.entity(e).insert(ImpulseJoint::new(
+                bodies[*parent],
+                TypedJoint::GenericJoint(joint),
+            ));
         }
         bodies.push(e);
     }
@@ -292,9 +324,13 @@ pub fn crash(
             },
             Ccd::enabled(),
             Restitution::coefficient(0.25),
-            Friction::coefficient(0.8),
+            Friction {
+                coefficient: 0.8,
+                combine_rule: CoefficientCombineRule::Min,
+            },
+            Sleeping::disabled(),
             Damping {
-                linear_damping: 0.4,
+                linear_damping: 0.25,
                 angular_damping: 0.8,
             },
             Debris(f32::INFINITY),
@@ -518,7 +554,10 @@ pub fn recover(
                 if let Ok((mut t, _, _, _)) = bodies.get_mut(wreck) {
                     let (_, rotation) = track.sample(rider.progress, 0.0);
                     t.rotation = t.rotation.slerp(rotation, (dt * 8.0).min(1.0));
-                    t.translation.y += (0.13 - t.translation.y) * (dt * 8.0).min(1.0);
+                    t.translation.y += (track.terrain_height(t.translation.x, t.translation.z)
+                        + 0.13
+                        - t.translation.y)
+                        * (dt * 8.0).min(1.0);
                 }
                 if let Some(pose) = recovery.pose
                     && let Ok((mut t, _, _, _)) = bodies.get_mut(pose)
@@ -572,7 +611,11 @@ pub fn impacts(
     mut riders: Query<(&mut Rider, &mut Recovery, &mut Visibility)>,
     transforms: Query<&Transform>,
     owned: Query<&OwnedBody>,
-    cars: Query<&Traffic>,
+    (cars, cows, cross_cars): (
+        Query<&Traffic>,
+        Query<(), With<crate::environment::Cow>>,
+        Query<(), With<crate::environment::CrossTraffic>>,
+    ),
     velocities: Query<&Velocity>,
     obstacles: Query<(), With<Obstacle>>,
     controllers: Query<(Entity, &KinematicCharacterControllerOutput)>,
@@ -637,6 +680,8 @@ pub fn impacts(
                         actions.push(Impact::Crash(body.owner, velocity * 0.55));
                     }
                 }
+            } else if cows.contains(other) && speed > 0.75 {
+                actions.push(Impact::Hop(bike));
             } else if obstacles.contains(other)
                 || cars
                     .get(other)
@@ -650,7 +695,7 @@ pub fn impacts(
             if let Ok(body) = owned.get(person)
                 && body.kind == BodyKind::Runner
             {
-                let is_car = cars.contains(object);
+                let is_car = cars.contains(object) || cross_cars.contains(object);
                 let is_other_wreck = owned.get(object).is_ok_and(|o| {
                     o.kind == BodyKind::Wreck
                         && o.owner != body.owner
@@ -736,6 +781,63 @@ pub fn impacts(
                     if rider.id == 0 {
                         race.shake = 1.0;
                     }
+                }
+            }
+        }
+    }
+}
+
+/// Preserve useful stopping friction on flat roads while allowing fallen bikes
+/// to slide downhill instead of sticking to steep terrain.
+pub fn slope_friction(
+    race: Res<Race>,
+    context: ReadRapierContext,
+    mut wrecks: Query<(&OwnedBody, &Transform, &mut Friction)>,
+) {
+    if race.phase != Phase::Racing {
+        return;
+    }
+    let Ok(context) = context.single() else {
+        return;
+    };
+    for (body, t, mut friction) in &mut wrecks {
+        if body.kind != BodyKind::Wreck {
+            continue;
+        }
+        let center = t.translation + t.rotation * Vec3::Y * 0.85;
+        let slope = context
+            .cast_ray_and_get_normal(
+                center + Vec3::Y * 1.5,
+                -Vec3::Y,
+                4.0,
+                true,
+                QueryFilter::exclude_dynamic().exclude_sensors(),
+            )
+            .is_some_and(|(_, hit)| hit.normal.y > 0.1 && hit.normal.y < 0.98);
+        friction.coefficient = if slope { 0.08 } else { 0.8 };
+    }
+}
+
+#[cfg(test)]
+mod articulation_tests {
+    use super::*;
+    #[test]
+    fn hinges_lock_twist_and_passive_tissue_has_finite_limited_torque() {
+        for i in 1..11 {
+            let j = anatomical_joint(i, Vec3::Y, Vec3::NEG_Y);
+            assert!(!j.contacts_enabled());
+            let motor = j.motor(JointAxis::AngX).unwrap();
+            assert!(motor.stiffness > 0.0 && motor.damping > 0.0 && motor.max_force <= 12.0);
+            let limits = j.limits(JointAxis::AngX).unwrap();
+            if matches!(i, 4 | 6 | 8 | 10) {
+                assert!(
+                    j.locked_axes()
+                        .contains(JointAxesMask::ANG_Y | JointAxesMask::ANG_Z)
+                );
+                if i < 7 {
+                    assert!(limits.max <= 0.04 && limits.min < -2.0);
+                } else {
+                    assert!(limits.min >= -0.04 && limits.max > 2.0);
                 }
             }
         }

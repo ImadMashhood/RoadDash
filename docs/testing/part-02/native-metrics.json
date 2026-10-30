@@ -1,0 +1,36 @@
+{
+  "active_fixed_ticks": 1136,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 1895,
+  "entities": 6102,
+  "fixed_ticks": 1236,
+  "last_gameplay_ms": 0.1361140012741089,
+  "last_physics_ms": 0.6031180024147034,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "recovery_at_run_capture": {
+    "farm_distance_and_height_delta_m": [
+      12.676186561584473,
+      0.9407954216003418
+    ],
+    "hill_distance_and_height_delta_m": [
+      8.289522171020508,
+      0.6910552978515625
+    ]
+  },
+  "render_frames": 1237,
+  "target_hz": 60.0,
+  "track": {
+    "closed": false,
+    "collision_triangles": 133540,
+    "gates": 9,
+    "id": "valley-run-01",
+    "length_m": 6847.3076171875,
+    "render_triangles": 144620
+  },
+  "wall_frame_average_ms": 6.952164173126221,
+  "wall_frame_p95_ms": 14.503204345703125
+}

@@ -44,8 +44,13 @@ fn label(
         ))
         .id()
 }
-fn map_point(p: Vec3) -> (f32, f32) {
-    (108.0 + p.x * 0.36, 126.0 + p.z * 0.36)
+fn map_point(track: &Track, p: Vec3) -> (f32, f32) {
+    let (min, max) = track.bounds;
+    let scale = (180.0 / (max.x - min.x)).min(200.0 / (max.z - min.z));
+    (
+        108.0 + (p.x - (min.x + max.x) * 0.5) * scale,
+        126.0 - (p.z - (min.z + max.z) * 0.5) * scale,
+    )
 }
 
 pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
@@ -63,7 +68,7 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
     kids.push(label(&mut commands, "ROAD / DASH", 25.0, WHITE, 32.0, 24.0));
     kids.push(label(
         &mut commands,
-        "PACIFIC RUN   /   COASTAL CIRCUIT",
+        &track.definition.name,
         12.0,
         MINT,
         33.0,
@@ -180,7 +185,7 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
         .id();
     let mut dots = vec![];
     for p in track.points.iter().step_by(4) {
-        let (x, y) = map_point(*p);
+        let (x, y) = map_point(&track, *p);
         dots.push(
             commands
                 .spawn((
@@ -345,19 +350,21 @@ pub fn update_ui(
                 }
                 s
             },
+            1 if !track.definition.closed => format!("ROUTE {:03}%  GATE {}/{}  {:02}:{:05.2}",(player.progress/track.length*100.0).clamp(0.0,100.0) as u32,player.gates.next,track.definition.checkpoints.len()-1,(race.elapsed/60.0) as u32,race.elapsed%60.0),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => format!("{:03}", (player.speed * 3.6) as u32),
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO  {}  {:3.0}%", bar(player.health), player.health.max(0.0), bar(player.nitro), player.nitro),
+            4 if !track.definition.closed && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
             4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { match recovery { crate::recovery::RecoveryStage::Falling => "WIPED OUT / WAIT FOR THE LANDING", crate::recovery::RecoveryStage::GettingUp => "GETTING BACK UP", crate::recovery::RecoveryStage::Running => "GET BACK TO THE BIKE", crate::recovery::RecoveryStage::Mounting => "BACK IN THE SADDLE", _ => "" }.into() } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
-            5 => format!("{:.2} KM  /  {} LAPS", track.length / 1000.0, LAPS),
+            5 => format!("{:.2} KM / {}",track.length/1000.0,if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
             6 if loading => "PREPARING THE ROAD".into(),
             7 if loading => "Getting your bike ready...".into(),
             8 if loading => "LOADING...".into(),
-            6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 8", race.place), _ => "01 / PACIFIC RUN".into() },
+            6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 8", race.place), _ => track.definition.name.clone() },
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
                 Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.".into(),
-                _ => "Eight riders. Two laps. One stretch of coast.\n\nCarve the bends. Dodge oncoming traffic.\nFight your way to the front.".into(),
+                _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.".into(),
             },
             8 => if race.phase == Phase::Paused { "ESC / BACK TO IT".into() } else { "ENTER / RIDE OUT".into() },
             9 => format!("GARAGE   /   {} CREDITS   /   {} WINS IN {} RACES", profile.credits, profile.wins, profile.races),
@@ -366,7 +373,7 @@ pub fn update_ui(
     }
     for (dot, mut node) in &mut dots {
         if let Some(r) = riders.iter().find(|r| r.id == dot.0) {
-            let (x, y) = map_point(track.sample(r.progress, 0.0).0);
+            let (x, y) = map_point(&track, track.sample(r.progress, 0.0).0);
             node.left = px(x - 2.0);
             node.top = px(y - 2.0);
         }

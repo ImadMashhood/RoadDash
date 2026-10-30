@@ -21,7 +21,7 @@ are explicitly documentary unless a play session is actually recorded.
 
 | Priority | Requirement | Acceptance owner/part |
 | --- | --- | --- |
-| P0 | One approximately three-minute authored town/farm/cliff corridor | P02/P09 |
+| P0 | One approximately three-minute authored point-to-point farmland/city/hills corridor | P02/P09 |
 | P0 | One assisted bike with two cosmetic variants; distinguish physics from appearance | P03/P11 |
 | P0 | Three AI opponents, fair shared controls and live civilian traffic | P08 |
 | P0 | Left/right punch and kick, damage, readable hits and knockoff | P05/P06 |
@@ -91,3 +91,11 @@ The current prototype is not the slice definition: flat procedural road, automat
 recovery only, no kicks, foot finish, authored town/farm/cliff route, police,
 production rig or online authority. Preserve its working loop while filling these
 requirements in the assigned later parts. Do not silently reduce the P0 gate.
+
+## User map refinement — 2026-10-30
+
+The current playable route starts in open farmland, develops into dense city
+streets with crossing traffic and pedestrians, then climbs through rolling hills.
+The user explicitly rejected a return loop. Farm cows can lift a bike on contact.
+Real elevation affects where the rider and wreck settle and the walk back.
+These refinements supersede the initial route order, not the remaining P0 gates.

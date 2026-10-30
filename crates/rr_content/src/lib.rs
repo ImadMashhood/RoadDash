@@ -14,7 +14,17 @@ pub struct BikeDef {
     pub nitro_acceleration_mps2: f32,
     pub brake_mps2: f32,
     pub coast_drag_mps2: f32,
+    #[serde(default = "default_steering_base")]
+    pub steering_rate_base: f32,
+    #[serde(default = "default_steering_speed")]
+    pub steering_rate_speed: f32,
     pub variants: Vec<CosmeticDef>,
+}
+fn default_steering_base() -> f32 {
+    1.8
+}
+fn default_steering_speed() -> f32 {
+    0.108
 }
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -64,6 +74,8 @@ impl Catalog {
                 bike.nitro_acceleration_mps2,
                 bike.brake_mps2,
                 bike.coast_drag_mps2,
+                bike.steering_rate_base,
+                bike.steering_rate_speed,
             ] {
                 if !v.is_finite() || v <= 0.0 {
                     return Err("bike tuning must be finite and positive".into());
@@ -106,6 +118,17 @@ mod tests {
         Catalog::builtin().validate().unwrap();
     }
     #[test]
+    fn earlier_schema_one_catalogs_gain_default_steering_without_losing_tuning() {
+        let mut json: serde_json::Value =
+            serde_json::from_str(include_str!("../../../content/catalog.json")).unwrap();
+        let bike = json["bikes"][0].as_object_mut().unwrap();
+        bike.remove("steering_rate_base");
+        bike.remove("steering_rate_speed");
+        let c = Catalog::from_json(&json.to_string()).unwrap();
+        assert_eq!(c.bikes[0].steering_rate_base, 1.8);
+        assert_eq!(c.bikes[0].top_speed_mps, 55.0);
+    }
+    #[test]
     fn invalid_tuning_and_schema_are_rejected() {
         let mut c = Catalog::builtin();
         c.bikes[0].brake_mps2 = f32::NAN;
@@ -124,3 +147,5 @@ mod tests {
         assert!(c.validate().is_err());
     }
 }
+
+pub mod track;

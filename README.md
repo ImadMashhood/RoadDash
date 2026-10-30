@@ -1,10 +1,10 @@
 # ROAD / DASH
 
-A native Rust + Bevy motorcycle combat racer. Race a winding coastal circuit against seven rivals, dodge two-way traffic, throw punches, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, preserving current momentum.
+A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland → city → hills route against seven rivals, dodge two-way traffic, throw punches, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, preserving current momentum.
 
 This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data.
 
-![Gameplay screenshot](docs/gameplay.jpg)
+![Valley Run farmland](docs/testing/part-02/farms.jpg)
 
 ## Run
 
@@ -48,33 +48,37 @@ The Linux build uses X11 (and XWayland on Wayland desktops). Windows and macOS a
 | Esc | Pause / resume |
 | M | Mute / unmute audio |
 | F3 | Toggle developer frame/tick/physics/entity diagnostics |
+| F4 | Toggle track spline/normal/bounds/spawn inspector |
 | R | Restart from the grid |
 
-The bike follows the road's heading automatically. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Nitro regenerates when released. Off-road riding drains armor and speed; traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up, runs back to the actual fallen bike, lifts it upright, and remounts. Moving traffic and other racers can knock a rider down again during recovery.
+The bike follows the road's heading automatically. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Nitro regenerates when released. Grass reduces traction and speed while remaining driveable; it does not drain armor or cause a crash by itself. Traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up, runs back to the actual fallen bike, lifts it upright, and remounts. Moving traffic and other racers can knock a rider down again during recovery.
 
 ## Included
 
-- An arc-length-sampled closed coastal circuit, two-lap races, and an eight-rider grid.
-- Procedural 3D bikes, riders, cars, road markings, trees, mountains, ocean, and start gantry.
+- A 6.85 km authored point-to-point course: open farmland, dense city streets, then rolling hills. Eight riders, nine ordered gates, one finish.
+- A separate approximately 2 km handling test fixture, headless track validation and F4 spline/normal/bounds/spawn inspection.
+- Seeded farms/fences and solid cows that lift riders on contact; city cross traffic and walking sidewalk pedestrians; elevated hill terrain and guardrails.
+- Original procedural 3D bikes, riders, cars, road markings, trees, farms, buildings, cows, pedestrians and start/finish markers.
 - PBR materials, directional shadows, atmospheric distance fog, and a speed-sensitive chase camera.
 - Seven AI racers with corner speed adjustment, lane changes, traffic avoidance, and attacks.
 - Twelve traffic vehicles traveling in both directions.
 - Armor, nitro, directional melee, collision detection, crash recovery, and camera shake.
-- Eleven rigid-body rider parts connected with limited ball joints, plus a separate dynamic motorcycle wreck. Continuous collision detection, friction, and restitution are enabled.
-- Solid cars, ridden bikes, on-foot riders, trees, mountains, roadside posts, start gantry, and road surfaces. Road markings are visual decals.
+- Eleven rider bodies with anatomical shoulder/hip/spine/neck limits, directional elbow/knee hinges and bounded passive spring/damping resistance. This approximates tissue resistance; it is not biological muscle simulation.
+- Independent bike wrecks slide on slopes and retain stopping friction on flat ground. Boost release/exhaustion slows gradually, and steering is about 20% tighter.
+- Solid cars, bikes, riders, cows, pedestrians, trees, buildings, fences, curbs, guardrails and road/terrain surfaces. Road markings are visual decals.
 - Bike impacts knock the struck rider into a ragdoll while the attacker launches roughly 1.3 meters, lands, and bounces.
 - Ordinary crashes preserve current velocity without an artificial upward launch. The separated rider and wreck fall independently.
 - The recovery camera follows the ragdoll and then the running rider. A collision-aware character controller handles the run back and remount at the bike’s actual location.
 - Synthesized engine RPM, wind, nitro, braking, impact, landing, punch, footstep, countdown, and finish audio. M mutes the mixer.
-- Full-footprint scenery clearance checks keep trees and mountain slopes off the circuit.
+- Full-footprint scenery checks keep props clear; collision rays verify terrain does not cover banked road lanes.
 - Garage/start menu, countdown, pause/restart, leaderboard, speedometer, live course map, and results.
 - Persistent race count, wins, credits, and personal-best time.
 
-![Running back to the fallen bike](docs/recovery.jpg)
+![City graybox](docs/testing/part-02/city.jpg)
 
 ## Current scope
 
-This is an arcade prototype, not a finished commercial remake. Riding uses an explicit speed/lane controller; wheel suspension, tire contact, and bike balance are not physically simulated. Ragdolls and wrecks are physically simulated. The environment and characters are procedural low-poly placeholders, and the circuit is flat. There is one course and one bike configuration. Police pursuits, career events, purchasable upgrades, animation rigs, gamepads, multiplayer, and production art remain future work. Credits are saved but cannot yet be spent.
+This is an arcade prototype, not a finished commercial remake. Riding uses an explicit speed/lane controller; wheel suspension, tire contact, and bike balance are not physically simulated. Ragdolls and wrecks are physically simulated. The environment and characters are procedural low-poly placeholders, with authored elevation and banking. There is one playable point-to-point course and one bike configuration. Police pursuits, career events, purchasable upgrades, animation rigs, gamepads, multiplayer, and production art remain future work. Credits are saved but cannot yet be spent.
 
 ## Production blueprint v3 progress
 
@@ -82,7 +86,7 @@ Source: [Road Rash Bevy Production Blueprint v3.0](docs/road-rash-production-blu
 
 **Status rules:** `[x]` means the specifically described capability exists in this prototype. `[ ]` means not implemented, partial, or not yet validated to the stated requirement. A prototype feature does not satisfy a larger production gate automatically. When completing an item, attach its code/test, measurement, playtest report, or rights record; leave unverified acceptance criteria unchecked. Baseline history: commit `03f12b2` had 18 behavior tests; Parts 00-01 now add the workspace, fixed scheduler and permanent evidence records. Current verification and outstanding gates are recorded in [PROGRESS](docs/PROGRESS.md) and [test receipts](docs/testing/PARTS_00_01.md).
 
-Active implementation: Parts 00-01. See [GDD](docs/GDD.md), [slice contract](docs/VERTICAL_SLICE.md), [architecture](docs/ARCHITECTURE.md), [decisions](docs/DECISIONS.md), [known issues](docs/KNOWN_ISSUES.md), and [development history](docs/CHANGELOG_DEV.md). Future gameplay and online requirements stay in their assigned parts.
+Active implementation: user-reported handling/recovery fixes followed by Part 02; the playable route is point-to-point. See [Part 02 receipts](docs/testing/PART_02.md) and [track authoring](docs/tracks/AUTHORING.md). Prior Parts 00-01 evidence remains historical. See [GDD](docs/GDD.md), [slice contract](docs/VERTICAL_SLICE.md), [architecture](docs/ARCHITECTURE.md), [decisions](docs/DECISIONS.md), [known issues](docs/KNOWN_ISSUES.md), and [development history](docs/CHANGELOG_DEV.md). Future gameplay and online requirements stay in their assigned parts.
 
 ### Baseline and dependency decisions
 
@@ -157,6 +161,7 @@ PDF pp. 7, 9; references R08, R04, R06.
 - [x] **P01-016** Keep the complete README/tracker task index synchronized by stable IDs. Evidence: [sync checker](tools/sync_progress.py).
 - [x] **P01-017** Audit declared dependency/media provenance, font notices, source hashes and excluded unverified embedded LUTs. Evidence: [audit](tools/audit.py), [inventory](docs/third_party/ASSETS.csv).
 - [ ] **P01-018** Obtain actual Windows and Fedora/NVIDIA native launch/input/audio receipts in addition to the CI build matrix; record the measured adapter and keep unmet hardware gates open.
+- [x] **P01-019** Decode Cargo metadata and repository text explicitly as UTF-8 across host locales; regress the Windows cp1252 audit failure. Evidence: [audit tests](tools/test_audit.py), [CI follow-up](docs/testing/PART_02.md).
 
 ### Part 02 - Scenic road graybox and track format
 
@@ -164,15 +169,22 @@ PDF p. 10; references R01, R02, R08.
 
 - [x] **P02-001** Build a closed driveable circuit with lanes, shoulders, solid road surfaces, and canonical arc-length progress. Evidence: [track](src/track.rs), [world](src/world.rs).
 - [x] **P02-002** Validate circuit closure, distance wrapping, camera-right lane direction, progress projection, and full-footprint scenery clearance in headless tests. Evidence: tests in [track](src/track.rs) and [world](src/world.rs).
-- [ ] **P02-003** Document meter units, +Y up, spline-tangent forward, origin, and any future origin-rebasing policy.
+- [x] **P02-003** Document meter units, +Y up, spline-tangent forward, origin, and any future origin-rebasing policy.
 - [ ] **P02-004** Replace the generated flat polyline with an authorable Catmull-Rom/Bezier centerline supporting widths, banking, elevation, sectors, and optional route splits/merges.
-- [ ] **P02-005** Define typed track IDs, control points, surfaces, ordered checkpoint IDs, prop placement, spawn points, and safe foot/verge regions.
-- [ ] **P02-006** Build simplified collision meshes separately from render meshes, initially sampling around 2-3 m; add curbs, guardrails, fencing, and reliable highway boundaries.
-- [ ] **P02-007** Implement ordered gates and forward crossing validation; validate checkpoint order, intersections, NaNs, negative widths, and spawn overlap.
-- [ ] **P02-008** Add asphalt/dirt/gravel/grass/water metadata and traction/friction modifiers, animal crossings, and cliff hazard zones.
-- [ ] **P02-009** Add a track inspector for spline normals, triangle count, driving line, bounds, and spawns; load authored tracks headlessly.
+- [x] **P02-005** Define typed track IDs, control points, surfaces, ordered checkpoint IDs, prop placement, spawn points, and safe foot/verge regions.
+- [x] **P02-006** Build simplified collision meshes separately from render meshes, initially sampling around 2-3 m; add curbs, guardrails, fencing, and reliable highway boundaries.
+- [x] **P02-007** Implement ordered gates and forward crossing validation; validate checkpoint order, intersections, NaNs, negative widths, and spawn overlap.
+- [x] **P02-008** Add asphalt/dirt/gravel/grass/water metadata and traction/friction modifiers, animal crossings, and cliff hazard zones.
+- [x] **P02-009** Add a track inspector for spline normals, triangle count, driving line, bounds, and spawns; load authored tracks headlessly.
 - [ ] **P02-010** Build a short approximately 2 km handling road, then a roughly 6-9 km town -> farm -> cliff corridor tuned for a three-minute race, with straight, turns, hairpin, and hazards.
 - [ ] **P02-011** **Exit gate:** an authored graybox supports a complete race with valid gates, stable collision, clear progress, and no terrain fall-through.
+
+Implementation evidence: [track format](docs/tracks/AUTHORING.md), [schema](crates/rr_content/src/track.rs), [track/gate tests](src/track.rs), [geometry and actors](src/environment.rs), [receipt](docs/testing/PART_02.md). P02-004 is partial: spline/width/bank/elevation/sectors are working; optional branch/split/merge support remains. P02-010 has both road lengths; busy-race pacing remains unverified. User-directed route order is farmland → city → hills, with no return loop. The overall gate remains open until those outstanding requirements are resolved.
+
+- [x] **P02-012** Build the user-directed point-to-point map with distinct start/finish, no endpoint wrapping, canonical route HUD and safe endpoint/retry behavior. Evidence: [track](src/track.rs), [race tests](src/game.rs).
+- [x] **P02-013** Populate seeded farm openings/fences/cows, city buildings/cross traffic/walking pedestrians, and elevated hills with physical guardrails. Evidence: [environment](src/environment.rs), [native captures](docs/testing/PART_02.md).
+- [x] **P02-014** Keep terrain below banked road lanes and verify route support, render/collision winding and independent collision resolution. Evidence: [geometry tests](src/environment.rs).
+- [x] **P02-015** Verify actual hill crash/get-up/run/remount at elevation without resetting the bike to sea level. Evidence: [recovery](src/recovery.rs), [native receipt](docs/testing/PART_02.md).
 
 ### Part 03 - Motorcycle physics and controls
 
@@ -189,6 +201,9 @@ PDF pp. 11-12, 32; references R02, R03, R04.
 - [ ] **P03-009** Benchmark acceleration, braking distance, steady turns, lean recovery, and curb hits; compare numeric results at 30/60/120 render FPS and collect 100 Hz traces where needed.
 - [ ] **P03-010** Run a ten-minute aggressive-turning soak without NaNs/tunneling/unexplained flips; record at least ten test rides and controller feedback.
 - [ ] **P03-011** **Exit gate:** three presets feel distinct, a beginner can finish, and handling is fun and stable with placeholder art.
+- [x] **P03-012** Decelerate smoothly when boost is released or exhausted; preserve excess speed instead of clamping to the ordinary top speed. Evidence: [regression](src/game.rs).
+- [x] **P03-013** Allow player/AI forward movement in grass, with reduced traction/speed and no grass-only health loss or knockoff; AI can return to the road. Evidence: [four-scenario regression](src/game.rs).
+- [x] **P03-014** Tighten lateral handling approximately 20% using validated authored steering rates, retaining older schema-1 catalogs with defaults. Evidence: [tuning](content/catalog.json), [schema tests](crates/rr_content/src/lib.rs).
 
 ### Part 04 - Chase camera, speed feel, and input
 
@@ -236,7 +251,9 @@ PDF p. 15 and dismounted-control contract pp. 28-29; references R03, R04.
 - [ ] **P06-013** **Exit gate:** knockoff, manual foot movement, optional assist, valid foot finish, and safe remount all work smoothly.
 - [x] **P06-014** Preserve current crash momentum without synthetic upward launch and visibly separate the rider from the riderless wreck. Evidence: [crash tests](src/game.rs), [recovery](src/recovery.rs), [native receipt](docs/testing/PARTS_00_01.md).
 - [x] **P06-015** Remount against the actual fallen bike collision shape, including sideways, upside-down and vertical poses, without the runner pushing it away. Evidence: twelve automated approaches in [game tests](src/game.rs) and native recovery smoke.
-- [x] **P06-016** Apply post-remount protection to shoulder damage so recovery does not immediately drain health. Evidence: end-to-end recovery regression in [game tests](src/game.rs).
+- [x] **P06-016** Apply post-remount protection to shoulder damage so recovery does not immediately drain health. Evidence: end-to-end recovery regression in [game tests](src/game.rs). Historical behavior: P03-013 now removes grass-only damage entirely.
+- [x] **P06-017** Replace universal ball-joint limits with anatomical stops, directional hinges and bounded passive tissue resistance; verify 100 high-speed drops without detached joints or twisted hinge axes. Evidence: [articulation](src/recovery.rs), [stress test](src/game.rs).
+- [x] **P06-018** Make fallen bikes slide on steep solid terrain while retaining flat-road stopping friction. Evidence: [slope contact friction](src/recovery.rs), [ramp regression](src/game.rs).
 
 ### Part 07 - Race rules, HUD, and results
 
@@ -505,7 +522,7 @@ python3 tools/sync_progress.py --check
 cargo run -- --smoke-test
 ```
 
-The render smoke test opens a real window, captures the garage, racing, a triggered crash, getting up, running back, remounting, and results into `screenshots/`, then exits. It needs a working display/GPU and audio output. It verifies that audio playback sinks initialize and racing audio is playing. It does not modify the saved profile. CI runs format, lint, and headless tests; screenshots are a separate local check.
+The render smoke test opens a real window, captures the garage, farmland racing/recovery, city, hills, a second hill crash/recovery, track inspector and results into `screenshots/`, then exits. It needs a working display/GPU and audio output. It verifies that audio playback sinks initialize and racing audio is playing. It does not modify the saved profile. CI runs format, lint, and headless tests; screenshots are a separate local check.
 
 Source layout:
 
@@ -513,7 +530,9 @@ Source layout:
 - `src/lib.rs`, `src/runtime.rs`: app assembly, subsystem plugins, lifecycle, fixed schedules and render interpolation.
 - `src/controls.rs`, `src/content.rs`, `src/diagnostics.rs`: bindings, authored content, F3 metrics and local panic reports.
 - `tools/`: declared-license/media audit and roadmap synchronization.
-- `src/track.rs`: circuit geometry, arc-length lookup, curvature, and wraparound.
+- `src/track.rs`: authored Catmull-Rom baking, 3D arc length, projection, endpoint rules and physical ordered gates.
+- `src/environment.rs`: road/terrain meshes, collisions, zone dressing, gameplay actors and track inspector.
+- `content/tracks/`: validated track files; override with `ROADDASH_TRACK`.
 - `src/world.rs`: scenery, materials, and procedural bike models.
 - `src/game.rs`: racing, AI, combat, traffic, camera, and persistence.
 - `src/recovery.rs`: articulated crashes, physical impacts, on-foot recovery, and remounting.

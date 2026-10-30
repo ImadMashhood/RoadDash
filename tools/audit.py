@@ -49,13 +49,13 @@ def permitted(expression):
     except ValueError: return False
 
 def metadata():
-    return json.loads(subprocess.check_output(["cargo","metadata","--locked","--format-version","1"],cwd=ROOT,text=True))
+    return json.loads(subprocess.check_output(["cargo","metadata","--locked","--format-version","1"],cwd=ROOT,text=True,encoding="utf-8"))
 
 def audit_assets(meta):
     packages={(p["name"],p["version"]):Path(p["manifest_path"]).parent for p in meta["packages"]}
     required=["asset_id","path","creator","source_url","license","license_copy","sha256","modifications","attribution","redistribution","shipped"]
     seen=set(); count=0
-    with (ROOT/"docs/third_party/ASSETS.csv").open(newline="") as f:
+    with (ROOT/"docs/third_party/ASSETS.csv").open(newline="",encoding="utf-8") as f:
         rows=list(csv.DictReader(f))
     for row in rows:
         if not all(row.get(k) for k in required): raise ValueError(f"incomplete provenance: {row.get('asset_id')}")
@@ -77,7 +77,7 @@ def audit_assets(meta):
     return count
 
 def audit_research():
-    with (ROOT/'docs/research/OBSERVATIONS.csv').open(newline='') as f: rows=list(csv.DictReader(f))
+    with (ROOT/'docs/research/OBSERVATIONS.csv').open(newline='',encoding='utf-8') as f: rows=list(csv.DictReader(f))
     required=['source_id','source_url','build_version','observed_behavior','confidence','date','asset_owner','allowed_usage','follow_up']
     if len(rows)<20 or len({r['source_id'] for r in rows})!=len(rows): raise ValueError('need 20 unique source observations')
     if any(not all(r.get(k) for k in required) for r in rows): raise ValueError('incomplete research record')
@@ -94,5 +94,5 @@ def main():
             raise ValueError('Embedded third-party rendering media requires explicit provenance before enabling this feature')
     report={'dependency_declarations':len(meta['packages']),'runtime_asset_records':audit_assets(meta),'reference_observations':audit_research(),'limitations':'Declaration/hash audit only; not legal clearance, vulnerability scanning, or platform certification.'}
     print(json.dumps(report,indent=2))
-    if args.output: args.output.parent.mkdir(parents=True,exist_ok=True); args.output.write_text(json.dumps(report,indent=2)+'\n')
+    if args.output: args.output.parent.mkdir(parents=True,exist_ok=True); args.output.write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 if __name__=='__main__': main()

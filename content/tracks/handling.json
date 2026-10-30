@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "id": "handling-loop-01",
+  "name": "Handling loop",
+  "verge_width": 4.5,
+  "control_points": [
+    {
+      "position": [
+        315.0,
+        0.1,
+        0.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        299.583,
+        0.1,
+        97.34
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        254.84,
+        0.1,
+        185.152
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        185.152,
+        0.1,
+        254.84
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        97.34,
+        0.1,
+        299.583
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        0.0,
+        0.1,
+        315.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -97.34,
+        0.1,
+        299.583
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -185.152,
+        0.1,
+        254.84
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -254.84,
+        0.1,
+        185.152
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -299.583,
+        0.1,
+        97.34
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -315.0,
+        0.1,
+        0.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -299.583,
+        0.1,
+        -97.34
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -254.84,
+        0.1,
+        -185.152
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -185.152,
+        0.1,
+        -254.84
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -97.34,
+        0.1,
+        -299.583
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -0.0,
+        0.1,
+        -315.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        97.34,
+        0.1,
+        -299.583
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        185.152,
+        0.1,
+        -254.84
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        254.84,
+        0.1,
+        -185.152
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        299.583,
+        0.1,
+        -97.34
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "gate-0",
+      "fraction": 0.0
+    },
+    {
+      "id": "gate-1",
+      "fraction": 0.125
+    },
+    {
+      "id": "gate-2",
+      "fraction": 0.25
+    },
+    {
+      "id": "gate-3",
+      "fraction": 0.375
+    },
+    {
+      "id": "gate-4",
+      "fraction": 0.5
+    },
+    {
+      "id": "gate-5",
+      "fraction": 0.625
+    },
+    {
+      "id": "gate-6",
+      "fraction": 0.75
+    },
+    {
+      "id": "gate-7",
+      "fraction": 0.875
+    }
+  ],
+  "spawns": [
+    {
+      "id": "spawn-0",
+      "distance": -8,
+      "lane": -2
+    },
+    {
+      "id": "spawn-1",
+      "distance": -8,
+      "lane": 2
+    },
+    {
+      "id": "spawn-2",
+      "distance": -12,
+      "lane": -2
+    },
+    {
+      "id": "spawn-3",
+      "distance": -12,
+      "lane": 2
+    },
+    {
+      "id": "spawn-4",
+      "distance": -16,
+      "lane": -2
+    },
+    {
+      "id": "spawn-5",
+      "distance": -16,
+      "lane": 2
+    },
+    {
+      "id": "spawn-6",
+      "distance": -20,
+      "lane": -2
+    },
+    {
+      "id": "spawn-7",
+      "distance": -20,
+      "lane": 2
+    }
+  ],
+  "props": [],
+  "closed": true,
+  "scenery_seed": 17031
+}

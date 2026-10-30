@@ -4,6 +4,27 @@ fn main() {
         panic!("intentional panic-report verification");
     }
     let args: Vec<_> = std::env::args().collect();
+    if let Some(index) = args
+        .iter()
+        .position(|a| a == "--inspect-track" || a == "--validate-track")
+    {
+        let result = args
+            .get(index + 1)
+            .ok_or_else(|| "track command needs JSON path".to_string())
+            .and_then(|path| std::fs::read_to_string(path).map_err(|e| e.to_string()))
+            .and_then(|json| road_dash::track::Track::from_json(&json));
+        match result {
+            Ok(track) => println!(
+                "{}",
+                serde_json::json!({"id":track.definition.id.as_str(),"closed":track.definition.closed,"length_m":track.length,"samples":track.points.len(),"elevation_min_m":track.bounds.0.y,"elevation_max_m":track.bounds.1.y,"gates":track.definition.checkpoints.len(),"spawns":track.definition.spawns.len(),"collision_step_m":2.5})
+            ),
+            Err(error) => {
+                eprintln!("Track validation failed: {error}");
+                std::process::exit(2);
+            }
+        }
+        return;
+    }
     if let Some(index) = args.iter().position(|a| a == "--validate-content") {
         let result = args
             .get(index + 1)

@@ -1,0 +1,6 @@
+content/tracks/handling.json: {"closed":true,"collision_step_m":2.5,"elevation_max_m":0.10000000149011612,"elevation_min_m":0.10000000149011612,"gates":8,"id":"handling-loop-01","length_m":1978.9619140625,"samples":1581,"spawns":8}
+content/tracks/valley.json: {"closed":false,"collision_step_m":2.5,"elevation_max_m":110.12434387207031,"elevation_min_m":-2.485168933868408,"gates":9,"id":"valley-run-01","length_m":6847.3076171875,"samples":5400,"spawns":8}
+negative-width: exit 2; Track validation failed: invalid coordinate, width or bank
+gate-order: exit 2; Track validation failed: invalid checkpoint order or ID
+missing-finish: exit 2; Track validation failed: point-to-point course needs a finish gate at 1.0
+spawn-overlap: exit 2; Track validation failed: invalid grid spawn

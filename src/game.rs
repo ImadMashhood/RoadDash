@@ -3,7 +3,7 @@ use crate::{
     sound::{AudioCue, Cue},
 };
 use crate::{
-    track::{LAPS, ROAD_HALF, Track},
+    track::{LAPS, Track},
     world::{self, Art},
 };
 use bevy::{camera::Exposure, prelude::*};
@@ -178,6 +178,7 @@ pub struct Rider {
     pub hop_velocity: f32,
     pub impact_cooldown: f32,
     pub motion_velocity: Vec3,
+    pub gates: crate::track::GateProgress,
 }
 impl Rider {
     fn new(id: usize) -> Self {
@@ -198,6 +199,7 @@ impl Rider {
             hop_velocity: 0.0,
             impact_cooldown: 0.0,
             motion_velocity: Vec3::ZERO,
+            gates: default(),
         }
     }
 }
@@ -220,7 +222,9 @@ pub fn setup_race(
 ) {
     commands.insert_resource(Profile::load());
     for id in 0..8 {
-        let rider = Rider::new(id);
+        let mut rider = Rider::new(id);
+        rider.progress = track.definition.spawns[id].distance;
+        rider.lane = track.definition.spawns[id].lane;
         let (p, q) = track.sample(rider.progress, rider.lane);
         let root = world::bike(
             &mut commands,
@@ -331,6 +335,7 @@ pub fn input(
     mut commands: Commands,
     mut menu_action: ResMut<crate::ui::MenuAction>,
     screen: Option<Res<State<crate::runtime::AppScreen>>>,
+    track: Res<Track>,
 ) {
     if screen.as_ref().is_some_and(|s| {
         matches!(
@@ -366,6 +371,9 @@ pub fn input(
         race.phase = Phase::Countdown;
         for (entity, mut rider, mut recovery) in &mut riders {
             *rider = Rider::new(rider.id);
+            let spawn = &track.definition.spawns[rider.id];
+            rider.progress = spawn.distance;
+            rider.lane = spawn.lane;
             *recovery = Recovery::default();
             commands.entity(entity).remove::<ColliderDisabled>();
         }
@@ -432,9 +440,19 @@ pub fn drive(
     }
     race.message_time = (race.message_time - dt).max(0.0);
     race.shake = (race.shake - dt * 2.0).max(0.0);
-    let snapshots: Vec<(Entity, usize, f32, f32, f32, bool)> = riders
+    let snapshots: Vec<(Entity, usize, f32, f32, f32, bool, bool)> = riders
         .iter()
-        .map(|(e, r, _, _, _)| (e, r.id, r.progress, r.lane, r.speed, r.crashed > 0.0))
+        .map(|(e, r, _, _, _)| {
+            (
+                e,
+                r.id,
+                r.progress,
+                r.lane,
+                r.speed,
+                r.crashed > 0.0,
+                r.finished.is_some(),
+            )
+        })
         .collect();
     let player_progress = snapshots.iter().find(|s| s.1 == 0).map_or(0.0, |s| s.2);
     let mut hits: Vec<(Entity, f32, bool)> = Vec::new();
@@ -444,6 +462,8 @@ pub fn drive(
             continue;
         }
         *visibility = Visibility::Visible;
+        let previous_progress = r.progress;
+        let previous_position = transform.translation;
         if active && r.finished.is_none() {
             r.immunity = (r.immunity - dt).max(0.0);
             r.impact_cooldown = (r.impact_cooldown - dt).max(0.0);
@@ -484,15 +504,18 @@ pub fn drive(
             } else {
                 top.min(35.0 + 0.42 / curve.max(0.005))
             };
-            if throttle {
+            let on_grass = r.lane.abs() > track.half_width(r.progress);
+            let target = if on_grass { target.min(32.0) } else { target };
+            if throttle && r.speed < target {
+                let acceleration = if boost {
+                    tuning.nitro_acceleration_mps2
+                } else {
+                    tuning.acceleration_mps2
+                };
                 r.speed = (r.speed
-                    + dt * if boost {
-                        tuning.nitro_acceleration_mps2
-                    } else {
-                        tuning.acceleration_mps2
-                    })
+                    + dt * acceleration * track.surface(r.progress, r.lane).traction())
                 .min(target);
-            } else {
+            } else if r.speed > target || !throttle {
                 r.speed = (r.speed - dt * tuning.coast_drag_mps2).max(0.0);
             }
             if brake {
@@ -519,18 +542,20 @@ pub fn drive(
                 }
                 steer = ((desired - r.lane) * 1.5).clamp(-1.0, 1.0);
             }
-            r.lane += steer * (1.5 + r.speed * 0.09) * dt;
+            r.lane +=
+                steer * (tuning.steering_rate_base + r.speed * tuning.steering_rate_speed) * dt;
             r.lean = r.lean.lerp(
                 steer * 0.40 - track.curvature(r.progress) * r.speed * 0.55,
                 (dt * 8.0).min(1.0),
             );
-            if r.lane.abs() > ROAD_HALF {
-                r.speed = (r.speed - dt * 18.0).max(0.0);
-                if r.immunity <= 0.0 {
-                    r.health -= dt * 12.0;
-                }
+            if on_grass {
+                r.speed = (r.speed - dt * 1.8).max(0.0);
             }
             r.progress += r.speed * dt;
+            if !track.definition.closed && r.progress >= track.length {
+                r.progress = track.length;
+                r.speed = 0.0;
+            }
             // Human and AI share damage and cooldown rules. Attack only one side at once.
             let attack_side = if is_player {
                 player_attack
@@ -542,7 +567,7 @@ pub fn drive(
             if attack_side != 0.0 && r.attack <= 0.0 {
                 r.attack = 0.65;
                 r.attack_side = attack_side;
-                for &(other, _, progress, lane, _, crashed) in &snapshots {
+                for &(other, _, progress, lane, _, crashed, _) in &snapshots {
                     let gap = wrapped_gap(progress - r.progress, track.length);
                     if other != entity
                         && !crashed
@@ -577,28 +602,6 @@ pub fn drive(
                     race.shake = 1.0;
                     race.message = "WIPED OUT / GETTING BACK UP".into();
                     race.message_time = 3.5;
-                }
-            }
-            if r.progress >= track.length * LAPS as f32 && r.finished.is_none() {
-                r.finished = Some(race.elapsed);
-                if is_player {
-                    race.place = 1 + snapshots
-                        .iter()
-                        .filter(|s| s.1 != 0 && s.2 >= track.length * LAPS as f32)
-                        .count();
-                    race.earned = rr_core::race_award(race.place, race.takedowns);
-                    profile.races += 1;
-                    profile.wins += u32::from(race.place == 1);
-                    profile.credits += race.earned;
-                    profile.best_seconds = Some(
-                        profile
-                            .best_seconds
-                            .map_or(race.elapsed, |best| best.min(race.elapsed)),
-                    );
-                    if persistence.0 {
-                        profile.save();
-                    }
-                    race.phase = Phase::Finished;
                 }
             }
         }
@@ -649,6 +652,36 @@ pub fn drive(
                 swept.write(recovery::SweptContact(entity, other));
             }
         }
+        if active && recovery.stage == RecoveryStage::Riding {
+            let progress = r.progress;
+            r.gates.observe(
+                &track,
+                previous_position,
+                destination,
+                previous_progress,
+                progress,
+            );
+            if r.gates.completed_laps >= LAPS && r.finished.is_none() {
+                r.finished = Some(race.elapsed);
+                commands.entity(entity).insert(ColliderDisabled);
+                if r.id == 0 {
+                    race.place = 1 + snapshots.iter().filter(|s| s.1 != 0 && s.6).count();
+                    race.earned = rr_core::race_award(race.place, race.takedowns);
+                    profile.races += 1;
+                    profile.wins += u32::from(race.place == 1);
+                    profile.credits += race.earned;
+                    profile.best_seconds = Some(
+                        profile
+                            .best_seconds
+                            .map_or(race.elapsed, |best| best.min(race.elapsed)),
+                    );
+                    if persistence.0 {
+                        profile.save();
+                    }
+                    race.phase = Phase::Finished;
+                }
+            }
+        }
         transform.translation = destination;
         transform.rotation =
             q * Quat::from_rotation_z(r.lean) * Quat::from_rotation_x(-r.hop_velocity * 0.025);
@@ -695,6 +728,14 @@ pub fn drive(
     for (mut car, mut transform) in &mut traffic {
         if active {
             car.progress += car.speed * dt;
+            if !track.definition.closed {
+                if car.progress > track.length + 80.0 {
+                    car.progress = -80.0;
+                }
+                if car.progress < -80.0 {
+                    car.progress = track.length + 80.0;
+                }
+            }
         }
         let (p, q) = track.sample(car.progress, car.lane);
         transform.translation = p;
@@ -838,6 +879,7 @@ pub fn camera_occlusion(
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::track::ROAD_HALF;
     #[test]
     fn collision_gap_wraps_at_finish() {
         assert_eq!(wrapped_gap(998.0, 1000.0), -2.0);
@@ -1074,7 +1116,9 @@ mod tests {
         let finish = app.world().resource::<Track>().length * LAPS as f32;
         {
             let mut q = app.world_mut().query::<&mut Rider>();
-            q.single_mut(app.world_mut()).unwrap().progress = finish + 1.0;
+            let mut r = q.single_mut(app.world_mut()).unwrap();
+            r.progress = finish + 1.0;
+            r.gates.completed_laps = LAPS;
         }
         step(&mut app, 1);
         assert!(app.world().resource::<Race>().phase == Phase::Finished);
@@ -1783,5 +1827,252 @@ mod tests {
                 assert!(app.world().get_entity(runner).is_err());
             }
         }
+    }
+    #[test]
+    fn releasing_or_exhausting_boost_decelerates_instead_of_clamping_speed() {
+        for exhausted in [false, true] {
+            let mut app = simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            {
+                let mut q = app.world_mut().query::<&mut Rider>();
+                let mut r = q.single_mut(app.world_mut()).unwrap();
+                r.speed = 75.0;
+                r.nitro = if exhausted { 0.0 } else { 50.0 };
+            }
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyW);
+            if exhausted {
+                app.world_mut()
+                    .resource_mut::<ButtonInput<KeyCode>>()
+                    .press(KeyCode::ShiftLeft);
+            }
+            step(&mut app, 1);
+            let speed = player(&mut app).speed;
+            assert!(speed > 74.0 && speed < 75.0, "instant speed clamp: {speed}");
+        }
+    }
+    #[test]
+    fn grass_allows_forward_driving_without_damage_and_ai_returns_to_the_road() {
+        for (id, lane) in [(0, 18.0), (1, 18.0), (3, -22.0), (5, 12.0)] {
+            let mut app = simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let (p, q) = app.world().resource::<Track>().sample(300.0, lane);
+            {
+                let mut query = app.world_mut().query::<(&mut Rider, &mut Transform)>();
+                let (mut r, mut t) = query.single_mut(app.world_mut()).unwrap();
+                r.id = id;
+                r.progress = 300.0;
+                r.lane = lane;
+                r.immunity = 0.0;
+                *t = Transform::from_translation(p).with_rotation(q);
+            }
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyW);
+            step(&mut app, 600);
+            let r = app
+                .world_mut()
+                .query::<&Rider>()
+                .single(app.world())
+                .unwrap();
+            assert!(
+                r.progress > 380.0,
+                "grass stopped rider {id}: {}",
+                r.progress
+            );
+            assert_eq!(r.health, 100.0);
+            assert_eq!(r.crashed, 0.0);
+            if id != 0 {
+                assert!(r.lane.abs() < 6.5, "AI stayed in grass: {}", r.lane);
+            }
+        }
+    }
+    #[test]
+    fn a_crashed_bike_slides_down_a_solid_slope() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        {
+            let mut q = app.world_mut().query::<&mut Rider>();
+            q.single_mut(app.world_mut()).unwrap().health = 0.0;
+        }
+        step(&mut app, 1);
+        let wreck = app
+            .world_mut()
+            .query::<&Recovery>()
+            .single(app.world())
+            .unwrap()
+            .wreck
+            .unwrap();
+        let tilt = Quat::from_rotation_z(30.0_f32.to_radians());
+        app.world_mut().spawn((
+            RigidBody::Fixed,
+            Collider::cuboid(20.0, 0.3, 10.0),
+            Transform::from_xyz(0.0, 10.0, 0.0).with_rotation(tilt),
+            Friction::coefficient(0.9),
+        ));
+        app.world_mut().entity_mut(wreck).insert((
+            Transform::from_translation(Vec3::new(0.0, 10.5, 0.0)).with_rotation(tilt),
+            Velocity::zero(),
+        ));
+        step(&mut app, 120);
+        let p = app.world().get::<Transform>(wreck).unwrap().translation;
+        assert!(p.x < -1.0 && p.y < 9.5, "wreck stuck on slope: {p:?}");
+    }
+    #[test]
+    fn a_cow_lifts_a_rider_without_a_terrain_only_knockoff() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let (p, q) = app.world().resource::<Track>().sample(-5.5, -2.0);
+        app.world_mut().spawn((
+            crate::environment::Cow,
+            RigidBody::Fixed,
+            Collider::compound(vec![(
+                Vec3::Y,
+                Quat::IDENTITY,
+                Collider::cuboid(0.6, 0.7, 1.0),
+            )]),
+            Transform::from_translation(p).with_rotation(q),
+            ActiveEvents::COLLISION_EVENTS,
+        ));
+        {
+            let mut query = app.world_mut().query::<&mut Rider>();
+            query.single_mut(app.world_mut()).unwrap().speed = 22.0;
+        }
+        step(&mut app, 4);
+        assert!(player(&mut app).hop_velocity > 0.0);
+        assert_eq!(player(&mut app).crashed, 0.0);
+    }
+    #[test]
+    fn one_hundred_high_speed_drops_keep_joint_anchors_and_hinge_axes_stable() {
+        let mut app = simulation();
+        for cycle in 0..100 {
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            {
+                let mut q = app.world_mut().query::<&mut Rider>();
+                let mut r = q.single_mut(app.world_mut()).unwrap();
+                r.health = 0.0;
+                r.speed = 45.0;
+            }
+            step(&mut app, 61);
+            let world = app.world_mut();
+            for (t, v) in world.query::<(&Transform, &Velocity)>().iter(world) {
+                assert!(
+                    t.translation.is_finite() && t.rotation.is_finite() && v.linvel.is_finite()
+                );
+                assert!(t.translation.y > -0.5, "terrain clipping in drop {cycle}");
+            }
+            for (t, j) in world.query::<(&Transform, &ImpulseJoint)>().iter(world) {
+                let parent = world.get::<Transform>(j.parent).unwrap();
+                let data: &GenericJoint = j.data.as_ref();
+                assert!(
+                    (parent.translation + parent.rotation * data.local_anchor1())
+                        .distance(t.translation + t.rotation * data.local_anchor2())
+                        < 0.3,
+                    "joint separated in drop {cycle}"
+                );
+                if data
+                    .locked_axes()
+                    .contains(JointAxesMask::ANG_Y | JointAxesMask::ANG_Z)
+                {
+                    assert!(
+                        (parent.rotation * Vec3::X).dot(t.rotation * Vec3::X) > 0.95,
+                        "hinge twisted in drop {cycle}"
+                    );
+                }
+            }
+            {
+                let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+                keys.release(KeyCode::KeyR);
+                keys.press(KeyCode::KeyR);
+            }
+            step(&mut app, 1);
+        }
+    }
+    #[test]
+    fn point_to_point_driving_crosses_every_gate_and_awards_one_result() {
+        let mut app = simulation();
+        app.insert_resource(
+            Track::from_json(include_str!("../content/tracks/valley.json")).unwrap(),
+        );
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let (p, q) = app.world().resource::<Track>().sample(-8.0, -2.0);
+        {
+            let mut query = app
+                .world_mut()
+                .query_filtered::<&mut Transform, With<Rider>>();
+            *query.single_mut(app.world_mut()).unwrap() =
+                Transform::from_translation(p).with_rotation(q);
+        }
+        // Follow the centerline through the real fixed controller without any
+        // progress/finish teleport. Geometry/traffic are separate collision tests.
+        app.world_mut()
+            .resource_mut::<Time<Fixed>>()
+            .advance_by(std::time::Duration::from_secs_f64(1.0 / 60.0));
+        for _ in 0..10000 {
+            let (d, lane, speed) = {
+                let r = player(&mut app);
+                (r.progress, r.lane, r.speed)
+            };
+            let curve = app.world().resource::<Track>().curvature(d);
+            let steer = ((-lane * 2.0 - curve * speed * speed * 0.10) / (1.8 + speed * 0.108))
+                .clamp(-1.0, 1.0);
+            app.world_mut().resource_mut::<Controls>().buffer.held = rr_core::VehicleIntent {
+                throttle: true,
+                steer,
+                ..default()
+            };
+            app.world_mut().run_schedule(FixedUpdate);
+            if app.world().resource::<Race>().phase == Phase::Finished {
+                break;
+            }
+        }
+        let r = player(&mut app);
+        let details = format!(
+            "progress {} lane {} speed {} gates {:?}",
+            r.progress, r.lane, r.speed, r.gates
+        );
+        assert_eq!(
+            app.world().resource::<Race>().phase,
+            Phase::Finished,
+            "{details}"
+        );
+        assert_eq!(player(&mut app).gates.completed_laps, 1);
+        assert_eq!(app.world().resource::<Profile>().races, 1);
+        for _ in 0..60 {
+            app.world_mut().run_schedule(FixedUpdate);
+        }
+        assert_eq!(app.world().resource::<Profile>().races, 1);
+    }
+    #[test]
+    fn missing_a_gate_stops_at_the_open_finish_without_payout_and_retry_resets_gates() {
+        let mut app = simulation();
+        let track = Track::from_json(include_str!("../content/tracks/valley.json")).unwrap();
+        let length = track.length;
+        let (p, q) = track.sample(length - 4.0, 0.0);
+        app.insert_resource(track);
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        {
+            let mut query = app.world_mut().query::<(&mut Rider, &mut Transform)>();
+            let (mut r, mut t) = query.single_mut(app.world_mut()).unwrap();
+            r.progress = length - 4.0;
+            r.lane = 0.0;
+            r.speed = 20.0;
+            *t = Transform::from_translation(p).with_rotation(q);
+        }
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        step(&mut app, 120);
+        assert_eq!(player(&mut app).progress, length);
+        assert_eq!(player(&mut app).finished, None);
+        assert_eq!(app.world().resource::<Profile>().races, 0);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyR);
+        step(&mut app, 1);
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
+        assert_eq!(player(&mut app).gates.next, 1);
+        assert_eq!(player(&mut app).gates.completed_laps, 0);
     }
 }

@@ -47,3 +47,20 @@ include local backtrace, OS and app version. No network telemetry. Test via
 Future extraction: vehicle/combat/race/AI still share game.rs, physics types remain
 in the client adapter, and server/network crates do not exist. Adding empty crates
 would not establish authority. See ADR-003 and P01-SPLIT/P10 prerequisites.
+
+## Part 02 additions
+
+`rr_content::track` validates track authoring without Bevy. `track::Track` bakes
+Catmull-Rom points, true 3D distances, local road frames and metadata. Valley Run
+is an open point-to-point route; Track::default retains a closed handling fixture
+for headless regression tests, while build_app selects Valley Run or ROADDASH_TRACK.
+See [track contract](tracks/AUTHORING.md). Input never changes gate authority.
+Rider owns GateProgress; fixed movement validates gates before one-time results.
+
+`environment` builds independent road render/collision ribbons, terrain and
+seeded zone dressing. Patrols and slope-dependent wreck friction run in the fixed
+simulation chain. Terrain sampling accounts for bank and road clearance. Cameras
+still follow physical rider/runner state; mounting uses actual terrain elevation.
+F4 visualizes track geometry; headless --inspect-track/--validate-track validate
+both supplied track files in CI. No new engine/physics dependency or external
+asset pack is introduced. Surface friction/traction and steering tuning are typed.
