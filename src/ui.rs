@@ -1,5 +1,5 @@
 use crate::{
-    game::{NAMES, Phase, Profile, Race, Rider},
+    game::{Phase, Profile, Race, Rider},
     track::{LAPS, Track},
 };
 use bevy::prelude::*;
@@ -300,6 +300,8 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
 pub fn update_ui(
     race: Res<Race>,
     profile: Res<Profile>,
+    content: Res<crate::content::GameContent>,
+    screen: Option<Res<State<crate::runtime::AppScreen>>>,
     track: Res<Track>,
     riders: Query<&Rider>,
     recoveries: Query<(&Rider, &crate::recovery::Recovery)>,
@@ -310,6 +312,12 @@ pub fn update_ui(
     let Some(player) = riders.iter().find(|r| r.id == 0) else {
         return;
     };
+    let loading = screen.as_ref().is_some_and(|s| {
+        matches!(
+            s.get(),
+            crate::runtime::AppScreen::Boot | crate::runtime::AppScreen::Loading
+        )
+    });
     let recovery = recoveries
         .iter()
         .find(|(r, _)| r.id == 0)
@@ -333,7 +341,7 @@ pub fn update_ui(
                 let mut s = format!("P{position:02} / 08\n\n");
                 for (i, r) in sorted.iter().enumerate() {
                     let marker = if r.id == 0 { ">" } else { " " };
-                    s.push_str(&format!("{marker} {}  {:5}\n", i + 1, NAMES[r.id]));
+                    s.push_str(&format!("{marker} {}  {:5}\n", i + 1, content.0.riders[r.id].display_name));
                 }
                 s
             },
@@ -342,6 +350,9 @@ pub fn update_ui(
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO  {}  {:3.0}%", bar(player.health), player.health.max(0.0), bar(player.nitro), player.nitro),
             4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { match recovery { crate::recovery::RecoveryStage::Falling => "WIPED OUT / WAIT FOR THE LANDING", crate::recovery::RecoveryStage::GettingUp => "GETTING BACK UP", crate::recovery::RecoveryStage::Running => "GET BACK TO THE BIKE", crate::recovery::RecoveryStage::Mounting => "BACK IN THE SADDLE", _ => "" }.into() } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
             5 => format!("{:.2} KM  /  {} LAPS", track.length / 1000.0, LAPS),
+            6 if loading => "PREPARING THE ROAD".into(),
+            7 if loading => "Getting your bike ready...".into(),
+            8 if loading => "LOADING...".into(),
             6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 8", race.place), _ => "01 / PACIFIC RUN".into() },
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),

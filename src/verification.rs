@@ -29,10 +29,15 @@ pub fn smoke_test(
     mut state: Local<SmokeProgress>,
     mut race: ResMut<Race>,
     track: Res<Track>,
-    mut riders: Query<(&mut Rider, &Recovery)>,
+    mut riders: Query<(&mut Rider, &Recovery, &mut Transform)>,
     mut keys: ResMut<ButtonInput<KeyCode>>,
     mut exit: MessageWriter<AppExit>,
     sinks: Query<&AudioSink>,
+    mut metrics: ResMut<crate::diagnostics::Metrics>,
+    clock: Res<crate::runtime::SimulationClock>,
+    adapter: Option<Res<bevy::render::renderer::RenderAdapterInfo>>,
+    mut contacts: ResMut<Messages<bevy_rapier3d::prelude::CollisionEvent>>,
+    mut sweeps: ResMut<Messages<crate::recovery::SweptContact>>,
 ) {
     state.frame += 1;
     match state.frame {
@@ -48,6 +53,9 @@ pub fn smoke_test(
             race.phase = Phase::Racing;
             keys.press(KeyCode::KeyW);
         }
+        230 => {
+            metrics.visible = true;
+        }
         240 => {
             assert!(
                 sinks
@@ -58,7 +66,7 @@ pub fn smoke_test(
             capture(&mut commands, "02-racing");
         }
         260 => {
-            for (mut rider, _) in &mut riders {
+            for (mut rider, _, _) in &mut riders {
                 if rider.id == 0 {
                     rider.health = 0.0;
                 }
@@ -68,7 +76,7 @@ pub fn smoke_test(
         280 => capture(&mut commands, "03-crash"),
         _ => {}
     }
-    for (mut rider, recovery) in &mut riders {
+    for (mut rider, recovery, mut transform) in &mut riders {
         if rider.id != 0 || state.frame <= 280 {
             continue;
         }
@@ -91,6 +99,13 @@ pub fn smoke_test(
                     "recovery skipped a stage"
                 );
                 rider.progress = track.length * LAPS as f32 + 1.0;
+                rider.lane = 0.0;
+                let (p, q) = track.sample(rider.progress, rider.lane);
+                *transform = Transform::from_translation(p).with_rotation(q);
+                // This is a results-screen fixture after recovery, not a gate
+                // validation test. Discard contacts from the previous location.
+                contacts.clear();
+                sweeps.clear();
                 state.finished_at = Some(state.frame);
             }
             _ => {}
@@ -103,6 +118,15 @@ pub fn smoke_test(
             capture(&mut commands, "07-results");
         }
         if state.frame > finished_at + 40 {
+            let mut report = metrics.evidence(&clock);
+            if let Some(adapter) = adapter.as_ref() {
+                report["adapter"] = serde_json::json!({"name": adapter.name, "driver": adapter.driver, "backend": format!("{:?}", adapter.backend)});
+            }
+            std::fs::write(
+                "screenshots/smoke-metrics.json",
+                serde_json::to_vec_pretty(&report).unwrap(),
+            )
+            .expect("write smoke evidence");
             println!("Render smoke test passed: crash -> get up -> run -> remount -> finish");
             exit.write(AppExit::Success);
         }

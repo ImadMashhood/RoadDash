@@ -2,3 +2,4 @@
 *.log
 /road-dash-save.json
 /screenshots
+**/__pycache__/

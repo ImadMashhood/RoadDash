@@ -320,6 +320,9 @@ pub fn setup_world(
 }
 
 /// All riding models face local +Z. Their root is at road level.
+#[derive(Component)]
+pub struct SeatedRiderVisual;
+
 pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) -> Entity {
     let root = commands
         .spawn((Transform::default(), Visibility::default()))
@@ -377,6 +380,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
     ] {
         children.push(part(commands, art.cube.clone(), mat, p, s, Quat::IDENTITY));
     }
+    let rider_start = children.len();
     if with_rider {
         children.push(part(
             commands,
@@ -423,7 +427,10 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
             Quat::IDENTITY,
         ));
     }
-    commands.entity(root).add_children(&children);
+    for &entity in &children[rider_start..] {
+        commands.entity(entity).insert(SeatedRiderVisual);
+    }
+    crate::runtime::attach_visuals(commands, root, &children);
     root
 }
 
@@ -432,10 +439,13 @@ pub struct Arm(pub f32);
 
 pub fn animate_riders(
     riders: Query<&crate::game::Rider>,
+    visuals: Query<&crate::runtime::VisualRoot>,
     mut arms: Query<(&Arm, &ChildOf, &mut Transform)>,
 ) {
     for (arm, parent, mut transform) in &mut arms {
-        if let Ok(rider) = riders.get(parent.parent()) {
+        if let Ok(visual) = visuals.get(parent.parent())
+            && let Ok(rider) = riders.get(visual.owner)
+        {
             let extension = if rider.attack > 0.3 && rider.attack_side == -arm.0 {
                 ((0.65 - rider.attack) / 0.35 * std::f32::consts::PI)
                     .sin()
@@ -520,7 +530,7 @@ pub fn runner(commands: &mut Commands, art: &Art, color: usize) -> (Entity, Enti
         }
     }
     commands.entity(pose).add_children(&parts);
-    commands.entity(root).add_child(pose);
+    crate::runtime::attach_visuals(commands, root, &[pose]);
     (root, pose)
 }
 
@@ -531,6 +541,7 @@ pub fn animate_runners(
     mut limbs: Query<(&RunnerLimb, &ChildOf, &mut Transform)>,
     parents: Query<&ChildOf>,
     owners: Query<&crate::recovery::OwnedBody>,
+    visuals: Query<&crate::runtime::VisualRoot>,
 ) {
     if race.phase != crate::game::Phase::Racing {
         return;
@@ -539,7 +550,10 @@ pub fn animate_runners(
         let Ok(root) = parents.get(pose.parent()) else {
             continue;
         };
-        let Ok(owner) = owners.get(root.parent()) else {
+        let Ok(visual) = visuals.get(root.parent()) else {
+            continue;
+        };
+        let Ok(owner) = owners.get(visual.owner) else {
             continue;
         };
         let Ok(recovery) = recovery.get(owner.owner) else {

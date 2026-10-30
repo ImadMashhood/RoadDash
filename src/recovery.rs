@@ -53,6 +53,63 @@ pub fn bike_body() -> impl Bundle {
     )
 }
 
+/// Closest reachable point on the actual rotated bike collision box, not its
+/// displaced model pivot (which can be high above an upside-down bike).
+pub fn bike_contact_point(bike: &Transform, person: Vec3) -> Vec3 {
+    let center = Vec3::new(0.0, 0.85, 0.0);
+    let half = Vec3::new(0.38, 0.8, 1.12);
+    let local = bike.rotation.inverse() * (person - bike.translation);
+    bike.translation + bike.rotation * (center + (local - center).clamp(-half, half))
+}
+
+fn detached_origin(
+    context: &ReadRapierContext,
+    origin: Vec3,
+    rotation: Quat,
+    owner: Entity,
+    old_runner: Option<Entity>,
+) -> Vec3 {
+    let Ok(context) = context.single() else {
+        return origin + rotation * Vec3::X * 1.25;
+    };
+    let shape = Collider::cuboid(0.65, 1.1, 0.45);
+    let predicate = |e| Some(e) != old_runner;
+    let filter = QueryFilter::default()
+        .exclude_rigid_body(owner)
+        .exclude_sensors()
+        .predicate(&predicate);
+    for offset in [
+        Vec3::X * 1.25,
+        -Vec3::X * 1.25,
+        Vec3::Z * 2.2,
+        -Vec3::Z * 2.2,
+        Vec3::new(1.5, 0.0, 1.5),
+        Vec3::new(-1.5, 0.0, 1.5),
+        Vec3::new(1.5, 0.0, -1.5),
+        Vec3::new(-1.5, 0.0, -1.5),
+        Vec3::X * 2.5,
+        -Vec3::X * 2.5,
+    ] {
+        let point = origin + rotation * offset;
+        let mut blocked = false;
+        context.intersect_shape(
+            point + Vec3::Y * 1.25,
+            rotation,
+            shape.raw.as_ref(),
+            filter,
+            |_| {
+                blocked = true;
+                false
+            },
+        );
+        if !blocked {
+            return point;
+        }
+    }
+    // Confined collisions still use momentum and gravity; never inject a launch.
+    origin
+}
+
 /// A real articulated rigid-body ragdoll. Adjacent body parts cannot collide;
 /// ball joints constrain translation while allowing the limbs to tumble.
 #[allow(clippy::too_many_arguments)]
@@ -65,16 +122,31 @@ pub fn crash(
     origin: Vec3,
     rotation: Quat,
     kick: Vec3,
+    context: &ReadRapierContext,
 ) {
     for part in recovery.parts.drain(..) {
         commands.entity(part).despawn();
     }
-    if let Some(runner) = recovery.runner.take() {
+    let old_runner = recovery.runner.take();
+    if let Some(runner) = old_runner {
         commands.entity(runner).despawn();
     }
     recovery.pose = None;
-    let forward = rotation * Vec3::Z;
-    let velocity = forward * rider.speed * 0.65 + Vec3::Y * 5.0 + kick;
+    let forward = (rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
+    let rotation = Quat::from_rotation_y(forward.x.atan2(forward.z));
+    let momentum =
+        if rider.motion_velocity.is_finite() && rider.motion_velocity.length_squared() > 0.001 {
+            rider.motion_velocity
+        } else {
+            forward * rider.speed + Vec3::Y * rider.hop_velocity
+        };
+    let velocity = momentum + kick;
+    let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
+    let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {
+        -1.0
+    } else {
+        1.0
+    };
     let specs = [
         (Vec3::new(0.0, 1.55, 0.0), Vec3::new(0.5, 0.58, 0.32), None),
         (
@@ -133,13 +205,12 @@ pub fn crash(
         let e = commands
             .spawn((
                 Visibility::default(),
-                Transform::from_translation(origin + rotation * (*p + Vec3::Y * 0.75))
-                    .with_rotation(rotation),
+                Transform::from_translation(rider_origin + rotation * *p).with_rotation(rotation),
                 RigidBody::Dynamic,
                 Collider::cuboid(size.x * 0.5, size.y * 0.5, size.z * 0.5),
                 Velocity {
                     linvel: velocity,
-                    angvel: Vec3::new(1.0, 0.5, -2.0),
+                    angvel: -forward * 0.5 * separation_side,
                 },
                 ColliderMassProperties::Mass(match i {
                     0 => 14.0,
@@ -180,7 +251,7 @@ pub fn crash(
             *size,
             Quat::IDENTITY,
         );
-        commands.entity(e).add_child(visual);
+        crate::runtime::attach_visuals(commands, e, &[visual]);
         if let Some((parent, anchor)) = parent {
             let mut joint = SphericalJointBuilder::new()
                 .local_anchor1(*anchor - specs[*parent].0)
@@ -207,7 +278,7 @@ pub fn crash(
     } else {
         let wreck = world::bike(commands, art, rider.id, false);
         commands.entity(wreck).insert((
-            Transform::from_translation(origin + Vec3::Y * 0.25).with_rotation(rotation),
+            Transform::from_translation(origin).with_rotation(rotation),
             RigidBody::Dynamic,
             Collider::compound(vec![(
                 Vec3::new(0.0, 0.85, 0.0),
@@ -216,8 +287,8 @@ pub fn crash(
             )]),
             ColliderMassProperties::Mass(170.0),
             Velocity {
-                linvel: forward * rider.speed * 0.65 + Vec3::Y * 3.0,
-                angvel: Vec3::new(2.0, 1.0, 5.0),
+                linvel: momentum,
+                angvel: forward * 0.5 * separation_side,
             },
             Ccd::enabled(),
             Restitution::coefficient(0.25),
@@ -251,7 +322,7 @@ pub fn crash(
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn recover(
     mut commands: Commands,
-    time: Res<Time>,
+    time: Res<Time<Fixed>>,
     race: Res<Race>,
     track: Res<Track>,
     art: Res<Art>,
@@ -277,7 +348,7 @@ pub fn recover(
     if race.phase != Phase::Racing {
         return;
     }
-    let dt = time.delta_secs().min(0.05);
+    let dt = time.delta_secs();
     for (owner, mut rider, mut recovery, mut root, mut visibility) in &mut riders {
         if recovery.stage == RecoveryStage::Riding {
             continue;
@@ -287,10 +358,12 @@ pub fn recover(
         let Some(wreck) = recovery.wreck else {
             continue;
         };
-        let Ok((wreck_transform, _, _, _)) = bodies.get_mut(wreck) else {
+        let Ok((wreck_transform, wreck_velocity, _, _)) = bodies.get_mut(wreck) else {
             continue;
         };
-        let wreck_pos = wreck_transform.translation;
+        let wreck_pose = *wreck_transform;
+        let wreck_pos = wreck_pose.translation;
+        let wreck_speed = wreck_velocity.map_or(0.0, |v| v.linvel.length());
         let (_, road_rotation) = track.sample(rider.progress, rider.lane);
         match recovery.stage {
             RecoveryStage::Falling => {
@@ -337,6 +410,7 @@ pub fn recover(
                     KinematicCharacterController {
                         translation: Some(Vec3::ZERO),
                         custom_mass: Some(70.0),
+                        apply_impulse_to_dynamic_bodies: false,
                         offset: CharacterLength::Absolute(0.02),
                         snap_to_ground: Some(CharacterLength::Absolute(0.3)),
                         autostep: Some(CharacterAutostep {
@@ -383,10 +457,12 @@ pub fn recover(
                 let Ok((mut transform, _, controller, _)) = bodies.get_mut(runner) else {
                     continue;
                 };
-                let delta = (wreck_pos - transform.translation).with_y(0.0);
-                let distance = delta.length();
+                let contact = bike_contact_point(&wreck_pose, transform.translation);
+                let center = wreck_pose.translation + wreck_pose.rotation * Vec3::Y * 0.85;
+                let delta = (center - transform.translation).with_y(0.0);
                 let direction = delta.normalize_or_zero();
-                if distance < 1.85 && (transform.translation.y - wreck_pos.y - 0.95).abs() < 1.3 {
+                let reach = contact - transform.translation;
+                if reach.with_y(0.0).length() <= 0.8 && reach.y.abs() <= 1.2 && wreck_speed <= 2.0 {
                     recovery.stage = RecoveryStage::Mounting;
                     recovery.elapsed = 0.0;
                     if let Some(mut controller) = controller {
@@ -487,6 +563,7 @@ enum Impact {
 
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn impacts(
+    time: Res<Time<Fixed>>,
     mut events: MessageReader<CollisionEvent>,
     mut swept: MessageReader<SweptContact>,
     mut commands: Commands,
@@ -500,6 +577,7 @@ pub fn impacts(
     obstacles: Query<(), With<Obstacle>>,
     controllers: Query<(Entity, &KinematicCharacterControllerOutput)>,
     mut audio: MessageWriter<AudioCue>,
+    context: ReadRapierContext,
 ) {
     let mut pairs: Vec<_> = events
         .read()
@@ -552,8 +630,7 @@ pub fn impacts(
                                     45.0
                                 } else {
                                     3.0
-                                }
-                                + Vec3::Y * 12.0,
+                                },
                         ));
                     }
                     if body.kind == BodyKind::Runner {
@@ -627,6 +704,16 @@ pub fn impacts(
                     let Ok(t) = transforms.get(actor) else {
                         continue;
                     };
+                    if recovery.runner.is_some() {
+                        // A repeat knockdown inherits the runner's current movement,
+                        // never the hidden bike's stale pre-crash velocity.
+                        rider.motion_velocity =
+                            controllers.get(actor).map_or(Vec3::ZERO, |(_, output)| {
+                                output.effective_translation / time.delta_secs()
+                            });
+                        rider.speed = 0.0;
+                        rider.hop_velocity = 0.0;
+                    }
                     let origin = t.translation
                         - if recovery.runner.is_some() {
                             Vec3::Y * 0.95
@@ -642,6 +729,7 @@ pub fn impacts(
                         origin,
                         t.rotation,
                         kick,
+                        &context,
                     );
                     *visibility = Visibility::Hidden;
                     audio.write(AudioCue::new(Cue::Crash, origin));

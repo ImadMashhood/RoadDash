@@ -1,0 +1,6 @@
+Probe process returned nonzero as expected; local report created with backtrace.
+Crash report: /tmp/roaddash-p01-yotrub7r/panic-1793396637-208405.log
+
+thread 'main' (208405) panicked at src/main.rs:4:9:
+intentional panic-report verification
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
