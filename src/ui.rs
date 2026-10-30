@@ -130,7 +130,7 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
     kids.push(status);
     let help = commands
         .spawn((
-            Text::new("WASD  RIDE     SHIFT  NITRO     J / K  STRIKE     C  CAMERA     ESC  PAUSE"),
+            Text::new("WASD  RIDE     SHIFT  NITRO     J / K  STRIKE     C  CAMERA     ESC  PAUSE     M  MUTE"),
             TextFont {
                 font_size: 12.0,
                 ..default()
@@ -289,7 +289,7 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
         .id();
     commands.entity(button).add_child(text);
     menu.push(button);
-    menu.push(label(&mut commands, "W / S   THROTTLE & BRAKE     A / D   STEER\nSHIFT   NITRO     J / K   LEFT / RIGHT PUNCH\nC   CAMERA     R   RESTART     ESC   PAUSE", 14.0, MUTED, 70.0, 661.0));
+    menu.push(label(&mut commands, "W / S   THROTTLE & BRAKE     A / D   STEER\nSHIFT   NITRO     J / K   LEFT / RIGHT PUNCH\nC   CAMERA     R   RESTART     ESC   PAUSE     M   MUTE", 14.0, MUTED, 70.0, 661.0));
     let profile = label(&mut commands, "", 13.0, MINT, 70.0, 752.0);
     commands.entity(profile).insert(Readout(9));
     menu.push(profile);
@@ -302,6 +302,7 @@ pub fn update_ui(
     profile: Res<Profile>,
     track: Res<Track>,
     riders: Query<&Rider>,
+    recoveries: Query<(&Rider, &crate::recovery::Recovery)>,
     mut readouts: Query<(&Readout, &mut Text)>,
     mut nodes: Query<(&mut Node, Option<&Hud>, Option<&Overlay>), Without<MapDot>>,
     mut dots: Query<(&MapDot, &mut Node)>,
@@ -309,6 +310,11 @@ pub fn update_ui(
     let Some(player) = riders.iter().find(|r| r.id == 0) else {
         return;
     };
+    let recovery = recoveries
+        .iter()
+        .find(|(r, _)| r.id == 0)
+        .map(|(_, recovery)| recovery.stage)
+        .unwrap_or_default();
     let menu = matches!(race.phase, Phase::Garage | Phase::Paused | Phase::Finished);
     for (mut node, hud, overlay) in &mut nodes {
         if hud.is_some() {
@@ -334,7 +340,7 @@ pub fn update_ui(
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => format!("{:03}", (player.speed * 3.6) as u32),
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO  {}  {:3.0}%", bar(player.health), player.health.max(0.0), bar(player.nitro), player.nitro),
-            4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { format!("BACK ON THE ROAD IN {:.1}", player.crashed) } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
+            4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { match recovery { crate::recovery::RecoveryStage::Falling => "WIPED OUT / WAIT FOR THE LANDING", crate::recovery::RecoveryStage::GettingUp => "GETTING BACK UP", crate::recovery::RecoveryStage::Running => "GET BACK TO THE BIKE", crate::recovery::RecoveryStage::Mounting => "BACK IN THE SADDLE", _ => "" }.into() } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
             5 => format!("{:.2} KM  /  {} LAPS", track.length / 1000.0, LAPS),
             6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 8", race.place), _ => "01 / PACIFIC RUN".into() },
             7 => match race.phase {

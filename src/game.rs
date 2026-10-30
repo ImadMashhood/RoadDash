@@ -1,4 +1,8 @@
 use crate::{
+    recovery::{self, Recovery, RecoveryStage},
+    sound::{AudioCue, Cue},
+};
+use crate::{
     track::{LAPS, ROAD_HALF, Track},
     world::{self, Art},
 };
@@ -36,7 +40,7 @@ impl Default for Race {
     fn default() -> Self {
         Self {
             phase: Phase::Garage,
-            countdown: 3.5,
+            countdown: 3.0,
             elapsed: 0.0,
             message: String::new(),
             message_time: 0.0,
@@ -107,6 +111,7 @@ fn save_path() -> std::path::PathBuf {
 }
 
 #[derive(Component)]
+#[require(Recovery)]
 pub struct Rider {
     pub id: usize,
     pub progress: f32,
@@ -120,6 +125,10 @@ pub struct Rider {
     pub attack_side: f32,
     pub lean: f32,
     pub finished: Option<f32>,
+    pub hop_height: f32,
+    pub hop_velocity: f32,
+    pub impact_cooldown: f32,
+    pub motion_velocity: Vec3,
 }
 impl Rider {
     fn new(id: usize) -> Self {
@@ -136,6 +145,10 @@ impl Rider {
             attack_side: 0.0,
             lean: 0.0,
             finished: None,
+            hop_height: 0.0,
+            hop_velocity: 0.0,
+            impact_cooldown: 0.0,
+            motion_velocity: Vec3::ZERO,
         }
     }
 }
@@ -156,9 +169,11 @@ pub fn setup_race(mut commands: Commands, art: Res<Art>, track: Res<Track>) {
         let rider = Rider::new(id);
         let (p, q) = track.sample(rider.progress, rider.lane);
         let root = world::bike(&mut commands, &art, id, true);
-        commands
-            .entity(root)
-            .insert((rider, Transform::from_translation(p).with_rotation(q)));
+        commands.entity(root).insert((
+            rider,
+            Transform::from_translation(p).with_rotation(q),
+            recovery::bike_body(),
+        ));
     }
     for i in 0..12 {
         let progress = 100.0 + i as f32 * track.length / 12.0;
@@ -173,6 +188,14 @@ pub fn setup_race(mut commands: Commands, art: Res<Art>, track: Res<Track>) {
                     lane,
                     speed,
                 },
+                RigidBody::KinematicPositionBased,
+                Collider::compound(vec![(
+                    Vec3::new(0.0, 0.95, 0.0),
+                    Quat::IDENTITY,
+                    Collider::cuboid(0.95, 0.9, 1.95),
+                )]),
+                ActiveEvents::COLLISION_EVENTS,
+                ActiveCollisionTypes::all(),
             ))
             .id();
         let mut parts = vec![];
@@ -237,7 +260,7 @@ pub fn setup_race(mut commands: Commands, art: Res<Art>, track: Res<Track>) {
 pub fn input(
     keys: Res<ButtonInput<KeyCode>>,
     mut race: ResMut<Race>,
-    mut riders: Query<&mut Rider>,
+    mut riders: Query<(Entity, &mut Rider, &mut Recovery)>,
     mut debris: Query<Entity, With<Debris>>,
     mut commands: Commands,
     mut menu_action: ResMut<crate::ui::MenuAction>,
@@ -263,8 +286,10 @@ pub fn input(
         *race = Race::default();
         race.camera_mode = mode;
         race.phase = Phase::Countdown;
-        for mut rider in &mut riders {
+        for (entity, mut rider, mut recovery) in &mut riders {
             *rider = Rider::new(rider.id);
+            *recovery = Recovery::default();
+            commands.entity(entity).remove::<ColliderDisabled>();
         }
         for e in &mut debris {
             commands.entity(e).despawn();
@@ -279,12 +304,26 @@ pub fn drive(
     track: Res<Track>,
     art: Res<Art>,
     mut race: ResMut<Race>,
-    mut riders: Query<(Entity, &mut Rider, &mut Transform, &mut Visibility), Without<Traffic>>,
+    mut riders: Query<
+        (
+            Entity,
+            &mut Rider,
+            &mut Recovery,
+            &mut Transform,
+            &mut Visibility,
+        ),
+        Without<Traffic>,
+    >,
     mut traffic: Query<(&mut Traffic, &mut Transform), Without<Rider>>,
     mut commands: Commands,
     mut profile: ResMut<Profile>,
     persistence: Res<Persistence>,
     mut physics: Query<&mut RapierConfiguration>,
+    mut audio: MessageWriter<AudioCue>,
+    context: ReadRapierContext,
+    ground: Query<(), With<world::Ground>>,
+    owned: Query<&recovery::OwnedBody>,
+    mut swept: MessageWriter<recovery::SweptContact>,
 ) {
     // Physics has its own clock: pause debris together with the race.
     for mut config in &mut physics {
@@ -311,27 +350,32 @@ pub fn drive(
     race.shake = (race.shake - dt * 2.0).max(0.0);
     let snapshots: Vec<(Entity, usize, f32, f32, f32, bool)> = riders
         .iter()
-        .map(|(e, r, _, _)| (e, r.id, r.progress, r.lane, r.speed, r.crashed > 0.0))
+        .map(|(e, r, _, _, _)| (e, r.id, r.progress, r.lane, r.speed, r.crashed > 0.0))
         .collect();
     let player_progress = snapshots.iter().find(|s| s.1 == 0).map_or(0.0, |s| s.2);
     let mut hits: Vec<(Entity, f32, bool)> = Vec::new();
-    for (entity, mut r, mut transform, mut visibility) in &mut riders {
-        if r.crashed > 0.0 {
-            if active {
-                r.crashed -= dt;
-            }
+    for (entity, mut r, mut recovery, mut transform, mut visibility) in &mut riders {
+        if recovery.stage != RecoveryStage::Riding {
             *visibility = Visibility::Hidden;
-            if r.crashed <= 0.0 {
-                r.health = 100.0;
-                r.lane = r.lane.clamp(-4.0, 4.0);
-                r.immunity = 3.0;
-                *visibility = Visibility::Visible;
-            }
             continue;
         }
         *visibility = Visibility::Visible;
         if active && r.finished.is_none() {
             r.immunity = (r.immunity - dt).max(0.0);
+            r.impact_cooldown = (r.impact_cooldown - dt).max(0.0);
+            if r.hop_height > 0.0 || r.hop_velocity > 0.0 {
+                r.hop_velocity -= 9.81 * dt;
+                r.hop_height += r.hop_velocity * dt;
+                if r.hop_height <= 0.0 {
+                    r.hop_height = 0.0;
+                    if r.hop_velocity < -2.0 {
+                        r.hop_velocity *= -0.32;
+                    } else {
+                        r.hop_velocity = 0.0;
+                    }
+                    audio.write(AudioCue::new(Cue::Land, transform.translation));
+                }
+            }
             r.attack = (r.attack - dt).max(0.0);
             let is_player = r.id == 0;
             let throttle = if is_player {
@@ -376,7 +420,7 @@ pub fn drive(
                     - (keys.pressed(KeyCode::KeyA) || keys.pressed(KeyCode::ArrowLeft)) as u8
                         as f32;
                 // High speed on a tight curve pushes the rider toward the outside shoulder.
-                r.lane -= track.curvature(r.progress) * r.speed * r.speed * dt * 0.10;
+                r.lane += track.curvature(r.progress) * r.speed * r.speed * dt * 0.10;
             } else {
                 let mut desired =
                     ((race.elapsed * 0.28 + r.id as f32 * 2.4).sin() * 3.4).clamp(-4.5, 4.5);
@@ -390,15 +434,12 @@ pub fn drive(
             }
             r.lane += steer * (1.5 + r.speed * 0.09) * dt;
             r.lean = r.lean.lerp(
-                -steer * 0.40 + track.curvature(r.progress) * r.speed * 0.55,
+                steer * 0.40 - track.curvature(r.progress) * r.speed * 0.55,
                 (dt * 8.0).min(1.0),
             );
             if r.lane.abs() > ROAD_HALF {
                 r.speed = (r.speed - dt * 18.0).max(0.0);
                 r.health -= dt * 12.0;
-            }
-            if r.lane.abs() > 10.5 {
-                r.health = 0.0;
             }
             r.progress += r.speed * dt;
             // Human and AI share damage and cooldown rules. Attack only one side at once.
@@ -434,32 +475,20 @@ pub fn drive(
                     }
                 }
             }
-            for (car, _) in &traffic {
-                if wrapped_gap(car.progress - r.progress, track.length).abs() < 2.8
-                    && (car.lane - r.lane).abs() < 1.35
-                    && r.immunity <= 0.0
-                {
-                    r.health = 0.0;
-                }
-            }
-            // Bike contact scrapes armor; high closing speed causes a crash.
-            for &(other, _, progress, lane, speed, crashed) in &snapshots {
-                if other != entity
-                    && !crashed
-                    && wrapped_gap(progress - r.progress, track.length).abs() < 1.5
-                    && (lane - r.lane).abs() < 0.65
-                    && r.immunity <= 0.0
-                {
-                    r.health -= dt * 35.0;
-                    if (speed - r.speed).abs() > 22.0 {
-                        r.health = 0.0;
-                    }
-                }
-            }
             if r.health <= 0.0 {
-                crash(&mut commands, &art, &track, &r);
-                r.crashed = 3.5;
-                r.speed = 0.0;
+                let (origin, rotation) = track.sample(r.progress, r.lane);
+                recovery::crash(
+                    &mut commands,
+                    &art,
+                    entity,
+                    &mut r,
+                    &mut recovery,
+                    origin,
+                    rotation,
+                    Vec3::ZERO,
+                );
+                *visibility = Visibility::Hidden;
+                audio.write(AudioCue::new(Cue::Crash, origin));
                 if is_player {
                     race.shake = 1.0;
                     race.message = "WIPED OUT / GETTING BACK UP".into();
@@ -490,22 +519,76 @@ pub fn drive(
             }
         }
         let (p, q) = track.sample(r.progress, r.lane);
-        transform.translation = p;
-        transform.rotation = q * Quat::from_rotation_z(r.lean);
-        if r.immunity > 0.0 && active && (race.elapsed * 12.0) as i32 % 2 == 0 {
-            *visibility = Visibility::Hidden;
+        let mut destination = p + Vec3::Y * r.hop_height;
+        let delta = destination - transform.translation;
+        r.motion_velocity = if active && dt > 0.0 {
+            delta / dt
+        } else {
+            Vec3::ZERO
+        };
+        if active
+            && delta.length_squared() > 0.0000001
+            && recovery.stage == RecoveryStage::Riding
+            && let Ok(context) = context.single()
+        {
+            // Bound controller movement against real geometry, including very slow
+            // lateral steering, rather than letting kinematic bikes pass through it.
+            let predicate = |other| {
+                !ground.contains(other) && !owned.get(other).is_ok_and(|body| body.owner == entity)
+            };
+            // Dynamic debris is pushed by Rapier contacts; only immovable or
+            // controller-driven geometry must bound this controller's sweep.
+            let filter = QueryFilter::exclude_dynamic()
+                .exclude_rigid_body(entity)
+                .exclude_sensors()
+                .predicate(&predicate);
+            let shape = Collider::cuboid(0.38, 0.96, 1.12);
+            let options = bevy_rapier3d::parry::query::ShapeCastOptions {
+                max_time_of_impact: 1.0,
+                target_distance: 0.01,
+                stop_at_penetration: false,
+                ..default()
+            };
+            if let Some((other, hit)) = context.cast_shape(
+                transform.translation + transform.rotation * Vec3::Y,
+                transform.rotation,
+                delta,
+                shape.raw.as_ref(),
+                options,
+                filter,
+            ) {
+                destination = transform.translation + delta * hit.time_of_impact.clamp(0.0, 1.0);
+                let (progress, lane, _) = track.project(destination, r.progress);
+                r.progress = progress;
+                r.lane = lane;
+                r.hop_height = (destination.y - p.y).max(0.0);
+                swept.write(recovery::SweptContact(entity, other));
+            }
         }
+        transform.translation = destination;
+        transform.rotation =
+            q * Quat::from_rotation_z(r.lean) * Quat::from_rotation_x(-r.hop_velocity * 0.025);
     }
     for (victim, damage, player_attack) in hits {
-        if let Ok((_, mut r, _, _)) = riders.get_mut(victim)
+        if let Ok((_, mut r, mut recovery, transform, mut visibility)) = riders.get_mut(victim)
             && r.immunity <= 0.0
             && r.crashed <= 0.0
         {
             r.health -= damage;
+            audio.write(AudioCue::new(Cue::Punch, transform.translation));
             if r.health <= 0.0 {
-                crash(&mut commands, &art, &track, &r);
-                r.crashed = 3.5;
-                r.speed = 0.0;
+                recovery::crash(
+                    &mut commands,
+                    &art,
+                    victim,
+                    &mut r,
+                    &mut recovery,
+                    transform.translation,
+                    transform.rotation,
+                    Vec3::ZERO,
+                );
+                *visibility = Visibility::Hidden;
+                audio.write(AudioCue::new(Cue::Crash, transform.translation));
                 if r.id != 0 && player_attack {
                     race.takedowns += 1;
                     race.message = "TAKEDOWN / +100 CREDITS".into();
@@ -521,7 +604,7 @@ pub fn drive(
     if active && race.phase != Phase::Finished {
         race.place = 1 + riders
             .iter()
-            .filter(|(_, r, _, _)| r.id != 0 && r.progress > player_progress)
+            .filter(|(_, r, _, _, _)| r.id != 0 && r.progress > player_progress)
             .count();
     }
     for (mut car, mut transform) in &mut traffic {
@@ -540,151 +623,6 @@ pub fn drive(
 
 pub fn wrapped_gap(gap: f32, length: f32) -> f32 {
     (gap + length * 0.5).rem_euclid(length) - length * 0.5
-}
-
-/// A real articulated rigid-body ragdoll. Adjacent body parts cannot collide;
-/// ball joints constrain translation while allowing the limbs to tumble.
-fn crash(commands: &mut Commands, art: &Art, track: &Track, rider: &Rider) {
-    let (origin, rotation) = track.sample(rider.progress, rider.lane);
-    let forward = rotation * Vec3::Z;
-    let velocity = forward * rider.speed * 0.65 + Vec3::Y * 5.0;
-    let specs = [
-        (Vec3::new(0.0, 1.55, 0.0), Vec3::new(0.5, 0.58, 0.32), None),
-        (
-            Vec3::new(0.0, 2.10, 0.0),
-            Vec3::new(0.40, 0.42, 0.38),
-            Some((0, Vec3::new(0.0, 1.87, 0.0))),
-        ),
-        (
-            Vec3::new(0.0, 1.10, 0.0),
-            Vec3::new(0.44, 0.28, 0.30),
-            Some((0, Vec3::new(0.0, 1.26, 0.0))),
-        ),
-        (
-            Vec3::new(-0.45, 1.55, 0.0),
-            Vec3::new(0.24, 0.40, 0.24),
-            Some((0, Vec3::new(-0.29, 1.69, 0.0))),
-        ),
-        (
-            Vec3::new(-0.49, 1.14, 0.0),
-            Vec3::new(0.21, 0.38, 0.21),
-            Some((3, Vec3::new(-0.47, 1.34, 0.0))),
-        ),
-        (
-            Vec3::new(0.45, 1.55, 0.0),
-            Vec3::new(0.24, 0.40, 0.24),
-            Some((0, Vec3::new(0.29, 1.69, 0.0))),
-        ),
-        (
-            Vec3::new(0.49, 1.14, 0.0),
-            Vec3::new(0.21, 0.38, 0.21),
-            Some((5, Vec3::new(0.47, 1.34, 0.0))),
-        ),
-        (
-            Vec3::new(-0.17, 0.73, 0.0),
-            Vec3::new(0.25, 0.44, 0.25),
-            Some((2, Vec3::new(-0.17, 0.96, 0.0))),
-        ),
-        (
-            Vec3::new(-0.17, 0.25, 0.0),
-            Vec3::new(0.22, 0.44, 0.22),
-            Some((7, Vec3::new(-0.17, 0.49, 0.0))),
-        ),
-        (
-            Vec3::new(0.17, 0.73, 0.0),
-            Vec3::new(0.25, 0.44, 0.25),
-            Some((2, Vec3::new(0.17, 0.96, 0.0))),
-        ),
-        (
-            Vec3::new(0.17, 0.25, 0.0),
-            Vec3::new(0.22, 0.44, 0.22),
-            Some((9, Vec3::new(0.17, 0.49, 0.0))),
-        ),
-    ];
-    let mut bodies = Vec::new();
-    for (i, (p, size, parent)) in specs.iter().enumerate() {
-        let e = commands
-            .spawn((
-                Visibility::default(),
-                Transform::from_translation(origin + rotation * (*p + Vec3::Y * 0.75))
-                    .with_rotation(rotation),
-                RigidBody::Dynamic,
-                Collider::cuboid(size.x * 0.5, size.y * 0.5, size.z * 0.5),
-                Velocity {
-                    linvel: velocity,
-                    angvel: Vec3::new(1.0, 0.5, -2.0),
-                },
-                ColliderMassProperties::Mass(match i {
-                    0 => 14.0,
-                    1 => 4.5,
-                    2 => 9.0,
-                    3 | 5 => 2.0,
-                    4 | 6 => 1.5,
-                    7 | 9 => 7.0,
-                    _ => 4.0,
-                }),
-                Damping {
-                    linear_damping: 0.2,
-                    angular_damping: 1.5,
-                },
-                Ccd::enabled(),
-                Friction::coefficient(0.8),
-                Debris(12.0),
-            ))
-            .id();
-        // Child geometry keeps the physics transform unscaled.
-        let visual = world::part(
-            commands,
-            art.cube.clone(),
-            if i == 1 {
-                art.white.clone()
-            } else if i >= 7 || i == 2 {
-                art.dark.clone()
-            } else {
-                art.colors[rider.id].clone()
-            },
-            Vec3::ZERO,
-            *size,
-            Quat::IDENTITY,
-        );
-        commands.entity(e).add_child(visual);
-        if let Some((parent, anchor)) = parent {
-            let mut joint = SphericalJointBuilder::new()
-                .local_anchor1(*anchor - specs[*parent].0)
-                .local_anchor2(*anchor - *p)
-                .limits(JointAxis::AngX, [-1.4, 1.4])
-                .limits(JointAxis::AngY, [-0.7, 0.7])
-                .limits(JointAxis::AngZ, [-1.1, 1.1])
-                .build();
-            joint.set_contacts_enabled(false);
-            if matches!(i, 4 | 6 | 8 | 10) {
-                joint.set_limits(JointAxis::AngX, [-0.1, 2.2]);
-                joint.set_limits(JointAxis::AngY, [-0.05, 0.05]);
-                joint.set_limits(JointAxis::AngZ, [-0.05, 0.05]);
-            }
-            commands
-                .entity(e)
-                .insert(ImpulseJoint::new(bodies[*parent], joint));
-        }
-        bodies.push(e);
-    }
-    let wreck = world::bike(commands, art, rider.id, false);
-    commands.entity(wreck).insert((
-        Transform::from_translation(origin + Vec3::Y * 1.2).with_rotation(rotation),
-        RigidBody::Dynamic,
-        Collider::cuboid(0.4, 0.5, 1.0),
-        ColliderMassProperties::Mass(170.0),
-        Velocity {
-            linvel: forward * rider.speed * 0.6,
-            angvel: Vec3::new(2.0, 1.0, 5.0),
-        },
-        Ccd::enabled(),
-        Damping {
-            linear_damping: 0.4,
-            angular_damping: 0.6,
-        },
-        Debris(12.0),
-    ));
 }
 
 pub fn debris_cleanup(
@@ -708,23 +646,39 @@ pub fn camera(
     time: Res<Time>,
     race: Res<Race>,
     track: Res<Track>,
-    riders: Query<&Rider>,
+    riders: Query<(&Rider, &Recovery)>,
+    bodies: Query<&Transform, Without<ChaseCamera>>,
+    context: ReadRapierContext,
     mut cameras: Query<(&mut Transform, &mut Projection), With<ChaseCamera>>,
 ) {
-    let Some(player) = riders.iter().find(|r| r.id == 0) else {
+    let Some((player, recovery)) = riders.iter().find(|(r, _)| r.id == 0) else {
         return;
     };
-    let (pos, rot) = track.sample(player.progress, player.lane);
-    let (offset, look) = match race.camera_mode {
-        1 => (Vec3::new(0.0, 2.5, -4.2), 3.0),
-        2 => (Vec3::new(0.0, 17.0, -18.0), 8.0),
-        _ => (Vec3::new(0.0, 3.2, -5.8 - player.speed * 0.012), 4.0),
+    if race.phase == Phase::Paused {
+        return;
+    }
+    let (road, rotation) = track.sample(player.progress, player.lane);
+    let recovering = recovery.stage != RecoveryStage::Riding;
+    let focus = if recovering {
+        recovery
+            .torso
+            .or(recovery.runner)
+            .and_then(|e| bodies.get(e).ok())
+            .map_or(road + Vec3::Y, |t| t.translation + Vec3::Y * 0.3)
+    } else {
+        road + Vec3::Y * (1.2 + player.hop_height)
+    };
+    let (offset, look) = if recovering {
+        (Vec3::new(0.0, 3.0, -6.0), 0.0)
+    } else {
+        match race.camera_mode {
+            1 => (Vec3::new(0.0, 1.3, -4.2), 3.0),
+            2 => (Vec3::new(0.0, 15.8, -18.0), 8.0),
+            _ => (Vec3::new(0.0, 2.0, -5.8 - player.speed * 0.012), 4.0),
+        }
     };
     let dt = time.delta_secs().min(0.05);
     for (mut transform, mut projection) in &mut cameras {
-        if race.phase == Phase::Paused {
-            continue;
-        }
         let shake = Vec3::new(
             (time.elapsed_secs() * 81.0).sin(),
             (time.elapsed_secs() * 63.0).cos(),
@@ -732,17 +686,38 @@ pub fn camera(
         ) * race.shake
             * 0.15;
         let target = if race.phase == Phase::Garage {
-            pos + rot * Vec3::new(5.0, 3.0, -6.0)
+            road + rotation * Vec3::new(5.0, 3.0, -6.0)
         } else {
-            pos + rot * (offset + Vec3::Z * player.speed * 0.10) + shake
+            focus
+                + rotation * (offset + Vec3::Z * if recovering { 0.0 } else { player.speed * 0.10 })
+                + shake
         };
-        transform.translation = transform.translation.lerp(target, 1.0 - (-dt * 10.0).exp());
-        let looking = Transform::from_translation(transform.translation)
-            .looking_at(pos + rot * Vec3::new(0.0, 1.2, look), Vec3::Y)
+        let mut position = transform.translation.lerp(target, 1.0 - (-dt * 10.0).exp());
+        // Prevent the camera itself from passing through solid scenery.
+        if let Ok(context) = context.single() {
+            let delta = position - focus;
+            let filter = QueryFilter::from(
+                QueryFilterFlags::EXCLUDE_DYNAMIC
+                    | QueryFilterFlags::EXCLUDE_KINEMATIC
+                    | QueryFilterFlags::EXCLUDE_SENSORS,
+            );
+            if let Some((_, distance)) = context.cast_ray(
+                focus,
+                delta.normalize_or_zero(),
+                delta.length(),
+                true,
+                filter,
+            ) {
+                position = focus + delta.normalize_or_zero() * (distance - 0.3).max(0.5);
+            }
+        }
+        transform.translation = position;
+        let looking = Transform::from_translation(position)
+            .looking_at(focus + rotation * Vec3::Z * look, Vec3::Y)
             .rotation;
         transform.rotation = transform.rotation.slerp(looking, 1.0 - (-dt * 9.0).exp());
         if let Projection::Perspective(p) = projection.as_mut() {
-            p.fov = (60.0 + player.speed * 0.17).to_radians();
+            p.fov = (60.0 + if recovering { 0.0 } else { player.speed * 0.17 }).to_radians();
         }
     }
 }
@@ -796,6 +771,8 @@ mod tests {
             std::time::Duration::from_secs_f64(1.0 / 60.0),
         ))
         .init_resource::<ButtonInput<KeyCode>>()
+        .add_message::<AudioCue>()
+        .add_message::<recovery::SweptContact>()
         .init_resource::<Track>()
         .init_resource::<Race>()
         .init_resource::<Profile>()
@@ -810,12 +787,20 @@ mod tests {
             white: Handle::default(),
             colors: vec![Handle::default(); 8],
         })
-        .add_systems(Update, (input, drive).chain());
-        app.world_mut()
-            .spawn((Rider::new(0), Transform::default(), Visibility::default()));
+        .add_systems(
+            Update,
+            (input, recovery::impacts, recovery::recover, drive).chain(),
+        );
+        app.world_mut().spawn((
+            Rider::new(0),
+            Transform::default(),
+            Visibility::default(),
+            recovery::bike_body(),
+        ));
         app.world_mut().spawn((
             RigidBody::Fixed,
             Collider::cuboid(650.0, 0.5, 650.0),
+            world::Ground,
             Transform::from_xyz(0.0, -0.5, 0.0),
         ));
         app.update();
@@ -829,7 +814,8 @@ mod tests {
     fn player(app: &mut App) -> &Rider {
         app.world_mut()
             .query::<&Rider>()
-            .single(app.world())
+            .iter(app.world())
+            .find(|r| r.id == 0)
             .unwrap()
     }
     #[test]
@@ -866,7 +852,7 @@ mod tests {
             rider.speed = 35.0;
         }
         step(&mut app, 1);
-        assert!(player(&mut app).crashed > 3.0);
+        assert!(player(&mut app).crashed > 0.0);
         assert_eq!(
             app.world_mut()
                 .query::<&ImpulseJoint>()
@@ -891,10 +877,31 @@ mod tests {
                 t.translation
             );
         }
-        step(&mut app, 110);
-        assert!(player(&mut app).crashed <= 0.0);
+        let mut saw_get_up = false;
+        let mut saw_running = false;
+        let mut saw_mounting = false;
+        for _ in 0..1500 {
+            step(&mut app, 1);
+            let world = app.world_mut();
+            let stage = world.query::<&Recovery>().iter(world).next().unwrap().stage;
+            saw_get_up |= stage == RecoveryStage::GettingUp;
+            saw_running |= stage == RecoveryStage::Running;
+            saw_mounting |= stage == RecoveryStage::Mounting;
+            if stage == RecoveryStage::Riding {
+                break;
+            }
+        }
+        assert!(
+            saw_get_up && saw_running && saw_mounting,
+            "recovery skipped a visible stage"
+        );
+        assert_eq!(player(&mut app).crashed, 0.0);
         assert_eq!(player(&mut app).health, 100.0);
-        assert!(player(&mut app).immunity > 2.0);
+        assert!(player(&mut app).immunity > 0.5);
+        assert_eq!(
+            app.world_mut().query::<&Debris>().iter(app.world()).count(),
+            0
+        );
     }
     #[test]
     fn directional_melee_damages_the_target_and_awards_one_takedown() {
@@ -908,7 +915,7 @@ mod tests {
             .world_mut()
             .spawn((rival, Transform::default(), Visibility::default()))
             .id();
-        for expected in [62.0, 24.0, -14.0] {
+        for expected in [62.0, 24.0, 0.0] {
             {
                 let mut q = app.world_mut().query::<&mut Rider>();
                 for mut r in q.iter_mut(app.world_mut()) {
@@ -923,7 +930,7 @@ mod tests {
             step(&mut app, 1);
             assert_eq!(app.world().get::<Rider>(rival_id).unwrap().health, expected);
         }
-        assert!(app.world().get::<Rider>(rival_id).unwrap().crashed > 3.0);
+        assert!(app.world().get::<Rider>(rival_id).unwrap().crashed > 0.0);
         assert_eq!(app.world().resource::<Race>().takedowns, 1);
     }
     #[test]
@@ -938,12 +945,20 @@ mod tests {
             Traffic {
                 progress: -8.0,
                 lane: -2.0,
-                speed: 0.0,
+                speed: -13.0,
             },
             Transform::default(),
+            RigidBody::KinematicPositionBased,
+            Collider::compound(vec![(
+                Vec3::Y,
+                Quat::IDENTITY,
+                Collider::cuboid(0.95, 0.9, 1.95),
+            )]),
+            ActiveEvents::COLLISION_EVENTS,
+            ActiveCollisionTypes::all(),
         ));
-        step(&mut app, 1);
-        assert!(player(&mut app).crashed > 3.0);
+        step(&mut app, 3);
+        assert!(player(&mut app).crashed > 0.0);
         app.world_mut()
             .resource_mut::<ButtonInput<KeyCode>>()
             .press(KeyCode::KeyR);
@@ -983,5 +998,305 @@ mod tests {
             .spawn((crate::ui::StartButton, Interaction::Pressed));
         step(&mut app, 1);
         assert!(app.world().resource::<Race>().phase == Phase::Countdown);
+    }
+    #[test]
+    fn d_moves_right_and_a_moves_left_in_chase_camera_space() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let (origin, q) = app.world().resource::<Track>().sample(-8.0, -2.0);
+        let screen_right = (q * Vec3::Z).cross(Vec3::Y);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyD);
+        step(&mut app, 1);
+        let (d, lane) = {
+            let r = player(&mut app);
+            (r.progress, r.lane)
+        };
+        let right = app.world().resource::<Track>().sample(d, lane).0;
+        assert!((right - origin).dot(screen_right) > 0.0, "D moved left");
+        {
+            let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+            keys.release(KeyCode::KeyD);
+            keys.press(KeyCode::KeyA);
+        }
+        step(&mut app, 1);
+        let r = player(&mut app);
+        let (d, lane) = (r.progress, r.lane);
+        let left = app.world().resource::<Track>().sample(d, lane).0;
+        assert!((left - right).dot(screen_right) < 0.0, "A moved right");
+    }
+    #[test]
+    fn bike_contact_ragdolls_the_victim_and_launches_attacker_with_a_bounce() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        {
+            let mut q = app.world_mut().query::<&mut Rider>();
+            q.single_mut(app.world_mut()).unwrap().speed = 22.0;
+        }
+        let mut victim = Rider::new(1);
+        victim.progress = -6.0;
+        victim.lane = -2.0;
+        let (p, q) = app
+            .world()
+            .resource::<Track>()
+            .sample(victim.progress, victim.lane);
+        let victim = app
+            .world_mut()
+            .spawn((
+                victim,
+                Transform::from_translation(p).with_rotation(q),
+                Visibility::default(),
+                recovery::bike_body(),
+            ))
+            .id();
+        step(&mut app, 2);
+        assert_eq!(
+            app.world().get::<Recovery>(victim).unwrap().stage,
+            RecoveryStage::Falling
+        );
+        assert!(player(&mut app).hop_velocity > 4.0);
+        let mut highest: f32 = 0.0;
+        let mut saw_down = false;
+        let mut bounced = false;
+        for _ in 0..120 {
+            step(&mut app, 1);
+            let r = player(&mut app);
+            highest = highest.max(r.hop_height);
+            if r.hop_velocity < -1.0 {
+                saw_down = true;
+            }
+            if saw_down && r.hop_velocity > 0.5 {
+                bounced = true;
+            }
+        }
+        assert!(
+            (0.9..1.8).contains(&highest),
+            "unexpected launch height {highest}"
+        );
+        assert!(bounced, "bike did not bounce on landing");
+    }
+    #[test]
+    fn crash_camera_tracks_the_moving_torso_instead_of_the_road_position() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let (p, q) = app.world().resource::<Track>().sample(-8.0, -2.0);
+        let camera_entity = app
+            .world_mut()
+            .spawn((
+                ChaseCamera,
+                Transform::from_translation(p - q * Vec3::Z * 6.0 + Vec3::Y * 4.0),
+                Projection::Perspective(default()),
+            ))
+            .id();
+        app.add_systems(PostUpdate, camera.after(PhysicsSet::Writeback));
+        {
+            let mut query = app.world_mut().query::<&mut Rider>();
+            let mut r = query.single_mut(app.world_mut()).unwrap();
+            r.health = 0.0;
+            r.speed = 40.0;
+        }
+        step(&mut app, 60);
+        let torso = app
+            .world_mut()
+            .query::<&Recovery>()
+            .single(app.world())
+            .unwrap()
+            .torso
+            .unwrap();
+        let torso = app.world().get::<Transform>(torso).unwrap().translation;
+        let camera = app
+            .world()
+            .get::<Transform>(camera_entity)
+            .unwrap()
+            .translation;
+        assert!(torso.with_y(0.0).distance(p.with_y(0.0)) > 10.0);
+        assert!(
+            camera.with_y(0.0).distance(torso.with_y(0.0)) < 10.0,
+            "camera failed to follow torso: {camera:?} vs {torso:?}"
+        );
+    }
+    #[test]
+    fn ragdoll_sized_bodies_collide_with_trees_cars_bikes_and_wrecks() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut().spawn((
+            RigidBody::Fixed,
+            Collider::cuboid(0.4, 2.0, 0.4),
+            Transform::from_xyz(-20.0, 1.0, 0.0),
+            world::Obstacle,
+        ));
+        app.world_mut().spawn((
+            RigidBody::KinematicPositionBased,
+            Collider::compound(vec![(
+                Vec3::Y,
+                Quat::IDENTITY,
+                Collider::cuboid(0.95, 0.9, 1.95),
+            )]),
+            Transform::from_xyz(0.0, 0.0, 0.0),
+            ActiveCollisionTypes::all(),
+        ));
+        app.world_mut()
+            .spawn((recovery::bike_body(), Transform::from_xyz(20.0, 0.0, 0.0)));
+        let wreck = app
+            .world_mut()
+            .spawn((
+                RigidBody::Dynamic,
+                Collider::cuboid(0.4, 0.8, 1.12),
+                ColliderMassProperties::Mass(170.0),
+                Transform::from_xyz(40.0, 0.85, 0.0),
+                Ccd::enabled(),
+            ))
+            .id();
+        let mut projectiles = Vec::new();
+        for x in [-20.0, 0.0, 20.0, 40.0] {
+            projectiles.push(
+                app.world_mut()
+                    .spawn((
+                        RigidBody::Dynamic,
+                        Collider::ball(0.22),
+                        ColliderMassProperties::Mass(5.0),
+                        Transform::from_xyz(x, 1.0, -5.0),
+                        Velocity::linear(Vec3::Z * 25.0),
+                        GravityScale(0.0),
+                        Ccd::enabled(),
+                        Restitution::coefficient(0.4),
+                    ))
+                    .id(),
+            );
+        }
+        step(&mut app, 90);
+        for projectile in projectiles {
+            let p = app
+                .world()
+                .get::<Transform>(projectile)
+                .unwrap()
+                .translation;
+            assert!(p.z < 2.0, "body tunneled through solid at {p:?}");
+        }
+        assert!(
+            app.world().get::<Transform>(wreck).unwrap().translation.z > 0.05,
+            "wreck did not react to impact"
+        );
+    }
+    #[test]
+    fn biker_can_knock_down_a_recovering_rider_again_without_duplicate_ragdolls() {
+        for stage in [RecoveryStage::GettingUp, RecoveryStage::Running] {
+            let mut app = simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let owner = app
+                .world_mut()
+                .query::<(Entity, &Rider)>()
+                .iter(app.world())
+                .find(|(_, r)| r.id == 0)
+                .unwrap()
+                .0;
+            let (p, q) = app.world().resource::<Track>().sample(-8.0, -2.0);
+            let wreck = app
+                .world_mut()
+                .spawn((
+                    RigidBody::Dynamic,
+                    Collider::cuboid(0.4, 0.5, 1.1),
+                    Transform::from_translation(p + q * Vec3::Z * 25.0 + Vec3::Y),
+                    recovery::OwnedBody {
+                        owner,
+                        kind: recovery::BodyKind::Wreck,
+                    },
+                    Debris(f32::INFINITY),
+                ))
+                .id();
+            let runner = app
+                .world_mut()
+                .spawn((
+                    RigidBody::KinematicPositionBased,
+                    Collider::capsule_y(0.65, 0.28),
+                    KinematicCharacterController::default(),
+                    Transform::from_translation(p + Vec3::Y * 0.95),
+                    recovery::OwnedBody {
+                        owner,
+                        kind: recovery::BodyKind::Runner,
+                    },
+                    ActiveEvents::COLLISION_EVENTS,
+                    ActiveCollisionTypes::all(),
+                    Debris(f32::INFINITY),
+                ))
+                .id();
+            app.world_mut().entity_mut(owner).insert(ColliderDisabled);
+            {
+                let mut r = app.world_mut().get_mut::<Recovery>(owner).unwrap();
+                r.stage = stage;
+                r.wreck = Some(wreck);
+                r.runner = Some(runner);
+            }
+            app.world_mut().get_mut::<Rider>(owner).unwrap().crashed = 1.0;
+            let mut attacker = Rider::new(1);
+            attacker.progress = -9.5;
+            attacker.lane = -2.0;
+            attacker.speed = 25.0;
+            let (p, q) = app
+                .world()
+                .resource::<Track>()
+                .sample(attacker.progress, attacker.lane);
+            let attacker = app
+                .world_mut()
+                .spawn((
+                    attacker,
+                    Transform::from_translation(p).with_rotation(q),
+                    Visibility::default(),
+                    recovery::bike_body(),
+                ))
+                .id();
+            step(&mut app, 3);
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Falling
+            );
+            assert!(app.world().get::<Rider>(attacker).unwrap().hop_velocity > 0.0);
+            assert!(app.world().get_entity(runner).is_err());
+            step(&mut app, 5);
+            let body_count = app
+                .world_mut()
+                .query::<&recovery::OwnedBody>()
+                .iter(app.world())
+                .filter(|b| b.owner == owner && b.kind == recovery::BodyKind::Ragdoll)
+                .count();
+            assert_eq!(body_count, 11);
+        }
+    }
+    #[test]
+    fn slow_sideways_steering_cannot_pass_through_a_solid_car() {
+        let mut app = simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let (p, q) = app.world().resource::<Track>().sample(-8.0, -0.5);
+        app.world_mut().spawn((
+            Traffic {
+                progress: -8.0,
+                lane: -0.5,
+                speed: 0.0,
+            },
+            Transform::from_translation(p).with_rotation(q),
+            RigidBody::KinematicPositionBased,
+            Collider::compound(vec![(
+                Vec3::Y,
+                Quat::IDENTITY,
+                Collider::cuboid(0.95, 0.9, 1.95),
+            )]),
+            ActiveCollisionTypes::all(),
+            ActiveEvents::COLLISION_EVENTS,
+        ));
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyD);
+        step(&mut app, 30);
+        let rider = player(&mut app);
+        assert!(
+            rider.crashed > 0.0,
+            "slow sideways contact failed to trigger an impact"
+        );
+        assert!(
+            rider.lane < -1.6,
+            "bike passed into the car before the crash: lane {}",
+            rider.lane
+        );
     }
 }

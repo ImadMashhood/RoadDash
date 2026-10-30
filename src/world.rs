@@ -34,6 +34,26 @@ pub fn part(
         .id()
 }
 
+/// Volumetric scenery that can stop bikes and receive ragdoll impacts.
+#[derive(Component)]
+pub struct Obstacle;
+#[derive(Component)]
+pub struct Ground;
+#[derive(Component)]
+pub struct SceneryFootprint {
+    pub radius: f32,
+}
+
+fn solid(commands: &mut Commands, entity: Entity, collider: Collider) {
+    commands.entity(entity).insert((
+        RigidBody::Fixed,
+        collider,
+        Obstacle,
+        Friction::coefficient(0.8),
+        Restitution::coefficient(0.1),
+    ));
+}
+
 pub fn setup_world(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -89,7 +109,8 @@ pub fn setup_world(
     );
     commands.spawn((
         RigidBody::Fixed,
-        Collider::cuboid(650.0, 0.5, 650.0),
+        Collider::cuboid(1000.0, 0.5, 1000.0),
+        Ground,
         Transform::from_xyz(0.0, -0.5, 0.0),
         Friction::coefficient(0.9),
     ));
@@ -127,7 +148,7 @@ pub fn setup_world(
             Vec3::new(16.0, 0.08, 2.9),
             q,
         );
-        part(
+        let road = part(
             &mut commands,
             art.cube.clone(),
             asphalt.clone(),
@@ -135,6 +156,9 @@ pub fn setup_world(
             Vec3::new(13.0, 0.06, 2.9),
             q,
         );
+        commands
+            .entity(road)
+            .insert((RigidBody::Fixed, Collider::cuboid(0.5, 0.5, 0.5), Ground));
         for lane in [-ROAD_HALF + 0.22, ROAD_HALF - 0.22] {
             part(
                 &mut commands,
@@ -158,7 +182,7 @@ pub fn setup_world(
         if i % 12 == 0 {
             for lane in [-8.5, 8.5] {
                 let (v, q) = track.sample(d, lane);
-                part(
+                let post = part(
                     &mut commands,
                     art.cube.clone(),
                     art.white.clone(),
@@ -166,6 +190,7 @@ pub fn setup_world(
                     Vec3::new(0.15, 1.0, 0.15),
                     q,
                 );
+                solid(&mut commands, post, Collider::cuboid(0.5, 0.5, 0.5));
                 part(
                     &mut commands,
                     art.cube.clone(),
@@ -181,7 +206,10 @@ pub fn setup_world(
                 let noise = ((i * 47 % 31) as f32) / 31.0;
                 let (v, _) = track.sample(d, side * (15.0 + noise * 26.0));
                 let h = 4.0 + noise * 6.0;
-                part(
+                if !track.scenery_fits(v, h * 0.38, 3.0) {
+                    continue;
+                }
+                let trunk = part(
                     &mut commands,
                     art.cube.clone(),
                     wood.clone(),
@@ -189,7 +217,8 @@ pub fn setup_world(
                     Vec3::new(0.4, h * 0.7, 0.4),
                     Quat::IDENTITY,
                 );
-                part(
+                solid(&mut commands, trunk, Collider::cuboid(0.5, 0.5, 0.5));
+                let canopy = part(
                     &mut commands,
                     cone.clone(),
                     foliage.clone(),
@@ -197,15 +226,23 @@ pub fn setup_world(
                     Vec3::new(h * 0.38, h, h * 0.38),
                     Quat::IDENTITY,
                 );
+                solid(&mut commands, canopy, Collider::cone(0.5, 1.0));
+                commands
+                    .entity(canopy)
+                    .insert(SceneryFootprint { radius: h * 0.38 });
             }
         }
     }
     // Mountain silhouettes and interior rock formations.
     for i in 0..65 {
         let a = i as f32 * 2.39996;
-        let r = 390.0 + (i % 7) as f32 * 15.0;
+        let mut r = 390.0 + (i % 7) as f32 * 15.0;
         let h = 40.0 + (i * 31 % 70) as f32;
-        part(
+        // Reserve the whole mountain footprint, not just its center.
+        while !track.scenery_fits(Vec3::new(a.cos() * r, 0.0, a.sin() * r), h * 1.7, 18.0) {
+            r += 25.0;
+        }
+        let mountain = part(
             &mut commands,
             cone.clone(),
             rock.clone(),
@@ -213,6 +250,10 @@ pub fn setup_world(
             Vec3::new(h * 1.7, h, h * 1.7),
             Quat::from_rotation_y(a),
         );
+        solid(&mut commands, mountain, Collider::cone(0.5, 1.0));
+        commands
+            .entity(mountain)
+            .insert(SceneryFootprint { radius: h * 1.7 });
     }
     let (start, q) = track.sample(0.0, 0.0);
     for x in 0..14 {
@@ -232,7 +273,7 @@ pub fn setup_world(
         }
     }
     for side in [-8.0, 8.0] {
-        part(
+        let pole = part(
             &mut commands,
             art.cube.clone(),
             art.metal.clone(),
@@ -240,8 +281,9 @@ pub fn setup_world(
             Vec3::new(0.35, 8.0, 0.35),
             q,
         );
+        solid(&mut commands, pole, Collider::cuboid(0.5, 0.5, 0.5));
     }
-    part(
+    let gantry = part(
         &mut commands,
         art.cube.clone(),
         art.dark.clone(),
@@ -249,6 +291,7 @@ pub fn setup_world(
         Vec3::new(16.4, 1.2, 0.6),
         q,
     );
+    solid(&mut commands, gantry, Collider::cuboid(0.5, 0.5, 0.5));
     part(
         &mut commands,
         art.cube.clone(),
@@ -393,7 +436,7 @@ pub fn animate_riders(
 ) {
     for (arm, parent, mut transform) in &mut arms {
         if let Ok(rider) = riders.get(parent.parent()) {
-            let extension = if rider.attack > 0.3 && rider.attack_side == arm.0 {
+            let extension = if rider.attack > 0.3 && rider.attack_side == -arm.0 {
                 ((0.65 - rider.attack) / 0.35 * std::f32::consts::PI)
                     .sin()
                     .max(0.0)
@@ -403,6 +446,155 @@ pub fn animate_riders(
             transform.translation.x = arm.0 * (0.36 + extension * 0.45);
             transform.rotation =
                 Quat::from_rotation_y(arm.0 * extension * 1.5) * Quat::from_rotation_x(0.35);
+        }
+    }
+}
+
+#[derive(Component)]
+pub struct RunnerLimb {
+    pub side: f32,
+    pub leg: bool,
+}
+
+/// Upright rider model used for getting up, running, and remounting.
+/// The root is at capsule center; the pose pivot is at the feet.
+pub fn runner(commands: &mut Commands, art: &Art, color: usize) -> (Entity, Entity) {
+    let root = commands
+        .spawn((Transform::default(), Visibility::default()))
+        .id();
+    let pose = commands
+        .spawn((Transform::from_xyz(0.0, -0.95, 0.0), Visibility::default()))
+        .id();
+    let mut parts = Vec::new();
+    parts.push(part(
+        commands,
+        art.cube.clone(),
+        art.colors[color].clone(),
+        Vec3::new(0.0, 1.35, 0.0),
+        Vec3::new(0.55, 0.65, 0.32),
+        Quat::IDENTITY,
+    ));
+    parts.push(part(
+        commands,
+        art.sphere.clone(),
+        art.white.clone(),
+        Vec3::new(0.0, 1.95, 0.0),
+        Vec3::new(0.28, 0.31, 0.28),
+        Quat::IDENTITY,
+    ));
+    parts.push(part(
+        commands,
+        art.cube.clone(),
+        art.dark.clone(),
+        Vec3::new(0.0, 1.96, 0.25),
+        Vec3::new(0.45, 0.16, 0.08),
+        Quat::IDENTITY,
+    ));
+    for side in [-1.0, 1.0] {
+        for leg in [true, false] {
+            let pivot = commands
+                .spawn((
+                    Transform::from_xyz(
+                        side * if leg { 0.17 } else { 0.39 },
+                        if leg { 1.0 } else { 1.57 },
+                        0.0,
+                    ),
+                    Visibility::default(),
+                    RunnerLimb { side, leg },
+                ))
+                .id();
+            let visual = part(
+                commands,
+                art.cube.clone(),
+                if leg {
+                    art.dark.clone()
+                } else {
+                    art.colors[color].clone()
+                },
+                Vec3::new(0.0, if leg { -0.475 } else { -0.38 }, 0.0),
+                Vec3::new(0.22, if leg { 0.95 } else { 0.78 }, 0.25),
+                Quat::IDENTITY,
+            );
+            commands.entity(pivot).add_child(visual);
+            parts.push(pivot);
+        }
+    }
+    commands.entity(pose).add_children(&parts);
+    commands.entity(root).add_child(pose);
+    (root, pose)
+}
+
+pub fn animate_runners(
+    time: Res<Time>,
+    race: Res<crate::game::Race>,
+    recovery: Query<&crate::recovery::Recovery>,
+    mut limbs: Query<(&RunnerLimb, &ChildOf, &mut Transform)>,
+    parents: Query<&ChildOf>,
+    owners: Query<&crate::recovery::OwnedBody>,
+) {
+    if race.phase != crate::game::Phase::Racing {
+        return;
+    }
+    for (limb, pose, mut transform) in &mut limbs {
+        let Ok(root) = parents.get(pose.parent()) else {
+            continue;
+        };
+        let Ok(owner) = owners.get(root.parent()) else {
+            continue;
+        };
+        let Ok(recovery) = recovery.get(owner.owner) else {
+            continue;
+        };
+        let swing = if recovery.stage == crate::recovery::RecoveryStage::Running {
+            (time.elapsed_secs() * 13.0).sin() * 0.65
+        } else {
+            0.0
+        };
+        transform.rotation =
+            Quat::from_rotation_x(swing * limb.side * if limb.leg { 1.0 } else { -1.0 });
+    }
+}
+
+/// Check real mesh footprints against every section of the road.
+pub fn validate_scenery(track: Res<Track>, scenery: Query<(&Transform, &SceneryFootprint)>) {
+    for (transform, footprint) in &scenery {
+        assert!(
+            track.scenery_fits(transform.translation, footprint.radius, 1.0),
+            "Scenery overlaps the road at {:?}",
+            transform.translation
+        );
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn scenery_is_solid_and_every_footprint_clears_the_whole_circuit() {
+        let mut app = App::new();
+        app.add_plugins(MinimalPlugins)
+            .init_resource::<Track>()
+            .init_resource::<Assets<Mesh>>()
+            .init_resource::<Assets<StandardMaterial>>()
+            .add_systems(Startup, (setup_world, validate_scenery).chain());
+        app.update();
+        let mut footprints = app
+            .world_mut()
+            .query::<(&Transform, &SceneryFootprint, &Collider)>();
+        assert!(footprints.iter(app.world()).count() > 100);
+        for (t, footprint, _) in footprints.iter(app.world()) {
+            assert!(app.world().resource::<Track>().scenery_fits(
+                t.translation,
+                footprint.radius,
+                1.0
+            ));
+        }
+        for (_, collider) in app
+            .world_mut()
+            .query::<(&Obstacle, Option<&Collider>)>()
+            .iter(app.world())
+        {
+            assert!(collider.is_some());
         }
     }
 }

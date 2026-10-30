@@ -1,4 +1,6 @@
 mod game;
+mod recovery;
+mod sound;
 mod track;
 mod ui;
 mod verification;
@@ -23,6 +25,9 @@ fn main() {
     .init_resource::<game::Profile>()
     .init_resource::<game::Persistence>()
     .init_resource::<ui::MenuAction>()
+    .init_resource::<sound::Muted>()
+    .add_message::<sound::AudioCue>()
+    .add_message::<recovery::SweptContact>()
     .insert_resource(TimestepMode::Variable {
         max_dt: 0.05,
         time_scale: 1.0,
@@ -30,21 +35,37 @@ fn main() {
     })
     .add_systems(
         Startup,
-        (world::setup_world, game::setup_race, ui::setup_ui).chain(),
+        (
+            world::setup_world,
+            world::validate_scenery,
+            game::setup_race,
+            ui::setup_ui,
+            sound::setup,
+        )
+            .chain(),
     )
     .add_systems(
         Update,
         (
             ui::buttons,
             game::input,
+            recovery::impacts,
+            recovery::recover,
             game::drive,
-            game::camera,
             world::animate_riders,
+            world::animate_runners,
             game::camera_occlusion,
             game::debris_cleanup,
             ui::update_ui,
+            sound::update,
         )
             .chain(),
+    );
+    app.add_systems(
+        PostUpdate,
+        game::camera
+            .after(PhysicsSet::Writeback)
+            .before(bevy::transform::TransformSystems::Propagate),
     );
     if std::env::args().any(|a| a == "--smoke-test") {
         std::fs::create_dir_all("screenshots").expect("create screenshot directory");
