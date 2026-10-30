@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "id": "valley-run-01",
+  "name": "Valley Run \u2014 Farms / City / Hills",
+  "verge_width": 4.5,
+  "control_points": [
+    {
+      "position": [
+        0.0,
+        0.1,
+        -2940.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        126.0,
+        0.1,
+        -2436.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -105.0,
+        0.1,
+        -1932.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        147.0,
+        0.1,
+        -1470.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        0.0,
+        0.1,
+        -882.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "farms",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        0.0,
+        0.1,
+        -378.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -273.0,
+        0.1,
+        126.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        84.0,
+        0.1,
+        525.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        0.0,
+        0.1,
+        945.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        210.0,
+        35,
+        1365.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": -3,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        0.0,
+        85,
+        1806.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 3,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        315.0,
+        45,
+        2184.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": -3,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        0.0,
+        110,
+        2583.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 3,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        315.0,
+        60,
+        3003.0
+      ],
+      "half_width": 6.5,
+      "bank_degrees": -3,
+      "sector": "hills",
+      "surface": "asphalt"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "start",
+      "fraction": 0.0
+    },
+    {
+      "id": "gate-1",
+      "fraction": 0.125
+    },
+    {
+      "id": "gate-2",
+      "fraction": 0.25
+    },
+    {
+      "id": "gate-3",
+      "fraction": 0.375
+    },
+    {
+      "id": "gate-4",
+      "fraction": 0.5
+    },
+    {
+      "id": "gate-5",
+      "fraction": 0.625
+    },
+    {
+      "id": "gate-6",
+      "fraction": 0.75
+    },
+    {
+      "id": "gate-7",
+      "fraction": 0.875
+    },
+    {
+      "id": "finish",
+      "fraction": 1.0
+    }
+  ],
+  "spawns": [
+    {
+      "id": "spawn-0",
+      "distance": -8,
+      "lane": -2
+    },
+    {
+      "id": "spawn-1",
+      "distance": -8,
+      "lane": 2
+    },
+    {
+      "id": "spawn-2",
+      "distance": -12,
+      "lane": -2
+    },
+    {
+      "id": "spawn-3",
+      "distance": -12,
+      "lane": 2
+    },
+    {
+      "id": "spawn-4",
+      "distance": -16,
+      "lane": -2
+    },
+    {
+      "id": "spawn-5",
+      "distance": -16,
+      "lane": 2
+    },
+    {
+      "id": "spawn-6",
+      "distance": -20,
+      "lane": -2
+    },
+    {
+      "id": "spawn-7",
+      "distance": -20,
+      "lane": 2
+    }
+  ],
+  "props": [
+    {
+      "id": "farm-0",
+      "kind": "farm",
+      "fraction": 0.06825,
+      "lane": 45
+    },
+    {
+      "id": "farm-1",
+      "kind": "farm",
+      "fraction": 0.1755,
+      "lane": -50
+    },
+    {
+      "id": "cow-2",
+      "kind": "cow",
+      "fraction": 0.10725,
+      "lane": 12
+    },
+    {
+      "id": "cow-3",
+      "kind": "cow",
+      "fraction": 0.22425,
+      "lane": -15
+    },
+    {
+      "id": "animal_crossing-4",
+      "kind": "animal_crossing",
+      "fraction": 0.10725,
+      "lane": 0
+    },
+    {
+      "id": "crossing-5",
+      "kind": "crossing",
+      "fraction": 0.4485,
+      "lane": 0
+    },
+    {
+      "id": "crossing-6",
+      "kind": "crossing",
+      "fraction": 0.55575,
+      "lane": 0
+    },
+    {
+      "id": "cliff-7",
+      "kind": "cliff",
+      "fraction": 0.8775,
+      "lane": 28
+    }
+  ],
+  "closed": false,
+  "scenery_seed": 17031
+}

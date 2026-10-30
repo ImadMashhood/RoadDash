@@ -162,3 +162,17 @@ legal signoff. Full asset rights remain separate.
 
 Do not convert these candidates to dependencies or assert file-level permission
 without recording an exact inspected revision, license URL and compatibility.
+
+## Part 02 follow-up inspection — 2026-10-30
+
+No new repository/dependency adopted. Revisited the already recorded R08 Bevy
+v0.17.3 and R10 bevy_rapier v0.32.0 snapshots and installed source: indexed mesh
+construction/normals, triangle colliders, generic/revolute joint locked axes,
+force-based spring motors, force bounds, ray normals and friction combine rules.
+Official guide: https://rapier.rs/docs/user_guides/bevy_plugin/joints/ and
+https://www.rapier.rs/docs/user_guides/bevy_plugin/colliders/ (current guides,
+installed version source is the compatibility authority). Engine MIT/Apache and
+adapter Apache notices remain unchanged. Decision: retain existing dependencies;
+independently implement spline/terrain/gate rules and original graybox geometry.
+No upstream example, game implementation or third-party media copied. Existing
+pinned versions and later coordinated-migration risk remain as recorded above.

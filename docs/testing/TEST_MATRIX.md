@@ -37,3 +37,15 @@ cargo run -- --smoke-test
 
 CI repeats the source/headless checks on Ubuntu and Windows. It cannot replace
 real input-device, graphics, audio, clean-install, performance or rights review.
+
+## Part 02 additions (2026-10-30)
+
+Detailed receipt: PART_02.md. New checks: headless authored road imports including
+open endpoints and invalid geometry/gates/spawns; render/collision ribbon winding;
+240 terrain/road support rays across all zones; no-teleport complete fixed-controller
+point-to-point race, skipped/reverse/outside gates and missed-finish retry; boost
+release/exhaustion, four grass AI/player cases, cow lift, solid slope slide and
+100 physical ragdoll drops with finite transforms/velocities, anchor and hinge-axis
+checks. Native smoke includes both farm and hill recovery, city, hills and F4
+inspector captures, active audio sinks and results. World-tour/result teleports
+are presentation fixtures only; race validation is the separate controller test.

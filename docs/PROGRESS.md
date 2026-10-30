@@ -1,7 +1,9 @@
 # Development progress
 
-Active implementation scope: Parts 00-01, 2026-10-30. No automatic advancement
-into Part 02 or later. The full original backlog is preserved in the generated
+Previous implementation scope: Parts 00-01, 2026-10-30. Current user-authorized
+scope: reported handling/recovery fixes, followed by Part 02. The user explicitly
+changed the scenic map to point-to-point (farmland → city → hills); no return loop.
+No automatic advancement to Part 03 or later. The full original backlog is preserved in the generated
 index below; README is the editable checkbox source. Run
 `python3 tools/sync_progress.py` after changing task status, then `--check` in CI.
 
@@ -23,6 +25,39 @@ Full simulation extraction (P01-003/P01-004), complete authority-event contracts
 (P01-006), a functional netplay mode (P01-007), and real Windows hardware
 verification (P01-009/P01-010/P01-011) remain open. Subsystem plugins and pure
 core/content crates are useful progress, not all eleven future crates or a server.
+
+## Part 02 implementation and remaining gates
+
+See tracks/AUTHORING.md and testing/PART_02.md. Authored 6.85 km Valley Run,
+2 km handling fixture, 3D arc length/bank/width/surface/sector metadata, physical
+ordered gates, separate collision ribbons, bank-safe terrain, F4/CLI inspection,
+seeded farm/city/hill gameplay actors and actual elevated recovery are implemented.
+Source files: ../src/track.rs, environment.rs, recovery.rs, game.rs and
+../crates/rr_content/src/track.rs. Tests cover a complete no-teleport fixed-controller
+race and one payout, endpoint/retry/shortcut rejection, 240 road collision rays,
+boost/grass/cow/slope behavior and 100 high-speed ragdoll drops.
+
+P02-004 remains partial only for optional branch/split/merge support. P02-010 has
+both requested road lengths but representative busy-race pacing/fun measurement
+is not established. P02-011 remains open until those requirements are resolved.
+The user changed route order and closure; original task text remains in the index
+as history, with the explicit current contract P02-012. P06-012 includes a broader
+trap/traffic/time-loss audit than the new drop stress test, so it stays unchecked.
+P07-003/P07-005 are partial (bike ordered gates now work; out-of-bounds/foot and
+same-tick rider/bike outcomes remain). P07-007/P12-005 retain class/track save work.
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| P01-019 / 01 | Prior Windows CI audit failed decoding UTF-8 author metadata as cp1252 | metadata/text readers | Explicit UTF-8 and a simulated Windows code-page regression; Python tests; fresh remote matrix still required |
+| P02-012 / 02 | User's point-to-point map correction | authored spline, gates | Separate endpoints, no return geometry/wrap; full fixed-controller race; missed gate stops/retry, ordered-gate tests |
+| P02-013 / 02 | Environment affects gameplay, per user sketch | terrain, solid props, fixed patrols | Seeded farm gaps/fences/cows lift riders; city streets/solid crossing cars/pedestrians; elevated hills/guardrails; actor counts, cow test and native captures |
+| P02-014 / 02 | Visual review found grass intruding on banked asphalt | terrain and separate road meshes | Terrain follows bank with clearance; first collision surface is road at 240 sampled positions; winding and resolution tests |
+| P02-015 / 02 | Sea-level righting would break elevated recovery | terrain, runner/wreck recovery | Actual hill crash/get-up/run/remount completes at height; native fixture and screenshots |
+| P03-012 / 03 | Boost release/exhaustion snapped from 270 to 198 km/h | speed controller | Excess speed decays by drag, not a target clamp; both input scenarios tested |
+| P03-013 / 03 | Grass drag exceeded acceleration and drained health | surface metadata, AI | Four player/AI grass cases advance without health loss/knockoff; AI returns to road |
+| P03-014 / 03 | User requests slightly tighter handling | validated bike tuning | About 20% greater lateral rates, old schema-1 catalogs load defaults, steering/frame-rate regressions pass |
+| P06-017 / 06 | Uniform joint limits fold limbs implausibly | existing articulated bodies, Rapier motor API | Directional hinges, bounded twist and passive tissue resistance; 100 dynamic drops, anchor/axis/finite/ground checks, native crash captures |
+| P06-018 / 06 | Wreck sticks to slopes; always-low friction drifts too far on flats | terrain ray normals, fixed physics | Low friction only on steep support; ramp regression and native hill/flat recovery |
 
 ## Added requirements and rationale
 
@@ -116,29 +151,39 @@ close this session.
 
 - [ ] **P01-018** Obtain actual Windows and Fedora/NVIDIA native launch/input/audio receipts in addition to the CI build matrix; record the measured adapter and keep unmet hardware gates open.
 
+- [x] **P01-019** Decode Cargo metadata and repository text explicitly as UTF-8 across host locales; regress the Windows cp1252 audit failure. Evidence: [audit tests](../tools/test_audit.py), [CI follow-up](../docs/testing/PART_02.md).
+
 ### Part 02 - Scenic road graybox and track format
 
 - [x] **P02-001** Build a closed driveable circuit with lanes, shoulders, solid road surfaces, and canonical arc-length progress. Evidence: [track](../src/track.rs), [world](../src/world.rs).
 
 - [x] **P02-002** Validate circuit closure, distance wrapping, camera-right lane direction, progress projection, and full-footprint scenery clearance in headless tests. Evidence: tests in [track](../src/track.rs) and [world](../src/world.rs).
 
-- [ ] **P02-003** Document meter units, +Y up, spline-tangent forward, origin, and any future origin-rebasing policy.
+- [x] **P02-003** Document meter units, +Y up, spline-tangent forward, origin, and any future origin-rebasing policy.
 
 - [ ] **P02-004** Replace the generated flat polyline with an authorable Catmull-Rom/Bezier centerline supporting widths, banking, elevation, sectors, and optional route splits/merges.
 
-- [ ] **P02-005** Define typed track IDs, control points, surfaces, ordered checkpoint IDs, prop placement, spawn points, and safe foot/verge regions.
+- [x] **P02-005** Define typed track IDs, control points, surfaces, ordered checkpoint IDs, prop placement, spawn points, and safe foot/verge regions.
 
-- [ ] **P02-006** Build simplified collision meshes separately from render meshes, initially sampling around 2-3 m; add curbs, guardrails, fencing, and reliable highway boundaries.
+- [x] **P02-006** Build simplified collision meshes separately from render meshes, initially sampling around 2-3 m; add curbs, guardrails, fencing, and reliable highway boundaries.
 
-- [ ] **P02-007** Implement ordered gates and forward crossing validation; validate checkpoint order, intersections, NaNs, negative widths, and spawn overlap.
+- [x] **P02-007** Implement ordered gates and forward crossing validation; validate checkpoint order, intersections, NaNs, negative widths, and spawn overlap.
 
-- [ ] **P02-008** Add asphalt/dirt/gravel/grass/water metadata and traction/friction modifiers, animal crossings, and cliff hazard zones.
+- [x] **P02-008** Add asphalt/dirt/gravel/grass/water metadata and traction/friction modifiers, animal crossings, and cliff hazard zones.
 
-- [ ] **P02-009** Add a track inspector for spline normals, triangle count, driving line, bounds, and spawns; load authored tracks headlessly.
+- [x] **P02-009** Add a track inspector for spline normals, triangle count, driving line, bounds, and spawns; load authored tracks headlessly.
 
 - [ ] **P02-010** Build a short approximately 2 km handling road, then a roughly 6-9 km town -> farm -> cliff corridor tuned for a three-minute race, with straight, turns, hairpin, and hazards.
 
 - [ ] **P02-011** **Exit gate:** an authored graybox supports a complete race with valid gates, stable collision, clear progress, and no terrain fall-through.
+
+- [x] **P02-012** Build the user-directed point-to-point map with distinct start/finish, no endpoint wrapping, canonical route HUD and safe endpoint/retry behavior. Evidence: [track](../src/track.rs), [race tests](../src/game.rs).
+
+- [x] **P02-013** Populate seeded farm openings/fences/cows, city buildings/cross traffic/walking pedestrians, and elevated hills with physical guardrails. Evidence: [environment](../src/environment.rs), [native captures](../docs/testing/PART_02.md).
+
+- [x] **P02-014** Keep terrain below banked road lanes and verify route support, render/collision winding and independent collision resolution. Evidence: [geometry tests](../src/environment.rs).
+
+- [x] **P02-015** Verify actual hill crash/get-up/run/remount at elevation without resetting the bike to sea level. Evidence: [recovery](../src/recovery.rs), [native receipt](../docs/testing/PART_02.md).
 
 ### Part 03 - Motorcycle physics and controls
 
@@ -163,6 +208,12 @@ close this session.
 - [ ] **P03-010** Run a ten-minute aggressive-turning soak without NaNs/tunneling/unexplained flips; record at least ten test rides and controller feedback.
 
 - [ ] **P03-011** **Exit gate:** three presets feel distinct, a beginner can finish, and handling is fun and stable with placeholder art.
+
+- [x] **P03-012** Decelerate smoothly when boost is released or exhausted; preserve excess speed instead of clamping to the ordinary top speed. Evidence: [regression](../src/game.rs).
+
+- [x] **P03-013** Allow player/AI forward movement in grass, with reduced traction/speed and no grass-only health loss or knockoff; AI can return to the road. Evidence: [four-scenario regression](../src/game.rs).
+
+- [x] **P03-014** Tighten lateral handling approximately 20% using validated authored steering rates, retaining older schema-1 catalogs with defaults. Evidence: [tuning](../content/catalog.json), [schema tests](../crates/rr_content/src/lib.rs).
 
 ### Part 04 - Chase camera, speed feel, and input
 
@@ -234,7 +285,11 @@ close this session.
 
 - [x] **P06-015** Remount against the actual fallen bike collision shape, including sideways, upside-down and vertical poses, without the runner pushing it away. Evidence: twelve automated approaches in [game tests](../src/game.rs) and native recovery smoke.
 
-- [x] **P06-016** Apply post-remount protection to shoulder damage so recovery does not immediately drain health. Evidence: end-to-end recovery regression in [game tests](../src/game.rs).
+- [x] **P06-016** Apply post-remount protection to shoulder damage so recovery does not immediately drain health. Evidence: end-to-end recovery regression in [game tests](../src/game.rs). Historical behavior: P03-013 now removes grass-only damage entirely.
+
+- [x] **P06-017** Replace universal ball-joint limits with anatomical stops, directional hinges and bounded passive tissue resistance; verify 100 high-speed drops without detached joints or twisted hinge axes. Evidence: [articulation](../src/recovery.rs), [stress test](../src/game.rs).
+
+- [x] **P06-018** Make fallen bikes slide on steep solid terrain while retaining flat-road stopping friction. Evidence: [slope contact friction](../src/recovery.rs), [ramp regression](../src/game.rs).
 
 ### Part 07 - Race rules, HUD, and results
 

@@ -108,3 +108,74 @@ Verification: raw spawn-velocity snapshot, seated-visual absence, twelve approac
 across six fallen poses, full dynamic recovery and native screenshots. Future:
 keep crash placement/reach in authority simulation when extracting P06 systems.
 Rollback these changes together with regression tests; preserve save/schema APIs.
+
+## ADR-009 - 2026-10-30 - Authoring and point-to-point route authority
+
+Problem: a fixed flat procedural loop cannot express the user's farmland/city/hill
+map or valid checkpoints. Alternatives: import a level editor/large terrain plugin,
+keep only a longer closed polyline, or author a small validated format. Selected:
+pure serde track schema, independently implemented Catmull-Rom baking and real
+3D arc length. User correction explicitly chooses point-to-point Valley Run;
+extrapolated endpoint handles replace wrapping. A closed handling fixture remains
+for existing circuit regressions, not as the new race map. Bevy 0.17.3 mesh APIs
+and Rapier 0.32.0 triangle meshes are already compatible; no dependency migration.
+
+Start/finish are distinct ordered physical gates. Racer-level gate state is
+updated by fixed movement, not UI. Require forward plane crossing, safe corridor,
+height and plausible displacement; progress/finish teleports cannot award results.
+Open endpoints stop unfinished riders and report a missed-gate retry. Finished
+rivals disable their collider. Civilian traffic recycles outside visible endpoints.
+Tradeoff: no branch/split/merge paths or reverse recovery for a missed gate yet.
+Future: P07 extends identity to valid foot finishes, P12 stores track/class records.
+Rollback retains stable JSON IDs and preserves old saved aggregates; never restore
+finish-by-distance without the skipped-gate regression suite.
+
+## ADR-010 - 2026-10-30 - Graybox environment participates in gameplay
+
+Selected original procedural meshes, independent 1.25 m render / 2.5 m road
+collision ribbons, shared terrain sampling and 200 m terrain chunks. Terrain must
+stay below banked asphalt; route ray tests verify the road is the first surface.
+Seeded farmland gaps/fences/cows, solid buildings and reserved city cross streets,
+sidewalk pedestrians/cars, actual hill elevation and guardrails use existing
+physics. A small fixed patrol system handles crossing cars and walkers; it is not
+urban traffic AI or pedestrian navigation. Existing cow contact uses the bounded
+attacker lift/landing response. Hazard markers make animal/cliff regions explicit.
+
+Alternatives: decorative-only props, hundreds of unconnected road slabs, external
+asset packs. Rejected for collision continuity/provenance/scope. No third-party art
+or models incorporated. Tradeoffs: graybox visuals, static cows, simplified patrols,
+terrain grid and no streaming/LOD. User sketch is a concept reference, not shipped
+media. Origin is fixed in a bounded world; future larger worlds need atomic rebase.
+Future consequences: P08 adds decisions/navigation, P11 production assets, P15
+performance profiling. Rollback removes environment actors/collision together;
+do not leave invisible obstacles or render-only road replacements.
+
+## ADR-011 - 2026-10-30 - Arcade handling and passive ragdoll resistance
+
+Problems: throttle clamped excess boost speed; grass drag exceeded acceleration
+and depleted health; uniform ball-joint limits let limbs fold unnaturally; high
+wreck friction pinned bikes to slopes. Selected: coast toward the target speed,
+positive surface-scaled acceleration/grass speed cap, no terrain-only health loss,
+20% higher authored steering rates with backward-compatible schema-1 defaults.
+
+Ragdolls use directional X-axis elbow/knee hinges (locked twist), asymmetric
+shoulders and joint-specific hip/spine/neck limits with low-force spring motors
+and damping as passive tissue resistance. This is an approximation of an unconscious
+body, not a biological muscle/tendon model or active balancing animation. Rapier's
+installed generic joint/force-based bounded motor APIs were inspected; no external
+ragdoll source was copied. Slope-normal contact sampling selects low bike friction
+on steep ground while retaining flat-road stopping friction; gravity drives sliding.
+Mount height now derives from terrain rather than sea level.
+
+Alternatives: add stronger launch/spin impulses, universal ball joints, always-low
+friction, full muscle simulation. Rejected for behavior/control/cost. Tradeoffs:
+arcade kinematic riding remains; limits need future animation/model tuning. Verify
+boost release/exhaustion, grass AI scenarios, solid ramp slide, 100 dynamic drops,
+existing controls/combat/collisions and native hill recovery. Future networking
+keeps these settings server-controlled. Rollback must preserve verified grass
+mobility/no-damage behavior and schema defaults.
+
+Part 02 integration follow-up: Cargo emits UTF-8 metadata independently of host
+code page. Audit subprocess/text readers now specify UTF-8; Windows cp1252
+regression is simulated in the Python unit suite. This corrects an observed CI
+failure, without weakening SPDX/hash requirements or claiming a native launch.

@@ -26,3 +26,9 @@ is a tracked P08 authoring task, not an unrestricted loader claim.
 Research sheets keep source_id, source_url, build/version, observed_behavior,
 confidence, date, asset_owner, allowed_usage and follow_up separately from new
 our_id/stats/visuals/unlocks. QA records validator version, last tested, failures.
+
+Part 02: authored tracks now live in content/tracks with typed control points,
+width/bank/sector/surface, ordered gates, eight spawns, prop archetypes and a
+seed. See ../tracks/AUTHORING.md. Bike sheets now include steering_rate_base and
+steering_rate_speed; older schema-1 catalogs receive validated defaults. Original
+world models and terrain/track-generation sources are registered separately.

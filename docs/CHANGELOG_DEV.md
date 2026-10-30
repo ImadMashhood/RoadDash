@@ -35,3 +35,28 @@
 
 This entry describes implementation; only explicit receipts close acceptance.
 No later gameplay part is automatically completed by this foundation work.
+
+## 2026-10-30 - User fixes and Part 02 scenic point-to-point graybox
+
+- User rejected a proposed return loop: shipped route is farmland -> city -> hills,
+  with distinct start/finish and no endpoint wrap. Previous closed handling road
+  remains only as an additional regression/tuning fixture.
+- Added validated schema-1 authoring, Catmull-Rom centerline/width/bank/elevation/
+  sectors, 3D arc length, ordered physical gates and endpoint/retry behavior.
+- Added independent road meshes/collision, bank-safe terrain, seeded farm dressing,
+  solid cows/lift contacts, city buildings/cross traffic/walking pedestrians and
+  elevated hills/guardrails. Added CLI and F4 inspector; CI validates both tracks.
+- Smooth boost release/exhaustion; positive grass movement, no grass-only damage;
+  tighter data-driven steering with legacy catalog defaults.
+- Replaced generic ragdoll ball limits with directional hinges, anatomical stops
+  and bounded passive tissue motors. Wrecks slide on slopes, stop on flat ground,
+  and remount height follows terrain. Retained controls/combat/audio/save behavior.
+- Added full-route controller/gate test, endpoint/shortcut/import tests, road support
+  rays, grass/boost/cow/ramp regressions, 100 physical drops and native farm/hill
+  recovery + zone/inspector captures. See testing/PART_02.md for actual receipts.
+- Branch/split/merge support and representative busy-race pacing remain explicitly
+  incomplete; no automatic advancement to the next major production part.
+
+- Prior foundation CI follow-up: Ubuntu passed; Windows builds/Rust tests passed
+  but the metadata audit used cp1252. Switched metadata/text decoding to UTF-8,
+  added a locale regression and kept the new remote acceptance gate open.

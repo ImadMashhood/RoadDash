@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "track_id": "pacific-graybox-01",
+  "track_id": "valley-run-01",
   "bikes": [
     {
       "id": "prototype-bike-01",
@@ -11,6 +11,8 @@
       "nitro_acceleration_mps2": 22.0,
       "brake_mps2": 28.0,
       "coast_drag_mps2": 4.0,
+      "steering_rate_base": 1.8,
+      "steering_rate_speed": 0.108,
       "variants": [
         {
           "id": "mint",

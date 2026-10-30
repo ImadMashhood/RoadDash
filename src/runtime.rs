@@ -168,7 +168,9 @@ impl Plugin for RoadSimulationPlugin {
                     recovery::impacts,
                     recovery::recover,
                     game::drive,
+                    crate::environment::patrol,
                     game::debris_cleanup,
+                    recovery::slope_friction,
                 )
                     .chain()
                     .in_set(SimSet::Gameplay),
@@ -210,7 +212,9 @@ impl Plugin for RoadWorldPlugin {
                 .chain()
                 .in_set(StartupSet::World),
         )
-        .add_systems(Startup, game::setup_race.in_set(StartupSet::Race));
+        .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
+        .init_resource::<crate::environment::TrackInspector>()
+        .add_systems(Update, crate::environment::inspector);
     }
 }
 pub struct RoadPresentationPlugin;

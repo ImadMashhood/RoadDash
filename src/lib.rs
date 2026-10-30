@@ -4,6 +4,7 @@ compile_error!("No online transport is implemented. Enable the offline feature (
 pub mod content;
 pub mod controls;
 pub mod diagnostics;
+pub mod environment;
 pub mod game;
 pub mod recovery;
 pub mod runtime;
@@ -18,9 +19,10 @@ use bevy::prelude::*;
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
     let mut app = App::new();
+    app.insert_resource(track::Track::selected());
     app.add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
-            title: "ROAD / DASH — Pacific Run".into(),
+            title: "ROAD / DASH — Valley Run".into(),
             resolution: (1440, 900).into(),
             ..default()
         }),
