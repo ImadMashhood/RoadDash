@@ -1,0 +1,3 @@
+# type(scope): concise behavior change
+# Types: feat, fix, refactor, test, docs, build, ci, chore, perf
+# Body: why, validation, risks/unmet gates; do not claim unrun checks.

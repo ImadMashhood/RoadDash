@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "track_id": "pacific-graybox-01",
+  "bikes": [
+    {
+      "id": "prototype-bike-01",
+      "display_name": "Prototype road bike",
+      "top_speed_mps": 55.0,
+      "nitro_speed_mps": 75.0,
+      "acceleration_mps2": 11.0,
+      "nitro_acceleration_mps2": 22.0,
+      "brake_mps2": 28.0,
+      "coast_drag_mps2": 4.0,
+      "variants": [
+        {
+          "id": "mint",
+          "display_name": "Mint",
+          "color_hex": "23e3bd"
+        },
+        {
+          "id": "ember",
+          "display_name": "Ember",
+          "color_hex": "ff644a"
+        }
+      ]
+    }
+  ],
+  "riders": [
+    {
+      "id": "rider-you",
+      "display_name": "YOU",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 0
+    },
+    {
+      "id": "rider-viper",
+      "display_name": "VIPER",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 1
+    },
+    {
+      "id": "rider-ghost",
+      "display_name": "GHOST",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 2
+    },
+    {
+      "id": "rider-rook",
+      "display_name": "ROOK",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 3
+    },
+    {
+      "id": "rider-nova",
+      "display_name": "NOVA",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 4
+    },
+    {
+      "id": "rider-jinx",
+      "display_name": "JINX",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 5
+    },
+    {
+      "id": "rider-dust",
+      "display_name": "DUST",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 6
+    },
+    {
+      "id": "rider-axel",
+      "display_name": "AXEL",
+      "bike_id": "prototype-bike-01",
+      "palette_index": 7
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "active_fixed_ticks": 631,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 1370,
+  "entities": 4298,
+  "fixed_ticks": 731,
+  "last_gameplay_ms": 0.11404300481081009,
+  "last_physics_ms": 0.6044110059738159,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "render_frames": 732,
+  "target_hz": 60.0,
+  "wall_frame_average_ms": 7.000565528869629,
+  "wall_frame_p95_ms": 16.989789962768555
+}

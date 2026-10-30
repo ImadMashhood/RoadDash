@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "actions": {
+    "throttle": ["KeyW", "ArrowUp"],
+    "brake": ["KeyS", "ArrowDown"],
+    "left": ["KeyA", "ArrowLeft"],
+    "right": ["KeyD", "ArrowRight"],
+    "nitro": ["ShiftLeft", "ShiftRight"],
+    "punch_left": ["KeyJ"],
+    "punch_right": ["KeyK"],
+    "start": ["Enter"],
+    "pause": ["Escape"],
+    "restart": ["KeyR"],
+    "camera": ["KeyC"],
+    "mute": ["KeyM"]
+  }
+}

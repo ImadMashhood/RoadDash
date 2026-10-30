@@ -1,0 +1,12 @@
+Valid catalog exit: 0
+Valid schema 1: 1 bikes, 8 riders
+Invalid catalog exit: 2
+Content validation failed: unsupported content schema
+Intentional panic exit: 101
+Local report count: 1
+Crash report: /tmp/roaddash-process-probe-x9jwkfvt/reports/panic-1793397842-227032.log
+
+thread 'main' (227032) panicked at src/main.rs:4:9:
+intentional panic-report verification
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Report includes local backtrace, version and expected panic.

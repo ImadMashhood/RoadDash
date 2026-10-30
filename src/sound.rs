@@ -127,19 +127,16 @@ pub fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSource>>) {
 #[allow(clippy::too_many_arguments)]
 pub fn update(
     mut commands: Commands,
-    keys: Res<ButtonInput<KeyCode>>,
+    controls: Res<crate::controls::Controls>,
     race: Res<Race>,
     sounds: Res<Sounds>,
-    mut muted: ResMut<Muted>,
+    muted: Res<Muted>,
     riders: Query<(&Rider, &Recovery, &Transform)>,
     mut cues: MessageReader<AudioCue>,
     mut sinks: Query<(&mut AudioSink, Option<&LoopSound>)>,
     mut last_count: Local<i32>,
     mut last_phase: Local<Option<Phase>>,
 ) {
-    if keys.just_pressed(KeyCode::KeyM) {
-        muted.0 = !muted.0;
-    }
     let Some((player, recovery, player_transform)) = riders.iter().find(|(r, _, _)| r.id == 0)
     else {
         return;
@@ -157,7 +154,7 @@ pub fn update(
             }
             continue;
         };
-        let boost = keys.pressed(KeyCode::ShiftLeft) || keys.pressed(KeyCode::ShiftRight);
+        let boost = controls.buffer.held.nitro && controls.buffer.held.throttle;
         let volume = if !riding {
             0.0
         } else {
@@ -172,9 +169,7 @@ pub fn update(
                     }
                 }
                 LoopSound::Brake => {
-                    if player.speed > 12.0
-                        && (keys.pressed(KeyCode::KeyS) || keys.pressed(KeyCode::ArrowDown))
-                    {
+                    if player.speed > 12.0 && controls.buffer.held.brake {
                         0.18
                     } else {
                         0.0
