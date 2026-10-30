@@ -1,0 +1,408 @@
+use crate::track::{ROAD_HALF, Track};
+use bevy::{light::NotShadowCaster, prelude::*};
+use bevy_rapier3d::prelude::*;
+
+#[derive(Resource)]
+pub struct Art {
+    pub cube: Handle<Mesh>,
+    pub sphere: Handle<Mesh>,
+    pub wheel: Handle<Mesh>,
+    pub dark: Handle<StandardMaterial>,
+    pub metal: Handle<StandardMaterial>,
+    pub white: Handle<StandardMaterial>,
+    pub colors: Vec<Handle<StandardMaterial>>,
+}
+
+pub fn part(
+    commands: &mut Commands,
+    mesh: Handle<Mesh>,
+    material: Handle<StandardMaterial>,
+    pos: Vec3,
+    scale: Vec3,
+    rotation: Quat,
+) -> Entity {
+    commands
+        .spawn((
+            Mesh3d(mesh),
+            MeshMaterial3d(material),
+            Transform {
+                translation: pos,
+                scale,
+                rotation,
+            },
+        ))
+        .id()
+}
+
+pub fn setup_world(
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+    track: Res<Track>,
+) {
+    let art = Art {
+        cube: meshes.add(Cuboid::new(1.0, 1.0, 1.0)),
+        sphere: meshes.add(Sphere::new(1.0).mesh().uv(16, 10)),
+        wheel: meshes.add(Cylinder::new(0.40, 0.20).mesh().resolution(20)),
+        dark: materials.add(Color::srgb(0.025, 0.035, 0.045)),
+        metal: materials.add(StandardMaterial {
+            base_color: Color::srgb(0.42, 0.48, 0.52),
+            metallic: 0.85,
+            perceptual_roughness: 0.24,
+            ..default()
+        }),
+        white: materials.add(Color::srgb(0.85, 0.9, 0.89)),
+        colors: [
+            0x23e3bd, 0xff644a, 0x77aaff, 0xffcb55, 0xc792ff, 0xeb6ab0, 0xb3df60, 0xfaf6ed,
+        ]
+        .map(|hex| {
+            materials.add(Color::srgb_u8(
+                (hex >> 16) as u8,
+                (hex >> 8) as u8,
+                hex as u8,
+            ))
+        })
+        .to_vec(),
+    };
+    commands.insert_resource(ClearColor(Color::srgb(0.39, 0.62, 0.72)));
+    commands.insert_resource(AmbientLight {
+        color: Color::srgb(0.96, 0.98, 1.0),
+        brightness: 6500.0,
+        ..default()
+    });
+    commands.spawn((
+        DirectionalLight {
+            illuminance: 25000.0,
+            shadows_enabled: true,
+            ..default()
+        },
+        Transform::from_rotation(Quat::from_euler(EulerRot::XYZ, -0.75, -0.5, 0.0)),
+    ));
+    let grass = materials.add(Color::srgb(0.18, 0.34, 0.12));
+    part(
+        &mut commands,
+        art.cube.clone(),
+        grass,
+        Vec3::new(0.0, -0.6, 0.0),
+        Vec3::new(900.0, 1.0, 1000.0),
+        Quat::IDENTITY,
+    );
+    commands.spawn((
+        RigidBody::Fixed,
+        Collider::cuboid(650.0, 0.5, 650.0),
+        Transform::from_xyz(0.0, -0.5, 0.0),
+        Friction::coefficient(0.9),
+    ));
+    let water = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.08, 0.34, 0.42),
+        metallic: 0.4,
+        perceptual_roughness: 0.2,
+        ..default()
+    });
+    part(
+        &mut commands,
+        art.cube.clone(),
+        water,
+        Vec3::new(-650.0, -1.0, 0.0),
+        Vec3::new(700.0, 0.4, 1600.0),
+        Quat::IDENTITY,
+    );
+    let asphalt = materials.add(Color::srgb(0.085, 0.10, 0.12));
+    let shoulder = materials.add(Color::srgb(0.48, 0.44, 0.34));
+    let yellow = materials.add(Color::srgb(0.96, 0.7, 0.21));
+    let wood = materials.add(Color::srgb(0.22, 0.16, 0.11));
+    let foliage = materials.add(Color::srgb(0.12, 0.25, 0.19));
+    let rock = materials.add(Color::srgb(0.39, 0.40, 0.36));
+    let cone = meshes.add(Cone::new(1.0, 1.0).mesh().resolution(7));
+    // Short overlapping slabs follow the true circuit in world space.
+    let count = (track.length / 2.5).ceil() as usize;
+    for i in 0..count {
+        let d = i as f32 * track.length / count as f32;
+        let (p, q) = track.sample(d, 0.0);
+        part(
+            &mut commands,
+            art.cube.clone(),
+            shoulder.clone(),
+            p - Vec3::Y * 0.07,
+            Vec3::new(16.0, 0.08, 2.9),
+            q,
+        );
+        part(
+            &mut commands,
+            art.cube.clone(),
+            asphalt.clone(),
+            p,
+            Vec3::new(13.0, 0.06, 2.9),
+            q,
+        );
+        for lane in [-ROAD_HALF + 0.22, ROAD_HALF - 0.22] {
+            part(
+                &mut commands,
+                art.cube.clone(),
+                art.white.clone(),
+                p + q * Vec3::X * lane + Vec3::Y * 0.045,
+                Vec3::new(0.10, 0.015, 2.9),
+                q,
+            );
+        }
+        if i % 4 < 2 {
+            part(
+                &mut commands,
+                art.cube.clone(),
+                yellow.clone(),
+                p + Vec3::Y * 0.045,
+                Vec3::new(0.12, 0.015, 2.9),
+                q,
+            );
+        }
+        if i % 12 == 0 {
+            for lane in [-8.5, 8.5] {
+                let (v, q) = track.sample(d, lane);
+                part(
+                    &mut commands,
+                    art.cube.clone(),
+                    art.white.clone(),
+                    v + Vec3::Y * 0.5,
+                    Vec3::new(0.15, 1.0, 0.15),
+                    q,
+                );
+                part(
+                    &mut commands,
+                    art.cube.clone(),
+                    yellow.clone(),
+                    v + Vec3::Y * 0.85,
+                    Vec3::new(0.18, 0.15, 0.18),
+                    q,
+                );
+            }
+        }
+        if i % 5 == 0 {
+            for side in [-1.0, 1.0] {
+                let noise = ((i * 47 % 31) as f32) / 31.0;
+                let (v, _) = track.sample(d, side * (15.0 + noise * 26.0));
+                let h = 4.0 + noise * 6.0;
+                part(
+                    &mut commands,
+                    art.cube.clone(),
+                    wood.clone(),
+                    v + Vec3::Y * h * 0.35,
+                    Vec3::new(0.4, h * 0.7, 0.4),
+                    Quat::IDENTITY,
+                );
+                part(
+                    &mut commands,
+                    cone.clone(),
+                    foliage.clone(),
+                    v + Vec3::Y * h * 0.8,
+                    Vec3::new(h * 0.38, h, h * 0.38),
+                    Quat::IDENTITY,
+                );
+            }
+        }
+    }
+    // Mountain silhouettes and interior rock formations.
+    for i in 0..65 {
+        let a = i as f32 * 2.39996;
+        let r = 390.0 + (i % 7) as f32 * 15.0;
+        let h = 40.0 + (i * 31 % 70) as f32;
+        part(
+            &mut commands,
+            cone.clone(),
+            rock.clone(),
+            Vec3::new(a.cos() * r, h * 0.5 - 5.0, a.sin() * r),
+            Vec3::new(h * 1.7, h, h * 1.7),
+            Quat::from_rotation_y(a),
+        );
+    }
+    let (start, q) = track.sample(0.0, 0.0);
+    for x in 0..14 {
+        for z in 0..2 {
+            part(
+                &mut commands,
+                art.cube.clone(),
+                if (x + z) % 2 == 0 {
+                    art.white.clone()
+                } else {
+                    art.dark.clone()
+                },
+                start + q * Vec3::new(x as f32 - 6.5, 0.055, z as f32),
+                Vec3::new(1.0, 0.02, 1.0),
+                q,
+            );
+        }
+    }
+    for side in [-8.0, 8.0] {
+        part(
+            &mut commands,
+            art.cube.clone(),
+            art.metal.clone(),
+            start + q * Vec3::new(side, 4.0, 0.0),
+            Vec3::new(0.35, 8.0, 0.35),
+            q,
+        );
+    }
+    part(
+        &mut commands,
+        art.cube.clone(),
+        art.dark.clone(),
+        start + Vec3::Y * 8.0,
+        Vec3::new(16.4, 1.2, 0.6),
+        q,
+    );
+    part(
+        &mut commands,
+        art.cube.clone(),
+        art.colors[0].clone(),
+        start + Vec3::Y * 8.0 - q * Vec3::Z * 0.32,
+        Vec3::new(10.0, 0.16, 0.04),
+        q,
+    );
+    // Sun disc: emissive geometry complements the directional sunlight.
+    let sun = materials.add(StandardMaterial {
+        base_color: Color::srgb(1.0, 0.85, 0.55),
+        emissive: LinearRgba::rgb(4.0, 2.8, 1.3),
+        unlit: true,
+        ..default()
+    });
+    let e = part(
+        &mut commands,
+        art.sphere.clone(),
+        sun,
+        Vec3::new(-380.0, 230.0, -460.0),
+        Vec3::splat(25.0),
+        Quat::IDENTITY,
+    );
+    commands.entity(e).insert(NotShadowCaster);
+    commands.insert_resource(art);
+}
+
+/// All riding models face local +Z. Their root is at road level.
+pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) -> Entity {
+    let root = commands
+        .spawn((Transform::default(), Visibility::default()))
+        .id();
+    let mut children = Vec::new();
+    for z in [-0.78, 0.78] {
+        children.push(part(
+            commands,
+            art.wheel.clone(),
+            art.dark.clone(),
+            Vec3::new(0.0, 0.42, z),
+            Vec3::ONE,
+            Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+        ));
+        children.push(part(
+            commands,
+            art.wheel.clone(),
+            art.metal.clone(),
+            Vec3::new(0.0, 0.42, z),
+            Vec3::new(0.52, 1.05, 0.52),
+            Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+        ));
+    }
+    for (p, s, mat) in [
+        (
+            Vec3::new(0.0, 0.77, 0.0),
+            Vec3::new(0.40, 0.38, 1.15),
+            art.metal.clone(),
+        ),
+        (
+            Vec3::new(0.0, 1.03, 0.24),
+            Vec3::new(0.57, 0.38, 0.73),
+            art.colors[color].clone(),
+        ),
+        (
+            Vec3::new(0.0, 1.02, -0.52),
+            Vec3::new(0.47, 0.16, 0.65),
+            art.dark.clone(),
+        ),
+        (
+            Vec3::new(0.0, 1.04, 0.87),
+            Vec3::new(0.56, 0.48, 0.34),
+            art.colors[color].clone(),
+        ),
+        (
+            Vec3::new(0.0, 1.3, 0.60),
+            Vec3::new(0.93, 0.07, 0.08),
+            art.metal.clone(),
+        ),
+        (
+            Vec3::new(0.0, 1.01, 1.055),
+            Vec3::new(0.36, 0.15, 0.03),
+            art.white.clone(),
+        ),
+    ] {
+        children.push(part(commands, art.cube.clone(), mat, p, s, Quat::IDENTITY));
+    }
+    if with_rider {
+        children.push(part(
+            commands,
+            art.cube.clone(),
+            art.colors[color].clone(),
+            Vec3::new(0.0, 1.40, -0.12),
+            Vec3::new(0.58, 0.65, 0.38),
+            Quat::IDENTITY,
+        ));
+        for side in [-1.0, 1.0] {
+            children.push(part(
+                commands,
+                art.cube.clone(),
+                art.dark.clone(),
+                Vec3::new(side * 0.31, 0.96, -0.25),
+                Vec3::new(0.21, 0.68, 0.28),
+                Quat::from_rotation_x(-0.45),
+            ));
+            let arm = part(
+                commands,
+                art.cube.clone(),
+                art.colors[color].clone(),
+                Vec3::new(side * 0.36, 1.43, 0.30),
+                Vec3::new(0.19, 0.23, 0.70),
+                Quat::from_rotation_x(0.35),
+            );
+            commands.entity(arm).insert(Arm(side));
+            children.push(arm);
+        }
+        children.push(part(
+            commands,
+            art.sphere.clone(),
+            art.white.clone(),
+            Vec3::new(0.0, 1.96, 0.08),
+            Vec3::new(0.29, 0.32, 0.29),
+            Quat::IDENTITY,
+        ));
+        children.push(part(
+            commands,
+            art.cube.clone(),
+            art.dark.clone(),
+            Vec3::new(0.0, 1.99, 0.32),
+            Vec3::new(0.46, 0.14, 0.11),
+            Quat::IDENTITY,
+        ));
+    }
+    commands.entity(root).add_children(&children);
+    root
+}
+
+#[derive(Component)]
+pub struct Arm(pub f32);
+
+pub fn animate_riders(
+    riders: Query<&crate::game::Rider>,
+    mut arms: Query<(&Arm, &ChildOf, &mut Transform)>,
+) {
+    for (arm, parent, mut transform) in &mut arms {
+        if let Ok(rider) = riders.get(parent.parent()) {
+            let extension = if rider.attack > 0.3 && rider.attack_side == arm.0 {
+                ((0.65 - rider.attack) / 0.35 * std::f32::consts::PI)
+                    .sin()
+                    .max(0.0)
+            } else {
+                0.0
+            };
+            transform.translation.x = arm.0 * (0.36 + extension * 0.45);
+            transform.rotation =
+                Quat::from_rotation_y(arm.0 * extension * 1.5) * Quat::from_rotation_x(0.35);
+        }
+    }
+}
