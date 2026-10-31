@@ -235,3 +235,51 @@ Tradeoffs: no navigation/traffic-light AI or production art/LOD yet. References:
 existing independently authored environment, no new media. Future content/traffic
 expansion must preserve support/visibility/actor collision contracts. Rollback
 must keep shared palette identity and ground tags; do not leave invisible curbs.
+
+## ADR-016 — 2026-10-30 — Native input and local comfort without engine migration
+
+Problem: Part 04 requires real gamepad discovery/analog control, rebinding and
+saved comfort while retaining fixed input edges and recovery. Alternatives:
+upgrade to the newer Enhanced Input stack (R06, incompatible with pinned engine),
+keyboard-only simulation, hand-write OS HID discovery. Selected Bevy 0.17.3's
+Gilrs feature (R08/R14), pure normalization/comfort rules and optional analog
+strengths in the existing VehicleIntent, with a modal client preferences panel.
+Native connect/disconnect stays in the engine; deterministic single-pad ownership
+prevents mixed devices driving together. Binding conflicts/reserved keys rejected.
+Corrupt/future files preserved; temp/backup writes occur on explicit save/close.
+Camera follows interpolated heading/position with stable horizon, sphere sweep
+and large-warp snapping. Optional speed cues reuse twelve UI entities.
+
+Tradeoffs: extra libudev development prerequisite on Linux; fixed stick axes,
+limited supported key/button set, no persistent hardware selection; independent
+on-foot intent allocation does not implement manual recovery. Physical-pad and
+external tester acceptance remain open. Gilrs MIT/Apache and bundled SDL mapping
+Zlib notices/hash recorded; only dependency mapping data incorporated, no game
+media or example source copied. Future server consumes normalized intentions,
+not client comfort preferences. Rollback can disable optional cues/panel, but
+must preserve saved files, analog semantics, edge buffering and checked keyboard
+behavior; avoid an engine migration merely to replace this adapter.
+
+## ADR-017 — 2026-10-30 — Shared humans and explicit civilian/traffic impact paths
+
+Problem: the user reports steering lean looks odd, ragdolls change human model,
+pedestrian/cow impacts fail to clear the biker and cross traffic can miss wipeout
+classification. Selected: remove cosmetic turn roll (diagnostic lean demand stays),
+one eleven-slot human geometry/material/helmet builder with seated/standing poses,
+and preserve palette through recovery/reset. Ragdoll physics keeps its existing
+joint/mass topology; only its visuals share the same builder as living actors.
+Pedestrian proxy/respawn clearance follows actual shared height. Alternatives:
+rescale independent meshes or add production rig/assets now; rejected for drift
+and unnecessary art-pipeline scope. No outside model/source copied.
+
+Civilian jumps are a deliberate arcade exception: derive upward speed from
+standing height+margin, mass-scale delta-velocity impulse, restore pre-solver
+horizontal approach momentum. Ordinary crashes remain momentum-only. Crossing
+cars get explicit hazard classification, all-type events and CCD; tests include
+stationary cars being struck and moving cars striking stopped bikes in both
+adapters. Tradeoffs: stylized jump arc, unchanged approximate passive ragdoll
+anatomy, graybox model. Six class/civilian cases verify clearance and finite/pass-
+through behavior; four car cases verify knockoff. Future rig/authority changes
+must preserve consistent appearance and explicit impact categories. Rollback
+must retain shared dimensions/palette and the user's no-lean request, not restore
+independent body models or universal rider-to-rider launch behavior.

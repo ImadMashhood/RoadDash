@@ -6,10 +6,13 @@ pub mod content;
 pub mod controls;
 pub mod diagnostics;
 pub mod environment;
+pub mod feedback;
 pub mod game;
+pub mod human;
 pub mod npc;
 pub mod recovery;
 pub mod runtime;
+pub mod settings;
 pub mod sound;
 pub mod track;
 pub mod ui;
@@ -22,6 +25,9 @@ use bevy::prelude::*;
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
     let mut app = App::new();
+    if !smoke {
+        app.insert_resource(settings::Preferences::load(settings::Preferences::path()));
+    }
     app.insert_resource(track::Track::selected());
     app.insert_resource(
         if std::env::var("ROADDASH_VEHICLE").as_deref() == Ok("assisted") {

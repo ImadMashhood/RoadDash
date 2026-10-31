@@ -4,7 +4,7 @@ Previous implementation scopes: Parts 00–01 and Part 02, 2026-10-30. Current
 user-authorized scope: direct combat/relative collision/NPC/traffic/curb fixes,
 shirt-colored racer minimap, curve-only hill rails, environment detail and weaker
 road assistance, followed by starting Part 03. Valley Run remains point-to-point
-(farmland → city → hills). No automatic advancement to Part 04.
+(farmland → city → hills). The user subsequently authorized Part 04 (PR #3 subsequently merged, requiring a follow-up); no Part 05 advancement.
 The full original backlog is preserved in the generated
 index below; README is the editable checkbox source. Run
 `python3 tools/sync_progress.py` after changing task status, then `--check` in CI.
@@ -88,6 +88,37 @@ motorcycle. Existing Part 01/02 and foot-finish gates remain unchanged.
 | P06-020 / 06 | Cows/pedestrians must react physically | articulated bodies/fixed messages | Distinct 10/11-body rigs, eight-ragdoll cap, reset and occupied-spawn-safe cleanup; headless/native actor checks |
 | P06-021 / 06 | Sidewalk contact incorrectly caused crashes | support rays/Ground tagging | Low curb supports bike at elevation without knockoff; stationary and moving curb tests |
 | P08-010 / 08 | User requests US traffic and safe grid start | AI intent/fixed patrols | Positive-right forward traffic, separated one-way cross lanes, no early AI fights/weave; source/native/grid tests |
+
+## Part 04 — user-authorized follow-up to merged PR #3
+
+Software implementation: native Gilrs gamepad input, analog force strengths,
+rebindable keys/buttons, saved comfort panel, interpolated heading and camera
+volume clearance, traction/speed cues and independent on-foot input context.
+See [contract](CAMERA_AND_INPUT.md) and [receipt](testing/PART_04.md).
+P04-005/006/007 are checked only for those implemented/automatically verified
+capabilities. P04-004 is partial pending human high-refresh jitter/readability
+review; P04-008/009 remain open pending real-controller finish and external tester
+acceptance. The Part 03 human feedback gate is still open; no Part 05 start.
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| P04-011 / 04 | Numeric high-refresh camera and clipping/warp coverage was missing | interpolated pose, Rapier sphere sweep | Finite/continuous 60/120/144 Hz views; wall clearance and large-warp snapping; camera_tests.rs |
+| P04-012 / 04 | Persisted/rebound input needs corruption and modal isolation protection | settings schema, live bindings | Roundtrip, future/corrupt file unchanged, conflict rejection, no hidden driving/countdown leakage; settings/controls tests |
+| P04-014 / 04 | Native backend discovered an unmapped controller; do not infer real-device correctness | Gilrs/OS device access | Exercise real axes/buttons/default mapping and add an appropriately licensed mapping if needed; physical controller test (open) |
+| P04-013 / 04 | Digital-only intentions would discard trigger pressure or latch disconnected input | native Gamepad, fixed intentions | Partial trigger yields lower real chassis acceleration; controller removal clears input and keyboard works; device/vehicle tests |
+
+## Latest user corrections included with Part 04
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| P04-015 / 04 | User finds character turn lean odd | rider/bike presentation | No cosmetic steering roll, wheels/suspension retained; neutral-root regression and native captures |
+| P06-022 / 06 | Existing pedestrian path had no lift and fixed cow impulse varied by mass | collision event, pre-solver velocity, selected mass | Both civilian kinds ragdoll; each of three classes clears standing height and passes obstacle with finite physics; six numeric cases |
+| P08-011 / 08 | User reports crossing cars not causing wipeouts | crossing actor contacts/classification | Explicit hazard tag, all-type/continuous contacts; moving/stationary car contacts wipe out in assisted/dynamic adapters; four physical cases |
+| P11-011 / 11 | Human appearance changed on entering ragdoll | shared procedural segment definitions | Identical eleven mesh/material/size slots for seated/pedestrian/runner/ragdoll; four-state test, native actor/race captures |
+
+Original Part 03 lean-clamp presentation target is superseded by the user's
+explicit no-lean correction. Diagnostic lean demand/traction calculations remain.
+The shared model is procedural graybox, not the future production animation rig.
 
 ## Added requirements and rationale
 
@@ -263,15 +294,25 @@ close this session.
 
 - [ ] **P04-004** Drive camera motion from interpolated fixed-step poses; verify no jitter at 120-144 Hz and readability through tight turns, impacts, and jumps.
 
-- [ ] **P04-005** Add gamepad stick steering/freelook, analog throttle/brake triggers, attack bindings, deadzones, and key/controller rebinding.
+- [x] **P04-005** Add gamepad stick steering/freelook, analog throttle/brake triggers, attack bindings, deadzones, and key/controller rebinding.
 
-- [ ] **P04-006** Provide persistent FOV/smoothing/anti-nausea settings; target configurable 60-95 degrees, about 75 degrees default, with optional reduced shake.
+- [x] **P04-006** Provide persistent FOV/smoothing/anti-nausea settings; target configurable 60-95 degrees, about 75 degrees default, with optional reduced shake.
 
-- [ ] **P04-007** Add readable slip/traction feedback and optional speed lines; allocate the independent on-foot input context.
+- [x] **P04-007** Add readable slip/traction feedback and optional speed lines; allocate the independent on-foot input context.
 
 - [ ] **P04-008** Validate camera clipping, both input devices, comfort-setting persistence, and responsive handling with an external tester.
 
 - [ ] **P04-009** **Exit gate:** riding is fast, comfortable, responsive, and finishable with keyboard and gamepad without unintended auto steering.
+
+- [x] **P04-011** Verify camera continuity at 60/120/144 Hz, swept-volume obstacle clearance and safe large-warp snapping using automated scenarios. Evidence: [camera tests](../src/camera_tests.rs).
+
+- [x] **P04-012** Preserve malformed/future settings files, reject conflicting bindings, and prevent modal settings input leaking into racing. Evidence: [settings](../src/settings.rs), [input tests](../src/controls.rs).
+
+- [x] **P04-013** Carry analog triggers into chassis forces and clear input on controller disconnect while retaining keyboard fallback. Evidence: [adapter test](../src/vehicle_tests.rs), [device tests](../src/controls.rs).
+
+- [ ] **P04-014** Verify the default mapping for the OS-discovered controller that Gilrs reports as unmapped; exercise real buttons/axes and add a licensed mapping only if needed. Evidence: [native receipt](../docs/testing/PART_04.md); physical mapping acceptance remains open.
+
+- [x] **P04-015** Keep the character upright during steering by removing cosmetic turn roll; retain physical suspension and wheel steering. Evidence: [model/roll regression](../src/human.rs).
 
 - [x] **P04-010** Color only racer minimap dots by their shirt palette, sharing the model color source. Evidence: [palette test](../src/ui.rs), [shirt colors](../src/world.rs).
 
@@ -337,6 +378,8 @@ close this session.
 
 - [x] **P06-020** Add distinct pedestrian/cow ragdolls with direct-hit and solid-impact paths, an eight-actor budget, safe delayed standing and complete reset cleanup. Evidence: [NPC systems/tests](../src/npc.rs), [native actor capture](../docs/testing/PART_03.md).
 
+- [x] **P06-022** Launch a mounted biker above cows/pedestrians using obstacle-height and mass-aware clearance impulses; preserve horizontal approach momentum and civilian ragdolls. Evidence: [six clearance cases](../src/vehicle_tests.rs), [measurements](../docs/testing/part-04/hazard-clearance.json).
+
 - [x] **P06-021** Treat sidewalks as rideable support so low curb contact raises the bike instead of causing an obstacle wipeout. Evidence: [suspension](../src/vehicle.rs), [curb-transition test](../src/vehicle_tests.rs).
 
 ### Part 07 - Race rules, HUD, and results
@@ -378,6 +421,8 @@ close this session.
 - [ ] **P08-008** Add AI debug goals, paths, desired speeds, and headless tournaments; complete 100 races without deadlock and test human/AI foot recovery separately.
 
 - [ ] **P08-009** **Exit gate:** fair, repeatable four-racer race with traffic, police, and melee, including opponent overtakes, hits, and recovery.
+
+- [x] **P08-011** Treat crossing traffic as an explicit wipeout hazard with continuous/all-type contacts, including a moving car striking a stopped bike. Evidence: [four physical collision cases](../src/vehicle_tests.rs).
 
 - [x] **P08-010** Use American right-hand traffic lanes and separate one-way cross-traffic lanes; stop automatic AI fights/weaving during grid launch. Evidence: [traffic](../src/game.rs), [cross streets](../src/environment.rs), [grid tests](../src/vehicle_tests.rs).
 
@@ -432,6 +477,8 @@ close this session.
 - [ ] **P11-008** Animate riding, fighting, crash, walking, and remount through a production rig; add lightweight animal animation/AI and safe cliff recovery.
 
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
+
+- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](../src/human.rs).
 
 - [ ] **P11-010** **Exit gate:** the original town/farm/cliff art replaces graybox assets without changing physics/race rules and fits measured budgets.
 

@@ -1,5 +1,6 @@
 //! Renderer/physics-independent domain contracts shared by the offline client
 //! and future authoritative server. No Bevy or Rapier dependency is permitted.
+pub mod comfort;
 use serde::{Deserialize, Serialize};
 
 pub const SIMULATION_HZ: f64 = 60.0;
@@ -54,6 +55,29 @@ pub struct VehicleIntent {
     pub brake: bool,
     pub steer: f32,
     pub nitro: bool,
+    #[serde(default)]
+    pub throttle_amount: f32,
+    #[serde(default)]
+    pub brake_amount: f32,
+}
+impl VehicleIntent {
+    pub fn throttle_strength(self) -> f32 {
+        strength(self.throttle, self.throttle_amount)
+    }
+    pub fn brake_strength(self) -> f32 {
+        strength(self.brake, self.brake_amount)
+    }
+}
+fn strength(held: bool, amount: f32) -> f32 {
+    if !held {
+        0.0
+    } else if amount == 0.0 {
+        1.0
+    } else if amount.is_finite() {
+        amount.clamp(0.0, 1.0)
+    } else {
+        0.0
+    }
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum AttackSide {

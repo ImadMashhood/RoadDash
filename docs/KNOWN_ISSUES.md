@@ -13,8 +13,18 @@ missing features, architectural debt and unverified platforms.
   game.rs still combines vehicle/AI/combat/race. No server/netplay implementation.
 - P01-MIGRATE: newer Bevy/Avian/Enhanced Input manifests are compatible with each
   other, not this baseline. Coordinated migration with its regressions is pending.
-- P01-SETTINGS: configurable keyboard JSON exists, but gamepad support, in-game
-  rebinding and persisted comfort/audio settings remain P04/P15 work.
+- P04: native gamepad/analog input, key/button rebinding and persisted comfort are
+  implemented. Physical-controller finish/reconnect matrix, subjective 120–144 Hz
+  jitter/readability and external tester acceptance remain open. Stick axes are
+  fixed; lowest entity ID owns controller input; some special keys/buttons are
+  unsupported. LB/Guide/F2 are reserved. Audio settings persistence remains P15.
+- P04-MAPPING: native Gilrs discovered one OS Gamepad but warned that UUID
+  03000000-03a1-0000-0500-000011010000 has no database mapping and uses defaults.
+  Discovery is verified; physical button/axis correctness is not (P04-014).
+- P04-BUILD: Linux native controller backend needs libudev development files
+  (Ubuntu libudev-dev; Fedora systemd-devel). This host lacked development metadata;
+  verification used an explicit local pkg-config shim to its installed system
+  runtime library. System packages were not installed or elevated.
 - P02: Valley Run is authored/elevated and point-to-point. Optional branches,
   split/merge authoring, a visual editor and representative three-minute race
   pacing/playtest acceptance remain open.
@@ -56,3 +66,10 @@ missing features, architectural debt and unverified platforms.
   arbitrary career migrations are later P12 requirements.
 
 See PROGRESS.md for task IDs, acceptance, dependencies and verification.
+
+Latest corrections: all human states share original procedural geometry/outfit;
+production skin/rig remains future work. Cosmetic steering roll is disabled per
+user request, with physical chassis motion still visible and the seated human kept upright. Civilian jumps are
+explicit arcade clearance responses, not ordinary crash impulses; broader crowd/
+low-speed pile tuning remains unverified beyond six finite clearance scenarios.
+Cross-car wipeouts are covered in both adapters, including moving-side impacts.

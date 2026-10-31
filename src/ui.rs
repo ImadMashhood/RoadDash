@@ -319,6 +319,7 @@ pub fn update_ui(
     mut readouts: Query<(&Readout, &mut Text)>,
     mut nodes: Query<(&mut Node, Option<&Hud>, Option<&Overlay>), Without<MapDot>>,
     mut dots: Query<(&MapDot, &mut Node)>,
+    panel: Res<crate::settings::SettingsPanel>,
 ) {
     let Some(player) = riders.iter().find(|r| r.id == 0) else {
         return;
@@ -337,10 +338,18 @@ pub fn update_ui(
     let menu = matches!(race.phase, Phase::Garage | Phase::Paused | Phase::Finished);
     for (mut node, hud, overlay) in &mut nodes {
         if hud.is_some() {
-            node.display = if menu { Display::None } else { Display::Flex };
+            node.display = if menu || panel.open {
+                Display::None
+            } else {
+                Display::Flex
+            };
         }
         if overlay.is_some() {
-            node.display = if menu { Display::Flex } else { Display::None };
+            node.display = if menu && !panel.open {
+                Display::Flex
+            } else {
+                Display::None
+            };
         }
     }
     let mut sorted: Vec<_> = riders.iter().collect();
@@ -369,8 +378,8 @@ pub fn update_ui(
             6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 8", race.place), _ => track.definition.name.clone() },
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
-                Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.".into(),
-                _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.".into(),
+                Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.\nF2 / controller LB: comfort & controls.".into(),
+                _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.\nF2 / controller LB: comfort & controls.".into(),
             },
             8 => if race.phase == Phase::Paused { "ESC / BACK TO IT".into() } else { "ENTER / RIDE OUT".into() },
             9 => format!("GARAGE   /   {} CREDITS   /   {} WINS IN {} RACES", profile.credits, profile.wins, profile.races),

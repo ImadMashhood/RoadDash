@@ -201,3 +201,44 @@ controller not exposed by installed bevy_rapier3d 0.32.0's control module (which
 contains the character controller). Installed source determines compatibility.
 Use existing ray/force/torque APIs instead of changing the physics dependency.
 Existing dependency licenses/notices remain unchanged; no new dependency adopted.
+
+## R14 — Gilrs native gamepad backend
+
+- URL: https://gitlab.com/gilrs-project/gilrs ; author: Mateusz Sieczko and Gilrs
+  developers. Classification: **DEPENDENCY**, through Bevy's `bevy_gilrs` feature.
+- Inspected 2026-10-30: locked gilrs 0.11.2, gilrs-core 0.6.8, both crate VCS
+  metadata point to `07e286e24b046cf39e5c367daa2770b805a64692`.
+- Purpose/parts: native discovery, connect/disconnect, normalized gamepad state,
+  platform mapping; Part 04 input. Existing Bevy 0.17.3 API source inspected.
+- License verified: MIT OR Apache-2.0; exact upstream texts:
+  https://gitlab.com/gilrs-project/gilrs/-/blob/07e286e24b046cf39e5c367daa2770b805a64692/LICENSE-MIT
+  and https://gitlab.com/gilrs-project/gilrs/-/blob/07e286e24b046cf39e5c367daa2770b805a64692/LICENSE-APACHE. Local copies in licenses/gilrs-*.
+  Reuse permitted with notices; no examples/source adapted into RoadDash files.
+- Assets: bundled SDL mapping database has separate Zlib notice (R15); no game art,
+  sounds or example PNGs imported. The crate build filters mappings per platform.
+- Compatibility/maintenance: selected by Bevy 0.17.3, verified locally against the
+  locked API; pinned crate snapshot, not an assertion of latest release health.
+  Linux adds libudev development dependency; physical device/OS permission and
+  Windows hardware behavior need acceptance beyond synthetic component tests.
+- Decision/actual use: adopt via compatible engine feature; no custom HID backend.
+  Keep fixed-input buffering/normalized strengths in our adapter. R06's newer
+  input dependency remains deferred; avoid a Bevy migration for this requirement.
+
+## R15 — mdqinc/SDL_GameControllerDB
+
+- URL: https://github.com/mdqinc/SDL_GameControllerDB ; author/organization:
+  mdqinc/community; license credits Sam Lantinga. **DEPENDENCY** mapping data via
+  Gilrs (not game media or adapted gameplay source).
+- Inspected 2026-10-30 exact gitlink `cbdb3678270cf5bf14a127934fd7ab332ecd3cbc`,
+  resolved from R14 repository tree; packaged gamecontrollerdb.txt byte-compared
+  to that exact upstream revision. README/license/build filtering inspected.
+- Purpose/parts: controller button/axis mappings across devices; P04 discovery.
+- Verified license: Zlib; https://github.com/mdqinc/SDL_GameControllerDB/blob/cbdb3678270cf5bf14a127934fd7ab332ecd3cbc/LICENSE
+  copied to licenses/SDL-GameControllerDB-Zlib.txt. Redistribution permitted with
+  notice; do not misrepresent origin or changes. ASSETS.csv records source hash.
+- Compatibility/maintenance: exact bundled data selected by Gilrs; no claim every
+  listed physical device works on our host. Future database updates need hash/
+  license review. No separate rights grant inferred for README example images.
+- Actual incorporation: unmodified package mapping source, upstream build filters
+  target-platform lines into its embedded database. No mappings manually copied
+  into game content, and no source PNGs/media used. Adopt selected snapshot.

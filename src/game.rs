@@ -183,6 +183,7 @@ pub struct Rider {
     pub side_velocity: f32,
     pub drive_intent: rr_core::VehicleIntent,
     pub bike_mass: f32,
+    pub palette_index: usize,
 }
 impl Rider {
     pub(crate) fn new(id: usize) -> Self {
@@ -208,6 +209,7 @@ impl Rider {
             side_velocity: 0.0,
             drive_intent: default(),
             bike_mass: 170.0,
+            palette_index: id,
         }
     }
 }
@@ -231,6 +233,7 @@ pub fn setup_race(
     commands.insert_resource(Profile::load());
     for id in 0..8 {
         let mut rider = Rider::new(id);
+        rider.palette_index = content.0.riders[id].palette_index;
         rider.progress = track.definition.spawns[id].distance;
         rider.lane = track.definition.spawns[id].lane;
         let (p, q) = track.sample(rider.progress, rider.lane);
@@ -344,7 +347,12 @@ pub fn input(
     mut menu_action: ResMut<crate::ui::MenuAction>,
     screen: Option<Res<State<crate::runtime::AppScreen>>>,
     track: Res<Track>,
+    panel: Res<crate::settings::SettingsPanel>,
 ) {
+    if panel.open {
+        menu_action.0 = false;
+        return;
+    }
     if screen.as_ref().is_some_and(|s| {
         matches!(
             s.get(),
@@ -378,7 +386,9 @@ pub fn input(
         race.camera_mode = mode;
         race.phase = Phase::Countdown;
         for (entity, mut rider, mut recovery) in &mut riders {
+            let palette = rider.palette_index;
             *rider = Rider::new(rider.id);
+            rider.palette_index = palette;
             let spawn = &track.definition.spawns[rider.id];
             rider.progress = spawn.distance;
             rider.lane = spawn.lane;
@@ -530,13 +540,20 @@ pub fn drive(
                         tuning.acceleration_mps2
                     };
                     r.speed = (r.speed
-                        + dt * acceleration * track.surface(r.progress, r.lane).traction())
+                        + dt * acceleration
+                            * player_intent.throttle_strength().max(if is_player {
+                                0.0
+                            } else {
+                                1.0
+                            })
+                            * track.surface(r.progress, r.lane).traction())
                     .min(target);
                 } else if r.speed > target || !throttle {
                     r.speed = (r.speed - dt * tuning.coast_drag_mps2).max(0.0);
                 }
                 if brake {
-                    r.speed = (r.speed - dt * tuning.brake_mps2).max(0.0);
+                    r.speed = (r.speed - dt * tuning.brake_mps2 * player_intent.brake_strength())
+                        .max(0.0);
                 }
             }
             if boost {
@@ -571,6 +588,16 @@ pub fn drive(
                 brake,
                 steer,
                 nitro: boost,
+                throttle_amount: if is_player {
+                    player_intent.throttle_strength()
+                } else {
+                    1.0
+                },
+                brake_amount: if is_player {
+                    player_intent.brake_strength()
+                } else {
+                    0.0
+                },
             };
             if !dynamic {
                 r.lane += r.side_velocity * dt;
@@ -740,8 +767,7 @@ pub fn drive(
                 }
             }
             transform.translation = destination;
-            transform.rotation =
-                q * Quat::from_rotation_z(r.lean) * Quat::from_rotation_x(-r.hop_velocity * 0.025);
+            transform.rotation = q * Quat::from_rotation_x(-r.hop_velocity * 0.025);
         }
     }
     if active && race.phase != Phase::Finished {
@@ -800,8 +826,11 @@ pub fn camera(
     track: Res<Track>,
     riders: Query<(Entity, &Rider, &Recovery)>,
     fixed: Res<Time<Fixed>>,
+    preferences: Res<crate::settings::Preferences>,
+    controls: Res<Controls>,
     bodies: Query<(&Transform, Option<&crate::runtime::PoseHistory>), Without<ChaseCamera>>,
     context: ReadRapierContext,
+    owned: Query<&crate::recovery::OwnedBody>,
     mut cameras: Query<(&mut Transform, &mut Projection), With<ChaseCamera>>,
 ) {
     let Some((player_entity, player, recovery)) = riders.iter().find(|(_, r, _)| r.id == 0) else {
@@ -812,6 +841,15 @@ pub fn camera(
     }
     let (road, rotation) = track.sample(player.progress, player.lane);
     let recovering = recovery.stage != RecoveryStage::Riding;
+    let rotation = if !recovering && race.phase != Phase::Garage {
+        bodies.get(player_entity).map_or(rotation, |(t, h)| {
+            let pose = crate::runtime::interpolated(t, h, fixed.overstep_fraction());
+            let heading = pose.rotation * Vec3::Z;
+            Quat::from_rotation_y(heading.x.atan2(heading.z))
+        })
+    } else {
+        rotation
+    };
     let focus = if recovering {
         recovery
             .torso
@@ -836,46 +874,82 @@ pub fn camera(
         }
     };
     let dt = time.delta_secs().min(0.05);
+    let comfort = &preferences.file.comfort;
+    let follow = if comfort.anti_nausea {
+        comfort.smoothing.min(7.0)
+    } else {
+        comfort.smoothing
+    };
+    let view_rotation = rotation
+        * Quat::from_rotation_y(-controls.look.x * 1.25)
+        * Quat::from_rotation_x(controls.look.y * 0.35);
+    let anticipation = if recovering || comfort.anti_nausea {
+        Vec3::ZERO
+    } else {
+        rotation * Vec3::NEG_X * controls.buffer.held.steer * (player.speed * 0.025).min(1.2)
+    };
     for (mut transform, mut projection) in &mut cameras {
         let shake = Vec3::new(
             (time.elapsed_secs() * 81.0).sin(),
             (time.elapsed_secs() * 63.0).cos(),
             0.0,
         ) * race.shake
-            * 0.15;
+            * 0.15
+            * if comfort.anti_nausea {
+                0.0
+            } else {
+                comfort.shake
+            };
         let target = if race.phase == Phase::Garage {
             road + rotation * Vec3::new(5.0, 3.0, -6.0)
         } else {
             focus
-                + rotation * (offset + Vec3::Z * if recovering { 0.0 } else { player.speed * 0.10 })
+                + view_rotation
+                    * (offset + Vec3::Z * if recovering { 0.0 } else { player.speed * 0.04 })
+                + anticipation
                 + shake
         };
-        let mut position = transform.translation.lerp(target, 1.0 - (-dt * 10.0).exp());
+        // Retry/scene warps must not fly the camera across the intervening world.
+        let snapped = transform.translation.distance_squared(target) > 75.0 * 75.0;
+        let blend = if snapped {
+            1.0
+        } else {
+            1.0 - (-dt * follow).exp()
+        };
+        let mut position = transform.translation.lerp(target, blend);
         // Prevent the camera itself from passing through solid scenery.
         if let Ok(context) = context.single() {
             let delta = position - focus;
-            let filter = QueryFilter::from(
-                QueryFilterFlags::EXCLUDE_DYNAMIC
-                    | QueryFilterFlags::EXCLUDE_KINEMATIC
-                    | QueryFilterFlags::EXCLUDE_SENSORS,
-            );
-            if let Some((_, distance)) = context.cast_ray(
+            let predicate = |e| !owned.get(e).is_ok_and(|body| body.owner == player_entity);
+            let filter = QueryFilter::default()
+                .exclude_rigid_body(player_entity)
+                .exclude_sensors()
+                .predicate(&predicate);
+            let proxy = Collider::ball(0.3);
+            if let Some((_, hit)) = context.cast_shape(
                 focus,
+                Quat::IDENTITY,
                 delta.normalize_or_zero(),
-                delta.length(),
-                true,
+                proxy.raw.as_ref(),
+                ShapeCastOptions {
+                    max_time_of_impact: delta.length(),
+                    target_distance: 0.02,
+                    ..default()
+                },
                 filter,
             ) {
-                position = focus + delta.normalize_or_zero() * (distance - 0.3).max(0.5);
+                position = focus + delta.normalize_or_zero() * (hit.time_of_impact - 0.05).max(0.0);
             }
         }
         transform.translation = position;
         let looking = Transform::from_translation(position)
-            .looking_at(focus + rotation * Vec3::Z * look, Vec3::Y)
+            .looking_at(focus + rotation * Vec3::Z * look + anticipation, Vec3::Y)
             .rotation;
-        transform.rotation = transform.rotation.slerp(looking, 1.0 - (-dt * 9.0).exp());
+        transform.rotation = transform
+            .rotation
+            .slerp(looking, 1.0 - (-dt * follow).exp());
         if let Projection::Perspective(p) = projection.as_mut() {
-            p.fov = (60.0 + if recovering { 0.0 } else { player.speed * 0.17 }).to_radians();
+            p.fov = comfort.fov(player.speed, recovering);
         }
     }
 }
@@ -2162,3 +2236,7 @@ pub(crate) mod tests {
         );
     }
 }
+
+#[cfg(test)]
+#[path = "camera_tests.rs"]
+mod camera_tests;

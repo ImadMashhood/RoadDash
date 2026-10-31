@@ -404,3 +404,163 @@ fn low_speed_inverted_chassis_self_rights_without_inverted_wheel_lift() {
         t.translation.y
     );
 }
+
+#[test]
+fn analog_trigger_values_reach_the_chassis_force_model() {
+    let mut speeds = vec![];
+    for amount in [0.25, 1.0] {
+        let mut app = app(1, 60);
+        let mut pad = Gamepad::default();
+        // Inverse deadzone: 0.3625 becomes normalized 0.25 at the default 0.15.
+        pad.analog_mut()
+            .set(GamepadButton::RightTrigger2, 0.15 + amount * 0.85);
+        app.world_mut().spawn(pad);
+        for _ in 0..120 {
+            app.update();
+        }
+        speeds.push(snapshot(&mut app).0);
+    }
+    assert!(
+        speeds[0] > 0.5 && speeds[0] < speeds[1] * 0.65,
+        "analog acceleration {speeds:?}"
+    );
+}
+
+#[test]
+fn both_civilian_kinds_launch_each_bike_class_above_their_standing_height() {
+    for preset in 0..3 {
+        for kind in [crate::npc::NpcKind::Cow, crate::npc::NpcKind::Pedestrian] {
+            let mut app = app(preset, 60);
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyW);
+            for _ in 0..120 {
+                app.update();
+            }
+            let (_, p, state) = snapshot(&mut app);
+            let forward = state.velocity.with_y(0.0).normalize();
+            let height = if kind == crate::npc::NpcKind::Cow {
+                1.7
+            } else {
+                crate::human::HEIGHT
+            };
+            let transform = Transform::from_translation((p + forward * 3.0).with_y(0.0));
+            let actor = app
+                .world_mut()
+                .spawn((
+                    crate::npc::Npc::new(kind, transform),
+                    transform,
+                    Visibility::default(),
+                    RigidBody::Fixed,
+                    Collider::compound(vec![(
+                        Vec3::Y * height * 0.5,
+                        Quat::IDENTITY,
+                        Collider::cuboid(0.8, height * 0.5, 0.6),
+                    )]),
+                    ActiveEvents::COLLISION_EVENTS,
+                    ActiveCollisionTypes::all(),
+                ))
+                .id();
+            let mut peak = 0.0f32;
+            let mut passed = false;
+            for _ in 0..240 {
+                app.update();
+                let (_, position, state) = snapshot(&mut app);
+                assert!(position.is_finite() && state.velocity.is_finite());
+                peak = peak.max(position.y);
+                passed |= (position - transform.translation).dot(forward) > 3.0;
+            }
+            assert!(
+                peak > height + 0.25,
+                "class {preset} {kind:?} clearance peak {peak}"
+            );
+            assert!(passed, "class {preset} {kind:?} stuck behind actor");
+            println!(
+                "HAZARD_CLEARANCE {}",
+                serde_json::json!({"preset":preset,"kind":format!("{kind:?}"),"height_m":height,"peak_bike_origin_m":peak,"passed_obstacle":passed})
+            );
+            let world = app.world_mut();
+            assert_eq!(
+                world.query::<&Recovery>().single(world).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            assert!(
+                !app.world().get::<crate::npc::Npc>(actor).unwrap().active(),
+                "civilian did not ragdoll"
+            );
+        }
+    }
+}
+
+#[test]
+fn cross_traffic_contacts_trigger_a_wipeout_in_both_adapters() {
+    for adapter in [
+        VehiclePhysicsAdapter::Assisted,
+        VehiclePhysicsAdapter::Dynamic,
+    ] {
+        for moving in [false, true] {
+            let mut app = app(1, 60);
+            app.insert_resource(adapter);
+            if !moving {
+                app.world_mut()
+                    .resource_mut::<ButtonInput<KeyCode>>()
+                    .press(KeyCode::KeyW);
+            }
+            for _ in 0..120 {
+                app.update();
+            }
+            let world = app.world_mut();
+            let t = *world
+                .query_filtered::<&Transform, With<Rider>>()
+                .single(world)
+                .unwrap();
+            let forward = t.rotation * Vec3::Z;
+            let axis = t.rotation * Vec3::X;
+            let car = app
+                .world_mut()
+                .spawn((
+                    crate::environment::CrossTraffic,
+                    RigidBody::KinematicPositionBased,
+                    Collider::compound(vec![(
+                        Vec3::Y,
+                        Quat::IDENTITY,
+                        Collider::cuboid(0.95, 0.9, 1.95),
+                    )]),
+                    Transform::from_translation(if moving {
+                        t.translation - axis * 6.0
+                    } else {
+                        t.translation + forward * 4.0
+                    })
+                    .with_rotation(t.rotation * Quat::from_rotation_y(std::f32::consts::FRAC_PI_2)),
+                    ActiveEvents::COLLISION_EVENTS,
+                    ActiveCollisionTypes::all(),
+                    Ccd::enabled(),
+                ))
+                .id();
+            if moving {
+                let elapsed = app.world().resource::<Race>().elapsed;
+                app.world_mut()
+                    .entity_mut(car)
+                    .insert(crate::environment::Patrol {
+                        center: t.translation,
+                        axis,
+                        extent: 10.0,
+                        speed: 9.0,
+                        phase: 0.4 - elapsed * 0.9,
+                        one_way: true,
+                    });
+            }
+            let mut crashed = false;
+            for _ in 0..60 {
+                app.update();
+                let world = app.world_mut();
+                crashed |= world.query::<&Recovery>().single(world).unwrap().stage
+                    != RecoveryStage::Riding;
+            }
+            assert!(
+                crashed,
+                "cross traffic failed to wipe out {adapter:?}, moving {moving}"
+            );
+        }
+    }
+}

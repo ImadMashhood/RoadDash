@@ -201,6 +201,7 @@ impl Plugin for RoadSimulationPlugin {
                 Update,
                 (
                     interpolate_visuals,
+                    crate::world::upright_riders,
                     crate::vehicle::visuals,
                     crate::vehicle::live_tuning,
                 )
@@ -245,7 +246,12 @@ pub struct RoadPresentationPlugin;
 impl Plugin for RoadPresentationPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<crate::ui::MenuAction>()
-            .add_systems(Startup, crate::ui::setup_ui.in_set(StartupSet::Ui))
+            .add_systems(
+                Startup,
+                (crate::ui::setup_ui, crate::settings::setup).in_set(StartupSet::Ui),
+            )
+            .add_systems(Update, (crate::settings::display, crate::feedback::update))
+            .add_systems(Startup, crate::feedback::setup.in_set(StartupSet::Ui))
             .add_systems(
                 Update,
                 (

@@ -86,3 +86,15 @@ Native defaults to Dynamic; `ROADDASH_VEHICLE=assisted` retains comparison and
 legacy headless coverage. New adapter tests explicitly select Dynamic. F5 cycles
 validated presets; F6 adjusts assistance; F3 displays RPM/gear/slip/support.
 See [contract](VEHICLE_AND_COMBAT.md) for limits and rollback.
+
+## Part 04 additions
+
+Pure rr_core::comfort owns normalized deadzone, comfort ranges/FOV and input
+contexts. VehicleIntent preserves digital fields and adds defaulted analog amounts.
+controls captures one deterministic native Gamepad plus keys into the same fixed
+buffer; context separates on-foot intent. settings owns validated local versioned
+preferences and a modal settings/rebinding panel before gameplay input. Native
+build_app loads preferences; tests/smoke do not touch real user settings.
+Camera reads interpolated position and heading, with volume collision sweeps;
+feedback reuses a bounded set of HUD entities. Bevy's pinned Gilrs feature adds
+native discovery without migrating input/physics libraries. See CAMERA_AND_INPUT.md.

@@ -4,7 +4,7 @@ A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland →
 
 This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data.
 
-![Valley Run farmland](docs/testing/part-03/02-racing.jpg)
+![Valley Run farmland](docs/testing/part-04/02-racing.jpg)
 
 ## Run
 
@@ -21,13 +21,13 @@ First compilation builds the engine and can take several minutes. A desktop GPU 
 Linux needs X11 development libraries. Ubuntu/Debian:
 
 ```sh
-sudo apt-get install build-essential pkg-config libx11-dev libxi-dev libxcursor-dev libxrandr-dev libxinerama-dev libxkbcommon-dev libasound2-dev
+sudo apt-get install build-essential pkg-config libx11-dev libxi-dev libxcursor-dev libxrandr-dev libxinerama-dev libxkbcommon-dev libasound2-dev libudev-dev
 ```
 
 Fedora:
 
 ```sh
-sudo dnf install gcc-c++ pkgconf-pkg-config libX11-devel libXi-devel libXcursor-devel libXrandr-devel libXinerama-devel libxkbcommon-devel alsa-lib-devel
+sudo dnf install gcc-c++ pkgconf-pkg-config libX11-devel libXi-devel libXcursor-devel libXrandr-devel libXinerama-devel libxkbcommon-devel alsa-lib-devel systemd-devel
 ```
 
 Keyboard bindings can be supplied through `ROADDASH_BINDINGS=/path/to/input.json` using the validated [input schema](content/input.json). Features: `offline` + `devtools` by default, minimal `--no-default-features --features offline`, optional `--features debug_physics`. No online transport is implemented. [Architecture and developer guide](docs/ARCHITECTURE.md).
@@ -47,12 +47,29 @@ The Linux build uses X11 (and XWayland on Wayland desktops). Windows and macOS a
 | C | Cycle three camera distances |
 | Esc | Pause / resume |
 | M | Mute / unmute audio |
+| F2 / controller LB | Comfort settings and rebinding |
 | F3 | Toggle developer frame/tick/physics/entity diagnostics |
 | F4 | Toggle track spline/normal/bounds/spawn inspector |
 | F5 / F6 | Cycle handling preset / adjust road assist (developer tuning) |
 | R | Restart from the grid |
 
 The dynamic bike has assisted road-relative steering and independent physical momentum. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Nitro regenerates when released. Grass reduces traction and speed while remaining driveable; it does not drain armor or cause a crash by itself. Traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up, runs back to the actual fallen bike, lifts it upright, and remounts. Moving traffic and other racers can knock a rider down again during recovery.
+
+Controller: left stick steers, RT throttles, LT brakes, X/B punch left/right,
+Y boosts, A starts, Start pauses, Select restarts and right-stick click changes
+camera. Right stick freelooks and returns to chase when released. LB opens settings;
+Guide is an alternate. Remap buttons/keys in the F2 panel; its up/down selects,
+left/right adjusts, Enter/A activates, Tab/Y changes binding device, and Esc/Start
+cancels a binding or saves/closes. Reserved LB/Guide and F2 always open settings.
+
+Comfort defaults to 75° FOV, configurable 60–95°, with adjustable camera response
+and shake. Anti-nausea disables shake, speed FOV, turn anticipation and speed lines.
+Preferences save under `$XDG_CONFIG_HOME/roaddash/settings.json` (fallback
+`~/.config/roaddash/settings.json`) or `%APPDATA%/roaddash/settings.json` on Windows.
+Override with `ROADDASH_SETTINGS`; unknown/corrupt files are preserved read-only.
+Keyboard JSON through `ROADDASH_BINDINGS` still overrides the loaded keyboard map.
+Gamepad support uses Bevy's Gilrs backend; Linux now also needs the libudev development
+package listed above. Multiple pads use the lowest entity ID; disconnect clears input.
 
 ## Included
 
@@ -76,11 +93,11 @@ The dynamic bike has assisted road-relative steering and independent physical mo
 - Garage/start menu, countdown, pause/restart, leaderboard, speedometer, live course map, and results.
 - Persistent race count, wins, credits, and personal-best time.
 
-![City graybox](docs/testing/part-03/08-city.jpg)
+![City graybox](docs/testing/part-04/08-city.jpg)
 
 ## Current scope
 
-This is an arcade prototype, not a finished commercial remake. Native riding now uses an assisted dynamic chassis with two raycast wheels, suspension, combined grip limits, torque/gears and upright feedback. A retained kinematic adapter is available for regression comparison. Ragdolls and wrecks are physically simulated. The environment and characters are procedural low-poly placeholders, with authored elevation and banking. There is one playable point-to-point course and three handling presets. Police pursuits, career events, purchasable upgrades, animation rigs, gamepads, multiplayer, and production art remain future work. Credits are saved but cannot yet be spent.
+This is an arcade prototype, not a finished commercial remake. Native riding now uses an assisted dynamic chassis with two raycast wheels, suspension, combined grip limits, torque/gears and upright feedback. A retained kinematic adapter is available for regression comparison. Ragdolls and wrecks are physically simulated. The environment and characters are procedural low-poly placeholders, with authored elevation and banking. There is one playable point-to-point course and three handling presets. Police pursuits, career events, purchasable upgrades, animation rigs, multiplayer, and production art remain future work. Credits are saved but cannot yet be spent.
 
 ## Production blueprint v3 progress
 
@@ -88,7 +105,7 @@ Source: [Road Rash Bevy Production Blueprint v3.0](docs/road-rash-production-blu
 
 **Status rules:** `[x]` means the specifically described capability exists in this prototype. `[ ]` means not implemented, partial, or not yet validated to the stated requirement. A prototype feature does not satisfy a larger production gate automatically. When completing an item, attach its code/test, measurement, playtest report, or rights record; leave unverified acceptance criteria unchecked. Baseline history: commit `03f12b2` had 18 behavior tests; Parts 00-01 now add the workspace, fixed scheduler and permanent evidence records. Current verification and outstanding gates are recorded in [PROGRESS](docs/PROGRESS.md) and [test receipts](docs/testing/PARTS_00_01.md).
 
-Active implementation: user-requested combat/contact/NPC/traffic/map changes and Part 03; the playable route is point-to-point. See [Part 02 receipts](docs/testing/PART_02.md) and [track authoring](docs/tracks/AUTHORING.md). Earlier parts remain historical; see [Part 03 receipts](docs/testing/PART_03.md) and [vehicle/combat contract](docs/VEHICLE_AND_COMBAT.md). See [GDD](docs/GDD.md), [slice contract](docs/VERTICAL_SLICE.md), [architecture](docs/ARCHITECTURE.md), [decisions](docs/DECISIONS.md), [known issues](docs/KNOWN_ISSUES.md), and [development history](docs/CHANGELOG_DEV.md). Future gameplay and online requirements stay in their assigned parts.
+Active implementation: Part 04 following merged PR #3, including requested combat/contact/NPC/traffic/map changes; the playable route is point-to-point. See [Part 02 receipts](docs/testing/PART_02.md) and [track authoring](docs/tracks/AUTHORING.md). Earlier parts remain historical; see [Part 03 receipts](docs/testing/PART_03.md) and [vehicle/combat contract](docs/VEHICLE_AND_COMBAT.md). See [GDD](docs/GDD.md), [slice contract](docs/VERTICAL_SLICE.md), [architecture](docs/ARCHITECTURE.md), [decisions](docs/DECISIONS.md), [known issues](docs/KNOWN_ISSUES.md), and [development history](docs/CHANGELOG_DEV.md). Future gameplay and online requirements stay in their assigned parts.
 
 ### Baseline and dependency decisions
 
@@ -213,7 +230,7 @@ PDF pp. 11-12, 32; references R02, R03, R04.
 - [x] **P03-016** Feed AI and human tick intentions through the same dynamic adapter, retaining AI traffic avoidance and launch grace. Evidence: [controller](src/game.rs), [dynamic grid regression](src/vehicle_tests.rs).
 - [x] **P03-017** Preserve selected dry bike mass in abandoned wrecks and clear stale velocity on dynamic remount. Evidence: [mass/recovery regressions](src/vehicle_tests.rs).
 
-Part 03 evidence: [vehicle/combat contract](docs/VEHICLE_AND_COMBAT.md), [numeric tests](src/vehicle_tests.rs), [receipts](docs/testing/PART_03.md). P03-010 is partial: the 600-second simulated turning soak ran, but ten human rides/subjective feedback are not available. P03-011 stays open pending that beginner/fun acceptance; no Part 04 advancement is implied. Telemetry is sampled at the authoritative 60 Hz, with no fabricated 100 Hz data.
+Part 03 evidence: [vehicle/combat contract](docs/VEHICLE_AND_COMBAT.md), [numeric tests](src/vehicle_tests.rs), [receipts](docs/testing/PART_03.md). P03-010 is partial: the 600-second simulated turning soak ran, but ten human rides/subjective feedback are not available. P03-011 stays open pending that beginner/fun acceptance; Part 04 was subsequently explicitly authorized while this gate stays open. Telemetry is sampled at the authoritative 60 Hz, with no fabricated 100 Hz data. Latest user correction removes rendered steering lean; the earlier lean-clamp target is superseded for presentation, while lean demand remains diagnostic.
 
 ### Part 04 - Chase camera, speed feel, and input
 
@@ -223,11 +240,25 @@ PDF p. 13; references R02, R06, R08.
 - [x] **P04-002** Provide keyboard throttle/brake/steering, pause/reset, and correct left/right steering in chase-camera space. Evidence: [input and regression tests](src/game.rs).
 - [x] **P04-003** Add speed-linked engine pitch and wind feedback. Evidence: [sound](src/sound.rs).
 - [ ] **P04-004** Drive camera motion from interpolated fixed-step poses; verify no jitter at 120-144 Hz and readability through tight turns, impacts, and jumps.
-- [ ] **P04-005** Add gamepad stick steering/freelook, analog throttle/brake triggers, attack bindings, deadzones, and key/controller rebinding.
-- [ ] **P04-006** Provide persistent FOV/smoothing/anti-nausea settings; target configurable 60-95 degrees, about 75 degrees default, with optional reduced shake.
-- [ ] **P04-007** Add readable slip/traction feedback and optional speed lines; allocate the independent on-foot input context.
+- [x] **P04-005** Add gamepad stick steering/freelook, analog throttle/brake triggers, attack bindings, deadzones, and key/controller rebinding.
+- [x] **P04-006** Provide persistent FOV/smoothing/anti-nausea settings; target configurable 60-95 degrees, about 75 degrees default, with optional reduced shake.
+- [x] **P04-007** Add readable slip/traction feedback and optional speed lines; allocate the independent on-foot input context.
 - [ ] **P04-008** Validate camera clipping, both input devices, comfort-setting persistence, and responsive handling with an external tester.
 - [ ] **P04-009** **Exit gate:** riding is fast, comfortable, responsive, and finishable with keyboard and gamepad without unintended auto steering.
+
+Part 04 software evidence: [camera/input contract](docs/CAMERA_AND_INPUT.md),
+[receipt](docs/testing/PART_04.md). P04-004 is partial: interpolated position/heading,
+120/144 Hz numeric checks and native scenes work, but subjective high-refresh
+jitter/readability review is outstanding. P04-008/009 remain open for physical
+controller completion and external tester acceptance. No Part 05 advancement.
+
+- [x] **P04-011** Verify camera continuity at 60/120/144 Hz, swept-volume obstacle clearance and safe large-warp snapping using automated scenarios. Evidence: [camera tests](src/camera_tests.rs).
+- [x] **P04-012** Preserve malformed/future settings files, reject conflicting bindings, and prevent modal settings input leaking into racing. Evidence: [settings](src/settings.rs), [input tests](src/controls.rs).
+- [x] **P04-013** Carry analog triggers into chassis forces and clear input on controller disconnect while retaining keyboard fallback. Evidence: [adapter test](src/vehicle_tests.rs), [device tests](src/controls.rs).
+
+- [ ] **P04-014** Verify the default mapping for the OS-discovered controller that Gilrs reports as unmapped; exercise real buttons/axes and add a licensed mapping only if needed. Evidence: [native receipt](docs/testing/PART_04.md); physical mapping acceptance remains open.
+
+- [x] **P04-015** Keep the character upright during steering by removing cosmetic turn roll; retain physical suspension and wheel steering. Evidence: [model/roll regression](src/human.rs).
 
 - [x] **P04-010** Color only racer minimap dots by their shirt palette, sharing the model color source. Evidence: [palette test](src/ui.rs), [shirt colors](src/world.rs).
 
@@ -271,6 +302,7 @@ PDF p. 15 and dismounted-control contract pp. 28-29; references R03, R04.
 
 - [x] **P06-019** Classify motorcycle wipeouts by relative closing speed: >=50 km/h longitudinal or substantial side impact; lighter contacts nudge without universal launch/knockoff. Evidence: [severity rules](crates/rr_core/src/lib.rs), [contact tests](src/game.rs).
 - [x] **P06-020** Add distinct pedestrian/cow ragdolls with direct-hit and solid-impact paths, an eight-actor budget, safe delayed standing and complete reset cleanup. Evidence: [NPC systems/tests](src/npc.rs), [native actor capture](docs/testing/PART_03.md).
+- [x] **P06-022** Launch a mounted biker above cows/pedestrians using obstacle-height and mass-aware clearance impulses; preserve horizontal approach momentum and civilian ragdolls. Evidence: [six clearance cases](src/vehicle_tests.rs), [measurements](docs/testing/part-04/hazard-clearance.json).
 - [x] **P06-021** Treat sidewalks as rideable support so low curb contact raises the bike instead of causing an obstacle wipeout. Evidence: [suspension](src/vehicle.rs), [curb-transition test](src/vehicle_tests.rs).
 
 ### Part 07 - Race rules, HUD, and results
@@ -301,6 +333,7 @@ PDF pp. 17, 33; references R01, R03, R04.
 - [ ] **P08-008** Add AI debug goals, paths, desired speeds, and headless tournaments; complete 100 races without deadlock and test human/AI foot recovery separately.
 - [ ] **P08-009** **Exit gate:** fair, repeatable four-racer race with traffic, police, and melee, including opponent overtakes, hits, and recovery.
 
+- [x] **P08-011** Treat crossing traffic as an explicit wipeout hazard with continuous/all-type contacts, including a moving car striking a stopped bike. Evidence: [four physical collision cases](src/vehicle_tests.rs).
 - [x] **P08-010** Use American right-hand traffic lanes and separate one-way cross-traffic lanes; stop automatic AI fights/weaving during grid launch. Evidence: [traffic](src/game.rs), [cross streets](src/environment.rs), [grid tests](src/vehicle_tests.rs).
 
 ### Part 09 - Vertical-slice playtest gate
@@ -340,6 +373,7 @@ PDF pp. 20, 26-27, 35; references R02, R07 optional, R08.
 - [ ] **P11-007** Give every scenery family LOD, collision, and audio metadata; reveal recognizable landmarks or encounters every 10-25 s without hidden active hazards/pop-in.
 - [ ] **P11-008** Animate riding, fighting, crash, walking, and remount through a production rig; add lightweight animal animation/AI and safe cliff recovery.
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
+- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](src/human.rs).
 - [ ] **P11-010** **Exit gate:** the original town/farm/cliff art replaces graybox assets without changing physics/race rules and fits measured budgets.
 
 ### Part 12 - Garage, economy, progression, and saves
@@ -562,7 +596,7 @@ Source layout:
 - `src/ui.rs`: garage, HUD, minimap, and results.
 - `src/verification.rs`: scripted render smoke check.
 
-The audio backend needs ALSA development headers on Linux (`alsa-lib-devel` on Fedora, `libasound2-dev` on Ubuntu/Debian). No sound files need downloading. A missing audio device leaves the game playable with a backend warning.
+The audio backend needs ALSA development headers on Linux (`alsa-lib-devel systemd-devel` on Fedora, `libasound2-dev libudev-dev` on Ubuntu/Debian). No sound files need downloading. A missing audio device leaves the game playable with a backend warning.
 
 Profiles now declare schema version 1; previous versionless profiles retain credits and records. Unsupported or corrupted existing profiles are preserved read-only instead of overwritten. Profiles are written atomically to `$XDG_DATA_HOME/roaddash/profile.json` on Linux (default `~/.local/share/roaddash/profile.json`), or `%LOCALAPPDATA%/roaddash/profile.json` on Windows. Set `ROADDASH_SAVE_DIR` to choose another directory. A malformed or unsupported existing save produces a warning and disables saving until that file is moved or restored.
 

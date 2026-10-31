@@ -1,0 +1,44 @@
+[
+  {
+    "height_m": 1.7000000476837158,
+    "kind": "Cow",
+    "passed_obstacle": true,
+    "peak_bike_origin_m": 2.315326690673828,
+    "preset": 0
+  },
+  {
+    "height_m": 2.309999942779541,
+    "kind": "Pedestrian",
+    "passed_obstacle": true,
+    "peak_bike_origin_m": 4.019231796264648,
+    "preset": 0
+  },
+  {
+    "height_m": 1.7000000476837158,
+    "kind": "Cow",
+    "passed_obstacle": true,
+    "peak_bike_origin_m": 2.24692702293396,
+    "preset": 1
+  },
+  {
+    "height_m": 2.309999942779541,
+    "kind": "Pedestrian",
+    "passed_obstacle": true,
+    "peak_bike_origin_m": 4.019772529602051,
+    "preset": 1
+  },
+  {
+    "height_m": 1.7000000476837158,
+    "kind": "Cow",
+    "passed_obstacle": true,
+    "peak_bike_origin_m": 2.304490566253662,
+    "preset": 2
+  },
+  {
+    "height_m": 2.309999942779541,
+    "kind": "Pedestrian",
+    "passed_obstacle": true,
+    "peak_bike_origin_m": 3.9928629398345947,
+    "preset": 2
+  }
+]

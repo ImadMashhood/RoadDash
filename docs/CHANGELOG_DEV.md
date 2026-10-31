@@ -77,3 +77,27 @@ Detailed actual commands, measurements, native receipts and open gates:
 [Part 03](testing/PART_03.md). No new dependency or third-party media. R03 studied
 as reference only with unresolved reuse license; no code imported. Ten human
 rides/beginner/fun acceptance remain open; no Part 04 advancement.
+
+## 2026-10-30 — Part 04 follow-up to merged PR #3
+
+Added compatible native gamepad backend; normalized analog engine/brake input,
+continuous steering/freelook and deterministic disconnect fallback. F2/LB opens a
+modal comfort/rebinding panel with versioned, corruption-safe preferences. Camera
+uses interpolated heading, upright horizon, sphere-sweep clipping protection,
+turn anticipation and warp snapping; FOV/shake/anti-nausea are configurable.
+Regular HUD traction feedback and bounded optional speed lines; distinct on-foot
+input context preserves assisted recovery. Added high-refresh camera, analog,
+modal/rebinding/persistence tests. New SDL controller mapping data is audited with
+its exact source/hash/Zlib notice. No Part 05 advancement; real controller and
+external human acceptance remain open. Evidence: testing/PART_04.md.
+
+Integration note: the user requested the same PR, but PR #3 was already merged
+as dddcf3a before Part 04 publication. Preserve that history; use a new focused
+follow-up branch/PR instead of appending invisible commits to the merged PR.
+
+Additional user steering before publication: removed cosmetic steering lean;
+shared seated/pedestrian/runner/ragdoll human meshes and outfit; increased/mass-
+scaled civilian launch to clear both cow/pedestrian height while preserving
+horizontal approach velocity. Crossing cars now have explicit wipeout handling,
+all-type contacts and CCD. Added six physical clearance cases, four crossing-car
+cases and model/no-roll regressions. No ordinary-crash launch was introduced.

@@ -65,3 +65,17 @@ Native `--smoke-test` and `--actor-smoke-test` run serially with graphics/audio;
 they exercise scripted scene/recovery and distinct ragdoll topologies. They do
 not replace manual ten-ride feedback, beginner finish, tactile control testing,
 free-form crowd collisions or actual Windows hardware runs.
+
+## Part 04 additions (2026-10-30)
+
+Receipt: PART_04.md. Camera continuity at 60/120/144 Hz, sphere-clearance wall,
+warp snap, native comfort panel/city/hill/recovery captures; analog trigger values
+reach chassis forces; gamepad steering/freelook/deadzone/disconnect and keyboard
+fallback; modal countdown pause/restore; live keyboard/controller rebinding and
+invalid/conflicting settings preservation. Real controller completion, tactile
+input/comfort feedback and subjective high-refresh readability remain open.
+
+Latest corrections: four human states share mesh/material/scale slots, steering
+demand does not roll visual root, six civilian-kind/class contacts clear measured
+height/pass obstacle with finite physics, and four cross-car cases wipe out (both
+adapters, approaching a stopped car / moving car striking a stopped bike).
