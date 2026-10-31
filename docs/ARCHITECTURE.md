@@ -107,3 +107,12 @@ human share a visual bank driven only by steering; presentation removes chassis
 road roll and keeps grade. No human-only counter-roll system remains. Chase
 positions use velocity lead and bounded distance. Full original handling parity
 is not established; missing reference tuning is tracked in P03-020.
+
+Structural base-world foundation: `rr_content::world` owns GPU-independent
+schema/quota/lot validation and versioned deterministic planning allocation.
+`world_gen::WorldPlan` binds to the existing open track/seed/baked length and
+resolves section ownership/district presentation. Its F4 overlay is separate
+from the current three gameplay sectors. `world_gen::report` measures the real
+legacy environment and exports it separately from target allocations. No placed
+WorldLayout, foundations, streaming or collision replacement exists yet; B03–B10
+must add those in dependency order. See ADR-019 and world/BASE_WORLD.md.

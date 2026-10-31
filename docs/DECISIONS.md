@@ -310,3 +310,28 @@ Latest turn-strength adjustment (P03-022): profile turn response increases 25%
 (light 1.5, balanced 1.25, heavy 1.025). Dynamic steering and the assisted
 adapter use the same profile gain. Maximum visual bank and the doubled lean
 response are unchanged. These remain authored RoadDash settings.
+
+## ADR-019 — 2026-10-30 — Additive structural world foundation (B00–B02)
+
+Problem: the user's first-map design introduces fifteen construction sections,
+19 structural archetypes and 247 buildings, while the working game has three
+coarse gameplay sectors and uncounted legacy scenery. Alternatives: replace the
+road/physics engine, immediately spawn random masses, or treat PDF instructions
+as overriding the user's scope. Selected: retain the road and active systems;
+add validated rr_content world/archetype/lot contracts, exact seeded planning
+allocation, client baked-station resolver and developer-only district preview.
+Separate measured legacy census from target allocations; no geometry placement
+or completed-world hash claimed. Canonical ID/seed/open-course checks and a
+0.25 m endpoint-only snapping tolerance bind data to the real 3D arc length.
+
+Justification: B03–B10 need explicit quotas, identities and station ownership
+before parcel/foundation changes are safe. Original supplied heights/counts
+are retained; new dimensional/access ranges are provisional authored tunables.
+No new library is needed; current serde/Bevy/Rapier suffice. No new external
+repository investigated or source copied. Tradeoffs: embedded built-in content
+requires rebuild, gameplay's old sector boundaries stay independent, and the
+level's visible geometry does not change in this stage. Future placement must
+satisfy whole-footprint reservations and shared support; allocation fingerprints
+are not spatial-layout hashes. Rollback can disable the additive overlay without
+changing track/save/physics schemas. Version any generation-order/ID changes;
+retain source snapshots and historical census evidence.

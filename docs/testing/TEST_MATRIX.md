@@ -90,3 +90,14 @@ removing a tilted road's roll at zero steering. Camera distance stays bounded in
 27 mode/speed/render-rate scenarios with slow smoothing. Existing car/civilian,
 recovery, controls, collision and race tests stay in the full suite. Numeric
 original-game equivalence is not tested/claimed; P03-020 needs missing data.
+
+Base-world B00–B02: `rr_content::world` tests exact section/registry/row/family
+counts, deterministic and seed-varying allocations with unique stable IDs,
+invalid versions/topology/budgets/lot dimensions, boundary ownership and blend
+continuity. `world_gen` tests baked-station projection/end snapping and mismatched
+courses/seeds; report tests compare two actual legacy environment builds and
+separate allocations from measured masses. `tools/test_world_inputs.py` compares
+all source CSV/JSON section fields and converted archetypes/heights/quotas.
+CI runs source checks and `--validate-world`; native evidence/F4 screenshots and
+CLI failure probes: ../world/BASE_WORLD_TESTS.md. Spatial placement/ground/LOD
+and final-world acceptance remain BW-B03–B10.

@@ -4,3 +4,6 @@
 *.png binary
 *.ttf binary
 *.ktx2 binary
+
+# Preserve the supplied design CSV byte-for-byte for its source manifest.
+docs/world/source/RoadDash_Base_World_Sections_v1.csv -text

@@ -269,3 +269,12 @@ Existing dependency licenses/notices remain unchanged; no new dependency adopted
   memory and record precise incomplete equivalence gate. Keep modern 3D physics,
   collision/recovery and current longitudinal profiles; no claim they now match
   the entire original. No new dependency, adapted source or reference media.
+
+### 2026-10-30 base-world foundation follow-up
+
+No additional repository was investigated or adopted for B00–B02. The supplied
+world plan's Road Rash/source links are research suggestions, not newly verified
+findings or a license grant. Current local serde/Bevy/Rapier infrastructure was
+sufficient for schema, census and district preview. No external code/assets or
+new dependencies were incorporated. User-provided design input provenance is
+recorded in docs/world/source/MANIFEST.json and docs/world/BASE_WORLD.md.

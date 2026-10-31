@@ -123,3 +123,14 @@ Latest turn-strength adjustment (P03-022): profile turn response increases 25%
 (light 1.5, balanced 1.25, heavy 1.025). Dynamic steering and the assisted
 adapter use the same profile gain. Maximum visual bank and the doubled lean
 response are unchanged. These remain authored RoadDash settings.
+
+## 2026-10-30 — First-map structural generation foundation
+
+Started B00–B02 from the user-supplied world PDF/JSON/CSV. Preserved source inputs,
+converted exact 15-section/19-archetype/247-building quotas, added validated lot/
+structural rules and deterministic planning allocations. Added headless world
+validation/census, actual legacy building tags/counts and station-based district
+blending/F4 preview. Added CI and source conversion checks; recorded the B03–B10
+backlog and additive-overlay ADR-019. Existing scenery/route/gameplay retained;
+247 new masses, lots, pads, streets and full-world performance are not claimed.
+Exact checks and native captures: world/BASE_WORLD_TESTS.md.

@@ -11,6 +11,12 @@ use bevy::{
 };
 use bevy_rapier3d::prelude::*;
 use rr_content::track::{PropKind, Sector, Surface};
+/// Tags only the existing building mass, excluding roof/windows/trees/props.
+#[derive(Component)]
+pub struct LegacyBuilding {
+    pub id: String,
+    pub station_m: f32,
+}
 #[derive(Component)]
 pub struct RoadChunk;
 #[derive(Component)]
@@ -313,9 +319,14 @@ pub fn build(
                                     r,
                                     true,
                                 );
-                                commands
-                                    .entity(e)
-                                    .insert((ZoneProp(sector), SceneryFootprint { radius: 12.0 }));
+                                commands.entity(e).insert((
+                                    ZoneProp(sector),
+                                    SceneryFootprint { radius: 12.0 },
+                                    LegacyBuilding {
+                                        id: format!("legacy-farm-{i}-{side}"),
+                                        station_m: d,
+                                    },
+                                ));
                                 block(
                                     commands,
                                     art,
@@ -352,9 +363,14 @@ pub fn build(
                                 r,
                                 true,
                             );
-                            commands
-                                .entity(e)
-                                .insert((ZoneProp(sector), SceneryFootprint { radius: 10.0 }));
+                            commands.entity(e).insert((
+                                ZoneProp(sector),
+                                SceneryFootprint { radius: 10.0 },
+                                LegacyBuilding {
+                                    id: format!("legacy-city-{i}-{side}-{offset}"),
+                                    station_m: d + offset,
+                                },
+                            ));
                             for level in 0..(height / 3.0) as usize {
                                 for pane in [-4.0, 0.0, 4.0] {
                                     block(
@@ -498,9 +514,14 @@ pub fn build(
                         q,
                         true,
                     );
-                    commands
-                        .entity(e)
-                        .insert((ZoneProp(track.sector(d)), SceneryFootprint { radius: 12.0 }));
+                    commands.entity(e).insert((
+                        ZoneProp(track.sector(d)),
+                        SceneryFootprint { radius: 12.0 },
+                        LegacyBuilding {
+                            id: format!("legacy-authored-{}", prop.id.as_str()),
+                            station_m: d,
+                        },
+                    ));
                 }
             }
             PropKind::Fence | PropKind::Guardrail => {

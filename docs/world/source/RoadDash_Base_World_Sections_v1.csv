@@ -1,0 +1,16 @@
+id,name,zone,start_m,end_m,near,secondary,farm,residential,commercial,urban,hill,character,total
+S01,Pasture Gate,Farms,0,450,1,0,1,0,0,0,0,Flat pasture; first sightline; minimal buildings,1
+S02,Creek Plain,Farms,450,900,2,0,2,0,0,0,0,Low drainage swale and large uninterrupted ground,2
+S03,Open Harvest,Farms,900,1350,2,0,2,0,0,0,0,Fields alternate sides; no continuous frontage,2
+S04,Long Farm Bend,Farms,1350,1800,3,0,3,0,0,0,0,"Field curves, gentle grading, a farm cluster",3
+S05,County Approach,Farms,1800,2250,4,0,4,0,0,0,0,More rural buildings; county-road threshold,4
+S06,Rural Edge,Transition,2250,2700,8,1,7,2,0,0,0,Scattered houses among working farm parcels,9
+S07,Edge Suburb,Transition,2700,3150,17,4,5,10,6,0,0,"Houses, small commercial frontages; first side streets",21
+S08,Residential Strip,Suburban,3150,3600,24,9,5,18,10,0,0,Gridded lots and continuous sidewalks,33
+S09,Warehouse Grid,Inner city,3600,4050,30,14,0,18,12,14,0,Tighter blocks; warehouses and low-rise blocks,44
+S10,Dense Downtown,City core,4050,4500,36,20,0,8,10,38,0,Continuous facade rhythm; short blocks and junctions,56
+S11,Urban Escape,City to hills,4500,4950,26,14,6,5,8,15,6,Height change and mixed structures; city breaks apart,40
+S12,Upper Estates,Hills,4950,5400,12,6,0,2,0,3,13,"Hillside pads, terraced houses, road cut/fill",18
+S13,Rolling Summit,Hills,5400,5850,7,2,0,0,0,3,6,Very sparse structures; landform dominates,9
+S14,Ridge Descent,Hills,5850,6300,3,0,0,0,0,0,3,"Large slopes, exposed land, no urban fabric",3
+S15,Final Ridge,Hills,6300,6847.3,2,0,0,0,0,0,2,Finish approach; visual landscape beats structures,2

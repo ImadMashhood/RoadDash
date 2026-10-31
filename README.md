@@ -212,6 +212,26 @@ Implementation evidence: [track format](docs/tracks/AUTHORING.md), [schema](crat
 
 - [x] **P02-016** Keep hill guardrails on outer curves, open the straights, and add varied trees in all zones plus window/door/roof, cross-vehicle and pedestrian detail. Evidence: [environment](src/environment.rs), [native captures](docs/testing/PART_03.md).
 
+### First-map structural world - B00–B10
+
+The [base-world plan](docs/world/BASE_WORLD.md) ingests the three supplied design
+files. B00–B02 establish the generator foundation; existing geometry remains.
+247 is a validated allocation target, not the count of new buildings spawned.
+Use `--validate-world` / `--inspect-world` with world, archetype and track JSON
+paths; F4 previews station-based districts. Evidence: [receipt](docs/world/BASE_WORLD_TESTS.md).
+
+- [x] **BW-B00** Capture existing track/world statistics, measured legacy building census, reproducibility and native baseline views.
+- [x] **BW-B01** Validate 15 sections, 19 archetypes, lot rules and exact 247/177/70/family budgets; allocate stable seeded planning IDs headlessly.
+- [x] **BW-B02** Bind districts to baked road stations, resolve/blend all boundaries and final endpoint, reject mismatched courses and expose F4 preview.
+- [ ] **BW-B03** Generate field parcels and farm/suburban/city/hill ground classification across all sections.
+- [ ] **BW-B04** Build at least seven reserved junctions, side-street foundations and continuous accessible curbs/sidewalks.
+- [ ] **BW-B05** Generate non-overlapping, reachable frontage/secondary lots outside every road/junction/gate/spawn reservation.
+- [ ] **BW-B06** Place exactly 247 structural building roots with mass/roof/collision and validated full-footprint clearance.
+- [ ] **BW-B07** Grade supported pads and hillside foundations with shared render/collision heights and local cut/fill.
+- [ ] **BW-B08** Prove farm/city-alley/hill on-foot recovery and escape paths without geometry traps.
+- [ ] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
+- [ ] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
+
 ### Part 03 - Motorcycle physics and controls
 
 PDF pp. 11-12, 32; references R02, R03, R04.

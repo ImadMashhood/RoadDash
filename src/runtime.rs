@@ -232,13 +232,21 @@ impl Plugin for RoadWorldPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(
             Startup,
-            (world::setup_world, world::validate_scenery)
+            (
+                crate::world_gen::setup_plan,
+                world::setup_world,
+                world::validate_scenery,
+                crate::world_gen::report::capture_baseline,
+            )
                 .chain()
                 .in_set(StartupSet::World),
         )
         .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
         .init_resource::<crate::environment::TrackInspector>()
-        .add_systems(Update, crate::environment::inspector);
+        .add_systems(
+            Update,
+            (crate::environment::inspector, crate::world_gen::preview).chain(),
+        );
     }
 }
 pub struct RoadPresentationPlugin;

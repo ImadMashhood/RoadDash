@@ -162,6 +162,16 @@ transport, P12 career save migration/backups, P15 rendering/audio budgets, P16
 hardware/clean-install/performance/release audit. No requirement was removed to
 close this session.
 
+## First-map procedural base-world foundation — 2026-10-30
+
+User supplied a structural world PDF, JSON and section CSV and requested starting
+first-map procedural generation. [Review, contracts and BW-B00–B10 dependency/
+acceptance register](world/BASE_WORLD.md); [verification](world/BASE_WORLD_TESTS.md).
+B00–B02 implement the additive foundation; B03–B10 are open. Exact target counts
+are allocation evidence only; no new 247-building geometry is claimed. Existing
+route, seed, gameplay, old scenery and physics are preserved. Source PDF handoff
+language is design guidance; active user scope controls this session.
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Baseline and dependency decisions
@@ -267,6 +277,30 @@ close this session.
 - [x] **P02-015** Verify actual hill crash/get-up/run/remount at elevation without resetting the bike to sea level. Evidence: [recovery](../src/recovery.rs), [native receipt](../docs/testing/PART_02.md).
 
 - [x] **P02-016** Keep hill guardrails on outer curves, open the straights, and add varied trees in all zones plus window/door/roof, cross-vehicle and pedestrian detail. Evidence: [environment](../src/environment.rs), [native captures](../docs/testing/PART_03.md).
+
+### First-map structural world - B00–B10
+
+- [x] **BW-B00** Capture existing track/world statistics, measured legacy building census, reproducibility and native baseline views.
+
+- [x] **BW-B01** Validate 15 sections, 19 archetypes, lot rules and exact 247/177/70/family budgets; allocate stable seeded planning IDs headlessly.
+
+- [x] **BW-B02** Bind districts to baked road stations, resolve/blend all boundaries and final endpoint, reject mismatched courses and expose F4 preview.
+
+- [ ] **BW-B03** Generate field parcels and farm/suburban/city/hill ground classification across all sections.
+
+- [ ] **BW-B04** Build at least seven reserved junctions, side-street foundations and continuous accessible curbs/sidewalks.
+
+- [ ] **BW-B05** Generate non-overlapping, reachable frontage/secondary lots outside every road/junction/gate/spawn reservation.
+
+- [ ] **BW-B06** Place exactly 247 structural building roots with mass/roof/collision and validated full-footprint clearance.
+
+- [ ] **BW-B07** Grade supported pads and hillside foundations with shared render/collision heights and local cut/fill.
+
+- [ ] **BW-B08** Prove farm/city-alley/hill on-foot recovery and escape paths without geometry traps.
+
+- [ ] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
+
+- [ ] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
 
 ### Part 03 - Motorcycle physics and controls
 

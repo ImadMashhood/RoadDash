@@ -1,0 +1,411 @@
+{
+  "schema_version": 1,
+  "generator_version": 1,
+  "track_id": "valley-run-01",
+  "seed": 17031,
+  "road_length_m": 6847.3,
+  "length_tolerance_m": 0.25,
+  "transition_blend_m": 30.0,
+  "building_target_total": 247,
+  "near_road": 177,
+  "secondary_row": 70,
+  "archetype_counts": {
+    "farm": 35,
+    "residential": 63,
+    "commercial": 46,
+    "urban": 73,
+    "hill": 30
+  },
+  "sections": [
+    {
+      "id": "S01",
+      "name": "Pasture Gate",
+      "start_m": 0,
+      "end_m": 450,
+      "near": 1,
+      "secondary": 0,
+      "farm": 1,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 0,
+      "character": "Flat pasture; first sightline; minimal buildings",
+      "total": 1,
+      "district": "farms",
+      "lot_rules_id": "farms_v1"
+    },
+    {
+      "id": "S02",
+      "name": "Creek Plain",
+      "start_m": 450,
+      "end_m": 900,
+      "near": 2,
+      "secondary": 0,
+      "farm": 2,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 0,
+      "character": "Low drainage swale and large uninterrupted ground",
+      "total": 2,
+      "district": "farms",
+      "lot_rules_id": "farms_v1"
+    },
+    {
+      "id": "S03",
+      "name": "Open Harvest",
+      "start_m": 900,
+      "end_m": 1350,
+      "near": 2,
+      "secondary": 0,
+      "farm": 2,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 0,
+      "character": "Fields alternate sides; no continuous frontage",
+      "total": 2,
+      "district": "farms",
+      "lot_rules_id": "farms_v1"
+    },
+    {
+      "id": "S04",
+      "name": "Long Farm Bend",
+      "start_m": 1350,
+      "end_m": 1800,
+      "near": 3,
+      "secondary": 0,
+      "farm": 3,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 0,
+      "character": "Field curves, gentle grading, a farm cluster",
+      "total": 3,
+      "district": "farms",
+      "lot_rules_id": "farms_v1"
+    },
+    {
+      "id": "S05",
+      "name": "County Approach",
+      "start_m": 1800,
+      "end_m": 2250,
+      "near": 4,
+      "secondary": 0,
+      "farm": 4,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 0,
+      "character": "More rural buildings; county-road threshold",
+      "total": 4,
+      "district": "farms",
+      "lot_rules_id": "farms_v1"
+    },
+    {
+      "id": "S06",
+      "name": "Rural Edge",
+      "start_m": 2250,
+      "end_m": 2700,
+      "near": 8,
+      "secondary": 1,
+      "farm": 7,
+      "residential": 2,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 0,
+      "character": "Scattered houses among working farm parcels",
+      "total": 9,
+      "district": "rural_edge",
+      "lot_rules_id": "rural_edge_v1"
+    },
+    {
+      "id": "S07",
+      "name": "Edge Suburb",
+      "start_m": 2700,
+      "end_m": 3150,
+      "near": 17,
+      "secondary": 4,
+      "farm": 5,
+      "residential": 10,
+      "commercial": 6,
+      "urban": 0,
+      "hill": 0,
+      "character": "Houses, small commercial frontages; first side streets",
+      "total": 21,
+      "district": "rural_edge",
+      "lot_rules_id": "rural_edge_v1"
+    },
+    {
+      "id": "S08",
+      "name": "Residential Strip",
+      "start_m": 3150,
+      "end_m": 3600,
+      "near": 24,
+      "secondary": 9,
+      "farm": 5,
+      "residential": 18,
+      "commercial": 10,
+      "urban": 0,
+      "hill": 0,
+      "character": "Gridded lots and continuous sidewalks",
+      "total": 33,
+      "district": "suburban",
+      "lot_rules_id": "suburban_v1"
+    },
+    {
+      "id": "S09",
+      "name": "Warehouse Grid",
+      "start_m": 3600,
+      "end_m": 4050,
+      "near": 30,
+      "secondary": 14,
+      "farm": 0,
+      "residential": 18,
+      "commercial": 12,
+      "urban": 14,
+      "hill": 0,
+      "character": "Tighter blocks; warehouses and low-rise blocks",
+      "total": 44,
+      "district": "inner_city",
+      "lot_rules_id": "inner_city_v1"
+    },
+    {
+      "id": "S10",
+      "name": "Dense Downtown",
+      "start_m": 4050,
+      "end_m": 4500,
+      "near": 36,
+      "secondary": 20,
+      "farm": 0,
+      "residential": 8,
+      "commercial": 10,
+      "urban": 38,
+      "hill": 0,
+      "character": "Continuous facade rhythm; short blocks and junctions",
+      "total": 56,
+      "district": "city_core",
+      "lot_rules_id": "city_core_v1"
+    },
+    {
+      "id": "S11",
+      "name": "Urban Escape",
+      "start_m": 4500,
+      "end_m": 4950,
+      "near": 26,
+      "secondary": 14,
+      "farm": 6,
+      "residential": 5,
+      "commercial": 8,
+      "urban": 15,
+      "hill": 6,
+      "character": "Height change and mixed structures; city breaks apart",
+      "total": 40,
+      "district": "city_to_hills",
+      "lot_rules_id": "city_to_hills_v1"
+    },
+    {
+      "id": "S12",
+      "name": "Upper Estates",
+      "start_m": 4950,
+      "end_m": 5400,
+      "near": 12,
+      "secondary": 6,
+      "farm": 0,
+      "residential": 2,
+      "commercial": 0,
+      "urban": 3,
+      "hill": 13,
+      "character": "Hillside pads, terraced houses, road cut/fill",
+      "total": 18,
+      "district": "hills",
+      "lot_rules_id": "hills_v1"
+    },
+    {
+      "id": "S13",
+      "name": "Rolling Summit",
+      "start_m": 5400,
+      "end_m": 5850,
+      "near": 7,
+      "secondary": 2,
+      "farm": 0,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 3,
+      "hill": 6,
+      "character": "Very sparse structures; landform dominates",
+      "total": 9,
+      "district": "hills",
+      "lot_rules_id": "hills_v1"
+    },
+    {
+      "id": "S14",
+      "name": "Ridge Descent",
+      "start_m": 5850,
+      "end_m": 6300,
+      "near": 3,
+      "secondary": 0,
+      "farm": 0,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 3,
+      "character": "Large slopes, exposed land, no urban fabric",
+      "total": 3,
+      "district": "hills",
+      "lot_rules_id": "hills_v1"
+    },
+    {
+      "id": "S15",
+      "name": "Final Ridge",
+      "start_m": 6300,
+      "end_m": 6847.3,
+      "near": 2,
+      "secondary": 0,
+      "farm": 0,
+      "residential": 0,
+      "commercial": 0,
+      "urban": 0,
+      "hill": 2,
+      "character": "Finish approach; visual landscape beats structures",
+      "total": 2,
+      "district": "hills",
+      "lot_rules_id": "hills_v1"
+    }
+  ],
+  "lot_rules": [
+    {
+      "id": "farms_v1",
+      "frontage_m": {
+        "min_m": 60,
+        "max_m": 180
+      },
+      "depth_m": {
+        "min_m": 40,
+        "max_m": 110
+      },
+      "setback_m": {
+        "min_m": 12,
+        "max_m": 35
+      },
+      "pad_max_raw_relief_m": 2,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    },
+    {
+      "id": "rural_edge_v1",
+      "frontage_m": {
+        "min_m": 28,
+        "max_m": 90
+      },
+      "depth_m": {
+        "min_m": 30,
+        "max_m": 80
+      },
+      "setback_m": {
+        "min_m": 8,
+        "max_m": 20
+      },
+      "pad_max_raw_relief_m": 2,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    },
+    {
+      "id": "suburban_v1",
+      "frontage_m": {
+        "min_m": 14,
+        "max_m": 28
+      },
+      "depth_m": {
+        "min_m": 25,
+        "max_m": 45
+      },
+      "setback_m": {
+        "min_m": 4,
+        "max_m": 10
+      },
+      "pad_max_raw_relief_m": 1.5,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    },
+    {
+      "id": "inner_city_v1",
+      "frontage_m": {
+        "min_m": 18,
+        "max_m": 45
+      },
+      "depth_m": {
+        "min_m": 25,
+        "max_m": 60
+      },
+      "setback_m": {
+        "min_m": 0,
+        "max_m": 8
+      },
+      "pad_max_raw_relief_m": 0.8,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    },
+    {
+      "id": "city_core_v1",
+      "frontage_m": {
+        "min_m": 10,
+        "max_m": 24
+      },
+      "depth_m": {
+        "min_m": 20,
+        "max_m": 45
+      },
+      "setback_m": {
+        "min_m": 0,
+        "max_m": 3
+      },
+      "pad_max_raw_relief_m": 0.8,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    },
+    {
+      "id": "city_to_hills_v1",
+      "frontage_m": {
+        "min_m": 18,
+        "max_m": 40
+      },
+      "depth_m": {
+        "min_m": 25,
+        "max_m": 50
+      },
+      "setback_m": {
+        "min_m": 6,
+        "max_m": 18
+      },
+      "pad_max_raw_relief_m": 1.5,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    },
+    {
+      "id": "hills_v1",
+      "frontage_m": {
+        "min_m": 20,
+        "max_m": 55
+      },
+      "depth_m": {
+        "min_m": 20,
+        "max_m": 55
+      },
+      "setback_m": {
+        "min_m": 8,
+        "max_m": 25
+      },
+      "pad_max_raw_relief_m": 3.5,
+      "earthwork_margin_m": 4,
+      "access_width_m": 3,
+      "secondary_access_width_m": 6
+    }
+  ]
+}

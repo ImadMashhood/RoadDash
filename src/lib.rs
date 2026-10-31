@@ -19,6 +19,7 @@ pub mod ui;
 pub mod vehicle;
 pub mod verification;
 pub mod world;
+pub mod world_gen;
 
 use bevy::prelude::*;
 
