@@ -69,7 +69,7 @@ A radius-0.3 m sphere sweep protects the near-plane volume against solid static
 and moving geometry. Exclude sensors, the player's hidden chassis and owned
 recovery bodies to avoid starting inside the tracked ragdoll. Complete arbitrary
 confinement/overlap is not proven; standard obstacle/route checks are covered.
-FOV adds at most 8° with speed and is clamped to 60–95°. Anti-nausea removes shake,
+FOV adds at most 3° with speed and is clamped to 60–95°. Anti-nausea removes shake,
 speed-FOV, anticipation and peripheral speed lines, with a gentler follow rate.
 
 A regular HUD label reports AIRBORNE or TRACTION LIMIT / SLIP percentage using
@@ -87,12 +87,24 @@ See [receipt](testing/PART_04.md). A simulated Gamepad component is not a physic
 controller test or an external tester's responsiveness/readability acceptance.
 P04-004/008/009 remain open to that extent. No Part 05 advancement.
 
-Latest user corrections: removed cosmetic turn lean (physical suspension and wheel
-steering remain), unified all human visual states through `human`, added mass/
-height-aware civilian clearance jumps and explicit crossing-car wipeouts. These
-are integrated in the same follow-up; ordinary ragdoll crashes still preserve
-momentum without a launch. See the Part 04 receipt for six jump/four car cases.
+## Current handling / lean correction
 
-The seated human has an independent presentation pivot that cancels interpolated
-chassis pitch/roll while retaining yaw. Physical bike banking/suspension can move
-without tilting the character during steering; physics transforms are unchanged.
+Latest feedback supersedes the earlier upright-rider pivot. Both bike and human
+bank together from accumulated steering input only. Presentation removes physical
+road/chassis roll before adding this bank; road curves do not add lean. Grade and
+actual physical support remain. Shared human models, civilian clearance jumps and
+cross-car wipeouts are preserved. See [source investigation](research/ROAD_RASH_HANDLING.md).
+
+Near/default/far offsets relative to the focus are (0,1.1,-3.4), (0,1.5,-4.6),
+(0,2,-6) m. Velocity feed-forward offsets follow lag; a hard bound of offset length
++0.35 m prevents speed/smoothing from pulling the view farther away. Recovery and
+garage keep their separate framing. Optional speed FOV adds at most 3 degrees.
+Camera anticipation follows resolved steering force rather than raw input edges.
+The camera horizon itself never rolls with the bike.
+
+`rr_core::steering` holds normalized player steering force with speed-scaled
+angle target, bounded buildup and separate release/reversal response. The fixed
+driver consumes validated response tuning and clears memory on crash/reset.
+Raw input and resolved force are separately traced. Current timing is provisional
+RoadDash data; the entire original handling is not reproduced without missing
+reference specs/tables. [Correction receipt](testing/HANDLING_CORRECTION.md).

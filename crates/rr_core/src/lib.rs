@@ -1,6 +1,7 @@
 //! Renderer/physics-independent domain contracts shared by the offline client
 //! and future authoritative server. No Bevy or Rapier dependency is permitted.
 pub mod comfort;
+pub mod steering;
 use serde::{Deserialize, Serialize};
 
 pub const SIMULATION_HZ: f64 = 60.0;

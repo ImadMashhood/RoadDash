@@ -120,6 +120,26 @@ Original Part 03 lean-clamp presentation target is superseded by the user's
 explicit no-lean correction. Diagnostic lean demand/traction calculations remain.
 The shared model is procedural graybox, not the future production animation rig.
 
+## Handling / lean / camera correction after Part 04
+
+Latest request: reference handling is the target; turn force strengthens while
+held; bike and rider should bank together from input only, not road curvature;
+chase views were too distant. See [source investigation](research/ROAD_RASH_HANDLING.md)
+and [receipt](testing/HANDLING_CORRECTION.md). P04-015 is historical/superseded.
+User confirmed they have no original files. P03-020 remains open/blocked on
+verified authorized calibration and numeric parity; existing engine/brake/gears/
+traction/nitro behavior is not misrepresented as a complete original clone.
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| P03-018 / 03 | User explicitly requests C++ handling investigation | exact source snapshot, rights check | Trace control/physics/motion and identify missing data; source-linked research and R01 update |
+| P03-019 / 03 | Constant steering missed the reference's stored-force buildup | pure state, validated tuning, fixed input | Held force grows, release/reversal unwinds, speed dependence/no parked strafe; core and game tests; timings explicitly provisional |
+| P03-021 / 03 | User asks for twice-fast full lean on both sides | authored steering response, visual bank | Halve rise/release timing in all classes; 16 Hz visual response; same force/angle caps; both signs attain full bank quickly and neutral stays upright on curves; core/vehicle tests |
+| P03-022 / 03 | User asks for stronger turning at maximum lean | P03-019/021, handling profiles | Raise profile turn response by 25%; both adapters consume gain, full-left/right travel increases without larger visual angle; integration comparison and native smoke |
+| P03-020 / 03 | Entire handling equivalence needs original SPEC/table inputs and replay comparison | authorized verified values, independent engine compatibility | Match throttle/brake/gear/nitro/steer/grip/motion across bikes/surfaces with recorded numeric tolerances; open, user has no files |
+| P04-016 / 04 | User reverses no-lean feedback and forbids curve-driven lean | shared visuals, interpolated body pose | Bike/human same input bank, no roll from a banked road at zero input; actual presentation hierarchy test and native captures |
+| P04-017 / 04 | Camera lag and overhead far view zoomed out too far | interpolated pose/velocity, collision sweep | Near/default/far distances <=3.93/5.20/6.68 m from focus in 27 scenarios, including slow smoothing and 80 m/s; camera tests/native review |
+
 ## Added requirements and rationale
 
 | ID / part | Description and reason | Dependencies | Acceptance / verification |
@@ -282,6 +302,16 @@ close this session.
 
 - [x] **P03-016** Feed AI and human tick intentions through the same dynamic adapter, retaining AI traffic avoidance and launch grace. Evidence: [controller](../src/game.rs), [dynamic grid regression](../src/vehicle_tests.rs).
 
+- [x] **P03-018** Investigate the C++ reference's steering, drive/braking, traction, gear, nitro and motion paths at an exact revision, separating source facts from missing calibration data. Evidence: [investigation](../docs/research/ROAD_RASH_HANDLING.md).
+
+- [x] **P03-019** Accumulate player steering force while held, unwind on release/reversal, scale the target with speed, and prevent parked sideways driving. Evidence: [pure rules](../crates/rr_core/src/steering.rs), [integration tests](../src/vehicle_tests.rs). Timing values remain provisional RoadDash tuning.
+
+- [x] **P03-021** Double full-lean response left/right by halving steering buildup/return times and doubling visual bank response, retaining angle/force limits. Evidence: [symmetric rate test](../crates/rr_core/src/steering.rs), [full lean/neutral test](../src/vehicle_tests.rs).
+
+- [x] **P03-022** Increase full-lean turn strength by 25% in each handling class, with shared profile gain in both driving adapters and unchanged visual bank. Evidence: [left/right comparison](../src/vehicle_tests.rs), [verification receipt](../docs/testing/HANDLING_CORRECTION.md).
+
+- [ ] **P03-020** Reproduce and numerically verify the entire reference handling, including original bike specs, drive/brake ramps, gear thresholds, nitro charges, surface tables and fixed-point effects. Original calibration files are unavailable and the user has none; source reuse permission is unresolved. See [precise remaining work](../docs/research/ROAD_RASH_HANDLING.md).
+
 - [x] **P03-017** Preserve selected dry bike mass in abandoned wrecks and clear stale velocity on dynamic remount. Evidence: [mass/recovery regressions](../src/vehicle_tests.rs).
 
 ### Part 04 - Chase camera, speed feel, and input
@@ -312,7 +342,11 @@ close this session.
 
 - [ ] **P04-014** Verify the default mapping for the OS-discovered controller that Gilrs reports as unmapped; exercise real buttons/axes and add a licensed mapping only if needed. Evidence: [native receipt](../docs/testing/PART_04.md); physical mapping acceptance remains open.
 
-- [x] **P04-015** Keep the character upright during steering by removing cosmetic turn roll; retain physical suspension and wheel steering. Evidence: [model/roll regression](../src/human.rs).
+- [x] **P04-015** Historical correction: keep the character upright during steering. This was verified in Part 04, then superseded by the user’s coordinated, input-only bike/rider lean request in P04-016. [Historical receipt](../docs/testing/PART_04.md).
+
+- [x] **P04-016** Bank bike and rider together from accumulated steering input only; remove road/chassis bank from rendered roll and preserve the shared human model. Evidence: [bank/road-neutral test](../src/human.rs).
+
+- [x] **P04-017** Keep near/default/far camera views close at high speed, eliminate follow-lag zoom-out, and reduce optional speed FOV to three degrees. Evidence: [27 camera scenarios](../src/camera_tests.rs), [native receipt](../docs/testing/HANDLING_CORRECTION.md).
 
 - [x] **P04-010** Color only racer minimap dots by their shirt palette, sharing the model color source. Evidence: [palette test](../src/ui.rs), [shirt colors](../src/world.rs).
 

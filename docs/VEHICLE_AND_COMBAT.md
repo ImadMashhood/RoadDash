@@ -33,9 +33,9 @@ assistance uses bounded feedback torques. There is no lane-zero position magnet;
 lateral steering is speed-sensitive, with reduced road assistance and F6 adjustment.
 It remains an arcade road-tangent-assisted bike, not a free-heading full multibody
 motorcycle. Wheel spin, suspension travel and front-wheel steering are separate from the
-authoritative collision body. Latest user correction removes cosmetic steering
-lean from the character/bike; the previous 57-degree visual target is superseded.
-Lean demand remains in telemetry, not applied as a rendered turn roll.
+authoritative collision body. Latest feedback restores coordinated steering-input bank on bike and rider.
+Road/chassis roll is removed from the rendered pose before input bank; curves do
+not introduce lean. The original aggressive 57-degree visual target is superseded.
 
 A torque/RPM curve, redline cutoff and six automatic ratios drive longitudinal
 force, with engine/service braking and quadratic aerodynamic drag. The target
@@ -123,6 +123,7 @@ Rider palette identity survives crash/recovery/reset. Standing pedestrian suppor
 proxies and respawn occupancy checks now cover the shared model's 2.31 m height.
 This is original procedural geometry, not a new glTF/production animation rig.
 
-The seated human has an independent presentation pivot that cancels interpolated
-chassis pitch/roll while retaining yaw. Physical bike banking/suspension can move
-without tilting the character during steering; physics transforms are unchanged.
+The seated human inherits the same input-only visual bank as the bike, without
+its old counter-roll pivot. Actual physics transforms remain unchanged by
+presentation. See research/ROAD_RASH_HANDLING.md for verified steering behavior
+and the explicitly incomplete whole-handling equivalence gate.

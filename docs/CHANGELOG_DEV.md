@@ -101,3 +101,25 @@ scaled civilian launch to clear both cow/pedestrian height while preserving
 horizontal approach velocity. Crossing cars now have explicit wipeout handling,
 all-type contacts and CCD. Added six physical clearance cases, four crossing-car
 cases and model/no-roll regressions. No ordinary-crash launch was introduced.
+
+## 2026-10-30 — Reference-steering investigation and chase/lean correction
+
+Source-traced R01 commit 4e052aca; confirmed held steering ramps a persistent
+force, with release/reversal/speed effects. User lacks original SPEC/EXE data, so
+full handling parity remains explicitly open. Independently implemented pure
+steering memory and validated provisional response settings, clearing crash/reset
+history. Restored bike/rider bank together from input only; physical road/chassis
+roll cannot introduce automatic visual lean. Compact camera distances with
+velocity lead fix speed-dependent zoom-out; optional speed FOV limited to 3 deg.
+Research, source URLs/rights, checklist and testing evidence recorded in
+research/ROAD_RASH_HANDLING.md and testing/HANDLING_CORRECTION.md. No new
+third-party dependency/media/code imported. No Part 05 advancement.
+
+Latest user adjustment: doubled left/right full-lean response by halving all
+authored buildup/return times and increasing visual response from 8 to 16 Hz.
+Maximum steering force/lean angle unchanged; input-only bank still enforced.
+
+Latest turn-strength adjustment (P03-022): profile turn response increases 25%
+(light 1.5, balanced 1.25, heavy 1.025). Dynamic steering and the assisted
+adapter use the same profile gain. Maximum visual bank and the doubled lean
+response are unchanged. These remain authored RoadDash settings.

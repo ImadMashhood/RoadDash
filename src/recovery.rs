@@ -244,6 +244,8 @@ pub fn crash(
         } else {
             forward * rider.speed + Vec3::Y * rider.hop_velocity
         };
+    rider.steering = default();
+    rider.raw_steer = 0.0;
     let velocity = momentum + kick;
     let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
     let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {

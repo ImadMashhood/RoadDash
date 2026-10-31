@@ -42,7 +42,7 @@ impl Comfort {
     pub fn fov(&self, speed: f32, recovering: bool) -> f32 {
         (self.fov_degrees
             + if self.speed_fov && !self.anti_nausea && !recovering {
-                (speed.max(0.0) * 0.10).min(8.0)
+                (speed.max(0.0) * 0.04).min(3.0)
             } else {
                 0.0
             })

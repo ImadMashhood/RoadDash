@@ -79,3 +79,14 @@ Latest corrections: four human states share mesh/material/scale slots, steering
 demand does not roll visual root, six civilian-kind/class contacts clear measured
 height/pass obstacle with finite physics, and four cross-car cases wipe out (both
 adapters, approaching a stopped car / moving car striking a stopped bike).
+
+## Source-informed steering / camera correction
+
+Receipt: HANDLING_CORRECTION.md. Core checks held-force buildup, return/reversal,
+speed dependence/parked zero and timestep agreement; content accepts old profiles
+and rejects invalid response. Dynamic integration verifies increasing turn force
+and no parked strafe. Actual visual hierarchy banks bike/rider together while
+removing a tilted road's roll at zero steering. Camera distance stays bounded in
+27 mode/speed/render-rate scenarios with slow smoothing. Existing car/civilian,
+recovery, controls, collision and race tests stay in the full suite. Numeric
+original-game equivalence is not tested/claimed; P03-020 needs missing data.

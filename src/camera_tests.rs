@@ -116,3 +116,44 @@ fn retry_style_warp_snaps_camera_to_the_new_interpolated_pose() {
         "camera flew through the old world {camera:?} -> {player:?}"
     );
 }
+
+#[test]
+fn every_chase_view_stays_close_at_rest_and_high_speed_with_slow_smoothing() {
+    for fps in [60, 120, 144] {
+        for (mode, limit) in [(0, 5.20), (1, 3.93), (2, 6.68)] {
+            for speed in [0.0, 30.0, 80.0] {
+                let (mut app, camera) = camera_app(fps);
+                app.world_mut().resource_mut::<Race>().camera_mode = mode;
+                app.world_mut()
+                    .resource_mut::<crate::settings::Preferences>()
+                    .file
+                    .comfort
+                    .smoothing = 2.0;
+                for _ in 0..fps {
+                    {
+                        let world = app.world_mut();
+                        world.query::<&mut Rider>().single_mut(world).unwrap().speed = speed;
+                    }
+                    app.update();
+                    let world = app.world_mut();
+                    let fixed = world.resource::<Time<Fixed>>().overstep_fraction();
+                    let (t, h) = world
+                        .query_filtered::<(&Transform, &crate::runtime::PoseHistory), With<Rider>>()
+                        .single(world)
+                        .unwrap();
+                    let focus =
+                        crate::runtime::interpolated(t, Some(h), fixed).translation + Vec3::Y * 1.2;
+                    let distance = world
+                        .get::<Transform>(camera)
+                        .unwrap()
+                        .translation
+                        .distance(focus);
+                    assert!(
+                        distance <= limit,
+                        "mode {mode}, speed {speed}, {fps} Hz zoomed to {distance}"
+                    );
+                }
+            }
+        }
+    }
+}

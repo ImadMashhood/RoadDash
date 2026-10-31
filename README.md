@@ -53,7 +53,7 @@ The Linux build uses X11 (and XWayland on Wayland desktops). Windows and macOS a
 | F5 / F6 | Cycle handling preset / adjust road assist (developer tuning) |
 | R | Restart from the grid |
 
-The dynamic bike has assisted road-relative steering and independent physical momentum. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Nitro regenerates when released. Grass reduces traction and speed while remaining driveable; it does not drain armor or cause a crash by itself. Traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up, runs back to the actual fallen bike, lifts it upright, and remounts. Moving traffic and other racers can knock a rider down again during recovery.
+The dynamic bike has assisted road-relative steering and independent physical momentum. Holding a direction builds steering force; release and countersteering unwind it. Bike and rider lean together only from that steering input. The camera stays within compact chase distances at speed. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Nitro regenerates when released. Grass reduces traction and speed while remaining driveable; it does not drain armor or cause a crash by itself. Traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up, runs back to the actual fallen bike, lifts it upright, and remounts. Moving traffic and other racers can knock a rider down again during recovery.
 
 Controller: left stick steers, RT throttles, LT brakes, X/B punch left/right,
 Y boosts, A starts, Start pauses, Select restarts and right-stick click changes
@@ -94,6 +94,11 @@ package listed above. Multiple pads use the lowest entity ID; disconnect clears 
 - Persistent race count, wins, credits, and personal-best time.
 
 ![City graybox](docs/testing/part-04/08-city.jpg)
+
+Handling target: [arkits/road-rash investigation](docs/research/ROAD_RASH_HANDLING.md).
+Progressive steering is implemented; **the entire original handling is not yet
+reproduced**. Original bike/table data is absent, and current physics/profile
+values remain RoadDash-authored. [Correction evidence](docs/testing/HANDLING_CORRECTION.md).
 
 ## Current scope
 
@@ -228,9 +233,14 @@ PDF pp. 11-12, 32; references R02, R03, R04.
 
 - [x] **P03-015** Reduce road assistance without pulling the rider to lane zero; expose F6 adjustment and preserve free lane choice. Evidence: [stationary-offset regression](src/vehicle_tests.rs).
 - [x] **P03-016** Feed AI and human tick intentions through the same dynamic adapter, retaining AI traffic avoidance and launch grace. Evidence: [controller](src/game.rs), [dynamic grid regression](src/vehicle_tests.rs).
+- [x] **P03-018** Investigate the C++ reference's steering, drive/braking, traction, gear, nitro and motion paths at an exact revision, separating source facts from missing calibration data. Evidence: [investigation](docs/research/ROAD_RASH_HANDLING.md).
+- [x] **P03-019** Accumulate player steering force while held, unwind on release/reversal, scale the target with speed, and prevent parked sideways driving. Evidence: [pure rules](crates/rr_core/src/steering.rs), [integration tests](src/vehicle_tests.rs). Timing values remain provisional RoadDash tuning.
+- [x] **P03-021** Double full-lean response left/right by halving steering buildup/return times and doubling visual bank response, retaining angle/force limits. Evidence: [symmetric rate test](crates/rr_core/src/steering.rs), [full lean/neutral test](src/vehicle_tests.rs).
+- [x] **P03-022** Increase full-lean turn strength by 25% in each handling class, with shared profile gain in both driving adapters and unchanged visual bank. Evidence: [left/right comparison](src/vehicle_tests.rs), [verification receipt](docs/testing/HANDLING_CORRECTION.md).
+- [ ] **P03-020** Reproduce and numerically verify the entire reference handling, including original bike specs, drive/brake ramps, gear thresholds, nitro charges, surface tables and fixed-point effects. Original calibration files are unavailable and the user has none; source reuse permission is unresolved. See [precise remaining work](docs/research/ROAD_RASH_HANDLING.md).
 - [x] **P03-017** Preserve selected dry bike mass in abandoned wrecks and clear stale velocity on dynamic remount. Evidence: [mass/recovery regressions](src/vehicle_tests.rs).
 
-Part 03 evidence: [vehicle/combat contract](docs/VEHICLE_AND_COMBAT.md), [numeric tests](src/vehicle_tests.rs), [receipts](docs/testing/PART_03.md). P03-010 is partial: the 600-second simulated turning soak ran, but ten human rides/subjective feedback are not available. P03-011 stays open pending that beginner/fun acceptance; Part 04 was subsequently explicitly authorized while this gate stays open. Telemetry is sampled at the authoritative 60 Hz, with no fabricated 100 Hz data. Latest user correction removes rendered steering lean; the earlier lean-clamp target is superseded for presentation, while lean demand remains diagnostic.
+Part 03 evidence: [vehicle/combat contract](docs/VEHICLE_AND_COMBAT.md), [numeric tests](src/vehicle_tests.rs), [receipts](docs/testing/PART_03.md). P03-010 is partial: the 600-second simulated turning soak ran, but ten human rides/subjective feedback are not available. P03-011 stays open pending that beginner/fun acceptance; Part 04 was subsequently explicitly authorized while this gate stays open. Telemetry is sampled at the authoritative 60 Hz, with no fabricated 100 Hz data. Latest feedback restores coordinated bike/rider bank from steering input only; road curvature does not add lean. See P04-016/017 and the handling investigation.
 
 ### Part 04 - Chase camera, speed feel, and input
 
@@ -258,7 +268,10 @@ controller completion and external tester acceptance. No Part 05 advancement.
 
 - [ ] **P04-014** Verify the default mapping for the OS-discovered controller that Gilrs reports as unmapped; exercise real buttons/axes and add a licensed mapping only if needed. Evidence: [native receipt](docs/testing/PART_04.md); physical mapping acceptance remains open.
 
-- [x] **P04-015** Keep the character upright during steering by removing cosmetic turn roll; retain physical suspension and wheel steering. Evidence: [model/roll regression](src/human.rs).
+- [x] **P04-015** Historical correction: keep the character upright during steering. This was verified in Part 04, then superseded by the user’s coordinated, input-only bike/rider lean request in P04-016. [Historical receipt](docs/testing/PART_04.md).
+
+- [x] **P04-016** Bank bike and rider together from accumulated steering input only; remove road/chassis bank from rendered roll and preserve the shared human model. Evidence: [bank/road-neutral test](src/human.rs).
+- [x] **P04-017** Keep near/default/far camera views close at high speed, eliminate follow-lag zoom-out, and reduce optional speed FOV to three degrees. Evidence: [27 camera scenarios](src/camera_tests.rs), [native receipt](docs/testing/HANDLING_CORRECTION.md).
 
 - [x] **P04-010** Color only racer minimap dots by their shirt palette, sharing the model color source. Evidence: [palette test](src/ui.rs), [shirt colors](src/world.rs).
 

@@ -42,3 +42,9 @@ model constants, rather than per-profile authored fields. Runtime adds 70 kg
 rider mass; abandoned bikes keep dry mass. `--validate-handling PATH` is headless
 (exit 0/2). `ROADDASH_HANDLING` overrides startup; F5 selects live. Existing
 catalog cosmetics remain separate from these physical profiles.
+
+Reference-steering correction: handling presets now include an optional
+`steering` object: `rise_seconds` / `release_seconds` (0.1–4 s),
+`full_speed_mps` (1–40 m/s). Older schema-1 files receive defaults 0.5/0.3/12.
+These are explicitly authored provisional RoadDash values, not recovered original
+bike SPEC values. Missing/future calibration and full numeric parity remain open.

@@ -68,8 +68,16 @@ missing features, architectural debt and unverified platforms.
 See PROGRESS.md for task IDs, acceptance, dependencies and verification.
 
 Latest corrections: all human states share original procedural geometry/outfit;
-production skin/rig remains future work. Cosmetic steering roll is disabled per
-user request, with physical chassis motion still visible and the seated human kept upright. Civilian jumps are
+production skin/rig remains future work. Latest user feedback supersedes the upright-pivot correction: bike and human now
+bank together only from steering force, with road bank removed from visual roll. Civilian jumps are
 explicit arcade clearance responses, not ordinary crash impulses; broader crowd/
 low-speed pile tuning remains unverified beyond six finite clearance scenarios.
 Cross-car wipeouts are covered in both adapters, including moving-side impacts.
+
+- P03-REFERENCE: the entire Road Rash handling is not reproduced. Investigated
+  exact C++ snapshot 4e052aca; original BIKESPEC.RSC/EXE tables unavailable and user
+  confirmed no original files. Progressive steering uses authored provisional
+  timings; engine/brake/gear/grip/nitro/3D integration remain existing RoadDash
+  behavior. No original-bike numerical parity or code-reuse permission claimed.
+- Camera correction: follow-lag distance is bounded in all views; manual comfort/
+  high-refresh and physical-controller acceptance remain open as before.

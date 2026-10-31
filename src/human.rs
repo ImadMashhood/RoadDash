@@ -183,42 +183,52 @@ mod tests {
         crate::environment::spawn_pedestrian(&mut commands, &art, Vec3::ZERO, Quat::IDENTITY, 1.0);
     }
     #[test]
-    fn turn_demand_does_not_apply_cosmetic_roll_to_the_character() {
-        let mut app = App::new();
-        app.add_plugins(MinimalPlugins)
-            .add_systems(Update, (crate::vehicle::visuals, world::upright_riders));
-        let bike = app
-            .world_mut()
-            .spawn((
-                crate::vehicle::BikeState {
-                    lean: 1.0,
-                    ..default()
+    fn bike_and_rider_bank_together_without_accumulating_roll() {
+        use bevy::ecs::system::RunSystemOnce;
+        for lean in [-0.4, 0.0, 0.4] {
+            let mut app = crate::game::tests::simulation();
+            let bike = app
+                .world_mut()
+                .run_system_once(|mut commands: Commands, art: Res<Art>| {
+                    world::bike(&mut commands, &art, 0, true)
+                })
+                .unwrap();
+            let road_pose =
+                Transform::from_rotation(Quat::from_rotation_y(0.3) * Quat::from_rotation_z(0.35));
+            app.world_mut().entity_mut(bike).insert((
+                road_pose,
+                crate::vehicle::BikeState { lean, ..default() },
+                crate::runtime::PoseHistory {
+                    previous: road_pose,
+                    current: road_pose,
                 },
-                Transform::from_rotation(Quat::from_rotation_y(0.7) * Quat::from_rotation_z(0.5)),
-            ))
-            .id();
-        let root = app
-            .world_mut()
-            .spawn((
-                crate::runtime::VisualRoot { owner: bike },
-                Transform::IDENTITY,
-            ))
-            .id();
-        let human = app
-            .world_mut()
-            .spawn((world::UprightRider { owner: bike }, Transform::IDENTITY))
-            .id();
-        app.update();
-        app.update();
-        let chassis = app.world().get::<Transform>(bike).unwrap().rotation;
-        let pose = app.world().get::<Transform>(human).unwrap().rotation;
-        assert!(
-            (chassis * pose * Vec3::Y).dot(Vec3::Y) > 0.9999,
-            "character inherited chassis lean"
-        );
-        assert_eq!(
-            app.world().get::<Transform>(root).unwrap().rotation,
-            Quat::IDENTITY
-        );
+            ));
+            for _ in 0..60 {
+                app.update();
+            }
+            let world = app.world_mut();
+            let bank = world
+                .query::<(&crate::runtime::VisualRoot, &Transform)>()
+                .iter(world)
+                .find(|(r, _)| r.owner == bike)
+                .unwrap()
+                .1
+                .rotation;
+            let pose = world
+                .query::<(&world::RidingHumanPose, &Transform)>()
+                .iter(world)
+                .find(|(r, _)| r.owner == bike)
+                .unwrap()
+                .1
+                .rotation;
+            let chassis = world.get::<Transform>(bike).unwrap().rotation;
+            let up = Quat::from_rotation_y(-0.3) * (chassis * bank * Vec3::Y);
+            let angle = up.x.atan2(up.y);
+            assert!(
+                (angle + lean).abs() < 0.001,
+                "bank accumulated or wrong way: {angle}"
+            );
+            assert_eq!(pose, Quat::IDENTITY, "rider counteracted the bike's bank");
+        }
     }
 }
