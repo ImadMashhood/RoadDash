@@ -164,6 +164,10 @@ close this session.
 
 ## First-map procedural base-world foundation — 2026-10-30
 
+Completion follow-up: BW-B00–B10 and BW-X01–X03 verified. Ubuntu/Windows CI
+run 41166322394 passed implementation f245f2b; native 1080p survey p95 10.28 ms.
+See [complete receipt](world/COMPLETION_TESTS.md). No future major part started.
+
 User supplied a structural world PDF, JSON and section CSV and requested starting
 first-map procedural generation. [Review, contracts and BW-B00–B10 dependency/
 acceptance register](world/BASE_WORLD.md); [verification](world/BASE_WORLD_TESTS.md).
@@ -302,7 +306,7 @@ language is design guidance; active user scope controls this session.
 
 - [x] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
 
-- [ ] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
+- [x] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
 
 - [x] **BW-X01** Protect paired LOD origins and local terrain vertices against disappearing ground; verify all 160 tile pairs and building children plus the native atlas.
 

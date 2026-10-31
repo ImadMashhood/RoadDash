@@ -232,7 +232,7 @@ Evidence: [completion receipt](docs/world/COMPLETION_TESTS.md); [foundation hist
 - [x] **BW-B07** Grade supported pads and hillside foundations with shared render/collision heights and local cut/fill.
 - [x] **BW-B08** Prove farm/city-alley/hill on-foot recovery and escape paths without geometry traps.
 - [x] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
-- [ ] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
+- [x] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
 - [x] **BW-X01** Protect paired LOD origins and local terrain vertices against disappearing ground; verify all 160 tile pairs and building children plus the native atlas.
 - [x] **BW-X02** Record actual survey resolution/focus and use continuous uncapped benchmark updates so background idle timers cannot masquerade as frame cost.
 - [x] **BW-X03** Clear recovery motion/routes on exceptional rescue and apply one visible five-second penalty; verify normal capsule routes and rescue state transitions.

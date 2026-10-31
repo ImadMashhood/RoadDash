@@ -105,7 +105,11 @@ inferred.
 ## Platform / final gate
 
 Local implementation, automated, geometry, native survey and performance gates
-are satisfied. The updated Ubuntu/Windows CI run must finish before BW-B10 is
-checked; its result will be recorded here after publishing the verified source.
+are satisfied. [Ubuntu and Windows CI](https://github.com/ImadMashhood/RoadDash/actions/runs/41166322394)
+both passed for implementation commit `f245f2bcaf20d59e4eb171c164250740ce9ab15e`.
+The [CI receipt](completion/ci-results.json) records every configured step.
+BW-B00–B10 and BW-X01–X03 are checked. The final follow-up changes only tracking
+and verification documents; source/data/assets are identical to the passing
+implementation commit.
 Existing Windows GPU/controller/manual fun gates in other development parts
 remain separate. No future major development part was started.
