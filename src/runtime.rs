@@ -140,13 +140,18 @@ fn screen(race: Res<Race>, state: Res<State<AppScreen>>, mut next: ResMut<NextSt
 pub struct RoadSimulationPlugin;
 impl Plugin for RoadSimulationPlugin {
     fn build(&self, app: &mut App) {
-        app.init_resource::<Race>()
+        app.init_resource::<crate::vehicle::VehiclePhysicsAdapter>()
+            .init_resource::<crate::vehicle::Tuning>()
+            .init_resource::<crate::vehicle::VehicleTelemetry>()
+            .init_resource::<Race>()
             .init_resource::<game::Profile>()
             .init_resource::<game::Persistence>()
             .init_resource::<SimulationClock>()
             .init_resource::<crate::track::Track>()
             .add_message::<crate::sound::AudioCue>()
             .add_message::<recovery::SweptContact>()
+            .add_message::<crate::combat::AttackAttempt>()
+            .add_message::<crate::combat::NpcHit>()
             .insert_resource(Time::<Fixed>::from_hz(rr_core::SIMULATION_HZ))
             .insert_resource(TimestepMode::Fixed {
                 dt: 1.0 / rr_core::SIMULATION_HZ as f32,
@@ -161,27 +166,46 @@ impl Plugin for RoadSimulationPlugin {
                 FixedUpdate,
                 SimSet::AfterPhysics.after(PhysicsSet::Writeback),
             )
-            .add_systems(FixedPreUpdate, remember_previous)
+            .add_systems(
+                FixedPreUpdate,
+                (crate::vehicle::attach, remember_previous).chain(),
+            )
             .add_systems(
                 FixedUpdate,
                 (
                     recovery::impacts,
                     recovery::recover,
                     game::drive,
+                    crate::combat::melee,
+                    crate::npc::knockdowns,
                     crate::environment::patrol,
                     game::debris_cleanup,
                     recovery::slope_friction,
+                    crate::vehicle::forces,
                 )
                     .chain()
                     .in_set(SimSet::Gameplay),
             )
             .add_systems(
                 FixedUpdate,
-                (remember_current, tick)
+                (
+                    crate::vehicle::readback,
+                    crate::vehicle::telemetry,
+                    remember_current,
+                    tick,
+                )
                     .chain()
                     .in_set(SimSet::AfterPhysics),
             )
-            .add_systems(Update, interpolate_visuals);
+            .add_systems(
+                Update,
+                (
+                    interpolate_visuals,
+                    crate::vehicle::visuals,
+                    crate::vehicle::live_tuning,
+                )
+                    .chain(),
+            );
     }
 }
 pub struct RoadLifecyclePlugin;
@@ -227,6 +251,7 @@ impl Plugin for RoadPresentationPlugin {
                 (
                     world::animate_riders,
                     world::animate_runners,
+                    crate::environment::animate_civilians,
                     game::camera_occlusion,
                     crate::ui::update_ui,
                 )

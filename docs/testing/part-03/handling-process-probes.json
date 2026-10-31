@@ -1,0 +1,22 @@
+[
+  {
+    "case": "valid",
+    "exit": 0,
+    "output": "Valid handling: 3 presets"
+  },
+  {
+    "case": "future-version",
+    "exit": 2,
+    "output": "Handling validation failed: schema 1 needs three handling presets"
+  },
+  {
+    "case": "negative-grip",
+    "exit": 2,
+    "output": "Handling validation failed: invalid or duplicate handling preset"
+  },
+  {
+    "case": "duplicate-id",
+    "exit": 2,
+    "output": "Handling validation failed: invalid or duplicate handling preset"
+  }
+]

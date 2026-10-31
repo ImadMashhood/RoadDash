@@ -179,3 +179,59 @@ Part 02 integration follow-up: Cargo emits UTF-8 metadata independently of host
 code page. Audit subprocess/text readers now specify UTF-8; Windows cp1252
 regression is simulated in the Python unit suite. This corrects an observed CI
 failure, without weakening SPDX/hash requirements or claiming a native launch.
+
+## ADR-012 - 2026-10-30 - Pinned dynamic arcade chassis adapter
+
+Problem: Part 03 needs suspension, mass and traction without regressing the
+working race/recovery loop. Alternatives: upgrade engine/physics for a current
+vehicle API, fully articulated motorcycle, retain only kinematic movement.
+Selected: `VehiclePhysicsAdapter` with native-default dynamic body/two support
+rays, explicit inertia/COM, force suspension, torque/RPM/gears and combined grip.
+Shared AI/player intentions preserve existing avoidance. Separate visual lean
+and wheel animation; versioned pure handling validation; bounded 60 Hz telemetry.
+Three dry masses are 170/210/265 kg, plus 70 kg rider; wrecks keep dry mass.
+Remount clears old velocity. R08/R10 installed APIs are compatible; R03 studied
+only, no source reused. Tradeoffs: road-tangent force assistance and approximate
+tires/upright torque; not full multibody realism. Ten human rides/fun gate open.
+Future authority owns BikeState/intent/profile IDs. Rollback via assisted adapter;
+keep mass/recovery and numeric tests when migrating, never rewrite profile saves.
+
+## ADR-013 - 2026-10-30 - Direct combos and relative impacts
+
+Problem: broad proximity attacks and unconditional collision knockoffs caused
+start pileups. Alternatives: health-only per-hit damage or blanket contact immunity.
+Selected pure three-hit chain with consecutive <=3 s gaps and duplicate protection;
+resolve one direct side-by-side, visible target. AI has launch grace. Contact
+severity uses cached pre-solver relative closing velocity: >=50 km/h longitudinal
+or >=6 m/s side wipes out; lower impacts transfer bounded momentum. No universal
+rider-to-rider hop. Static/cow hazard responses remain separate. Tradeoff: arcade
+thresholds need playtest balancing. No external combat code copied. Future server
+must validate geometry/chain/velocity; rollback must retain matched-speed tap and
+0/2/4-second regressions rather than restoring broad proximity knockouts.
+
+## ADR-014 - 2026-10-30 - Bounded physical civilian knockdowns
+
+Problem: solid cows/pedestrians did not react like riders. Alternatives: cosmetic
+animation, unrestricted ragdolls, copy unknown-license rigs. Selected original
+10-body/9-joint cow and reused independent 11-body/10-joint humanoid builder;
+physical impacts or the direct combo trigger them. Max eight active; hide/disable
+standing root/patrol; restore after 18 s only if original location is unoccupied.
+A fresh-spawn guard respects deferred command timing; reset despawns parts/joints.
+Tradeoffs: prototype procedural bodies and safe timed respawn, no get-up animation.
+No third-party assets used. Future authority owns lifecycle; cosmetic rig changes
+must retain physical budgets. Rollback removes root/parts/collider disable state
+atomically; budget/reset/occupied-spawn tests protect against leaks and overlaps.
+
+## ADR-015 - 2026-10-30 - Shared shirt colors and readable roads
+
+Problem: map color request meant racers' shirts; overly strong centering/rails and
+curb knockoffs reduced road freedom. Selected shared model/HUD shirt palette only,
+reduced adjustable assistance with no lane-zero magnet, low sidewalks as support,
+American right-hand traffic and separated one-way cross lanes. Hill rails appear
+on outer curves only; original trees/windows/doors/vehicle/pedestrian detail adds
+readability. Alternatives: actor-category minimap markers, remove curb collision,
+uniform rails; rejected against clarified user intent/gameplay solidity.
+Tradeoffs: no navigation/traffic-light AI or production art/LOD yet. References:
+existing independently authored environment, no new media. Future content/traffic
+expansion must preserve support/visibility/actor collision contracts. Rollback
+must keep shared palette identity and ground tags; do not leave invisible curbs.

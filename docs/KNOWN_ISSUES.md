@@ -4,9 +4,8 @@ Updated 2026-10-30. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
 - P01-WIN: Windows GPU/audio/input launch and clean install have not been run on
-  this host. Prior Windows CI compilation/tests/features passed; its metadata audit failed
-  with cp1252 decoding. Explicit UTF-8 is fixed and regression-tested; the new
-  remote matrix result is still pending. No Windows hardware certificate is claimed.
+  this host. Part 02 Ubuntu/Windows CI run 41141131978 passed, including the corrected
+  UTF-8 metadata audit. Part 03 remote CI is recorded separately in its PR. No Windows hardware certificate is claimed.
 - P01-HW: native scripted rendering/audio is verified on Fedora/RTX 3080/Vulkan.
   Windows hardware/input verification and clean installation remain open. A short
   scripted smoke is not a production benchmark or a real gamepad test.
@@ -19,8 +18,13 @@ missing features, architectural debt and unverified platforms.
 - P02: Valley Run is authored/elevated and point-to-point. Optional branches,
   split/merge authoring, a visual editor and representative three-minute race
   pacing/playtest acceptance remain open.
-- P03: riding still uses a kinematic assisted controller, without wheel suspension,
-  combined tire forces or three handling presets.
+- P03: dynamic chassis/two-ray suspension/combined grip/three presets now run by
+  default. Forces remain road-assisted arcade handling, not a fully free-heading
+  multibody motorcycle. Ten human rides and beginner/fun acceptance are open;
+  simulated stability and scripted scenes do not establish subjective feel.
+- P03-TRACE: telemetry is authoritative 60 Hz, bounded to 3,600 samples; no
+  fabricated 100 Hz trace or full-session persistence. Slip reports tire-demand
+  saturation and lateral slip angle, not a detailed tire deformation model.
 - P05/P06/P07: no kicks/weapons/stamina, manual foot override or foot finish.
   Ordered bike gates are verified in P02. Recovery auto-seeks the actual bike.
 - P06-CONFINED: assisted recovery is verified in representative fallen poses,
@@ -30,8 +34,12 @@ missing features, architectural debt and unverified platforms.
 - P08/P12/P13: police, real garage/economy, career and multiplayer absent.
 - P02-END: missing an ordered gate requires R-to-retry; unfinished riders stop at
   the finish. There is no reverse driving/manual return-to-gate feature yet.
-- P02-ACTORS: cows are static solid graybox animals; pedestrians/cross traffic
-  use bounded fixed patrols, not navigation or traffic-light/priority AI.
+- P02-ACTORS: cows stand until hit; pedestrians/cross traffic use bounded patrols,
+  not grazing/navigation/traffic-light AI. Both actor kinds ragdoll on hard impact
+  or three direct strikes, with an eight-active budget and safe 18-second respawn.
+  Production get-up animations/animal behavior remain open.
+- P06-TUNING: motorcycle collision cutoffs (50 km/h longitudinal, 6 m/s side)
+  are original arcade tuning; broader human balance feedback remains pending.
 - P06-TISSUE: passive spring/damping approximates tissue; no anatomical muscle
   simulation, rigged skin or active physical animation.
 - P12-RECORDS: existing best_seconds is an aggregate legacy record; class/track

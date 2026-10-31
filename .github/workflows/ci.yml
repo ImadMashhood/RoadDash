@@ -26,7 +26,11 @@ jobs:
       - run: cargo fmt --all --check
       - run: cargo clippy --workspace --locked --all-targets -- -D warnings
       - run: cargo test --workspace --locked
+      - name: Dynamic vehicle numeric benchmark and simulated soak
+        if: runner.os == 'Linux'
+        run: cargo test --locked ten_minute_aggressive -- --ignored --nocapture
       - run: cargo build --locked
+      - run: cargo run --locked -- --validate-handling content/handling.json
       - run: cargo run --locked -- --validate-track content/tracks/valley.json
       - run: cargo run --locked -- --validate-track content/tracks/handling.json
       - run: cargo check --locked --no-default-features --features offline

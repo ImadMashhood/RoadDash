@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "presets": [
+    {
+      "id": "light-agile",
+      "dry_mass": 170.0,
+      "torque_nm": 90.0,
+      "top_speed": 58.0,
+      "nitro_speed": 78.0,
+      "grip": 1.45,
+      "turn_response": 1.2,
+      "spring": 17000.0,
+      "damper": 2000.0,
+      "drag": 0.25,
+      "road_assist": 0.3
+    },
+    {
+      "id": "balanced",
+      "dry_mass": 210.0,
+      "torque_nm": 115.0,
+      "top_speed": 55.0,
+      "nitro_speed": 75.0,
+      "grip": 1.5,
+      "turn_response": 1.0,
+      "spring": 20000.0,
+      "damper": 2400.0,
+      "drag": 0.28,
+      "road_assist": 0.3
+    },
+    {
+      "id": "heavy-powerful",
+      "dry_mass": 265.0,
+      "torque_nm": 145.0,
+      "top_speed": 61.0,
+      "nitro_speed": 80.0,
+      "grip": 1.4,
+      "turn_response": 0.82,
+      "spring": 25000.0,
+      "damper": 2800.0,
+      "drag": 0.3,
+      "road_assist": 0.3
+    }
+  ]
+}

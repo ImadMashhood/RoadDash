@@ -153,43 +153,15 @@ fn anatomical_joint(part: usize, anchor1: Vec3, anchor2: Vec3) -> GenericJoint {
     joint.set_contacts_enabled(false);
     joint
 }
-/// A real articulated rigid-body ragdoll. Adjacent body parts cannot collide;
-/// ball joints constrain translation while allowing the limbs to tumble.
-#[allow(clippy::too_many_arguments)]
-pub fn crash(
+pub fn humanoid(
     commands: &mut Commands,
     art: &Art,
     owner: Entity,
-    rider: &mut Rider,
-    recovery: &mut Recovery,
+    color: usize,
     origin: Vec3,
     rotation: Quat,
-    kick: Vec3,
-    context: &ReadRapierContext,
-) {
-    for part in recovery.parts.drain(..) {
-        commands.entity(part).despawn();
-    }
-    let old_runner = recovery.runner.take();
-    if let Some(runner) = old_runner {
-        commands.entity(runner).despawn();
-    }
-    recovery.pose = None;
-    let forward = (rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
-    let rotation = Quat::from_rotation_y(forward.x.atan2(forward.z));
-    let momentum =
-        if rider.motion_velocity.is_finite() && rider.motion_velocity.length_squared() > 0.001 {
-            rider.motion_velocity
-        } else {
-            forward * rider.speed + Vec3::Y * rider.hop_velocity
-        };
-    let velocity = momentum + kick;
-    let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
-    let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {
-        -1.0
-    } else {
-        1.0
-    };
+    velocity: Vec3,
+) -> Vec<Entity> {
     let specs = [
         (Vec3::new(0.0, 1.55, 0.0), Vec3::new(0.5, 0.58, 0.32), None),
         (
@@ -248,12 +220,12 @@ pub fn crash(
         let e = commands
             .spawn((
                 Visibility::default(),
-                Transform::from_translation(rider_origin + rotation * *p).with_rotation(rotation),
+                Transform::from_translation(origin + rotation * *p).with_rotation(rotation),
                 RigidBody::Dynamic,
                 Collider::cuboid(size.x * 0.5, size.y * 0.5, size.z * 0.5),
                 Velocity {
                     linvel: velocity,
-                    angvel: -forward * 0.5 * separation_side,
+                    angvel: rotation * Vec3::Z * -0.5,
                 },
                 ColliderMassProperties::Mass(match i {
                     0 => 14.0,
@@ -288,7 +260,7 @@ pub fn crash(
             } else if i >= 7 || i == 2 {
                 art.dark.clone()
             } else {
-                art.colors[rider.id].clone()
+                art.colors[color].clone()
             },
             Vec3::ZERO,
             *size,
@@ -304,6 +276,55 @@ pub fn crash(
         }
         bodies.push(e);
     }
+    bodies
+}
+
+/// A real articulated rigid-body ragdoll. Adjacent body parts cannot collide;
+/// ball joints constrain translation while allowing the limbs to tumble.
+#[allow(clippy::too_many_arguments)]
+pub fn crash(
+    commands: &mut Commands,
+    art: &Art,
+    owner: Entity,
+    rider: &mut Rider,
+    recovery: &mut Recovery,
+    origin: Vec3,
+    rotation: Quat,
+    kick: Vec3,
+    context: &ReadRapierContext,
+) {
+    for part in recovery.parts.drain(..) {
+        commands.entity(part).despawn();
+    }
+    let old_runner = recovery.runner.take();
+    if let Some(runner) = old_runner {
+        commands.entity(runner).despawn();
+    }
+    recovery.pose = None;
+    let forward = (rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
+    let rotation = Quat::from_rotation_y(forward.x.atan2(forward.z));
+    let momentum =
+        if rider.motion_velocity.is_finite() && rider.motion_velocity.length_squared() > 0.001 {
+            rider.motion_velocity
+        } else {
+            forward * rider.speed + Vec3::Y * rider.hop_velocity
+        };
+    let velocity = momentum + kick;
+    let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
+    let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {
+        -1.0
+    } else {
+        1.0
+    };
+    let bodies = humanoid(
+        commands,
+        art,
+        owner,
+        rider.id,
+        rider_origin,
+        rotation,
+        velocity,
+    );
     let wreck = if let Some(wreck) = recovery.wreck {
         commands.entity(wreck).insert(RigidBody::Dynamic);
         wreck
@@ -317,7 +338,7 @@ pub fn crash(
                 Quat::IDENTITY,
                 Collider::cuboid(0.38, 0.8, 1.12),
             )]),
-            ColliderMassProperties::Mass(170.0),
+            ColliderMassProperties::Mass(rider.bike_mass),
             Velocity {
                 linvel: momentum,
                 angvel: forward * 0.5 * separation_side,
@@ -570,6 +591,8 @@ pub fn recover(
                     rider.progress = progress;
                     rider.lane = lane;
                     rider.health = 100.0;
+                    rider.motion_velocity = Vec3::ZERO;
+                    rider.side_velocity = 0.0;
                     rider.crashed = 0.0;
                     rider.immunity = 1.0;
                     rider.impact_cooldown = 0.6;
@@ -598,6 +621,7 @@ enum Impact {
     Crash(Entity, Vec3),
     Hop(Entity),
     Kick(Entity, Vec3),
+    Nudge(Entity, Vec3),
 }
 
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
@@ -611,13 +635,17 @@ pub fn impacts(
     mut riders: Query<(&mut Rider, &mut Recovery, &mut Visibility)>,
     transforms: Query<&Transform>,
     owned: Query<&OwnedBody>,
-    (cars, cows, cross_cars): (
+    (cars, cows, cross_cars, npcs): (
         Query<&Traffic>,
         Query<(), With<crate::environment::Cow>>,
         Query<(), With<crate::environment::CrossTraffic>>,
+        Query<(), With<crate::npc::Npc>>,
     ),
-    velocities: Query<&Velocity>,
-    obstacles: Query<(), With<Obstacle>>,
+    (velocities, bike_states): (Query<&Velocity>, Query<&crate::vehicle::BikeState>),
+    (obstacles, ground): (
+        Query<(), With<Obstacle>>,
+        Query<(), With<crate::world::Ground>>,
+    ),
     controllers: Query<(Entity, &KinematicCharacterControllerOutput)>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
@@ -638,6 +666,13 @@ pub fn impacts(
             pairs.push((runner, contact.entity));
         }
     }
+    for pair in &mut pairs {
+        if pair.0.to_bits() > pair.1.to_bits() {
+            *pair = (pair.1, pair.0);
+        }
+    }
+    pairs.sort_unstable_by_key(|(a, b)| (a.to_bits(), b.to_bits()));
+    pairs.dedup();
     let mut actions = Vec::new();
     for (a, b) in pairs {
         for (bike, other) in [(a, b), (b, a)] {
@@ -647,17 +682,46 @@ pub fn impacts(
             if recovery.stage != RecoveryStage::Riding {
                 continue;
             }
-            let velocity = rider.motion_velocity;
+            let velocity = bike_states
+                .get(bike)
+                .map_or(rider.motion_velocity, |s| s.impact_velocity);
             let speed = velocity.length();
             if let Ok((other_rider, other_recovery, _)) = riders.get(other) {
-                if other_recovery.stage == RecoveryStage::Riding
-                    && (speed > other_rider.motion_velocity.length()
-                        || (speed == other_rider.motion_velocity.length()
-                            && bike.to_bits() < other.to_bits()))
-                    && speed > 0.75
+                if other_recovery.stage != RecoveryStage::Riding || bike.to_bits() > other.to_bits()
                 {
-                    actions.push(Impact::Crash(other, velocity * 0.45));
-                    actions.push(Impact::Hop(bike));
+                    continue;
+                }
+                let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) else {
+                    continue;
+                };
+                let normal = (b.translation - a.translation)
+                    .with_y(0.0)
+                    .normalize_or_zero();
+                let other_velocity = bike_states
+                    .get(other)
+                    .map_or(other_rider.motion_velocity, |s| s.impact_velocity);
+                let closing = (velocity - other_velocity).dot(normal).max(0.0);
+                let forward = (a.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
+                let longitudinal = normal.dot(forward).abs() > 0.7;
+                if rr_core::bike_contact_severity(closing, longitudinal)
+                    == rr_core::ContactSeverity::Wipeout
+                {
+                    let victim = if longitudinal && forward.dot(b.rotation * Vec3::Z) > 0.5 {
+                        if (b.translation - a.translation).dot(forward) > 0.0 {
+                            other
+                        } else {
+                            bike
+                        }
+                    } else if velocity.dot(normal).abs() >= other_velocity.dot(normal).abs() {
+                        other
+                    } else {
+                        bike
+                    };
+                    actions.push(Impact::Crash(victim, Vec3::ZERO));
+                } else if closing > 0.05 {
+                    let transfer = normal * (closing * 0.35).min(2.5);
+                    actions.push(Impact::Nudge(bike, -transfer));
+                    actions.push(Impact::Nudge(other, transfer));
                 }
             } else if let Ok(body) = owned.get(other) {
                 if body.owner == bike {
@@ -682,7 +746,9 @@ pub fn impacts(
                 }
             } else if cows.contains(other) && speed > 0.75 {
                 actions.push(Impact::Hop(bike));
-            } else if obstacles.contains(other)
+            } else if npcs.contains(other) {
+                // NPC impacts are handled by their own mass/topology knockdown system.
+            } else if !ground.contains(other) && obstacles.contains(other)
                 || cars
                     .get(other)
                     .is_ok_and(|car| speed + car.speed.abs() > 0.75)
@@ -714,6 +780,20 @@ pub fn impacts(
     }
     for action in actions {
         match action {
+            Impact::Nudge(owner, delta) => {
+                if let Ok((mut r, state, _)) = riders.get_mut(owner)
+                    && state.stage == RecoveryStage::Riding
+                    && r.impact_cooldown <= 0.0
+                    && let Ok(t) = transforms.get(owner)
+                {
+                    let forward = t.rotation * Vec3::Z;
+                    let right = forward.cross(Vec3::Y);
+                    r.side_velocity += delta.dot(right);
+                    r.speed = (r.speed + delta.dot(forward)).max(0.0);
+                    r.motion_velocity += delta;
+                    r.impact_cooldown = 0.15;
+                }
+            }
             Impact::Kick(body, impulse) => {
                 commands.entity(body).insert((
                     ExternalImpulse {
@@ -728,6 +808,12 @@ pub fn impacts(
                     && recovery.stage == RecoveryStage::Riding
                     && rider.impact_cooldown <= 0.0
                 {
+                    if velocities.contains(owner) {
+                        commands.entity(owner).insert(ExternalImpulse {
+                            impulse: Vec3::Y * 1456.0,
+                            torque_impulse: Vec3::ZERO,
+                        });
+                    }
                     rider.hop_velocity = 5.2;
                     rider.hop_height = rider.hop_height.max(0.02);
                     rider.speed *= 0.78;

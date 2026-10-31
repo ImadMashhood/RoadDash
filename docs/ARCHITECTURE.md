@@ -64,3 +64,25 @@ still follow physical rider/runner state; mounting uses actual terrain elevation
 F4 visualizes track geometry; headless --inspect-track/--validate-track validate
 both supplied track files in CI. No new engine/physics dependency or external
 asset pack is introduced. Surface friction/traction and steering tuning are typed.
+
+## Part 03 additions
+
+`rr_core::HitChain` and contact-severity/strike-geometry functions are pure rules.
+`rr_content::handling` validates schema-1 three-preset handling catalogs.
+`vehicle` owns the dynamic one-body/two-wheel-ray client adapter and `BikeState`;
+`game::drive` still produces shared player/AI intentions and validates race gates.
+`combat` resolves one direct/visible target per attack. `npc` owns bounded
+pedestrian/cow articulated bodies and safe delayed restoration.
+
+FixedPreUpdate attaches/configures the selected chassis before pose history.
+FixedUpdate consumes collision messages, recovery, shared drive intentions,
+melee/NPC hits, patrol/cleanup/slope friction and vehicle forces, then Rapier.
+Post-writeback reads authoritative BikeState and pre-next-impact velocity cache,
+records bounded tick telemetry, then captures interpolation poses/counters.
+Update interpolates visual roots before wheel/lean presentation. Physics mass,
+center of mass and inertia are independent from rider/wheel visual transforms.
+
+Native defaults to Dynamic; `ROADDASH_VEHICLE=assisted` retains comparison and
+legacy headless coverage. New adapter tests explicitly select Dynamic. F5 cycles
+validated presets; F6 adjusts assistance; F3 displays RPM/gear/slip/support.
+See [contract](VEHICLE_AND_COMBAT.md) for limits and rollback.

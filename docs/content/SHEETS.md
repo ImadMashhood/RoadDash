@@ -32,3 +32,13 @@ width/bank/sector/surface, ordered gates, eight spawns, prop archetypes and a
 seed. See ../tracks/AUTHORING.md. Bike sheets now include steering_rate_base and
 steering_rate_speed; older schema-1 catalogs receive validated defaults. Original
 world models and terrain/track-generation sources are registered separately.
+
+Part 03: `content/handling.json` is a versioned `{schema_version:1,presets:[...]}`
+catalog with exactly three unique stable IDs. Pure `rr_content::handling` rejects
+unknown fields, wrong versions, invalid mass/force/grip ranges and nonfinite
+values. Presets contain dry mass, torque, spring and damper, grip, aero drag, speed limits, steering response and
+road-assist scale. RPM thresholds and the six gear/final ratios remain shared
+model constants, rather than per-profile authored fields. Runtime adds 70 kg
+rider mass; abandoned bikes keep dry mass. `--validate-handling PATH` is headless
+(exit 0/2). `ROADDASH_HANDLING` overrides startup; F5 selects live. Existing
+catalog cosmetics remain separate from these physical profiles.

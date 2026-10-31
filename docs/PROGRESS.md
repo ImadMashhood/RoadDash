@@ -1,9 +1,11 @@
 # Development progress
 
-Previous implementation scope: Parts 00-01, 2026-10-30. Current user-authorized
-scope: reported handling/recovery fixes, followed by Part 02. The user explicitly
-changed the scenic map to point-to-point (farmland → city → hills); no return loop.
-No automatic advancement to Part 03 or later. The full original backlog is preserved in the generated
+Previous implementation scopes: Parts 00–01 and Part 02, 2026-10-30. Current
+user-authorized scope: direct combat/relative collision/NPC/traffic/curb fixes,
+shirt-colored racer minimap, curve-only hill rails, environment detail and weaker
+road assistance, followed by starting Part 03. Valley Run remains point-to-point
+(farmland → city → hills). No automatic advancement to Part 04.
+The full original backlog is preserved in the generated
 index below; README is the editable checkbox source. Run
 `python3 tools/sync_progress.py` after changing task status, then `--check` in CI.
 
@@ -58,6 +60,34 @@ same-tick rider/bike outcomes remain). P07-007/P12-005 retain class/track save w
 | P03-014 / 03 | User requests slightly tighter handling | validated bike tuning | About 20% greater lateral rates, old schema-1 catalogs load defaults, steering/frame-rate regressions pass |
 | P06-017 / 06 | Uniform joint limits fold limbs implausibly | existing articulated bodies, Rapier motor API | Directional hinges, bounded twist and passive tissue resistance; 100 dynamic drops, anchor/axis/finite/ground checks, native crash captures |
 | P06-018 / 06 | Wreck sticks to slopes; always-low friction drifts too far on flats | terrain ray normals, fixed physics | Low friction only on steep support; ramp regression and native hill/flat recovery |
+
+## Part 03 implementation and remaining gates
+
+The native default now uses the dynamic chassis adapter; the assisted controller
+remains an explicit comparison option. See [contract](VEHICLE_AND_COMBAT.md),
+[tests/measurements](testing/PART_03.md) and ADR-012–015. Pure direct-hit/contact
+rules live in rr_core; versioned handling validation lives in rr_content. Runtime
+vehicle, combat and NPC adapters are integrated into the fixed schedule.
+
+P03-003–009 are verified by automated numeric/curb/lean/frame-rate tests and native
+render/audio checks. P03-010 remains partial: a 600-second simulated aggressive
+turning soak passes, but ten human rides/controller feedback are missing.
+P03-011 stays open until distinct feel, beginner completion and fun are accepted.
+The force model is road-assisted arcade physics, not a free-heading multibody
+motorcycle. Existing Part 01/02 and foot-finish gates remain unchanged.
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| P02-016 / 02 | User requests fewer rails and richer scenery | seeded zones/solid terrain | Outer curve rails only; varied trees, detailed buildings/cross cars/pedestrians; native captures and source predicates |
+| P03-015 / 03 | Strong road-centering undermined lane choice | dynamic forces | Reduced adjustable assist, no lane-zero magnet; offset-at-rest regression and F6 native overlay |
+| P03-016 / 03 | Preserve AI avoidance when adding a new adapter | controller intent/fixed forces | Same AI/player intention path, launch grace; dynamic eight-rider grid test |
+| P03-017 / 03 | Adapter exposed stale remount velocity and class mass loss | crash/remount, presets | Stationary protected remount and correct dry wreck mass for all three presets; regression tests |
+| P04-010 / 04 | User clarifies colors mean racer shirts only | shared shirt palette/HUD | Eight racer dots match model colors, no actor-category markers; UI palette test and native image |
+| P05-009 / 05 | Broad melee/start fights caused immediate knockouts | pure hit chain/LOS | Three direct hits, each gap <=3 s; reach/side/height/heading/occlusion and duplicate protection; core/game tests |
+| P06-019 / 06 | Equal-speed contacts should transfer momentum | pre-solver velocities/contacts | Rear closing >=50 km/h or strong side impact wipes out; light taps nudge; threshold and game tests |
+| P06-020 / 06 | Cows/pedestrians must react physically | articulated bodies/fixed messages | Distinct 10/11-body rigs, eight-ragdoll cap, reset and occupied-spawn-safe cleanup; headless/native actor checks |
+| P06-021 / 06 | Sidewalk contact incorrectly caused crashes | support rays/Ground tagging | Low curb supports bike at elevation without knockoff; stationary and moving curb tests |
+| P08-010 / 08 | User requests US traffic and safe grid start | AI intent/fixed patrols | Positive-right forward traffic, separated one-way cross lanes, no early AI fights/weave; source/native/grid tests |
 
 ## Added requirements and rationale
 
@@ -185,25 +215,27 @@ close this session.
 
 - [x] **P02-015** Verify actual hill crash/get-up/run/remount at elevation without resetting the bike to sea level. Evidence: [recovery](../src/recovery.rs), [native receipt](../docs/testing/PART_02.md).
 
+- [x] **P02-016** Keep hill guardrails on outer curves, open the straights, and add varied trees in all zones plus window/door/roof, cross-vehicle and pedestrian detail. Evidence: [environment](../src/environment.rs), [native captures](../docs/testing/PART_03.md).
+
 ### Part 03 - Motorcycle physics and controls
 
 - [x] **P03-001** M0: reach the finish with a kinematic road-following arcade controller, throttle, braking, steering/lean visuals, and nitro. Evidence: [racing controller](../src/game.rs).
 
-- [x] **P03-002** Integrate collision-driven knockoff, continuous movement checks against solid geometry, and impact launch/landing/bounce behavior. Evidence: [controller](../src/game.rs), [impacts](../src/recovery.rs), steering/collision/bounce tests.
+- [x] **P03-002** Integrate collision-driven knockoff, continuous movement checks against solid geometry, and impact launch/landing/bounce behavior. Evidence: [controller](../src/game.rs), [impacts](../src/recovery.rs), steering/collision/bounce tests. Rider-to-rider contact is now severity-based (P06-019); historical universal hops are superseded.
 
-- [ ] **P03-003** M1: implement a dynamic chassis with mass, center of mass/inertia, upright assist, and separate rider/wheel visuals behind `VehiclePhysicsAdapter`.
+- [x] **P03-003** M1: implement a dynamic chassis with mass, center of mass/inertia, upright assist, and separate rider/wheel visuals behind `VehiclePhysicsAdapter`.
 
-- [ ] **P03-004** M2: add front/rear wheel contact rays, spring-damper suspension forces, engine braking, service braking, and a torque/RPM/redline/gear model.
+- [x] **P03-004** M2: add front/rear wheel contact rays, spring-damper suspension forces, engine braking, service braking, and a torque/RPM/redline/gear model.
 
-- [ ] **P03-005** M3: implement surface-dependent combined longitudinal/lateral traction budget, slip, controlled drift, speed-sensitive steering, aerodynamic drag proportional to speed squared, and low-speed self-righting.
+- [x] **P03-005** M3: implement surface-dependent combined longitudinal/lateral traction budget, slip, controlled drift, speed-sensitive steering, aerodynamic drag proportional to speed squared, and low-speed self-righting.
 
-- [ ] **P03-006** Define a simulation-facing `BikeState` with pose/velocity, yaw/lean, slip, grounded wheels, actual RPM/gear, damage, and rider condition references.
+- [x] **P03-006** Define a simulation-facing `BikeState` with pose/velocity, yaw/lean, slip, grounded wheels, actual RPM/gear, damage, and rider condition references.
 
-- [ ] **P03-007** Author three data-driven handling presets: light/agile, balanced, and heavy/powerful; initially target 150-290 kg dry plus rider, 0-100 km/h in 3.5-6.5 s, and a roughly 50-60 degree lean clamp.
+- [x] **P03-007** Author three data-driven handling presets: light/agile, balanced, and heavy/powerful; initially target 150-290 kg dry plus rider, 0-100 km/h in 3.5-6.5 s, and a roughly 50-60 degree lean clamp.
 
-- [ ] **P03-008** Expose live tuning and per-tick telemetry: bike ID, tick/dt, pose, velocity, inputs, yaw rate, lean, wheel contacts, spring forces, slip, surface mu, damage, and crash state.
+- [x] **P03-008** Expose live tuning and per-tick telemetry: bike ID, tick/dt, pose, velocity, inputs, yaw rate, lean, wheel contacts, spring forces, slip, surface mu, damage, and crash state.
 
-- [ ] **P03-009** Benchmark acceleration, braking distance, steady turns, lean recovery, and curb hits; compare numeric results at 30/60/120 render FPS and collect 100 Hz traces where needed.
+- [x] **P03-009** Benchmark acceleration, braking distance, steady turns, lean recovery, and curb hits; compare numeric results at 30/60/120 render FPS and collect 100 Hz traces where needed.
 
 - [ ] **P03-010** Run a ten-minute aggressive-turning soak without NaNs/tunneling/unexplained flips; record at least ten test rides and controller feedback.
 
@@ -214,6 +246,12 @@ close this session.
 - [x] **P03-013** Allow player/AI forward movement in grass, with reduced traction/speed and no grass-only health loss or knockoff; AI can return to the road. Evidence: [four-scenario regression](../src/game.rs).
 
 - [x] **P03-014** Tighten lateral handling approximately 20% using validated authored steering rates, retaining older schema-1 catalogs with defaults. Evidence: [tuning](../content/catalog.json), [schema tests](../crates/rr_content/src/lib.rs).
+
+- [x] **P03-015** Reduce road assistance without pulling the rider to lane zero; expose F6 adjustment and preserve free lane choice. Evidence: [stationary-offset regression](../src/vehicle_tests.rs).
+
+- [x] **P03-016** Feed AI and human tick intentions through the same dynamic adapter, retaining AI traffic avoidance and launch grace. Evidence: [controller](../src/game.rs), [dynamic grid regression](../src/vehicle_tests.rs).
+
+- [x] **P03-017** Preserve selected dry bike mass in abandoned wrecks and clear stale velocity on dynamic remount. Evidence: [mass/recovery regressions](../src/vehicle_tests.rs).
 
 ### Part 04 - Chase camera, speed feel, and input
 
@@ -235,9 +273,11 @@ close this session.
 
 - [ ] **P04-009** **Exit gate:** riding is fast, comfortable, responsive, and finishable with keyboard and gamepad without unintended auto steering.
 
+- [x] **P04-010** Color only racer minimap dots by their shirt palette, sharing the model color source. Evidence: [palette test](../src/ui.rs), [shirt colors](../src/world.rs).
+
 ### Part 05 - Riding melee and weapons
 
-- [x] **P05-001** Implement left/right punches, directional range checks, damage, cooldown, simple arm animation, hit sound, and HUD feedback. Evidence: [combat](../src/game.rs), [animation](../src/world.rs), [sound](../src/sound.rs).
+- [x] **P05-001** Implement left/right punches, directional range checks, damage, cooldown, simple arm animation, hit sound, and HUD feedback. Evidence: [combat](../src/combat.rs), [animation](../src/world.rs), [sound](../src/sound.rs).
 
 - [x] **P05-002** Test directional damage and a single takedown reward. Evidence: `directional_melee_damages_the_target_and_awards_one_takedown` in [game tests](../src/game.rs).
 
@@ -252,6 +292,8 @@ close this session.
 - [ ] **P05-007** Build a matched-speed side-by-side combat harness; test no double-hit, misses 0.5 m beyond range, and cooldown/stamina/immunity boundaries.
 
 - [ ] **P05-008** **Exit gate:** three minutes of enjoyable punch/kick combat without weapons, with timing and hit validation evidence.
+
+- [x] **P05-009** Require three direct side-by-side hits with no more than three seconds between hits, with reach/side/height/heading/occlusion checks, one target per attack and duplicate-hit protection. Evidence: [core rules](../crates/rr_core/src/lib.rs), [melee](../src/combat.rs), [regressions](../src/game.rs).
 
 ### Part 06 - Damage, ragdoll, and controllable recovery
 
@@ -290,6 +332,12 @@ close this session.
 - [x] **P06-017** Replace universal ball-joint limits with anatomical stops, directional hinges and bounded passive tissue resistance; verify 100 high-speed drops without detached joints or twisted hinge axes. Evidence: [articulation](../src/recovery.rs), [stress test](../src/game.rs).
 
 - [x] **P06-018** Make fallen bikes slide on steep solid terrain while retaining flat-road stopping friction. Evidence: [slope contact friction](../src/recovery.rs), [ramp regression](../src/game.rs).
+
+- [x] **P06-019** Classify motorcycle wipeouts by relative closing speed: >=50 km/h longitudinal or substantial side impact; lighter contacts nudge without universal launch/knockoff. Evidence: [severity rules](../crates/rr_core/src/lib.rs), [contact tests](../src/game.rs).
+
+- [x] **P06-020** Add distinct pedestrian/cow ragdolls with direct-hit and solid-impact paths, an eight-actor budget, safe delayed standing and complete reset cleanup. Evidence: [NPC systems/tests](../src/npc.rs), [native actor capture](../docs/testing/PART_03.md).
+
+- [x] **P06-021** Treat sidewalks as rideable support so low curb contact raises the bike instead of causing an obstacle wipeout. Evidence: [suspension](../src/vehicle.rs), [curb-transition test](../src/vehicle_tests.rs).
 
 ### Part 07 - Race rules, HUD, and results
 
@@ -330,6 +378,8 @@ close this session.
 - [ ] **P08-008** Add AI debug goals, paths, desired speeds, and headless tournaments; complete 100 races without deadlock and test human/AI foot recovery separately.
 
 - [ ] **P08-009** **Exit gate:** fair, repeatable four-racer race with traffic, police, and melee, including opponent overtakes, hits, and recovery.
+
+- [x] **P08-010** Use American right-hand traffic lanes and separate one-way cross-traffic lanes; stop automatic AI fights/weaving during grid launch. Evidence: [traffic](../src/game.rs), [cross streets](../src/environment.rs), [grid tests](../src/vehicle_tests.rs).
 
 ### Part 09 - Vertical-slice playtest gate
 

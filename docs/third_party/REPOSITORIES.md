@@ -151,8 +151,6 @@ legal signoff. Full asset rights remain separate.
 
 ## Deferred candidates (UNVERIFIED; no new inspection/adoption)
 
-- R03 https://github.com/blyfoten/driftmaster - authors/license/version/maintenance
-  not reverified; research-only candidate P03/P06/P08; no source or assets used.
 - R05 https://github.com/cBournhonesque/lightyear - no selected revision; P10/P13
   authority/prediction investigation deferred; no networking code used.
 - R07 https://github.com/djeedai/bevy_hanabi - no selected revision; optional P15
@@ -176,3 +174,30 @@ adapter Apache notices remain unchanged. Decision: retain existing dependencies;
 independently implement spline/terrain/gate rules and original graybox geometry.
 No upstream example, game implementation or third-party media copied. Existing
 pinned versions and later coordinated-migration risk remain as recorded above.
+
+## R03 - blyfoten/driftmaster (Part 03 investigation, 2026-10-30)
+
+- URL/author: https://github.com/blyfoten/driftmaster — blyfoten.
+- Exact revision inspected: `a556ec8ade723c0af921c58859005f5e45a32fef` (HEAD
+  resolved with git ls-remote); README/root listing inspected.
+- Classification: **REFERENCE ONLY**; reuse permission **UNVERIFIED**.
+- Purpose: Bevy vehicle demonstration; README describes four wheel raycasts,
+  spring/damper suspension, grip-circle forces, torque/RPM/gears and telemetry.
+  Relevant to P03 chassis/contact/diagnostic design.
+- License evidence: no license grant located in the inspected root/README;
+  https://github.com/blyfoten/driftmaster/tree/a556ec8ade723c0af921c58859005f5e45a32fef
+  is evidence of the inspected snapshot, not a license URL/grant. Code reuse is
+  not cleared. Assets have no independently verified permission; none imported.
+- Compatibility/maintenance: README targets Bevy 0.14, whereas RoadDash is
+  0.17.3/Rapier 0.32.0. Current API compatibility and maintenance are unproven;
+  direct integration would require an audit/migration.
+- Decision/actual use: study the high-level wheel-ray/grip-budget approach only.
+  Independently implement a compact two-wheel arcade adapter on pinned APIs.
+  No source, examples, algorithms expressed as code, or media copied/adapted.
+
+Part 03 revisited installed R08/R10 APIs. Current official vehicle guide
+https://rapier.rs/docs/user_guides/bevy_plugin/vehicle_controller/ describes a
+controller not exposed by installed bevy_rapier3d 0.32.0's control module (which
+contains the character controller). Installed source determines compatibility.
+Use existing ray/force/torque APIs instead of changing the physics dependency.
+Existing dependency licenses/notices remain unchanged; no new dependency adopted.
