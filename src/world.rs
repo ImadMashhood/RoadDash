@@ -94,7 +94,7 @@ pub fn setup_world(
 #[derive(Component)]
 pub struct SeatedRiderVisual;
 #[derive(Component)]
-pub struct UprightRider {
+pub struct RidingHumanPose {
     pub owner: Entity,
 }
 
@@ -183,7 +183,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         }
         let pose = commands
             .spawn((
-                UprightRider { owner: root },
+                RidingHumanPose { owner: root },
                 Transform::default(),
                 Visibility::default(),
             ))
@@ -202,26 +202,9 @@ pub struct Arm {
     pub shoulder: Vec3,
 }
 
-/// Cancel chassis pitch/roll for the human while retaining interpolated yaw.
-#[allow(clippy::type_complexity)]
-pub fn upright_riders(
-    fixed: Res<Time<Fixed>>,
-    owners: Query<(&Transform, Option<&crate::runtime::PoseHistory>), Without<UprightRider>>,
-    mut poses: Query<(&UprightRider, &mut Transform)>,
-) {
-    for (pose, mut local) in &mut poses {
-        if let Ok((physical, history)) = owners.get(pose.owner) {
-            let shown = crate::runtime::interpolated(physical, history, fixed.overstep_fraction());
-            let heading = shown.rotation * Vec3::Z;
-            let yaw = Quat::from_rotation_y(heading.x.atan2(heading.z));
-            local.rotation = shown.rotation.inverse() * yaw;
-        }
-    }
-}
-
 pub fn animate_riders(
     riders: Query<&crate::game::Rider>,
-    poses: Query<&UprightRider>,
+    poses: Query<&RidingHumanPose>,
     mut arms: Query<(&Arm, &ChildOf, &mut Transform)>,
 ) {
     for (arm, parent, mut transform) in &mut arms {

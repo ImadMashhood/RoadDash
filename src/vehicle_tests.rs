@@ -564,3 +564,117 @@ fn cross_traffic_contacts_trigger_a_wipeout_in_both_adapters() {
         }
     }
 }
+
+#[test]
+fn a_held_turn_builds_steering_and_a_parked_bike_cannot_strafe() {
+    let mut app = app(1, 60);
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyD);
+    for _ in 0..3 {
+        app.update();
+    }
+    let start = snapshot(&mut app).1;
+    for _ in 0..120 {
+        app.update();
+    }
+    assert!(
+        snapshot(&mut app).1.distance(start) < 0.1,
+        "parked steering slid the bike sideways"
+    );
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .release(KeyCode::KeyD);
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyW);
+    for _ in 0..180 {
+        app.update();
+    }
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyD);
+    for _ in 0..6 {
+        app.update();
+    }
+    let tap = snapshot(&mut app).2.intent.steer;
+    for _ in 0..24 {
+        app.update();
+    }
+    let held = snapshot(&mut app).2.intent.steer;
+    assert!(
+        held > tap * 4.0,
+        "held turn failed to strengthen: tap {tap}, held {held}"
+    );
+}
+
+#[test]
+fn either_full_lean_arrives_within_six_tenths_and_straightens_without_input() {
+    for (key, sign) in [(KeyCode::KeyA, -1.0), (KeyCode::KeyD, 1.0)] {
+        let mut app = app(1, 60);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..180 {
+            app.update();
+        }
+        assert!(
+            snapshot(&mut app).2.lean.abs() < 0.001,
+            "road curvature introduced lean"
+        );
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(key);
+        for _ in 0..36 {
+            app.update();
+        }
+        assert!(
+            snapshot(&mut app).2.lean * sign > 0.5,
+            "full lean was too slow"
+        );
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .release(key);
+        for _ in 0..60 {
+            app.update();
+        }
+        assert!(
+            snapshot(&mut app).2.lean.abs() < 0.001,
+            "lean did not unwind on a curving road"
+        );
+    }
+}
+
+#[test]
+fn stronger_full_lean_turns_both_directions_without_increasing_visual_bank() {
+    for (key, sign) in [(KeyCode::KeyA, -1.0), (KeyCode::KeyD, 1.0)] {
+        let mut results = Vec::new();
+        for strength in [1.0, 1.25] {
+            let mut app = app(1, 60);
+            app.world_mut().resource_mut::<Tuning>().presets[1].turn_response = strength;
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyW);
+            for _ in 0..180 {
+                app.update();
+            }
+            let start = snapshot(&mut app).1;
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(key);
+            for _ in 0..60 {
+                app.update();
+            }
+            let (_, end, state) = snapshot(&mut app);
+            results.push(((start.x - end.x) * sign, state.lean.abs()));
+        }
+        assert!(
+            results[1].0 > results[0].0 + 0.2,
+            "stronger steering did not turn farther: {results:?}"
+        );
+        assert!(
+            (results[1].1 - results[0].1).abs() < 0.01,
+            "turn gain altered visual bank"
+        );
+    }
+}

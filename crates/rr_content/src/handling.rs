@@ -13,6 +13,8 @@ pub struct Handling {
     pub damper: f32,
     pub drag: f32,
     pub road_assist: f32,
+    #[serde(default)]
+    pub steering: rr_core::steering::SteeringTuning,
 }
 
 #[derive(Clone, Serialize, Deserialize)]
@@ -33,6 +35,7 @@ impl HandlingCatalog {
         }
         let mut ids = std::collections::HashSet::new();
         for p in &self.presets {
+            p.steering.validate()?;
             if !ids.insert(&p.id)
                 || rr_core::ContentId::try_from(p.id.clone()).is_err()
                 || ![
@@ -70,6 +73,24 @@ impl HandlingCatalog {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn steering_response_defaults_remain_compatible_and_invalid_tuning_is_rejected() {
+        let mut data: serde_json::Value =
+            serde_json::from_str(include_str!("../../../content/handling.json")).unwrap();
+        for p in data["presets"].as_array_mut().unwrap() {
+            p.as_object_mut().unwrap().remove("steering");
+        }
+        let catalog = HandlingCatalog::from_json(&data.to_string()).unwrap();
+        assert!(
+            catalog
+                .presets
+                .iter()
+                .all(|p| p.steering.rise_seconds == 0.5)
+        );
+        data["presets"][0]["steering"] =
+            serde_json::json!({"rise_seconds":0.0,"release_seconds":0.6,"full_speed_mps":12.0});
+        assert!(HandlingCatalog::from_json(&data.to_string()).is_err());
+    }
     #[test]
     fn version_mass_and_nonfinite_presets_are_rejected() {
         let mut c =

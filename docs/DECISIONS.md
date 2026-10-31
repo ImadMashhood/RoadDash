@@ -283,3 +283,30 @@ through behavior; four car cases verify knockoff. Future rig/authority changes
 must preserve consistent appearance and explicit impact categories. Rollback
 must retain shared dimensions/palette and the user's no-lean request, not restore
 independent body models or universal rider-to-rider launch behavior.
+
+## ADR-018 — 2026-10-30 — Reference steering memory and input-only bank
+
+Problem: the user now wants bike/rider lean together, no lean from curving roads,
+a close camera and the C++ reference's increasing turn strength. This explicitly
+supersedes ADR-017's upright-rider correction. Source R01 at 4e052aca confirms a
+speed-dependent bounded steering-force accumulator with growth/return rates;
+whole handling requires missing original SPEC/EXE data. No source-reuse grant
+found and no C++/disc data imported. Alternatives: instant constant steering,
+copy unknown-license code, invent values and claim exact parity. Rejected.
+
+Selected independent pure SteeringMemory, validated authored/provisional response
+fields and fixed player integration; AI unchanged. Both visible bike and human
+share one bank; remove road/chassis roll before applying input bank, retain grade
+and actual physics. Camera gets velocity feed-forward plus hard chase-distance
+bounds and modest FOV expansion; far view is a chase view, not overhead.
+Tradeoffs: source-informed behavior is not bit-exact handling parity; physics,
+longitudinal/gear/grip/nitro still use existing RoadDash tuning. P03-020 open until
+verified authorized calibration and comparative traces exist; user has no files.
+Future authority owns steering memory/reset and tuning. Rollback must retain
+shared models, no curve auto-bank and bounded view distances; never restore the
+superseded counter-roll pivot or label provisional settings as original values.
+
+Latest turn-strength adjustment (P03-022): profile turn response increases 25%
+(light 1.5, balanced 1.25, heavy 1.025). Dynamic steering and the assisted
+adapter use the same profile gain. Maximum visual bank and the doubled lean
+response are unchanged. These remain authored RoadDash settings.

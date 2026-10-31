@@ -201,7 +201,6 @@ impl Plugin for RoadSimulationPlugin {
                 Update,
                 (
                     interpolate_visuals,
-                    crate::world::upright_riders,
                     crate::vehicle::visuals,
                     crate::vehicle::live_tuning,
                 )

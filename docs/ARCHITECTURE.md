@@ -98,3 +98,12 @@ build_app loads preferences; tests/smoke do not touch real user settings.
 Camera reads interpolated position and heading, with volume collision sweeps;
 feedback reuses a bounded set of HUD entities. Bevy's pinned Gilrs feature adds
 native discovery without migrating input/physics libraries. See CAMERA_AND_INPUT.md.
+
+Handling correction: pure SteeringMemory in rr_core accumulates player turn force;
+rr_content validates optional response settings with older schema-1 defaults.
+Rider owns raw steering and resolved memory; drive consumes it at fixed ticks,
+crash/reset clears it, and telemetry distinguishes raw/force values. Bike and
+human share a visual bank driven only by steering; presentation removes chassis
+road roll and keeps grade. No human-only counter-roll system remains. Chase
+positions use velocity lead and bounded distance. Full original handling parity
+is not established; missing reference tuning is tracked in P03-020.

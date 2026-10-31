@@ -49,6 +49,7 @@ pub struct BikeState {
     pub impact_velocity: Vec3,
     pub yaw: f32,
     pub lean: f32,
+    pub raw_steer: f32,
     pub slip: f32,
     pub slip_angle: f32,
     pub wheel_forces: [f32; 2],
@@ -164,6 +165,9 @@ pub fn forces(
             state.preset = tuning.selected;
         }
         if !state.was_riding {
+            if r.drive_intent.steer.abs() < 0.001 {
+                state.lean = 0.0;
+            }
             *v = Velocity::linear(r.motion_velocity.clamp_length_max(80.0));
             state.was_riding = true;
         }
@@ -179,6 +183,7 @@ pub fn forces(
         let brake = input.brake || at_end;
         let nitro = input.nitro && throttle && r.nitro > 0.5;
         let steer = input.steer;
+        state.raw_steer = if r.id == 0 { r.raw_steer } else { steer };
         let mut normal = Vec3::ZERO;
         let mut load = 0.0;
         state.grounded = [false; 2];
@@ -279,7 +284,9 @@ pub fn forces(
             } else {
                 0.0
             };
-        let desired_side = steer * (1.8 + speed * 0.085) * p.turn_response + r.side_velocity;
+        let steering_side =
+            (steer * (1.8 + speed * 0.085) * p.turn_response).clamp(-speed * 0.45, speed * 0.45);
+        let desired_side = steering_side + r.side_velocity;
         let lateral = ((desired_side - v.linvel.dot(right)) * 3.0
             - track.curvature(r.progress) * speed * speed)
             * (p.dry_mass + 70.0);
@@ -311,15 +318,22 @@ pub fn forces(
         force.torque += upright_axis * (p.dry_mass + 70.0) * 28.0
             - Vec3::new(v.angvel.x, 0.0, v.angvel.z) * (p.dry_mass + 70.0) * 5.5;
         let heading = (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
-        let target = (forward + right * steer * 0.12)
-            .with_y(0.0)
-            .normalize_or_zero();
+        let target = (forward
+            + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.45, 0.45))
+        .with_y(0.0)
+        .normalize_or_zero();
         let yaw = heading.cross(target).y.atan2(heading.dot(target));
         force.torque.y += (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist) - v.angvel.y * 3.0)
             * (p.dry_mass + 70.0);
-        state.lean = ((speed * speed * track.curvature(r.progress) + steer * 3.0) / 9.81)
-            .atan()
-            .clamp(-1.0, 1.0);
+        // Positive roll leans toward camera-right (-local X).
+        // Reference bank is tied to accumulated steering force, not a separate
+        // body-only animation. Its documented limit/base ratio is 46 / 74.
+        let target_lean = if speed > 0.5 {
+            (steer * 46.0 / 74.0).atan().clamp(-0.6, 0.6)
+        } else {
+            0.0
+        };
+        state.lean += (target_lean - state.lean) * (1.0 - (-dt * 16.0).exp());
         state.wheel_spin = (state.wheel_spin + speed / 0.4 * dt) % std::f32::consts::TAU;
     }
 }
@@ -381,26 +395,63 @@ pub fn telemetry(
             log.samples.pop_front();
         }
         let tick = log.tick;
-        log.samples.push_back(serde_json::json!({"tick":tick,"dt":time.delta_secs(),"bike_id":identity.map_or("prototype-bike-01",|id|id.bike.as_str()),"rider_id":r.id,"health":r.health,"crash_state":format!("{:?}",recovery.stage),"surface_mu":b.surface_mu,"preset":tuning.presets[tuning.selected].id,"position":b.position.to_array(),"velocity":b.velocity.to_array(),"speed_mps":r.speed,"rpm":b.rpm,"gear":b.gear+1,"slip":b.slip,"grounded":b.grounded,"suspension_m":b.suspension,"spring_force_n":b.wheel_forces,"grip_force_n":b.grip_force,"tire_force_n":b.applied_tire_force.to_array(),"slip_angle":b.slip_angle,"yaw_rate":b.yaw_rate,"intent":b.intent,"lean":b.lean,"lane":r.lane}));
+        log.samples.push_back(serde_json::json!({"tick":tick,"dt":time.delta_secs(),"bike_id":identity.map_or("prototype-bike-01",|id|id.bike.as_str()),"rider_id":r.id,"health":r.health,"crash_state":format!("{:?}",recovery.stage),"surface_mu":b.surface_mu,"preset":tuning.presets[tuning.selected].id,"position":b.position.to_array(),"velocity":b.velocity.to_array(),"speed_mps":r.speed,"rpm":b.rpm,"gear":b.gear+1,"slip":b.slip,"grounded":b.grounded,"suspension_m":b.suspension,"spring_force_n":b.wheel_forces,"grip_force_n":b.grip_force,"tire_force_n":b.applied_tire_force.to_array(),"slip_angle":b.slip_angle,"yaw_rate":b.yaw_rate,"raw_steer":b.raw_steer,"steering_force":b.intent.steer,"intent":b.intent,"lean":b.lean,"lane":r.lane}));
     }
 }
 
 #[allow(clippy::type_complexity)]
 pub fn visuals(
-    bikes: Query<&BikeState>,
-    roots: Query<&crate::runtime::VisualRoot>,
+    bikes: Query<
+        (&BikeState, &Transform),
+        (Without<crate::runtime::VisualRoot>, Without<WheelVisual>),
+    >,
+    assisted: Query<
+        (&Rider, &Transform),
+        (
+            Without<BikeState>,
+            Without<crate::runtime::VisualRoot>,
+            Without<WheelVisual>,
+        ),
+    >,
+    mut roots: Query<(&crate::runtime::VisualRoot, &mut Transform), Without<WheelVisual>>,
     mut wheels: Query<(&WheelVisual, &ChildOf, &mut Transform), With<WheelVisual>>,
 ) {
+    // Remove chassis roll from presentation before applying steering bank. Road
+    // curvature/ground banking must not make an unsteered character lean.
+    for (root, mut t) in &mut roots {
+        let pose = bikes
+            .get(root.owner)
+            .map(|(state, physical)| (state.lean, physical))
+            .or_else(|_| {
+                assisted
+                    .get(root.owner)
+                    .map(|(r, physical)| (r.lean, physical))
+            });
+        if let Ok((lean, physical)) = pose {
+            let shown = physical.rotation * t.rotation;
+            let forward = shown * Vec3::Z;
+            let side = Vec3::Y.cross(forward).normalize_or_zero();
+            let unbanked = if side.length_squared() > 0.5 {
+                Quat::from_mat3(&Mat3::from_cols(side, forward.cross(side), forward))
+            } else {
+                shown
+            };
+            let next = physical.rotation.inverse()
+                * unbanked
+                * Quat::from_rotation_z(lean.clamp(-0.6, 0.6));
+            let pivot = Vec3::Y * 0.08;
+            let correction = t.rotation * pivot - next * pivot;
+            t.translation += correction;
+            t.rotation = next;
+        }
+    }
     for (wheel, parent, mut t) in &mut wheels {
-        if let Ok(root) = roots.get(parent.parent())
-            && let Ok(state) = bikes.get(root.owner)
+        if let Ok((root, _)) = roots.get(parent.parent())
+            && let Ok((state, _)) = bikes.get(root.owner)
         {
             t.translation.y = 0.42 - state.suspension[usize::from(wheel.0)].clamp(-0.2, 0.2);
-            t.rotation = Quat::from_rotation_y(if wheel.0 {
-                -state.intent.steer * 0.2
-            } else {
-                0.0
-            }) * Quat::from_rotation_z(std::f32::consts::FRAC_PI_2)
+            t.rotation = Quat::from_rotation_y(if wheel.0 { -state.raw_steer * 0.2 } else { 0.0 })
+                * Quat::from_rotation_z(std::f32::consts::FRAC_PI_2)
                 * Quat::from_rotation_y(state.wheel_spin);
         }
     }

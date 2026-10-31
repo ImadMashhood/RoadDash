@@ -184,6 +184,8 @@ pub struct Rider {
     pub drive_intent: rr_core::VehicleIntent,
     pub bike_mass: f32,
     pub palette_index: usize,
+    pub steering: rr_core::steering::SteeringMemory,
+    pub raw_steer: f32,
 }
 impl Rider {
     pub(crate) fn new(id: usize) -> Self {
@@ -210,6 +212,8 @@ impl Rider {
             drive_intent: default(),
             bike_mass: 170.0,
             palette_index: id,
+            steering: default(),
+            raw_steer: 0.0,
         }
     }
 }
@@ -421,10 +425,11 @@ pub fn drive(
     mut traffic: Query<(&mut Traffic, &mut Transform), Without<Rider>>,
     mut commands: Commands,
     mut profile: ResMut<Profile>,
-    (content, persistence, adapter): (
+    (content, persistence, adapter, handling): (
         Res<GameContent>,
         Res<Persistence>,
         Res<crate::vehicle::VehiclePhysicsAdapter>,
+        Res<crate::vehicle::Tuning>,
     ),
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
@@ -563,7 +568,10 @@ pub fn drive(
             }
             let steer;
             if is_player {
-                steer = player_intent.steer;
+                r.raw_steer = player_intent.steer;
+                let speed = r.speed;
+                let response = handling.presets[handling.selected].steering;
+                steer = r.steering.step(player_intent.steer, speed, dt, response);
                 // High speed on a tight curve pushes the rider toward the outside shoulder.
                 if !dynamic {
                     r.lane += track.curvature(r.progress) * r.speed * r.speed * dt * 0.025;
@@ -602,14 +610,15 @@ pub fn drive(
             if !dynamic {
                 r.lane += r.side_velocity * dt;
 
-                r.lane +=
-                    steer * (tuning.steering_rate_base + r.speed * tuning.steering_rate_speed) * dt;
+                r.lane += steer
+                    * handling.presets[handling.selected].turn_response
+                    * (tuning.steering_rate_base + r.speed * tuning.steering_rate_speed)
+                    * dt;
             }
             r.side_velocity *= (-dt * 2.5).exp();
-            r.lean = r.lean.lerp(
-                steer * 0.40 - track.curvature(r.progress) * r.speed * 0.55,
-                (dt * 8.0).min(1.0),
-            );
+            r.lean = r
+                .lean
+                .lerp((steer * 46.0 / 74.0).atan(), 1.0 - (-dt * 16.0).exp());
             if on_grass && !dynamic {
                 r.speed = (r.speed - dt * 1.8).max(0.0);
             }
@@ -767,7 +776,9 @@ pub fn drive(
                 }
             }
             transform.translation = destination;
-            transform.rotation = q * Quat::from_rotation_x(-r.hop_velocity * 0.025);
+            transform.rotation = q
+                * Quat::from_rotation_z(r.lean.clamp(-0.6, 0.6))
+                * Quat::from_rotation_x(-r.hop_velocity * 0.025);
         }
     }
     if active && race.phase != Phase::Finished {
@@ -868,9 +879,9 @@ pub fn camera(
         (Vec3::new(0.0, 3.0, -6.0), 0.0)
     } else {
         match race.camera_mode {
-            1 => (Vec3::new(0.0, 1.3, -4.2), 3.0),
-            2 => (Vec3::new(0.0, 15.8, -18.0), 8.0),
-            _ => (Vec3::new(0.0, 2.0, -5.8 - player.speed * 0.012), 4.0),
+            1 => (Vec3::new(0.0, 1.1, -3.4), 2.0),
+            2 => (Vec3::new(0.0, 2.0, -6.0), 4.0),
+            _ => (Vec3::new(0.0, 1.5, -4.6), 3.0),
         }
     };
     let dt = time.delta_secs().min(0.05);
@@ -886,7 +897,7 @@ pub fn camera(
     let anticipation = if recovering || comfort.anti_nausea {
         Vec3::ZERO
     } else {
-        rotation * Vec3::NEG_X * controls.buffer.held.steer * (player.speed * 0.025).min(1.2)
+        rotation * Vec3::NEG_X * player.drive_intent.steer * (player.speed * 0.025).min(1.2)
     };
     for (mut transform, mut projection) in &mut cameras {
         let shake = Vec3::new(
@@ -903,11 +914,7 @@ pub fn camera(
         let target = if race.phase == Phase::Garage {
             road + rotation * Vec3::new(5.0, 3.0, -6.0)
         } else {
-            focus
-                + view_rotation
-                    * (offset + Vec3::Z * if recovering { 0.0 } else { player.speed * 0.04 })
-                + anticipation
-                + shake
+            focus + view_rotation * offset + anticipation + shake
         };
         // Retry/scene warps must not fly the camera across the intervening world.
         let snapped = transform.translation.distance_squared(target) > 75.0 * 75.0;
@@ -916,7 +923,17 @@ pub fn camera(
         } else {
             1.0 - (-dt * follow).exp()
         };
-        let mut position = transform.translation.lerp(target, blend);
+        let riding_view = !recovering && race.phase != Phase::Garage;
+        let lead = if riding_view {
+            player.motion_velocity / follow
+        } else {
+            Vec3::ZERO
+        };
+        let mut position = transform.translation.lerp(target + lead, blend);
+        if riding_view {
+            // Follow lag must never become an unrequested speed-dependent zoom-out.
+            position = focus + (position - focus).clamp_length_max(offset.length() + 0.35);
+        }
         // Prevent the camera itself from passing through solid scenery.
         if let Ok(context) = context.single() {
             let delta = position - focus;
@@ -1237,28 +1254,38 @@ pub(crate) mod tests {
     fn d_moves_right_and_a_moves_left_in_chase_camera_space() {
         let mut app = simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
-        let (origin, q) = app.world().resource::<Track>().sample(-8.0, -2.0);
+        {
+            let world = app.world_mut();
+            world.query::<&mut Rider>().single_mut(world).unwrap().speed = 10.0;
+        }
+        let (_, q) = app.world().resource::<Track>().sample(-8.0, -2.0);
         let screen_right = (q * Vec3::Z).cross(Vec3::Y);
         app.world_mut()
             .resource_mut::<ButtonInput<KeyCode>>()
             .press(KeyCode::KeyD);
-        step(&mut app, 1);
+        step(&mut app, 12);
         let (d, lane) = {
             let r = player(&mut app);
             (r.progress, r.lane)
         };
         let right = app.world().resource::<Track>().sample(d, lane).0;
-        assert!((right - origin).dot(screen_right) > 0.0, "D moved left");
+        let base = app.world().resource::<Track>().sample(d, -2.0).0;
+        assert!((right - base).dot(screen_right) > 0.0, "D moved left");
         {
             let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
             keys.release(KeyCode::KeyD);
             keys.press(KeyCode::KeyA);
         }
-        step(&mut app, 1);
-        let r = player(&mut app);
-        let (d, lane) = (r.progress, r.lane);
-        let left = app.world().resource::<Track>().sample(d, lane).0;
-        assert!((left - right).dot(screen_right) < 0.0, "A moved right");
+        // Reference steering must unwind existing right force before turning left.
+        step(&mut app, 45);
+        assert!(
+            player(&mut app).steering.force < 0.0,
+            "A never countersteered left"
+        );
+        assert!(
+            player(&mut app).lane < lane,
+            "A moved right after countersteering"
+        );
     }
     #[test]
     fn fast_rear_contact_ragdolls_victim_without_launching_the_attacker() {
@@ -1492,6 +1519,10 @@ pub(crate) mod tests {
     fn slow_sideways_steering_cannot_pass_through_a_solid_car() {
         let mut app = simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        {
+            let world = app.world_mut();
+            world.query::<&mut Rider>().single_mut(world).unwrap().speed = 6.0;
+        }
         let (p, q) = app.world().resource::<Track>().sample(-8.0, -0.5);
         app.world_mut().spawn((
             Traffic {
@@ -1512,7 +1543,7 @@ pub(crate) mod tests {
         app.world_mut()
             .resource_mut::<ButtonInput<KeyCode>>()
             .press(KeyCode::KeyD);
-        step(&mut app, 30);
+        step(&mut app, 60);
         let rider = player(&mut app);
         assert!(
             rider.crashed > 0.0,

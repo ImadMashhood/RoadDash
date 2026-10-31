@@ -117,9 +117,10 @@ pub fn smoke_test(
             keys.press(KeyCode::KeyW);
         }
         170 => keys.press(KeyCode::KeyD),
-        185 => capture(&mut commands, "16-steering-upright"),
-        200 => keys.release(KeyCode::KeyD),
+        185 => capture(&mut commands, "16-steering-buildup"),
+        229 => capture(&mut commands, "17-held-steering"),
         230 => {
+            keys.release(KeyCode::KeyD);
             metrics.visible = true;
         }
         240 => {
@@ -193,6 +194,15 @@ pub fn smoke_test(
                 }
                 contacts.clear();
                 sweeps.clear();
+            }
+            if elapsed == 45 {
+                race.camera_mode = 1;
+            }
+            if elapsed == 60 {
+                race.camera_mode = 2;
+            }
+            if elapsed == 130 {
+                race.camera_mode = 0;
             }
             if elapsed == 50 {
                 capture(&mut commands, "08-city");

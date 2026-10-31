@@ -242,3 +242,30 @@ Existing dependency licenses/notices remain unchanged; no new dependency adopted
 - Actual incorporation: unmodified package mapping source, upstream build filters
   target-platform lines into its embedded database. No mappings manually copied
   into game content, and no source PNGs/media used. Adopt selected snapshot.
+
+## R01 handling follow-up — 2026-10-30
+
+- URL/author: https://github.com/arkits/road-rash — arkits (Archit Khode).
+- Exact new snapshot: `4e052aca9552a5690c2b145b0f53856d5c31e980` (HEAD resolved
+  through GitHub API). The earlier README-only inspection remains historical.
+- Classification: **REFERENCE ONLY**. Investigated bike.cpp/bike.hpp, input.cpp,
+  race.cpp/race.hpp, bike tests, README and REVERSE_ENGINEERING.md; exact source
+  links/functions and findings in ../research/ROAD_RASH_HANDLING.md.
+- Purpose/parts: persistent steering force/rates, drive/brake/gears/traction/nitro,
+  speed and motion; P03/P04. Confirmed holding turn builds force and release/
+  reversal unwinds it; bank is steering-derived, not directly road curvature.
+- License evidence: no project-wide license file/grant found in inspected root or
+  README. https://github.com/arkits/road-rash/tree/4e052aca9552a5690c2b145b0f53856d5c31e980
+  documents the inspected tree, not permission. third_party/LICENSE is Sean
+  Barrett's third-party notice and does not grant reuse of the port's own source.
+  Source reuse permission remains UNVERIFIED. No C++ source/examples copied.
+- Assets/data: actual tuning loads BIKESPEC.RSC and ROADRASH.EXE tables, absent
+  from public repo and this workspace; user confirmed no original files. No disc,
+  extracted table, media or protected data incorporated. Synthetic tables are
+  explicitly tests, not original tuning; never present them as calibration.
+- Compatibility/maintenance: C++20/SDL3, not a Rust/Bevy dependency. Recent source
+  changes observed; repository parity/maintenance claims not independently run.
+- Decision/actual use: independently implement functional normalized steering
+  memory and record precise incomplete equivalence gate. Keep modern 3D physics,
+  collision/recovery and current longitudinal profiles; no claim they now match
+  the entire original. No new dependency, adapted source or reference media.
