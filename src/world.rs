@@ -93,6 +93,10 @@ pub fn setup_world(
 /// All riding models face local +Z. Their root is at road level.
 #[derive(Component)]
 pub struct SeatedRiderVisual;
+#[derive(Component)]
+pub struct UprightRider {
+    pub owner: Entity,
+}
 
 pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) -> Entity {
     let root = commands
@@ -159,81 +163,81 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
     }
     let rider_start = children.len();
     if with_rider {
-        children.push(part(
-            commands,
-            art.cube.clone(),
-            art.colors[color].clone(),
-            Vec3::new(0.0, 1.40, -0.12),
-            Vec3::new(0.58, 0.65, 0.38),
-            Quat::IDENTITY,
-        ));
-        for side in [-1.0, 1.0] {
-            children.push(part(
-                commands,
-                art.cube.clone(),
-                art.dark.clone(),
-                Vec3::new(side * 0.31, 0.96, -0.25),
-                Vec3::new(0.21, 0.68, 0.28),
-                Quat::from_rotation_x(-0.45),
-            ));
-            let arm = part(
-                commands,
-                art.cube.clone(),
-                art.colors[color].clone(),
-                Vec3::new(side * 0.36, 1.43, 0.30),
-                Vec3::new(0.19, 0.23, 0.70),
-                Quat::from_rotation_x(0.35),
-            );
-            commands.entity(arm).insert(Arm(side));
-            children.push(arm);
+        for i in 0..crate::human::SPECS.len() {
+            let pose = crate::human::seated(i);
+            let e = crate::human::segment(commands, art, color, i, pose.translation, pose.rotation);
+            if let Some((side, false, shoulder)) = crate::human::limb(i) {
+                commands.entity(e).insert(Arm {
+                    side,
+                    rest: pose,
+                    shoulder,
+                });
+            }
+            children.push(e);
         }
-        children.push(part(
-            commands,
-            art.sphere.clone(),
-            art.white.clone(),
-            Vec3::new(0.0, 1.96, 0.08),
-            Vec3::new(0.29, 0.32, 0.29),
-            Quat::IDENTITY,
-        ));
-        children.push(part(
-            commands,
-            art.cube.clone(),
-            art.dark.clone(),
-            Vec3::new(0.0, 1.99, 0.32),
-            Vec3::new(0.46, 0.14, 0.11),
-            Quat::IDENTITY,
-        ));
     }
-    for &entity in &children[rider_start..] {
-        commands.entity(entity).insert(SeatedRiderVisual);
+    if with_rider {
+        let rider_parts = children.split_off(rider_start);
+        for &entity in &rider_parts {
+            commands.entity(entity).insert(SeatedRiderVisual);
+        }
+        let pose = commands
+            .spawn((
+                UprightRider { owner: root },
+                Transform::default(),
+                Visibility::default(),
+            ))
+            .id();
+        commands.entity(pose).add_children(&rider_parts);
+        children.push(pose);
     }
     crate::runtime::attach_visuals(commands, root, &children);
     root
 }
 
 #[derive(Component)]
-pub struct Arm(pub f32);
+pub struct Arm {
+    pub side: f32,
+    pub rest: Transform,
+    pub shoulder: Vec3,
+}
+
+/// Cancel chassis pitch/roll for the human while retaining interpolated yaw.
+#[allow(clippy::type_complexity)]
+pub fn upright_riders(
+    fixed: Res<Time<Fixed>>,
+    owners: Query<(&Transform, Option<&crate::runtime::PoseHistory>), Without<UprightRider>>,
+    mut poses: Query<(&UprightRider, &mut Transform)>,
+) {
+    for (pose, mut local) in &mut poses {
+        if let Ok((physical, history)) = owners.get(pose.owner) {
+            let shown = crate::runtime::interpolated(physical, history, fixed.overstep_fraction());
+            let heading = shown.rotation * Vec3::Z;
+            let yaw = Quat::from_rotation_y(heading.x.atan2(heading.z));
+            local.rotation = shown.rotation.inverse() * yaw;
+        }
+    }
+}
 
 pub fn animate_riders(
     riders: Query<&crate::game::Rider>,
-    visuals: Query<&crate::runtime::VisualRoot>,
+    poses: Query<&UprightRider>,
     mut arms: Query<(&Arm, &ChildOf, &mut Transform)>,
 ) {
     for (arm, parent, mut transform) in &mut arms {
-        if let Ok(visual) = visuals.get(parent.parent())
-            && let Ok(rider) = riders.get(visual.owner)
+        if let Ok(pose) = poses.get(parent.parent())
+            && let Ok(rider) = riders.get(pose.owner)
         {
-            let extension = if rider.attack > 0.3 && rider.attack_side == -arm.0 {
+            let extension = if rider.attack > 0.3 && rider.attack_side == -arm.side {
                 ((0.65 - rider.attack) / 0.35 * std::f32::consts::PI)
                     .sin()
                     .max(0.0)
             } else {
                 0.0
             };
-            transform.translation.x = arm.0 * (0.36 + extension * 0.8);
-            transform.rotation =
-                Quat::from_rotation_z(-arm.0 * extension * std::f32::consts::FRAC_PI_2)
-                    * Quat::from_rotation_x(0.35);
+            let turn = Quat::from_rotation_z(-arm.side * extension * std::f32::consts::FRAC_PI_2);
+            transform.translation = arm.shoulder + turn * (arm.rest.translation - arm.shoulder);
+            transform.rotation = turn * arm.rest.rotation;
         }
     }
 }
@@ -242,6 +246,8 @@ pub fn animate_riders(
 pub struct RunnerLimb {
     pub side: f32,
     pub leg: bool,
+    pub rest: Transform,
+    pub pivot: Vec3,
 }
 
 /// Upright rider model used for getting up, running, and remounting.
@@ -254,58 +260,17 @@ pub fn runner(commands: &mut Commands, art: &Art, color: usize) -> (Entity, Enti
         .spawn((Transform::from_xyz(0.0, -0.95, 0.0), Visibility::default()))
         .id();
     let mut parts = Vec::new();
-    parts.push(part(
-        commands,
-        art.cube.clone(),
-        art.colors[color].clone(),
-        Vec3::new(0.0, 1.35, 0.0),
-        Vec3::new(0.55, 0.65, 0.32),
-        Quat::IDENTITY,
-    ));
-    parts.push(part(
-        commands,
-        art.sphere.clone(),
-        art.white.clone(),
-        Vec3::new(0.0, 1.95, 0.0),
-        Vec3::new(0.28, 0.31, 0.28),
-        Quat::IDENTITY,
-    ));
-    parts.push(part(
-        commands,
-        art.cube.clone(),
-        art.dark.clone(),
-        Vec3::new(0.0, 1.96, 0.25),
-        Vec3::new(0.45, 0.16, 0.08),
-        Quat::IDENTITY,
-    ));
-    for side in [-1.0, 1.0] {
-        for leg in [true, false] {
-            let pivot = commands
-                .spawn((
-                    Transform::from_xyz(
-                        side * if leg { 0.17 } else { 0.39 },
-                        if leg { 1.0 } else { 1.57 },
-                        0.0,
-                    ),
-                    Visibility::default(),
-                    RunnerLimb { side, leg },
-                ))
-                .id();
-            let visual = part(
-                commands,
-                art.cube.clone(),
-                if leg {
-                    art.dark.clone()
-                } else {
-                    art.colors[color].clone()
-                },
-                Vec3::new(0.0, if leg { -0.475 } else { -0.38 }, 0.0),
-                Vec3::new(0.22, if leg { 0.95 } else { 0.78 }, 0.25),
-                Quat::IDENTITY,
-            );
-            commands.entity(pivot).add_child(visual);
-            parts.push(pivot);
+    for (i, (position, _, _)) in crate::human::SPECS.iter().enumerate() {
+        let e = crate::human::segment(commands, art, color, i, *position, Quat::IDENTITY);
+        if let Some((side, leg, pivot)) = crate::human::limb(i) {
+            commands.entity(e).insert(RunnerLimb {
+                side,
+                leg,
+                rest: Transform::from_translation(*position),
+                pivot,
+            });
         }
+        parts.push(e);
     }
     commands.entity(pose).add_children(&parts);
     crate::runtime::attach_visuals(commands, root, &[pose]);
@@ -342,8 +307,9 @@ pub fn animate_runners(
         } else {
             0.0
         };
-        transform.rotation =
-            Quat::from_rotation_x(swing * limb.side * if limb.leg { 1.0 } else { -1.0 });
+        let turn = Quat::from_rotation_x(swing * limb.side * if limb.leg { 1.0 } else { -1.0 });
+        transform.translation = limb.pivot + turn * (limb.rest.translation - limb.pivot);
+        transform.rotation = turn * limb.rest.rotation;
     }
 }
 

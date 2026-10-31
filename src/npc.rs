@@ -262,7 +262,11 @@ pub fn knockdowns(
             {
                 let shape = Collider::cuboid(
                     if npc.kind == NpcKind::Cow { 1.2 } else { 0.3 },
-                    0.9,
+                    if npc.kind == NpcKind::Cow {
+                        0.9
+                    } else {
+                        crate::human::HEIGHT * 0.5
+                    },
                     if npc.kind == NpcKind::Cow { 0.6 } else { 0.3 },
                 );
                 let predicate = |other| {
@@ -271,7 +275,13 @@ pub fn knockdowns(
                 };
                 let mut occupied = false;
                 context.intersect_shape(
-                    npc.spawn.translation + Vec3::Y * 0.95,
+                    npc.spawn.translation
+                        + Vec3::Y
+                            * if npc.kind == NpcKind::Cow {
+                                0.95
+                            } else {
+                                crate::human::HEIGHT * 0.5
+                            },
                     npc.spawn.rotation,
                     shape.raw.as_ref(),
                     QueryFilter::default()

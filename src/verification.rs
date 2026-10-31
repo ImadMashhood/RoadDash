@@ -92,7 +92,12 @@ pub fn smoke_test(
     mut contacts: ResMut<Messages<bevy_rapier3d::prelude::CollisionEvent>>,
     mut sweeps: ResMut<Messages<crate::recovery::SweptContact>>,
     bodies: Query<&Transform, Without<Rider>>,
-    telemetry: Res<crate::vehicle::VehicleTelemetry>,
+    (telemetry, mut panel, pads, prefs): (
+        Res<crate::vehicle::VehicleTelemetry>,
+        ResMut<crate::settings::SettingsPanel>,
+        Query<&Gamepad>,
+        Res<crate::settings::Preferences>,
+    ),
 ) {
     state.frame += 1;
     match state.frame {
@@ -104,10 +109,16 @@ pub fn smoke_test(
             );
             capture(&mut commands, "01-garage");
         }
+        35 => panel.open = true,
+        50 => capture(&mut commands, "15-comfort-settings"),
+        55 => panel.open = false,
         60 => {
             race.phase = Phase::Racing;
             keys.press(KeyCode::KeyW);
         }
+        170 => keys.press(KeyCode::KeyD),
+        185 => capture(&mut commands, "16-steering-upright"),
+        200 => keys.release(KeyCode::KeyD),
         230 => {
             metrics.visible = true;
         }
@@ -281,6 +292,8 @@ pub fn smoke_test(
         }
         if state.frame > finished_at + 40 {
             let mut report = metrics.evidence(&clock);
+            report["gamepads_connected"] = serde_json::json!(pads.iter().count());
+            report["comfort"] = serde_json::json!(prefs.file.comfort);
             report["fixed_recovery_stages"] = serde_json::json!(state.fixed_stages);
             report["render_running_captured"] = serde_json::json!(state.running);
             report["vehicle"] = telemetry

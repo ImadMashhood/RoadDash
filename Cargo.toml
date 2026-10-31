@@ -20,7 +20,7 @@ debug_physics = ["bevy_rapier3d/debug-render-3d"]
 [dependencies]
 rr_core = { path = "crates/rr_core" }
 rr_content = { path = "crates/rr_content" }
-bevy = { version = "=0.17.3", default-features = false, features = ["std", "async_executor", "multi_threaded", "bevy_asset", "bevy_audio", "wav", "bevy_color", "bevy_core_pipeline", "bevy_gizmos", "bevy_gltf", "bevy_log", "bevy_pbr", "bevy_render", "bevy_scene", "bevy_state", "bevy_text", "bevy_ui", "bevy_ui_render", "bevy_window", "bevy_winit", "default_font", "png", "zstd_rust", "x11"] }
+bevy = { version = "=0.17.3", default-features = false, features = ["std", "async_executor", "multi_threaded", "bevy_asset", "bevy_audio", "wav", "bevy_color", "bevy_core_pipeline", "bevy_gizmos", "bevy_gilrs", "bevy_gltf", "bevy_log", "bevy_pbr", "bevy_render", "bevy_scene", "bevy_state", "bevy_text", "bevy_ui", "bevy_ui_render", "bevy_window", "bevy_winit", "default_font", "png", "zstd_rust", "x11"] }
 bevy_rapier3d = { version = "=0.32.0", default-features = false, features = ["dim3", "simd-stable"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

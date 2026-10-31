@@ -32,8 +32,10 @@ mass, center of mass and inertia are explicit; CCD is enabled. Upright/heading
 assistance uses bounded feedback torques. There is no lane-zero position magnet;
 lateral steering is speed-sensitive, with reduced road assistance and F6 adjustment.
 It remains an arcade road-tangent-assisted bike, not a free-heading full multibody
-motorcycle. Visual lean (clamped to about 57°), wheel spin, suspension travel and
-front-wheel steering are separate from the authoritative collision body.
+motorcycle. Wheel spin, suspension travel and front-wheel steering are separate from the
+authoritative collision body. Latest user correction removes cosmetic steering
+lean from the character/bike; the previous 57-degree visual target is superseded.
+Lean demand remains in telemetry, not applied as a rendered turn roll.
 
 A torque/RPM curve, redline cutoff and six automatic ratios drive longitudinal
 force, with engine/service braking and quadratic aerodynamic drag. The target
@@ -78,7 +80,12 @@ contacts transfer mass-dependent momentum through Rapier. The assisted adapter
 also applies bounded lateral/longitudinal nudge state. Contact pairs are deduped;
 pre-solver velocity is retained for classification so a solver-stopped bike does
 not hide a hard collision. These replace the older universal rider-contact hop.
-Cow/fallen-object arcade lift and gravity/landing remain separate hazard behavior.
+Cow/pedestrian/fallen-object arcade lift and gravity/landing remain separate
+hazard behavior. Civilian clearance derives upward speed from standing height
+plus margin and scales impulse by bike+rider mass, restoring cached horizontal
+approach velocity after the contact solver. Both civilian kinds still ragdoll.
+Crossing cars are explicit wipeout hazards with all-type contacts and CCD, even
+when a crossing car strikes a stationary bike.
 Solid traffic and immovable obstacles retain their existing collision semantics.
 
 Sidewalks are support geometry. The dynamic tires climb the curb and suspension
@@ -106,3 +113,16 @@ appear on the outer side of curves; straights are open. More trees include
 broadleaf/conifer forms in all zones. Buildings have individual windows, doors
 and roof caps; crossing vehicles have cabins, wheels and lights, and pedestrians
 have animated limbs. This remains original procedural graybox art.
+
+## Shared human appearance
+
+`human::SPECS` and its segment builder define eleven identical body slots, helmet/
+visor, proportions and shirt/trouser materials for seated bikers, pedestrians,
+recovery runners and ragdolls. Only pose/physical control changes between states.
+Rider palette identity survives crash/recovery/reset. Standing pedestrian support
+proxies and respawn occupancy checks now cover the shared model's 2.31 m height.
+This is original procedural geometry, not a new glTF/production animation rig.
+
+The seated human has an independent presentation pivot that cancels interpolated
+chassis pitch/roll while retaining yaw. Physical bike banking/suspension can move
+without tilting the character during steering; physics transforms are unchanged.

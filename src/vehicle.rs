@@ -10,7 +10,7 @@ use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 #[derive(Component)]
 pub struct RideableStep;
-#[derive(Resource, Default, Clone, Copy, PartialEq, Eq)]
+#[derive(Resource, Default, Clone, Copy, Debug, PartialEq, Eq)]
 pub enum VehiclePhysicsAdapter {
     #[default]
     Assisted,
@@ -190,6 +190,8 @@ pub fn forces(
             brake,
             steer,
             nitro,
+            throttle_amount: input.throttle_strength(),
+            brake_amount: input.brake_strength(),
         };
         for (i, z) in [-0.78, 0.78].into_iter().enumerate() {
             let origin = t.translation + t.rotation * Vec3::new(0.0, 0.9, z);
@@ -260,7 +262,7 @@ pub fn forces(
             0.7 + 0.3 * (1.0 - ((state.rpm - 5500.0) / 5000.0).powi(2)).clamp(0.0, 1.0)
         };
         let engine = if throttle && speed < limit {
-            p.torque_nm * torque_curve * gears[gear] * 3.2 / 0.4
+            p.torque_nm * input.throttle_strength() * torque_curve * gears[gear] * 3.2 / 0.4
                 * (if nitro { 1.8 } else { 1.0 })
                 * (1.0 - (speed / limit).powi(8)).max(0.0)
         } else {
@@ -270,6 +272,7 @@ pub fn forces(
             - if brake {
                 (v.linvel.dot(forward) * (p.dry_mass + 70.0) / dt.max(0.001))
                     .clamp(-(p.dry_mass + 70.0) * 10.0, (p.dry_mass + 70.0) * 10.0)
+                    * if at_end { 1.0 } else { input.brake_strength() }
             } else if !throttle {
                 (v.linvel.dot(forward) * (p.dry_mass + 70.0) / dt.max(0.001))
                     .clamp(-(p.dry_mass + 70.0) * 1.8, (p.dry_mass + 70.0) * 1.8)
@@ -385,18 +388,11 @@ pub fn telemetry(
 #[allow(clippy::type_complexity)]
 pub fn visuals(
     bikes: Query<&BikeState>,
-    mut roots: Query<(&crate::runtime::VisualRoot, &mut Transform), Without<WheelVisual>>,
+    roots: Query<&crate::runtime::VisualRoot>,
     mut wheels: Query<(&WheelVisual, &ChildOf, &mut Transform), With<WheelVisual>>,
 ) {
-    for (root, mut t) in &mut roots {
-        if let Ok(state) = bikes.get(root.owner) {
-            let lean = Quat::from_rotation_z(state.lean);
-            t.translation += Vec3::Y * 0.1 - lean * Vec3::Y * 0.1;
-            t.rotation *= lean;
-        }
-    }
     for (wheel, parent, mut t) in &mut wheels {
-        if let Ok((root, _)) = roots.get(parent.parent())
+        if let Ok(root) = roots.get(parent.parent())
             && let Ok(state) = bikes.get(root.owner)
         {
             t.translation.y = 0.42 - state.suspension[usize::from(wheel.0)].clamp(-0.2, 0.2);

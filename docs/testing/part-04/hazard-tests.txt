@@ -1,0 +1,37 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 17.72s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 14 tests
+test vehicle::tests::handling_import_rejects_invalid_presets ... ok
+test vehicle::tests::abandoned_bike_keeps_the_selected_presets_dry_mass ... ok
+test vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks ... ignored, 600 simulated seconds; run explicitly for the Part 03 receipt
+test vehicle::tests::dynamic_grid_can_launch_without_ai_sideswipe_or_melee_knockouts ... ok
+test vehicle::tests::a_low_sidewalk_step_is_supported_without_a_wipeout ... ok
+test vehicle::tests::analog_trigger_values_reach_the_chassis_force_model ... ok
+test vehicle::tests::low_speed_inverted_chassis_self_rights_without_inverted_wheel_lift ... ok
+preset0 speed 35.80937 grounded [true, true] height -0.00000017881393 rpm 6822.6533
+test vehicle::tests::leaning_chassis_recovers_and_a_moving_bike_climbs_a_sidewalk_edge ... ok
+test vehicle::tests::neutral_assistance_never_magnets_a_stationary_bike_to_lane_zero ... ok
+HAZARD_CLEARANCE {"height_m":1.7000000476837158,"kind":"Cow","passed_obstacle":true,"peak_bike_origin_m":2.315326690673828,"preset":0}
+test vehicle::tests::dynamic_remount_does_not_reapply_precrash_momentum ... ok
+test vehicle::tests::cross_traffic_contacts_trigger_a_wipeout_in_both_adapters ... ok
+HAZARD_CLEARANCE {"height_m":2.309999942779541,"kind":"Pedestrian","passed_obstacle":true,"peak_bike_origin_m":4.019231796264648,"preset":0}
+preset1 speed 38.995464 grounded [true, true] height -0.0000008940697 rpm 7431.439
+test vehicle::tests::dynamic_physics_matches_at_render_rates ... ok
+HAZARD_CLEARANCE {"height_m":1.7000000476837158,"kind":"Cow","passed_obstacle":true,"peak_bike_origin_m":2.24692702293396,"preset":1}
+preset2 speed 40.96072 grounded [true, true] height 0.00000029802322 rpm 5935.7876
+HAZARD_CLEARANCE {"height_m":2.309999942779541,"kind":"Pedestrian","passed_obstacle":true,"peak_bike_origin_m":4.019772529602051,"preset":1}
+test vehicle::tests::dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels ... ok
+HAZARD_CLEARANCE {"height_m":1.7000000476837158,"kind":"Cow","passed_obstacle":true,"peak_bike_origin_m":2.304490566253662,"preset":2}
+HAZARD_CLEARANCE {"height_m":2.309999942779541,"kind":"Pedestrian","passed_obstacle":true,"peak_bike_origin_m":3.9928629398345947,"preset":2}
+test vehicle::tests::both_civilian_kinds_launch_each_bike_class_above_their_standing_height ... ok
+
+test result: ok. 13 passed; 0 failed; 1 ignored; 0 measured; 59 filtered out; finished in 2.50s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

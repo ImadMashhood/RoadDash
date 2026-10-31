@@ -162,59 +162,7 @@ pub fn humanoid(
     rotation: Quat,
     velocity: Vec3,
 ) -> Vec<Entity> {
-    let specs = [
-        (Vec3::new(0.0, 1.55, 0.0), Vec3::new(0.5, 0.58, 0.32), None),
-        (
-            Vec3::new(0.0, 2.10, 0.0),
-            Vec3::new(0.40, 0.42, 0.38),
-            Some((0, Vec3::new(0.0, 1.87, 0.0))),
-        ),
-        (
-            Vec3::new(0.0, 1.10, 0.0),
-            Vec3::new(0.44, 0.28, 0.30),
-            Some((0, Vec3::new(0.0, 1.26, 0.0))),
-        ),
-        (
-            Vec3::new(-0.45, 1.55, 0.0),
-            Vec3::new(0.24, 0.40, 0.24),
-            Some((0, Vec3::new(-0.29, 1.69, 0.0))),
-        ),
-        (
-            Vec3::new(-0.49, 1.14, 0.0),
-            Vec3::new(0.21, 0.38, 0.21),
-            Some((3, Vec3::new(-0.47, 1.34, 0.0))),
-        ),
-        (
-            Vec3::new(0.45, 1.55, 0.0),
-            Vec3::new(0.24, 0.40, 0.24),
-            Some((0, Vec3::new(0.29, 1.69, 0.0))),
-        ),
-        (
-            Vec3::new(0.49, 1.14, 0.0),
-            Vec3::new(0.21, 0.38, 0.21),
-            Some((5, Vec3::new(0.47, 1.34, 0.0))),
-        ),
-        (
-            Vec3::new(-0.17, 0.73, 0.0),
-            Vec3::new(0.25, 0.44, 0.25),
-            Some((2, Vec3::new(-0.17, 0.96, 0.0))),
-        ),
-        (
-            Vec3::new(-0.17, 0.25, 0.0),
-            Vec3::new(0.22, 0.44, 0.22),
-            Some((7, Vec3::new(-0.17, 0.49, 0.0))),
-        ),
-        (
-            Vec3::new(0.17, 0.73, 0.0),
-            Vec3::new(0.25, 0.44, 0.25),
-            Some((2, Vec3::new(0.17, 0.96, 0.0))),
-        ),
-        (
-            Vec3::new(0.17, 0.25, 0.0),
-            Vec3::new(0.22, 0.44, 0.22),
-            Some((9, Vec3::new(0.17, 0.49, 0.0))),
-        ),
-    ];
+    let specs = crate::human::SPECS;
     let mut bodies = Vec::new();
     for (i, (p, size, parent)) in specs.iter().enumerate() {
         let e = commands
@@ -252,20 +200,7 @@ pub fn humanoid(
             ))
             .id();
         // Child geometry keeps the physics transform unscaled.
-        let visual = world::part(
-            commands,
-            art.cube.clone(),
-            if i == 1 {
-                art.white.clone()
-            } else if i >= 7 || i == 2 {
-                art.dark.clone()
-            } else {
-                art.colors[color].clone()
-            },
-            Vec3::ZERO,
-            *size,
-            Quat::IDENTITY,
-        );
+        let visual = crate::human::segment(commands, art, color, i, Vec3::ZERO, Quat::IDENTITY);
         crate::runtime::attach_visuals(commands, e, &[visual]);
         if let Some((parent, anchor)) = parent {
             let joint = anatomical_joint(i, *anchor - specs[*parent].0, *anchor - *p);
@@ -320,7 +255,7 @@ pub fn crash(
         commands,
         art,
         owner,
-        rider.id,
+        rider.palette_index,
         rider_origin,
         rotation,
         velocity,
@@ -329,7 +264,7 @@ pub fn crash(
         commands.entity(wreck).insert(RigidBody::Dynamic);
         wreck
     } else {
-        let wreck = world::bike(commands, art, rider.id, false);
+        let wreck = world::bike(commands, art, rider.palette_index, false);
         commands.entity(wreck).insert((
             Transform::from_translation(origin).with_rotation(rotation),
             RigidBody::Dynamic,
@@ -459,7 +394,7 @@ pub fn recover(
                     continue;
                 }
                 let foot = Vec3::new(torso_pos.x, floor + 0.03, torso_pos.z);
-                let (runner, pose) = world::runner(&mut commands, &art, rider.id);
+                let (runner, pose) = world::runner(&mut commands, &art, rider.palette_index);
                 commands.entity(runner).insert((
                     Transform::from_translation(foot + Vec3::Y * 0.95).with_rotation(road_rotation),
                     RigidBody::KinematicPositionBased,
@@ -619,7 +554,7 @@ pub struct SweptContact(pub Entity, pub Entity);
 #[derive(Clone, Copy)]
 enum Impact {
     Crash(Entity, Vec3),
-    Hop(Entity),
+    Hop(Entity, f32),
     Kick(Entity, Vec3),
     Nudge(Entity, Vec3),
 }
@@ -639,7 +574,7 @@ pub fn impacts(
         Query<&Traffic>,
         Query<(), With<crate::environment::Cow>>,
         Query<(), With<crate::environment::CrossTraffic>>,
-        Query<(), With<crate::npc::Npc>>,
+        Query<&crate::npc::Npc>,
     ),
     (velocities, bike_states): (Query<&Velocity>, Query<&crate::vehicle::BikeState>),
     (obstacles, ground): (
@@ -728,7 +663,14 @@ pub fn impacts(
                     continue;
                 }
                 if speed > 0.75 {
-                    actions.push(Impact::Hop(bike));
+                    actions.push(Impact::Hop(
+                        bike,
+                        if body.kind == BodyKind::Wreck {
+                            1.5
+                        } else {
+                            crate::human::HEIGHT
+                        },
+                    ));
                     if body.kind != BodyKind::Runner {
                         actions.push(Impact::Kick(
                             other,
@@ -745,10 +687,20 @@ pub fn impacts(
                     }
                 }
             } else if cows.contains(other) && speed > 0.75 {
-                actions.push(Impact::Hop(bike));
-            } else if npcs.contains(other) {
-                // NPC impacts are handled by their own mass/topology knockdown system.
-            } else if !ground.contains(other) && obstacles.contains(other)
+                actions.push(Impact::Hop(bike, 1.7));
+            } else if let Ok(npc) = npcs.get(other) {
+                if npc.active() && speed > 0.75 {
+                    actions.push(Impact::Hop(
+                        bike,
+                        if npc.kind == crate::npc::NpcKind::Cow {
+                            1.7
+                        } else {
+                            crate::human::HEIGHT
+                        },
+                    ));
+                }
+            } else if cross_cars.contains(other)
+                || (!ground.contains(other) && obstacles.contains(other))
                 || cars
                     .get(other)
                     .is_ok_and(|car| speed + car.speed.abs() > 0.75)
@@ -803,20 +755,26 @@ pub fn impacts(
                     Sleeping::disabled(),
                 ));
             }
-            Impact::Hop(owner) => {
+            Impact::Hop(owner, height) => {
                 if let Ok((mut rider, recovery, _)) = riders.get_mut(owner)
                     && recovery.stage == RecoveryStage::Riding
                     && rider.impact_cooldown <= 0.0
                 {
-                    if velocities.contains(owner) {
+                    // Explicit animal/pedestrian clearance is an arcade jump, separate
+                    // from ordinary ragdoll crashes which still inherit momentum only.
+                    let launch = (2.0 * 9.81 * (height + 1.5)).sqrt().clamp(7.5, 10.0);
+                    if let Ok(current) = velocities.get(owner) {
+                        let incoming = bike_states
+                            .get(owner)
+                            .map_or(rider.motion_velocity, |s| s.impact_velocity);
+                        let target = incoming.with_y(current.linvel.y.max(launch));
                         commands.entity(owner).insert(ExternalImpulse {
-                            impulse: Vec3::Y * 1456.0,
+                            impulse: (target - current.linvel) * (rider.bike_mass + 70.0),
                             torque_impulse: Vec3::ZERO,
                         });
                     }
-                    rider.hop_velocity = 5.2;
+                    rider.hop_velocity = launch;
                     rider.hop_height = rider.hop_height.max(0.02);
-                    rider.speed *= 0.78;
                     rider.impact_cooldown = 0.8;
                     audio.write(AudioCue::new(
                         Cue::Crash,

@@ -25,7 +25,11 @@ pub struct HazardZone {
 #[derive(Component)]
 pub struct Pedestrian;
 #[derive(Component)]
-pub struct PedestrianLimb(pub f32);
+pub struct PedestrianLimb {
+    pub side: f32,
+    pub rest: Transform,
+    pub pivot: Vec3,
+}
 #[derive(Component)]
 pub struct CrossTraffic;
 #[derive(Component)]
@@ -538,6 +542,8 @@ pub fn build(
                             )]),
                             Obstacle,
                             CrossTraffic,
+                            ActiveCollisionTypes::all(),
+                            Ccd::enabled(),
                             ActiveEvents::COLLISION_EVENTS,
                             Patrol {
                                 center,
@@ -691,16 +697,16 @@ fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
     ));
     crate::runtime::attach_visuals(commands, root, &parts);
 }
-fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: f32) {
+pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: f32) {
     let root = commands
         .spawn((
             Transform::from_translation(p),
             Visibility::default(),
             RigidBody::KinematicPositionBased,
             Collider::compound(vec![(
-                Vec3::Y * 0.9,
+                Vec3::Y * 1.15,
                 Quat::IDENTITY,
-                Collider::capsule_y(0.55, 0.23),
+                Collider::capsule_y(0.8, 0.27),
             )]),
             Pedestrian,
             Obstacle,
@@ -719,44 +725,17 @@ fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: 
         crate::npc::NpcKind::Pedestrian,
         Transform::from_translation(p).with_rotation(q),
     ));
-    let body = world::part(
-        commands,
-        art.cube.clone(),
-        art.colors[4].clone(),
-        Vec3::Y * 0.9,
-        Vec3::new(0.45, 1.0, 0.3),
-        Quat::IDENTITY,
-    );
-    let head = world::part(
-        commands,
-        art.sphere.clone(),
-        art.white.clone(),
-        Vec3::Y * 1.6,
-        Vec3::splat(0.22),
-        Quat::IDENTITY,
-    );
-    let mut parts = vec![body, head];
-    for side in [-1.0, 1.0] {
-        let leg = world::part(
-            commands,
-            art.cube.clone(),
-            art.dark.clone(),
-            Vec3::new(side * 0.13, 0.25, 0.0),
-            Vec3::new(0.18, 0.5, 0.22),
-            Quat::IDENTITY,
-        );
-        commands.entity(leg).insert(PedestrianLimb(side));
-        parts.push(leg);
-        let arm = world::part(
-            commands,
-            art.cube.clone(),
-            art.colors[4].clone(),
-            Vec3::new(side * 0.32, 0.95, 0.0),
-            Vec3::new(0.16, 0.65, 0.18),
-            Quat::IDENTITY,
-        );
-        commands.entity(arm).insert(PedestrianLimb(-side));
-        parts.push(arm);
+    let mut parts = Vec::new();
+    for (i, (position, _, _)) in crate::human::SPECS.iter().enumerate() {
+        let e = crate::human::segment(commands, art, 4, i, *position, Quat::IDENTITY);
+        if let Some((side, leg, pivot)) = crate::human::limb(i) {
+            commands.entity(e).insert(PedestrianLimb {
+                side: side * if leg { 1.0 } else { -1.0 },
+                rest: Transform::from_translation(*position),
+                pivot,
+            });
+        }
+        parts.push(e);
     }
     crate::runtime::attach_visuals(commands, root, &parts);
 }
@@ -860,11 +839,13 @@ pub fn animate_civilians(
         if let Ok(visual) = visuals.get(parent.parent())
             && let Ok(npc) = npcs.get(visual.owner)
         {
-            t.rotation = Quat::from_rotation_x(if race.phase == Phase::Racing && npc.active() {
-                (time.elapsed_secs() * 9.0).sin() * limb.0 * 0.45
+            let turn = Quat::from_rotation_x(if race.phase == Phase::Racing && npc.active() {
+                (time.elapsed_secs() * 9.0).sin() * limb.side * 0.45
             } else {
                 0.0
             });
+            t.translation = limb.pivot + turn * (limb.rest.translation - limb.pivot);
+            t.rotation = turn * limb.rest.rotation;
         }
     }
 }
