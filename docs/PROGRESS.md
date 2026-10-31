@@ -162,6 +162,22 @@ transport, P12 career save migration/backups, P15 rendering/audio budgets, P16
 hardware/clean-install/performance/release audit. No requirement was removed to
 close this session.
 
+## First-map procedural base-world foundation — 2026-10-30
+
+Completion follow-up: BW-B00–B10 and BW-X01–X03 verified. Ubuntu/Windows CI
+run 41166322394 passed implementation f245f2b; native 1080p survey p95 10.28 ms.
+See [complete receipt](world/COMPLETION_TESTS.md). No future major part started.
+
+User supplied a structural world PDF, JSON and section CSV and requested starting
+first-map procedural generation. [Review, contracts and BW-B00–B10 dependency/
+acceptance register](world/BASE_WORLD.md); [verification](world/BASE_WORLD_TESTS.md).
+B00–B02 established the foundation; the user then explicitly requested completion.
+B03–B10 structural construction is documented in [the implementation](world/BASE_WORLD_COMPLETE.md)
+and [completion receipt](world/COMPLETION_TESTS.md). Current checkboxes below
+reflect verified gates. The route/seed/gameplay are retained while canonical old
+buildings are replaced by exact 247-root geometry. Source PDF handoff
+language is design guidance; active user scope controls this session.
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Baseline and dependency decisions
@@ -267,6 +283,36 @@ close this session.
 - [x] **P02-015** Verify actual hill crash/get-up/run/remount at elevation without resetting the bike to sea level. Evidence: [recovery](../src/recovery.rs), [native receipt](../docs/testing/PART_02.md).
 
 - [x] **P02-016** Keep hill guardrails on outer curves, open the straights, and add varied trees in all zones plus window/door/roof, cross-vehicle and pedestrian detail. Evidence: [environment](../src/environment.rs), [native captures](../docs/testing/PART_03.md).
+
+### First-map structural world - B00–B10
+
+- [x] **BW-B00** Capture existing track/world statistics, measured legacy building census, reproducibility and native baseline views.
+
+- [x] **BW-B01** Validate 15 sections, 19 archetypes, lot rules and exact 247/177/70/family budgets; allocate stable seeded planning IDs headlessly.
+
+- [x] **BW-B02** Bind districts to baked road stations, resolve/blend all boundaries and final endpoint, reject mismatched courses and expose F4 preview.
+
+- [x] **BW-B03** Generate field parcels and farm/suburban/city/hill ground classification across all sections.
+
+- [x] **BW-B04** Build at least seven reserved junctions, side-street foundations and continuous accessible curbs/sidewalks.
+
+- [x] **BW-B05** Generate non-overlapping, reachable frontage/secondary lots outside every road/junction/gate/spawn reservation.
+
+- [x] **BW-B06** Place exactly 247 structural building roots with mass/roof/collision and validated full-footprint clearance.
+
+- [x] **BW-B07** Grade supported pads and hillside foundations with shared render/collision heights and local cut/fill.
+
+- [x] **BW-B08** Prove farm/city-alley/hill on-foot recovery and escape paths without geometry traps.
+
+- [x] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
+
+- [x] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
+
+- [x] **BW-X01** Protect paired LOD origins and local terrain vertices against disappearing ground; verify all 160 tile pairs and building children plus the native atlas.
+
+- [x] **BW-X02** Record actual survey resolution/focus and use continuous uncapped benchmark updates so background idle timers cannot masquerade as frame cost.
+
+- [x] **BW-X03** Clear recovery motion/routes on exceptional rescue and apply one visible five-second penalty; verify normal capsule routes and rescue state transitions.
 
 ### Part 03 - Motorcycle physics and controls
 

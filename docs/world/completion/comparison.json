@@ -1,0 +1,12 @@
+{
+  "native_equals_headless": true,
+  "independent_validation_layout_matches": true,
+  "geometry_fingerprint": "fnv1a64:31b6850d96707a1d",
+  "allocation_fingerprint": "fnv1a64:f866d824acfb111f",
+  "measured_building_fingerprint": "fnv1a64:3c7df42c929474f7",
+  "actual_resolution": [
+    1920,
+    1080
+  ],
+  "p95_ms": 10.277952194213867
+}

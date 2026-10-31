@@ -11,10 +11,18 @@ use bevy::{
 };
 use bevy_rapier3d::prelude::*;
 use rr_content::track::{PropKind, Sector, Surface};
+/// Tags only the existing building mass, excluding roof/windows/trees/props.
+#[derive(Component)]
+pub struct LegacyBuilding {
+    pub id: String,
+    pub station_m: f32,
+}
 #[derive(Component)]
 pub struct RoadChunk;
 #[derive(Component)]
 pub struct Terrain;
+#[derive(Component)]
+pub struct TerrainLod(pub bool);
 #[derive(Component)]
 pub struct Cow;
 #[derive(Component)]
@@ -49,7 +57,7 @@ pub struct TrackInspector {
     pub render_triangles: usize,
     pub collision_triangles: usize,
 }
-fn mesh(vertices: &[Vec3], indices: &[[u32; 3]]) -> Mesh {
+pub(crate) fn mesh(vertices: &[Vec3], indices: &[[u32; 3]]) -> Mesh {
     Mesh::new(
         PrimitiveTopology::TriangleList,
         RenderAssetUsages::default(),
@@ -118,10 +126,15 @@ pub fn build(
     materials: &mut Assets<StandardMaterial>,
     track: &Track,
     art: &Art,
+    layout: Option<&crate::world_gen::layout::WorldLayout>,
 ) {
     let asphalt = materials.add(Color::srgb(0.10, 0.115, 0.13));
     let gravel = materials.add(Color::srgb(0.42, 0.39, 0.28));
-    let grass = materials.add(Color::srgb(0.23, 0.39, 0.14));
+    let grass = materials.add(if layout.is_some() {
+        Color::WHITE
+    } else {
+        Color::srgb(0.23, 0.39, 0.14)
+    });
     let yellow = materials.add(Color::srgb(0.95, 0.72, 0.22));
     let bark = materials.add(Color::srgb(0.3, 0.19, 0.10));
     let leaf = materials.add(Color::srgb(0.12, 0.28, 0.12));
@@ -167,42 +180,105 @@ pub fn build(
     // A single-valued height field surrounds the road. Render and simplified
     // collision grids sample the same height function; chunking bounds mesh size.
     let (min, max) = track.bounds;
-    let spacing = 10.0;
+    let spacing = layout.map_or(10.0, |l| l.settings.terrain_step_m);
     let tile = 200.0;
     let nx = ((max.x - min.x + 400.0) / tile).ceil() as usize;
     let nz = ((max.z - min.z + 400.0) / tile).ceil() as usize;
     for tx in 0..nx {
         for tz in 0..nz {
-            let mut vertices = Vec::new();
-            let mut indices = Vec::new();
-            let count = (tile / spacing) as usize;
-            for z in 0..=count {
-                for x in 0..=count {
-                    let x = min.x - 200.0 + tx as f32 * tile + x as f32 * spacing;
-                    let z = min.z - 200.0 + tz as f32 * tile + z as f32 * spacing;
-                    vertices.push(Vec3::new(x, track.terrain_height(x, z), z));
-                }
-            }
-            for z in 0..count {
-                for x in 0..count {
-                    let a = (z * (count + 1) + x) as u32;
-                    let b = a + (count + 1) as u32;
-                    indices.extend([[a, b, a + 1], [a + 1, b, b + 1]]);
-                }
+            let origin = Vec2::new(
+                min.x - 200.0 + tx as f32 * tile,
+                min.z - 200.0 + tz as f32 * tile,
+            );
+            let (mut vertices, mut indices) =
+                crate::world_gen::ground::terrain_grid(track, origin, tile, spacing);
+            if let Some(earthworks) = &track.earthworks {
+                earthworks.cut_pads(track, &mut vertices, &mut indices);
             }
             render_triangles += indices.len();
             collision_triangles += indices.len();
-            commands.spawn((
-                Mesh3d(meshes.add(mesh(&vertices, &indices))),
-                MeshMaterial3d(grass.clone()),
-                Transform::default(),
-                RigidBody::Fixed,
-                Collider::trimesh(vertices, indices).expect("terrain collision"),
-                Ground,
-                Terrain,
-                Friction::coefficient(Surface::Grass.friction()),
-            ));
+            let center = Vec3::new(origin.x + tile * 0.5, 0.0, origin.y + tile * 0.5);
+            let local_vertices: Vec<_> = vertices.iter().map(|p| *p - center).collect();
+            let mut terrain_mesh = mesh(&local_vertices, &indices);
+            if let Some(layout) = layout {
+                let plan = crate::world_gen::WorldPlan::from_json(
+                    crate::world_gen::WORLD_JSON,
+                    crate::world_gen::ARCHETYPES_JSON,
+                    track,
+                )
+                .expect("terrain plan");
+                terrain_mesh.insert_attribute(
+                    Mesh::ATTRIBUTE_COLOR,
+                    vertices
+                        .iter()
+                        .map(|p| {
+                            crate::world_gen::surfaces::terrain_color(&plan, layout, track, *p)
+                        })
+                        .collect::<Vec<_>>(),
+                );
+            }
+            let terrain = commands
+                .spawn((
+                    Mesh3d(meshes.add(terrain_mesh)),
+                    MeshMaterial3d(grass.clone()),
+                    Transform::from_translation(center),
+                    RigidBody::Fixed,
+                    Collider::trimesh(local_vertices, indices).expect("terrain collision"),
+                    Ground,
+                    Terrain,
+                    Friction::coefficient(Surface::Grass.friction()),
+                ))
+                .id();
+            if let Some(layout) = layout {
+                use bevy::camera::visibility::VisibilityRange;
+                let near = VisibilityRange {
+                    start_margin: 0.0..0.0,
+                    end_margin: layout.settings.terrain_near_m
+                        ..layout.settings.terrain_near_m + 40.0,
+                    use_aabb: false,
+                };
+                commands
+                    .entity(terrain)
+                    .insert((near.clone(), TerrainLod(true)));
+                let (v, ix) = crate::world_gen::ground::terrain_grid(
+                    track,
+                    origin,
+                    tile,
+                    layout.settings.terrain_far_step_m,
+                );
+                render_triangles += ix.len();
+                let local_v: Vec<_> = v.iter().map(|p| *p - center).collect();
+                let mut proxy = mesh(&local_v, &ix);
+                let plan = crate::world_gen::WorldPlan::from_json(
+                    crate::world_gen::WORLD_JSON,
+                    crate::world_gen::ARCHETYPES_JSON,
+                    track,
+                )
+                .expect("terrain LOD plan");
+                proxy.insert_attribute(
+                    Mesh::ATTRIBUTE_COLOR,
+                    v.iter()
+                        .map(|p| {
+                            crate::world_gen::surfaces::terrain_color(&plan, layout, track, *p)
+                        })
+                        .collect::<Vec<_>>(),
+                );
+                commands.spawn((
+                    Mesh3d(meshes.add(proxy)),
+                    MeshMaterial3d(grass.clone()),
+                    Transform::from_translation(center),
+                    TerrainLod(false),
+                    VisibilityRange {
+                        start_margin: near.end_margin,
+                        end_margin: 10000.0..10500.0,
+                        use_aabb: false,
+                    },
+                ));
+            }
         }
+    }
+    if let Some(layout) = layout {
+        crate::world_gen::surfaces::spawn(commands, meshes, materials, track, layout);
     }
     let cone = meshes.add(Cone::new(1.0, 1.0).mesh().resolution(7));
     let count = (track.length / 14.0) as usize;
@@ -239,7 +315,12 @@ pub fn build(
         random = ((random >> ((random >> 28) + 4)) ^ random).wrapping_mul(277803737);
         random = (random >> 22) ^ random;
         let sector = track.sector(d);
-        if sector == Sector::Hills && track.curvature(d).abs() > 0.0025 {
+        if sector == Sector::Hills
+            && track.curvature(d).abs() > 0.0025
+            && layout.is_none_or(|l| {
+                l.scenery_allowed(track.sample(d, 10.8 * track.curvature(d).signum()).0, 8.0)
+            })
+        {
             {
                 let lane = 10.8 * track.curvature(d).signum();
                 let (v, r) = track.sample(d, lane);
@@ -274,7 +355,11 @@ pub fn build(
                 let noise = (random % 1000) as f32 / 1000.0;
                 match sector {
                     Sector::Farms => {
-                        if random.is_multiple_of(5) {
+                        if random.is_multiple_of(5)
+                            && layout.is_none_or(|l| {
+                                l.scenery_allowed(track.sample(d, side * 19.0).0, 8.0)
+                            })
+                        {
                             // Intermittent fences leave open fields and access gaps.
                             for k in 0..4 {
                                 let (v, r) = track.sample(d + k as f32 * 3.0, side * 19.0);
@@ -301,7 +386,7 @@ pub fn build(
                                 }
                             }
                         }
-                        if random.is_multiple_of(7) {
+                        if layout.is_none() && random.is_multiple_of(7) {
                             let (v, r) = track.sample(d, side * (38.0 + noise * 24.0));
                             if track.scenery_fits(v, 12.0, 4.0) {
                                 let e = block(
@@ -313,9 +398,14 @@ pub fn build(
                                     r,
                                     true,
                                 );
-                                commands
-                                    .entity(e)
-                                    .insert((ZoneProp(sector), SceneryFootprint { radius: 12.0 }));
+                                commands.entity(e).insert((
+                                    ZoneProp(sector),
+                                    SceneryFootprint { radius: 12.0 },
+                                    LegacyBuilding {
+                                        id: format!("legacy-farm-{i}-{side}"),
+                                        station_m: d,
+                                    },
+                                ));
                                 block(
                                     commands,
                                     art,
@@ -329,65 +419,72 @@ pub fn build(
                         }
                     }
                     Sector::City => {
-                        for offset in [0.0, 18.0] {
-                            if near_crossing {
-                                continue;
-                            }
-                            let (v, r) = track.sample(d + offset, side * (23.0 + noise * 8.0));
-                            let height = 9.0 + noise * 25.0;
-                            if !track.scenery_fits(v, 10.0, 3.0) {
-                                continue;
-                            }
-                            let floor = track.terrain_height(v.x, v.z);
-                            let e = block(
-                                commands,
-                                art,
-                                if i % 2 == 0 {
-                                    concrete.clone()
-                                } else {
-                                    brick.clone()
-                                },
-                                v.with_y(floor + height * 0.5),
-                                Vec3::new(13.0, height, 15.0),
-                                r,
-                                true,
-                            );
-                            commands
-                                .entity(e)
-                                .insert((ZoneProp(sector), SceneryFootprint { radius: 10.0 }));
-                            for level in 0..(height / 3.0) as usize {
-                                for pane in [-4.0, 0.0, 4.0] {
-                                    block(
-                                        commands,
-                                        art,
-                                        window.clone(),
-                                        v.with_y(floor + 2.0 + level as f32 * 3.0)
-                                            + r * Vec3::X * side * 6.56
-                                            + r * Vec3::Z * pane,
-                                        Vec3::new(0.04, 1.3, 2.8),
-                                        r,
-                                        false,
-                                    );
+                        if layout.is_none() {
+                            for offset in [0.0, 18.0] {
+                                if near_crossing {
+                                    continue;
                                 }
+                                let (v, r) = track.sample(d + offset, side * (23.0 + noise * 8.0));
+                                let height = 9.0 + noise * 25.0;
+                                if !track.scenery_fits(v, 10.0, 3.0) {
+                                    continue;
+                                }
+                                let floor = track.terrain_height(v.x, v.z);
+                                let e = block(
+                                    commands,
+                                    art,
+                                    if i % 2 == 0 {
+                                        concrete.clone()
+                                    } else {
+                                        brick.clone()
+                                    },
+                                    v.with_y(floor + height * 0.5),
+                                    Vec3::new(13.0, height, 15.0),
+                                    r,
+                                    true,
+                                );
+                                commands.entity(e).insert((
+                                    ZoneProp(sector),
+                                    SceneryFootprint { radius: 10.0 },
+                                    LegacyBuilding {
+                                        id: format!("legacy-city-{i}-{side}-{offset}"),
+                                        station_m: d + offset,
+                                    },
+                                ));
+                                for level in 0..(height / 3.0) as usize {
+                                    for pane in [-4.0, 0.0, 4.0] {
+                                        block(
+                                            commands,
+                                            art,
+                                            window.clone(),
+                                            v.with_y(floor + 2.0 + level as f32 * 3.0)
+                                                + r * Vec3::X * side * 6.56
+                                                + r * Vec3::Z * pane,
+                                            Vec3::new(0.04, 1.3, 2.8),
+                                            r,
+                                            false,
+                                        );
+                                    }
+                                }
+                                block(
+                                    commands,
+                                    art,
+                                    art.dark.clone(),
+                                    v.with_y(floor + 1.4) + r * Vec3::X * side * 6.58,
+                                    Vec3::new(0.1, 2.8, 2.0),
+                                    r,
+                                    false,
+                                );
+                                block(
+                                    commands,
+                                    art,
+                                    art.metal.clone(),
+                                    v.with_y(floor + height + 0.2),
+                                    Vec3::new(13.5, 0.4, 15.5),
+                                    r,
+                                    false,
+                                );
                             }
-                            block(
-                                commands,
-                                art,
-                                art.dark.clone(),
-                                v.with_y(floor + 1.4) + r * Vec3::X * side * 6.58,
-                                Vec3::new(0.1, 2.8, 2.0),
-                                r,
-                                false,
-                            );
-                            block(
-                                commands,
-                                art,
-                                art.metal.clone(),
-                                v.with_y(floor + height + 0.2),
-                                Vec3::new(13.5, 0.4, 15.5),
-                                r,
-                                false,
-                            );
                         }
                     }
                     Sector::Hills => {}
@@ -406,11 +503,13 @@ pub fn build(
                     } else {
                         5.0 + noise * 5.0
                     };
-                    if track.scenery_fits(
-                        v,
-                        h * 0.4,
-                        if sector == Sector::City { 1.5 } else { 5.0 },
-                    ) {
+                    if layout.is_none_or(|l| l.scenery_allowed(v, h * 0.4))
+                        && track.scenery_fits(
+                            v,
+                            h * 0.4,
+                            if sector == Sector::City { 1.5 } else { 5.0 },
+                        )
+                    {
                         let v = v.with_y(track.terrain_height(v.x, v.z));
                         let e = block(
                             commands,
@@ -455,19 +554,21 @@ pub fn build(
         }
         if sector == Sector::City && !near_crossing {
             for side in [-1.0, 1.0] {
-                let (v, r) = track.sample(d, side * 9.0);
-                let sidewalk = block(
-                    commands,
-                    art,
-                    concrete.clone(),
-                    v + Vec3::Y * 0.08,
-                    Vec3::new(3.0, 0.16, 14.2),
-                    r,
-                    true,
-                );
-                commands
-                    .entity(sidewalk)
-                    .insert((Ground, crate::vehicle::RideableStep));
+                let (v, r) = track.sample(d, side * if layout.is_some() { 12.5 } else { 9.0 });
+                if layout.is_none() {
+                    let sidewalk = block(
+                        commands,
+                        art,
+                        concrete.clone(),
+                        v + Vec3::Y * 0.08,
+                        Vec3::new(3.0, 0.16, 14.2),
+                        r,
+                        true,
+                    );
+                    commands
+                        .entity(sidewalk)
+                        .insert((Ground, crate::vehicle::RideableStep));
+                }
                 if i % 9 == 0 {
                     spawn_pedestrian(commands, art, v + Vec3::Y * 0.2, r, d);
                 }
@@ -483,7 +584,7 @@ pub fn build(
         let (p, q) = track.sample(d, prop.lane);
         match prop.kind {
             PropKind::Farm | PropKind::Building => {
-                if track.scenery_fits(p, 12.0, 2.0) {
+                if layout.is_none() && track.scenery_fits(p, 12.0, 2.0) {
                     let h = if prop.kind == PropKind::Farm {
                         6.0
                     } else {
@@ -498,9 +599,14 @@ pub fn build(
                         q,
                         true,
                     );
-                    commands
-                        .entity(e)
-                        .insert((ZoneProp(track.sector(d)), SceneryFootprint { radius: 12.0 }));
+                    commands.entity(e).insert((
+                        ZoneProp(track.sector(d)),
+                        SceneryFootprint { radius: 12.0 },
+                        LegacyBuilding {
+                            id: format!("legacy-authored-{}", prop.id.as_str()),
+                            station_m: d,
+                        },
+                    ));
                 }
             }
             PropKind::Fence | PropKind::Guardrail => {
@@ -517,15 +623,17 @@ pub fn build(
             PropKind::Pedestrian => spawn_pedestrian(commands, art, p, q, d),
             PropKind::Cow => spawn_cow(commands, art, p.with_y(track.terrain_height(p.x, p.z)), q),
             PropKind::Crossing => {
-                block(
-                    commands,
-                    art,
-                    asphalt.clone(),
-                    p - Vec3::Y * 0.01,
-                    Vec3::new(100.0, 0.08, 10.0),
-                    q,
-                    false,
-                );
+                if layout.is_none() {
+                    block(
+                        commands,
+                        art,
+                        asphalt.clone(),
+                        p - Vec3::Y * 0.01,
+                        Vec3::new(100.0, 0.08, 10.0),
+                        q,
+                        false,
+                    );
+                }
                 for offset in [-18.0, 18.0] {
                     let sign = if offset < 0.0 { 1.0 } else { -1.0 };
                     let center = p + q * Vec3::Z * sign * 2.4;
@@ -759,7 +867,12 @@ pub fn patrol(
         let p = path.center + path.axis * f * path.extent;
         t.translation = p;
         if car.is_none() {
-            t.translation.y = track.terrain_height(p.x, p.z) + 0.2;
+            t.translation.y = track.terrain_height(p.x, p.z)
+                + if track.earthworks.is_some() {
+                    0.04
+                } else {
+                    0.2
+                };
         }
         let direction = if path.one_way || phase < 2.0 {
             1.0

@@ -269,3 +269,34 @@ Existing dependency licenses/notices remain unchanged; no new dependency adopted
   memory and record precise incomplete equivalence gate. Keep modern 3D physics,
   collision/recovery and current longitudinal profiles; no claim they now match
   the entire original. No new dependency, adapted source or reference media.
+
+### 2026-10-30 base-world foundation follow-up
+
+No additional repository was investigated or adopted for B00–B02. The supplied
+world plan's Road Rash/source links are research suggestions, not newly verified
+findings or a license grant. Current local serde/Bevy/Rapier infrastructure was
+sufficient for schema, census and district preview. No external code/assets or
+new dependencies were incorporated. User-provided design input provenance is
+recorded in docs/world/source/MANIFEST.json and docs/world/BASE_WORLD.md.
+
+### R08 follow-up — structural world visibility, 2026-10-30
+
+Inspected the installed Bevy 0.17.3 source corresponding to existing R08
+v0.17.3 / 706fdd9800c4bf335d67f127ff6e5a93deadabb9:
+`bevy_camera/src/visibility/range.rs` (VisibilityRange, paired margins,
+use_aabb) and the existing mesh/visibility APIs. MIT OR Apache-2.0; existing
+license URLs/notices and dependency audit apply. Classification: DEPENDENCY.
+Adopted its API for near/far building and terrain visibility; no example code or
+media copied, no dependency/version change. Current engine supports it directly;
+no external procedural-city/navigation library was necessary. Risk: visual
+ranges must not remove collision; root ownership and native visible-part counts
+are verified in world/COMPLETION_TESTS.md. A future engine migration must recheck
+range/shadow behavior and rendering order rather than assume compatibility.
+
+B09 verification also inspected the installed bevy_winit 0.17.3
+`winit_config.rs`: unfocused game windows default to a 60 Hz reactive idle timer.
+The native survey uses Continuous updates only for benchmarking and records
+actual focus/resolution. Normal play retains its existing power policy. Paired
+VisibilityRange meshes now use the exact same local origin (including terrain
+tiles); a native atlas exposed the prior world-origin error and a regression
+asserts normalized vertices and paired transforms. No upstream example copied.

@@ -1,0 +1,2213 @@
+{
+  "allocation_fingerprint": "fnv1a64:f866d824acfb111f",
+  "archetypes": [
+    {
+      "brief": "Rural parcel, porch-facing road",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 6.0,
+      "id": "F01",
+      "name": "Farmhouse",
+      "quantity": 10,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Rectangular roof silhouette",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 12.0,
+      "height_min_m": 7.0,
+      "id": "F02",
+      "name": "Barn",
+      "quantity": 5,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Low long footprint",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 7.0,
+      "height_min_m": 4.0,
+      "id": "F03",
+      "name": "Agricultural shed",
+      "quantity": 8,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Sparse homes/edge settlement",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 5.0,
+      "id": "F04",
+      "name": "Rural roadside house",
+      "quantity": 12,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Front yard and driveway reserve",
+      "family": "residential",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 22.0,
+        "min_m": 12.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 8.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 5.0,
+      "id": "R01",
+      "name": "Detached suburban house",
+      "quantity": 28,
+      "roof": "flat"
+    },
+    {
+      "brief": "Repeatable narrow modules",
+      "family": "residential",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 22.0,
+        "min_m": 12.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 8.0
+      },
+      "height_max_m": 13.0,
+      "height_min_m": 7.0,
+      "id": "R02",
+      "name": "Townhouse/rowhouse",
+      "quantity": 20,
+      "roof": "flat"
+    },
+    {
+      "brief": "3-5 story continuous wall",
+      "family": "residential",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 22.0,
+        "min_m": 12.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 8.0
+      },
+      "height_max_m": 15.0,
+      "height_min_m": 9.0,
+      "id": "R03",
+      "name": "Low-rise apartment",
+      "quantity": 15,
+      "roof": "flat"
+    },
+    {
+      "brief": "Junction facing, transparent ground-level placeholder",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 12.0,
+      "height_min_m": 5.0,
+      "id": "C01",
+      "name": "Corner retail",
+      "quantity": 11,
+      "roof": "flat"
+    },
+    {
+      "brief": "Several tenants, single structural mass",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 5.0,
+      "id": "C02",
+      "name": "Retail strip",
+      "quantity": 12,
+      "roof": "flat"
+    },
+    {
+      "brief": "Building only; canopy/forecourt deferred",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 7.0,
+      "height_min_m": 4.0,
+      "id": "C03",
+      "name": "Fuel/convenience building",
+      "quantity": 3,
+      "roof": "flat"
+    },
+    {
+      "brief": "Long industrial frontage",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 14.0,
+      "height_min_m": 7.0,
+      "id": "C04",
+      "name": "Warehouse",
+      "quantity": 12,
+      "roof": "sawtooth"
+    },
+    {
+      "brief": "Wide ground-level openings",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 4.0,
+      "id": "C05",
+      "name": "Garage/workshop",
+      "quantity": 8,
+      "roof": "flat"
+    },
+    {
+      "brief": "4-10 floors",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 30.0,
+      "height_min_m": 12.0,
+      "id": "U01",
+      "name": "Urban apartment midrise",
+      "quantity": 25,
+      "roof": "flat"
+    },
+    {
+      "brief": "Regular commercial floor modules",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 33.0,
+      "height_min_m": 12.0,
+      "id": "U02",
+      "name": "Office midrise",
+      "quantity": 20,
+      "roof": "flat"
+    },
+    {
+      "brief": "Shop base plus upper floors",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 27.0,
+      "height_min_m": 12.0,
+      "id": "U03",
+      "name": "Mixed-use midrise",
+      "quantity": 20,
+      "roof": "flat"
+    },
+    {
+      "brief": "Open-face volume proxy",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 24.0,
+      "height_min_m": 9.0,
+      "id": "U04",
+      "name": "Parking structure",
+      "quantity": 8,
+      "roof": "flat"
+    },
+    {
+      "brief": "Small foundations on local pad",
+      "family": "hill",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 20.0,
+        "min_m": 8.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 8.0,
+      "height_min_m": 4.0,
+      "id": "H01",
+      "name": "Hillside cabin",
+      "quantity": 13,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Larger view-facing mass",
+      "family": "hill",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 20.0,
+        "min_m": 8.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 12.0,
+      "height_min_m": 6.0,
+      "id": "H02",
+      "name": "Hillside lodge",
+      "quantity": 7,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Sparse simple enclosed structures",
+      "family": "hill",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 20.0,
+        "min_m": 8.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 7.0,
+      "height_min_m": 3.0,
+      "id": "H03",
+      "name": "Hill utility structure",
+      "quantity": 10,
+      "roof": "pitched"
+    }
+  ],
+  "authored_length_m": 6847.2998046875,
+  "baked_length_m": 6847.3076171875,
+  "baseline": null,
+  "closed": false,
+  "elevation_range_m": [
+    -2.485168933868408,
+    110.12434387207031
+  ],
+  "end_snap_delta_m": 0.0078125,
+  "fingerprint_scope": "quota assignment only; not transforms, lots, foundations or completed-world determinism",
+  "gates": 9,
+  "generator_version": 1,
+  "grid_spawns": 8,
+  "phase": "B00-B02 foundation",
+  "placement_generated": false,
+  "planned_assignments": [
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S01/B001",
+      "row": "near",
+      "section_id": "S01"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S02/B001",
+      "row": "near",
+      "section_id": "S02"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S02/B002",
+      "row": "near",
+      "section_id": "S02"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S03/B001",
+      "row": "near",
+      "section_id": "S03"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S03/B002",
+      "row": "near",
+      "section_id": "S03"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S04/B001",
+      "row": "near",
+      "section_id": "S04"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S04/B002",
+      "row": "near",
+      "section_id": "S04"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S04/B003",
+      "row": "near",
+      "section_id": "S04"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S05/B001",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S05/B002",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S05/B003",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S05/B004",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S06/B001",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S06/B002",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S06/B003",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S06/B004",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S06/B005",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S06/B006",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S06/B007",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S06/B008",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S06/B009",
+      "row": "secondary",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S07/B001",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C03",
+      "id": "valley-run-01/g1/S07/B002",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S07/B003",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B004",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S07/B005",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S07/B006",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S07/B007",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B008",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S07/B009",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S07/B010",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B011",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B012",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B013",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S07/B014",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B015",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S07/B016",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S07/B017",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B018",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S07/B019",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B020",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B021",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B001",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B002",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B003",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B004",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B005",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S08/B006",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B007",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B008",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S08/B009",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B010",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B011",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S08/B012",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B013",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B014",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B015",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B016",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B017",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B018",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B019",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B020",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B021",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S08/B022",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B023",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S08/B024",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B025",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B026",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B027",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S08/B028",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S08/B029",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S08/B030",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S08/B031",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B032",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C03",
+      "id": "valley-run-01/g1/S08/B033",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B001",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B002",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B003",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S09/B004",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S09/B005",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B006",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S09/B007",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B008",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S09/B009",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B010",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S09/B011",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B012",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S09/B013",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B014",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B015",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B016",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B017",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B018",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S09/B019",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B020",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B021",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S09/B022",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B023",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B024",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B025",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S09/B026",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B027",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S09/B028",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B029",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S09/B030",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B031",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B032",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S09/B033",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B034",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S09/B035",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S09/B036",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B037",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S09/B038",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B039",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B040",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B041",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S09/B042",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B043",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S09/B044",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S10/B001",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B002",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S10/B003",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B004",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B005",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S10/B006",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B007",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S10/B008",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B009",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S10/B010",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B011",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B012",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S10/B013",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B014",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B015",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B016",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B017",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B018",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B019",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S10/B020",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B021",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B022",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B023",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B024",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B025",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B026",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B027",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B028",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B029",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B030",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B031",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S10/B032",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S10/B033",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B034",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B035",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B036",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B037",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S10/B038",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S10/B039",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B040",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S10/B041",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B042",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S10/B043",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S10/B044",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B045",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B046",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B047",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B048",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B049",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B050",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B051",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B052",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B053",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B054",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B055",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B056",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S11/B001",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B002",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S11/B003",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B004",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S11/B005",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B006",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S11/B007",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B008",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S11/B009",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B010",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B011",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S11/B012",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S11/B013",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B014",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S11/B015",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S11/B016",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B017",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S11/B018",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S11/B019",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S11/B020",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B021",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S11/B022",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S11/B023",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S11/B024",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B025",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S11/B026",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C03",
+      "id": "valley-run-01/g1/S11/B027",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B028",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S11/B029",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B030",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S11/B031",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S11/B032",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B033",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B034",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S11/B035",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B036",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B037",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S11/B038",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S11/B039",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S11/B040",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B001",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S12/B002",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B003",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B004",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B005",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S12/B006",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B007",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B008",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S12/B009",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B010",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S12/B011",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S12/B012",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B013",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S12/B014",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S12/B015",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B016",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S12/B017",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B018",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S13/B001",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S13/B002",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S13/B003",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S13/B004",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S13/B005",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S13/B006",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S13/B007",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S13/B008",
+      "row": "secondary",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S13/B009",
+      "row": "secondary",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S14/B001",
+      "row": "near",
+      "section_id": "S14"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S14/B002",
+      "row": "near",
+      "section_id": "S14"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S14/B003",
+      "row": "near",
+      "section_id": "S14"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S15/B001",
+      "row": "near",
+      "section_id": "S15"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S15/B002",
+      "row": "near",
+      "section_id": "S15"
+    }
+  ],
+  "sections": [
+    {
+      "authored_end_m": 450.0,
+      "district": "farms",
+      "end_m": 450.0,
+      "end_position": [
+        126.62898254394531,
+        0.10000000149011612,
+        -2509.349853515625
+      ],
+      "id": "S01",
+      "legacy_masses": null,
+      "name": "Pasture Gate",
+      "near": 1,
+      "secondary": 0,
+      "start_m": 0.0,
+      "start_position": [
+        0.0,
+        0.10000000149011612,
+        -2940.0
+      ],
+      "total": 1
+    },
+    {
+      "authored_end_m": 900.0,
+      "district": "farms",
+      "end_m": 900.0,
+      "end_position": [
+        -46.071720123291016,
+        0.09999999403953552,
+        -2104.577880859375
+      ],
+      "id": "S02",
+      "legacy_masses": null,
+      "name": "Creek Plain",
+      "near": 2,
+      "secondary": 0,
+      "start_m": 450.0,
+      "start_position": [
+        126.62898254394531,
+        0.10000000149011612,
+        -2509.349853515625
+      ],
+      "total": 2
+    },
+    {
+      "authored_end_m": 1350.0,
+      "district": "farms",
+      "end_m": 1350.0,
+      "end_position": [
+        18.57080841064453,
+        0.10000000149011612,
+        -1702.81591796875
+      ],
+      "id": "S03",
+      "legacy_masses": null,
+      "name": "Open Harvest",
+      "near": 2,
+      "secondary": 0,
+      "start_m": 900.0,
+      "start_position": [
+        -46.071720123291016,
+        0.09999999403953552,
+        -2104.577880859375
+      ],
+      "total": 2
+    },
+    {
+      "authored_end_m": 1800.0,
+      "district": "farms",
+      "end_m": 1800.0,
+      "end_position": [
+        125.44200134277344,
+        0.10000000149011612,
+        -1292.17333984375
+      ],
+      "id": "S04",
+      "legacy_masses": null,
+      "name": "Long Farm Bend",
+      "near": 3,
+      "secondary": 0,
+      "start_m": 1350.0,
+      "start_position": [
+        18.57080841064453,
+        0.10000000149011612,
+        -1702.81591796875
+      ],
+      "total": 3
+    },
+    {
+      "authored_end_m": 2250.0,
+      "district": "farms",
+      "end_m": 2250.0,
+      "end_position": [
+        -2.3678641319274902,
+        0.10000000149011612,
+        -861.64697265625
+      ],
+      "id": "S05",
+      "legacy_masses": null,
+      "name": "County Approach",
+      "near": 4,
+      "secondary": 0,
+      "start_m": 1800.0,
+      "start_position": [
+        125.44200134277344,
+        0.10000000149011612,
+        -1292.17333984375
+      ],
+      "total": 4
+    },
+    {
+      "authored_end_m": 2700.0,
+      "district": "rural_edge",
+      "end_m": 2700.0,
+      "end_position": [
+        7.934769630432129,
+        0.10000000149011612,
+        -413.1212158203125
+      ],
+      "id": "S06",
+      "legacy_masses": null,
+      "name": "Rural Edge",
+      "near": 8,
+      "secondary": 1,
+      "start_m": 2250.0,
+      "start_position": [
+        -2.3678641319274902,
+        0.10000000149011612,
+        -861.64697265625
+      ],
+      "total": 9
+    },
+    {
+      "authored_end_m": 3150.0,
+      "district": "rural_edge",
+      "end_m": 3150.0,
+      "end_position": [
+        -221.06788635253906,
+        0.10000000149011612,
+        -30.217605590820312
+      ],
+      "id": "S07",
+      "legacy_masses": null,
+      "name": "Edge Suburb",
+      "near": 17,
+      "secondary": 4,
+      "start_m": 2700.0,
+      "start_position": [
+        7.934769630432129,
+        0.10000000149011612,
+        -413.1212158203125
+      ],
+      "total": 21
+    },
+    {
+      "authored_end_m": 3600.0,
+      "district": "suburban",
+      "end_m": 3600.0,
+      "end_position": [
+        -97.09912109375,
+        0.10000000149011612,
+        337.9261474609375
+      ],
+      "id": "S08",
+      "legacy_masses": null,
+      "name": "Residential Strip",
+      "near": 24,
+      "secondary": 9,
+      "start_m": 3150.0,
+      "start_position": [
+        -221.06788635253906,
+        0.10000000149011612,
+        -30.217605590820312
+      ],
+      "total": 33
+    },
+    {
+      "authored_end_m": 4050.0,
+      "district": "inner_city",
+      "end_m": 4050.0,
+      "end_position": [
+        62.43598937988281,
+        -1.7633038759231567,
+        706.0573120117188
+      ],
+      "id": "S09",
+      "legacy_masses": null,
+      "name": "Warehouse Grid",
+      "near": 30,
+      "secondary": 14,
+      "start_m": 3600.0,
+      "start_position": [
+        -97.09912109375,
+        0.10000000149011612,
+        337.9261474609375
+      ],
+      "total": 44
+    },
+    {
+      "authored_end_m": 4500.0,
+      "district": "city_core",
+      "end_m": 4500.0,
+      "end_position": [
+        89.58743286132812,
+        11.599526405334473,
+        1121.2657470703125
+      ],
+      "id": "S10",
+      "legacy_masses": null,
+      "name": "Dense Downtown",
+      "near": 36,
+      "secondary": 20,
+      "start_m": 4050.0,
+      "start_position": [
+        62.43598937988281,
+        -1.7633038759231567,
+        706.0573120117188
+      ],
+      "total": 56
+    },
+    {
+      "authored_end_m": 4950.0,
+      "district": "city_to_hills",
+      "end_m": 4950.0,
+      "end_position": [
+        145.8382568359375,
+        55.140892028808594,
+        1521.512451171875
+      ],
+      "id": "S11",
+      "legacy_masses": null,
+      "name": "Urban Escape",
+      "near": 26,
+      "secondary": 14,
+      "start_m": 4500.0,
+      "start_position": [
+        89.58743286132812,
+        11.599526405334473,
+        1121.2657470703125
+      ],
+      "total": 40
+    },
+    {
+      "authored_end_m": 5400.0,
+      "district": "hills",
+      "end_m": 5400.0,
+      "end_position": [
+        61.201202392578125,
+        78.25897216796875,
+        1909.17236328125
+      ],
+      "id": "S12",
+      "legacy_masses": null,
+      "name": "Upper Estates",
+      "near": 12,
+      "secondary": 6,
+      "start_m": 4950.0,
+      "start_position": [
+        145.8382568359375,
+        55.140892028808594,
+        1521.512451171875
+      ],
+      "total": 18
+    },
+    {
+      "authored_end_m": 5850.0,
+      "district": "hills",
+      "end_m": 5850.0,
+      "end_position": [
+        294.2234191894531,
+        50.524810791015625,
+        2245.12890625
+      ],
+      "id": "S13",
+      "legacy_masses": null,
+      "name": "Rolling Summit",
+      "near": 7,
+      "secondary": 2,
+      "start_m": 5400.0,
+      "start_position": [
+        61.201202392578125,
+        78.25897216796875,
+        1909.17236328125
+      ],
+      "total": 9
+    },
+    {
+      "authored_end_m": 6300.0,
+      "district": "hills",
+      "end_m": 6300.0,
+      "end_position": [
+        0.622411847114563,
+        109.6956787109375,
+        2572.41650390625
+      ],
+      "id": "S14",
+      "legacy_masses": null,
+      "name": "Ridge Descent",
+      "near": 3,
+      "secondary": 0,
+      "start_m": 5850.0,
+      "start_position": [
+        294.2234191894531,
+        50.524810791015625,
+        2245.12890625
+      ],
+      "total": 3
+    },
+    {
+      "authored_end_m": 6847.2998046875,
+      "district": "hills",
+      "end_m": 6847.3076171875,
+      "end_position": [
+        315.0,
+        60.0,
+        3003.0
+      ],
+      "id": "S15",
+      "legacy_masses": null,
+      "name": "Final Ridge",
+      "near": 2,
+      "secondary": 0,
+      "start_m": 6300.0,
+      "start_position": [
+        0.622411847114563,
+        109.6956787109375,
+        2572.41650390625
+      ],
+      "total": 2
+    }
+  ],
+  "seed": 17031,
+  "target": {
+    "archetypes": 19,
+    "buildings": 247,
+    "families": {
+      "commercial": 46,
+      "farm": 35,
+      "hill": 30,
+      "residential": 63,
+      "urban": 73
+    },
+    "near": 177,
+    "secondary": 70,
+    "sections": 15
+  },
+  "track_id": "valley-run-01"
+}

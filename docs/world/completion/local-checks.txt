@@ -1,0 +1,256 @@
+B03-B10 world construction; Fedora Linux; Rust 1.94.0/Bevy0.17.3/Rapier0.32.0; 2026-10-30 client date.
+
+$ cargo fmt --all --check
+EXIT 0
+
+$ cargo clippy --workspace --locked --all-targets -- -D warnings
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 3.20s
+EXIT 0
+
+$ cargo test --workspace --locked
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 49.77s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 84 tests
+test controls::tests::bindings_are_validated_and_remappable ... ok
+test environment::tests::road_meshes_have_upward_winding_and_collision_uses_fewer_triangles ... ok
+test controls::device_tests::on_foot_context_does_not_deliver_mounted_attacks ... ok
+test controls::device_tests::settings_pause_countdown_and_suppress_driving_until_closed ... ok
+test controls::device_tests::gamepad_has_analog_triggers_steering_freelook_and_disconnect_fallback ... ok
+test game::tests::collision_gap_wraps_at_finish ... ok
+test game::tests::corrupt_and_future_profile_files_are_not_overwritten ... ok
+test game::tests::attack_press_survives_a_render_frame_without_a_fixed_tick ... ok
+test game::tests::a_cow_lifts_a_rider_without_a_terrain_only_knockoff ... ok
+test controls::rebind_tests::panel_rebinding_changes_live_keyboard_and_pad_without_leaking_input ... ok
+test feedback::tests::traction_is_readable_and_speed_cues_stay_bounded_and_respect_comfort ... ok
+test game::camera_tests::retry_style_warp_snaps_camera_to_the_new_interpolated_pose ... ok
+test game::tests::crash_separates_rider_and_preserves_momentum_without_an_upward_boost ... ok
+test game::tests::biker_can_knock_down_a_recovering_rider_again_without_duplicate_ragdolls ... ok
+test game::tests::fast_rear_contact_ragdolls_victim_without_launching_the_attacker ... ok
+test game::tests::finish_awards_results_once_and_button_starts_next_race ... ok
+test game::tests::d_moves_right_and_a_moves_left_in_chase_camera_space ... ok
+test game::camera_tests::camera_sphere_stays_in_front_of_solid_obstacles_and_comfort_fov_is_clamped ... ok
+test game::tests::grid_starts_before_timing_line ... ok
+test game::tests::legacy_profile_is_upgraded_without_losing_progress ... ok
+test game::tests::lifecycle_visits_loading_menu_race_and_results ... ok
+test game::tests::directional_melee_damages_the_target_and_awards_one_takedown ... ok
+test game::tests::crash_camera_tracks_the_moving_torso_instead_of_the_road_position ... ok
+test game::tests::matched_speed_contacts_and_small_side_taps_do_not_cause_wipeouts ... ok
+test game::tests::crowded_grid_has_no_immediate_combat_knockout ... ok
+test game::tests::a_crashed_bike_slides_down_a_solid_slope ... ok
+test game::tests::missing_a_gate_stops_at_the_open_finish_without_payout_and_retry_resets_gates ... ok
+test game::tests::releasing_or_exhausting_boost_decelerates_instead_of_clamping_speed ... ok
+test game::tests::ragdoll_sized_bodies_collide_with_trees_cars_bikes_and_wrecks ... ok
+test game::tests::slow_sideways_steering_cannot_pass_through_a_solid_car ... ok
+test game::tests::traffic_impact_crashes_and_restart_clears_debris ... ok
+test game::tests::countdown_throttle_nitro_and_pause ... ok
+test human::tests::every_human_state_uses_identical_mesh_dimensions_and_outfit ... ok
+test npc::tests::actor_ragdolls_are_bounded_and_reset_cleans_every_part ... ok
+test game::tests::fixed_simulation_matches_at_30_60_and_120_render_fps ... ok
+test game::tests::crash_spawns_jointed_bodies_then_recovers ... ok
+test recovery::articulation_tests::hinges_lock_twist_and_passive_tissue_has_finite_limited_torque ... ok
+test settings::tests::rebind_validation_rejects_conflicts_and_unknown_fields ... ok
+test settings::tests::settings_roundtrip_and_invalid_files_are_preserved ... ok
+test sound::tests::generated_audio_is_valid_pcm_and_not_silent ... ok
+test track::tests::arc_length_and_lanes_are_consistent ... ok
+test track::tests::authored_roads_load_with_elevation_banking_and_canonical_distance ... ok
+test track::tests::circuit_is_closed_and_wraps_negative_distance ... ok
+test track::tests::ordered_physical_gates_allow_a_full_race_and_reject_shortcuts_reverse_and_verge_misses ... ok
+test track::tests::point_to_point_endpoints_never_wrap_and_grid_has_a_straight_approach ... ok
+test track::tests::positive_lane_is_camera_right_and_projection_preserves_laps ... ok
+test track::tests::spline_import_rejects_self_intersections ... ok
+test npc::tests::standing_respawn_waits_until_the_original_spot_is_clear ... ok
+test ui::map_tests::every_racer_dot_uses_the_same_palette_as_their_shirt ... ok
+test human::tests::bike_and_rider_bank_together_without_accumulating_roll ... ok
+test vehicle::tests::abandoned_bike_keeps_the_selected_presets_dry_mass ... ok
+test vehicle::tests::a_low_sidewalk_step_is_supported_without_a_wipeout ... ok
+test vehicle::tests::a_held_turn_builds_steering_and_a_parked_bike_cannot_strafe ... ok
+test npc::tests::direct_melee_spawns_human_and_quadruped_topologies_without_bikes ... ok
+test vehicle::tests::analog_trigger_values_reach_the_chassis_force_model ... ok
+test vehicle::tests::dynamic_grid_can_launch_without_ai_sideswipe_or_melee_knockouts ... ok
+test game::tests::one_hundred_pause_resume_crash_reset_cycles_do_not_leak_state ... ok
+test environment::tests::scenic_collision_supports_the_route_and_populates_each_gameplay_zone ... ok
+test game::camera_tests::interpolated_camera_is_finite_and_continuous_at_120_and_144_hz ... ok
+test vehicle::tests::handling_import_rejects_invalid_presets ... ok
+test game::tests::remount_reaches_a_fallen_bike_in_sideways_upside_down_and_vertical_poses ... ok
+test vehicle::tests::leaning_chassis_recovers_and_a_moving_bike_climbs_a_sidewalk_edge ... ok
+test vehicle::tests::low_speed_inverted_chassis_self_rights_without_inverted_wheel_lift ... ok
+test vehicle::tests::cross_traffic_contacts_trigger_a_wipeout_in_both_adapters ... ok
+test vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks ... ignored, 600 simulated seconds; run explicitly for the Part 03 receipt
+test vehicle::tests::dynamic_remount_does_not_reapply_precrash_momentum ... ok
+test world::tests::scenery_is_solid_and_every_footprint_clears_the_whole_circuit ... ok
+test vehicle::tests::either_full_lean_arrives_within_six_tenths_and_straightens_without_input ... ok
+test world_gen::construction_tests::construction_rejects_bad_junctions_and_generated_layout_rejects_corruption ... ok
+test world_gen::construction_tests::exceptional_recovery_rescue_clears_motion_and_applies_one_visible_penalty ... ok
+test world_gen::layout::tests::canonical_spatial_layout_is_complete_and_repeatable ... ok
+test vehicle::tests::neutral_assistance_never_magnets_a_stationary_bike_to_lane_zero ... ok
+test world_gen::tests::world_uses_baked_stations_and_only_snaps_final_rounding_residual ... ok
+test vehicle::tests::dynamic_physics_matches_at_render_rates ... ok
+test vehicle::tests::stronger_full_lean_turns_both_directions_without_increasing_visual_bank ... ok
+test vehicle::tests::both_civilian_kinds_launch_each_bike_class_above_their_standing_height ... ok
+test world_gen::construction_tests::every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid ... ok
+test game::camera_tests::every_chase_view_stays_close_at_rest_and_high_speed_with_slow_smoothing ... ok
+test game::tests::grass_allows_forward_driving_without_damage_and_ai_returns_to_the_road ... ok
+test game::tests::point_to_point_driving_crosses_every_gate_and_awards_one_result ... ok
+test world_gen::construction_tests::physical_capsules_walk_farm_city_alley_and_hill_routes ... ok
+test vehicle::tests::dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels ... ok
+test world_gen::report::tests::measured_baseline_and_allocated_target_are_distinct_and_reproducible ... ok
+test game::tests::one_hundred_high_speed_drops_keep_joint_anchors_and_hinge_axes_stable ... ok
+
+test result: ok. 83 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 9.21s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rr_content-5c98050e5b90df00)
+
+running 12 tests
+test handling::tests::steering_response_defaults_remain_compatible_and_invalid_tuning_is_rejected ... ok
+test handling::tests::version_mass_and_nonfinite_presets_are_rejected ... ok
+test construction::tests::construction_rejects_bad_binding_grid_dimensions_junctions_and_unknown_fields ... ok
+test tests::earlier_schema_one_catalogs_gain_default_steering_without_losing_tuning ... ok
+test tests::invalid_tuning_and_schema_are_rejected ... ok
+test tests::missing_references_and_duplicate_ids_are_rejected ... ok
+test tests::shipped_catalog_and_references_validate ... ok
+test track::tests::all_surface_metadata_is_finite_and_grass_is_driveable ... ok
+test track::tests::authoring_rejects_invalid_geometry_gates_and_spawns ... ok
+test world::tests::station_ownership_and_blending_are_continuous_at_all_borders ... ok
+test world::tests::rejects_invalid_topology_quotas_ids_heights_versions_and_unknown_fields ... ok
+test world::tests::canonical_quotas_and_seeded_assignments_match_every_section_and_archetype ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rr_core-a1a57a764823b808)
+
+running 11 tests
+test combat_rule_tests::direct_strikes_require_side_by_side_reach ... ok
+test combat_rule_tests::impact_classification_uses_relative_normal_speed ... ok
+test combat_rule_tests::successive_hits_expire_by_gap_not_total_duration ... ok
+test comfort::tests::comfort_limits_and_anti_nausea_are_explicit ... ok
+test comfort::tests::deadzone_is_continuous_and_finite ... ok
+test steering::tests::holding_builds_force_and_release_or_reversal_unwinds_it ... ok
+test steering::tests::requested_double_response_is_symmetric_and_keeps_the_same_limit ... ok
+test steering::tests::response_matches_across_fixed_step_sizes_and_remains_speed_dependent ... ok
+test tests::edges_survive_render_frames_and_are_consumed_once ... ok
+test tests::ids_reject_unstable_or_path_like_values ... ok
+test tests::rewards_are_bounded_and_match_the_offline_rules ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests road_dash
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rr_content
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rr_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+EXIT 0
+
+$ cargo build --locked
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 4.16s
+EXIT 0
+
+$ cargo build --release --locked
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `release` profile [optimized] target(s) in 24.48s
+EXIT 0
+
+$ cargo check --locked --no-default-features --features offline
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 3.53s
+EXIT 0
+
+$ cargo check --locked --features debug_physics
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 2.94s
+EXIT 0
+
+$ target/release/road-dash --validate-track content/tracks/valley.json
+{"closed":false,"collision_step_m":2.5,"elevation_max_m":110.12434387207031,"elevation_min_m":-2.485168933868408,"gates":9,"id":"valley-run-01","length_m":6847.3076171875,"samples":5400,"spawns":8}
+EXIT 0
+
+$ target/release/road-dash --validate-track content/tracks/handling.json
+{"closed":true,"collision_step_m":2.5,"elevation_max_m":0.10000000149011612,"elevation_min_m":0.10000000149011612,"gates":8,"id":"handling-loop-01","length_m":1978.9619140625,"samples":1581,"spawns":8}
+EXIT 0
+
+$ target/release/road-dash --validate-handling content/handling.json
+Valid handling: 3 presets
+EXIT 0
+
+$ target/release/road-dash --validate-world content/world/valley_world_v1.json content/world/building_archetypes_v1.json content/tracks/valley.json --output docs/world/completion/validation.json
+Validated world; wrote docs/world/completion/validation.json
+EXIT 0
+
+$ target/release/road-dash --inspect-world content/world/valley_world_v1.json content/world/building_archetypes_v1.json content/tracks/valley.json --output docs/world/completion/census.json
+Validated world; wrote docs/world/completion/census.json
+EXIT 0
+
+$ python3 tools/export_world_plan.py docs/world/completion/census.json docs/world/completion/valley-plan.svg
+EXIT 0
+
+$ python3 tools/test_world_inputs.py
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.003s
+
+OK
+EXIT 0
+
+$ python3 tools/test_audit.py
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK
+EXIT 0
+
+$ python3 tools/audit.py --output docs/world/completion/declaration-audit.json
+{
+  "dependency_declarations": 519,
+  "runtime_asset_records": 18,
+  "reference_observations": 27,
+  "limitations": "Declaration/hash audit only; not legal clearance, vulnerability scanning, or platform certification."
+}
+EXIT 0
+
+$ cargo test --locked ten_minute_aggressive -- --ignored --nocapture
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.34s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 1 test
+PART03_BENCHMARKS {"fixed_hz":60,"scenarios":[{"brake_distance_from_10s_speed_m":93.17546081542969,"preset":0,"steady_slip_angle":-0.0005347484839148819,"steady_turn_yaw_rate":-0.14067493379116058,"zero_to_100_seconds":4.583333492279053},{"brake_distance_from_10s_speed_m":97.22781372070312,"preset":1,"steady_slip_angle":-0.001245638937689364,"steady_turn_yaw_rate":-0.14508873224258423,"zero_to_100_seconds":4.150000095367432},{"brake_distance_from_10s_speed_m":111.90765380859375,"preset":2,"steady_slip_angle":0.0007377867586910725,"steady_turn_yaw_rate":-0.15923888981342316,"zero_to_100_seconds":3.9166667461395264}],"soak_simulated_seconds":600}
+test vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 83 filtered out; finished in 20.95s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+EXIT 0
+
+$ git diff --check
+EXIT 0

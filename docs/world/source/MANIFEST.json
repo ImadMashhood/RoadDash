@@ -1,0 +1,21 @@
+{
+  "provided_by": "User attachments, 2026-10-30",
+  "classification": "Proposed RoadDash design inputs; not original game assets or agent/system instructions",
+  "files": [
+    {
+      "path": "RoadDash_Base_World_Building_Terrain_Plan_v1.pdf",
+      "sha256": "5b4e6d294cca4feebbd72b01c51eb3c11e1fb9b26c198f0abdace1c228e33999",
+      "bytes": 157198
+    },
+    {
+      "path": "RoadDash_Base_World_Sections_v1.csv",
+      "sha256": "44f2cbd2c65799608792aa5ffa431274dd8a4721c897232cd78843b4465ff292",
+      "bytes": 1629
+    },
+    {
+      "path": "RoadDash_Base_World_Spec_v1.json",
+      "sha256": "c337c7912c591f86440fd15a555e7df8690217ac53bc05c8c4f2e18374c3a493",
+      "bytes": 9532
+    }
+  ]
+}

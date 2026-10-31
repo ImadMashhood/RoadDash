@@ -19,6 +19,7 @@ pub mod ui;
 pub mod vehicle;
 pub mod verification;
 pub mod world;
+pub mod world_gen;
 
 use bevy::prelude::*;
 
@@ -39,7 +40,23 @@ pub fn build_app(smoke: bool) -> App {
     app.add_plugins(DefaultPlugins.set(WindowPlugin {
         primary_window: Some(Window {
             title: "ROAD / DASH — Valley Run".into(),
-            resolution: (1440, 900).into(),
+            mode: if std::env::args().any(|a| a == "--world-survey") {
+                bevy::window::WindowMode::BorderlessFullscreen(
+                    bevy::window::MonitorSelection::Current,
+                )
+            } else {
+                bevy::window::WindowMode::Windowed
+            },
+            present_mode: if std::env::args().any(|a| a == "--world-survey") {
+                bevy::window::PresentMode::AutoNoVsync
+            } else {
+                default()
+            },
+            resolution: if std::env::args().any(|a| a == "--world-survey") {
+                (1920, 1080).into()
+            } else {
+                (1440, 900).into()
+            },
             ..default()
         }),
         ..default()
@@ -62,7 +79,16 @@ pub fn build_app(smoke: bool) -> App {
             .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
                 std::time::Duration::from_secs_f64(1.0 / 60.0),
             ));
-        if std::env::args().any(|a| a == "--actor-smoke-test") {
+        if std::env::args().any(|a| a == "--world-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous());
+            app.init_resource::<world_gen::survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    world_gen::survey::run
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--actor-smoke-test") {
             app.add_systems(Update, verification::actor_smoke.after(ui::update_ui));
         } else {
             app.init_resource::<verification::SmokeProgress>()

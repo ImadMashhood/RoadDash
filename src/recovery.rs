@@ -26,6 +26,9 @@ pub struct Recovery {
     pub wreck: Option<Entity>,
     pub runner: Option<Entity>,
     pub pose: Option<Entity>,
+    pub walk_path: Vec<Vec3>,
+    pub walk_goal: Option<Vec3>,
+    pub path_refresh: f32,
 }
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub enum BodyKind {
@@ -236,6 +239,9 @@ pub fn crash(
         commands.entity(runner).despawn();
     }
     recovery.pose = None;
+    recovery.walk_path.clear();
+    recovery.walk_goal = None;
+    recovery.path_refresh = 0.0;
     let forward = (rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
     let rotation = Quat::from_rotation_y(forward.x.atan2(forward.z));
     let momentum =
@@ -317,7 +323,7 @@ pub fn crash(
 pub fn recover(
     mut commands: Commands,
     time: Res<Time<Fixed>>,
-    race: Res<Race>,
+    mut race: ResMut<Race>,
     track: Res<Track>,
     art: Res<Art>,
     mut riders: Query<(
@@ -338,6 +344,7 @@ pub fn recover(
     >,
     context: ReadRapierContext,
     mut audio: MessageWriter<AudioCue>,
+    layout: Option<Res<crate::world_gen::layout::WorldLayout>>,
 ) {
     if race.phase != Phase::Racing {
         return;
@@ -448,13 +455,65 @@ pub fn recover(
                 let Some(runner) = recovery.runner else {
                     continue;
                 };
-                let Ok((mut transform, _, controller, _)) = bodies.get_mut(runner) else {
+                let Ok((mut transform, _, mut controller, _)) = bodies.get_mut(runner) else {
                     continue;
                 };
                 let contact = bike_contact_point(&wreck_pose, transform.translation);
                 let center = wreck_pose.translation + wreck_pose.rotation * Vec3::Y * 0.85;
                 let delta = (center - transform.translation).with_y(0.0);
-                let direction = delta.normalize_or_zero();
+                let mut direction = delta.normalize_or_zero();
+                if let Some(ref layout) = layout {
+                    recovery.path_refresh -= dt;
+                    if recovery.path_refresh <= 0.0
+                        && (recovery.walk_goal.is_none_or(|p| p.distance(center) > 2.0)
+                            || recovery.walk_path.is_empty())
+                    {
+                        recovery.walk_path = crate::world_gen::navigation::route(
+                            layout,
+                            &track,
+                            transform.translation,
+                            center,
+                        )
+                        .unwrap_or_default();
+                        recovery.walk_goal = Some(center);
+                        recovery.path_refresh = 2.0;
+                    }
+                    if let Some(next) = recovery.walk_path.first().copied() {
+                        if next.xz().distance(transform.translation.xz()) < 0.9 {
+                            recovery.walk_path.remove(0);
+                        } else {
+                            direction = (next - transform.translation)
+                                .with_y(0.0)
+                                .normalize_or_zero();
+                        }
+                    }
+                    // Explicit rescue for an exceptional trap, never ordinary hill travel.
+                    let below = transform.translation.y
+                        < track.terrain_height(transform.translation.x, transform.translation.z)
+                            - 8.0;
+                    if recovery.elapsed > 120.0 || below {
+                        let (d, _, _) = track.project(wreck_pos, rider.progress);
+                        let (p, q) = track.sample(d, 0.0);
+                        transform.translation = p + Vec3::Y * 0.98 - q * Vec3::X * 2.0;
+                        if let Some(ref mut c) = controller {
+                            c.translation = Some(Vec3::ZERO);
+                        }
+                        recovery.path_refresh = 0.0;
+                        if let Ok((mut t, velocity, _, _)) = bodies.get_mut(wreck) {
+                            *t = Transform::from_translation(p).with_rotation(q);
+                            if let Some(mut v) = velocity {
+                                *v = Velocity::zero();
+                            }
+                        }
+                        recovery.walk_path.clear();
+                        recovery.walk_goal = None;
+                        recovery.elapsed = 0.0;
+                        race.elapsed += 5.0;
+                        race.message = "RECOVERY RESCUE / +5 SEC".into();
+                        race.message_time = 4.0;
+                        continue;
+                    }
+                }
                 let reach = contact - transform.translation;
                 if reach.with_y(0.0).length() <= 0.8 && reach.y.abs() <= 1.2 && wreck_speed <= 2.0 {
                     recovery.stage = RecoveryStage::Mounting;

@@ -1,0 +1,32 @@
+{
+  "benchmark": "warmed city view with active eight-racer simulation; current default rendering, no production quality preset",
+  "fields": 42,
+  "junctions": 9,
+  "limitations": "bounded wall-frame sample, not GPU timing or Windows hardware certification",
+  "logical_buildings": 247,
+  "metrics": {
+    "active_fixed_ticks": 2190,
+    "colliders": 2176,
+    "entities": 6550,
+    "fixed_ticks": 2249,
+    "last_gameplay_ms": 0.3444649875164032,
+    "last_physics_ms": 2.0952110290527344,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 2250,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 7.5520219802856445,
+    "wall_frame_p95_ms": 10.277952194213867
+  },
+  "p95_target_met": true,
+  "p95_target_ms": 16.7,
+  "present_mode": "AutoNoVsync",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "sections_captured": 15,
+  "update_mode": "Continuous focused and unfocused (benchmark only)",
+  "visible_far_proxies": 63,
+  "visible_near_parts": 81,
+  "window_focused": true
+}

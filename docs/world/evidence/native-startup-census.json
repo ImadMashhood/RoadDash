@@ -1,0 +1,6582 @@
+{
+  "allocation_fingerprint": "fnv1a64:f866d824acfb111f",
+  "archetypes": [
+    {
+      "brief": "Rural parcel, porch-facing road",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 6.0,
+      "id": "F01",
+      "name": "Farmhouse",
+      "quantity": 10,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Rectangular roof silhouette",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 12.0,
+      "height_min_m": 7.0,
+      "id": "F02",
+      "name": "Barn",
+      "quantity": 5,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Low long footprint",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 7.0,
+      "height_min_m": 4.0,
+      "id": "F03",
+      "name": "Agricultural shed",
+      "quantity": 8,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Sparse homes/edge settlement",
+      "family": "farm",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 24.0,
+        "min_m": 10.0
+      },
+      "footprint_width_m": {
+        "max_m": 16.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 5.0,
+      "id": "F04",
+      "name": "Rural roadside house",
+      "quantity": 12,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Front yard and driveway reserve",
+      "family": "residential",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 22.0,
+        "min_m": 12.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 8.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 5.0,
+      "id": "R01",
+      "name": "Detached suburban house",
+      "quantity": 28,
+      "roof": "flat"
+    },
+    {
+      "brief": "Repeatable narrow modules",
+      "family": "residential",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 22.0,
+        "min_m": 12.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 8.0
+      },
+      "height_max_m": 13.0,
+      "height_min_m": 7.0,
+      "id": "R02",
+      "name": "Townhouse/rowhouse",
+      "quantity": 20,
+      "roof": "flat"
+    },
+    {
+      "brief": "3-5 story continuous wall",
+      "family": "residential",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 22.0,
+        "min_m": 12.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 8.0
+      },
+      "height_max_m": 15.0,
+      "height_min_m": 9.0,
+      "id": "R03",
+      "name": "Low-rise apartment",
+      "quantity": 15,
+      "roof": "flat"
+    },
+    {
+      "brief": "Junction facing, transparent ground-level placeholder",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 12.0,
+      "height_min_m": 5.0,
+      "id": "C01",
+      "name": "Corner retail",
+      "quantity": 11,
+      "roof": "flat"
+    },
+    {
+      "brief": "Several tenants, single structural mass",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 5.0,
+      "id": "C02",
+      "name": "Retail strip",
+      "quantity": 12,
+      "roof": "flat"
+    },
+    {
+      "brief": "Building only; canopy/forecourt deferred",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 7.0,
+      "height_min_m": 4.0,
+      "id": "C03",
+      "name": "Fuel/convenience building",
+      "quantity": 3,
+      "roof": "flat"
+    },
+    {
+      "brief": "Long industrial frontage",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 14.0,
+      "height_min_m": 7.0,
+      "id": "C04",
+      "name": "Warehouse",
+      "quantity": 12,
+      "roof": "sawtooth"
+    },
+    {
+      "brief": "Wide ground-level openings",
+      "family": "commercial",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 16.0
+      },
+      "footprint_width_m": {
+        "max_m": 22.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 9.0,
+      "height_min_m": 4.0,
+      "id": "C05",
+      "name": "Garage/workshop",
+      "quantity": 8,
+      "roof": "flat"
+    },
+    {
+      "brief": "4-10 floors",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 30.0,
+      "height_min_m": 12.0,
+      "id": "U01",
+      "name": "Urban apartment midrise",
+      "quantity": 25,
+      "roof": "flat"
+    },
+    {
+      "brief": "Regular commercial floor modules",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 33.0,
+      "height_min_m": 12.0,
+      "id": "U02",
+      "name": "Office midrise",
+      "quantity": 20,
+      "roof": "flat"
+    },
+    {
+      "brief": "Shop base plus upper floors",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 27.0,
+      "height_min_m": 12.0,
+      "id": "U03",
+      "name": "Mixed-use midrise",
+      "quantity": 20,
+      "roof": "flat"
+    },
+    {
+      "brief": "Open-face volume proxy",
+      "family": "urban",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 30.0,
+        "min_m": 18.0
+      },
+      "footprint_width_m": {
+        "max_m": 20.0,
+        "min_m": 10.0
+      },
+      "height_max_m": 24.0,
+      "height_min_m": 9.0,
+      "id": "U04",
+      "name": "Parking structure",
+      "quantity": 8,
+      "roof": "flat"
+    },
+    {
+      "brief": "Small foundations on local pad",
+      "family": "hill",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 20.0,
+        "min_m": 8.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 8.0,
+      "height_min_m": 4.0,
+      "id": "H01",
+      "name": "Hillside cabin",
+      "quantity": 13,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Larger view-facing mass",
+      "family": "hill",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 20.0,
+        "min_m": 8.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 12.0,
+      "height_min_m": 6.0,
+      "id": "H02",
+      "name": "Hillside lodge",
+      "quantity": 7,
+      "roof": "pitched"
+    },
+    {
+      "brief": "Sparse simple enclosed structures",
+      "family": "hill",
+      "floor_height_m": 3.0,
+      "footprint_depth_m": {
+        "max_m": 20.0,
+        "min_m": 8.0
+      },
+      "footprint_width_m": {
+        "max_m": 14.0,
+        "min_m": 6.0
+      },
+      "height_max_m": 7.0,
+      "height_min_m": 3.0,
+      "id": "H03",
+      "name": "Hill utility structure",
+      "quantity": 10,
+      "roof": "pitched"
+    }
+  ],
+  "authored_length_m": 6847.2998046875,
+  "baked_length_m": 6847.3076171875,
+  "baseline": {
+    "building_geometry_fingerprint": "fnv1a64:3370c4518b47abf0",
+    "building_masses": 198,
+    "buildings": [
+      {
+        "id": "legacy-authored-farm-0",
+        "position": [
+          82.70589447021484,
+          2.7948334217071533,
+          -2490.214111328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.02043852023780346,
+          0.0,
+          0.9997910857200623
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 467.3287353515625
+      },
+      {
+        "id": "legacy-authored-farm-1",
+        "position": [
+          -26.523151397705078,
+          2.8104162216186523,
+          -1846.9276123046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.26069727540016174,
+          0.0,
+          0.9654206037521362
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1201.7025146484375
+      },
+      {
+        "id": "legacy-city-198--1-0",
+        "position": [
+          16.36846160888672,
+          16.048315048217773,
+          -331.8343505859375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.19458553194999695,
+          0.0,
+          0.9808855652809143
+        ],
+        "size": [
+          13.0,
+          32.57500076293945,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2772.529296875
+      },
+      {
+        "id": "legacy-city-198--1-18",
+        "position": [
+          8.543464660644531,
+          16.048315048217773,
+          -314.0904541015625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.21692444384098053,
+          0.0,
+          0.9761883616447449
+        ],
+        "size": [
+          13.0,
+          32.57500076293945,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2790.529296875
+      },
+      {
+        "id": "legacy-city-198-1-0",
+        "position": [
+          -40.09352493286133,
+          16.048315048217773,
+          -355.15362548828125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.19458553194999695,
+          0.0,
+          0.9808855652809143
+        ],
+        "size": [
+          13.0,
+          32.57500076293945,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2772.529296875
+      },
+      {
+        "id": "legacy-city-198-1-18",
+        "position": [
+          -46.79539489746094,
+          16.048315048217773,
+          -339.96234130859375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.21692444384098053,
+          0.0,
+          0.9761883616447449
+        ],
+        "size": [
+          13.0,
+          32.57500076293945,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2790.529296875
+      },
+      {
+        "id": "legacy-city-201--1-0",
+        "position": [
+          -9.084564208984375,
+          5.252295970916748,
+          -294.40545654296875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.24374060332775116,
+          0.0,
+          0.9698405265808105
+        ],
+        "size": [
+          13.0,
+          11.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2814.53759765625
+      },
+      {
+        "id": "legacy-city-201--1-18",
+        "position": [
+          -18.21458625793457,
+          5.252295970916748,
+          -278.01324462890625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.25937166810035706,
+          0.0,
+          0.9657776355743408
+        ],
+        "size": [
+          13.0,
+          11.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2832.53759765625
+      },
+      {
+        "id": "legacy-city-201-1-0",
+        "position": [
+          -50.74680709838867,
+          5.252295970916748,
+          -316.7584228515625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.24374060332775116,
+          0.0,
+          0.9698405265808105
+        ],
+        "size": [
+          13.0,
+          11.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2814.53759765625
+      },
+      {
+        "id": "legacy-city-201-1-18",
+        "position": [
+          -59.13319396972656,
+          5.252295970916748,
+          -301.7000732421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.25937166810035706,
+          0.0,
+          0.9657776355743408
+        ],
+        "size": [
+          13.0,
+          11.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2832.53759765625
+      },
+      {
+        "id": "legacy-city-204--1-0",
+        "position": [
+          -27.23798370361328,
+          12.244651794433594,
+          -254.37173461914062
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2761414349079132,
+          0.0,
+          0.9611169695854187
+        ],
+        "size": [
+          13.0,
+          24.975000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2856.54541015625
+      },
+      {
+        "id": "legacy-city-204--1-18",
+        "position": [
+          -37.2723388671875,
+          12.244651794433594,
+          -238.72645568847656
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.28616252541542053,
+          0.0,
+          0.9581811428070068
+        ],
+        "size": [
+          13.0,
+          24.975000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2874.54541015625
+      },
+      {
+        "id": "legacy-city-204-1-0",
+        "position": [
+          -74.88735961914062,
+          12.244651794433594,
+          -284.2159118652344
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2761414349079132,
+          0.0,
+          0.9611169695854187
+        ],
+        "size": [
+          13.0,
+          24.975000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2856.54541015625
+      },
+      {
+        "id": "legacy-city-204-1-18",
+        "position": [
+          -84.2880859375,
+          12.244651794433594,
+          -269.5592041015625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.28616252541542053,
+          0.0,
+          0.9581811428070068
+        ],
+        "size": [
+          13.0,
+          24.975000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2874.54541015625
+      },
+      {
+        "id": "legacy-city-207--1-0",
+        "position": [
+          -49.045654296875,
+          16.060827255249023,
+          -216.8778076171875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2974485158920288,
+          0.0,
+          0.9547378420829773
+        ],
+        "size": [
+          13.0,
+          32.599998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2898.553466796875
+      },
+      {
+        "id": "legacy-city-207--1-18",
+        "position": [
+          -59.605323791503906,
+          16.060827255249023,
+          -201.79396057128906
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.30389267206192017,
+          0.0,
+          0.9527063369750977
+        ],
+        "size": [
+          13.0,
+          32.599998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2916.553466796875
+      },
+      {
+        "id": "legacy-city-207-1-0",
+        "position": [
+          -99.33721923828125,
+          16.060827255249023,
+          -251.58309936523438
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2974485158920288,
+          0.0,
+          0.9547378420829773
+        ],
+        "size": [
+          13.0,
+          32.599998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2898.553466796875
+      },
+      {
+        "id": "legacy-city-207-1-18",
+        "position": [
+          -109.42333221435547,
+          16.060827255249023,
+          -237.17567443847656
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.30389267206192017,
+          0.0,
+          0.9527063369750977
+        ],
+        "size": [
+          13.0,
+          32.599998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2916.553466796875
+      },
+      {
+        "id": "legacy-city-210--1-0",
+        "position": [
+          -76.68172454833984,
+          10.643319129943848,
+          -184.0265350341797
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31032586097717285,
+          0.0,
+          0.9506303071975708
+        ],
+        "size": [
+          13.0,
+          21.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2940.5615234375
+      },
+      {
+        "id": "legacy-city-210--1-18",
+        "position": [
+          -87.47383117675781,
+          10.643319129943848,
+          -169.3737030029297
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.3138098418712616,
+          0.0,
+          0.9494857788085938
+        ],
+        "size": [
+          13.0,
+          21.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2958.5615234375
+      },
+      {
+        "id": "legacy-city-210-1-0",
+        "position": [
+          -120.4231948852539,
+          10.643319129943848,
+          -215.9909210205078
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31032586097717285,
+          0.0,
+          0.9506303071975708
+        ],
+        "size": [
+          13.0,
+          21.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2940.5615234375
+      },
+      {
+        "id": "legacy-city-210-1-18",
+        "position": [
+          -130.97967529296875,
+          10.643319129943848,
+          -201.6580352783203
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.3138098418712616,
+          0.0,
+          0.9494857788085938
+        ],
+        "size": [
+          13.0,
+          21.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2958.5615234375
+      },
+      {
+        "id": "legacy-city-213--1-0",
+        "position": [
+          -100.53455352783203,
+          13.38317584991455,
+          -148.96018981933594
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31656861305236816,
+          0.0,
+          0.948569655418396
+        ],
+        "size": [
+          13.0,
+          27.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2982.569580078125
+      },
+      {
+        "id": "legacy-city-213--1-18",
+        "position": [
+          -111.38648223876953,
+          13.38317584991455,
+          -134.54135131835938
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31732797622680664,
+          0.0,
+          0.9483157992362976
+        ],
+        "size": [
+          13.0,
+          27.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3000.569580078125
+      },
+      {
+        "id": "legacy-city-213-1-0",
+        "position": [
+          -146.6536865234375,
+          13.38317584991455,
+          -183.60133361816406
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31656861305236816,
+          0.0,
+          0.948569655418396
+        ],
+        "size": [
+          13.0,
+          27.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 2982.569580078125
+      },
+      {
+        "id": "legacy-city-213-1-18",
+        "position": [
+          -157.4500732421875,
+          13.38317584991455,
+          -169.25631713867188
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31732797622680664,
+          0.0,
+          0.9483157992362976
+        ],
+        "size": [
+          13.0,
+          27.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3000.569580078125
+      },
+      {
+        "id": "legacy-city-216--1-0",
+        "position": [
+          -130.1239471435547,
+          4.939639091491699,
+          -118.63780975341797
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31671130657196045,
+          0.0,
+          0.9485219717025757
+        ],
+        "size": [
+          13.0,
+          10.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3024.57763671875
+      },
+      {
+        "id": "legacy-city-216--1-18",
+        "position": [
+          -140.859375,
+          4.939639091491699,
+          -104.3022232055664
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.3148839473724365,
+          0.0,
+          0.9491301774978638
+        ],
+        "size": [
+          13.0,
+          10.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3042.57763671875
+      },
+      {
+        "id": "legacy-city-216-1-0",
+        "position": [
+          -167.59925842285156,
+          4.939639091491699,
+          -146.8040313720703
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.31671130657196045,
+          0.0,
+          0.9485219717025757
+        ],
+        "size": [
+          13.0,
+          10.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3024.57763671875
+      },
+      {
+        "id": "legacy-city-216-1-18",
+        "position": [
+          -178.44290161132812,
+          4.939639091491699,
+          -132.32388305664062
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.3148839473724365,
+          0.0,
+          0.9491301774978638
+        ],
+        "size": [
+          13.0,
+          10.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3042.57763671875
+      },
+      {
+        "id": "legacy-city-222--1-0",
+        "position": [
+          -175.6746368408203,
+          11.256314277648926,
+          -49.20148468017578
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2972138822078705,
+          0.0,
+          0.9548109769821167
+        ],
+        "size": [
+          13.0,
+          23.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3108.593505859375
+      },
+      {
+        "id": "legacy-city-222--1-18",
+        "position": [
+          -185.50579833984375,
+          11.256314277648926,
+          -34.685089111328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2890773117542267,
+          0.0,
+          0.9573057889938354
+        ],
+        "size": [
+          13.0,
+          23.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3126.593505859375
+      },
+      {
+        "id": "legacy-city-222-1-0",
+        "position": [
+          -220.9247283935547,
+          11.256314277648926,
+          -80.3949203491211
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2972138822078705,
+          0.0,
+          0.9548109769821167
+        ],
+        "size": [
+          13.0,
+          23.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3108.593505859375
+      },
+      {
+        "id": "legacy-city-222-1-18",
+        "position": [
+          -231.28024291992188,
+          11.256314277648926,
+          -65.10384368896484
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2890773117542267,
+          0.0,
+          0.9573057889938354
+        ],
+        "size": [
+          13.0,
+          23.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3126.593505859375
+      },
+      {
+        "id": "legacy-city-225--1-0",
+        "position": [
+          -195.59144592285156,
+          15.760513305664062,
+          -13.695100784301758
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2742064297199249,
+          0.0,
+          0.9616708159446716
+        ],
+        "size": [
+          13.0,
+          32.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3150.601806640625
+      },
+      {
+        "id": "legacy-city-225--1-18",
+        "position": [
+          -204.4437255859375,
+          15.760513305664062,
+          0.9861507415771484
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2606319189071655,
+          0.0,
+          0.965438187122345
+        ],
+        "size": [
+          13.0,
+          32.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3168.601806640625
+      },
+      {
+        "id": "legacy-city-225-1-0",
+        "position": [
+          -247.1804656982422,
+          15.760513305664062,
+          -45.7183837890625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2742064297199249,
+          0.0,
+          0.9616708159446716
+        ],
+        "size": [
+          13.0,
+          32.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3150.601806640625
+      },
+      {
+        "id": "legacy-city-225-1-18",
+        "position": [
+          -256.9144287109375,
+          15.760513305664062,
+          -29.571069717407227
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.2606319189071655,
+          0.0,
+          0.965438187122345
+        ],
+        "size": [
+          13.0,
+          32.0,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3168.601806640625
+      },
+      {
+        "id": "legacy-city-228--1-0",
+        "position": [
+          -218.76007080078125,
+          9.80517292022705,
+          18.99734115600586
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.23817642033100128,
+          0.0,
+          0.9712218642234802
+        ],
+        "size": [
+          13.0,
+          20.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3192.609619140625
+      },
+      {
+        "id": "legacy-city-228--1-18",
+        "position": [
+          -226.21719360351562,
+          9.80517292022705,
+          34.08072280883789
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.21667136251926422,
+          0.0,
+          0.9762446284294128
+        ],
+        "size": [
+          13.0,
+          20.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3210.609619140625
+      },
+      {
+        "id": "legacy-city-228-1-0",
+        "position": [
+          -265.839111328125,
+          9.80517292022705,
+          -5.570921897888184
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.23817642033100128,
+          0.0,
+          0.9712218642234802
+        ],
+        "size": [
+          13.0,
+          20.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3192.609619140625
+      },
+      {
+        "id": "legacy-city-228-1-18",
+        "position": [
+          -274.3351135253906,
+          9.80517292022705,
+          11.615157127380371
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.21667136251926422,
+          0.0,
+          0.9762446284294128
+        ],
+        "size": [
+          13.0,
+          20.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3210.609619140625
+      },
+      {
+        "id": "legacy-city-231--1-0",
+        "position": [
+          -236.82432556152344,
+          6.427933692932129,
+          53.58646774291992
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.17997127771377563,
+          0.0,
+          0.9836719036102295
+        ],
+        "size": [
+          13.0,
+          13.350000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3234.61767578125
+      },
+      {
+        "id": "legacy-city-231--1-18",
+        "position": [
+          -242.0807647705078,
+          6.427934169769287,
+          69.03694915771484
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.1460704803466797,
+          0.0,
+          0.9892742037773132
+        ],
+        "size": [
+          13.0,
+          13.350000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3252.61767578125
+      },
+      {
+        "id": "legacy-city-231-1-0",
+        "position": [
+          -282.4481201171875,
+          6.427933692932129,
+          36.31373977661133
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.17997127771377563,
+          0.0,
+          0.9836719036102295
+        ],
+        "size": [
+          13.0,
+          13.350000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3234.61767578125
+      },
+      {
+        "id": "legacy-city-231-1-18",
+        "position": [
+          -288.7829895019531,
+          6.427933692932129,
+          54.93800354003906
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.1460704803466797,
+          0.0,
+          0.9892742037773132
+        ],
+        "size": [
+          13.0,
+          13.350000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3252.61767578125
+      },
+      {
+        "id": "legacy-city-234--1-0",
+        "position": [
+          -246.08645629882812,
+          7.903838634490967,
+          89.72242736816406
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.08725354820489883,
+          0.0,
+          0.9961860775947571
+        ],
+        "size": [
+          13.0,
+          16.299999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3276.625732421875
+      },
+      {
+        "id": "legacy-city-234--1-18",
+        "position": [
+          -247.95726013183594,
+          7.903838157653809,
+          104.80982208251953
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.032311659306287766,
+          0.0,
+          0.9994778037071228
+        ],
+        "size": [
+          13.0,
+          16.299999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3294.625732421875
+      },
+      {
+        "id": "legacy-city-234-1-0",
+        "position": [
+          -295.9869079589844,
+          7.903838634490967,
+          80.91352844238281
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.08725354820489883,
+          0.0,
+          0.9961860775947571
+        ],
+        "size": [
+          13.0,
+          16.299999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3276.625732421875
+      },
+      {
+        "id": "legacy-city-234-1-18",
+        "position": [
+          -298.5234375,
+          7.903838634490967,
+          101.53693389892578
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.032311659306287766,
+          0.0,
+          0.9994778037071228
+        ],
+        "size": [
+          13.0,
+          16.299999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3294.625732421875
+      },
+      {
+        "id": "legacy-city-237--1-0",
+        "position": [
+          -248.81472778320312,
+          6.140270709991455,
+          124.59058380126953
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.052950453013181686,
+          0.0,
+          0.998597264289856
+        ],
+        "size": [
+          13.0,
+          12.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3318.6337890625
+      },
+      {
+        "id": "legacy-city-237--1-18",
+        "position": [
+          -246.28977966308594,
+          6.140270709991455,
+          138.89317321777344
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.12418574839830399,
+          0.0,
+          0.9922590255737305
+        ],
+        "size": [
+          13.0,
+          12.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3336.6337890625
+      },
+      {
+        "id": "legacy-city-237-1-0",
+        "position": [
+          -296.9592590332031,
+          6.140270709991455,
+          129.710693359375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.052950453013181686,
+          0.0,
+          0.998597264289856
+        ],
+        "size": [
+          13.0,
+          12.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3318.6337890625
+      },
+      {
+        "id": "legacy-city-237-1-18",
+        "position": [
+          -293.2124328613281,
+          6.140270709991455,
+          150.8252410888672
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.12418574839830399,
+          0.0,
+          0.9922590255737305
+        ],
+        "size": [
+          13.0,
+          12.774999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3336.6337890625
+      },
+      {
+        "id": "legacy-city-240--1-0",
+        "position": [
+          -236.6865692138672,
+          11.393927574157715,
+          156.50927734375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.20430812239646912,
+          0.0,
+          0.9789066910743713
+        ],
+        "size": [
+          13.0,
+          23.274999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3360.641845703125
+      },
+      {
+        "id": "legacy-city-240--1-18",
+        "position": [
+          -229.8801727294922,
+          11.393927574157715,
+          170.14337158203125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.2529415786266327,
+          0.0,
+          0.9674815535545349
+        ],
+        "size": [
+          13.0,
+          23.274999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3378.641845703125
+      },
+      {
+        "id": "legacy-city-240-1-0",
+        "position": [
+          -287.2196350097656,
+          11.393927574157715,
+          178.56353759765625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.20430812239646912,
+          0.0,
+          0.9789066910743713
+        ],
+        "size": [
+          13.0,
+          23.274999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3360.641845703125
+      },
+      {
+        "id": "legacy-city-240-1-18",
+        "position": [
+          -277.9610290527344,
+          11.393927574157715,
+          197.12872314453125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.2529415786266327,
+          0.0,
+          0.9674815535545349
+        ],
+        "size": [
+          13.0,
+          23.274999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3378.641845703125
+      },
+      {
+        "id": "legacy-city-243--1-0",
+        "position": [
+          -220.06838989257812,
+          8.541766166687012,
+          188.9165802001953
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.30499663949012756,
+          0.0,
+          0.9523534774780273
+        ],
+        "size": [
+          13.0,
+          17.575000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3402.64990234375
+      },
+      {
+        "id": "legacy-city-243--1-18",
+        "position": [
+          -210.1494598388672,
+          8.541766166687012,
+          201.9380645751953
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.33495762944221497,
+          0.0,
+          0.9422332048416138
+        ],
+        "size": [
+          13.0,
+          17.575000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3420.64990234375
+      },
+      {
+        "id": "legacy-city-243-1-0",
+        "position": [
+          -261.9772644042969,
+          8.541766166687012,
+          218.8274688720703
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.30499663949012756,
+          0.0,
+          0.9523534774780273
+        ],
+        "size": [
+          13.0,
+          17.575000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3402.64990234375
+      },
+      {
+        "id": "legacy-city-243-1-18",
+        "position": [
+          -250.0839080810547,
+          8.541766166687012,
+          234.43812561035156
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.33495762944221497,
+          0.0,
+          0.9422332048416138
+        ],
+        "size": [
+          13.0,
+          17.575000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3420.64990234375
+      },
+      {
+        "id": "legacy-city-246--1-0",
+        "position": [
+          -195.5779266357422,
+          8.379155158996582,
+          218.84530639648438
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3656585216522217,
+          0.0,
+          0.9307491183280945
+        ],
+        "size": [
+          13.0,
+          17.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3444.65771484375
+      },
+      {
+        "id": "legacy-city-246--1-18",
+        "position": [
+          -183.73068237304688,
+          8.379155158996582,
+          231.1195831298828
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.38265323638916016,
+          0.0,
+          0.9238920211791992
+        ],
+        "size": [
+          13.0,
+          17.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3462.65771484375
+      },
+      {
+        "id": "legacy-city-246-1-0",
+        "position": [
+          -233.14503479003906,
+          8.379155158996582,
+          253.75021362304688
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3656585216522217,
+          0.0,
+          0.9307491183280945
+        ],
+        "size": [
+          13.0,
+          17.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3444.65771484375
+      },
+      {
+        "id": "legacy-city-246-1-18",
+        "position": [
+          -219.99349975585938,
+          8.379155158996582,
+          267.3776550292969
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.38265323638916016,
+          0.0,
+          0.9238920211791992
+        ],
+        "size": [
+          13.0,
+          17.25,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3462.65771484375
+      },
+      {
+        "id": "legacy-city-249--1-0",
+        "position": [
+          -165.67007446289062,
+          11.781753540039062,
+          245.3730926513672
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.40169891715049744,
+          0.0,
+          0.9157717227935791
+        ],
+        "size": [
+          13.0,
+          24.049999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3486.666015625
+      },
+      {
+        "id": "legacy-city-249--1-18",
+        "position": [
+          -152.7640838623047,
+          11.781753540039062,
+          256.9454345703125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4126128852367401,
+          0.0,
+          0.9109064936637878
+        ],
+        "size": [
+          13.0,
+          24.049999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3504.666015625
+      },
+      {
+        "id": "legacy-city-249-1-0",
+        "position": [
+          -203.34829711914062,
+          11.781753540039062,
+          286.30316162109375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.40169891715049744,
+          0.0,
+          0.9157717227935791
+        ],
+        "size": [
+          13.0,
+          24.049999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3486.666015625
+      },
+      {
+        "id": "legacy-city-249-1-18",
+        "position": [
+          -189.4534454345703,
+          11.781753540039062,
+          298.76422119140625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4126128852367401,
+          0.0,
+          0.9109064936637878
+        ],
+        "size": [
+          13.0,
+          24.049999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3504.666015625
+      },
+      {
+        "id": "legacy-city-252--1-0",
+        "position": [
+          -137.90638732910156,
+          4.802072048187256,
+          275.4952392578125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.42434144020080566,
+          0.0,
+          0.9055023193359375
+        ],
+        "size": [
+          13.0,
+          10.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3528.673828125
+      },
+      {
+        "id": "legacy-city-252--1-18",
+        "position": [
+          -124.23193359375,
+          4.802072048187256,
+          286.72998046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4301835596561432,
+          0.0,
+          0.9027414917945862
+        ],
+        "size": [
+          13.0,
+          10.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3546.673828125
+      },
+      {
+        "id": "legacy-city-252-1-0",
+        "position": [
+          -167.7908172607422,
+          4.802072048187256,
+          311.38653564453125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.42434144020080566,
+          0.0,
+          0.9055023193359375
+        ],
+        "size": [
+          13.0,
+          10.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3528.673828125
+      },
+      {
+        "id": "legacy-city-252-1-18",
+        "position": [
+          -153.65005493164062,
+          4.802072048187256,
+          323.00445556640625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4301835596561432,
+          0.0,
+          0.9027414917945862
+        ],
+        "size": [
+          13.0,
+          10.100000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3546.673828125
+      },
+      {
+        "id": "legacy-city-255--1-0",
+        "position": [
+          -102.02259826660156,
+          14.12137222290039,
+          296.85443115234375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.43603622913360596,
+          0.0,
+          0.8999291062355042
+        ],
+        "size": [
+          13.0,
+          28.724998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3570.681884765625
+      },
+      {
+        "id": "legacy-city-255--1-18",
+        "position": [
+          -87.98970031738281,
+          14.12137222290039,
+          307.86767578125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4385148584842682,
+          0.0,
+          0.8987239599227905
+        ],
+        "size": [
+          13.0,
+          28.724998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3588.681884765625
+      },
+      {
+        "id": "legacy-city-255-1-0",
+        "position": [
+          -138.35450744628906,
+          14.12137222290039,
+          342.86273193359375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.43603622913360596,
+          0.0,
+          0.8999291062355042
+        ],
+        "size": [
+          13.0,
+          28.724998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3570.681884765625
+      },
+      {
+        "id": "legacy-city-255-1-18",
+        "position": [
+          -124.06745910644531,
+          14.12137222290039,
+          354.0755615234375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4385148584842682,
+          0.0,
+          0.8987239599227905
+        ],
+        "size": [
+          13.0,
+          28.724998474121094,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3588.681884765625
+      },
+      {
+        "id": "legacy-city-258--1-0",
+        "position": [
+          -69.23344421386719,
+          13.796063423156738,
+          322.71600341796875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4398442804813385,
+          0.0,
+          0.8980741500854492
+        ],
+        "size": [
+          13.0,
+          28.075000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3612.68994140625
+      },
+      {
+        "id": "legacy-city-258--1-18",
+        "position": [
+          -54.98590087890625,
+          13.796063423156738,
+          333.7829284667969
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.43921855092048645,
+          0.0,
+          0.8983802795410156
+        ],
+        "size": [
+          13.0,
+          28.075000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3630.68994140625
+      },
+      {
+        "id": "legacy-city-258-1-0",
+        "position": [
+          -104.91926574707031,
+          13.796063423156738,
+          368.7017822265625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4398442804813385,
+          0.0,
+          0.8980741500854492
+        ],
+        "size": [
+          13.0,
+          28.075000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3612.68994140625
+      },
+      {
+        "id": "legacy-city-258-1-18",
+        "position": [
+          -90.73574829101562,
+          13.796063423156738,
+          379.7189636230469
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.43921855092048645,
+          0.0,
+          0.8983802795410156
+        ],
+        "size": [
+          13.0,
+          28.075000762939453,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3630.68994140625
+      },
+      {
+        "id": "legacy-city-261--1-0",
+        "position": [
+          -35.02181625366211,
+          16.073341369628906,
+          347.5657958984375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4360957741737366,
+          0.0,
+          0.8999003171920776
+        ],
+        "size": [
+          13.0,
+          32.625,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3654.69775390625
+      },
+      {
+        "id": "legacy-city-261--1-18",
+        "position": [
+          -20.736257553100586,
+          16.073341369628906,
+          358.93914794921875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4322616159915924,
+          0.0,
+          0.9017482399940491
+        ],
+        "size": [
+          13.0,
+          32.625,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3672.69775390625
+      },
+      {
+        "id": "legacy-city-261-1-0",
+        "position": [
+          -72.89427185058594,
+          16.073341369628906,
+          395.53802490234375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4360957741737366,
+          0.0,
+          0.8999003171920776
+        ],
+        "size": [
+          13.0,
+          32.625,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3654.69775390625
+      },
+      {
+        "id": "legacy-city-261-1-18",
+        "position": [
+          -59.01569366455078,
+          16.073341369628906,
+          406.58721923828125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.4322616159915924,
+          0.0,
+          0.9017482399940491
+        ],
+        "size": [
+          13.0,
+          32.625,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3672.69775390625
+      },
+      {
+        "id": "legacy-city-264--1-0",
+        "position": [
+          -5.8541107177734375,
+          5.952666759490967,
+          379.4730529785156
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.42371827363967896,
+          0.0,
+          0.905794084072113
+        ],
+        "size": [
+          13.0,
+          12.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3696.7060546875
+      },
+      {
+        "id": "legacy-city-264--1-18",
+        "position": [
+          8.207048416137695,
+          5.952666759490967,
+          391.4154968261719
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.415264368057251,
+          0.0,
+          0.9097007513046265
+        ],
+        "size": [
+          13.0,
+          12.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3714.7060546875
+      },
+      {
+        "id": "legacy-city-264-1-0",
+        "position": [
+          -36.73134994506836,
+          5.952666759490967,
+          416.4530944824219
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.42371827363967896,
+          0.0,
+          0.905794084072113
+        ],
+        "size": [
+          13.0,
+          12.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3696.7060546875
+      },
+      {
+        "id": "legacy-city-264-1-18",
+        "position": [
+          -23.35357666015625,
+          5.952666759490967,
+          427.8140563964844
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.415264368057251,
+          0.0,
+          0.9097007513046265
+        ],
+        "size": [
+          13.0,
+          12.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3714.7060546875
+      },
+      {
+        "id": "legacy-city-267--1-0",
+        "position": [
+          28.916030883789062,
+          11.031129837036133,
+          405.5750732421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3999209702014923,
+          0.0,
+          0.916549563407898
+        ],
+        "size": [
+          13.0,
+          22.549999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3738.7138671875
+      },
+      {
+        "id": "legacy-city-267--1-18",
+        "position": [
+          42.53417205810547,
+          11.031129837036133,
+          418.5881652832031
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3858415186405182,
+          0.0,
+          0.9225651025772095
+        ],
+        "size": [
+          13.0,
+          22.549999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3756.7138671875
+      },
+      {
+        "id": "legacy-city-267-1-0",
+        "position": [
+          -8.26783275604248,
+          11.052896499633789,
+          445.65484619140625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3999209702014923,
+          0.0,
+          0.916549563407898
+        ],
+        "size": [
+          13.0,
+          22.549999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3738.7138671875
+      },
+      {
+        "id": "legacy-city-267-1-18",
+        "position": [
+          4.140615463256836,
+          11.09598445892334,
+          457.5107116699219
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3858415186405182,
+          0.0,
+          0.9225651025772095
+        ],
+        "size": [
+          13.0,
+          22.549999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3756.7138671875
+      },
+      {
+        "id": "legacy-city-270--1-0",
+        "position": [
+          57.66294860839844,
+          5.552452087402344,
+          439.4398193359375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.358206570148468,
+          0.0,
+          0.9336423873901367
+        ],
+        "size": [
+          13.0,
+          11.600000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3780.721923828125
+      },
+      {
+        "id": "legacy-city-270--1-18",
+        "position": [
+          70.2249526977539,
+          5.570430278778076,
+          454.1412658691406
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3318226933479309,
+          0.0,
+          0.9433417916297913
+        ],
+        "size": [
+          13.0,
+          11.600000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3798.721923828125
+      },
+      {
+        "id": "legacy-city-270-1-0",
+        "position": [
+          22.230661392211914,
+          5.596258163452148,
+          471.321044921875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.358206570148468,
+          0.0,
+          0.9336423873901367
+        ],
+        "size": [
+          13.0,
+          11.600000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3780.721923828125
+      },
+      {
+        "id": "legacy-city-270-1-18",
+        "position": [
+          33.057159423828125,
+          5.610804080963135,
+          483.9810485839844
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3318226933479309,
+          0.0,
+          0.9433417916297913
+        ],
+        "size": [
+          13.0,
+          11.600000381469727,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3798.721923828125
+      },
+      {
+        "id": "legacy-city-276--1-0",
+        "position": [
+          111.457275390625,
+          13.140630722045898,
+          517.0704956054688
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.00005808483547298238,
+          0.15830352902412415,
+          -9.312460861110594e-6,
+          0.9873905181884766
+        ],
+        "size": [
+          13.0,
+          26.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3864.738037109375
+      },
+      {
+        "id": "legacy-city-276--1-18",
+        "position": [
+          116.92681884765625,
+          13.148590087890625,
+          537.5623779296875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0017403059173375368,
+          0.10241300612688065,
+          -0.00017917230434250087,
+          0.9947404265403748
+        ],
+        "size": [
+          13.0,
+          26.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3882.738037109375
+      },
+      {
+        "id": "legacy-city-276-1-0",
+        "position": [
+          57.200130462646484,
+          13.297745704650879,
+          534.9270629882812
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.00005808483547298238,
+          0.15830352902412415,
+          -9.312460861110594e-6,
+          0.9873905181884766
+        ],
+        "size": [
+          13.0,
+          26.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3864.738037109375
+      },
+      {
+        "id": "legacy-city-276-1-18",
+        "position": [
+          61.00502014160156,
+          13.318403244018555,
+          549.2005615234375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0017403059173375368,
+          0.10241300612688065,
+          -0.00017917230434250087,
+          0.9947404265403748
+        ],
+        "size": [
+          13.0,
+          26.375,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3882.738037109375
+      },
+      {
+        "id": "legacy-city-279--1-0",
+        "position": [
+          116.97146606445312,
+          7.068479061126709,
+          565.556640625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0036799218505620956,
+          0.03210816532373428,
+          -0.00011821730731753632,
+          0.9994775652885437
+        ],
+        "size": [
+          13.0,
+          14.675000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3906.74609375
+      },
+      {
+        "id": "legacy-city-279--1-18",
+        "position": [
+          117.34489440917969,
+          6.955245018005371,
+          585.900390625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.004820335656404495,
+          -0.015341960825026035,
+          0.0000739629685995169,
+          0.9998707175254822
+        ],
+        "size": [
+          13.0,
+          14.675000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3924.74609375
+      },
+      {
+        "id": "legacy-city-279-1-0",
+        "position": [
+          67.44180297851562,
+          7.135921001434326,
+          568.7421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0036799218505620956,
+          0.03210816532373428,
+          -0.00011821730731753632,
+          0.9994775652885437
+        ],
+        "size": [
+          13.0,
+          14.675000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3906.74609375
+      },
+      {
+        "id": "legacy-city-279-1-18",
+        "position": [
+          67.73625183105469,
+          7.023321151733398,
+          584.377685546875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.004820335656404495,
+          -0.015341960825026035,
+          0.0000739629685995169,
+          0.9998707175254822
+        ],
+        "size": [
+          13.0,
+          14.675000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3924.74609375
+      },
+      {
+        "id": "legacy-city-282--1-0",
+        "position": [
+          118.20730590820312,
+          11.900136947631836,
+          612.8032836914062
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.005839155986905098,
+          -0.06735571473836899,
+          0.00039420253597199917,
+          0.9977118968963623
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3948.754150390625
+      },
+      {
+        "id": "legacy-city-282--1-18",
+        "position": [
+          114.8307113647461,
+          11.82752799987793,
+          632.4323120117188
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006317508406937122,
+          -0.10163938254117966,
+          0.0006454633548855782,
+          0.9948011040687561
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3966.754150390625
+      },
+      {
+        "id": "legacy-city-282-1-0",
+        "position": [
+          62.85812759399414,
+          12.040033340454102,
+          605.2958374023438
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.005839155986905098,
+          -0.06735571473836899,
+          0.00039420253597199917,
+          0.9977118968963623
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3948.754150390625
+      },
+      {
+        "id": "legacy-city-282-1-18",
+        "position": [
+          60.128807067871094,
+          11.944204330444336,
+          621.1365356445312
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006317508406937122,
+          -0.10163938254117966,
+          0.0006454633548855782,
+          0.9948011040687561
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3966.754150390625
+      },
+      {
+        "id": "legacy-city-285--1-0",
+        "position": [
+          109.38851165771484,
+          13.078910827636719,
+          657.8660888671875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006554328836500645,
+          -0.136696919798851,
+          0.0009044667822308838,
+          0.9905908703804016
+        ],
+        "size": [
+          13.0,
+          26.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3990.761962890625
+      },
+      {
+        "id": "legacy-city-285--1-18",
+        "position": [
+          103.8095474243164,
+          13.081077575683594,
+          676.2042236328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006493189837783575,
+          -0.15688738226890564,
+          0.0010314956307411194,
+          0.9875946044921875
+        ],
+        "size": [
+          13.0,
+          26.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4008.761962890625
+      },
+      {
+        "id": "legacy-city-285-1-0",
+        "position": [
+          54.15686798095703,
+          13.16970443725586,
+          642.3267822265625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006554328836500645,
+          -0.136696919798851,
+          0.0009044667822308838,
+          0.9905908703804016
+        ],
+        "size": [
+          13.0,
+          26.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 3990.761962890625
+      },
+      {
+        "id": "legacy-city-285-1-18",
+        "position": [
+          49.258140563964844,
+          13.13095760345459,
+          658.4237060546875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006493189837783575,
+          -0.15688738226890564,
+          0.0010314956307411194,
+          0.9875946044921875
+        ],
+        "size": [
+          13.0,
+          26.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4008.761962890625
+      },
+      {
+        "id": "legacy-city-288--1-0",
+        "position": [
+          96.30181884765625,
+          14.710476875305176,
+          700.2313232421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006155107170343399,
+          -0.17645356059074402,
+          0.0011034263297915459,
+          0.9842891097068787
+        ],
+        "size": [
+          13.0,
+          29.424999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4032.770263671875
+      },
+      {
+        "id": "legacy-city-288--1-18",
+        "position": [
+          89.6234130859375,
+          14.692422866821289,
+          717.6250610351562
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.00570310652256012,
+          -0.1869923323392868,
+          0.0010856044245883822,
+          0.9823442101478577
+        ],
+        "size": [
+          13.0,
+          29.424999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4050.770263671875
+      },
+      {
+        "id": "legacy-city-288-1-0",
+        "position": [
+          40.908477783203125,
+          14.703911781311035,
+          679.7110595703125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.006155107170343399,
+          -0.17645356059074402,
+          0.0011034263297915459,
+          0.9842891097068787
+        ],
+        "size": [
+          13.0,
+          29.424999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4032.770263671875
+      },
+      {
+        "id": "legacy-city-288-1-18",
+        "position": [
+          34.68259048461914,
+          14.77122688293457,
+          695.9223022460938
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.00570310652256012,
+          -0.1869923323392868,
+          0.0010856044245883822,
+          0.9823442101478577
+        ],
+        "size": [
+          13.0,
+          29.424999237060547,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4050.770263671875
+      },
+      {
+        "id": "legacy-city-291--1-0",
+        "position": [
+          75.20553588867188,
+          4.162714004516602,
+          738.1563720703125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.004889287054538727,
+          -0.1949479877948761,
+          0.0009718147339299321,
+          0.9808009266853333
+        ],
+        "size": [
+          13.0,
+          11.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4074.778076171875
+      },
+      {
+        "id": "legacy-city-291--1-18",
+        "position": [
+          68.23983001708984,
+          4.044777870178223,
+          754.8597412109375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.004072521813213825,
+          -0.1969667673110962,
+          0.0008181868470273912,
+          0.9804014563560486
+        ],
+        "size": [
+          13.0,
+          11.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4092.778076171875
+      },
+      {
+        "id": "legacy-city-291-1-0",
+        "position": [
+          31.0462703704834,
+          4.179353713989258,
+          719.8797607421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.004889287054538727,
+          -0.1949479877948761,
+          0.0009718147339299321,
+          0.9808009266853333
+        ],
+        "size": [
+          13.0,
+          11.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4074.778076171875
+      },
+      {
+        "id": "legacy-city-291-1-18",
+        "position": [
+          24.156152725219727,
+          4.056584358215332,
+          736.4014892578125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.004072521813213825,
+          -0.1969667673110962,
+          0.0008181868470273912,
+          0.9804014563560486
+        ],
+        "size": [
+          13.0,
+          11.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4092.778076171875
+      },
+      {
+        "id": "legacy-city-294--1-0",
+        "position": [
+          62.595741271972656,
+          11.145559310913086,
+          778.3600463867188
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0027735838666558266,
+          -0.1943085640668869,
+          0.0005494047654792666,
+          0.9809363484382629
+        ],
+        "size": [
+          13.0,
+          23.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4116.7861328125
+      },
+      {
+        "id": "legacy-city-294--1-18",
+        "position": [
+          55.940185546875,
+          11.159187316894531,
+          794.74072265625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0016465630615130067,
+          -0.18865500390529633,
+          0.0003163127403240651,
+          0.9820419549942017
+        ],
+        "size": [
+          13.0,
+          23.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4134.7861328125
+      },
+      {
+        "id": "legacy-city-294-1-0",
+        "position": [
+          11.327354431152344,
+          11.167635917663574,
+          757.2195434570312
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0027735838666558266,
+          -0.1943085640668869,
+          0.0005494047654792666,
+          0.9809363484382629
+        ],
+        "size": [
+          13.0,
+          23.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4116.7861328125
+      },
+      {
+        "id": "legacy-city-294-1-18",
+        "position": [
+          4.431632995605469,
+          11.174812316894531,
+          774.1922607421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0016465630615130067,
+          -0.18865500390529633,
+          0.0003163127403240651,
+          0.9820419549942017
+        ],
+        "size": [
+          13.0,
+          23.775001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4134.7861328125
+      },
+      {
+        "id": "legacy-city-297--1-0",
+        "position": [
+          48.841590881347656,
+          13.904855728149414,
+          816.9141845703125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.00020516030781436712,
+          -0.17546159029006958,
+          -0.00003656501939985901,
+          0.9844862818717957
+        ],
+        "size": [
+          13.0,
+          27.92500114440918,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4158.79443359375
+      },
+      {
+        "id": "legacy-city-297--1-18",
+        "position": [
+          43.16252899169922,
+          14.015287399291992,
+          833.0706787109375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.001904263161122799,
+          -0.1606503278017044,
+          -0.0003099468594882637,
+          0.9870094656944275
+        ],
+        "size": [
+          13.0,
+          27.92500114440918,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4176.79443359375
+      },
+      {
+        "id": "legacy-city-297-1-0",
+        "position": [
+          -5.692251205444336,
+          13.919943809509277,
+          796.837646484375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.00020516030781436712,
+          -0.17546159029006958,
+          -0.00003656501939985901,
+          0.9844862818717957
+        ],
+        "size": [
+          13.0,
+          27.92500114440918,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4158.79443359375
+      },
+      {
+        "id": "legacy-city-297-1-18",
+        "position": [
+          -11.949888229370117,
+          14.029375076293945,
+          814.6417236328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.001904263161122799,
+          -0.1606503278017044,
+          -0.0003099468594882637,
+          0.9870094656944275
+        ],
+        "size": [
+          13.0,
+          27.92500114440918,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4176.79443359375
+      },
+      {
+        "id": "legacy-city-300--1-0",
+        "position": [
+          32.581626892089844,
+          5.990891933441162,
+          853.404052734375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.004610939882695675,
+          -0.13366825878620148,
+          -0.0006219241768121719,
+          0.9910151958465576
+        ],
+        "size": [
+          13.0,
+          14.925000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4200.80224609375
+      },
+      {
+        "id": "legacy-city-300--1-18",
+        "position": [
+          28.532161712646484,
+          6.204020977020264,
+          869.632568359375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.00692130858078599,
+          -0.10834134370088577,
+          -0.0007543223327957094,
+          0.9940894246101379
+        ],
+        "size": [
+          13.0,
+          14.925000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4218.80224609375
+      },
+      {
+        "id": "legacy-city-300-1-0",
+        "position": [
+          -15.43104362487793,
+          5.995877265930176,
+          840.212158203125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.004610939882695675,
+          -0.13366825878620148,
+          -0.0006219241768121719,
+          0.9910151958465576
+        ],
+        "size": [
+          13.0,
+          14.925000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4200.80224609375
+      },
+      {
+        "id": "legacy-city-300-1-18",
+        "position": [
+          -20.09088134765625,
+          6.208684921264648,
+          858.90673828125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.00692130858078599,
+          -0.10834134370088577,
+          -0.0007543223327957094,
+          0.9940894246101379
+        ],
+        "size": [
+          13.0,
+          14.925000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4218.80224609375
+      },
+      {
+        "id": "legacy-city-303--1-0",
+        "position": [
+          25.34465789794922,
+          7.895347595214844,
+          891.26806640625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.010479012504220009,
+          -0.06615149974822998,
+          -0.0006947626825422049,
+          0.9977542757987976
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4242.810546875
+      },
+      {
+        "id": "legacy-city-303--1-18",
+        "position": [
+          23.831111907958984,
+          8.303449630737305,
+          907.1476440429688
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.013586566783487797,
+          -0.02630821242928505,
+          -0.0003575951268430799,
+          0.9995615482330322
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4260.810546875
+      },
+      {
+        "id": "legacy-city-303-1-0",
+        "position": [
+          -25.343746185302734,
+          7.8987274169921875,
+          884.51708984375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.010479012504220009,
+          -0.06615149974822998,
+          -0.0006947626825422049,
+          0.9977542757987976
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4242.810546875
+      },
+      {
+        "id": "legacy-city-303-1-18",
+        "position": [
+          -27.23409652709961,
+          8.30656623840332,
+          904.4577026367188
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.013586566783487797,
+          -0.02630821242928505,
+          -0.0003575951268430799,
+          0.9995615482330322
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4260.810546875
+      },
+      {
+        "id": "legacy-city-306--1-0",
+        "position": [
+          22.863035202026367,
+          7.069717884063721,
+          928.2151489257812
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.01774335466325283,
+          0.03199031576514244,
+          0.000567995710298419,
+          0.9993305802345276
+        ],
+        "size": [
+          13.0,
+          13.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4284.818359375
+      },
+      {
+        "id": "legacy-city-306--1-18",
+        "position": [
+          24.623035430908203,
+          7.726694583892822,
+          943.6312866210938
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.020854108035564423,
+          0.08206487447023392,
+          0.0015521758468821645,
+          0.9964075684547424
+        ],
+        "size": [
+          13.0,
+          13.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4302.818359375
+      },
+      {
+        "id": "legacy-city-306-1-0",
+        "position": [
+          -26.10849952697754,
+          7.062974452972412,
+          931.3536987304688
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.01774335466325283,
+          0.03199031576514244,
+          0.000567995710298419,
+          0.9993305802345276
+        ],
+        "size": [
+          13.0,
+          13.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4284.818359375
+      },
+      {
+        "id": "legacy-city-306-1-18",
+        "position": [
+          -23.787765502929688,
+          7.729453086853027,
+          951.6597290039062
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.020854108035564423,
+          0.08206487447023392,
+          0.0015521758468821645,
+          0.9964075684547424
+        ],
+        "size": [
+          13.0,
+          13.800000190734863,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4302.818359375
+      },
+      {
+        "id": "legacy-city-309--1-0",
+        "position": [
+          33.05839920043945,
+          16.09076690673828,
+          963.08642578125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.023753972724080086,
+          0.1408180445432663,
+          0.0017409035935997963,
+          0.9897489547729492
+        ],
+        "size": [
+          13.0,
+          25.94999885559082,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4326.826171875
+      },
+      {
+        "id": "legacy-city-309--1-18",
+        "position": [
+          38.07364273071289,
+          16.79869842529297,
+          978.2158203125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.025533851236104965,
+          0.17618019878864288,
+          0.001840314595028758,
+          0.9840249419212341
+        ],
+        "size": [
+          13.0,
+          25.94999885559082,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4344.826171875
+      },
+      {
+        "id": "legacy-city-309-1-0",
+        "position": [
+          -21.53469467163086,
+          16.21001625061035,
+          978.9375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.023753972724080086,
+          0.1408180445432663,
+          0.0017409035935997963,
+          0.9897489547729492
+        ],
+        "size": [
+          13.0,
+          25.94999885559082,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4326.826171875
+      },
+      {
+        "id": "legacy-city-309-1-18",
+        "position": [
+          -15.244908332824707,
+          17.02570343017578,
+          997.93212890625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.025533851236104965,
+          0.17618019878864288,
+          0.001840314595028758,
+          0.9840249419212341
+        ],
+        "size": [
+          13.0,
+          25.94999885559082,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4344.826171875
+      },
+      {
+        "id": "legacy-city-312--1-0",
+        "position": [
+          41.752437591552734,
+          8.268120765686035,
+          1000.417724609375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.027606161311268806,
+          0.21522095799446106,
+          0.0019170683808624744,
+          0.9761731624603271
+        ],
+        "size": [
+          13.0,
+          9.699999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4368.83447265625
+      },
+      {
+        "id": "legacy-city-312--1-18",
+        "position": [
+          49.22019577026367,
+          9.189672470092773,
+          1015.5089111328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.028994694352149963,
+          0.23896776139736176,
+          0.001906643621623516,
+          0.9705925583839417
+        ],
+        "size": [
+          13.0,
+          9.699999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4386.83447265625
+      },
+      {
+        "id": "legacy-city-312-1-0",
+        "position": [
+          -0.3922691345214844,
+          8.627388954162598,
+          1019.939453125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.027606161311268806,
+          0.21522095799446106,
+          0.0019170683808624744,
+          0.9761731624603271
+        ],
+        "size": [
+          13.0,
+          9.699999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4368.83447265625
+      },
+      {
+        "id": "legacy-city-312-1-18",
+        "position": [
+          8.07741928100586,
+          9.642784118652344,
+          1037.0604248046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.028994694352149963,
+          0.23896776139736176,
+          0.001906643621623516,
+          0.9705925583839417
+        ],
+        "size": [
+          13.0,
+          9.699999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4386.83447265625
+      },
+      {
+        "id": "legacy-city-315--1-0",
+        "position": [
+          62.38023376464844,
+          14.627143859863281,
+          1034.2239990234375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03063933178782463,
+          0.2630496323108673,
+          0.0017320835031569004,
+          0.9642940759658813
+        ],
+        "size": [
+          13.0,
+          17.150001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4410.8427734375
+      },
+      {
+        "id": "legacy-city-315--1-18",
+        "position": [
+          71.34461212158203,
+          15.579666137695312,
+          1048.9375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03179294988512993,
+          0.27691328525543213,
+          0.0015131132677197456,
+          0.9603676795959473
+        ],
+        "size": [
+          13.0,
+          17.150001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4428.8427734375
+      },
+      {
+        "id": "legacy-city-315-1-0",
+        "position": [
+          18.25234031677246,
+          15.245750427246094,
+          1060.2120361328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03063933178782463,
+          0.2630496323108673,
+          0.0017320835031569004,
+          0.9642940759658813
+        ],
+        "size": [
+          13.0,
+          17.150001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4410.8427734375
+      },
+      {
+        "id": "legacy-city-315-1-18",
+        "position": [
+          27.983423233032227,
+          16.30463218688965,
+          1076.18310546875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03179294988512993,
+          0.27691328525543213,
+          0.0015131132677197456,
+          0.9603676795959473
+        ],
+        "size": [
+          13.0,
+          17.150001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4428.8427734375
+      },
+      {
+        "id": "legacy-city-318--1-0",
+        "position": [
+          83.07806396484375,
+          14.993952751159668,
+          1069.04248046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03325387462973595,
+          0.29046201705932617,
+          0.0010974584147334099,
+          0.9563078880310059
+        ],
+        "size": [
+          13.0,
+          13.649999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4452.85009765625
+      },
+      {
+        "id": "legacy-city-318--1-18",
+        "position": [
+          92.9882583618164,
+          16.045469284057617,
+          1083.5872802734375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03431444242596626,
+          0.2975412905216217,
+          0.0007028793916106224,
+          0.9540917873382568
+        ],
+        "size": [
+          13.0,
+          13.649999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4470.85009765625
+      },
+      {
+        "id": "legacy-city-318-1-0",
+        "position": [
+          42.36621856689453,
+          15.827215194702148,
+          1096.25439453125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03325387462973595,
+          0.29046201705932617,
+          0.0010974584147334099,
+          0.9563078880310059
+        ],
+        "size": [
+          13.0,
+          13.649999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4452.85009765625
+      },
+      {
+        "id": "legacy-city-318-1-18",
+        "position": [
+          52.68407440185547,
+          16.978626251220703,
+          1111.3963623046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03431444242596626,
+          0.2975412905216217,
+          0.0007028793916106224,
+          0.9540917873382568
+        ],
+        "size": [
+          13.0,
+          13.649999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4470.85009765625
+      },
+      {
+        "id": "legacy-city-321--1-0",
+        "position": [
+          109.3814468383789,
+          23.1781005859375,
+          1100.9320068359375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03578022122383118,
+          0.3038269579410553,
+          0.00010999571532011032,
+          0.9520551562309265
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4494.8583984375
+      },
+      {
+        "id": "legacy-city-321--1-18",
+        "position": [
+          119.75941467285156,
+          24.19965362548828,
+          1115.43505859375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03686797246336937,
+          0.30595532059669495,
+          -0.00042027514427900314,
+          0.9513316750526428
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4512.8583984375
+      },
+      {
+        "id": "legacy-city-321-1-0",
+        "position": [
+          63.837669372558594,
+          24.41433334350586,
+          1133.2462158203125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03578022122383118,
+          0.3038269579410553,
+          0.00010999571532011032,
+          0.9520551562309265
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4494.8583984375
+      },
+      {
+        "id": "legacy-city-321-1-18",
+        "position": [
+          74.36064147949219,
+          25.56502914428711,
+          1147.94873046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03686797246336937,
+          0.30595532059669495,
+          -0.00042027514427900314,
+          0.9513316750526428
+        ],
+        "size": [
+          13.0,
+          24.399999618530273,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4512.8583984375
+      },
+      {
+        "id": "legacy-city-324--1-0",
+        "position": [
+          135.84072875976562,
+          29.719009399414062,
+          1133.401123046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03839617967605591,
+          0.3056386411190033,
+          -0.001218339428305626,
+          0.9513723254203796
+        ],
+        "size": [
+          13.0,
+          32.42499923706055,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4536.86669921875
+      },
+      {
+        "id": "legacy-city-324--1-18",
+        "position": [
+          146.37107849121094,
+          30.735443115234375,
+          1148.1434326171875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03954301029443741,
+          0.30308035016059875,
+          -0.0019126050174236298,
+          0.9521422982215881
+        ],
+        "size": [
+          13.0,
+          32.42499923706055,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4554.86669921875
+      },
+      {
+        "id": "legacy-city-324-1-0",
+        "position": [
+          86.24404907226562,
+          31.45813751220703,
+          1168.865478515625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03839617967605591,
+          0.3056386411190033,
+          -0.001218339428305626,
+          0.9513723254203796
+        ],
+        "size": [
+          13.0,
+          32.42499923706055,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4536.86669921875
+      },
+      {
+        "id": "legacy-city-324-1-18",
+        "position": [
+          96.58470153808594,
+          32.63092041015625,
+          1183.3358154296875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.03954301029443741,
+          0.30308035016059875,
+          -0.0019126050174236298,
+          0.9521422982215881
+        ],
+        "size": [
+          13.0,
+          32.42499923706055,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4554.86669921875
+      },
+      {
+        "id": "legacy-city-327--1-0",
+        "position": [
+          160.254150390625,
+          31.974573135375977,
+          1168.190673828125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.041156504303216934,
+          0.29611408710479736,
+          -0.0029758689925074577,
+          0.9542608261108398
+        ],
+        "size": [
+          13.0,
+          32.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4578.8740234375
+      },
+      {
+        "id": "legacy-city-327--1-18",
+        "position": [
+          170.58982849121094,
+          33.118370056152344,
+          1183.438720703125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.04237387701869011,
+          0.2886568605899811,
+          -0.0038874968886375427,
+          0.9564865231513977
+        ],
+        "size": [
+          13.0,
+          32.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4596.8740234375
+      },
+      {
+        "id": "legacy-city-327-1-0",
+        "position": [
+          110.17031860351562,
+          34.06124496459961,
+          1202.500244140625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.041156504303216934,
+          0.29611408710479736,
+          -0.0029758689925074577,
+          0.9542608261108398
+        ],
+        "size": [
+          13.0,
+          32.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4578.8740234375
+      },
+      {
+        "id": "legacy-city-327-1-18",
+        "position": [
+          119.97705841064453,
+          35.35334014892578,
+          1216.956787109375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.04237387701869011,
+          0.2886568605899811,
+          -0.0038874968886375427,
+          0.9564865231513977
+        ],
+        "size": [
+          13.0,
+          32.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4596.8740234375
+      },
+      {
+        "id": "legacy-city-330--1-0",
+        "position": [
+          178.43338012695312,
+          25.03557777404785,
+          1207.7867431640625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.044077686965465546,
+          0.27451419830322266,
+          -0.005305207334458828,
+          0.9605576992034912
+        ],
+        "size": [
+          13.0,
+          11.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4620.88232421875
+      },
+      {
+        "id": "legacy-city-330--1-18",
+        "position": [
+          188.0818634033203,
+          26.452192306518555,
+          1223.7432861328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.045398395508527756,
+          0.2601844370365143,
+          -0.006565982475876808,
+          0.9644685983657837
+        ],
+        "size": [
+          13.0,
+          11.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4638.88232421875
+      },
+      {
+        "id": "legacy-city-330-1-0",
+        "position": [
+          138.10525512695312,
+          26.72452163696289,
+          1232.8084716796875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.044077686965465546,
+          0.27451419830322266,
+          -0.005305207334458828,
+          0.9605576992034912
+        ],
+        "size": [
+          13.0,
+          11.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4620.88232421875
+      },
+      {
+        "id": "legacy-city-330-1-18",
+        "position": [
+          147.02745056152344,
+          28.234607696533203,
+          1247.5482177734375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.045398395508527756,
+          0.2601844370365143,
+          -0.006565982475876808,
+          0.9644685983657837
+        ],
+        "size": [
+          13.0,
+          11.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4638.88232421875
+      },
+      {
+        "id": "legacy-city-333--1-0",
+        "position": [
+          201.85894775390625,
+          31.068513870239258,
+          1244.8995361328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.04715537279844284,
+          0.2356116622686386,
+          -0.008575388230383396,
+          0.9706647992134094
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4662.890625
+      },
+      {
+        "id": "legacy-city-333--1-18",
+        "position": [
+          210.27627563476562,
+          32.58915710449219,
+          1262.0458984375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.048377905040979385,
+          0.2133040875196457,
+          -0.010354393161833286,
+          0.9757323861122131
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4680.890625
+      },
+      {
+        "id": "legacy-city-333-1-0",
+        "position": [
+          156.40786743164062,
+          33.16757583618164,
+          1268.2476806640625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.04715537279844284,
+          0.2356116622686386,
+          -0.008575388230383396,
+          0.9706647992134094
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4662.890625
+      },
+      {
+        "id": "legacy-city-333-1-18",
+        "position": [
+          163.80447387695312,
+          34.79538345336914,
+          1283.2802734375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.048377905040979385,
+          0.2133040875196457,
+          -0.010354393161833286,
+          0.9757323861122131
+        ],
+        "size": [
+          13.0,
+          17.025001525878906,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4680.890625
+      },
+      {
+        "id": "legacy-city-336--1-0",
+        "position": [
+          219.40525817871094,
+          33.46016311645508,
+          1286.1732177734375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.049791816622018814,
+          0.17659343779087067,
+          -0.013204348273575306,
+          0.9829349517822266
+        ],
+        "size": [
+          13.0,
+          14.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4704.8984375
+      },
+      {
+        "id": "legacy-city-336--1-18",
+        "position": [
+          225.63333129882812,
+          35.122310638427734,
+          1304.9437255859375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.050587356090545654,
+          0.13946525752544403,
+          -0.01593131572008133,
+          0.9888057112693787
+        ],
+        "size": [
+          13.0,
+          14.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4722.8984375
+      },
+      {
+        "id": "legacy-city-336-1-0",
+        "position": [
+          173.09608459472656,
+          35.70262145996094,
+          1303.2606201171875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.049791816622018814,
+          0.17659343779087067,
+          -0.013204348273575306,
+          0.9829349517822266
+        ],
+        "size": [
+          13.0,
+          14.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4704.8984375
+      },
+      {
+        "id": "legacy-city-336-1-18",
+        "position": [
+          178.17242431640625,
+          37.43820571899414,
+          1318.4913330078125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.050587356090545654,
+          0.13946525752544403,
+          -0.01593131572008133,
+          0.9888057112693787
+        ],
+        "size": [
+          13.0,
+          14.324999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4722.8984375
+      },
+      {
+        "id": "legacy-city-339--1-0",
+        "position": [
+          230.05892944335938,
+          35.01839828491211,
+          1331.1300048828125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.050821661949157715,
+          0.08472081273794174,
+          -0.02001793310046196,
+          0.9949063658714294
+        ],
+        "size": [
+          13.0,
+          9.199999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4746.90625
+      },
+      {
+        "id": "legacy-city-339--1-18",
+        "position": [
+          232.5301513671875,
+          36.751007080078125,
+          1351.2113037109375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.05011124536395073,
+          0.0344100147485733,
+          -0.023625049740076065,
+          0.9978710412979126
+        ],
+        "size": [
+          13.0,
+          9.199999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4764.90625
+      },
+      {
+        "id": "legacy-city-339-1-0",
+        "position": [
+          184.63009643554688,
+          37.279991149902344,
+          1338.8123779296875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.050821661949157715,
+          0.08472081273794174,
+          -0.02001793310046196,
+          0.9949063658714294
+        ],
+        "size": [
+          13.0,
+          9.199999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4746.90625
+      },
+      {
+        "id": "legacy-city-339-1-18",
+        "position": [
+          186.5628662109375,
+          39.10344314575195,
+          1354.2698974609375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          -0.05011124536395073,
+          0.0344100147485733,
+          -0.023625049740076065,
+          0.9978710412979126
+        ],
+        "size": [
+          13.0,
+          9.199999809265137,
+          15.0
+        ],
+        "solid": true,
+        "station_m": 4764.90625
+      },
+      {
+        "id": "legacy-farm-138--1",
+        "position": [
+          142.48599243164062,
+          2.8493332862854004,
+          -1145.816650390625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.16926245391368866,
+          0.0,
+          0.9855709671974182
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1932.3690185546875
+      },
+      {
+        "id": "legacy-farm-138-1",
+        "position": [
+          27.265392303466797,
+          2.8493335247039795,
+          -1186.595458984375
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.16926245391368866,
+          0.0,
+          0.9855709671974182
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1932.3690185546875
+      },
+      {
+        "id": "legacy-farm-141--1",
+        "position": [
+          119.0389175415039,
+          2.814690351486206,
+          -1109.3310546875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.17127789556980133,
+          0.0,
+          0.9852227568626404
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1974.3770751953125
+      },
+      {
+        "id": "legacy-farm-141-1",
+        "position": [
+          22.466209411621094,
+          2.814690351486206,
+          -1143.955322265625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.17127789556980133,
+          0.0,
+          0.9852227568626404
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1974.3770751953125
+      },
+      {
+        "id": "legacy-farm-15--1",
+        "position": [
+          114.41683959960938,
+          2.81325626373291,
+          -2758.314453125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.1736573427915573,
+          0.0,
+          0.9848061203956604
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 210.0401153564453
+      },
+      {
+        "id": "legacy-farm-15-1",
+        "position": [
+          18.824443817138672,
+          2.813255548477173,
+          -2723.51953125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.1736573427915573,
+          0.0,
+          0.9848061203956604
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 210.0401153564453
+      },
+      {
+        "id": "legacy-farm-186--1",
+        "position": [
+          55.55317306518555,
+          2.7804629802703857,
+          -508.35906982421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.0024470777716487646,
+          0.0,
+          0.9999970197677612
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 2604.49755859375
+      },
+      {
+        "id": "legacy-farm-186-1",
+        "position": [
+          -24.045879364013672,
+          2.7804629802703857,
+          -507.969482421875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.0024470777716487646,
+          0.0,
+          0.9999970197677612
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 2604.49755859375
+      },
+      {
+        "id": "legacy-farm-54--1",
+        "position": [
+          77.36798095703125,
+          2.8254799842834473,
+          -2195.88525390625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.28430110216140747,
+          0.0,
+          0.9587349891662598
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 756.1444091796875
+      },
+      {
+        "id": "legacy-farm-54-1",
+        "position": [
+          -13.95132827758789,
+          2.8254799842834473,
+          -2255.26611328125
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          -0.28430110216140747,
+          0.0,
+          0.9587349891662598
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 756.1444091796875
+      },
+      {
+        "id": "legacy-farm-99--1",
+        "position": [
+          86.05567932128906,
+          2.835129737854004,
+          -1710.570556640625
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3323350250720978,
+          0.0,
+          0.9431613683700562
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1386.2646484375
+      },
+      {
+        "id": "legacy-farm-99-1",
+        "position": [
+          -3.074138641357422,
+          2.835129976272583,
+          -1638.854248046875
+        ],
+        "render_mass": true,
+        "rotation_xyzw": [
+          0.0,
+          0.3323350250720978,
+          0.0,
+          0.9431613683700562
+        ],
+        "size": [
+          14.0,
+          6.0,
+          18.0
+        ],
+        "solid": true,
+        "station_m": 1386.2646484375
+      }
+    ],
+    "collider_entities": 1817,
+    "environment_collision_triangles": 133540,
+    "environment_render_triangles": 144620,
+    "kind": "measured_legacy_scene_not_generated_target",
+    "limitations": "Environment-only snapshot before racers/UI/audio; triangle counters are existing ribbon/terrain counters, not total building triangles or draw calls. Legacy placement is not validated lot/foundation generation.",
+    "render_mesh_entities": 7298,
+    "road_chunks": 86,
+    "terrain_chunks": 160
+  },
+  "closed": false,
+  "elevation_range_m": [
+    -2.485168933868408,
+    110.12434387207031
+  ],
+  "end_snap_delta_m": 0.0078125,
+  "fingerprint_scope": "quota assignment only; not transforms, lots, foundations or completed-world determinism",
+  "gates": 9,
+  "generator_version": 1,
+  "grid_spawns": 8,
+  "phase": "B00-B02 foundation",
+  "placement_generated": false,
+  "planned_assignments": [
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S01/B001",
+      "row": "near",
+      "section_id": "S01"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S02/B001",
+      "row": "near",
+      "section_id": "S02"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S02/B002",
+      "row": "near",
+      "section_id": "S02"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S03/B001",
+      "row": "near",
+      "section_id": "S03"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S03/B002",
+      "row": "near",
+      "section_id": "S03"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S04/B001",
+      "row": "near",
+      "section_id": "S04"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S04/B002",
+      "row": "near",
+      "section_id": "S04"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S04/B003",
+      "row": "near",
+      "section_id": "S04"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S05/B001",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S05/B002",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S05/B003",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S05/B004",
+      "row": "near",
+      "section_id": "S05"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S06/B001",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S06/B002",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S06/B003",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S06/B004",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S06/B005",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S06/B006",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S06/B007",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F02",
+      "id": "valley-run-01/g1/S06/B008",
+      "row": "near",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S06/B009",
+      "row": "secondary",
+      "section_id": "S06"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S07/B001",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C03",
+      "id": "valley-run-01/g1/S07/B002",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S07/B003",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B004",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S07/B005",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S07/B006",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S07/B007",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B008",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S07/B009",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S07/B010",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B011",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B012",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B013",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S07/B014",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B015",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S07/B016",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S07/B017",
+      "row": "near",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B018",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S07/B019",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S07/B020",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S07/B021",
+      "row": "secondary",
+      "section_id": "S07"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B001",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B002",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B003",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B004",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B005",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S08/B006",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B007",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B008",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S08/B009",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B010",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B011",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S08/B012",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B013",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B014",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B015",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B016",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B017",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B018",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S08/B019",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B020",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B021",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S08/B022",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S08/B023",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S08/B024",
+      "row": "near",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B025",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B026",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S08/B027",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S08/B028",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S08/B029",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S08/B030",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S08/B031",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S08/B032",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "C03",
+      "id": "valley-run-01/g1/S08/B033",
+      "row": "secondary",
+      "section_id": "S08"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B001",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B002",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B003",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S09/B004",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S09/B005",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B006",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S09/B007",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B008",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S09/B009",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B010",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S09/B011",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B012",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S09/B013",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B014",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B015",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B016",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B017",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B018",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S09/B019",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B020",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B021",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S09/B022",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B023",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B024",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B025",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S09/B026",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S09/B027",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S09/B028",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B029",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S09/B030",
+      "row": "near",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B031",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B032",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S09/B033",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B034",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S09/B035",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S09/B036",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B037",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S09/B038",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B039",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S09/B040",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S09/B041",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S09/B042",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S09/B043",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S09/B044",
+      "row": "secondary",
+      "section_id": "S09"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S10/B001",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B002",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S10/B003",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B004",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B005",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S10/B006",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B007",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S10/B008",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B009",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S10/B010",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B011",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B012",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S10/B013",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B014",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B015",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B016",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B017",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B018",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B019",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S10/B020",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B021",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B022",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B023",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B024",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B025",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B026",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B027",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B028",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B029",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B030",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B031",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S10/B032",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S10/B033",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B034",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B035",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B036",
+      "row": "near",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B037",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S10/B038",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S10/B039",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B040",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S10/B041",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B042",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "R03",
+      "id": "valley-run-01/g1/S10/B043",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S10/B044",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B045",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B046",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S10/B047",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B048",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B049",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B050",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S10/B051",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B052",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B053",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S10/B054",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S10/B055",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S10/B056",
+      "row": "secondary",
+      "section_id": "S10"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S11/B001",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B002",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S11/B003",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B004",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S11/B005",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B006",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S11/B007",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B008",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S11/B009",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B010",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B011",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S11/B012",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S11/B013",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B014",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S11/B015",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U02",
+      "id": "valley-run-01/g1/S11/B016",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B017",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S11/B018",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S11/B019",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F01",
+      "id": "valley-run-01/g1/S11/B020",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B021",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S11/B022",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C04",
+      "id": "valley-run-01/g1/S11/B023",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S11/B024",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B025",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S11/B026",
+      "row": "near",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C03",
+      "id": "valley-run-01/g1/S11/B027",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B028",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F03",
+      "id": "valley-run-01/g1/S11/B029",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "F04",
+      "id": "valley-run-01/g1/S11/B030",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C02",
+      "id": "valley-run-01/g1/S11/B031",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C05",
+      "id": "valley-run-01/g1/S11/B032",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B033",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B034",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S11/B035",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S11/B036",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S11/B037",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "C01",
+      "id": "valley-run-01/g1/S11/B038",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S11/B039",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S11/B040",
+      "row": "secondary",
+      "section_id": "S11"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B001",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "R01",
+      "id": "valley-run-01/g1/S12/B002",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B003",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B004",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B005",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S12/B006",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B007",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B008",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "R02",
+      "id": "valley-run-01/g1/S12/B009",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B010",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S12/B011",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S12/B012",
+      "row": "near",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S12/B013",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S12/B014",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S12/B015",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B016",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U03",
+      "id": "valley-run-01/g1/S12/B017",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S12/B018",
+      "row": "secondary",
+      "section_id": "S12"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S13/B001",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S13/B002",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "U01",
+      "id": "valley-run-01/g1/S13/B003",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S13/B004",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S13/B005",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S13/B006",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S13/B007",
+      "row": "near",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "U04",
+      "id": "valley-run-01/g1/S13/B008",
+      "row": "secondary",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S13/B009",
+      "row": "secondary",
+      "section_id": "S13"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S14/B001",
+      "row": "near",
+      "section_id": "S14"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S14/B002",
+      "row": "near",
+      "section_id": "S14"
+    },
+    {
+      "archetype_id": "H01",
+      "id": "valley-run-01/g1/S14/B003",
+      "row": "near",
+      "section_id": "S14"
+    },
+    {
+      "archetype_id": "H02",
+      "id": "valley-run-01/g1/S15/B001",
+      "row": "near",
+      "section_id": "S15"
+    },
+    {
+      "archetype_id": "H03",
+      "id": "valley-run-01/g1/S15/B002",
+      "row": "near",
+      "section_id": "S15"
+    }
+  ],
+  "sections": [
+    {
+      "authored_end_m": 450.0,
+      "district": "farms",
+      "end_m": 450.0,
+      "end_position": [
+        126.62898254394531,
+        0.10000000149011612,
+        -2509.349853515625
+      ],
+      "id": "S01",
+      "legacy_masses": 2,
+      "name": "Pasture Gate",
+      "near": 1,
+      "secondary": 0,
+      "start_m": 0.0,
+      "start_position": [
+        0.0,
+        0.10000000149011612,
+        -2940.0
+      ],
+      "total": 1
+    },
+    {
+      "authored_end_m": 900.0,
+      "district": "farms",
+      "end_m": 900.0,
+      "end_position": [
+        -46.071720123291016,
+        0.09999999403953552,
+        -2104.577880859375
+      ],
+      "id": "S02",
+      "legacy_masses": 3,
+      "name": "Creek Plain",
+      "near": 2,
+      "secondary": 0,
+      "start_m": 450.0,
+      "start_position": [
+        126.62898254394531,
+        0.10000000149011612,
+        -2509.349853515625
+      ],
+      "total": 2
+    },
+    {
+      "authored_end_m": 1350.0,
+      "district": "farms",
+      "end_m": 1350.0,
+      "end_position": [
+        18.57080841064453,
+        0.10000000149011612,
+        -1702.81591796875
+      ],
+      "id": "S03",
+      "legacy_masses": 1,
+      "name": "Open Harvest",
+      "near": 2,
+      "secondary": 0,
+      "start_m": 900.0,
+      "start_position": [
+        -46.071720123291016,
+        0.09999999403953552,
+        -2104.577880859375
+      ],
+      "total": 2
+    },
+    {
+      "authored_end_m": 1800.0,
+      "district": "farms",
+      "end_m": 1800.0,
+      "end_position": [
+        125.44200134277344,
+        0.10000000149011612,
+        -1292.17333984375
+      ],
+      "id": "S04",
+      "legacy_masses": 2,
+      "name": "Long Farm Bend",
+      "near": 3,
+      "secondary": 0,
+      "start_m": 1350.0,
+      "start_position": [
+        18.57080841064453,
+        0.10000000149011612,
+        -1702.81591796875
+      ],
+      "total": 3
+    },
+    {
+      "authored_end_m": 2250.0,
+      "district": "farms",
+      "end_m": 2250.0,
+      "end_position": [
+        -2.3678641319274902,
+        0.10000000149011612,
+        -861.64697265625
+      ],
+      "id": "S05",
+      "legacy_masses": 4,
+      "name": "County Approach",
+      "near": 4,
+      "secondary": 0,
+      "start_m": 1800.0,
+      "start_position": [
+        125.44200134277344,
+        0.10000000149011612,
+        -1292.17333984375
+      ],
+      "total": 4
+    },
+    {
+      "authored_end_m": 2700.0,
+      "district": "rural_edge",
+      "end_m": 2700.0,
+      "end_position": [
+        7.934769630432129,
+        0.10000000149011612,
+        -413.1212158203125
+      ],
+      "id": "S06",
+      "legacy_masses": 2,
+      "name": "Rural Edge",
+      "near": 8,
+      "secondary": 1,
+      "start_m": 2250.0,
+      "start_position": [
+        -2.3678641319274902,
+        0.10000000149011612,
+        -861.64697265625
+      ],
+      "total": 9
+    },
+    {
+      "authored_end_m": 3150.0,
+      "district": "rural_edge",
+      "end_m": 3150.0,
+      "end_position": [
+        -221.06788635253906,
+        0.10000000149011612,
+        -30.217605590820312
+      ],
+      "id": "S07",
+      "legacy_masses": 32,
+      "name": "Edge Suburb",
+      "near": 17,
+      "secondary": 4,
+      "start_m": 2700.0,
+      "start_position": [
+        7.934769630432129,
+        0.10000000149011612,
+        -413.1212158203125
+      ],
+      "total": 21
+    },
+    {
+      "authored_end_m": 3600.0,
+      "district": "suburban",
+      "end_m": 3600.0,
+      "end_position": [
+        -97.09912109375,
+        0.10000000149011612,
+        337.9261474609375
+      ],
+      "id": "S08",
+      "legacy_masses": 44,
+      "name": "Residential Strip",
+      "near": 24,
+      "secondary": 9,
+      "start_m": 3150.0,
+      "start_position": [
+        -221.06788635253906,
+        0.10000000149011612,
+        -30.217605590820312
+      ],
+      "total": 33
+    },
+    {
+      "authored_end_m": 4050.0,
+      "district": "inner_city",
+      "end_m": 4050.0,
+      "end_position": [
+        62.43598937988281,
+        -1.7633038759231567,
+        706.0573120117188
+      ],
+      "id": "S09",
+      "legacy_masses": 38,
+      "name": "Warehouse Grid",
+      "near": 30,
+      "secondary": 14,
+      "start_m": 3600.0,
+      "start_position": [
+        -97.09912109375,
+        0.10000000149011612,
+        337.9261474609375
+      ],
+      "total": 44
+    },
+    {
+      "authored_end_m": 4500.0,
+      "district": "city_core",
+      "end_m": 4500.0,
+      "end_position": [
+        89.58743286132812,
+        11.599526405334473,
+        1121.2657470703125
+      ],
+      "id": "S10",
+      "legacy_masses": 44,
+      "name": "Dense Downtown",
+      "near": 36,
+      "secondary": 20,
+      "start_m": 4050.0,
+      "start_position": [
+        62.43598937988281,
+        -1.7633038759231567,
+        706.0573120117188
+      ],
+      "total": 56
+    },
+    {
+      "authored_end_m": 4950.0,
+      "district": "city_to_hills",
+      "end_m": 4950.0,
+      "end_position": [
+        145.8382568359375,
+        55.140892028808594,
+        1521.512451171875
+      ],
+      "id": "S11",
+      "legacy_masses": 26,
+      "name": "Urban Escape",
+      "near": 26,
+      "secondary": 14,
+      "start_m": 4500.0,
+      "start_position": [
+        89.58743286132812,
+        11.599526405334473,
+        1121.2657470703125
+      ],
+      "total": 40
+    },
+    {
+      "authored_end_m": 5400.0,
+      "district": "hills",
+      "end_m": 5400.0,
+      "end_position": [
+        61.201202392578125,
+        78.25897216796875,
+        1909.17236328125
+      ],
+      "id": "S12",
+      "legacy_masses": 0,
+      "name": "Upper Estates",
+      "near": 12,
+      "secondary": 6,
+      "start_m": 4950.0,
+      "start_position": [
+        145.8382568359375,
+        55.140892028808594,
+        1521.512451171875
+      ],
+      "total": 18
+    },
+    {
+      "authored_end_m": 5850.0,
+      "district": "hills",
+      "end_m": 5850.0,
+      "end_position": [
+        294.2234191894531,
+        50.524810791015625,
+        2245.12890625
+      ],
+      "id": "S13",
+      "legacy_masses": 0,
+      "name": "Rolling Summit",
+      "near": 7,
+      "secondary": 2,
+      "start_m": 5400.0,
+      "start_position": [
+        61.201202392578125,
+        78.25897216796875,
+        1909.17236328125
+      ],
+      "total": 9
+    },
+    {
+      "authored_end_m": 6300.0,
+      "district": "hills",
+      "end_m": 6300.0,
+      "end_position": [
+        0.622411847114563,
+        109.6956787109375,
+        2572.41650390625
+      ],
+      "id": "S14",
+      "legacy_masses": 0,
+      "name": "Ridge Descent",
+      "near": 3,
+      "secondary": 0,
+      "start_m": 5850.0,
+      "start_position": [
+        294.2234191894531,
+        50.524810791015625,
+        2245.12890625
+      ],
+      "total": 3
+    },
+    {
+      "authored_end_m": 6847.2998046875,
+      "district": "hills",
+      "end_m": 6847.3076171875,
+      "end_position": [
+        315.0,
+        60.0,
+        3003.0
+      ],
+      "id": "S15",
+      "legacy_masses": 0,
+      "name": "Final Ridge",
+      "near": 2,
+      "secondary": 0,
+      "start_m": 6300.0,
+      "start_position": [
+        0.622411847114563,
+        109.6956787109375,
+        2572.41650390625
+      ],
+      "total": 2
+    }
+  ],
+  "seed": 17031,
+  "target": {
+    "archetypes": 19,
+    "buildings": 247,
+    "families": {
+      "commercial": 46,
+      "farm": 35,
+      "hill": 30,
+      "residential": 63,
+      "urban": 73
+    },
+    "near": 177,
+    "secondary": 70,
+    "sections": 15
+  },
+  "track_id": "valley-run-01"
+}

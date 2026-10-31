@@ -1,0 +1,366 @@
+{
+  "schema_version": 1,
+  "archetypes": [
+    {
+      "id": "F01",
+      "name": "Farmhouse",
+      "quantity": 10,
+      "brief": "Rural parcel, porch-facing road",
+      "height_min_m": 6.0,
+      "height_max_m": 9.0,
+      "family": "farm",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 16
+      },
+      "footprint_depth_m": {
+        "min_m": 10,
+        "max_m": 24
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    },
+    {
+      "id": "F02",
+      "name": "Barn",
+      "quantity": 5,
+      "brief": "Rectangular roof silhouette",
+      "height_min_m": 7.0,
+      "height_max_m": 12.0,
+      "family": "farm",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 16
+      },
+      "footprint_depth_m": {
+        "min_m": 10,
+        "max_m": 24
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    },
+    {
+      "id": "F03",
+      "name": "Agricultural shed",
+      "quantity": 8,
+      "brief": "Low long footprint",
+      "height_min_m": 4.0,
+      "height_max_m": 7.0,
+      "family": "farm",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 16
+      },
+      "footprint_depth_m": {
+        "min_m": 10,
+        "max_m": 24
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    },
+    {
+      "id": "F04",
+      "name": "Rural roadside house",
+      "quantity": 12,
+      "brief": "Sparse homes/edge settlement",
+      "height_min_m": 5.0,
+      "height_max_m": 9.0,
+      "family": "farm",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 16
+      },
+      "footprint_depth_m": {
+        "min_m": 10,
+        "max_m": 24
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    },
+    {
+      "id": "R01",
+      "name": "Detached suburban house",
+      "quantity": 28,
+      "brief": "Front yard and driveway reserve",
+      "height_min_m": 5.0,
+      "height_max_m": 9.0,
+      "family": "residential",
+      "footprint_width_m": {
+        "min_m": 8,
+        "max_m": 14
+      },
+      "footprint_depth_m": {
+        "min_m": 12,
+        "max_m": 22
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "R02",
+      "name": "Townhouse/rowhouse",
+      "quantity": 20,
+      "brief": "Repeatable narrow modules",
+      "height_min_m": 7.0,
+      "height_max_m": 13.0,
+      "family": "residential",
+      "footprint_width_m": {
+        "min_m": 8,
+        "max_m": 14
+      },
+      "footprint_depth_m": {
+        "min_m": 12,
+        "max_m": 22
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "R03",
+      "name": "Low-rise apartment",
+      "quantity": 15,
+      "brief": "3-5 story continuous wall",
+      "height_min_m": 9.0,
+      "height_max_m": 15.0,
+      "family": "residential",
+      "footprint_width_m": {
+        "min_m": 8,
+        "max_m": 14
+      },
+      "footprint_depth_m": {
+        "min_m": 12,
+        "max_m": 22
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "C01",
+      "name": "Corner retail",
+      "quantity": 11,
+      "brief": "Junction facing, transparent ground-level placeholder",
+      "height_min_m": 5.0,
+      "height_max_m": 12.0,
+      "family": "commercial",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 22
+      },
+      "footprint_depth_m": {
+        "min_m": 16,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "C02",
+      "name": "Retail strip",
+      "quantity": 12,
+      "brief": "Several tenants, single structural mass",
+      "height_min_m": 5.0,
+      "height_max_m": 9.0,
+      "family": "commercial",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 22
+      },
+      "footprint_depth_m": {
+        "min_m": 16,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "C03",
+      "name": "Fuel/convenience building",
+      "quantity": 3,
+      "brief": "Building only; canopy/forecourt deferred",
+      "height_min_m": 4.0,
+      "height_max_m": 7.0,
+      "family": "commercial",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 22
+      },
+      "footprint_depth_m": {
+        "min_m": 16,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "C04",
+      "name": "Warehouse",
+      "quantity": 12,
+      "brief": "Long industrial frontage",
+      "height_min_m": 7.0,
+      "height_max_m": 14.0,
+      "family": "commercial",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 22
+      },
+      "footprint_depth_m": {
+        "min_m": 16,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "sawtooth"
+    },
+    {
+      "id": "C05",
+      "name": "Garage/workshop",
+      "quantity": 8,
+      "brief": "Wide ground-level openings",
+      "height_min_m": 4.0,
+      "height_max_m": 9.0,
+      "family": "commercial",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 22
+      },
+      "footprint_depth_m": {
+        "min_m": 16,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "U01",
+      "name": "Urban apartment midrise",
+      "quantity": 25,
+      "brief": "4-10 floors",
+      "height_min_m": 12.0,
+      "height_max_m": 30.0,
+      "family": "urban",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 20
+      },
+      "footprint_depth_m": {
+        "min_m": 18,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "U02",
+      "name": "Office midrise",
+      "quantity": 20,
+      "brief": "Regular commercial floor modules",
+      "height_min_m": 12.0,
+      "height_max_m": 33.0,
+      "family": "urban",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 20
+      },
+      "footprint_depth_m": {
+        "min_m": 18,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "U03",
+      "name": "Mixed-use midrise",
+      "quantity": 20,
+      "brief": "Shop base plus upper floors",
+      "height_min_m": 12.0,
+      "height_max_m": 27.0,
+      "family": "urban",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 20
+      },
+      "footprint_depth_m": {
+        "min_m": 18,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "U04",
+      "name": "Parking structure",
+      "quantity": 8,
+      "brief": "Open-face volume proxy",
+      "height_min_m": 9.0,
+      "height_max_m": 24.0,
+      "family": "urban",
+      "footprint_width_m": {
+        "min_m": 10,
+        "max_m": 20
+      },
+      "footprint_depth_m": {
+        "min_m": 18,
+        "max_m": 30
+      },
+      "floor_height_m": 3.0,
+      "roof": "flat"
+    },
+    {
+      "id": "H01",
+      "name": "Hillside cabin",
+      "quantity": 13,
+      "brief": "Small foundations on local pad",
+      "height_min_m": 4.0,
+      "height_max_m": 8.0,
+      "family": "hill",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 14
+      },
+      "footprint_depth_m": {
+        "min_m": 8,
+        "max_m": 20
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    },
+    {
+      "id": "H02",
+      "name": "Hillside lodge",
+      "quantity": 7,
+      "brief": "Larger view-facing mass",
+      "height_min_m": 6.0,
+      "height_max_m": 12.0,
+      "family": "hill",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 14
+      },
+      "footprint_depth_m": {
+        "min_m": 8,
+        "max_m": 20
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    },
+    {
+      "id": "H03",
+      "name": "Hill utility structure",
+      "quantity": 10,
+      "brief": "Sparse simple enclosed structures",
+      "height_min_m": 3.0,
+      "height_max_m": 7.0,
+      "family": "hill",
+      "footprint_width_m": {
+        "min_m": 6,
+        "max_m": 14
+      },
+      "footprint_depth_m": {
+        "min_m": 8,
+        "max_m": 20
+      },
+      "floor_height_m": 3.0,
+      "roof": "pitched"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+missing arguments
+World validation failed: usage: --validate-world/--inspect-world WORLD_JSON ARCHETYPES_JSON TRACK_JSON [--output REPORT_JSON]
+EXIT 2
+
+wrong track
+World validation failed: world requires its matching point-to-point track
+EXIT 2
+
+missing file
+World validation failed: /tmp/roaddash-world-nonexistent.json: No such file or directory (os error 2)
+EXIT 2
+
+bad output path
+World validation failed: /tmp/roaddash-world-nonexistent-dir/report.json: No such file or directory (os error 2)
+EXIT 2
+
+gap in world stations
+World validation failed: S02: nonfinite, gap/overlap, reversed or too-short station span
+EXIT 2

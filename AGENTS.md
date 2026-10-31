@@ -31,3 +31,8 @@ in the blueprint are not installed dependencies.
 - Final report: implementation, checklist, files, research, new task IDs, tests,
   decisions, known issues, next steps, and git status. Do not automatically start
   the next major development part.
+
+- Valley structural generation lives in world_gen. Preserve exact quotas/IDs,
+  whole-lot rights of way, shared pad support and independent LOD/collision.
+  Fade pairs must share local origins; test --inspect-world and --world-survey.
+  Allocation counts alone do not prove placed geometry or performance.

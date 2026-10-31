@@ -81,3 +81,12 @@ Cross-car wipeouts are covered in both adapters, including moving-side impacts.
   behavior. No original-bike numerical parity or code-reuse permission claimed.
 - Camera correction: follow-lag distance is bounded in all views; manual comfort/
   high-refresh and physical-controller acceptance remain open as before.
+
+- BASE-WORLD: the first-map structural generator now places the complete quota
+  with lots, pads, streets, field masks and persistent-collision visual LOD.
+  Detailed production art/interiors and additional courses remain future scope.
+  Recovery uses structural routes plus existing local contact avoidance; unusual
+  moving/prop traps have an explicit >120-second or below-world rescue with a
+  five-second penalty. See world/COMPLETION_TESTS.md for the measured performance,
+  native survey and platform evidence; no universal manual-path or cross-platform
+  floating-point lockstep guarantee is claimed.

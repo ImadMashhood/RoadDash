@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "layout_version": 1,
+  "track_id": "valley-run-01",
+  "field_count": 42,
+  "field_end_m": 3150,
+  "sidewalk_start_m": 2700,
+  "sidewalk_end_m": 4950,
+  "sidewalk_width_m": 3,
+  "curb_height_m": 0.12,
+  "pad_flat_margin_m": 0.5,
+  "pad_blend_m": 2.0,
+  "max_retained_relief_m": 6,
+  "terrain_step_m": 4,
+  "render_near_m": 200,
+  "render_far_m": 850,
+  "junctions": [
+    {
+      "id": "J01",
+      "station_m": 2400,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J02",
+      "station_m": 2750,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J03",
+      "station_m": 3071.0175,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J04",
+      "station_m": 3400,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J05",
+      "station_m": 3805.39125,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J06",
+      "station_m": 4090,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J07",
+      "station_m": 4370,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J08",
+      "station_m": 4660,
+      "half_width_m": 5,
+      "extent_m": 100
+    },
+    {
+      "id": "J09",
+      "station_m": 4900,
+      "half_width_m": 5,
+      "extent_m": 100
+    }
+  ],
+  "terrain_far_step_m": 10,
+  "terrain_near_m": 350
+}
