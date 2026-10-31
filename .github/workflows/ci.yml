@@ -37,6 +37,7 @@ jobs:
       - run: cargo check --locked --features debug_physics
       - run: python tools/sync_progress.py --check
       - run: cargo run --locked -- --validate-world content/world/valley_world_v1.json content/world/building_archetypes_v1.json content/tracks/valley.json --output world-validation.json
+      - run: python tools/export_world_plan.py world-validation.json world-plan.svg
       - run: python tools/test_world_inputs.py
       - run: python tools/test_audit.py
       - run: python tools/audit.py --output audit-report.json

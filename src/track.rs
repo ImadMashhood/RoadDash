@@ -13,6 +13,7 @@ pub struct Track {
     surfaces: Vec<Surface>,
     pub length: f32,
     pub bounds: (Vec3, Vec3),
+    pub earthworks: Option<Box<crate::world_gen::ground::Earthworks>>,
 }
 impl Default for Track {
     fn default() -> Self {
@@ -115,6 +116,7 @@ impl Track {
             surfaces,
             length,
             bounds: (min, max),
+            earthworks: None,
         };
         for spawn in &track.definition.spawns {
             if spawn.lane.abs() + 0.6 > track.half_width(spawn.distance) {
@@ -232,6 +234,12 @@ impl Track {
     /// Single-valued terrain shared by mesh collision and off-road controller.
     /// A flat safe verge follows each road; distant hills blend smoothly away.
     pub fn terrain_height(&self, x: f32, z: f32) -> f32 {
+        let base = self.base_terrain_height(x, z);
+        self.earthworks
+            .as_ref()
+            .map_or(base, |e| e.height(x, z, base))
+    }
+    pub fn base_terrain_height(&self, x: f32, z: f32) -> f32 {
         let point = Vec3::new(x, 0.0, z);
         let mut best = (0, f32::INFINITY);
         for i in (0..self.points.len() - 1).step_by(12) {
@@ -260,9 +268,51 @@ impl Track {
         }
         let blend = ((distance - 18.0) / 100.0).clamp(0.0, 1.0);
         let blend = blend * blend * (3.0 - 2.0 * blend);
-        let hill = ((z - 440.0) / 260.0).clamp(0.0, 1.0);
-        let remote = hill * (42.0 + 25.0 * (z * 0.009).sin() + 18.0 * (x * 0.012).cos());
+        let hill = match self.sectors[best.0] {
+            Sector::Farms => 0.08,
+            Sector::City => 0.02,
+            Sector::Hills => 1.0,
+        };
+        let remote = if self.definition.id.as_str() == "valley-run-01" {
+            closest.y
+                + hill
+                    * (12.0 * (z * 0.009).sin()
+                        + 8.0 * (x * 0.012).cos()
+                        + (distance * 0.08).min(18.0))
+        } else {
+            let legacy_hill = ((z - 440.0) / 260.0).clamp(0.0, 1.0);
+            legacy_hill * (42.0 + 25.0 * (z * 0.009).sin() + 18.0 * (x * 0.012).cos())
+        };
         (closest.y + lateral_height - 0.35).lerp(remote, blend)
+    }
+    /// Local projection for terrain classification, using a bounded coarse/refine search.
+    pub fn nearby_station(&self, x: f32, z: f32) -> (f32, f32) {
+        let p = Vec2::new(x, z);
+        let i = (0..self.points.len())
+            .step_by(24)
+            .min_by(|a, b| {
+                self.points[*a]
+                    .xz()
+                    .distance_squared(p)
+                    .total_cmp(&self.points[*b].xz().distance_squared(p))
+            })
+            .unwrap_or(0);
+        let mut best = (0.0, 0.0, f32::INFINITY);
+        for k in i.saturating_sub(24)..(i + 25).min(self.points.len() - 1) {
+            let a = self.points[k].xz();
+            let edge = self.points[k + 1].xz() - a;
+            let t = ((p - a).dot(edge) / edge.length_squared()).clamp(0.0, 1.0);
+            let delta = p - a - edge * t;
+            let distance = delta.length_squared();
+            if distance < best.2 {
+                best = (
+                    self.distances[k].lerp(self.distances[k + 1], t),
+                    delta.dot(Vec2::new(-edge.y, edge.x).normalize()),
+                    distance,
+                );
+            }
+        }
+        (best.0, best.1)
     }
     pub fn scenery_fits(&self, center: Vec3, radius: f32, margin: f32) -> bool {
         let (d, _, distance) = self.project(center, 0.0);

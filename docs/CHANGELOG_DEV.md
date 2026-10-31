@@ -134,3 +134,15 @@ blending/F4 preview. Added CI and source conversion checks; recorded the B03–B
 backlog and additive-overlay ADR-019. Existing scenery/route/gameplay retained;
 247 new masses, lots, pads, streets and full-world performance are not claimed.
 Exact checks and native captures: world/BASE_WORLD_TESTS.md.
+
+## 2026-10-30 — First-map structural world B03–B10
+
+Replaced canonical Valley legacy buildings with exact, deterministic 247-root
+massing across 19 archetypes/15 sections, legal lots, sampled foundations and
+bounded retaining repairs. Added 42 field parcels, nine solid junction stubs,
+16 block faces, ramped sidewalks/outer approaches and access alleys. Added
+building/terrain LOD with persistent collision, footprint-aware recovery routing
+and exceptional rescue feedback/penalty. Added spatial/support/seam/capsule tests,
+full JSON/SVG export and native 15-section/1080p survey. Exact measured gates and
+remaining platform limits are recorded in world/COMPLETION_TESTS.md. No new media,
+third-party source, dependency or additional course; prior evidence retained.

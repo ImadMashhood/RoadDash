@@ -101,3 +101,14 @@ all source CSV/JSON section fields and converted archetypes/heights/quotas.
 CI runs source checks and `--validate-world`; native evidence/F4 screenshots and
 CLI failure probes: ../world/BASE_WORLD_TESTS.md. Spatial placement/ground/LOD
 and final-world acceptance remain BW-B03–B10.
+
+B03–B10: full spatial layout repeats exactly, corruption/duplicate junctions are
+rejected, every footprint corner has physical foundation support, main-road
+rays and crossing stubs remain solid, internal terrain seams have continuous
+support, LOD children coexist with all 247 fixed colliders, and three real
+capsules walk farm/city-alley/hill routes. The full existing suite and explicit
+600-s simulated soak cover gameplay regressions. Native survey captures all 15
+sections with actual resolution and 1080p warmed city metrics; normal race and
+actor smoke remain separate. JSON/footprint SVG, root and geometry hashes and
+full evidence: ../world/COMPLETION_TESTS.md. Hardware/subjective gates from other
+parts are not silently closed.

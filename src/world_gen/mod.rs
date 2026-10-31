@@ -1,12 +1,19 @@
-//! B00-B02 structural generation foundation. No placement or terrain edits yet.
+//! Deterministic structural world: validated plan, parcels, earthworks, meshes and survey.
+pub mod buildings;
+pub mod ground;
+pub mod layout;
+pub mod navigation;
 pub mod report;
+pub mod spatial;
+pub mod surfaces;
+pub mod survey;
 use crate::track::Track;
 use bevy::prelude::*;
 use rr_content::world::{ArchetypeCatalog, BuildingAssignment, District, WorldDef};
 
 pub const WORLD_JSON: &str = include_str!("../../content/world/valley_world_v1.json");
 pub const ARCHETYPES_JSON: &str = include_str!("../../content/world/building_archetypes_v1.json");
-#[derive(Resource)]
+#[derive(Resource, Clone)]
 pub struct WorldPlan {
     pub definition: WorldDef,
     pub archetypes: ArchetypeCatalog,
@@ -72,7 +79,7 @@ pub fn setup_plan(mut commands: Commands, track: Res<Track>) {
         let plan = WorldPlan::from_json(WORLD_JSON, ARCHETYPES_JSON, &track)
             .expect("validate Valley base-world overlay");
         info!(
-            "Base world B00-B02: {} sections, {} archetypes, {} allocated buildings (NOT spawned); seed {}",
+            "Base-world content: {} sections, {} archetypes, {} allocated buildings; seed {}",
             plan.definition.sections.len(),
             plan.archetypes.archetypes.len(),
             plan.assignments.len(),
@@ -166,3 +173,7 @@ mod tests {
         assert!(WorldPlan::from_json(WORLD_JSON, ARCHETYPES_JSON, &Track::default()).is_err());
     }
 }
+
+#[cfg(test)]
+#[path = "tests.rs"]
+mod construction_tests;

@@ -327,7 +327,7 @@
         "max_m": 10
       },
       "pad_max_raw_relief_m": 1.5,
-      "earthwork_margin_m": 4,
+      "earthwork_margin_m": 2,
       "access_width_m": 3,
       "secondary_access_width_m": 6
     },
@@ -346,7 +346,7 @@
         "max_m": 8
       },
       "pad_max_raw_relief_m": 0.8,
-      "earthwork_margin_m": 4,
+      "earthwork_margin_m": 2,
       "access_width_m": 3,
       "secondary_access_width_m": 6
     },
@@ -365,7 +365,7 @@
         "max_m": 3
       },
       "pad_max_raw_relief_m": 0.8,
-      "earthwork_margin_m": 4,
+      "earthwork_margin_m": 2,
       "access_width_m": 3,
       "secondary_access_width_m": 6
     },
@@ -384,7 +384,7 @@
         "max_m": 18
       },
       "pad_max_raw_relief_m": 1.5,
-      "earthwork_margin_m": 4,
+      "earthwork_margin_m": 2,
       "access_width_m": 3,
       "secondary_access_width_m": 6
     },

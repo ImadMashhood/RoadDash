@@ -167,9 +167,11 @@ close this session.
 User supplied a structural world PDF, JSON and section CSV and requested starting
 first-map procedural generation. [Review, contracts and BW-B00–B10 dependency/
 acceptance register](world/BASE_WORLD.md); [verification](world/BASE_WORLD_TESTS.md).
-B00–B02 implement the additive foundation; B03–B10 are open. Exact target counts
-are allocation evidence only; no new 247-building geometry is claimed. Existing
-route, seed, gameplay, old scenery and physics are preserved. Source PDF handoff
+B00–B02 established the foundation; the user then explicitly requested completion.
+B03–B10 structural construction is documented in [the implementation](world/BASE_WORLD_COMPLETE.md)
+and [completion receipt](world/COMPLETION_TESTS.md). Current checkboxes below
+reflect verified gates. The route/seed/gameplay are retained while canonical old
+buildings are replaced by exact 247-root geometry. Source PDF handoff
 language is design guidance; active user scope controls this session.
 
 <!-- GENERATED CHECKLIST INDEX -->
@@ -286,21 +288,27 @@ language is design guidance; active user scope controls this session.
 
 - [x] **BW-B02** Bind districts to baked road stations, resolve/blend all boundaries and final endpoint, reject mismatched courses and expose F4 preview.
 
-- [ ] **BW-B03** Generate field parcels and farm/suburban/city/hill ground classification across all sections.
+- [x] **BW-B03** Generate field parcels and farm/suburban/city/hill ground classification across all sections.
 
-- [ ] **BW-B04** Build at least seven reserved junctions, side-street foundations and continuous accessible curbs/sidewalks.
+- [x] **BW-B04** Build at least seven reserved junctions, side-street foundations and continuous accessible curbs/sidewalks.
 
-- [ ] **BW-B05** Generate non-overlapping, reachable frontage/secondary lots outside every road/junction/gate/spawn reservation.
+- [x] **BW-B05** Generate non-overlapping, reachable frontage/secondary lots outside every road/junction/gate/spawn reservation.
 
-- [ ] **BW-B06** Place exactly 247 structural building roots with mass/roof/collision and validated full-footprint clearance.
+- [x] **BW-B06** Place exactly 247 structural building roots with mass/roof/collision and validated full-footprint clearance.
 
-- [ ] **BW-B07** Grade supported pads and hillside foundations with shared render/collision heights and local cut/fill.
+- [x] **BW-B07** Grade supported pads and hillside foundations with shared render/collision heights and local cut/fill.
 
-- [ ] **BW-B08** Prove farm/city-alley/hill on-foot recovery and escape paths without geometry traps.
+- [x] **BW-B08** Prove farm/city-alley/hill on-foot recovery and escape paths without geometry traps.
 
-- [ ] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
+- [x] **BW-B09** Implement spatial building LOD/chunks while preserving collision/IDs and measure representative 1080p performance.
 
 - [ ] **BW-B10** Complete the full-map survey, plan export, count/geometry hashes, provenance, regressions and all base-world exit criteria.
+
+- [x] **BW-X01** Protect paired LOD origins and local terrain vertices against disappearing ground; verify all 160 tile pairs and building children plus the native atlas.
+
+- [x] **BW-X02** Record actual survey resolution/focus and use continuous uncapped benchmark updates so background idle timers cannot masquerade as frame cost.
+
+- [x] **BW-X03** Clear recovery motion/routes on exceptional rescue and apply one visible five-second penalty; verify normal capsule routes and rescue state transitions.
 
 ### Part 03 - Motorcycle physics and controls
 

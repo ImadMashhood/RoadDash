@@ -113,6 +113,11 @@ schema/quota/lot validation and versioned deterministic planning allocation.
 `world_gen::WorldPlan` binds to the existing open track/seed/baked length and
 resolves section ownership/district presentation. Its F4 overlay is separate
 from the current three gameplay sectors. `world_gen::report` measures the real
-legacy environment and exports it separately from target allocations. No placed
-WorldLayout, foundations, streaming or collision replacement exists yet; B03–B10
-must add those in dependency order. See ADR-019 and world/BASE_WORLD.md.
+legacy environment and exports it separately from target allocations. The completed follow-up adds WorldLayout, bounded parcel reservations, indexed
+shared earthworks, exact pad cuts, structural masses/collision, streets/alleys,
+visibility-range LOD and cached recovery routing. See ADR-019/020 and
+world/BASE_WORLD_COMPLETE.md; foundation evidence remains historical.
+
+Construction dimensions, street reservations and sampling/LOD authoring validation
+are GPU-independent in rr_content::construction. The client construction wrapper
+adds only Track binding/cross-section helpers; it serializes transparently.

@@ -1,4 +1,7 @@
-# Valley Run structural world — B00–B02
+# Valley Run structural world — B00–B02 (foundation history)
+
+Current implementation continues in [B03–B10](BASE_WORLD_COMPLETE.md). The text
+below records the first foundation delivery; its original evidence is retained.
 
 2026-10-30. Implementation branch: `feat/base-world-foundation`.
 Baseline: merged main `78d6a828268d85abd73df28b72c23df0407c4ee3` (PR #5),

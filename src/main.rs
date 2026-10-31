@@ -15,8 +15,9 @@ fn main() {
             let track = road_dash::track::Track::from_json(&read(3)?)?;
             let plan = road_dash::world_gen::WorldPlan::from_json(&read(1)?, &read(2)?, &track)?;
             let baseline = if args[index] == "--inspect-world" {
-                Some(road_dash::world_gen::report::headless_baseline(
+                Some(road_dash::world_gen::report::headless_for_plan(
                     road_dash::track::Track::from_definition(track.definition.clone())?,
+                    plan.clone(),
                 ))
             } else {
                 None
@@ -25,7 +26,7 @@ fn main() {
                 &plan,
                 &track,
                 baseline.as_ref(),
-            ))
+            )?)
             .map_err(|e| e.to_string())
         })();
         let result = result.and_then(|json| {
@@ -105,7 +106,8 @@ fn main() {
         }
     }
     road_dash::build_app(
-        std::env::args().any(|a| a == "--smoke-test" || a == "--actor-smoke-test"),
+        std::env::args()
+            .any(|a| a == "--smoke-test" || a == "--actor-smoke-test" || a == "--world-survey"),
     )
     .run();
 }

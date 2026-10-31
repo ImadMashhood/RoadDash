@@ -1,0 +1,39 @@
+{
+  "phase": "B03-B10 structural construction",
+  "track_id": "valley-run-01",
+  "seed": 17031,
+  "baked_length_m": 6847.3076171875,
+  "target": {
+    "archetypes": 19,
+    "buildings": 247,
+    "families": {
+      "commercial": 46,
+      "farm": 35,
+      "hill": 30,
+      "residential": 63,
+      "urban": 73
+    },
+    "near": 177,
+    "secondary": 70,
+    "sections": 15
+  },
+  "geometry_fingerprint": "fnv1a64:31b6850d96707a1d",
+  "allocation_fingerprint": "fnv1a64:f866d824acfb111f",
+  "measured": {
+    "building_geometry_fingerprint": "fnv1a64:3c7df42c929474f7",
+    "building_masses": 247,
+    "collider_entities": 2156,
+    "environment_collision_triangles": 809199,
+    "environment_render_triangles": 948279,
+    "kind": "generated_structural_world",
+    "legacy_building_masses": 0,
+    "limitations": "Environment-only snapshot before racers/UI/audio; triangle counters are existing ribbon/terrain counters, not total building triangles or draw calls. Legacy placement is not validated lot/foundation generation.",
+    "render_mesh_entities": 4453,
+    "road_chunks": 86,
+    "terrain_chunks": 160
+  },
+  "relocated_parcels": 51,
+  "retained_pads": 43,
+  "walk_routes": 247,
+  "block_faces": 16
+}

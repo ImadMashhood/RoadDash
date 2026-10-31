@@ -335,3 +335,32 @@ satisfy whole-footprint reservations and shared support; allocation fingerprints
 are not spatial-layout hashes. Rollback can disable the additive overlay without
 changing track/save/physics schemas. Version any generation-order/ID changes;
 retain source snapshots and historical census evidence.
+
+## ADR-020 — 2026-10-30 — Complete the structural corridor without replacing gameplay
+
+Problem: exact quotas need legal lots, supported masses and safe recovery,
+while the existing scenery, height sampler and walking controller are separate.
+Alternatives: introduce a city/terrain framework and new physics dependency,
+flatten hills, skip impossible buildings, or leave visual-only roads. Selected:
+original bounded station-frontage placement with oriented-rectangle reservations,
+nine authored junctions, typed structural mass/roof kit and one indexed earthwork
+sampler. Exact pad cuts join rendered/collision terrain to foundation planes;
+outer sidewalks grade to grass. Preserve the authored main road and non-Valley
+fixtures. No new dependency needed; existing serde/Bevy/Rapier cover this scope.
+
+Near/far building meshes and terrain proxies use the installed Bevy 0.17.3
+VisibilityRange API (R08); all collision remains authoritative and resident.
+The geometry fingerprint covers layout/settings/footprints/foundations; planning
+fingerprints remain separate. Stable IDs do not depend on renderer entities.
+Recovery adds a cached bounded visibility graph and a visible, penalized rescue
+for exceptional >120-second/below-world traps, retaining real normal hill travel.
+A general navigation framework was unnecessary for a few local static footprints.
+
+Tradeoffs: low-detail masses and simplified solid roof proxies, resident collision
+memory, extra LOD assets, finite search/route bounds and platform floating-point
+variation. Full-world generation fails with a building/section error instead of
+reducing quotas. Future server authority should distribute validated layout and
+recovery events rather than assume floating-point lockstep. Art/streaming swaps
+must preserve IDs, reservations and collision. Rollback can disable the canonical
+world spawner but must not double-spawn legacy and generated buildings or erase
+source snapshots/earlier receipts. Acceptance evidence: world/COMPLETION_TESTS.md.

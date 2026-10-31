@@ -56,7 +56,8 @@ pub fn setup_world(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
-    track: Res<Track>,
+    mut track: ResMut<Track>,
+    plan: Option<Res<crate::world_gen::WorldPlan>>,
 ) {
     let art = Art {
         cube: meshes.add(Cuboid::new(1.0, 1.0, 1.0)),
@@ -86,7 +87,64 @@ pub fn setup_world(
         },
         Transform::from_rotation(Quat::from_euler(EulerRot::XYZ, -0.75, -0.5, 0.0)),
     ));
-    crate::environment::build(&mut commands, &mut meshes, &mut materials, &track, &art);
+    let generated = if track.definition.id.as_str() == "valley-run-01" {
+        let builtin;
+        let plan = if let Some(ref plan) = plan {
+            &**plan
+        } else {
+            builtin = crate::world_gen::WorldPlan::from_json(
+                crate::world_gen::WORLD_JSON,
+                crate::world_gen::ARCHETYPES_JSON,
+                &track,
+            )
+            .expect("world plan");
+            &builtin
+        };
+        let settings = crate::world_gen::layout::Construction::from_json(
+            crate::world_gen::layout::CONSTRUCTION_JSON,
+            &track,
+        )
+        .expect("construction settings");
+        let layout = crate::world_gen::layout::WorldLayout::generate(plan, &track, settings)
+            .expect("generate every base-world parcel");
+        track.earthworks = Some(Box::new(crate::world_gen::ground::Earthworks::new(
+            &layout, &track,
+        )));
+        Some(layout)
+    } else {
+        None
+    };
+    crate::environment::build(
+        &mut commands,
+        &mut meshes,
+        &mut materials,
+        &track,
+        &art,
+        generated.as_ref(),
+    );
+    if let Some(layout) = generated {
+        let builtin;
+        let plan = if let Some(ref plan) = plan {
+            &**plan
+        } else {
+            builtin = crate::world_gen::WorldPlan::from_json(
+                crate::world_gen::WORLD_JSON,
+                crate::world_gen::ARCHETYPES_JSON,
+                &track,
+            )
+            .expect("world plan");
+            &builtin
+        };
+        crate::world_gen::buildings::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            &art,
+            plan,
+            &layout,
+        );
+        commands.insert_resource(layout);
+    }
     commands.insert_resource(art);
 }
 

@@ -82,10 +82,11 @@ Cross-car wipeouts are covered in both adapters, including moving-side impacts.
 - Camera correction: follow-lag distance is bounded in all views; manual comfort/
   high-refresh and physical-controller acceptance remain open as before.
 
-- BASE-WORLD: B00–B02 provide validated quotas/planning allocations, a station
-  overlay and measured legacy scene census. They do not yet replace old scenery.
-  BW-B03–B10 track ground masks, streets/reservations, placed lots/masses, shared
-  terrain pads, walking access, LOD and final survey. Authored dimensional rules
-  need actual support/clearance proof before use. FNV allocation fingerprints
-  do not certify spatial determinism; no new 247-building performance gate passed.
-  The district overlay intentionally does not relocate existing gameplay actors.
+- BASE-WORLD: the first-map structural generator now places the complete quota
+  with lots, pads, streets, field masks and persistent-collision visual LOD.
+  Detailed production art/interiors and additional courses remain future scope.
+  Recovery uses structural routes plus existing local contact avoidance; unusual
+  moving/prop traps have an explicit >120-second or below-world rescue with a
+  five-second penalty. See world/COMPLETION_TESTS.md for the measured performance,
+  native survey and platform evidence; no universal manual-path or cross-platform
+  floating-point lockstep guarantee is claimed.
