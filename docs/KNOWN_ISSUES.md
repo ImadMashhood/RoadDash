@@ -96,3 +96,9 @@ CITY-02 supersedes the detached-city spacing limitation: shared-edge infill now
 joins neighboring city volumes. Road/junction clearances remain open deliberately.
 Navigation uses conservative bounds around infill, so a runner may take a wider
 route than the rendered facade requires. See testing/FRONTAGES.md for evidence.
+
+CITY-03 corrects rounded sidewalk shading and introduces curbside tree beds and
+taller urban masses. Trees are physical obstacles; junctions remain clear and a
+walking strip remains beside the trunks. Facades, foliage and paving are original
+procedural art; bespoke production assets and interiors remain future work.
+See testing/STREETSCAPE.md for local native evidence and platform limitations.

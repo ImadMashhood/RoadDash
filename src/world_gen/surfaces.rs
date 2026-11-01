@@ -19,9 +19,12 @@ fn surface(
     if indices.is_empty() {
         return;
     }
+    let mut mesh = crate::environment::mesh(&vertices, &indices);
+    mesh.duplicate_vertices();
+    mesh.compute_flat_normals();
     commands.spawn((
         Name::new(kind),
-        Mesh3d(meshes.add(crate::environment::mesh(&vertices, &indices))),
+        Mesh3d(meshes.add(mesh)),
         MeshMaterial3d(material),
         Transform::default(),
         RigidBody::Fixed,
@@ -40,7 +43,12 @@ pub fn spawn(
     layout: &WorldLayout,
 ) {
     let asphalt = materials.add(Color::srgb(0.14, 0.15, 0.16));
-    let walk = materials.add(Color::srgb(0.55, 0.54, 0.49));
+    let walk = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.58, 0.57, 0.53),
+        perceptual_roughness: 0.97,
+        reflectance: 0.08,
+        ..default()
+    });
     let dirt = materials.add(Color::srgb(0.46, 0.38, 0.26));
     for j in &layout.settings.junctions {
         let (p, q) = horizontal_frame(track, j.station_m);
@@ -109,13 +117,15 @@ pub fn spawn(
     }
     breaks.sort_by(f32::total_cmp);
     for side in [-1.0, 1.0] {
+        let mut sidewalk_vertices = Vec::new();
+        let mut sidewalk_indices = Vec::new();
         for span in breaks.windows(2) {
             if layout.settings.junction_at((span[0] + span[1]) * 0.5, 0.0) {
                 continue;
             }
             let mut d = span[0];
             while d < span[1] {
-                let next = (d + 8.0).min(span[1]);
+                let next = (d + 2.0).min(span[1]);
                 let mut v = Vec::new();
                 for at in [d, next] {
                     let (p, q) = track.sample(at, 0.0);
@@ -142,11 +152,22 @@ pub fn spawn(
                 }
                 // Only top triangles need upward winding; side walls retain their normal.
                 upward(&v, &mut ix[..2]);
-                surface(commands, meshes, walk.clone(), v, ix, "sidewalk");
+                let base = sidewalk_vertices.len() as u32;
+                sidewalk_indices.extend(ix.into_iter().map(|tri| tri.map(|n| n + base)));
+                sidewalk_vertices.extend(v);
                 d = next;
             }
         }
+        surface(
+            commands,
+            meshes,
+            walk.clone(),
+            sidewalk_vertices,
+            sidewalk_indices,
+            "sidewalk",
+        );
     }
+    super::streetscape::spawn(commands, meshes, materials, track, layout);
     for alley in &layout.alleys {
         let mut d = alley.start_m;
         let mut v = Vec::new();

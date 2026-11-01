@@ -247,6 +247,11 @@ impl WorldLayout {
                     .floor()
                     .max(low as f32) as u32;
                 let floors = low + ((high - low + 1) as f32 * noise(&entry.id, 3)).floor() as u32;
+                let floors = if a.family == rr_content::world::Family::Urban {
+                    (floors as f32 * result.settings.city_height_scale).ceil() as u32
+                } else {
+                    floors
+                };
                 let height = floors as f32 * a.floor_height_m + roof_height;
                 let frontage = rules.frontage_m.min_m.max(width + margin * 2.0);
                 let urban_front = row == 0
@@ -420,7 +425,13 @@ impl WorldLayout {
                 || assigned.section_id != b.section_id
                 || assigned.row != b.row
                 || b.size[1] < archetype.height_min_m
-                || b.size[1] > archetype.height_max_m
+                || b.size[1]
+                    > if archetype.family == rr_content::world::Family::Urban {
+                        archetype.height_max_m * self.settings.city_height_scale
+                            + archetype.floor_height_m
+                    } else {
+                        archetype.height_max_m
+                    }
                 || b.floors == 0
                 || !b.foundation_m.is_finite()
                 || !b.raw_relief_m.is_finite()

@@ -158,3 +158,13 @@ Added 410 supported solid city buildings, four avenues on each side, cross stree
 ## 2026-10-31 — CITY-02 shared-edge frontage correction
 
 Closed detached-city gaps with 347 solid full-depth infill sections, procedural windows and flat facade normals. Exact shared edges follow curved blocks. Streets and unrelated buildings are excluded; all original lot IDs remain. Recovery now searches around joined blocks and excludes interior graph corners. Added edge/road-clearance regression and physical ray coverage for every infill. All 113 tests, fmt, Clippy, debug/release builds, audit and source-input checks passed. Native road-height/grid views reviewed; survey 9.79 ms p95 at 1080p; crash/remount/finish smoke passed. Evidence: testing/FRONTAGES.md.
+
+## 2026-10-31 — CITY-03 sidewalk, tree and skyline correction
+
+Replaced rounded sidewalk shading with flat normals and batched concrete paving
+with expansion joints. Added original collidable street trees in flush curbside
+beds, retaining over 2 m beside trunks and clear junctions. Increased urban floors
+with an authored 1.6 multiplier and consistent facade/roof/collision heights;
+preserved source snapshots, lot IDs, quotas and rural heights. ADR-024 records
+the design. 115 tests, locked builds, checks/audit, native survey (9.66 ms p95 at
+1080p) and crash/remount/finish smoke pass. Evidence: testing/STREETSCAPE.md.

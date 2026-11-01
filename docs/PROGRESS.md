@@ -178,6 +178,14 @@ reflect verified gates. The route/seed/gameplay are retained while canonical old
 buildings are replaced by exact 247-root geometry. Source PDF handoff
 language is design guidance; active user scope controls this session.
 
+## City streetscape follow-up — 2026-10-31
+
+CITY-03 adds flat concrete sidewalks and paving joints, original collidable curbside
+trees, and an authored 1.6 urban floor multiplier. Canonical quotas/IDs and lot
+footprints remain intact. See [verification](testing/STREETSCAPE.md) and ADR-024.
+Original source height tables remain historical inputs, superseded at runtime by
+the user's taller-city request.
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Baseline and dependency decisions
@@ -795,3 +803,5 @@ language is design guidance; active user scope controls this session.
 - [x] **RIDE-01** Correct rival camera obstruction and supported contact-yaw instability; add symmetric input-only lean presentation. Evidence: crowd-camera/yaw tests, seven native bank captures and crash/recovery smoke in [verification](../docs/testing/CITY_COMBAT.md).
 
 - [x] **CITY-02** Join neighboring city buildings into continuous street fronts. Reason: the user rejected detached six-metre gaps; part: world development; dependencies: CITY-01, solid lots and recovery routing; acceptance: shared-edge infill, clear streets, exposed-perimeter recovery paths and road-height screenshots; verification: 347 shared-edge sections, physics rays for every infill, 113 passing tests and native road-height survey; [evidence](../docs/testing/FRONTAGES.md).
+
+- [x] **CITY-03** Improve sidewalks, plant solid street trees and raise urban buildings. Reason: user requested better pavement and a taller, greener city; part: world development; dependencies: CITY-01/02 and shared ground; acceptance: flat sidewalk shading, clear walking strip, solid trees outside junctions, taller whole-floor buildings without lot changes; verification: geometry/physics tests, native survey and crash/recovery smoke; [evidence](../docs/testing/STREETSCAPE.md).

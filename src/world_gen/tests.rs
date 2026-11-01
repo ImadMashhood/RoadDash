@@ -431,3 +431,116 @@ fn city_grid_has_dense_solid_lots_clear_of_every_street() {
         assert!(l.buildings.iter().all(|other| !other.lot.overlaps(&b.lot)));
     }
 }
+
+#[test]
+fn street_trees_leave_walking_space_and_have_solid_trunks() {
+    let mut app = scene();
+    let world = app.world_mut();
+    let layout = world.resource::<layout::WorldLayout>().clone();
+    let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
+    let sites = streetscape::tree_sites(&track, &layout);
+    assert!(sites.len() > 150);
+    assert_eq!(
+        world
+            .query_filtered::<Entity, With<streetscape::StreetTree>>()
+            .iter(world)
+            .count(),
+        sites.len()
+    );
+    let mut query = world.query::<(
+        &RapierContextSimulation,
+        &RapierContextColliders,
+        &RapierContextJoints,
+        &RapierRigidBodySet,
+    )>();
+    let (simulation, colliders, joints, rigidbody_set) = query.single(world).unwrap();
+    let ctx = RapierContext {
+        simulation,
+        colliders,
+        joints,
+        rigidbody_set,
+    };
+    let tree = |e| world.get::<streetscape::StreetTree>(e).is_some();
+    for (d, p) in sites {
+        assert!(!layout.settings.junction_at(d, 12.0));
+        let (_, q) = track.sample(d, 0.0);
+        let center = p + q * Vec3::Y * 2.0;
+        assert!(
+            ctx.cast_ray(
+                center + q * Vec3::X,
+                q * -Vec3::X,
+                2.0,
+                true,
+                QueryFilter::default().predicate(&tree)
+            )
+            .is_some()
+        );
+        // Curb offset .8 + trunk radius .18 leaves >2 m clear on a 3 m walk.
+        assert!(layout.settings.sidewalk_width_m - 0.8 - 0.18 >= 2.0);
+        assert!(!layout.blockers().any(|r| r.contains(p.xz(), 0.65)));
+    }
+    let mut surface_query = world.query::<(&surfaces::StructuralSurface, &Mesh3d)>();
+    let assets = world.resource::<Assets<Mesh>>();
+    let mut sidewalks = 0;
+    for (surface, mesh) in surface_query.iter(world) {
+        if surface.0 != "sidewalk" {
+            continue;
+        }
+        sidewalks += 1;
+        let mesh = assets.get(&mesh.0).unwrap();
+        let Some(bevy::mesh::VertexAttributeValues::Float32x3(positions)) =
+            mesh.attribute(Mesh::ATTRIBUTE_POSITION)
+        else {
+            panic!("sidewalk positions")
+        };
+        let Some(bevy::mesh::VertexAttributeValues::Float32x3(normals)) =
+            mesh.attribute(Mesh::ATTRIBUTE_NORMAL)
+        else {
+            panic!("sidewalk normals")
+        };
+        for (points, ns) in positions.chunks_exact(3).zip(normals.chunks_exact(3)) {
+            let p = points
+                .iter()
+                .copied()
+                .map(Vec3::from_array)
+                .collect::<Vec<_>>();
+            let face = (p[1] - p[0]).cross(p[2] - p[0]).normalize_or_zero();
+            if face.y > 0.98 {
+                assert!(ns.iter().all(|n| Vec3::from_array(*n).dot(face) > 0.999));
+            }
+        }
+    }
+    assert_eq!(sidewalks, 2, "batch sidewalk surfaces by side");
+}
+
+#[test]
+fn urban_height_override_adds_whole_floors_without_changing_lots() {
+    let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
+    let plan = WorldPlan::from_json(WORLD_JSON, ARCHETYPES_JSON, &track).unwrap();
+    let current = layout::WorldLayout::generate(
+        &plan,
+        &track,
+        layout::Construction::from_json(layout::CONSTRUCTION_JSON, &track).unwrap(),
+    )
+    .unwrap();
+    let mut json: serde_json::Value = serde_json::from_str(layout::CONSTRUCTION_JSON).unwrap();
+    json["city_height_scale"] = serde_json::json!(1.0);
+    let old = layout::WorldLayout::generate(
+        &plan,
+        &track,
+        layout::Construction::from_json(&json.to_string(), &track).unwrap(),
+    )
+    .unwrap();
+    for (new, old) in current.all_buildings().zip(old.all_buildings()) {
+        assert_eq!(new.id, old.id);
+        assert_eq!(new.position, old.position);
+        if new.archetype_id.starts_with('U') {
+            assert!(new.size[1] > old.size[1] * 1.5);
+            assert!(new.floors > old.floors);
+        } else {
+            assert_eq!(new.size, old.size);
+        }
+    }
+    json["city_height_scale"] = serde_json::json!(0.0);
+    assert!(layout::Construction::from_json(&json.to_string(), &track).is_err());
+}

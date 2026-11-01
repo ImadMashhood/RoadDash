@@ -415,3 +415,28 @@ This is not a runtime teleport or a relaxation of collision checks. Tradeoffs:
 infill is additional building volume rather than a new canonical lot; conservative
 rectangular navigation bounds may route farther than the rendered facade. Remove
 infill and its navigation blockers together to roll back; retain original quotas.
+
+## ADR-024 — 2026-10-31 — Sidewalk shading, street trees and taller city
+
+The user requested improved sidewalks, sidewalk trees and taller buildings.
+Use flat mesh normals so curb walls do not round the pavement's lighting.
+Batch each main sidewalk into one mesh, sampled every 2 m, with subtle original
+procedural expansion joints. Keep existing curb ramps and physical rideable
+surfaces. Alternatives were a texture dependency or disconnected slab props;
+neither fixes the underlying normal interpolation as directly.
+
+Place original procedural trees every 22 m near the curb, excluding junction
+sightlines and structural blockers. Solid trunks and conservative crowns remain
+resident while foliage visuals cull. Flush cosmetic beds leave over 2 m beside
+the trunk for walking. Shared meshes and materials bound rendering costs.
+This adds deliberate physical obstacles, so contact/recovery regressions matter.
+
+Apply an authored 1.6 city floor-count multiplier, rounded up to whole floors,
+to urban canonical and supplemental buildings. Derive rendering, facades, roofs,
+infill and collision from the same resulting dimensions. Preserve original
+source snapshots, canonical quotas, lot footprints and IDs; this latest user
+request supersedes the old effective urban height ranges. Validation allows the
+scaled archetype range plus one rounding floor. Rural heights remain unchanged.
+No dependency or third-party media is added. Tradeoffs: procedural rather than
+production art; taller silhouettes may increase visible facade work. Roll back
+via height scale 1.0 and removing streetscape spawning together with its tests.

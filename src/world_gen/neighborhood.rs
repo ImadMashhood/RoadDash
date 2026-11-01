@@ -114,9 +114,11 @@ pub fn generate(layout: &mut WorldLayout, plan: &WorldPlan, track: &Track) {
                         .collect();
                     let index = layout.neighborhood.len();
                     let a = types[index % types.len()];
-                    let floors = 3 + (index % 6) as u32;
-                    let height = (floors as f32 * a.floor_height_m + 0.3)
-                        .clamp(a.height_min_m, a.height_max_m);
+                    let low = ((a.height_min_m - 0.3) / a.floor_height_m).ceil() as u32;
+                    let high = ((a.height_max_m - 0.3) / a.floor_height_m).floor() as u32;
+                    let base = low + index as u32 % (high - low + 1);
+                    let floors = (base as f32 * layout.settings.city_height_scale).ceil() as u32;
+                    let height = floors as f32 * a.floor_height_m + 0.3;
                     let footprint = Rect::new(center, q, Vec2::new(8.0, 9.0));
                     let heights = footprint
                         .corners()

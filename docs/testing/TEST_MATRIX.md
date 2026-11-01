@@ -124,3 +124,12 @@ Supersedes the initial partial entry above. See CITY_COMBAT.md and city-combat/ 
 ### CITY-02 touching frontages — 2026-10-31
 
 113 tests passed, optional soak ignored. Exact join edges, street reservations and physical roofs of all 347 infills checked. Updated exposed-perimeter route audit passes; existing physical capsule and gameplay regressions pass. Native city/grid screenshots reviewed after correcting smooth normals; 1080p p95 9.79 ms. Native crash→remount→city/hills→hill crash→remount→finish passed. See FRONTAGES.md and frontages/ for logs/captures.
+
+### CITY-03 streetscape — 2026-10-31
+
+115 tests pass (one optional soak ignored), including sidewalk flat normals,
+every street-tree trunk's collision/clearance and taller floors with stable lots.
+Format/Clippy/locked builds, source-input checks and provenance audit pass.
+Native inspection, 15-section survey (1080p p95 9.66 ms), road-height visual
+review and crash/remount/finish smoke pass. Receipts and limitations:
+[STREETSCAPE.md](STREETSCAPE.md).

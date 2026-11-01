@@ -11,6 +11,8 @@ pub struct Junction {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Construction {
+    #[serde(default = "default_city_height_scale")]
+    pub city_height_scale: f32,
     #[serde(default)]
     pub city_grid: CityGrid,
     pub schema_version: u32,
@@ -37,6 +39,7 @@ impl Construction {
         let c: Self = serde_json::from_str(json).map_err(|e| format!("construction: {e}"))?;
         c.city_grid.validate(length)?;
         let values = [
+            c.city_height_scale,
             c.field_end_m,
             c.sidewalk_start_m,
             c.sidewalk_end_m,
@@ -54,6 +57,7 @@ impl Construction {
         if !length.is_finite()
             || !(100.0..=20000.0).contains(&length)
             || rr_core::ContentId::try_from(c.track_id.clone()).is_err()
+            || !(1.0..=3.0).contains(&c.city_height_scale)
             || c.schema_version != 1
             || c.layout_version != 1
             || c.track_id != track_id
@@ -185,4 +189,8 @@ impl CityGrid {
         }
         Ok(())
     }
+}
+
+fn default_city_height_scale() -> f32 {
+    1.6
 }

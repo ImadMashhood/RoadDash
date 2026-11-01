@@ -7,6 +7,7 @@ pub mod navigation;
 pub mod neighborhood;
 pub mod report;
 pub mod spatial;
+pub mod streetscape;
 pub mod surfaces;
 pub mod survey;
 use crate::track::Track;
