@@ -358,13 +358,19 @@ pub fn input(
     mut controls: ResMut<Controls>,
     mut muted: ResMut<crate::sound::Muted>,
     mut race: ResMut<Race>,
-    mut riders: Query<(Entity, &mut Rider, &mut Recovery)>,
+    mut riders: Query<(
+        Entity,
+        &mut Rider,
+        &mut Recovery,
+        Option<&mut crate::vehicle::BikeState>,
+    )>,
     mut debris: Query<Entity, With<Debris>>,
     mut commands: Commands,
     mut menu_action: ResMut<crate::ui::MenuAction>,
     screen: Option<Res<State<crate::runtime::AppScreen>>>,
     track: Res<Track>,
     panel: Res<crate::settings::SettingsPanel>,
+    mut body_sets: Query<&mut RapierRigidBodySet>,
 ) {
     if panel.open {
         menu_action.0 = false;
@@ -402,7 +408,10 @@ pub fn input(
         *race = Race::default();
         race.camera_mode = mode;
         race.phase = Phase::Countdown;
-        for (entity, mut rider, mut recovery) in &mut riders {
+        controls.buffer.clear_edges();
+        controls.look = Vec2::ZERO;
+        controls.foot = Vec2::ZERO;
+        for (entity, mut rider, mut recovery, state) in &mut riders {
             let palette = rider.palette_index;
             *rider = Rider::new(rider.id);
             rider.palette_index = palette;
@@ -411,7 +420,53 @@ pub fn input(
                 rider.lane = spawn.lane;
             }
             *recovery = Recovery::default();
-            commands.entity(entity).remove::<ColliderDisabled>();
+            let (position, rotation) = track.sample(rider.progress, rider.lane);
+            let pose = Transform::from_translation(position).with_rotation(rotation);
+            // Explicit reset/teleport must update Rapier's current AND next pose.
+            // Merely replacing Bevy transforms can be overwritten by backend
+            // writeback when the visible hierarchical chassis is kinematic.
+            for mut set in &mut body_sets {
+                if let Some(handle) = set.entity2body().get(&entity).copied()
+                    && let Some(body) = set.bodies.get_mut(handle)
+                {
+                    let location =
+                        bevy_rapier3d::na::Isometry3::from_parts(position.into(), rotation.into());
+                    body.set_body_type(
+                        bevy_rapier3d::rapier::dynamics::RigidBodyType::KinematicPositionBased,
+                        true,
+                    );
+                    body.set_position(location, true);
+                    body.set_next_kinematic_position(location);
+                    body.set_linvel(Vec3::ZERO.into(), true);
+                    body.set_angvel(Vec3::ZERO.into(), true);
+                    body.reset_forces(true);
+                    body.reset_torques(true);
+                }
+            }
+            if let Some(mut state) = state {
+                let preset = state.preset;
+                *state = crate::vehicle::BikeState {
+                    position,
+                    preset,
+                    ..default()
+                };
+            }
+            // Reset the complete authority/presentation snapshot before the next fixed tick.
+            commands
+                .entity(entity)
+                .insert((
+                    pose,
+                    GlobalTransform::from(pose),
+                    Velocity::zero(),
+                    ExternalForce::default(),
+                    RigidBody::KinematicPositionBased,
+                    Visibility::Visible,
+                    crate::runtime::PoseHistory {
+                        previous: pose,
+                        current: pose,
+                    },
+                ))
+                .remove::<ColliderDisabled>();
         }
         for e in &mut debris {
             commands.entity(e).despawn();
@@ -668,7 +723,18 @@ pub fn drive(
                 steer = if race.elapsed < 3.0 {
                     0.0
                 } else {
-                    ((desired - r.lane) * 1.5).clamp(-1.0, 1.0)
+                    let (_, road) = track.sample(r.progress, r.lane);
+                    let lateral_speed = r.motion_velocity.dot(road * Vec3::NEG_X);
+                    let next = rr_core::pursuit::lane_steering(
+                        desired - r.lane,
+                        lateral_speed,
+                        r.speed,
+                        handling.presets[handling.selected].turn_response,
+                        r.steering.force,
+                        dt,
+                    );
+                    r.steering.force = next;
+                    next
                 };
             }
             r.drive_intent = rr_core::VehicleIntent {
@@ -1024,7 +1090,8 @@ pub fn camera(
             focus + view_rotation * offset + anticipation + shake
         };
         // Retry/scene warps must not fly the camera across the intervening world.
-        let snapped = transform.translation.distance_squared(target) > 75.0 * 75.0;
+        let snapped = race.phase == Phase::Countdown
+            || transform.translation.distance_squared(target) > 75.0 * 75.0;
         let blend = if snapped {
             1.0
         } else {
@@ -1106,6 +1173,174 @@ pub fn camera_occlusion(
 pub(crate) mod tests {
     use super::*;
     use crate::track::ROAD_HALF;
+    #[test]
+    fn collision_detachment_uses_forward_pre_solver_velocity_not_the_bounce() {
+        #[derive(Resource, Default)]
+        struct Detached(Vec<Vec3>);
+        let mut app = simulation();
+        step(&mut app, 3);
+        let owner = {
+            let w = app.world_mut();
+            let mut q = w.query::<(Entity, &mut Rider)>();
+            let (e, mut r) = q.single_mut(w).unwrap();
+            r.immunity = 0.0;
+            r.motion_velocity = Vec3::NEG_Z * 12.0;
+            r.speed = 12.0;
+            e
+        };
+        let before = Vec3::Z * (100.0 / 3.6);
+        app.world_mut()
+            .entity_mut(owner)
+            .insert(crate::vehicle::BikeState {
+                impact_velocity: before,
+                ..default()
+            });
+        let car = app
+            .world_mut()
+            .spawn((
+                Traffic {
+                    progress: 300.0,
+                    lane: 0.0,
+                    speed: 60.0 / 3.6,
+                },
+                Transform::from_xyz(100.0, 0.0, 100.0),
+            ))
+            .id();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.init_resource::<Detached>().add_systems(
+            FixedUpdate,
+            (|mut snapshot: ResMut<Detached>, bodies: Query<(&recovery::OwnedBody, &Velocity)>| {
+                if snapshot.0.is_empty() {
+                    snapshot.0.extend(bodies.iter().map(|(_, v)| v.linvel));
+                }
+            })
+            .after(crate::runtime::SimSet::Gameplay)
+            .before(PhysicsSet::SyncBackend),
+        );
+        app.world_mut()
+            .write_message(recovery::SweptContact(owner, car));
+        step(&mut app, 1);
+        let samples = &app.world().resource::<Detached>().0;
+        assert_eq!(samples.len(), 12);
+        for v in samples {
+            assert!(
+                v.distance(before) < 0.001,
+                "knockoff inherited reversed solver velocity: {v:?}"
+            );
+        }
+    }
+    #[test]
+    fn retry_teleports_dynamic_body_and_history_even_on_a_zero_tick_frame() {
+        use crate::runtime::PoseHistory;
+        use crate::vehicle::{BikeState, VehiclePhysicsAdapter};
+        for (phase, zero_tick) in [Phase::Racing, Phase::Paused, Phase::Finished]
+            .into_iter()
+            .flat_map(|p| [(p, true), (p, false)])
+        {
+            let mut app = simulation();
+            step(&mut app, 3);
+            *app.world_mut().resource_mut::<VehiclePhysicsAdapter>() =
+                VehiclePhysicsAdapter::Dynamic;
+            step(&mut app, 1);
+            let far = app.world().resource::<Track>().sample(3200.0, 1.0);
+            let pose = Transform::from_translation(far.0).with_rotation(far.1);
+            let owner = {
+                let w = app.world_mut();
+                let mut q = w.query::<(Entity, &mut Rider)>();
+                let (e, mut r) = q.single_mut(w).unwrap();
+                r.progress = 3200.0;
+                r.lane = 1.0;
+                r.speed = 30.0;
+                e
+            };
+            let child = app.world_mut().spawn(Transform::default()).id();
+            app.world_mut().entity_mut(owner).add_child(child);
+            step(&mut app, 2);
+            app.world_mut().entity_mut(owner).insert((
+                pose,
+                GlobalTransform::from(pose),
+                Velocity::linear(Vec3::Z * 30.0),
+                PoseHistory {
+                    previous: pose,
+                    current: pose,
+                },
+                BikeState {
+                    position: far.0,
+                    velocity: Vec3::Z * 30.0,
+                    lean: 0.5,
+                    was_riding: true,
+                    ..default()
+                },
+            ));
+            app.world_mut().resource_mut::<Race>().phase = phase;
+            app.insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+                if zero_tick {
+                    std::time::Duration::ZERO
+                } else {
+                    std::time::Duration::from_secs_f64(1.0 / 60.0)
+                },
+            ));
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyR);
+            app.update();
+            let spawn = &app.world().resource::<Track>().definition.spawns[0];
+            let (start, _) = app
+                .world()
+                .resource::<Track>()
+                .sample(spawn.distance, spawn.lane);
+            assert!(
+                app.world()
+                    .get::<Transform>(owner)
+                    .unwrap()
+                    .translation
+                    .distance(start)
+                    < 0.001,
+                "retry left body halfway along the course"
+            );
+            assert!(
+                app.world()
+                    .get::<GlobalTransform>(owner)
+                    .unwrap()
+                    .translation()
+                    .distance(start)
+                    < 0.001
+            );
+            let backend_position = {
+                let w = app.world_mut();
+                let mut query = w.query::<&RapierRigidBodySet>();
+                query
+                    .iter(w)
+                    .find_map(|set| {
+                        set.entity2body()
+                            .get(&owner)
+                            .and_then(|h| set.bodies.get(*h))
+                            .map(|body| Vec3::from(*body.translation()))
+                    })
+                    .unwrap()
+            };
+            assert!(
+                backend_position.distance(start) < 0.001,
+                "backend retry pose was stale: {backend_position:?}"
+            );
+            let h = app.world().get::<PoseHistory>(owner).unwrap();
+            assert_eq!(h.previous.translation, start);
+            assert_eq!(h.current.translation, start);
+            assert!(
+                app.world().get::<Velocity>(owner).unwrap().linvel.length() < 0.01,
+                "retry retained travelling velocity"
+            );
+            assert!(!app.world().get::<BikeState>(owner).unwrap().was_riding);
+            app.insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+                std::time::Duration::from_secs_f64(1.0 / 60.0),
+            ));
+            step(&mut app, 190);
+            assert!(
+                player(&mut app).progress < 10.0,
+                "first physics tick restored old progress"
+            );
+        }
+    }
     #[test]
     fn collision_gap_wraps_at_finish() {
         assert_eq!(wrapped_gap(998.0, 1000.0), -2.0);

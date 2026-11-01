@@ -42,3 +42,15 @@ in the blueprint are not installed dependencies.
   masses, joints/motors, damping, momentum and recovery unless the user explicitly
   requests physics tuning. Run src/models/tests.rs differential physics/recovery
   checks. A model's authoring skeleton is not permission to replace the physical rig.
+
+- README is the single live checklist: verified tasks in Part 00, unfinished
+  tasks in Parts 01–16; Parts 01–08 v2 precede original Parts 09/10. Stable ID
+  prefixes retain historical numbering; current section determines execution order.
+  docs/roadmap/BLUEPRINT_PARTS_01_08.md is a frozen snapshot, not a live backlog.
+  sync_progress.py indexes README only. Keep TASK_PLACEMENT.json in sync when
+  moving tasks, and update README count/summary when completing requirements.
+  Never drop history or close new tasks merely because prototype tasks passed.
+- The latest user permits targeted pre-impact/crash-response/knockoff corrections
+  and evaluation of bounded active recovery. Preserve the accepted player feel
+  and passive ragdoll as control fixtures; this is not blanket engine/joint tuning
+  approval. Correct visual bind/chain defects in rendering before changing physics.

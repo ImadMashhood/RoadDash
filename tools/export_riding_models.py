@@ -7,11 +7,23 @@ import bpy, json, math, pathlib, struct
 from mathutils import Matrix, Vector, Quaternion
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SCALE = 1.2
+bindings = {}
 records = []
 buffers = []
 
 def converted(v, normal=False):
     return Vector((v.x, v.z, -v.y)) if normal else Vector((v.x*SCALE, v.z*SCALE+.03, -v.y*SCALE))
+
+def capture_bindings(label,rig):
+    names=['chest','head','pelvis','upper_arm.R','forearm.R','upper_arm.L','forearm.L','thigh.R','shin.R','thigh.L','shin.L']
+    conversion=Matrix(((1,0,0),(0,0,1),(0,-1,0)))
+    frames=[]
+    for name in names:
+        source=rig.matrix_world @ rig.pose.bones[name].matrix
+        rotation=(conversion @ source.to_3x3()).to_quaternion().normalized()
+        matrix=rotation.to_matrix().to_4x4();matrix.translation=converted(source.translation)
+        frames.append([[round(v,7) for v in matrix.col[i]] for i in range(4)])
+    bindings[label]=frames
 
 def mapped_bone(name):
     if name in ['root','pelvis']: return 2
@@ -77,11 +89,11 @@ for side,s in [('L',1),('R',-1)]:
     for name,axis,angle in [('upper_arm.'+side,(0,1,0),s*math.radians(72)),('forearm.'+side,(0,0,1),s*math.radians(-7))]:
         b=rig.data.bones[name].matrix_local.to_quaternion()
         rig.pose.bones[name].rotation_quaternion=b.inverted() @ Quaternion(axis,angle) @ b
-bpy.context.view_layer.update();export_mesh(rider,'standing',True)
+bpy.context.view_layer.update();capture_bindings('standing',rig);export_mesh(rider,'standing',True)
 pose=json.loads((ROOT/'art/source/seated-0003.json').read_text())
 rig.matrix_basis=Matrix(pose['rig_matrix'])
 for name,rows in pose['bone_basis'].items():rig.pose.bones[name].matrix_basis=Matrix(rows)
-bpy.context.view_layer.update();export_mesh(rider,'seated',True)
+bpy.context.view_layer.update();capture_bindings('seated',rig);export_mesh(rider,'seated',True)
 bpy.ops.import_scene.gltf(filepath=str(ROOT/'art/source/motorcycle.glb'))
 for obj in list(bpy.context.scene.objects):
     if obj.type!='MESH' or obj==rider or any(c.name=='glTF_not_exported' for c in obj.users_collection):continue
@@ -93,3 +105,7 @@ output=ROOT/'assets/models/riding.rdmesh'
 output.write_bytes(b'RDMESH01'+struct.pack('<I',len(header))+header+b''.join(buffers))
 (ROOT/'art/export-report.json').write_text(json.dumps({'mesh_records':len(records),'triangles':sum(r['indices']//3 for r in records),'bytes':output.stat().st_size,'source_scale':SCALE,'physics_changed':False,'records':records},indent=2))
 print('EXPORTED',output,len(records),flush=True)
+
+bindings['version']=1
+bindings['parents']=[2,0,-1,0,3,0,5,2,7,2,9]
+(ROOT/'assets/models/rider-bindings.json').write_text(json.dumps(bindings,indent=2)+'\n')

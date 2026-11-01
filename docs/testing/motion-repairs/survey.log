@@ -1,0 +1,6 @@
+2026-11-01T03:34:56.249835Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-01T03:34:56.540846Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+2026-11-01T03:34:56.593742Z  WARN bevy_winit::winit_windows: Can't select current monitor on window creation or cannot find current monitor!
+2026-11-01T03:34:59.562872Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+World survey: 15 sections, 657 roots, 1080p city p95 12.25 ms (target <=16.7)

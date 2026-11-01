@@ -540,3 +540,134 @@ Rollback: ROADDASH_LEGACY_MODELS=1 selects the old presentation at startup while
 retaining identical simulation. Removing the model hooks and assets also restores
 the old presentation; no saves, content IDs or physics migrations are involved.
 Future animation must consume simulation poses, never overwrite body transforms.
+
+## ADR-028 — 2026-10-31 — Atomic retry, proportionate AI steering and pre-contact velocity
+
+Problems: retry reset logical progress while leaving the authoritative chassis,
+velocity and interpolation snapshot at the previous location; rival lane error
+was multiplied straight into saturated full-lock commands; crash detection used
+pre-solver velocity while detachment could use the later backward solver bounce.
+
+Retry is an explicit PreUpdate control transaction, publishing the authored grid
+Transform, zero velocity/force, kinematic/countdown body state, reset BikeState,
+recovery and PoseHistory together, including zero-fixed-tick render frames. Reset
+Rapier current and next kinematic poses directly as part of that transaction: a
+Bevy-only transform reset was overwritten by the existing hierarchical body. Keep
+saves, selected camera distance and racer palettes; clear queued attack/look/foot
+state. Countdown snaps the chase camera to that new snapshot. This completes the
+existing reset boundary rather than moving ongoing simulation out of FixedUpdate.
+
+Only AI lane intent changes: use lane error and measured lateral velocity,
+normalize by current tire/turn response, apply a small settled deadband and a
+bounded command slew. The player control/force/bank response is unchanged.
+Keeping the old saturated controller and merely hiding its motion with cosmetic
+lean was rejected: it would retain lateral chatter. Fixed-rate scenarios check
+settling and bounded reversal at 30/60/120 Hz.
+
+Impact detachment now uses BikeState.impact_velocity when the victim is mounted;
+repeat on-foot impacts still use the runner's actual movement. Never subtract a
+car speed and treat the result as ground velocity: 100/60 same-direction is 40
+closing, whereas opposing travel is 160 closing. Full contact-normal/mass-aware
+vehicle responses, nose-down vault and combat swerve/recenter remain separately
+specified open V2-01 tasks. This correction does not retune ragdoll masses,
+colliders, joints/motors, tissue damping or ordinary gravity.
+
+Alternatives: forcing all post-impact motion forward or zeroing lateral momentum
+would defeat actual contact physics. A broad physics-engine migration is not
+justified by these bugs. Current dependencies remain Bevy 0.17.3 / Rapier 0.32.0.
+Reference: R01's local race.cpp traffic separation/callback path, studied only;
+no C++ copied. Roll back the intent/reset/handoff changes independently using the
+new regressions; no save/schema migration. Verification: testing/MOTION_REPAIRS.md.
+
+## ADR-029 — 2026-10-31 — Connected source-anatomy visual skeleton
+
+Problem: ART-03 folded the authored mesh onto legacy box-model segment centers.
+Those centers are not the mesh's anatomical joints. Independent legacy limb
+translations/rotations could therefore separate knees/elbows or bend them in
+unreasonable directions even while the eleven physical joints remained connected.
+
+Export source-model standing/seated bind frames and a validated render-only parent
+graph. Spawn eleven nonphysical SkinJoint entities under an avatar render root;
+GPU skin uses source inverse binds. Existing visual driver/body rotations feed
+forward kinematics: pelvis/chest/shoulder/hip endpoints propagate along source
+bone offsets, preserving limb lengths. Elbows/knees are single-plane hinges with
+bounded flex (2.35/2.45 rad), rather than unconstrained independent segment spins.
+The neutral authored surfaces remain unchanged. Source export/data are original
+project art; no external rig/source/media is imported.
+
+The retarget runs before transform propagation in PostUpdate, reading current
+hierarchy poses through TransformHelper and writing only SkinJoint transforms.
+It spawns nothing in PostUpdate and never mutates a physical body. Scale is one;
+rig lifetime follows the original owner/first ragdoll body so cleanup still works.
+Changing accepted physics anchors/motors to hide a visual bind error was rejected.
+A full twenty-bone animation/finger/terrain-IK system remains V2-02/V2-03 work.
+
+Verification checks neutral bind equivalence, 120 extreme poses per bind, attached
+parent endpoints, fixed limb lengths, finite transforms and hinge bounds; passive
+body/component/180-tick parity and full crash/run/remount cleanup remain covered.
+The full-cycle remount comparison allows 2 mm for f32 projection/entity ordering
+(the diagnosed discrepancy was about 0.7 mm), while stage timing, health/speed and
+the isolated body trajectory keep their stricter checks. Do not claim universal
+bit-identical scene outcomes. Tradeoffs: visual collision proxies and foot plants
+remain approximate; gait/foot IK, fingers and authored clips stay open.
+Rollback requires restoring both matching skin inverse binds and the old visual
+adapter together; never load source inverse binds with legacy segment centers.
+
+## ADR-030 — 2026-10-31 — Reordered execution plan with preserved blueprint history
+
+The user replaces the build order of Parts 01–08: stabilize reported regressions;
+reference/label/approve keyframes; interpolate/terrain locomotion/active recovery;
+facade art and procedural buildings; props; NPCs then sky/landscape; weapons;
+police. Then resume original Part 09 playtest and Part 10 networking gates.
+
+Keep all historical P01–P08/BW entries, statuses and evidence in
+roadmap/BLUEPRINT_PARTS_01_08.md; retain the other original IDs in README. Add 54
+V2 IDs with reason/dependencies/acceptance/verification in EXECUTION_V2.md. Do not
+renumber old tasks, erase unmet gates, call planning implementation, or treat
+old graybox counts as production-art acceptance. The sync tool indexes both task
+sources and detects duplicate IDs. Migration snapshot/tests protect all 294 old
+IDs and completed evidence. Proposed PDF dependencies remain proposals.
+
+Alternative of replacing the old checklist in place would erase history and
+break evidence links, so it was rejected. Crosswalks distinguish old milestone
+numbers from the current execution order; no runtime/schema change follows just
+from moving documentation. Existing public-source/media rights policy remains:
+local retail extraction for study, original/licensed runtime art. Revisit the
+ordering only through another explicit user decision; preserve history then too.
+
+## ADR-031 — 2026-10-31 — One live checklist, completed work before unfinished work
+
+Problem: the previous README still mixed checked/unchecked items and left older
+unfinished requirements in a separate live archive. The user explicitly requests
+all completed work earlier and all unfinished work later, following the quoted
+crash → animation A/B → buildings → props → NPCs/landscape → weapons → police
+sequence, then original Parts 09/10.
+
+Selected approach: README becomes the only live checklist. Part 00 contains all
+128 verified tasks in expandable system groups. Parts 01–16 contain all 220 open
+requirements, including carried-forward original tasks placed by dependency and
+subject. Task IDs retain historical numbering; current section determines order.
+The table shows per-part counts and direct navigation. Original Parts 09/10 keep
+their purpose and gates. Original production-art criteria in Part 11 are final
+integration acceptance, with prerequisite work scheduled in Parts 02–06.
+
+All 348 IDs, states, requirement text and evidence links are preserved exactly
+(after normalizing archive-relative URLs). No task was completed or deleted.
+Historical BLUEPRINT_PARTS_01_08.md remains a frozen snapshot. sync_progress.py
+reads README only; TASK_PLACEMENT.json and README_REORGANIZATION_STATUS.json
+record placement and pre-move states. Supporting dependency/environment/audio/
+budget/rights prose moves to SUPPORTING_CONTRACTS.md, preserving useful context
+without a second editable checklist.
+
+Alternatives: moving only the four recent fixes still leaves older requirements
+scattered; renumbering IDs breaks evidence; keeping two live copies risks status
+drift. Rejected all three. Tradeoff: README is longer, so completed groups fold
+and unfinished sections have a navigation/count table. Broad original tasks may
+overlap precise V2 tasks; both stay open until their full criteria pass. Move a
+newly verified requirement to Part 00 and update placement/counts/tracker together.
+
+No runtime, dependency, art, save or physics changes and no new repository/asset
+research. Rollback is a documentation/tool revert; no migration of game data.
+Verification: testing/README_REORGANIZATION.md, preservation/link checks, tracker
+unit tests, audit and required Rust checks. This supersedes ADR-030's two-source
+live indexing while retaining its original acceptance/history decisions.

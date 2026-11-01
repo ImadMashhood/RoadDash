@@ -356,3 +356,62 @@ is verified against the pinned lockfile, not a new upstream version. Existing
 shader/renderer and platform risks apply. Adopt existing GPU skinning; keep
 Rapier bodies and joint/motor settings unchanged. The model assets themselves
 come from the earlier independent authoring step, not the Bevy repository.
+
+### Motion/active-ragdoll comparison — 2026-10-31
+
+#### sergioabreu-g/active-ragdolls
+
+- URL/version: https://github.com/sergioabreu-g/active-ragdolls/tree/459cbab9489c7481e65bf16ac93fcfff98e6a594; exact inspected commit `459cbab9489c7481e65bf16ac93fcfff98e6a594`; author/organization `sergioabreu-g`.
+- Investigation: 2026-10-31, README/license/API declarations; no cross-engine runtime benchmark claimed.
+- Classification: **REFERENCE ONLY**. License: Apache-2.0 verified from LICENSE. Evidence: https://github.com/sergioabreu-g/active-ragdolls/blob/459cbab9489c7481e65bf16ac93fcfff98e6a594/LICENSE.
+- Permission/actual incorporation: Conceptual reuse permitted under Apache-2.0 with required notices; no source reused. No assets incorporated; demo/sample/media rights are separate and unverified.
+- Purpose/useful systems: Study modular target/physical-body pose following; compare capped torque, not wholesale rig replacement.
+- Compatibility/risk: Unity 2020.1.9f1, no direct Bevy compatibility; old sample.
+- Maintenance snapshot: archived=False; last push observed `2021-02-02T14:51:32Z`. This is a dated observation, not a maintenance guarantee.
+- Decision: study/evaluate only; implementation prototypes, compatible lockfile tests and visual/physics/performance comparison are V2-02/V2-03 prerequisites.
+
+#### hairibar/Hairibar.Ragdoll
+
+- URL/version: https://github.com/hairibar/Hairibar.Ragdoll/tree/ba7488ad7abe86dc94ae10c5e8e25dc9c1688366; exact inspected commit `ba7488ad7abe86dc94ae10c5e8e25dc9c1688366`; author/organization `hairibar`.
+- Investigation: 2026-10-31, README/license/API declarations; no cross-engine runtime benchmark claimed.
+- Classification: **REFERENCE ONLY**. License: MIT verified from LICENSE.md. Evidence: https://github.com/hairibar/Hairibar.Ragdoll/blob/ba7488ad7abe86dc94ae10c5e8e25dc9c1688366/LICENSE.md.
+- Permission/actual incorporation: Code reuse permitted with MIT notice; no source reused. No assets incorporated; demo/sample/media rights are separate and unverified.
+- Purpose/useful systems: Study separate animation targets and physical bones, position/rotation matching and safe blending; avoid unbounded position drives.
+- Compatibility/risk: Unity/C#, no direct Bevy compatibility; historical package.
+- Maintenance snapshot: archived=False; last push observed `2021-04-21T07:19:57Z`. This is a dated observation, not a maintenance guarantee.
+- Decision: study/evaluate only; implementation prototypes, compatible lockfile tests and visual/physics/performance comparison are V2-02/V2-03 prerequisites.
+
+#### jrouwe/JoltPhysics
+
+- URL/version: https://github.com/jrouwe/JoltPhysics/tree/ea4599d5044d92ba91b18664ec1df96255d5eb31; exact inspected commit `ea4599d5044d92ba91b18664ec1df96255d5eb31`; author/organization `jrouwe`.
+- Investigation: 2026-10-31, README/license/API declarations; no cross-engine runtime benchmark claimed.
+- Classification: **REFERENCE ONLY**. License: MIT verified from LICENSE. Evidence: https://github.com/jrouwe/JoltPhysics/blob/ea4599d5044d92ba91b18664ec1df96255d5eb31/LICENSE.
+- Permission/actual incorporation: Core code reuse permitted with MIT notice; no source reused. No assets incorporated; demo/sample/media rights are separate and unverified.
+- Purpose/useful systems: Study powered-rig constraints/motors and stability cases; defer backend adoption and retain current Rapier.
+- Compatibility/risk: C++ physics engine, not a Bevy/Rapier plugin; FFI/migration cost.
+- Maintenance snapshot: archived=False; last push observed `2026-10-31T20:58:23Z`. This is a dated observation, not a maintenance guarantee.
+- Decision: study/evaluate only; implementation prototypes, compatible lockfile tests and visual/physics/performance comparison are V2-02/V2-03 prerequisites.
+
+#### Kurble/bevy_mod_inverse_kinematics
+
+- URL/version: https://github.com/Kurble/bevy_mod_inverse_kinematics/tree/5c037a33b55e8056ec24222d2968972f59e009d5; exact inspected commit `5c037a33b55e8056ec24222d2968972f59e009d5`; author/organization `Kurble`.
+- Investigation: 2026-10-31, README/license/API declarations; no cross-engine runtime benchmark claimed.
+- Classification: **UNVERIFIED**. License: README and Cargo declare MIT OR Apache-2.0; root license files/API lookup unresolved. Evidence: https://github.com/Kurble/bevy_mod_inverse_kinematics/tree/5c037a33b55e8056ec24222d2968972f59e009d5/README.md.
+- Permission/actual incorporation: Do not incorporate until compatible release grant/archive verified. No assets incorporated; demo/sample/media rights are separate and unverified.
+- Purpose/useful systems: Evaluate compatible positional/pole IK for terrain feet/bike contacts later; no dependency installed.
+- Compatibility/risk: Inspected HEAD is 0.12 / Bevy 0.19; README maps Bevy 0.17 to 0.10, not yet build-tested.
+- Maintenance snapshot: archived=False; last push observed `2026-09-01T11:26:27Z`. This is a dated observation, not a maintenance guarantee.
+- Decision: study/evaluate only; implementation prototypes, compatible lockfile tests and visual/physics/performance comparison are V2-02/V2-03 prerequisites.
+
+#### guillaumeblanc/ozz-animation
+
+- URL/version: https://github.com/guillaumeblanc/ozz-animation/tree/744eb9d99f606eda849acb0b1204f7a3dc20bca1; exact inspected commit `744eb9d99f606eda849acb0b1204f7a3dc20bca1`; author/organization `guillaumeblanc`.
+- Investigation: 2026-10-31, README/license/API declarations; no cross-engine runtime benchmark claimed.
+- Classification: **REFERENCE ONLY**. License: MIT core grant manually verified in LICENSE.md (GitHub classifier NOASSERTION). Evidence: https://github.com/guillaumeblanc/ozz-animation/blob/744eb9d99f606eda849acb0b1204f7a3dc20bca1/LICENSE.md.
+- Permission/actual incorporation: Core code reuse permitted under read MIT grant; no source reused. No assets incorporated; demo/sample/media rights are separate and unverified.
+- Purpose/useful systems: Study blending/IK/compression patterns; defer FFI/runtime adoption in favor of current engine tools.
+- Compatibility/risk: C++ animation sampling/blending/offline toolchain; not a drop-in Bevy dependency.
+- Maintenance snapshot: archived=False; last push observed `2026-08-01T21:34:54Z`. This is a dated observation, not a maintenance guarantee.
+- Decision: study/evaluate only; implementation prototypes, compatible lockfile tests and visual/physics/performance comparison are V2-02/V2-03 prerequisites.
+
+R01 follow-up: local arkits/road-rash `cd5504caea48aee59806dbfd11c920f33df21200`, race.cpp traffic separation/contact-car path inspected for both-object velocity/state handling. REFERENCE ONLY; no source copied and existing unresolved reuse permission remains. Original units do not establish modern SI crash equivalence. See research/ANIMATION_AND_RAGDOLL.md.

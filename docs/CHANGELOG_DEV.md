@@ -225,3 +225,51 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
 - ART-03 checked; broader ART-02 production acceptance stays open. Added ART-04
   animation/deformation polish and ART-05 LOD/more-hardware gates. No push/PR,
   platform certification or legal clearance claimed. ADR-027 records the choice.
+
+### 2026-10-31 — V2 motion corrections and revised execution roadmap
+
+- Fixed atomic retry across logical state, Bevy transforms/history and Rapier
+  current/next poses. Native R-key regression restores all fifteen grid positions.
+- Replaced saturated AI lane commands with proportionate gradual steering;
+  preserved player handling. Mounted detachment uses pre-contact world momentum.
+- Replaced disconnected visual pivots with original source-anatomy bind frames,
+  fixed-length parent chains and bounded elbow/knee flex, without retuning the
+  accepted eleven-body physical ragdoll. Exporter and intake validate bind metadata.
+- Preserved all 294 historical tasks/statuses; introduced 54 V2 tasks for the new
+  Parts 01–08 sequence, then original 09/10. Checked only four verified repairs.
+  Vault/combat swerve and full animation/world production remain explicitly open.
+- Screened five animation/ragdoll repositories and publisher Synty showcases;
+  recorded pinned versions/license findings, no third-party code/media adopted.
+  ADR-028–030 and testing/MOTION_REPAIRS.md document decisions and evidence.
+- 130 Rust tests pass (one optional soak ignored), format/Clippy/locked builds and
+  native race/actor smoke pass. No dependency migration or physics mass/joint/
+  motor/damping retuning. Isolated body trace remains identical; full remount
+  comparison allows documented 2 mm f32 projection tolerance.
+
+- Final 15-section survey passes at 1080p warmed city p95 12.25 ms on this host;
+  nine Python tests, progress sync and provenance audit pass.
+
+### 2026-10-31 — Completed-first README and consolidated remaining backlog
+
+- User explicitly requested all completed pieces earlier and all unfinished pieces
+  later. Moved 128 verified requirements into Part 00; placed all 220 open tasks
+  in Parts 01–16, following the requested animation/world/weapons/police sequence
+  before original playtest/network gates. No status, ID or requirement changed.
+- Brought all original unfinished tasks back into README. Historical P01–P08/BW
+  file is now frozen context; README alone drives PROGRESS. Retained dependency,
+  environment/audio inventories, budgets and rights prose in supporting contracts.
+- Added machine-readable current placements and pre-move states, navigation and
+  counts; two new regression checks protect ordering/coverage and summary totals.
+  No new roadmap IDs, runtime changes, assets or external research. ADR-031 and
+  testing/README_REORGANIZATION.md record verification and maintenance rules.
+
+### 2026-10-31 — Dedicated full animation production section
+
+- Expanded README into a prominent standalone animation section with eleven
+  action families, original-sprite-to-semantic-keyframe mapping, numbered gallery
+  deliverables, research candidates and two explicit production stages. Existing
+  V2-02/V2-03 tasks own this coverage; no new IDs or completion changes.
+- Included gradual AI banks, contact anchors, combat loss of balance, measured
+  impact/vault poses, bounded ragdoll reactions, terrain gait, get-up/remount,
+  weapon/police hooks and separate human/quadruped motion. Implementation remains
+  open. No new source/media/dependency imported or newly investigated repository.

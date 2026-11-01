@@ -1,0 +1,15 @@
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 1 test
+MODEL_PHYSICS_PARITY ticks=180 bodies=11 max_position_error_m=0
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 101 filtered out; finished in 0.23s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

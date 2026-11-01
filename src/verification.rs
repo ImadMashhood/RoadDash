@@ -67,7 +67,29 @@ fn capture(commands: &mut Commands, name: &str) {
         .spawn(Screenshot::primary_window())
         .observe(save_to_disk(format!("screenshots/{name}.png")));
 }
-#[allow(clippy::too_many_arguments)]
+/// Exercise the real keyboard event path; ButtonInput::press in Update loses
+/// its just-pressed edge when the native InputPlugin clears edges next frame.
+fn retry_key(commands: &mut Commands, pressed: bool) {
+    commands.queue(move |world: &mut World| {
+        let window = world
+            .query_filtered::<Entity, With<bevy::window::PrimaryWindow>>()
+            .single(world)
+            .expect("native primary window");
+        world.write_message(bevy::input::keyboard::KeyboardInput {
+            key_code: KeyCode::KeyR,
+            logical_key: bevy::input::keyboard::Key::Character("r".into()),
+            state: if pressed {
+                bevy::input::ButtonState::Pressed
+            } else {
+                bevy::input::ButtonState::Released
+            },
+            text: None,
+            repeat: false,
+            window,
+        });
+    });
+}
+#[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn smoke_test(
     mut commands: Commands,
     mut state: ResMut<SmokeProgress>,
@@ -92,14 +114,82 @@ pub fn smoke_test(
     mut contacts: ResMut<Messages<bevy_rapier3d::prelude::CollisionEvent>>,
     mut sweeps: ResMut<Messages<crate::recovery::SweptContact>>,
     bodies: Query<&Transform, Without<Rider>>,
-    (telemetry, mut panel, pads, prefs): (
+    (telemetry, mut panel, pads, prefs, screen): (
         Res<crate::vehicle::VehicleTelemetry>,
         ResMut<crate::settings::SettingsPanel>,
         Query<&Gamepad>,
         Res<crate::settings::Preferences>,
+        Res<State<crate::runtime::AppScreen>>,
     ),
 ) {
+    if matches!(
+        screen.get(),
+        crate::runtime::AppScreen::Boot | crate::runtime::AppScreen::Loading
+    ) {
+        return;
+    }
     state.frame += 1;
+    if std::env::var("ROADDASH_VERIFY_REPAIRS").as_deref() == Ok("1") {
+        if state.frame == 25 {
+            race.phase = Phase::Racing;
+            for (mut rider, _, mut t, velocity) in &mut riders {
+                if rider.id == 0 {
+                    let (p, q) = track.sample(3200.0, 1.0);
+                    rider.progress = 3200.0;
+                    rider.lane = 1.0;
+                    t.translation = p;
+                    t.rotation = q;
+                    if let Some(mut v) = velocity {
+                        *v = bevy_rapier3d::prelude::Velocity::zero();
+                    }
+                }
+            }
+        }
+        if state.frame == 26 {
+            retry_key(&mut commands, true);
+        }
+        if state.frame == 28 {
+            for (r, _, t, _) in &riders {
+                let spawn = &track.definition.spawns[r.id];
+                let (p, _) = track.sample(spawn.distance, spawn.lane);
+                assert!(
+                    t.translation.distance(p) < 0.2,
+                    "native retry did not restore grid for {}: phase={:?} progress={} body={:?} start={:?}",
+                    r.id,
+                    race.phase,
+                    r.progress,
+                    t.translation,
+                    p
+                );
+                assert!(r.speed < 0.01 && r.gates.completed_laps == 0);
+            }
+            assert_eq!(race.phase, Phase::Countdown);
+            println!(
+                "Native retry passed: all fifteen racers restored from mid-course to authored grid"
+            );
+            capture(&mut commands, "23-restart-grid");
+            retry_key(&mut commands, false);
+        }
+        let pose = match state.frame {
+            82 | 83 => Some(("18-punch-left", -1.0, false)),
+            112 | 113 => Some(("19-punch-right", 1.0, false)),
+            142 | 143 => Some(("20-kick-left", -1.0, true)),
+            162 | 163 => Some(("21-kick-right", 1.0, true)),
+            _ => None,
+        };
+        if let Some((name, side, kick)) = pose {
+            for (mut rider, _, _, _) in &mut riders {
+                if rider.id == 0 {
+                    rider.attack = 0.475;
+                    rider.attack_side = side;
+                    rider.kicking = kick;
+                }
+            }
+            if [83, 113, 143, 163].contains(&state.frame) {
+                capture(&mut commands, name);
+            }
+        }
+    }
     match state.frame {
         30 => {
             assert!(sinks.iter().count() >= 4, "audio output did not initialize");
