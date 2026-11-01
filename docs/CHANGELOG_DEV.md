@@ -332,3 +332,19 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
  138 static Actions round-trip; all art remains draft and runtime physics intact.
 - ANIM-05 verified; ANIM-06 retains fidelity/unknown-binding/approval work. ADR-034,
   source/provenance/testing records and README/progress updated together.
+
+## 2026-11-01 — Full-body corrections and first runtime clip integration
+
+- Added all 154 own frame images to PR #10; merged at d9e791ee2987ed9ddc482e4e51d5339c721b46cd.
+- Corrected pelvis/spine/chest/head motion for mounted attacks and tuck; kicks
+  release the seat and raise hips while fitting retained grip/peg support.
+  Regenerated 138 human poses, 16 bike layouts and private source comparisons.
+- Added validated 36-key / 13-clip full hierarchy, reference-informed ride/tuck
+  selection, fixed-step snapshots, turn/attack/recovery transitions, contact
+  constraints and runner/bike coordinate handoff. Passive physics unchanged.
+- Produced nine original animation GIFs and a separate editable Blender file with
+  36 motion/bank/lift/fist Actions. These are authoring renders, not native footage.
+- 150 Rust tests / 20 Python tests; Clippy, format, build and native race/recovery
+  smoke pass. See testing/ANIMATION_B.md for receipts and verification limits.
+- ADR-035; ANIM-07/08 verified and ANIM-09 acceptance work added. Existing full
+  production animation and pose-approval gates remain open, preserving history.

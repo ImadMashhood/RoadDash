@@ -222,3 +222,12 @@ bike layouts pass independent Blender reload (max matrix error5.37e-7). Source
 and new action-ordered strips reviewed as draft. Runtime art/passive physics
 remain unchanged; no native-original/Windows/CI parity claim. Full evidence:
 [ANIMATION_CONTEXT.md](ANIMATION_CONTEXT.md). ANIM-06 art approval remains open.
+
+## Animation full-body/interpolation pass — 2026-11-01
+
+ANIM-07/08: 150 regular Rust tests (one optional soak ignored), 20 animation-context
+Python tests; format/workspace Clippy/build; 138 static Blender Action reloads and
+36 motion Actions. Nine GIFs are authoring renders. Native Fedora/RTX3080/Vulkan
+race smoke passed crash/get-up/run/remount twice and finish, 15-racer restart and
+five audio sinks. Full attack/tuck native visual matrix, terrain-foot fidelity,
+Windows and user approval remain ANIM-09. See [receipt](ANIMATION_B.md).

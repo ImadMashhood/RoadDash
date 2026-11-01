@@ -161,7 +161,7 @@ fn save_path() -> std::path::PathBuf {
 }
 
 #[derive(Component)]
-#[require(Recovery)]
+#[require(Recovery, crate::animation::Animator)]
 pub struct Rider {
     pub id: usize,
     pub progress: f32,

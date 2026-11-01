@@ -1,0 +1,40 @@
+{
+  "date": "2026-11-01",
+  "branch": "codex/animation-interpolation",
+  "rust_tests": {
+    "passed": 150,
+    "ignored": 1,
+    "failed": 0
+  },
+  "python_tests": {
+    "passed": 20,
+    "animation_specific": 9
+  },
+  "commands_passed": [
+    "cargo fmt --all --check",
+    "cargo clippy --workspace --locked --all-targets -- -D warnings",
+    "cargo test --workspace --locked",
+    "cargo build --locked",
+    "python3 -m unittest discover -s tools -p test_*.py",
+    "python3 tools/sync_progress.py --check",
+    "python3 tools/audit.py"
+  ],
+  "audit": {
+    "dependency_declarations": 519,
+    "runtime_asset_records": 28,
+    "reference_observations": 27,
+    "limitations": "Declaration/hash audit only; not legal clearance, vulnerability scanning, or platform certification."
+  },
+  "static_actions": 138,
+  "static_matrix_error": 6.556510925292969e-07,
+  "motion_actions": 36,
+  "motion_curves": 1872,
+  "native": {
+    "command": "ROADDASH_SAVE_DIR=/tmp/roaddash-animation-smoke-save ROADDASH_VERIFY_REPAIRS=1 target/debug/road-dash --smoke-test",
+    "gpu": "NVIDIA RTX 3080 / Vulkan",
+    "result": "passed farm and hill crash/remount, city/hills/finish, 15-racer restart, five audio sinks",
+    "limitations": "Scripted recovery smoke, not all native attack/tuck combinations or a performance benchmark"
+  },
+  "physics_changed": false,
+  "dependencies_changed": false
+}

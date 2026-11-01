@@ -1,0 +1,92 @@
+[
+  {
+    "name": "normal-tuck-normal",
+    "rig_action": "Motion | normal-tuck-normal",
+    "bank_action": "Bank | normal-tuck-normal",
+    "lift_action": "Lift | normal-tuck-normal",
+    "frames": 25,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | normal-tuck-normal"
+  },
+  {
+    "name": "left-turn-normal",
+    "rig_action": "Motion | left-turn-normal",
+    "bank_action": "Bank | left-turn-normal",
+    "lift_action": "Lift | left-turn-normal",
+    "frames": 25,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | left-turn-normal"
+  },
+  {
+    "name": "right-turn-tuck",
+    "rig_action": "Motion | right-turn-tuck",
+    "bank_action": "Bank | right-turn-tuck",
+    "lift_action": "Lift | right-turn-tuck",
+    "frames": 25,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | right-turn-tuck"
+  },
+  {
+    "name": "punch-left-normal",
+    "rig_action": "Motion | punch-left-normal",
+    "bank_action": "Bank | punch-left-normal",
+    "lift_action": "Lift | punch-left-normal",
+    "frames": 13,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | punch-left-normal"
+  },
+  {
+    "name": "punch-right-tuck",
+    "rig_action": "Motion | punch-right-tuck",
+    "bank_action": "Bank | punch-right-tuck",
+    "lift_action": "Lift | punch-right-tuck",
+    "frames": 13,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | punch-right-tuck"
+  },
+  {
+    "name": "kick-left-normal",
+    "rig_action": "Motion | kick-left-normal",
+    "bank_action": "Bank | kick-left-normal",
+    "lift_action": "Lift | kick-left-normal",
+    "frames": 13,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | kick-left-normal"
+  },
+  {
+    "name": "kick-right-tuck",
+    "rig_action": "Motion | kick-right-tuck",
+    "bank_action": "Bank | kick-right-tuck",
+    "lift_action": "Lift | kick-right-tuck",
+    "frames": 13,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | kick-right-tuck"
+  },
+  {
+    "name": "pickup-normal",
+    "rig_action": "Motion | pickup-normal",
+    "bank_action": "Bank | pickup-normal",
+    "lift_action": "Lift | pickup-normal",
+    "frames": 17,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | pickup-normal"
+  },
+  {
+    "name": "pickup-tuck",
+    "rig_action": "Motion | pickup-tuck",
+    "bank_action": "Bank | pickup-tuck",
+    "lift_action": "Lift | pickup-tuck",
+    "frames": 17,
+    "fps": 12,
+    "kind": "authoring preview, not native capture",
+    "fist_action": "Fist | pickup-tuck"
+  }
+]
