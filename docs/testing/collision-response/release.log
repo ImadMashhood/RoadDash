@@ -1,0 +1,20 @@
+   Compiling alsa-sys v0.3.1
+   Compiling x11-dl v2.21.0
+   Compiling libudev-sys v0.1.4
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core)
+   Compiling gilrs-core v0.6.8
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+   Compiling alsa v0.9.1
+   Compiling gilrs v0.11.2
+   Compiling bevy_gilrs v0.17.3
+   Compiling cpal v0.15.3 (/home/imad/Documents/ChatGPT/RoadRash/vendor/cpal)
+   Compiling rodio v0.20.1
+   Compiling bevy_audio v0.17.3
+   Compiling winit v0.30.13
+   Compiling accesskit_winit v0.29.2
+   Compiling bevy_winit v0.17.3
+   Compiling bevy_internal v0.17.3
+   Compiling bevy v0.17.3
+   Compiling bevy_rapier3d v0.32.0
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `release` profile [optimized] target(s) in 34.95s

@@ -202,7 +202,19 @@ pub fn knockdowns(
                     patrol.map_or(Vec3::ZERO, |path| path.axis * path.speed)
                 };
                 if velocity.length() >= 5.0 {
-                    requests.push((target, velocity, false));
+                    let target_mass = npcs.get(target).map_or(56.5, |(_, npc, _, _)| {
+                        if npc.kind == NpcKind::Cow {
+                            363.0
+                        } else {
+                            56.5
+                        }
+                    });
+                    let source_mass = rider.map_or(1000.0, |r| r.bike_mass + 70.0);
+                    requests.push((
+                        target,
+                        velocity * rr_core::crash::shared_speed_fraction(source_mass, target_mass),
+                        false,
+                    ));
                 }
             }
         }
@@ -220,8 +232,13 @@ pub fn knockdowns(
             npc.spawn = *t;
             npc.elapsed = 0.0;
             npc.fresh = true;
+            let velocity = if direct {
+                velocity * if npc.kind == NpcKind::Cow { 0.55 } else { 0.7 }
+            } else {
+                velocity
+            };
             npc.parts = match npc.kind {
-                NpcKind::Cow => cow_ragdoll(&mut commands, &art, entity, &t, velocity * 0.55),
+                NpcKind::Cow => cow_ragdoll(&mut commands, &art, entity, &t, velocity),
                 NpcKind::Pedestrian => recovery::humanoid(
                     &mut commands,
                     &art,
@@ -229,7 +246,7 @@ pub fn knockdowns(
                     4,
                     t.translation,
                     t.rotation,
-                    velocity * 0.7,
+                    velocity,
                 ),
             };
             audio.write(crate::sound::AudioCue::new(

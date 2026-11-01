@@ -177,7 +177,7 @@ pub fn humanoid(
                 Collider::cuboid(size.x * 0.5, size.y * 0.5, size.z * 0.5),
                 Velocity {
                     linvel: velocity,
-                    angvel: rotation * Vec3::Z * -0.5,
+                    angvel: Vec3::ZERO,
                 },
                 ColliderMassProperties::Mass(match i {
                     0 => 14.0,
@@ -262,6 +262,9 @@ pub fn crash(
     } else {
         1.0
     };
+    // Release into an unstable lean, with zero spin: gravity topples the wreck.
+    // Tilting lowers its centre of mass instead of adding an angular impulse.
+    let wreck_rotation = rotation * Quat::from_rotation_z(0.45 * separation_side);
     let bodies = humanoid(
         commands,
         art,
@@ -277,7 +280,7 @@ pub fn crash(
     } else {
         let wreck = world::bike(commands, art, rider.palette_index, false);
         commands.entity(wreck).insert((
-            Transform::from_translation(origin).with_rotation(rotation),
+            Transform::from_translation(origin).with_rotation(wreck_rotation),
             RigidBody::Dynamic,
             Collider::compound(vec![(
                 Vec3::new(0.0, 0.85, 0.0),
@@ -287,7 +290,7 @@ pub fn crash(
             ColliderMassProperties::Mass(rider.bike_mass),
             Velocity {
                 linvel: momentum,
-                angvel: forward * 3.0 * separation_side,
+                angvel: Vec3::ZERO,
             },
             Ccd::enabled(),
             Restitution::coefficient(0.25),
@@ -309,6 +312,24 @@ pub fn crash(
         ));
         wreck
     };
+    // Collision entry has no artificial angular kick. Physical contacts may
+    // subsequently tumble the bodies within their original joint constraints.
+    for (i, body) in bodies.iter().enumerate() {
+        commands.entity(*body).insert((
+            Velocity::linear(velocity),
+            ReadMassProperties::default(),
+            CrashEnvelope::new(
+                velocity,
+                rider_origin + rotation * crate::human::SPECS[i].0,
+                rotation,
+                forward,
+            ),
+        ));
+    }
+    commands.entity(wreck).insert((
+        ReadMassProperties::default(),
+        CrashEnvelope::new(momentum, origin, wreck_rotation, forward),
+    ));
     recovery.torso = Some(bodies[0]);
     recovery.parts = bodies;
     recovery.wreck = Some(wreck);
@@ -617,9 +638,7 @@ pub struct SweptContact(pub Entity, pub Entity);
 
 #[derive(Clone, Copy)]
 enum Impact {
-    Crash(Entity, Vec3),
-    Hop(Entity, f32),
-    Kick(Entity, Vec3),
+    Crash(Entity, Option<Vec3>),
     Nudge(Entity, Vec3),
 }
 
@@ -637,7 +656,7 @@ pub fn impacts(
     (cars, cows, cross_cars, npcs): (
         Query<&Traffic>,
         Query<(), With<crate::environment::Cow>>,
-        Query<(), With<crate::environment::CrossTraffic>>,
+        Query<Option<&crate::environment::Patrol>, With<crate::environment::CrossTraffic>>,
         Query<&crate::npc::Npc>,
     ),
     (velocities, bike_states): (Query<&Velocity>, Query<&crate::vehicle::BikeState>),
@@ -716,7 +735,7 @@ pub fn impacts(
                     } else {
                         bike
                     };
-                    actions.push(Impact::Crash(victim, Vec3::ZERO));
+                    actions.push(Impact::Crash(victim, None));
                 } else if closing > 0.05 {
                     let transfer = normal * (closing * 0.35).min(2.5);
                     actions.push(Impact::Nudge(bike, -transfer));
@@ -727,41 +746,23 @@ pub fn impacts(
                     continue;
                 }
                 if speed > 0.75 {
-                    actions.push(Impact::Hop(
-                        bike,
-                        if body.kind == BodyKind::Wreck {
-                            1.5
-                        } else {
-                            crate::human::HEIGHT
-                        },
-                    ));
-                    if body.kind != BodyKind::Runner {
-                        actions.push(Impact::Kick(
-                            other,
-                            velocity
-                                * if body.kind == BodyKind::Wreck {
-                                    45.0
-                                } else {
-                                    3.0
-                                },
-                        ));
-                    }
+                    actions.push(Impact::Crash(bike, Some(velocity)));
                     if body.kind == BodyKind::Runner {
-                        actions.push(Impact::Crash(body.owner, velocity * 0.55));
+                        actions.push(Impact::Crash(body.owner, Some(velocity * 0.3)));
                     }
                 }
-            } else if cows.contains(other) && speed > 0.75 {
-                actions.push(Impact::Hop(bike, 1.7));
-            } else if let Ok(npc) = npcs.get(other) {
-                if npc.active() && speed > 0.75 {
-                    actions.push(Impact::Hop(
-                        bike,
+            } else if cows.contains(other) || npcs.get(other).is_ok_and(|npc| npc.active()) {
+                if speed > 0.75 {
+                    let target_mass = npcs.get(other).map_or(363.0, |npc| {
                         if npc.kind == crate::npc::NpcKind::Cow {
-                            1.7
+                            363.0
                         } else {
-                            crate::human::HEIGHT
-                        },
-                    ));
+                            56.5
+                        }
+                    });
+                    let fraction =
+                        rr_core::crash::shared_speed_fraction(rider.bike_mass + 70.0, target_mass);
+                    actions.push(Impact::Crash(bike, Some(velocity * fraction)));
                 }
             } else if cross_cars.contains(other)
                 || (!ground.contains(other) && obstacles.contains(other))
@@ -769,7 +770,23 @@ pub fn impacts(
                     .get(other)
                     .is_ok_and(|car| speed + car.speed.abs() > 0.75)
             {
-                actions.push(Impact::Crash(bike, Vec3::ZERO));
+                let object_velocity = transforms.get(other).map_or(Vec3::ZERO, |t| {
+                    if let Ok(car) = cars.get(other) {
+                        t.rotation * Vec3::Z * car.speed.abs()
+                    } else if let Ok(Some(path)) = cross_cars.get(other) {
+                        t.rotation * Vec3::Z * path.speed
+                    } else {
+                        velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel)
+                    }
+                });
+                let incoming = velocity.with_y(0.0);
+                let retained = rr_core::crash::retained_speed(
+                    incoming.length(),
+                    object_velocity.with_y(0.0).length(),
+                );
+                let response =
+                    (incoming.normalize_or_zero() * retained).with_y(velocity.y.min(0.0));
+                actions.push(Impact::Crash(bike, Some(response)));
             }
         }
         // A traffic car or moving wreck can knock an on-foot rider down again.
@@ -786,10 +803,9 @@ pub fn impacts(
                             .is_ok_and(|v| v.linvel.length() > 3.0)
                 });
                 if is_car || is_other_wreck {
-                    let kick = transforms
-                        .get(object)
-                        .map_or(Vec3::ZERO, |t| t.rotation * Vec3::Z * 9.0);
-                    actions.push(Impact::Crash(body.owner, kick));
+                    // A solid moving object may knock the runner down; do not add
+                    // a fixed 9 m/s impulse to the runner's existing movement.
+                    actions.push(Impact::Crash(body.owner, None));
                 }
             }
         }
@@ -810,46 +826,7 @@ pub fn impacts(
                     r.impact_cooldown = 0.15;
                 }
             }
-            Impact::Kick(body, impulse) => {
-                commands.entity(body).insert((
-                    ExternalImpulse {
-                        impulse,
-                        torque_impulse: Vec3::new(2.0, 1.0, 0.0),
-                    },
-                    Sleeping::disabled(),
-                ));
-            }
-            Impact::Hop(owner, height) => {
-                if let Ok((mut rider, recovery, _)) = riders.get_mut(owner)
-                    && recovery.stage == RecoveryStage::Riding
-                    && rider.impact_cooldown <= 0.0
-                {
-                    // Explicit animal/pedestrian clearance is an arcade jump, separate
-                    // from ordinary ragdoll crashes which still inherit momentum only.
-                    let launch = (2.0 * 9.81 * (height + 1.5)).sqrt().clamp(7.5, 10.0);
-                    if let Ok(current) = velocities.get(owner) {
-                        let incoming = bike_states
-                            .get(owner)
-                            .map_or(rider.motion_velocity, |s| s.impact_velocity);
-                        let target = incoming.with_y(current.linvel.y.max(launch));
-                        commands.entity(owner).insert(ExternalImpulse {
-                            impulse: (target - current.linvel) * (rider.bike_mass + 70.0),
-                            torque_impulse: Vec3::ZERO,
-                        });
-                    }
-                    rider.hop_velocity = launch;
-                    rider.hop_height = rider.hop_height.max(0.02);
-                    rider.impact_cooldown = 0.8;
-                    audio.write(AudioCue::new(
-                        Cue::Crash,
-                        transforms.get(owner).map_or(Vec3::ZERO, |t| t.translation),
-                    ));
-                    if rider.id == 0 {
-                        race.shake = 0.7;
-                    }
-                }
-            }
-            Impact::Crash(owner, kick) => {
+            Impact::Crash(owner, response) => {
                 if let Ok((mut rider, mut recovery, mut visibility)) = riders.get_mut(owner)
                     && recovery.stage != RecoveryStage::Falling
                 {
@@ -871,6 +848,11 @@ pub fn impacts(
                         // pre-contact world velocity that triggered this collision.
                         rider.motion_velocity = state.impact_velocity;
                     }
+                    if let Some(response) = response {
+                        rider.motion_velocity = response;
+                        rider.speed = 0.0;
+                        rider.hop_velocity = 0.0;
+                    }
                     let origin = t.translation
                         - if recovery.runner.is_some() {
                             Vec3::Y * 0.95
@@ -885,7 +867,7 @@ pub fn impacts(
                         &mut recovery,
                         origin,
                         t.rotation,
-                        kick,
+                        Vec3::ZERO,
                         &context,
                     );
                     *visibility = Visibility::Hidden;
@@ -953,5 +935,89 @@ mod articulation_tests {
                 }
             }
         }
+    }
+}
+
+/// Dissipative envelope for one crash's rider and wreck. It permits gravity and
+/// redistribution into tumble, but a kinematic car cannot act as an unlimited
+/// energy source or reverse the whole crash against its approach direction.
+#[derive(Component, Clone, Copy)]
+pub(crate) struct CrashEnvelope {
+    initial_speed_squared: f32,
+    initial_position: Vec3,
+    initial_rotation: Quat,
+    forward: Vec3,
+}
+impl CrashEnvelope {
+    pub(crate) fn new(
+        velocity: Vec3,
+        initial_position: Vec3,
+        initial_rotation: Quat,
+        forward: Vec3,
+    ) -> Self {
+        Self {
+            initial_speed_squared: velocity.length_squared(),
+            initial_position,
+            initial_rotation,
+            forward,
+        }
+    }
+}
+
+pub(crate) fn constrain_crash_energy(
+    mut bodies: Query<(
+        &OwnedBody,
+        &Transform,
+        &ReadMassProperties,
+        &CrashEnvelope,
+        &mut Velocity,
+    )>,
+) {
+    #[derive(Default)]
+    struct Budget {
+        mass: f64,
+        momentum: bevy::math::DVec3,
+        kinetic: f64,
+        available: f64,
+        forward: Vec3,
+    }
+    let mut groups = std::collections::HashMap::<Entity, Budget>::new();
+    for (owner, t, mass, envelope, velocity) in &bodies {
+        if mass.mass <= 0.0 {
+            continue;
+        }
+        let group = groups.entry(owner.owner).or_default();
+        group.mass += mass.mass as f64;
+        group.momentum += velocity.linvel.as_dvec3() * mass.mass as f64;
+        group.forward = envelope.forward;
+        let angular = (t.rotation * mass.principal_inertia_local_frame).inverse() * velocity.angvel;
+        group.kinetic += mass.mass as f64 * velocity.linvel.as_dvec3().length_squared()
+            + (mass.principal_inertia.as_dvec3() * angular.as_dvec3() * angular.as_dvec3())
+                .element_sum();
+        let initial_height =
+            (envelope.initial_position + envelope.initial_rotation * mass.local_center_of_mass).y;
+        let current_height = t.transform_point(mass.local_center_of_mass).y;
+        group.available += mass.mass as f64
+            * (envelope.initial_speed_squared as f64
+                + 2.0 * 9.81 * (initial_height as f64 - current_height as f64));
+    }
+    for (owner, _, _, _, mut velocity) in &mut bodies {
+        let Some(group) = groups.get(&owner.owner) else {
+            continue;
+        };
+        let backward = (group.momentum / group.mass)
+            .dot(group.forward.as_dvec3())
+            .min(0.0);
+        // Remove only backwards centre-of-mass motion; individual limbs can still
+        // swing backwards relative to their connected body.
+        velocity.linvel -= group.forward * backward as f32;
+        let kinetic = (group.kinetic - group.mass * backward * backward).max(0.0);
+        let scale = if kinetic > group.available.max(0.0) {
+            (group.available.max(0.0) / kinetic).sqrt()
+        } else {
+            1.0
+        };
+        velocity.linvel *= scale as f32;
+        velocity.angvel *= scale as f32;
     }
 }
