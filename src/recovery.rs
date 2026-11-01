@@ -866,6 +866,10 @@ pub fn impacts(
                             });
                         rider.speed = 0.0;
                         rider.hop_velocity = 0.0;
+                    } else if let Ok(state) = bike_states.get(owner) {
+                        // Readback contains the solver's bounce. Detach using the same
+                        // pre-contact world velocity that triggered this collision.
+                        rider.motion_velocity = state.impact_velocity;
                     }
                     let origin = t.translation
                         - if recovery.runner.is_some() {

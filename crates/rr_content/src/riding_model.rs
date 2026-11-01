@@ -143,3 +143,41 @@ pub fn decode(bytes: &[u8]) -> Result<Vec<MeshData>, String> {
     }
     Ok(out)
 }
+
+pub const RENDER_PARENTS: [i8; 11] = [2, 0, -1, 0, 3, 0, 5, 2, 7, 2, 9];
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Bindings {
+    pub version: u32,
+    pub parents: [i8; 11],
+    pub standing: [[[f32; 4]; 4]; 11],
+    pub seated: [[[f32; 4]; 4]; 11],
+}
+impl Bindings {
+    pub fn from_json(json: &str) -> Result<Self, String> {
+        let data: Self = serde_json::from_str(json).map_err(|e| e.to_string())?;
+        if data.version != 1 || data.parents != RENDER_PARENTS {
+            return Err("unsupported connected visual rig".into());
+        }
+        for frame in data.standing.iter().chain(&data.seated) {
+            if frame
+                .iter()
+                .flatten()
+                .any(|f| !f.is_finite() || f.abs() > 5.0)
+                || frame[3][3] != 1.0
+                || frame[..3].iter().any(|c| c[3] != 0.0)
+            {
+                return Err("invalid visual bind frame".into());
+            }
+            for i in 0..3 {
+                for j in 0..3 {
+                    let dot = (0..3).map(|k| frame[i][k] * frame[j][k]).sum::<f32>();
+                    if (dot - if i == j { 1.0 } else { 0.0 }).abs() > 0.001 {
+                        return Err("visual bind must be a rigid frame".into());
+                    }
+                }
+            }
+        }
+        Ok(data)
+    }
+}

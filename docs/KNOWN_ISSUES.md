@@ -129,3 +129,23 @@ ART-04/ART-05. Detailed fairings are visual and can overhang the unchanged coars
 bike collider. The source GLB/pose files remain in art/source; no original game
 media are redistributed. Existing RIGHTS-002 review and Windows acceptance stay
 open. Native receipts and any discovered limitations: testing/MODELS.md.
+
+## V2 immediate repairs and remaining work — 2026-10-31
+
+README is the live checklist: all verified tasks are in Part 00 and all remaining
+requirements are in Parts 01–16. V2 Parts 01–08 precede original 09/10; historical
+P01–P08/BW requirements are carried forward into those sections and also retained
+in a frozen docs/roadmap snapshot. Do not infer that planned clips,
+active ragdoll, new facades/props/NPC/landscape production art, weapons or police
+have been implemented. The full over-car vault and combat swerve/countersteer
+behavior remains V2-01-005/006, pending measured contact geometry/normal/velocity
+and animation design. The crash handoff correction only fixes the source of
+spawned momentum; a later solid collision can still transfer or reverse momentum.
+
+The authored skin now uses connected source-anatomy pivots and bounded visual
+elbow/knee hinges, retaining the physical eleven-body rig. Full finger grips,
+foot planting, terrain gait, the twenty-bone animation rig and authored clips are
+still V2-02/V2-03 / ART-04 requirements. Coarse vehicle/body proxies are unchanged;
+visible car hood shape versus full-height contact boxes needs evaluation in the
+vehicle-response task before assuming an arbitrary launch impulse is the fix.
+See testing/MOTION_REPAIRS.md for actual verification rather than checklist intent.

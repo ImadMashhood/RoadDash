@@ -167,3 +167,25 @@ checks and world inspection pass. Native farm/hill recovery, finish, NPC crashes
 and audio pass. All 15 survey sections: 1080p warmed city p95 12.90 ms on this
 Linux/RTX 3080/Vulkan host. [Receipts and limits](MODELS.md). ART-04/05 and Windows/
 human visual acceptance remain open. No body/joint/controller tuning changed.
+
+### V2 motion/restart repairs — 2026-10-31
+
+130 workspace tests pass, one optional soak ignored. Format, warnings-denied
+Clippy, locked debug/release builds pass. Native real-key retry restores all
+fifteen racers; farm/hill recovery, finish/audio and actor collision smoke pass.
+Connected endpoint/hinge/extreme-pose tests and isolated 180-tick eleven-body
+comparison (zero maximum positional difference) pass. Full-cycle remount permits
+2 mm f32 projection tolerance. [Evidence and limits](MOTION_REPAIRS.md).
+Final 15-section survey passes: 1080p warmed city p95 12.25 ms on this Linux/RTX
+3080/Vulkan host. Nine Python tests, tracker sync and provenance audit pass.
+Over-car vault, melee swerve, full animation/IK, user acceptance and Windows stay open.
+
+### Completed-first README reorganization — 2026-10-31
+
+348 IDs/states/requirement texts/evidence links match pre-move task sources exactly.
+All 128 checked tasks precede all 220 unfinished tasks; per-part placement and
+summary counts match. Eleven Python tests, tracker sync, provenance audit, local
+evidence-link validation and diff whitespace checks pass. Rust format, workspace
+Clippy with warnings denied, 130 workspace tests (one ignored) and locked build
+pass. No native rerun for documentation/tool-only changes.
+[Evidence and maintenance rules](README_REORGANIZATION.md). No new completion gates closed.

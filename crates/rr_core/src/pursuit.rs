@@ -127,3 +127,70 @@ mod tests {
         assert!((speed - 30.0).abs() < 1.0 && (lane - t.lane).abs() > 1.5);
     }
 }
+
+/// Rate-limited lane correction for rivals, normalized to the existing tire response.
+/// Small lane errors request small banks instead of full-lock left/right chatter.
+pub fn lane_steering(
+    error: f32,
+    lateral_speed: f32,
+    speed: f32,
+    turn_response: f32,
+    current: f32,
+    dt: f32,
+) -> f32 {
+    if [error, lateral_speed, speed, turn_response, current, dt]
+        .iter()
+        .any(|v| !v.is_finite())
+        || dt <= 0.0
+    {
+        return 0.0;
+    }
+    let target = if error.abs() < 0.12 && lateral_speed.abs() < 0.2 {
+        0.0
+    } else {
+        ((error * 1.2 - lateral_speed * 0.4)
+            / ((1.8 + speed.max(0.0) * 0.085) * turn_response.max(0.1)))
+        .clamp(-0.85, 0.85)
+    };
+    current + (target - current).clamp(-dt.min(0.1) * 1.8, dt.min(0.1) * 1.8)
+}
+#[cfg(test)]
+mod steering_tests {
+    use super::*;
+    #[test]
+    fn routine_corrections_stay_shallow_and_reversals_unwind_gradually() {
+        let mut steer = 0.0;
+        for _ in 0..60 {
+            steer = lane_steering(0.5, 0.3, 30.0, 2.0, steer, 1.0 / 60.0);
+        }
+        assert!(steer > 0.0 && steer < 0.1);
+        let reverse = lane_steering(-4.0, 1.0, 30.0, 2.0, 0.7, 1.0 / 60.0);
+        assert!(reverse > 0.65 && reverse < 0.7);
+        assert_eq!(lane_steering(0.05, 0.05, 20.0, 2.0, 0.0, 1.0 / 60.0), 0.0);
+        assert_eq!(
+            lane_steering(f32::NAN, 0.0, 20.0, 2.0, 0.0, 1.0 / 60.0),
+            0.0
+        );
+    }
+    #[test]
+    fn lane_feedback_settles_without_repeated_full_bank() {
+        for hz in [30, 60, 120] {
+            let dt = 1.0 / hz as f32;
+            let mut lane = -3.0;
+            let mut lateral = 0.0;
+            let mut steer = 0.0;
+            for _ in 0..hz * 12 {
+                let previous = steer;
+                steer = lane_steering(-lane, lateral, 30.0, 2.0, steer, dt);
+                assert!((steer - previous).abs() <= 1.8 * dt + 0.0001);
+                lateral +=
+                    (steer * (1.8 + 30.0 * 0.085) * 2.0 - lateral) * (1.0 - (-dt * 8.0).exp());
+                lane += lateral * dt;
+            }
+            assert!(
+                lane.abs() < 0.125 && steer.abs() < 0.03,
+                "{hz}: {lane} {steer}"
+            );
+        }
+    }
+}
