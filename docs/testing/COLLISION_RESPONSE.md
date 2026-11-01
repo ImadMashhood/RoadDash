@@ -1,5 +1,11 @@
 # Collision response and mounted heading — 2026-10-31
 
+This receipt describes the accepted **default** RoadDash policy. The separate
+`--original-crashes` comparison intentionally uses recovered original contact
+boosts and permits reversals; its scope and remaining gates are documented in
+[ORIGINAL_CRASHES.md](ORIGINAL_CRASHES.md). It does not change the default or the
+biomechanical proposal.
+
 The full animation production section is merged in [PR #8](https://github.com/ImadMashhood/RoadDash/pull/8).
 This follow-up implements COLLISION-01/02/03; authored animation clips and the
 remaining V2 vault/combat-swerve design are not completed by these fixes.

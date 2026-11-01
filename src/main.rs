@@ -4,6 +4,14 @@ fn main() {
         panic!("intentional panic-report verification");
     }
     let args: Vec<_> = std::env::args().collect();
+    if args.iter().any(|a| a == "--original-crash-report") {
+        println!(
+            "{}",
+            serde_json::to_string_pretty(&road_dash::original_crash::report())
+                .expect("crash report")
+        );
+        return;
+    }
     if let Some(index) = args
         .iter()
         .position(|a| a == "--validate-world" || a == "--inspect-world")

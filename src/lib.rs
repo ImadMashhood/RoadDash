@@ -12,6 +12,7 @@ pub mod game;
 pub mod human;
 pub mod models;
 pub mod npc;
+pub mod original_crash;
 pub mod recovery;
 pub mod runtime;
 pub mod settings;
@@ -28,6 +29,9 @@ use bevy::prelude::*;
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
     let mut app = App::new();
+    app.insert_resource(original_crash::OriginalCrashes(
+        std::env::args().any(|a| a == "--original-crashes"),
+    ));
     if !smoke {
         app.insert_resource(settings::Preferences::load(settings::Preferences::path()));
     }

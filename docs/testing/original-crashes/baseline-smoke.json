@@ -1,0 +1,107 @@
+{
+  "active_fixed_ticks": 830,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 2914,
+  "comfort": {
+    "anti_nausea": false,
+    "deadzone": 0.15000000596046448,
+    "fov_degrees": 75.0,
+    "shake": 0.5,
+    "smoothing": 10.0,
+    "speed_fov": true,
+    "speed_lines": false
+  },
+  "entities": 12068,
+  "fixed_recovery_stages": [
+    true,
+    true,
+    true
+  ],
+  "fixed_ticks": 896,
+  "gamepads_connected": 1,
+  "last_gameplay_ms": 0.21212700009346008,
+  "last_physics_ms": 0.6794499754905701,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "recovery_at_run_capture": {
+    "farm_distance_and_height_delta_m": [
+      1.9667876958847046,
+      0.7607471346855164
+    ],
+    "hill_distance_and_height_delta_m": [
+      1.9126348495483398,
+      0.8396453857421875
+    ]
+  },
+  "render_frames": 897,
+  "render_running_captured": true,
+  "target_hz": 60.0,
+  "track": {
+    "closed": false,
+    "collision_triangles": 1202493,
+    "gates": 9,
+    "id": "valley-run-01",
+    "length_m": 6847.3076171875,
+    "render_triangles": 1404203
+  },
+  "vehicle": {
+    "bike_id": "prototype-bike-01",
+    "crash_state": "Riding",
+    "dt": 0.01666666753590107,
+    "gear": 1,
+    "grip_force_n": 5231.24072265625,
+    "grounded": [
+      true,
+      true
+    ],
+    "health": 100.0,
+    "intent": {
+      "brake": false,
+      "brake_amount": 0.0,
+      "nitro": false,
+      "steer": 0.0,
+      "throttle": false,
+      "throttle_amount": 0.0
+    },
+    "lane": 0.28678032755851746,
+    "lean": 0.0,
+    "position": [
+      0.39523565769195557,
+      110.1106948852539,
+      2596.623046875
+    ],
+    "preset": "balanced",
+    "raw_steer": 0.0,
+    "rider_id": 0,
+    "rpm": 1200.0,
+    "slip": 0.0,
+    "slip_angle": 0.0,
+    "speed_mps": 0.010177038609981537,
+    "spring_force_n": [
+      1760.0982666015625,
+      1727.3956298828125
+    ],
+    "steering_force": 0.0,
+    "surface_mu": 1.5,
+    "suspension_m": [
+      0.019334912300109863,
+      0.017699778079986572
+    ],
+    "tick": 796,
+    "tire_force_n": [
+      0.0,
+      0.0
+    ],
+    "velocity": [
+      -0.010143570601940155,
+      0.04382908716797829,
+      0.0008246712386608124
+    ],
+    "yaw_rate": -4.233849717620889e-15
+  },
+  "wall_frame_average_ms": 17.04503059387207,
+  "wall_frame_p95_ms": 19.116191864013672
+}

@@ -210,3 +210,12 @@ are authoring proxies. No runtime interpolation or ragdoll change is included.
   stock legacy selector inputs are RoadDash mappings; Windows and original-native
   playback not verified. ANIM-09 tracks native/user acceptance; ANIM-02/04/06 and
   full V2-03 gates remain unchecked. Accepted passive ragdoll physics unchanged.
+
+- CRASHREF-004 (2026-11-01): --original-crashes is an opt-in tall-contact/entry
+  comparison, not full original-game trajectory parity. Modern 3D geometry,
+  Rapier post-entry friction/bounce, approximate steering-rate/SI mapping, current
+  traffic controller, and comparison condition defaults differ from native.
+  Static/low-object/civilian/downed-body and combat caller routing retain current
+  behavior. Complete native geometry/order, traffic reciprocity, per-racer stats,
+  attack callers and trajectory oracle coverage remain open. Signed native
+  oncoming motion was verified; entire original Windows game was not run.

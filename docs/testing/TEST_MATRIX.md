@@ -231,3 +231,12 @@ Python tests; format/workspace Clippy/build; 138 static Blender Action reloads a
 race smoke passed crash/get-up/run/remount twice and finish, 15-racer restart and
 five audio sinks. Full attack/tuck native visual matrix, terrain-foot fidelity,
 Windows and user approval remain ANIM-09. See [receipt](ANIMATION_B.md).
+
+## Original-crash comparison — 2026-11-01
+
+CRASHREF-001–003: native-unit integer rules, bounded retail x86 corroboration,
+opt-in bike/car and bike/bike bridge, separate rider/wreck velocities, default
+rig/control/recovery regression. Full command evidence and explicit parity limits:
+[ORIGINAL_CRASHES.md](ORIGINAL_CRASHES.md). CRASHREF-004 remains open. Retail checks
+need the user's original EXE plus optional Unicorn2.1.4 and are not represented
+as ordinary CI coverage or original Windows-game execution.

@@ -234,6 +234,24 @@ pub fn crash(
     kick: Vec3,
     context: &ReadRapierContext,
 ) {
+    crash_with_response(
+        commands, art, owner, rider, recovery, origin, rotation, kick, context, None,
+    );
+}
+
+#[allow(clippy::too_many_arguments)]
+fn crash_with_response(
+    commands: &mut Commands,
+    art: &Art,
+    owner: Entity,
+    rider: &mut Rider,
+    recovery: &mut Recovery,
+    origin: Vec3,
+    rotation: Quat,
+    kick: Vec3,
+    context: &ReadRapierContext,
+    original: Option<(Vec3, Vec3)>,
+) {
     for part in recovery.parts.drain(..) {
         commands.entity(part).despawn();
     }
@@ -247,15 +265,19 @@ pub fn crash(
     recovery.path_refresh = 0.0;
     let forward = (rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
     let rotation = Quat::from_rotation_y(forward.x.atan2(forward.z));
-    let momentum =
-        if rider.motion_velocity.is_finite() && rider.motion_velocity.length_squared() > 0.001 {
-            rider.motion_velocity
-        } else {
-            forward * rider.speed + Vec3::Y * rider.hop_velocity
-        };
+    let momentum = original.map_or_else(
+        || {
+            if rider.motion_velocity.is_finite() && rider.motion_velocity.length_squared() > 0.001 {
+                rider.motion_velocity
+            } else {
+                forward * rider.speed + Vec3::Y * rider.hop_velocity
+            }
+        },
+        |(_, bike)| bike,
+    );
     rider.steering = default();
     rider.raw_steer = 0.0;
-    let velocity = momentum + kick;
+    let velocity = original.map_or(momentum + kick, |(rider, _)| rider);
     let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
     let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {
         -1.0
@@ -323,13 +345,21 @@ pub fn crash(
                 rider_origin + rotation * crate::human::SPECS[i].0,
                 rotation,
                 forward,
-            ),
+            )
+            .with_original_direction(original.is_some()),
         ));
     }
     commands.entity(wreck).insert((
         ReadMassProperties::default(),
-        CrashEnvelope::new(momentum, origin, wreck_rotation, forward),
+        CrashEnvelope::new(momentum, origin, wreck_rotation, forward)
+            .with_original_direction(original.is_some()),
     ));
+    if original.is_some() {
+        commands.entity(wreck).insert(Velocity {
+            linvel: momentum,
+            angvel: Vec3::ZERO,
+        });
+    }
     recovery.torso = Some(bodies[0]);
     recovery.parts = bodies;
     recovery.wreck = Some(wreck);
@@ -620,6 +650,7 @@ pub fn recover(
                     rider.progress = progress;
                     rider.lane = lane;
                     rider.health = 100.0;
+                    rider.original_condition = crate::original_crash::initial_condition();
                     rider.motion_velocity = Vec3::ZERO;
                     rider.side_velocity = 0.0;
                     rider.crashed = 0.0;
@@ -649,6 +680,7 @@ pub struct SweptContact(pub Entity, pub Entity);
 enum Impact {
     Crash(Entity, Option<Vec3>),
     Nudge(Entity, Vec3),
+    Original(Entity, rr_core::original_crash::Contact, Quat),
 }
 
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
@@ -676,6 +708,7 @@ pub fn impacts(
     controllers: Query<(Entity, &KinematicCharacterControllerOutput)>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
+    original: Option<Res<crate::original_crash::OriginalCrashes>>,
 ) {
     let mut pairs: Vec<_> = events
         .read()
@@ -727,6 +760,27 @@ pub fn impacts(
                 let other_velocity = bike_states
                     .get(other)
                     .map_or(other_rider.motion_velocity, |s| s.impact_velocity);
+                if original.as_ref().is_some_and(|p| p.0) {
+                    let (response, frame) = crate::original_crash::contact_plan(
+                        velocity,
+                        other_velocity,
+                        a.rotation,
+                        b.translation - a.translation,
+                        false,
+                        rider.original_condition,
+                    );
+                    actions.push(Impact::Original(bike, response, frame));
+                    let (response, frame) = crate::original_crash::contact_plan(
+                        other_velocity,
+                        velocity,
+                        b.rotation,
+                        a.translation - b.translation,
+                        false,
+                        other_rider.original_condition,
+                    );
+                    actions.push(Impact::Original(other, response, frame));
+                    continue;
+                }
                 let closing = (velocity - other_velocity).dot(normal).max(0.0);
                 let forward = (a.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
                 let longitudinal = normal.dot(forward).abs() > 0.7;
@@ -788,6 +842,21 @@ pub fn impacts(
                         velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel)
                     }
                 });
+                if original.as_ref().is_some_and(|p| p.0)
+                    && (cars.contains(other) || cross_cars.contains(other))
+                    && let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other))
+                {
+                    let (response, frame) = crate::original_crash::contact_plan(
+                        velocity,
+                        object_velocity,
+                        a.rotation,
+                        b.translation - a.translation,
+                        true,
+                        rider.original_condition,
+                    );
+                    actions.push(Impact::Original(bike, response, frame));
+                    continue;
+                }
                 let incoming = velocity.with_y(0.0);
                 let retained = rr_core::crash::retained_speed(
                     incoming.length(),
@@ -821,6 +890,49 @@ pub fn impacts(
     }
     for action in actions {
         match action {
+            Impact::Original(owner, response, frame) => {
+                if let Ok((mut rider, mut recovery, mut visibility)) = riders.get_mut(owner)
+                    && recovery.stage == RecoveryStage::Riding
+                {
+                    let response =
+                        rr_core::original_crash::contact(rr_core::original_crash::Contact {
+                            condition: rider.original_condition,
+                            ..response
+                        });
+                    rider.original_condition = response.condition;
+                    let bike_velocity = crate::original_crash::velocity(response.bike, frame);
+                    if let Some(rider_motion) = response.rider {
+                        let Ok(t) = transforms.get(owner) else {
+                            continue;
+                        };
+                        let rider_velocity = crate::original_crash::velocity(rider_motion, frame);
+                        crash_with_response(
+                            &mut commands,
+                            &art,
+                            owner,
+                            &mut rider,
+                            &mut recovery,
+                            t.translation,
+                            t.rotation,
+                            Vec3::ZERO,
+                            &context,
+                            Some((rider_velocity, bike_velocity)),
+                        );
+                        *visibility = Visibility::Hidden;
+                        audio.write(AudioCue::new(Cue::Crash, t.translation));
+                        if rider.id == 0 {
+                            race.shake = 1.0;
+                        }
+                    } else {
+                        rider.speed = (response.bike.forward as f32
+                            * rr_core::original_crash::FORWARD_MPS_PER_UNIT)
+                            .max(0.0);
+                        rider.side_velocity = -(response.bike.lateral as f32)
+                            * rr_core::original_crash::VERTICAL_MPS_PER_UNIT;
+                        rider.motion_velocity = bike_velocity;
+                    }
+                }
+            }
             Impact::Nudge(owner, delta) => {
                 if let Ok((mut r, state, _)) = riders.get_mut(owner)
                     && state.stage == RecoveryStage::Riding
@@ -956,6 +1068,7 @@ pub(crate) struct CrashEnvelope {
     initial_position: Vec3,
     initial_rotation: Quat,
     forward: Vec3,
+    allow_reverse: bool,
 }
 impl CrashEnvelope {
     pub(crate) fn new(
@@ -969,7 +1082,12 @@ impl CrashEnvelope {
             initial_position,
             initial_rotation,
             forward,
+            allow_reverse: false,
         }
+    }
+    fn with_original_direction(mut self, enabled: bool) -> Self {
+        self.allow_reverse = enabled;
+        self
     }
 }
 
@@ -989,6 +1107,7 @@ pub(crate) fn constrain_crash_energy(
         kinetic: f64,
         available: f64,
         forward: Vec3,
+        allow_reverse: bool,
     }
     let mut groups = std::collections::HashMap::<Entity, Budget>::new();
     for (owner, t, mass, envelope, velocity) in &bodies {
@@ -999,6 +1118,7 @@ pub(crate) fn constrain_crash_energy(
         group.mass += mass.mass as f64;
         group.momentum += velocity.linvel.as_dvec3() * mass.mass as f64;
         group.forward = envelope.forward;
+        group.allow_reverse |= envelope.allow_reverse;
         let angular = (t.rotation * mass.principal_inertia_local_frame).inverse() * velocity.angvel;
         group.kinetic += mass.mass as f64 * velocity.linvel.as_dvec3().length_squared()
             + (mass.principal_inertia.as_dvec3() * angular.as_dvec3() * angular.as_dvec3())
@@ -1014,9 +1134,13 @@ pub(crate) fn constrain_crash_energy(
         let Some(group) = groups.get(&owner.owner) else {
             continue;
         };
-        let backward = (group.momentum / group.mass)
-            .dot(group.forward.as_dvec3())
-            .min(0.0);
+        let backward = if group.allow_reverse {
+            0.0
+        } else {
+            (group.momentum / group.mass)
+                .dot(group.forward.as_dvec3())
+                .min(0.0)
+        };
         // Remove only backwards centre-of-mass motion; individual limbs can still
         // swing backwards relative to their connected body.
         velocity.linvel -= group.forward * backward as f32;

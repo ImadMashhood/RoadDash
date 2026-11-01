@@ -168,6 +168,7 @@ pub struct Rider {
     pub lane: f32,
     pub speed: f32,
     pub health: f32,
+    pub original_condition: rr_core::original_crash::Condition,
     pub nitro: f32,
     pub crashed: f32,
     pub immunity: f32,
@@ -201,6 +202,7 @@ impl Rider {
             lane: if id.is_multiple_of(2) { -2.0 } else { 2.0 },
             speed: 0.0,
             health: 100.0,
+            original_condition: crate::original_crash::initial_condition(),
             nitro: 100.0,
             crashed: 0.0,
             immunity: 2.0,
@@ -2545,6 +2547,107 @@ pub(crate) mod tests {
         assert_eq!(player(&mut app).gates.next, 1);
         assert_eq!(player(&mut app).gates.completed_laps, 0);
     }
+    #[test]
+    fn original_contact_mode_applies_distinct_rider_and_wreck_results_then_recovers() {
+        use crate::original_crash::{self as original, OriginalCrashes};
+        for depleted in [false, true] {
+            let mut app = simulation();
+            app.insert_resource(OriginalCrashes(true));
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let (origin, frame) = app.world().resource::<Track>().sample(10.0, -2.0);
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let incoming = frame * Vec3::Z * (120.0 / 3.6);
+            let other_velocity = frame * Vec3::Z * (-40.0 / 3.6);
+            let car_origin = origin + frame * Vec3::Z * 2.0;
+            let car = app
+                .world_mut()
+                .spawn((
+                    Traffic {
+                        speed: 40.0 / 3.6,
+                        progress: 10.0,
+                        lane: -2.0,
+                    },
+                    Transform::from_translation(car_origin)
+                        .with_rotation(frame * Quat::from_rotation_y(std::f32::consts::PI)),
+                ))
+                .id();
+            let condition = {
+                let mut rider = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                rider.progress = 10.0;
+                rider.lane = -2.0;
+                rider.speed = 120.0 / 3.6;
+                rider.motion_velocity = incoming;
+                rider.immunity = 0.0;
+                if depleted {
+                    rider.original_condition.stamina = 1;
+                }
+                rider.original_condition
+            };
+            *app.world_mut().get_mut::<Transform>(owner).unwrap() =
+                Transform::from_translation(origin).with_rotation(frame);
+            if let Some(mut bike) = app.world_mut().get_mut::<crate::vehicle::BikeState>(owner) {
+                bike.impact_velocity = incoming;
+            }
+            let (expected, reference_frame) = original::plan(
+                incoming,
+                other_velocity,
+                frame,
+                car_origin - origin,
+                true,
+                condition,
+            );
+            app.world_mut()
+                .resource_mut::<Messages<recovery::SweptContact>>()
+                .write(recovery::SweptContact(owner, car));
+            use bevy::ecs::system::RunSystemOnce;
+            app.world_mut().run_system_once(recovery::impacts).unwrap();
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Falling
+            );
+            let wreck = app.world().get::<Recovery>(owner).unwrap().wreck.unwrap();
+            assert!(
+                app.world()
+                    .get::<Velocity>(wreck)
+                    .unwrap()
+                    .linvel
+                    .distance(original::velocity(expected.bike, reference_frame))
+                    < 0.002
+            );
+            let state = app.world().get::<Recovery>(owner).unwrap();
+            assert_eq!(state.parts.len(), 11, "physical rig changed");
+            for part in &state.parts {
+                assert!(
+                    app.world()
+                        .get::<Velocity>(*part)
+                        .unwrap()
+                        .linvel
+                        .distance(original::velocity(expected.rider.unwrap(), reference_frame))
+                        < 0.002
+                );
+            }
+            app.world_mut().despawn(car);
+            for _ in 0..1800 {
+                step(&mut app, 1);
+                if app.world().get::<Recovery>(owner).unwrap().stage == RecoveryStage::Riding {
+                    break;
+                }
+            }
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            assert_eq!(
+                app.world().get::<Rider>(owner).unwrap().original_condition,
+                original::initial_condition()
+            );
+        }
+    }
+
     #[test]
     fn matched_speed_contacts_and_small_side_taps_do_not_cause_wipeouts() {
         for (side, relative) in [(false, 0.0), (false, 3.0), (true, 1.5)] {
