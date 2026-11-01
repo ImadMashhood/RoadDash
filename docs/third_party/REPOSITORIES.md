@@ -300,3 +300,59 @@ actual focus/resolution. Normal play retains its existing power policy. Paired
 VisibilityRange meshes now use the exact same local origin (including terrain
 tiles); a native atlas exposed the prior world-origin error and a regression
 asserts normalized vertices and paired transforms. No upstream example copied.
+
+### R01 city-spacing follow-up — 2026-10-31
+
+Revisited arkits/road-rash (author arkits), exact commit
+`4e052aca9552a5690c2b145b0f53856d5c31e980`: resource, course, road, terrain and
+course_scene readers. REFERENCE ONLY. Verified the supplied disc against the
+upstream importer table (blob `7ab9f9524c1281fe6b4e040e04e4744e671ae732`, 341/341)
+and independently measured City resource lane/shoulder endpoints. See
+../research/CITY_PROPORTIONS.md. No C++ copied, no dependency added, no assets
+incorporated. The earlier unresolved project-wide source license remains
+UNVERIFIED; public source availability does not establish reuse permission.
+Native C++/SDL is not directly compatible with Rust/Bevy; only format/behavior
+research is used. This snapshot is historical, not a claim of current maintenance
+or complete game parity. Proprietary disc/media remain local and outside Git.
+
+CITY-02, 2026-10-31: reused the above R01 course_scene facade-strip findings for
+touching city fronts; independent shared-edge 3D infill, no additional repository,
+C++ source or original media incorporated. Evidence: ../testing/FRONTAGES.md.
+
+### R01 rider/combat/pursuit follow-up — 2026-10-31
+
+Revisited arkits/road-rash, author arkits, exact commit
+4e052aca9552a5690c2b145b0f53856d5c31e980. REFERENCE ONLY. Reviewed race.cpp combat
+and pursuit, race_setup.cpp names/bike slots, bob.cpp remaps, rider_sprites.cpp
+and pe_strings.cpp. License/reuse permission remains UNVERIFIED, per existing R01;
+https://github.com/arkits/road-rash/tree/4e052aca9552a5690c2b145b0f53856d5c31e980.
+No code/assets incorporated. Native C++ is not a Rust/Bevy dependency; independent
+rules and procedural materials avoid compatibility issues. Local pinned snapshot
+does not establish current upstream maintenance. Proprietary disc assets retain
+separate restrictions and remain outside runtime/repository. Findings, decisions
+and limits: research/RIDERS_AND_KICKS.md. Adopt behavior reference only.
+
+### R01 individual-personality follow-up — 2026-10-31
+
+Same pinned arkits/road-rash commit 4e052aca9552a5690c2b145b0f53856d5c31e980,
+author arkits. Inspected race.cpp personality/stat readers, relationship scores,
+reactions, threshold state changes and attack selection. REFERENCE ONLY; no source
+copied, no Bevy dependency. Existing license remains UNVERIFIED for implementation
+reuse; license evidence URL and maintenance/compatibility limitations remain as
+recorded above. Local numeric observations inform independently authored profiles;
+no executable/media shipped. Adopt behavior research; defer all-career/random/
+three-axis parity to AI-03. Evidence: testing/PERSONALITIES.md and ADR-026.
+
+### R08 authored skin integration — 2026-10-31
+
+Consulted the installed Bevy **0.17.3** mesh/skinning types, StandardMaterial image
+settings and custom_skinned_mesh example API. Repository: bevyengine/bevy,
+https://github.com/bevyengine/bevy/tree/v0.17.3; Bevy contributors. Existing
+DEPENDENCY classification and dual MIT/Apache-2.0 licenses remain unchanged:
+https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT and LICENSE-APACHE.
+No new dependency or source/media import. The adapter is independently written;
+it uses existing API types rather than copying the tutorial mesh. Compatibility
+is verified against the pinned lockfile, not a new upstream version. Existing
+shader/renderer and platform risks apply. Adopt existing GPU skinning; keep
+Rapier bodies and joint/motor settings unchanged. The model assets themselves
+come from the earlier independent authoring step, not the Bevy repository.

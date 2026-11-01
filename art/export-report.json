@@ -1,0 +1,819 @@
+{
+  "mesh_records": 49,
+  "triangles": 72663,
+  "bytes": 10447335,
+  "source_scale": 1.2,
+  "physics_changed": false,
+  "records": [
+    {
+      "name": "standing-shirt",
+      "group": "standing",
+      "vertices": 4816,
+      "indices": 6936,
+      "material": {
+        "region": "shirt"
+      }
+    },
+    {
+      "name": "standing-body",
+      "group": "standing",
+      "vertices": 27176,
+      "indices": 33492,
+      "material": {
+        "region": "body"
+      }
+    },
+    {
+      "name": "standing-helmet",
+      "group": "standing",
+      "vertices": 757,
+      "indices": 1044,
+      "material": {
+        "region": "helmet"
+      }
+    },
+    {
+      "name": "standing-visor",
+      "group": "standing",
+      "vertices": 144,
+      "indices": 216,
+      "material": {
+        "region": "visor"
+      }
+    },
+    {
+      "name": "seated-shirt",
+      "group": "seated",
+      "vertices": 4816,
+      "indices": 6936,
+      "material": {
+        "region": "shirt"
+      }
+    },
+    {
+      "name": "seated-body",
+      "group": "seated",
+      "vertices": 27550,
+      "indices": 33492,
+      "material": {
+        "region": "body"
+      }
+    },
+    {
+      "name": "seated-helmet",
+      "group": "seated",
+      "vertices": 786,
+      "indices": 1044,
+      "material": {
+        "region": "helmet"
+      }
+    },
+    {
+      "name": "seated-visor",
+      "group": "seated",
+      "vertices": 144,
+      "indices": 216,
+      "material": {
+        "region": "visor"
+      }
+    },
+    {
+      "name": "motorcycle-Brushed aluminum",
+      "group": "motorcycle",
+      "vertices": 2252,
+      "indices": 2820,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.38999998569488525,
+          0.4300000071525574,
+          0.44999998807907104,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.30000001192092896,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Dark engine metal",
+      "group": "motorcycle",
+      "vertices": 3935,
+      "indices": 4560,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.03999999910593033,
+          0.04699999839067459,
+          0.052000001072883606,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.5,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Cast alloy",
+      "group": "motorcycle",
+      "vertices": 18856,
+      "indices": 23892,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.11999999731779099,
+          0.14000000059604645,
+          0.15000000596046448,
+          1.0
+        ],
+        "metallic": 0.699999988079071,
+        "roughness": 0.3400000035762787,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Silver fasteners",
+      "group": "motorcycle",
+      "vertices": 1350,
+      "indices": 1404,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.5199999809265137,
+          0.5400000214576721,
+          0.5400000214576721,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.25,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Graphite intake",
+      "group": "motorcycle",
+      "vertices": 568,
+      "indices": 720,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.0020000000949949026,
+          0.003000000026077032,
+          0.004000000189989805,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.8999999761581421,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Warm racing yellow",
+      "group": "motorcycle",
+      "vertices": 8790,
+      "indices": 13044,
+      "material": {
+        "region": "paint",
+        "color": [
+          0.6399999856948853,
+          0.36000001430511475,
+          0.00800000037997961,
+          1.0
+        ],
+        "metallic": 0.15000000596046448,
+        "roughness": 0.33000001311302185,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Chain gold steel",
+      "group": "motorcycle",
+      "vertices": 4052,
+      "indices": 4152,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.20000000298023224,
+          0.14000000059604645,
+          0.04500000178813934,
+          1.0
+        ],
+        "metallic": 0.7799999713897705,
+        "roughness": 0.47999998927116394,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Gloss black fairing",
+      "group": "motorcycle",
+      "vertices": 2633,
+      "indices": 3183,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.012000000104308128,
+          0.014999999664723873,
+          0.01899999938905239,
+          1.0
+        ],
+        "metallic": 0.11999999731779099,
+        "roughness": 0.3100000023841858,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Fuel tank anthracite",
+      "group": "motorcycle",
+      "vertices": 737,
+      "indices": 1044,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.02500000037252903,
+          0.029999999329447746,
+          0.03200000151991844,
+          1.0
+        ],
+        "metallic": 0.1599999964237213,
+        "roughness": 0.3400000035762787,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Seat black vinyl",
+      "group": "motorcycle",
+      "vertices": 136,
+      "indices": 180,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.009999999776482582,
+          0.013000000268220901,
+          0.014000000432133675,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.7599999904632568,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Tail lamp red",
+      "group": "motorcycle",
+      "vertices": 248,
+      "indices": 324,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.3799999952316284,
+          0.003000000026077032,
+          0.0020000000949949026,
+          1.0
+        ],
+        "metallic": 0.15000000596046448,
+        "roughness": 0.25999999046325684,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Smoked windscreen",
+      "group": "motorcycle",
+      "vertices": 516,
+      "indices": 768,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.06499999761581421,
+          0.09000000357627869,
+          0.0949999988079071,
+          1.0
+        ],
+        "metallic": 0.05000000074505806,
+        "roughness": 0.18000000715255737,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Red graphics",
+      "group": "motorcycle",
+      "vertices": 2816,
+      "indices": 2820,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.41999998688697815,
+          0.008999999612569809,
+          0.004999999888241291,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.44999998807907104,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Nitrous blue",
+      "group": "motorcycle",
+      "vertices": 228,
+      "indices": 228,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.017999999225139618,
+          0.07000000029802322,
+          0.23999999463558197,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.3499999940395355,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Brake caliper",
+      "group": "motorcycle",
+      "vertices": 248,
+      "indices": 324,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.04800000041723251,
+          0.050999999046325684,
+          0.04699999839067459,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.3799999952316284,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Brushed aluminum",
+      "group": "motorcycle",
+      "vertices": 538,
+      "indices": 648,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.38999998569488525,
+          0.4300000071525574,
+          0.44999998807907104,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.30000001192092896,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Silver fasteners",
+      "group": "motorcycle",
+      "vertices": 350,
+      "indices": 456,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.5199999809265137,
+          0.5400000214576721,
+          0.5400000214576721,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.25,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Tire rubber",
+      "group": "rear-wheel",
+      "vertices": 856,
+      "indices": 3456,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.012000000104308128,
+          0.014000000432133675,
+          0.01600000075995922,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.8600000143051147,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Tire tread recess",
+      "group": "rear-wheel",
+      "vertices": 6036,
+      "indices": 7728,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.003000000026077032,
+          0.004000000189989805,
+          0.004999999888241291,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.9200000166893005,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Cast alloy",
+      "group": "rear-wheel",
+      "vertices": 2044,
+      "indices": 2424,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.11999999731779099,
+          0.14000000059604645,
+          0.15000000596046448,
+          1.0
+        ],
+        "metallic": 0.699999988079071,
+        "roughness": 0.3400000035762787,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Steel brake rotor",
+      "group": "rear-wheel",
+      "vertices": 5313,
+      "indices": 6270,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.41999998688697815,
+          0.4300000071525574,
+          0.4000000059604645,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.3199999928474426,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Dark engine metal",
+      "group": "rear-wheel",
+      "vertices": 654,
+      "indices": 768,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.03999999910593033,
+          0.04699999839067459,
+          0.052000001072883606,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.5,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Silver fasteners",
+      "group": "rear-wheel",
+      "vertices": 672,
+      "indices": 912,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.5199999809265137,
+          0.5400000214576721,
+          0.5400000214576721,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.25,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "rear-wheel-Chain gold steel",
+      "group": "rear-wheel",
+      "vertices": 3763,
+      "indices": 4344,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.20000000298023224,
+          0.14000000059604645,
+          0.04500000178813934,
+          1.0
+        ],
+        "metallic": 0.7799999713897705,
+        "roughness": 0.47999998927116394,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "front-wheel-Tire rubber",
+      "group": "front-wheel",
+      "vertices": 852,
+      "indices": 3456,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.012000000104308128,
+          0.014000000432133675,
+          0.01600000075995922,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.8600000143051147,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "front-wheel-Tire tread recess",
+      "group": "front-wheel",
+      "vertices": 5996,
+      "indices": 7728,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.003000000026077032,
+          0.004000000189989805,
+          0.004999999888241291,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.9200000166893005,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "front-wheel-Cast alloy",
+      "group": "front-wheel",
+      "vertices": 2046,
+      "indices": 2424,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.11999999731779099,
+          0.14000000059604645,
+          0.15000000596046448,
+          1.0
+        ],
+        "metallic": 0.699999988079071,
+        "roughness": 0.3400000035762787,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "front-wheel-Steel brake rotor",
+      "group": "front-wheel",
+      "vertices": 10632,
+      "indices": 12540,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.41999998688697815,
+          0.4300000071525574,
+          0.4000000059604645,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.3199999928474426,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "front-wheel-Dark engine metal",
+      "group": "front-wheel",
+      "vertices": 1268,
+      "indices": 1536,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.03999999910593033,
+          0.04699999839067459,
+          0.052000001072883606,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.5,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "front-wheel-Silver fasteners",
+      "group": "front-wheel",
+      "vertices": 1176,
+      "indices": 1560,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.5199999809265137,
+          0.5400000214576721,
+          0.5400000214576721,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.25,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Warm racing yellow",
+      "group": "motorcycle",
+      "vertices": 62,
+      "indices": 72,
+      "material": {
+        "region": "paint",
+        "color": [
+          0.6399999856948853,
+          0.36000001430511475,
+          0.00800000037997961,
+          1.0
+        ],
+        "metallic": 0.15000000596046448,
+        "roughness": 0.33000001311302185,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Brushed aluminum",
+      "group": "motorcycle",
+      "vertices": 805,
+      "indices": 888,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.38999998569488525,
+          0.4300000071525574,
+          0.44999998807907104,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.30000001192092896,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Cast alloy",
+      "group": "motorcycle",
+      "vertices": 1804,
+      "indices": 2172,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.11999999731779099,
+          0.14000000059604645,
+          0.15000000596046448,
+          1.0
+        ],
+        "metallic": 0.699999988079071,
+        "roughness": 0.3400000035762787,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Brake caliper",
+      "group": "motorcycle",
+      "vertices": 504,
+      "indices": 648,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.04800000041723251,
+          0.050999999046325684,
+          0.04699999839067459,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.3799999952316284,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Graphite intake",
+      "group": "motorcycle",
+      "vertices": 1000,
+      "indices": 1308,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.0020000000949949026,
+          0.003000000026077032,
+          0.004000000189989805,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.8999999761581421,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Dark engine metal",
+      "group": "motorcycle",
+      "vertices": 113,
+      "indices": 168,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.03999999910593033,
+          0.04699999839067459,
+          0.052000001072883606,
+          1.0
+        ],
+        "metallic": 0.6000000238418579,
+        "roughness": 0.5,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Seat black vinyl",
+      "group": "motorcycle",
+      "vertices": 456,
+      "indices": 456,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.009999999776482582,
+          0.013000000268220901,
+          0.014000000432133675,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.7599999904632568,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Tire rubber",
+      "group": "motorcycle",
+      "vertices": 1831,
+      "indices": 1848,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.012000000104308128,
+          0.014000000432133675,
+          0.01600000075995922,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.8600000143051147,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Red graphics",
+      "group": "motorcycle",
+      "vertices": 672,
+      "indices": 792,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.41999998688697815,
+          0.008999999612569809,
+          0.004999999888241291,
+          1.0
+        ],
+        "metallic": 0.0,
+        "roughness": 0.44999998807907104,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Dial glass",
+      "group": "motorcycle",
+      "vertices": 655,
+      "indices": 828,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.07000000029802322,
+          0.09000000357627869,
+          0.10000000149011612,
+          1.0
+        ],
+        "metallic": 0.20000000298023224,
+        "roughness": 0.25,
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "motorcycle-Silver fasteners",
+      "group": "motorcycle",
+      "vertices": 7130,
+      "indices": 9720,
+      "material": {
+        "region": "fixed",
+        "color": [
+          0.5199999809265137,
+          0.5400000214576721,
+          0.5400000214576721,
+          1.0
+        ],
+        "metallic": 0.8500000238418579,
+        "roughness": 0.25,
+        "alpha": 1.0
+      }
+    }
+  ]
+}

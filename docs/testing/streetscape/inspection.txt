@@ -1,0 +1,1 @@
+Validated world; wrote /tmp/streetscape-inspection.json

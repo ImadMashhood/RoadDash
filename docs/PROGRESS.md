@@ -9,6 +9,21 @@ The full original backlog is preserved in the generated
 index below; README is the editable checkbox source. Run
 `python3 tools/sync_progress.py` after changing task status, then `--check` in CI.
 
+## Current authored-model integration (ART-03)
+
+User scope: replace character/bike on codex/seated-models-preserve-ragdoll while
+preserving the accepted physical ragdoll exactly. The new meshes bind to existing
+visual joints; no simulated skeleton migration is authorized. Part 11 prototype
+integration only, with animation polish/LOD deferred under ART-04/ART-05. See
+ADR-027, art/README.md and testing/MODELS.md for actual verification receipts.
+ART-02 and all unrelated milestone exit gates remain open.
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| ART-03 / 11 | Replace approved rider/bike visuals without losing accepted crashes | authored GLBs/pose; current body/visual separation | Four human states, riding/wreck geometry, unchanged body/joint descriptors and 180-tick trajectories, full recovery; automated and native evidence |
+| ART-04 / 11 | Polish retarget, fingers and interpolated authored transitions | ART-03; static pose library | Contact-correct gestures/deformation and readable transitions; pose review and native clips with physics parity |
+| ART-05 / 11 | Add art LOD and broader hardware evidence | ART-03; profiler | Collision-independent distance LOD and measured budget on supported hardware; native surveys and Windows review |
+
 ## Evidence and current boundaries
 
 Part 00 artifacts: GDD.md, VERTICAL_SLICE.md, ORIGINAL_CONTENT_POLICY.md,
@@ -177,6 +192,29 @@ and [completion receipt](world/COMPLETION_TESTS.md). Current checkboxes below
 reflect verified gates. The route/seed/gameplay are retained while canonical old
 buildings are replaced by exact 247-root geometry. Source PDF handoff
 language is design guidance; active user scope controls this session.
+
+## City streetscape follow-up — 2026-10-31
+
+CITY-03 adds flat concrete sidewalks and paving joints, original collidable curbside
+trees, and an authored 1.6 urban floor multiplier. Canonical quotas/IDs and lot
+footprints remain intact. See [verification](testing/STREETSCAPE.md) and ADR-024.
+Original source height tables remain historical inputs, superseded at runtime by
+the user's taller-city request.
+
+## Rider, steering and pursuit follow-up — 2026-10-31
+
+COMBAT-02, CITY-04, RIDE-02 and AI-01 address the user's combined corrections.
+118 automated tests and native crash/remount/finish smoke pass. Fifteen-racer
+city survey: 11.29 ms p95 at 1080p on this host. Reference parity, production
+art and human difficulty acceptance remain open. [Evidence](testing/RIDERS.md).
+
+## Individual rival personalities — 2026-10-31
+
+AI-02 completes validated level-zero profiles, selective relationship-driven
+race/follow/fight decisions, individual hit responses/stats and a supported rear
+grid with 12 m gaps. 120 tests and final native inspection/survey/smoke pass.
+Evidence: [PERSONALITIES.md](testing/PERSONALITIES.md). AI-03 retains full-career,
+relationship-axis/event and random-stream parity gates.
 
 <!-- GENERATED CHECKLIST INDEX -->
 
@@ -558,7 +596,7 @@ language is design guidance; active user scope controls this session.
 
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
 
-- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](../src/human.rs).
+- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](../src/human.rs); the new authored skins use [four-state/physics parity tests](../src/models/tests.rs) and [native receipts](../docs/testing/MODELS.md).
 
 - [ ] **P11-010** **Exit gate:** the original town/farm/cliff art replaces graybox assets without changing physics/race rules and fits measured budgets.
 
@@ -787,3 +825,35 @@ language is design guidance; active user scope controls this session.
 - [ ] **RIGHTS-015** Sessions 25-27: ten external playtests, metrics, tuning, frustration fixes.
 
 - [ ] **RIGHTS-016** Sessions 28-30: reproducible two-client/server Lightyear spike and 100 ms test report.
+
+- [x] **CITY-01** Add side-road grids and denser urban blocks; compare road/sidewalk/frontage proportions against the verified original disc. Evidence: [city/combat verification](../docs/testing/CITY_COMBAT.md), 657 solid buildings, native city captures and 9.56 ms p95 survey.
+
+- [x] **COMBAT-01** Space auto-side kick pushes bikes and animates the selected leg; mouse buttons punch left/right. Evidence: nearest-side/push/input tests and native left/right kick captures in [verification](../docs/testing/CITY_COMBAT.md).
+
+- [x] **RIDE-01** Correct rival camera obstruction and supported contact-yaw instability; add symmetric input-only lean presentation. Evidence: crowd-camera/yaw tests, seven native bank captures and crash/recovery smoke in [verification](../docs/testing/CITY_COMBAT.md).
+
+- [x] **CITY-02** Join neighboring city buildings into continuous street fronts. Reason: the user rejected detached six-metre gaps; part: world development; dependencies: CITY-01, solid lots and recovery routing; acceptance: shared-edge infill, clear streets, exposed-perimeter recovery paths and road-height screenshots; verification: 347 shared-edge sections, physics rays for every infill, 113 passing tests and native road-height survey; [evidence](../docs/testing/FRONTAGES.md).
+
+- [x] **CITY-03** Improve sidewalks, plant solid street trees and raise urban buildings. Reason: user requested better pavement and a taller, greener city; part: world development; dependencies: CITY-01/02 and shared ground; acceptance: flat sidewalk shading, clear walking strip, solid trees outside junctions, taller whole-floor buildings without lot changes; verification: geometry/physics tests, native survey and crash/recovery smoke; [evidence](../docs/testing/STREETSCAPE.md).
+
+- [x] **COMBAT-02** Strengthen kick displacement and adopt the fifteen-racer CITY roster with reference-inspired shirt, helmet and bike colors. Reason: user requested original roster/color schemes and stronger kicks; part: combat/world; dependencies: COMBAT-01 and shared human meshes; acceptance: 14 named rivals, consistent minimap/ragdoll colors and stronger signed physical shove; verification: combat/UI tests and native captures; [evidence](../docs/testing/RIDERS.md).
+
+- [x] **CITY-04** Thin sidewalk trees from 22 to 44 m spacing. Reason: user found the avenue overplanted; part: world; dependencies: CITY-03; acceptance: roughly half the sites with existing clearances/collision; verification: placement tests and native survey.
+
+- [x] **RIDE-02** Require player steering through curves, increase turn strength 50%, and topple abandoned bikes. Reason: user reported automatic driving and upright wrecks; part: Parts 03/04; dependencies: dynamic chassis and recovery; acceptance: neutral heading stays independent of road, stronger turn settings and physical roll without linear launch; verification: heading/roll/momentum/remount regressions and native smoke.
+
+- [x] **AI-01** Add measured rival pursuit, speed matching and selective attacks on downed riders. Reason: user requested reference-inspired fighting/chaos; part: AI follow-up; dependencies: relative contacts and crash recovery; acceptance: start grace, bounded approach, alongside spacing, gradual speed matching, limited downed hunts and attack cooldowns; verification: deterministic pursuit scenarios, regression suite and native survey. Original relationship-table parity remains future work.
+
+- [x] **AI-02** Match individual level-zero rival pace/stats and relationship-driven race/follow/fight choices; start YOU last with 12 m gaps. Reason: user rejected uniform aggression and crowded/front starts; part: AI follow-up/track setup; dependencies: AI-01 and supported dynamic grid; acceptance: distinct validated profiles, selective hostility and hit reactions, per-rider pace/strength/stamina/weight, solid separated rear grid and retry; verification: profile/decision/physical-grid tests plus native smoke/survey; [evidence](../docs/testing/PERSONALITIES.md).
+
+- [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
+
+- [x] **ART-01** Research rigged character sources matching the user's faceted, natural-proportion references and biker gear. Reason: user requested a visual upgrade; part: character art; dependencies: reference images and shared human lifecycle; acceptance: sourced shortlist, format/rig claims and license review; verification: publisher/marketplace pages reviewed 2026-10-31; [findings](../docs/third_party/CHARACTER_CANDIDATES.md).
+
+- [ ] **ART-02** Acquire a licensed pilot rider and integrate one shared skinned avatar across riding, fighting, walking and ragdoll. Original authored pilot integration is tracked under ART-03; complete production deformation/animation/LOD acceptance remains open. Reason: researched assets are not yet working models; part: character art/animation; dependencies: ART-01, model selection/acquisition and exact archive license; acceptance: biker outfit/color zones, coherent rig and recovery, unchanged physics/controls, 15-racer performance/LOD acceptance; verification: deformation/animation/ragdoll tests, native visual checks and profiling.
+
+- [x] **ART-03** Integrate the approved authored rider and motorcycle as presentation-only replacements, retaining all accepted ragdoll bodies/joints and crash/recovery behavior. Reason: explicit user request; part: 11 art; dependencies: authored GLBs/seat pose and existing visual joints; acceptance: shared rider through riding/walking/ragdoll, bike/wreck replacement, unchanged physics trajectories, complete recovery, native visual check; verification: [tests](../src/models/tests.rs), [evidence](../docs/testing/MODELS.md).
+
+- [ ] **ART-04** Polish the eleven-joint visual retarget and authored animation transitions without changing simulation. Reason: authoring rig has 20 bones and the current fingers/pose drivers are prototypes; part: 11 art/animation; dependencies: ART-03 and static pose library; acceptance: clean grip/fist/deformation and contact-aware transitions at gameplay speeds; verification: pose review, native clips and repeated physics parity tests.
+
+- [ ] **ART-05** Author distance LODs and validate the detailed rider/bike budget on more hardware. Reason: LOD0 replaces cheap primitives across 15 racers; part: 11 optimization; dependencies: ART-03 and profiler; acceptance: readable silhouettes, stable collision-independent swaps and measured frame budget; verification: native distance/performance surveys and Windows hardware review.

@@ -157,3 +157,33 @@ fn every_chase_view_stays_close_at_rest_and_high_speed_with_slow_smoothing() {
         }
     }
 }
+
+#[test]
+fn rival_in_chase_boom_does_not_pull_camera_into_player() {
+    let (mut app, camera) = camera_app(60);
+    for _ in 0..15 {
+        app.update();
+    }
+    let before = app.world().get::<Transform>(camera).unwrap().translation;
+    let player = app
+        .world_mut()
+        .query_filtered::<&Transform, With<Rider>>()
+        .single(app.world())
+        .unwrap()
+        .translation;
+    app.world_mut().spawn((
+        Rider::new(7),
+        Transform::from_translation(before.lerp(player, 0.5)),
+        Visibility::Visible,
+        bevy_rapier3d::prelude::RigidBody::Fixed,
+        bevy_rapier3d::prelude::Collider::ball(1.0),
+    ));
+    for _ in 0..10 {
+        app.update();
+    }
+    let after = app.world().get::<Transform>(camera).unwrap().translation;
+    assert!(
+        after.distance(player) > 4.0,
+        "rival collapsed chase boom: {after:?}"
+    );
+}

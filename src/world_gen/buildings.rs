@@ -71,6 +71,27 @@ fn roof_mesh(style: Roof, base: f32) -> Mesh {
     }
     crate::environment::mesh(&vertices, &indices)
 }
+
+fn facade(height: f32) -> Mesh {
+    let mut v = Vec::new();
+    let mut ix = Vec::new();
+    let floors = (height / 3.2).floor().max(1.0) as usize;
+    for floor in 0..floors {
+        for column in 0..4 {
+            for face in 0..4 {
+                let q = Quat::from_rotation_y(face as f32 * std::f32::consts::FRAC_PI_2);
+                let x = -0.36 + column as f32 * 0.24;
+                let y = (floor as f32 * 3.2 + 1.5) / height;
+                let n = v.len() as u32;
+                for (dx, dy) in [(-0.07, -0.55), (0.07, -0.55), (0.07, 0.55), (-0.07, 0.55)] {
+                    v.push(q * Vec3::new(x + dx, y + dy / height, 0.503));
+                }
+                ix.extend([[n, n + 1, n + 2], [n, n + 2, n + 3]]);
+            }
+        }
+    }
+    crate::environment::mesh(&v, &ix)
+}
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -79,6 +100,12 @@ pub fn spawn(
     plan: &WorldPlan,
     layout: &WorldLayout,
 ) {
+    let glass = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.16, 0.28, 0.32),
+        perceptual_roughness: 0.35,
+        ..default()
+    });
+    let mut facades = HashMap::<u32, Handle<Mesh>>::new();
     let proxy_mesh = meshes.add(cube(1.0, 0.0));
     let mut shapes = HashMap::<(u8, u32), (Handle<Mesh>, Handle<Mesh>)>::new();
     let mut palette = Vec::new();
@@ -97,7 +124,7 @@ pub fn spawn(
             ..default()
         }));
     }
-    for b in &layout.buildings {
+    for b in layout.all_buildings() {
         let index = plan
             .archetypes
             .archetypes
@@ -197,7 +224,7 @@ pub fn spawn(
                 Mesh3d(roof_mesh),
                 MeshMaterial3d(art.dark.clone()),
                 Transform::from_scale(Vec3::new(size.x + 0.3, size.y, size.z + 0.3)),
-                near,
+                near.clone(),
                 BuildingLod { near: true },
             ))
             .id();
@@ -210,6 +237,22 @@ pub fn spawn(
                 BuildingLod { near: false },
             ))
             .id();
-        commands.entity(root).add_children(&[wall, roof, proxy]);
+        let windows = commands
+            .spawn((
+                Mesh3d(
+                    facades
+                        .entry(size.y.to_bits())
+                        .or_insert_with(|| meshes.add(facade(size.y)))
+                        .clone(),
+                ),
+                MeshMaterial3d(glass.clone()),
+                Transform::from_scale(size),
+                near,
+                BuildingLod { near: true },
+            ))
+            .id();
+        commands
+            .entity(root)
+            .add_children(&[wall, roof, proxy, windows]);
     }
 }

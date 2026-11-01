@@ -1,6 +1,6 @@
 # ROAD / DASH
 
-A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland → city → hills route against seven rivals, dodge two-way traffic, throw punches, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, preserving current momentum.
+A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland → city → hills route against fourteen rivals, dodge two-way traffic, throw punches and kicks, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, preserving current momentum.
 
 This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data.
 
@@ -43,7 +43,8 @@ The Linux build uses X11 (and XWayland on Wayland desktops). Windows and macOS a
 | S / Down | Brake |
 | A, D / Left, Right | Steer across the road |
 | Left or Right Shift | Nitro while accelerating |
-| J / K | Punch left / right |
+| J / K or left / right mouse | Punch left / right |
+| Space | Kick nearest reachable target to either side |
 | C | Cycle three camera distances |
 | Esc | Pause / resume |
 | M | Mute / unmute audio |
@@ -76,9 +77,9 @@ package listed above. Multiple pads use the lowest entity ID; disconnect clears 
 - A 6.85 km authored point-to-point course: open farmland, dense city streets, then rolling hills. Eight riders, nine ordered gates, one finish.
 - A separate approximately 2 km handling test fixture, headless track validation and F4 spline/normal/bounds/spawn inspection.
 - Seeded farms/fences and solid cows that lift riders on contact; city cross traffic and walking sidewalk pedestrians; elevated hill terrain and guardrails.
-- Original procedural 3D bikes, riders, cars, road markings, trees, farms, buildings, cows, pedestrians and start/finish markers.
+- Authored textured rider and sport motorcycle meshes, plus original procedural cars, road markings, trees, farms, buildings, cows, pedestrians and start/finish markers. Human skins follow the existing ragdoll joints.
 - PBR materials, directional shadows, atmospheric distance fog, and a speed-sensitive chase camera.
-- Seven AI racers with corner speed adjustment, lane changes, traffic avoidance, and attacks.
+- Fourteen AI racers with pursuit, speed matching, lane changes, traffic avoidance, attacks, and selective downed-rider hunts.
 - Twelve traffic vehicles traveling in both directions.
 - Three direct side-by-side punches knock out a target when each consecutive hit is within three seconds; misses, gaps and duplicate contact do not count.
 - Armor, nitro, collision detection, crash recovery and camera shake.
@@ -102,7 +103,7 @@ values remain RoadDash-authored. [Correction evidence](docs/testing/HANDLING_COR
 
 ## Current scope
 
-This is an arcade prototype, not a finished commercial remake. Native riding now uses an assisted dynamic chassis with two raycast wheels, suspension, combined grip limits, torque/gears and upright feedback. A retained kinematic adapter is available for regression comparison. Ragdolls and wrecks are physically simulated. The environment and characters are procedural low-poly placeholders, with authored elevation and banking. There is one playable point-to-point course and three handling presets. Police pursuits, career events, purchasable upgrades, animation rigs, multiplayer, and production art remain future work. Credits are saved but cannot yet be spent.
+This is an arcade prototype, not a finished commercial remake. Native riding now uses an assisted dynamic chassis with two raycast wheels, suspension, combined grip limits, torque/gears and upright feedback. A retained kinematic adapter is available for regression comparison. Ragdolls and wrecks are physically simulated. The environment remains procedural; authored rider/bike meshes now replace the primitives, with prototype skin bindings and existing physical ragdolls. There is one playable point-to-point course and three handling presets. Police pursuits, career events, purchasable upgrades, polished animation clips, multiplayer, and the wider production art pass remain future work. Credits are saved but cannot yet be spent.
 
 ## Production blueprint v3 progress
 
@@ -412,7 +413,7 @@ PDF pp. 20, 26-27, 35; references R02, R07 optional, R08.
 - [ ] **P11-007** Give every scenery family LOD, collision, and audio metadata; reveal recognizable landmarks or encounters every 10-25 s without hidden active hazards/pop-in.
 - [ ] **P11-008** Animate riding, fighting, crash, walking, and remount through a production rig; add lightweight animal animation/AI and safe cliff recovery.
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
-- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](src/human.rs).
+- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](src/human.rs); the new authored skins use [four-state/physics parity tests](src/models/tests.rs) and [native receipts](docs/testing/MODELS.md).
 - [ ] **P11-010** **Exit gate:** the original town/farm/cliff art replaces graybox assets without changing physics/race rules and fits measured budgets.
 
 ### Part 12 - Garage, economy, progression, and saves
@@ -642,3 +643,31 @@ Profiles now declare schema version 1; previous versionless profiles retain cred
 ## License
 
 MIT for this project's source. Bevy and Rapier retain their respective upstream licenses. `vendor/cpal` is Apache-2.0 licensed CPAL 0.15.3, with a small ALSA underrun recovery patch documented in `vendor/cpal/ROADDASH-PATCH.md`. Road Rash is a trademark of its respective owners; this project is an independent game prototype.
+
+## City and combat follow-up (2026-10-31)
+
+- [x] **CITY-01** Add side-road grids and denser urban blocks; compare road/sidewalk/frontage proportions against the verified original disc. Evidence: [city/combat verification](docs/testing/CITY_COMBAT.md), 657 solid buildings, native city captures and 9.56 ms p95 survey.
+- [x] **COMBAT-01** Space auto-side kick pushes bikes and animates the selected leg; mouse buttons punch left/right. Evidence: nearest-side/push/input tests and native left/right kick captures in [verification](docs/testing/CITY_COMBAT.md).
+- [x] **RIDE-01** Correct rival camera obstruction and supported contact-yaw instability; add symmetric input-only lean presentation. Evidence: crowd-camera/yaw tests, seven native bank captures and crash/recovery smoke in [verification](docs/testing/CITY_COMBAT.md).
+
+These tasks follow the user's city/combat correction, depend on the current world generator and fixed simulation, and require road-height captures, packed-rider gameplay and regression tests. CITY-01 belongs to world development; COMBAT-01 to Part 05; RIDE-01 to Parts 03/04. Previous structural counts remain historical evidence, not acceptance of the requested dense city.
+
+- [x] **CITY-02** Join neighboring city buildings into continuous street fronts. Reason: the user rejected detached six-metre gaps; part: world development; dependencies: CITY-01, solid lots and recovery routing; acceptance: shared-edge infill, clear streets, exposed-perimeter recovery paths and road-height screenshots; verification: 347 shared-edge sections, physics rays for every infill, 113 passing tests and native road-height survey; [evidence](docs/testing/FRONTAGES.md).
+
+- [x] **CITY-03** Improve sidewalks, plant solid street trees and raise urban buildings. Reason: user requested better pavement and a taller, greener city; part: world development; dependencies: CITY-01/02 and shared ground; acceptance: flat sidewalk shading, clear walking strip, solid trees outside junctions, taller whole-floor buildings without lot changes; verification: geometry/physics tests, native survey and crash/recovery smoke; [evidence](docs/testing/STREETSCAPE.md).
+
+
+- [x] **COMBAT-02** Strengthen kick displacement and adopt the fifteen-racer CITY roster with reference-inspired shirt, helmet and bike colors. Reason: user requested original roster/color schemes and stronger kicks; part: combat/world; dependencies: COMBAT-01 and shared human meshes; acceptance: 14 named rivals, consistent minimap/ragdoll colors and stronger signed physical shove; verification: combat/UI tests and native captures; [evidence](docs/testing/RIDERS.md).
+- [x] **CITY-04** Thin sidewalk trees from 22 to 44 m spacing. Reason: user found the avenue overplanted; part: world; dependencies: CITY-03; acceptance: roughly half the sites with existing clearances/collision; verification: placement tests and native survey.
+- [x] **RIDE-02** Require player steering through curves, increase turn strength 50%, and topple abandoned bikes. Reason: user reported automatic driving and upright wrecks; part: Parts 03/04; dependencies: dynamic chassis and recovery; acceptance: neutral heading stays independent of road, stronger turn settings and physical roll without linear launch; verification: heading/roll/momentum/remount regressions and native smoke.
+- [x] **AI-01** Add measured rival pursuit, speed matching and selective attacks on downed riders. Reason: user requested reference-inspired fighting/chaos; part: AI follow-up; dependencies: relative contacts and crash recovery; acceptance: start grace, bounded approach, alongside spacing, gradual speed matching, limited downed hunts and attack cooldowns; verification: deterministic pursuit scenarios, regression suite and native survey. Original relationship-table parity remains future work.
+
+- [x] **AI-02** Match individual level-zero rival pace/stats and relationship-driven race/follow/fight choices; start YOU last with 12 m gaps. Reason: user rejected uniform aggression and crowded/front starts; part: AI follow-up/track setup; dependencies: AI-01 and supported dynamic grid; acceptance: distinct validated profiles, selective hostility and hit reactions, per-rider pace/strength/stamina/weight, solid separated rear grid and retry; verification: profile/decision/physical-grid tests plus native smoke/survey; [evidence](docs/testing/PERSONALITIES.md).
+- [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
+
+- [x] **ART-01** Research rigged character sources matching the user's faceted, natural-proportion references and biker gear. Reason: user requested a visual upgrade; part: character art; dependencies: reference images and shared human lifecycle; acceptance: sourced shortlist, format/rig claims and license review; verification: publisher/marketplace pages reviewed 2026-10-31; [findings](docs/third_party/CHARACTER_CANDIDATES.md).
+- [ ] **ART-02** Acquire a licensed pilot rider and integrate one shared skinned avatar across riding, fighting, walking and ragdoll. Original authored pilot integration is tracked under ART-03; complete production deformation/animation/LOD acceptance remains open. Reason: researched assets are not yet working models; part: character art/animation; dependencies: ART-01, model selection/acquisition and exact archive license; acceptance: biker outfit/color zones, coherent rig and recovery, unchanged physics/controls, 15-racer performance/LOD acceptance; verification: deformation/animation/ragdoll tests, native visual checks and profiling.
+
+- [x] **ART-03** Integrate the approved authored rider and motorcycle as presentation-only replacements, retaining all accepted ragdoll bodies/joints and crash/recovery behavior. Reason: explicit user request; part: 11 art; dependencies: authored GLBs/seat pose and existing visual joints; acceptance: shared rider through riding/walking/ragdoll, bike/wreck replacement, unchanged physics trajectories, complete recovery, native visual check; verification: [tests](src/models/tests.rs), [evidence](docs/testing/MODELS.md).
+- [ ] **ART-04** Polish the eleven-joint visual retarget and authored animation transitions without changing simulation. Reason: authoring rig has 20 bones and the current fingers/pose drivers are prototypes; part: 11 art/animation; dependencies: ART-03 and static pose library; acceptance: clean grip/fist/deformation and contact-aware transitions at gameplay speeds; verification: pose review, native clips and repeated physics parity tests.
+- [ ] **ART-05** Author distance LODs and validate the detailed rider/bike budget on more hardware. Reason: LOD0 replaces cheap primitives across 15 racers; part: 11 optimization; dependencies: ART-03 and profiler; acceptance: readable silhouettes, stable collision-independent swaps and measured frame budget; verification: native distance/performance surveys and Windows hardware review.

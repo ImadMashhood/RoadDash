@@ -146,3 +146,82 @@ and exceptional rescue feedback/penalty. Added spatial/support/seam/capsule test
 full JSON/SVG export and native 15-section/1080p survey. Exact measured gates and
 remaining platform limits are recorded in world/COMPLETION_TESTS.md. No new media,
 third-party source, dependency or additional course; prior evidence retained.
+
+## 2026-10-31 — Initial city/combat follow-up (partial)
+
+Added buffered Space auto-target lateral kicks and mouse punches; excluded rival rider roots from camera obstruction. Added kick edge consumption/context-clear test. CITY-01, COMBAT-01 and RIDE-01 remain unchecked. No city geometry, original-spacing calibration or lean/contact-heading fix is claimed. Original disc remains outside Git.
+
+## 2026-10-31 — Complete city/combat correction
+
+Added 410 supported solid city buildings, four avenues on each side, cross streets, closer frontages, curb-adjacent sidewalks, window facades and batched street meshes. Retained original 247 IDs and course gates. Verified original City lane/shoulder metadata with local disc, no original media shipped. Completed typed auto-side kicks, leg poses, mouse punches, supported contact-yaw stabilization and seven symmetric steering-only banks. Corrected camera obstruction by rivals. 112 tests passed; format/Clippy/debug/release/audit passed. Native 1080p city survey: 657 roots and 9.56 ms p95; farm/hill crash-recovery-to-finish smoke passed. CITY-01/COMBAT-01/RIDE-01 checked; no next part started.
+
+## 2026-10-31 — CITY-02 shared-edge frontage correction
+
+Closed detached-city gaps with 347 solid full-depth infill sections, procedural windows and flat facade normals. Exact shared edges follow curved blocks. Streets and unrelated buildings are excluded; all original lot IDs remain. Recovery now searches around joined blocks and excludes interior graph corners. Added edge/road-clearance regression and physical ray coverage for every infill. All 113 tests, fmt, Clippy, debug/release builds, audit and source-input checks passed. Native road-height/grid views reviewed; survey 9.79 ms p95 at 1080p; crash/remount/finish smoke passed. Evidence: testing/FRONTAGES.md.
+
+## 2026-10-31 — CITY-03 sidewalk, tree and skyline correction
+
+Replaced rounded sidewalk shading with flat normals and batched concrete paving
+with expansion joints. Added original collidable street trees in flush curbside
+beds, retaining over 2 m beside trunks and clear junctions. Increased urban floors
+with an authored 1.6 multiplier and consistent facade/roof/collision heights;
+preserved source snapshots, lot IDs, quotas and rural heights. ADR-024 records
+the design. 115 tests, locked builds, checks/audit, native survey (9.66 ms p95 at
+1080p) and crash/remount/finish smoke pass. Evidence: testing/STREETSCAPE.md.
+
+## 2026-10-31 — Roster, kicks, steering, wrecks and pursuit
+
+User corrections: stronger kicks, fewer sidewalk trees, original roster/color
+schemes, less automatic steering, fallen motorcycles, 50% stronger turning and
+measured aggressive rivals. Implemented 15-racer CITY lineup and independent
+helmet/shirt/bike swatches, 8 m/s kicks, 44 m tree spacing, body-heading player
+forces, stronger authored turn response/caps, physical wreck roll and deterministic
+pursuit with speed matching/selective downed hunts. R01 inspected reference-only;
+no source/media copied. ADR-025 and testing/RIDERS.md record verification/limits.
+
+## 2026-10-31 — AI-02 individual personalities and rear starting grid
+
+Replaced generic pursuit/periodic attacks and ID-based speed with validated
+original level-zero profile observations and relationship-driven decisions.
+Integrated individual pace, reach, kick odds, strength, attack stamina and physical
+rider weight; added per-rider hit responses/return to baseline. Player starts last,
+12 m between racers, with extended solid approach and negative-progress projection.
+Retry accepts legacy shorter grids. Original full-career/random/event parity is
+tracked under AI-03; ADR-026 and testing/PERSONALITIES.md record scope/evidence.
+
+AI-02 verification: 120 tests, format/Clippy/locked builds, provenance/source checks,
+final world inspection and native survey/smoke pass (1080p p95 14.74 ms).
+Native testing caught and fixed terrain intrusion beneath the expanded approach;
+new test rejects that condition. AI-02 closed; AI-03 full parity stays open.
+
+## 2026-10-31 — ART-01 character-source research
+
+Reviewed user art references and Synty, Quaternius and a CGTrader biker candidate.
+Recorded styles, source formats, rig claims, costs and redistribution limitations
+in third_party/CHARACTER_CANDIDATES.md. Found conflicting CC0 pack labels versus
+Quaternius's current QAL; no new archive license inferred. No assets purchased,
+downloaded or integrated. ART-01 research complete; ART-02 pilot integration open.
+
+## 2026-10-31 — ART-03 authored models, unchanged accepted ragdoll
+
+- Created codex/seated-models-preserve-ragdoll for the explicit user request.
+- Integrated the independently authored textured rider and sport motorcycle,
+  preserving roster colors, existing procedural gestures/lean, runner/pedestrian
+  appearance, detached skin/wreck lifecycle and all collision simulation.
+- Added a bounded visual-only mesh intake and reproducible GLB/atlas export;
+  kept sources outside runtime assets and registered provenance/hashes.
+- GPU skin follows existing eleven visual joints with standing/seated bind
+  surfaces. Recovery has three graphics-hook lines; normalized remaining source,
+  body specifications, vehicle controller and lockfile match the baseline.
+- Differential tests find zero maximum body position difference across eleven
+  bodies/180 fixed ticks; full recovery and skin cleanup match. 125 tests pass
+  (one optional soak ignored), format/Clippy/locked builds and audit/source tests
+  pass. Native race/NPC crash/remount/audio and world inspection/survey pass;
+  warmed 1080p city p95 12.90 ms on this host. See testing/MODELS.md.
+- Corrected headless fixture resource requirements and runtime asset lookup found
+  during verification; final checks were rerun. Added texture readiness polling
+  and linear normal/roughness loading. Existing physics/camera/input behavior was
+  not retuned. A legacy-visual environment switch permits direct comparison.
+- ART-03 checked; broader ART-02 production acceptance stays open. Added ART-04
+  animation/deformation polish and ART-05 LOD/more-hardware gates. No push/PR,
+  platform certification or legal clearance claimed. ADR-027 records the choice.

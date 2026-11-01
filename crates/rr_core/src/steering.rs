@@ -147,3 +147,27 @@ mod tests {
         }
     }
 }
+
+/// Continuous interpolation through the seven bank poses in the supplied visual
+/// reference. Angle is authored (~37 degrees at full lock), not extracted physics.
+pub fn visual_bank(force: f32) -> f32 {
+    if force.is_finite() {
+        force.clamp(-1.0, 1.0) * 0.65
+    } else {
+        0.0
+    }
+}
+
+#[cfg(test)]
+mod pose_tests {
+    #[test]
+    fn seven_poses_are_symmetric_and_input_only() {
+        for step in 0..=3 {
+            let input = step as f32 / 3.0;
+            assert_eq!(super::visual_bank(input), -super::visual_bank(-input));
+        }
+        assert_eq!(super::visual_bank(0.0), 0.0);
+        assert_eq!(super::visual_bank(f32::NAN), 0.0);
+        assert_eq!(super::visual_bank(2.0), 0.65);
+    }
+}

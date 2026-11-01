@@ -364,3 +364,179 @@ recovery events rather than assume floating-point lockstep. Art/streaming swaps
 must preserve IDs, reservations and collision. Rollback can disable the canonical
 world spawner but must not double-spawn legacy and generated buildings or erase
 source snapshots/earlier receipts. Acceptance evidence: world/COMPLETION_TESTS.md.
+
+## ADR-021 — 2026-10-31 — Initial combat/camera correction
+
+Nearby rider bodies obstructed the chase-camera cast. Exclude rider roots while retaining scenery obstruction and existing local-body exclusions. Alternatives include fully disabling obstruction (rejected because buildings remain solid). Mouse punch and Space kick edges use the existing render-to-fixed buffer. Kicks select the closest clear direct-strike target on either side and add lateral velocity without counting a rider punch knockout. No new dependencies or assets. Native camera/contact and kick animation acceptance remains open; revert these small changes independently of world generation if needed.
+
+## ADR-022 — 2026-10-31 — City extensions and controlled riding yaw
+
+The original quota layout did not supply neighborhood depth. Preserve its 247
+IDs/quotas and add independently identified city infill and four avenues on
+each side, linked by block cross streets and existing junctions. Configurable
+bounded city dimensions live in rr_content's construction schema. Every new
+lot clears main/secondary streets and existing lots, shares earthworks/pad
+support, uses persistent collision and enters recovery routing. Batch street
+geometry by material to avoid thousands of draw submissions. Extend terrain
+coverage to support the outer neighborhood. Facade windows share cached meshes.
+Alternatives: overwrite source quotas or create collisionless skyline scenery;
+rejected because they erase history or break reachable-world collision.
+
+Original disc measurements support curb-adjacent 3 m city sidewalks; retain a
+2.5 m physical frontage clearance. Tradeoff: a curved corridor creates a
+road-relative grid rather than one global Manhattan orientation. Additional
+roads are scenery/access, not alternate race routes. No dependencies changed.
+Rollback may remove the additions while retaining canonical lots; do not remove
+shared collision while leaving reachable visuals.
+
+For riding, bounded angular-velocity steering removes contact-induced yaw
+windup while supported. Linear impacts/pushes remain physical; airborne and
+ragdoll angular motion is unaffected. This is an arcade stabilization decision,
+not original binary parity. Bank is input-only with smooth symmetric visual
+poses. Typed kick actions select nearest valid side, push at the center of mass,
+and animate the corresponding leg without incrementing the rider punch chain.
+
+## ADR-023 — 2026-10-31 — Shared-edge city infill
+
+The user clarified that city buildings must touch, not merely be more numerous.
+Uniformly enlarging rotated boxes leaves wedge gaps on curves and can obstruct
+intersections. Instead add solid full-depth building infill joining the exact end
+faces of adjacent city buildings. Its roof meets the lower neighboring roof and
+its base extends into the shared ground. Preserve all canonical lot IDs and
+archetypes. Reject joins crossing main-road/side-street reservations or unrelated
+building footprints. Windows are procedural; collision remains resident when
+visuals cull. No new dependency, imported art or original-game code.
+
+The union of previously detached buildings changes walking topology. Runtime
+navigation includes infill bounds and searches a wider block neighborhood;
+interior corners are removed from graph candidates. Audit fixtures must start
+at exposed perimeter points, not in former side yards now occupied by buildings.
+This is not a runtime teleport or a relaxation of collision checks. Tradeoffs:
+infill is additional building volume rather than a new canonical lot; conservative
+rectangular navigation bounds may route farther than the rendered facade. Remove
+infill and its navigation blockers together to roll back; retain original quotas.
+
+## ADR-024 — 2026-10-31 — Sidewalk shading, street trees and taller city
+
+The user requested improved sidewalks, sidewalk trees and taller buildings.
+Use flat mesh normals so curb walls do not round the pavement's lighting.
+Batch each main sidewalk into one mesh, sampled every 2 m, with subtle original
+procedural expansion joints. Keep existing curb ramps and physical rideable
+surfaces. Alternatives were a texture dependency or disconnected slab props;
+neither fixes the underlying normal interpolation as directly.
+
+Place original procedural trees every 22 m near the curb, excluding junction
+sightlines and structural blockers. Solid trunks and conservative crowns remain
+resident while foliage visuals cull. Flush cosmetic beds leave over 2 m beside
+the trunk for walking. Shared meshes and materials bound rendering costs.
+This adds deliberate physical obstacles, so contact/recovery regressions matter.
+
+Apply an authored 1.6 city floor-count multiplier, rounded up to whole floors,
+to urban canonical and supplemental buildings. Derive rendering, facades, roofs,
+infill and collision from the same resulting dimensions. Preserve original
+source snapshots, canonical quotas, lot footprints and IDs; this latest user
+request supersedes the old effective urban height ranges. Validation allows the
+scaled archetype range plus one rounding floor. Rural heights remain unchanged.
+No dependency or third-party media is added. Tradeoffs: procedural rather than
+production art; taller silhouettes may increase visible facade work. Roll back
+via height scale 1.0 and removing streetscape spawning together with its tests.
+
+## ADR-025 — 2026-10-31 — Roster, pursuit and physical steering corrections
+
+Use fifteen racers and a stable CITY reference name set. Independently authored
+shirt/helmet/bike swatches approximate locally inspected original color schemes;
+shared human segments preserve seated/walking/ragdoll consistency. Keep original
+RoadDash geometry and bike performance. R01 remains reference-only with unresolved
+source reuse permission; no media or source imported.
+
+Raise kick impulse from 3 to 8 m/s; existing decay gives roughly lane-width free
+travel. Original combat changes steering words, so a literal SI distance cannot
+be asserted. Reduce sidewalk tree frequency from 22 to 44 m. Multiply all authored
+turn_response values by 1.5; preserve steering buildup timing and visual bank.
+
+For dynamic players, use body heading for tire force and heading servo instead
+of road tangent, and remove automatic road-curvature force compensation. AI keeps
+its road-following adapter. Abandoned bikes receive roll angular velocity and a
+narrower profile collider; linear momentum and rider separation remain unchanged.
+Alternative of a scripted fallen pose was rejected because it bypasses contacts.
+
+Pure rr_core pursuit rules choose nearby targets with start grace, intermittent
+engagement and limited downed hunts. Match speed using gap feedback, keep 1.8 m
+alongside spacing, and throttle/brake gradually. Downed targets use their actual
+runner/torso pose. Traffic avoidance retains priority. AI attack cooldowns exceed
+one second. This is reference-inspired behavior, not instruction-level parity.
+Tradeoffs: simple deterministic targeting rather than full original relationship
+tables; more racers increase simulation load. Revert content, roster validation,
+UI counts and pursuit together if rolling back. No dependency migration.
+
+## ADR-026 — 2026-10-31 — Individual relationships and a supported rear grid
+
+The user rejected uniformly aggressive rivals. Replace rider-ID speed/hunting
+heuristics with validated level-zero profile observations, normalized net
+relationships and the original race/follow/fight threshold structure. Store
+numeric profiles in content/rival_profiles.json; pure decisions stay in rr_core,
+validation in rr_content. Cache parsed builtins once; avoid per-tick file reads.
+Use individual hit responses and decay rather than automatically retaliating.
+Shared fallback personalities for CITY spares remain shared; retain distinct
+strength/endurance/weight. Keep three-hit knockout rules; apply strength/endurance
+to kick force, attack timing and stamina budget instead of changing that contract.
+Use weight consistently in attached mass, suspension, forces and upright torque.
+
+Move YOU behind 14 rivals, 12 m apart on both grids. Extend the open approach
+road based on the rear-most authored spawn, and project negative approach progress
+correctly. Merely moving spawn points would leave unsupported bikes or project
+everyone to zero. Bound authored pre-grid extent to 250 m. Legacy tracks remain
+loadable and retry falls back safely when fewer slots are authored.
+
+Alternatives rejected: arbitrary cautious/aggressive labels by name, copying
+unlicensed C++ or shipping the game executable. No dependencies changed. Tradeoff:
+net-score smoothing approximates original three-axis easing, and current gameplay
+uses one level rather than original career/random streams. AI-03 preserves these
+open parity requirements. Rollback profiles/controller/grid/projection together;
+retain physical road support for every authored spawn.
+
+## ADR-027 — 2026-10-31 — Replace presentation while retaining the accepted ragdoll
+
+Problem: the user approved the current physical crashes and explicitly required
+that integrating the authored FlushTrim rider and sport motorcycle preserve them.
+The supplied art has a 20-bone authoring rig; runtime uses eleven independently
+simulated body segments and existing seated/runner visual pose drivers.
+
+Selected approach: a renderer-only eleven-joint skin binding. Bake the authored
+standing and seated-0003 surfaces/UVs/weights, folding authoring bone influences
+onto the current visual segment entities. Separate inverse-bind arrays allow the
+approved seated fit and standing mesh to follow the existing presentation poses.
+The physics bodies remain unscaled. The ragdoll merely supplies its interpolated
+visual children as skin joints. No animated root motion, colliders from imported
+meshes, physics motors, new collision filters, or fixed-step systems are added.
+Attach each detached skin below the first body visual so ordinary body teardown
+also removes the skin. Pedestrians and recovery runners share the standing skin.
+Retain all shirt/helmet/bike swatches and minimap palette semantics.
+
+Bake the original GLBs into a bounded, validated renderer-only buffer; keep source
+GLBs and seat/contact metadata separately in art/source. The buffer contains no
+physics data. Load meshes/materials once and reuse handles; atlas maps preserve
+leather detail, with normal/roughness images loaded as linear data. Existing
+chassis/wreck and wheel state drive the replacement motorcycle's presentation.
+No dependency changes: Bevy 0.17.3 and Rapier 0.32.0 remain pinned.
+
+Alternatives: adopting the author's whole rig as a new simulated skeleton would
+change the accepted physics; replacing physics with animated crash clips would
+lose real collisions. Both were rejected. A fully independent 20-bone render
+retargeter is possible later, but is unnecessary for this focused substitution.
+Tradeoffs: the existing coarse pose drivers remain; fingers, anatomical skin
+weight polish, authored transitions and distance LOD are still future art work.
+Standing skin and coarse colliders approximate one another; no claim that the
+visual surface is a new collision shape is made.
+
+Verification: compare every body collider, mass, damping, friction, restitution,
+CCD and joint descriptor between old/new visuals, then compare all eleven body
+poses/velocities for 180 fixed ticks. Also compare the complete crash/get-up/run/
+remount lifecycle and skin cleanup. Native visual/recovery/performance evidence
+belongs in testing/MODELS.md. R08's installed 0.17.3 skinning/asset APIs were
+consulted; no new research dependency or reference-game media/code was added.
+
+Rollback: ROADDASH_LEGACY_MODELS=1 selects the old presentation at startup while
+retaining identical simulation. Removing the model hooks and assets also restores
+the old presentation; no saves, content IDs or physics migrations are involved.
+Future animation must consume simulation poses, never overwrite body transforms.

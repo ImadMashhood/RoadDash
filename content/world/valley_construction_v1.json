@@ -71,5 +71,6 @@
     }
   ],
   "terrain_far_step_m": 10,
-  "terrain_near_m": 350
+  "terrain_near_m": 350,
+  "city_height_scale": 1.6
 }

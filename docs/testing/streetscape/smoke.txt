@@ -1,0 +1,7 @@
+2026-10-31T22:52:40.348981Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-10-31T22:52:40.577891Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+2026-10-31T22:52:43.380851Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+2026-10-31T22:52:43.388354Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 0
+Audio output initialized: 4 playback sinks
+Render smoke test passed: farm crash -> remount -> city/hills -> hill crash -> remount -> finish

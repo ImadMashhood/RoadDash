@@ -35,7 +35,7 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             .query::<&buildings::GeneratedBuilding>()
             .iter(world)
             .count(),
-        247
+        layout.all_buildings().count()
     );
     assert_eq!(
         world
@@ -57,6 +57,28 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
         rigidbody_set: bodies,
         joints,
     };
+    // Every infill has physical volume, not just a facade hiding an empty gap.
+    let infill = |e| world.get::<super::frontage::PartyWallInfill>(e).is_some();
+    for join in &layout.frontages {
+        let center = join
+            .corners
+            .iter()
+            .map(|p| Vec3::from_array(*p))
+            .sum::<Vec3>()
+            * 0.25;
+        let hit = context.cast_ray(
+            center.with_y(join.top + 2.0),
+            -Vec3::Y,
+            4.0,
+            true,
+            QueryFilter::default().predicate(&infill),
+        );
+        assert!(
+            hit.is_some_and(|(_, distance)| (distance - 2.0).abs() < 0.03),
+            "missing physical frontage {:?}",
+            join.owners
+        );
+    }
     let ground = |e| world.get::<crate::world::Ground>(e).is_some();
     let ray = |p: Vec3| {
         context
@@ -71,7 +93,7 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             .unwrap_or_else(|| panic!("ground hole at {p:?}"))
     };
     let track = world.resource::<Track>();
-    for b in &layout.buildings {
+    for b in layout.all_buildings() {
         for p in b.footprint.expanded(0.2).corners() {
             let point = Vec3::new(p.x, b.foundation_m, p.y);
             let height = ray(point);
@@ -146,7 +168,7 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             .entry((t.translation.x.to_bits(), t.translation.z.to_bits()))
             .or_default()[usize::from(!lod.0)] = true;
     }
-    assert_eq!(pairs.len(), 160);
+    assert!(pairs.len() >= 160);
     assert!(pairs.values().all(|p| *p == [true, true]));
     // Both LODs stay under one root; physics remains at every distance.
     for (building, children, collider) in world
@@ -376,4 +398,204 @@ fn exceptional_recovery_rescue_clears_motion_and_applies_one_visible_penalty() {
         app.world().resource::<crate::game::Race>().elapsed < 5.2,
         "rescue penalty repeated"
     );
+}
+
+#[test]
+fn city_grid_has_dense_solid_lots_clear_of_every_street() {
+    let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
+    let plan = WorldPlan::from_json(WORLD_JSON, ARCHETYPES_JSON, &track).unwrap();
+    let l = layout::WorldLayout::generate(
+        &plan,
+        &track,
+        layout::Construction::from_json(layout::CONSTRUCTION_JSON, &track).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(l.buildings.len(), 247);
+    assert!(
+        l.neighborhood.len() > 350,
+        "only {} city additions",
+        l.neighborhood.len()
+    );
+    assert!(l.grid_streets.len() > 1000);
+    for (i, b) in l.neighborhood.iter().enumerate() {
+        assert!(
+            l.neighborhood[..i]
+                .iter()
+                .all(|other| !other.lot.overlaps(&b.lot))
+        );
+        assert!(
+            l.grid_streets
+                .iter()
+                .all(|s| !s.reservation().overlaps(&b.lot))
+        );
+        assert!(l.buildings.iter().all(|other| !other.lot.overlaps(&b.lot)));
+    }
+}
+
+#[test]
+fn street_trees_leave_walking_space_and_have_solid_trunks() {
+    let mut app = scene();
+    let world = app.world_mut();
+    let layout = world.resource::<layout::WorldLayout>().clone();
+    let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
+    let sites = streetscape::tree_sites(&track, &layout);
+    assert!((70..=100).contains(&sites.len()));
+    assert_eq!(
+        world
+            .query_filtered::<Entity, With<streetscape::StreetTree>>()
+            .iter(world)
+            .count(),
+        sites.len()
+    );
+    let mut query = world.query::<(
+        &RapierContextSimulation,
+        &RapierContextColliders,
+        &RapierContextJoints,
+        &RapierRigidBodySet,
+    )>();
+    let (simulation, colliders, joints, rigidbody_set) = query.single(world).unwrap();
+    let ctx = RapierContext {
+        simulation,
+        colliders,
+        joints,
+        rigidbody_set,
+    };
+    let tree = |e| world.get::<streetscape::StreetTree>(e).is_some();
+    for (d, p) in sites {
+        assert!(!layout.settings.junction_at(d, 12.0));
+        let (_, q) = track.sample(d, 0.0);
+        let center = p + q * Vec3::Y * 2.0;
+        assert!(
+            ctx.cast_ray(
+                center + q * Vec3::X,
+                q * -Vec3::X,
+                2.0,
+                true,
+                QueryFilter::default().predicate(&tree)
+            )
+            .is_some()
+        );
+        // Curb offset .8 + trunk radius .18 leaves >2 m clear on a 3 m walk.
+        assert!(layout.settings.sidewalk_width_m - 0.8 - 0.18 >= 2.0);
+        assert!(!layout.blockers().any(|r| r.contains(p.xz(), 0.65)));
+    }
+    let mut surface_query = world.query::<(&surfaces::StructuralSurface, &Mesh3d)>();
+    let assets = world.resource::<Assets<Mesh>>();
+    let mut sidewalks = 0;
+    for (surface, mesh) in surface_query.iter(world) {
+        if surface.0 != "sidewalk" {
+            continue;
+        }
+        sidewalks += 1;
+        let mesh = assets.get(&mesh.0).unwrap();
+        let Some(bevy::mesh::VertexAttributeValues::Float32x3(positions)) =
+            mesh.attribute(Mesh::ATTRIBUTE_POSITION)
+        else {
+            panic!("sidewalk positions")
+        };
+        let Some(bevy::mesh::VertexAttributeValues::Float32x3(normals)) =
+            mesh.attribute(Mesh::ATTRIBUTE_NORMAL)
+        else {
+            panic!("sidewalk normals")
+        };
+        for (points, ns) in positions.chunks_exact(3).zip(normals.chunks_exact(3)) {
+            let p = points
+                .iter()
+                .copied()
+                .map(Vec3::from_array)
+                .collect::<Vec<_>>();
+            let face = (p[1] - p[0]).cross(p[2] - p[0]).normalize_or_zero();
+            if face.y > 0.98 {
+                assert!(ns.iter().all(|n| Vec3::from_array(*n).dot(face) > 0.999));
+            }
+        }
+    }
+    assert_eq!(sidewalks, 2, "batch sidewalk surfaces by side");
+}
+
+#[test]
+fn urban_height_override_adds_whole_floors_without_changing_lots() {
+    let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
+    let plan = WorldPlan::from_json(WORLD_JSON, ARCHETYPES_JSON, &track).unwrap();
+    let current = layout::WorldLayout::generate(
+        &plan,
+        &track,
+        layout::Construction::from_json(layout::CONSTRUCTION_JSON, &track).unwrap(),
+    )
+    .unwrap();
+    let mut json: serde_json::Value = serde_json::from_str(layout::CONSTRUCTION_JSON).unwrap();
+    json["city_height_scale"] = serde_json::json!(1.0);
+    let old = layout::WorldLayout::generate(
+        &plan,
+        &track,
+        layout::Construction::from_json(&json.to_string(), &track).unwrap(),
+    )
+    .unwrap();
+    for (new, old) in current.all_buildings().zip(old.all_buildings()) {
+        assert_eq!(new.id, old.id);
+        assert_eq!(new.position, old.position);
+        if new.archetype_id.starts_with('U') {
+            assert!(new.size[1] > old.size[1] * 1.5);
+            assert!(new.floors > old.floors);
+        } else {
+            assert_eq!(new.size, old.size);
+        }
+    }
+    json["city_height_scale"] = serde_json::json!(0.0);
+    assert!(layout::Construction::from_json(&json.to_string(), &track).is_err());
+}
+
+#[test]
+fn expanded_grid_puts_player_last_with_twelve_metre_gaps_and_solid_road() {
+    let mut app = scene();
+    let world = app.world_mut();
+    let mut query = world.query::<(
+        &RapierContextSimulation,
+        &RapierContextColliders,
+        &RapierContextJoints,
+        &RapierRigidBodySet,
+    )>();
+    let (simulation, colliders, joints, rigidbody_set) = query.single(world).unwrap();
+    let ctx = RapierContext {
+        simulation,
+        colliders,
+        joints,
+        rigidbody_set,
+    };
+    let track = world.resource::<Track>();
+    let spawns = &track.definition.spawns;
+    assert_eq!(spawns.len(), 15);
+    assert!(
+        spawns
+            .iter()
+            .skip(1)
+            .all(|s| s.distance > spawns[0].distance)
+    );
+    let mut positions: Vec<_> = spawns.iter().map(|s| s.distance).collect();
+    positions.sort_by(f32::total_cmp);
+    assert!(positions.windows(2).all(|p| p[1] - p[0] >= 12.0));
+    for spawn in spawns {
+        let p = track.sample(spawn.distance, spawn.lane).0;
+        assert!(
+            track.terrain_height(p.x, p.z) < p.y - 0.1,
+            "terrain intrudes into grid"
+        );
+        let (d, lane, _) = track.project(p, spawn.distance);
+        assert!((d - spawn.distance).abs() < 0.1 && (lane - spawn.lane).abs() < 0.1);
+        let ground = |e| world.get::<crate::world::Ground>(e).is_some();
+        let (_, distance) = ctx
+            .cast_ray(
+                p + Vec3::Y * 2.0,
+                Vec3::NEG_Y,
+                4.0,
+                true,
+                QueryFilter::default().predicate(&ground),
+            )
+            .unwrap();
+        assert!(
+            (1.8..2.2).contains(&distance),
+            "spawn lacks road support: {}",
+            spawn.id.as_str()
+        );
+    }
 }

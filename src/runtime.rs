@@ -120,7 +120,18 @@ fn tick(mut clock: ResMut<SimulationClock>, race: Res<Race>) {
 fn boot(mut next: ResMut<NextState<AppScreen>>) {
     next.set(AppScreen::Loading);
 }
-fn loaded(content: Res<crate::content::GameContent>, mut next: ResMut<NextState<AppScreen>>) {
+fn loaded(
+    content: Res<crate::content::GameContent>,
+    mut next: ResMut<NextState<AppScreen>>,
+    art: Option<Res<world::Art>>,
+    server: Option<Res<AssetServer>>,
+) {
+    if let (Some(art), Some(server)) = (art, server)
+        && let Some(models) = &art.models
+        && !models.ready(&server)
+    {
+        return;
+    }
     content.0.validate().expect("validated game content");
     next.set(AppScreen::MainMenu);
 }
@@ -223,7 +234,7 @@ impl Plugin for RoadLifecyclePlugin {
                     .chain(),
             )
             .add_systems(OnEnter(AppScreen::Boot), boot)
-            .add_systems(OnEnter(AppScreen::Loading), loaded)
+            .add_systems(Update, loaded.run_if(in_state(AppScreen::Loading)))
             .add_systems(Update, screen);
     }
 }

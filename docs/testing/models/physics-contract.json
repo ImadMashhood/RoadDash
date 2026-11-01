@@ -1,0 +1,20 @@
+{
+  "baseline_commit": "989cb66f5606522c79929c619584b960dccc149e",
+  "recovery_entire_source_identical_after_removing_three_visual_hook_lines": true,
+  "recovery_normalized_sha256": "51d641520523ed9060b8e7d26c3061aa6a3e74e9678422c69d80c8e1cf0a29c3",
+  "human_body_specs_identical": true,
+  "body_specs_sha256": "1fbbef1c10cef7bed84ecbc148462caf7315b5f75887faed42ff71d6f07bb1e2",
+  "unchanged_files": {
+    "Cargo.toml": "b33bd28b6fccea3e037c655dd894398112896ffb3ec831e5521673dc40042a8e",
+    "Cargo.lock": "12b012c1517785f543755ef1bdccdeaca6d7cced33f0a58a7a62363097e9e1f8",
+    "src/vehicle.rs": "1529b2a2947c7dd40213946930808ea4cf7e93c338bfeecb61ae9905a482fca6"
+  },
+  "differential_trace": {
+    "bodies": 11,
+    "fixed_ticks": 180,
+    "max_position_error_m": 0.0,
+    "body_velocity_tolerance_mps": 0.0001,
+    "rotation_tolerance_radians": 0.001
+  },
+  "full_recovery_comparison": "PASS: crash/fall/get-up/run/mount/riding, same stage each tick; no detached skin leak"
+}

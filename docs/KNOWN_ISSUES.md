@@ -35,7 +35,7 @@ missing features, architectural debt and unverified platforms.
 - P03-TRACE: telemetry is authoritative 60 Hz, bounded to 3,600 samples; no
   fabricated 100 Hz trace or full-session persistence. Slip reports tire-demand
   saturation and lateral slip angle, not a detailed tire deformation model.
-- P05/P06/P07: no kicks/weapons/stamina, manual foot override or foot finish.
+- P05/P06/P07: kicks are implemented; weapons/stamina, manual foot override and foot finish remain open.
   Ordered bike gates are verified in P02. Recovery auto-seeks the actual bike.
 - P06-CONFINED: assisted recovery is verified in representative fallen poses,
   not arbitrary fully enclosed geometry or moving traffic traps. Collision-clear
@@ -51,7 +51,7 @@ missing features, architectural debt and unverified platforms.
 - P06-TUNING: motorcycle collision cutoffs (50 km/h longitudinal, 6 m/s side)
   are original arcade tuning; broader human balance feedback remains pending.
 - P06-TISSUE: passive spring/damping approximates tissue; no anatomical muscle
-  simulation, rigged skin or active physical animation.
+  simulation or active physical animation. ART-03 adds renderer-only skinning to the existing bodies.
 - P12-RECORDS: existing best_seconds is an aggregate legacy record; class/track
   records and migrations remain P12-005/P07-007.
 - P15: placeholder procedural art/audio; no production animal assets,
@@ -67,7 +67,7 @@ missing features, architectural debt and unverified platforms.
 
 See PROGRESS.md for task IDs, acceptance, dependencies and verification.
 
-Latest corrections: all human states share original procedural geometry/outfit;
+Historical Part 04 correction: all human states shared procedural geometry/outfit; ART-03 now replaces that presentation with the authored skin.
 production skin/rig remains future work. Latest user feedback supersedes the upright-pivot correction: bike and human now
 bank together only from steering force, with road bank removed from visual roll. Civilian jumps are
 explicit arcade clearance responses, not ordinary crash impulses; broader crowd/
@@ -75,8 +75,7 @@ low-speed pile tuning remains unverified beyond six finite clearance scenarios.
 Cross-car wipeouts are covered in both adapters, including moving-side impacts.
 
 - P03-REFERENCE: the entire Road Rash handling is not reproduced. Investigated
-  exact C++ snapshot 4e052aca; original BIKESPEC.RSC/EXE tables unavailable and user
-  confirmed no original files. Progressive steering uses authored provisional
+  exact C++ snapshot 4e052aca; original BIKESPEC.RSC/EXE tables are now available from the verified local disc, but complete calibration is not implemented. Progressive steering uses authored provisional
   timings; engine/brake/gear/grip/nitro/3D integration remain existing RoadDash
   behavior. No original-bike numerical parity or code-reuse permission claimed.
 - Camera correction: follow-lag distance is bounded in all views; manual comfort/
@@ -90,3 +89,43 @@ Cross-car wipeouts are covered in both adapters, including moving-side impacts.
   five-second penalty. See world/COMPLETION_TESTS.md for the measured performance,
   native survey and platform evidence; no universal manual-path or cross-platform
   floating-point lockstep guarantee is claimed.
+
+2026-10-31 follow-up: verified local disc matches all 341 upstream import hashes; original-data availability is no longer the handling blocker. Numerical calibration remains undone. City blocks/frontage quality remains incomplete despite historical allocation checks. Superseded by CITY_COMBAT.md: kicks now animate the selected leg; supported contact yaw and input-only lean are corrected, with automated camera/contact checks and native pose captures. Original handling parity, human subjective handling acceptance and Windows runtime remain open.
+
+CITY-02 supersedes the detached-city spacing limitation: shared-edge infill now
+joins neighboring city volumes. Road/junction clearances remain open deliberately.
+Navigation uses conservative bounds around infill, so a runner may take a wider
+route than the rendered facade requires. See testing/FRONTAGES.md for evidence.
+
+CITY-03 corrects rounded sidewalk shading and introduces curbside tree beds and
+taller urban masses. Trees are physical obstacles; junctions remain clear and a
+walking strip remains beside the trunks. Facades, foliage and paving are original
+procedural art; bespoke production assets and interiors remain future work.
+See testing/STREETSCAPE.md for local native evidence and platform limitations.
+
+Rider/combat follow-up selects a stable CITY roster; original other-course and rare
+alternate names remain research, not runtime variants. Swatches approximate original
+color schemes using procedural models. Original instruction-level handling/kick
+distance and relationship-table AI parity remain open. Deliberate downed-rider
+hunts are limited to some opponents and short approach distances; human difficulty
+tuning remains a playtest gate. See testing/RIDERS.md.
+
+AI-02 supersedes uniform rival aggression and ID-based pace: current-level profiles
+and target relationships now drive racing/following/fighting, and the player starts
+last. Net relationship easing, display-speed conversion and modern stamina/kick
+mapping are adaptations. Full career levels, event-axis/random-stream/rubber-band
+parity remain AI-03. See testing/PERSONALITIES.md. No human difficulty acceptance
+or Windows certification is claimed.
+
+ART-01 was research only; ART-03 now integrates the independently authored pilot. Production-quality skinned avatar,
+animation-to-ragdoll bone mapping and pilot asset acquisition/verification remain
+ART-02. Quaternius's current general license and old CC0 pack labels conflict;
+public raw-file redistribution must be established per acquired version.
+
+ART-03 introduces an eleven-joint visual binding for the authored rider and detailed
+motorcycle while retaining existing physics. Full 20-bone authored animation,
+closed-finger grips/fists, skin-weight refinement and distance LOD remain
+ART-04/ART-05. Detailed fairings are visual and can overhang the unchanged coarse
+bike collider. The source GLB/pose files remain in art/source; no original game
+media are redistributed. Existing RIGHTS-002 review and Windows acceptance stay
+open. Native receipts and any discovered limitations: testing/MODELS.md.

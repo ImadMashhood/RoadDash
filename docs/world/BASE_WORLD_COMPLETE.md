@@ -1,6 +1,6 @@
 # Valley Run structural world — B03–B10
 
-2026-10-30 client date. This completes the structural implementation following
+Historical 2026-10-30 structural receipt. The user subsequently rejected its visual density as complete; see ../testing/CITY_COMBAT.md for the city correction. This records the structural implementation following
 [the B00–B02 foundation](BASE_WORLD.md); source files and earlier receipts are
 preserved. Active user scope: complete the first-map procedural world. The
 supplied PDF remains design evidence, not independent agent instructions.

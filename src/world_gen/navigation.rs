@@ -8,10 +8,7 @@ fn segment_distance(p: Vec2, a: Vec2, b: Vec2) -> f32 {
     p.distance(a + edge * t)
 }
 pub fn clear(layout: &WorldLayout, from: Vec2, to: Vec2) -> bool {
-    !layout
-        .buildings
-        .iter()
-        .any(|b| b.footprint.blocks_segment(from, to, 0.4))
+    !layout.blockers().any(|b| b.blocks_segment(from, to, 0.4))
 }
 /// Returned waypoints are actual terrain-relative positions. Physics still owns
 /// movement/contact; a route never teleports the recovering actor.
@@ -24,21 +21,23 @@ pub fn route(layout: &WorldLayout, track: &Track, from: Vec3, to: Vec3) -> Optio
         return Some(vec![point(to.xz())]);
     }
     let mut nearby: Vec<_> = layout
-        .buildings
-        .iter()
-        .filter(|b| {
-            segment_distance(Vec2::from_array(b.footprint.center), from.xz(), to.xz()) < 35.0
-        })
+        .blockers()
+        .filter(|b| segment_distance(Vec2::from_array(b.center), from.xz(), to.xz()) < 150.0)
         .collect();
     nearby.sort_by(|a, b| {
-        segment_distance(Vec2::from_array(a.footprint.center), from.xz(), to.xz()).total_cmp(
-            &segment_distance(Vec2::from_array(b.footprint.center), from.xz(), to.xz()),
+        segment_distance(Vec2::from_array(a.center), from.xz(), to.xz()).total_cmp(
+            &segment_distance(Vec2::from_array(b.center), from.xz(), to.xz()),
         )
     });
-    nearby.truncate(48);
+    nearby.truncate(128);
     let mut nodes = vec![from.xz(), to.xz()];
     for b in nearby {
-        nodes.extend(b.footprint.expanded(1.0).corners());
+        nodes.extend(
+            b.expanded(1.0)
+                .corners()
+                .into_iter()
+                .filter(|p| !layout.blockers().any(|other| other.contains(*p, 0.45))),
+        );
     }
     let n = nodes.len();
     let mut costs = vec![f32::INFINITY; n];
@@ -104,10 +103,21 @@ pub fn audit(layout: &WorldLayout, track: &Track) -> Result<Vec<WalkAudit>, Stri
         let start = Vec3::from_array(b.position)
             + q * Vec3::X * (-b.lane_m.signum()) * (b.size[0] * 0.5 + 3.5)
             + q * Vec3::Z * (b.size[2] * 0.5 + 3.5);
+        // Joined buildings no longer expose their former side-yard corners.
+        // Select an actually exposed point for the audit, never a point inside
+        // the new solid infill. This changes the fixture, not runtime recovery.
+        let direction = (road - start).with_y(0.0).normalize_or_zero();
+        let mut exposed = start;
+        for _ in 0..200 {
+            if !layout.blockers().any(|r| r.contains(exposed.xz(), 0.8)) {
+                break;
+            }
+            exposed += direction * 0.5;
+        }
         let start = Vec3::new(
-            start.x,
-            track.terrain_height(start.x, start.z) + 0.95,
-            start.z,
+            exposed.x,
+            track.terrain_height(exposed.x, exposed.z) + 0.95,
+            exposed.z,
         );
         let path = route(layout, track, start, road)
             .ok_or_else(|| format!("{}: no structural foot escape route", b.id))?;

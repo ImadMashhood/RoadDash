@@ -112,3 +112,58 @@ sections with actual resolution and 1080p warmed city metrics; normal race and
 actor smoke remain separate. JSON/footprint SVG, root and geometry hashes and
 full evidence: ../world/COMPLETION_TESTS.md. Hardware/subjective gates from other
 parts are not silently closed.
+
+### 2026-10-31 initial combat/camera follow-up
+
+`cargo fmt --all --check`, workspace Clippy with `-D warnings`, workspace locked tests (107 passed, one soak ignored), and `python3 tools/audit.py` passed. Logs are local `/tmp/roaddash-followup-{clippy,tests-final,audit}.log`. Build completion is recorded separately in `/tmp/roaddash-followup-build.log`. No native playtest or city/lean acceptance was performed. Kick buffering has a new consumed-once/context-clear regression; actual kick contact, pose and camera crowd behavior remain unchecked.
+
+### 2026-10-31 completed city/combat follow-up
+
+Supersedes the initial partial entry above. See CITY_COMBAT.md and city-combat/ for 112 passing tests (one optional soak ignored), successful format/Clippy/build/audit, measured 657-root native survey, seven lean and two kick captures, original-disc proportions and successful farm/hill recovery-to-finish smoke. Camera crowd and yaw faults have focused regressions; human subjective handling and Windows hardware are not claimed.
+
+### CITY-02 touching frontages — 2026-10-31
+
+113 tests passed, optional soak ignored. Exact join edges, street reservations and physical roofs of all 347 infills checked. Updated exposed-perimeter route audit passes; existing physical capsule and gameplay regressions pass. Native city/grid screenshots reviewed after correcting smooth normals; 1080p p95 9.79 ms. Native crash→remount→city/hills→hill crash→remount→finish passed. See FRONTAGES.md and frontages/ for logs/captures.
+
+### CITY-03 streetscape — 2026-10-31
+
+115 tests pass (one optional soak ignored), including sidewalk flat normals,
+every street-tree trunk's collision/clearance and taller floors with stable lots.
+Format/Clippy/locked builds, source-input checks and provenance audit pass.
+Native inspection, 15-section survey (1080p p95 9.66 ms), road-height visual
+review and crash/remount/finish smoke pass. Receipts and limitations:
+[STREETSCAPE.md](STREETSCAPE.md).
+
+### Roster, kicks, handling and pursuit — 2026-10-31
+
+118 tests pass; one optional soak ignored. Signed 8 m/s kick, shirt-colored dots
+for 15 racers, reduced tree sites, neutral-heading independence, physical wreck
+roll, conserved linear momentum/remount, deterministic pursuit grace/speed/spacing/
+downed selection and existing regressions pass. Workspace format/Clippy/locked
+builds, source-input checks/audit pass. Native 15-section survey: 11.29 ms p95
+at 1080p; crash/remount/finish and audio initialization pass.
+See [RIDERS.md](RIDERS.md) and riders/ receipts. Human tuning and Windows remain open.
+
+### AI-02 personalities and rear grid — 2026-10-31
+
+120 tests pass (one optional soak ignored). Profile validation, relationship
+pass/follow/fight and downed filters, 15-spawn rear ordering/12 m gaps/negative
+projection/terrain clearance/solid support plus prior regressions pass.
+Format/Clippy/locked builds, metadata-reader reproduction, tracker/source checks
+and provenance audit pass. Final native inspection/survey (1080p p95 14.74 ms),
+racing visual review and crash/remount/finish with audio pass. Initial approach
+terrain intrusion was fixed and all checks rerun. [Evidence](PERSONALITIES.md).
+AI-03 full original parity, human acceptance and Windows remain open.
+
+### ART-03 authored rider/bike, preserved ragdoll — 2026-10-31
+
+125 workspace tests pass, one optional soak ignored. Model intake corruption/NaN/
+joint-ID/physics-payload checks, four-state skin consistency and nonphysical mesh
+components pass. Eleven-body differential trace: 180 ticks, zero maximum position
+difference; descriptors/velocities/rotations unchanged within recorded tolerances.
+Full crash/run/remount differential and detached-skin cleanup pass. Workspace
+format/Clippy/locked debug+release builds, six Python tests, provenance/tracker
+checks and world inspection pass. Native farm/hill recovery, finish, NPC crashes
+and audio pass. All 15 survey sections: 1080p warmed city p95 12.90 ms on this
+Linux/RTX 3080/Vulkan host. [Receipts and limits](MODELS.md). ART-04/05 and Windows/
+human visual acceptance remain open. No body/joint/controller tuning changed.

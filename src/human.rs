@@ -67,6 +67,15 @@ pub fn segment(
     position: Vec3,
     rotation: Quat,
 ) -> Entity {
+    if art.models.is_some() {
+        return commands
+            .spawn((
+                HumanSegment(index),
+                Transform::from_translation(position).with_rotation(rotation),
+                Visibility::default(),
+            ))
+            .id();
+    }
     let size = SPECS[index].1;
     let head = index == 1;
     let e = world::part(
@@ -77,8 +86,10 @@ pub fn segment(
             art.cube.clone()
         },
         if head {
-            art.white.clone()
-        } else if index == 2 || index >= 7 {
+            art.helmets[color % art.helmets.len()].clone()
+        } else if index == 2 || index == 7 || index == 9 {
+            art.bike_colors[color % art.bike_colors.len()].clone()
+        } else if index >= 7 {
             art.dark.clone()
         } else {
             art.colors[color % art.colors.len()].clone()

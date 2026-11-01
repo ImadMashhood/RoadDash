@@ -162,13 +162,13 @@ impl TrackDef {
                 || !spawn.lane.is_finite()
                 || spawn.lane.abs() > 4.0
                 || spawn.distance > 0.0
-                || spawn.distance < -100.0
+                || spawn.distance < -250.0
             {
                 return Err("invalid grid spawn".into());
             }
         }
-        if self.spawns.len() != 8 {
-            return Err("need eight grid spawns".into());
+        if !matches!(self.spawns.len(), 8 | 15) {
+            return Err("need eight legacy or fifteen grid spawns".into());
         }
         for (i, a) in self.spawns.iter().enumerate() {
             for b in self.spawns.iter().skip(i + 1) {

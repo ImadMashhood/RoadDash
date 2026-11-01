@@ -26,7 +26,11 @@ impl Construction {
     }
     pub fn row_half(&self, track: &Track, d: f32) -> f32 {
         track.half_width(d)
-            + track.definition.verge_width
+            + if (self.sidewalk_start_m..=self.sidewalk_end_m).contains(&d) {
+                0.0
+            } else {
+                track.definition.verge_width
+            }
             + if (self.sidewalk_start_m..=self.sidewalk_end_m).contains(&d) {
                 self.sidewalk_width_m
             } else {
@@ -80,6 +84,9 @@ pub struct Alley {
 pub struct WorldLayout {
     pub settings: Construction,
     pub buildings: Vec<Building>,
+    pub neighborhood: Vec<Building>,
+    pub frontages: Vec<super::frontage::Join>,
+    pub grid_streets: Vec<super::neighborhood::Street>,
     pub fields: Vec<Field>,
     pub alleys: Vec<Alley>,
     pub junction_rects: Vec<Rect>,
@@ -101,6 +108,14 @@ fn noise(id: &str, salt: u32) -> f32 {
     (h % 10000) as f32 / 10000.0
 }
 impl WorldLayout {
+    pub fn blockers(&self) -> impl Iterator<Item = &Rect> {
+        self.all_buildings()
+            .map(|b| &b.footprint)
+            .chain(self.frontages.iter().map(|j| &j.bounds))
+    }
+    pub fn all_buildings(&self) -> impl Iterator<Item = &Building> {
+        self.buildings.iter().chain(&self.neighborhood)
+    }
     pub fn generate(
         plan: &WorldPlan,
         track: &Track,
@@ -109,6 +124,9 @@ impl WorldLayout {
         let mut result = Self {
             settings,
             buildings: Vec::with_capacity(plan.assignments.len()),
+            neighborhood: Vec::new(),
+            frontages: Vec::new(),
+            grid_streets: Vec::new(),
             fields: Vec::new(),
             alleys: Vec::new(),
             junction_rects: Vec::new(),
@@ -229,10 +247,27 @@ impl WorldLayout {
                     .floor()
                     .max(low as f32) as u32;
                 let floors = low + ((high - low + 1) as f32 * noise(&entry.id, 3)).floor() as u32;
+                let floors = if a.family == rr_content::world::Family::Urban {
+                    (floors as f32 * result.settings.city_height_scale).ceil() as u32
+                } else {
+                    floors
+                };
                 let height = floors as f32 * a.floor_height_m + roof_height;
                 let frontage = rules.frontage_m.min_m.max(width + margin * 2.0);
-                let lot_depth = rules.depth_m.min_m.max(depth + margin * 2.0);
-                let lot_front = if row == 0 {
+                let urban_front = row == 0
+                    && matches!(
+                        section.district,
+                        rr_content::world::District::InnerCity
+                            | rr_content::world::District::CityCore
+                    );
+                let lot_depth = if urban_front {
+                    depth + 3.0
+                } else {
+                    rules.depth_m.min_m.max(depth + margin * 2.0)
+                };
+                let lot_front = if urban_front {
+                    row_half + 1.0
+                } else if row == 0 {
                     row_half
                         + rules.setback_m.min_m.max(1.0)
                         + noise(&entry.id, 4)
@@ -365,6 +400,8 @@ impl WorldLayout {
             ));
         }
         result.validate(plan, track)?;
+        super::neighborhood::generate(&mut result, plan, track);
+        result.frontages = super::frontage::generate(&result, track);
         Ok(result)
     }
     pub fn validate(&self, plan: &WorldPlan, track: &Track) -> Result<(), String> {
@@ -388,7 +425,13 @@ impl WorldLayout {
                 || assigned.section_id != b.section_id
                 || assigned.row != b.row
                 || b.size[1] < archetype.height_min_m
-                || b.size[1] > archetype.height_max_m
+                || b.size[1]
+                    > if archetype.family == rr_content::world::Family::Urban {
+                        archetype.height_max_m * self.settings.city_height_scale
+                            + archetype.floor_height_m
+                    } else {
+                        archetype.height_max_m
+                    }
                 || b.floors == 0
                 || !b.foundation_m.is_finite()
                 || !b.raw_relief_m.is_finite()
@@ -428,9 +471,16 @@ impl WorldLayout {
     }
     pub fn scenery_allowed(&self, point: Vec3, radius: f32) -> bool {
         !self
-            .buildings
+            .frontages
             .iter()
-            .any(|b| b.lot.contains(point.xz(), radius + 1.0))
+            .any(|j| j.bounds.contains(point.xz(), radius + 1.0))
+            && !self
+                .all_buildings()
+                .any(|b| b.lot.contains(point.xz(), radius + 1.0))
+            && !self
+                .grid_streets
+                .iter()
+                .any(|s| s.reservation().contains(point.xz(), radius))
             && !self
                 .junction_rects
                 .iter()

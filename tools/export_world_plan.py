@@ -8,9 +8,10 @@ from pathlib import Path
 
 def export(report, target):
     layout = report['layout']
+    buildings = layout['buildings'] + layout.get('neighborhood', [])
     points = report['centerline']
-    min_x = min(p[0] for p in points) - 140
-    max_x = max(p[0] for p in points) + 140
+    min_x = min(p[0] for p in points) - 340
+    max_x = max(p[0] for p in points) + 340
     min_z = min(p[2] for p in points) - 80
     max_z = max(p[2] for p in points) + 80
     scale = min(800 / (max_x - min_x), 1650 / (max_z - min_z))
@@ -30,7 +31,7 @@ def export(report, target):
            '<rect width="1200" height="1850" fill="#18232a"/>',
            '<g font-family="sans-serif" fill="#e7efee"><text x="35" y="50" font-size="28">ROAD / DASH — Valley Run</text>',
            '<text x="35" y="84" font-size="16">Generated structural plan / metres / +Y up / XZ view</text>',
-           f'<text x="35" y="114" font-size="16">{len(layout["buildings"])} buildings · 15 sections · {len(layout["settings"]["junctions"])} junctions · {len(layout["fields"])} fields</text>',
+           f'<text x="35" y="114" font-size="16">{len(buildings)} buildings · 15 sections · {len(layout["settings"]["junctions"])} junctions · {len(layout["fields"])} fields</text>',
            f'<text x="35" y="144" font-size="13">{html.escape(report["geometry_fingerprint"])}</text></g>']
     for index, (family, color) in enumerate(colors.items()):
         labels = {'F': 'Farm', 'R': 'Residential', 'C': 'Commercial', 'U': 'Urban', 'H': 'Hillside'}
@@ -44,7 +45,13 @@ def export(report, target):
         out.append(f'<polygon points="{" ".join(corners(rect))}" fill="#56636a"/>')
     out.append('</g><polyline fill="none" stroke="#e7d49b" stroke-width="1" points="' +
                ' '.join(point(p[0], p[2]) for p in points) + '"/>')
-    for building in layout['buildings']:
+    for street in layout.get('grid_streets', []):
+        a, b = street['a'], street['b']
+        out.append(f'<polyline points="{point(a[0],a[2])} {point(b[0],b[2])}" fill="none" stroke="#73858c" stroke-width="{street["width"]*scale:.3f}"/>')
+    for join in layout.get('frontages', []):
+        polygon = ' '.join(point(p[0], p[2]) for p in join['corners'])
+        out.append(f'<polygon points="{polygon}" fill="#b9bedf"/>')
+    for building in buildings:
         color = colors[building['archetype_id'][0]]
         label = html.escape(f'{building["id"]} / {building["archetype_id"]} / {building["row"]} / foundation {building["foundation_m"]:.2f} m')
         out.append(f'<polygon points="{" ".join(corners(building["footprint"]))}" fill="{color}" stroke="#0e171d" stroke-width="0.25"><title>{label}</title></polygon>')
