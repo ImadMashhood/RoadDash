@@ -116,3 +116,8 @@ last. Net relationship easing, display-speed conversion and modern stamina/kick
 mapping are adaptations. Full career levels, event-axis/random-stream/rubber-band
 parity remain AI-03. See testing/PERSONALITIES.md. No human difficulty acceptance
 or Windows certification is claimed.
+
+ART-01 is research only: current humans remain procedural. Skinned avatar,
+animation-to-ragdoll bone mapping and pilot asset acquisition/verification remain
+ART-02. Quaternius's current general license and old CC0 pack labels conflict;
+public raw-file redistribution must be established per acquired version.

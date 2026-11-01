@@ -193,3 +193,11 @@ AI-02 verification: 120 tests, format/Clippy/locked builds, provenance/source ch
 final world inspection and native survey/smoke pass (1080p p95 14.74 ms).
 Native testing caught and fixed terrain intrusion beneath the expanded approach;
 new test rejects that condition. AI-02 closed; AI-03 full parity stays open.
+
+## 2026-10-31 — ART-01 character-source research
+
+Reviewed user art references and Synty, Quaternius and a CGTrader biker candidate.
+Recorded styles, source formats, rig claims, costs and redistribution limitations
+in third_party/CHARACTER_CANDIDATES.md. Found conflicting CC0 pack labels versus
+Quaternius's current QAL; no new archive license inferred. No assets purchased,
+downloaded or integrated. ART-01 research complete; ART-02 pilot integration open.
