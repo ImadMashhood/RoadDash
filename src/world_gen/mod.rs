@@ -3,6 +3,7 @@ pub mod buildings;
 pub mod ground;
 pub mod layout;
 pub mod navigation;
+pub mod neighborhood;
 pub mod report;
 pub mod spatial;
 pub mod surfaces;

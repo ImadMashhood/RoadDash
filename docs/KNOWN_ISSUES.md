@@ -35,7 +35,7 @@ missing features, architectural debt and unverified platforms.
 - P03-TRACE: telemetry is authoritative 60 Hz, bounded to 3,600 samples; no
   fabricated 100 Hz trace or full-session persistence. Slip reports tire-demand
   saturation and lateral slip angle, not a detailed tire deformation model.
-- P05/P06/P07: no kicks/weapons/stamina, manual foot override or foot finish.
+- P05/P06/P07: kicks are implemented; weapons/stamina, manual foot override and foot finish remain open.
   Ordered bike gates are verified in P02. Recovery auto-seeks the actual bike.
 - P06-CONFINED: assisted recovery is verified in representative fallen poses,
   not arbitrary fully enclosed geometry or moving traffic traps. Collision-clear
@@ -75,8 +75,7 @@ low-speed pile tuning remains unverified beyond six finite clearance scenarios.
 Cross-car wipeouts are covered in both adapters, including moving-side impacts.
 
 - P03-REFERENCE: the entire Road Rash handling is not reproduced. Investigated
-  exact C++ snapshot 4e052aca; original BIKESPEC.RSC/EXE tables unavailable and user
-  confirmed no original files. Progressive steering uses authored provisional
+  exact C++ snapshot 4e052aca; original BIKESPEC.RSC/EXE tables are now available from the verified local disc, but complete calibration is not implemented. Progressive steering uses authored provisional
   timings; engine/brake/gear/grip/nitro/3D integration remain existing RoadDash
   behavior. No original-bike numerical parity or code-reuse permission claimed.
 - Camera correction: follow-lag distance is bounded in all views; manual comfort/
@@ -90,3 +89,5 @@ Cross-car wipeouts are covered in both adapters, including moving-side impacts.
   five-second penalty. See world/COMPLETION_TESTS.md for the measured performance,
   native survey and platform evidence; no universal manual-path or cross-platform
   floating-point lockstep guarantee is claimed.
+
+2026-10-31 follow-up: verified local disc matches all 341 upstream import hashes; original-data availability is no longer the handling blocker. Numerical calibration remains undone. City blocks/frontage quality remains incomplete despite historical allocation checks. Superseded by CITY_COMBAT.md: kicks now animate the selected leg; supported contact yaw and input-only lean are corrected, with automated camera/contact checks and native pose captures. Original handling parity, human subjective handling acceptance and Windows runtime remain open.

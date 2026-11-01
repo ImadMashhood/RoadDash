@@ -1,0 +1,10 @@
+{
+  "canonical_buildings": 247,
+  "additional_buildings": 410,
+  "total_buildings": 657,
+  "street_segments": 1872,
+  "geometry_fingerprint": "fnv1a64:e10bca5aa3ebaf63",
+  "building_fingerprint": "fnv1a64:514e1b99a34f7290",
+  "test_count": 112,
+  "ignored_soak": 1
+}

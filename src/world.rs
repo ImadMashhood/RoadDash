@@ -224,8 +224,10 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         for i in 0..crate::human::SPECS.len() {
             let pose = crate::human::seated(i);
             let e = crate::human::segment(commands, art, color, i, pose.translation, pose.rotation);
-            if let Some((side, false, shoulder)) = crate::human::limb(i) {
+            if let Some((side, leg, shoulder)) = crate::human::limb(i) {
                 commands.entity(e).insert(Arm {
+                    leg,
+                    lower_leg: matches!(i, 8 | 10),
                     side,
                     rest: pose,
                     shoulder,
@@ -255,6 +257,8 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
 
 #[derive(Component)]
 pub struct Arm {
+    pub leg: bool,
+    pub lower_leg: bool,
     pub side: f32,
     pub rest: Transform,
     pub shoulder: Vec3,
@@ -269,16 +273,29 @@ pub fn animate_riders(
         if let Ok(pose) = poses.get(parent.parent())
             && let Ok(rider) = riders.get(pose.owner)
         {
-            let extension = if rider.attack > 0.3 && rider.attack_side == -arm.side {
-                ((0.65 - rider.attack) / 0.35 * std::f32::consts::PI)
-                    .sin()
-                    .max(0.0)
+            let extension =
+                if rider.attack > 0.3 && rider.attack_side == -arm.side && rider.kicking == arm.leg
+                {
+                    ((0.65 - rider.attack) / 0.35 * std::f32::consts::PI)
+                        .sin()
+                        .max(0.0)
+                } else {
+                    0.0
+                };
+            if arm.leg {
+                let reach = if arm.lower_leg { 0.68 } else { 0.28 };
+                let target = arm.shoulder + Vec3::new(arm.side * reach, -0.04, 0.12);
+                transform.translation = arm.rest.translation.lerp(target, extension);
+                transform.rotation = arm.rest.rotation.slerp(
+                    Quat::from_rotation_z(arm.side * std::f32::consts::FRAC_PI_2),
+                    extension,
+                );
             } else {
-                0.0
-            };
-            let turn = Quat::from_rotation_z(-arm.side * extension * std::f32::consts::FRAC_PI_2);
-            transform.translation = arm.shoulder + turn * (arm.rest.translation - arm.shoulder);
-            transform.rotation = turn * arm.rest.rotation;
+                let turn =
+                    Quat::from_rotation_z(arm.side * extension * std::f32::consts::FRAC_PI_2);
+                transform.translation = arm.shoulder + turn * (arm.rest.translation - arm.shoulder);
+                transform.rotation = turn * arm.rest.rotation;
+            }
         }
     }
 }

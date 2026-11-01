@@ -161,6 +161,7 @@ pub fn pad_button(name: &str) -> Option<GamepadButton> {
 #[allow(clippy::too_many_arguments)]
 pub fn capture(
     keys: Res<ButtonInput<KeyCode>>,
+    mouse: Option<Res<ButtonInput<MouseButton>>>,
     bindings: Res<Bindings>,
     race: Res<Race>,
     pads: Query<(Entity, &Gamepad)>,
@@ -255,10 +256,21 @@ pub fn capture(
         }
     };
     if race.phase == Phase::Racing && controls.context == rr_core::comfort::InputContext::Riding {
-        if edge("punch_left") {
+        if keys.just_pressed(KeyCode::Space) {
+            controls.buffer.push_attack(AttackSide::Kick);
+        }
+        if edge("punch_left")
+            || mouse
+                .as_ref()
+                .is_some_and(|m| m.just_pressed(MouseButton::Left))
+        {
             controls.buffer.push_attack(AttackSide::Left);
         }
-        if edge("punch_right") {
+        if edge("punch_right")
+            || mouse
+                .as_ref()
+                .is_some_and(|m| m.just_pressed(MouseButton::Right))
+        {
             controls.buffer.push_attack(AttackSide::Right);
         }
     } else {

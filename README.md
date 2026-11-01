@@ -1,6 +1,6 @@
 # ROAD / DASH
 
-A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland → city → hills route against seven rivals, dodge two-way traffic, throw punches, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, preserving current momentum.
+A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland → city → hills route against seven rivals, dodge two-way traffic, throw punches and kicks, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, preserving current momentum.
 
 This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data.
 
@@ -43,7 +43,8 @@ The Linux build uses X11 (and XWayland on Wayland desktops). Windows and macOS a
 | S / Down | Brake |
 | A, D / Left, Right | Steer across the road |
 | Left or Right Shift | Nitro while accelerating |
-| J / K | Punch left / right |
+| J / K or left / right mouse | Punch left / right |
+| Space | Kick nearest reachable target to either side |
 | C | Cycle three camera distances |
 | Esc | Pause / resume |
 | M | Mute / unmute audio |
@@ -642,3 +643,11 @@ Profiles now declare schema version 1; previous versionless profiles retain cred
 ## License
 
 MIT for this project's source. Bevy and Rapier retain their respective upstream licenses. `vendor/cpal` is Apache-2.0 licensed CPAL 0.15.3, with a small ALSA underrun recovery patch documented in `vendor/cpal/ROADDASH-PATCH.md`. Road Rash is a trademark of its respective owners; this project is an independent game prototype.
+
+## City and combat follow-up (2026-10-31)
+
+- [x] **CITY-01** Add side-road grids and denser urban blocks; compare road/sidewalk/frontage proportions against the verified original disc. Evidence: [city/combat verification](docs/testing/CITY_COMBAT.md), 657 solid buildings, native city captures and 9.56 ms p95 survey.
+- [x] **COMBAT-01** Space auto-side kick pushes bikes and animates the selected leg; mouse buttons punch left/right. Evidence: nearest-side/push/input tests and native left/right kick captures in [verification](docs/testing/CITY_COMBAT.md).
+- [x] **RIDE-01** Correct rival camera obstruction and supported contact-yaw instability; add symmetric input-only lean presentation. Evidence: crowd-camera/yaw tests, seven native bank captures and crash/recovery smoke in [verification](docs/testing/CITY_COMBAT.md).
+
+These tasks follow the user's city/combat correction, depend on the current world generator and fixed simulation, and require road-height captures, packed-rider gameplay and regression tests. CITY-01 belongs to world development; COMBAT-01 to Part 05; RIDE-01 to Parts 03/04. Previous structural counts remain historical evidence, not acceptance of the requested dense city.

@@ -11,6 +11,8 @@ pub struct Junction {
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Construction {
+    #[serde(default)]
+    pub city_grid: CityGrid,
     pub schema_version: u32,
     pub layout_version: u32,
     pub track_id: String,
@@ -33,6 +35,7 @@ pub struct Construction {
 impl Construction {
     pub fn from_json(json: &str, track_id: &str, length: f32) -> Result<Self, String> {
         let c: Self = serde_json::from_str(json).map_err(|e| format!("construction: {e}"))?;
+        c.city_grid.validate(length)?;
         let values = [
             c.field_end_m,
             c.sidewalk_start_m,
@@ -127,5 +130,59 @@ mod tests {
                 "accepted case {case}"
             );
         }
+    }
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CityGrid {
+    pub start_m: f32,
+    pub end_m: f32,
+    pub avenues: Vec<f32>,
+    pub frontage_rows: Vec<f32>,
+    pub block_length_m: f32,
+    pub parcel_pitch_m: f32,
+}
+impl Default for CityGrid {
+    fn default() -> Self {
+        Self {
+            start_m: 3150.0,
+            end_m: 4900.0,
+            avenues: vec![105.0, 165.0, 225.0, 285.0],
+            frontage_rows: vec![20.0, 52.0, 82.0, 124.0, 146.0, 184.0, 206.0, 244.0, 266.0],
+            block_length_m: 100.0,
+            parcel_pitch_m: 24.0,
+        }
+    }
+}
+impl CityGrid {
+    fn validate(&self, length: f32) -> Result<(), String> {
+        if ![
+            self.start_m,
+            self.end_m,
+            self.block_length_m,
+            self.parcel_pitch_m,
+        ]
+        .iter()
+        .chain(&self.avenues)
+        .chain(&self.frontage_rows)
+        .all(|v| v.is_finite())
+            || self.start_m < 0.0
+            || self.end_m > length
+            || self.end_m <= self.start_m
+            || !(60.0..=180.0).contains(&self.block_length_m)
+            || !(22.0..=60.0).contains(&self.parcel_pitch_m)
+            || !(2..=5).contains(&self.avenues.len())
+            || self.frontage_rows.len() > 12
+            || self.avenues.iter().any(|v| !(90.0..=300.0).contains(v))
+            || self.avenues.windows(2).any(|v| v[1] - v[0] < 45.0)
+            || self
+                .frontage_rows
+                .iter()
+                .any(|v| !(20.0..=300.0).contains(v))
+        {
+            return Err("invalid city grid bounds or budgets".into());
+        }
+        Ok(())
     }
 }

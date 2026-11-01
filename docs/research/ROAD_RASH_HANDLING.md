@@ -58,7 +58,7 @@ supply mass/response, engine/braking, gear, nitro, surface, sine/atan and behavi
 values. The public `synthetic()` helper is explicitly test data, not the original
 handling. It cannot be substituted and described as an exact copy.
 
-No such files were found in the project/Downloads search, and the user confirmed
+Historical 2026-10-30 status (superseded on 2026-10-31 by the supplied, 341/341 verified disc): no such files were found in the project/Downloads search, and the user confirmed
 that they do not have them. Full original-bike calibration/numeric replay remains
 **blocked on verified, authorized reference values**, not checked off. Even if
 values become available, SI/3D integration and fixed-point rounding need explicit

@@ -112,3 +112,11 @@ sections with actual resolution and 1080p warmed city metrics; normal race and
 actor smoke remain separate. JSON/footprint SVG, root and geometry hashes and
 full evidence: ../world/COMPLETION_TESTS.md. Hardware/subjective gates from other
 parts are not silently closed.
+
+### 2026-10-31 initial combat/camera follow-up
+
+`cargo fmt --all --check`, workspace Clippy with `-D warnings`, workspace locked tests (107 passed, one soak ignored), and `python3 tools/audit.py` passed. Logs are local `/tmp/roaddash-followup-{clippy,tests-final,audit}.log`. Build completion is recorded separately in `/tmp/roaddash-followup-build.log`. No native playtest or city/lean acceptance was performed. Kick buffering has a new consumed-once/context-clear regression; actual kick contact, pose and camera crowd behavior remain unchecked.
+
+### 2026-10-31 completed city/combat follow-up
+
+Supersedes the initial partial entry above. See CITY_COMBAT.md and city-combat/ for 112 passing tests (one optional soak ignored), successful format/Clippy/build/audit, measured 657-root native survey, seven lean and two kick captures, original-disc proportions and successful farm/hill recovery-to-finish smoke. Camera crowd and yaw faults have focused regressions; human subjective handling and Windows hardware are not claimed.

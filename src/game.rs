@@ -172,6 +172,7 @@ pub struct Rider {
     pub immunity: f32,
     pub attack: f32,
     pub attack_side: f32,
+    pub kicking: bool,
     pub lean: f32,
     pub finished: Option<f32>,
     pub hop_height: f32,
@@ -200,6 +201,7 @@ impl Rider {
             immunity: 2.0,
             attack: 0.0,
             attack_side: 0.0,
+            kicking: false,
             lean: 0.0,
             finished: None,
             hop_height: 0.0,
@@ -452,10 +454,7 @@ pub fn drive(
     let dt = time.delta_secs();
     let dynamic = *adapter == crate::vehicle::VehiclePhysicsAdapter::Dynamic;
     let player_intent = controls.buffer.held;
-    let player_attack = controls
-        .buffer
-        .take_attack()
-        .map_or(0.0, |side| side.sign());
+    let player_attack = controls.buffer.take_attack();
     let tuning = &content.0.bikes[0];
     if race.phase == Phase::Countdown {
         race.countdown -= dt;
@@ -616,9 +615,10 @@ pub fn drive(
                     * dt;
             }
             r.side_velocity *= (-dt * 2.5).exp();
-            r.lean = r
-                .lean
-                .lerp((steer * 46.0 / 74.0).atan(), 1.0 - (-dt * 16.0).exp());
+            r.lean = r.lean.lerp(
+                rr_core::steering::visual_bank(steer),
+                1.0 - (-dt * 16.0).exp(),
+            );
             if on_grass && !dynamic {
                 r.speed = (r.speed - dt * 1.8).max(0.0);
             }
@@ -636,13 +636,20 @@ pub fn drive(
                 && r.speed > 6.0
                 && (race.elapsed * 2.8 + r.id as f32).sin() > 0.88
             {
-                if r.lane > 0.0 { -1.0 } else { 1.0 }
+                Some(if r.lane > 0.0 {
+                    rr_core::AttackSide::Left
+                } else {
+                    rr_core::AttackSide::Right
+                })
             } else {
-                0.0
+                None
             };
-            if attack_side != 0.0 && r.attack <= 0.0 {
+            if let Some(attack_side) = attack_side
+                && r.attack <= 0.0
+            {
                 r.attack = 0.65;
-                r.attack_side = attack_side;
+                r.kicking = matches!(attack_side, rr_core::AttackSide::Kick);
+                r.attack_side = attack_side.sign();
                 attacks.write(crate::combat::AttackAttempt(entity, attack_side));
             }
             if r.health <= 0.0 {
@@ -937,7 +944,10 @@ pub fn camera(
         // Prevent the camera itself from passing through solid scenery.
         if let Ok(context) = context.single() {
             let delta = position - focus;
-            let predicate = |e| !owned.get(e).is_ok_and(|body| body.owner == player_entity);
+            let predicate = |e| {
+                riders.get(e).is_err()
+                    && !owned.get(e).is_ok_and(|body| body.owner == player_entity)
+            };
             let filter = QueryFilter::default()
                 .exclude_rigid_body(player_entity)
                 .exclude_sensors()

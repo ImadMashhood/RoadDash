@@ -60,7 +60,7 @@ impl Earthworks {
             pad_cells: HashMap::new(),
             street_cells: HashMap::new(),
         };
-        for b in &layout.buildings {
+        for b in layout.all_buildings() {
             e.pads.push(Pad {
                 rect: b.footprint.clone(),
                 datum: b.foundation_m,
@@ -89,7 +89,7 @@ impl Earthworks {
                 let (p, q) = horizontal_frame(track, d);
                 let (_, bank) = track.sample(d, 0.0);
                 for side in [-1.0, 1.0] {
-                    let inner = track.half_width(d) + track.definition.verge_width;
+                    let inner = track.half_width(d);
                     let lane = side * (inner + layout.settings.sidewalk_width_m * 0.5);
                     let center = p - q * Vec3::X * lane;
                     e.streets.push(Street {

@@ -82,12 +82,14 @@ fn strength(held: bool, amount: f32) -> f32 {
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum AttackSide {
+    Kick,
     Left,
     Right,
 }
 impl AttackSide {
     pub fn sign(self) -> f32 {
         match self {
+            Self::Kick => 1.0, // default animation side when no target is in reach
             Self::Left => -1.0,
             Self::Right => 1.0,
         }
@@ -101,16 +103,21 @@ pub struct InputBuffer {
     pub held: VehicleIntent,
     left: bool,
     right: bool,
+    kick: bool,
 }
 impl InputBuffer {
     pub fn push_attack(&mut self, side: AttackSide) {
         match side {
+            AttackSide::Kick => self.kick = true,
             AttackSide::Left => self.left = true,
             AttackSide::Right => self.right = true,
         }
     }
     pub fn take_attack(&mut self) -> Option<AttackSide> {
-        if self.left {
+        if self.kick {
+            self.kick = false;
+            Some(AttackSide::Kick)
+        } else if self.left {
             self.left = false;
             Some(AttackSide::Left)
         } else if self.right {
@@ -123,6 +130,7 @@ impl InputBuffer {
     pub fn clear_edges(&mut self) {
         self.left = false;
         self.right = false;
+        self.kick = false;
     }
 }
 pub fn race_award(place: usize, takedowns: u32) -> u32 {
@@ -242,5 +250,20 @@ mod tests {
         assert_eq!(race_award(1, 2), 2200);
         assert_eq!(race_award(8, 0), 250);
         assert_eq!(race_award(99, 0), 0);
+    }
+}
+
+#[cfg(test)]
+mod kick_input_tests {
+    use super::*;
+    #[test]
+    fn kick_edge_is_consumed_once_and_cleared_on_context_change() {
+        let mut buffer = InputBuffer::default();
+        buffer.push_attack(AttackSide::Kick);
+        assert!(matches!(buffer.take_attack(), Some(AttackSide::Kick)));
+        assert!(buffer.take_attack().is_none());
+        buffer.push_attack(AttackSide::Kick);
+        buffer.clear_edges();
+        assert!(buffer.take_attack().is_none());
     }
 }

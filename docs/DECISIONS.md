@@ -364,3 +364,34 @@ recovery events rather than assume floating-point lockstep. Art/streaming swaps
 must preserve IDs, reservations and collision. Rollback can disable the canonical
 world spawner but must not double-spawn legacy and generated buildings or erase
 source snapshots/earlier receipts. Acceptance evidence: world/COMPLETION_TESTS.md.
+
+## ADR-021 — 2026-10-31 — Initial combat/camera correction
+
+Nearby rider bodies obstructed the chase-camera cast. Exclude rider roots while retaining scenery obstruction and existing local-body exclusions. Alternatives include fully disabling obstruction (rejected because buildings remain solid). Mouse punch and Space kick edges use the existing render-to-fixed buffer. Kicks select the closest clear direct-strike target on either side and add lateral velocity without counting a rider punch knockout. No new dependencies or assets. Native camera/contact and kick animation acceptance remains open; revert these small changes independently of world generation if needed.
+
+## ADR-022 — 2026-10-31 — City extensions and controlled riding yaw
+
+The original quota layout did not supply neighborhood depth. Preserve its 247
+IDs/quotas and add independently identified city infill and four avenues on
+each side, linked by block cross streets and existing junctions. Configurable
+bounded city dimensions live in rr_content's construction schema. Every new
+lot clears main/secondary streets and existing lots, shares earthworks/pad
+support, uses persistent collision and enters recovery routing. Batch street
+geometry by material to avoid thousands of draw submissions. Extend terrain
+coverage to support the outer neighborhood. Facade windows share cached meshes.
+Alternatives: overwrite source quotas or create collisionless skyline scenery;
+rejected because they erase history or break reachable-world collision.
+
+Original disc measurements support curb-adjacent 3 m city sidewalks; retain a
+2.5 m physical frontage clearance. Tradeoff: a curved corridor creates a
+road-relative grid rather than one global Manhattan orientation. Additional
+roads are scenery/access, not alternate race routes. No dependencies changed.
+Rollback may remove the additions while retaining canonical lots; do not remove
+shared collision while leaving reachable visuals.
+
+For riding, bounded angular-velocity steering removes contact-induced yaw
+windup while supported. Linear impacts/pushes remain physical; airborne and
+ragdoll angular motion is unaffected. This is an arcade stabilization decision,
+not original binary parity. Bank is input-only with smooth symmetric visual
+poses. Typed kick actions select nearest valid side, push at the center of mass,
+and animate the corresponding leg without incrementing the rider punch chain.

@@ -323,13 +323,19 @@ pub fn forces(
         .with_y(0.0)
         .normalize_or_zero();
         let yaw = heading.cross(target).y.atan2(heading.dot(target));
-        force.torque.y += (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist) - v.angvel.y * 3.0)
-            * (p.dry_mass + 70.0);
+        // Arcade heading servo: contact impulses may translate a bike, but a
+        // glancing side contact must not wind up its yaw controller. Only limit
+        // riding, supported bodies; airborne/wreck angular motion stays physical.
+        if grounded {
+            let desired = (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist)).clamp(-1.2, 1.2);
+            v.angvel.y = v.angvel.y.clamp(-1.2, 1.2)
+                + (desired - v.angvel.y.clamp(-1.2, 1.2)) * (1.0 - (-dt * 12.0).exp());
+        }
         // Positive roll leans toward camera-right (-local X).
         // Reference bank is tied to accumulated steering force, not a separate
         // body-only animation. Its documented limit/base ratio is 46 / 74.
         let target_lean = if speed > 0.5 {
-            (steer * 46.0 / 74.0).atan().clamp(-0.6, 0.6)
+            rr_core::steering::visual_bank(steer)
         } else {
             0.0
         };
@@ -438,7 +444,7 @@ pub fn visuals(
             };
             let next = physical.rotation.inverse()
                 * unbanked
-                * Quat::from_rotation_z(lean.clamp(-0.6, 0.6));
+                * Quat::from_rotation_z(lean.clamp(-0.65, 0.65));
             let pivot = Vec3::Y * 0.08;
             let correction = t.rotation * pivot - next * pivot;
             t.translation += correction;

@@ -139,7 +139,7 @@ pub fn setup_ui(
     kids.push(status);
     let help = commands
         .spawn((
-            Text::new("WASD  RIDE     SHIFT  NITRO     J / K  STRIKE     C  CAMERA     ESC  PAUSE     M  MUTE"),
+            Text::new("WASD  RIDE     SHIFT  NITRO     MOUSE  PUNCH   SPACE  KICK     C  CAMERA     ESC  PAUSE     M  MUTE"),
             TextFont {
                 font_size: 12.0,
                 ..default()
@@ -300,7 +300,7 @@ pub fn setup_ui(
         .id();
     commands.entity(button).add_child(text);
     menu.push(button);
-    menu.push(label(&mut commands, "W / S   THROTTLE & BRAKE     A / D   STEER\nSHIFT   NITRO     J / K   LEFT / RIGHT PUNCH\nC   CAMERA     R   RESTART     ESC   PAUSE     M   MUTE", 14.0, MUTED, 70.0, 661.0));
+    menu.push(label(&mut commands, "W / S   THROTTLE & BRAKE     A / D   STEER\nSHIFT   NITRO     MOUSE / J / K   PUNCH    SPACE   KICK\nC   CAMERA     R   RESTART     ESC   PAUSE     M   MUTE", 14.0, MUTED, 70.0, 661.0));
     let profile = label(&mut commands, "", 13.0, MINT, 70.0, 752.0);
     commands.entity(profile).insert(Readout(9));
     menu.push(profile);

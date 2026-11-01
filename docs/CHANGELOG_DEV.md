@@ -146,3 +146,11 @@ and exceptional rescue feedback/penalty. Added spatial/support/seam/capsule test
 full JSON/SVG export and native 15-section/1080p survey. Exact measured gates and
 remaining platform limits are recorded in world/COMPLETION_TESTS.md. No new media,
 third-party source, dependency or additional course; prior evidence retained.
+
+## 2026-10-31 — Initial city/combat follow-up (partial)
+
+Added buffered Space auto-target lateral kicks and mouse punches; excluded rival rider roots from camera obstruction. Added kick edge consumption/context-clear test. CITY-01, COMBAT-01 and RIDE-01 remain unchecked. No city geometry, original-spacing calibration or lean/contact-heading fix is claimed. Original disc remains outside Git.
+
+## 2026-10-31 — Complete city/combat correction
+
+Added 410 supported solid city buildings, four avenues on each side, cross streets, closer frontages, curb-adjacent sidewalks, window facades and batched street meshes. Retained original 247 IDs and course gates. Verified original City lane/shoulder metadata with local disc, no original media shipped. Completed typed auto-side kicks, leg poses, mouse punches, supported contact-yaw stabilization and seven symmetric steering-only banks. Corrected camera obstruction by rivals. 112 tests passed; format/Clippy/debug/release/audit passed. Native 1080p city survey: 657 roots and 9.56 ms p95; farm/hill crash-recovery-to-finish smoke passed. CITY-01/COMBAT-01/RIDE-01 checked; no next part started.

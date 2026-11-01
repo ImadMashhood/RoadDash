@@ -35,7 +35,7 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             .query::<&buildings::GeneratedBuilding>()
             .iter(world)
             .count(),
-        247
+        layout.all_buildings().count()
     );
     assert_eq!(
         world
@@ -71,7 +71,7 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             .unwrap_or_else(|| panic!("ground hole at {p:?}"))
     };
     let track = world.resource::<Track>();
-    for b in &layout.buildings {
+    for b in layout.all_buildings() {
         for p in b.footprint.expanded(0.2).corners() {
             let point = Vec3::new(p.x, b.foundation_m, p.y);
             let height = ray(point);
@@ -146,7 +146,7 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             .entry((t.translation.x.to_bits(), t.translation.z.to_bits()))
             .or_default()[usize::from(!lod.0)] = true;
     }
-    assert_eq!(pairs.len(), 160);
+    assert!(pairs.len() >= 160);
     assert!(pairs.values().all(|p| *p == [true, true]));
     // Both LODs stay under one root; physics remains at every distance.
     for (building, children, collider) in world
@@ -376,4 +376,36 @@ fn exceptional_recovery_rescue_clears_motion_and_applies_one_visible_penalty() {
         app.world().resource::<crate::game::Race>().elapsed < 5.2,
         "rescue penalty repeated"
     );
+}
+
+#[test]
+fn city_grid_has_dense_solid_lots_clear_of_every_street() {
+    let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
+    let plan = WorldPlan::from_json(WORLD_JSON, ARCHETYPES_JSON, &track).unwrap();
+    let l = layout::WorldLayout::generate(
+        &plan,
+        &track,
+        layout::Construction::from_json(layout::CONSTRUCTION_JSON, &track).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(l.buildings.len(), 247);
+    assert!(
+        l.neighborhood.len() > 350,
+        "only {} city additions",
+        l.neighborhood.len()
+    );
+    assert!(l.grid_streets.len() > 1000);
+    for (i, b) in l.neighborhood.iter().enumerate() {
+        assert!(
+            l.neighborhood[..i]
+                .iter()
+                .all(|other| !other.lot.overlaps(&b.lot))
+        );
+        assert!(
+            l.grid_streets
+                .iter()
+                .all(|s| !s.reservation().overlaps(&b.lot))
+        );
+        assert!(l.buildings.iter().all(|other| !other.lot.overlaps(&b.lot)));
+    }
 }

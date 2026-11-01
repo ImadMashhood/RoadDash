@@ -68,6 +68,35 @@ pub fn spawn(
             surface(commands, meshes, asphalt.clone(), v, ix, "junction");
         }
     }
+    // Batch the continuous network by material instead of one draw/body per 8 m.
+    for (extra, material, lift, kind) in [
+        (6.0, walk.clone(), 0.035, "grid_walk"),
+        (0.0, asphalt.clone(), 0.055, "grid_road"),
+    ] {
+        let mut v = Vec::new();
+        let mut ix = Vec::new();
+        for street in &layout.grid_streets {
+            let a = Vec3::from_array(street.a);
+            let b = Vec3::from_array(street.b);
+            let right = (b - a).cross(Vec3::Y).normalize_or_zero();
+            let steps = ((b - a).length() / 2.0).ceil().max(1.0) as usize;
+            let base = v.len() as u32;
+            for i in 0..=steps {
+                let center = a.lerp(b, i as f32 / steps as f32);
+                for sign in [-1.0, 1.0] {
+                    let mut p = center + right * sign * (street.width + extra) * 0.5;
+                    p.y = track.terrain_height(p.x, p.z) + lift;
+                    v.push(p);
+                }
+                if i < steps {
+                    let n = base + i as u32 * 2;
+                    ix.extend([[n, n + 1, n + 2], [n + 1, n + 3, n + 2]]);
+                }
+            }
+        }
+        upward(&v, &mut ix);
+        surface(commands, meshes, material, v, ix, kind);
+    }
     let start = layout.settings.sidewalk_start_m;
     let end = layout.settings.sidewalk_end_m;
     let mut breaks = vec![start, end];
@@ -98,10 +127,8 @@ pub fn spawn(
                         .fold(f32::INFINITY, f32::min);
                     let curb = layout.settings.curb_height_m * (nearest / 5.0).clamp(0.0, 1.0);
                     for lane in [
-                        track.half_width(at) + track.definition.verge_width,
-                        track.half_width(at)
-                            + track.definition.verge_width
-                            + layout.settings.sidewalk_width_m,
+                        track.half_width(at),
+                        track.half_width(at) + layout.settings.sidewalk_width_m,
                     ] {
                         v.push(p - q * Vec3::X * side * lane + Vec3::Y * (curb + 0.025));
                     }
@@ -146,7 +173,7 @@ pub fn spawn(
         surface(commands, meshes, dirt.clone(), v, ix, "alley");
     }
     // Exact flat foundation planes fill holes cut into the terrain mesh.
-    for b in &layout.buildings {
+    for b in layout.all_buildings() {
         let corners = b
             .footprint
             .expanded(layout.settings.pad_flat_margin_m)

@@ -678,3 +678,30 @@ fn stronger_full_lean_turns_both_directions_without_increasing_visual_bank() {
         );
     }
 }
+
+#[test]
+fn supported_bike_recovers_from_contact_yaw_without_changing_steering_bank() {
+    let mut app = app(1, 60);
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyW);
+    for _ in 0..180 {
+        app.update();
+    }
+    let e = app
+        .world_mut()
+        .query_filtered::<Entity, With<Rider>>()
+        .single(app.world())
+        .unwrap();
+    app.world_mut().get_mut::<Velocity>(e).unwrap().angvel.y = 8.0;
+    for _ in 0..30 {
+        app.update();
+    }
+    let v = app.world().get::<Velocity>(e).unwrap();
+    assert!(v.angvel.y.abs() < 1.3);
+    assert!(app.world().get::<BikeState>(e).unwrap().lean.abs() < 0.01);
+    assert_eq!(
+        app.world().get::<Recovery>(e).unwrap().stage,
+        RecoveryStage::Riding
+    );
+}

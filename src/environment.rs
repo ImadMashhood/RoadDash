@@ -90,7 +90,9 @@ pub fn ribbon(
     for i in 0..=count {
         let d = start + (end - start) * i as f32 / count as f32;
         let (p, q) = track.sample(d, 0.0);
-        let half = track.half_width(d) + extra;
+        let city =
+            track.definition.id.as_str() == "valley-run-01" && (2700.0..=4950.0).contains(&d);
+        let half = track.half_width(d) + if city { 0.0 } else { extra };
         vertices.push(p + q * Vec3::new(-half, offset, 0.0));
         vertices.push(p + q * Vec3::new(half, offset, 0.0));
         if i < count {
@@ -182,13 +184,14 @@ pub fn build(
     let (min, max) = track.bounds;
     let spacing = layout.map_or(10.0, |l| l.settings.terrain_step_m);
     let tile = 200.0;
-    let nx = ((max.x - min.x + 400.0) / tile).ceil() as usize;
-    let nz = ((max.z - min.z + 400.0) / tile).ceil() as usize;
+    let margin = if layout.is_some() { 400.0 } else { 200.0 };
+    let nx = ((max.x - min.x + margin * 2.0) / tile).ceil() as usize;
+    let nz = ((max.z - min.z + margin * 2.0) / tile).ceil() as usize;
     for tx in 0..nx {
         for tz in 0..nz {
             let origin = Vec2::new(
-                min.x - 200.0 + tx as f32 * tile,
-                min.z - 200.0 + tz as f32 * tile,
+                min.x - margin + tx as f32 * tile,
+                min.z - margin + tz as f32 * tile,
             );
             let (mut vertices, mut indices) =
                 crate::world_gen::ground::terrain_grid(track, origin, tile, spacing);
@@ -554,7 +557,14 @@ pub fn build(
         }
         if sector == Sector::City && !near_crossing {
             for side in [-1.0, 1.0] {
-                let (v, r) = track.sample(d, side * if layout.is_some() { 12.5 } else { 9.0 });
+                let (v, r) = track.sample(
+                    d,
+                    side * if layout.is_some() {
+                        track.half_width(d) + 1.5
+                    } else {
+                        9.0
+                    },
+                );
                 if layout.is_none() {
                     let sidewalk = block(
                         commands,

@@ -300,3 +300,17 @@ actual focus/resolution. Normal play retains its existing power policy. Paired
 VisibilityRange meshes now use the exact same local origin (including terrain
 tiles); a native atlas exposed the prior world-origin error and a regression
 asserts normalized vertices and paired transforms. No upstream example copied.
+
+### R01 city-spacing follow-up — 2026-10-31
+
+Revisited arkits/road-rash (author arkits), exact commit
+`4e052aca9552a5690c2b145b0f53856d5c31e980`: resource, course, road, terrain and
+course_scene readers. REFERENCE ONLY. Verified the supplied disc against the
+upstream importer table (blob `7ab9f9524c1281fe6b4e040e04e4744e671ae732`, 341/341)
+and independently measured City resource lane/shoulder endpoints. See
+../research/CITY_PROPORTIONS.md. No C++ copied, no dependency added, no assets
+incorporated. The earlier unresolved project-wide source license remains
+UNVERIFIED; public source availability does not establish reuse permission.
+Native C++/SDL is not directly compatible with Rust/Bevy; only format/behavior
+research is used. This snapshot is historical, not a claim of current maintenance
+or complete game parity. Proprietary disc/media remain local and outside Git.

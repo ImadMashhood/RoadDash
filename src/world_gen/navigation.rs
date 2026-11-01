@@ -9,8 +9,7 @@ fn segment_distance(p: Vec2, a: Vec2, b: Vec2) -> f32 {
 }
 pub fn clear(layout: &WorldLayout, from: Vec2, to: Vec2) -> bool {
     !layout
-        .buildings
-        .iter()
+        .all_buildings()
         .any(|b| b.footprint.blocks_segment(from, to, 0.4))
 }
 /// Returned waypoints are actual terrain-relative positions. Physics still owns
@@ -24,8 +23,7 @@ pub fn route(layout: &WorldLayout, track: &Track, from: Vec3, to: Vec3) -> Optio
         return Some(vec![point(to.xz())]);
     }
     let mut nearby: Vec<_> = layout
-        .buildings
-        .iter()
+        .all_buildings()
         .filter(|b| {
             segment_distance(Vec2::from_array(b.footprint.center), from.xz(), to.xz()) < 35.0
         })
