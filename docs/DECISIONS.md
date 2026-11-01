@@ -730,3 +730,46 @@ extend that isolated floor to cover the possible 600 s path, retaining vertical,
 finite/speed and complete-duration stability checks. Add roadmap tests to CI.
 No new third-party code/media/dependency. See testing/COLLISION_RESPONSE.md.
 Rollback restores heading and entry/envelope changes together; no save migration.
+
+## ADR-033 — 2026-10-31 — Static animation vocabulary before playback
+
+The user authorizes Animation A now and takes responsibility for the previous PR
+merge; do not wait for remote CI or merge on their behalf. Preserve the existing
+physical rig and collision changes. Part 02 delivers reference study, labels,
+original static pose assets and a gallery; Part 03 owns playback/interpolation,
+terrain IK, animation events and bounded active-ragdoll control.
+
+Reuse the earlier independently authored 130 numbered mounted blockouts rather
+than recreating/renumbering them. Add eighteen original-slot running candidates
+and 99 original locomotion/terrain/reaction/recovery/seated/cow layouts: 247 total,
+27 semantic use cases. Preserve empty/view/duplicate reference slots in separate
+metadata. All poses stay draft; a number is not proof of original sequence timing.
+An editable Blender file uses single-frame constant Actions and complete JSON
+assembly transforms. No clip timeline, root-motion controller or physical force
+is connected to game state. The ten-bone cow is an authoring proxy, not a new
+production NPC model. The twenty-bone human authoring rig does not replace the
+accepted eleven-body physical rig.
+
+Analytic two-link authoring fits respect fixed bone lengths and elbow/knee flex
+limits. It corrected three over-flexed inherited mounting knees and two new
+brace/brake hand reaches. The independent rr_content validator rejects nonfinite/
+nonrigid/scaled matrices, detached offsets, cycles, bad contacts/references,
+wrong skeleton families, unsupported timing and physics/executable fields. The
+headless --validate-animation command checks editable files, not asset-count-only
+success. Read-only authoring JSON never writes authoritative body transforms.
+
+Source-level research of five pinned candidates informs an evaluation plan only.
+No third-party animation code, rig, commercial pack or original media is imported.
+Commercial Synty documentation/game leads do not prove gait/terrain algorithms;
+actual footage measurement, original descriptor timing and ambiguous labels stay
+open. Finger wrapping/fists, skin/cloth clearance, complete get-up/weapon/police
+coverage, animal refinement and human approval block full Part 02 signoff.
+
+Alternatives rejected: treating 2D view slots as temporal frames; applying authored
+matrices to physics bodies; shipping raw retail media; claiming all 247 drafts are
+approved; replacing a working rig with an incompatible plugin. JSON/Blender source
+and review renders stay under art/animation, outside runtime assets. The large
+editable .blend is a generated local deliverable, reproducible from repository
+scripts/source art. Existing gameplay and saves require no migration/rollback.
+Remove the authoring module/CLI independently if needed; no runtime system relies
+on it. Verification and remaining gates: docs/testing/ANIMATION_A.md.

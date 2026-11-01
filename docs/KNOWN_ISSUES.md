@@ -168,3 +168,19 @@ isolated eleven-body parity remains exact. New Windows runtime/human acceptance
 and a broader car-shape/vehicle-height matrix remain open. PR #8's Windows CI
 passed; its Linux soak failure was traced to incorrect fixture expectations, now
 corrected and rerun locally. New remote CI evidence is recorded separately.
+
+## Animation A review candidates — 2026-10-31
+
+The 247 static poses are authoring candidates, not runtime animation or an approved
+production library. The physical rig and its playback remain unchanged. Fingers
+are rigid: closed punch fists, wrapped grips and weapon sockets still need source
+mesh/rig work. Matrix attachment/contact/flex tests do not establish that clothing
+and bodies never intersect or that a static stance makes a natural moving gait.
+The current cow is a separate review proxy only.
+
+Old broad mounted labels can be ambiguous; original CANS/RRAN/EXE sequence timing,
+view aliases and some native reaction/mount associations remain unresolved. Raw
+reference media stays local. Controlled Synty-game footage/gait measurements and
+the screenshot game's identity remain open. Complete support/get-up, weapon
+handling and police restraint poses need art review/additions. V2-02 approval and
+all Part 03 interpolation/terrain/active-control gates remain unchecked.

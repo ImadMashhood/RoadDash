@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "creator": "RoadDash contributors",
+  "license": "MIT",
+  "license_copy": "../../LICENSE",
+  "classification": "original authoring assets; reference only behavioral study",
+  "runtime_shipped": false,
+  "source_models": {
+    "art/source/rider.glb": "45a440302e28ff77dc5c9d89c9024d6aeedc2e30b3bc1edf5dfeb7fce35aeba8",
+    "art/source/motorcycle.glb": "7d66a7f8feece0345b6daac6de8e84f73d889a236fbdda5082905b759b28796d"
+  },
+  "reference_media_included": false,
+  "third_party_code_included": false,
+  "review": "draft; not animation approval",
+  "contents": "Independent static bone poses, original model renders, original quadruped review proxy, metadata and offline gallery; no original game pixels or Synty assets"
+}

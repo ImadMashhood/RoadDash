@@ -109,19 +109,19 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**131 verified tasks complete; 220 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**133 verified tasks complete; 222 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
 **Status:** `[x]` means implemented and verified; `[ ]` includes partial and unverified work. Moving a task does not change its status or close a gate. Carried-forward requirements retain their full original wording: some subfeatures already work, but their remaining tests, polish or acceptance keep the whole requirement open. The [execution contract](docs/roadmap/EXECUTION_V2.md) defines the new V2 acceptance criteria; the [supporting blueprint contracts](docs/roadmap/SUPPORTING_CONTRACTS.md) retain dependency proposals, environment/audio inventories, budgets and rights context. [Known issues](docs/KNOWN_ISSUES.md), [decisions](docs/DECISIONS.md) and [history](docs/CHANGELOG_DEV.md) retain evidence and limitations.
 
-Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bevy audio**. The PDF's dependency upgrades remain proposals. No new code, assets or dependency migration is part of this reorganization.
+Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bevy audio**. The PDF's dependency upgrades remain proposals. The Animation A authoring tools use these installed versions; no dependency migration is included.
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 131 verified complete |
+| [00](#part-00) | Completed and verified foundations | 133 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 27 open |
-| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 11 open |
+| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 13 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 18 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 6 open |
@@ -393,6 +393,14 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 </details>
 
+<details>
+<summary>Animation A authoring foundation — 2 verified tasks</summary>
+
+- [x] **V2-02-004** Investigate animation, IK and active-ragdoll repositories. Evidence: [five pinned source comparisons, licenses and compatibility](docs/research/ANIMATION_AND_RAGDOLL.md); no library or source imported.
+- [x] **ANIM-01** Deliver the first reviewable static pose catalog and authoring validator. Reason: Animation A needs reproducible review assets before playback; originating part: 02; dependencies: existing authored rider/bike/contact rig; acceptance: 247 numbered draft candidates across 27 use cases, offline gallery, editable single-frame pose assets and independent connected-rig/contact validation; verification: [140 Rust / 14 Python tests, all-pose Blender round trip and gallery review](docs/testing/ANIMATION_A.md). This completes the review infrastructure, not pose approval or final animation coverage.
+
+</details>
+
 <a id="part-01"></a>
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
@@ -435,7 +443,7 @@ Next implementation work: measured vehicle crashes, over-car nose-down/vault beh
 
 ## Animation production — complete reference-to-game pipeline
 
-**Status: unfinished.** The authored rider/bike, seat/contact reference pose and connected visual joints are a starting point. They are not a complete animation library. This work is split into **Part 02: study, create and approve keyframes**, then **Part 03: animate, interpolate and integrate them**. Finish the remaining crash-response design in Part 01 first so its poses have a defined physical purpose. Buildings, props, NPCs/landscape, weapons and police follow this animation work.
+**Status: unfinished.** The authored rider/bike, seat/contact reference pose and connected visual joints are a starting point. They are not a complete animation library. This work is split into **Part 02: study, create and approve keyframes**, then **Part 03: animate, interpolate and integrate them**. The latest user request starts Part 02 now; remaining Part 01 crash choreography is represented by draft candidates, with its acceptance still open. Buildings, props, NPCs/landscape, weapons and police follow this animation work.
 
 The player handling already feels right: preserve it. Motion must express gradual steering, grounded movement and readable contact without driving authoritative physics from cosmetic poses. Keep the accepted passive ragdoll as the regression fixture. Any active recovery is a separate, bounded, tested option.
 
@@ -467,7 +475,7 @@ Investigate verified games using the Synty/POLYGON character family for readable
 
 Compare these pinned research candidates before adopting an algorithm or dependency: [Sergio Abreu active-ragdolls](https://github.com/sergioabreu-g/active-ragdolls), [Hairibar.Ragdoll](https://github.com/hairibar/Hairibar.Ragdoll), [JoltPhysics](https://github.com/jrouwe/JoltPhysics), [bevy_mod_inverse_kinematics](https://github.com/Kurble/bevy_mod_inverse_kinematics) and [ozz-animation](https://github.com/guillaumeblanc/ozz-animation). Record licensing, separate asset rights, exact versions, Bevy compatibility, maintenance, integration cost and prototype measurements in the [repository register](docs/third_party/REPOSITORIES.md). A listed repository is not an adopted dependency or permission to copy code.
 
-Part 02 delivers the complete use-case catalog, original numbered pose files, contact metadata, comparison notes and approved gallery. Part 03 delivers the state/blend graph, interpolated clips, terrain/contact solvers, bounded recovery prototype, event integration and regression/visual evidence. Gates remain unchecked until these deliverables work in-game, not just in a gallery.
+Part 02 delivers the complete use-case catalog, original numbered pose files, contact metadata, comparison notes and approved gallery. Part 03 delivers the state/blend graph, interpolated clips, terrain/contact solvers, bounded recovery prototype, event integration and regression/visual evidence. Part 02 requires reference-backed coverage and explicit pose approval. Part 03 additionally requires in-game verification; gallery renders alone cannot close its runtime gates.
 
 <a id="part-02"></a>
 
@@ -475,14 +483,19 @@ Part 02 delivers the complete use-case catalog, original numbered pose files, co
 
 First study every original rider animation category, use sprites as reference keyframes, label every pose and use case, and publish a numbered gallery. Compare verified Synty/POLYGON-style games and animation/IK/ragdoll repositories; record licenses and compatibility. Initial research and static poses are starting points, not completion of this animation library.
 
+Current deliverable: **247 draft static candidates / 27 use cases**, an [offline numbered gallery](art/animation/gallery/index.html), editable Blender package and [validation evidence](docs/testing/ANIMATION_A.md). [Authoring instructions and remaining gaps](docs/animation/README.md). Original reference-slot inventories and five repository source comparisons are recorded. Full pose coverage/anatomical approval and native reference timing remain incomplete; Part 03 playback has not started.
+
 - [ ] **V2-02-001** Build a complete animation/use-case catalog.
 - [ ] **V2-02-002** Inspect all original rider animation categories.
 - [ ] **V2-02-003** Research Synty/POLYGON-style games and authentic locomotion.
-- [ ] **V2-02-004** Investigate animation, IK and active-ragdoll repositories.
 - [ ] **V2-02-005** Author and label the full original 3D keyframe set.
 - [ ] **V2-02-006** Cover running, on-foot recovery and non-rider characters.
 - [ ] **V2-02-007** Publish a numbered pose gallery with anatomical review.
 - [ ] **V2-02-008** Exit gate: keyframes and catalog approved.
+
+- [ ] **ANIM-02** Refine fingers, grips, fists and weapon sockets. Reason: the current twenty-bone rig has rigid hands; part: 02; dependencies: rider mesh/rig and contact catalog; acceptance: believable closed fists, wrapped grips and compatible held-weapon points without changing passive physics; verification: front/rear/side hand close-ups and rig/contact validation.
+- [ ] **ANIM-03** Resolve reference sequence linkage, timing and ambiguous labels. Reason: sprite slots include view/depth variants and do not establish timing; part: 02; dependencies: local reference metadata and CANS/RRAN/EXE research; acceptance: evidence-backed phase/side/weapon labels and timing or explicit unknowns for every reference family; verification: source-linked sequence audit, no guessed native durations.
+- [ ] **ANIM-04** Complete and review recovery/support and specialist poses. Reason: get-up kneel/sit candidates are preliminary crouches and arrest/equip/drop coverage is missing; part: 02; dependencies: catalog and hand refinement; acceptance: supported get-ups/lifts/mounts, reviewed vault/knockoff proposals, weapon equip/drop, police restraint and refined quadruped anatomy with clothing/body/bike clearance; verification: multi-angle art review, endpoint/chain checks and user pose approval before Part 03.
 
 #### Carried-forward requirements — still unfinished
 

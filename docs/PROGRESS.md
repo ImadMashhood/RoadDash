@@ -2,22 +2,22 @@
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 131 verified tasks;
-Parts 01–16 contain all 220 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
+README is the single live task source. Part 00 contains all 133 verified tasks;
+Parts 01–16 contain all 222 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
 The complete eleven-family animation coverage and two-stage deliverables are now
 explicit in README's dedicated Animation production section. Existing V2-02/V2-03
-IDs own the expanded coverage; no checkbox statuses changed.
+IDs own the expanded coverage. Animation A source investigation and the first draft authoring deliverable are verified; full art approval remains open.
 
-Next: remaining crash/handling corrections, then animation reference/keyframes,
+Current user-authorized scope: Animation A reference/keyframes, with remaining crash/handling gates still open; then
 then interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 351 task IDs are in README exactly once, including all 294 original IDs and
-54 V2 IDs and three collision-correction IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
+All 355 task IDs are in README exactly once, including all 294 original IDs and
+54 V2 IDs, three collision-correction IDs and four ANIM IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
 all checkbox states at the time of this move. Acceptance details remain in
@@ -36,6 +36,19 @@ of scripted collision launch/spin, and explicit arcade car-speed loss plus a
 mass/inertia/gravity energy envelope. The new request supersedes P06-022's earlier
 clearance jump. Full over-car choreography and combat swerve remain open V2 tasks.
 The dedicated eleven-family animation plan is documentation, not completed clips.
+
+## Animation A — current authoring session
+
+247 numbered draft candidates, 27 mapped use cases, 247 primary renders and 57
+supplemental views are available in art/animation. The editable Blender package
+has 247 single-frame constant pose Actions. All 247 JSON poses round-trip with
+maximum matrix difference 4.77e-7; no physics bodies are present in the library.
+140 Rust and 14 Python tests pass; format, Clippy, build and authoring CLI pass.
+See testing/ANIMATION_A.md and animation/README.md for receipts and open work.
+ANIM-01 is verified infrastructure; ANIM-02/03/04 retain hand/sequence/support and
+specialist-pose gaps. V2-02-004 source research is complete. No pose is approved,
+no runtime playback is connected and the accepted passive ragdoll is unchanged.
+The user handles the previous PR merge; no CI wait is a gate for this session.
 
 ## Authored-model baseline (ART-03, preserved history)
 
@@ -510,6 +523,10 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **COLLISION-03** Apply measured arcade vehicle speed loss and a dissipative crash envelope. Reason: player/AI crashes reverse or gain energy; part: 01; dependencies: pre-contact samples and physical body mass/inertia; acceptance: 120 km/h rider versus either direction of 40 km/h car seeds 80 km/h forward, never negative retained speed, no added aggregate energy beyond gravity or reverse crash centre-of-mass motion; verification: player/AI directional cases, kinetic/potential/rotation budget checks, cross-traffic contacts and native recovery.
 
+- [x] **V2-02-004** Investigate animation, IK and active-ragdoll repositories. Evidence: [five pinned source comparisons, licenses and compatibility](research/ANIMATION_AND_RAGDOLL.md); no library or source imported.
+
+- [x] **ANIM-01** Deliver the first reviewable static pose catalog and authoring validator. Reason: Animation A needs reproducible review assets before playback; originating part: 02; dependencies: existing authored rider/bike/contact rig; acceptance: 247 numbered draft candidates across 27 use cases, offline gallery, editable single-frame pose assets and independent connected-rig/contact validation; verification: [140 Rust / 14 Python tests, all-pose Blender round trip and gallery review](testing/ANIMATION_A.md). This completes the review infrastructure, not pose approval or final animation coverage.
+
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
 - [ ] **V2-01-005** Design and implement measured vehicle-impact and over-car crash responses.
@@ -578,8 +595,6 @@ relationship-axis/event and random-stream parity gates.
 
 - [ ] **V2-02-003** Research Synty/POLYGON-style games and authentic locomotion.
 
-- [ ] **V2-02-004** Investigate animation, IK and active-ragdoll repositories.
-
 - [ ] **V2-02-005** Author and label the full original 3D keyframe set.
 
 - [ ] **V2-02-006** Cover running, on-foot recovery and non-rider characters.
@@ -587,6 +602,12 @@ relationship-axis/event and random-stream parity gates.
 - [ ] **V2-02-007** Publish a numbered pose gallery with anatomical review.
 
 - [ ] **V2-02-008** Exit gate: keyframes and catalog approved.
+
+- [ ] **ANIM-02** Refine fingers, grips, fists and weapon sockets. Reason: the current twenty-bone rig has rigid hands; part: 02; dependencies: rider mesh/rig and contact catalog; acceptance: believable closed fists, wrapped grips and compatible held-weapon points without changing passive physics; verification: front/rear/side hand close-ups and rig/contact validation.
+
+- [ ] **ANIM-03** Resolve reference sequence linkage, timing and ambiguous labels. Reason: sprite slots include view/depth variants and do not establish timing; part: 02; dependencies: local reference metadata and CANS/RRAN/EXE research; acceptance: evidence-backed phase/side/weapon labels and timing or explicit unknowns for every reference family; verification: source-linked sequence audit, no guessed native durations.
+
+- [ ] **ANIM-04** Complete and review recovery/support and specialist poses. Reason: get-up kneel/sit candidates are preliminary crouches and arrest/equip/drop coverage is missing; part: 02; dependencies: catalog and hand refinement; acceptance: supported get-ups/lifts/mounts, reviewed vault/knockoff proposals, weapon equip/drop, police restraint and refined quadruped anatomy with clothing/body/bike clearance; verification: multi-angle art review, endpoint/chain checks and user pose approval before Part 03.
 
 - [ ] **P11-003** Establish tested Blender -> glTF/GLB scale, axes, rig/bone names, PBR materials, collision naming, LODs, and source/export folder separation.
 

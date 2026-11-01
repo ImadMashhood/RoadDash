@@ -202,3 +202,13 @@ tracker and content/world validators pass. [Receipts/limits](COLLISION_RESPONSE.
 Isolated body parity remains zero; full-scene remount tolerance is now documented
 2 cm for observed 6–8 mm contact/projection variance, with exact stage timing.
 Full vault/swerve, new Windows runtime and human acceptance remain open.
+
+### Animation A static authoring — 2026-10-31 / 2026-11-01
+
+140 regular Rust tests (one optional soak ignored), 14 Python tests, format,
+Clippy with warnings denied and locked build pass. The authoring CLI validates
+247 draft poses / 27 use cases. Independent Blender reload checks all 247 poses,
+247 single-frame constant Actions and 50,670 channels with maximum matrix error
+4.77e-7 and no physics bodies. Offline gallery run filter/detail/side view was
+checked visually. [Evidence, draft gaps and limits](ANIMATION_A.md). No runtime
+playback, native smoke rerun, remote CI or art approval is claimed this session.
