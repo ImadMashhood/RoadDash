@@ -48,6 +48,9 @@ def export(report, target):
     for street in layout.get('grid_streets', []):
         a, b = street['a'], street['b']
         out.append(f'<polyline points="{point(a[0],a[2])} {point(b[0],b[2])}" fill="none" stroke="#73858c" stroke-width="{street["width"]*scale:.3f}"/>')
+    for join in layout.get('frontages', []):
+        polygon = ' '.join(point(p[0], p[2]) for p in join['corners'])
+        out.append(f'<polygon points="{polygon}" fill="#b9bedf"/>')
     for building in buildings:
         color = colors[building['archetype_id'][0]]
         label = html.escape(f'{building["id"]} / {building["archetype_id"]} / {building["row"]} / foundation {building["foundation_m"]:.2f} m')

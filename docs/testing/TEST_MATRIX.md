@@ -120,3 +120,7 @@ parts are not silently closed.
 ### 2026-10-31 completed city/combat follow-up
 
 Supersedes the initial partial entry above. See CITY_COMBAT.md and city-combat/ for 112 passing tests (one optional soak ignored), successful format/Clippy/build/audit, measured 657-root native survey, seven lean and two kick captures, original-disc proportions and successful farm/hill recovery-to-finish smoke. Camera crowd and yaw faults have focused regressions; human subjective handling and Windows hardware are not claimed.
+
+### CITY-02 touching frontages — 2026-10-31
+
+113 tests passed, optional soak ignored. Exact join edges, street reservations and physical roofs of all 347 infills checked. Updated exposed-perimeter route audit passes; existing physical capsule and gameplay regressions pass. Native city/grid screenshots reviewed after correcting smooth normals; 1080p p95 9.79 ms. Native crash→remount→city/hills→hill crash→remount→finish passed. See FRONTAGES.md and frontages/ for logs/captures.

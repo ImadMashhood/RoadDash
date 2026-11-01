@@ -57,6 +57,28 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
         rigidbody_set: bodies,
         joints,
     };
+    // Every infill has physical volume, not just a facade hiding an empty gap.
+    let infill = |e| world.get::<super::frontage::PartyWallInfill>(e).is_some();
+    for join in &layout.frontages {
+        let center = join
+            .corners
+            .iter()
+            .map(|p| Vec3::from_array(*p))
+            .sum::<Vec3>()
+            * 0.25;
+        let hit = context.cast_ray(
+            center.with_y(join.top + 2.0),
+            -Vec3::Y,
+            4.0,
+            true,
+            QueryFilter::default().predicate(&infill),
+        );
+        assert!(
+            hit.is_some_and(|(_, distance)| (distance - 2.0).abs() < 0.03),
+            "missing physical frontage {:?}",
+            join.owners
+        );
+    }
     let ground = |e| world.get::<crate::world::Ground>(e).is_some();
     let ray = |p: Vec3| {
         context

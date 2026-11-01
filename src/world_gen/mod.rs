@@ -1,5 +1,6 @@
 //! Deterministic structural world: validated plan, parcels, earthworks, meshes and survey.
 pub mod buildings;
+pub mod frontage;
 pub mod ground;
 pub mod layout;
 pub mod navigation;

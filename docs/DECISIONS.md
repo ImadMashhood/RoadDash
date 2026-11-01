@@ -395,3 +395,23 @@ ragdoll angular motion is unaffected. This is an arcade stabilization decision,
 not original binary parity. Bank is input-only with smooth symmetric visual
 poses. Typed kick actions select nearest valid side, push at the center of mass,
 and animate the corresponding leg without incrementing the rider punch chain.
+
+## ADR-023 — 2026-10-31 — Shared-edge city infill
+
+The user clarified that city buildings must touch, not merely be more numerous.
+Uniformly enlarging rotated boxes leaves wedge gaps on curves and can obstruct
+intersections. Instead add solid full-depth building infill joining the exact end
+faces of adjacent city buildings. Its roof meets the lower neighboring roof and
+its base extends into the shared ground. Preserve all canonical lot IDs and
+archetypes. Reject joins crossing main-road/side-street reservations or unrelated
+building footprints. Windows are procedural; collision remains resident when
+visuals cull. No new dependency, imported art or original-game code.
+
+The union of previously detached buildings changes walking topology. Runtime
+navigation includes infill bounds and searches a wider block neighborhood;
+interior corners are removed from graph candidates. Audit fixtures must start
+at exposed perimeter points, not in former side yards now occupied by buildings.
+This is not a runtime teleport or a relaxation of collision checks. Tradeoffs:
+infill is additional building volume rather than a new canonical lot; conservative
+rectangular navigation bounds may route farther than the rendered facade. Remove
+infill and its navigation blockers together to roll back; retain original quotas.

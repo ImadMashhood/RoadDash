@@ -85,6 +85,7 @@ pub struct WorldLayout {
     pub settings: Construction,
     pub buildings: Vec<Building>,
     pub neighborhood: Vec<Building>,
+    pub frontages: Vec<super::frontage::Join>,
     pub grid_streets: Vec<super::neighborhood::Street>,
     pub fields: Vec<Field>,
     pub alleys: Vec<Alley>,
@@ -107,6 +108,11 @@ fn noise(id: &str, salt: u32) -> f32 {
     (h % 10000) as f32 / 10000.0
 }
 impl WorldLayout {
+    pub fn blockers(&self) -> impl Iterator<Item = &Rect> {
+        self.all_buildings()
+            .map(|b| &b.footprint)
+            .chain(self.frontages.iter().map(|j| &j.bounds))
+    }
     pub fn all_buildings(&self) -> impl Iterator<Item = &Building> {
         self.buildings.iter().chain(&self.neighborhood)
     }
@@ -119,6 +125,7 @@ impl WorldLayout {
             settings,
             buildings: Vec::with_capacity(plan.assignments.len()),
             neighborhood: Vec::new(),
+            frontages: Vec::new(),
             grid_streets: Vec::new(),
             fields: Vec::new(),
             alleys: Vec::new(),
@@ -389,6 +396,7 @@ impl WorldLayout {
         }
         result.validate(plan, track)?;
         super::neighborhood::generate(&mut result, plan, track);
+        result.frontages = super::frontage::generate(&result, track);
         Ok(result)
     }
     pub fn validate(&self, plan: &WorldPlan, track: &Track) -> Result<(), String> {
@@ -452,8 +460,12 @@ impl WorldLayout {
     }
     pub fn scenery_allowed(&self, point: Vec3, radius: f32) -> bool {
         !self
-            .all_buildings()
-            .any(|b| b.lot.contains(point.xz(), radius + 1.0))
+            .frontages
+            .iter()
+            .any(|j| j.bounds.contains(point.xz(), radius + 1.0))
+            && !self
+                .all_buildings()
+                .any(|b| b.lot.contains(point.xz(), radius + 1.0))
             && !self
                 .grid_streets
                 .iter()

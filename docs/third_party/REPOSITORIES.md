@@ -314,3 +314,7 @@ UNVERIFIED; public source availability does not establish reuse permission.
 Native C++/SDL is not directly compatible with Rust/Bevy; only format/behavior
 research is used. This snapshot is historical, not a claim of current maintenance
 or complete game parity. Proprietary disc/media remain local and outside Git.
+
+CITY-02, 2026-10-31: reused the above R01 course_scene facade-strip findings for
+touching city fronts; independent shared-edge 3D infill, no additional repository,
+C++ source or original media incorporated. Evidence: ../testing/FRONTAGES.md.

@@ -143,6 +143,7 @@ pub fn setup_world(
             plan,
             &layout,
         );
+        crate::world_gen::frontage::spawn(&mut commands, &mut meshes, &mut materials, &layout);
         commands.insert_resource(layout);
     }
     commands.insert_resource(art);

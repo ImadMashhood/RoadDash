@@ -91,3 +91,8 @@ Cross-car wipeouts are covered in both adapters, including moving-side impacts.
   floating-point lockstep guarantee is claimed.
 
 2026-10-31 follow-up: verified local disc matches all 341 upstream import hashes; original-data availability is no longer the handling blocker. Numerical calibration remains undone. City blocks/frontage quality remains incomplete despite historical allocation checks. Superseded by CITY_COMBAT.md: kicks now animate the selected leg; supported contact yaw and input-only lean are corrected, with automated camera/contact checks and native pose captures. Original handling parity, human subjective handling acceptance and Windows runtime remain open.
+
+CITY-02 supersedes the detached-city spacing limitation: shared-edge infill now
+joins neighboring city volumes. Road/junction clearances remain open deliberately.
+Navigation uses conservative bounds around infill, so a runner may take a wider
+route than the rendered facade requires. See testing/FRONTAGES.md for evidence.

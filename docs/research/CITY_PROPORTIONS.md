@@ -35,3 +35,10 @@ Symmetric bank poses interpolate through -37.24/-24.83/-12.41/0/12.41/24.83/37.2
 degrees from steering force only. These are authored 3D angles approximating the
 image, not angles recovered from proprietary sprite assets. Original handling
 calibration P03-020 remains separate and open.
+
+2026-10-31 frontage correction (CITY-02): the earlier change retained detached
+18 m frontages on a 24 m pitch. That six-metre gap did not satisfy the user's
+original-game reference. The already inspected course_scene building panels form
+continuous facade strips; RoadDash now joins neighboring building end faces with
+solid full-depth infill. Street and junction openings remain deliberate. No new
+reference repository or source snapshot was imported for this correction.
