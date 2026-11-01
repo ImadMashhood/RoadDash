@@ -148,7 +148,12 @@ pub fn build(
     let chunks = (track.length / 80.0).ceil() as usize;
     for i in 0..chunks {
         let start = if i == 0 && !track.definition.closed {
-            -45.0
+            track
+                .definition
+                .spawns
+                .iter()
+                .map(|s| s.distance - 12.0)
+                .fold(-45.0, f32::min)
         } else {
             i as f32 * track.length / chunks as f32
         };

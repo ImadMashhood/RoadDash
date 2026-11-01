@@ -162,7 +162,7 @@ impl TrackDef {
                 || !spawn.lane.is_finite()
                 || spawn.lane.abs() > 4.0
                 || spawn.distance > 0.0
-                || spawn.distance < -100.0
+                || spawn.distance < -250.0
             {
                 return Err("invalid grid spawn".into());
             }

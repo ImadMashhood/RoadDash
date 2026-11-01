@@ -213,8 +213,14 @@ impl Track {
         let mut best = (0.0, 0.0, f32::INFINITY);
         for (i, pair) in self.points.windows(2).enumerate() {
             let edge = (pair[1] - pair[0]).with_y(0.0);
-            let t =
-                ((point - pair[0]).with_y(0.0).dot(edge) / edge.length_squared()).clamp(0.0, 1.0);
+            let t = ((point - pair[0]).with_y(0.0).dot(edge) / edge.length_squared()).clamp(
+                if i == 0 && !self.definition.closed {
+                    -250.0 / edge.length()
+                } else {
+                    0.0
+                },
+                1.0,
+            );
             let delta = (point - pair[0].lerp(pair[1], t)).with_y(0.0);
             let distance = delta.length();
             if distance < best.2 {
@@ -255,7 +261,14 @@ impl Track {
         let end = (best.0 + 13).min(self.points.len() - 1);
         for i in start..end {
             let edge = (self.points[i + 1] - self.points[i]).with_y(0.0);
-            let t = ((point - self.points[i]).dot(edge) / edge.length_squared()).clamp(0.0, 1.0);
+            let t = ((point - self.points[i]).dot(edge) / edge.length_squared()).clamp(
+                if i == 0 && !self.definition.closed {
+                    -250.0 / edge.length()
+                } else {
+                    0.0
+                },
+                1.0,
+            );
             let p = self.points[i].lerp(self.points[i + 1], t);
             let d = (point - p).with_y(0.0).length();
             if d < distance {

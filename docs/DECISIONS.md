@@ -468,3 +468,29 @@ one second. This is reference-inspired behavior, not instruction-level parity.
 Tradeoffs: simple deterministic targeting rather than full original relationship
 tables; more racers increase simulation load. Revert content, roster validation,
 UI counts and pursuit together if rolling back. No dependency migration.
+
+## ADR-026 — 2026-10-31 — Individual relationships and a supported rear grid
+
+The user rejected uniformly aggressive rivals. Replace rider-ID speed/hunting
+heuristics with validated level-zero profile observations, normalized net
+relationships and the original race/follow/fight threshold structure. Store
+numeric profiles in content/rival_profiles.json; pure decisions stay in rr_core,
+validation in rr_content. Cache parsed builtins once; avoid per-tick file reads.
+Use individual hit responses and decay rather than automatically retaliating.
+Shared fallback personalities for CITY spares remain shared; retain distinct
+strength/endurance/weight. Keep three-hit knockout rules; apply strength/endurance
+to kick force, attack timing and stamina budget instead of changing that contract.
+Use weight consistently in attached mass, suspension, forces and upright torque.
+
+Move YOU behind 14 rivals, 12 m apart on both grids. Extend the open approach
+road based on the rear-most authored spawn, and project negative approach progress
+correctly. Merely moving spawn points would leave unsupported bikes or project
+everyone to zero. Bound authored pre-grid extent to 250 m. Legacy tracks remain
+loadable and retry falls back safely when fewer slots are authored.
+
+Alternatives rejected: arbitrary cautious/aggressive labels by name, copying
+unlicensed C++ or shipping the game executable. No dependencies changed. Tradeoff:
+net-score smoothing approximates original three-axis easing, and current gameplay
+uses one level rather than original career/random streams. AI-03 preserves these
+open parity requirements. Rollback profiles/controller/grid/projection together;
+retain physical road support for every authored spawn.

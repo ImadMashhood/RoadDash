@@ -109,3 +109,10 @@ color schemes using procedural models. Original instruction-level handling/kick
 distance and relationship-table AI parity remain open. Deliberate downed-rider
 hunts are limited to some opponents and short approach distances; human difficulty
 tuning remains a playtest gate. See testing/RIDERS.md.
+
+AI-02 supersedes uniform rival aggression and ID-based pace: current-level profiles
+and target relationships now drive racing/following/fighting, and the player starts
+last. Net relationship easing, display-speed conversion and modern stamina/kick
+mapping are adaptations. Full career levels, event-axis/random-stream/rubber-band
+parity remain AI-03. See testing/PERSONALITIES.md. No human difficulty acceptance
+or Windows certification is claimed.

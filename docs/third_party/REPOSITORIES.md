@@ -331,3 +331,14 @@ rules and procedural materials avoid compatibility issues. Local pinned snapshot
 does not establish current upstream maintenance. Proprietary disc assets retain
 separate restrictions and remain outside runtime/repository. Findings, decisions
 and limits: research/RIDERS_AND_KICKS.md. Adopt behavior reference only.
+
+### R01 individual-personality follow-up — 2026-10-31
+
+Same pinned arkits/road-rash commit 4e052aca9552a5690c2b145b0f53856d5c31e980,
+author arkits. Inspected race.cpp personality/stat readers, relationship scores,
+reactions, threshold state changes and attack selection. REFERENCE ONLY; no source
+copied, no Bevy dependency. Existing license remains UNVERIFIED for implementation
+reuse; license evidence URL and maintenance/compatibility limitations remain as
+recorded above. Local numeric observations inform independently authored profiles;
+no executable/media shipped. Adopt behavior research; defer all-career/random/
+three-axis parity to AI-03. Evidence: testing/PERSONALITIES.md and ADR-026.

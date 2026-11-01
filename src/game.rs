@@ -188,6 +188,10 @@ pub struct Rider {
     pub palette_index: usize,
     pub steering: rr_core::steering::SteeringMemory,
     pub raw_steer: f32,
+    pub ai_profile: rr_core::pursuit::Profile,
+    pub relationships: [f32; 10],
+    pub fight_stamina: f32,
+    pub attack_serial: u32,
 }
 impl Rider {
     pub(crate) fn new(id: usize) -> Self {
@@ -217,6 +221,10 @@ impl Rider {
             palette_index: id,
             steering: default(),
             raw_steer: 0.0,
+            ai_profile: rr_content::rivals::profile(id),
+            relationships: rr_content::rivals::profile(id).relationships,
+            fight_stamina: rr_content::rivals::profile(id).stamina,
+            attack_serial: 0,
         }
     }
 }
@@ -398,9 +406,10 @@ pub fn input(
             let palette = rider.palette_index;
             *rider = Rider::new(rider.id);
             rider.palette_index = palette;
-            let spawn = &track.definition.spawns[rider.id];
-            rider.progress = spawn.distance;
-            rider.lane = spawn.lane;
+            if let Some(spawn) = track.definition.spawns.get(rider.id) {
+                rider.progress = spawn.distance;
+                rider.lane = spawn.lane;
+            }
             *recovery = Recovery::default();
             commands.entity(entity).remove::<ColliderDisabled>();
         }
@@ -544,6 +553,9 @@ pub fn drive(
             }
             r.attack = (r.attack - dt).max(0.0);
             let is_player = r.id == 0;
+            let profile = r.ai_profile;
+            rr_core::pursuit::calm(&mut r.relationships, profile, dt);
+            r.fight_stamina = (r.fight_stamina + 120.0 * dt).min(profile.stamina);
             let me = rr_core::pursuit::Target {
                 id: r.id,
                 progress: r.progress,
@@ -554,10 +566,26 @@ pub fn drive(
             let chase = if is_player {
                 None
             } else {
-                rr_core::pursuit::choose(r.id, race.elapsed, me, &targets)
+                rr_core::pursuit::choose(
+                    r.id,
+                    race.elapsed,
+                    me,
+                    &targets,
+                    &r.relationships,
+                    profile.reach,
+                )
             };
-            let chase_goal =
-                chase.map(|t| rr_core::pursuit::approach(me, t, 43.0 + r.id as f32 * 0.8));
+            let chase_goal = chase.map(|t| {
+                let (lane, speed) = rr_core::pursuit::approach(me, t, profile.cruise_mps());
+                (
+                    lane,
+                    if t.downed {
+                        speed
+                    } else {
+                        speed.max(profile.minimum_units * 0.44704)
+                    },
+                )
+            });
             let throttle = if is_player {
                 player_intent.throttle
             } else {
@@ -576,7 +604,7 @@ pub fn drive(
                     tuning.top_speed_mps
                 }
             } else {
-                chase_goal.map_or(43.0 + r.id as f32 * 0.8, |(_, speed)| speed)
+                chase_goal.map_or(profile.cruise_mps(), |(_, speed)| speed)
             };
             let curve = track.curvature(r.progress).abs();
             let target = if is_player {
@@ -651,9 +679,10 @@ pub fn drive(
                 throttle_amount: if is_player {
                     player_intent.throttle_strength()
                 } else {
-                    chase_goal.map_or(1.0, |(_, speed)| {
+                    {
+                        let speed = chase_goal.map_or(target, |(_, speed)| speed);
                         ((speed - r.speed) * 0.25 + 0.35).clamp(0.0, 1.0)
-                    })
+                    }
                 },
                 brake_amount: if is_player {
                     player_intent.brake_strength()
@@ -687,15 +716,23 @@ pub fn drive(
             // Human and AI share damage and cooldown rules. Attack only one side at once.
             let attack_side = if is_player {
                 player_attack
-            } else if race.elapsed > 3.0
-                && r.speed > 6.0
-                && (race.elapsed * 2.8 + r.id as f32).sin() > 0.88
-            {
-                Some(if r.lane > 0.0 {
-                    rr_core::AttackSide::Left
-                } else {
-                    rr_core::AttackSide::Right
-                })
+            } else if race.elapsed > 8.0 && r.speed > 6.0 && r.fight_stamina >= 250.0 {
+                chase
+                    .filter(|t| {
+                        rr_core::pursuit::hostility(&r.relationships, t.id) >= 32.0
+                            && !t.downed
+                            && (t.progress - r.progress).abs() < 1.6
+                            && (t.lane - r.lane).abs() < 2.5
+                    })
+                    .map(|t| {
+                        if r.attack_serial.is_multiple_of(profile.kick_roll) {
+                            rr_core::AttackSide::Kick
+                        } else if t.lane > r.lane {
+                            rr_core::AttackSide::Right
+                        } else {
+                            rr_core::AttackSide::Left
+                        }
+                    })
             } else {
                 None
             };
@@ -705,8 +742,12 @@ pub fn drive(
                 r.attack = if is_player {
                     0.65
                 } else {
-                    1.2 + (r.id % 4) as f32 * 0.15
+                    profile.attack_cooldown()
                 };
+                r.attack_serial = r.attack_serial.wrapping_add(1);
+                if !is_player {
+                    r.fight_stamina -= 250.0;
+                }
                 r.kicking = matches!(attack_side, rr_core::AttackSide::Kick);
                 r.attack_side = attack_side.sign();
                 attacks.write(crate::combat::AttackAttempt(entity, attack_side));

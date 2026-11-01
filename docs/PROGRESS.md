@@ -193,6 +193,14 @@ COMBAT-02, CITY-04, RIDE-02 and AI-01 address the user's combined corrections.
 city survey: 11.29 ms p95 at 1080p on this host. Reference parity, production
 art and human difficulty acceptance remain open. [Evidence](testing/RIDERS.md).
 
+## Individual rival personalities — 2026-10-31
+
+AI-02 completes validated level-zero profiles, selective relationship-driven
+race/follow/fight decisions, individual hit responses/stats and a supported rear
+grid with 12 m gaps. 120 tests and final native inspection/survey/smoke pass.
+Evidence: [PERSONALITIES.md](testing/PERSONALITIES.md). AI-03 retains full-career,
+relationship-axis/event and random-stream parity gates.
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Baseline and dependency decisions
@@ -820,3 +828,7 @@ art and human difficulty acceptance remain open. [Evidence](testing/RIDERS.md).
 - [x] **RIDE-02** Require player steering through curves, increase turn strength 50%, and topple abandoned bikes. Reason: user reported automatic driving and upright wrecks; part: Parts 03/04; dependencies: dynamic chassis and recovery; acceptance: neutral heading stays independent of road, stronger turn settings and physical roll without linear launch; verification: heading/roll/momentum/remount regressions and native smoke.
 
 - [x] **AI-01** Add measured rival pursuit, speed matching and selective attacks on downed riders. Reason: user requested reference-inspired fighting/chaos; part: AI follow-up; dependencies: relative contacts and crash recovery; acceptance: start grace, bounded approach, alongside spacing, gradual speed matching, limited downed hunts and attack cooldowns; verification: deterministic pursuit scenarios, regression suite and native survey. Original relationship-table parity remains future work.
+
+- [x] **AI-02** Match individual level-zero rival pace/stats and relationship-driven race/follow/fight choices; start YOU last with 12 m gaps. Reason: user rejected uniform aggression and crowded/front starts; part: AI follow-up/track setup; dependencies: AI-01 and supported dynamic grid; acceptance: distinct validated profiles, selective hostility and hit reactions, per-rider pace/strength/stamina/weight, solid separated rear grid and retry; verification: profile/decision/physical-grid tests plus native smoke/survey; [evidence](../docs/testing/PERSONALITIES.md).
+
+- [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.

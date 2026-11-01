@@ -544,3 +544,58 @@ fn urban_height_override_adds_whole_floors_without_changing_lots() {
     json["city_height_scale"] = serde_json::json!(0.0);
     assert!(layout::Construction::from_json(&json.to_string(), &track).is_err());
 }
+
+#[test]
+fn expanded_grid_puts_player_last_with_twelve_metre_gaps_and_solid_road() {
+    let mut app = scene();
+    let world = app.world_mut();
+    let mut query = world.query::<(
+        &RapierContextSimulation,
+        &RapierContextColliders,
+        &RapierContextJoints,
+        &RapierRigidBodySet,
+    )>();
+    let (simulation, colliders, joints, rigidbody_set) = query.single(world).unwrap();
+    let ctx = RapierContext {
+        simulation,
+        colliders,
+        joints,
+        rigidbody_set,
+    };
+    let track = world.resource::<Track>();
+    let spawns = &track.definition.spawns;
+    assert_eq!(spawns.len(), 15);
+    assert!(
+        spawns
+            .iter()
+            .skip(1)
+            .all(|s| s.distance > spawns[0].distance)
+    );
+    let mut positions: Vec<_> = spawns.iter().map(|s| s.distance).collect();
+    positions.sort_by(f32::total_cmp);
+    assert!(positions.windows(2).all(|p| p[1] - p[0] >= 12.0));
+    for spawn in spawns {
+        let p = track.sample(spawn.distance, spawn.lane).0;
+        assert!(
+            track.terrain_height(p.x, p.z) < p.y - 0.1,
+            "terrain intrudes into grid"
+        );
+        let (d, lane, _) = track.project(p, spawn.distance);
+        assert!((d - spawn.distance).abs() < 0.1 && (lane - spawn.lane).abs() < 0.1);
+        let ground = |e| world.get::<crate::world::Ground>(e).is_some();
+        let (_, distance) = ctx
+            .cast_ray(
+                p + Vec3::Y * 2.0,
+                Vec3::NEG_Y,
+                4.0,
+                true,
+                QueryFilter::default().predicate(&ground),
+            )
+            .unwrap();
+        assert!(
+            (1.8..2.2).contains(&distance),
+            "spawn lacks road support: {}",
+            spawn.id.as_str()
+        );
+    }
+}

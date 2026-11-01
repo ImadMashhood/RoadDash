@@ -49,6 +49,12 @@ pub fn melee(
         }
         let kicking = matches!(action, rr_core::AttackSide::Kick);
         let player = rider.id == 0;
+        let attacker_id = rider.id;
+        let kick_strength = if player {
+            8.0
+        } else {
+            8.0 * rider.ai_profile.strength / 7.0
+        };
         let origin = t.translation + Vec3::Y * 1.45;
         let forward = t.rotation * Vec3::Z;
         let right = forward.cross(Vec3::Y).normalize_or_zero();
@@ -121,12 +127,15 @@ pub fn melee(
             continue;
         }
         if let Ok((_, mut r, mut state, t, mut visible)) = riders.get_mut(target) {
+            let column = rr_core::pursuit::personality(attacker_id);
+            r.relationships[column] =
+                (r.relationships[column] + r.ai_profile.hit_reaction).clamp(-1024.0, 1024.0);
             if kicking {
-                let push = right * (p - origin).dot(right).signum() * 8.0;
+                let push = right * (p - origin).dot(right).signum() * kick_strength;
                 if let Ok(mut velocity) = velocities.get_mut(target) {
                     velocity.linvel += push;
                 }
-                r.side_velocity += (p - origin).dot(right).signum() * 8.0;
+                r.side_velocity += (p - origin).dot(right).signum() * kick_strength;
                 r.motion_velocity += push;
                 if player {
                     race.message = "KICK".into();

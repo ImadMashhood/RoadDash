@@ -178,3 +178,18 @@ helmet/shirt/bike swatches, 8 m/s kicks, 44 m tree spacing, body-heading player
 forces, stronger authored turn response/caps, physical wreck roll and deterministic
 pursuit with speed matching/selective downed hunts. R01 inspected reference-only;
 no source/media copied. ADR-025 and testing/RIDERS.md record verification/limits.
+
+## 2026-10-31 — AI-02 individual personalities and rear starting grid
+
+Replaced generic pursuit/periodic attacks and ID-based speed with validated
+original level-zero profile observations and relationship-driven decisions.
+Integrated individual pace, reach, kick odds, strength, attack stamina and physical
+rider weight; added per-rider hit responses/return to baseline. Player starts last,
+12 m between racers, with extended solid approach and negative-progress projection.
+Retry accepts legacy shorter grids. Original full-career/random/event parity is
+tracked under AI-03; ADR-026 and testing/PERSONALITIES.md record scope/evidence.
+
+AI-02 verification: 120 tests, format/Clippy/locked builds, provenance/source checks,
+final world inspection and native survey/smoke pass (1080p p95 14.74 ms).
+Native testing caught and fixed terrain intrusion beneath the expanded approach;
+new test rejects that condition. AI-02 closed; AI-03 full parity stays open.

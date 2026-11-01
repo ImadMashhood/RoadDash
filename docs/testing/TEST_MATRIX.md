@@ -143,3 +143,14 @@ downed selection and existing regressions pass. Workspace format/Clippy/locked
 builds, source-input checks/audit pass. Native 15-section survey: 11.29 ms p95
 at 1080p; crash/remount/finish and audio initialization pass.
 See [RIDERS.md](RIDERS.md) and riders/ receipts. Human tuning and Windows remain open.
+
+### AI-02 personalities and rear grid — 2026-10-31
+
+120 tests pass (one optional soak ignored). Profile validation, relationship
+pass/follow/fight and downed filters, 15-spawn rear ordering/12 m gaps/negative
+projection/terrain clearance/solid support plus prior regressions pass.
+Format/Clippy/locked builds, metadata-reader reproduction, tracker/source checks
+and provenance audit pass. Final native inspection/survey (1080p p95 14.74 ms),
+racing visual review and crash/remount/finish with audio pass. Initial approach
+terrain intrusion was fixed and all checks rerun. [Evidence](PERSONALITIES.md).
+AI-03 full original parity, human acceptance and Windows remain open.

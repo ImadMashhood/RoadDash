@@ -74,8 +74,8 @@ pub struct VehicleTelemetry {
     pub tick: u64,
     pub samples: std::collections::VecDeque<serde_json::Value>,
 }
-fn mass(p: &Handling) -> ColliderMassProperties {
-    let m = p.dry_mass + 70.0;
+fn mass(p: &Handling, rider_mass: f32) -> ColliderMassProperties {
+    let m = p.dry_mass + rider_mass;
     ColliderMassProperties::MassProperties(MassProperties {
         mass: m,
         local_center_of_mass: Vec3::Y * 0.55,
@@ -92,7 +92,7 @@ pub fn attach(
     if *adapter != VehiclePhysicsAdapter::Dynamic {
         return;
     }
-    for (e, _, t) in &riders {
+    for (e, rider, t) in &riders {
         let p = &tuning.presets[tuning.selected];
         commands.entity(e).insert((
             BikeState {
@@ -106,7 +106,14 @@ pub fn attach(
                 Quat::IDENTITY,
                 Collider::cuboid(0.36, 0.28, 1.05),
             )]),
-            mass(p),
+            mass(
+                p,
+                if rider.id == 0 {
+                    70.0
+                } else {
+                    rider.ai_profile.weight_lb * 0.45359237
+                },
+            ),
             Velocity::zero(),
             ExternalForce::default(),
             Ccd::enabled(),
@@ -159,9 +166,14 @@ pub fn forces(
         }
         *body = RigidBody::Dynamic;
         let p = &tuning.presets[tuning.selected];
+        let rider_mass = if r.id == 0 {
+            70.0
+        } else {
+            r.ai_profile.weight_lb * 0.45359237
+        };
         r.bike_mass = p.dry_mass;
         if state.preset != tuning.selected {
-            *properties = mass(p);
+            *properties = mass(p, rider_mass);
             state.preset = tuning.selected;
         }
         if !state.was_riding {
@@ -220,9 +232,9 @@ pub fn forces(
                 let point_velocity = v.linvel
                     + v.angvel
                         .cross(contact - (t.translation + t.rotation * Vec3::Y * 0.55));
-                let f = ((p.dry_mass + 70.0) * 9.81 * 0.5 + p.spring * compression
+                let f = ((p.dry_mass + rider_mass) * 9.81 * 0.5 + p.spring * compression
                     - p.damper * point_velocity.dot(hit.normal))
-                .clamp(0.0, (p.dry_mass + 70.0) * 9.81 * 2.5);
+                .clamp(0.0, (p.dry_mass + rider_mass) * 9.81 * 2.5);
                 force.force += hit.normal * f;
                 force.torque +=
                     (contact - (t.translation + t.rotation * Vec3::Y * 0.55)).cross(hit.normal * f);
@@ -256,7 +268,7 @@ pub fn forces(
             limit
         } else {
             limit
-                .min(43.0 + r.id as f32 * 0.8)
+                .min(r.ai_profile.cruise_mps())
                 .min((12.0 / track.curvature(r.progress).abs().max(0.0001)).sqrt())
         };
         let surface = track.surface(r.progress, r.lane);
@@ -279,12 +291,15 @@ pub fn forces(
         };
         let longitudinal = engine
             - if brake {
-                (v.linvel.dot(forward) * (p.dry_mass + 70.0) / dt.max(0.001))
-                    .clamp(-(p.dry_mass + 70.0) * 10.0, (p.dry_mass + 70.0) * 10.0)
-                    * if at_end { 1.0 } else { input.brake_strength() }
+                (v.linvel.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
+                    -(p.dry_mass + rider_mass) * 10.0,
+                    (p.dry_mass + rider_mass) * 10.0,
+                ) * if at_end { 1.0 } else { input.brake_strength() }
             } else if !throttle {
-                (v.linvel.dot(forward) * (p.dry_mass + 70.0) / dt.max(0.001))
-                    .clamp(-(p.dry_mass + 70.0) * 1.8, (p.dry_mass + 70.0) * 1.8)
+                (v.linvel.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
+                    -(p.dry_mass + rider_mass) * 1.8,
+                    (p.dry_mass + rider_mass) * 1.8,
+                )
             } else {
                 0.0
             };
@@ -297,7 +312,7 @@ pub fn forces(
             } else {
                 track.curvature(r.progress) * speed * speed
             })
-            * (p.dry_mass + 70.0);
+            * (p.dry_mass + rider_mass);
         let grip = load * p.grip * surface.traction();
         let requested = Vec2::new(longitudinal, lateral);
         let applied = requested.clamp_length_max(grip);
@@ -323,8 +338,8 @@ pub fn forces(
         } else {
             current_up.cross(normal)
         };
-        force.torque += upright_axis * (p.dry_mass + 70.0) * 28.0
-            - Vec3::new(v.angvel.x, 0.0, v.angvel.z) * (p.dry_mass + 70.0) * 5.5;
+        force.torque += upright_axis * (p.dry_mass + rider_mass) * 28.0
+            - Vec3::new(v.angvel.x, 0.0, v.angvel.z) * (p.dry_mass + rider_mass) * 5.5;
         let heading = (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
         let target = (forward
             + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.675, 0.675))
