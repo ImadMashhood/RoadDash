@@ -1,0 +1,406 @@
+{
+  "source": "Existing user-local extraction; resource mapping inherited, not independently re-extracted",
+  "source_index_sha256": "c123f5c52b8d009eda86cc5c77ee7e2f51be780c9f06686af2281d1b9f28f62f",
+  "coverage": "39 named city designs only; all-course completeness unverified",
+  "families": [
+    {
+      "category": "building",
+      "keys": [
+        "f10_c1_s1_vNone",
+        "f12_c1_s4_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS2"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f10_c1_s0_vNone",
+        "f11_c1_s4_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS1"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f11_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS3"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f11_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS5"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f11_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS4"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f12_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS8"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f12_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS6"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f12_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WRHS7"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f3_c1_s0_vNone",
+        "f1_c1_s0_vNone",
+        "f7_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC1"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f3_c1_s2_vNone",
+        "f1_c1_s2_vNone",
+        "f7_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC5"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f3_c1_s1_vNone",
+        "f1_c1_s1_vNone",
+        "f7_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC2"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f41_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT1A"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f41_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT1B"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f41_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT2A"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f41_c1_s4_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT2B"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f42_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT6A"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f42_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT3B"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f42_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT3A"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f42_c1_s4_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT6B"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f115_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT11"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f115_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT27"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f115_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT18"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f120_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT12"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f120_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT32"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f120_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Victorian / residential",
+      "id": "VICT28"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f104_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE14"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f104_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE12"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f104_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE11"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f107_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE22"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f107_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE20"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f107_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE13"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f105_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE16"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f105_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE17"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f105_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Industrial / warehouse",
+      "id": "WHSE23"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f111_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC17"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f111_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC13"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f111_c1_s2_vNone",
+        "f112_c1_s0_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC19"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f112_c1_s2_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC21"
+    },
+    {
+      "category": "building",
+      "keys": [
+        "f112_c1_s1_vNone"
+      ],
+      "width": 64,
+      "height": 256,
+      "group": "Offices",
+      "id": "OFFC20"
+    }
+  ]
+}

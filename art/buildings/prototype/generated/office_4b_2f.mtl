@@ -1,0 +1,14 @@
+newmtl material_0
+Kd 0.356863 0.356863 0.443137
+
+newmtl material_1
+Kd 0.145098 0.219608 0.254902
+
+newmtl material_2
+Kd 0.494118 0.494118 0.580392
+
+newmtl material_3
+Kd 0.188235 0.188235 0.176471
+
+newmtl material_4
+Kd 0.203922 0.196078 0.192157

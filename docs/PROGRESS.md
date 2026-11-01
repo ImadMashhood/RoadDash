@@ -11,7 +11,7 @@ The complete eleven-family animation coverage and two-stage deliverables are now
 explicit in README's dedicated Animation production section. Existing V2-02/V2-03
 IDs own the expanded coverage. Animation A source investigation and the first draft authoring deliverable are verified; full art approval remains open.
 
-Current user-authorized scope: independent original-crash comparison on a separate branch from main; biomechanical PR12 stays separate. Existing later work remains deferred:
+Current user-authorized scope: first facade catalog and three-family procedural authoring kit; V2-04 remains partial, pending source coverage, production art and runtime review. Earlier open work remains tracked:
 interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
@@ -713,7 +713,7 @@ relationship-axis/event and random-stream parity gates.
 
 - [ ] **V2-04-003** Plan a data-driven city/world construction grammar.
 
-- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks.
+- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks. First offline kit: three families, 12 variants and connected frontage; [preview/progress](research/FACADE_PROTOTYPE.md). Production art and runtime acceptance remain open.
 
 - [ ] **V2-04-005** Retain supported ground, roads, collision and navigation.
 

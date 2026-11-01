@@ -219,3 +219,10 @@ are authoring proxies. No runtime interpolation or ragdoll change is included.
   behavior. Complete native geometry/order, traffic reciprocity, per-racer stats,
   attack callers and trajectory oracle coverage remain open. Signed native
   oncoming motion was verified; entire original Windows game was not run.
+
+- V2-04-001–007 facade prototype: catalog inherits 39 named city records; not
+  independently verified all-course extraction. Three families/12 OBJ variants
+  are offline geometric drafts with rectangular openings/flat colors. Arches,
+  distinctive roofs, production textures, optimized topology, GLB/LOD/collision,
+  native placement/navigation/performance and art review remain open. Details:
+  research/FACADE_PROTOTYPE.md. No map or physical gameplay changes.

@@ -511,3 +511,16 @@ defer exact legacy mode/boost flag mapping and original-executable timing eviden
   and interpreting bounded results as whole-game parity.
 - Decision: adopt only for explicitly invoked local research verification; retain
   dependency-free Rust rules/tests for normal builds and CI.
+
+### R01 facade kit follow-up — 2026-11-01
+
+Inspected same pinned aa9cb6d3181e20736af71022cd4d6aac0e2788d1 (arkits,
+https://github.com/arkits/road-rash), family.cpp, building_panels.cpp and
+course_scene.cpp building-group resolution. REFERENCE ONLY, root reuse license
+still UNVERIFIED; no source code or proprietary images incorporated. Useful
+concepts: selector family/category mapping, size variants, separate facade/roof/
+end/side-street construction. C++/SDL compatibility is irrelevant to our offline
+independent Python grammar; Bevy dependencies unchanged. Existing maintenance and
+license risks remain. Local prior extraction supplies 39 inherited named city
+records, whose completeness is unverified. Decision: implement original geometric
+kit with explicit dimensions; defer texture authoring and runtime replacement.

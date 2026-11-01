@@ -577,7 +577,7 @@ Study the original building/facade textures locally, rebuild them as original ar
 - [ ] **V2-04-001** Catalog every reference building/facade family locally.
 - [ ] **V2-04-002** Create original facade textures in the RoadDash style.
 - [ ] **V2-04-003** Plan a data-driven city/world construction grammar.
-- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks.
+- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks. First offline kit: three families, 12 variants and connected frontage; [preview/progress](docs/research/FACADE_PROTOTYPE.md). Production art and runtime acceptance remain open.
 - [ ] **V2-04-005** Retain supported ground, roads, collision and navigation.
 - [ ] **V2-04-006** Validate city life, visual density and performance.
 - [ ] **V2-04-007** Exit gate: coherent procedural buildings are accepted.

@@ -370,3 +370,13 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
   139 complete / 225 open; corrected inherited stale 357-ID progress prose.
   Recorded ADR037, source/license research and remaining acceptance. No assets,
   original source/media or new game dependencies incorporated; no merge performed.
+
+## 2026-11-01 — First procedural facade authoring kit
+
+- Created codex/procedural-facade-kit from merged original-crash main.
+- Recorded inherited local 39-name city facade catalog; inspected three reference
+  images and pinned R01 family/panel selection. No original pixels/source copied.
+- Added editable three-family grammar and independent offline geometry exporter:
+  12 width/height/corner variants, connected frontage, OBJ/MTL and preview.
+- Added four authoring tests, source/provenance notes and ADR038. V2-04 tasks
+  remain open/partial; this is not final production art or native integration.

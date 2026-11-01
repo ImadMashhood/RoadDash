@@ -861,3 +861,19 @@ existing systems. The reference scalar drag is a calculator, not a per-limb forc
 Future consequences: CRASHREF-004 owns remaining full-parity work; compare before
 choosing a default or combining with biomechanical motors. Rollback: omit the
 flag or remove the bridge; saves, GLBs, locks/dependencies need no migration.
+
+## ADR-038 — Offline facade grammar before runtime replacement (2026-11-01)
+
+Problem: establish how original facade references become variable 3D buildings.
+Alternatives: stretch complete facade textures, generate opaque image-to-3D
+meshes, or author explicit bay/floor rules. Selected explicit editable JSON rules
+with an offline Python OBJ/MTL exporter and inspectable geometric modules.
+Fixed window size preserves proportions across widths/heights; corner exposures
+and connected-row widths are explicit. Existing local 39-name extraction is
+recorded as inherited evidence, not claimed complete disc verification. R01
+remains reference-only; no source/pixels copied. No new game dependencies.
+Tradeoffs: rectangular draft openings/material colors are not final architecture,
+PBR art or optimized runtime meshes. Hidden dimensions are authored choices.
+Future: add family details, GLB/LOD/collision and integration after review; current
+Valley IDs/lots and physics remain authoritative. Rollback: remove authoring kit;
+no saves, runtime assets or physics migration is needed.

@@ -240,3 +240,13 @@ rig/control/recovery regression. Full command evidence and explicit parity limit
 [ORIGINAL_CRASHES.md](ORIGINAL_CRASHES.md). CRASHREF-004 remains open. Retail checks
 need the user's original EXE plus optional Unicorn2.1.4 and are not represented
 as ordinary CI coverage or original Windows-game execution.
+
+## Facade authoring prototype — 2026-11-01
+
+Four new offline authoring tests pass (24 total Python tests): constant bay/window
+sizes and recessed glass, corner geometry/ground bounds, OBJ indices/material
+references and invalid configuration. Full Rust regression: 163 pass, one existing
+ignored soak; fmt, clippy, locked build, audit and progress sync pass. Preview
+inspected. No runtime geometry changes; native city placement/performance and
+complete catalog/art acceptance remain open under V2-04. Source and reproduction:
+[facade prototype](../research/FACADE_PROTOTYPE.md).
