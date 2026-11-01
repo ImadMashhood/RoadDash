@@ -315,3 +315,20 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
 - ADR-033 separates static draft vocabulary from runtime playback. ANIM-01 and
   V2-02-004 verified; ANIM-02/03/04 added for hands, native sequence interpretation
   and support/specialist art review. README/progress preserve open approval gates.
+
+## 2026-11-01 — Correct animation context before pose reconstruction
+
+- User rejected V1 semantics; explicitly superseded inspection-helper action
+  labels without erasing historical artifacts or claiming approval.
+- Added independent bounded retail metadata reader and source-ordered catalog:
+ 104 bank/code slots,194 descriptors,371 sprite-slot usage entries, actual mirrors,
+  controls/fallbacks/logical timing, repeated phases and explicit unknown callers.
+- Cross-checked194 descriptors/rear selections against the separately compiled
+  pinned reference library outside RoadDash. No C++/retail media imported; no
+  native-original execution claim. Punches176–179, kicks225/226 and gesture44/45
+  now have their correct selector contexts.
+- Rebuilt isolated138 human poses /16 bike layouts using semantic phase names,
+  original weapon proxies, authoring fist keys and complete assembly loader.
+ 138 static Actions round-trip; all art remains draft and runtime physics intact.
+- ANIM-05 verified; ANIM-06 retains fidelity/unknown-binding/approval work. ADR-034,
+  source/provenance/testing records and README/progress updated together.

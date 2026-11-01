@@ -434,3 +434,23 @@ sprite/helper anchors, view/descriptor separation and crash/get-up transitions.
 All 326 HIBOB and 45 LOCOP slots were inventoried from the local disc as numeric
 metadata. No source or proprietary pixels were imported. See animation reference
 review. Native CANS/RRAN/EXE timing/sequence linkage remains unverified.
+
+### R01 context correction follow-up — 2026-11-01
+
+arkits/road-rash, arkits, https://github.com/arkits/road-rash, pinned
+cd5504caea48aee59806dbfd11c920f33df21200, REFERENCE ONLY / incorporation rights
+UNVERIFIED (no root license grant verified; https://github.com/arkits/road-rash/tree/cd5504caea48aee59806dbfd11c920f33df21200).
+Read actor_descriptors.cpp/.hpp, actor_animation.cpp/.hpp, actor_nodes.cpp,
+actor_render.cpp, animation.cpp, resource.cpp, exe_tables.cpp, race_setup.cpp,
+race.cpp, crash.cpp and descriptor tests. Its stand-in attack_frame helper is
+explicitly inspection-based and superseded as an action authority. Actual
+EXE selector arrays, relocated descriptors, CANS groups, RRAN/BOB index mapping,
+view flags/mirroring and playback controls were traced instead.
+
+The library was compiled temporarily outside the project to cross-check our new
+independent Python metadata reader: 194 descriptors and rear selections agree.
+No C++/media copied into RoadDash, no dependency/engine adoption. Numeric binary
+layout facts and observed mappings are recorded; no measured native Windows parity
+is claimed. Runtime/Bevy compatibility is irrelevant to the offline research
+executable. Maintenance snapshot unchanged; original files are user-supplied local
+research only and not redistributed. Full corrected findings: animation/context.

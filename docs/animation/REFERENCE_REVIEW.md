@@ -1,5 +1,7 @@
 # Original animation reference review — 2026-10-31
 
+> **Semantic labels superseded (2026-11-01):** the old helper anchors were inspection-based approximations. Use the [context-first catalog and corrected action sequences](context/README.md). V1 files below are historical drafts, not motion-reference authority.
+
 Local research build: user-supplied 1997 rerelease disc. HIBOB SHA-256
 `a5699b34f5371ecd4659bb137feeaa3580dfdd1a9b620611cdefb2f7c4837f2d`;
 LOCOP `2fafb8eac3cd26074c41f8bc2dd03a75f1e01fcf0aeee572d7466c984a2fcd49`.

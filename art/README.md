@@ -63,3 +63,5 @@ pose library; tools/load_animation_pose.py applies complete assembly transforms.
 See docs/animation/README.md. These files are authoring-only, not runtime assets
 or animation clips. Source models/atlases, physical joints and game motion are
 unchanged. Approval and identified art/reference gaps remain open.
+
+Context correction: V1 action labels are superseded by [the source-ordered context catalog](../docs/animation/context/README.md) and art/animation/context. Original runtime meshes/physics remain unchanged.

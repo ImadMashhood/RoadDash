@@ -1,5 +1,7 @@
 # Animation A — reference and static keyframe review
 
+> **Semantic labels superseded (2026-11-01):** the old helper anchors were inspection-based approximations. Use the [context-first catalog and corrected action sequences](context/README.md). V1 files below are historical drafts, not motion-reference authority.
+
 This is the first stage of the user-requested animation overhaul. The user
 explicitly authorized starting it while handling the previous PR merge; no CI
 wait or merge is performed for them. Remaining Part 01 vault/swerve acceptance

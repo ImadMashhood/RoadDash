@@ -773,3 +773,31 @@ editable .blend is a generated local deliverable, reproducible from repository
 scripts/source art. Existing gameplay and saves require no migration/rollback.
 Remove the authoring module/CLI independently if needed; no runtime system relies
 on it. Verification and remaining gates: docs/testing/ANIMATION_A.md.
+
+## ADR-034 — Verify action sequences before reconstructing poses (2026-11-01)
+
+Problem: V1 used inspection-based two-frame helpers as if they established native
+punch/kick/weapon semantics. Source playback tables prove that several labels were
+wrong; view/mirror variants and repeated phases were flattened into slot names.
+
+Alternatives: keep relabeling visual guesses; replace the runtime animation/rig;
+or trace the executable descriptors, CANS view cells and actual action selectors
+before authoring. Selected the context-first trace and a new isolated draft set.
+The independent reader retains 104 bank/code slots, 194 ordered descriptors,
+controls/durations/fallbacks, and all 371 sprite-slot usage entries. Cross-checked
+194 descriptor/rear selections against the separately compiled pinned research
+library; this is not native executable validation. Unknown callers stay explicit.
+
+Original 3D poses now use semantic action/phase names, with separate authoring
+assembly/weapon recipes and static source links. Repeated sprites retain repeated
+phases; police/empty art is not invented. V1 artifacts stay as rejected semantic
+history and are prominently marked superseded. The shared two-link authoring
+math is project code; it never replaces passive physical joints. No gameplay,
+physics, dependency or runtime-asset migration. Existing source GLBs are preserved.
+
+Tradeoffs: more provenance/validation files; some source aliases still unresolved,
+and draft art still requires silhouette/support/cloth/hand review. No original
+pixels or reconstruction C++ imported into production. Reference: arkits/road-rash
+cd5504caea48aee59806dbfd11c920f33df21200, reference-only, licensing unresolved for
+source incorporation. No code reuse. Rollback: remove context tooling/art without
+changing gameplay; never reinstate V1 semantic labels as verified reference facts.

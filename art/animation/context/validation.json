@@ -1,0 +1,10 @@
+{
+  "human_poses_reloaded": 138,
+  "bike_only_poses": 16,
+  "actions": 138,
+  "single_constant_frame": true,
+  "curves": 27600,
+  "max_matrix_error": 5.364418029785156e-07,
+  "rigid_bodies": 0,
+  "native_playback_integrated": false
+}

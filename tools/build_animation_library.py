@@ -36,17 +36,10 @@ def direction(name,a,b):
     rest=rig.data.bones[name]
     q=(rest.tail_local-rest.head_local).rotation_difference(b-a)@rest.matrix_local.to_quaternion()
     orient(name,q,a)
+sys.path.insert(0,str(ROOT/'tools'))
+from animation_rig_math import solve_two_link
 def solve(a_name,b_name,target,pole,max_flex):
-    a=head(a_name);l1=rig.data.bones[a_name].length;l2=rig.data.bones[b_name].length
-    delta=target-a
-    minimum=math.sqrt(l1*l1+l2*l2+2*l1*l2*math.cos(max_flex))+.001
-    d=max(minimum,min(delta.length,l1+l2-.002));axis=delta.normalized()
-    target=a+axis*d;along=(l1*l1-l2*l2+d*d)/(2*d)
-    perp=pole-a-axis*(pole-a).dot(axis)
-    if perp.length<1e-5:perp=axis.cross(Vector((1,0,0)))
-    perp.normalize();joint=a+axis*along+perp*math.sqrt(max(0,l1*l1-along*along))
-    direction(a_name,a,joint);direction(b_name,joint,target)
-    return target
+    return solve_two_link(rig,a_name,b_name,target,pole,max_flex)
 
 def rotate(name,axis,degrees):
     rest=rig.data.bones[name].matrix_local.to_quaternion()
@@ -208,7 +201,7 @@ for spec in plan['poses']:
         for name in held:
             target=root.matrix_world@Vector(profile['anchors'][name]['neutral_bike_position'])
             contact_errors[name]=(landmark(name)-target).length
-    confidence='documented-helper-anchor' if spec['id'] in [3,4,5,6,8,9,10,11,44,45,51,52,60,66,101,102,105,106,140,141,142,143] else 'visual-inspection' if spec['source_slots'] else 'new-design'
+    confidence='superseded-heuristic-helper' if spec['id'] in [3,4,5,6,8,9,10,11,44,45,51,52,60,66,101,102,105,106,140,141,142,143] else 'visual-inspection' if spec['source_slots'] else 'new-design'
     record=dict(schema_version=1,id=spec['id'],frame_id=spec['id'],name=spec['name'],actor=spec['actor'],family=spec['family'],
         source_slots=spec['source_slots'],interpretation='authored static candidate; not recovered original motion',review='draft',
         held_contacts=held,released_contacts=[c for c in contacts if c not in held],contact_errors_m=contact_errors,reference_confidence=confidence,root_matrix=[list(row) for row in root.matrix_basis],rig_matrix=[list(row) for row in rig.matrix_basis],

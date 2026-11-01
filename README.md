@@ -109,7 +109,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**133 verified tasks complete; 222 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**134 verified tasks complete; 223 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -119,9 +119,9 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 133 verified complete |
+| [00](#part-00) | Completed and verified foundations | 134 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 27 open |
-| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 13 open |
+| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 18 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 6 open |
@@ -394,10 +394,12 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 </details>
 
 <details>
-<summary>Animation A authoring foundation — 2 verified tasks</summary>
+<summary>Animation A authoring foundation — 3 verified tasks</summary>
 
 - [x] **V2-02-004** Investigate animation, IK and active-ragdoll repositories. Evidence: [five pinned source comparisons, licenses and compatibility](docs/research/ANIMATION_AND_RAGDOLL.md); no library or source imported.
-- [x] **ANIM-01** Deliver the first reviewable static pose catalog and authoring validator. Reason: Animation A needs reproducible review assets before playback; originating part: 02; dependencies: existing authored rider/bike/contact rig; acceptance: 247 numbered draft candidates across 27 use cases, offline gallery, editable single-frame pose assets and independent connected-rig/contact validation; verification: [140 Rust / 14 Python tests, all-pose Blender round trip and gallery review](docs/testing/ANIMATION_A.md). This completes the review infrastructure, not pose approval or final animation coverage.
+- [x] **ANIM-01** Deliver the first reviewable static pose catalog and authoring validator. Reason: Animation A needs reproducible review assets before playback; originating part: 02; dependencies: existing authored rider/bike/contact rig; acceptance: 247 numbered draft candidates across 27 use cases, offline gallery, editable single-frame pose assets and independent connected-rig/contact validation; verification: [140 Rust / 14 Python tests, all-pose Blender round trip and gallery review](docs/testing/ANIMATION_A.md). This completes the review infrastructure, not pose approval or final animation coverage. V1 semantic labels were rejected and are superseded by the context-first trace below.
+
+- [x] **ANIM-05** Recover source-ordered action/phase/view context before reconstruction. Reason: V1 misclassified inspection-helper slots; originating part: 02; dependencies: supplied retail build and pinned reference selectors; acceptance: all 104 bank/code slots, 194 ordered descriptors and 371 sprite-slot usages include semantic IDs, mirror/view variants, controls, timing counters and explicit fallbacks/unknowns; verification: independent decoder versus separately compiled reference (194 descriptor/rear matches), reproducible metadata and semantic/bounds tests. [Corrected catalog and limits](docs/animation/context/README.md).
 
 </details>
 
@@ -483,7 +485,7 @@ Part 02 delivers the complete use-case catalog, original numbered pose files, co
 
 First study every original rider animation category, use sprites as reference keyframes, label every pose and use case, and publish a numbered gallery. Compare verified Synty/POLYGON-style games and animation/IK/ragdoll repositories; record licenses and compatibility. Initial research and static poses are starting points, not completion of this animation library.
 
-Current deliverable: **247 draft static candidates / 27 use cases**, an [offline numbered gallery](art/animation/gallery/index.html), editable Blender package and [validation evidence](docs/testing/ANIMATION_A.md). [Authoring instructions and remaining gaps](docs/animation/README.md). Original reference-slot inventories and five repository source comparisons are recorded. Full pose coverage/anatomical approval and native reference timing remain incomplete; Part 03 playback has not started.
+**Current correction:** V1's slot-based action labels are superseded. Use the [context-first source catalog](docs/animation/context/README.md) and [new action-grouped gallery](art/animation/context/gallery/index.html): 104 action slots / 194 temporal descriptors, with 138 new draft human poses and 16 bike-only layouts. Ordered phases, actual mirror/view flags and native logical counters are recorded separately. The earlier 247 candidates remain historical drafts. Pose fidelity/approval, unknown callers and native execution validation stay open; Part 03 has not started.
 
 - [ ] **V2-02-001** Build a complete animation/use-case catalog.
 - [ ] **V2-02-002** Inspect all original rider animation categories.
@@ -496,6 +498,7 @@ Current deliverable: **247 draft static candidates / 27 use cases**, an [offline
 - [ ] **ANIM-02** Refine fingers, grips, fists and weapon sockets. Reason: the current twenty-bone rig has rigid hands; part: 02; dependencies: rider mesh/rig and contact catalog; acceptance: believable closed fists, wrapped grips and compatible held-weapon points without changing passive physics; verification: front/rear/side hand close-ups and rig/contact validation.
 - [ ] **ANIM-03** Resolve reference sequence linkage, timing and ambiguous labels. Reason: sprite slots include view/depth variants and do not establish timing; part: 02; dependencies: local reference metadata and CANS/RRAN/EXE research; acceptance: evidence-backed phase/side/weapon labels and timing or explicit unknowns for every reference family; verification: source-linked sequence audit, no guessed native durations.
 - [ ] **ANIM-04** Complete and review recovery/support and specialist poses. Reason: get-up kneel/sit candidates are preliminary crouches and arrest/equip/drop coverage is missing; part: 02; dependencies: catalog and hand refinement; acceptance: supported get-ups/lifts/mounts, reviewed vault/knockoff proposals, weapon equip/drop, police restraint and refined quadruped anatomy with clothing/body/bike clearance; verification: multi-angle art review, endpoint/chain checks and user pose approval before Part 03.
+- [ ] **ANIM-06** Review context-first pose fidelity and finish unresolved action bindings. Reason: correct sequence metadata alone does not prove faithful 3D silhouettes; part: 02; dependencies: ANIM-05 and new source-linked draft poses; acceptance: review every action/phase, source mirroring, fixed grip/fist/weapon placement, grounded get-up/mount support, crash/bike silhouettes, additional camera views and unknown caller aliases; verification: labeled source/recreation strips, joint/contact tests, multi-angle art review and explicit approval before interpolation.
 
 #### Carried-forward requirements — still unfinished
 

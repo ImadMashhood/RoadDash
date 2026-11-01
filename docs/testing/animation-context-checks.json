@@ -1,0 +1,60 @@
+{
+  "commands": [
+    {
+      "name": "format",
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "clippy",
+      "command": [
+        "cargo",
+        "clippy",
+        "--workspace",
+        "--locked",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "tests",
+      "command": [
+        "cargo",
+        "test",
+        "--workspace",
+        "--locked",
+        "--",
+        "--nocapture"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "build",
+      "command": [
+        "cargo",
+        "build",
+        "--locked"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "rust_regular_tests_passed": 140,
+  "optional_soak_ignored": 1,
+  "python_tests_passed": 19,
+  "content_cli": {
+    "poses": 138,
+    "use_cases": 41,
+    "passed": true
+  },
+  "native_original_execution": false,
+  "runtime_smoke_rerun": false,
+  "remote_ci_waited": false
+}

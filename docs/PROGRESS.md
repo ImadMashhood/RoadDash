@@ -2,8 +2,8 @@
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 133 verified tasks;
-Parts 01–16 contain all 222 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
+README is the single live task source. Part 00 contains all 134 verified tasks;
+Parts 01–16 contain all 223 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
@@ -12,12 +12,12 @@ explicit in README's dedicated Animation production section. Existing V2-02/V2-0
 IDs own the expanded coverage. Animation A source investigation and the first draft authoring deliverable are verified; full art approval remains open.
 
 Current user-authorized scope: Animation A reference/keyframes, with remaining crash/handling gates still open; then
-then interpolation/terrain gait/active recovery, buildings, props, NPCs followed
+interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 355 task IDs are in README exactly once, including all 294 original IDs and
-54 V2 IDs, three collision-correction IDs and four ANIM IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
+All 357 task IDs are in README exactly once, including all 294 original IDs and
+54 V2 IDs, three collision-correction IDs and six ANIM IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
 all checkbox states at the time of this move. Acceptance details remain in
@@ -49,6 +49,22 @@ ANIM-01 is verified infrastructure; ANIM-02/03/04 retain hand/sequence/support a
 specialist-pose gaps. V2-02-004 source research is complete. No pose is approved,
 no runtime playback is connected and the accepted passive ragdoll is unchanged.
 The user handles the previous PR merge; no CI wait is a gate for this session.
+
+## Animation context correction — 2026-11-01 (supersedes V1 semantics)
+
+V1 guessed meanings from inspection-based helpers; its labels are rejected as
+native reference authority. ANIM-05 records the corrected trace:104 bank/code
+slots,194 ordered descriptors and371 sprite usages, with independent CANS/EXE
+reader and source-selector evidence.194 descriptors/rear selections agree with
+the separately compiled pinned reconstruction; native original execution remains
+unverified. See animation/context/README.md and testing/ANIMATION_CONTEXT.md.
+
+The new isolated art set has138 human /16 bike-only layouts, labeled by action
+and phase. Police35 phases are metadata-only; code43's five empty source images
+have no invented recreation. ANIM-06 remains open for silhouette/support/fist/
+weapon/cloth review, unresolved callers, secondary views and approval. Passive
+ragdoll and runtime art are unchanged. Old ANIM-01 counts document infrastructure,
+not verified action meanings. Source timings are logical counters, not Bevy clips.
 
 ## Authored-model baseline (ART-03, preserved history)
 
@@ -525,7 +541,9 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **V2-02-004** Investigate animation, IK and active-ragdoll repositories. Evidence: [five pinned source comparisons, licenses and compatibility](research/ANIMATION_AND_RAGDOLL.md); no library or source imported.
 
-- [x] **ANIM-01** Deliver the first reviewable static pose catalog and authoring validator. Reason: Animation A needs reproducible review assets before playback; originating part: 02; dependencies: existing authored rider/bike/contact rig; acceptance: 247 numbered draft candidates across 27 use cases, offline gallery, editable single-frame pose assets and independent connected-rig/contact validation; verification: [140 Rust / 14 Python tests, all-pose Blender round trip and gallery review](testing/ANIMATION_A.md). This completes the review infrastructure, not pose approval or final animation coverage.
+- [x] **ANIM-01** Deliver the first reviewable static pose catalog and authoring validator. Reason: Animation A needs reproducible review assets before playback; originating part: 02; dependencies: existing authored rider/bike/contact rig; acceptance: 247 numbered draft candidates across 27 use cases, offline gallery, editable single-frame pose assets and independent connected-rig/contact validation; verification: [140 Rust / 14 Python tests, all-pose Blender round trip and gallery review](testing/ANIMATION_A.md). This completes the review infrastructure, not pose approval or final animation coverage. V1 semantic labels were rejected and are superseded by the context-first trace below.
+
+- [x] **ANIM-05** Recover source-ordered action/phase/view context before reconstruction. Reason: V1 misclassified inspection-helper slots; originating part: 02; dependencies: supplied retail build and pinned reference selectors; acceptance: all 104 bank/code slots, 194 ordered descriptors and 371 sprite-slot usages include semantic IDs, mirror/view variants, controls, timing counters and explicit fallbacks/unknowns; verification: independent decoder versus separately compiled reference (194 descriptor/rear matches), reproducible metadata and semantic/bounds tests. [Corrected catalog and limits](animation/context/README.md).
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
@@ -608,6 +626,8 @@ relationship-axis/event and random-stream parity gates.
 - [ ] **ANIM-03** Resolve reference sequence linkage, timing and ambiguous labels. Reason: sprite slots include view/depth variants and do not establish timing; part: 02; dependencies: local reference metadata and CANS/RRAN/EXE research; acceptance: evidence-backed phase/side/weapon labels and timing or explicit unknowns for every reference family; verification: source-linked sequence audit, no guessed native durations.
 
 - [ ] **ANIM-04** Complete and review recovery/support and specialist poses. Reason: get-up kneel/sit candidates are preliminary crouches and arrest/equip/drop coverage is missing; part: 02; dependencies: catalog and hand refinement; acceptance: supported get-ups/lifts/mounts, reviewed vault/knockoff proposals, weapon equip/drop, police restraint and refined quadruped anatomy with clothing/body/bike clearance; verification: multi-angle art review, endpoint/chain checks and user pose approval before Part 03.
+
+- [ ] **ANIM-06** Review context-first pose fidelity and finish unresolved action bindings. Reason: correct sequence metadata alone does not prove faithful 3D silhouettes; part: 02; dependencies: ANIM-05 and new source-linked draft poses; acceptance: review every action/phase, source mirroring, fixed grip/fist/weapon placement, grounded get-up/mount support, crash/bike silhouettes, additional camera views and unknown caller aliases; verification: labeled source/recreation strips, joint/contact tests, multi-angle art review and explicit approval before interpolation.
 
 - [ ] **P11-003** Establish tested Blender -> glTF/GLB scale, axes, rig/bone names, PBR materials, collision naming, LODs, and source/export folder separation.
 
