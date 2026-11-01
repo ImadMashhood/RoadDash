@@ -74,6 +74,15 @@ package listed above. Multiple pads use the lowest entity ID; disconnect clears 
 
 See the dedicated [animation production plan](#animation-production) for the full reference/keyframe and runtime-animation backlog.
 
+## Original crash comparison (separate branch)
+
+`cargo run --release -- --original-crashes` opts into recovered original bike/bike
+and bike/car contact calculations. `cargo run -- --original-crash-report` prints
+the formulas' numeric scenarios without graphics. See the [calculation report](docs/research/ORIGINAL_CRASH_CALCULATIONS.md)
+for original boosts, damage and signed velocity rules, retail verification and
+explicit 3D adaptation limits. This does not include the biomechanical PR12;
+full native trajectory/caller parity remains CRASHREF-004.
+
 ## Included
 
 - A 6.85 km authored point-to-point course: open farmland, dense city streets, then rolling hills. Fifteen racers, nine ordered gates, one finish.
@@ -109,7 +118,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**136 verified tasks complete; 224 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**139 verified tasks complete; 225 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -119,8 +128,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 136 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 27 open |
+| [00](#part-00) | Completed and verified foundations | 139 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 28 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 18 open |
@@ -166,12 +175,17 @@ Everything checked off lives here, grouped by the original system. These are ver
 </details>
 
 <details>
-<summary>Stabilize restart, rival steering and crash entry — 4 verified tasks</summary>
+<summary>Stabilize restart, rival steering and crash entry — 7 verified tasks</summary>
 
 - [x] **V2-01-001** Restart at the authored grid, including on a zero-physics-tick frame.
 - [x] **V2-01-002** Give AI proportionate, gradual steering and lean.
 - [x] **V2-01-003** Use pre-contact world momentum for physical knockoffs.
 - [x] **V2-01-004** Repair visual skeleton attachments and anatomical bending. [Verification for corrections 001–004](docs/testing/MOTION_REPAIRS.md).
+
+- [x] **CRASHREF-001** Independently implement original integer contact, damage, entry and scalar drag calculations. Reason: compare actual original crash rules; part: 01; dependencies: pinned R01 and retail facts; acceptance: explicit fixed-point rounding, mass/order, signed velocity, damage scaling, caller-specific boosts and clamps; verification: nine domain tests and [calculation report](docs/research/ORIGINAL_CRASH_CALCULATIONS.md).
+- [x] **CRASHREF-002** Verify recovered arithmetic against the local retail executable. Reason: reconstruction comments can differ from native fields; part: 01; dependencies: CRASHREF-001 and user's hashed EXE; acceptance: compare Rust outputs to bounded native x86 execution without distributing original bytes; verification: 23 passing [retail checks](docs/testing/ORIGINAL_CRASHES.md), signed-field discrepancy recorded.
+- [x] **CRASHREF-003** Integrate an opt-in bike/bike and bike/car crash comparison while preserving the passive rig. Reason: compare independently of biomechanical PR12; part: 01; dependencies: CRASHREF-001/002 and existing collision/recovery; acceptance: separate rider/wreck entry velocities, persistent comparison condition, explicit SI/geometry adaptation, default behavior retained, remount resets state; verification: adapter tests, native-window smoke and fixed-simulation contact-to-remount regression in [test receipt](docs/testing/ORIGINAL_CRASHES.md).
+
 
 </details>
 
@@ -409,6 +423,9 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 <a id="part-01"></a>
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **CRASHREF-004** Extend original-crash coverage and establish trajectory parity before changing the default. Reason: native 2.5D geometry, other callers and post-entry laws exceed the first 3D comparison; part: 01; dependencies: CRASHREF-001–003, retail trajectory fixtures and explicit gameplay review; acceptance: low/static object, combat, downed-body/traction/wall caller routing, original condition/regeneration tables, pair ordering/reciprocal traffic response, and justified native-vs-Rapier bounce/drag trajectories documented and tested; verification: reproducible original-vs-modern traces, multi-rider contact/energy/recovery scenes and user comparison. Current comparison boundaries remain explicit in [research](docs/research/ORIGINAL_CRASH_CALCULATIONS.md).
+
 
 Next implementation work: measured vehicle crashes, over-car nose-down/vault behavior, combat knockoff swerve/countersteer and acceptance. Preserve the accepted player handling and passive ragdoll. The gradual AI steering, pre-contact velocity handoff, anatomical visual chains and grid retry fixes are already completed in Part 00. Older control/platform/architecture requirements below remain open where their full acceptance has not passed.
 

@@ -2,8 +2,8 @@
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 136 verified tasks;
-Parts 01–16 contain all 224 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
+README is the single live task source. Part 00 contains all 139 verified tasks;
+Parts 01–16 contain all 225 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
@@ -11,13 +11,13 @@ The complete eleven-family animation coverage and two-stage deliverables are now
 explicit in README's dedicated Animation production section. Existing V2-02/V2-03
 IDs own the expanded coverage. Animation A source investigation and the first draft authoring deliverable are verified; full art approval remains open.
 
-Current user-authorized scope: Animation A reference/keyframes, with remaining crash/handling gates still open; then
+Current user-authorized scope: independent original-crash comparison on a separate branch from main; biomechanical PR12 stays separate. Existing later work remains deferred:
 interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 357 task IDs are in README exactly once, including all 294 original IDs and
-54 V2 IDs, three collision-correction IDs and six ANIM IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
+All 364 task IDs are in README exactly once. This includes four new CRASHREF IDs;
+the inherited 357-ID header was stale after the preceding animation additions. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
 all checkbox states at the time of this move. Acceptance details remain in
@@ -305,6 +305,12 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **V2-01-004** Repair visual skeleton attachments and anatomical bending. [Verification for corrections 001–004](testing/MOTION_REPAIRS.md).
 
+- [x] **CRASHREF-001** Independently implement original integer contact, damage, entry and scalar drag calculations. Reason: compare actual original crash rules; part: 01; dependencies: pinned R01 and retail facts; acceptance: explicit fixed-point rounding, mass/order, signed velocity, damage scaling, caller-specific boosts and clamps; verification: nine domain tests and [calculation report](research/ORIGINAL_CRASH_CALCULATIONS.md).
+
+- [x] **CRASHREF-002** Verify recovered arithmetic against the local retail executable. Reason: reconstruction comments can differ from native fields; part: 01; dependencies: CRASHREF-001 and user's hashed EXE; acceptance: compare Rust outputs to bounded native x86 execution without distributing original bytes; verification: 23 passing [retail checks](testing/ORIGINAL_CRASHES.md), signed-field discrepancy recorded.
+
+- [x] **CRASHREF-003** Integrate an opt-in bike/bike and bike/car crash comparison while preserving the passive rig. Reason: compare independently of biomechanical PR12; part: 01; dependencies: CRASHREF-001/002 and existing collision/recovery; acceptance: separate rider/wreck entry velocities, persistent comparison condition, explicit SI/geometry adaptation, default behavior retained, remount resets state; verification: adapter tests, native-window smoke and fixed-simulation contact-to-remount regression in [test receipt](testing/ORIGINAL_CRASHES.md).
+
 - [x] **P11-001** Provide placeholder road, trees, mountains, ocean, bikes/riders/cars, solid scenery proxies, and full-footprint road-clearance validation. Evidence: [world](../src/world.rs), [track](../src/track.rs).
 
 - [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](../src/human.rs); the new authored skins use [four-state/physics parity tests](../src/models/tests.rs) and [native receipts](testing/MODELS.md).
@@ -550,6 +556,8 @@ relationship-axis/event and random-stream parity gates.
 - [x] **ANIM-08** Integrate the first full-body normal/tuck/turn/combat/recovery clip set. Reason: static keys need continuous presentation; originating part: 03; dependencies: ANIM-07 and existing visual skin adapter; acceptance: 36 keys / 13 clips, current-pose action entry/exit, steering-only turns, reference-informed tuck selection, held-contact constraints, pause/crash interruption and pickup space handoff without physical writes; verification: Rust sampler/state/contact/parity tests, nine authoring GIFs and native crash/remount/finish smoke. [Evidence and remaining production gates](testing/ANIMATION_B.md).
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **CRASHREF-004** Extend original-crash coverage and establish trajectory parity before changing the default. Reason: native 2.5D geometry, other callers and post-entry laws exceed the first 3D comparison; part: 01; dependencies: CRASHREF-001–003, retail trajectory fixtures and explicit gameplay review; acceptance: low/static object, combat, downed-body/traction/wall caller routing, original condition/regeneration tables, pair ordering/reciprocal traffic response, and justified native-vs-Rapier bounce/drag trajectories documented and tested; verification: reproducible original-vs-modern traces, multi-rider contact/energy/recovery scenes and user comparison. Current comparison boundaries remain explicit in [research](research/ORIGINAL_CRASH_CALCULATIONS.md).
 
 - [ ] **V2-01-005** Design and implement measured vehicle-impact and over-car crash responses.
 

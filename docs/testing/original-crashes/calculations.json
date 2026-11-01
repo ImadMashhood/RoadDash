@@ -1,0 +1,292 @@
+{
+  "comparison_condition": {
+    "base_stamina": 2500,
+    "bike": 1000,
+    "max_stamina": 2500,
+    "stamina": 2500
+  },
+  "forward_mps_per_unit": 0.004474765621125698,
+  "native_verification": {
+    "damage_pair": [
+      {
+        "forward": -256,
+        "lateral": 0,
+        "vertical": 1792
+      },
+      {
+        "forward": 0,
+        "lateral": 0,
+        "vertical": 1024
+      }
+    ],
+    "drag_cases": [
+      {
+        "acceleration": 5,
+        "grounded": false,
+        "next": -11995,
+        "speed": -12000
+      },
+      {
+        "acceleration": 93,
+        "grounded": true,
+        "next": -11907,
+        "speed": -12000
+      },
+      {
+        "acceleration": 0,
+        "grounded": false,
+        "next": -10,
+        "speed": -10
+      },
+      {
+        "acceleration": 70,
+        "grounded": true,
+        "next": 0,
+        "speed": -10
+      },
+      {
+        "acceleration": 0,
+        "grounded": false,
+        "next": 0,
+        "speed": 0
+      },
+      {
+        "acceleration": -70,
+        "grounded": true,
+        "next": 0,
+        "speed": 0
+      },
+      {
+        "acceleration": 0,
+        "grounded": false,
+        "next": 10,
+        "speed": 10
+      },
+      {
+        "acceleration": -70,
+        "grounded": true,
+        "next": 0,
+        "speed": 10
+      },
+      {
+        "acceleration": -5,
+        "grounded": false,
+        "next": 11995,
+        "speed": 12000
+      },
+      {
+        "acceleration": -93,
+        "grounded": true,
+        "next": 11907,
+        "speed": 12000
+      },
+      {
+        "acceleration": -14,
+        "grounded": false,
+        "next": 29986,
+        "speed": 30000
+      },
+      {
+        "acceleration": -129,
+        "grounded": true,
+        "next": 29871,
+        "speed": 30000
+      }
+    ],
+    "punch_pair": [
+      {
+        "forward": -80,
+        "lateral": 0,
+        "vertical": 0
+      },
+      {
+        "forward": 0,
+        "lateral": 0,
+        "vertical": 0
+      }
+    ],
+    "scale_cases": [
+      {
+        "reason": 2,
+        "scaled": 14,
+        "value": 8
+      },
+      {
+        "reason": 3,
+        "scaled": 1,
+        "value": 8
+      },
+      {
+        "reason": 2,
+        "scaled": -15,
+        "value": -9
+      },
+      {
+        "reason": 3,
+        "scaled": -1,
+        "value": -9
+      }
+    ],
+    "speed_gap_pair": [
+      {
+        "forward": 0,
+        "lateral": 0,
+        "vertical": 512
+      },
+      {
+        "forward": 0,
+        "lateral": 0,
+        "vertical": 256
+      }
+    ]
+  },
+  "reference_commit": "aa9cb6d3181e20736af71022cd4d6aac0e2788d1",
+  "scenarios": [
+    {
+      "bike_mps": [
+        0.0,
+        0.0,
+        4.15258264541626
+      ],
+      "input_kmh": 120.0,
+      "name": "rear_120_40",
+      "native": {
+        "bike": {
+          "forward": 928,
+          "lateral": 0,
+          "vertical": 0
+        },
+        "condition": {
+          "base_stamina": 2500,
+          "bike": 986,
+          "max_stamina": 2444,
+          "stamina": 1604
+        },
+        "entry": null,
+        "raw_magnitude": 8,
+        "rider": null,
+        "scaled_delta": {
+          "forward": -6521,
+          "lateral": 0,
+          "vertical": 0
+        }
+      },
+      "other_kmh": 40.0,
+      "rider_mps": null
+    },
+    {
+      "bike_mps": [
+        0.0,
+        0.5656216740608215,
+        33.3325309753418
+      ],
+      "input_kmh": 120.0,
+      "name": "oncoming_120_40",
+      "native": {
+        "bike": {
+          "forward": 7449,
+          "lateral": 0,
+          "vertical": 256
+        },
+        "condition": {
+          "base_stamina": 2500,
+          "bike": 972,
+          "max_stamina": 2388,
+          "stamina": 708
+        },
+        "entry": "SpeedGap",
+        "raw_magnitude": 16,
+        "rider": {
+          "forward": 7449,
+          "lateral": 0,
+          "vertical": 512
+        },
+        "scaled_delta": {
+          "forward": -13042,
+          "lateral": 0,
+          "vertical": 0
+        }
+      },
+      "other_kmh": -40.0,
+      "rider_mps": [
+        0.0,
+        1.131243348121643,
+        33.3325309753418
+      ]
+    },
+    {
+      "bike_mps": [
+        0.0,
+        0.5656216740608215,
+        33.3325309753418
+      ],
+      "input_kmh": 120.0,
+      "name": "stopped_120_0",
+      "native": {
+        "bike": {
+          "forward": 7449,
+          "lateral": 0,
+          "vertical": 256
+        },
+        "condition": {
+          "base_stamina": 2500,
+          "bike": 979,
+          "max_stamina": 2416,
+          "stamina": 1156
+        },
+        "entry": "SpeedGap",
+        "raw_magnitude": 12,
+        "rider": {
+          "forward": 7449,
+          "lateral": 0,
+          "vertical": 512
+        },
+        "scaled_delta": {
+          "forward": -9781,
+          "lateral": 0,
+          "vertical": 0
+        }
+      },
+      "other_kmh": 0.0,
+      "rider_mps": [
+        0.0,
+        1.131243348121643,
+        33.3325309753418
+      ]
+    },
+    {
+      "bike_mps": [
+        0.0,
+        0.0,
+        11.11084270477295
+      ],
+      "input_kmh": 40.0,
+      "name": "matched_40_40",
+      "native": {
+        "bike": {
+          "forward": 2483,
+          "lateral": 0,
+          "vertical": 0
+        },
+        "condition": {
+          "base_stamina": 2500,
+          "bike": 1000,
+          "max_stamina": 2500,
+          "stamina": 2500
+        },
+        "entry": null,
+        "raw_magnitude": 0,
+        "rider": null,
+        "scaled_delta": {
+          "forward": 0,
+          "lateral": 0,
+          "vertical": 0
+        }
+      },
+      "other_kmh": 40.0,
+      "rider_mps": null
+    }
+  ],
+  "scope": "original integer contact/entry math; modern geometry and SI adaptation; not complete executable parity",
+  "vertical_mps_per_unit": 0.002209459664300084
+}

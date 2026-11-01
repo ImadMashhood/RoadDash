@@ -834,3 +834,30 @@ terrain foot planting, pose-matched landing and final art acceptance remain open
 Rollback: remove MotionPlugin/Bindings and restore legacy presentation; saves,
 physical bodies, content IDs and source GLBs require no migration. Evidence:
 [Animation B](testing/ANIMATION_B.md).
+
+## ADR-037 — Independent original-crash arithmetic comparison (2026-11-01)
+
+Problem: the user requested a separate original-game crash comparison, while the
+biomechanical proposal must remain unmerged. Alternatives: replace the passive
+rig; translate the entire reconstruction; silently keep RoadDash's absolute
+speed subtraction; or isolate recovered arithmetic behind an explicit opt-in.
+Selected the last option on codex/original-crash-calculations, based on main
+5fac329f. PR12/biomechanics remains separate. ADR036 is reserved for that branch.
+
+Pure native integer contact/separation/damage/entry/drag rules live in rr_core.
+Original-crashes opt-in uses the original tall-contact rules in modern bike/bike
+and bike/car contacts. The independent 3D bridge uses native weights 256/1800,
+elasticity 192/256, explicit condition tuning and separate SI axis scales.
+Evidence: pinned arkits aa9cb6d and hashed retail x86 arithmetic checks; native
+signed +0x108 wins over the reconstruction's scalar car.speed discrepancy.
+Source licensing unresolved: no C++ or proprietary bytes copied. No engine change.
+
+Tradeoffs: original launches deliberately add energy; the energy envelope starts
+with those velocities and permits reversal only for opted-in contact crashes.
+Rapier owns subsequent tumble/contact, so no full native route-geometry, bounce,
+traffic reciprocity or per-racer condition parity is claimed. Steering/controls,
+three-hit combat, humanoid specs, masses, joints and recovery timing stay under
+existing systems. The reference scalar drag is a calculator, not a per-limb force.
+Future consequences: CRASHREF-004 owns remaining full-parity work; compare before
+choosing a default or combining with biomechanical motors. Rollback: omit the
+flag or remove the bridge; saves, GLBs, locks/dependencies need no migration.

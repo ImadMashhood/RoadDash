@@ -467,3 +467,47 @@ license/maintenance risks unchanged. Native C++ is not a Rust/Bevy dependency;
 independently tested domain rules are compatible with this pinned baseline.
 Decision: study behavior, original visual transforms/clock/contact math in RoadDash;
 defer exact legacy mode/boost flag mapping and original-executable timing evidence.
+
+### R01 original-crash comparison — 2026-11-01
+
+- Repository/author: arkits/road-rash, https://github.com/arkits/road-rash.
+- Exact inspected commit: aa9cb6d3181e20736af71022cd4d6aac0e2788d1,
+  dated 2026-10-31, 687 commits at investigation. Active reconstruction snapshot;
+  some synthetic helpers differ from native motion fields, so comments alone
+  are not executable evidence.
+- Classification **REFERENCE ONLY**, source reuse **UNVERIFIED**. No root license
+  grant verified (root README still leaves licensing undecided); third-party
+  subdirectory licenses do not license the reconstruction. License URL: none
+  verified. Assets are original-game media with separate unresolved redistribution
+  rights; none incorporated. No C++ copied and no source dependency adopted.
+- Studied Race separation/contact/knock_off/vertical, crash entry/recovery,
+  bike drag and object templates. Useful for original crash mechanics only;
+  C++/SDL is not a Rust/Bevy-compatible plugin. Independently modeled mathematical
+  rules in rr_core; native EXE hash/address facts and numeric tests corroborate
+  selected behavior. No full port/original gameplay parity claim.
+- Decision: study behavior; follow retail signed velocity over scalar car helper;
+  opt-in 3D adapter with explicit remaining parity gates. Exact formulas and
+  code/retail provenance: docs/research/ORIGINAL_CRASH_CALCULATIONS.md.
+
+### R24 — Unicorn optional verification tool — 2026-11-01
+
+- URL/organization: https://github.com/unicorn-engine/unicorn, Unicorn Engine.
+- Inspected release 2.1.4, tag commit 8028ec436f2d9376525352dd38ed9ed6b9f6be10.
+- Classification **DEPENDENCY (optional research tool only)**. Python package
+  unicorn==2.1.4 installed into a disposable /tmp venv; no runtime Cargo dependency,
+  source copy, vendored binary, media or assets incorporated into RoadDash builds.
+- Purpose/actual use: isolated x86 instruction execution against the user's local
+  retail EXE to verify Rust crash arithmetic; 23 bounded checks. Techniques:
+  PE mapping, instruction budgets, register/memory setup and one surface-selector
+  stub. No full-game emulation or proprietary payload redistribution.
+- License verified: engine COPYING GPL-2.0,
+  https://github.com/unicorn-engine/unicorn/blob/2.1.4/COPYING. Python package
+  metadata says BSD License; that is not a GPL waiver for the native engine.
+  Reuse/distribution must follow the applicable component license; no source reused
+  or runtime redistribution attempted. No associated media used.
+- Compatibility: external Python3 tool, independent of Rust1.94/Bevy0.17.3/Rapier;
+  selected wheel works on this Linux host. Release source is maintained; risks are
+  optional installation, architecture support, precise EXE address/hash dependency
+  and interpreting bounded results as whole-game parity.
+- Decision: adopt only for explicitly invoked local research verification; retain
+  dependency-free Rust rules/tests for normal builds and CI.

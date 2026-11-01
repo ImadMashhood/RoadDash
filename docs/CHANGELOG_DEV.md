@@ -348,3 +348,25 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
   smoke pass. See testing/ANIMATION_B.md for receipts and verification limits.
 - ADR-035; ANIM-07/08 verified and ANIM-09 acceptance work added. Existing full
   production animation and pose-approval gates remain open, preserving history.
+
+## 2026-11-01 — Independent original-crash calculation comparison
+
+- Created codex/original-crash-calculations from main 5fac329f; biomechanical
+  codex/biomechanical-ragdoll / draft PR12 left separate and unmerged.
+- Investigated arkits aa9cb6d3181e20736af71022cd4d6aac0e2788d1 and the user's
+  hashed retail EXE. Native x86 signed +0x108 contact gate differs from the
+  reconstruction car helper's scalar field; original deliberately adds boosts.
+- Added independent rr_core contact/separation/damage/entry/drag rules, opt-in
+  modern bike/bike and bike/car bridge, separate rider/wreck launch results,
+  persistent comparison conditions with reset, and a headless numeric report.
+  Preserved default collision policy, original eleven-body rig and recovery.
+- Added optional bounded retail verifier (Unicorn2.1.4 only in disposable venv),
+  23 retail checks, nine core rule tests, three adapter tests and contact-to-remount
+  integration test. Full tests: 163 pass, one existing ignored soak. Formatting,
+  clippy, build, 20 Python tests and audit pass. Default and opt-in native window/
+  audio smoke pass. Evidence/limitations: docs/testing/ORIGINAL_CRASHES.md.
+- Added CRASHREF-001–004: first three narrow deliverables verified; remaining
+  caller/geometry/traffic/trajectory parity open. README/progress now 364 IDs,
+  139 complete / 225 open; corrected inherited stale 357-ID progress prose.
+  Recorded ADR037, source/license research and remaining acceptance. No assets,
+  original source/media or new game dependencies incorporated; no merge performed.

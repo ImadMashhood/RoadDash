@@ -2,6 +2,7 @@
 //! and future authoritative server. No Bevy or Rapier dependency is permitted.
 pub mod comfort;
 pub mod crash;
+pub mod original_crash;
 pub mod pursuit;
 pub mod steering;
 use serde::{Deserialize, Serialize};
