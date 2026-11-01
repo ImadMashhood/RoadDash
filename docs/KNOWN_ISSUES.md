@@ -149,3 +149,22 @@ still V2-02/V2-03 / ART-04 requirements. Coarse vehicle/body proxies are unchang
 visible car hood shape versus full-height contact boxes needs evaluation in the
 vehicle-response task before assuming an arbitrary launch impulse is the fix.
 See testing/MOTION_REPAIRS.md for actual verification rather than checklist intent.
+
+## Collision-response correction boundary — 2026-10-31
+
+COLLISION-01/02/03 revise mounted yaw and crash response. Scripted civilian/body
+clearance jumps and spawn spin are removed; P06-022 is historical, superseded by
+the latest no-launch request. A 120/40 -> 80 forward result is the chosen arcade
+entry rule for both directions, not a physical closing-speed identity. Crash
+energy/COM guards drain solver-added rebound while retaining gravity/tumbling.
+They do not make the whole world momentum-conserving: traffic is still kinematic.
+
+Coarse car collision shapes may stop or pin a wreck. Full nose-down over-car vault
+and combat swerve choreography remain V2-01-005/006. Ragdolls still rotate and limbs
+may swing backward relative to their torso; only mounted steering yaw is input-
+owned. This is intentional. Full-scene render comparison permits 2 cm remount
+projection/contact-order tolerance after the new gravity-led wreck release;
+isolated eleven-body parity remains exact. New Windows runtime/human acceptance
+and a broader car-shape/vehicle-height matrix remain open. PR #8's Windows CI
+passed; its Linux soak failure was traced to incorrect fixture expectations, now
+corrected and rerun locally. New remote CI evidence is recorded separately.

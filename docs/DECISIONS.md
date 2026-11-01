@@ -671,3 +671,62 @@ research. Rollback is a documentation/tool revert; no migration of game data.
 Verification: testing/README_REORGANIZATION.md, preservation/link checks, tracker
 unit tests, audit and required Rust checks. This supersedes ADR-030's two-source
 live indexing while retaining its original acceptance/history decisions.
+
+## ADR-032 — 2026-10-31 — Input-owned mounted yaw and dissipative arcade crashes
+
+The user requests heading changes from control input, removal of added collision
+energy/launches, and 120 km/h rider versus 40 km/h car yielding 80 km/h forward
+for both rear and oncoming cases. This explicitly revises earlier clearance-jump
+behavior. It does not authorize replacing the accepted ragdoll joints or muscles.
+
+Mounted dynamic chassis lock Rapier's world-Y rotation. The existing steering
+response integrates commanded yaw at fixed ticks; readback retains commanded
+heading while physical pitch/roll remain available. Contact angular velocity is
+never fed back as a steering command. Detached wrecks/ragdolls remain unlocked.
+Visual interpolation still cannot overwrite authoritative simulation transforms.
+
+The renderer-independent rr_core::crash rule returns max(rider horizontal speed
+minus object horizontal speed magnitude, 0). The native adapter retains incoming
+horizontal direction, samples both approach velocities, and uses the same result
+for rider and wreck. Opposing 120/40 has 160 km/h closing speed but an explicitly
+chosen arcade retained speed of 80; rear 120/40 has 80 closing and 80 retained.
+This is not a Newtonian mass/restitution solution. Faster traffic cannot seed a
+negative/reversed velocity. Cross traffic uses its actual patrol speed/direction.
+
+Remove scripted height-based hops, collision torque kicks, arbitrary 9 m/s runner
+kicks and initial human/wreck spin. Civilian contact shares a stationary-target
+inelastic velocity fraction using explicit body masses rather than cloning the
+full source velocity into both actors. Wreck release uses a 0.45 rad unstable
+lean and zero angular velocity: gravity topples it instead of a synthetic spin.
+Its initial potential energy uses that actual tilted COM, not an upright proxy.
+
+Post-solver crash groups use read-back mass, inertia, velocity, rotation and COM
+height. Remove negative aggregate approach-direction COM motion, then uniformly
+scale linear/angular velocities only downward when kinetic energy exceeds initial
+kinetic plus the fall in gravitational potential. f64 accumulation reduces order
+noise; individual limbs can still swing backward relative to the torso. The
+original body masses, colliders, anatomical limits, motors/damping and gravity
+remain unchanged. This is a dissipative game rule for detached crash bodies, not
+whole-world momentum conservation: traffic remains kinematic and deliberate melee
+shoves remain separate gameplay. Subsequent vault choreography stays V2-01-005.
+
+Alternatives: retaining solver bounce recreates the bug; constant upward impulses
+add arbitrary energy; a physically elastic kinematic-car response contradicts the
+requested arcade examples; a new engine or rig is unnecessary. Tradeoffs: coarse
+vehicle colliders can still stop/pin a wreck. A real over-car vault needs the
+separately tracked geometry/contact/animation work, not more launch impulses.
+
+Tests cover player/AI entry cases, real rear/oncoming contacts, energy/gravity/
+angular bounds, neutral spin rejection across render rates, all civilian classes,
+gravity toppling and slope/recovery. Isolated 11-body/180-tick visual parity stays
+exact. Full-scene remount comparison now permits 2 cm rather than 2 mm: observed
+contact-order/projection difference after gravity-led wreck toppling was 6–8 mm;
+stage timing and health/speed remain strict. This is not bit-identical full-scene
+physics. Never silently widen those limits for a later regression.
+
+CI's old soak asserted nonzero yaw during straight throttle and ran off a 1.3 km
+fixture floor at ~27 simulated seconds. Correct the neutral-yaw assertion and
+extend that isolated floor to cover the possible 600 s path, retaining vertical,
+finite/speed and complete-duration stability checks. Add roadmap tests to CI.
+No new third-party code/media/dependency. See testing/COLLISION_RESPONSE.md.
+Rollback restores heading and entry/envelope changes together; no save migration.

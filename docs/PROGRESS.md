@@ -2,9 +2,9 @@
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 128 verified tasks;
-Parts 01–16 contain all 220 unfinished/partial/unverified requirements. No status
-changed during this reorganization. Historical numbering in task IDs is stable;
+README is the single live task source. Part 00 contains all 131 verified tasks;
+Parts 01–16 contain all 220 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
+verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
 The complete eleven-family animation coverage and two-stage deliverables are now
@@ -16,8 +16,8 @@ then interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 348 task IDs are in README exactly once, including all 294 original IDs and
-54 V2 IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
+All 351 task IDs are in README exactly once, including all 294 original IDs and
+54 V2 IDs and three collision-correction IDs. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
 all checkbox states at the time of this move. Acceptance details remain in
@@ -27,6 +27,15 @@ The implementation notes below are historical receipts. Their Part numbers refer
 to the original blueprint unless explicitly marked V2; consult README for current
 placement. No new gameplay work, tests or milestone completion is implied by
 moving an item. Existing partial work and unverified exit gates remain open.
+
+## Current collision correction scope
+
+COLLISION-01/02/03 originated in Part 01 and are now checked in Part 00 after
+verification. They cover input-owned mounted heading, removal
+of scripted collision launch/spin, and explicit arcade car-speed loss plus a
+mass/inertia/gravity energy envelope. The new request supersedes P06-022's earlier
+clearance jump. Full over-car choreography and combat swerve remain open V2 tasks.
+The dedicated eleven-family animation plan is documentation, not completed clips.
 
 ## Authored-model baseline (ART-03, preserved history)
 
@@ -494,6 +503,12 @@ relationship-axis/event and random-stream parity gates.
 - [x] **P08-011** Treat crossing traffic as an explicit wipeout hazard with continuous/all-type contacts, including a moving car striking a stopped bike. Evidence: [four physical collision cases](../src/vehicle_tests.rs).
 
 - [x] **P08-010** Use American right-hand traffic lanes and separate one-way cross-traffic lanes; stop automatic AI fights/weaving during grid launch. Evidence: [traffic](../src/game.rs), [cross streets](../src/environment.rs), [grid tests](../src/vehicle_tests.rs).
+
+- [x] **COLLISION-01** Keep mounted heading input-owned through contacts. Reason: contact spin steers the bike; part: 01; dependencies: dynamic chassis and fixed input; acceptance: neutral input cannot acquire collision yaw, gradual intended steering and recovery still work; verification: repeated spin at 30/60/120 Hz, handling/camera regressions and native smoke.
+
+- [x] **COLLISION-02** Remove scripted collision launches and spawn spin. Reason: latest request supersedes civilian clearance jumps; part: 01; dependencies: separated rider/wreck and civilian knockdowns; acceptance: zero added upward/spin velocity at entry, gravity-led wreck toppling, civilian momentum sharing and working recovery; verification: six civilian/bike-class cases, entry snapshots, slope/toppling tests and native actor/race smoke.
+
+- [x] **COLLISION-03** Apply measured arcade vehicle speed loss and a dissipative crash envelope. Reason: player/AI crashes reverse or gain energy; part: 01; dependencies: pre-contact samples and physical body mass/inertia; acceptance: 120 km/h rider versus either direction of 40 km/h car seeds 80 km/h forward, never negative retained speed, no added aggregate energy beyond gravity or reverse crash centre-of-mass motion; verification: player/AI directional cases, kinetic/potential/rotation budget checks, cross-traffic contacts and native recovery.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 

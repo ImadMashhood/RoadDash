@@ -189,3 +189,16 @@ evidence-link validation and diff whitespace checks pass. Rust format, workspace
 Clippy with warnings denied, 130 workspace tests (one ignored) and locked build
 pass. No native rerun for documentation/tool-only changes.
 [Evidence and maintenance rules](README_REORGANIZATION.md). No new completion gates closed.
+
+### Input-owned heading and crash energy — 2026-10-31
+
+136 regular Rust tests pass; the optional ten-minute/600 simulated second soak
+was run separately and passes. Player/AI 120/40 -> 80 km/h entry, real rear and
+oncoming contacts (~2.924 m forward travel/eight ticks), no spawn spin/launch,
+energy/gravity/angular limits and 30/60/120 Hz neutral heading pass. Native race/
+actor/audio/retry/recovery smoke and 15-section survey pass (1080p city p95
+12.79 ms on this host). Format, Clippy, locked builds, eleven Python tests, audit,
+tracker and content/world validators pass. [Receipts/limits](COLLISION_RESPONSE.md).
+Isolated body parity remains zero; full-scene remount tolerance is now documented
+2 cm for observed 6–8 mm contact/projection variance, with exact stage timing.
+Full vault/swerve, new Windows runtime and human acceptance remain open.

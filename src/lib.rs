@@ -110,3 +110,6 @@ pub fn build_app(smoke: bool) -> App {
     }
     app
 }
+
+#[cfg(test)]
+mod collision_tests;

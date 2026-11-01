@@ -273,3 +273,26 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
   impact/vault poses, bounded ragdoll reactions, terrain gait, get-up/remount,
   weapon/police hooks and separate human/quadruped motion. Implementation remains
   open. No new source/media/dependency imported or newly investigated repository.
+
+### 2026-10-31 — Collision yaw, velocity and energy corrections
+
+- Published and merged the full animation roadmap and previously local motion/
+  tracking changes in PR #8 (merge 1b600d4). Its tree matches the validated local
+  snapshot. Continued new corrections on codex/collision-momentum-input-heading.
+- Mounted yaw now follows fixed steering commands rather than contact spin.
+  Implemented the user's explicit 120/40 -> 80 km/h arcade rule for both car
+  directions, including AI, with no reversed entry and a dissipative mass/inertia/
+  gravity crash envelope. No artificial height hops or body/wreck spawn spin;
+  wrecks topple through gravity from an unstable lean. Civilian knockdowns remain.
+- Added COLLISION-01/02/03 (Part 01), with reason/dependencies/acceptance and tests.
+  Earlier clearance-jump task remains historical; full vault/swerve stays open.
+  No dependency, original media or body/joint/motor/damping migration. ADR-032
+  records the arcade policy and comparison limits.
+- Corrected the soak's nonzero neutral-yaw expectation and insufficient fixture
+  floor, retaining the full 600 s drive and numeric stability bounds. Added real
+  car-contact tests and roadmap tests to CI. Receipts: testing/COLLISION_RESPONSE.md.
+
+- Verified COLLISION-01/02/03 and moved them to Part 00; 131 verified tasks, 220
+  open, all 351 stable IDs retained. 136 regular Rust tests, explicit ten-minute
+  soak and eleven Python tests pass, plus native race/actor/audio and validators.
+  Final city survey p95 12.79 ms. No broader V2 exit gates were checked.

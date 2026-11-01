@@ -200,6 +200,7 @@ impl Plugin for RoadSimulationPlugin {
             .add_systems(
                 FixedUpdate,
                 (
+                    recovery::constrain_crash_energy,
                     crate::vehicle::readback,
                     crate::vehicle::telemetry,
                     remember_current,

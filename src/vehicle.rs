@@ -122,6 +122,7 @@ pub fn attach(
                 linear_damping: 0.02,
                 angular_damping: 0.5,
             },
+            LockedAxes::ROTATION_LOCKED_Y,
             Friction::coefficient(0.2),
             Restitution::coefficient(0.05),
         ));
@@ -139,7 +140,7 @@ pub fn forces(
         Entity,
         &mut Rider,
         &Recovery,
-        &Transform,
+        &mut Transform,
         &mut Velocity,
         &mut ExternalForce,
         &mut RigidBody,
@@ -151,7 +152,8 @@ pub fn forces(
         return;
     };
     let dt = time.delta_secs();
-    for (e, mut r, recovery, t, mut v, mut force, mut body, mut properties, mut state) in &mut bikes
+    for (e, mut r, recovery, mut t, mut v, mut force, mut body, mut properties, mut state) in
+        &mut bikes
     {
         *force = default();
         state.impact_velocity = v.linvel;
@@ -205,7 +207,7 @@ pub fn forces(
         state.grounded = [false; 2];
         state.suspension = [0.0; 2];
         state.wheel_forces = [0.0; 2];
-        state.yaw_rate = v.angvel.y;
+        // Contact angular velocity never becomes a steering command.
         state.intent = rr_core::VehicleIntent {
             throttle,
             brake,
@@ -346,14 +348,17 @@ pub fn forces(
         .with_y(0.0)
         .normalize_or_zero();
         let yaw = heading.cross(target).y.atan2(heading.dot(target));
-        // Arcade heading servo: contact impulses may translate a bike, but a
-        // glancing side contact must not wind up its yaw controller. Only limit
-        // riding, supported bodies; airborne/wreck angular motion stays physical.
-        if grounded {
-            let desired = (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist)).clamp(-1.8, 1.8);
-            v.angvel.y = v.angvel.y.clamp(-1.8, 1.8)
-                + (desired - v.angvel.y.clamp(-1.8, 1.8)) * (1.0 - (-dt * 12.0).exp());
-        }
+        // Heading is input-owned. Rapier may translate/tilt the chassis, but
+        // collision yaw must not steer it. Keep the existing response curve.
+        let desired = if grounded {
+            (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist)).clamp(-1.8, 1.8)
+        } else {
+            0.0
+        };
+        state.yaw_rate += (desired - state.yaw_rate) * (1.0 - (-dt * 12.0).exp());
+        v.angvel.y = 0.0;
+        t.rotation = Quat::from_rotation_y(state.yaw_rate * dt) * t.rotation;
+        state.yaw = (t.rotation * Vec3::Z).x.atan2((t.rotation * Vec3::Z).z);
         // Positive roll leans toward camera-right (-local X).
         // Reference bank is tied to accumulated steering force, not a separate
         // body-only animation. Its documented limit/base ratio is 46 / 74.
@@ -369,9 +374,19 @@ pub fn forces(
 pub fn readback(
     track: Res<Track>,
     race: Res<Race>,
-    mut bikes: Query<(&mut Rider, &Recovery, &Transform, &Velocity, &mut BikeState)>,
+    mut bikes: Query<(
+        &mut Rider,
+        &Recovery,
+        &mut Transform,
+        &Velocity,
+        &mut BikeState,
+    )>,
 ) {
-    for (mut r, recovery, t, v, mut state) in &mut bikes {
+    for (mut r, recovery, mut t, v, mut state) in &mut bikes {
+        if state.was_riding {
+            let (_, pitch, roll) = t.rotation.to_euler(EulerRot::YXZ);
+            t.rotation = Quat::from_euler(EulerRot::YXZ, state.yaw, pitch, roll);
+        }
         if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing {
             let previous = r.progress;
             let (d, lane, _) = track.project(t.translation, previous);

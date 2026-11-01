@@ -1,0 +1,16 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 23.38s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 1 test
+PART03_BENCHMARKS {"fixed_hz":60,"scenarios":[{"brake_distance_from_10s_speed_m":45.519840240478516,"neutral_yaw_rate":0.0,"preset":0,"steady_slip_angle":1.1523206921992823e-7,"zero_to_100_seconds":4.583333492279053},{"brake_distance_from_10s_speed_m":44.53110122680664,"neutral_yaw_rate":0.0,"preset":1,"steady_slip_angle":1.2821571715448954e-7,"zero_to_100_seconds":4.150000095367432},{"brake_distance_from_10s_speed_m":47.9239616394043,"neutral_yaw_rate":0.0,"preset":2,"steady_slip_angle":-5.3413145906233694e-8,"zero_to_100_seconds":3.9166667461395264}],"soak_simulated_seconds":600}
+test vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 104 filtered out; finished in 23.17s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

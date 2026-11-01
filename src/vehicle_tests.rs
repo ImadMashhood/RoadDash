@@ -141,7 +141,11 @@ fn ten_minute_aggressive_turning_soak_and_numeric_benchmarks() {
         let seconds = zero_to_hundred.expect("could not reach 100km/h");
         assert!((3.0..6.5).contains(&seconds));
         let steady = snapshot(&mut app).2;
-        assert!(steady.yaw_rate.abs() > 0.01 && steady.yaw_rate.abs() < 1.0);
+        assert!(
+            steady.yaw_rate.abs() < 0.01,
+            "straight-line acceleration without steering acquired yaw: {}",
+            steady.yaw_rate
+        );
         let start = snapshot(&mut app).1;
         {
             let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
@@ -159,9 +163,19 @@ fn ten_minute_aggressive_turning_soak_and_numeric_benchmarks() {
                 break;
             }
         }
-        results.push(serde_json::json!({"preset":preset,"zero_to_100_seconds":seconds,"brake_distance_from_10s_speed_m":distance,"steady_turn_yaw_rate":steady.yaw_rate,"steady_slip_angle":steady.slip_angle}));
+        results.push(serde_json::json!({"preset":preset,"zero_to_100_seconds":seconds,"brake_distance_from_10s_speed_m":distance,"neutral_yaw_rate":steady.yaw_rate,"steady_slip_angle":steady.slip_angle}));
     }
     let mut app = app(1, 60);
+    // The handling soak deliberately leaves the authored road. Its original
+    // 1.3 km floor ended after ~27 s, testing a fall off the fixture instead of
+    // 600 s of chassis stability. Bound the whole possible 60 km drive.
+    for mut ground in app
+        .world_mut()
+        .query_filtered::<&mut Collider, With<Ground>>()
+        .iter_mut(app.world_mut())
+    {
+        *ground = Collider::cuboid(100_000.0, 0.5, 100_000.0);
+    }
     app.world_mut()
         .resource_mut::<ButtonInput<KeyCode>>()
         .press(KeyCode::KeyW);
@@ -427,7 +441,7 @@ fn analog_trigger_values_reach_the_chassis_force_model() {
 }
 
 #[test]
-fn both_civilian_kinds_launch_each_bike_class_above_their_standing_height() {
+fn civilian_contacts_crash_without_an_injected_clearance_jump() {
     for preset in 0..3 {
         for kind in [crate::npc::NpcKind::Cow, crate::npc::NpcKind::Pedestrian] {
             let mut app = app(preset, 60);
@@ -438,13 +452,14 @@ fn both_civilian_kinds_launch_each_bike_class_above_their_standing_height() {
                 app.update();
             }
             let (_, p, state) = snapshot(&mut app);
-            let forward = state.velocity.with_y(0.0).normalize();
+            let incoming = state.velocity;
             let height = if kind == crate::npc::NpcKind::Cow {
                 1.7
             } else {
                 crate::human::HEIGHT
             };
-            let transform = Transform::from_translation((p + forward * 3.0).with_y(0.0));
+            let transform =
+                Transform::from_translation((p + incoming.normalize() * 3.0).with_y(0.0));
             let actor = app
                 .world_mut()
                 .spawn((
@@ -461,33 +476,22 @@ fn both_civilian_kinds_launch_each_bike_class_above_their_standing_height() {
                     ActiveCollisionTypes::all(),
                 ))
                 .id();
-            let mut peak = 0.0f32;
-            let mut passed = false;
-            for _ in 0..240 {
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let mut crashed = false;
+            for _ in 0..60 {
                 app.update();
-                let (_, position, state) = snapshot(&mut app);
-                assert!(position.is_finite() && state.velocity.is_finite());
-                peak = peak.max(position.y);
-                passed |= (position - transform.translation).dot(forward) > 3.0;
+                assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, 0.0);
+                if app.world().get::<Recovery>(owner).unwrap().stage == RecoveryStage::Falling {
+                    crashed = true;
+                    break;
+                }
             }
-            assert!(
-                peak > height + 0.25,
-                "class {preset} {kind:?} clearance peak {peak}"
-            );
-            assert!(passed, "class {preset} {kind:?} stuck behind actor");
-            println!(
-                "HAZARD_CLEARANCE {}",
-                serde_json::json!({"preset":preset,"kind":format!("{kind:?}"),"height_m":height,"peak_bike_origin_m":peak,"passed_obstacle":passed})
-            );
-            let world = app.world_mut();
-            assert_eq!(
-                world.query::<&Recovery>().single(world).unwrap().stage,
-                RecoveryStage::Riding
-            );
-            assert!(
-                !app.world().get::<crate::npc::Npc>(actor).unwrap().active(),
-                "civilian did not ragdoll"
-            );
+            assert!(crashed, "class {preset} {kind:?} did not crash");
+            assert!(!app.world().get::<crate::npc::Npc>(actor).unwrap().active());
         }
     }
 }

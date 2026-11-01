@@ -1224,7 +1224,7 @@ pub(crate) mod tests {
         assert_eq!(samples.len(), 12);
         for v in samples {
             assert!(
-                v.distance(before) < 0.001,
+                v.distance(before * 0.4) < 0.001,
                 "knockoff inherited reversed solver velocity: {v:?}"
             );
         }
@@ -1846,7 +1846,10 @@ pub(crate) mod tests {
                 app.world().get::<Recovery>(owner).unwrap().stage,
                 RecoveryStage::Falling
             );
-            assert!(app.world().get::<Rider>(attacker).unwrap().hop_velocity > 0.0);
+            assert_eq!(
+                app.world().get::<Rider>(attacker).unwrap().hop_velocity,
+                0.0
+            );
             assert!(app.world().get_entity(runner).is_err());
             let torso = app.world().get::<Recovery>(owner).unwrap().torso.unwrap();
             assert!(
@@ -2373,6 +2376,11 @@ pub(crate) mod tests {
             Transform::from_xyz(0.0, 10.0, 0.0).with_rotation(tilt),
             Friction::coefficient(0.9),
         ));
+        // This test deliberately teleports the wreck up ten metres to isolate
+        // slope friction; discard the old crash's ground-level energy envelope.
+        app.world_mut()
+            .entity_mut(wreck)
+            .remove::<recovery::CrashEnvelope>();
         app.world_mut().entity_mut(wreck).insert((
             Transform::from_translation(Vec3::new(0.0, 10.5, 0.0)).with_rotation(tilt),
             Velocity::zero(),
@@ -2382,7 +2390,7 @@ pub(crate) mod tests {
         assert!(p.x < -1.0 && p.y < 9.5, "wreck stuck on slope: {p:?}");
     }
     #[test]
-    fn a_cow_lifts_a_rider_without_a_terrain_only_knockoff() {
+    fn a_cow_causes_a_momentum_limited_crash_without_a_launch() {
         let mut app = simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         let (p, q) = app.world().resource::<Track>().sample(-5.5, -2.0);
@@ -2402,8 +2410,8 @@ pub(crate) mod tests {
             query.single_mut(app.world_mut()).unwrap().speed = 22.0;
         }
         step(&mut app, 4);
-        assert!(player(&mut app).hop_velocity > 0.0);
-        assert_eq!(player(&mut app).crashed, 0.0);
+        assert_eq!(player(&mut app).hop_velocity, 0.0);
+        assert!(player(&mut app).crashed > 0.0);
     }
     #[test]
     fn one_hundred_high_speed_drops_keep_joint_anchors_and_hinge_axes_stable() {

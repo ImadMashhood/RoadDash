@@ -36,6 +36,7 @@ jobs:
       - run: cargo check --locked --no-default-features --features offline
       - run: cargo check --locked --features debug_physics
       - run: python tools/sync_progress.py --check
+      - run: python tools/test_roadmap.py
       - run: cargo run --locked -- --validate-world content/world/valley_world_v1.json content/world/building_archetypes_v1.json content/tracks/valley.json --output world-validation.json
       - run: python tools/export_world_plan.py world-validation.json world-plan.svg
       - run: python tools/test_world_inputs.py
