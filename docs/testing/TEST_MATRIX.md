@@ -133,3 +133,13 @@ Format/Clippy/locked builds, source-input checks and provenance audit pass.
 Native inspection, 15-section survey (1080p p95 9.66 ms), road-height visual
 review and crash/remount/finish smoke pass. Receipts and limitations:
 [STREETSCAPE.md](STREETSCAPE.md).
+
+### Roster, kicks, handling and pursuit — 2026-10-31
+
+118 tests pass; one optional soak ignored. Signed 8 m/s kick, shirt-colored dots
+for 15 racers, reduced tree sites, neutral-heading independence, physical wreck
+roll, conserved linear momentum/remount, deterministic pursuit grace/speed/spacing/
+downed selection and existing regressions pass. Workspace format/Clippy/locked
+builds, source-input checks/audit pass. Native 15-section survey: 11.29 ms p95
+at 1080p; crash/remount/finish and audio initialization pass.
+See [RIDERS.md](RIDERS.md) and riders/ receipts. Human tuning and Windows remain open.

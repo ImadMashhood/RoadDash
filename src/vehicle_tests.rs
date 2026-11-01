@@ -705,3 +705,61 @@ fn supported_bike_recovers_from_contact_yaw_without_changing_steering_bank() {
         RecoveryStage::Riding
     );
 }
+
+#[test]
+fn neutral_player_heading_is_not_pulled_back_to_the_road() {
+    let mut app = app(1, 60);
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyW);
+    for _ in 0..180 {
+        app.update();
+    }
+    let world = app.world_mut();
+    let mut q = world.query_filtered::<&mut Transform, With<Rider>>();
+    let mut t = q.single_mut(world).unwrap();
+    t.rotation = Quat::from_rotation_y(0.25) * t.rotation;
+    let before = t.rotation * Vec3::Z;
+    for _ in 0..12 {
+        app.update();
+    }
+    let world = app.world_mut();
+    let after = world
+        .query_filtered::<&Transform, With<Rider>>()
+        .single(world)
+        .unwrap()
+        .rotation
+        * Vec3::Z;
+    assert!(
+        before.angle_between(after) < 0.08,
+        "neutral input auto-steered: {before:?} -> {after:?}"
+    );
+}
+
+#[test]
+fn abandoned_motorcycle_tips_onto_its_side_after_knockoff() {
+    let mut app = crate::game::tests::simulation();
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    {
+        let world = app.world_mut();
+        let mut q = world.query::<&mut Rider>();
+        let mut rider = q.single_mut(world).unwrap();
+        rider.health = 0.0;
+    }
+    let mut tipped = false;
+    for _ in 0..120 {
+        app.update();
+        let world = app.world_mut();
+        for (body, t) in world
+            .query::<(&crate::recovery::OwnedBody, &Transform)>()
+            .iter(world)
+        {
+            if body.kind == crate::recovery::BodyKind::Wreck
+                && (t.rotation * Vec3::Y).dot(Vec3::Y).abs() < 0.5
+            {
+                tipped = true;
+            }
+        }
+    }
+    assert!(tipped, "wreck stayed upright");
+}

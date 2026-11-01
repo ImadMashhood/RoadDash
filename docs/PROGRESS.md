@@ -186,6 +186,13 @@ footprints remain intact. See [verification](testing/STREETSCAPE.md) and ADR-024
 Original source height tables remain historical inputs, superseded at runtime by
 the user's taller-city request.
 
+## Rider, steering and pursuit follow-up — 2026-10-31
+
+COMBAT-02, CITY-04, RIDE-02 and AI-01 address the user's combined corrections.
+118 automated tests and native crash/remount/finish smoke pass. Fifteen-racer
+city survey: 11.29 ms p95 at 1080p on this host. Reference parity, production
+art and human difficulty acceptance remain open. [Evidence](testing/RIDERS.md).
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Baseline and dependency decisions
@@ -805,3 +812,11 @@ the user's taller-city request.
 - [x] **CITY-02** Join neighboring city buildings into continuous street fronts. Reason: the user rejected detached six-metre gaps; part: world development; dependencies: CITY-01, solid lots and recovery routing; acceptance: shared-edge infill, clear streets, exposed-perimeter recovery paths and road-height screenshots; verification: 347 shared-edge sections, physics rays for every infill, 113 passing tests and native road-height survey; [evidence](../docs/testing/FRONTAGES.md).
 
 - [x] **CITY-03** Improve sidewalks, plant solid street trees and raise urban buildings. Reason: user requested better pavement and a taller, greener city; part: world development; dependencies: CITY-01/02 and shared ground; acceptance: flat sidewalk shading, clear walking strip, solid trees outside junctions, taller whole-floor buildings without lot changes; verification: geometry/physics tests, native survey and crash/recovery smoke; [evidence](../docs/testing/STREETSCAPE.md).
+
+- [x] **COMBAT-02** Strengthen kick displacement and adopt the fifteen-racer CITY roster with reference-inspired shirt, helmet and bike colors. Reason: user requested original roster/color schemes and stronger kicks; part: combat/world; dependencies: COMBAT-01 and shared human meshes; acceptance: 14 named rivals, consistent minimap/ragdoll colors and stronger signed physical shove; verification: combat/UI tests and native captures; [evidence](../docs/testing/RIDERS.md).
+
+- [x] **CITY-04** Thin sidewalk trees from 22 to 44 m spacing. Reason: user found the avenue overplanted; part: world; dependencies: CITY-03; acceptance: roughly half the sites with existing clearances/collision; verification: placement tests and native survey.
+
+- [x] **RIDE-02** Require player steering through curves, increase turn strength 50%, and topple abandoned bikes. Reason: user reported automatic driving and upright wrecks; part: Parts 03/04; dependencies: dynamic chassis and recovery; acceptance: neutral heading stays independent of road, stronger turn settings and physical roll without linear launch; verification: heading/roll/momentum/remount regressions and native smoke.
+
+- [x] **AI-01** Add measured rival pursuit, speed matching and selective attacks on downed riders. Reason: user requested reference-inspired fighting/chaos; part: AI follow-up; dependencies: relative contacts and crash recovery; acceptance: start grace, bounded approach, alongside spacing, gradual speed matching, limited downed hunts and attack cooldowns; verification: deterministic pursuit scenarios, regression suite and native survey. Original relationship-table parity remains future work.

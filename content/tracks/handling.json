@@ -299,6 +299,41 @@
       "id": "spawn-7",
       "distance": -20,
       "lane": 2
+    },
+    {
+      "distance": -24.0,
+      "lane": -2.0,
+      "id": "spawn-8"
+    },
+    {
+      "distance": -24.0,
+      "lane": 2.0,
+      "id": "spawn-9"
+    },
+    {
+      "distance": -28.0,
+      "lane": -2.0,
+      "id": "spawn-10"
+    },
+    {
+      "distance": -28.0,
+      "lane": 2.0,
+      "id": "spawn-11"
+    },
+    {
+      "distance": -32.0,
+      "lane": -2.0,
+      "id": "spawn-12"
+    },
+    {
+      "distance": -32.0,
+      "lane": 2.0,
+      "id": "spawn-13"
+    },
+    {
+      "distance": -36.0,
+      "lane": -2.0,
+      "id": "spawn-14"
     }
   ],
   "props": [],

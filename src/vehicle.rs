@@ -172,7 +172,11 @@ pub fn forces(
             state.was_riding = true;
         }
         let (_, road) = track.sample(r.progress, 0.0);
-        let forward = (road * Vec3::Z).normalize();
+        let forward = if r.id == 0 {
+            (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero()
+        } else {
+            (road * Vec3::Z).normalize()
+        };
         let up = road * Vec3::Y;
         let right = forward.cross(up).normalize();
         let speed = v.linvel.dot(forward).max(0.0);
@@ -285,10 +289,14 @@ pub fn forces(
                 0.0
             };
         let steering_side =
-            (steer * (1.8 + speed * 0.085) * p.turn_response).clamp(-speed * 0.45, speed * 0.45);
+            (steer * (1.8 + speed * 0.085) * p.turn_response).clamp(-speed * 0.675, speed * 0.675);
         let desired_side = steering_side + r.side_velocity;
         let lateral = ((desired_side - v.linvel.dot(right)) * 3.0
-            - track.curvature(r.progress) * speed * speed)
+            - if player {
+                0.0
+            } else {
+                track.curvature(r.progress) * speed * speed
+            })
             * (p.dry_mass + 70.0);
         let grip = load * p.grip * surface.traction();
         let requested = Vec2::new(longitudinal, lateral);
@@ -319,7 +327,7 @@ pub fn forces(
             - Vec3::new(v.angvel.x, 0.0, v.angvel.z) * (p.dry_mass + 70.0) * 5.5;
         let heading = (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
         let target = (forward
-            + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.45, 0.45))
+            + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.675, 0.675))
         .with_y(0.0)
         .normalize_or_zero();
         let yaw = heading.cross(target).y.atan2(heading.dot(target));
@@ -327,9 +335,9 @@ pub fn forces(
         // glancing side contact must not wind up its yaw controller. Only limit
         // riding, supported bodies; airborne/wreck angular motion stays physical.
         if grounded {
-            let desired = (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist)).clamp(-1.2, 1.2);
-            v.angvel.y = v.angvel.y.clamp(-1.2, 1.2)
-                + (desired - v.angvel.y.clamp(-1.2, 1.2)) * (1.0 - (-dt * 12.0).exp());
+            let desired = (yaw * (4.0 + 12.0 * tuning.assist * p.road_assist)).clamp(-1.8, 1.8);
+            v.angvel.y = v.angvel.y.clamp(-1.8, 1.8)
+                + (desired - v.angvel.y.clamp(-1.8, 1.8)) * (1.0 - (-dt * 12.0).exp());
         }
         // Positive roll leans toward camera-right (-local X).
         // Reference bank is tied to accumulated steering force, not a separate

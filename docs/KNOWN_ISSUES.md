@@ -102,3 +102,10 @@ taller urban masses. Trees are physical obstacles; junctions remain clear and a
 walking strip remains beside the trunks. Facades, foliage and paving are original
 procedural art; bespoke production assets and interiors remain future work.
 See testing/STREETSCAPE.md for local native evidence and platform limitations.
+
+Rider/combat follow-up selects a stable CITY roster; original other-course and rare
+alternate names remain research, not runtime variants. Swatches approximate original
+color schemes using procedural models. Original instruction-level handling/kick
+distance and relationship-table AI parity remain open. Deliberate downed-rider
+hunts are limited to some opponents and short approach distances; human difficulty
+tuning remains a playtest gate. See testing/RIDERS.md.

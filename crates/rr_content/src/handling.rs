@@ -58,7 +58,7 @@ impl HandlingCatalog {
                 || p.nitro_speed < p.top_speed
                 || p.nitro_speed > 100.0
                 || !(0.1..=3.0).contains(&p.grip)
-                || !(0.4..=2.0).contains(&p.turn_response)
+                || !(0.4..=3.0).contains(&p.turn_response)
                 || !(5000.0..=50000.0).contains(&p.spring)
                 || !(500.0..=8000.0).contains(&p.damper)
                 || !(0.01..=2.0).contains(&p.drag)

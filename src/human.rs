@@ -77,8 +77,10 @@ pub fn segment(
             art.cube.clone()
         },
         if head {
-            art.white.clone()
-        } else if index == 2 || index >= 7 {
+            art.helmets[color % art.helmets.len()].clone()
+        } else if index == 2 || index == 7 || index == 9 {
+            art.bike_colors[color % art.bike_colors.len()].clone()
+        } else if index >= 7 {
             art.dark.clone()
         } else {
             art.colors[color % art.colors.len()].clone()

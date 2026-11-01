@@ -318,3 +318,16 @@ or complete game parity. Proprietary disc/media remain local and outside Git.
 CITY-02, 2026-10-31: reused the above R01 course_scene facade-strip findings for
 touching city fronts; independent shared-edge 3D infill, no additional repository,
 C++ source or original media incorporated. Evidence: ../testing/FRONTAGES.md.
+
+### R01 rider/combat/pursuit follow-up — 2026-10-31
+
+Revisited arkits/road-rash, author arkits, exact commit
+4e052aca9552a5690c2b145b0f53856d5c31e980. REFERENCE ONLY. Reviewed race.cpp combat
+and pursuit, race_setup.cpp names/bike slots, bob.cpp remaps, rider_sprites.cpp
+and pe_strings.cpp. License/reuse permission remains UNVERIFIED, per existing R01;
+https://github.com/arkits/road-rash/tree/4e052aca9552a5690c2b145b0f53856d5c31e980.
+No code/assets incorporated. Native C++ is not a Rust/Bevy dependency; independent
+rules and procedural materials avoid compatibility issues. Local pinned snapshot
+does not establish current upstream maintenance. Proprietary disc assets retain
+separate restrictions and remain outside runtime/repository. Findings, decisions
+and limits: research/RIDERS_AND_KICKS.md. Adopt behavior reference only.

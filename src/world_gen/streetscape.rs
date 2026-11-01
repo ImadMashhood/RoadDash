@@ -29,7 +29,7 @@ pub fn tree_sites(track: &Track, layout: &WorldLayout) -> Vec<(f32, Vec3)> {
                 }
             }
         }
-        d += 22.0;
+        d += 44.0;
     }
     sites
 }

@@ -3,15 +3,26 @@ use bevy::prelude::*;
 #[cfg(test)]
 use bevy_rapier3d::prelude::*;
 
-pub const RIDER_COLORS: [u32; 8] = [
-    0x23e3bd, 0xff644a, 0x77aaff, 0xffcb55, 0xc792ff, 0xeb6ab0, 0xb3df60, 0xfaf6ed,
+pub const RIDER_COLORS: [u32; 15] = [
+    0xe7e4dd, 0xd5b43f, 0xd2b64c, 0x2957bb, 0xa44195, 0x379b47, 0xe2e2dd, 0xaabbd4, 0x743927,
+    0x34373b, 0xc9b5d9, 0xe1bd34, 0x328e9f, 0xbe2927, 0xddbf32,
+];
+pub const HELMET_COLORS: [u32; 15] = [
+    0x2436b4, 0xd2b437, 0xd3b23b, 0xd7d9da, 0xb32b28, 0x278a40, 0x285dc1, 0x222427, 0xb53b24,
+    0xb7b43b, 0xd33b24, 0x2e8e43, 0x7aa441, 0xbbc4c7, 0xa5b33e,
+];
+pub const BIKE_COLORS: [u32; 15] = [
+    0xb52322, 0x70378e, 0x343638, 0x2c973c, 0x743278, 0x21963b, 0xd6d6d1, 0x32449d, 0x773729,
+    0x303236, 0x74379c, 0x39843b, 0x2587a2, 0xb12624, 0x6137a2,
 ];
 pub fn shirt_color(index: usize) -> Color {
-    let hex = RIDER_COLORS[index % 8];
+    let hex = RIDER_COLORS[index % RIDER_COLORS.len()];
     Color::srgb_u8((hex >> 16) as u8, (hex >> 8) as u8, hex as u8)
 }
 #[derive(Resource)]
 pub struct Art {
+    pub helmets: Vec<Handle<StandardMaterial>>,
+    pub bike_colors: Vec<Handle<StandardMaterial>>,
     pub cube: Handle<Mesh>,
     pub sphere: Handle<Mesh>,
     pub wheel: Handle<Mesh>,
@@ -59,7 +70,16 @@ pub fn setup_world(
     mut track: ResMut<Track>,
     plan: Option<Res<crate::world_gen::WorldPlan>>,
 ) {
+    let swatch = |hex: u32| Color::srgb_u8((hex >> 16) as u8, (hex >> 8) as u8, hex as u8);
     let art = Art {
+        helmets: HELMET_COLORS
+            .iter()
+            .map(|&c| materials.add(swatch(c)))
+            .collect(),
+        bike_colors: BIKE_COLORS
+            .iter()
+            .map(|&c| materials.add(swatch(c)))
+            .collect(),
         cube: meshes.add(Cuboid::new(1.0, 1.0, 1.0)),
         sphere: meshes.add(Sphere::new(1.0).mesh().uv(16, 10)),
         wheel: meshes.add(Cylinder::new(0.40, 0.20).mesh().resolution(20)),
@@ -71,7 +91,7 @@ pub fn setup_world(
             ..default()
         }),
         white: materials.add(Color::srgb(0.85, 0.9, 0.89)),
-        colors: (0..8).map(|i| materials.add(shirt_color(i))).collect(),
+        colors: (0..15).map(|i| materials.add(shirt_color(i))).collect(),
     };
     commands.insert_resource(ClearColor(Color::srgb(0.39, 0.62, 0.72)));
     commands.insert_resource(AmbientLight {
@@ -195,7 +215,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         (
             Vec3::new(0.0, 1.03, 0.24),
             Vec3::new(0.57, 0.38, 0.73),
-            art.colors[color].clone(),
+            art.bike_colors[color].clone(),
         ),
         (
             Vec3::new(0.0, 1.02, -0.52),
@@ -205,7 +225,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         (
             Vec3::new(0.0, 1.04, 0.87),
             Vec3::new(0.56, 0.48, 0.34),
-            art.colors[color].clone(),
+            art.bike_colors[color].clone(),
         ),
         (
             Vec3::new(0.0, 1.3, 0.60),

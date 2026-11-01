@@ -440,3 +440,31 @@ scaled archetype range plus one rounding floor. Rural heights remain unchanged.
 No dependency or third-party media is added. Tradeoffs: procedural rather than
 production art; taller silhouettes may increase visible facade work. Roll back
 via height scale 1.0 and removing streetscape spawning together with its tests.
+
+## ADR-025 — 2026-10-31 — Roster, pursuit and physical steering corrections
+
+Use fifteen racers and a stable CITY reference name set. Independently authored
+shirt/helmet/bike swatches approximate locally inspected original color schemes;
+shared human segments preserve seated/walking/ragdoll consistency. Keep original
+RoadDash geometry and bike performance. R01 remains reference-only with unresolved
+source reuse permission; no media or source imported.
+
+Raise kick impulse from 3 to 8 m/s; existing decay gives roughly lane-width free
+travel. Original combat changes steering words, so a literal SI distance cannot
+be asserted. Reduce sidewalk tree frequency from 22 to 44 m. Multiply all authored
+turn_response values by 1.5; preserve steering buildup timing and visual bank.
+
+For dynamic players, use body heading for tire force and heading servo instead
+of road tangent, and remove automatic road-curvature force compensation. AI keeps
+its road-following adapter. Abandoned bikes receive roll angular velocity and a
+narrower profile collider; linear momentum and rider separation remain unchanged.
+Alternative of a scripted fallen pose was rejected because it bypasses contacts.
+
+Pure rr_core pursuit rules choose nearby targets with start grace, intermittent
+engagement and limited downed hunts. Match speed using gap feedback, keep 1.8 m
+alongside spacing, and throttle/brake gradually. Downed targets use their actual
+runner/torso pose. Traffic avoidance retains priority. AI attack cooldowns exceed
+one second. This is reference-inspired behavior, not instruction-level parity.
+Tradeoffs: simple deterministic targeting rather than full original relationship
+tables; more racers increase simulation load. Revert content, roster validation,
+UI counts and pursuit together if rolling back. No dependency migration.

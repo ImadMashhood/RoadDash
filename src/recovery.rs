@@ -279,12 +279,12 @@ pub fn crash(
             Collider::compound(vec![(
                 Vec3::new(0.0, 0.85, 0.0),
                 Quat::IDENTITY,
-                Collider::cuboid(0.38, 0.8, 1.12),
+                Collider::cuboid(0.22, 0.65, 1.12),
             )]),
             ColliderMassProperties::Mass(rider.bike_mass),
             Velocity {
                 linvel: momentum,
-                angvel: forward * 0.5 * separation_side,
+                angvel: forward * 3.0 * separation_side,
             },
             Ccd::enabled(),
             Restitution::coefficient(0.25),

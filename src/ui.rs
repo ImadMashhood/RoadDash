@@ -206,7 +206,7 @@ pub fn setup_ui(
                 .id(),
         );
     }
-    for id in (0..8).rev() {
+    for id in (0..crate::game::NAMES.len()).rev() {
         dots.push(
             commands
                 .spawn((
@@ -358,7 +358,7 @@ pub fn update_ui(
     for (field, mut text) in &mut readouts {
         **text = match field.0 {
             0 => {
-                let mut s = format!("P{position:02} / 08\n\n");
+                let mut s = format!("P{position:02} / 15\n\n");
                 for (i, r) in sorted.iter().enumerate() {
                     let marker = if r.id == 0 { ">" } else { " " };
                     s.push_str(&format!("{marker} {}  {:5}\n", i + 1, content.0.riders[r.id].display_name));
@@ -375,7 +375,7 @@ pub fn update_ui(
             6 if loading => "PREPARING THE ROAD".into(),
             7 if loading => "Getting your bike ready...".into(),
             8 if loading => "LOADING...".into(),
-            6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 8", race.place), _ => track.definition.name.clone() },
+            6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 15", race.place), _ => track.definition.name.clone() },
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
                 Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.\nF2 / controller LB: comfort & controls.".into(),
@@ -441,6 +441,6 @@ mod map_tests {
             assert_eq!(color.0, expected[dot.0]);
             count += 1;
         }
-        assert_eq!(count, 8);
+        assert_eq!(count, 15);
     }
 }

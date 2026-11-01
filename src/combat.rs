@@ -122,11 +122,11 @@ pub fn melee(
         }
         if let Ok((_, mut r, mut state, t, mut visible)) = riders.get_mut(target) {
             if kicking {
-                let push = right * (p - origin).dot(right).signum() * 3.0;
+                let push = right * (p - origin).dot(right).signum() * 8.0;
                 if let Ok(mut velocity) = velocities.get_mut(target) {
                     velocity.linvel += push;
                 }
-                r.side_velocity += (p - origin).dot(right).signum() * 3.0;
+                r.side_velocity += (p - origin).dot(right).signum() * 8.0;
                 r.motion_velocity += push;
                 if player {
                     race.message = "KICK".into();
@@ -209,7 +209,7 @@ mod tests {
                     .linvel
                     .dot(right)
                     * side
-                    > 2.9
+                    > 7.9
             );
             assert_eq!(
                 app.world().get::<Velocity>(targets[1]).unwrap().linvel,

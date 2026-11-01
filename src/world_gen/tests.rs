@@ -439,7 +439,7 @@ fn street_trees_leave_walking_space_and_have_solid_trunks() {
     let layout = world.resource::<layout::WorldLayout>().clone();
     let track = Track::from_json(include_str!("../../content/tracks/valley.json")).unwrap();
     let sites = streetscape::tree_sites(&track, &layout);
-    assert!(sites.len() > 150);
+    assert!((70..=100).contains(&sites.len()));
     assert_eq!(
         world
             .query_filtered::<Entity, With<streetscape::StreetTree>>()

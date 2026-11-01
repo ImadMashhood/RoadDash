@@ -10,8 +10,9 @@ use bevy::{camera::Exposure, prelude::*};
 use bevy_rapier3d::prelude::*;
 use serde::{Deserialize, Serialize};
 
-pub const NAMES: [&str; 8] = [
-    "YOU", "VIPER", "GHOST", "ROOK", "NOVA", "JINX", "DUST", "AXEL",
+pub const NAMES: [&str; 15] = [
+    "YOU", "Mike", "Cydney", "Jim", "Pearl", "Jon", "Rhonda", "Bose", "Axle", "Eric", "Buzz",
+    "Druid", "Hog", "Serge", "Slash",
 ];
 
 use crate::{
@@ -42,7 +43,7 @@ impl Default for Race {
             message: String::new(),
             message_time: 0.0,
             takedowns: 0,
-            place: 8,
+            place: 15,
             camera_mode: 0,
             shake: 0.0,
             earned: 0,
@@ -237,11 +238,13 @@ pub fn setup_race(
     content: Res<GameContent>,
 ) {
     commands.insert_resource(Profile::load());
-    for id in 0..8 {
+    for id in 0..NAMES.len() {
         let mut rider = Rider::new(id);
         rider.palette_index = content.0.riders[id].palette_index;
-        rider.progress = track.definition.spawns[id].distance;
-        rider.lane = track.definition.spawns[id].lane;
+        if let Some(spawn) = track.definition.spawns.get(id) {
+            rider.progress = spawn.distance;
+            rider.lane = spawn.lane;
+        }
         let (p, q) = track.sample(rider.progress, rider.lane);
         let root = world::bike(
             &mut commands,
@@ -436,8 +439,11 @@ pub fn drive(
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
-    ground: Query<(), With<world::Ground>>,
-    owned: Query<&recovery::OwnedBody>,
+    (ground, owned, poses): (
+        Query<(), With<world::Ground>>,
+        Query<&recovery::OwnedBody>,
+        Query<&GlobalTransform>,
+    ),
     (mut swept, mut attacks): (
         MessageWriter<recovery::SweptContact>,
         MessageWriter<crate::combat::AttackAttempt>,
@@ -484,6 +490,32 @@ pub fn drive(
             )
         })
         .collect();
+    let targets: Vec<_> = riders
+        .iter()
+        .filter(|(_, r, _, _, _)| r.finished.is_none())
+        .map(|(_, r, state, t, _)| {
+            let downed = state.stage != RecoveryStage::Riding;
+            let (progress, lane, _) = if downed {
+                track.project(
+                    state
+                        .runner
+                        .or(state.torso)
+                        .and_then(|e| poses.get(e).ok())
+                        .map_or(t.translation, GlobalTransform::translation),
+                    r.progress,
+                )
+            } else {
+                (r.progress, r.lane, 0.0)
+            };
+            rr_core::pursuit::Target {
+                id: r.id,
+                progress,
+                lane,
+                speed: r.speed,
+                downed,
+            }
+        })
+        .collect();
     let player_progress = snapshots.iter().find(|s| s.1 == 0).map_or(0.0, |s| s.2);
 
     for (entity, mut r, mut recovery, mut transform, mut visibility) in &mut riders {
@@ -512,12 +544,30 @@ pub fn drive(
             }
             r.attack = (r.attack - dt).max(0.0);
             let is_player = r.id == 0;
+            let me = rr_core::pursuit::Target {
+                id: r.id,
+                progress: r.progress,
+                lane: r.lane,
+                speed: r.speed,
+                downed: false,
+            };
+            let chase = if is_player {
+                None
+            } else {
+                rr_core::pursuit::choose(r.id, race.elapsed, me, &targets)
+            };
+            let chase_goal =
+                chase.map(|t| rr_core::pursuit::approach(me, t, 43.0 + r.id as f32 * 0.8));
             let throttle = if is_player {
                 player_intent.throttle
             } else {
                 true
             };
-            let brake = is_player && player_intent.brake;
+            let brake = if is_player {
+                player_intent.brake
+            } else {
+                chase_goal.is_some_and(|(_, speed)| r.speed > speed + 3.0)
+            };
             let boost = is_player && player_intent.nitro && throttle && r.nitro > 0.5;
             let top = if is_player {
                 if boost {
@@ -526,7 +576,7 @@ pub fn drive(
                     tuning.top_speed_mps
                 }
             } else {
-                43.0 + r.id as f32 * 0.8
+                chase_goal.map_or(43.0 + r.id as f32 * 0.8, |(_, speed)| speed)
             };
             let curve = track.curvature(r.progress).abs();
             let target = if is_player {
@@ -578,6 +628,9 @@ pub fn drive(
             } else {
                 let mut desired =
                     ((race.elapsed * 0.28 + r.id as f32 * 2.4).sin() * 3.4).clamp(-4.5, 4.5);
+                if let Some((lane, _)) = chase_goal {
+                    desired = lane;
+                }
                 for (car, _) in &traffic {
                     let ahead = (car.progress - r.progress).rem_euclid(track.length);
                     if ahead < 35.0 && (r.lane - car.lane).abs() < 2.0 {
@@ -598,12 +651,14 @@ pub fn drive(
                 throttle_amount: if is_player {
                     player_intent.throttle_strength()
                 } else {
-                    1.0
+                    chase_goal.map_or(1.0, |(_, speed)| {
+                        ((speed - r.speed) * 0.25 + 0.35).clamp(0.0, 1.0)
+                    })
                 },
                 brake_amount: if is_player {
                     player_intent.brake_strength()
                 } else {
-                    0.0
+                    if brake { 0.25 } else { 0.0 }
                 },
             };
             if !dynamic {
@@ -647,7 +702,11 @@ pub fn drive(
             if let Some(attack_side) = attack_side
                 && r.attack <= 0.0
             {
-                r.attack = 0.65;
+                r.attack = if is_player {
+                    0.65
+                } else {
+                    1.2 + (r.id % 4) as f32 * 0.15
+                };
                 r.kicking = matches!(attack_side, rr_core::AttackSide::Kick);
                 r.attack_side = attack_side.sign();
                 attacks.write(crate::combat::AttackAttempt(entity, attack_side));
@@ -1014,7 +1073,7 @@ pub(crate) mod tests {
     }
     #[test]
     fn grid_starts_before_timing_line() {
-        for id in 0..8 {
+        for id in 0..NAMES.len() {
             let r = Rider::new(id);
             assert!(r.progress < 0.0);
             assert!(r.lane.abs() < ROAD_HALF);
@@ -1045,7 +1104,9 @@ pub(crate) mod tests {
             dark: Handle::default(),
             metal: Handle::default(),
             white: Handle::default(),
-            colors: vec![Handle::default(); 8],
+            colors: vec![Handle::default(); 15],
+            helmets: vec![Handle::default(); 15],
+            bike_colors: vec![Handle::default(); 15],
         })
         .add_systems(Last, |mut keys: ResMut<ButtonInput<KeyCode>>| keys.clear());
         app.world_mut().spawn((

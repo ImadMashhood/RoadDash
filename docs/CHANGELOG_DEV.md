@@ -168,3 +168,13 @@ with an authored 1.6 multiplier and consistent facade/roof/collision heights;
 preserved source snapshots, lot IDs, quotas and rural heights. ADR-024 records
 the design. 115 tests, locked builds, checks/audit, native survey (9.66 ms p95 at
 1080p) and crash/remount/finish smoke pass. Evidence: testing/STREETSCAPE.md.
+
+## 2026-10-31 — Roster, kicks, steering, wrecks and pursuit
+
+User corrections: stronger kicks, fewer sidewalk trees, original roster/color
+schemes, less automatic steering, fallen motorcycles, 50% stronger turning and
+measured aggressive rivals. Implemented 15-racer CITY lineup and independent
+helmet/shirt/bike swatches, 8 m/s kicks, 44 m tree spacing, body-heading player
+forces, stronger authored turn response/caps, physical wreck roll and deterministic
+pursuit with speed matching/selective downed hunts. R01 inspected reference-only;
+no source/media copied. ADR-025 and testing/RIDERS.md record verification/limits.

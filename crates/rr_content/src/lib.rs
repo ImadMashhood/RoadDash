@@ -59,8 +59,8 @@ impl Catalog {
         if self.schema_version != CONTENT_SCHEMA_VERSION {
             return Err("unsupported content schema".into());
         }
-        if self.bikes.is_empty() || self.riders.len() != 8 {
-            return Err("prototype requires a bike and exactly eight riders".into());
+        if self.bikes.is_empty() || self.riders.len() != 15 {
+            return Err("prototype requires a bike and exactly fifteen riders".into());
         }
         let mut ids = HashSet::new();
         for bike in &self.bikes {
@@ -97,7 +97,7 @@ impl Catalog {
         let mut rider_ids = HashSet::new();
         for rider in &self.riders {
             if !rider_ids.insert(rider.id.as_str())
-                || rider.palette_index >= 8
+                || rider.palette_index >= 15
                 || !ids.contains(rider.bike_id.as_str())
             {
                 return Err("invalid rider reference, palette, or duplicate ID".into());
