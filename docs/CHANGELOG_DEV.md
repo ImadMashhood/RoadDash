@@ -201,3 +201,27 @@ Recorded styles, source formats, rig claims, costs and redistribution limitation
 in third_party/CHARACTER_CANDIDATES.md. Found conflicting CC0 pack labels versus
 Quaternius's current QAL; no new archive license inferred. No assets purchased,
 downloaded or integrated. ART-01 research complete; ART-02 pilot integration open.
+
+## 2026-10-31 — ART-03 authored models, unchanged accepted ragdoll
+
+- Created codex/seated-models-preserve-ragdoll for the explicit user request.
+- Integrated the independently authored textured rider and sport motorcycle,
+  preserving roster colors, existing procedural gestures/lean, runner/pedestrian
+  appearance, detached skin/wreck lifecycle and all collision simulation.
+- Added a bounded visual-only mesh intake and reproducible GLB/atlas export;
+  kept sources outside runtime assets and registered provenance/hashes.
+- GPU skin follows existing eleven visual joints with standing/seated bind
+  surfaces. Recovery has three graphics-hook lines; normalized remaining source,
+  body specifications, vehicle controller and lockfile match the baseline.
+- Differential tests find zero maximum body position difference across eleven
+  bodies/180 fixed ticks; full recovery and skin cleanup match. 125 tests pass
+  (one optional soak ignored), format/Clippy/locked builds and audit/source tests
+  pass. Native race/NPC crash/remount/audio and world inspection/survey pass;
+  warmed 1080p city p95 12.90 ms on this host. See testing/MODELS.md.
+- Corrected headless fixture resource requirements and runtime asset lookup found
+  during verification; final checks were rerun. Added texture readiness polling
+  and linear normal/roughness loading. Existing physics/camera/input behavior was
+  not retuned. A legacy-visual environment switch permits direct comparison.
+- ART-03 checked; broader ART-02 production acceptance stays open. Added ART-04
+  animation/deformation polish and ART-05 LOD/more-hardware gates. No push/PR,
+  platform certification or legal clearance claimed. ADR-027 records the choice.

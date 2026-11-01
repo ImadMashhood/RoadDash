@@ -51,7 +51,7 @@ missing features, architectural debt and unverified platforms.
 - P06-TUNING: motorcycle collision cutoffs (50 km/h longitudinal, 6 m/s side)
   are original arcade tuning; broader human balance feedback remains pending.
 - P06-TISSUE: passive spring/damping approximates tissue; no anatomical muscle
-  simulation, rigged skin or active physical animation.
+  simulation or active physical animation. ART-03 adds renderer-only skinning to the existing bodies.
 - P12-RECORDS: existing best_seconds is an aggregate legacy record; class/track
   records and migrations remain P12-005/P07-007.
 - P15: placeholder procedural art/audio; no production animal assets,
@@ -67,7 +67,7 @@ missing features, architectural debt and unverified platforms.
 
 See PROGRESS.md for task IDs, acceptance, dependencies and verification.
 
-Latest corrections: all human states share original procedural geometry/outfit;
+Historical Part 04 correction: all human states shared procedural geometry/outfit; ART-03 now replaces that presentation with the authored skin.
 production skin/rig remains future work. Latest user feedback supersedes the upright-pivot correction: bike and human now
 bank together only from steering force, with road bank removed from visual roll. Civilian jumps are
 explicit arcade clearance responses, not ordinary crash impulses; broader crowd/
@@ -117,7 +117,15 @@ mapping are adaptations. Full career levels, event-axis/random-stream/rubber-ban
 parity remain AI-03. See testing/PERSONALITIES.md. No human difficulty acceptance
 or Windows certification is claimed.
 
-ART-01 is research only: current humans remain procedural. Skinned avatar,
+ART-01 was research only; ART-03 now integrates the independently authored pilot. Production-quality skinned avatar,
 animation-to-ragdoll bone mapping and pilot asset acquisition/verification remain
 ART-02. Quaternius's current general license and old CC0 pack labels conflict;
 public raw-file redistribution must be established per acquired version.
+
+ART-03 introduces an eleven-joint visual binding for the authored rider and detailed
+motorcycle while retaining existing physics. Full 20-bone authored animation,
+closed-finger grips/fists, skin-weight refinement and distance LOD remain
+ART-04/ART-05. Detailed fairings are visual and can overhang the unchanged coarse
+bike collider. The source GLB/pose files remain in art/source; no original game
+media are redistributed. Existing RIGHTS-002 review and Windows acceptance stay
+open. Native receipts and any discovered limitations: testing/MODELS.md.

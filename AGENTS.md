@@ -36,3 +36,9 @@ in the blueprint are not installed dependencies.
   whole-lot rights of way, shared pad support and independent LOD/collision.
   Fade pairs must share local origins; test --inspect-world and --world-survey.
   Allocation counts alone do not prove placed geometry or performance.
+
+- The user explicitly accepts the current ragdoll feel. Keep asset/animation
+  integration presentation-only: preserve the eleven body specs, collision,
+  masses, joints/motors, damping, momentum and recovery unless the user explicitly
+  requests physics tuning. Run src/models/tests.rs differential physics/recovery
+  checks. A model's authoring skeleton is not permission to replace the physical rig.

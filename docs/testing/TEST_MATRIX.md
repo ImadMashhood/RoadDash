@@ -154,3 +154,16 @@ and provenance audit pass. Final native inspection/survey (1080p p95 14.74 ms),
 racing visual review and crash/remount/finish with audio pass. Initial approach
 terrain intrusion was fixed and all checks rerun. [Evidence](PERSONALITIES.md).
 AI-03 full original parity, human acceptance and Windows remain open.
+
+### ART-03 authored rider/bike, preserved ragdoll — 2026-10-31
+
+125 workspace tests pass, one optional soak ignored. Model intake corruption/NaN/
+joint-ID/physics-payload checks, four-state skin consistency and nonphysical mesh
+components pass. Eleven-body differential trace: 180 ticks, zero maximum position
+difference; descriptors/velocities/rotations unchanged within recorded tolerances.
+Full crash/run/remount differential and detached-skin cleanup pass. Workspace
+format/Clippy/locked debug+release builds, six Python tests, provenance/tracker
+checks and world inspection pass. Native farm/hill recovery, finish, NPC crashes
+and audio pass. All 15 survey sections: 1080p warmed city p95 12.90 ms on this
+Linux/RTX 3080/Vulkan host. [Receipts and limits](MODELS.md). ART-04/05 and Windows/
+human visual acceptance remain open. No body/joint/controller tuning changed.

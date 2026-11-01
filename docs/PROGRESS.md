@@ -9,6 +9,21 @@ The full original backlog is preserved in the generated
 index below; README is the editable checkbox source. Run
 `python3 tools/sync_progress.py` after changing task status, then `--check` in CI.
 
+## Current authored-model integration (ART-03)
+
+User scope: replace character/bike on codex/seated-models-preserve-ragdoll while
+preserving the accepted physical ragdoll exactly. The new meshes bind to existing
+visual joints; no simulated skeleton migration is authorized. Part 11 prototype
+integration only, with animation polish/LOD deferred under ART-04/ART-05. See
+ADR-027, art/README.md and testing/MODELS.md for actual verification receipts.
+ART-02 and all unrelated milestone exit gates remain open.
+
+| New ID / part | Description / reason | Dependencies | Acceptance and verification |
+| --- | --- | --- | --- |
+| ART-03 / 11 | Replace approved rider/bike visuals without losing accepted crashes | authored GLBs/pose; current body/visual separation | Four human states, riding/wreck geometry, unchanged body/joint descriptors and 180-tick trajectories, full recovery; automated and native evidence |
+| ART-04 / 11 | Polish retarget, fingers and interpolated authored transitions | ART-03; static pose library | Contact-correct gestures/deformation and readable transitions; pose review and native clips with physics parity |
+| ART-05 / 11 | Add art LOD and broader hardware evidence | ART-03; profiler | Collision-independent distance LOD and measured budget on supported hardware; native surveys and Windows review |
+
 ## Evidence and current boundaries
 
 Part 00 artifacts: GDD.md, VERTICAL_SLICE.md, ORIGINAL_CONTENT_POLICY.md,
@@ -581,7 +596,7 @@ relationship-axis/event and random-stream parity gates.
 
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
 
-- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](../src/human.rs).
+- [x] **P11-011** Use one human mesh/proportion/outfit definition for seated bikers, pedestrians, recovery runners and ragdolls; change pose without swapping appearance. Evidence: [shared model and four-state test](../src/human.rs); the new authored skins use [four-state/physics parity tests](../src/models/tests.rs) and [native receipts](../docs/testing/MODELS.md).
 
 - [ ] **P11-010** **Exit gate:** the original town/farm/cliff art replaces graybox assets without changing physics/race rules and fits measured budgets.
 
@@ -835,4 +850,10 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **ART-01** Research rigged character sources matching the user's faceted, natural-proportion references and biker gear. Reason: user requested a visual upgrade; part: character art; dependencies: reference images and shared human lifecycle; acceptance: sourced shortlist, format/rig claims and license review; verification: publisher/marketplace pages reviewed 2026-10-31; [findings](../docs/third_party/CHARACTER_CANDIDATES.md).
 
-- [ ] **ART-02** Acquire a licensed pilot rider and integrate one shared skinned avatar across riding, fighting, walking and ragdoll. Reason: researched assets are not yet working models; part: character art/animation; dependencies: ART-01, model selection/acquisition and exact archive license; acceptance: biker outfit/color zones, coherent rig and recovery, unchanged physics/controls, 15-racer performance/LOD acceptance; verification: deformation/animation/ragdoll tests, native visual checks and profiling.
+- [ ] **ART-02** Acquire a licensed pilot rider and integrate one shared skinned avatar across riding, fighting, walking and ragdoll. Original authored pilot integration is tracked under ART-03; complete production deformation/animation/LOD acceptance remains open. Reason: researched assets are not yet working models; part: character art/animation; dependencies: ART-01, model selection/acquisition and exact archive license; acceptance: biker outfit/color zones, coherent rig and recovery, unchanged physics/controls, 15-racer performance/LOD acceptance; verification: deformation/animation/ragdoll tests, native visual checks and profiling.
+
+- [x] **ART-03** Integrate the approved authored rider and motorcycle as presentation-only replacements, retaining all accepted ragdoll bodies/joints and crash/recovery behavior. Reason: explicit user request; part: 11 art; dependencies: authored GLBs/seat pose and existing visual joints; acceptance: shared rider through riding/walking/ragdoll, bike/wreck replacement, unchanged physics trajectories, complete recovery, native visual check; verification: [tests](../src/models/tests.rs), [evidence](../docs/testing/MODELS.md).
+
+- [ ] **ART-04** Polish the eleven-joint visual retarget and authored animation transitions without changing simulation. Reason: authoring rig has 20 bones and the current fingers/pose drivers are prototypes; part: 11 art/animation; dependencies: ART-03 and static pose library; acceptance: clean grip/fist/deformation and contact-aware transitions at gameplay speeds; verification: pose review, native clips and repeated physics parity tests.
+
+- [ ] **ART-05** Author distance LODs and validate the detailed rider/bike budget on more hardware. Reason: LOD0 replaces cheap primitives across 15 racers; part: 11 optimization; dependencies: ART-03 and profiler; acceptance: readable silhouettes, stable collision-independent swaps and measured frame budget; verification: native distance/performance surveys and Windows hardware review.

@@ -860,6 +860,9 @@ pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Q
         }
         parts.push(e);
     }
+    if let Some(models) = &art.models {
+        parts.extend(models.human(commands, 4, &parts, false));
+    }
     crate::runtime::attach_visuals(commands, root, &parts);
 }
 pub fn patrol(

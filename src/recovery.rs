@@ -167,6 +167,7 @@ pub fn humanoid(
 ) -> Vec<Entity> {
     let specs = crate::human::SPECS;
     let mut bodies = Vec::new();
+    let mut visual_joints = Vec::new();
     for (i, (p, size, parent)) in specs.iter().enumerate() {
         let e = commands
             .spawn((
@@ -204,6 +205,7 @@ pub fn humanoid(
             .id();
         // Child geometry keeps the physics transform unscaled.
         let visual = crate::human::segment(commands, art, color, i, Vec3::ZERO, Quat::IDENTITY);
+        visual_joints.push(visual);
         crate::runtime::attach_visuals(commands, e, &[visual]);
         if let Some((parent, anchor)) = parent {
             let joint = anatomical_joint(i, *anchor - specs[*parent].0, *anchor - *p);
@@ -214,6 +216,7 @@ pub fn humanoid(
         }
         bodies.push(e);
     }
+    crate::models::ragdoll(commands, art, color, &visual_joints);
     bodies
 }
 

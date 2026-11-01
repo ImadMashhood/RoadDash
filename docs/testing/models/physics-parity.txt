@@ -1,0 +1,19 @@
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 32.25s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 4 tests
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... ok
+MODEL_PHYSICS_PARITY ticks=180 bodies=11 max_position_error_m=0
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 94 filtered out; finished in 0.40s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

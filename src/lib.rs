@@ -9,6 +9,7 @@ pub mod environment;
 pub mod feedback;
 pub mod game;
 pub mod human;
+pub mod models;
 pub mod npc;
 pub mod recovery;
 pub mod runtime;
@@ -37,35 +38,43 @@ pub fn build_app(smoke: bool) -> App {
             vehicle::VehiclePhysicsAdapter::Dynamic
         },
     );
-    app.add_plugins(DefaultPlugins.set(WindowPlugin {
-        primary_window: Some(Window {
-            title: "ROAD / DASH — Valley Run".into(),
-            mode: if std::env::args().any(|a| a == "--world-survey") {
-                bevy::window::WindowMode::BorderlessFullscreen(
-                    bevy::window::MonitorSelection::Current,
-                )
-            } else {
-                bevy::window::WindowMode::Windowed
-            },
-            present_mode: if std::env::args().any(|a| a == "--world-survey") {
-                bevy::window::PresentMode::AutoNoVsync
-            } else {
-                default()
-            },
-            resolution: if std::env::args().any(|a| a == "--world-survey") {
-                (1920, 1080).into()
-            } else {
-                (1440, 900).into()
-            },
-            ..default()
-        }),
-        ..default()
-    }))
+    app.add_plugins(
+        DefaultPlugins
+            .set(AssetPlugin {
+                file_path: models::asset_directory(),
+                ..default()
+            })
+            .set(WindowPlugin {
+                primary_window: Some(Window {
+                    title: "ROAD / DASH — Valley Run".into(),
+                    mode: if std::env::args().any(|a| a == "--world-survey") {
+                        bevy::window::WindowMode::BorderlessFullscreen(
+                            bevy::window::MonitorSelection::Current,
+                        )
+                    } else {
+                        bevy::window::WindowMode::Windowed
+                    },
+                    present_mode: if std::env::args().any(|a| a == "--world-survey") {
+                        bevy::window::PresentMode::AutoNoVsync
+                    } else {
+                        default()
+                    },
+                    resolution: if std::env::args().any(|a| a == "--world-survey") {
+                        (1920, 1080).into()
+                    } else {
+                        (1440, 900).into()
+                    },
+                    ..default()
+                }),
+                ..default()
+            }),
+    )
     .add_plugins((
         content::RoadContentPlugin,
         runtime::RoadLifecyclePlugin,
         runtime::RoadSimulationPlugin,
         controls::RoadInputPlugin,
+        models::RoadModelPlugin,
         runtime::RoadWorldPlugin,
         runtime::RoadPresentationPlugin,
         runtime::RoadAudioPlugin,

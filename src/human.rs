@@ -67,6 +67,15 @@ pub fn segment(
     position: Vec3,
     rotation: Quat,
 ) -> Entity {
+    if art.models.is_some() {
+        return commands
+            .spawn((
+                HumanSegment(index),
+                Transform::from_translation(position).with_rotation(rotation),
+                Visibility::default(),
+            ))
+            .id();
+    }
     let size = SPECS[index].1;
     let head = index == 1;
     let e = world::part(

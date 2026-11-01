@@ -494,3 +494,49 @@ net-score smoothing approximates original three-axis easing, and current gamepla
 uses one level rather than original career/random streams. AI-03 preserves these
 open parity requirements. Rollback profiles/controller/grid/projection together;
 retain physical road support for every authored spawn.
+
+## ADR-027 — 2026-10-31 — Replace presentation while retaining the accepted ragdoll
+
+Problem: the user approved the current physical crashes and explicitly required
+that integrating the authored FlushTrim rider and sport motorcycle preserve them.
+The supplied art has a 20-bone authoring rig; runtime uses eleven independently
+simulated body segments and existing seated/runner visual pose drivers.
+
+Selected approach: a renderer-only eleven-joint skin binding. Bake the authored
+standing and seated-0003 surfaces/UVs/weights, folding authoring bone influences
+onto the current visual segment entities. Separate inverse-bind arrays allow the
+approved seated fit and standing mesh to follow the existing presentation poses.
+The physics bodies remain unscaled. The ragdoll merely supplies its interpolated
+visual children as skin joints. No animated root motion, colliders from imported
+meshes, physics motors, new collision filters, or fixed-step systems are added.
+Attach each detached skin below the first body visual so ordinary body teardown
+also removes the skin. Pedestrians and recovery runners share the standing skin.
+Retain all shirt/helmet/bike swatches and minimap palette semantics.
+
+Bake the original GLBs into a bounded, validated renderer-only buffer; keep source
+GLBs and seat/contact metadata separately in art/source. The buffer contains no
+physics data. Load meshes/materials once and reuse handles; atlas maps preserve
+leather detail, with normal/roughness images loaded as linear data. Existing
+chassis/wreck and wheel state drive the replacement motorcycle's presentation.
+No dependency changes: Bevy 0.17.3 and Rapier 0.32.0 remain pinned.
+
+Alternatives: adopting the author's whole rig as a new simulated skeleton would
+change the accepted physics; replacing physics with animated crash clips would
+lose real collisions. Both were rejected. A fully independent 20-bone render
+retargeter is possible later, but is unnecessary for this focused substitution.
+Tradeoffs: the existing coarse pose drivers remain; fingers, anatomical skin
+weight polish, authored transitions and distance LOD are still future art work.
+Standing skin and coarse colliders approximate one another; no claim that the
+visual surface is a new collision shape is made.
+
+Verification: compare every body collider, mass, damping, friction, restitution,
+CCD and joint descriptor between old/new visuals, then compare all eleven body
+poses/velocities for 180 fixed ticks. Also compare the complete crash/get-up/run/
+remount lifecycle and skin cleanup. Native visual/recovery/performance evidence
+belongs in testing/MODELS.md. R08's installed 0.17.3 skinning/asset APIs were
+consulted; no new research dependency or reference-game media/code was added.
+
+Rollback: ROADDASH_LEGACY_MODELS=1 selects the old presentation at startup while
+retaining identical simulation. Removing the model hooks and assets also restores
+the old presentation; no saves, content IDs or physics migrations are involved.
+Future animation must consume simulation poses, never overwrite body transforms.

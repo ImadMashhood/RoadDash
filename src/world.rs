@@ -21,6 +21,7 @@ pub fn shirt_color(index: usize) -> Color {
 }
 #[derive(Resource)]
 pub struct Art {
+    pub models: Option<crate::models::AuthoredModels>,
     pub helmets: Vec<Handle<StandardMaterial>>,
     pub bike_colors: Vec<Handle<StandardMaterial>>,
     pub cube: Handle<Mesh>,
@@ -69,9 +70,26 @@ pub fn setup_world(
     mut materials: ResMut<Assets<StandardMaterial>>,
     mut track: ResMut<Track>,
     plan: Option<Res<crate::world_gen::WorldPlan>>,
+    server: Option<Res<AssetServer>>,
+    mut binds: Option<ResMut<Assets<bevy::mesh::skinning::SkinnedMeshInverseBindposes>>>,
 ) {
     let swatch = |hex: u32| Color::srgb_u8((hex >> 16) as u8, (hex >> 8) as u8, hex as u8);
+    // Unrendered world/physics fixtures have no asset server or GPU skin assets.
+    let models = match (server.as_deref(), binds.as_deref_mut()) {
+        (Some(server), Some(binds))
+            if std::env::var("ROADDASH_LEGACY_MODELS").as_deref() != Ok("1") =>
+        {
+            Some(crate::models::AuthoredModels::load(
+                &mut meshes,
+                &mut materials,
+                binds,
+                Some(server),
+            ))
+        }
+        _ => None,
+    };
     let art = Art {
+        models,
         helmets: HELMET_COLORS
             .iter()
             .map(|&c| materials.add(swatch(c)))
@@ -182,63 +200,67 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         .spawn((Transform::default(), Visibility::default()))
         .id();
     let mut children = Vec::new();
-    for z in [-0.78, 0.78] {
-        let wheel_start = children.len();
-        children.push(part(
-            commands,
-            art.wheel.clone(),
-            art.dark.clone(),
-            Vec3::new(0.0, 0.42, z),
-            Vec3::ONE,
-            Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
-        ));
-        children.push(part(
-            commands,
-            art.wheel.clone(),
-            art.metal.clone(),
-            Vec3::new(0.0, 0.42, z),
-            Vec3::new(0.52, 1.05, 0.52),
-            Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
-        ));
-        for e in &children[wheel_start..] {
-            commands
-                .entity(*e)
-                .insert(crate::vehicle::WheelVisual(z > 0.0));
+    if let Some(models) = &art.models {
+        children.extend(models.motorcycle(commands, color));
+    } else {
+        for z in [-0.78, 0.78] {
+            let wheel_start = children.len();
+            children.push(part(
+                commands,
+                art.wheel.clone(),
+                art.dark.clone(),
+                Vec3::new(0.0, 0.42, z),
+                Vec3::ONE,
+                Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+            ));
+            children.push(part(
+                commands,
+                art.wheel.clone(),
+                art.metal.clone(),
+                Vec3::new(0.0, 0.42, z),
+                Vec3::new(0.52, 1.05, 0.52),
+                Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+            ));
+            for e in &children[wheel_start..] {
+                commands
+                    .entity(*e)
+                    .insert(crate::vehicle::WheelVisual(z > 0.0));
+            }
         }
-    }
-    for (p, s, mat) in [
-        (
-            Vec3::new(0.0, 0.77, 0.0),
-            Vec3::new(0.40, 0.38, 1.15),
-            art.metal.clone(),
-        ),
-        (
-            Vec3::new(0.0, 1.03, 0.24),
-            Vec3::new(0.57, 0.38, 0.73),
-            art.bike_colors[color].clone(),
-        ),
-        (
-            Vec3::new(0.0, 1.02, -0.52),
-            Vec3::new(0.47, 0.16, 0.65),
-            art.dark.clone(),
-        ),
-        (
-            Vec3::new(0.0, 1.04, 0.87),
-            Vec3::new(0.56, 0.48, 0.34),
-            art.bike_colors[color].clone(),
-        ),
-        (
-            Vec3::new(0.0, 1.3, 0.60),
-            Vec3::new(0.93, 0.07, 0.08),
-            art.metal.clone(),
-        ),
-        (
-            Vec3::new(0.0, 1.01, 1.055),
-            Vec3::new(0.36, 0.15, 0.03),
-            art.white.clone(),
-        ),
-    ] {
-        children.push(part(commands, art.cube.clone(), mat, p, s, Quat::IDENTITY));
+        for (p, s, mat) in [
+            (
+                Vec3::new(0.0, 0.77, 0.0),
+                Vec3::new(0.40, 0.38, 1.15),
+                art.metal.clone(),
+            ),
+            (
+                Vec3::new(0.0, 1.03, 0.24),
+                Vec3::new(0.57, 0.38, 0.73),
+                art.bike_colors[color].clone(),
+            ),
+            (
+                Vec3::new(0.0, 1.02, -0.52),
+                Vec3::new(0.47, 0.16, 0.65),
+                art.dark.clone(),
+            ),
+            (
+                Vec3::new(0.0, 1.04, 0.87),
+                Vec3::new(0.56, 0.48, 0.34),
+                art.bike_colors[color].clone(),
+            ),
+            (
+                Vec3::new(0.0, 1.3, 0.60),
+                Vec3::new(0.93, 0.07, 0.08),
+                art.metal.clone(),
+            ),
+            (
+                Vec3::new(0.0, 1.01, 1.055),
+                Vec3::new(0.36, 0.15, 0.03),
+                art.white.clone(),
+            ),
+        ] {
+            children.push(part(commands, art.cube.clone(), mat, p, s, Quat::IDENTITY));
+        }
     }
     let rider_start = children.len();
     if with_rider {
@@ -258,7 +280,10 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
         }
     }
     if with_rider {
-        let rider_parts = children.split_off(rider_start);
+        let mut rider_parts = children.split_off(rider_start);
+        if let Some(models) = &art.models {
+            rider_parts.extend(models.human(commands, color, &rider_parts, true));
+        }
         for &entity in &rider_parts {
             commands.entity(entity).insert(SeatedRiderVisual);
         }
@@ -350,6 +375,9 @@ pub fn runner(commands: &mut Commands, art: &Art, color: usize) -> (Entity, Enti
             });
         }
         parts.push(e);
+    }
+    if let Some(models) = &art.models {
+        parts.extend(models.human(commands, color, &parts, false));
     }
     commands.entity(pose).add_children(&parts);
     crate::runtime::attach_visuals(commands, root, &[pose]);

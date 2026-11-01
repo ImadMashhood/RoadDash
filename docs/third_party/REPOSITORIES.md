@@ -342,3 +342,17 @@ reuse; license evidence URL and maintenance/compatibility limitations remain as
 recorded above. Local numeric observations inform independently authored profiles;
 no executable/media shipped. Adopt behavior research; defer all-career/random/
 three-axis parity to AI-03. Evidence: testing/PERSONALITIES.md and ADR-026.
+
+### R08 authored skin integration — 2026-10-31
+
+Consulted the installed Bevy **0.17.3** mesh/skinning types, StandardMaterial image
+settings and custom_skinned_mesh example API. Repository: bevyengine/bevy,
+https://github.com/bevyengine/bevy/tree/v0.17.3; Bevy contributors. Existing
+DEPENDENCY classification and dual MIT/Apache-2.0 licenses remain unchanged:
+https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT and LICENSE-APACHE.
+No new dependency or source/media import. The adapter is independently written;
+it uses existing API types rather than copying the tutorial mesh. Compatibility
+is verified against the pinned lockfile, not a new upstream version. Existing
+shader/renderer and platform risks apply. Adopt existing GPU skinning; keep
+Rapier bodies and joint/motor settings unchanged. The model assets themselves
+come from the earlier independent authoring step, not the Bevy repository.

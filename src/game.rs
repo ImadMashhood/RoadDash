@@ -1139,6 +1139,7 @@ pub(crate) mod tests {
         .init_resource::<crate::ui::MenuAction>()
         .insert_resource(Persistence(false))
         .insert_resource(Art {
+            models: None,
             cube: Handle::default(),
             sphere: Handle::default(),
             wheel: Handle::default(),
