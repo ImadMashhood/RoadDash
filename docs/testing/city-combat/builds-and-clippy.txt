@@ -1,0 +1,6 @@
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 1.69s
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 6.17s
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `release` profile [optimized] target(s) in 20.02s
