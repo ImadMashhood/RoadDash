@@ -1,0 +1,7 @@
+{
+  "v1_semantic_status": "superseded; inspection-based action names are not authoritative",
+  "current_context_catalog": "../../docs/animation/context/catalog.json",
+  "current_pose_manifest": "context/manifest.json",
+  "runtime_connected": false,
+  "reason": "User rejected slot-based speculation; source sequences and per-cell mirror/view context must precede pose authoring"
+}

@@ -1,0 +1,3010 @@
+{
+  "schema_version": 1,
+  "pose_kind": "static-keyframes",
+  "runtime_connected": false,
+  "physics_changed": false,
+  "poses": [
+    {
+      "id": 2000,
+      "name": "RIDE_FAR_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        22
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2000.jpg"
+    },
+    {
+      "id": 2010,
+      "name": "RIDE_VERY_FAR_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        23
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2010.jpg"
+    },
+    {
+      "id": 2020,
+      "name": "RIDE_NORMAL_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        3
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2020.jpg"
+    },
+    {
+      "id": 2030,
+      "name": "RIDE_FAST_TUCK_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        252
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2030.jpg"
+    },
+    {
+      "id": 2040,
+      "name": "RIDE_ACCELERATE_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        41
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2040.jpg"
+    },
+    {
+      "id": 2050,
+      "name": "RIDE_WRECK_WARNING_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        42
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2050.jpg"
+    },
+    {
+      "id": 2051,
+      "name": "RIDE_WRECK_WARNING_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        43
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2051.jpg"
+    },
+    {
+      "id": 2060,
+      "name": "AI_POST_HIT_GESTURE_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        44
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2060.jpg"
+    },
+    {
+      "id": 2061,
+      "name": "AI_POST_HIT_GESTURE_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        45
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2061.jpg"
+    },
+    {
+      "id": 2070,
+      "name": "UNRESOLVED_RIDE_CODE_07_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        46
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2070.jpg"
+    },
+    {
+      "id": 2080,
+      "name": "RIDE_LOW_SPEED_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        47
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2080.jpg"
+    },
+    {
+      "id": 2090,
+      "name": "MOUNTED_HIT_REACTION_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        63
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2090.jpg"
+    },
+    {
+      "id": 2091,
+      "name": "MOUNTED_HIT_REACTION_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        63
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2091.jpg"
+    },
+    {
+      "id": 2100,
+      "name": "CHAIN_LEFT_FOREHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        81
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2100.jpg"
+    },
+    {
+      "id": 2101,
+      "name": "CHAIN_LEFT_FOREHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        82
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2101.jpg"
+    },
+    {
+      "id": 2102,
+      "name": "CHAIN_LEFT_FOREHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        83
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2102.jpg"
+    },
+    {
+      "id": 2103,
+      "name": "CHAIN_LEFT_FOREHAND_04",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        84
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2103.jpg"
+    },
+    {
+      "id": 2104,
+      "name": "CHAIN_LEFT_FOREHAND_05",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        85
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2104.jpg"
+    },
+    {
+      "id": 2110,
+      "name": "CHAIN_RIGHT_FOREHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        81
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2110.jpg"
+    },
+    {
+      "id": 2111,
+      "name": "CHAIN_RIGHT_FOREHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        82
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2111.jpg"
+    },
+    {
+      "id": 2112,
+      "name": "CHAIN_RIGHT_FOREHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        83
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2112.jpg"
+    },
+    {
+      "id": 2113,
+      "name": "CHAIN_RIGHT_FOREHAND_04",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        84
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2113.jpg"
+    },
+    {
+      "id": 2114,
+      "name": "CHAIN_RIGHT_FOREHAND_05",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        85
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2114.jpg"
+    },
+    {
+      "id": 2120,
+      "name": "CHAIN_LEFT_BACKHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        85
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2120.jpg"
+    },
+    {
+      "id": 2121,
+      "name": "CHAIN_LEFT_BACKHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        86
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2121.jpg"
+    },
+    {
+      "id": 2122,
+      "name": "CHAIN_LEFT_BACKHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        87
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2122.jpg"
+    },
+    {
+      "id": 2123,
+      "name": "CHAIN_LEFT_BACKHAND_04",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        88
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2123.jpg"
+    },
+    {
+      "id": 2124,
+      "name": "CHAIN_LEFT_BACKHAND_05",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        89
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2124.jpg"
+    },
+    {
+      "id": 2130,
+      "name": "CHAIN_RIGHT_BACKHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        85
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2130.jpg"
+    },
+    {
+      "id": 2131,
+      "name": "CHAIN_RIGHT_BACKHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        86
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2131.jpg"
+    },
+    {
+      "id": 2132,
+      "name": "CHAIN_RIGHT_BACKHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        87
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2132.jpg"
+    },
+    {
+      "id": 2133,
+      "name": "CHAIN_RIGHT_BACKHAND_04",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        88
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2133.jpg"
+    },
+    {
+      "id": 2134,
+      "name": "CHAIN_RIGHT_BACKHAND_05",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        89
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2134.jpg"
+    },
+    {
+      "id": 2140,
+      "name": "CHAIN_STEAL_TABLE_INDEX_2_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        83
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2140.jpg"
+    },
+    {
+      "id": 2141,
+      "name": "CHAIN_STEAL_TABLE_INDEX_2_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        81
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2141.jpg"
+    },
+    {
+      "id": 2150,
+      "name": "CHAIN_STEAL_TABLE_INDEX_6_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        83
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2150.jpg"
+    },
+    {
+      "id": 2151,
+      "name": "CHAIN_STEAL_TABLE_INDEX_6_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        85
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2151.jpg"
+    },
+    {
+      "id": 2160,
+      "name": "CLUB_LEFT_FOREHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        140
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2160.jpg"
+    },
+    {
+      "id": 2161,
+      "name": "CLUB_LEFT_FOREHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        141
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2161.jpg"
+    },
+    {
+      "id": 2162,
+      "name": "CLUB_LEFT_FOREHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        142
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2162.jpg"
+    },
+    {
+      "id": 2170,
+      "name": "CLUB_RIGHT_FOREHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        140
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2170.jpg"
+    },
+    {
+      "id": 2171,
+      "name": "CLUB_RIGHT_FOREHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        141
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2171.jpg"
+    },
+    {
+      "id": 2172,
+      "name": "CLUB_RIGHT_FOREHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        142
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2172.jpg"
+    },
+    {
+      "id": 2180,
+      "name": "CLUB_LEFT_BACKHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        143
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2180.jpg"
+    },
+    {
+      "id": 2181,
+      "name": "CLUB_LEFT_BACKHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        142
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2181.jpg"
+    },
+    {
+      "id": 2182,
+      "name": "CLUB_LEFT_BACKHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        142
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2182.jpg"
+    },
+    {
+      "id": 2190,
+      "name": "CLUB_RIGHT_BACKHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        143
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2190.jpg"
+    },
+    {
+      "id": 2191,
+      "name": "CLUB_RIGHT_BACKHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        142
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2191.jpg"
+    },
+    {
+      "id": 2192,
+      "name": "CLUB_RIGHT_BACKHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        142
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2192.jpg"
+    },
+    {
+      "id": 2220,
+      "name": "PUNCH_LEFT_FOREHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        176
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2220.jpg"
+    },
+    {
+      "id": 2221,
+      "name": "PUNCH_LEFT_FOREHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        177
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2221.jpg"
+    },
+    {
+      "id": 2222,
+      "name": "PUNCH_LEFT_FOREHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        178
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2222.jpg"
+    },
+    {
+      "id": 2230,
+      "name": "PUNCH_RIGHT_FOREHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        176
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2230.jpg"
+    },
+    {
+      "id": 2231,
+      "name": "PUNCH_RIGHT_FOREHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        177
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2231.jpg"
+    },
+    {
+      "id": 2232,
+      "name": "PUNCH_RIGHT_FOREHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        178
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2232.jpg"
+    },
+    {
+      "id": 2240,
+      "name": "PUNCH_LEFT_BACKHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        179
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2240.jpg"
+    },
+    {
+      "id": 2241,
+      "name": "PUNCH_LEFT_BACKHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        178
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2241.jpg"
+    },
+    {
+      "id": 2242,
+      "name": "PUNCH_LEFT_BACKHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        178
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.R",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2242.jpg"
+    },
+    {
+      "id": 2250,
+      "name": "PUNCH_RIGHT_BACKHAND_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        179
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2250.jpg"
+    },
+    {
+      "id": 2251,
+      "name": "PUNCH_RIGHT_BACKHAND_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        178
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2251.jpg"
+    },
+    {
+      "id": 2252,
+      "name": "PUNCH_RIGHT_BACKHAND_03",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        178
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "peg.L",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2252.jpg"
+    },
+    {
+      "id": 2260,
+      "name": "KICK_LEFT_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        225
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2260.jpg"
+    },
+    {
+      "id": 2261,
+      "name": "KICK_LEFT_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        226
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.R"
+      ],
+      "screenshot": "gallery/2261.jpg"
+    },
+    {
+      "id": 2270,
+      "name": "KICK_RIGHT_01",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        225
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L"
+      ],
+      "screenshot": "gallery/2270.jpg"
+    },
+    {
+      "id": 2271,
+      "name": "KICK_RIGHT_02",
+      "actor": "human",
+      "family": "mounted",
+      "source_slots": [
+        226
+      ],
+      "review": "draft",
+      "held_contacts": [
+        "seat",
+        "grip.L",
+        "grip.R",
+        "peg.L"
+      ],
+      "screenshot": "gallery/2271.jpg"
+    },
+    {
+      "id": 2280,
+      "name": "CRASH_GROUND_CYCLE_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        241
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2280.jpg"
+    },
+    {
+      "id": 2281,
+      "name": "CRASH_GROUND_CYCLE_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        242
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2281.jpg"
+    },
+    {
+      "id": 2282,
+      "name": "CRASH_GROUND_CYCLE_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        243
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2282.jpg"
+    },
+    {
+      "id": 2283,
+      "name": "CRASH_GROUND_CYCLE_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        244
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2283.jpg"
+    },
+    {
+      "id": 2284,
+      "name": "CRASH_GROUND_CYCLE_05",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        245
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2284.jpg"
+    },
+    {
+      "id": 2285,
+      "name": "CRASH_GROUND_CYCLE_06",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        246
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2285.jpg"
+    },
+    {
+      "id": 2286,
+      "name": "CRASH_GROUND_CYCLE_07",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        247
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2286.jpg"
+    },
+    {
+      "id": 2290,
+      "name": "CRASH_FAST_GROUND_CYCLE_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        241
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2290.jpg"
+    },
+    {
+      "id": 2291,
+      "name": "CRASH_FAST_GROUND_CYCLE_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        242
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2291.jpg"
+    },
+    {
+      "id": 2292,
+      "name": "CRASH_FAST_GROUND_CYCLE_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        243
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2292.jpg"
+    },
+    {
+      "id": 2293,
+      "name": "CRASH_FAST_GROUND_CYCLE_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        244
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2293.jpg"
+    },
+    {
+      "id": 2294,
+      "name": "CRASH_FAST_GROUND_CYCLE_05",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        245
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2294.jpg"
+    },
+    {
+      "id": 2295,
+      "name": "CRASH_FAST_GROUND_CYCLE_06",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        246
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2295.jpg"
+    },
+    {
+      "id": 2296,
+      "name": "CRASH_FAST_GROUND_CYCLE_07",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        247
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2296.jpg"
+    },
+    {
+      "id": 2297,
+      "name": "CRASH_FAST_GROUND_CYCLE_08",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        241
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2297.jpg"
+    },
+    {
+      "id": 2300,
+      "name": "CRASH_TUMBLE_A_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        256
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2300.jpg"
+    },
+    {
+      "id": 2301,
+      "name": "CRASH_TUMBLE_A_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        257
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2301.jpg"
+    },
+    {
+      "id": 2302,
+      "name": "CRASH_TUMBLE_A_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        258
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2302.jpg"
+    },
+    {
+      "id": 2303,
+      "name": "CRASH_TUMBLE_A_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        259
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2303.jpg"
+    },
+    {
+      "id": 2310,
+      "name": "CRASH_TUMBLE_B_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        260
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2310.jpg"
+    },
+    {
+      "id": 2311,
+      "name": "CRASH_TUMBLE_B_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        261
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2311.jpg"
+    },
+    {
+      "id": 2312,
+      "name": "CRASH_TUMBLE_B_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        262
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2312.jpg"
+    },
+    {
+      "id": 2313,
+      "name": "CRASH_TUMBLE_B_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        263
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2313.jpg"
+    },
+    {
+      "id": 2320,
+      "name": "CRASH_TUMBLE_C_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        264
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2320.jpg"
+    },
+    {
+      "id": 2321,
+      "name": "CRASH_TUMBLE_C_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        265
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2321.jpg"
+    },
+    {
+      "id": 2322,
+      "name": "CRASH_TUMBLE_C_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        266
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2322.jpg"
+    },
+    {
+      "id": 2323,
+      "name": "CRASH_TUMBLE_C_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        267
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2323.jpg"
+    },
+    {
+      "id": 2330,
+      "name": "CRASH_AIRBORNE_ENTRY_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        268
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2330.jpg"
+    },
+    {
+      "id": 2331,
+      "name": "CRASH_AIRBORNE_ENTRY_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        269
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2331.jpg"
+    },
+    {
+      "id": 2332,
+      "name": "CRASH_AIRBORNE_ENTRY_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        270
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2332.jpg"
+    },
+    {
+      "id": 2333,
+      "name": "CRASH_AIRBORNE_ENTRY_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        271
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2333.jpg"
+    },
+    {
+      "id": 2334,
+      "name": "CRASH_AIRBORNE_ENTRY_05",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        272
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2334.jpg"
+    },
+    {
+      "id": 2340,
+      "name": "CRASH_GROUND_TRANSITION_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        273
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2340.jpg"
+    },
+    {
+      "id": 2341,
+      "name": "CRASH_GROUND_TRANSITION_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        274
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2341.jpg"
+    },
+    {
+      "id": 2342,
+      "name": "CRASH_GROUND_TRANSITION_03",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        275
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2342.jpg"
+    },
+    {
+      "id": 2343,
+      "name": "CRASH_GROUND_TRANSITION_04",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        276
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2343.jpg"
+    },
+    {
+      "id": 2350,
+      "name": "CRASH_COMBAT_ENTRY_01",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        276
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2350.jpg"
+    },
+    {
+      "id": 2351,
+      "name": "CRASH_COMBAT_ENTRY_02",
+      "actor": "human",
+      "family": "ragdoll",
+      "source_slots": [
+        274
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2351.jpg"
+    },
+    {
+      "id": 2360,
+      "name": "GET_UP_01",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        282
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2360.jpg"
+    },
+    {
+      "id": 2361,
+      "name": "GET_UP_02",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        283
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2361.jpg"
+    },
+    {
+      "id": 2362,
+      "name": "GET_UP_03",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        284
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2362.jpg"
+    },
+    {
+      "id": 2363,
+      "name": "GET_UP_04",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        285
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2363.jpg"
+    },
+    {
+      "id": 2364,
+      "name": "GET_UP_05",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        286
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2364.jpg"
+    },
+    {
+      "id": 2370,
+      "name": "RECOVERY_WAIT_01",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        289
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2370.jpg"
+    },
+    {
+      "id": 2371,
+      "name": "RECOVERY_WAIT_02",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        289
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2371.jpg"
+    },
+    {
+      "id": 2372,
+      "name": "RECOVERY_WAIT_03",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        289
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2372.jpg"
+    },
+    {
+      "id": 2373,
+      "name": "RECOVERY_WAIT_04",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        289
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2373.jpg"
+    },
+    {
+      "id": 2380,
+      "name": "RUN_TO_BIKE_01",
+      "actor": "human",
+      "family": "locomotion",
+      "source_slots": [
+        297
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2380.jpg"
+    },
+    {
+      "id": 2381,
+      "name": "RUN_TO_BIKE_02",
+      "actor": "human",
+      "family": "locomotion",
+      "source_slots": [
+        298
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2381.jpg"
+    },
+    {
+      "id": 2382,
+      "name": "RUN_TO_BIKE_03",
+      "actor": "human",
+      "family": "locomotion",
+      "source_slots": [
+        299
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2382.jpg"
+    },
+    {
+      "id": 2383,
+      "name": "RUN_TO_BIKE_04",
+      "actor": "human",
+      "family": "locomotion",
+      "source_slots": [
+        300
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2383.jpg"
+    },
+    {
+      "id": 2384,
+      "name": "RUN_TO_BIKE_05",
+      "actor": "human",
+      "family": "locomotion",
+      "source_slots": [
+        301
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2384.jpg"
+    },
+    {
+      "id": 2385,
+      "name": "RUN_TO_BIKE_06",
+      "actor": "human",
+      "family": "locomotion",
+      "source_slots": [
+        302
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2385.jpg"
+    },
+    {
+      "id": 2390,
+      "name": "MOUNT_ALIAS_39_01",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        309
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2390.jpg"
+    },
+    {
+      "id": 2391,
+      "name": "MOUNT_ALIAS_39_02",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        310
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2391.jpg"
+    },
+    {
+      "id": 2392,
+      "name": "MOUNT_ALIAS_39_03",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        311
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2392.jpg"
+    },
+    {
+      "id": 2393,
+      "name": "MOUNT_ALIAS_39_04",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        312
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2393.jpg"
+    },
+    {
+      "id": 2394,
+      "name": "MOUNT_ALIAS_39_05",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        313
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2394.jpg"
+    },
+    {
+      "id": 2400,
+      "name": "MOUNT_ALIAS_MIRRORED_40_01",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        309
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2400.jpg"
+    },
+    {
+      "id": 2401,
+      "name": "MOUNT_ALIAS_MIRRORED_40_02",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        310
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2401.jpg"
+    },
+    {
+      "id": 2402,
+      "name": "MOUNT_ALIAS_MIRRORED_40_03",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        311
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2402.jpg"
+    },
+    {
+      "id": 2403,
+      "name": "MOUNT_ALIAS_MIRRORED_40_04",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        312
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2403.jpg"
+    },
+    {
+      "id": 2404,
+      "name": "MOUNT_ALIAS_MIRRORED_40_05",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        313
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2404.jpg"
+    },
+    {
+      "id": 2410,
+      "name": "REMOUNT_01",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        309
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2410.jpg"
+    },
+    {
+      "id": 2411,
+      "name": "REMOUNT_02",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        310
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2411.jpg"
+    },
+    {
+      "id": 2412,
+      "name": "REMOUNT_03",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        311
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2412.jpg"
+    },
+    {
+      "id": 2413,
+      "name": "REMOUNT_04",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        312
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2413.jpg"
+    },
+    {
+      "id": 2414,
+      "name": "REMOUNT_05",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        313
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2414.jpg"
+    },
+    {
+      "id": 2420,
+      "name": "MOUNT_ALIAS_MIRRORED_42_01",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        309
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2420.jpg"
+    },
+    {
+      "id": 2421,
+      "name": "MOUNT_ALIAS_MIRRORED_42_02",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        310
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2421.jpg"
+    },
+    {
+      "id": 2422,
+      "name": "MOUNT_ALIAS_MIRRORED_42_03",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        311
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2422.jpg"
+    },
+    {
+      "id": 2423,
+      "name": "MOUNT_ALIAS_MIRRORED_42_04",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        312
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2423.jpg"
+    },
+    {
+      "id": 2424,
+      "name": "MOUNT_ALIAS_MIRRORED_42_05",
+      "actor": "human",
+      "family": "recovery",
+      "source_slots": [
+        313
+      ],
+      "review": "draft",
+      "held_contacts": [],
+      "screenshot": "gallery/2424.jpg"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "RIDE_FAR",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_FAR",
+      "pose_ids": [
+        2000
+      ],
+      "entry_pose": 2000,
+      "exit_pose": 2000,
+      "phase_labels": [
+        "RIDE_FAR_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "NPC camera distance below second cutoff; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RIDE_VERY_FAR",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_VERY_FAR",
+      "pose_ids": [
+        2010
+      ],
+      "entry_pose": 2010,
+      "exit_pose": 2010,
+      "phase_labels": [
+        "RIDE_VERY_FAR_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "NPC distant camera selector; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RIDE_NORMAL",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_NORMAL",
+      "pose_ids": [
+        2020
+      ],
+      "entry_pose": 2020,
+      "exit_pose": 2020,
+      "phase_labels": [
+        "RIDE_NORMAL_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Normal mounted ride; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RIDE_FAST_TUCK",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_FAST_TUCK",
+      "pose_ids": [
+        2030
+      ],
+      "entry_pose": 2030,
+      "exit_pose": 2030,
+      "phase_labels": [
+        "RIDE_FAST_TUCK_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "High speed / lateral-speed condition; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RIDE_ACCELERATE",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_ACCELERATE",
+      "pose_ids": [
+        2040
+      ],
+      "entry_pose": 2040,
+      "exit_pose": 2040,
+      "phase_labels": [
+        "RIDE_ACCELERATE_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Low speed plus throttle >30; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RIDE_WRECK_WARNING",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_WRECK_WARNING",
+      "pose_ids": [
+        2050,
+        2051
+      ],
+      "entry_pose": 2050,
+      "exit_pose": 2051,
+      "phase_labels": [
+        "RIDE_WRECK_WARNING_01",
+        "RIDE_WRECK_WARNING_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Player wrecked flag and wreck_count <4; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "AI_POST_HIT_GESTURE",
+      "family": "source-action",
+      "actor": "human",
+      "state": "AI_POST_HIT_GESTURE",
+      "pose_ids": [
+        2060,
+        2061
+      ],
+      "entry_pose": 2060,
+      "exit_pose": 2061,
+      "phase_labels": [
+        "AI_POST_HIT_GESTURE_01",
+        "AI_POST_HIT_GESTURE_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "NPC probabilistic queued animation after hit; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "UNRESOLVED_RIDE_CODE_07",
+      "family": "source-action",
+      "actor": "human",
+      "state": "UNRESOLVED_RIDE_CODE_07",
+      "pose_ids": [
+        2070
+      ],
+      "entry_pose": 2070,
+      "exit_pose": 2070,
+      "phase_labels": [
+        "UNRESOLVED_RIDE_CODE_07_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Present descriptor; no confirmed call site; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RIDE_LOW_SPEED",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RIDE_LOW_SPEED",
+      "pose_ids": [
+        2080
+      ],
+      "entry_pose": 2080,
+      "exit_pose": 2080,
+      "phase_labels": [
+        "RIDE_LOW_SPEED_01"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Speed <300; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "MOUNTED_HIT_REACTION",
+      "family": "source-action",
+      "actor": "human",
+      "state": "MOUNTED_HIT_REACTION",
+      "pose_ids": [
+        2090,
+        2091
+      ],
+      "entry_pose": 2090,
+      "exit_pose": 2091,
+      "phase_labels": [
+        "MOUNTED_HIT_REACTION_01",
+        "MOUNTED_HIT_REACTION_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Nonfatal reason-4 hit selects code9; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CHAIN_LEFT_FOREHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CHAIN_LEFT_FOREHAND",
+      "pose_ids": [
+        2100,
+        2101,
+        2102,
+        2103,
+        2104
+      ],
+      "entry_pose": 2100,
+      "exit_pose": 2104,
+      "phase_labels": [
+        "CHAIN_LEFT_FOREHAND_01",
+        "CHAIN_LEFT_FOREHAND_02",
+        "CHAIN_LEFT_FOREHAND_03",
+        "CHAIN_LEFT_FOREHAND_04",
+        "CHAIN_LEFT_FOREHAND_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CHAIN_RIGHT_FOREHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CHAIN_RIGHT_FOREHAND",
+      "pose_ids": [
+        2110,
+        2111,
+        2112,
+        2113,
+        2114
+      ],
+      "entry_pose": 2110,
+      "exit_pose": 2114,
+      "phase_labels": [
+        "CHAIN_RIGHT_FOREHAND_01",
+        "CHAIN_RIGHT_FOREHAND_02",
+        "CHAIN_RIGHT_FOREHAND_03",
+        "CHAIN_RIGHT_FOREHAND_04",
+        "CHAIN_RIGHT_FOREHAND_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CHAIN_LEFT_BACKHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CHAIN_LEFT_BACKHAND",
+      "pose_ids": [
+        2120,
+        2121,
+        2122,
+        2123,
+        2124
+      ],
+      "entry_pose": 2120,
+      "exit_pose": 2124,
+      "phase_labels": [
+        "CHAIN_LEFT_BACKHAND_01",
+        "CHAIN_LEFT_BACKHAND_02",
+        "CHAIN_LEFT_BACKHAND_03",
+        "CHAIN_LEFT_BACKHAND_04",
+        "CHAIN_LEFT_BACKHAND_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CHAIN_RIGHT_BACKHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CHAIN_RIGHT_BACKHAND",
+      "pose_ids": [
+        2130,
+        2131,
+        2132,
+        2133,
+        2134
+      ],
+      "entry_pose": 2130,
+      "exit_pose": 2134,
+      "phase_labels": [
+        "CHAIN_RIGHT_BACKHAND_01",
+        "CHAIN_RIGHT_BACKHAND_02",
+        "CHAIN_RIGHT_BACKHAND_03",
+        "CHAIN_RIGHT_BACKHAND_04",
+        "CHAIN_RIGHT_BACKHAND_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CHAIN_STEAL_TABLE_INDEX_2",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CHAIN_STEAL_TABLE_INDEX_2",
+      "pose_ids": [
+        2140,
+        2141
+      ],
+      "entry_pose": 2140,
+      "exit_pose": 2141,
+      "phase_labels": [
+        "CHAIN_STEAL_TABLE_INDEX_2_01",
+        "CHAIN_STEAL_TABLE_INDEX_2_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Steal table index2, acquired chain; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CHAIN_STEAL_TABLE_INDEX_6",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CHAIN_STEAL_TABLE_INDEX_6",
+      "pose_ids": [
+        2150,
+        2151
+      ],
+      "entry_pose": 2150,
+      "exit_pose": 2151,
+      "phase_labels": [
+        "CHAIN_STEAL_TABLE_INDEX_6_01",
+        "CHAIN_STEAL_TABLE_INDEX_6_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Steal table index6, acquired chain; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CLUB_LEFT_FOREHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CLUB_LEFT_FOREHAND",
+      "pose_ids": [
+        2160,
+        2161,
+        2162
+      ],
+      "entry_pose": 2160,
+      "exit_pose": 2162,
+      "phase_labels": [
+        "CLUB_LEFT_FOREHAND_01",
+        "CLUB_LEFT_FOREHAND_02",
+        "CLUB_LEFT_FOREHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CLUB_RIGHT_FOREHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CLUB_RIGHT_FOREHAND",
+      "pose_ids": [
+        2170,
+        2171,
+        2172
+      ],
+      "entry_pose": 2170,
+      "exit_pose": 2172,
+      "phase_labels": [
+        "CLUB_RIGHT_FOREHAND_01",
+        "CLUB_RIGHT_FOREHAND_02",
+        "CLUB_RIGHT_FOREHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CLUB_LEFT_BACKHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CLUB_LEFT_BACKHAND",
+      "pose_ids": [
+        2180,
+        2181,
+        2182
+      ],
+      "entry_pose": 2180,
+      "exit_pose": 2182,
+      "phase_labels": [
+        "CLUB_LEFT_BACKHAND_01",
+        "CLUB_LEFT_BACKHAND_02",
+        "CLUB_LEFT_BACKHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CLUB_RIGHT_BACKHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CLUB_RIGHT_BACKHAND",
+      "pose_ids": [
+        2190,
+        2191,
+        2192
+      ],
+      "entry_pose": 2190,
+      "exit_pose": 2192,
+      "phase_labels": [
+        "CLUB_RIGHT_BACKHAND_01",
+        "CLUB_RIGHT_BACKHAND_02",
+        "CLUB_RIGHT_BACKHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "PUNCH_LEFT_FOREHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "PUNCH_LEFT_FOREHAND",
+      "pose_ids": [
+        2220,
+        2221,
+        2222
+      ],
+      "entry_pose": 2220,
+      "exit_pose": 2222,
+      "phase_labels": [
+        "PUNCH_LEFT_FOREHAND_01",
+        "PUNCH_LEFT_FOREHAND_02",
+        "PUNCH_LEFT_FOREHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "PUNCH_RIGHT_FOREHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "PUNCH_RIGHT_FOREHAND",
+      "pose_ids": [
+        2230,
+        2231,
+        2232
+      ],
+      "entry_pose": 2230,
+      "exit_pose": 2232,
+      "phase_labels": [
+        "PUNCH_RIGHT_FOREHAND_01",
+        "PUNCH_RIGHT_FOREHAND_02",
+        "PUNCH_RIGHT_FOREHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "PUNCH_LEFT_BACKHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "PUNCH_LEFT_BACKHAND",
+      "pose_ids": [
+        2240,
+        2241,
+        2242
+      ],
+      "entry_pose": 2240,
+      "exit_pose": 2242,
+      "phase_labels": [
+        "PUNCH_LEFT_BACKHAND_01",
+        "PUNCH_LEFT_BACKHAND_02",
+        "PUNCH_LEFT_BACKHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "PUNCH_RIGHT_BACKHAND",
+      "family": "source-action",
+      "actor": "human",
+      "state": "PUNCH_RIGHT_BACKHAND",
+      "pose_ids": [
+        2250,
+        2251,
+        2252
+      ],
+      "entry_pose": 2250,
+      "exit_pose": 2252,
+      "phase_labels": [
+        "PUNCH_RIGHT_BACKHAND_01",
+        "PUNCH_RIGHT_BACKHAND_02",
+        "PUNCH_RIGHT_BACKHAND_03"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "KICK_LEFT",
+      "family": "source-action",
+      "actor": "human",
+      "state": "KICK_LEFT",
+      "pose_ids": [
+        2260,
+        2261
+      ],
+      "entry_pose": 2260,
+      "exit_pose": 2261,
+      "phase_labels": [
+        "KICK_LEFT_01",
+        "KICK_LEFT_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "KICK_RIGHT",
+      "family": "source-action",
+      "actor": "human",
+      "state": "KICK_RIGHT",
+      "pose_ids": [
+        2270,
+        2271
+      ],
+      "entry_pose": 2270,
+      "exit_pose": 2271,
+      "phase_labels": [
+        "KICK_RIGHT_01",
+        "KICK_RIGHT_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_GROUND_CYCLE",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_GROUND_CYCLE",
+      "pose_ids": [
+        2280,
+        2281,
+        2282,
+        2283,
+        2284,
+        2285,
+        2286
+      ],
+      "entry_pose": 2280,
+      "exit_pose": 2286,
+      "phase_labels": [
+        "CRASH_GROUND_CYCLE_01",
+        "CRASH_GROUND_CYCLE_02",
+        "CRASH_GROUND_CYCLE_03",
+        "CRASH_GROUND_CYCLE_04",
+        "CRASH_GROUND_CYCLE_05",
+        "CRASH_GROUND_CYCLE_06",
+        "CRASH_GROUND_CYCLE_07"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Moving crashed rider ground cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_FAST_GROUND_CYCLE",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_FAST_GROUND_CYCLE",
+      "pose_ids": [
+        2290,
+        2291,
+        2292,
+        2293,
+        2294,
+        2295,
+        2296,
+        2297
+      ],
+      "entry_pose": 2290,
+      "exit_pose": 2297,
+      "phase_labels": [
+        "CRASH_FAST_GROUND_CYCLE_01",
+        "CRASH_FAST_GROUND_CYCLE_02",
+        "CRASH_FAST_GROUND_CYCLE_03",
+        "CRASH_FAST_GROUND_CYCLE_04",
+        "CRASH_FAST_GROUND_CYCLE_05",
+        "CRASH_FAST_GROUND_CYCLE_06",
+        "CRASH_FAST_GROUND_CYCLE_07",
+        "CRASH_FAST_GROUND_CYCLE_08"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Faster ground cycle; repeats first image as phase8; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_TUMBLE_A",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_TUMBLE_A",
+      "pose_ids": [
+        2300,
+        2301,
+        2302,
+        2303
+      ],
+      "entry_pose": 2300,
+      "exit_pose": 2303,
+      "phase_labels": [
+        "CRASH_TUMBLE_A_01",
+        "CRASH_TUMBLE_A_02",
+        "CRASH_TUMBLE_A_03",
+        "CRASH_TUMBLE_A_04"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Random low-speed crash cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_TUMBLE_B",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_TUMBLE_B",
+      "pose_ids": [
+        2310,
+        2311,
+        2312,
+        2313
+      ],
+      "entry_pose": 2310,
+      "exit_pose": 2313,
+      "phase_labels": [
+        "CRASH_TUMBLE_B_01",
+        "CRASH_TUMBLE_B_02",
+        "CRASH_TUMBLE_B_03",
+        "CRASH_TUMBLE_B_04"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Random low-speed crash cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_TUMBLE_C",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_TUMBLE_C",
+      "pose_ids": [
+        2320,
+        2321,
+        2322,
+        2323
+      ],
+      "entry_pose": 2320,
+      "exit_pose": 2323,
+      "phase_labels": [
+        "CRASH_TUMBLE_C_01",
+        "CRASH_TUMBLE_C_02",
+        "CRASH_TUMBLE_C_03",
+        "CRASH_TUMBLE_C_04"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Random low-speed crash cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_AIRBORNE_ENTRY",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_AIRBORNE_ENTRY",
+      "pose_ids": [
+        2330,
+        2331,
+        2332,
+        2333,
+        2334
+      ],
+      "entry_pose": 2330,
+      "exit_pose": 2334,
+      "phase_labels": [
+        "CRASH_AIRBORNE_ENTRY_01",
+        "CRASH_AIRBORNE_ENTRY_02",
+        "CRASH_AIRBORNE_ENTRY_03",
+        "CRASH_AIRBORNE_ENTRY_04",
+        "CRASH_AIRBORNE_ENTRY_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Default begin_crash entry; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_GROUND_TRANSITION",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_GROUND_TRANSITION",
+      "pose_ids": [
+        2340,
+        2341,
+        2342,
+        2343
+      ],
+      "entry_pose": 2340,
+      "exit_pose": 2343,
+      "phase_labels": [
+        "CRASH_GROUND_TRANSITION_01",
+        "CRASH_GROUND_TRANSITION_02",
+        "CRASH_GROUND_TRANSITION_03",
+        "CRASH_GROUND_TRANSITION_04"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Airborne entry reaches low height; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "CRASH_COMBAT_ENTRY",
+      "family": "source-action",
+      "actor": "human",
+      "state": "CRASH_COMBAT_ENTRY",
+      "pose_ids": [
+        2350,
+        2351
+      ],
+      "entry_pose": 2350,
+      "exit_pose": 2351,
+      "phase_labels": [
+        "CRASH_COMBAT_ENTRY_01",
+        "CRASH_COMBAT_ENTRY_02"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Begin crash reason4 or5; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "GET_UP",
+      "family": "source-action",
+      "actor": "human",
+      "state": "GET_UP",
+      "pose_ids": [
+        2360,
+        2361,
+        2362,
+        2363,
+        2364
+      ],
+      "entry_pose": 2360,
+      "exit_pose": 2364,
+      "phase_labels": [
+        "GET_UP_01",
+        "GET_UP_02",
+        "GET_UP_03",
+        "GET_UP_04",
+        "GET_UP_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Stopped crash selects36 then queues37; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RECOVERY_WAIT",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RECOVERY_WAIT",
+      "pose_ids": [
+        2370,
+        2371,
+        2372,
+        2373
+      ],
+      "entry_pose": 2370,
+      "exit_pose": 2373,
+      "phase_labels": [
+        "RECOVERY_WAIT_01",
+        "RECOVERY_WAIT_02",
+        "RECOVERY_WAIT_03",
+        "RECOVERY_WAIT_04"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Wait/loops before running; also damaged bike context; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "RUN_TO_BIKE",
+      "family": "source-action",
+      "actor": "human",
+      "state": "RUN_TO_BIKE",
+      "pose_ids": [
+        2380,
+        2381,
+        2382,
+        2383,
+        2384,
+        2385
+      ],
+      "entry_pose": 2380,
+      "exit_pose": 2385,
+      "phase_labels": [
+        "RUN_TO_BIKE_01",
+        "RUN_TO_BIKE_02",
+        "RUN_TO_BIKE_03",
+        "RUN_TO_BIKE_04",
+        "RUN_TO_BIKE_05",
+        "RUN_TO_BIKE_06"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Recovery state38 moves rider toward bike / on-foot input; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "MOUNT_ALIAS_39",
+      "family": "source-action",
+      "actor": "human",
+      "state": "MOUNT_ALIAS_39",
+      "pose_ids": [
+        2390,
+        2391,
+        2392,
+        2393,
+        2394
+      ],
+      "entry_pose": 2390,
+      "exit_pose": 2394,
+      "phase_labels": [
+        "MOUNT_ALIAS_39_01",
+        "MOUNT_ALIAS_39_02",
+        "MOUNT_ALIAS_39_03",
+        "MOUNT_ALIAS_39_04",
+        "MOUNT_ALIAS_39_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Mount-like descriptor alias; specific caller unresolved; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "MOUNT_ALIAS_MIRRORED_40",
+      "family": "source-action",
+      "actor": "human",
+      "state": "MOUNT_ALIAS_MIRRORED_40",
+      "pose_ids": [
+        2400,
+        2401,
+        2402,
+        2403,
+        2404
+      ],
+      "entry_pose": 2400,
+      "exit_pose": 2404,
+      "phase_labels": [
+        "MOUNT_ALIAS_MIRRORED_40_01",
+        "MOUNT_ALIAS_MIRRORED_40_02",
+        "MOUNT_ALIAS_MIRRORED_40_03",
+        "MOUNT_ALIAS_MIRRORED_40_04",
+        "MOUNT_ALIAS_MIRRORED_40_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Mirrored descriptor alias; specific caller unresolved; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "REMOUNT",
+      "family": "source-action",
+      "actor": "human",
+      "state": "REMOUNT",
+      "pose_ids": [
+        2410,
+        2411,
+        2412,
+        2413,
+        2414
+      ],
+      "entry_pose": 2410,
+      "exit_pose": 2414,
+      "phase_labels": [
+        "REMOUNT_01",
+        "REMOUNT_02",
+        "REMOUNT_03",
+        "REMOUNT_04",
+        "REMOUNT_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Recovery arrival selects41, queues ride2; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    },
+    {
+      "id": "MOUNT_ALIAS_MIRRORED_42",
+      "family": "source-action",
+      "actor": "human",
+      "state": "MOUNT_ALIAS_MIRRORED_42",
+      "pose_ids": [
+        2420,
+        2421,
+        2422,
+        2423,
+        2424
+      ],
+      "entry_pose": 2420,
+      "exit_pose": 2424,
+      "phase_labels": [
+        "MOUNT_ALIAS_MIRRORED_42_01",
+        "MOUNT_ALIAS_MIRRORED_42_02",
+        "MOUNT_ALIAS_MIRRORED_42_03",
+        "MOUNT_ALIAS_MIRRORED_42_04",
+        "MOUNT_ALIAS_MIRRORED_42_05"
+      ],
+      "interrupts": [
+        "physics-impact"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Mirrored descriptor alias; specific caller unresolved; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "review": "draft"
+    }
+  ]
+}

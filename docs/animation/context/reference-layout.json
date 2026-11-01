@@ -1,0 +1,369 @@
+{
+  "provenance": "Observed PE relocation addresses/counts documented by pinned research source; numeric layout facts only, no C++ source incorporated",
+  "source_commit": "cd5504caea48aee59806dbfd11c920f33df21200",
+  "bindings": [
+    {
+      "bank": 0,
+      "source_va": 4671168,
+      "destination_va": 4952800,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671176,
+      "destination_va": 4953072,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671184,
+      "destination_va": 4952576,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671192,
+      "destination_va": 4953200,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671200,
+      "destination_va": 4954768,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671208,
+      "destination_va": 4953024,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671224,
+      "destination_va": 4955056,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671240,
+      "destination_va": 4953168,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671248,
+      "destination_va": 4955888,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4671256,
+      "destination_va": 4954944,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671272,
+      "destination_va": 4954544,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4671312,
+      "destination_va": 4953792,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4671352,
+      "destination_va": 4954656,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4671392,
+      "destination_va": 4953680,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4671432,
+      "destination_va": 4952320,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671448,
+      "destination_va": 4954352,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671464,
+      "destination_va": 4952368,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671488,
+      "destination_va": 4952464,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671512,
+      "destination_va": 4952096,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671536,
+      "destination_va": 4952960,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671592,
+      "destination_va": 4953104,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671616,
+      "destination_va": 4952832,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671640,
+      "destination_va": 4955824,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671664,
+      "destination_va": 4954992,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4671688,
+      "destination_va": 4952528,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671704,
+      "destination_va": 4952752,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4671720,
+      "destination_va": 4954208,
+      "count": 7
+    },
+    {
+      "bank": 0,
+      "source_va": 4671776,
+      "destination_va": 4953408,
+      "count": 8
+    },
+    {
+      "bank": 0,
+      "source_va": 4671840,
+      "destination_va": 4954016,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4671872,
+      "destination_va": 4954400,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4671904,
+      "destination_va": 4956256,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4671936,
+      "destination_va": 4955392,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4671976,
+      "destination_va": 4953328,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4672008,
+      "destination_va": 4954896,
+      "count": 2
+    },
+    {
+      "bank": 0,
+      "source_va": 4672024,
+      "destination_va": 4952160,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4672064,
+      "destination_va": 4953568,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4672096,
+      "destination_va": 4955504,
+      "count": 6
+    },
+    {
+      "bank": 0,
+      "source_va": 4672144,
+      "destination_va": 4956064,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4672184,
+      "destination_va": 4955168,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4672224,
+      "destination_va": 4955920,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4672264,
+      "destination_va": 4954096,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4672304,
+      "destination_va": 4955680,
+      "count": 5
+    },
+    {
+      "bank": 0,
+      "source_va": 4672344,
+      "destination_va": 4956176,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4672376,
+      "destination_va": 4952624,
+      "count": 4
+    },
+    {
+      "bank": 0,
+      "source_va": 4672408,
+      "destination_va": 4954480,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4672432,
+      "destination_va": 4956336,
+      "count": 3
+    },
+    {
+      "bank": 0,
+      "source_va": 4672456,
+      "destination_va": 4956032,
+      "count": 1
+    },
+    {
+      "bank": 0,
+      "source_va": 4672464,
+      "destination_va": 4952432,
+      "count": 1
+    },
+    {
+      "bank": 1,
+      "source_va": 4671184,
+      "destination_va": 4954864,
+      "count": 1
+    },
+    {
+      "bank": 1,
+      "source_va": 4671248,
+      "destination_va": 4955792,
+      "count": 1
+    },
+    {
+      "bank": 1,
+      "source_va": 4671256,
+      "destination_va": 4952272,
+      "count": 2
+    },
+    {
+      "bank": 1,
+      "source_va": 4671464,
+      "destination_va": 4954800,
+      "count": 3
+    },
+    {
+      "bank": 1,
+      "source_va": 4671488,
+      "destination_va": 4952896,
+      "count": 3
+    },
+    {
+      "bank": 1,
+      "source_va": 4671720,
+      "destination_va": 4956400,
+      "count": 7
+    },
+    {
+      "bank": 1,
+      "source_va": 4671936,
+      "destination_va": 4955280,
+      "count": 5
+    },
+    {
+      "bank": 1,
+      "source_va": 4672304,
+      "destination_va": 4953904,
+      "count": 5
+    },
+    {
+      "bank": 1,
+      "source_va": 4672456,
+      "destination_va": 4953648,
+      "count": 1
+    },
+    {
+      "bank": 1,
+      "source_va": 4672408,
+      "destination_va": 4955104,
+      "count": 3
+    },
+    {
+      "bank": 1,
+      "source_va": 4672064,
+      "destination_va": 4953232,
+      "count": 4
+    }
+  ],
+  "animation_bank_pointer_va": 4672888,
+  "fallback_va": 4604976,
+  "left_attack_va": 4605176,
+  "right_attack_va": 4605208,
+  "steal_va": 4605240,
+  "retail_hashes": {
+    "exe": "73d7f9744b5b1a9482b3909950cdf3fe34119fe13d023b031e9c6739a60f18a2",
+    "global": "3f579b842129bffbe8da1b5f430fb8054d76c1d5a292ca32d7f66223ffef66ee"
+  }
+}

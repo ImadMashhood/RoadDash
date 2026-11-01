@@ -296,3 +296,39 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
   open, all 351 stable IDs retained. 136 regular Rust tests, explicit ten-minute
   soak and eleven Python tests pass, plus native race/actor/audio and validators.
   Final city survey p95 12.79 ms. No broader V2 exit gates were checked.
+
+## 2026-10-31 / 2026-11-01 — Animation A reference and static keyframe foundation
+
+- Started the requested first animation stage on codex/animation-reference-keyframes,
+  independently of the previous PR's CI/merge. No runtime physics/model changes.
+- Preserved 130 old mounted IDs; authored 117 additional candidates for a total
+  of 247 draft poses / 27 use cases, explicit contacts/confidence/unknown timing.
+- Added reproducible Blender tooling, 247 editable single-frame pose Actions,
+  independent round-trip verification, offline gallery, primary/supplemental views
+  and original quadruped review proxy. No external source/media imported.
+- Inventoried 326 rider / 45 police reference slots locally, reviewed source helper
+  anchors and five pinned animation/IK/ragdoll repositories; recorded source and
+  licensing limits, including missing native sequence timing and uncertain labels.
+- Added rr_content schema/rig/contact validator and --validate-animation CLI;
+  140 Rust and 14 Python tests, format, Clippy and build pass. All 247 Blender
+  reloads pass; accepted model-body physics parity remains zero difference.
+- ADR-033 separates static draft vocabulary from runtime playback. ANIM-01 and
+  V2-02-004 verified; ANIM-02/03/04 added for hands, native sequence interpretation
+  and support/specialist art review. README/progress preserve open approval gates.
+
+## 2026-11-01 — Correct animation context before pose reconstruction
+
+- User rejected V1 semantics; explicitly superseded inspection-helper action
+  labels without erasing historical artifacts or claiming approval.
+- Added independent bounded retail metadata reader and source-ordered catalog:
+ 104 bank/code slots,194 descriptors,371 sprite-slot usage entries, actual mirrors,
+  controls/fallbacks/logical timing, repeated phases and explicit unknown callers.
+- Cross-checked194 descriptors/rear selections against the separately compiled
+  pinned reference library outside RoadDash. No C++/retail media imported; no
+  native-original execution claim. Punches176–179, kicks225/226 and gesture44/45
+  now have their correct selector contexts.
+- Rebuilt isolated138 human poses /16 bike layouts using semantic phase names,
+  original weapon proxies, authoring fist keys and complete assembly loader.
+ 138 static Actions round-trip; all art remains draft and runtime physics intact.
+- ANIM-05 verified; ANIM-06 retains fidelity/unknown-binding/approval work. ADR-034,
+  source/provenance/testing records and README/progress updated together.

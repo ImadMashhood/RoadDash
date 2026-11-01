@@ -47,6 +47,26 @@ fn main() {
         }
         return;
     }
+    if let Some(index) = args.iter().position(|a| a == "--validate-animation") {
+        let result = args
+            .get(index + 1)
+            .ok_or_else(|| "usage: --validate-animation MANIFEST_JSON".to_string())
+            .and_then(|path| {
+                rr_content::animation::Catalog::validate_directory(std::path::Path::new(path))
+            });
+        match result {
+            Ok(catalog) => println!(
+                "Valid static animation authoring: {} poses, {} use cases; not connected to runtime",
+                catalog.poses.len(),
+                catalog.use_cases.len()
+            ),
+            Err(error) => {
+                eprintln!("Animation validation failed: {error}");
+                std::process::exit(2);
+            }
+        }
+        return;
+    }
     if let Some(index) = args.iter().position(|a| a == "--validate-handling") {
         let result = args
             .get(index + 1)

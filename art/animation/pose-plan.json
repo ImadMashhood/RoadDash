@@ -1,0 +1,4651 @@
+{
+  "schema_version": 1,
+  "units": "metres",
+  "axes": "Blender +Z up, -Y forward, +X anatomical left",
+  "source_rider": "art/source/rider.glb",
+  "source_bike": "art/source/motorcycle.glb",
+  "pose_kind": "static-keyframes",
+  "runtime_connected": false,
+  "physics_changed": false,
+  "poses": [
+    {
+      "id": 0,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        0
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        1
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 2,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        2
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 3,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        3
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 4,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        4
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 5,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        5
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 6,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        6
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 7,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        7
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 8,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        8
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 9,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        9
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 10,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        10
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 11,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        11
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 12,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        12
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 13,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        13
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 14,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        14
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 15,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        15
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 16,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        16
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 17,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        17
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 18,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        18
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 19,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        19
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 20,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        20
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 21,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        21
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 22,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        22
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 23,
+      "name": "Riding / bank / distance variant",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        23
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 41,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        41
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 42,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        42
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 43,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        43
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 44,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        44
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 45,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        45
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 46,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        46
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 47,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        47
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 48,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        48
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 49,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        49
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 50,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        50
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 51,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        51
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 52,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        52
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 53,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        53
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 54,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        54
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 55,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        55
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 56,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        56
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 57,
+      "name": "Hands released / raised",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        57
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 58,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        58
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 59,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        59
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 60,
+      "name": "R kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        60
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 61,
+      "name": "R kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        61
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 62,
+      "name": "R kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        62
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 63,
+      "name": "R kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        63
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 64,
+      "name": "R kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        64
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 65,
+      "name": "L kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        65
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 66,
+      "name": "L kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        66
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 67,
+      "name": "L kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        67
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 68,
+      "name": "L kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        68
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 69,
+      "name": "L kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        69
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 70,
+      "name": "L kick variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        70
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 81,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        81
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 82,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        82
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 83,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        83
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 84,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        84
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 85,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        85
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 86,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        86
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 87,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        87
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 88,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        88
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 89,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        89
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 100,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        100
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 101,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        101
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 102,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        102
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 103,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        103
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 104,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        104
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 105,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        105
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 106,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        106
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 107,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        107
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 108,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        108
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 109,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        109
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 110,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        110
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 111,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        111
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 112,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        112
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 113,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        113
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 114,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        114
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 115,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        115
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 116,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        116
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 117,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        117
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 140,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        140
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 141,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        141
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 142,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        142
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 143,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        143
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 155,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        155
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 156,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        156
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 157,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        157
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 158,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        158
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 159,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        159
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 160,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        160
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 161,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        161
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 162,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        162
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 176,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        176
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 177,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        177
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 178,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        178
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 179,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        179
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 191,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        191
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 192,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        192
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 193,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        193
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 194,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        194
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 195,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        195
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 196,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        196
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 197,
+      "name": "L Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        197
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 198,
+      "name": "R Punch variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        198
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 213,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        213
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 214,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        214
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 215,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        215
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 216,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        216
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 217,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        217
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 218,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        218
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 219,
+      "name": "L Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        219
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 220,
+      "name": "R Weapon swing (socket only) variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        220
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 225,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        225
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 226,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        226
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 227,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        227
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 228,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        228
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 229,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        229
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 230,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        230
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 231,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        231
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 232,
+      "name": "Mounted reaction / reach",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        232
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 252,
+      "name": "Mounted loss-of-balance variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        252
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 253,
+      "name": "Mounted loss-of-balance variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        253
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 254,
+      "name": "Mounted loss-of-balance variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        254
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 255,
+      "name": "Mounted loss-of-balance variation",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        255
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 309,
+      "name": "Mounting contact blockout",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        309
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 310,
+      "name": "Mounting contact blockout",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        310
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 311,
+      "name": "Mounting contact blockout",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        311
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 312,
+      "name": "Mounting contact blockout",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        312
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 313,
+      "name": "Mounting contact blockout",
+      "family": "mounted",
+      "actor": "human",
+      "mode": "legacy",
+      "source_slots": [
+        313
+      ],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1000,
+      "name": "walk-00",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.0,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1001,
+      "name": "walk-01",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.125,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1002,
+      "name": "walk-02",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.25,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1003,
+      "name": "walk-03",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.375,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1004,
+      "name": "walk-04",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.5,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1005,
+      "name": "walk-05",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.625,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1006,
+      "name": "walk-06",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.75,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1007,
+      "name": "walk-07",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "walk",
+        "phase": 0.875,
+        "stride": 0.22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1010,
+      "name": "run-00",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.0,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1011,
+      "name": "run-01",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.125,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1012,
+      "name": "run-02",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.25,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1013,
+      "name": "run-03",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.375,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1014,
+      "name": "run-04",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.5,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1015,
+      "name": "run-05",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.625,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1016,
+      "name": "run-06",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.75,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1017,
+      "name": "run-07",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "run",
+        "phase": 0.875,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1020,
+      "name": "sprint-00",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.0,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1021,
+      "name": "sprint-01",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.125,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1022,
+      "name": "sprint-02",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.25,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1023,
+      "name": "sprint-03",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.375,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1024,
+      "name": "sprint-04",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.5,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1025,
+      "name": "sprint-05",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.625,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1026,
+      "name": "sprint-06",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.75,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1027,
+      "name": "sprint-07",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "gait": "sprint",
+        "phase": 0.875,
+        "stride": 0.42
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 291,
+      "name": "reference-run-0291",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        291
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.0,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 292,
+      "name": "reference-run-0292",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        292
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.16666666666666666,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 293,
+      "name": "reference-run-0293",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        293
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.3333333333333333,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 294,
+      "name": "reference-run-0294",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        294
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.5,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 295,
+      "name": "reference-run-0295",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        295
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.6666666666666666,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 296,
+      "name": "reference-run-0296",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        296
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.8333333333333334,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 297,
+      "name": "reference-run-0297",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        297
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.0,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 298,
+      "name": "reference-run-0298",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        298
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.16666666666666666,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 299,
+      "name": "reference-run-0299",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        299
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.3333333333333333,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 300,
+      "name": "reference-run-0300",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        300
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.5,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 301,
+      "name": "reference-run-0301",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        301
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.6666666666666666,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 302,
+      "name": "reference-run-0302",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        302
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.8333333333333334,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 303,
+      "name": "reference-run-0303",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        303
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.0,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 304,
+      "name": "reference-run-0304",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        304
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.16666666666666666,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 305,
+      "name": "reference-run-0305",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        305
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.3333333333333333,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 306,
+      "name": "reference-run-0306",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        306
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.5,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 307,
+      "name": "reference-run-0307",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        307
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.6666666666666666,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 308,
+      "name": "reference-run-0308",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        308
+      ],
+      "params": {
+        "gait": "run",
+        "phase": 0.8333333333333334,
+        "stride": 0.34
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1040,
+      "name": "idle",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1041,
+      "name": "start-left",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.15,
+        "stride": 0.18
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1042,
+      "name": "start-right",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.65,
+        "stride": 0.18
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1043,
+      "name": "stop-left",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.1,
+        "stride": 0.22,
+        "torso": -10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1044,
+      "name": "stop-right",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.6,
+        "stride": 0.22,
+        "torso": -10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1045,
+      "name": "turn-left",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "turn": 35
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1046,
+      "name": "turn-right",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "turn": -35
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1047,
+      "name": "strafe-left",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.2,
+        "stride": 0.16,
+        "strafe": 0.12
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1048,
+      "name": "strafe-right",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.7,
+        "stride": 0.16,
+        "strafe": -0.12
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1049,
+      "name": "reverse-left",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.2,
+        "stride": -0.16
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1050,
+      "name": "reverse-right",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.7,
+        "stride": -0.16
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1051,
+      "name": "uphill-left",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.1,
+        "stride": 0.2,
+        "slope": 15,
+        "torso": 10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1052,
+      "name": "uphill-right",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.6,
+        "stride": 0.2,
+        "slope": 15,
+        "torso": 10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1053,
+      "name": "downhill-left",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.1,
+        "stride": 0.2,
+        "slope": -15,
+        "torso": -8
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1054,
+      "name": "downhill-right",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.6,
+        "stride": 0.2,
+        "slope": -15,
+        "torso": -8
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1055,
+      "name": "cross-slope-left",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "cross_slope": 12
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1056,
+      "name": "cross-slope-right",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "cross_slope": -12
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1057,
+      "name": "step-up-left",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "step": "L"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1058,
+      "name": "step-up-right",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "step": "R"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1059,
+      "name": "ledge-brace",
+      "family": "terrain",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "torso": 18,
+        "crouch": 0.18,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1060,
+      "name": "pedestrian-idle",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {},
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1061,
+      "name": "pedestrian-startle",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.1,
+        "arms": "protect"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1062,
+      "name": "pedestrian-flee",
+      "family": "locomotion",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.2,
+        "stride": 0.38
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1080,
+      "name": "brace-front",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.15,
+        "arms": "brace",
+        "torso": 15
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1081,
+      "name": "protect-head",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.2,
+        "arms": "protect"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1082,
+      "name": "tuck-airborne",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        262
+      ],
+      "params": {
+        "crouch": 0.35,
+        "arms": "protect",
+        "air": true
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1083,
+      "name": "reach-left",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "arms": "reach-left",
+        "crouch": 0.1
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1084,
+      "name": "reach-right",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "arms": "reach-right",
+        "crouch": 0.1
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1085,
+      "name": "prone-settle",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        258
+      ],
+      "params": {
+        "lying": 90,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1086,
+      "name": "supine-settle",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        264
+      ],
+      "params": {
+        "lying": -90,
+        "arms": "protect"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1087,
+      "name": "roll-left",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        265
+      ],
+      "params": {
+        "lying": 80,
+        "roll": -60,
+        "arms": "protect",
+        "crouch": 0.25
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1088,
+      "name": "roll-right",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        267
+      ],
+      "params": {
+        "lying": 80,
+        "roll": 60,
+        "arms": "protect",
+        "crouch": 0.25
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1089,
+      "name": "failed-righting",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        256
+      ],
+      "params": {
+        "lying": -80,
+        "roll": 35,
+        "crouch": 0.25,
+        "arms": "protect"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1090,
+      "name": "side-left",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        260
+      ],
+      "params": {
+        "lying": 90,
+        "roll": -85,
+        "crouch": 0.2
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1091,
+      "name": "side-right",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        257
+      ],
+      "params": {
+        "lying": 90,
+        "roll": 85,
+        "crouch": 0.2
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1092,
+      "name": "repeat-impact",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        268
+      ],
+      "params": {
+        "lying": 70,
+        "arms": "protect",
+        "crouch": 0.3
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1093,
+      "name": "slide-front",
+      "family": "ragdoll",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        241
+      ],
+      "params": {
+        "lying": 85,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1100,
+      "name": "get-up-front-support",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        283
+      ],
+      "params": {
+        "lying": 70,
+        "crouch": 0.25,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1101,
+      "name": "get-up-front-kneel",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        284
+      ],
+      "params": {
+        "crouch": 0.34,
+        "arms": "brace",
+        "torso": 30
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1102,
+      "name": "get-up-front-rise",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        285
+      ],
+      "params": {
+        "crouch": 0.16,
+        "torso": 20
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1103,
+      "name": "get-up-back-roll",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        282
+      ],
+      "params": {
+        "lying": -75,
+        "crouch": 0.3,
+        "arms": "protect"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1104,
+      "name": "get-up-back-sit",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        246
+      ],
+      "params": {
+        "crouch": 0.42,
+        "arms": "brace",
+        "torso": -15
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1105,
+      "name": "get-up-back-rise",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        286
+      ],
+      "params": {
+        "crouch": 0.18,
+        "torso": 15
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1106,
+      "name": "get-up-side-left",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        263
+      ],
+      "params": {
+        "lying": 50,
+        "roll": -45,
+        "crouch": 0.3,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1107,
+      "name": "get-up-side-right",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [
+        263
+      ],
+      "params": {
+        "lying": 50,
+        "roll": 45,
+        "crouch": 0.3,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1108,
+      "name": "landing-contact",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.12,
+        "arms": "brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1109,
+      "name": "landing-compression",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.3,
+        "arms": "brace",
+        "torso": 18
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1110,
+      "name": "stumble-left",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.25,
+        "stride": 0.32,
+        "arms": "brace",
+        "torso": 22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1111,
+      "name": "stumble-right",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.75,
+        "stride": 0.32,
+        "arms": "brace",
+        "torso": 22
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1112,
+      "name": "bike-approach",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "phase": 0.1,
+        "stride": 0.2,
+        "turn": 20
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1113,
+      "name": "bike-lift-grasp",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.35,
+        "arms": "brace",
+        "torso": 35
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1114,
+      "name": "bike-lift-weight",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "crouch": 0.2,
+        "arms": "brace",
+        "torso": 20
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1115,
+      "name": "bike-lift-upright",
+      "family": "recovery",
+      "actor": "human",
+      "mode": "ground",
+      "source_slots": [],
+      "params": {
+        "arms": "brace",
+        "torso": 5
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1140,
+      "name": "contact-brace",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "torso": -10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1141,
+      "name": "nose-down-contact",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "pitch": 18
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1142,
+      "name": "vault-release",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "pitch": 40,
+        "release": "both"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1143,
+      "name": "combat-swerve-left",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "bank": 25
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1144,
+      "name": "combat-counter-left",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "bank": -10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1145,
+      "name": "combat-swerve-right",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "bank": -25
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1146,
+      "name": "combat-counter-right",
+      "family": "crash",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "bank": 10
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1147,
+      "name": "tuck",
+      "family": "riding",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "torso": 15
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1148,
+      "name": "brake",
+      "family": "riding",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "torso": -12
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1149,
+      "name": "shift-left-foot",
+      "family": "riding",
+      "actor": "human",
+      "mode": "seated",
+      "source_slots": [],
+      "params": {
+        "release": "peg.L"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1200,
+      "name": "cow-idle",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "idle"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1201,
+      "name": "cow-graze",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "graze"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1202,
+      "name": "cow-startle",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "startle"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1203,
+      "name": "cow-walk-contact-left",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0.0,
+        "action": "walk-contact-left"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1204,
+      "name": "cow-walk-pass-left",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0.25,
+        "action": "walk-pass-left"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1205,
+      "name": "cow-walk-contact-right",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0.5,
+        "action": "walk-contact-right"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1206,
+      "name": "cow-walk-pass-right",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0.75,
+        "action": "walk-pass-right"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1207,
+      "name": "cow-run-flight",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 1.0,
+        "action": "run-flight"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1208,
+      "name": "cow-impact-brace",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "impact-brace"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1209,
+      "name": "cow-fallen-side",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "fallen-side"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1210,
+      "name": "cow-righting-attempt",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "righting-attempt"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    },
+    {
+      "id": 1211,
+      "name": "cow-stand-recover",
+      "family": "animal",
+      "actor": "cow",
+      "mode": "cow",
+      "source_slots": [],
+      "params": {
+        "phase": 0,
+        "action": "stand-recover"
+      },
+      "review": "draft",
+      "timing_seconds": null,
+      "timing_basis": "unassigned; original sprite slots do not encode duration"
+    }
+  ],
+  "use_cases": [
+    {
+      "id": "riding-bank",
+      "family": "riding",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        11,
+        10,
+        9,
+        8,
+        3,
+        6,
+        5,
+        4
+      ],
+      "entry_pose": 11,
+      "exit_pose": 4,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Input-only shallow-to-full banks; release/countersteer return through neutral. View variants are not extra time samples.",
+      "review": "draft"
+    },
+    {
+      "id": "riding-load",
+      "family": "riding",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        3,
+        1147,
+        1148,
+        1149,
+        3
+      ],
+      "entry_pose": 3,
+      "exit_pose": 3,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Throttle tuck, braking, foot release for gear change; universal contact anchors.",
+      "review": "draft"
+    },
+    {
+      "id": "punch-right",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        44,
+        45,
+        46,
+        47
+      ],
+      "entry_pose": 44,
+      "exit_pose": 47,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "punch-left",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "entry_pose": 51,
+      "exit_pose": 54,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "kick-right",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        61,
+        60,
+        63,
+        64
+      ],
+      "entry_pose": 61,
+      "exit_pose": 64,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "kick-left",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        65,
+        66,
+        68,
+        69
+      ],
+      "entry_pose": 65,
+      "exit_pose": 69,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "chain-right",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        101,
+        102,
+        103
+      ],
+      "entry_pose": 101,
+      "exit_pose": 103,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "chain-left",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        105,
+        106,
+        107
+      ],
+      "entry_pose": 105,
+      "exit_pose": 107,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "club-left",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        140,
+        142
+      ],
+      "entry_pose": 140,
+      "exit_pose": 142,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "club-right",
+      "family": "combat",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        141,
+        143
+      ],
+      "entry_pose": 141,
+      "exit_pose": 143,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reference-supported side/anchor poses; socket only for weapon families. Current fingers and swing phases need art review.",
+      "review": "draft"
+    },
+    {
+      "id": "walk",
+      "family": "locomotion",
+      "actor": "human",
+      "state": "on-foot",
+      "pose_ids": [
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007
+      ],
+      "entry_pose": 1000,
+      "exit_pose": 1007,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Original 3D contact/down/passing/up stance candidates; world stride/timing will be fitted in Part 03.",
+      "review": "draft"
+    },
+    {
+      "id": "run",
+      "family": "locomotion",
+      "actor": "human",
+      "state": "on-foot",
+      "pose_ids": [
+        1010,
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016,
+        1017
+      ],
+      "entry_pose": 1010,
+      "exit_pose": 1017,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Original 3D contact/down/passing/up stance candidates; world stride/timing will be fitted in Part 03.",
+      "review": "draft"
+    },
+    {
+      "id": "sprint",
+      "family": "locomotion",
+      "actor": "human",
+      "state": "on-foot",
+      "pose_ids": [
+        1020,
+        1021,
+        1022,
+        1023,
+        1024,
+        1025,
+        1026,
+        1027
+      ],
+      "entry_pose": 1020,
+      "exit_pose": 1027,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Original 3D contact/down/passing/up stance candidates; world stride/timing will be fitted in Part 03.",
+      "review": "draft"
+    },
+    {
+      "id": "original-running-views",
+      "family": "locomotion",
+      "actor": "human",
+      "state": "on-foot",
+      "pose_ids": [
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308
+      ],
+      "entry_pose": 291,
+      "exit_pose": 308,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Six phase candidates in each original front/rear/side slot range. No claimed recovered timing.",
+      "review": "draft"
+    },
+    {
+      "id": "starts-stops-turns",
+      "family": "locomotion",
+      "actor": "human",
+      "state": "on-foot",
+      "pose_ids": [
+        1040,
+        1041,
+        1042,
+        1043,
+        1044,
+        1045,
+        1046,
+        1047,
+        1048,
+        1049,
+        1050
+      ],
+      "entry_pose": 1040,
+      "exit_pose": 1050,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Idle, left/right starts/stops/turns/strafe/reverse; actual manual input remains Part 03.",
+      "review": "draft"
+    },
+    {
+      "id": "terrain-stances",
+      "family": "terrain",
+      "actor": "human",
+      "state": "on-foot",
+      "pose_ids": [
+        1051,
+        1052,
+        1053,
+        1054,
+        1055,
+        1056,
+        1057,
+        1058,
+        1059
+      ],
+      "entry_pose": 1051,
+      "exit_pose": 1059,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Ground support and knee/pelvis placement for slopes, curbs and ledges. Runtime foot IK is not implemented here.",
+      "review": "draft"
+    },
+    {
+      "id": "pedestrian-motion",
+      "family": "locomotion",
+      "actor": "human",
+      "state": "npc",
+      "pose_ids": [
+        1060,
+        1061,
+        1062
+      ],
+      "entry_pose": 1060,
+      "exit_pose": 1062,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Shares the authored human rig; separate civilian idle/startle/flee vocabulary.",
+      "review": "draft"
+    },
+    {
+      "id": "physical-reactions",
+      "family": "ragdoll",
+      "actor": "human",
+      "state": "falling",
+      "pose_ids": [
+        1080,
+        1081,
+        1082,
+        1083,
+        1084,
+        1085,
+        1086,
+        1087,
+        1088,
+        1089,
+        1090,
+        1091,
+        1092,
+        1093
+      ],
+      "entry_pose": 1080,
+      "exit_pose": 1093,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Brace/protect/tuck/reach/roll/righting attempts/failed recovery. Authoring targets, not physics commands.",
+      "review": "draft"
+    },
+    {
+      "id": "get-up",
+      "family": "recovery",
+      "actor": "human",
+      "state": "getting-up",
+      "pose_ids": [
+        1100,
+        1101,
+        1102,
+        1103,
+        1104,
+        1105,
+        1106,
+        1107
+      ],
+      "entry_pose": 1100,
+      "exit_pose": 1107,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Front/back/side support poses; blend from actual physical pose in Part 03.",
+      "review": "draft"
+    },
+    {
+      "id": "land-stumble",
+      "family": "recovery",
+      "actor": "human",
+      "state": "falling",
+      "pose_ids": [
+        1108,
+        1109,
+        1110,
+        1111
+      ],
+      "entry_pose": 1108,
+      "exit_pose": 1111,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Landing and balance loss use grounded support rather than arbitrary launch.",
+      "review": "draft"
+    },
+    {
+      "id": "lift-and-mount",
+      "family": "recovery",
+      "actor": "human",
+      "state": "mounting",
+      "pose_ids": [
+        1112,
+        1113,
+        1114,
+        1115,
+        309,
+        310,
+        311,
+        312,
+        313
+      ],
+      "entry_pose": 1112,
+      "exit_pose": 313,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Approach/grasp/weight/lift, then original numbered mount candidates; body/leg clearance still needs approval.",
+      "review": "draft"
+    },
+    {
+      "id": "vehicle-impact",
+      "family": "crash",
+      "actor": "human",
+      "state": "falling",
+      "pose_ids": [
+        1140,
+        1141,
+        1142,
+        1082,
+        1085
+      ],
+      "entry_pose": 1140,
+      "exit_pose": 1085,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Nose-down/vault pose proposal only. Physics/contact geometry must permit it; these poses never inject energy.",
+      "review": "draft"
+    },
+    {
+      "id": "combat-knockoff-left",
+      "family": "crash",
+      "actor": "human",
+      "state": "falling",
+      "pose_ids": [
+        3,
+        1143,
+        1144,
+        1082
+      ],
+      "entry_pose": 3,
+      "exit_pose": 1082,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Outward swerve, smaller countersteer, then release; preserve physical forward motion.",
+      "review": "draft"
+    },
+    {
+      "id": "combat-knockoff-right",
+      "family": "crash",
+      "actor": "human",
+      "state": "falling",
+      "pose_ids": [
+        3,
+        1145,
+        1146,
+        1082
+      ],
+      "entry_pose": 3,
+      "exit_pose": 1082,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Mirrored target vocabulary; interrupted by actual collisions.",
+      "review": "draft"
+    },
+    {
+      "id": "police-hooks",
+      "family": "combat",
+      "actor": "human",
+      "state": "future-police",
+      "pose_ids": [
+        3,
+        44,
+        45,
+        1080,
+        1106
+      ],
+      "entry_pose": 3,
+      "exit_pose": 1106,
+      "phase_labels": [
+        "anticipation",
+        "contact",
+        "follow-through",
+        "recovery"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Reuse valid riding/contact/recovery targets. Dedicated arrest/restraint poses are a remaining authoring gap, not completed police behavior.",
+      "review": "draft"
+    },
+    {
+      "id": "animal-motion",
+      "family": "animal",
+      "actor": "cow",
+      "state": "npc",
+      "pose_ids": [
+        1200,
+        1201,
+        1202,
+        1203,
+        1204,
+        1205,
+        1206,
+        1207,
+        1208,
+        1209,
+        1210,
+        1211
+      ],
+      "entry_pose": 1200,
+      "exit_pose": 1211,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Independent quadruped joint chain: graze, walk, flight/startle, impact, fall and recover. Prototype body, not final cow art.",
+      "review": "draft"
+    },
+    {
+      "id": "mounted-reference-variants",
+      "family": "mounted",
+      "actor": "human",
+      "state": "riding",
+      "pose_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        140,
+        141,
+        142,
+        143,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        176,
+        177,
+        178,
+        179,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        252,
+        253,
+        254,
+        255,
+        309,
+        310,
+        311,
+        312,
+        313
+      ],
+      "entry_pose": 0,
+      "exit_pose": 313,
+      "phase_labels": [
+        "support",
+        "transition",
+        "release"
+      ],
+      "interrupts": [
+        "hit",
+        "crash",
+        "race-finished"
+      ],
+      "timing_basis": "unassigned",
+      "notes": "Legacy numbered view/distance/gesture variants for comparison, not additional timed animation samples. Broad inherited labels remain review candidates.",
+      "review": "draft"
+    }
+  ]
+}

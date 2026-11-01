@@ -168,3 +168,34 @@ isolated eleven-body parity remains exact. New Windows runtime/human acceptance
 and a broader car-shape/vehicle-height matrix remain open. PR #8's Windows CI
 passed; its Linux soak failure was traced to incorrect fixture expectations, now
 corrected and rerun locally. New remote CI evidence is recorded separately.
+
+## Animation A review candidates — 2026-10-31
+
+The 247 static poses are authoring candidates, not runtime animation or an approved
+production library. The physical rig and its playback remain unchanged. Fingers
+are rigid: closed punch fists, wrapped grips and weapon sockets still need source
+mesh/rig work. Matrix attachment/contact/flex tests do not establish that clothing
+and bodies never intersect or that a static stance makes a natural moving gait.
+The current cow is a separate review proxy only.
+
+Old broad mounted labels can be ambiguous; original CANS/RRAN/EXE sequence timing,
+view aliases and some native reaction/mount associations remain unresolved. Raw
+reference media stays local. Controlled Synty-game footage/gait measurements and
+the screenshot game's identity remain open. Complete support/get-up, weapon
+handling and police restraint poses need art review/additions. V2-02 approval and
+all Part 03 interpolation/terrain/active-control gates remain unchecked.
+
+## Context correction — 2026-11-01
+
+V1 semantic labels are superseded. Its “documented-helper-anchor” strings describe
+an inspection-based approximation, not native action proof. In particular44/45
+are a post-hit gesture; punch forehand is176/177/178 and kick225/226 under decoded
+rear selection. Use docs/animation/context/catalog.json; do not approve V1 motion.
+
+The new catalog records source order/mirroring/fallbacks and logical timings, but
+code7 and some alias callers remain unresolved. Comparison against the compiled
+research reconstruction is not native original execution. Police poses are metadata
+only. Code43 has empty rider art. Slot64 is populated but not referenced by recovered
+CANS groups. Draft human/bike layouts need art approval, supported get-up/remount,
+hand/weapon/cloth clearance and multi-angle silhouette refinement. Fist shape keys
+are authoring proxies. No runtime interpolation or ragdoll change is included.

@@ -415,3 +415,42 @@ come from the earlier independent authoring step, not the Bevy repository.
 - Decision: study/evaluate only; implementation prototypes, compatible lockfile tests and visual/physics/performance comparison are V2-02/V2-03 prerequisites.
 
 R01 follow-up: local arkits/road-rash `cd5504caea48aee59806dbfd11c920f33df21200`, race.cpp traffic separation/contact-car path inspected for both-object velocity/state handling. REFERENCE ONLY; no source copied and existing unresolved reuse permission remains. Original units do not establish modern SI crash equivalence. See research/ANIMATION_AND_RAGDOLL.md.
+
+### Animation A source follow-up — 2026-10-31
+
+Revisited the five pinned animation/ragdoll candidates above, with unchanged SHAs,
+licenses and adoption classifications. Inspected active-ragdolls AnimationModule,
+PhysicsModule and joint-target conversion; Hairibar AnimationMatching and target/
+profile hooks; Jolt PoweredRigTest; Bevy IK lib/solver; ozz foot_ik and two-bone
+runtime/sample sources. Concrete comparison and source links are in
+[ANIMATION_AND_RAGDOLL.md](../research/ANIMATION_AND_RAGDOLL.md#part-02-source-level-comparison--2026-10-31).
+No source or sample media incorporated; no backend or dependency adopted. There
+are no compiled comparative performance results. Per-joint motor cost, iteration
+budgets, probe counts and energy/contact behavior require the Part 03 prototypes.
+The unresolved Bevy IK license-file evidence and HEAD incompatibility remain.
+
+R01 local snapshot cd5504caea48aee59806dbfd11c920f33df21200 was revisited for
+sprite/helper anchors, view/descriptor separation and crash/get-up transitions.
+All 326 HIBOB and 45 LOCOP slots were inventoried from the local disc as numeric
+metadata. No source or proprietary pixels were imported. See animation reference
+review. Native CANS/RRAN/EXE timing/sequence linkage remains unverified.
+
+### R01 context correction follow-up — 2026-11-01
+
+arkits/road-rash, arkits, https://github.com/arkits/road-rash, pinned
+cd5504caea48aee59806dbfd11c920f33df21200, REFERENCE ONLY / incorporation rights
+UNVERIFIED (no root license grant verified; https://github.com/arkits/road-rash/tree/cd5504caea48aee59806dbfd11c920f33df21200).
+Read actor_descriptors.cpp/.hpp, actor_animation.cpp/.hpp, actor_nodes.cpp,
+actor_render.cpp, animation.cpp, resource.cpp, exe_tables.cpp, race_setup.cpp,
+race.cpp, crash.cpp and descriptor tests. Its stand-in attack_frame helper is
+explicitly inspection-based and superseded as an action authority. Actual
+EXE selector arrays, relocated descriptors, CANS groups, RRAN/BOB index mapping,
+view flags/mirroring and playback controls were traced instead.
+
+The library was compiled temporarily outside the project to cross-check our new
+independent Python metadata reader: 194 descriptors and rear selections agree.
+No C++/media copied into RoadDash, no dependency/engine adoption. Numeric binary
+layout facts and observed mappings are recorded; no measured native Windows parity
+is claimed. Runtime/Bevy compatibility is irrelevant to the offline research
+executable. Maintenance snapshot unchanged; original files are user-supplied local
+research only and not redistributed. Full corrected findings: animation/context.

@@ -730,3 +730,74 @@ extend that isolated floor to cover the possible 600 s path, retaining vertical,
 finite/speed and complete-duration stability checks. Add roadmap tests to CI.
 No new third-party code/media/dependency. See testing/COLLISION_RESPONSE.md.
 Rollback restores heading and entry/envelope changes together; no save migration.
+
+## ADR-033 — 2026-10-31 — Static animation vocabulary before playback
+
+The user authorizes Animation A now and takes responsibility for the previous PR
+merge; do not wait for remote CI or merge on their behalf. Preserve the existing
+physical rig and collision changes. Part 02 delivers reference study, labels,
+original static pose assets and a gallery; Part 03 owns playback/interpolation,
+terrain IK, animation events and bounded active-ragdoll control.
+
+Reuse the earlier independently authored 130 numbered mounted blockouts rather
+than recreating/renumbering them. Add eighteen original-slot running candidates
+and 99 original locomotion/terrain/reaction/recovery/seated/cow layouts: 247 total,
+27 semantic use cases. Preserve empty/view/duplicate reference slots in separate
+metadata. All poses stay draft; a number is not proof of original sequence timing.
+An editable Blender file uses single-frame constant Actions and complete JSON
+assembly transforms. No clip timeline, root-motion controller or physical force
+is connected to game state. The ten-bone cow is an authoring proxy, not a new
+production NPC model. The twenty-bone human authoring rig does not replace the
+accepted eleven-body physical rig.
+
+Analytic two-link authoring fits respect fixed bone lengths and elbow/knee flex
+limits. It corrected three over-flexed inherited mounting knees and two new
+brace/brake hand reaches. The independent rr_content validator rejects nonfinite/
+nonrigid/scaled matrices, detached offsets, cycles, bad contacts/references,
+wrong skeleton families, unsupported timing and physics/executable fields. The
+headless --validate-animation command checks editable files, not asset-count-only
+success. Read-only authoring JSON never writes authoritative body transforms.
+
+Source-level research of five pinned candidates informs an evaluation plan only.
+No third-party animation code, rig, commercial pack or original media is imported.
+Commercial Synty documentation/game leads do not prove gait/terrain algorithms;
+actual footage measurement, original descriptor timing and ambiguous labels stay
+open. Finger wrapping/fists, skin/cloth clearance, complete get-up/weapon/police
+coverage, animal refinement and human approval block full Part 02 signoff.
+
+Alternatives rejected: treating 2D view slots as temporal frames; applying authored
+matrices to physics bodies; shipping raw retail media; claiming all 247 drafts are
+approved; replacing a working rig with an incompatible plugin. JSON/Blender source
+and review renders stay under art/animation, outside runtime assets. The large
+editable .blend is a generated local deliverable, reproducible from repository
+scripts/source art. Existing gameplay and saves require no migration/rollback.
+Remove the authoring module/CLI independently if needed; no runtime system relies
+on it. Verification and remaining gates: docs/testing/ANIMATION_A.md.
+
+## ADR-034 — Verify action sequences before reconstructing poses (2026-11-01)
+
+Problem: V1 used inspection-based two-frame helpers as if they established native
+punch/kick/weapon semantics. Source playback tables prove that several labels were
+wrong; view/mirror variants and repeated phases were flattened into slot names.
+
+Alternatives: keep relabeling visual guesses; replace the runtime animation/rig;
+or trace the executable descriptors, CANS view cells and actual action selectors
+before authoring. Selected the context-first trace and a new isolated draft set.
+The independent reader retains 104 bank/code slots, 194 ordered descriptors,
+controls/durations/fallbacks, and all 371 sprite-slot usage entries. Cross-checked
+194 descriptor/rear selections against the separately compiled pinned research
+library; this is not native executable validation. Unknown callers stay explicit.
+
+Original 3D poses now use semantic action/phase names, with separate authoring
+assembly/weapon recipes and static source links. Repeated sprites retain repeated
+phases; police/empty art is not invented. V1 artifacts stay as rejected semantic
+history and are prominently marked superseded. The shared two-link authoring
+math is project code; it never replaces passive physical joints. No gameplay,
+physics, dependency or runtime-asset migration. Existing source GLBs are preserved.
+
+Tradeoffs: more provenance/validation files; some source aliases still unresolved,
+and draft art still requires silhouette/support/cloth/hand review. No original
+pixels or reconstruction C++ imported into production. Reference: arkits/road-rash
+cd5504caea48aee59806dbfd11c920f33df21200, reference-only, licensing unresolved for
+source incorporation. No code reuse. Rollback: remove context tooling/art without
+changing gameplay; never reinstate V1 semantic labels as verified reference facts.

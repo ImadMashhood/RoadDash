@@ -53,3 +53,15 @@ motors and damping are not replaced. The old segment-center binding is historica
 do not pair its inverse binds with the corrected source-pivot graph. See ADR-029
 and docs/testing/MOTION_REPAIRS.md. Full terrain locomotion/foot IK and authored
 clips remain in the new execution roadmap, not this attachment repair.
+
+## Animation A authoring library
+
+art/animation now contains 247 numbered static candidates, 27 semantic use cases,
+original-model review images and separate human/quadruped skeleton metadata.
+The pose-plan and preserved legacy-mounted source rebuild the editable Blender
+pose library; tools/load_animation_pose.py applies complete assembly transforms.
+See docs/animation/README.md. These files are authoring-only, not runtime assets
+or animation clips. Source models/atlases, physical joints and game motion are
+unchanged. Approval and identified art/reference gaps remain open.
+
+Context correction: V1 action labels are superseded by [the source-ordered context catalog](../docs/animation/context/README.md) and art/animation/context. Original runtime meshes/physics remain unchanged.

@@ -1,0 +1,46 @@
+{
+  "independent_reader_vs_pinned_research_library": true,
+  "descriptors_compared": 194,
+  "rear_selections_compared": 194,
+  "banks": 2,
+  "native_original_execution_checked": false,
+  "note": "External reconstruction is a research oracle, not proof of native executable parity; no research source incorporated in RoadDash",
+  "graphics_linkage": [
+    {
+      "bank": 1,
+      "matching_populated_dimensions": 184,
+      "empty_bob_slots_with_graphics_placeholders": 140
+    },
+    {
+      "bank": 2,
+      "matching_populated_dimensions": 33,
+      "empty_bob_slots_with_graphics_placeholders": 12
+    }
+  ],
+  "far_distance_dimension_exceptions": [
+    {
+      "bank": 1,
+      "slot": 22,
+      "scaled_rran": [
+        28,
+        66
+      ],
+      "bob": [
+        27,
+        65
+      ]
+    },
+    {
+      "bank": 1,
+      "slot": 23,
+      "scaled_rran": [
+        14,
+        34
+      ],
+      "bob": [
+        12,
+        32
+      ]
+    }
+  ]
+}
