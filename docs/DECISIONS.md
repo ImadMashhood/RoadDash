@@ -801,3 +801,36 @@ pixels or reconstruction C++ imported into production. Reference: arkits/road-ra
 cd5504caea48aee59806dbfd11c920f33df21200, reference-only, licensing unresolved for
 source incorporation. No code reuse. Rollback: remove context tooling/art without
 changing gameplay; never reinstate V1 semantic labels as verified reference facts.
+
+## ADR-035 — Full-body visual interpolation over the accepted physical rig (2026-11-01)
+
+Problem: limb-only keys hid torso/hip motion; static phases snapped instead of
+blending from normal riding or a speed tuck. The accepted passive ragdoll must
+remain the control fixture. User explicitly requested torso correction followed
+by initial interpolation, while general art approval remains unfinished.
+
+Alternatives: replace the physical skeleton with the authoring rig; interpolate
+world-space skin frames (breaking bone lengths); or retain a full local hierarchy
+solely for rendering. Selected full twenty-bone quaternion FK with immutable
+parent offsets, four render-only contact chains and the existing eleven-joint
+skin adapter. Physics drivers still own falling/ragdoll presentation. No rigid
+body, motor, mass, collision or recovery-stage timing changes. Local clip root
+translation is presentation, not authoritative locomotion/root motion.
+
+Fixed simulation stores previous/current pose; render overstep interpolates them.
+Attacks capture the actual entry pose and return to the latest normal/tuck base.
+Paused/finished state freezes snapshots. Pickup converts between runner and bike
+anchor coordinates; bike lift changes only the visual root. Gameplay owns hits,
+damage and cooldowns independently of the authoring clock. Phase counters use an
+original 0.02 s unit; this is not verified original executable wall-clock timing.
+
+Tuck selection independently implements the pinned reference's boundary rules;
+SI conversion derives from the 41/4096 mph HUD coefficient. Ordinary stock flag
+mapping is used at runtime; full legacy nitro/flag behavior is not imported.
+Source investigation: arkits/road-rash cd5504caea48aee59806dbfd11c920f33df21200,
+reference-only; no reference C++ or original media incorporated. No dependencies
+added. Tradeoffs: authoring wrists/fists/feet exceed current runtime skin detail;
+terrain foot planting, pose-matched landing and final art acceptance remain open.
+Rollback: remove MotionPlugin/Bindings and restore legacy presentation; saves,
+physical bodies, content IDs and source GLBs require no migration. Evidence:
+[Animation B](testing/ANIMATION_B.md).

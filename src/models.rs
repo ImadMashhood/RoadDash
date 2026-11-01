@@ -385,13 +385,17 @@ fn connected_pose(
     out
 }
 fn retarget(
-    rigs: Query<(Entity, &ConnectedRig)>,
+    rigs: Query<(Entity, &ConnectedRig, Option<&crate::animation::Binding>)>,
+    library: Res<crate::animation::Library>,
+    animators: Query<(&crate::animation::Animator, &crate::recovery::Recovery)>,
+    owners: Query<&crate::recovery::OwnedBody>,
+    fixed: Option<Res<Time<Fixed>>>,
     mut transforms: ParamSet<(TransformHelper, Query<&mut Transform, With<SkinJoint>>)>,
 ) {
     let mut updates = Vec::new();
     {
         let helper = transforms.p0();
-        for (root, rig) in &rigs {
+        for (root, rig, binding) in &rigs {
             let Ok(root) = helper.compute_global_transform(root) else {
                 continue;
             };
@@ -407,8 +411,30 @@ fn retarget(
             let Ok(frames) = frames else {
                 continue;
             };
-            let pose = connected_pose(frames.try_into().unwrap(), rig.source, rig.legacy);
+            let mut pose = connected_pose(frames.try_into().unwrap(), rig.source, rig.legacy);
             let inverse = root.affine().inverse();
+            let owner = binding.and_then(|b| match *b {
+                crate::animation::Binding::Riding(e) => Some(e),
+                crate::animation::Binding::Runner(e) => owners.get(e).ok().map(|o| o.owner),
+            });
+            if let Some((a, rec)) = owner
+                .and_then(|e| animators.get(e).ok())
+                .filter(|(a, _)| a.ready)
+            {
+                let alpha = fixed.as_ref().map_or(1.0, |t| t.overstep_fraction());
+                let sampled = library.frames(a.previous.blend(a.current, alpha));
+                if rec.stage == crate::recovery::RecoveryStage::Mounting {
+                    if let Some(anchor) = rec
+                        .wreck
+                        .and_then(|e| helper.compute_global_transform(e).ok())
+                    {
+                        let anchor = crate::animation::bike_anchor(anchor.compute_transform());
+                        pose = sampled.map(|p| anchor.mul_transform(p));
+                    }
+                } else if rec.stage != crate::recovery::RecoveryStage::Falling {
+                    pose = sampled.map(|p| root.compute_transform().mul_transform(p));
+                }
+            }
             for (joint, pose) in rig.joints.iter().zip(pose) {
                 let mut local = Transform::from_matrix(Mat4::from(inverse) * pose.to_matrix());
                 local.scale = Vec3::ONE;
@@ -427,7 +453,8 @@ fn retarget(
 pub struct RoadModelPlugin;
 impl Plugin for RoadModelPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Update, wheels.after(crate::vehicle::visuals))
+        app.add_plugins(crate::animation::MotionPlugin)
+            .add_systems(Update, wheels.after(crate::vehicle::visuals))
             .add_systems(
                 PostUpdate,
                 retarget.before(bevy::transform::TransformSystems::Propagate),

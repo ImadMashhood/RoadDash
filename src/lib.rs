@@ -1,6 +1,7 @@
 #[cfg(not(feature = "offline"))]
 compile_error!("No online transport is implemented. Enable the offline feature (default).");
 
+pub mod animation;
 pub mod combat;
 pub mod content;
 pub mod controls;

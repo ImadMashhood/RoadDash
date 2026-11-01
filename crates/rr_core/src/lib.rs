@@ -269,3 +269,5 @@ mod kick_input_tests {
         assert!(buffer.take_attack().is_none());
     }
 }
+
+pub mod motion;

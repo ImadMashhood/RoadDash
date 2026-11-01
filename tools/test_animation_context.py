@@ -45,4 +45,15 @@ class ContextTests(unittest.TestCase):
             pose=json.loads((base/f'poses/{d["id"]:04d}.json').read_text());native=labels[d['name']];self.assertEqual(pose['source_slots'],[native['rear']['slot']]);self.assertEqual(assembly[str(d['id'])]['source'],native['rear']);self.assertEqual(d['review'],'draft')
             self.assertLessEqual(max(pose['contact_errors_m'].values(),default=0),.005)
         self.assertEqual(len(json.loads((base/'bike-poses.json').read_text())),16)
+    def test_whole_body_kicks_tuck_and_punches_keep_their_supports(self):
+        import math
+        base=ROOT/'art/animation/context/poses'
+        def pose(id):return json.loads((base/f'{id}.json').read_text())
+        neutral=pose(2020);tuck=pose(2030);kick=pose(2261);left=pose(2222);right=pose(2232)
+        self.assertGreater(kick['bone_world']['pelvis'][2][3]-neutral['bone_world']['pelvis'][2][3],.14)
+        self.assertNotIn('seat',kick['held_contacts']);self.assertIn('peg.R',kick['held_contacts']);self.assertIn('grip.L',kick['held_contacts']);self.assertIn('grip.R',kick['held_contacts'])
+        self.assertGreater(neutral['bone_world']['head'][2][3]-tuck['bone_world']['head'][2][3],.18)
+        self.assertLess(left['bone_world']['head'][0][3],-.08);self.assertGreater(right['bone_world']['head'][0][3],.08)
+        self.assertAlmostEqual(left['bone_world']['pelvis'][0][3],-right['bone_world']['pelvis'][0][3],places=5)
+        for p in [neutral,tuck,kick,left,right]:self.assertLess(max(p['contact_errors_m'].values()),.005)
 if __name__=='__main__':unittest.main()

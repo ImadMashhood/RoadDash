@@ -2,8 +2,8 @@
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 134 verified tasks;
-Parts 01–16 contain all 223 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
+README is the single live task source. Part 00 contains all 136 verified tasks;
+Parts 01–16 contain all 224 unfinished/partial/unverified requirements. The reorganization preserved status; three later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
@@ -545,6 +545,10 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **ANIM-05** Recover source-ordered action/phase/view context before reconstruction. Reason: V1 misclassified inspection-helper slots; originating part: 02; dependencies: supplied retail build and pinned reference selectors; acceptance: all 104 bank/code slots, 194 ordered descriptors and 371 sprite-slot usages include semantic IDs, mirror/view variants, controls, timing counters and explicit fallbacks/unknowns; verification: independent decoder versus separately compiled reference (194 descriptor/rear matches), reproducible metadata and semantic/bounds tests. [Corrected catalog and limits](animation/context/README.md).
 
+- [x] **ANIM-07** Correct torso and support motion in the source-linked mounted action keys. Reason: limb-only poses missed the original silhouettes; originating part: 02; dependencies: ANIM-05 and shared authoring contacts; acceptance: punch lean/target look, raised kick hips/released seat, full-body tuck and mirrored phases, with retained fixed-length support contacts; verification: 138 static Action reloads, 20 Python tests and regenerated labeled review renders. [Evidence and art limits](testing/ANIMATION_B.md).
+
+- [x] **ANIM-08** Integrate the first full-body normal/tuck/turn/combat/recovery clip set. Reason: static keys need continuous presentation; originating part: 03; dependencies: ANIM-07 and existing visual skin adapter; acceptance: 36 keys / 13 clips, current-pose action entry/exit, steering-only turns, reference-informed tuck selection, held-contact constraints, pause/crash interruption and pickup space handoff without physical writes; verification: Rust sampler/state/contact/parity tests, nine authoring GIFs and native crash/remount/finish smoke. [Evidence and remaining production gates](testing/ANIMATION_B.md).
+
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
 - [ ] **V2-01-005** Design and implement measured vehicle-impact and over-car crash responses.
@@ -637,19 +641,21 @@ relationship-axis/event and random-stream parity gates.
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
 
-- [ ] **V2-03-001** Implement a data-driven animation state/blend graph.
+- [ ] **V2-03-001** Implement a data-driven animation state/blend graph. Initial riding/attack/recovery graph verified under ANIM-08; full weapon/police/locomotion coverage and approval remain open.
 
 - [ ] **V2-03-002** Interpolate approved keyframes and combat/recovery transitions.
 
 - [ ] **V2-03-003** Make walking/running match velocity and terrain.
 
-- [ ] **V2-03-004** Keep hands and feet on bike contacts when required.
+- [ ] **V2-03-004** Keep hands and feet on bike contacts when required. Initial four-contact render solver passes fixed-length/endpoint tests; full runtime hand/foot deformation and clearance approval remain open.
 
 - [ ] **V2-03-005** Prototype bounded active ragdoll and player attempts to recover.
 
 - [ ] **V2-03-006** Blend physical landings into terrain-aware get-up and remount.
 
 - [ ] **V2-03-007** Add motion/audio polish without changing gameplay outcomes.
+
+- [ ] **ANIM-09** Finish native full-body animation acceptance. Reason: authoring renders and numeric constraints do not certify every runtime deformation/transition; part: 03; dependencies: ANIM-08, ANIM-02/04/06 and terrain locomotion; acceptance: native multi-angle normal/tuck-to-all-attacks, mirrored pickup and physical-pose get-up review, fingers/feet and cloth/bike clearance, Windows hardware and user approval; verification: labeled native video matrix, contact/deformation checks and regression parity.
 
 - [ ] **V2-03-008** Exit gate: motion is responsive, coherent and physically readable.
 

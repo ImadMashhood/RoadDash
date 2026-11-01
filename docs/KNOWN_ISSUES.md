@@ -199,3 +199,14 @@ only. Code43 has empty rider art. Slot64 is populated but not referenced by reco
 CANS groups. Draft human/bike layouts need art approval, supported get-up/remount,
 hand/weapon/cloth clearance and multi-angle silhouette refinement. Fist shape keys
 are authoring proxies. No runtime interpolation or ragdoll change is included.
+
+- ANIM-B (2026-11-01): first 13 visual clips and torso corrections are integrated;
+  full Part 02/03 approval remains open. Twenty-bone FK feeds eleven existing skin
+  joints: runtime wrist/finger/foot deformation can differ from the Blender GIFs.
+  Grip/peg numeric targets do not certify glove/cloth/bike clearance. Current run
+  loop is not terrain-foot-planted or velocity-stride-matched; get-up does not
+  start from an exact captured physical landing pose. Native smoke covers recovery,
+  not all normal/tuck/attack combinations. Source logical timing conversion and
+  stock legacy selector inputs are RoadDash mappings; Windows and original-native
+  playback not verified. ANIM-09 tracks native/user acceptance; ANIM-02/04/06 and
+  full V2-03 gates remain unchecked. Accepted passive ragdoll physics unchanged.

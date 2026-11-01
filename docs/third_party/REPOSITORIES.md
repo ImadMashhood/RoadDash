@@ -454,3 +454,16 @@ layout facts and observed mappings are recorded; no measured native Windows pari
 is claimed. Runtime/Bevy compatibility is irrelevant to the offline research
 executable. Maintenance snapshot unchanged; original files are user-supplied local
 research only and not redistributed. Full corrected findings: animation/context.
+
+### R01 full-body/tuck follow-up — 2026-11-01
+
+Same arkits/road-rash commit cd5504caea48aee59806dbfd11c920f33df21200
+(arkits; https://github.com/arkits/road-rash). Inspected animation selector and
+hud.cpp numeric_speed for low-speed/acceleration/tuck boundaries and the unrounded
+41/4096 mph coefficient. Source ordered attack phases remain cataloged separately.
+REFERENCE ONLY; no source/media incorporated. No root license grant verified;
+source reuse remains UNVERIFIED, public availability is not permission. Existing
+license/maintenance risks unchanged. Native C++ is not a Rust/Bevy dependency;
+independently tested domain rules are compatible with this pinned baseline.
+Decision: study behavior, original visual transforms/clock/contact math in RoadDash;
+defer exact legacy mode/boost flag mapping and original-executable timing evidence.

@@ -467,7 +467,11 @@ pub fn recover(
                     && let Ok((mut t, _, _, _)) = bodies.get_mut(pose)
                 {
                     let fraction = (recovery.elapsed / 0.9).min(1.0);
-                    t.scale.y = 0.4 + 0.6 * fraction;
+                    t.scale.y = if art.models.is_some() {
+                        1.0
+                    } else {
+                        0.4 + 0.6 * fraction
+                    };
                     t.translation.y = -0.95;
                 }
                 if recovery.elapsed >= 0.9 {
@@ -603,8 +607,13 @@ pub fn recover(
                 if let Some(pose) = recovery.pose
                     && let Ok((mut t, _, _, _)) = bodies.get_mut(pose)
                 {
-                    t.rotation = Quat::from_rotation_z(-fraction * 0.4);
-                    t.translation.y = -0.95 + fraction * 0.35;
+                    if art.models.is_none() {
+                        t.rotation = Quat::from_rotation_z(-fraction * 0.4);
+                        t.translation.y = -0.95 + fraction * 0.35;
+                    } else {
+                        t.rotation = Quat::IDENTITY;
+                        t.translation.y = -0.95;
+                    }
                 }
                 if fraction >= 1.0 {
                     let (progress, lane, _) = track.project(wreck_pos, rider.progress);

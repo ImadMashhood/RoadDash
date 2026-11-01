@@ -282,7 +282,13 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
     if with_rider {
         let mut rider_parts = children.split_off(rider_start);
         if let Some(models) = &art.models {
-            rider_parts.extend(models.human(commands, color, &rider_parts, true));
+            let skins = models.human(commands, color, &rider_parts, true);
+            for &skin in &skins {
+                commands
+                    .entity(skin)
+                    .insert(crate::animation::Binding::Riding(root));
+            }
+            rider_parts.extend(skins);
         }
         for &entity in &rider_parts {
             commands.entity(entity).insert(SeatedRiderVisual);
@@ -377,7 +383,13 @@ pub fn runner(commands: &mut Commands, art: &Art, color: usize) -> (Entity, Enti
         parts.push(e);
     }
     if let Some(models) = &art.models {
-        parts.extend(models.human(commands, color, &parts, false));
+        let skins = models.human(commands, color, &parts, false);
+        for &skin in &skins {
+            commands
+                .entity(skin)
+                .insert(crate::animation::Binding::Runner(root));
+        }
+        parts.extend(skins);
     }
     commands.entity(pose).add_children(&parts);
     crate::runtime::attach_visuals(commands, root, &[pose]);

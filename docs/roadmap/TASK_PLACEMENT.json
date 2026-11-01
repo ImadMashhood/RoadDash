@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-31",
+  "date": "2026-11-01",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
@@ -139,7 +139,9 @@
         "COLLISION-03",
         "V2-02-004",
         "ANIM-01",
-        "ANIM-05"
+        "ANIM-05",
+        "ANIM-07",
+        "ANIM-08"
       ]
     },
     "01": {
@@ -184,13 +186,13 @@
         "V2-02-006",
         "V2-02-007",
         "V2-02-008",
-        "P11-003",
-        "P11-006",
-        "ARCH-006",
         "ANIM-02",
         "ANIM-03",
         "ANIM-04",
-        "ANIM-06"
+        "ANIM-06",
+        "P11-003",
+        "P11-006",
+        "ARCH-006"
       ]
     },
     "03": {
@@ -203,6 +205,7 @@
         "V2-03-005",
         "V2-03-006",
         "V2-03-007",
+        "ANIM-09",
         "V2-03-008",
         "P11-008",
         "FOOT-001",
