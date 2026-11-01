@@ -4,6 +4,27 @@ fn main() {
         panic!("intentional panic-report verification");
     }
     let args: Vec<_> = std::env::args().collect();
+    if let Err(error) = road_dash::biomechanics::Settings::selected() {
+        eprintln!("Ragdoll configuration: {error}");
+        std::process::exit(2);
+    }
+    if args.iter().any(|a| a == "--ragdoll-lab-view") {
+        road_dash::biomechanics::view::build(args.iter().any(|a| a == "--ragdoll-view-smoke"))
+            .run();
+        return;
+    }
+    if args.iter().any(|a| a == "--ragdoll-lab") {
+        let output = args
+            .iter()
+            .position(|a| a == "--output")
+            .and_then(|i| args.get(i + 1))
+            .map_or("ragdoll-lab.json", String::as_str);
+        if let Err(error) = road_dash::biomechanics::lab::run(std::path::Path::new(output)) {
+            eprintln!("Ragdoll lab: {error}");
+            std::process::exit(2);
+        }
+        return;
+    }
     if let Some(index) = args
         .iter()
         .position(|a| a == "--validate-world" || a == "--inspect-world")

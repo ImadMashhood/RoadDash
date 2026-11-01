@@ -151,7 +151,13 @@ fn screen(race: Res<Race>, state: Res<State<AppScreen>>, mut next: ResMut<NextSt
 pub struct RoadSimulationPlugin;
 impl Plugin for RoadSimulationPlugin {
     fn build(&self, app: &mut App) {
-        app.init_resource::<crate::vehicle::VehiclePhysicsAdapter>()
+        let substeps = app
+            .world()
+            .get_resource::<crate::biomechanics::Settings>()
+            .filter(|s| s.enabled)
+            .map_or(3, |s| s.config.physics_substeps);
+        app.add_plugins(crate::biomechanics::BiomechanicsPlugin)
+            .init_resource::<crate::vehicle::VehiclePhysicsAdapter>()
             .init_resource::<crate::vehicle::Tuning>()
             .init_resource::<crate::vehicle::VehicleTelemetry>()
             .init_resource::<Race>()
@@ -166,7 +172,7 @@ impl Plugin for RoadSimulationPlugin {
             .insert_resource(Time::<Fixed>::from_hz(rr_core::SIMULATION_HZ))
             .insert_resource(TimestepMode::Fixed {
                 dt: 1.0 / rr_core::SIMULATION_HZ as f32,
-                substeps: 3,
+                substeps,
             })
             .add_plugins(RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule())
             .configure_sets(

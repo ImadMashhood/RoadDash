@@ -834,3 +834,53 @@ terrain foot planting, pose-matched landing and final art acceptance remain open
 Rollback: remove MotionPlugin/Bindings and restore legacy presentation; saves,
 physical bodies, content IDs and source GLBs require no migration. Evidence:
 [Animation B](testing/ANIMATION_B.md).
+
+## ADR-036 — Optional native biomechanical articulation with a preserved control (2026-11-01)
+
+Problem: current ragdoll lacks muscle phases and distal/spine articulation; the
+user requests an overhaul for comparison and explicitly forbids merging its PR.
+This is explicit physics tuning authorization, superseding presentation-only scope
+for this optional mode. The eleven-body baseline remains the default/control.
+
+Alternatives: migrate engines/adopt active-ragdoll-rs; port Unity torque/COM tracking;
+or build bounded native constraint motors over existing crash ownership. Selected
+the third: installed Rapier 0.31 already provides forces, caps, limits, predictive
+CCD, sleeping and island solver iterations. The Rust reference uses Rapier 0.36
+and a different glam version; importing it would add a migration and competing
+COM control. Unity targetRotation conventions cannot be copied into Rapier.
+
+The new rig adds a spine body, hands and feet without replacing meshes or spawn/
+collision/ejection APIs. Rest/active targets, stiffness, damping and torque caps
+are validated JSON. Zero activation never disables passive resistance or hard
+limits. Full-source bind offsets are removed before using animation rotations;
+initial release poses preserve coincident anchors. Later targets act through
+native motors only, not transform writes. States/curves belong in rr_core;
+validation in rr_content; native adaptation/debug/lab in src/biomechanics.
+
+Source inspection and experiments identified quaternion chart singularities in
+wide combined shoulder limits and per-body hard CCD clamping as separate causes
+of violent corrections/stretch. Use a safe limited chart and predictive CCD,
+60 Hz gameplay with four physical substeps and six additional articulated
+island iterations. Keep the original solver path in baseline mode. Damping is
+primarily per joint; body damping is a secondary tissue approximation. Activation
+fades from bracing/ejection through low control to zero while passive motors remain.
+No artificial upright torque or COM animation-following force.
+
+Capture spin before the hidden chassis is stopped; seed coherent point velocities
+around the new mass-weighted COM and preserve the established linear response.
+Extend the inherited dissipative crash budget with measured initial rotational
+energy. Avoid new-mode no-op velocity writes/tiny backward corrections that wake
+sleeping bodies. Baseline response and its physical parity fixtures remain intact.
+
+Tradeoffs: sixteen physical proxies feed the current eleven-joint skin; distal
+skin articulation needs future art work. Solver quality costs more during many
+simultaneous crashes; instrumented headless timings do not certify race p95.
+Conservative shoulder bounds trade full reach for stability. Resting/recovery
+retain the arcade timing policy. User/native-art/performance acceptance stays open.
+
+References: all five user-nominated projects pinned in
+[research/RAGDOLL_BIOMECHANICS.md](research/RAGDOLL_BIOMECHANICS.md), reference-only;
+no code/assets incorporated. No dependency or save migration. Rollback: run without
+--ragdoll-biomechanical (or press B/reset in the standalone comparison app). Do not
+merge or make default without the user's comparison. Verification:
+[ragdoll report](testing/RAGDOLL_BIOMECHANICS.md).

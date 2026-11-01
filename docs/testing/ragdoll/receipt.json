@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-01T07:59:50.491415+00:00",
+  "branch": "codex/biomechanical-ragdoll",
+  "base_sha": "5fac329fce868e9e8db9fd5caa930624f84b2770",
+  "earlier_pr_11_merged": true,
+  "overhaul_pr_merge_authorized": false,
+  "engine": {
+    "bevy": "0.17.3",
+    "bevy_rapier3d": "0.32.0",
+    "rapier3d": "0.31.0"
+  },
+  "rust_tests": {
+    "passed": 164,
+    "ignored_optional_soak": 1,
+    "failed": 0
+  },
+  "python_tool_tests": 20,
+  "checks_passed": [
+    "cargo fmt --all --check",
+    "cargo clippy --workspace --locked --all-targets -- -D warnings",
+    "cargo test --workspace --locked",
+    "cargo build --locked",
+    "python3 -m unittest discover -s tools -p test_*.py",
+    "python3 tools/sync_progress.py --check",
+    "python3 tools/audit.py",
+    "native baseline race/recovery/retry smoke",
+    "native biomechanical race/recovery/retry smoke",
+    "native biomechanical actor smoke",
+    "native comparison view smoke and frame packaging"
+  ],
+  "native_host": {
+    "os": "Linux / Fedora",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "driver": "615.78.08",
+    "backend": "Vulkan"
+  },
+  "configuration": {
+    "path": "content/biomechanics.json",
+    "sha256": "e0947825178e063256d055c325c27c2852e18051b72bc14dedf4b6f5ca3b63d8",
+    "fixed_hz": 60,
+    "substeps": 4,
+    "extra_island_iterations": 6,
+    "mass_kg": 70
+  },
+  "paired_scenarios": 18,
+  "new_mode": {
+    "max_anchor_error_m": 0.0079218745,
+    "max_limit_excess_rad": 0.018015906,
+    "max_initial_com_momentum_error_kg_mps": 0.00036621094,
+    "single_actor_sleeping_bodies": 16,
+    "fifteen_actor_sleeping_bodies": 240,
+    "fifteen_actor_resting_ragdolls": 15,
+    "fifteen_actor_instrumented_wall_ms": 9647.604764
+  },
+  "audit": {
+    "dependency_declarations": 519,
+    "runtime_asset_records": 29,
+    "reference_observations": 27,
+    "limitations": "Declaration/hash audit only; not legal clearance, vulnerability scanning, or platform certification."
+  },
+  "limitations": [
+    "No Windows hardware verification",
+    "Native comparison captures cover the drop; all nine scenarios are automated headlessly",
+    "Eleven skin joints still represent sixteen physical proxies",
+    "No production frame/p95 certification or subjective realism approval",
+    "Headless wall times include measurement overhead; no release FPS claim"
+  ],
+  "quality_profile": {
+    "substeps": 8,
+    "additional_iterations": 8,
+    "max_anchor_error_m": 0.0012310736,
+    "fifteen_actor_instrumented_wall_ms": 21367.558815
+  },
+  "build_environment": "PKG_CONFIG_PATH=/tmp/roaddash-native/lib/pkgconfig",
+  "verified_logs": {
+    "clippy": "/tmp/biomech-clippy-final3.log",
+    "tests": "/tmp/biomech-tests-final3.log",
+    "build": "/tmp/biomech-build-final3.log",
+    "game": "/tmp/biomech-game-final3.log",
+    "actors": "/tmp/biomech-actor-final3.log",
+    "comparison": "/tmp/biomech-view-final3.log",
+    "baseline": "/tmp/biomech-baseline-final.log"
+  }
+}

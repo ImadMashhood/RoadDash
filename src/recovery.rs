@@ -203,6 +203,7 @@ pub fn humanoid(
                 Restitution::coefficient(0.12),
             ))
             .id();
+        commands.entity(e).insert(crate::biomechanics::Candidate(i));
         // Child geometry keeps the physics transform unscaled.
         let visual = crate::human::segment(commands, art, color, i, Vec3::ZERO, Quat::IDENTITY);
         visual_joints.push(visual);
@@ -238,6 +239,16 @@ pub fn crash(
         commands.entity(part).despawn();
     }
     let old_runner = recovery.runner.take();
+    commands
+        .entity(owner)
+        .insert(crate::biomechanics::EjectionAngular(
+            if old_runner.is_some() {
+                Vec3::ZERO
+            } else {
+                rider.motion_angular_velocity
+            },
+            old_runner.is_none(),
+        ));
     if let Some(runner) = old_runner {
         commands.entity(runner).despawn();
     }
@@ -858,6 +869,12 @@ pub fn impacts(
                         rider.motion_velocity = state.impact_velocity;
                     }
                     if let Some(response) = response {
+                        let severity = (rider.motion_velocity - response).length() / 25.0;
+                        commands
+                            .entity(owner)
+                            .insert(crate::biomechanics::ImpactSeverity(
+                                severity.clamp(0.0, 1.0),
+                            ));
                         rider.motion_velocity = response;
                         rider.speed = 0.0;
                         rider.hop_velocity = 0.0;
@@ -953,6 +970,7 @@ mod articulation_tests {
 #[derive(Component, Clone, Copy)]
 pub(crate) struct CrashEnvelope {
     initial_speed_squared: f32,
+    initial_angular_velocity: Vec3,
     initial_position: Vec3,
     initial_rotation: Quat,
     forward: Vec3,
@@ -966,19 +984,26 @@ impl CrashEnvelope {
     ) -> Self {
         Self {
             initial_speed_squared: velocity.length_squared(),
+            initial_angular_velocity: Vec3::ZERO,
             initial_position,
             initial_rotation,
             forward,
         }
     }
+    pub(crate) fn with_angular_velocity(mut self, velocity: Vec3) -> Self {
+        self.initial_angular_velocity = velocity;
+        self
+    }
 }
 
+#[allow(clippy::type_complexity)]
 pub(crate) fn constrain_crash_energy(
     mut bodies: Query<(
         &OwnedBody,
         &Transform,
         &ReadMassProperties,
         &CrashEnvelope,
+        Option<&crate::biomechanics::Segment>,
         &mut Velocity,
     )>,
 ) {
@@ -991,7 +1016,7 @@ pub(crate) fn constrain_crash_energy(
         forward: Vec3,
     }
     let mut groups = std::collections::HashMap::<Entity, Budget>::new();
-    for (owner, t, mass, envelope, velocity) in &bodies {
+    for (owner, t, mass, envelope, _, velocity) in &bodies {
         if mass.mass <= 0.0 {
             continue;
         }
@@ -1006,11 +1031,18 @@ pub(crate) fn constrain_crash_energy(
         let initial_height =
             (envelope.initial_position + envelope.initial_rotation * mass.local_center_of_mass).y;
         let current_height = t.transform_point(mass.local_center_of_mass).y;
+        let initial_angular = (envelope.initial_rotation * mass.principal_inertia_local_frame)
+            .inverse()
+            * envelope.initial_angular_velocity;
+        group.available += (mass.principal_inertia.as_dvec3()
+            * initial_angular.as_dvec3()
+            * initial_angular.as_dvec3())
+        .element_sum();
         group.available += mass.mass as f64
             * (envelope.initial_speed_squared as f64
                 + 2.0 * 9.81 * (initial_height as f64 - current_height as f64));
     }
-    for (owner, _, _, _, mut velocity) in &mut bodies {
+    for (owner, _, _, _, biomechanical, mut velocity) in &mut bodies {
         let Some(group) = groups.get(&owner.owner) else {
             continue;
         };
@@ -1019,14 +1051,18 @@ pub(crate) fn constrain_crash_energy(
             .min(0.0);
         // Remove only backwards centre-of-mass motion; individual limbs can still
         // swing backwards relative to their connected body.
-        velocity.linvel -= group.forward * backward as f32;
+        if biomechanical.is_none() || backward < -0.05 {
+            velocity.linvel -= group.forward * backward as f32;
+        }
         let kinetic = (group.kinetic - group.mass * backward * backward).max(0.0);
         let scale = if kinetic > group.available.max(0.0) {
             (group.available.max(0.0) / kinetic).sqrt()
         } else {
             1.0
         };
-        velocity.linvel *= scale as f32;
-        velocity.angvel *= scale as f32;
+        if biomechanical.is_none() || scale < 0.999999 {
+            velocity.linvel *= scale as f32;
+            velocity.angvel *= scale as f32;
+        }
     }
 }

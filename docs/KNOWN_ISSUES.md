@@ -210,3 +210,15 @@ are authoring proxies. No runtime interpolation or ragdoll change is included.
   stock legacy selector inputs are RoadDash mappings; Windows and original-native
   playback not verified. ANIM-09 tracks native/user acceptance; ANIM-02/04/06 and
   full V2-03 gates remain unchecked. Accepted passive ragdoll physics unchanged.
+
+- RAG-05/06 (2026-11-01): biomechanical physics is an opt-in comparison; the
+  eleven-body baseline remains default. Sixteen physical segments still feed an
+  eleven-joint skin: wrist/foot/intermediate-spine deformation needs authoring.
+  Conservative shoulders avoid a quaternion-chart singularity but do not model
+  scapular motion or every extreme human reach. Distal angular-velocity peaks
+  during high-speed impacts require subjective native review; this is not a
+  clinical injury/ligament simulation. Existing automatic recovery may transition
+  before the standalone body reaches Resting. Full race p95/multi-crash profiling,
+  Windows hardware and user feel approval remain open. Do not merge this
+  comparison PR or replace defaults without the user's comparison. See
+  testing/RAGDOLL_BIOMECHANICS.md and ADR-036.

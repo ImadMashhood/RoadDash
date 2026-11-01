@@ -348,3 +348,20 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
   smoke pass. See testing/ANIMATION_B.md for receipts and verification limits.
 - ADR-035; ANIM-07/08 verified and ANIM-09 acceptance work added. Existing full
   production animation and pose-approval gates remain open, preserving history.
+
+## 2026-11-01 — Optional biomechanical ragdoll comparison
+
+- Merged animation PR #11 at 5fac329fce868e9e8db9fd5caa930624f84b2770;
+  created codex/biomechanical-ragdoll for the explicitly unmerged comparison.
+- Investigated actual code/licenses in all five user-nominated repositories;
+  selected an original native Rapier integration, no package/source/media imports.
+- Added 16-body anatomy, safe angular charts, hinge stops, passive/active capped
+  motors, bind-calibrated pose release, pre-contact spin/COM handoff, muscle
+  curves, collision-dependent decay and natural backend sleep. Original eleven
+  bodies remain selectable with their original settings.
+- Added validated central JSON, F7 diagnostics, nine headless fixtures in both
+  modes and standalone native comparison/reset/impulse controls. Preserved race
+  controls, existing collision/ejection rules, recovery, audio and saved progress.
+- ADR-036 and RAG-01–06 distinguish verified implementation from remaining skin,
+  native realism and production performance/user acceptance. Evidence, exact
+  checks and remaining limitations: testing/RAGDOLL_BIOMECHANICS.md.

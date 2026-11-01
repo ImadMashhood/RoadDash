@@ -231,3 +231,14 @@ Python tests; format/workspace Clippy/build; 138 static Blender Action reloads a
 race smoke passed crash/get-up/run/remount twice and finish, 15-racer restart and
 five audio sinks. Full attack/tuck native visual matrix, terrain-foot fidelity,
 Windows and user approval remain ANIM-09. See [receipt](ANIMATION_B.md).
+
+## Biomechanical ragdoll comparison — 2026-11-01
+
+RAG-01–04: domain activation/zero-control, anatomical hard limits and passive
+motors; source-bind calibration; pose-hold/external torque; coherent COM/spin
+release; drop/limb-force/torso-push/hinge/8 and75 m/s ejection/road-tumble/wall/
+fifteen-rider scenarios; both baseline and opt-in biomechanical mode. Native
+comparison scene, full race/recovery and actor smoke. Format/workspace locked
+Clippy/tests/build and provenance audit required. Full skin/native realism and
+production p95/Windows/user approval remain RAG-05/06. Exact receipts:
+[ragdoll report](RAGDOLL_BIOMECHANICS.md).

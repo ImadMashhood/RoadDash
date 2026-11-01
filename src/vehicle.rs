@@ -166,6 +166,7 @@ pub fn forces(
             state.was_riding = false;
             continue;
         }
+        r.motion_angular_velocity = v.angvel;
         *body = RigidBody::Dynamic;
         let p = &tuning.presets[tuning.selected];
         let rider_mass = if r.id == 0 {

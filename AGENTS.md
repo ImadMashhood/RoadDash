@@ -54,3 +54,11 @@ in the blueprint are not installed dependencies.
   and evaluation of bounded active recovery. Preserve the accepted player feel
   and passive ragdoll as control fixtures; this is not blanket engine/joint tuning
   approval. Correct visual bind/chain defects in rendering before changing physics.
+
+- The 2026-11-01 user explicitly authorizes the biomechanical ragdoll overhaul
+  in a separate comparison PR, and explicitly forbids merging that new PR.
+  Keep the original eleven-body path selectable; new anatomy/muscles are opt-in
+  via --ragdoll-biomechanical. Run the headless ragdoll lab, comparison view and
+  native recovery smoke in both relevant modes. Do not replace the baseline or
+  change defaults without user comparison/approval. Current biomechanics scope
+  permits anatomical masses, joints, motors and solver tuning in the new mode.

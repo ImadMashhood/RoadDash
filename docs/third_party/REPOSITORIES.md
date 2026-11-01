@@ -467,3 +467,32 @@ license/maintenance risks unchanged. Native C++ is not a Rust/Bevy dependency;
 independently tested domain rules are compatible with this pinned baseline.
 Decision: study behavior, original visual transforms/clock/contact math in RoadDash;
 defer exact legacy mode/boost flag mapping and original-executable timing evidence.
+
+## Biomechanical ragdoll investigation — 2026-11-01
+
+Actual source and license files inspected for all five requested repositories;
+[full source/version/decision register](../research/RAGDOLL_BIOMECHANICS.md).
+All classified REFERENCE ONLY, with no code or assets incorporated:
+
+- bhubbard/active-ragdoll-rs (Brandon Hubbard), a2fc2f1ad8c08590c4571d5b731ac478f1a29e78,
+  MIT OR Apache-2.0. Binding/target/control architecture and Rapier adapter studied;
+  Rapier 0.36/glam 0.33 do not match installed Rapier 0.31/Bevy 0.17.3.
+- ashleve/ActiveRagdoll (ashleve; license copyright Lucas Z.),
+  749cd80dbccd73dffb7bb1d3827ad0e719b84f1c, MIT. Strength states and configurable
+  joint drives studied; Unity APIs not directly compatible. Last commit 2023-03-05.
+- sergioabreu-g/active-ragdolls (Sergio Abreu),
+  459cbab9489c7481e65bf16ac93fcfff98e6a594, Apache-2.0. Joint-space conversion and
+  modular target/physics separation studied; Unity-only example, last commit 2021-02-02.
+- AshimPoudel7/ProceduralLocomotion (AshimPoudel7),
+  8c866b44671732faa57a6df2c6cd0a52a1bc81d1. License UNVERIFIED (no license file at
+  inspected root). Behavioral study only; torque/perturbation source not copied.
+- pemmyz/js_rapier_ragdoll_v1 (pemmyz),
+  7b84ece887a0fcf2644fa1949f486fdcfe7da7f0, MIT. Capsule/hinge construction studied;
+  unconstrained spherical shoulders rejected for this requirement. Browser JS,
+  not a Rust dependency; last commit 2026-04-13.
+
+Exact URLs, license URLs, editor/library versions, maintenance dates, risks and
+actual source paths are in the linked register. All third-party media excluded;
+source permission is not a blanket asset grant. Selected an original native Rapier
+integration to preserve existing crash/animation/recovery rather than adopting a
+new physics wrapper or copying Unity controllers. No package additions.

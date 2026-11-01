@@ -1,0 +1,31 @@
+{
+  "creator": "RoadDash contributors",
+  "license": "MIT",
+  "license_copy": "../../../LICENSE",
+  "kind": "Actual native screenshots and derived comparison GIFs; no AI/authoring motion",
+  "capture": {
+    "fps": 10,
+    "fixed_ticks_between_frames": 6,
+    "gif_crop_native_pixels": [
+      360,
+      120,
+      940,
+      800
+    ],
+    "gif_size": [
+      435,
+      540
+    ],
+    "native_window_size": [
+      1280,
+      800
+    ]
+  },
+  "source_models": {
+    "art/source/rider.glb": "45a440302e28ff77dc5c9d89c9024d6aeedc2e30b3bc1edf5dfeb7fce35aeba8",
+    "art/source/motorcycle.glb": "7d66a7f8feece0345b6daac6de8e84f73d889a236fbdda5082905b759b28796d"
+  },
+  "third_party_reference_code_incorporated": false,
+  "proprietary_media_included": false,
+  "runtime_media": false
+}
