@@ -97,7 +97,7 @@ fn remember_current(mut bodies: Query<(&Transform, &mut PoseHistory)>) {
         }
     }
 }
-fn interpolate_visuals(
+pub(crate) fn interpolate_visuals(
     time: Res<Time<Fixed>>,
     roots: Query<(&Transform, &PoseHistory), Without<VisualRoot>>,
     mut visuals: Query<(&VisualRoot, &mut Transform)>,
@@ -120,17 +120,41 @@ fn tick(mut clock: ResMut<SimulationClock>, race: Res<Race>) {
 fn boot(mut next: ResMut<NextState<AppScreen>>) {
     next.set(AppScreen::Loading);
 }
+#[allow(clippy::type_complexity)]
 fn loaded(
     content: Res<crate::content::GameContent>,
     mut next: ResMut<NextState<AppScreen>>,
     art: Option<Res<world::Art>>,
+    city: Option<Res<crate::world_gen::city::visuals::ModelCatalog>>,
     server: Option<Res<AssetServer>>,
+    props: Query<
+        &SceneRoot,
+        Or<(
+            With<crate::props::PropVisual>,
+            With<crate::props::ActorBinding>,
+        )>,
+    >,
 ) {
-    if let (Some(art), Some(server)) = (art, server)
-        && let Some(models) = &art.models
-        && !models.ready(&server)
+    if let (Some(city), Some(server)) = (&city, &server)
+        && !city.ready(server)
     {
         return;
+    }
+    if let (Some(art), Some(server)) = (&art, &server)
+        && let Some(models) = &art.models
+        && !models.ready(server)
+    {
+        return;
+    }
+    if let Some(server) = &server {
+        for scene in &props {
+            if let Some(bevy::asset::LoadState::Failed(error)) = server.get_load_state(scene.id()) {
+                panic!("Required prop mesh failed to load: {error}");
+            }
+            if !server.is_loaded_with_dependencies(scene.id()) {
+                return;
+            }
+        }
     }
     content.0.validate().expect("validated game content");
     next.set(AppScreen::MainMenu);
@@ -252,6 +276,11 @@ impl Plugin for RoadWorldPlugin {
             )
                 .chain()
                 .in_set(StartupSet::World),
+        )
+        .add_systems(
+            Update,
+            crate::world_gen::city::visuals::update_lod
+                .run_if(resource_exists::<crate::world_gen::city::visuals::ModelCatalog>),
         )
         .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
         .init_resource::<crate::environment::TrackInspector>()

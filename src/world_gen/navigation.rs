@@ -13,15 +13,26 @@ pub fn clear(layout: &WorldLayout, from: Vec2, to: Vec2) -> bool {
 /// Returned waypoints are actual terrain-relative positions. Physics still owns
 /// movement/contact; a route never teleports the recovering actor.
 pub fn route(layout: &WorldLayout, track: &Track, from: Vec3, to: Vec3) -> Option<Vec<Vec3>> {
+    let blockers: Vec<_> = layout.blockers().cloned().collect();
+    route_rects(&blockers, track, from, to)
+}
+/// Same bounded navigation solver, shared by city and Valley footprints.
+pub fn route_rects(
+    blockers: &[super::spatial::Rect],
+    track: &Track,
+    from: Vec3,
+    to: Vec3,
+) -> Option<Vec<Vec3>> {
+    let clear = |a, b| !blockers.iter().any(|r| r.blocks_segment(a, b, 0.4));
     if from.xz().distance(to.xz()) > 350.0 {
         return None;
     }
     let point = |p: Vec2| Vec3::new(p.x, track.terrain_height(p.x, p.y) + 0.95, p.y);
-    if clear(layout, from.xz(), to.xz()) {
+    if clear(from.xz(), to.xz()) {
         return Some(vec![point(to.xz())]);
     }
-    let mut nearby: Vec<_> = layout
-        .blockers()
+    let mut nearby: Vec<_> = blockers
+        .iter()
         .filter(|b| segment_distance(Vec2::from_array(b.center), from.xz(), to.xz()) < 150.0)
         .collect();
     nearby.sort_by(|a, b| {
@@ -36,7 +47,7 @@ pub fn route(layout: &WorldLayout, track: &Track, from: Vec3, to: Vec3) -> Optio
             b.expanded(1.0)
                 .corners()
                 .into_iter()
-                .filter(|p| !layout.blockers().any(|other| other.contains(*p, 0.45))),
+                .filter(|p| !blockers.iter().any(|other| other.contains(*p, 0.45))),
         );
     }
     let n = nodes.len();
@@ -61,8 +72,7 @@ pub fn route(layout: &WorldLayout, track: &Track, from: Vec3, to: Vec3) -> Optio
                 continue;
             }
             let length = nodes[current].distance(nodes[next]);
-            if costs[current] + length >= costs[next] || !clear(layout, nodes[current], nodes[next])
-            {
+            if costs[current] + length >= costs[next] || !clear(nodes[current], nodes[next]) {
                 continue;
             }
             costs[next] = costs[current] + length;

@@ -1,0 +1,3408 @@
+{
+  "schema_version": 1,
+  "facade_designs": 100,
+  "glbs": 300,
+  "records": [
+    {
+      "id": "BUSS1",
+      "width": 3.2,
+      "height": 9.0,
+      "lods": [
+        {
+          "file": "BUSS1_lod0.glb",
+          "lod": 0,
+          "triangles": 23584,
+          "bytes": 5035460,
+          "sha256": "9b3315a6f3e21227bf994dd4bafffb3430cb2fc961a6c4a638188f371f4526fc",
+          "source_sha256": "1adea7ce6a1546722a226376efc3f377e64e4e81d5e7a0a74a865ec7badb83b3",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS1_lod1.glb",
+          "lod": 1,
+          "triangles": 5276,
+          "bytes": 3201216,
+          "sha256": "4410393622142c1ad90d4c8c2176a843fd86b2ee3493f7e4f1dc694a98e44c92",
+          "source_sha256": "72a045464287ae0d34df4c7a21146943216f29e5b23ee6f468efe2a1d959f037",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS1_lod2.glb",
+          "lod": 2,
+          "triangles": 852,
+          "bytes": 2135280,
+          "sha256": "d6de0f9ccee5ecc507b4bc931ecab27965b4c6a87cbbf67f6cbcc7becb387175",
+          "source_sha256": "3c062f1977935d7356156c36d0a7bb07e0a5d572bc4f550bbdeb3fda038b38ae",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS10",
+      "width": 3.2,
+      "height": 9.0,
+      "lods": [
+        {
+          "file": "BUSS10_lod0.glb",
+          "lod": 0,
+          "triangles": 22440,
+          "bytes": 4693508,
+          "sha256": "82628519241146f39c36aab813ef35a05ae323275ad2d29b2bc4fe200b5767aa",
+          "source_sha256": "d4d3f85c9e54149eb16849f289d738e4db20f96ff7ae94285819391911d5a923",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS10_lod1.glb",
+          "lod": 1,
+          "triangles": 4132,
+          "bytes": 2860212,
+          "sha256": "16246da1152b490ab190623ba14f22c55bac5e31fd76c8b7008850b47a228d59",
+          "source_sha256": "d2cac301b6bd8abaaa760d358ca5c3bdce81a0026e7d5a33398f25e71643f034",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS10_lod2.glb",
+          "lod": 2,
+          "triangles": 888,
+          "bytes": 2590104,
+          "sha256": "c93b06471823a5e6f355cc5985a00b8eba3e3538baba44dcfaee60f3f5b8f86a",
+          "source_sha256": "429b953c5ef855c4445f82aaf66dda61c265b00a1b7fc251ab058896e912e416",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS2",
+      "width": 3.2,
+      "height": 9.0,
+      "lods": [
+        {
+          "file": "BUSS2_lod0.glb",
+          "lod": 0,
+          "triangles": 27436,
+          "bytes": 5457908,
+          "sha256": "441e1753c29876b6c64b1600bf915e537c110a4cf9ed48dedee3c9fa573c6966",
+          "source_sha256": "8341fc7f85fd54a9df65d3d587126ed8ad276ace3060a8cbfceade7ff2275f2b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS2_lod1.glb",
+          "lod": 1,
+          "triangles": 3760,
+          "bytes": 3178552,
+          "sha256": "ca6fba68104d2b2da8407f8a6ab05bb35c4a11d312277e963741f0b31708de0f",
+          "source_sha256": "0c4946790688f31ffa53ae40fbe044b8c9b11ffb915fb5a8a0e2aadb64fa397b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS2_lod2.glb",
+          "lod": 2,
+          "triangles": 540,
+          "bytes": 2582516,
+          "sha256": "ef80824aeaa11289b65f1a917f741dd5f2ad51d1977c1f5ff711cdd64ff0ba7e",
+          "source_sha256": "73d8cd256b6bb85f63499114044d477545baa2df3120cac4ee0155c9297e8184",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS4",
+      "width": 3.2,
+      "height": 9.0,
+      "lods": [
+        {
+          "file": "BUSS4_lod0.glb",
+          "lod": 0,
+          "triangles": 36312,
+          "bytes": 5877996,
+          "sha256": "562e7f2ad262f543d833693bd86ce90ae8983dee02ea58aea9543c8dbcde39a6",
+          "source_sha256": "3fabfcd564f112cb441fbaf5abaa4c11f3176563bfc9a70acdd1563df511f773",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS4_lod1.glb",
+          "lod": 1,
+          "triangles": 12636,
+          "bytes": 2853964,
+          "sha256": "72bc2d2b9307395703436e126b57db65e8fb2a5db2bcf5e4970f32d67a2754e9",
+          "source_sha256": "27c8153ff9f7f0e3935554b9d841bf62ce6f3b8b31abf2ee1397a10397d1efbb",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS4_lod2.glb",
+          "lod": 2,
+          "triangles": 536,
+          "bytes": 2231424,
+          "sha256": "35b9d53d1a3373664aa2f73b9737dfce6c0c6bf42eaf726ceb7e505765de6545",
+          "source_sha256": "93108a4a23e098dc3e429f2065ae5f3e404ad4e50b78f61316af21742ed1ae49",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS5",
+      "width": 3.2,
+      "height": 9.0,
+      "lods": [
+        {
+          "file": "BUSS5_lod0.glb",
+          "lod": 0,
+          "triangles": 35144,
+          "bytes": 5619504,
+          "sha256": "aef682c9f1167c923270c3dc07df76754c6ca8d66fd3549df8f84a30d9c959ba",
+          "source_sha256": "c4e04a5ba5517d3ff8153bdd4c99107cefef3843d257a408aca5e8509bbd38c8",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS5_lod1.glb",
+          "lod": 1,
+          "triangles": 14108,
+          "bytes": 3194192,
+          "sha256": "f5d7de5e609ba95cde4bf6b62745698f90f2c8449245c23331c02e51cc9e26b6",
+          "source_sha256": "228de12add0f1d0b220b99cc8d7b4617370fe586d04cbc3ba3f791a2b223913f",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS5_lod2.glb",
+          "lod": 2,
+          "triangles": 516,
+          "bytes": 2136136,
+          "sha256": "6d1bc655ce1cc0adc34006bc66764eb022d3daa85f817903fb8490c8717e97ec",
+          "source_sha256": "138e9e3c6805c67eb3f1e8c6ee511263fadb79387a8776f0ca079b097622a035",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS6",
+      "width": 3.2,
+      "height": 9.0,
+      "lods": [
+        {
+          "file": "BUSS6_lod0.glb",
+          "lod": 0,
+          "triangles": 24200,
+          "bytes": 4841140,
+          "sha256": "0a9298d3281b5478ccdd6d8614a888835fccb5dfa90756902f6b95f2a679548e",
+          "source_sha256": "43ab6bc700075054e02247b22ab65fadbfbfcb45aad166de141b6c1cac35e7a9",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS6_lod1.glb",
+          "lod": 1,
+          "triangles": 5320,
+          "bytes": 2624744,
+          "sha256": "102cab3a01eeecabdc4620f7f896337eb633f960b17007d6ce008f51dfb0946a",
+          "source_sha256": "9ebece90395e4c7374c59cb525ff4c1ada48ed39d5b849ae1624b5c36e8e2169",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS6_lod2.glb",
+          "lod": 2,
+          "triangles": 1056,
+          "bytes": 2271164,
+          "sha256": "f3ef6aa4dd9aad1407d2dfd9e5521d133ccd1a4541f3e646255370284f257829",
+          "source_sha256": "0a2a96bc3b81285860d5d7a9286728b002367428e68db91a6e007f5f69342f6e",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS7",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "BUSS7_lod0.glb",
+          "lod": 0,
+          "triangles": 16606,
+          "bytes": 4049988,
+          "sha256": "2aeef4f46506048b6db595201b4f16e1cf92d89b9ced5eb58387ca92d76e41aa",
+          "source_sha256": "e4570fb27afd0597b485ab744faee328d5d362f3c784b06552dbb805c76ac1bc",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS7_lod1.glb",
+          "lod": 1,
+          "triangles": 4146,
+          "bytes": 2685812,
+          "sha256": "20b0b98e4085b56de6224e81faa3d57145d3c410393b2cc4e5d5ae53114e907b",
+          "source_sha256": "4e1c33830fd5f61dfe15162deb9959ff99cdc9fe786c728c8315a4af855dbcd6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS7_lod2.glb",
+          "lod": 2,
+          "triangles": 969,
+          "bytes": 2421112,
+          "sha256": "a4b0f9d39d35a00af8c4f86514f755110c05ef79c90dfc15cbbd95c96e2b0702",
+          "source_sha256": "d094ee08a8585755c30f8a50fcbbb964b41813ad20e876a1532af5719a23a20c",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS8",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "BUSS8_lod0.glb",
+          "lod": 0,
+          "triangles": 19380,
+          "bytes": 5205680,
+          "sha256": "3dfabe4b6ebcbf2c582bfa9ea246cbd614c402032e63da74c4e9a98c2fd0e9fe",
+          "source_sha256": "55a7177ee7190a4d5256ff187ffb6b5a3a4caea522b54e6120e90705d36e447b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS8_lod1.glb",
+          "lod": 1,
+          "triangles": 3272,
+          "bytes": 2898612,
+          "sha256": "4d12193cbc75627649f7fa67265a20f4137620d173b4c6b1c299fa34a2c764ff",
+          "source_sha256": "3561add9e725535d0227de0b63aa0af55d39429f16073a7df57aae74b81ca6c5",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS8_lod2.glb",
+          "lod": 2,
+          "triangles": 724,
+          "bytes": 2398980,
+          "sha256": "0cbc189fed5275828917030b149bb57967a36f77c3665848cf2a1bba46ea93f1",
+          "source_sha256": "8f0b523cd748c21e93a0186c83df4b125898ad93f309b38353fad3a2517f4d98",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "BUSS9",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "BUSS9_lod0.glb",
+          "lod": 0,
+          "triangles": 23056,
+          "bytes": 4888352,
+          "sha256": "af36531a2d75feb99fdb65e0fcdaaa95211dda20a5c72c877b8d3bcf279221cb",
+          "source_sha256": "5eca9aa2f273ee5dde19295f5912e41b9166dc069e6765ed1543c47286b29bb5",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS9_lod1.glb",
+          "lod": 1,
+          "triangles": 4340,
+          "bytes": 3011828,
+          "sha256": "355055a9bd3c6198ac29aefc82626be0394a6096119401ea7c1ab40d842c39a8",
+          "source_sha256": "953aa9a1a1af9bc11366231ea38bdab6307988ec691adf3802885f097c0a2e21",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "BUSS9_lod2.glb",
+          "lod": 2,
+          "triangles": 1072,
+          "bytes": 2452104,
+          "sha256": "259374e32d2106e1da7a2f644da97724cd51cdbac234102dea0dc2fb76cbc86e",
+          "source_sha256": "a509d51d7aad0139c1d1656bab0c7fbf59a3f0a6fba1b1a9f111f29317618a08",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CHINA12",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CHINA12_lod0.glb",
+          "lod": 0,
+          "triangles": 44234,
+          "bytes": 6918000,
+          "sha256": "7dd9c451441a8c82d25f042cdc9ea78da261ee8ce0786a4b522abcd5c690eec1",
+          "source_sha256": "d3fa287bf4f9af0ef2a7cb1958d2e4a6228735d20fdfe5c425d939103531cf12",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA12_lod1.glb",
+          "lod": 1,
+          "triangles": 25562,
+          "bytes": 5046024,
+          "sha256": "70cadcd8fe41c07b758ab42a6b1938a3bedb5ae81a6bd4d1766da7d7f2dbe7e6",
+          "source_sha256": "9250c7df2c9525259fa9fb0bda85edc8a4d4d1d7bcf0a27d6dca81ee4367b89a",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA12_lod2.glb",
+          "lod": 2,
+          "triangles": 1460,
+          "bytes": 3105020,
+          "sha256": "60b28c6d38f269aa5439ae7f9248c3424e8dc1e7fc9a35f36736a1858b974b16",
+          "source_sha256": "90e039c0eb22a800acb64916ad64e455103f17483ef54b0c032560dd22f77b8a",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CHINA13",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CHINA13_lod0.glb",
+          "lod": 0,
+          "triangles": 43998,
+          "bytes": 6881072,
+          "sha256": "f9d79ecd94863cabaafb3bc904f12484405d0c43684d7b3413cc72dbe642c6fc",
+          "source_sha256": "9a1c648c454746a3e29662c59c76ddd238c938ec853f6cab44d500791574d8c9",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA13_lod1.glb",
+          "lod": 1,
+          "triangles": 25370,
+          "bytes": 5012688,
+          "sha256": "e91a76f8e2791ca57e17a8eb74cfa744384a3e10df8b6dcb21c13095f8be6dbc",
+          "source_sha256": "78b2d098ecb83c061fb0d60f8db38eecdf588ffabf1b24a6cf35fd44786188e0",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA13_lod2.glb",
+          "lod": 2,
+          "triangles": 1388,
+          "bytes": 3082064,
+          "sha256": "b298d9da05b15fc37264ad0a6851ee6d8fd85abbbaae277624d42f3d2adc5511",
+          "source_sha256": "95f842bd48a06f68992de9371af25212fffb6e4e66c5c057e4d0475a064cb5ee",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CHINA14",
+      "width": 3.6,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CHINA14_lod0.glb",
+          "lod": 0,
+          "triangles": 35696,
+          "bytes": 6290608,
+          "sha256": "c4debffa9bddfb22db7ee69f7205f7d7c44478e13bfe8e00cb6143e87bfe5abe",
+          "source_sha256": "26d27d3c699348631d6ab2e62d04fcce9d5d2b55c0642a9f3a9bb45de40357f6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA14_lod1.glb",
+          "lod": 1,
+          "triangles": 23712,
+          "bytes": 4967784,
+          "sha256": "85771026f808267c397c674b4d219bf512ad8f05115c10b66606da2e05b1ed42",
+          "source_sha256": "356911a9bbc7f63edd0fdfe42de50dd112bf5983435d13fadc76eb5edcabaf05",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA14_lod2.glb",
+          "lod": 2,
+          "triangles": 1708,
+          "bytes": 2578432,
+          "sha256": "e3fcd331b3fe24587fbcfb4bf8e42d65b2c23fc6f1c158c1998fded2335c24ff",
+          "source_sha256": "0245420fc8a2db0715778bf1b25abfb7d17f853a3eeafcc43ad7061a6418a1fe",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CHINA15",
+      "width": 3.6,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CHINA15_lod0.glb",
+          "lod": 0,
+          "triangles": 38900,
+          "bytes": 6450252,
+          "sha256": "059c8a568c6c8413e2f8fa99dab3e2bce07091355ac3c19cd2caa3136d101b4b",
+          "source_sha256": "a9e613b683e9ce00a54eee7408c350fc7544d0e16a4b1541ae9eb08ff39ff441",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA15_lod1.glb",
+          "lod": 1,
+          "triangles": 17984,
+          "bytes": 4394676,
+          "sha256": "950ce8bd3227cda7f9bfbfa8796466807ab117fa90ea12c2234bcf93c59375cb",
+          "source_sha256": "bded2b7ad39053409b6ebd50a28f39eb97395d83f4a72e9b98b30816efef322b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA15_lod2.glb",
+          "lod": 2,
+          "triangles": 1600,
+          "bytes": 2749192,
+          "sha256": "e42b87eb8e5ec72aaae5b3c9369900ca8ea8f5236be547bf2e8021576639b35c",
+          "source_sha256": "f9826643ae153749b6bbad5b468c0763487e0b8703754e0107de06d22533e471",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CHINA16",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CHINA16_lod0.glb",
+          "lod": 0,
+          "triangles": 48476,
+          "bytes": 7877236,
+          "sha256": "8f14e665ae57847111f084a8018f7e35e414f13f912632964e693fc9d88a6ed0",
+          "source_sha256": "d91314797e3925c9acdfa8a8d02b720433b139c0e340d582ac099ce9c8d5a041",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA16_lod1.glb",
+          "lod": 1,
+          "triangles": 23444,
+          "bytes": 4852704,
+          "sha256": "d85ec033142add43aa4aee4bead6309c42a625fb7de14c36e0c4aa058ba963df",
+          "source_sha256": "c71c2eccc684acd22147b4424e021f266661dc0bf4980c14b54afd3029f7f495",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA16_lod2.glb",
+          "lod": 2,
+          "triangles": 1428,
+          "bytes": 2772580,
+          "sha256": "1727b3a4e64a224969328bf34aca5621109e85382067e092b057bbd5b8f150b9",
+          "source_sha256": "a6270d39d349137d4b337657bb4a949fedcfc66cfc703840c1095931d404e508",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CHINA17",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CHINA17_lod0.glb",
+          "lod": 0,
+          "triangles": 40808,
+          "bytes": 6911628,
+          "sha256": "78790facae518bd460c36b455a0250e8961f52f00b3e30258acd340ade5c6b4b",
+          "source_sha256": "2d4d54192ad7ba1d15c019f2e0e28203bd83f9dd8ee64d13fbaef95166319518",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA17_lod1.glb",
+          "lod": 1,
+          "triangles": 22312,
+          "bytes": 5054068,
+          "sha256": "f54e5207657d479a984638395870449e925a49abc4ca5df1e62a43763cd35750",
+          "source_sha256": "8952275c63b571986dced4ec7155549fded240e55b35ec3932a22700be732442",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CHINA17_lod2.glb",
+          "lod": 2,
+          "triangles": 1420,
+          "bytes": 3084540,
+          "sha256": "f710f5c73385afe7a7871b0fec78336109a601698774b6962ad4f611ed1ac671",
+          "source_sha256": "1f111825fb66257957750ba31da4026a1b5707e3a0cffd15cc54237a6db52b22",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA11",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA11_lod0.glb",
+          "lod": 0,
+          "triangles": 18772,
+          "bytes": 4206136,
+          "sha256": "28bcc9a03fc19527ae52cd1cafbca56b7bb9879e1651744a474074cc835840e9",
+          "source_sha256": "e83502c74a4b54a144d4d8268bc671e1c94b38cbfb2efa3c0421b42bcd2a0662",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA11_lod1.glb",
+          "lod": 1,
+          "triangles": 5976,
+          "bytes": 2815392,
+          "sha256": "2f682d00a1c0a335fe291bd4d10fa01724f307d604fa28b6f7e53211a5cb10af",
+          "source_sha256": "9f9167baac577c16a7892a0d5110659fbfdfa79617290b164a80d22e191f9545",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA11_lod2.glb",
+          "lod": 2,
+          "triangles": 1164,
+          "bytes": 2131980,
+          "sha256": "62388e3cec1bfb1d5ad455db6da1d525d2de64592c2a57b90faa751aed36f38d",
+          "source_sha256": "2c4e2f95cd11f8175c69b80d0912eb58da40c5abb01c0df7b6a35874adf856f5",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA12",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA12_lod0.glb",
+          "lod": 0,
+          "triangles": 20392,
+          "bytes": 4418816,
+          "sha256": "0c889a5b5d409bd5617962c9943f763feea50ad31e0b828539af2533b9f79376",
+          "source_sha256": "2f610f89a31de3461e2b81259dbbebe8248e3b5e3d534ca7427cda060e9aa499",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA12_lod1.glb",
+          "lod": 1,
+          "triangles": 3316,
+          "bytes": 2369768,
+          "sha256": "50fb1a7ec356545d02769c698165c9803415a4b978ee16cdca37729c40551bcc",
+          "source_sha256": "5ae67a991858abfe0beeac9bf46faa7ca98d74d639b8a034e07bb799191ed363",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA12_lod2.glb",
+          "lod": 2,
+          "triangles": 736,
+          "bytes": 2155408,
+          "sha256": "26190e4095168a40000952e9c1d4e2e53afb9b5251a6e64c3e8a6e1b04e61de7",
+          "source_sha256": "b101017f6f3244c5fff066e66296364dcd97a83b167431e7b1d329758b8a9ebf",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA13",
+      "width": 3.6,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA13_lod0.glb",
+          "lod": 0,
+          "triangles": 16260,
+          "bytes": 4004564,
+          "sha256": "46c099c700ad6afd803dfb3d14638883b7ec93cfdc689f2ea8234c54236d6594",
+          "source_sha256": "3f49b343d4dd240d32c1ca0708461d70be3b146f02815f10928165ba7702c9d9",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA13_lod1.glb",
+          "lod": 1,
+          "triangles": 3684,
+          "bytes": 2631820,
+          "sha256": "42f935d4c868f604577d4b3099ab5563f089bbcc693e7ca72c0669cdb32d1322",
+          "source_sha256": "2531450b29f38cce1a1b3b49754b6f7086f58121f9dbe7682ee0ec084b525753",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA13_lod2.glb",
+          "lod": 2,
+          "triangles": 868,
+          "bytes": 2397748,
+          "sha256": "146b96e0f1b824f650ce31439cf16beefed450d024e552c9b8531232f6b2ea24",
+          "source_sha256": "29e27b46099a356059237e464c60b6750ea98a575b3dc76c1dc6389d5bc8d67c",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA14",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA14_lod0.glb",
+          "lod": 0,
+          "triangles": 16244,
+          "bytes": 4027944,
+          "sha256": "218ffb6c702146189e0911e988296178fc61d9935702000a1faef4c4106c7595",
+          "source_sha256": "9d7798ef46924c86a1b3dfad295083cd71545f5502d84df3b44e0ef1b852e91c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA14_lod1.glb",
+          "lod": 1,
+          "triangles": 2568,
+          "bytes": 2565176,
+          "sha256": "8fa23f8d9d85a8455292d41238739a1e2cae5b69713cff5deca660f0f3edc3b3",
+          "source_sha256": "f46869473d7d10593bc884d8da8ab8cc8bd6425d834b36dec0fc3815392379f2",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA14_lod2.glb",
+          "lod": 2,
+          "triangles": 616,
+          "bytes": 2402900,
+          "sha256": "cb6ad1ff04643a89f232d87ef3581dad420f3c86182cd32607f5ad5138524b0d",
+          "source_sha256": "c8fa5dff2a4ebeaf33c8d0c13863f78515c85079b8f604135c3d6fd206daa7dc",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA15",
+      "width": 3.6,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA15_lod0.glb",
+          "lod": 0,
+          "triangles": 20276,
+          "bytes": 4629424,
+          "sha256": "1bf7fda3b6d0df1de90843099240bacd91f9b996143b38ba24f9c5e586e4764f",
+          "source_sha256": "acab50509ffce190d06bebcbb8764c81a70196298748c397d588fa0467b03757",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA15_lod1.glb",
+          "lod": 1,
+          "triangles": 6204,
+          "bytes": 3134244,
+          "sha256": "5552f6aaaf9ada95867b5d9acbf2442fcb4c62f23b53010c3350e7129293c85a",
+          "source_sha256": "fc03abfa62d18ff1b2ccb72ea9f81edd7d1c13d76f455f91ba9aa027d3aaa2b6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA15_lod2.glb",
+          "lod": 2,
+          "triangles": 1204,
+          "bytes": 2435456,
+          "sha256": "60302ae33272aa4d74fb843e1c0e51b61451b6004e6c6b101ee2b6ac2506431b",
+          "source_sha256": "f8a852a23d1c04fdebace51636b8ad58cd49517852ad63ea1fd4e7d265aa2aa7",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA16",
+      "width": 3.6,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA16_lod0.glb",
+          "lod": 0,
+          "triangles": 16752,
+          "bytes": 4036000,
+          "sha256": "e40cd71c9f3e6e5288d938e512b7cf17b03d96e58c8a89c036a19b119ef8eb60",
+          "source_sha256": "5ef58e3927a3ae6dec8cfea525011ac587b85f3ce8a13b8897b1a727f9f19eba",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA16_lod1.glb",
+          "lod": 1,
+          "triangles": 4132,
+          "bytes": 2659660,
+          "sha256": "11f8aa45bd1cfe60b1adb1195b5e652584cf375eda6ef2f23d3d333fb0bb14b5",
+          "source_sha256": "f814e5421c16d2170d45eac8b0d7eddf21e082768c32a66819f793bea2c64687",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA16_lod2.glb",
+          "lod": 2,
+          "triangles": 996,
+          "bytes": 2398756,
+          "sha256": "aef2e523a69ab34661804d9ab93b73e35407264b0ba5bfb461a9a4f44ea1cdbf",
+          "source_sha256": "9b36a35337b6245e1937e00e4b67e47b9c1e1fb3579b82759a4f41eb0b6bda9f",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA17",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA17_lod0.glb",
+          "lod": 0,
+          "triangles": 19970,
+          "bytes": 3763936,
+          "sha256": "9ae99ffbbbd9c51a7eba964e316c570a9038f56998f7e003e4f4a406f3b693e1",
+          "source_sha256": "074e392de8bebdc669e95eb971cdce5a1b978d277980d54d1f1ed4fc2e7380d3",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA17_lod1.glb",
+          "lod": 1,
+          "triangles": 6510,
+          "bytes": 2655364,
+          "sha256": "407a452afdde9a4b0d7c36e90bd9e05fd3deef93dacb3e6c4adec3e2cc788251",
+          "source_sha256": "65f3852bc334cf4582881f2c10c392a3f95a51dcf0d8aaed7a157ed9816737b6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA17_lod2.glb",
+          "lod": 2,
+          "triangles": 1233,
+          "bytes": 2217216,
+          "sha256": "9b4edcc2de1f9b4176110174369c66cb1424965fd06b1a5f4ee7d7d52f04c6ef",
+          "source_sha256": "bee45ba0a08775f67f0597040ca341c2eb3170ff29d6c0def9ddcef3a0aed44d",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA18",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "CLSTGA18_lod0.glb",
+          "lod": 0,
+          "triangles": 23708,
+          "bytes": 4273248,
+          "sha256": "bca3c34282320cad6f83d0e49f6ede228edc66fb4ef8582affe874398a061bbe",
+          "source_sha256": "f815d37ef356a4c27c88441aa63fe9b934f9ba0fe9bd8cbb8d0674fa89981c37",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA18_lod1.glb",
+          "lod": 1,
+          "triangles": 2792,
+          "bytes": 2217700,
+          "sha256": "6c1c71c90c8a35e0f3d1d1fa0098ce69ce6f03b066f55853e694fc5ca393668c",
+          "source_sha256": "1b3265ad789c16a299b1c3844f7f5f6aae618b198247b74ba449592050c26f16",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA18_lod2.glb",
+          "lod": 2,
+          "triangles": 664,
+          "bytes": 2040080,
+          "sha256": "66ab54fc01870d338563f561377523f34f6720524a2a0688b60c6c82ae1d9a99",
+          "source_sha256": "d2660c564feaffe665426609c95126b188f2e106997381216134882e87b5c0d0",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA19",
+      "width": 3.6,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA19_lod0.glb",
+          "lod": 0,
+          "triangles": 19714,
+          "bytes": 3776552,
+          "sha256": "2712197a376b57760a0e13eca84ae6605189fcf1a307e14e2e2d12039d75f4a9",
+          "source_sha256": "7d397ef9ec867f7bbb6f5b2b79f0b94cfd5ae68a170974a202a02c25679beaad",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA19_lod1.glb",
+          "lod": 1,
+          "triangles": 6682,
+          "bytes": 2702820,
+          "sha256": "b4a154aeebb55e4b63471b48951c1059bc0ab4defd3e058dfa71c3dd5ec3c2ef",
+          "source_sha256": "6f4537fee11cc0cd57b2030d8abcd126354cc7b3481a08d6fb05cf571f17be2b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA19_lod2.glb",
+          "lod": 2,
+          "triangles": 1641,
+          "bytes": 2282912,
+          "sha256": "5f346b8a1e2aed1f5878f11e1b1dfb00af8522a6c6110328ce777328bfa5e09d",
+          "source_sha256": "19c2b0ac364f86a932df9766d47512d911a1edd660c70c195dcb4fa250bd92bf",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA20",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA20_lod0.glb",
+          "lod": 0,
+          "triangles": 11624,
+          "bytes": 3383504,
+          "sha256": "2e5752e235bc3dce7396076b43b7d2334f71787bfbef2873cefead12139585ac",
+          "source_sha256": "e7bfeca68a36461c54a6617d741778afadebeac1b6010e40e40acff643b75908",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA20_lod1.glb",
+          "lod": 1,
+          "triangles": 4108,
+          "bytes": 2427660,
+          "sha256": "d0f9dd094f72fd63badb445ef325ca310b2d564608ec1974374000fe246d9cad",
+          "source_sha256": "9e7139b6ce6324d15b4ac374ef0775b9419d13f3a7c55b7cbc5a4d57e0a2a5f0",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA20_lod2.glb",
+          "lod": 2,
+          "triangles": 724,
+          "bytes": 1859608,
+          "sha256": "fc5f3c150bdaf0cdfc53752c8a88d8f692f31034909af67fe010e9b5bbf90f10",
+          "source_sha256": "d465974d5b1f54957a31711eec4a9c5d5d3b78b066e7b96962a9f7c984e8bb19",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "CLSTGA21",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "CLSTGA21_lod0.glb",
+          "lod": 0,
+          "triangles": 18544,
+          "bytes": 3653012,
+          "sha256": "becb166d1114a909851eec9703661987ac477c8f3bcac1e40caec506b0cd9e8b",
+          "source_sha256": "8cd31602f60f03074b091a081f33faac6b7b7ba485a8d81b42f8c8dc35fd3c73",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA21_lod1.glb",
+          "lod": 1,
+          "triangles": 5968,
+          "bytes": 2618484,
+          "sha256": "7a3fbd8fac94c95451d2fa83ebf4895a7176c890a20088227474f82b176854b6",
+          "source_sha256": "0d8cd5705249292beb7bda82299e14ae42ef5c531d9244766a7ee66f73440282",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "CLSTGA21_lod2.glb",
+          "lod": 2,
+          "triangles": 1108,
+          "bytes": 1930420,
+          "sha256": "14b5abcbbc86a2bf7f0e840710094359004d1786e9c3a7bcf57bf0a8e50ff800",
+          "source_sha256": "9e1a6090e618e17679aa3b46430fb6ef0b124bdcb884895e60c7110c071e1ff0",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC1",
+      "width": 3.2,
+      "height": 14.5,
+      "lods": [
+        {
+          "file": "OFFC1_lod0.glb",
+          "lod": 0,
+          "triangles": 27156,
+          "bytes": 4654068,
+          "sha256": "082f6a73f343758d61ac8912ece846510b7ffa53ef317b3821373e145ff820a4",
+          "source_sha256": "8752551c9bb5f86719e4277afd743a44695f2e68a28a8269767a1222cc79e519",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC1_lod1.glb",
+          "lod": 1,
+          "triangles": 12940,
+          "bytes": 3144792,
+          "sha256": "643514d99ee7b0de48aa99774803d5d36d019fa4b2c78a4cc6838881fe3930e0",
+          "source_sha256": "e06178c938eda043e9a339f21798d1fab57f1bbcd7e5f02cfb349f62b7363727",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC1_lod2.glb",
+          "lod": 2,
+          "triangles": 1984,
+          "bytes": 1969068,
+          "sha256": "85efa937df22804245f2582c4cff6e9391fd87fbab9e1c44c826f86e0361d124",
+          "source_sha256": "ee39eca8f34fe0d333c025aee5bf09dca3cee589d6a16fa375cd47df6657d0d2",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC10",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "OFFC10_lod0.glb",
+          "lod": 0,
+          "triangles": 22432,
+          "bytes": 4168844,
+          "sha256": "3c9abe40ae37e543e93f406ee6d8d2ea80cfb7a21ebc81ebfc139b42c8675399",
+          "source_sha256": "eb875f769e021e52276dbe39e0c25733ec646da50447145992bef09467b8168c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC10_lod1.glb",
+          "lod": 1,
+          "triangles": 3100,
+          "bytes": 2241948,
+          "sha256": "768bff2da8032afa1cfa87d59c81caca04353f848b111ea9dc415f6e402d592a",
+          "source_sha256": "88a047d489985d81b6f4957c9c0de744809053a3021948b594f252d1d3a339e7",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC10_lod2.glb",
+          "lod": 2,
+          "triangles": 760,
+          "bytes": 2047380,
+          "sha256": "f99a9e177f40a6056f27735046ee54180454506408b6fc0586dc2242e4940f22",
+          "source_sha256": "5c6b8bca94ab8248256bfd0fed2263dc4587683134fc7d9590c7ed9bfc267106",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC11",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "OFFC11_lod0.glb",
+          "lod": 0,
+          "triangles": 23208,
+          "bytes": 3964648,
+          "sha256": "5a5ba17532f528ca5b372fd92575852f364752d25ec3fbb16145ee4b8ea311a0",
+          "source_sha256": "666f468a36d42c57243a97b02cea031a37f81228233ce75e9d0f5e774f8b2028",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC11_lod1.glb",
+          "lod": 1,
+          "triangles": 3964,
+          "bytes": 2382192,
+          "sha256": "858f1121680fb26f55264003789c963b908b26223168a614dbd91cf9482c537f",
+          "source_sha256": "844d4dc8c0486a05ba270fb59191662a6f44cb5187ae4d4bf49cd02b63dc7617",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC11_lod2.glb",
+          "lod": 2,
+          "triangles": 856,
+          "bytes": 1838216,
+          "sha256": "7a38d0f3bef7cb743e1ce3a89541d33c92bd62fbc935a1dd9f24f509f1990c80",
+          "source_sha256": "50141a5d0e4f52c66e980d204f7dcceb331fad337ab3b66b725b056201828913",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC12",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "OFFC12_lod0.glb",
+          "lod": 0,
+          "triangles": 23656,
+          "bytes": 4000744,
+          "sha256": "3af77619af8d0b1d4508383276dd4c0a65a421d9ebfa9334ad6ec57e2a5ce994",
+          "source_sha256": "10f98175c1b237c70aa40e9745caad77c79c94a0278e88770deb03682092fbbd",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC12_lod1.glb",
+          "lod": 1,
+          "triangles": 5292,
+          "bytes": 2490292,
+          "sha256": "0b58ff6b34b8aa934f2cc909de7229b30345cbcbddd30d7c92dc19fb2675fde6",
+          "source_sha256": "e86dba94ff41224f207af8bb6c86e4b4c71dd313e6291ecf2560b554a65bae37",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC12_lod2.glb",
+          "lod": 2,
+          "triangles": 1216,
+          "bytes": 1865592,
+          "sha256": "60d38fc92f573d4a011a68a2997a6e73119fc634eb7d811c4193f8524d9227c1",
+          "source_sha256": "178725dd2307fc26f9997499a90dc5a701fe63481d67ece5406f0ee3bb581e2f",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC13",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC13_lod0.glb",
+          "lod": 0,
+          "triangles": 31716,
+          "bytes": 4374780,
+          "sha256": "46ba8c94ec69a5b9cb8a88cf37eb63b712b1c78b9c644d10dcabed2fdb806712",
+          "source_sha256": "74e86b326bbed2ef892f9202ecd43b085edef436321404c2f0e2c52d79230e37",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC13_lod1.glb",
+          "lod": 1,
+          "triangles": 7168,
+          "bytes": 2356948,
+          "sha256": "58e7c157d07f22bf4a9908647d30a3dedef98d6aff1bd68c26c36c9ad2e04112",
+          "source_sha256": "ed120db84aea71460aa5071653268f54ed373fd56a52ccc3477f68e28b2314bb",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC13_lod2.glb",
+          "lod": 2,
+          "triangles": 1240,
+          "bytes": 1867428,
+          "sha256": "386afbe3d7f171546e9421c1811cfc893cbd24c7331897e5f37eca08ac875916",
+          "source_sha256": "ea8ae2ef7c555273ab5ae635f8297139ae4ffc79ac33d5eeaf217096005584ba",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC14",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC14_lod0.glb",
+          "lod": 0,
+          "triangles": 29120,
+          "bytes": 4639124,
+          "sha256": "0ea06c7b9437de6b35a376e65cab6e15232ef6ff111fb02de42d0e08a2238e17",
+          "source_sha256": "94747c0f817f3d4b181df8747c6e194cc83881c14abf557cf200eba846b42072",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC14_lod1.glb",
+          "lod": 1,
+          "triangles": 4748,
+          "bytes": 2298452,
+          "sha256": "a3918b414343d9f2200053a1758c270d5798d6779ff12f5174c615bf7d4e8a68",
+          "source_sha256": "8fd1de0889b9ecf9c5b89ff6fdc2d735479e50f8a624416b6bed2fa3eb06620d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC14_lod2.glb",
+          "lod": 2,
+          "triangles": 1276,
+          "bytes": 2009680,
+          "sha256": "39192ed8872d66c21489b506a443b9707978fb89351d2d7ace7afe5e70ec41b9",
+          "source_sha256": "0a267b45015066b73f34d71e581f7663d43b97f54639dabf6212967f8cf9e333",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC15",
+      "width": 3.6,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC15_lod0.glb",
+          "lod": 0,
+          "triangles": 31216,
+          "bytes": 5227044,
+          "sha256": "6c7f9a878fd8e75b37d701b723768f4ebd2b6a6f63ab1cd4ab8888d9a951dea6",
+          "source_sha256": "939423317cbab4aca42d278cbafafc8e38ee896a1930c0954b9f6c2597eb4625",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC15_lod1.glb",
+          "lod": 1,
+          "triangles": 7548,
+          "bytes": 2943952,
+          "sha256": "70e3e80bc0fc252eb100772372ad84a7ae7fc56990a6450299f8018e1677b130",
+          "source_sha256": "759062c58e866af74324cde53f1cb2f961184337be510f563997fb5caefe508e",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC15_lod2.glb",
+          "lod": 2,
+          "triangles": 1828,
+          "bytes": 2182804,
+          "sha256": "3b489e68d6ef294cb3a06fabad4c214e39d7a8c21f71ede48513511ae6f62dc6",
+          "source_sha256": "7d3bafb0970e32f77edfd214d05a0d0f56a429b11e49814dec93d83f769e9905",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC16",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC16_lod0.glb",
+          "lod": 0,
+          "triangles": 31848,
+          "bytes": 4424704,
+          "sha256": "e70306d0e79f30f392f6a0bd385a8e6ab3ce4bfd59a4ef5cdfd8d80bb8ce486d",
+          "source_sha256": "b0af9de7169599bbfe3b29205df03712f71a86fb86fe77ed2efac39d295bce15",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC16_lod1.glb",
+          "lod": 1,
+          "triangles": 5892,
+          "bytes": 2292632,
+          "sha256": "53774c4b767a957fdf5262846c8f0d35c7e04f8ad141f2ce27b257decd0ae3b2",
+          "source_sha256": "f1a439fd152f8e99d7bb5f23a11c06dd6e15de400d42264e5e278f4b7469203b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC16_lod2.glb",
+          "lod": 2,
+          "triangles": 856,
+          "bytes": 1876592,
+          "sha256": "47f2c20ada6135660075f6a5fa7bdaf89d85a030962526662e8812b89165fe08",
+          "source_sha256": "ba070eec2aef4892736ddb69600a473074b7bb886fcf5ee1748a08ea7a298ccb",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC17",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC17_lod0.glb",
+          "lod": 0,
+          "triangles": 30468,
+          "bytes": 5158240,
+          "sha256": "c35021e7fcee83958ee94836d6f3c41924b2a7dc5f669e2709a1589a0c14435d",
+          "source_sha256": "dad6760411d56b294680a22a9ef68fc405810dfb7a2c819cb77692f80724f5d3",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC17_lod1.glb",
+          "lod": 1,
+          "triangles": 6008,
+          "bytes": 2810352,
+          "sha256": "9b3e3187f6fe68bab241db0d562527ccad6bbd4df81f3e4ab18ed709beff9a0c",
+          "source_sha256": "af76ed5a85f82ad840b542347eb65ec93661b7054bea41ac4c62afcaff3255ed",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC17_lod2.glb",
+          "lod": 2,
+          "triangles": 1444,
+          "bytes": 2145256,
+          "sha256": "4dcedd10f42a9ab38a53443667f7be4aa7ff59dcad8f747699c806ce615b8530",
+          "source_sha256": "fe6166f6c3709351f71f6d904626d922d596f2ff80bf8e450b42b151fa36141f",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC18",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC18_lod0.glb",
+          "lod": 0,
+          "triangles": 30820,
+          "bytes": 5196192,
+          "sha256": "85cec0a9bb05e1fddaa3ffb2095ee7ec2693fedbcd9c875a74f24f9fab0bac6e",
+          "source_sha256": "06a9d4b9d2239648e17dce05a44e50f69d893cfca28bbda7b78cd97a689e0c5b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC18_lod1.glb",
+          "lod": 1,
+          "triangles": 4864,
+          "bytes": 2725896,
+          "sha256": "d7609a7b974c57e0791f5f832a69119d63e2cc4d25995a900c8211fb3c35134a",
+          "source_sha256": "9258fae099c657e9a14d7bb765aabda1f17c9548826fbb71f18ab287caf5dcd3",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC18_lod2.glb",
+          "lod": 2,
+          "triangles": 1144,
+          "bytes": 2130804,
+          "sha256": "80c8e8beed6848dfe3c6ae418c6e51f498e2f6bb5c8c541a9fb7a35ec5a6f883",
+          "source_sha256": "d9c23290b4fc981b1e4b3444db8bbae27e02f352084f75f7fadb782021a60d24",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC19",
+      "width": 3.6,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "OFFC19_lod0.glb",
+          "lod": 0,
+          "triangles": 24868,
+          "bytes": 4421260,
+          "sha256": "3ba252b19074bf95f98c3f4e2c1c1ebeb5eeee89e403b647ba619bed9dcec721",
+          "source_sha256": "4501e2358fbffab5643755b8e3e195464459bbad031e701fa52fd5e702f2d01c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC19_lod1.glb",
+          "lod": 1,
+          "triangles": 4832,
+          "bytes": 2437700,
+          "sha256": "af68ad3ba0890f5e2103668a1ef0c77367a105be3818f4405b4b315a02213b25",
+          "source_sha256": "3af6d5d36a2fe2a12e5a4383917711b3df7418f088fdccd01b736bce3a7d005b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC19_lod2.glb",
+          "lod": 2,
+          "triangles": 1192,
+          "bytes": 2134428,
+          "sha256": "1bb31a24588e6007433e38f197c9db01dc5fa1d98bbfed0fa6a7f9ae1b14ffc4",
+          "source_sha256": "a79f3cf8b2d51b63517d1afdaa8eb00e854d11793c5d02df3de2a3a25d1db20c",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC2",
+      "width": 3.2,
+      "height": 17.1,
+      "lods": [
+        {
+          "file": "OFFC2_lod0.glb",
+          "lod": 0,
+          "triangles": 51028,
+          "bytes": 6280464,
+          "sha256": "b64297f224ac07aea388874b0d9f1f2eabe592bcb4e3ffc07539f3097654b8e2",
+          "source_sha256": "8afb2ce8ae41630bb8bd67227c4454588884a64841cf4b9c104deacbd012c763",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC2_lod1.glb",
+          "lod": 1,
+          "triangles": 14524,
+          "bytes": 3281548,
+          "sha256": "60168a8b32eadf447bc6a2ae7ccd57e6dddcfba740ce991b72ebf9862e8424aa",
+          "source_sha256": "8084fd22d21d7e51c3f6ae865cb89ff501f58e441b6cc18fdbe24651ce44f9b7",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC2_lod2.glb",
+          "lod": 2,
+          "triangles": 3832,
+          "bytes": 2102816,
+          "sha256": "f9a66a7f7308a4bc6b2cdfbe2d3f82f9b35d1985aaa9891fa509fb7fd6c8c83b",
+          "source_sha256": "81d59e5611025a8667a0317c75084543bb3a9b7582ca6846b6623f5f0a944b00",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC20",
+      "width": 3.6,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC20_lod0.glb",
+          "lod": 0,
+          "triangles": 30704,
+          "bytes": 4899152,
+          "sha256": "c7b31a5f1318b86414d75ddabc4a6524beb127d4b10ebf814beed4ff5065f580",
+          "source_sha256": "08d6fe96297aeabd0c8308bb67484ef1b05b48629d4b9aeb0c9621288d6056b8",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC20_lod1.glb",
+          "lod": 1,
+          "triangles": 6816,
+          "bytes": 2598056,
+          "sha256": "3e8d2eb65d2c2a9072d617e3e4649832b522a8efaa4612fc4a131f071ddcfa41",
+          "source_sha256": "6167e495f59ab1cd2e6c6511afb02c5375cbc69e084a46c325259fb5202ca31d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC20_lod2.glb",
+          "lod": 2,
+          "triangles": 1768,
+          "bytes": 2178248,
+          "sha256": "36e615b36cf884b9ffa38b48553c2cd009d85d3095e30aa1bc474eedd78abad2",
+          "source_sha256": "08209b7908dd9b0626c8e58ba9f086426871e83b2d974407cdf418c8c332ee0a",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC21",
+      "width": 3.6,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC21_lod0.glb",
+          "lod": 0,
+          "triangles": 33608,
+          "bytes": 5136740,
+          "sha256": "bf65bb3a31fb65a574974a751cf169ef7837d8aeeb6f8a3b33aea0a7c184a4e4",
+          "source_sha256": "97de74e299ccc7cedc6a70e73154f11ab6c152a79e6baaa5c6912b8056bd8139",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC21_lod1.glb",
+          "lod": 1,
+          "triangles": 7080,
+          "bytes": 2619648,
+          "sha256": "72c4c10ffabaacad6227a1646ed5b1414c5c33bbf49ab1ee1a98a0cf77262e09",
+          "source_sha256": "994b708fd533c5ce7fbfdad59f77ce057072e4b587b08a14b57ce866d313db16",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC21_lod2.glb",
+          "lod": 2,
+          "triangles": 1876,
+          "bytes": 2186456,
+          "sha256": "81d13d7589569722343138f4428a92846284adf72026b28aa9c3f5d5bc996281",
+          "source_sha256": "b73051fa7c999ef3f597a3b64bfd3e0d0e6bf989a6b285b9570a2ef8948a53fd",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC22",
+      "width": 3.2,
+      "height": 14.5,
+      "lods": [
+        {
+          "file": "OFFC22_lod0.glb",
+          "lod": 0,
+          "triangles": 41956,
+          "bytes": 5524920,
+          "sha256": "f2d6e9b7b9be5fc14dad22a27a2748e57a1bb62bf625c1c9fdc99bc47bb22791",
+          "source_sha256": "fa68514ee0951eef523a13aa72a976c636aa6423719a6288ec9feb0f489febbe",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC22_lod1.glb",
+          "lod": 1,
+          "triangles": 9040,
+          "bytes": 2820936,
+          "sha256": "b6b642d2eb414887493c63d0f43893b04aae270cf2e6187e1b596e29d4e55247",
+          "source_sha256": "62e124773d748aa88bd35524b92c8625af1415a752b2102584f75c5a35fb011e",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC22_lod2.glb",
+          "lod": 2,
+          "triangles": 1096,
+          "bytes": 1894832,
+          "sha256": "a5c1adbcf7fad060913de30d72477eb59204cdb1d681e599c6da9fc82a2fc4a8",
+          "source_sha256": "86936acfa4435ecea2fb65940d9b9b5fd8b3d80b72f8b97bd639ffb7dac44cb4",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "OFFC5",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "OFFC5_lod0.glb",
+          "lod": 0,
+          "triangles": 32448,
+          "bytes": 4721444,
+          "sha256": "7e818497054a99ec2f4142c0d9a109dacbabb96009b4ad046ac1c60a23222595",
+          "source_sha256": "bd716c4e238a1db1375e0b93fd43b0401300dd5216836cc7c0dfc48915b5ca38",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC5_lod1.glb",
+          "lod": 1,
+          "triangles": 4556,
+          "bytes": 2430012,
+          "sha256": "e1e999a7aa4fad4320bcddbbb70be483ffa5d991d3ca1e64ee09d81f66939c31",
+          "source_sha256": "3c9f91ffc75b387fdfff0d93ffd0e7bd4327e883eb58bf45263ba125a63f7577",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "OFFC5_lod2.glb",
+          "lod": 2,
+          "triangles": 1060,
+          "bytes": 1853736,
+          "sha256": "efeaaccef6d8f52b15e6d4f1f1432edba7f1f3053367be247016847c42617897",
+          "source_sha256": "7d51179722d816c9c876a38d6862aac4d42a9f980f9425e3bad56f2468478f13",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN11",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "RUNDWN11_lod0.glb",
+          "lod": 0,
+          "triangles": 22880,
+          "bytes": 4250928,
+          "sha256": "06015d6d23f2a97d12a9024cf3fb2a87ea9cff0252ce519bf18c92984da13002",
+          "source_sha256": "df791fc24646d17517dc5fdc9ffb233356679127090db1b4936cb636da4ea945",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN11_lod1.glb",
+          "lod": 1,
+          "triangles": 3504,
+          "bytes": 2320420,
+          "sha256": "507f31db5f030531e304fd3ba1bc748cb067cee12252c375c924b1c8ca864e39",
+          "source_sha256": "6593d26299eff2283990a6168f8d7fa060354dfd94d2a6227644e3744678b8cc",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN11_lod2.glb",
+          "lod": 2,
+          "triangles": 876,
+          "bytes": 2101728,
+          "sha256": "06a4cc47e19d23f751ab39f9f4a544df6c755e79e7043b54c1dd98e91d78e97b",
+          "source_sha256": "a9c888edf574e6fea0e31af02eafbde9bcf09d0e6f6421ca24745b726723f7d9",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN12",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "RUNDWN12_lod0.glb",
+          "lod": 0,
+          "triangles": 23104,
+          "bytes": 5214660,
+          "sha256": "e01cc937d5d1701059003a12784c80e6a490289c33ff57e0fe917dc9d80e6937",
+          "source_sha256": "4b79d9d4c462018181f33897fdcef37cb3a47d49b2493ca149a5083a86661e74",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN12_lod1.glb",
+          "lod": 1,
+          "triangles": 5252,
+          "bytes": 3407900,
+          "sha256": "312d331e4d9740ca8b27dc0de020ad6282d9f35ce60b3e2ae84b89ddbcd39408",
+          "source_sha256": "faa07f5825fa08e6ae1556e4e0a71e35ece53c5f5198049cbc187dd9b6b7353d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN12_lod2.glb",
+          "lod": 2,
+          "triangles": 1346,
+          "bytes": 2794124,
+          "sha256": "b613dd5f2502a8d4383c0083a83509e594b7f1f909a50c239fa6a32c6d5b3c97",
+          "source_sha256": "fb2c76a5eabb746549bc31f6a6e54dbbb1a8139f766359d6d178088155550c5f",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN13",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "RUNDWN13_lod0.glb",
+          "lod": 0,
+          "triangles": 29680,
+          "bytes": 3911452,
+          "sha256": "4950362fb0b28c7f653a3d2726c5f888110234a6704a8dda15ca0dfd775f2088",
+          "source_sha256": "fa808e3eb623d804b02e5ebc10ff1eb68291596afe553652b1d799a0811e236c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN13_lod1.glb",
+          "lod": 1,
+          "triangles": 1988,
+          "bytes": 1638744,
+          "sha256": "b2ca3a883bb2f8d8dc0a2e2407c7ed5d3778950ec04a16cc1c7c659bbcca73c3",
+          "source_sha256": "e069aa5cccfeee3d4f32f633ef075b80b93275844e4304ba7c586407b2efa3fc",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN13_lod2.glb",
+          "lod": 2,
+          "triangles": 424,
+          "bytes": 1508792,
+          "sha256": "d02963a617acf6155e3bda456687bd2a429d9f1e0a0ddaad2c0ac20d8a16be0c",
+          "source_sha256": "4fd4283208b3432d09c8d2a6f6f55d4c26e2c972858dde1adf233503e66c9344",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN14",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "RUNDWN14_lod0.glb",
+          "lod": 0,
+          "triangles": 21112,
+          "bytes": 4060832,
+          "sha256": "e3460fd4515337c495116aa24fc06937a6716a57b932fca49de23a9f8f4f6111",
+          "source_sha256": "90910f84976f7684615c1037c7b10236552a447bb1fd59935b98c7cebcb80b6f",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN14_lod1.glb",
+          "lod": 1,
+          "triangles": 3144,
+          "bytes": 2245536,
+          "sha256": "332a36f674db76a8f84f29c7a2db09d1b70423065719fb951d27efa47e3c7a48",
+          "source_sha256": "a03e4e30978f8e13c8102f6bf30497d7e7dd0a6e9fb09f4bf22f99471139afa0",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN14_lod2.glb",
+          "lod": 2,
+          "triangles": 808,
+          "bytes": 2051024,
+          "sha256": "d90614bd3ee5cb514dd89db8fc5caa89c908f44ff9b096c77bc1e5a66db56da4",
+          "source_sha256": "eca56aa8535b58405c07459f1bd5e67aeafeeddfb412b12c01a3161aa69bd001",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN15",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "RUNDWN15_lod0.glb",
+          "lod": 0,
+          "triangles": 17372,
+          "bytes": 4426812,
+          "sha256": "a96949e437c793168acbff34d2dd71c3f08a90bd6d83bdcafc0401a04f9d3bbb",
+          "source_sha256": "f91c23ad55096661fa414069d2de8c56622a2f91ef92f0eb0c9334141655d696",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN15_lod1.glb",
+          "lod": 1,
+          "triangles": 4356,
+          "bytes": 3018068,
+          "sha256": "1e15b283e6f7a51251b10fe9a86bfc77b4a5c3528413595509bfcedb564dbe5c",
+          "source_sha256": "25288ea4cc7c675bf561a8917e78ceb2a2939471dcfbb46356910a49f54c600d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN15_lod2.glb",
+          "lod": 2,
+          "triangles": 652,
+          "bytes": 2429296,
+          "sha256": "31f58d6ee3daf344a8c15d6a6c3199cd6721a8d9a15e8ec46e2e57011c274875",
+          "source_sha256": "b97e1d929d30dc96ab1dcaee4d6ab4db64e7146c4c33cc23e0d46c947b9f493a",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN16",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "RUNDWN16_lod0.glb",
+          "lod": 0,
+          "triangles": 33132,
+          "bytes": 5040832,
+          "sha256": "564f6ca3a2be762702dfaff3c3b774fc94e502922f83c73d5ef95f6fd0bb535d",
+          "source_sha256": "37184fc90c9495367eba8b655c6a6573c91451e73d9e0657f07acd735d436027",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN16_lod1.glb",
+          "lod": 1,
+          "triangles": 6452,
+          "bytes": 2513660,
+          "sha256": "0a7ec37b00d9469e6d4a6b9f5a7704fde6850926b84654def7f9f3ed8a68b974",
+          "source_sha256": "fd11c140bbc2186fd15357c3f3cd298ef0a967184a11c315f4154fbdafcc192d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN16_lod2.glb",
+          "lod": 2,
+          "triangles": 736,
+          "bytes": 1764828,
+          "sha256": "91f3dc2cedc63af2cc186556204bffb0cb41d224d4405e6914b9fb2275e1ed9b",
+          "source_sha256": "a0440b08d72be7661898a3d1f6be7a62899078ab39a594cfa06c6fae565ef3db",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "RUNDWN17",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "RUNDWN17_lod0.glb",
+          "lod": 0,
+          "triangles": 23532,
+          "bytes": 4603148,
+          "sha256": "442bc013adb0e796add9cae7ca2f6b2ae4bae14a72160b99f049056c9deed157",
+          "source_sha256": "ff8d9747cfdb60c3ae7da84dcc370b9bb4e446bf905af0ce2a10ae5d2cd6b771",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN17_lod1.glb",
+          "lod": 1,
+          "triangles": 2660,
+          "bytes": 2550240,
+          "sha256": "d12289f04d59f821e260461249c71806da88b3999e6d6468f37df6ccd05fc876",
+          "source_sha256": "d0b978d1b822d479242f730b679a62c1f28ed35097e3018f8ed8a23d64ef84d1",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "RUNDWN17_lod2.glb",
+          "lod": 2,
+          "triangles": 676,
+          "bytes": 2385284,
+          "sha256": "983568112e1e440154a17a2635c7e4ee2f56f82d8657bc01671a04c09186425f",
+          "source_sha256": "453e4069cf85e9550704664aeaa59da1c231d4ea031088185c1ad214126b28ea",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT11",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT11_lod0.glb",
+          "lod": 0,
+          "triangles": 15488,
+          "bytes": 3426816,
+          "sha256": "eb7e14c7cd72cc3a6e60e51321451f6f0371483e281ba000a0ee1faf09d5c807",
+          "source_sha256": "208f50eed5835dc26129b991870843919405de781239ca923b12f88bce93d9ff",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT11_lod1.glb",
+          "lod": 1,
+          "triangles": 6408,
+          "bytes": 2340668,
+          "sha256": "1094b4cdafa5d01c192f4438dd705604cf8fe3bbb85d9579336659993e56f27a",
+          "source_sha256": "1254f57e818c7f2739974c2bf7dab3d77865a10d1431881431f3a21eb895d316",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT11_lod2.glb",
+          "lod": 2,
+          "triangles": 928,
+          "bytes": 1888784,
+          "sha256": "af3e330ceafbbbc322c6538393c48760569c9ce3345731e2afe760b228a89638",
+          "source_sha256": "5246cd5c91afbb484f4f32257d3ff6c486c3a39dcaad20e3cd588c9cbdb275e9",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT12",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT12_lod0.glb",
+          "lod": 0,
+          "triangles": 13378,
+          "bytes": 4186228,
+          "sha256": "0b02c09e0468ebfea2a496e5f936dd8c17d4d95c04d5f90926b6001c585505c0",
+          "source_sha256": "ca06f7af86a45a75c59d351b032f4fe097d92ac20fde9b406d2a18f4362aafeb",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT12_lod1.glb",
+          "lod": 1,
+          "triangles": 4062,
+          "bytes": 3080788,
+          "sha256": "88ec63d93a65a5f549e945a3d0a9a941fe85a39a84dafbfe1ccd1993e172ca1d",
+          "source_sha256": "0be4267a5c423cfa417b052f00a5c107e9734d91eb088cbabe3db180715633a0",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT12_lod2.glb",
+          "lod": 2,
+          "triangles": 1017,
+          "bytes": 2538944,
+          "sha256": "77c4f9e268efb558aef8991c5da5ca261ece4e53469a4664c148cfde3c12151f",
+          "source_sha256": "6d65aa7dc19ca9fef9edd20435ecaadec5b647fed62a4a6f636e6d9b07a27d65",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT13",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT13_lod0.glb",
+          "lod": 0,
+          "triangles": 22372,
+          "bytes": 3896244,
+          "sha256": "9aa03876ea309097a84c8c96b465d8df96b1684f89f337bfd81e3e3e8ce52ff5",
+          "source_sha256": "767e207cbdaddef46c15ffc6372dc85f890195b7dfb337ee6a192b5f6493a257",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT13_lod1.glb",
+          "lod": 1,
+          "triangles": 4404,
+          "bytes": 2418188,
+          "sha256": "eab9a431d272a04c669677e4454f3af81efc2a444d83c97900f7be281aa5b825",
+          "source_sha256": "e690993b6af099dfcb15101503682375539f0076b717d7503992af1492d78818",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT13_lod2.glb",
+          "lod": 2,
+          "triangles": 976,
+          "bytes": 1847340,
+          "sha256": "0ba19ef9ebf50647cdf139a0d8d08315ccec0ac1324ac67e6ca0c24c12750887",
+          "source_sha256": "976d1ad6319c001efece6a8a69706e305d6df0bf79c863f90380145a08c30669",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT14",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT14_lod0.glb",
+          "lod": 0,
+          "triangles": 28740,
+          "bytes": 4447392,
+          "sha256": "454a711db362573816b2aae19d3822508a5ca9bd78d7c44646149d415d488d93",
+          "source_sha256": "0747d51a7626b323fd4948e1c7a8de8b116bdf5fa3484314052642add18e8917",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT14_lod1.glb",
+          "lod": 1,
+          "triangles": 9408,
+          "bytes": 2857736,
+          "sha256": "5c667c0775cf8df547784ade47584fa3aa9cb39b6b5cf5d8d0d9c7a4ecd31e69",
+          "source_sha256": "e4db1940fd5ab1399213baaa0ab050bd10523e42c338e4fd99d07600056f4b95",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT14_lod2.glb",
+          "lod": 2,
+          "triangles": 1056,
+          "bytes": 1891468,
+          "sha256": "a4b94577f903e1fd0b77e884e89de2d1e260fd13cce016fa877848a7a2dc91f9",
+          "source_sha256": "ed66ae2eff7bbc0bdfea29bf577bf165d9c151ec0965a5321e18ce780ae7911e",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT15",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "VICT15_lod0.glb",
+          "lod": 0,
+          "triangles": 16096,
+          "bytes": 3421296,
+          "sha256": "3d88c3a498cfb777a3d8a0d0fb71007b5e6ff31aeff2548bb9953fe0ae7f4a7a",
+          "source_sha256": "dcb433b821c834ccedca65ed95af3cd919a3dbc8c82f1d199483f315a8680acd",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT15_lod1.glb",
+          "lod": 1,
+          "triangles": 2420,
+          "bytes": 2296760,
+          "sha256": "4e3ddb25912d46c9a82addf69e430ed87a05a880ae383cc4359acf7f2dfcfb10",
+          "source_sha256": "acb20134ea10936a03d9dfcf709db5d92594c65312750fe35bd950b4a1efc5db",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT15_lod2.glb",
+          "lod": 2,
+          "triangles": 580,
+          "bytes": 1855560,
+          "sha256": "9cba4e8dbcdb1bf27ce179176abb2cc1f6839180419aa9303a7affec88133a2e",
+          "source_sha256": "e00129c6351e98d877dca85b5ed19ebc2e9a219262a5d05f2dcf939ec3e1c065",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT16",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT16_lod0.glb",
+          "lod": 0,
+          "triangles": 22959,
+          "bytes": 4320216,
+          "sha256": "59c417ff6dcb4c884b3301a3f7cf50fad3784e93ad46c08eab848cd2ec25a136",
+          "source_sha256": "0526b5ba86dc25f3001e3a3b60f091bebc58f69bf05f2b7896747ad65cb97b27",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT16_lod1.glb",
+          "lod": 1,
+          "triangles": 4859,
+          "bytes": 2831348,
+          "sha256": "78b8235fa232bb06fe5e312c0a892162554900fb29d7c4f999aea5433c0837f6",
+          "source_sha256": "3e1afd85133e86266f6db9dce6e7409a98146bc6cd4a69a74f9edbce4f3d045a",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT16_lod2.glb",
+          "lod": 2,
+          "triangles": 1095,
+          "bytes": 2232916,
+          "sha256": "51d4bf1a1cc9cfdac7ea81579de4d8c3763d746d553cdcc47088b236c17ea36c",
+          "source_sha256": "22f930b0914455639dfa2d33ef9141e3f4d9600d7f534546358e76b2aaa78ea5",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT17",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT17_lod0.glb",
+          "lod": 0,
+          "triangles": 30368,
+          "bytes": 4954580,
+          "sha256": "acd1746473b4d07bb867aefd3b01d1b916248c22179e2497a1f280501be5c616",
+          "source_sha256": "0801574ddf9e215a181e359d7bec4612cafffd65356760a2f6764c8617559826",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT17_lod1.glb",
+          "lod": 1,
+          "triangles": 2560,
+          "bytes": 2020488,
+          "sha256": "9596f29b0a7cb25f1aab382d54846bd2b68c1862b267bcfb8559709001faff0b",
+          "source_sha256": "265080a9f685d34e0c5990fde286e94486ae6b4a3176636f1a3ae52e593691dc",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT17_lod2.glb",
+          "lod": 2,
+          "triangles": 568,
+          "bytes": 1519732,
+          "sha256": "769cec39fe0e64130b1cf1f3988cf0678aa33aa302ae34823bbc4b7064f930d2",
+          "source_sha256": "a7c39084bf24cbe3fb75f930982b995485251fe61bbabaec96f7200e0970ff1e",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT18",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT18_lod0.glb",
+          "lod": 0,
+          "triangles": 32216,
+          "bytes": 5544192,
+          "sha256": "a86241b2ecf0a5815492ec409609f13effa90152e22276072748da1ad5a26a67",
+          "source_sha256": "62db26cb101072e433b102d1d7870cfcb145baba000cdab0799c06c5852aeaf2",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT18_lod1.glb",
+          "lod": 1,
+          "triangles": 2780,
+          "bytes": 2139644,
+          "sha256": "68047f848155073d755f323c3efbc0af8f742262e8cf1c43c418f472de0ecfea",
+          "source_sha256": "2d9ab4f3f2f66444b58039642fca03d5072aacb9799bdeca76d02ebf44ae9b2c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT18_lod2.glb",
+          "lod": 2,
+          "triangles": 424,
+          "bytes": 1609936,
+          "sha256": "ff6e8d40c8ce7f364fefd730b8200a8a7fff11f81c0aa376eff359a89814df70",
+          "source_sha256": "d93ac05c858c35a41bb818df3534d2565020fef6a118bb7039eee93134e039ae",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT19",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT19_lod0.glb",
+          "lod": 0,
+          "triangles": 29900,
+          "bytes": 5109752,
+          "sha256": "b866319fa5fc5bacb0bf9c8d89694a39ab7467efdcd2dd72492b2a1b9a8d0b73",
+          "source_sha256": "12e3af98835e404728b0c2e8b82c13cb3e67037d8eff40279909d4338fe7280f",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT19_lod1.glb",
+          "lod": 1,
+          "triangles": 2208,
+          "bytes": 2499768,
+          "sha256": "6a685d721b9a1afb7a02557573b993b1d12c36df7cc0be3187dd5808b9c5411e",
+          "source_sha256": "3fff0c60c789784b40e805ba0cfab55e50cb3e7d14cbb939627a67ebd4ae186f",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT19_lod2.glb",
+          "lod": 2,
+          "triangles": 484,
+          "bytes": 2356372,
+          "sha256": "c47579a181cba588aec08599b3472456a20a988cb57f453bb7db76342d121d13",
+          "source_sha256": "8da76e05c6af7b1f6176da9b06a9f6b3e34c968a8644a4686d5c4fcc7941126c",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT1A",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT1A_lod0.glb",
+          "lod": 0,
+          "triangles": 22344,
+          "bytes": 4826604,
+          "sha256": "f155657ef85274c8754777f76b5f689c3e5c23f48147a2790f0134199d2d5798",
+          "source_sha256": "ddee551d281dfe56ce5ae061f4e0eb859f4c5ed7a7cbf876dabf4c106e9db4ac",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT1A_lod1.glb",
+          "lod": 1,
+          "triangles": 2836,
+          "bytes": 2885288,
+          "sha256": "b494d13cfac104fe50e5e036f62aeb4f42e886624dc87a8ac9bd7d6311aee82d",
+          "source_sha256": "d353427f3b06c92561a2bb17f4b572e6122f8430c1dd54853602643260024903",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT1A_lod2.glb",
+          "lod": 2,
+          "triangles": 724,
+          "bytes": 2709572,
+          "sha256": "c9ca679db3c138a6dfe48f9399e4ff27da6b3d2b1964c83af60f37e16f964a84",
+          "source_sha256": "860919bd5556e0429e260cba090f468f4dee86b58607cc71d1d9c4c11c334090",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT1B",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT1B_lod0.glb",
+          "lod": 0,
+          "triangles": 22520,
+          "bytes": 4841004,
+          "sha256": "b1b12688137c9ef220d87655dcef659371fc32f95c8a140845840c212ddebe38",
+          "source_sha256": "c468f0e2a7ca6fa0f7338b12ef6d5ca128b9d2e62b85ac3f582c1abd9b68a997",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT1B_lod1.glb",
+          "lod": 1,
+          "triangles": 3012,
+          "bytes": 2899692,
+          "sha256": "91686dad5df18a7c188e50d26fa65f8a06d400e7326688b8fb27d8f32ca34628",
+          "source_sha256": "23897847213dfcf965ec0b298b3d2b4ab31537f20f4252524e3517673c8ff8c5",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT1B_lod2.glb",
+          "lod": 2,
+          "triangles": 724,
+          "bytes": 2709572,
+          "sha256": "d183acf97e6d364ef65e07bc5a2a5e34e4016a28635ee0a6c7845ddd17b54eb8",
+          "source_sha256": "04e509926005d0c05deb9bcc965d4789bfbce927a6e9356a763f67b3021f9543",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT20",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "VICT20_lod0.glb",
+          "lod": 0,
+          "triangles": 15874,
+          "bytes": 3944392,
+          "sha256": "f99dcc70a5541dc4443a8edfce58ea17bb5fb3dcd359caf9a03be4e7489aa5a3",
+          "source_sha256": "445edb0ea52b1bdfd4e31328a1b0a5e2758eff56c3b78d0143fe64c2508fa5fc",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT20_lod1.glb",
+          "lod": 1,
+          "triangles": 3206,
+          "bytes": 2898732,
+          "sha256": "6d4eaf5aa2c7cc40ed606c8fe9ff43b1e8e050596d4c6c65068f5bcb0deb4c39",
+          "source_sha256": "0d37e085d181c74e1bcf7e02ff54368da4a2acc06cf7e781de66396e26d203fe",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT20_lod2.glb",
+          "lod": 2,
+          "triangles": 741,
+          "bytes": 2693244,
+          "sha256": "9395631d9aa99611c9a6ca65967a144b3e3ca1ec45b85643fee99c4ad1704d3d",
+          "source_sha256": "00bba4646d5bb715ca8acc62a5a3474144ff96934b433c0ff046658f4c752b16",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT21",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT21_lod0.glb",
+          "lod": 0,
+          "triangles": 21728,
+          "bytes": 4321276,
+          "sha256": "d029bfef16690b080b34ab145923ab59b1f2a5ba805163cb00a98568a8f4bdef",
+          "source_sha256": "9610f164be3e40157f8712f4a79517af9a9d9670209d05e10c7e1a66538699f5",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT21_lod1.glb",
+          "lod": 1,
+          "triangles": 3628,
+          "bytes": 2496128,
+          "sha256": "0767e785b3e431e8bcdbe993f401f553ddc245c91535aa933e421660d497cf46",
+          "source_sha256": "fa96c461e748770b6c1eebb94095be7dd67debd0dd83c6a487dc0220bcb19a9c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT21_lod2.glb",
+          "lod": 2,
+          "triangles": 940,
+          "bytes": 1984076,
+          "sha256": "0a56c1f891f2c9dfe15059c2ac67b2b2052f170e3c1f2c76a422c2f964f31492",
+          "source_sha256": "656a99f00ce6f842adb958c76552b02df2ad047f8da0508674a4830d9260263e",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT22",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT22_lod0.glb",
+          "lod": 0,
+          "triangles": 28740,
+          "bytes": 4962720,
+          "sha256": "97e2d07fab87531bca490ef6bf9d66e0ff0ab33f5efd7bce66d427277d71cfe4",
+          "source_sha256": "0db13ae07d6b5aa0d3ed86217d26cbe6d6d1f4c03f149aa93d203badf92bc4ea",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT22_lod1.glb",
+          "lod": 1,
+          "triangles": 9408,
+          "bytes": 3035828,
+          "sha256": "0b8940b94a6079d8eb65fa3708b0f99f807f07d9a617e88df05a23a738eed986",
+          "source_sha256": "da155013467e65ed580b359ee20a0863a12abeb9322883ac7004e18bcd0f8f4c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT22_lod2.glb",
+          "lod": 2,
+          "triangles": 1056,
+          "bytes": 2069560,
+          "sha256": "5b708d5bf7f4176afcc7bb445faa8197c9bdd65862681304472b1c3519636605",
+          "source_sha256": "293f96a6a5fc000ce474708eb06b6f762d2d3974da4b44a5de279184df61a9b1",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT23",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT23_lod0.glb",
+          "lod": 0,
+          "triangles": 29460,
+          "bytes": 3893452,
+          "sha256": "abfe69ad36bbfe902f9c683202a7bc9b1746432d113bbb9955937a975ed4b314",
+          "source_sha256": "1ccaeda182df9ed6de5dbeec935f7bc1ee2259520f05834a21232f197abb8f27",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT23_lod1.glb",
+          "lod": 1,
+          "triangles": 1988,
+          "bytes": 1638740,
+          "sha256": "da93d5d752f1ff1fed2668a0b81999b706dfc141630002fe3492aeff63872872",
+          "source_sha256": "27d318249f405276ecfbce427b05673d42f2c01c58f7534388b7e68da19177ec",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT23_lod2.glb",
+          "lod": 2,
+          "triangles": 424,
+          "bytes": 1508788,
+          "sha256": "9fd0db2a3f180665cc93bd7aa110bd916e25d7ffc60c5132ea1e04fc264b67f1",
+          "source_sha256": "5127846a96fe2dc0d593737a519246b6473a54a2d4a96d03e7014a91ca89f66c",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT24",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT24_lod0.glb",
+          "lod": 0,
+          "triangles": 23162,
+          "bytes": 4827492,
+          "sha256": "7f169e7514a21b6166ac09c66e6afadb66e67a4b34c93ca217db13ec63ecd8e1",
+          "source_sha256": "696cca0dcd6a7da0ecc082ae3e056cfeadda824c8004e077a788d7ac00bfa031",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT24_lod1.glb",
+          "lod": 1,
+          "triangles": 4926,
+          "bytes": 2989500,
+          "sha256": "66e8e83a020ae1509136401655a6ccb461756be381897321da77c05ab06caa76",
+          "source_sha256": "2e0e75dc3545f590c6de70f55d1fd0a454f690e210d6ecf45d698601b6bb22f9",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT24_lod2.glb",
+          "lod": 2,
+          "triangles": 1077,
+          "bytes": 2383460,
+          "sha256": "bf0f38d35f83e29fe2e3d16ee8ae278546dff2e643ad0f4778c7e0d5e606fa17",
+          "source_sha256": "9619683e761163f4d0458d42f4b295c43966755a6eff5ecddb5f22abf6146b06",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT25",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT25_lod0.glb",
+          "lod": 0,
+          "triangles": 21684,
+          "bytes": 3592264,
+          "sha256": "fe2edf6b535234957c698882b2767c1892ed1cbeae85011240da107452244086",
+          "source_sha256": "00a3f594455bbbdaae0552ee0d0da46ddae4906d8e6d03d087d8dfec3f059c75",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT25_lod1.glb",
+          "lod": 1,
+          "triangles": 3584,
+          "bytes": 2103416,
+          "sha256": "b92f39b8d40a63e050b40ccfbde0e224eaddc63e229b44d05f960bc151e6606d",
+          "source_sha256": "ca1e715bdc4ecf973790499981e50973101dd6af8f071a948471cff8d8194d38",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT25_lod2.glb",
+          "lod": 2,
+          "triangles": 928,
+          "bytes": 1882028,
+          "sha256": "f9d1f4a6cf5c5cb76afde93d4e389b2dbcc0f1ee4d2aeb730ab980b3713b0cc1",
+          "source_sha256": "91b6823d5906f47f485360062ed49cd62153a0e8828d0c8524f477135cdcac76",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT26",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT26_lod0.glb",
+          "lod": 0,
+          "triangles": 31908,
+          "bytes": 5170700,
+          "sha256": "d2b968b3bfea59aa3c3dff080ce08f8f279b6193e16345cfc437a5e2c8e60b13",
+          "source_sha256": "4fab31cda7e8a75a1cd871049a45044356ec1e64910abbcaa35cc1a2a73dd6f6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT26_lod1.glb",
+          "lod": 1,
+          "triangles": 2780,
+          "bytes": 2119564,
+          "sha256": "49735977cfea30984bd832d88dc556cf1f154739ded5f55ba2215fa008c4e0e9",
+          "source_sha256": "c8ec0e2e6d1671717905479344191bb96e68101807fe7cfa07207a16683ec127",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT26_lod2.glb",
+          "lod": 2,
+          "triangles": 424,
+          "bytes": 1589852,
+          "sha256": "757d3daba8516a38363e7b81f2ba6ced03e94666f38f93422347a67619e0bcbc",
+          "source_sha256": "58c1b7f85937c1c028b785b22c4126af91182d3ac8f35abf9995f2aa98d83e4e",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT27",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT27_lod0.glb",
+          "lod": 0,
+          "triangles": 22440,
+          "bytes": 3638300,
+          "sha256": "a8f60468f3799333d6a981c8a1c3652c0ae3984dda7846ff2e7e675155712665",
+          "source_sha256": "37b7230dc98c5f624dfadf34859347594d1477aac7a9256c644e2edc14cb4c99",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT27_lod1.glb",
+          "lod": 1,
+          "triangles": 3812,
+          "bytes": 2107212,
+          "sha256": "0c821b97d614d0a38dc711f983c0615a31d9156d63c3f0d93bb3e1626a46ca1a",
+          "source_sha256": "d5eb25c32d45ab3be2b6bfedd3bd33bd3f336424b9f9495211402770ac5062f6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT27_lod2.glb",
+          "lod": 2,
+          "triangles": 1024,
+          "bytes": 1875008,
+          "sha256": "1b46901f34b4936a512af5aed965432b421d8f0f9963d9900b7c9c236ab250ff",
+          "source_sha256": "db030cbea2018ae5af7bc02865af98e3fe112474f2cf338a2d2d21c721726c63",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT28",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT28_lod0.glb",
+          "lod": 0,
+          "triangles": 12356,
+          "bytes": 2835164,
+          "sha256": "bdf690eb3645d8aac85279c4e8159dad8a652c4ded09d62eae915165c8421b5e",
+          "source_sha256": "3c992f06388d6d2732c3eb9a60f157ca046797a88c12b3ba9ac2382eadd98731",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT28_lod1.glb",
+          "lod": 1,
+          "triangles": 3496,
+          "bytes": 1767988,
+          "sha256": "fc1500e70c14838f837e99c82be9b3d80d88f9a6fd6c237aac813828ed45c57e",
+          "source_sha256": "84926e97e4ac6ef9557f2155205d7a395f1989eb41c507a36d49edfcc4e8c119",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT28_lod2.glb",
+          "lod": 2,
+          "triangles": 748,
+          "bytes": 1540148,
+          "sha256": "e02467deb4d5ac7a6cd7ecfe7e901fcecc3fbde97e453bc97b83d1d3569fabea",
+          "source_sha256": "73f9842e20071e2ba4408daa4aa2d330cf667eb69a7cff281d2d035e559b2cd8",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT29",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT29_lod0.glb",
+          "lod": 0,
+          "triangles": 25982,
+          "bytes": 4972816,
+          "sha256": "57c5cc3fcfc31268e9d22040721b703f72480aa7f201ec37e2bbf8da36c95250",
+          "source_sha256": "72cd48286b5d2b38569616a97a3d8571c7ee8e73b8f9991dbe5209a3d518846b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT29_lod1.glb",
+          "lod": 1,
+          "triangles": 7162,
+          "bytes": 3086860,
+          "sha256": "d20c1e6911e4d3fceaec044c2ec196a4dea5d3cdce3add76fd995e825374598c",
+          "source_sha256": "56198dfbfdb47a1cde1da248296d77b2f692fa8e1e95a0a87bab8299e3b822ff",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT29_lod2.glb",
+          "lod": 2,
+          "triangles": 993,
+          "bytes": 2300152,
+          "sha256": "5d76e653ba0a11d7655c0b5ed0f649e0026a76008c660c865cead866fa7a4b88",
+          "source_sha256": "52ac7e46b5a3241d1fb7e107dd06b37531bd2d669bc3de4abce7986fd57337a9",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT2A",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT2A_lod0.glb",
+          "lod": 0,
+          "triangles": 22298,
+          "bytes": 5087984,
+          "sha256": "70f0d0288d10e5619d6425b7ba51b2ea08c284e826d9e14bb2b29e198eb7f1fb",
+          "source_sha256": "77cda00c7ea5c9bb5621072ceae1345c0226ba2d075ead93d38f6b2ff271518d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT2A_lod1.glb",
+          "lod": 1,
+          "triangles": 4062,
+          "bytes": 3250940,
+          "sha256": "cd772b4f6785bc34b5a8235cb5c50086cd74095e732a37e220307696458ff11b",
+          "source_sha256": "5ee0ce5243a7db8627d51216b9fc634f30daebe2ee71408dcf303875ba437a55",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT2A_lod2.glb",
+          "lod": 2,
+          "triangles": 1017,
+          "bytes": 2709072,
+          "sha256": "38eb45486257bec7290013ea1b86827433e5af17a52af687225fd9dd25934915",
+          "source_sha256": "75a71c0a6b9a34f5b34cc9c19b68dd0f0c91d64e29e5f2bf3515894750f978a4",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT2B",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "VICT2B_lod0.glb",
+          "lod": 0,
+          "triangles": 15786,
+          "bytes": 4267404,
+          "sha256": "798925e62fa6495b9c4bd5b9259272e925666dfc3e0b148870a7a49fad0599ec",
+          "source_sha256": "357522552f56878c70a73a9f75304ebcff8ff04a1ee4a05f60046553a4b9e4f2",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT2B_lod1.glb",
+          "lod": 1,
+          "triangles": 3206,
+          "bytes": 3228940,
+          "sha256": "e77b6b3d58004fb8fe8a257eeae7af1af7ff3f77a279f290c7b5288337174785",
+          "source_sha256": "ba14308a683df75f7db33c066c9504e5949ed19ba66ad817be432e6c971c8357",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT2B_lod2.glb",
+          "lod": 2,
+          "triangles": 741,
+          "bytes": 3023452,
+          "sha256": "0c8298bb48a0761f2eda37948092a2557ad062067bd2f57eb551b7f0fc142633",
+          "source_sha256": "89752866f74b0f0e0a858d29d3513262f8647237ad088877d01d4524b87e6f86",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT31",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT31_lod0.glb",
+          "lod": 0,
+          "triangles": 21912,
+          "bytes": 4125732,
+          "sha256": "95a11b573e36b5eb4ebf8e8bbcd3d138d76714d9d586f6721e517abca08df85f",
+          "source_sha256": "c9edb0ad14f5cd90253ab273b2dd562e0346f0494597ac7aed3334426cc41f6b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT31_lod1.glb",
+          "lod": 1,
+          "triangles": 3592,
+          "bytes": 2281640,
+          "sha256": "b52470c1ff15fc4ce00a55991b5330a1f5f49bb7fec965f120869ed7c5f9a146",
+          "source_sha256": "9d45c79ddba581c1343d5b9b27ad48f800cbcff8845c464ae337c2dd42ee3600",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT31_lod2.glb",
+          "lod": 2,
+          "triangles": 928,
+          "bytes": 2060156,
+          "sha256": "aab807b064d21a5401aeea2e4bc004917a2f05f66dce98fce43955f68763a7a6",
+          "source_sha256": "4f89ede11e0d78e41af3e10f8dd69dbe991462085929d72c46afffbbfe86b3fa",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT32",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT32_lod0.glb",
+          "lod": 0,
+          "triangles": 22388,
+          "bytes": 3348652,
+          "sha256": "b64ca17c02bf8d76fb19859fbed64b1d6c7edd1e678a93e6700b9d7b84bcd5cd",
+          "source_sha256": "7497e48334c7dfa1ebe5a3ccdbc1e33041372c44fd38f4cef937e3ed317b38e9",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT32_lod1.glb",
+          "lod": 1,
+          "triangles": 2968,
+          "bytes": 1752760,
+          "sha256": "e800dcf14cfaeb911da57c7e9e8d458ca7f0d3c2767fc3aae80f043c51744515",
+          "source_sha256": "1c85522160b59dc19982efca5a9cad122ad7eff2e3ba114e5a58c966cad20ce2",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT32_lod2.glb",
+          "lod": 2,
+          "triangles": 604,
+          "bytes": 1557156,
+          "sha256": "6bb358b55fc174266bd8598501145810c56cfc9f45348a38f3f86a47445e3c52",
+          "source_sha256": "31a07506c528c4030f7cc6fa3912ede04d44de46109212f5a97767cd80b0746e",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT33",
+      "width": 3.6,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT33_lod0.glb",
+          "lod": 0,
+          "triangles": 22814,
+          "bytes": 4583284,
+          "sha256": "edebec10c8763bd80f94618ea88fc3acf83ed783398d0649e6e3074f24fbaaa2",
+          "source_sha256": "9c9da05a768609d00ee421ab068d7c3dddd3339248b03b5a60c8f8cf3e379f7e",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT33_lod1.glb",
+          "lod": 1,
+          "triangles": 4626,
+          "bytes": 2749948,
+          "sha256": "81a686a0fe88588ef11f06cd9c1a4a1b1c62d177590b3db502770264ad814aef",
+          "source_sha256": "0314d5cecde97919c6f9461b9ecd8d461073d04be38d8b94547d7b50d7524a14",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT33_lod2.glb",
+          "lod": 2,
+          "triangles": 1182,
+          "bytes": 2463640,
+          "sha256": "02d7234c16260c4dff6ef56843a8967b5baf2a46b3131632bc2660be4bfee089",
+          "source_sha256": "2c8a208f0e8aa1c6286c0fa444253d86743c97b5e53e7e45322436703cb4df3f",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT34",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT34_lod0.glb",
+          "lod": 0,
+          "triangles": 28142,
+          "bytes": 4432128,
+          "sha256": "a163b92cc9feaa10326091551a6e35439de9a93beb4521c5fbbd1cc8b27a1fea",
+          "source_sha256": "292d01718cb69ea118b509e8867db73a1a9fa9faf728379f366bc45978dc0e73",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT34_lod1.glb",
+          "lod": 1,
+          "triangles": 9234,
+          "bytes": 2876216,
+          "sha256": "bb18834d1e56eec3bef7fbd8061a739e666517f8b93925685038e14b654393d0",
+          "source_sha256": "2cbd6551d51cdb7e3b718aa0dd25fea6eb01f7bcf7393b3c0cd0f8435a53e4f3",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT34_lod2.glb",
+          "lod": 2,
+          "triangles": 1809,
+          "bytes": 2261052,
+          "sha256": "9becd9dfd72b4b94828e2666aba4899840b3eb73cb09cfb82ff977d6c6d4b993",
+          "source_sha256": "ed88984ffbd54df3a1c76fa5b86f7f4d55eb59c13a552f137ee42981ea021cd5",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT3A",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT3A_lod0.glb",
+          "lod": 0,
+          "triangles": 22284,
+          "bytes": 3889044,
+          "sha256": "e85c2b0ca07a154bb32026f7a42e5db3d2358f0dfa6cd36e1d88641dec06bdc0",
+          "source_sha256": "52ac0ea3e124f31e4f1f7035a30326d7820a90c260209dc182b0928b9226491d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT3A_lod1.glb",
+          "lod": 1,
+          "triangles": 4492,
+          "bytes": 2425388,
+          "sha256": "0f82e21eb00dd09ed06cdd043377cb690069d5af0a982472f2c4d6aa7db5460f",
+          "source_sha256": "be7d09ce3a47b8bcb1f327c82e165b617b6f0656fbed47897e08b13840f4c4ea",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT3A_lod2.glb",
+          "lod": 2,
+          "triangles": 1000,
+          "bytes": 1849164,
+          "sha256": "b6b02a7e4847733fc7bbeb085f40986a272bb88c6c4f5e07d15c48955b90074e",
+          "source_sha256": "2c787596e93c3e5122a56cc2e246179772501691fbce8234affe5d074e681761",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT3B",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT3B_lod0.glb",
+          "lod": 0,
+          "triangles": 21376,
+          "bytes": 3669708,
+          "sha256": "015e0750cd8c4d4d08f9c22a8c91b8b3c3ae7959d7ab0fc159f667b8a7458ed0",
+          "source_sha256": "f44fa0ec731a0d1753694b3e2dbb339bfbbe11efaaa41576901afef933a02efa",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT3B_lod1.glb",
+          "lod": 1,
+          "triangles": 3496,
+          "bytes": 1862576,
+          "sha256": "64061e0244ee961e654cb3901e1eeace379f03b0028cddec7120eb4536640d14",
+          "source_sha256": "a6551c7ee9eb4ab67652608dbe380bcdd2d8698bf056caace40bc2c8f72f5e27",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT3B_lod2.glb",
+          "lod": 2,
+          "triangles": 748,
+          "bytes": 1634728,
+          "sha256": "0ad6e5d77bb2492e929ed895ea266cf307ca8a590b372aa4601d527d62495f0a",
+          "source_sha256": "8ef71b4ba6963aeefda1359145739d4b1169de6fe48f6e814d979909649e3915",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT6A",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT6A_lod0.glb",
+          "lod": 0,
+          "triangles": 22871,
+          "bytes": 4313016,
+          "sha256": "a12d5d01f12ce75d2abd8b8cb962a030cf728f24b60f10291d464388f9784302",
+          "source_sha256": "fdf44915ec98f00f7df201f38de91c0ecedfa09a3599627609451ffe398e6f31",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT6A_lod1.glb",
+          "lod": 1,
+          "triangles": 4859,
+          "bytes": 2831348,
+          "sha256": "1c2bf1865a34e8f2d6f649fae9b6a084b7bbac339c1bd20860832ac424685722",
+          "source_sha256": "3dd7334d97a4710bd42632cb7fae788d91cbcf9dd85e483043a74e43d5295d94",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT6A_lod2.glb",
+          "lod": 2,
+          "triangles": 1095,
+          "bytes": 2232916,
+          "sha256": "f5724ec36a9381f917efd22f19bd1b6582ea2213801a7f98d970e00678711415",
+          "source_sha256": "d7cae0e8c6d48c57381cd19c5171ca8a0707d9ee0b18de655dcc1ba39d2d31ca",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "VICT6B",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "VICT6B_lod0.glb",
+          "lod": 0,
+          "triangles": 22254,
+          "bytes": 4569036,
+          "sha256": "feb28d1a821c01e414f5759b6f4fa6b0d1b90525130d767ed7e634a558b862fb",
+          "source_sha256": "9cc1be79fb0cad580dc7204cb69efcc019e21c43fa4ef8237845f69dd66caabb",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT6B_lod1.glb",
+          "lod": 1,
+          "triangles": 4062,
+          "bytes": 3072848,
+          "sha256": "5b206ab1c325c4ec3468a221603cf914e013ac209b263bc90c5996ed5b4f59d9",
+          "source_sha256": "4a2829eafab76a383e402a815d09bec971731560400063f8227c69374d4682d5",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "VICT6B_lod2.glb",
+          "lod": 2,
+          "triangles": 1017,
+          "bytes": 2530976,
+          "sha256": "13e7addba6834f62d00ddfa76d28030dcdef1e358fb36344de8c926f9b0d7ed6",
+          "source_sha256": "396b1c169b8be0a0db332071769629bcc75d3bf6e8ab6ca54a1433bee9074ff7",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE11",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE11_lod0.glb",
+          "lod": 0,
+          "triangles": 9360,
+          "bytes": 2862752,
+          "sha256": "2dc79c386efbf6b2e2b88ab77b5f7ebf135ff13403fb44a11c3bd6f8ffd53912",
+          "source_sha256": "e5a0a3ebf7bf7851cbd38aa1de6bfe5c83b98e4f7202f2bc0601550d9d73662c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE11_lod1.glb",
+          "lod": 1,
+          "triangles": 2064,
+          "bytes": 1924940,
+          "sha256": "09b7879741b77e2f9f631db202c299a537a139923057b79487b1357d691de475",
+          "source_sha256": "ff863605e7eeb493a2d1ab6b02b9cf53646e2efd602e19894fb07d2eda979a53",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE11_lod2.glb",
+          "lod": 2,
+          "triangles": 112,
+          "bytes": 1435692,
+          "sha256": "989354603823a0e5dc5a28b257a8352f98774681b59650a3f7d2b40c726f07ae",
+          "source_sha256": "4d897695cb25f955c884809c301adba72bd3d768a497ed386a8e122c25f296f5",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE12",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE12_lod0.glb",
+          "lod": 0,
+          "triangles": 15728,
+          "bytes": 3961300,
+          "sha256": "feec44dc6a27706eb00ba5bd9b8c997e2e92d25ade67d3abc486e537d3d9dc84",
+          "source_sha256": "63c9e299710d3822c28d123187fb11be758640dabed6fd46b3815d50331183a8",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE12_lod1.glb",
+          "lod": 1,
+          "triangles": 2668,
+          "bytes": 2549908,
+          "sha256": "1c4d8159efc3b8596d4e335bae28d0445fabbf1a23ad4b1af4b33f68fd88a1d9",
+          "source_sha256": "a6a68c7c19098ab33128fa87a07183cbf12aa4b0fa5fff3d4b8ac722483ac410",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE12_lod2.glb",
+          "lod": 2,
+          "triangles": 580,
+          "bytes": 2087880,
+          "sha256": "8c2922f0329edb9ad7c79f8a932e2593dede97bf75b771544b2d4e44514b7ac6",
+          "source_sha256": "a0518c8af2ecde6a7832c509d3c2643135b9e34823f806932ba51e5870b9c372",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE13",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE13_lod0.glb",
+          "lod": 0,
+          "triangles": 23832,
+          "bytes": 3870304,
+          "sha256": "e895e2cae1533166467b9c04ee87ec27946a2750291b9862f89a07cf141677d7",
+          "source_sha256": "c8c970a42d3cbec0bb9966f052d51d303ce2c610378b8bfffc91788752b3cad1",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE13_lod1.glb",
+          "lod": 1,
+          "triangles": 1532,
+          "bytes": 1702904,
+          "sha256": "94050a95e5bc5c2e6907a1792874f3870e5f3f2a6928e757e81ed892e2512531",
+          "source_sha256": "1006fe9f939fa8c149f0db09ece6db09f130013151b242490b82bff2673b75c8",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE13_lod2.glb",
+          "lod": 2,
+          "triangles": 292,
+          "bytes": 1599884,
+          "sha256": "cd478641498a6e0346f413264c33a223dd1ea07cf0cb7e4338c1603ca9bc1c73",
+          "source_sha256": "6cc777f54da158c703c3cc35ceae660c4f5096938e93969e07055974d241ddeb",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE14",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE14_lod0.glb",
+          "lod": 0,
+          "triangles": 10396,
+          "bytes": 2948724,
+          "sha256": "cc4955437848cc1339b653b2b770a101b5375fec6e4fd37935054aa8d8728189",
+          "source_sha256": "a4f48c803acc3feb5abb554b58ad0f7feeaa1993c8198ac2fbe7edf9561e5508",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE14_lod1.glb",
+          "lod": 1,
+          "triangles": 3364,
+          "bytes": 2032504,
+          "sha256": "edf760698a71c58981fc28f953b2622a084309fe481e274751ce5ea1d691a5f9",
+          "source_sha256": "d04cb6d93e86b9a2c9910bc37ee351108c9b297e1dd05e56b581f040e4f24b9c",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE14_lod2.glb",
+          "lod": 2,
+          "triangles": 424,
+          "bytes": 1461336,
+          "sha256": "d8f82c186427852eb4f8c5cb96d4ad105e2614086ed1f370c0e7853e38ba3499",
+          "source_sha256": "ca7453ad70a501250b5b48b2b2ec9a6e07b0476057dd08d80e3dcaebad93fd0f",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE15",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE15_lod0.glb",
+          "lod": 0,
+          "triangles": 15640,
+          "bytes": 2761084,
+          "sha256": "335dd029a6181158186e9cdfe8a3d6075ca1506151fd8038f71ce979ac3224fd",
+          "source_sha256": "f1df4020be95bbd3ac611a2cef3eca79bddf4e0bbd4a3f105cab0089278b0a5e",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE15_lod1.glb",
+          "lod": 1,
+          "triangles": 2580,
+          "bytes": 1686956,
+          "sha256": "3e8d1f1bc8daed2ecce87b15a281b8714d3456b1aea1ad9d4118b330a46a3431",
+          "source_sha256": "2e2e12f376e9a47e8234e86dc114593e3f9f14daaab91d9256f420e719b0ee08",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE15_lod2.glb",
+          "lod": 2,
+          "triangles": 476,
+          "bytes": 1513168,
+          "sha256": "0c7586178c6bffd288df30c86560a82eabce1412e20ffcdbb1e86a22a61ecb60",
+          "source_sha256": "4ebc1d5a70ae6eae7a36e53a42b53488e1782fc3296e132a3d0af3f6ae216742",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE16",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE16_lod0.glb",
+          "lod": 0,
+          "triangles": 11460,
+          "bytes": 3364204,
+          "sha256": "c593defcac67e5d2d9863ef5f14f4d177a2dcf3eda58bbc63ea6d422d7520b72",
+          "source_sha256": "063effaa7f12a342c41ac2db36418497670723a0f5ce1685334864022bb3bbae",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE16_lod1.glb",
+          "lod": 1,
+          "triangles": 4560,
+          "bytes": 2458792,
+          "sha256": "c60b4fd8fc2cfeea4dd2f4876ec026c0caff7d8ab6eafce345da387d8e075ab1",
+          "source_sha256": "5e907582ea8f1d518d901a317381648daabb80dd4da0cb0206453dc92a79fed9",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE16_lod2.glb",
+          "lod": 2,
+          "triangles": 388,
+          "bytes": 1832164,
+          "sha256": "2bb980dfb90a79f967a2a734915bf6f6c4c45066b8d680ea73f1fb1946146490",
+          "source_sha256": "af54865b6963f304732283fa299c833124cedf454c31ad17137beafe3d54fe3b",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE17",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE17_lod0.glb",
+          "lod": 0,
+          "triangles": 11928,
+          "bytes": 3404172,
+          "sha256": "6d4b13163e17e8c36648269e6e76b83ae3b20506fd009e64e752557cf6e970f2",
+          "source_sha256": "76f1a573b73dc073e298c1daeb73e122e30e70081e2e39e22a6c489c1ff8c4e3",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE17_lod1.glb",
+          "lod": 1,
+          "triangles": 5336,
+          "bytes": 2523964,
+          "sha256": "9f399d6b24b9f99ce56c871262aac8a8a102ce4a45c383b1c72f25132d887236",
+          "source_sha256": "b5441e6b6418daf1f8303c7e08366e37d215ad0675770844bee27a603db467e7",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE17_lod2.glb",
+          "lod": 2,
+          "triangles": 604,
+          "bytes": 1850484,
+          "sha256": "3f4cb511a3cefad9dd5cc4c8a78f3d467e420a9e3f079926aa6b1ef3e82c27b5",
+          "source_sha256": "c6d2ea86f092ee38ff01db28282b07cc47484ad3bfd141b7886c4b34abd2a650",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE18",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE18_lod0.glb",
+          "lod": 0,
+          "triangles": 17972,
+          "bytes": 4008156,
+          "sha256": "614b111953eab0af38f1abe036830fd85562d805b879f8f65f896a2db11fdfda",
+          "source_sha256": "4634e3912e4e0fa9eeb3e2a2270dcc71c5f8419aac49614382cd977db8b7112b",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE18_lod1.glb",
+          "lod": 1,
+          "triangles": 4164,
+          "bytes": 2535572,
+          "sha256": "8e96b83bf15a4c67b8a7c64bf5bdfaf09ea12b2fb7097d5e20d585a01aa0d788",
+          "source_sha256": "8519b9d02071ccce994eef6f1e15e7b50f0b6e95fdca3ba5c8ca6789a0c6a955",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE18_lod2.glb",
+          "lod": 2,
+          "triangles": 604,
+          "bytes": 1958528,
+          "sha256": "a59d7b7144b753c48ab4a1277d644da729021ba8706b75a556cf47ee11a7ffba",
+          "source_sha256": "1557fde93331ce967cace1da0dae0cbdc82f468dd8fc8c8b05e9ff72b33243d7",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE19",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE19_lod0.glb",
+          "lod": 0,
+          "triangles": 23920,
+          "bytes": 4288264,
+          "sha256": "b9a9f11d675a60e93214de72a59184bd4f2243ce6de622a1d54aff294b5922be",
+          "source_sha256": "caefbd00108a881ccdf2ab065679b075d4bf9180c42547620e2d57efbe08303d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE19_lod1.glb",
+          "lod": 1,
+          "triangles": 1532,
+          "bytes": 2113652,
+          "sha256": "5d6ca0712cd35f55d9ea776f758889fef7d1616a52bd25e55d28280472a172ca",
+          "source_sha256": "7bae4fb56b1f1d89c0dbfb66747f2d674deb2a664426c55494306bdcb68e992e",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE19_lod2.glb",
+          "lod": 2,
+          "triangles": 292,
+          "bytes": 2010628,
+          "sha256": "7b6641c2c527f8885061cfced2d542f3a1033fd809507c4390281ca8502033c3",
+          "source_sha256": "e87b9bbf432529e7794a9d241ef44adc44b10cf3d812e6c210c0ac3b4563e039",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE20",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "WHSE20_lod0.glb",
+          "lod": 0,
+          "triangles": 24332,
+          "bytes": 4033660,
+          "sha256": "d440b579e77cbc419d06f2cafd9f9c49ad835767760beb4c5a07221e3162f582",
+          "source_sha256": "232b6ad286d31f1e1d083da919dddd8863c21c07f5613467b5465cb8aad56635",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE20_lod1.glb",
+          "lod": 1,
+          "triangles": 3944,
+          "bytes": 2021316,
+          "sha256": "571691ecb7f710112ae842e2f6851dddc7e02e570841af22c82777e71b681e6d",
+          "source_sha256": "bae3ec993100f66a88b686450d1079c4dd27c81f1479856f518c63568bc0693a",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE20_lod2.glb",
+          "lod": 2,
+          "triangles": 868,
+          "bytes": 1766488,
+          "sha256": "d4713c1fc78de3a84d7eca4a9809012cbb8e7d2c804050f36e5c3de1ec234a53",
+          "source_sha256": "1d809defb1a336a5075309106f23a501873b56ee416f856bc819799305a3ccfb",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE22",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "WHSE22_lod0.glb",
+          "lod": 0,
+          "triangles": 23708,
+          "bytes": 4409044,
+          "sha256": "905c1824deabc759156560c43e489bcd7585f3b9c5ea12ae4ebd9788cc81ca74",
+          "source_sha256": "5348088fc48a9d534307f49cecad94e8771a0c3321aef23aa4752a3aae7c8edf",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE22_lod1.glb",
+          "lod": 1,
+          "triangles": 2968,
+          "bytes": 2704192,
+          "sha256": "ca1c4a0c9a431f9d322674bb9d9fd8f377ca159b94e455f667c02d26edd61e71",
+          "source_sha256": "be7446abf65cd35626a3840618927fc1145eb7cb859aa0531edd3210c05fc219",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE22_lod2.glb",
+          "lod": 2,
+          "triangles": 676,
+          "bytes": 2185516,
+          "sha256": "f7f65cde470e43f70bed4552d0898233504bf8c0f260feb211d4f216ede46c55",
+          "source_sha256": "6ba2b8164e1d609e88ead4fd12ca35d46104aaeaeb43b58361fa2f6bcebe5463",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WHSE23",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WHSE23_lod0.glb",
+          "lod": 0,
+          "triangles": 19864,
+          "bytes": 3723432,
+          "sha256": "1f6a59dc6cea57304347b7b4c7b9d58ba2c3665389e23d32b89dbe0e5f85234a",
+          "source_sha256": "3e02ad44d9ca54980b7955af155da23e500cc8e1e244fde00bc64af158d04d58",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE23_lod1.glb",
+          "lod": 1,
+          "triangles": 3724,
+          "bytes": 2397300,
+          "sha256": "e721aeed8dc197d78ad3d668a93c83b02d3136630bc8fa61e317d6f3e203a5d1",
+          "source_sha256": "ee610931dcc04319bbb0023f3f4f9d0c2fc09c06fc06c39adb8e6fc803b8cf6a",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WHSE23_lod2.glb",
+          "lod": 2,
+          "triangles": 400,
+          "bytes": 1839988,
+          "sha256": "07875d29026fbc4ac26ea8bd905665913e50c906a2f3f427c196789fc94f719c",
+          "source_sha256": "7e69d926d58f157a83aa97832b7ae2a427f3ad65ab71e10558a0c1dd3d1f323d",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS1",
+      "width": 3.2,
+      "height": 11.9,
+      "lods": [
+        {
+          "file": "WRHS1_lod0.glb",
+          "lod": 0,
+          "triangles": 34120,
+          "bytes": 5119672,
+          "sha256": "d5e79d7c048917b62881667143315e61cfc6821d78aa4a346b145a2118327d37",
+          "source_sha256": "9b63b4a4ffd10176085e9136bbc91d9b0148f3175f61493a601099a71402822e",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS1_lod1.glb",
+          "lod": 1,
+          "triangles": 3852,
+          "bytes": 2297536,
+          "sha256": "554b09b370f57cbda11a33d6768d7907eccaa284b3375c12428008a3cead4e86",
+          "source_sha256": "a177bee7ce8f0c96c42ef170250df50e55d0d914068ee4592de85663d98f5039",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS1_lod2.glb",
+          "lod": 2,
+          "triangles": 568,
+          "bytes": 1697832,
+          "sha256": "e4e710bc336ec11569d165ac3f0533bb9433e0c337400db5c6b7bb5295135bb4",
+          "source_sha256": "45532b9eb421dd2976f7b2884e875617300c368041f91e0b31fce70656f4d7b6",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS2",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "WRHS2_lod0.glb",
+          "lod": 0,
+          "triangles": 22680,
+          "bytes": 4284276,
+          "sha256": "21a6fb8440b6696ebe893f3ec2e902ab23891c9774ee4f75ec55921cda4a4b47",
+          "source_sha256": "e579927738a1b0de47cbd96c395e18e7164063470c56d99e55f11911d0486a99",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS2_lod1.glb",
+          "lod": 1,
+          "triangles": 5592,
+          "bytes": 2879172,
+          "sha256": "a22f9bf09c6c3289a15c40f806675d033fb4d6005f88ff2ef5e1b8af02048024",
+          "source_sha256": "bc7f68d6bf06e7e18fe1bfd79f0231b576e73fd08cdd959a133f6c8e22b2b4de",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS2_lod2.glb",
+          "lod": 2,
+          "triangles": 796,
+          "bytes": 1871980,
+          "sha256": "6959fbdc4ba23753ae20b0490e1bf1e794f9576d63baf1103224d0f11b852ade",
+          "source_sha256": "af03735346619c71eb13e8bd2c58abc7e621e4fa1a1e623f03231c1660804b89",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS3",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "WRHS3_lod0.glb",
+          "lod": 0,
+          "triangles": 28140,
+          "bytes": 4113956,
+          "sha256": "298785f4eafef211b6a69cbce6d995b8b71247dff35694509568a8295ecfc0af",
+          "source_sha256": "2e8734b4f03f09ec7af914b710d26c622d0047b701ff0b7b17ab5ed77d2a7e67",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS3_lod1.glb",
+          "lod": 1,
+          "triangles": 2780,
+          "bytes": 2032048,
+          "sha256": "23d85766c118ecd19a821841d0716e6ce5c36659626d1f7d51ad1e29d315762d",
+          "source_sha256": "81d1ab76e700cbb076b6ba845b68d62324cb3fcaf3fb92814cfdd7e8828bc27d",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS3_lod2.glb",
+          "lod": 2,
+          "triangles": 448,
+          "bytes": 1510608,
+          "sha256": "6f2cbd4d8358fd7ad87e5977022e7d947ea85e9de9633f6779352120d0db684e",
+          "source_sha256": "9e58d1dabcaae6039fbb798a00fa26dfcd902b39dac6dc1d3ce51e2ac99b9ca8",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS4",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "WRHS4_lod0.glb",
+          "lod": 0,
+          "triangles": 32152,
+          "bytes": 4674344,
+          "sha256": "32f9d407f6593afa0944b83b8edc317d10a6df8dc90e845aeee12e42dfc62b68",
+          "source_sha256": "d13572d28994e58f6cc52efad1d07b21654ab84d911a4a16a926ea7e2787daae",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS4_lod1.glb",
+          "lod": 1,
+          "triangles": 5428,
+          "bytes": 2143580,
+          "sha256": "1ca6e13997e5bc352408a8a8f3876b4e564d8a5943c343ff86f5f13c6932e763",
+          "source_sha256": "9e6a0c9d633f34026634d90eed3830492c0dc42c59db51a9dd352d0edb3d2e57",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS4_lod2.glb",
+          "lod": 2,
+          "triangles": 1360,
+          "bytes": 1803884,
+          "sha256": "2d52e622dbb784fad41c991ae15b246e1d6244810d3e0b85d2d0cc0dda7f70b8",
+          "source_sha256": "9ecefe2491f237a68d3d2d49ab911555bb27d828d9c852793c2cab4e9bb3a1ee",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS5",
+      "width": 3.6,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WRHS5_lod0.glb",
+          "lod": 0,
+          "triangles": 10904,
+          "bytes": 3323740,
+          "sha256": "a324825bb5adfb68ff110dd8e4871d71b49ea43d7c683be99a004a359af1524e",
+          "source_sha256": "0090a41e25110d8d4ccc5073935be632ceef37677d61b3c9cbef410027a4ae67",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS5_lod1.glb",
+          "lod": 1,
+          "triangles": 3300,
+          "bytes": 2360700,
+          "sha256": "bca144d5ef6a43b77171f706ffe57fab76b750e225fc6311aedb8a4672e4f7c1",
+          "source_sha256": "6febae17ceccb7dda0dc7232dcc4fd1d797426242fc5a51289c1d134c4d35ce2",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS5_lod2.glb",
+          "lod": 2,
+          "triangles": 388,
+          "bytes": 1791584,
+          "sha256": "2f8c9a7a8f5077e11be77adc19ab447b3068cd7144f2ccc648ee6c7311f01f15",
+          "source_sha256": "8d7df4d35478b3927d76b0c1adb738454458ea7ea43c736f373be55c8d7526b4",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS6",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WRHS6_lod0.glb",
+          "lod": 0,
+          "triangles": 9172,
+          "bytes": 3197308,
+          "sha256": "5564a7b88a10f2a7b8d083b50a9e740caa4f1921e29ae75c9aeb0a7791808f15",
+          "source_sha256": "07c898b80d3967e7b664cae43dfed73dfcf2f060493aa17dd39bc72b209dbb14",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS6_lod1.glb",
+          "lod": 1,
+          "triangles": 2668,
+          "bytes": 2324300,
+          "sha256": "df787514dd99b1d189dc5746d866cdd44bbd3c4c197a5ddcbe789cf0c48555ea",
+          "source_sha256": "ebf30da47c7494495a1c0f947ab011d0dbc168bfd85e3de85de033e5bc741ef6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS6_lod2.glb",
+          "lod": 2,
+          "triangles": 580,
+          "bytes": 1862280,
+          "sha256": "685bdc45703824e53f9393e5d303c113ed6806506dc68a19e896642c74643ff9",
+          "source_sha256": "16e846b1fd3dc54eb78210309b4702acc0aca9ac38c6727a21732b875b7362db",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS7",
+      "width": 3.2,
+      "height": 6.7,
+      "lods": [
+        {
+          "file": "WRHS7_lod0.glb",
+          "lod": 0,
+          "triangles": 23920,
+          "bytes": 3473772,
+          "sha256": "c0fe40eefb6a09c2073165205068756f21e612e1799d91516067e8c42cc71f3d",
+          "source_sha256": "76c5d331b6ad56e0690ee63f08f0ff09904b3a51f1935e1d66c5bd4f192bb504",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS7_lod1.glb",
+          "lod": 1,
+          "triangles": 1532,
+          "bytes": 1636436,
+          "sha256": "b31f75aee1f4f6d75105ddeb3b5c1d4a7a55b2b1867e4ca80ece69f522406a09",
+          "source_sha256": "241ac5d7a282dec3fb7e0d9ea2be33fe7cae41539593ebbf992339ddd79efccc",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS7_lod2.glb",
+          "lod": 2,
+          "triangles": 292,
+          "bytes": 1533416,
+          "sha256": "825cfc49caaacd28f8f80ef3ae7db82e5a73b259a69ead875de57e33c936e4f5",
+          "source_sha256": "85c3bf5a191090e4b42cef63ea68e8630500ab352f64742191cca438ccdada10",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    },
+    {
+      "id": "WRHS8",
+      "width": 3.2,
+      "height": 9.3,
+      "lods": [
+        {
+          "file": "WRHS8_lod0.glb",
+          "lod": 0,
+          "triangles": 13672,
+          "bytes": 3552456,
+          "sha256": "7a65d1578bd741e1c85ddf9dd16e9f658b426569f53bdfc99ad206d388e646d9",
+          "source_sha256": "003994d4f318d35f24c8986b79be0dc1348192ebb6981128e6d2dd49311979c6",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS8_lod1.glb",
+          "lod": 1,
+          "triangles": 4108,
+          "bytes": 2427660,
+          "sha256": "56e4901a430ad09ea7c97a96b97f93331ffb6f5d3d746f1c4f94aa1bca4c19ba",
+          "source_sha256": "74865029aa580c0bdcae167a81670ed9bdb1a651487ae7e17ee7e9afc4ba9f04",
+          "minimum_local_depth_m": -0.6
+        },
+        {
+          "file": "WRHS8_lod2.glb",
+          "lod": 2,
+          "triangles": 688,
+          "bytes": 1481412,
+          "sha256": "6681f8dcce544b83d777a8748904493d3ade21d36e7f18557b62c729219f2daa",
+          "source_sha256": "00f02c7c837d78419078cfc86c6ff564fb41d1b2d96662d00a04eea5ac505935",
+          "minimum_local_depth_m": -0.6
+        }
+      ]
+    }
+  ],
+  "scope": "Own modeled front geometry only; shared solid assembly supplies sides, rear and roof"
+}

@@ -1,0 +1,446 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_05.png",
+  "reference_sha256": "4c364e2af0f51f33c5531d3bc6ee0c42b5f79e30d955616e00dbac0fc02647c4",
+  "source_blend": "catalog_sources/structures_05.blend",
+  "source_sha256": "2ae65a77a81f0f41b96277ce196261a7ff411423fc398504fe30364c4c29dae4",
+  "records": [
+    {
+      "id": "SHOPE2",
+      "asset_type": "structure",
+      "builder": "shop",
+      "reference_sheet": "structures_05.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "individual_bricks_front": 249,
+        "wall_backing_rear": 8,
+        "individual_bricks_rear": 399,
+        "wall_backing_left": 13,
+        "individual_bricks_left": 368,
+        "wall_backing_right": 13,
+        "individual_bricks_right": 368,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "flat_shop_roof": 1,
+        "shop_fascia": 2,
+        "shop_shelf": 6,
+        "shelf_product": 24,
+        "structure_weathering_chip": 10
+      },
+      "description": "whitewashed_brick,flat_roof,cassette_shop,storefront_shelves",
+      "body_dimensions_m": [
+        7.0,
+        7.0,
+        3.6
+      ],
+      "lods": [
+        {
+          "file": "SHOPE2_lod0.glb",
+          "lod": 0,
+          "vertices": 40638,
+          "triangles": 73784,
+          "bytes": 9484272,
+          "sha256": "8108492e31dc85777324729f86b977a464e5b606af41c75c1cc3b58bd30ebd02"
+        },
+        {
+          "file": "SHOPE2_lod1.glb",
+          "lod": 1,
+          "vertices": 6438,
+          "triangles": 11084,
+          "bytes": 2405292,
+          "sha256": "c29d1b9e8d26931dd442c54b3fb081ef7c1ed521d03835f3526128fa823518d5"
+        },
+        {
+          "file": "SHOPE2_lod2.glb",
+          "lod": 2,
+          "vertices": 872,
+          "triangles": 1308,
+          "bytes": 1647080,
+          "sha256": "83278dd0aaae799a42f7f351ea74b33174749cd6fedfbcb93e30525f6df6fa84"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -3.755000114440918,
+          -3.7850000858306885,
+          0.0
+        ],
+        "max": [
+          3.755000114440918,
+          3.625,
+          3.9749999046325684
+        ]
+      }
+    },
+    {
+      "id": "SHOPICE2",
+      "asset_type": "structure",
+      "builder": "ice_shop",
+      "reference_sheet": "structures_05.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "siding_plank": 309,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 38,
+        "shop_shelf": 6,
+        "shelf_product": 24,
+        "ice_freezer": 1,
+        "freezer_hinge": 2,
+        "structure_weathering_chip": 10
+      },
+      "description": "white_siding,gable_roof,ice_freezer,storefront_shelves",
+      "body_dimensions_m": [
+        8.0,
+        8.0,
+        4.0
+      ],
+      "lods": [
+        {
+          "file": "SHOPICE2_lod0.glb",
+          "lod": 0,
+          "vertices": 14618,
+          "triangles": 26224,
+          "bytes": 5387652,
+          "sha256": "0eddaab96cfea609884bacce8708cdf7e6f76e34d0b337502e602114123dcb8f"
+        },
+        {
+          "file": "SHOPICE2_lod1.glb",
+          "lod": 1,
+          "vertices": 12722,
+          "triangles": 22748,
+          "bytes": 4412844,
+          "sha256": "543b473e87ffc7728208c51706e7672e376a266c825cf1345e69121c066ab2da"
+        },
+        {
+          "file": "SHOPICE2_lod2.glb",
+          "lod": 2,
+          "vertices": 3366,
+          "triangles": 5048,
+          "bytes": 2067432,
+          "sha256": "852131efa3affcabb87ad949f129308a55f78a30b8a34b48792dd386d3a39864"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.255000114440918,
+          -5.590000152587891,
+          0.0
+        ],
+        "max": [
+          4.255000114440918,
+          4.260000228881836,
+          6.4148759841918945
+        ]
+      }
+    },
+    {
+      "id": "SNCKSHP2",
+      "asset_type": "structure",
+      "builder": "snack_shop",
+      "reference_sheet": "structures_05.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "individual_bricks_front": 355,
+        "wall_backing_rear": 8,
+        "individual_bricks_rear": 508,
+        "wall_backing_left": 13,
+        "individual_bricks_left": 409,
+        "wall_backing_right": 13,
+        "individual_bricks_right": 409,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "flat_shop_roof": 1,
+        "shop_fascia": 2,
+        "shop_shelf": 6,
+        "shelf_product": 24,
+        "serving_canopy": 1,
+        "structure_weathering_chip": 10
+      },
+      "description": "whitewashed_brick,canopy,serving_windows,snack_sign",
+      "body_dimensions_m": [
+        8.0,
+        7.0,
+        4.0
+      ],
+      "lods": [
+        {
+          "file": "SNCKSHP2_lod0.glb",
+          "lod": 0,
+          "vertices": 50884,
+          "triangles": 92196,
+          "bytes": 10932220,
+          "sha256": "4414cf1a93205a0bffb757cbfa445ba7907512c40d3f5b047f4e152617c16c49"
+        },
+        {
+          "file": "SNCKSHP2_lod1.glb",
+          "lod": 1,
+          "vertices": 9556,
+          "triangles": 16428,
+          "bytes": 2573088,
+          "sha256": "2131b6e4b252bdde54caa381be5d4072c5447fc4e40d4de95fdd3486bae46fd5"
+        },
+        {
+          "file": "SNCKSHP2_lod2.glb",
+          "lod": 2,
+          "vertices": 880,
+          "triangles": 1320,
+          "bytes": 1648052,
+          "sha256": "60ce3124182c11fd24bb3b2461a4492af28b34ba61288248bfe0c72dd75b0179"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.255000114440918,
+          -5.0,
+          0.0
+        ],
+        "max": [
+          4.255000114440918,
+          3.625,
+          4.375
+        ]
+      }
+    },
+    {
+      "id": "TANKSEP2",
+      "asset_type": "structure",
+      "builder": "septic_tank",
+      "reference_sheet": "structures_05.png",
+      "geometry_parts": {
+        "tank_shell": 1,
+        "tank_band": 5,
+        "tank_lid": 1,
+        "tank_ladder_rail": 2,
+        "tank_ladder_rung": 11,
+        "tank_rivet": 16,
+        "septic_rib": 28,
+        "tank_access_lid": 2,
+        "tank_inlet": 1
+      },
+      "description": "black_ribbed_cylinder,inlet,outlet,lid",
+      "body_dimensions_m": [
+        3.6,
+        3.6,
+        3.5
+      ],
+      "lods": [
+        {
+          "file": "TANKSEP2_lod0.glb",
+          "lod": 0,
+          "vertices": 4804,
+          "triangles": 9340,
+          "bytes": 1529492,
+          "sha256": "00339e4fe70162745add0311bf56800bc5e24a23dd6ae8c0e457f098c9a20d00"
+        },
+        {
+          "file": "TANKSEP2_lod1.glb",
+          "lod": 1,
+          "vertices": 4228,
+          "triangles": 8252,
+          "bytes": 1449236,
+          "sha256": "42a961b93942f7452e672f2a4ec5e155959a0a04d432fbf4ea81d269df02fb7a"
+        },
+        {
+          "file": "TANKSEP2_lod2.glb",
+          "lod": 2,
+          "vertices": 240,
+          "triangles": 460,
+          "bytes": 614012,
+          "sha256": "d291a4a9f5a8c05938f3028c9b422cc8873cc68f81a5d5cdb6b8fef7f6cbc00c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8019999265670776,
+          -2.3399999141693115,
+          0.0
+        ],
+        "max": [
+          1.8019999265670776,
+          1.7996506690979004,
+          3.7799999713897705
+        ]
+      }
+    },
+    {
+      "id": "TOP",
+      "asset_type": "surface_module",
+      "builder": "wood_strip",
+      "reference_sheet": "structures_05.png",
+      "geometry_parts": {
+        "wood_panel_backing": 1,
+        "timber_board": 3,
+        "timber_bolt": 6,
+        "surface_wear_chip": 16
+      },
+      "description": "horizontal old timber planks with bolts",
+      "body_dimensions_m": [
+        4,
+        0.25,
+        0.6
+      ],
+      "lods": [
+        {
+          "file": "TOP_lod0.glb",
+          "lod": 0,
+          "vertices": 624,
+          "triangles": 1144,
+          "bytes": 1048104,
+          "sha256": "acfb03576c5b3917bd20fb1f9fabccc0528aceebb6e72dd46c387b41596989a8"
+        },
+        {
+          "file": "TOP_lod1.glb",
+          "lod": 1,
+          "vertices": 96,
+          "triangles": 176,
+          "bytes": 349588,
+          "sha256": "d0404853e809ab78ca04c7644f31ad025b61d61c92cce9f9e08ecc871a00db40"
+        },
+        {
+          "file": "TOP_lod2.glb",
+          "lod": 2,
+          "vertices": 32,
+          "triangles": 48,
+          "bytes": 339592,
+          "sha256": "2cd467d0627d7a6c3fabbe6769654865ad173b8f93ca213217ace2e49cdfdadc"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -0.27000001072883606,
+          0.0
+        ],
+        "max": [
+          2.0,
+          0.125,
+          0.6000000238418579
+        ]
+      }
+    },
+    {
+      "id": "TOP1A",
+      "asset_type": "surface_module",
+      "builder": "metal_strip",
+      "reference_sheet": "structures_05.png",
+      "geometry_parts": {
+        "surface_panel_body": 1,
+        "surface_strap": 2,
+        "surface_bolt": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "green painted rusty edge strip",
+      "body_dimensions_m": [
+        4,
+        0.25,
+        0.6
+      ],
+      "lods": [
+        {
+          "file": "TOP1A_lod0.glb",
+          "lod": 0,
+          "vertices": 744,
+          "triangles": 1364,
+          "bytes": 1106832,
+          "sha256": "5a6b05857d226501550e1f48a272ad82073e6b4c343201e0a283619a51273726"
+        },
+        {
+          "file": "TOP1A_lod1.glb",
+          "lod": 1,
+          "vertices": 72,
+          "triangles": 132,
+          "bytes": 683940,
+          "sha256": "5a39c545f0009687759cd3e291a339c63f282ec09eee6d578a45842a2f4125c1"
+        },
+        {
+          "file": "TOP1A_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 309716,
+          "sha256": "d5de09c0e536f5918fa0bb912a8c75fcb933866d077139c9685a78e9eb9bc844"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -0.26500001549720764,
+          0.0
+        ],
+        "max": [
+          2.0,
+          0.125,
+          0.6000000238418579
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

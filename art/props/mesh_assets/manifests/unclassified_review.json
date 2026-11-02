@@ -1,0 +1,1022 @@
+{
+  "group": "unclassified_review",
+  "source": "sources/unclassified_review.blend",
+  "source_sha256": "c0470f0fed051f97b54615e72125ddbde5996f45865b7f9102a9bd17be3354d1",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-B2E2C8C2802A",
+      "name": "BRNGRN2",
+      "builder": "barn",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B2E2C8C2802A_lod0.glb",
+          "sha256": "2dd89ad7c35966b7cddcd51b37271a41d3b1cb8a89fc2609ca5fd8b4735c6061",
+          "triangles": 2592,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.5398240089416504,
+              -3.700000047683716,
+              0.0
+            ],
+            [
+              2.5398240089416504,
+              3.700000047683716,
+              3.7907140254974365
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B2E2C8C2802A_lod1.glb",
+          "sha256": "31181130ff369c56b0e684265304da682db3747f9638da8af6855e71c3b76209",
+          "triangles": 1056,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.5398240089416504,
+              -3.700000047683716,
+              0.0
+            ],
+            [
+              2.5398240089416504,
+              3.700000047683716,
+              3.7907140254974365
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B2E2C8C2802A_lod2.glb",
+          "sha256": "870fc64f5e6af9ac80c2cda0b13c2de54b4b41850cce12556315eb8424b93d0a",
+          "triangles": 48,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -2.5398240089416504,
+              -3.700000047683716,
+              0.0
+            ],
+            [
+              2.5398240089416504,
+              3.700000047683716,
+              3.7907140254974365
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barn_walls": 1,
+        "barn_roof": 2,
+        "barn_door": 1,
+        "siding_battens": 20
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.079648017883301,
+          3.7907140254974365,
+          7.400000095367432
+        ],
+        "center_y_up": [
+          0.0,
+          1.8953570127487183,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-10D1D5456444",
+      "name": "CHINLN2",
+      "builder": "guardian_lion",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-10D1D5456444_lod0.glb",
+          "sha256": "001eae7dc96d7192456b00d964206c1e02ec40e098f4f5176fe60f8cbd8bd1d8",
+          "triangles": 7688,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -0.550000011920929,
+              -1.4049999713897705,
+              0.0
+            ],
+            [
+              0.550000011920929,
+              1.094151258468628,
+              1.5700000524520874
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-10D1D5456444_lod1.glb",
+          "sha256": "5aac66bf0446da57634a62c35fdae03ff62987859aafea8387f15406eba4de72",
+          "triangles": 6024,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -0.550000011920929,
+              -1.3887664079666138,
+              0.0
+            ],
+            [
+              0.550000011920929,
+              1.0936055183410645,
+              1.5700000524520874
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-10D1D5456444_lod2.glb",
+          "sha256": "ef2916c1894a480daf4489efd9f1b86f348b2ceceee70a4fab32fdc34d27ecd6",
+          "triangles": 456,
+          "parts": 10,
+          "bounds_blender": [
+            [
+              -0.550000011920929,
+              -1.3822243213653564,
+              0.0
+            ],
+            [
+              0.550000011920929,
+              1.0926573276519775,
+              1.3700000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "horn": 2,
+        "tail": 1,
+        "stone_mane": 12,
+        "statue_plinth": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.100000023841858,
+          1.5700000524520874,
+          2.4991512298583984
+        ],
+        "center_y_up": [
+          0.0,
+          0.7850000262260437,
+          0.1554243564605713
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6E3ED951E87E",
+      "name": "COMBOA2",
+      "builder": "lamp_sign",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6E3ED951E87E_lod0.glb",
+          "sha256": "cfc5c6894a2d3ea0aba56f4f7c5e24370d48c23f501db707ff55eb22bfd61437",
+          "triangles": 2473,
+          "parts": 10,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1799999475479126,
+              0.0
+            ],
+            [
+              0.5300000309944153,
+              0.2199999988079071,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6E3ED951E87E_lod1.glb",
+          "sha256": "0ebad2849cda274052540eab5dc66192886d69e702ca44db4aa0aec30fc0c1e8",
+          "triangles": 825,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.2377641350030899,
+              -1.1418033838272095,
+              0.0
+            ],
+            [
+              0.5300000309944153,
+              0.20923243463039398,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6E3ED951E87E_lod2.glb",
+          "sha256": "c4546509ebbc551d06ea1fed78c191ee462630691c2940c89751b12ec5dbcc25",
+          "triangles": 164,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1264101266860962,
+              0.0
+            ],
+            [
+              0.5300000309944153,
+              0.1905255913734436,
+              5.320000171661377
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "lamp_arm": 1,
+        "lamp_head": 1,
+        "light_diffuser": 1,
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7800000309944153,
+          5.320000171661377,
+          1.3999999463558197
+        ],
+        "center_y_up": [
+          0.14000001549720764,
+          2.6600000858306885,
+          0.47999997437000275
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-9AB85BFF1770",
+      "name": "COMBOB2",
+      "builder": "bus_stop_bin",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-9AB85BFF1770_lod0.glb",
+          "sha256": "095e7ab0d306bd74384e18f946cd8e6406b8b4b00ce1a7b005a0649056080145",
+          "triangles": 1509,
+          "parts": 8,
+          "bounds_blender": [
+            [
+              -0.6299999952316284,
+              -0.3050000071525574,
+              0.0
+            ],
+            [
+              0.7099999785423279,
+              0.3050000071525574,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-9AB85BFF1770_lod1.glb",
+          "sha256": "c8341c40287b994e55da532f5233cc0884f0aa502a47df390b4d1ca0e1b19a8c",
+          "triangles": 381,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.6299999952316284,
+              -0.3050000071525574,
+              0.0
+            ],
+            [
+              0.7099999785423279,
+              0.3050000071525574,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-9AB85BFF1770_lod2.glb",
+          "sha256": "30ee0f7c1b6d1a0b2f450fa6d7c1291cb2ad3e5b0d4cc28c3216ebbd7864053d",
+          "triangles": 56,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.6299999952316284,
+              -0.3050000071525574,
+              0.0
+            ],
+            [
+              0.7099999785423279,
+              0.3050000071525574,
+              2.450000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2,
+        "waste_container": 1,
+        "bin_lid": 1,
+        "bin_handle": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3399999737739563,
+          2.450000047683716,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.03999999165534973,
+          1.225000023841858,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-984F6F11DA60",
+      "name": "CRITPIL2",
+      "builder": "roadside_animal",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-984F6F11DA60_lod0.glb",
+          "sha256": "716e9a532af3d1efff5369825cfe491a9ff32727c853438ba25df81aca09f027",
+          "triangles": 800,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.4000000059604645,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              0.4000000059604645,
+              0.23999999463558197,
+              0.11999999731779099
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-984F6F11DA60_lod1.glb",
+          "sha256": "127e7efc26890bbc676f73adb192e9f485abbcdb8c1aa5d26604601eddd04462",
+          "triangles": 304,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.38042259216308594,
+              -0.38854101300239563,
+              0.0
+            ],
+            [
+              0.38042259216308594,
+              0.21708203852176666,
+              0.11999999731779099
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-984F6F11DA60_lod2.glb",
+          "sha256": "6d76e2bbdaff0308c4da149a198fda6ba211d5bad36253a15358f419cd9946b8",
+          "triangles": 72,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.4000000059604645,
+              -0.3839230537414551,
+              0.0
+            ],
+            [
+              0.4000000059604645,
+              0.20784609019756317,
+              0.11999999731779099
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "small_roadside_animal": 1,
+        "small_animal_head": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.800000011920929,
+          0.11999999731779099,
+          0.6400000005960464
+        ],
+        "center_y_up": [
+          0.0,
+          0.05999999865889549,
+          0.08000000566244125
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-54F89A72BE4C",
+      "name": "CRITPSM2",
+      "builder": "roadside_animal",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-54F89A72BE4C_lod0.glb",
+          "sha256": "53da5fcfa6b6347636b74325b706cfd73224bf319d1d399e7384728c1e381f9d",
+          "triangles": 800,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.4000000059604645,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              0.4000000059604645,
+              0.23999999463558197,
+              0.11999999731779099
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-54F89A72BE4C_lod1.glb",
+          "sha256": "b65eb776b10b380f6aa627c46386cb6917735d3901ffa9e0f17a487edda83253",
+          "triangles": 304,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.38042259216308594,
+              -0.38854101300239563,
+              0.0
+            ],
+            [
+              0.38042259216308594,
+              0.21708203852176666,
+              0.11999999731779099
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-54F89A72BE4C_lod2.glb",
+          "sha256": "518b31d786d22b42c367a192ea68ce1d8676cec1bb6734ef350b2bdec5176d21",
+          "triangles": 72,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.4000000059604645,
+              -0.3839230537414551,
+              0.0
+            ],
+            [
+              0.4000000059604645,
+              0.20784609019756317,
+              0.11999999731779099
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "small_roadside_animal": 1,
+        "small_animal_head": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.800000011920929,
+          0.11999999731779099,
+          0.6400000005960464
+        ],
+        "center_y_up": [
+          0.0,
+          0.05999999865889549,
+          0.08000000566244125
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-63E86F575D7C",
+      "name": "CRNRGRP2",
+      "builder": "utility_assembly",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-63E86F575D7C_lod0.glb",
+          "sha256": "78ed3eb6887def62d3605deb7c769b946be65b409bec9908e216d655b2fa283e",
+          "triangles": 700,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.6200000047683716,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.600000023841858
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-63E86F575D7C_lod1.glb",
+          "sha256": "59ce036ce0286bf6afa6ef226e15bd17f18953289e9bf846959ef58979e3de8e",
+          "triangles": 364,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.6200000047683716,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.600000023841858
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-63E86F575D7C_lod2.glb",
+          "sha256": "4d56ca1a05b1f9e76715d50a0708f3265c0248f3f1f0e10f751a3e08984b667f",
+          "triangles": 64,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.6200000047683716,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.600000023841858
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1,
+        "vent_stack": 1,
+        "conduit": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.9699999988079071,
+          1.600000023841858,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          -0.13500000536441803,
+          0.800000011920929,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D6C6B12E97F6",
+      "name": "GRNDMKB2",
+      "builder": "abutment",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D6C6B12E97F6_lod0.glb",
+          "sha256": "a03aaa7d162e162674fcc7e1ea5e0c4044f3e59ffac68d2f88450592685f0d80",
+          "triangles": 1264,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.1749999523162842,
+              -0.800000011920929,
+              0.0
+            ],
+            [
+              2.3000001907348633,
+              0.800000011920929,
+              3.134999990463257
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D6C6B12E97F6_lod1.glb",
+          "sha256": "faa86f10e88d7ecadd958eb0616af25ae97c4f318a06e125a16dc7865217cdf9",
+          "triangles": 712,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.1749999523162842,
+              -0.800000011920929,
+              0.0
+            ],
+            [
+              2.3000001907348633,
+              0.800000011920929,
+              3.134999990463257
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D6C6B12E97F6_lod2.glb",
+          "sha256": "687f87da9a90732b10e6c341902075e2dcb5820e3831ea6da9a04f9efb3a68b9",
+          "triangles": 136,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.1749999523162842,
+              -0.800000011920929,
+              0.0
+            ],
+            [
+              2.3000001907348633,
+              0.800000011920929,
+              3.134999990463257
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "masonry_support": 1,
+        "coping": 1,
+        "railing_posts": 3,
+        "railing_rails": 2,
+        "cantilever_deck": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          3.4750001430511475,
+          3.134999990463257,
+          1.600000023841858
+        ],
+        "center_y_up": [
+          0.5625001192092896,
+          1.5674999952316284,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D584DCE55340",
+      "name": "GRNDMKC2",
+      "builder": "retaining_wall",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D584DCE55340_lod0.glb",
+          "sha256": "f19dac52503d7b7c46a3ad49d83e4e0f85c8dca7041b998923d53913c92172c1",
+          "triangles": 1156,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.1749999523162842,
+              -0.32499998807907104,
+              0.0
+            ],
+            [
+              1.1749999523162842,
+              0.32499998807907104,
+              3.134999990463257
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D584DCE55340_lod1.glb",
+          "sha256": "82ecfcc6c37092c3fda324d3f4006d6df72748a3a4ebfe5bc5fdef4e546d0b82",
+          "triangles": 668,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.1749999523162842,
+              -0.32499998807907104,
+              0.0
+            ],
+            [
+              1.1749999523162842,
+              0.32499998807907104,
+              3.134999990463257
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D584DCE55340_lod2.glb",
+          "sha256": "f67adf0f0703cae00b73a39491f48d987fd3914923cbba14e2013d656085c6dd",
+          "triangles": 124,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.1749999523162842,
+              -0.32499998807907104,
+              0.0
+            ],
+            [
+              1.1749999523162842,
+              0.32499998807907104,
+              3.134999990463257
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "masonry_support": 1,
+        "coping": 1,
+        "railing_posts": 3,
+        "railing_rails": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.3499999046325684,
+          3.134999990463257,
+          0.6499999761581421
+        ],
+        "center_y_up": [
+          0.0,
+          1.5674999952316284,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6D5770ACF085",
+      "name": "ICEPDSM2",
+      "builder": "ice_patch",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6D5770ACF085_lod0.glb",
+          "sha256": "8d456f1db0582c4357a5ed4008c6f61467efe8fc298b0f7d2fd07160ec9f4023",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9463179707527161,
+              -0.2629527151584625,
+              0.0
+            ],
+            [
+              0.4300711750984192,
+              0.72634357213974,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6D5770ACF085_lod1.glb",
+          "sha256": "895f969f4ac9829876fe2bea145ad4bec0d176ac75f963e9404e8c5b5a5607fe",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9169518351554871,
+              -0.2218913584947586,
+              0.0
+            ],
+            [
+              0.40070509910583496,
+              0.6852822303771973,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6D5770ACF085_lod2.glb",
+          "sha256": "93042b45dc70dc9940ca8d212608ed3884bd1282f1effbbad28195b6600c8d85",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9463179707527161,
+              -0.20534361898899078,
+              0.0
+            ],
+            [
+              0.4300711750984192,
+              0.6687344908714294,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3763891458511353,
+          0.035999998450279236,
+          0.9892962872982025
+        ],
+        "center_y_up": [
+          -0.25812339782714844,
+          0.017999999225139618,
+          -0.23169542849063873
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-35FB9A42BCE6",
+      "name": "RECYSTF2",
+      "builder": "recycling_pair",
+      "group": "unclassified_review",
+      "concept": {
+        "file": "art/props/concept_3d/all_unclassified_review_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-35FB9A42BCE6_lod0.glb",
+          "sha256": "8425d16b8e024dcd1fd12392a17ded777a096ad0e6ebbfdd313130d319fd5c2b",
+          "triangles": 864,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-35FB9A42BCE6_lod1.glb",
+          "sha256": "7279aef3bbb9620483bdc995a269367767b4df8932ed7f0f4dfb9361ef92309b",
+          "triangles": 352,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-35FB9A42BCE6_lod2.glb",
+          "sha256": "3d8715a73e40479685605e0511b5d352cfc3b309a990d2ae78888b34a4326104",
+          "triangles": 48,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "waste_container": 2,
+        "bin_lid": 2,
+        "bin_handle": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3800000846385956,
+          1.0099999606609344,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.36000002920627594,
+          0.5299999862909317,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

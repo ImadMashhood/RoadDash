@@ -1,0 +1,539 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:17:53 | INFO: Starting glTF 2.0 export
+20:17:53 | INFO: Extracting primitive: hydrant_base
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hydrant_barrel
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hydrant_cap
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hose_nozzle
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hose_cap
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: front_nozzle
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: cap_chain
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Finished glTF 2.0 export in 0.10359311103820801 s
+
+20:17:53 | INFO: Starting glTF 2.0 export
+20:17:53 | INFO: Extracting primitive: hydrant_base.001
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hydrant_barrel.001
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hydrant_cap.001
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hose_nozzle.001
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: hose_cap.001
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Extracting primitive: front_nozzle.001
+20:17:53 | INFO: Primitives created: 1
+20:17:53 | INFO: Finished glTF 2.0 export in 0.0246734619140625 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.01693415641784668 s
+
+EXPORTED PROP-76BC0C7FD4B4 HYDRNTA2 [5380, 1012, 176]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: cap_chain.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.046504974365234375 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.026709556579589844 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.019031524658203125 s
+
+EXPORTED PROP-A10C19B6AFC9 HYDRNTB2 [5380, 1012, 176]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: cap_chain.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.04614734649658203 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.03788185119628906 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: hydrant_base.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_barrel.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hydrant_cap.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_nozzle.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hose_cap.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: front_nozzle.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.02086806297302246 s
+
+EXPORTED PROP-C17B2166B9A8 HYDRNTC2 [5380, 1012, 176]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.07245111465454102 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.01752448081970215 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.014597892761230469 s
+
+EXPORTED PROP-1F0523FFD8D4 LAMPPST2 [1396, 620, 132]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: sign_post
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: shaped_sign_plate
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: fasteners
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.027904987335205078 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: sign_post.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: shaped_sign_plate.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.018926620483398438 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: sign_post.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: shaped_sign_plate.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.006655693054199219 s
+
+EXPORTED PROP-373B78893E1E LIGAHDR2 [2228, 648, 32]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: sign_post.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: shaped_sign_plate.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.007
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.008
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: fasteners.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.02457904815673828 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: sign_post.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: shaped_sign_plate.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.009
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.010
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: traffic_symbol_lens.011
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.01878809928894043 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: sign_post.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: shaped_sign_plate.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.0070574283599853516 s
+
+EXPORTED PROP-83D81D9FD604 LIGAHDY2 [2228, 648, 32]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser.003
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.014205217361450195 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser.004
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.012343645095825195 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser.005
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.010290861129760742 s
+
+EXPORTED PROP-448222CCA57B LMPPST32 [1396, 620, 132]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: meter_post
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_head
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_display
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_coin_slot
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.012999534606933594 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: meter_post.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_head.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_display.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_coin_slot.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.011718273162841797 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: meter_post.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_head.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: meter_display.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.0075113773345947266 s
+
+EXPORTED PROP-52D0386E0603 METER2 [804, 372, 68]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: trike_body
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: trike_cabin
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: trike_roof
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: tire
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: rim
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hub
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: rim_spokes
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: amber_beacon
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.03703737258911133 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: trike_body.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: trike_cabin.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: trike_roof.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: tire.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: rim.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: hub.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: rim_spokes.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: amber_beacon.001
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.02824544906616211 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: trike_body.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: trike_cabin.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: trike_roof.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: tire.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: rim.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: amber_beacon.002
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.017926931381225586 s
+
+EXPORTED PROP-A2548A127159 METERMD2 [6404, 2684, 260]
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:54 | INFO: Extracting primitive: pole.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: pole_base.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_arm.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: lamp_head.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Extracting primitive: light_diffuser.006
+20:17:54 | INFO: Primitives created: 1
+20:17:54 | INFO: Finished glTF 2.0 export in 0.014153718948364258 s
+
+20:17:54 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.007
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.007
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_arm.007
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_head.007
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: light_diffuser.007
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.011936187744140625 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.008
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.008
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_arm.008
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_head.008
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: light_diffuser.008
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.011242389678955078 s
+
+EXPORTED PROP-1E4FA37E8EA1 PRKGLMP2 [1396, 620, 132]
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.009
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.009
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_arm.009
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_head.009
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: light_diffuser.009
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.014766216278076172 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.010
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.010
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_arm.010
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_head.010
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: light_diffuser.010
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.014027595520019531 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.011
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.011
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_arm.011
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: lamp_head.011
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: light_diffuser.011
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.010722160339355469 s
+
+EXPORTED PROP-AFCACF124A63 STRTLTE2 [1396, 620, 132]
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.012
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.012
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_crossarm
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: insulators
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.01609635353088379 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.013
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.013
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_crossarm.001
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: insulators.001
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.013592958450317383 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.014
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.014
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_crossarm.002
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.008457660675048828 s
+
+EXPORTED PROP-2112E0AB2672 TELE2 [1720, 1016, 64]
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.015
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.015
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_crossarm.003
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: insulators.002
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.015558004379272461 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.016
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.016
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_crossarm.004
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: insulators.003
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.013066291809082031 s
+
+20:17:55 | INFO: Starting glTF 2.0 export
+20:17:55 | INFO: Extracting primitive: pole.017
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_base.017
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Extracting primitive: pole_crossarm.005
+20:17:55 | INFO: Primitives created: 1
+20:17:55 | INFO: Finished glTF 2.0 export in 0.02872300148010254 s
+
+EXPORTED PROP-FF927E45F8D0 TELPLEA2 [1720, 1016, 64]
+Info: Saved as "street_lighting_utilities.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

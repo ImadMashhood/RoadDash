@@ -1,0 +1,397 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: horn
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.038765907287597656 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: horn.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.033684730529785156 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.020368337631225586 s
+
+EXPORTED PROP-39DEE01F00B0 COWA2 [4892, 3196, 444]
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: horn.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.034314632415771484 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: horn.003
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.03130006790161133 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.034328460693359375 s
+
+EXPORTED PROP-349A323395D9 COWB2 [4892, 3196, 444]
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: horn.004
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.028529882431030273 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: horn.005
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.007
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.029525041580200195 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.008
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.015644311904907227 s
+
+EXPORTED PROP-ECF0E30EE86E COWC2 [4892, 3196, 444]
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: sign_post
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: shaped_sign_plate
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: symbol_stem
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: direction_symbol
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: fasteners
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.019989013671875 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: sign_post.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: shaped_sign_plate.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: symbol_stem.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: direction_symbol.001
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.011867284774780273 s
+
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: sign_post.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: shaped_sign_plate.002
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Finished glTF 2.0 export in 0.008507966995239258 s
+
+EXPORTED PROP-9094A227AFF2 COWS2 [1077, 205, 32]
+20:23:56 | INFO: Starting glTF 2.0 export
+20:23:56 | INFO: Extracting primitive: animal_torso.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: upper_leg.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: lower_leg.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: hoof.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_neck.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_head.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: muzzle.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_ears.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: animal_eyes.006
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: tail.009
+20:23:56 | INFO: Primitives created: 1
+20:23:56 | INFO: Extracting primitive: wool_tufts
+20:23:56 | INFO: Primitives created: 1
+20:23:57 | INFO: Finished glTF 2.0 export in 0.041931867599487305 s
+
+20:23:57 | INFO: Starting glTF 2.0 export
+20:23:57 | INFO: Extracting primitive: animal_torso.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: upper_leg.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: lower_leg.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: hoof.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_neck.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_head.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: muzzle.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_ears.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_eyes.007
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: tail.010
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: wool_tufts.001
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Finished glTF 2.0 export in 0.14169025421142578 s
+
+20:23:57 | INFO: Starting glTF 2.0 export
+20:23:57 | INFO: Extracting primitive: animal_torso.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: upper_leg.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: lower_leg.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: hoof.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_neck.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_head.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: muzzle.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_ears.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: tail.011
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Finished glTF 2.0 export in 0.02429485321044922 s
+
+EXPORTED PROP-DBC77A1D1E95 SHEEPB2 [12828, 6708, 444]
+20:23:57 | INFO: Starting glTF 2.0 export
+20:23:57 | INFO: Extracting primitive: animal_torso.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: upper_leg.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: lower_leg.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: hoof.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_neck.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_head.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: muzzle.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_ears.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_eyes.008
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: tail.012
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: wool_tufts.002
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Finished glTF 2.0 export in 0.07439541816711426 s
+
+20:23:57 | INFO: Starting glTF 2.0 export
+20:23:57 | INFO: Extracting primitive: animal_torso.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: upper_leg.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: lower_leg.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: hoof.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_neck.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_head.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: muzzle.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_ears.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_eyes.009
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: tail.013
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: wool_tufts.003
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Finished glTF 2.0 export in 0.056775808334350586 s
+
+20:23:57 | INFO: Starting glTF 2.0 export
+20:23:57 | INFO: Extracting primitive: animal_torso.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: upper_leg.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: lower_leg.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: hoof.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_neck.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_head.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: muzzle.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: animal_ears.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Extracting primitive: tail.014
+20:23:57 | INFO: Primitives created: 1
+20:23:57 | INFO: Finished glTF 2.0 export in 0.02190113067626953 s
+
+EXPORTED PROP-56B018EAFACF SHEEPC2 [12828, 6708, 444]
+Info: Saved as "animals.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

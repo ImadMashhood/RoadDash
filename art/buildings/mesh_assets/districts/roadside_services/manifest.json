@@ -1,0 +1,284 @@
+{
+  "id": "roadside_services",
+  "label": "Roadside services",
+  "asset_ids": [
+    "BUSSTOP2",
+    "CARWASH2",
+    "GASA2",
+    "GASB2",
+    "PHONSHK2",
+    "SHOPD2",
+    "SHOPE2",
+    "SHOPICE2",
+    "SNCKSHP2"
+  ],
+  "placement_guidance": "Shared settlement services; use course eligibility and site clearance, not every service in every district.",
+  "assets": [
+    {
+      "id": "BUSSTOP2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        36,
+        61,
+        156,
+        158,
+        160,
+        202
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSSTOP2_lod0.glb",
+          "sha256": "532925464c9c4dda047960b0a6c1624ba7e6f6c3946f5b47e344b0fe4678f39a"
+        },
+        {
+          "file": "../../models/BUSSTOP2_lod1.glb",
+          "sha256": "7418a493f61a869581f9725c9b739ec07c550e9fa07df25f65c7c89fd6bb1746"
+        },
+        {
+          "file": "../../models/BUSSTOP2_lod2.glb",
+          "sha256": "cf0ac3c247e721db6fe6ee1fdb3773950fc75c00717a7974b3143c3b2d71f736"
+        }
+      ],
+      "render": "../../catalog_renders/BUSSTOP2.png"
+    },
+    {
+      "id": "CARWASH2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        255
+      ],
+      "original_course_family_load_matches": [
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CARWASH2_lod0.glb",
+          "sha256": "cd763dbe464a0925b0ba3e10373ec43c29e642dfe321782651a0e5bc6b0ef7af"
+        },
+        {
+          "file": "../../models/CARWASH2_lod1.glb",
+          "sha256": "7161ee244abbf442403f3c7b04b6cbbecdde238637112566e41de77d5275db11"
+        },
+        {
+          "file": "../../models/CARWASH2_lod2.glb",
+          "sha256": "7db90d894066c0f9c0574f77262e510a919d1165093d17511acdfb9fc0a163f7"
+        }
+      ],
+      "render": "../../catalog_renders/CARWASH2.png"
+    },
+    {
+      "id": "GASA2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        251
+      ],
+      "original_course_family_load_matches": [
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/GASA2_lod0.glb",
+          "sha256": "fb7ea8138780c60918d5576e2334b1b5ed1ce400d8adde34720dbb66114a779b"
+        },
+        {
+          "file": "../../models/GASA2_lod1.glb",
+          "sha256": "54f00eca728261b3a3f84b57fd335e8e8512c6dcf74e4d1631481a24f8f6122e"
+        },
+        {
+          "file": "../../models/GASA2_lod2.glb",
+          "sha256": "ee183cdc82a936cdd33f62656c2a135686bd4b0db145adb3fb5c1766c3d2eefe"
+        }
+      ],
+      "render": "../../catalog_renders/GASA2.png"
+    },
+    {
+      "id": "GASB2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        255
+      ],
+      "original_course_family_load_matches": [
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/GASB2_lod0.glb",
+          "sha256": "1684836f38e2818ec3fe128a24e672901ca1af77d24c220ec908ccadbbdf59cd"
+        },
+        {
+          "file": "../../models/GASB2_lod1.glb",
+          "sha256": "91b54dba340ceee77b84c9b1f9cae650db4b0524291c1f2aacbf66340b10b023"
+        },
+        {
+          "file": "../../models/GASB2_lod2.glb",
+          "sha256": "dfd8c8b26df17b37828e39f93dc39e8945e7f365b4cbb69345f9ee889d487133"
+        }
+      ],
+      "render": "../../catalog_renders/GASB2.png"
+    },
+    {
+      "id": "PHONSHK2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        193,
+        235,
+        259
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/PHONSHK2_lod0.glb",
+          "sha256": "8785e7cb3a44f2cdefbb5a4726232c3ab9eb62641460fdd3849177d733175a06"
+        },
+        {
+          "file": "../../models/PHONSHK2_lod1.glb",
+          "sha256": "073a19217ce0d79ed3cbfd1eebcfe22ac723b0b4e65ab578858d819418f0842c"
+        },
+        {
+          "file": "../../models/PHONSHK2_lod2.glb",
+          "sha256": "daca52651eac4ffb98573cce6bdded88232e4db17c0397d209310be70c66fe78"
+        }
+      ],
+      "render": "../../catalog_renders/PHONSHK2.png"
+    },
+    {
+      "id": "SHOPD2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        28
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/SHOPD2_lod0.glb",
+          "sha256": "437785acb87bae9748463457d9c04f34bd722e0b281815ea1e5b7c4647c154b7"
+        },
+        {
+          "file": "../../models/SHOPD2_lod1.glb",
+          "sha256": "18b386b3ea4e3155086ffa4adcdd576790cb345fe5d17fce7d43597107d11208"
+        },
+        {
+          "file": "../../models/SHOPD2_lod2.glb",
+          "sha256": "4d0b2c8b22ef8fcc4c5187eb6655964b126037fc3f9c54cf9fb6e16c9aa50a36"
+        }
+      ],
+      "render": "../../catalog_renders/SHOPD2.png"
+    },
+    {
+      "id": "SHOPE2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        256
+      ],
+      "original_course_family_load_matches": [
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/SHOPE2_lod0.glb",
+          "sha256": "8108492e31dc85777324729f86b977a464e5b606af41c75c1cc3b58bd30ebd02"
+        },
+        {
+          "file": "../../models/SHOPE2_lod1.glb",
+          "sha256": "c29d1b9e8d26931dd442c54b3fb081ef7c1ed521d03835f3526128fa823518d5"
+        },
+        {
+          "file": "../../models/SHOPE2_lod2.glb",
+          "sha256": "83278dd0aaae799a42f7f351ea74b33174749cd6fedfbcb93e30525f6df6fa84"
+        }
+      ],
+      "render": "../../catalog_renders/SHOPE2.png"
+    },
+    {
+      "id": "SHOPICE2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        257
+      ],
+      "original_course_family_load_matches": [
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/SHOPICE2_lod0.glb",
+          "sha256": "0eddaab96cfea609884bacce8708cdf7e6f76e34d0b337502e602114123dcb8f"
+        },
+        {
+          "file": "../../models/SHOPICE2_lod1.glb",
+          "sha256": "543b473e87ffc7728208c51706e7672e376a266c825cf1345e69121c066ab2da"
+        },
+        {
+          "file": "../../models/SHOPICE2_lod2.glb",
+          "sha256": "852131efa3affcabb87ad949f129308a55f78a30b8a34b48792dd386d3a39864"
+        }
+      ],
+      "render": "../../catalog_renders/SHOPICE2.png"
+    },
+    {
+      "id": "SNCKSHP2",
+      "asset_type": "structure",
+      "primary_district": "roadside_services",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        85
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/SNCKSHP2_lod0.glb",
+          "sha256": "4414cf1a93205a0bffb757cbfa445ba7907512c40d3f5b047f4e152617c16c49"
+        },
+        {
+          "file": "../../models/SNCKSHP2_lod1.glb",
+          "sha256": "2131b6e4b252bdde54caa381be5d4072c5447fc4e40d4de95fdd3486bae46fd5"
+        },
+        {
+          "file": "../../models/SNCKSHP2_lod2.glb",
+          "sha256": "60ce3124182c11fd24bb3b2461a4492af28b34ba61288248bfe0c72dd75b0179"
+        }
+      ],
+      "render": "../../catalog_renders/SNCKSHP2.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

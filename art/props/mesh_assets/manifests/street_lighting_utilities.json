@@ -1,0 +1,1210 @@
+{
+  "group": "street_lighting_utilities",
+  "source": "sources/street_lighting_utilities.blend",
+  "source_sha256": "b243776d27b36546615707eef2d2f9dc5a46cdaee5e0fea3e8af839d3bab7ba8",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-76BC0C7FD4B4",
+      "name": "HYDRNTA2",
+      "builder": "hydrant",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/props_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-76BC0C7FD4B4_lod0.glb",
+          "sha256": "f81aa4c19a75498136edb966d981e6cbd19f8ce3d1dd13c56a00d149b7f7e3ce",
+          "triangles": 5380,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.1899999976158142,
+              0.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-76BC0C7FD4B4_lod1.glb",
+          "sha256": "c59335247640b9a8e77e93e40fd0158eb363c2dbd570e2ca3d4b8b941d476b25",
+          "triangles": 1012,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.18070073425769806,
+              0.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-76BC0C7FD4B4_lod2.glb",
+          "sha256": "45cbaf4fa2e8bb40efffd75269e75d0520708f3294b46a34f5379dce5da2799d",
+          "triangles": 176,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.16454482078552246,
+              0.9700000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "hydrant_base": 1,
+        "hydrant_barrel": 1,
+        "hydrant_cap": 1,
+        "hose_nozzle": 2,
+        "hose_cap": 2,
+        "front_nozzle": 1,
+        "cap_chain": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5059999823570251,
+          0.9700000286102295,
+          0.42000000178813934
+        ],
+        "center_y_up": [
+          0.0,
+          0.48500001430511475,
+          0.020000003278255463
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A10C19B6AFC9",
+      "name": "HYDRNTB2",
+      "builder": "hydrant",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/utilities_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A10C19B6AFC9_lod0.glb",
+          "sha256": "ecfddfaa8e5d4519c7827649b8882a7cb8aec52ce3452d497fa25cc464de730f",
+          "triangles": 5380,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.1899999976158142,
+              0.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A10C19B6AFC9_lod1.glb",
+          "sha256": "da88a937d8203cdbe33528823776568daeef44d8409baa3eca0adb94406a279b",
+          "triangles": 1012,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.18070073425769806,
+              0.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A10C19B6AFC9_lod2.glb",
+          "sha256": "85a1aaa71016c7327e99184522147fc5c12a562ac04df2402e3ec0ac60ebc491",
+          "triangles": 176,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.16454482078552246,
+              0.9700000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "hydrant_base": 1,
+        "hydrant_barrel": 1,
+        "hydrant_cap": 1,
+        "hose_nozzle": 2,
+        "hose_cap": 2,
+        "front_nozzle": 1,
+        "cap_chain": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5059999823570251,
+          0.9700000286102295,
+          0.42000000178813934
+        ],
+        "center_y_up": [
+          0.0,
+          0.48500001430511475,
+          0.020000003278255463
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C17B2166B9A8",
+      "name": "HYDRNTC2",
+      "builder": "hydrant",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_lighting_utilities_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C17B2166B9A8_lod0.glb",
+          "sha256": "ec25b8154b74e0101110c27838e052a5cada9ab9c4311c7b4d2d125d8ff7105a",
+          "triangles": 5380,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.1899999976158142,
+              0.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C17B2166B9A8_lod1.glb",
+          "sha256": "8850b5dac4333d75358c377e85fb3bc48a7d9492172b913fe6850a8544ed0d28",
+          "triangles": 1012,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.18070073425769806,
+              0.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C17B2166B9A8_lod2.glb",
+          "sha256": "ce066374adbd38ff9597c8cd7d562288c12bd45a04e14a92d39e87876ef7fb54",
+          "triangles": 176,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.2529999911785126,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.2529999911785126,
+              0.16454482078552246,
+              0.9700000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "hydrant_base": 1,
+        "hydrant_barrel": 1,
+        "hydrant_cap": 1,
+        "hose_nozzle": 2,
+        "hose_cap": 2,
+        "front_nozzle": 1,
+        "cap_chain": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5059999823570251,
+          0.9700000286102295,
+          0.42000000178813934
+        ],
+        "center_y_up": [
+          0.0,
+          0.48500001430511475,
+          0.020000003278255463
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1F0523FFD8D4",
+      "name": "LAMPPST2",
+      "builder": "street_lamp",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/props_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1F0523FFD8D4_lod0.glb",
+          "sha256": "c9cd5dfae1ff63b1569c56d96548f04133985da40f2b0422d1708f907b43ec86",
+          "triangles": 1396,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1799999475479126,
+              0.0
+            ],
+            [
+              0.25,
+              0.2199999988079071,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1F0523FFD8D4_lod1.glb",
+          "sha256": "d2ab705b845058568ed109016734c88c2ba225a7ca41006ce62e2d4cd2842492",
+          "triangles": 620,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.2377641350030899,
+              -1.1418033838272095,
+              0.0
+            ],
+            [
+              0.2377641350030899,
+              0.20923243463039398,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1F0523FFD8D4_lod2.glb",
+          "sha256": "00e4d995ab9edd583c230f9ce5b83b881c42b4b90166e13d33794856b96730fe",
+          "triangles": 132,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1264101266860962,
+              0.0
+            ],
+            [
+              0.25,
+              0.1905255913734436,
+              5.320000171661377
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "lamp_arm": 1,
+        "lamp_head": 1,
+        "light_diffuser": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5,
+          5.320000171661377,
+          1.3999999463558197
+        ],
+        "center_y_up": [
+          0.0,
+          2.6600000858306885,
+          0.47999997437000275
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-373B78893E1E",
+      "name": "LIGAHDR2",
+      "builder": "warning_sign",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_lighting_utilities_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-373B78893E1E_lod0.glb",
+          "sha256": "d26ea08a425e7b41af41f363e294773d1f64b43da20f6bbb77cb944048e3a20c",
+          "triangles": 2228,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.05000000074505806,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-373B78893E1E_lod1.glb",
+          "sha256": "b299e87762b60597483ab00d0eb19e243edaf4fed4ab8f8f6065d75c639177c1",
+          "triangles": 648,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04923606663942337,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-373B78893E1E_lod2.glb",
+          "sha256": "2a735daf0abcfa937e96802b9d0a6e59e3027e296c1cf96849f0dee5c5ffe685",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "traffic_symbol": 1,
+        "traffic_symbol_lens": 3,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08500000089406967
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.007500000298023224
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-83D81D9FD604",
+      "name": "LIGAHDY2",
+      "builder": "warning_sign",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_lighting_utilities_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-83D81D9FD604_lod0.glb",
+          "sha256": "0fee84e7a4c896d55312a399fe43d9b725d2d44f5b92e7175bf9b0d0c06b4c93",
+          "triangles": 2228,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.05000000074505806,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-83D81D9FD604_lod1.glb",
+          "sha256": "6dfe22fbac8e047fd6efd4ca22bad254fcb3e18677b216fbfcfa1999b3fb25ac",
+          "triangles": 648,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04923606663942337,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-83D81D9FD604_lod2.glb",
+          "sha256": "26d3a3569e939e7e55d35129851817345bb7008b242371551e83906bb3df553b",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "traffic_symbol": 1,
+        "traffic_symbol_lens": 3,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08500000089406967
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.007500000298023224
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-448222CCA57B",
+      "name": "LMPPST32",
+      "builder": "street_lamp",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/utilities_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-448222CCA57B_lod0.glb",
+          "sha256": "ca67c3d6fd4d86491b5207f3b59a470732b53ba2f49ada1512feb7950927042e",
+          "triangles": 1396,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1799999475479126,
+              0.0
+            ],
+            [
+              0.25,
+              0.2199999988079071,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-448222CCA57B_lod1.glb",
+          "sha256": "61a2ff32553bcfbcc99add8fc37532e7f1367a3bdbec2c9089c25f311417dcc9",
+          "triangles": 620,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.2377641350030899,
+              -1.1418033838272095,
+              0.0
+            ],
+            [
+              0.2377641350030899,
+              0.20923243463039398,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-448222CCA57B_lod2.glb",
+          "sha256": "a588a791f46bb83bf04421e1da5ac2cfd6bd8677c83d7b485a89241c4438da9f",
+          "triangles": 132,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1264101266860962,
+              0.0
+            ],
+            [
+              0.25,
+              0.1905255913734436,
+              5.320000171661377
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "lamp_arm": 1,
+        "lamp_head": 1,
+        "light_diffuser": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5,
+          5.320000171661377,
+          1.3999999463558197
+        ],
+        "center_y_up": [
+          0.0,
+          2.6600000858306885,
+          0.47999997437000275
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-52D0386E0603",
+      "name": "METER2",
+      "builder": "parking_meter",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/utilities_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-52D0386E0603_lod0.glb",
+          "sha256": "3f16eba84d92389b2ecde83e8fec46ff34d85395a3644927cfd991b2b38d33b7",
+          "triangles": 804,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.12999999523162842,
+              -0.10000000149011612,
+              0.0
+            ],
+            [
+              0.12999999523162842,
+              0.07999999821186066,
+              1.5399999618530273
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-52D0386E0603_lod1.glb",
+          "sha256": "ae81806d86536208cdcbd14c10888253f22bedeffa08bb21030b3668868910e5",
+          "triangles": 372,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.12363734841346741,
+              -0.10000000149011612,
+              0.0
+            ],
+            [
+              0.12363734841346741,
+              0.07236067950725555,
+              1.5399999618530273
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-52D0386E0603_lod2.glb",
+          "sha256": "b2bf2a63791ce81f3fd932182fad873bbcd7844512da6da725eebfc008a9c5c1",
+          "triangles": 68,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.12999999523162842,
+              -0.08999999612569809,
+              0.0
+            ],
+            [
+              0.12999999523162842,
+              0.06928203254938126,
+              1.5399999618530273
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "meter_post": 1,
+        "meter_head": 1,
+        "meter_display": 1,
+        "meter_coin_slot": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.25999999046325684,
+          1.5399999618530273,
+          0.17999999970197678
+        ],
+        "center_y_up": [
+          0.0,
+          0.7699999809265137,
+          0.010000001639127731
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A2548A127159",
+      "name": "METERMD2",
+      "builder": "service_trike",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_lighting_utilities_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A2548A127159_lod0.glb",
+          "sha256": "d4391d12e64c169406705c6dd9119af66d845344d88eb3ac3ea0f8ef25afa7c0",
+          "triangles": 6404,
+          "parts": 8,
+          "bounds_blender": [
+            [
+              -0.6019999980926514,
+              -1.0099999904632568,
+              0.0
+            ],
+            [
+              0.6019999980926514,
+              0.824999988079071,
+              1.9700000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A2548A127159_lod1.glb",
+          "sha256": "c222ed25c9d227277ac3134e9a9d4848c20d2a92ac95a866b36b9dcc49dbf69c",
+          "triangles": 2684,
+          "parts": 8,
+          "bounds_blender": [
+            [
+              -0.6019999980926514,
+              -1.0099999904632568,
+              0.0027253057342022657
+            ],
+            [
+              0.6019999980926514,
+              0.824999988079071,
+              1.9600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A2548A127159_lod2.glb",
+          "sha256": "ab0c8468438e22800fcba04d0c780e3de9360194e104d47d763816700d8afb20",
+          "triangles": 260,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.550000011920929,
+              -1.0099999904632568,
+              0.024833394214510918
+            ],
+            [
+              0.550000011920929,
+              0.824999988079071,
+              1.9600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "trike_body": 1,
+        "trike_cabin": 1,
+        "trike_roof": 1,
+        "tire": 3,
+        "rim": 3,
+        "hub": 3,
+        "rim_spokes": 15,
+        "amber_beacon": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.2039999961853027,
+          1.9700000286102295,
+          1.8349999785423279
+        ],
+        "center_y_up": [
+          0.0,
+          0.9850000143051147,
+          0.0925000011920929
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1E4FA37E8EA1",
+      "name": "PRKGLMP2",
+      "builder": "street_lamp",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/utilities_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1E4FA37E8EA1_lod0.glb",
+          "sha256": "81d0a9d15cb42ea3654ed8b8f30d027d582cd279807fc45627fd66955608510d",
+          "triangles": 1396,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1799999475479126,
+              0.0
+            ],
+            [
+              0.25,
+              0.2199999988079071,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1E4FA37E8EA1_lod1.glb",
+          "sha256": "70dafc491ce2f2d243e756bfcb5f3688625895023e0776c8d560be90406ba4eb",
+          "triangles": 620,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.2377641350030899,
+              -1.1418033838272095,
+              0.0
+            ],
+            [
+              0.2377641350030899,
+              0.20923243463039398,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1E4FA37E8EA1_lod2.glb",
+          "sha256": "27350bd0b91051e6b8e72ec913f52a933942da09bd6e9efc7a66cf2ce2715c09",
+          "triangles": 132,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1264101266860962,
+              0.0
+            ],
+            [
+              0.25,
+              0.1905255913734436,
+              5.320000171661377
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "lamp_arm": 1,
+        "lamp_head": 1,
+        "light_diffuser": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5,
+          5.320000171661377,
+          1.3999999463558197
+        ],
+        "center_y_up": [
+          0.0,
+          2.6600000858306885,
+          0.47999997437000275
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-AFCACF124A63",
+      "name": "STRTLTE2",
+      "builder": "street_lamp",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/utilities_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-AFCACF124A63_lod0.glb",
+          "sha256": "9737bb216e627e2db99c230cfc8c27bdc0ea311ecc69152b9bfe6e15ba22c107",
+          "triangles": 1396,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1799999475479126,
+              0.0
+            ],
+            [
+              0.25,
+              0.2199999988079071,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-AFCACF124A63_lod1.glb",
+          "sha256": "ae464c8861f9f1b2bd64a442d0a5a284f4b2b86e715300057e60f8497c047553",
+          "triangles": 620,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.2377641350030899,
+              -1.1418033838272095,
+              0.0
+            ],
+            [
+              0.2377641350030899,
+              0.20923243463039398,
+              5.320000171661377
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-AFCACF124A63_lod2.glb",
+          "sha256": "e980ffd9d33e60e1ba35be26b2382489c724d94d8139b15f0d688c7e13f5717a",
+          "triangles": 132,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.25,
+              -1.1264101266860962,
+              0.0
+            ],
+            [
+              0.25,
+              0.1905255913734436,
+              5.320000171661377
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "lamp_arm": 1,
+        "lamp_head": 1,
+        "light_diffuser": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.5,
+          5.320000171661377,
+          1.3999999463558197
+        ],
+        "center_y_up": [
+          0.0,
+          2.6600000858306885,
+          0.47999997437000275
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2112E0AB2672",
+      "name": "TELE2",
+      "builder": "utility_pole",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_lighting_utilities_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2112E0AB2672_lod0.glb",
+          "sha256": "0be5960eb33ab2cd27b1a292b3710273c6b1dc28b234e005e5c31946fd4cc8c2",
+          "triangles": 1720,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8999999761581421,
+              -0.2199999988079071,
+              0.0
+            ],
+            [
+              0.8999999761581421,
+              0.2199999988079071,
+              7.0
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2112E0AB2672_lod1.glb",
+          "sha256": "63241bf6aa33582043836a849c80038d23a5cf3f918128637d034324e81ddf7a",
+          "triangles": 1016,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8999999761581421,
+              -0.20923243463039398,
+              0.0
+            ],
+            [
+              0.8999999761581421,
+              0.20923243463039398,
+              7.0
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2112E0AB2672_lod2.glb",
+          "sha256": "1016e7b6465343d8bbba149e5d236c764c659a46c629beadea313f8a97ae6943",
+          "triangles": 64,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.8999999761581421,
+              -0.1905255913734436,
+              0.0
+            ],
+            [
+              0.8999999761581421,
+              0.1905255913734436,
+              7.0
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "pole_crossarm": 2,
+        "insulators": 6
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7999999523162842,
+          7.0,
+          0.4399999976158142
+        ],
+        "center_y_up": [
+          0.0,
+          3.5,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FF927E45F8D0",
+      "name": "TELPLEA2",
+      "builder": "utility_pole",
+      "group": "street_lighting_utilities",
+      "concept": {
+        "file": "art/props/concept_3d/utilities_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FF927E45F8D0_lod0.glb",
+          "sha256": "62bca10c6ed9bad57273731a1b48184b23819eb650736ed804e4a7406ba27c97",
+          "triangles": 1720,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8999999761581421,
+              -0.2199999988079071,
+              0.0
+            ],
+            [
+              0.8999999761581421,
+              0.2199999988079071,
+              7.0
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FF927E45F8D0_lod1.glb",
+          "sha256": "440dba99a46e0c0d11765ba9d4ce46dd8d4a2838699dd13d738c11bea398c5fe",
+          "triangles": 1016,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8999999761581421,
+              -0.20923243463039398,
+              0.0
+            ],
+            [
+              0.8999999761581421,
+              0.20923243463039398,
+              7.0
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FF927E45F8D0_lod2.glb",
+          "sha256": "2e524f496011228abde5e4beca27ce1c873dc4316f0ba260b64d2ca8ad757caf",
+          "triangles": 64,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.8999999761581421,
+              -0.1905255913734436,
+              0.0
+            ],
+            [
+              0.8999999761581421,
+              0.1905255913734436,
+              7.0
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pole": 1,
+        "pole_base": 1,
+        "pole_crossarm": 2,
+        "insulators": 6
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7999999523162842,
+          7.0,
+          0.4399999976158142
+        ],
+        "center_y_up": [
+          0.0,
+          3.5,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"group": "parked_vehicles_machinery", "exit_code": 0}

@@ -1,0 +1,463 @@
+{
+  "id": "retaining_tunnels",
+  "label": "Retaining walls / tunnels",
+  "asset_ids": [
+    "METL21CC",
+    "METL21RC",
+    "METL21RW",
+    "METL22CC",
+    "TOWERB2",
+    "TUN1SHTP",
+    "TUNN1LIP",
+    "TUNN21CC",
+    "TUNN21RC",
+    "TUNN21RW",
+    "TUNN22CC",
+    "TUNN31CC",
+    "TUNN31RC",
+    "TUNN31RW",
+    "TUNN32RC"
+  ],
+  "placement_guidance": "Structural wall, tunnel and tower kit; follows terrain/engineering needs, never random building lots.",
+  "assets": [
+    {
+      "id": "METL21CC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        15,
+        242
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/METL21CC_lod0.glb",
+          "sha256": "fe7a97beaced75d615a29aad2b807383af32e83af401553df0f080cd7cce51a7"
+        },
+        {
+          "file": "../../models/METL21CC_lod1.glb",
+          "sha256": "676d1692184c0f892d3849e4d8e197c71c25f0880ad10e1d31cbd4347c6b38a3"
+        },
+        {
+          "file": "../../models/METL21CC_lod2.glb",
+          "sha256": "3c6d2d1b3c6a6db7de8cfb2f5bf564906a1eb81ac726f698358926aee0cc798d"
+        }
+      ],
+      "render": "../../catalog_renders/METL21CC.png"
+    },
+    {
+      "id": "METL21RC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        15,
+        242
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/METL21RC_lod0.glb",
+          "sha256": "46c84bf3247ca152b6facd28c577d2686d5a27997f4204765b6d42ab6aa4772c"
+        },
+        {
+          "file": "../../models/METL21RC_lod1.glb",
+          "sha256": "6e0f7a3dd271054b36c34fd4916d6191b086dd37a9e989d59e27a5dfae9899f6"
+        },
+        {
+          "file": "../../models/METL21RC_lod2.glb",
+          "sha256": "6c700eb4fb142b4ebb3feb04570d18299a1db34942a74fe8d7ca2b8b05ac2d37"
+        }
+      ],
+      "render": "../../catalog_renders/METL21RC.png"
+    },
+    {
+      "id": "METL21RW",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        15,
+        242
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/METL21RW_lod0.glb",
+          "sha256": "d253f42f0ccc378c9258b1a3098385295f34f6d9f154bcb7db9b0e8d9838e575"
+        },
+        {
+          "file": "../../models/METL21RW_lod1.glb",
+          "sha256": "c76e34e31b678720fd569e1f3907a271e0f182b75aef016d7a20351b30a263d6"
+        },
+        {
+          "file": "../../models/METL21RW_lod2.glb",
+          "sha256": "70774543f4f8af44a5e810b904990e26d6b55d8643341b9ea1195c7eeb91efcb"
+        }
+      ],
+      "render": "../../catalog_renders/METL21RW.png"
+    },
+    {
+      "id": "METL22CC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        15,
+        242
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/METL22CC_lod0.glb",
+          "sha256": "b77759e4578e3da4bc7ee6f86b361c8d000eb6fcd902e0e5d034055fa32c2a74"
+        },
+        {
+          "file": "../../models/METL22CC_lod1.glb",
+          "sha256": "8f014b2a0986ef2dac36c748ac5fb4b0df8d99d97af79f83cbfaf02e6068a828"
+        },
+        {
+          "file": "../../models/METL22CC_lod2.glb",
+          "sha256": "3611d9d412d5b59d9648e35aa3294c5009edaaab4c0a03b3640326d96ad72aa0"
+        }
+      ],
+      "render": "../../catalog_renders/METL22CC.png"
+    },
+    {
+      "id": "TOWERB2",
+      "asset_type": "structure",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        242,
+        251
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TOWERB2_lod0.glb",
+          "sha256": "bd32ff200169c02009ae2da90e4bf8098bd12087e44bc963b8b275ed1e24b671"
+        },
+        {
+          "file": "../../models/TOWERB2_lod1.glb",
+          "sha256": "3eecea0b90d4844df43c3769baeab675b8ddd5d9b80f81fc593ce6075025d685"
+        },
+        {
+          "file": "../../models/TOWERB2_lod2.glb",
+          "sha256": "af3fec68cbc4e1862a4a345cde267efb3b31cd85fc0657325f1fcebfc69fff22"
+        }
+      ],
+      "render": "../../catalog_renders/TOWERB2.png"
+    },
+    {
+      "id": "TUN1SHTP",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        17,
+        31,
+        81
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUN1SHTP_lod0.glb",
+          "sha256": "61a648e5cae14f7cfd034d204a95871d47b2563a7d1e82d74c8806ab7fe0b037"
+        },
+        {
+          "file": "../../models/TUN1SHTP_lod1.glb",
+          "sha256": "44ad5d6c7c38aa0be7f55b8dd849b40279c587f16ff29fd53f3c75ffbf1664ca"
+        },
+        {
+          "file": "../../models/TUN1SHTP_lod2.glb",
+          "sha256": "b930994bb50d3ac5965c970369996916c5ea1914ad732a54920bfc0b5f32f3a1"
+        }
+      ],
+      "render": "../../catalog_renders/TUN1SHTP.png"
+    },
+    {
+      "id": "TUNN1LIP",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        17,
+        31,
+        81
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN1LIP_lod0.glb",
+          "sha256": "549f82c09a7cc94436366f4ca695bb6610f8ac9f91a82563b788af9e7dabd57c"
+        },
+        {
+          "file": "../../models/TUNN1LIP_lod1.glb",
+          "sha256": "0c9285be61ab44076a0d9fba2b981d640422b3ae504c9f457283065349745968"
+        },
+        {
+          "file": "../../models/TUNN1LIP_lod2.glb",
+          "sha256": "b8e879783d2800564814b726e91fca32e5c329d5439eecee61499834dfe638c5"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN1LIP.png"
+    },
+    {
+      "id": "TUNN21CC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        31
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN21CC_lod0.glb",
+          "sha256": "27e7ee1c77352c06dcc2fe163102c414ccb0c74ee4ad194dc6cb95ce849e24da"
+        },
+        {
+          "file": "../../models/TUNN21CC_lod1.glb",
+          "sha256": "c9704b79ff62d3c003d35c5bcb293f59547563d2f67ce7a1bb4fe85c9433219a"
+        },
+        {
+          "file": "../../models/TUNN21CC_lod2.glb",
+          "sha256": "09bfbf55bfdbd76153921fbd41bf7ab4181486e40dfb902a609a84db69a6495c"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN21CC.png"
+    },
+    {
+      "id": "TUNN21RC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        31
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN21RC_lod0.glb",
+          "sha256": "7c075f25dac588fb0137ae32f80ed6e8a95c9bfc037224145ba45db165ada259"
+        },
+        {
+          "file": "../../models/TUNN21RC_lod1.glb",
+          "sha256": "a3c05cf72330c145af9a867e978cd1dbb0c0872e409f2254bedf09ed7c44bc3c"
+        },
+        {
+          "file": "../../models/TUNN21RC_lod2.glb",
+          "sha256": "d065f06de327402096eccc3f06fffdb7c14bbd2a5ada801a206d213d64b9810c"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN21RC.png"
+    },
+    {
+      "id": "TUNN21RW",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        31
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN21RW_lod0.glb",
+          "sha256": "1e7f97597a9b03855155a38a2334d89e78b513d14a7ee31fa78e44f68f277281"
+        },
+        {
+          "file": "../../models/TUNN21RW_lod1.glb",
+          "sha256": "ca1817c85c6b506ca833498bc7cbaf3b636e0b83f5475ed402feb2220a99c643"
+        },
+        {
+          "file": "../../models/TUNN21RW_lod2.glb",
+          "sha256": "9c56fd689df0063891500fcef593de0f8b82dde2753a43ef40f0b1cd22c7ed69"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN21RW.png"
+    },
+    {
+      "id": "TUNN22CC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        31
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN22CC_lod0.glb",
+          "sha256": "e3e80dc3f54a6cc29812be5e1d9cd9ab955563b8a763542b021be9f86cb6fe2a"
+        },
+        {
+          "file": "../../models/TUNN22CC_lod1.glb",
+          "sha256": "75fb32a347daedf5bb9c2e37137099b2fb80748f6fab6425651f333a3fd697a1"
+        },
+        {
+          "file": "../../models/TUNN22CC_lod2.glb",
+          "sha256": "98223ec181a08652a6020c0b3ca93b554e6710812f1c506b8ed7c05886161eb7"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN22CC.png"
+    },
+    {
+      "id": "TUNN31CC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        17,
+        81
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN31CC_lod0.glb",
+          "sha256": "5b251e64b362e2abe9837b8c92927573d2724b3e3616935d6e2a6000f86d5e01"
+        },
+        {
+          "file": "../../models/TUNN31CC_lod1.glb",
+          "sha256": "82d403f5a501c4fd119ac919b12144df86c8b600900fe1c90cd1e5cc5675c701"
+        },
+        {
+          "file": "../../models/TUNN31CC_lod2.glb",
+          "sha256": "58c085da53826264031acd4d11a1fe34ea708d3c2cc5fbe6ccf870a4532153e1"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN31CC.png"
+    },
+    {
+      "id": "TUNN31RC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        17,
+        81
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN31RC_lod0.glb",
+          "sha256": "eb1f48888b94e301408325de773c9198142bec3a09e8b6147f365026a9ee4001"
+        },
+        {
+          "file": "../../models/TUNN31RC_lod1.glb",
+          "sha256": "3e8bb1cc64e6cbc37a382235f0001af46a2bc812ada11edd01ae3e4faa281f69"
+        },
+        {
+          "file": "../../models/TUNN31RC_lod2.glb",
+          "sha256": "0dcfd9790000b98868df74f46422a11559eeff4adb69c438584c7d0830f777c1"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN31RC.png"
+    },
+    {
+      "id": "TUNN31RW",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        17,
+        81
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN31RW_lod0.glb",
+          "sha256": "293debec923b445e5a9a63668fefaf4b4012e81d938c1842d9b291cf48aea9d4"
+        },
+        {
+          "file": "../../models/TUNN31RW_lod1.glb",
+          "sha256": "ff4dd420e4588c5721a71a9f46e9cfb89ca8fbc54805bb2ac6629a8006a4b8d2"
+        },
+        {
+          "file": "../../models/TUNN31RW_lod2.glb",
+          "sha256": "f778559c7aa6eeee73d350c7aa13d5f1e7a4a93f2077141edad2f844d567de16"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN31RW.png"
+    },
+    {
+      "id": "TUNN32RC",
+      "asset_type": "surface_module",
+      "primary_district": "retaining_tunnels",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        17,
+        81
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TUNN32RC_lod0.glb",
+          "sha256": "1ddd1e70869f936f29735c6041953b535a29a09c8a30ad3cfbab39c8f12cc784"
+        },
+        {
+          "file": "../../models/TUNN32RC_lod1.glb",
+          "sha256": "c666ea0af80d812709e26369b0f22aaf7d5ee1c4d05b121296e814fa99d881d0"
+        },
+        {
+          "file": "../../models/TUNN32RC_lod2.glb",
+          "sha256": "840b28d6d33a578f846c60dcccc2ee6b4a842ed8bb71fb6680adae7520007015"
+        }
+      ],
+      "render": "../../catalog_renders/TUNN32RC.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

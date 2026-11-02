@@ -1,0 +1,25 @@
+{
+  "assets": 146,
+  "primary_groups": 13,
+  "original_courses": 5,
+  "relative_glb_links": 438,
+  "matching_original_names": 146,
+  "focused_tests": 6,
+  "python_tests": 44,
+  "rust_tests_passed": 167,
+  "rust_tests_ignored": 1,
+  "fmt": "pass",
+  "clippy": "pass",
+  "build": "pass",
+  "audit": "pass",
+  "repeated_research": "byte-identical metadata output",
+  "mesh_changes": false,
+  "current_map_changes": false,
+  "new_task_ids": [
+    "DISTRICT-01"
+  ],
+  "architecture_decision": "ADR043",
+  "branch": "codex/building-district-groups",
+  "commit_push_merge": "none; local uncommitted changes",
+  "native_tests": "not rerun; offline metadata/links only"
+}

@@ -245,7 +245,11 @@ pub fn smoke_test(
                 } else {
                     rr_content::track::Sector::Hills
                 };
-                let index = if elapsed == 60 {
+                let index = if elapsed == 60 && track.city_surface.is_some() {
+                    track
+                        .distances
+                        .partition_point(|d| *d < track.length * 0.72)
+                } else if elapsed == 60 {
                     track
                         .points
                         .iter()
@@ -418,9 +422,15 @@ pub fn smoke_test(
                 serde_json::to_vec_pretty(&report).unwrap(),
             )
             .expect("write smoke evidence");
-            println!(
-                "Render smoke test passed: farm crash -> remount -> city/hills -> hill crash -> remount -> finish"
-            );
+            if track.city_surface.is_some() {
+                println!(
+                    "Render smoke test passed: City Run 5300 m -> two crashes -> both recoveries -> finish"
+                );
+            } else {
+                println!(
+                    "Render smoke test passed: farm crash -> remount -> city/hills -> hill crash -> remount -> finish"
+                );
+            }
             exit.write(AppExit::Success);
         }
     }

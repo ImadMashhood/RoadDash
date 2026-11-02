@@ -136,6 +136,7 @@ pub fn forces(
     tuning: Res<Tuning>,
     context: ReadRapierContext,
     ground: Query<(), With<Ground>>,
+    supports: Query<(&Transform, &Collider, Option<&crate::recovery::OwnedBody>), Without<Rider>>,
     mut bikes: Query<(
         Entity,
         &mut Rider,
@@ -218,7 +219,22 @@ pub fn forces(
         };
         for (i, z) in [-0.78, 0.78].into_iter().enumerate() {
             let origin = t.translation + t.rotation * Vec3::new(0.0, 0.9, z);
-            let predicate = |hit| ground.contains(hit);
+            let predicate = |hit| {
+                ground.contains(hit)
+                    || supports.get(hit).is_ok_and(|(pose, shape, owned)| {
+                        if owned.is_some_and(|o| {
+                            o.owner == e || o.kind == crate::recovery::BodyKind::Runner
+                        }) {
+                            return false;
+                        }
+                        let (lo, hi) = crate::recovery::collider_bounds(pose, shape);
+                        rr_core::contact::low_geometry(
+                            lo.y,
+                            hi.y,
+                            track.sample(r.progress, r.lane).0.y,
+                        )
+                    })
+            };
             let filter = QueryFilter::default()
                 .exclude_rigid_body(e)
                 .exclude_sensors()

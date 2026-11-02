@@ -1,0 +1,1337 @@
+{
+  "group": "parked_vehicles_machinery",
+  "source": "sources/parked_vehicles_machinery.blend",
+  "source_sha256": "31566c332e58c2613d1efb6f49f7d4842ced73df8bce72ec4d7e60c98d3676f1",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-A0AA45648C61",
+      "name": "CARSLIP2",
+      "builder": "warning_sign",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A0AA45648C61_lod0.glb",
+          "sha256": "0ec8abec9a2b1d2aa8010795e3c2867e7165ead3ae5fc393ae2287babea47a2d",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A0AA45648C61_lod1.glb",
+          "sha256": "87729dd96c14d214bff7539a68ba50fa4a18d6425f4f2b2c8f4b33517c5c0a69",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A0AA45648C61_lod2.glb",
+          "sha256": "2a735daf0abcfa937e96802b9d0a6e59e3027e296c1cf96849f0dee5c5ffe685",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0D9A97D596D8",
+      "name": "CARSTRF2",
+      "builder": "car_hulk",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0D9A97D596D8_lod0.glb",
+          "sha256": "a8ce8c471e7acd25098a887f4f2e75e92900cac31e004cdd9bf2c3d0ba323a0b",
+          "triangles": 10708,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0D9A97D596D8_lod1.glb",
+          "sha256": "6936c47d9014341df6d33bc9ac00060b3afac8503396d824605bee7dcb56cefe",
+          "triangles": 4580,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0D9A97D596D8_lod2.glb",
+          "sha256": "972941b031abf9e356074a7614f865a90cba0b59154a27d4e720f480e2fe92fa",
+          "triangles": 488,
+          "parts": 10,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "empty_cabin_frame": 4,
+        "dashboard": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.5,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D786E7CC7187",
+      "name": "CARSTRR2",
+      "builder": "car_hulk",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D786E7CC7187_lod0.glb",
+          "sha256": "55886acc63af8d24f3fb95e870387fa2cc29cf1c490d2d45c0f52265d43cca08",
+          "triangles": 10708,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D786E7CC7187_lod1.glb",
+          "sha256": "52e675f029d3ce2f42cdfcb71f2aa628bdc09a8e4d34aa09054ed7335f522fb0",
+          "triangles": 4580,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D786E7CC7187_lod2.glb",
+          "sha256": "3df1b1f7fedaecbc0065fcf6921c3b94d0688296e1c851554c5bbb892f477a73",
+          "triangles": 488,
+          "parts": 10,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "empty_cabin_frame": 4,
+        "dashboard": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.5,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E8ECB0D02123",
+      "name": "COPCARF2",
+      "builder": "police_car",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E8ECB0D02123_lod0.glb",
+          "sha256": "22f4165d786135de33b1a7fb3b46044381ca63b449e688e82a15c243b78de909",
+          "triangles": 12958,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E8ECB0D02123_lod1.glb",
+          "sha256": "cc3532eb02567cadd715afa4b04f0ef449ebc56843f4dc671e5e678162933303",
+          "triangles": 5814,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E8ECB0D02123_lod2.glb",
+          "sha256": "f837622fa760473d09ed4be7088f4626a50166061bec6cfe623cf9190b621011",
+          "triangles": 610,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "black_hood": 1,
+        "black_trunk": 1,
+        "lightbar": 1,
+        "emergency_lenses": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.6699999570846558,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.8349999785423279,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2E5F09116ABF",
+      "name": "COPCARR2",
+      "builder": "police_car",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2E5F09116ABF_lod0.glb",
+          "sha256": "65a6acd13f3faa53dde68c8ab4cfb0b2e08578829cf5a005664dcdc75c0be5d9",
+          "triangles": 12958,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2E5F09116ABF_lod1.glb",
+          "sha256": "57002749ca2f2b124c7a66f9e1f0f237053c4859d0099c1fc276241355a9aad9",
+          "triangles": 5814,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2E5F09116ABF_lod2.glb",
+          "sha256": "953c7368132060c35ba3f16334a07886f728b181c4963a25b7fc537a855d6210",
+          "triangles": 610,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "black_hood": 1,
+        "black_trunk": 1,
+        "lightbar": 1,
+        "emergency_lenses": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.6699999570846558,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.8349999785423279,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-46E9AFECE787",
+      "name": "TIRE2",
+      "builder": "tire",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-46E9AFECE787_lod0.glb",
+          "sha256": "85505f8f3f67ae8080f354c8750f49381be8dbac5a5fc9816eedcee6bf6c92d3",
+          "triangles": 768,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4699999988079071,
+              -0.4699999988079071,
+              0.03999999910593033
+            ],
+            [
+              0.4699999988079071,
+              0.4699999988079071,
+              0.30000001192092896
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-46E9AFECE787_lod1.glb",
+          "sha256": "f0c69f7b766ce84fa11e0e7850b6b8b4b570e7d4e3350363e47f24609eb62659",
+          "triangles": 240,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4699999988079071,
+              -0.4469965696334839,
+              0.046362653374671936
+            ],
+            [
+              0.4699999988079071,
+              0.4469965696334839,
+              0.29363733530044556
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-46E9AFECE787_lod2.glb",
+          "sha256": "9e48e5804ffae55b9812bdb04273ecc10722ef5eca3195628e648fd6596f5782",
+          "triangles": 48,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4699999988079071,
+              -0.40703195333480835,
+              0.03999999910593033
+            ],
+            [
+              0.4699999988079071,
+              0.40703195333480835,
+              0.30000001192092896
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "discarded_tire": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.9399999976158142,
+          0.2600000128149986,
+          0.9399999976158142
+        ],
+        "center_y_up": [
+          0.0,
+          0.17000000551342964,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-99314465D6DD",
+      "name": "TRAILSN2",
+      "builder": "information_board",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-99314465D6DD_lod0.glb",
+          "sha256": "e7c2ff85d65f48f9552d22df3f7059adaab9a0e459d31d5a3e4bce586ab77abf",
+          "triangles": 1468,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.0525872707366943,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.0525872707366943,
+              0.4000000059604645,
+              3.2724204063415527
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-99314465D6DD_lod1.glb",
+          "sha256": "f442de9b086ff0bf62fc3879026633807a7c96a4988b964e110cf1929cba6996",
+          "triangles": 604,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.0525872707366943,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.0525872707366943,
+              0.4000000059604645,
+              3.2724204063415527
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-99314465D6DD_lod2.glb",
+          "sha256": "c1a6cf4b988f846ba414a01dd96e5a16dfbd6a54d7c85bb7335c4fd1d393500b",
+          "triangles": 72,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.0525872707366943,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.0525872707366943,
+              0.4000000059604645,
+              3.2724204063415527
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "information_posts": 2,
+        "map_backboard": 1,
+        "original_map_panel": 1,
+        "pitched_information_roof": 2,
+        "schematic_map_paths": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.1051745414733887,
+          3.2724204063415527,
+          0.800000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          1.6362102031707764,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-DC867A434090",
+      "name": "TRCKWHT2",
+      "builder": "flatbed_truck",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-DC867A434090_lod0.glb",
+          "sha256": "7872df5e9935e8009503faf5d3e95cc143c4f9854ad5b4452d74acda0ea3de4e",
+          "triangles": 12958,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6232004165649414
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-DC867A434090_lod1.glb",
+          "sha256": "58dcb2d3bfb225cc7dbdc5a417a15d86fc1247187fd60c29f4893e525c0b5d4f",
+          "triangles": 5814,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.5996484756469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-DC867A434090_lod2.glb",
+          "sha256": "65b3f84e06bc82ebf520dd29b6bc31cf2a09e0f94ce20b47003d6c6460d92f60",
+          "triangles": 610,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.558810234069824
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "lower_cab_shell": 1,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bed_sides": 2,
+        "bed_deck": 1,
+        "tailgate": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6232004165649414,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3116002082824707,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E419AE50712D",
+      "name": "TRKORGR2",
+      "builder": "flatbed_truck",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E419AE50712D_lod0.glb",
+          "sha256": "1252eed020304df1a2a14b47e1ac421d6e8db4f1ac8aa61879161b5e67ec4418",
+          "triangles": 12958,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6232004165649414
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E419AE50712D_lod1.glb",
+          "sha256": "8d91f7cc51247154f73cc068ded18989731edd54e080b76c36da9ac32301217a",
+          "triangles": 5814,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.5996484756469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E419AE50712D_lod2.glb",
+          "sha256": "d3d658791e7dace3096c1ec7fd815eb9252a4a79951e79c1775166c0193b4d19",
+          "triangles": 610,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.558810234069824
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "lower_cab_shell": 1,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bed_sides": 2,
+        "bed_deck": 1,
+        "tailgate": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6232004165649414,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3116002082824707,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-EAE1C359D468",
+      "name": "TRKPGEF2",
+      "builder": "fire_engine",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-EAE1C359D468_lod0.glb",
+          "sha256": "26aa3f07e65c8a08d22ce2a5a67ecaa0ad73be00c7bcbc82c82a352089fa39a6",
+          "triangles": 20150,
+          "parts": 24,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6549999713897705
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-EAE1C359D468_lod1.glb",
+          "sha256": "a5a5daee6a6306d02c0aa447b0457d3a519ba14caff50c65fe42f980317a5d4f",
+          "triangles": 9414,
+          "parts": 24,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.631507158279419
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-EAE1C359D468_lod2.glb",
+          "sha256": "8270207197f939bf8efa132e2bd2c7023b56847834adc0aa83ffe9fd6a8917ac",
+          "triangles": 710,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.5906922817230225
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "lower_cab_shell": 1,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "equipment_body": 1,
+        "locker_door": 8,
+        "locker_slats": 32,
+        "ladder_rails": 2,
+        "ladder_rungs": 15,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6549999713897705,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3274999856948853,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-532EF1E6365B",
+      "name": "TRUCK2",
+      "builder": "work_truck",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-532EF1E6365B_lod0.glb",
+          "sha256": "8529219e4fccd90f587b8338fe6bf0f17b52472e4ea20629859095fb1223d4b2",
+          "triangles": 12958,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6232004165649414
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-532EF1E6365B_lod1.glb",
+          "sha256": "0a7c3b46a9d29d03fc27ccb9cb85cb037cf72e2b08544b2b4ebd4c46852a2284",
+          "triangles": 5814,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.5996484756469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-532EF1E6365B_lod2.glb",
+          "sha256": "dbc87e2a4b7d733daa8897a7dcefb8dfd7a1a83d4186228f7daf95a46825f743",
+          "triangles": 610,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.558810234069824
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "lower_cab_shell": 1,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bed_sides": 2,
+        "bed_deck": 1,
+        "tailgate": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6232004165649414,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3116002082824707,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-96EE149660DB",
+      "name": "VAN2",
+      "builder": "van",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_02.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-96EE149660DB_lod0.glb",
+          "sha256": "423974493bfec96c49767cf7cae96d55298b236c11fc8afa9e3582790d680a5a",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111236572265625
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-96EE149660DB_lod1.glb",
+          "sha256": "94194812aa4debfba65af950840c91c787604dbb745096706d77a9e12168898f",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111262083053589
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-96EE149660DB_lod2.glb",
+          "sha256": "8fdc634eb266a717854e09ced412f9123439214e11d74472e9c9de925896e908",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              2.1110408306121826
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          2.111236572265625,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          1.0556182861328125,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-418469EB72DB",
+      "name": "VWBUS2",
+      "builder": "camper",
+      "group": "parked_vehicles_machinery",
+      "concept": {
+        "file": "art/props/concept_3d/all_parked_vehicles_machinery_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-418469EB72DB_lod0.glb",
+          "sha256": "86a5e3beb89f60efdd994f4a62bb5dfd5e587b67968bcb014cf48c608b68feda",
+          "triangles": 13954,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.7149999141693115,
+              2.111236572265625
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-418469EB72DB_lod1.glb",
+          "sha256": "fc8be2ebb6625eaeebb9dbdea1fc30bee8f2d8ff2df1239ffd67bd19d57c553c",
+          "triangles": 6074,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.6971356868743896,
+              2.111262083053589
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-418469EB72DB_lod2.glb",
+          "sha256": "4ae3e2b6741806c687a6d235657052c062705d33e6fab97e93f3f2766a8e6e7b",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              2.1110408306121826
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9,
+        "rear_bicycle_wheels": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          2.111236572265625,
+          4.924999952316284
+        ],
+        "center_y_up": [
+          0.0,
+          1.0556182861328125,
+          -0.25249993801116943
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

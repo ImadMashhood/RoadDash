@@ -1,0 +1,102 @@
+[
+  {
+    "file": "renders/rocks_landforms_01.png",
+    "sha256": "633ae23bd1ac2574e06f0b8519fc69cc569e575ea61633e1df6782b10a7ae1b5",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-CFF281F9BD5B",
+        "name": "BOULDA22",
+        "glb": "models/PROP-CFF281F9BD5B_lod0.glb",
+        "sha256": "e2ee85637903501dbe5898ddddd2d8d05c33f463eb6237f2b67c20ff5247c804"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-4B85C37FDB2E",
+        "name": "BOULDC22",
+        "glb": "models/PROP-4B85C37FDB2E_lod0.glb",
+        "sha256": "6dcc9277a9d8268103a37b1a22d60ebb6b00f9644ef45ebecbf4b55f55f9d04c"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-BB5EFFBC48E1",
+        "name": "BOULDRA2",
+        "glb": "models/PROP-BB5EFFBC48E1_lod0.glb",
+        "sha256": "ffa3a4162cb1a5d5960a25aefed6a53e8dc198188f0ce918e7da09f8fa852810"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-25FFB21EAFCE",
+        "name": "BOULDRD2",
+        "glb": "models/PROP-25FFB21EAFCE_lod0.glb",
+        "sha256": "13e6f559b10b59a2ceec4389692ba460b4d8aa05af218ba0d386126c67342f74"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-B50FBD8BC166",
+        "name": "LOGS2",
+        "glb": "models/PROP-B50FBD8BC166_lod0.glb",
+        "sha256": "982d6ef81a2bfab17703bf746e3430e26be4eec65e7ff7317bc88faab16b68e5"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-C06900B3BF02",
+        "name": "LOGV2",
+        "glb": "models/PROP-C06900B3BF02_lod0.glb",
+        "sha256": "7edaf32e081b4bac2b25c1ad0bfff02dd3694e8d7a884bac67fd67bd735c7856"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/rocks_landforms_02.png",
+    "sha256": "140f1c2db6f828bdcb693cc4232e26d426694cde9e4ac8e4826de33702a0bbb6",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-ED02F1904540",
+        "name": "ROCKB2",
+        "glb": "models/PROP-ED02F1904540_lod0.glb",
+        "sha256": "8cdccd10fbce69ab05faddcfe9f232914069b5f028d6392e19bd59af56071364"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-76445B97A926",
+        "name": "ROCKS12",
+        "glb": "models/PROP-76445B97A926_lod0.glb",
+        "sha256": "71ba99b15323f2745b9da9554056bc0f28b973c36690fb81ee3eb454ff7445f0"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-844848DA7F11",
+        "name": "ROCKS22",
+        "glb": "models/PROP-844848DA7F11_lod0.glb",
+        "sha256": "5a1794d0ad2f1022e9ede49211a996bd44c205f5a8d9aacf0301d2713936e28e"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-CD51229BED7C",
+        "name": "ROCKS32",
+        "glb": "models/PROP-CD51229BED7C_lod0.glb",
+        "sha256": "58d0c660bdf643672a2f5c3bacf836e8a12360c2379eb79b7e7b073b01fec984"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-A00CEBC2C86C",
+        "name": "ROCKS42",
+        "glb": "models/PROP-A00CEBC2C86C_lod0.glb",
+        "sha256": "c2a19451a123f829125a6f660839c86ebfabe2f3b9f3977dc6fa01b18114171a"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-45E813BF273E",
+        "name": "ROCKS52",
+        "glb": "models/PROP-45E813BF273E_lod0.glb",
+        "sha256": "a35ba9936f434dca43b31aa5de0ce12e7de5a890fd16a7c4985e7025a61b8992"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

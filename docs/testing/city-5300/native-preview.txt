@@ -1,0 +1,9 @@
+2026-11-01T23:12:24.004685Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-01T23:12:24.005736Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-01T23:12:24.010703Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-01T23:12:24.010788Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x55d149fc1ea0, name: ?)
+2026-11-01T23:12:24.320048Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+ACTUAL GLB CITY: 8904 modules, 100 facade designs; 146 total catalog assets
+City preview: 5300 m, 135242 road/furniture boxes; actual GLB building models, no facade texture cards.

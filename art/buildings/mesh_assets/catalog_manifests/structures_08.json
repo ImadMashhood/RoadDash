@@ -1,0 +1,283 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_08.png",
+  "reference_sha256": "e6eb6528244aa13baa8118883e3acce8c7dcdea005d7f77c27a89e4f812313df",
+  "source_blend": "catalog_sources/structures_08.blend",
+  "source_sha256": "893f4651ac698621133416f8439f2654a6251283dd5c807732c9f54af6cabe49",
+  "records": [
+    {
+      "id": "TUNN32RC",
+      "asset_type": "surface_module",
+      "builder": "aggregate_panel",
+      "reference_sheet": "structures_08.png",
+      "geometry_parts": {
+        "surface_panel_body": 1,
+        "surface_strap": 2,
+        "surface_bolt": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "dark cracked wall panel with horizontal metal straps",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN32RC_lod0.glb",
+          "lod": 0,
+          "vertices": 744,
+          "triangles": 1364,
+          "bytes": 1139424,
+          "sha256": "1ddd1e70869f936f29735c6041953b535a29a09c8a30ad3cfbab39c8f12cc784"
+        },
+        {
+          "file": "TUNN32RC_lod1.glb",
+          "lod": 1,
+          "vertices": 72,
+          "triangles": 132,
+          "bytes": 716532,
+          "sha256": "c666ea0af80d812709e26369b0f22aaf7d5ee1c4d05b121296e814fa99d881d0"
+        },
+        {
+          "file": "TUNN32RC_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 342312,
+          "sha256": "840b28d6d33a578f846c60dcccc2ee6b4a842ed8bb71fb6680adae7520007015"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.26500001549720764,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "WATRTNK2",
+      "asset_type": "structure",
+      "builder": "water_tank",
+      "reference_sheet": "structures_08.png",
+      "geometry_parts": {
+        "tank_shell": 1,
+        "tank_band": 5,
+        "conical_tank_roof": 1,
+        "tank_ladder_rail": 2,
+        "tank_ladder_rung": 20,
+        "tank_rivet": 16
+      },
+      "description": "vertical_riveted_tank,conical_cap,ladder",
+      "body_dimensions_m": [
+        5.0,
+        5.0,
+        6.0
+      ],
+      "lods": [
+        {
+          "file": "WATRTNK2_lod0.glb",
+          "lod": 0,
+          "vertices": 2304,
+          "triangles": 4428,
+          "bytes": 1288304,
+          "sha256": "785c037b6c6b6b1ccb31de249bb50cdb48d57970785f3816bdfe3982ae3cb8f0"
+        },
+        {
+          "file": "WATRTNK2_lod1.glb",
+          "lod": 1,
+          "vertices": 1728,
+          "triangles": 3340,
+          "bytes": 1208052,
+          "sha256": "cc649f5c041d628ab01860f412ff79816fd10335036bc79b6c3ff66c0b02bfc5"
+        },
+        {
+          "file": "WATRTNK2_lod2.glb",
+          "lod": 2,
+          "vertices": 120,
+          "triangles": 232,
+          "bytes": 694612,
+          "sha256": "2495ef0ddb42134cd3b2f1065b864737b2d32bc8d7e1be4dc8d9d27fa0081aaf"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.4181957244873047,
+          -2.4181957244873047,
+          0.0
+        ],
+        "max": [
+          2.4181957244873047,
+          2.4181957244873047,
+          7.150000095367432
+        ]
+      }
+    },
+    {
+      "id": "WHTTANK2",
+      "asset_type": "structure",
+      "builder": "fuel_tank",
+      "reference_sheet": "structures_08.png",
+      "geometry_parts": {
+        "horizontal_tank": 1,
+        "tank_support_leg": 4,
+        "tank_support_crossbar": 2,
+        "tank_end_bolt": 24
+      },
+      "description": "horizontal_cylinder,metal_supports,end_flanges",
+      "body_dimensions_m": [
+        7.0,
+        3.5,
+        4.0
+      ],
+      "lods": [
+        {
+          "file": "WHTTANK2_lod0.glb",
+          "lod": 0,
+          "vertices": 912,
+          "triangles": 1700,
+          "bytes": 819396,
+          "sha256": "2782b2195a323e5786b48b36c2cb1f1a883c5a39bce74011971ba6ca41142098"
+        },
+        {
+          "file": "WHTTANK2_lod1.glb",
+          "lod": 1,
+          "vertices": 336,
+          "triangles": 644,
+          "bytes": 739324,
+          "sha256": "5cdc1f2dd9c0803cebcf7a96f8a00c382e2df7c81c1aac3a068043e8d0aa1a16"
+        },
+        {
+          "file": "WHTTANK2_lod2.glb",
+          "lod": 2,
+          "vertices": 144,
+          "triangles": 260,
+          "bytes": 710908,
+          "sha256": "279de11b496e76b65997223b094adb36b2ad07b2f679e40f17198563a3097c8c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -3.5399999618530273,
+          -1.5,
+          0.0772213414311409
+        ],
+        "max": [
+          3.5399999618530273,
+          1.5,
+          3.8499999046325684
+        ]
+      }
+    },
+    {
+      "id": "WINNERY2",
+      "asset_type": "structure",
+      "builder": "winery",
+      "reference_sheet": "structures_08.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "individual_bricks_front": 901,
+        "wall_backing_rear": 8,
+        "individual_bricks_rear": 1050,
+        "wall_backing_left": 13,
+        "individual_bricks_left": 1363,
+        "wall_backing_right": 13,
+        "individual_bricks_right": 1363,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 10,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "winery_hip_roof": 1,
+        "winery_window_arch": 28,
+        "porch_floor": 1,
+        "porch_column": 2,
+        "porch_brace": 2,
+        "porch_roof": 1,
+        "porch_rail_post": 4,
+        "porch_side_rail": 4,
+        "porch_diagonal": 2,
+        "porch_step": 3,
+        "upper_house_window_cavity": 2,
+        "upper_house_window_glass": 2,
+        "upper_house_window_jamb": 4,
+        "upper_house_window_sill": 4,
+        "upper_house_window_vertical_mullion": 2,
+        "upper_house_window_sash": 2
+      },
+      "description": "stone_walls,hip_roof,porch,arched_windows",
+      "body_dimensions_m": [
+        9.0,
+        12.0,
+        7.0
+      ],
+      "lods": [
+        {
+          "file": "WINNERY2_lod0.glb",
+          "lod": 0,
+          "vertices": 115856,
+          "triangles": 212232,
+          "bytes": 19362428,
+          "sha256": "67a0dfec3c007c69b06af30c94a40100c7262f6f475eae0fbcc9d93db354e7ca"
+        },
+        {
+          "file": "WINNERY2_lod1.glb",
+          "lod": 1,
+          "vertices": 3440,
+          "triangles": 6136,
+          "bytes": 2333064,
+          "sha256": "ef93c642bb6f3376d1a9dd93b2df7514ac59332ac060d6a975aa47e746027eb8"
+        },
+        {
+          "file": "WINNERY2_lod2.glb",
+          "lod": 2,
+          "vertices": 1288,
+          "triangles": 1932,
+          "bytes": 2007516,
+          "sha256": "702a863698728fc13eb77c7aed25d1a93135bc2f07d4976433e05d8183a5c8ce"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.941194534301758,
+          -8.5,
+          0.0
+        ],
+        "max": [
+          4.941194534301758,
+          6.589688301086426,
+          9.5
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

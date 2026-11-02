@@ -13,6 +13,7 @@ pub struct Track {
     surfaces: Vec<Surface>,
     pub length: f32,
     pub bounds: (Vec3, Vec3),
+    pub city_surface: Option<rr_content::city::CitySettings>,
     pub earthworks: Option<Box<crate::world_gen::ground::Earthworks>>,
 }
 impl Default for Track {
@@ -24,11 +25,17 @@ impl Default for Track {
 impl Track {
     pub fn selected() -> Self {
         if let Some(path) = std::env::var_os("ROADDASH_TRACK") {
+            let path = if path == "valley" {
+                std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+                    .join("content/tracks/valley.json")
+            } else {
+                path.into()
+            };
             Self::from_json(&std::fs::read_to_string(path).expect("read ROADDASH_TRACK"))
                 .expect("validate ROADDASH_TRACK")
         } else {
-            Self::from_json(include_str!("../content/tracks/valley.json"))
-                .expect("built-in scenic road")
+            Self::from_json(include_str!("../content/tracks/city5300.json"))
+                .expect("built-in generated City Run")
         }
     }
     pub fn from_json(json: &str) -> Result<Self, String> {
@@ -106,7 +113,15 @@ impl Track {
             return Err("route length outside 100 m to 20 km".into());
         }
 
+        let city_surface = if definition.id.as_str() == rr_content::city::TRACK_ID {
+            Some(
+                serde_json::from_str(crate::world_gen::city::SETTINGS_JSON).expect("city settings"),
+            )
+        } else {
+            None
+        };
         let track = Self {
+            city_surface,
             definition,
             points,
             distances,
@@ -178,6 +193,20 @@ impl Track {
         self.sectors[self.segment(d).0]
     }
     pub fn surface(&self, d: f32, lane: f32) -> Surface {
+        if let Some(c) = &self.city_surface {
+            let cross = d
+                .rem_euclid(c.block_pitch_m)
+                .min(c.block_pitch_m - d.rem_euclid(c.block_pitch_m));
+            if lane.abs() <= c.road_width_m / 2.0 + c.sidewalk_width_m
+                || (lane.abs() - c.parallel_road_offset_m).abs()
+                    <= c.parallel_road_width_m / 2.0 + c.sidewalk_width_m
+                || (cross <= c.cross_street_width_m / 2.0
+                    && lane.abs() <= c.parallel_road_offset_m + 20.0)
+            {
+                return Surface::Asphalt;
+            }
+            return Surface::Grass;
+        }
         if lane.abs() > self.half_width(d) + 1.5 {
             Surface::Grass
         } else if lane.abs() > self.half_width(d) {
@@ -240,12 +269,18 @@ impl Track {
     /// Single-valued terrain shared by mesh collision and off-road controller.
     /// A flat safe verge follows each road; distant hills blend smoothly away.
     pub fn terrain_height(&self, x: f32, z: f32) -> f32 {
+        if let Some(c) = &self.city_surface {
+            return crate::world_gen::city::surface_height(c, x, z);
+        }
         let base = self.base_terrain_height(x, z);
         self.earthworks
             .as_ref()
             .map_or(base, |e| e.height(x, z, base))
     }
     pub fn base_terrain_height(&self, x: f32, z: f32) -> f32 {
+        if let Some(c) = &self.city_surface {
+            return crate::world_gen::city::surface_height(c, x, z);
+        }
         let point = Vec3::new(x, 0.0, z);
         let mut best = (0, f32::INFINITY);
         for i in (0..self.points.len() - 1).step_by(12) {

@@ -1,0 +1,427 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: barn_walls
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: barn_roof
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: barn_door
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: siding_battens
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.01805281639099121 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: barn_walls.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: barn_roof.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: barn_door.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: siding_battens.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.013392925262451172 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: barn_walls.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: barn_roof.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: barn_door.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.007470130920410156 s
+
+EXPORTED PROP-B2E2C8C2802A BRNGRN2 [2592, 1056, 48]
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: animal_torso
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: upper_leg
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lower_leg
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: hoof
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_neck
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_head
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: muzzle
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_ears
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_eyes
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: horn
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: tail
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: stone_mane
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: statue_plinth
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.03486275672912598 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: animal_torso.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: upper_leg.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lower_leg.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: hoof.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_neck.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_head.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: muzzle.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_ears.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_eyes.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: horn.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: tail.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: stone_mane.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: statue_plinth.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.03633832931518555 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: animal_torso.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: upper_leg.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lower_leg.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: hoof.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_neck.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_head.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: muzzle.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: animal_ears.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: tail.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: statue_plinth.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.013581514358520508 s
+
+EXPORTED PROP-10D1D5456444 CHINLN2 [7688, 6024, 456]
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: pole
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: pole_base
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lamp_arm
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lamp_head
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: light_diffuser
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_post
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_plate
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: symbol_stem
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: direction_symbol
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: fasteners
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.041255950927734375 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: pole.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: pole_base.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lamp_arm.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lamp_head.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: light_diffuser.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_post.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_plate.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: symbol_stem.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: direction_symbol.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.01930069923400879 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: pole.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: pole_base.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lamp_arm.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: lamp_head.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: light_diffuser.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_post.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_plate.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.012998342514038086 s
+
+EXPORTED PROP-6E3ED951E87E COMBOA2 [2473, 825, 164]
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: sign_post.003
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_plate.003
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: symbol_stem.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: direction_symbol.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: fasteners.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: waste_container
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: bin_lid
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: bin_handle
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.023416519165039062 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: sign_post.004
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_plate.004
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: symbol_stem.003
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: direction_symbol.003
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: waste_container.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: bin_lid.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: bin_handle.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.016646385192871094 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: sign_post.005
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: sign_plate.005
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: waste_container.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: bin_lid.002
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.012064695358276367 s
+
+EXPORTED PROP-9AB85BFF1770 COMBOB2 [1509, 381, 56]
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: small_roadside_animal
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: small_animal_head
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Finished glTF 2.0 export in 0.006951093673706055 s
+
+20:18:07 | INFO: Starting glTF 2.0 export
+20:18:07 | INFO: Extracting primitive: small_roadside_animal.001
+20:18:07 | INFO: Primitives created: 1
+20:18:07 | INFO: Extracting primitive: small_animal_head.001
+20:18:07 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.005737781524658203 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: small_roadside_animal.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: small_animal_head.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.005074262619018555 s
+
+EXPORTED PROP-984F6F11DA60 CRITPIL2 [800, 304, 72]
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: small_roadside_animal.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: small_animal_head.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.006728649139404297 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: small_roadside_animal.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: small_animal_head.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.005759716033935547 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: small_roadside_animal.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: small_animal_head.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.0050928592681884766 s
+
+EXPORTED PROP-54F89A72BE4C CRITPSM2 [800, 304, 72]
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: cabinet
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: recessed_front
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coin_slot
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: vent_stack
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: conduit
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.014996528625488281 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: cabinet.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: recessed_front.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coin_slot.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: vent_stack.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: conduit.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.013896942138671875 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: cabinet.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: recessed_front.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: vent_stack.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: conduit.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.010791301727294922 s
+
+EXPORTED PROP-63E86F575D7C CRNRGRP2 [700, 364, 64]
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: masonry_support
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coping
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_posts
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_rails
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: cantilever_deck
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.014980316162109375 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: masonry_support.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coping.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_posts.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_rails.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: cantilever_deck.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.01334381103515625 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: masonry_support.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coping.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_posts.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_rails.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: cantilever_deck.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.0112457275390625 s
+
+EXPORTED PROP-D6C6B12E97F6 GRNDMKB2 [1264, 712, 136]
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: masonry_support.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coping.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_posts.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_rails.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.01352238655090332 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: masonry_support.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coping.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_posts.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_rails.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.011774063110351562 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: masonry_support.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: coping.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_posts.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: railing_rails.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.010190486907958984 s
+
+EXPORTED PROP-D584DCE55340 GRNDMKC2 [1156, 668, 124]
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: surface_hazard
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.006248950958251953 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: surface_hazard.001
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.0050945281982421875 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: surface_hazard.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.0038738250732421875 s
+
+EXPORTED PROP-6D5770ACF085 ICEPDSM2 [864, 432, 108]
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: waste_container.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: bin_lid.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: bin_handle.002
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.010540008544921875 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: waste_container.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: bin_lid.004
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: bin_handle.003
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.010001182556152344 s
+
+20:18:08 | INFO: Starting glTF 2.0 export
+20:18:08 | INFO: Extracting primitive: waste_container.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Extracting primitive: bin_lid.005
+20:18:08 | INFO: Primitives created: 1
+20:18:08 | INFO: Finished glTF 2.0 export in 0.006212711334228516 s
+
+EXPORTED PROP-35FB9A42BCE6 RECYSTF2 [864, 352, 48]
+Info: Saved as "unclassified_review.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

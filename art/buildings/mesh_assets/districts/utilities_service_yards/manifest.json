@@ -1,0 +1,179 @@
+{
+  "id": "utilities_service_yards",
+  "label": "Utilities / service yards",
+  "asset_ids": [
+    "OUTHOUS2",
+    "PORTLET2",
+    "TANKSEP2",
+    "WATRTNK2",
+    "WHTTANK2"
+  ],
+  "placement_guidance": "Ancillary tanks and facilities; site behind/alongside compatible buildings, not as frontage substitutes.",
+  "assets": [
+    {
+      "id": "OUTHOUS2",
+      "asset_type": "structure",
+      "primary_district": "utilities_service_yards",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        22,
+        24,
+        30,
+        87,
+        193,
+        197,
+        255,
+        259,
+        260,
+        262
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OUTHOUS2_lod0.glb",
+          "sha256": "c921eb10f552da7a16c60f3a675e7fe736e96f6a8c2ef68756d5312a6652d6b2"
+        },
+        {
+          "file": "../../models/OUTHOUS2_lod1.glb",
+          "sha256": "3b329e570f5e4e888fe081376e7a1f80f0a54d5745169b02b6a7e4dc4e7aa292"
+        },
+        {
+          "file": "../../models/OUTHOUS2_lod2.glb",
+          "sha256": "0e1ae09bab018ec7b3e677ad333503e8e8dcee3c92da892710efcb16d395ee21"
+        }
+      ],
+      "render": "../../catalog_renders/OUTHOUS2.png"
+    },
+    {
+      "id": "PORTLET2",
+      "asset_type": "structure",
+      "primary_district": "utilities_service_yards",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        31,
+        87,
+        161
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/PORTLET2_lod0.glb",
+          "sha256": "1893eabb038b6b51d25640e7a208cc57c65a25dab9830ee75c939b18a4dd8027"
+        },
+        {
+          "file": "../../models/PORTLET2_lod1.glb",
+          "sha256": "450d157aaeee77242215c67564483bf8a6b2460d059ecfe2adbc152f4c04ea09"
+        },
+        {
+          "file": "../../models/PORTLET2_lod2.glb",
+          "sha256": "06bfc49351ed29cf612869c590a023bc3843ca1e7bdf25bb69fb3b33ae923356"
+        }
+      ],
+      "render": "../../catalog_renders/PORTLET2.png"
+    },
+    {
+      "id": "TANKSEP2",
+      "asset_type": "structure",
+      "primary_district": "utilities_service_yards",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        65,
+        256,
+        262
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TANKSEP2_lod0.glb",
+          "sha256": "00339e4fe70162745add0311bf56800bc5e24a23dd6ae8c0e457f098c9a20d00"
+        },
+        {
+          "file": "../../models/TANKSEP2_lod1.glb",
+          "sha256": "42a961b93942f7452e672f2a4ec5e155959a0a04d432fbf4ea81d269df02fb7a"
+        },
+        {
+          "file": "../../models/TANKSEP2_lod2.glb",
+          "sha256": "d291a4a9f5a8c05938f3028c9b422cc8873cc68f81a5d5cdb6b8fef7f6cbc00c"
+        }
+      ],
+      "render": "../../catalog_renders/TANKSEP2.png"
+    },
+    {
+      "id": "WATRTNK2",
+      "asset_type": "structure",
+      "primary_district": "utilities_service_yards",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        235,
+        240,
+        257
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WATRTNK2_lod0.glb",
+          "sha256": "785c037b6c6b6b1ccb31de249bb50cdb48d57970785f3816bdfe3982ae3cb8f0"
+        },
+        {
+          "file": "../../models/WATRTNK2_lod1.glb",
+          "sha256": "cc649f5c041d628ab01860f412ff79816fd10335036bc79b6c3ff66c0b02bfc5"
+        },
+        {
+          "file": "../../models/WATRTNK2_lod2.glb",
+          "sha256": "2495ef0ddb42134cd3b2f1065b864737b2d32bc8d7e1be4dc8d9d27fa0081aaf"
+        }
+      ],
+      "render": "../../catalog_renders/WATRTNK2.png"
+    },
+    {
+      "id": "WHTTANK2",
+      "asset_type": "structure",
+      "primary_district": "utilities_service_yards",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        27,
+        85,
+        252
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHTTANK2_lod0.glb",
+          "sha256": "2782b2195a323e5786b48b36c2cb1f1a883c5a39bce74011971ba6ca41142098"
+        },
+        {
+          "file": "../../models/WHTTANK2_lod1.glb",
+          "sha256": "5cdc1f2dd9c0803cebcf7a96f8a00c382e2df7c81c1aac3a068043e8d0aa1a16"
+        },
+        {
+          "file": "../../models/WHTTANK2_lod2.glb",
+          "sha256": "279de11b496e76b65997223b094adb36b2ad07b2f679e40f17198563a3097c8c"
+        }
+      ],
+      "render": "../../catalog_renders/WHTTANK2.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

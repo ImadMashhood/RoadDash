@@ -861,3 +861,347 @@ existing systems. The reference scalar drag is a calculator, not a per-limb forc
 Future consequences: CRASHREF-004 owns remaining full-parity work; compare before
 choosing a default or combining with biomechanical motors. Rollback: omit the
 flag or remove the bridge; saves, GLBs, locks/dependencies need no migration.
+
+## ADR-038 — Offline facade grammar before runtime replacement (2026-11-01)
+
+Problem: establish how original facade references become variable 3D buildings.
+Alternatives: stretch complete facade textures, generate opaque image-to-3D
+meshes, or author explicit bay/floor rules. Selected explicit editable JSON rules
+with an offline Python OBJ/MTL exporter and inspectable geometric modules.
+Fixed window size preserves proportions across widths/heights; corner exposures
+and connected-row widths are explicit. Existing local 39-name extraction is
+recorded as inherited evidence, not claimed complete disc verification. R01
+remains reference-only; no source/pixels copied. No new game dependencies.
+Tradeoffs: rectangular draft openings/material colors are not final architecture,
+PBR art or optimized runtime meshes. Hidden dimensions are authored choices.
+Future: add family details, GLB/LOD/collision and integration after review; current
+Valley IDs/lots and physics remain authoritative. Rollback: remove authoring kit;
+no saves, runtime assets or physics migration is needed.
+
+## ADR-039 — Isolated kilometre city study before race-map replacement (2026-11-01)
+
+Problem: judge dense streets using the new building concepts, which are PNG
+renderings rather than model assets. Alternatives: project angled renders onto
+cubes, adopt an unrestricted city-growth library, or use a constrained block/lot
+grammar with authored geometry. Selected the existing original facade generator,
+six explicit BUSS-family design palettes and an exact seeded 1 km orthogonal grid.
+A Python offline exporter writes editable box/chunk geometry and lot metadata; a
+separate Bevy0.17.3 binary batches each chunk into a vertex-colored triangle mesh.
+No new dependency, physics engine or gameplay world replacement. Dimensions and
+hidden sides are authored interpretations; these are not reconstructed meshes.
+
+Justification: route-first constraints, fixed street reservations and exact lot
+partitions directly serve the requested dense touching streets. Research: CGA
+split-grammar paper and phiresky/procedural-cities; no implementation code copied.
+Tradeoffs: rectangular details, six families, solid-color materials, no live
+traffic/colliders/LOD/interiors; the 146-image catalog remains design reference.
+Consequences: review native street-level shots before higher-detail family models
+and integration through world_gen's supported pads, stable IDs, collision and LOD.
+Rollback: remove the optional preview and regenerate no files; game/save/physics
+configuration is unchanged.
+
+## ADR-040 — Bind the actual facade artwork, not color approximations (2026-11-01)
+
+Problem: user rejected ADR039's palette/window prototype because it did not use
+the new facade art. That prototype is not valid visual acceptance evidence.
+Alternatives: continue reconstructing generic geometry, paste three-quarter
+concepts as walls (bakes perspective), or use the existing straight-on new facade
+images directly with UV-mapped relief. Selected unchanged enhanced facade PNGs
+as real textures: 100 IDs / 17 sheets, explicit UV bounds and source hashes.
+Images are not edited or regenerated. The three-quarter concepts still guide
+future detailed geometry. No new source repository or dependency is adopted.
+
+Each exact lot now has a shell/roof plus texture-backed facade modules. Shallow
+relief changes physical depth while projecting the same source coordinates;
+first-six profiles include windows, canopies and bays. End/rear walls reuse the
+front art provisionally. Atlas-shared batches keep native draw costs bounded.
+A dedicated native view shows the first six designs for direct comparison.
+
+Tradeoffs: source lighting is baked, so facade material is unlit; this is
+textured relief, not a full 3D reconstruction. Source sign mistakes remain;
+remaining gable/side/roof geometry and most family-specific relief need authoring.
+Metric heights are design choices. Production media clearance remains unverified;
+read art locally in an isolated preview, never silently add it to shipped assets.
+
+Consequences: source/image identity and UV orientation become tested invariants;
+changed pixels require explicit catalog refresh. Generic-window meshes must not
+replace the artwork. No simulation transforms, colliders, physics or saves change.
+Rollback: revert the preview importer/generator; raw/new artwork stays unchanged.
+ADR039's grid layout survives, but its color-only facade approach is superseded.
+
+## ADR-041 — Real first-sheet mesh kit and native GLB placement (2026-11-01)
+
+Problem: both preceding previews were rejected because neither built the approved
+3D building designs as actual meshes. Selected independent Blender4.5.1 authoring
+of six specific first-sheet buildings, with meaningful geometry for masonry,
+openings, shopfronts, arches, signs, canopies, bays, cornices, sides and roofs.
+Alternative image projection/relief is retained only as rejected history; an
+opaque image-to-3D service would impede editable dimensions and stable LOD.
+
+Source .blend preserves semantic batches/modifiers. Three filtered geometry LODs
+export to one joined mesh per GLB, with embedded independently authored procedural
+material tiles. No facade PNG or concept image is a render surface. Independent
+GLB validator checks buffers, indices, finite position/normal/UV streams, physical
+volume, square material tiles, hashes and LOD reductions. Re-imported clay proof
+removes all images to demonstrate actual exported geometry.
+
+Native city_preview uses SceneRoot and shared GLB scene handles, uniform placement
+scale, camera-distance LOD with hysteresis and existing reserved street/lot layout.
+Bevy0.17.3 minimal features do not auto-register scene reflection: explicitly
+register static glTF component types in the preview only. A regression clones
+static scene components without enabling global dependency features; this fixes
+the initial native unregistered-type failure. No engine/dependency/version change.
+
+Tradeoffs: first six models only, cleaner than concepts, prototype dense mesh/LOD
+cost, repeated storefronts, small trim intersections and incomplete wear/side
+variation. No production-fidelity or runtime-race approval. Other94 facade designs
+and46 structures remain explicit open requirements. Modelled dimensions/hidden
+sides are authored interpretations. Blender is an external GPL tool; no software
+source incorporated, original geometry/material-generator code is project-authored.
+
+Future: finish remaining families, review fidelity/scale, optimize chunk/collider/
+navigation/LOD intake through world_gen without changing canonical IDs/pads.
+Rollback: switch/remove isolated viewer and kit; default game simulation, saves
+and accepted ragdoll stay unchanged. No animation or physics architecture change.
+
+
+## ADR042 — Complete typed architectural catalog (2026-11-01)
+
+Problem: the six accepted models cannot represent the remaining 140 concept IDs;
+facade imagery on proxy boxes was rejected. Alternatives: image cards, unbounded
+monolithic authoring scene, or typed per-design geometry batches.
+
+Selected: explicit 146-ID design plan; retain the first six byte-for-byte; author
+94 additional facades, 28 structures and 18 surface modules with reusable mesh
+vocabulary. Each sheet gets editable semantic source, individual/group actual
+renders and three joined-mesh GLBs with original square material tiles. Separate
+manifest reconciliation and binary validation check coverage and hashes. Surface
+samples remain modules, not fabricated buildings. Bounded per-sheet Blender
+processes limit authoring memory and permit targeted rebuilds.
+
+The isolated Bevy viewer uses all facade families, uniform dimension-aware
+placement, lazy detailed scene loading, coarse shared handles and 25 paged gallery
+views. No racing physics, accepted ragdoll, dependencies or canonical world_gen
+placement is modified. Existing street/lot reservations are preserved.
+
+Tradeoffs: deliberately draft material/fidelity, shared side/back vocabulary,
+prototype GPU cost and non-manifold overlapping trim. Full collision/navigation,
+artist approval and production profiling remain separate gates. All 146 IDs have
+source/render/export evidence, not blanket art approval. Existing Bevy/Blender
+references only; no new third-party source or assets incorporated.
+
+Migration/rollback: remove/switch the isolated preview/catalog, preserving the
+original six source/manifest. Rebuild affected sheets explicitly after generator
+changes; resume presence alone does not certify current generator equivalence.
+
+
+## ADR043 — Separate authored district roles from original course evidence (2026-11-01)
+
+Problem: grouping every building into one random pool obscures neighbourhood
+identity, while naming a district from appearance cannot establish original usage.
+Alternatives: filename-only categories, inferred exclusive track assignment,
+duplicating model files per location, or separate typed metadata views.
+
+Selected: exactly one primary RoadDash district/support set per146 IDs; separate
+many-to-many original-course family eligibility measured from named CEL membership
+and MSRR types1/3. Thirteen sets include shared services/utilities/structural trim;
+five course views preserve overlap. Group manifests link the unchanged canonical
+GLBs using relative paths; Unix folder links avoid duplicate files. Existing
+Python art-authoring tools generate indexes and contact sheets offline. These are
+authoring views, not new runtime domain rules or an rr_content schema migration.
+
+Evidence: all146 names match the local FAMILIES.RSC. Source course/family and
+external local decompression-tool hashes are recorded; only numeric/text findings
+are retained. Existing pinned arkits reader is REFERENCE ONLY; no source copied.
+The local Python decoder is executed for research only, not vendored or required
+for ordinary grouping. No new dependencies or media imports.
+
+Tradeoffs: family load eligibility does not establish selected texture/placement,
+route order, frequency or guaranteed all-level visibility. District names/primary
+roles and placement guidance are authored interpretations. Current preview and
+canonical world placement are unchanged. Art/release/production gates remain open.
+
+Future: apply these pools through reserved block/site grammar with coherent
+transitions and existing whole-lot/ground/collision/navigation constraints.
+Rollback: remove/regenerate only district indexes/links; mesh hashes, game,
+physics and saves are unaffected. Non-symlink platforms can use JSON/CSV paths.
+
+
+## ADR044 — Independent whole-building assembly and playable 5.3 km City Run (2026-11-01)
+
+Problem: the user clarified that the actual race, not only the1km preview, must
+become a5.3km generated map using the modeled facades. Repeating narrow full-depth
+catalog models wastes hidden walls/roofs and does not create coherent whole lots.
+The reference is a projected facade/roof/end/side-street renderer, not a ready-made
+modern procedural3D city generator.
+
+Selected: independently derive300 genuine geometric front modules from our own
+100×3LOD GLBs, retaining front triangles/materials and shifting the street face
+to localZ0. Original438 catalog GLBs/sources remain unchanged. Use85 measured
+City-family-eligible facade IDs in eight district zones. Per-lot front/return runs
+join one shared full-depth shell/roof/floor with segmented rear-wall openings,
+window frames, downpipes, service door, chimney and rooftop plant. End walls do
+not cover the returned facade apertures. Street reservations precede lot filling.
+
+One deterministic offline generator bakes shared CityPlan data and the exact
+5,300m open track. rr_content validates dimensions, contiguous districts/frontages,
+whole-lot road clearance and finite geometry. Runtime assembly/rendering lives in
+world_gen::city; both preview and actual race share it. A named architecture asset
+source preserves the existing rider asset root. Detailed facade LODs are lazy;
+far scenes are hidden beyond fog distance, with a separate developer overview.
+
+Road/sidewalk support and independent fixed body colliders exist before riding;
+all977 roofs receive Rapier ray verification. Starting grid apron extends beyond
+the fifteen negative-distance spawns. Existing crossing-car code is factored into
+a shared spawn helper without changing actor physics. Existing navigation solver
+accepts merged city row footprints; physical recovery remains authoritative.
+
+Alternatives rejected: image cards; copying old source; stretching complete slim
+buildings in three axes; one global random facade pool; changing the accepted
+ragdoll/engine; silently shortening the old Valley configuration. The new track
+becomes default; ROADDASH_TRACK=valley preserves the full earlier world and its
+quotas/IDs. Existing player/rider/bike bodies, joints, forces and recovery stages
+are not retuned. The user explicitly confirmed the playable-race scope.
+
+Tradeoffs: straight point-to-point city avenue; side roads create reserved grid
+blocks but do not define alternate race routes. Exterior assemblies have no
+walkable interiors; colliders are collision-independent solid body proxies,
+with ornamental trim/stoop/contact fidelity retained as an art/collision gate.
+Source-draft art remains local development content; runtime use does not establish
+final visual/IP approval or permission to redistribute original retail pixels.
+No retail media/code is incorporated and no new dependencies are introduced.
+Benchmark/hardware/production acceptance stays open. Rollback: select Valley;
+remove city plugin/data without changing original track/world/model files.
+
+## ADR045 — Route downed contacts separately from mounted wipeouts (2026-11-01)
+
+Problem: recovery::impacts treated every foreign OwnedBody as an immediate mounted
+wipeout above0.75m/s, including each limb of an already fallen rider and its wreck.
+This created pile-ups unrelated to the original contact classes.
+
+Research: arkits/road-rash race.cpp at aa9cb6d3181e20736af71022cd4d6aac0e2788d1,
+Race::contact (1818–1950), contact_static and contact_half_static. Original low
+objects route before containment/bike/tall/glance handling, avoiding ordinary
+knock_off. Detached people have their own callback. Reference only; no code copied.
+
+Selected: independently implement explicit low/bike/tall/glance policy in rr_core.
+Downed rider/wreck contacts retain solid Rapier response without scripting another
+mounted crash. Actual low geometry can support wheel rays; assisted motion raises
+its sweep and re-tests clearance so tall obstacles remain solid. Standing runners
+remain distinct and may be knocked down again. Mounted side glances nudge; direct
+rider contacts retain the existing50km/h closing-speed gate. Ordinary tall-object
+and car responses, including the existing80km/h entry example, stay unchanged.
+
+Alternatives: disabling downed colliders would remove real contact; treating every
+limb as a standing rider repeats the bug; enabling original scripted launches would
+undo accepted COLLISION-02/03. No engine, body-spec or joint changes are needed.
+
+Tradeoffs: metric low threshold0.8m and projected collider containment are modern
+adapters, not original integer/height-unit parity. Dynamic fallen objects remain
+solid and can slow/block a bike; airborne debris is not promised to have exact
+retail behavior. Preserve separate original-crash comparison mode and its open
+parity gates. Passive ragdoll specs, masses, motors and damping are unchanged.
+Rollback: remove the new contact routing/support predicate, restoring the prior
+scripted wipeout policy without changing assets or saved data. No dependencies
+or assets added.
+
+## ADR046 — Exhaustive prop reference banks before new geometry (2026-11-01)
+
+Problem: same-process-as-buildings must cover pedestrians, traffic and wider props,
+without missing non-building category paths or presenting sprites/concepts as meshes.
+Alternatives: list names heuristically; replace runtime primitives immediately;
+scan every family plus all course vehicle/global containers and retain uncertainty.
+Selected the last: independent bounded CEL/hierarchy/frame reader, existing external
+local decompression only, stable source/pixel-derived IDs and complete source-offset
+ledger. Pixel-identical libraries collapse with aliases and frame order retained;
+color/view banks stay distinct until reviewed. Source alpha previews are illustrative.
+
+Local3x2 sheets and searchable HTML expose every indexed image and unknown entry;
+metadata-only inventory and explicit per-asset stage queue live in the repository.
+Known architecture/materials cross-reference the earlier catalog rather than become
+new prop meshes. First six bitmap concepts use the existing building art direction.
+Metric dimensions, hidden geometry and original placement are not inferred facts.
+
+References: pinned arkits/road-rash family/animation/course_scene/traffic code;
+REFERENCE ONLY, root reuse license unresolved. No source copied or dependencies added.
+No original pixels enter game/runtime; generated concepts remain unapproved draft art.
+Accepted physics/recovery untouched. Future visual meshes must retain independent
+collision and physical rig parity. Tradeoff: more explicit records, manual archetype/
+unknown review still necessary;3521 non-CEL frame references do not become invented
+poses. Rollback: remove authoring tools/metadata/concepts; game and saves unaffected.
+
+ADR046 concept follow-up: batch02 uses six source-subject sheets plus the existing
+building concept sheet as explicit separate subject/style references. Output is
+raster concept art only. Stable IDs, per-cell mappings, prompts and final hashes
+remain independent of review numbering and of later mesh/physics approval.
+Two imagegen typography edits remove copied source metadata; original drafts stay
+available. DEER2/BIGFNCN2 visual corrections demonstrate why filename heuristics
+cannot authorize anatomy, collision or modeling decisions.
+
+
+### 2026-11-01 — Full prop concept coverage within ADR046
+
+Problem: sample sheets left most source banks without new art. Alternatives:
+collapse similar filenames first, or preserve every scoped reference ID through
+bitmap generation. Selected: frozen 330-ID remaining manifest plus prior 39 IDs;
+59 source-mapped sheets and a full gallery. Filename guesses are overridden by
+visual source inspection, with composites and sign backs retained. This costs
+more concept review but prevents hidden omissions. No new dependency/repository,
+retail source import, mesh generation or gameplay migration. Rollback is removal
+of generated-art references; existing physics/render assets are unaffected.
+Generated coverage is independent of art approval and actual 3D export.
+
+
+## ADR047 — Separate draft prop geometry from art acceptance and runtime replacement (2026-11-01)
+
+Problem: the generated concept sheets are bitmaps, not reusable 3D geometry.
+Alternatives considered: textured image cards (insufficient volumes), replacing
+live entities immediately (would conflate authoring with accepted physics), or
+a separate editable GLB catalog. Selected: original Blender4.5.1 semantic recipes,
+three geometric detail levels, small independently authored material tiles, source
+collections and proof renders from re-imported GLBs. Reuse the existing Bevy0.17.3
+static-scene registration plugin in an isolated prop_preview binary. No migration,
+new dependencies, reference repository code or original game pixels incorporated.
+
+Tradeoff: complete source-ID draft coverage is possible with shared recipes, but
+this does not reproduce the concept artwork faithfully. Actor anatomy/clothes,
+vehicle shapes, detailed foliage, pictograms and material finish need substantial
+art refinement. Human/quadruped skinning remains absent. Conservative bounds are
+authoring metadata, not permission to replace runtime collision shapes or bodies.
+
+Future consequence: production intake must verify art, rigs/animations, semantic
+colliders and placement separately. Existing body specs, joints/motors, mass,
+momentum, recovery, saves and race content stay untouched. Rollback: remove the
+isolated catalog/viewer references; no game state or asset migration to reverse.
+
+
+## ADR048 — Present draft props through existing physical owners (2026-11-01)
+
+Problem: the exported prop catalog was isolated from racing. Alternatives: replace
+physical entities from Blender bounds, or attach presentation to accepted owners.
+Selected: a validated 369-record catalog and props:// asset source. Moving traffic
+and cross traffic retain their colliders, paths and velocities. City trees/lamps
+retain established collisions; new furniture occupies tested semantic sockets
+outside the road, crossing and pedestrian lane. Parked cars use parallel streets.
+Existing Valley structural IDs/quotas and pad support are unchanged.
+
+Human/cow source GLBs receive separate, generated visual-only skins (11/10 frames).
+Existing walking pivots and interpolated physical body frames drive visual bones;
+no motor, mass, joint, ejection or recovery parameter is exported or changed.
+Skin updates write only non-RigidBody transforms after visual interpolation.
+Three static LODs and two actor LODs switch with hysteresis; distant instances hide.
+Loading waits on scene dependencies. No new dependencies or copied reference code.
+
+Tradeoffs: rigid per-part weights preserve the draft silhouettes but are not a
+finished deformation rig; seams, anatomy and material fidelity remain art work.
+Contact trajectories are not bit-identical across ECS layouts because insertion
+ordering affects iterative contact solving; body construction and ejection velocity
+are tested separately from bounded contact simulations. Performance certification
+and final art/release approval remain open. All catalog records are addressable,
+not all 369 banks are spawned indiscriminately. Native receipts list selected IDs.
+
+Rollback: ROADDASH_LEGACY_PROPS=1 restores prior presentation and omits added city
+furniture. Source static GLBs and accepted rider/bike presentation remain intact.
+No save schema or physics-backend migration. Local development source falls back
+to art/props/mesh_assets; standalone packaging must supply assets/props beside the
+binary and separately satisfy the existing production release gates.

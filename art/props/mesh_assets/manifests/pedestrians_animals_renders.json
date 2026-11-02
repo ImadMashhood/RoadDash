@@ -1,0 +1,481 @@
+[
+  {
+    "file": "renders/pedestrians_animals_01.png",
+    "sha256": "d4548119ba541c1295663970798ae1372956e68a6691d6e864d31d0aade7dea2",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-AD62F66BA933",
+        "name": "AVGMSM06",
+        "glb": "models/PROP-AD62F66BA933_lod0.glb",
+        "sha256": "55718f226ffac24f699756adf31a7abfd360246d24fa938815177944a1a00e86"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-97D77E55EDE4",
+        "name": "AVGW100",
+        "glb": "models/PROP-97D77E55EDE4_lod0.glb",
+        "sha256": "6091c90a0fef1cd33e34aebd9de4462dac0a767ba0ebdd7454c75455b44d56c4"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-47C70E6EBCE4",
+        "name": "AVGWSM08",
+        "glb": "models/PROP-47C70E6EBCE4_lod0.glb",
+        "sha256": "cc942e4945385e91a0b788ec908f65104fef994ce04c5ae1a9687f9682f8d9f2"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-A5F252D0A464",
+        "name": "BCHW100",
+        "glb": "models/PROP-A5F252D0A464_lod0.glb",
+        "sha256": "e2fbd80bf34ef7f34f57ce84c1f55735d423b32cce74f6938c0cc085a3da7f6e"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-0DAC2E802A51",
+        "name": "BKM100",
+        "glb": "models/PROP-0DAC2E802A51_lod0.glb",
+        "sha256": "6109d2a8ce526137195cfb7b87210df91e04ad2baae7246f57b754086baa496c"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-2FF6F916AA1C",
+        "name": "BKM1SM0",
+        "glb": "models/PROP-2FF6F916AA1C_lod0.glb",
+        "sha256": "f319df981f300fa94de7c7ff1b49c66394ec1b458ac5f1d3021eeb139a89bc93"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_02.png",
+    "sha256": "7f22ad0facb6bce87178fa9e9b650e48488a72b97d4b780842d7f1c0080f9cfc",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-EE7B1BE6B145",
+        "name": "BKM3SM02",
+        "glb": "models/PROP-EE7B1BE6B145_lod0.glb",
+        "sha256": "1ab8bc16ac263f27aaebab6247f38efbc9578f347be631c5fb9dd8aee63d6977"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-016720A1701E",
+        "name": "BKR2MD00",
+        "glb": "models/PROP-016720A1701E_lod0.glb",
+        "sha256": "dedab11d90fc3cdfb84f285d20529da8d5081bb2170f6586add14524d424452f"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-ADDD154FBF37",
+        "name": "BKR4DL09",
+        "glb": "models/PROP-ADDD154FBF37_lod0.glb",
+        "sha256": "39c6b896d42c55dada89fdf0c8803953ccc996dc7a910f304e52549b32c270cc"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-CF476531CEB6",
+        "name": "BKRGRP10",
+        "glb": "models/PROP-CF476531CEB6_lod0.glb",
+        "sha256": "f2a5e137208c342a3f1b92d015c0b5f153a81772974a8faa46a734c557b6e42a"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-4EF066700816",
+        "name": "BKW100",
+        "glb": "models/PROP-4EF066700816_lod0.glb",
+        "sha256": "7d3e699a0977f01f8c008ab1c2a9aaaf963be59fb8680228c716eb56e5e3ec2a"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-48E4A4110F9E",
+        "name": "BKW1SM0",
+        "glb": "models/PROP-48E4A4110F9E_lod0.glb",
+        "sha256": "4b8072444a31169bc57a5a6f7a8af38cc47c4e1777a836e7cd8d973c74ccccb6"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_03.png",
+    "sha256": "3a1d3b5c6aef5ab1c4d3e0e06f8d7be724291552429c415064c47d0f3e7d11cb",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-9807569BB162",
+        "name": "BKW2SM0",
+        "glb": "models/PROP-9807569BB162_lod0.glb",
+        "sha256": "4a159c4afe300165a886dd9253b3565013b65b23e6de0de418774816ceef7e44"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-5BB9D09990BE",
+        "name": "BKW30",
+        "glb": "models/PROP-5BB9D09990BE_lod0.glb",
+        "sha256": "324c65b055c98e5fd55664bb873e3d70a06faf3d4e0f9920a082b1743c34809d"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-4E3B7983E298",
+        "name": "BKW3SM0",
+        "glb": "models/PROP-4E3B7983E298_lod0.glb",
+        "sha256": "2d84a44fb55104e42d434399c30bd5b16fddd031b87866e62ba92f137fecabdd"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-978D357C5F72",
+        "name": "BMN1DS00",
+        "glb": "models/PROP-978D357C5F72_lod0.glb",
+        "sha256": "7193e4cb435c2c5641e8e6ab13bc6bc0076023435b083f29f6b000c938eccd9d"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-2A02835D05DC",
+        "name": "BUSM200",
+        "glb": "models/PROP-2A02835D05DC_lod0.glb",
+        "sha256": "978f5d2312e1facb04c0aaea3291006ef588b13e89199e6090a6943aefef1a97"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-1112B1E6E76B",
+        "name": "BUSM2SM0",
+        "glb": "models/PROP-1112B1E6E76B_lod0.glb",
+        "sha256": "bc621c6b7011fcb7c8609dd6e2b59c61323d3ba90d5e87efb6eb711c9c4905cd"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_04.png",
+    "sha256": "2f437fec51c614f2cc69b935d5dd0112998e9be1046af8853c443e45a23daa72",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-EBA4EF231506",
+        "name": "BUSM300",
+        "glb": "models/PROP-EBA4EF231506_lod0.glb",
+        "sha256": "244166ee667a8f370264c7e055e9a84166a146a153ac80e3226cfcc7d4c06625"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-0E30B36C2427",
+        "name": "BUSW2E00",
+        "glb": "models/PROP-0E30B36C2427_lod0.glb",
+        "sha256": "e098ca8b896a7b446f14715b6867020b5a1729cfbad51655c9001fc4e4bb5661"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-CDB4FEE9DBAA",
+        "name": "BUSW2SM0",
+        "glb": "models/PROP-CDB4FEE9DBAA_lod0.glb",
+        "sha256": "5a34fdb0dd7588fb28da48686450bbe7371b4d9371368a88aee5a3cff18d7e28"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-032FAAB95574",
+        "name": "BUSW300",
+        "glb": "models/PROP-032FAAB95574_lod0.glb",
+        "sha256": "b99fdda248aa08381111cdc2b8669a7abc218f9fb80e42d73c0ebd552968d305"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-CFF62B98E0B2",
+        "name": "BUSW3SM0",
+        "glb": "models/PROP-CFF62B98E0B2_lod0.glb",
+        "sha256": "d8294be127618749eb3b296eb370b2ff22752fda1731fabb465d947a77ba84bb"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-06B4CC358501",
+        "name": "COWEEK0",
+        "glb": "models/PROP-06B4CC358501_lod0.glb",
+        "sha256": "3b94226a0612d592df648080dd699574d38894d3e8fd337f576d4283b0eff40a"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_05.png",
+    "sha256": "85c0862802edc1c4c6926b41a4b02f519a40871e16e3914e4fb91ab9c3818f71",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-551DA44848C9",
+        "name": "CTM1A00",
+        "glb": "models/PROP-551DA44848C9_lod0.glb",
+        "sha256": "6783d8c4adbe17760f7007de73e17a55da42046334860a4d3dc14bdc999f0942"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-B3EF80680AE8",
+        "name": "CTM1SM0",
+        "glb": "models/PROP-B3EF80680AE8_lod0.glb",
+        "sha256": "b0c1faf3e628157e4966d66e111983ae6cc5bdd289c4d2faf81157e398c94ad3"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-F3A0B2D5D4CD",
+        "name": "CTM2A00",
+        "glb": "models/PROP-F3A0B2D5D4CD_lod0.glb",
+        "sha256": "03bd9ecf45318f286dfe94444096921fe8ef0e3f80ee635ce34f1693bbac55fc"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-2C3D4D3ACEE4",
+        "name": "CTM2B0",
+        "glb": "models/PROP-2C3D4D3ACEE4_lod0.glb",
+        "sha256": "2584cf390d904f5dd8b8509bf62351933a35a7b48891d4cd02ba2754dff5c510"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-60AE32F2B9FA",
+        "name": "CTM300",
+        "glb": "models/PROP-60AE32F2B9FA_lod0.glb",
+        "sha256": "db17172b87d22e02845da545d2acfc130aa51f6afbf2c2fc9ef8f8726e6b9d83"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-D066826A6C7F",
+        "name": "CTM3SM0",
+        "glb": "models/PROP-D066826A6C7F_lod0.glb",
+        "sha256": "fa9744cff2df34b632a9a8d1baf0860fce4ae164e3ba423844c7c48b0ade0935"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_06.png",
+    "sha256": "5b1e63f617d0cdc74e6a770d0f9801cbfc47af0020cf1514103dc6b5d4b908a1",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-AA52C09B2FFC",
+        "name": "CTM400",
+        "glb": "models/PROP-AA52C09B2FFC_lod0.glb",
+        "sha256": "f03939a58c99a1dfc05ede1a4827ea2525241f655637e9ae8bac1560d5c92e31"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-635D1FA232D0",
+        "name": "CTM4SM0",
+        "glb": "models/PROP-635D1FA232D0_lod0.glb",
+        "sha256": "7767e6b42dbb965f5abe974fa5422a5ac1f24ccd07b931e0c1b2b9191cba5653"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-397D1FC5C817",
+        "name": "CTW1A00",
+        "glb": "models/PROP-397D1FC5C817_lod0.glb",
+        "sha256": "96dc96ece7141313b08e5ce391b4e43fae42fc54de84cb7a070a70fcfebd991c"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-E46F27058B0F",
+        "name": "CTW1B0",
+        "glb": "models/PROP-E46F27058B0F_lod0.glb",
+        "sha256": "ac2022a77c3285b188053360cd41e765e3ac1886421f39476f9100efdac2e7cd"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-D9542803DE23",
+        "name": "CTW1SM0",
+        "glb": "models/PROP-D9542803DE23_lod0.glb",
+        "sha256": "83016145e4f92639f40ee664c7334f4b8dc6da9a91baebb2a4432609e2cedca2"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-44C55BAB860E",
+        "name": "DAVEEK00",
+        "glb": "models/PROP-44C55BAB860E_lod0.glb",
+        "sha256": "a4360c19011c3923af4939655664c44a1a483fc82c04a03544d56d2c671c7343"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_07.png",
+    "sha256": "128bf18b026a8d04cca8e6298584b428f9e33bd98aeec860541fb15a188e5dbb",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-F5195071E480",
+        "name": "DVRW100",
+        "glb": "models/PROP-F5195071E480_lod0.glb",
+        "sha256": "57b8ca1806a46a99eac238f86e04c75e95d55d14f88dc32a38d16ad33ec72826"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-18651CC63CD8",
+        "name": "FEMHIT00",
+        "glb": "models/PROP-18651CC63CD8_lod0.glb",
+        "sha256": "fb545a7c548f05f2a8285664a10989b1f642d7fcfbd9a6b7f7d9ca538ccf4ee7"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-E296DF5CA9A6",
+        "name": "FLG201",
+        "glb": "models/PROP-E296DF5CA9A6_lod0.glb",
+        "sha256": "8d601515475d6b4699ac8f6364972932cf96d96951517aa51f3ade33552118d4"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-4BAFAB2A8AC8",
+        "name": "FLGRL100",
+        "glb": "models/PROP-4BAFAB2A8AC8_lod0.glb",
+        "sha256": "a4399ec849fd5d6d7204db70052ac0ee8563eb75a7e6f94e9f4e4e7d29999795"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-B530645DC3EC",
+        "name": "FLM100",
+        "glb": "models/PROP-B530645DC3EC_lod0.glb",
+        "sha256": "9a776b4fb8cdb580f4ce16de5d6487e507c148364f8603549a51ea6737060bfa"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-C251166071E9",
+        "name": "HHM100",
+        "glb": "models/PROP-C251166071E9_lod0.glb",
+        "sha256": "f2fdf7bb21250b5405498eaff34fd4cb746d7235784f8af688cfb0568de9b3fd"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_08.png",
+    "sha256": "5f81ace46a9b965343c771697a4719e0549e620c076216b250450b050afd7881",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-6F42EC224460",
+        "name": "HHM1SM0",
+        "glb": "models/PROP-6F42EC224460_lod0.glb",
+        "sha256": "383083e2a10998754069390e0be5145cb12e01effccb66af31e1d2cb36e1ecde"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-F3C6F593DB8B",
+        "name": "HHW1SM0",
+        "glb": "models/PROP-F3C6F593DB8B_lod0.glb",
+        "sha256": "ea96666d3360b61d30ad141de7e60690f066473e62c767ab6a4bef0753ad50a6"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-1FAB968E3F60",
+        "name": "JGW100",
+        "glb": "models/PROP-1FAB968E3F60_lod0.glb",
+        "sha256": "1bcb59a2fe9ebfe17bb0651fba88c966d4699b16e0a6eefaa009c57827b88acd"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-36E34792A832",
+        "name": "JGW1SM0",
+        "glb": "models/PROP-36E34792A832_lod0.glb",
+        "sha256": "d1ddebabc156850d613a14d993c864c4f12d03953e45b4ad4d01f46e66173e56"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-E9FDE33E57FF",
+        "name": "MJOG100",
+        "glb": "models/PROP-E9FDE33E57FF_lod0.glb",
+        "sha256": "0d885ef3e5f5bcc688c44e0d4994a47f5a4a32c7cf3840b1dc1baaab484e3cc5"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-6259F2823CFF",
+        "name": "MJOG1SM0",
+        "glb": "models/PROP-6259F2823CFF_lod0.glb",
+        "sha256": "664361069d42a3de9d055363a8c1af0ae439b07d3b6b5f4db7202790e17d4206"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_09.png",
+    "sha256": "b9bc4640005a10cabead9aef64894dc37dc53ac9286de2e532dda0c36c63964a",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-F42FE027C62A",
+        "name": "OLDWMN0",
+        "glb": "models/PROP-F42FE027C62A_lod0.glb",
+        "sha256": "afcb3b4dca3426ae47800fabe212d22212faef11f8b56c62fe5f7908ab9447cf"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-F4F320430EFE",
+        "name": "OLDWMN00",
+        "glb": "models/PROP-F4F320430EFE_lod0.glb",
+        "sha256": "7f2eaeac7d8c5754e79e6c1a8ee806e9186b0ff730fb431c1d335e391fe92c54"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-C54FF15880B2",
+        "name": "SFRM00",
+        "glb": "models/PROP-C54FF15880B2_lod0.glb",
+        "sha256": "fc778e8e23db1a428ce50ed017b87053c5820f2501641babbb5307e20ab2cf8b"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-D6813A330876",
+        "name": "SKR2NW00",
+        "glb": "models/PROP-D6813A330876_lod0.glb",
+        "sha256": "909635ec0d2fcf75d66957360a45e7730504c21b9cf792c04c8bda19e3b86a94"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-20E648B16FBA",
+        "name": "SKTR2SM0",
+        "glb": "models/PROP-20E648B16FBA_lod0.glb",
+        "sha256": "8222173369c6877fb0ac8c705ee6c700bf64ad881f9a0123ebfbe7b81ef87796"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-3BB82CCD4F67",
+        "name": "TNSM100",
+        "glb": "models/PROP-3BB82CCD4F67_lod0.glb",
+        "sha256": "88e47902e173e3138387295e7f1648831d4ea0d460d168cf35815fc8a0837f89"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/pedestrians_animals_10.png",
+    "sha256": "13b750db5fbfdeabc0ccef14437c691126ffbc63fa429091b7a685c7e2364510",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-89576C1C949B",
+        "name": "TNSM1SM0",
+        "glb": "models/PROP-89576C1C949B_lod0.glb",
+        "sha256": "1da48f6343c7ca0eee1a0bb2b455b16d46ef5b4b6f44b7fb6d6ef8d0e5364b29"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-64B1D8C0B5C9",
+        "name": "TRSTW100",
+        "glb": "models/PROP-64B1D8C0B5C9_lod0.glb",
+        "sha256": "43cf5e5feed25218b0342afa6ba1ee0082a80873757cc2362726e99880c32f9b"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-7697DF451B7E",
+        "name": "TRSTWSM0",
+        "glb": "models/PROP-7697DF451B7E_lod0.glb",
+        "sha256": "b61ceb5d8db4eaf1956d2c3aa38d3383c351c06385738bc4a49f1fdf6ba1d5aa"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

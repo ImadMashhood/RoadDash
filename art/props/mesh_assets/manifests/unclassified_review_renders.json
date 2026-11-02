@@ -1,0 +1,95 @@
+[
+  {
+    "file": "renders/unclassified_review_01.png",
+    "sha256": "4404f8d4058d96077459ecd8c766a604636fa448b95efcb5ac1575872d3c0c1c",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-B2E2C8C2802A",
+        "name": "BRNGRN2",
+        "glb": "models/PROP-B2E2C8C2802A_lod0.glb",
+        "sha256": "2dd89ad7c35966b7cddcd51b37271a41d3b1cb8a89fc2609ca5fd8b4735c6061"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-10D1D5456444",
+        "name": "CHINLN2",
+        "glb": "models/PROP-10D1D5456444_lod0.glb",
+        "sha256": "001eae7dc96d7192456b00d964206c1e02ec40e098f4f5176fe60f8cbd8bd1d8"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-6E3ED951E87E",
+        "name": "COMBOA2",
+        "glb": "models/PROP-6E3ED951E87E_lod0.glb",
+        "sha256": "cfc5c6894a2d3ea0aba56f4f7c5e24370d48c23f501db707ff55eb22bfd61437"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-9AB85BFF1770",
+        "name": "COMBOB2",
+        "glb": "models/PROP-9AB85BFF1770_lod0.glb",
+        "sha256": "095e7ab0d306bd74384e18f946cd8e6406b8b4b00ce1a7b005a0649056080145"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-984F6F11DA60",
+        "name": "CRITPIL2",
+        "glb": "models/PROP-984F6F11DA60_lod0.glb",
+        "sha256": "716e9a532af3d1efff5369825cfe491a9ff32727c853438ba25df81aca09f027"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-54F89A72BE4C",
+        "name": "CRITPSM2",
+        "glb": "models/PROP-54F89A72BE4C_lod0.glb",
+        "sha256": "53da5fcfa6b6347636b74325b706cfd73224bf319d1d399e7384728c1e381f9d"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/unclassified_review_02.png",
+    "sha256": "0d1e5869e0f8810dd04daa73be8510d802f421dee0caefb8c0a79acf519326d0",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-63E86F575D7C",
+        "name": "CRNRGRP2",
+        "glb": "models/PROP-63E86F575D7C_lod0.glb",
+        "sha256": "78ed3eb6887def62d3605deb7c769b946be65b409bec9908e216d655b2fa283e"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-D6C6B12E97F6",
+        "name": "GRNDMKB2",
+        "glb": "models/PROP-D6C6B12E97F6_lod0.glb",
+        "sha256": "a03aaa7d162e162674fcc7e1ea5e0c4044f3e59ffac68d2f88450592685f0d80"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-D584DCE55340",
+        "name": "GRNDMKC2",
+        "glb": "models/PROP-D584DCE55340_lod0.glb",
+        "sha256": "f19dac52503d7b7c46a3ad49d83e4e0f85c8dca7041b998923d53913c92172c1"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-6D5770ACF085",
+        "name": "ICEPDSM2",
+        "glb": "models/PROP-6D5770ACF085_lod0.glb",
+        "sha256": "8d456f1db0582c4357a5ed4008c6f61467efe8fc298b0f7d2fd07160ec9f4023"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-35FB9A42BCE6",
+        "name": "RECYSTF2",
+        "glb": "models/PROP-35FB9A42BCE6_lod0.glb",
+        "sha256": "8425d16b8e024dcd1fd12392a17ded777a096ad0e6ebbfdd313130d319fd5c2b"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

@@ -511,3 +511,125 @@ defer exact legacy mode/boost flag mapping and original-executable timing eviden
   and interpreting bounded results as whole-game parity.
 - Decision: adopt only for explicitly invoked local research verification; retain
   dependency-free Rust rules/tests for normal builds and CI.
+
+### R01 facade kit follow-up — 2026-11-01
+
+Inspected same pinned aa9cb6d3181e20736af71022cd4d6aac0e2788d1 (arkits,
+https://github.com/arkits/road-rash), family.cpp, building_panels.cpp and
+course_scene.cpp building-group resolution. REFERENCE ONLY, root reuse license
+still UNVERIFIED; no source code or proprietary images incorporated. Useful
+concepts: selector family/category mapping, size variants, separate facade/roof/
+end/side-street construction. C++/SDL compatibility is irrelevant to our offline
+independent Python grammar; Bevy dependencies unchanged. Existing maintenance and
+license risks remain. Local prior extraction supplies 39 inherited named city
+records, whose completeness is unverified. Decision: implement original geometric
+kit with explicit dimensions; defer texture authoring and runtime replacement.
+
+### CITY-REF-01 — phiresky/procedural-cities (REFERENCE ONLY, 2026-11-01)
+
+- URL: https://github.com/phiresky/procedural-cities ; author: phiresky (Robin).
+  Inspected exact commit f0c2c86e4289cea63e05fb55a78994c5a8ef99f5.
+- Read paper.md, implementation/src/mapgen.ts and config.ts, README and license.
+  Demonstrates road growth, population-driven branching, priority queues,
+  quadtree intersection tests and road snapping; paper contrasts street growth
+  with sequential building subdivision. Useful for future irregular districts.
+- Verified root LICENSE.md: GNU AGPL v3 default license,
+  https://github.com/phiresky/procedural-cities/blob/f0c2c86e4289cea63e05fb55a78994c5a8ef99f5/LICENSE.md .
+  Reuse requires applicable AGPL terms; not adopted into MIT runtime. mapgen.ts
+  also notes adaptation from tmwhere.com; upstream provenance needs review before
+  any reuse. Separate image/media restrictions not verified; no assets copied.
+- Compatibility: TypeScript/browser demo, no Rust/Bevy integration. Source includes
+  old webpack/yarn setup and explicit TODOs; current build not tested. Maintenance
+  and algorithm completeness are not presumed. No code or dependencies adopted.
+- Decision: study only; a controlled grid and exact lot partition are simpler
+  for this fixed avenue. Preserve road-right-of-way logic in our own generator.
+
+### Building-model tooling / existing Bevy follow-up — 2026-11-01
+
+No new repository source adopted. Used existing local Blender4.5.1 LTS binary,
+build b0a72b245dcf (2025-07-29); inspected bundled copyright.txt (GPL2-or-later,
+with individual component license inventory), bpy/runtime version and stock
+glTF export/import through execution. Official source: https://projects.blender.org/blender/blender/src/tag/v4.5.1 ;
+license: https://www.blender.org/about/license/ . Tool is external, not shipped
+with game; no Blender/Cycles/add-on source or bundled media copied. Own original
+Python generator/geometry/material code and standard GLB output only.
+
+Inspected installed Bevy0.17.3 scene_spawner.rs static SceneRoot change/despawn
+behavior and glTF loader components plus reflection traits. Existing dependency
+licenses MIT/Apache2.0 unchanged; standard API use only, no source copied.
+Explicit reflection registration in isolated preview resolves omitted automatic
+registration without a dependency migration. Stock static GLBs tested natively.
+
+
+### R01 district/location follow-up — 2026-11-01
+
+Revisited arkits/road-rash, exact aa9cb6d3181e20736af71022cd4d6aac0e2788d1:
+https://github.com/arkits/road-rash/tree/aa9cb6d3181e20736af71022cd4d6aac0e2788d1 .
+Read course.cpp MSRR events, course_scene.cpp family residency/horizon names,
+family.cpp named texture groups, resource.cpp directory layout and explode.cpp
+resource envelope. REFERENCE ONLY; existing root license/reuse permission remains
+UNVERIFIED (no root license file in inspected snapshot), third_party/LICENSE is
+not blanket project clearance. No code or media copied/adopted. No C++ dependency
+or Rust/Bevy compatibility change. Maintenance assessment remains the pinned
+snapshot; do not assume game-wide parity from family-reader findings.
+
+Used the existing user-local city_source.py decompressor as an external research
+tool, with its SHA in research/building-districts/source-associations.json; not
+vendored or a build dependency. Independent RoadDash metadata scanner records
+146 named CEL/family memberships and five-course load eligibility. Course family
+loads are not proof of texture placement. Decision: use evidence for asset filters,
+keep authored13 district names/roles explicit as interpretation. Original game
+files remain local; no sprites, textures or binary resources redistributed.
+
+
+### R01 whole-building assembly follow-up — 2026-11-01
+
+Same arkits/road-rash aa9cb6d3181e20736af71022cd4d6aac0e2788d1;
+https://github.com/arkits/road-rash/blob/aa9cb6d3181e20736af71022cd4d6aac0e2788d1/src/building_panels.cpp .
+Inspected building_panels.cpp/.hpp facade/flat-roof/exposed-end logic, side-facade
+runs and side-street curb/shoulder roles, plus course_scene family selection.
+REFERENCE ONLY; existing unresolved root reuse license remains unchanged, no source
+copied. Original is a2.5D projected panel renderer, not a complete3D city library.
+Independently adapted the roles into our geometric front runs, shared whole-lot
+roofs/rears/ends and reserved side-street returns. Exact original coordinates,
+selector interleaving or visual parity are not claimed. Source media stays local;
+our derivative front modules use only our own original generated GLBs and material
+tiles. No new dependency/version/physics migration. Compatibility: current pinned
+Bevy0.17.3/Rapier0.32.0; existing maintenance/license risks remain.
+
+### R01 downed-contact follow-up — 2026-11-01
+
+Inspected arkits/road-rash (arkits), commit
+`aa9cb6d3181e20736af71022cd4d6aac0e2788d1`,
+[race.cpp](https://github.com/arkits/road-rash/blob/aa9cb6d3181e20736af71022cd4d6aac0e2788d1/src/race.cpp):
+Race::contact low/containment/bike/tall/glance routing, contact_static,
+contact_half_static, and collide detached-actor dispatch. Low objects avoid the
+normal knock_off path; detached actors have separate collision callbacks.
+Decision: REFERENCE ONLY for independently written contact policy (ADR045).
+Existing R01 license/reuse permission remains UNVERIFIED; no source or retail
+assets incorporated and no permission to redistribute inferred. This old C++
+reconstruction is not a Bevy/Rapier dependency; no Rust compatibility or retail
+parity is claimed. Exact pinned source and uncertain reconstruction completeness
+matter more than current maintenance activity. Existing native6001/damage and
+height-unit comparison gates remain open.
+
+### R01 all-prop reference follow-up — 2026-11-01
+
+arkits/road-rash (arkits), aa9cb6d3181e20736af71022cd4d6aac0e2788d1:
+[family.cpp](https://github.com/arkits/road-rash/blob/aa9cb6d3181e20736af71022cd4d6aac0e2788d1/src/family.cpp),
+[course_scene.cpp](https://github.com/arkits/road-rash/blob/aa9cb6d3181e20736af71022cd4d6aac0e2788d1/src/course_scene.cpp),
+animation.cpp and traffic.cpp inspected. Category/selector hierarchy, scenery RRAN,
+actor category2, stored view/size frame bodies and separate course vehicle ANIM/CANS
+resources inform independently written metadata-only extraction/review tools.
+REFERENCE ONLY; no C++ copied, no dependency or original media incorporated.
+Existing unresolved root reuse/license status stays UNVERIFIED. The user's external
+local decoder is called for decompression, not vendored; its hash is recorded.
+These are data-layout observations, not guaranteed reconstruction/retail parity.
+No Rust/Bevy compatibility claim needed for an offline source-reference investigation.
+See ADR046 and docs/research/props/README.md; maintenance/completeness risk remains.
+
+
+2026-11-01 PROP-03: reused existing RoadDash original draft geometry, Bevy0.17.3
+scene/skin loading and current Rapier0.32.0 owners. No new repository inspected,
+dependency adopted, reference source copied or original retail media incorporated.
+See ADR048 and testing/props-in-game/README.md; existing research decisions stand.

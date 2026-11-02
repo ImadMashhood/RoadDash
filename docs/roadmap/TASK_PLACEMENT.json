@@ -144,7 +144,13 @@
         "ANIM-08",
         "CRASHREF-001",
         "CRASHREF-002",
-        "CRASHREF-003"
+        "CRASHREF-003",
+        "DISTRICT-01",
+        "CITYGEN-01",
+        "COLLISION-04",
+        "PROP-01",
+        "PROP-02",
+        "PROP-03"
       ]
     },
     "01": {
@@ -252,7 +258,9 @@
         "ENV-007",
         "ARCH-005",
         "RIGHTS-007",
-        "P02-004"
+        "P02-004",
+        "MESH-01",
+        "MESH-02"
       ]
     },
     "05": {

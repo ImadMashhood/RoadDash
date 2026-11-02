@@ -1,0 +1,172 @@
+{
+  "blocks": 53,
+  "buildings": 977,
+  "checkpoints": [
+    {
+      "fraction": 0.0,
+      "id": "start"
+    },
+    {
+      "fraction": 0.125,
+      "id": "gate-1"
+    },
+    {
+      "fraction": 0.25,
+      "id": "gate-2"
+    },
+    {
+      "fraction": 0.375,
+      "id": "gate-3"
+    },
+    {
+      "fraction": 0.5,
+      "id": "gate-4"
+    },
+    {
+      "fraction": 0.625,
+      "id": "gate-5"
+    },
+    {
+      "fraction": 0.75,
+      "id": "gate-6"
+    },
+    {
+      "fraction": 0.875,
+      "id": "gate-7"
+    },
+    {
+      "fraction": 1.0,
+      "id": "finish"
+    }
+  ],
+  "closed": false,
+  "district_zones": [
+    {
+      "district": "victorian_residential",
+      "end_m": 600.0,
+      "start_m": 0.0
+    },
+    {
+      "district": "industrial_warehouses",
+      "end_m": 1300.0,
+      "start_m": 600.0
+    },
+    {
+      "district": "run_down_quarter",
+      "end_m": 1800.0,
+      "start_m": 1300.0
+    },
+    {
+      "district": "commercial_high_street",
+      "end_m": 2600.0,
+      "start_m": 1800.0
+    },
+    {
+      "district": "office_centre",
+      "end_m": 3300.0,
+      "start_m": 2600.0
+    },
+    {
+      "district": "chinatown",
+      "end_m": 3800.0,
+      "start_m": 3300.0
+    },
+    {
+      "district": "commercial_high_street",
+      "end_m": 4400.0,
+      "start_m": 3800.0
+    },
+    {
+      "district": "victorian_residential",
+      "end_m": 5300.0,
+      "start_m": 4400.0
+    }
+  ],
+  "facade_designs": 85,
+  "legacy_world_preserved": true,
+  "length_m": 5300.0,
+  "rear_windows": 13423,
+  "runtime_asset_source": "architecture://front_modules and architecture://materials",
+  "scope": "validated full geometry/lot plan; not a physics or performance receipt",
+  "seed": 74219,
+  "shared_floor_slabs": 977,
+  "shared_roofs": 977,
+  "starting_grid": [
+    {
+      "distance": -176.0,
+      "id": "spawn-0",
+      "lane": -2.0
+    },
+    {
+      "distance": -8.0,
+      "id": "spawn-1",
+      "lane": 2.0
+    },
+    {
+      "distance": -20.0,
+      "id": "spawn-2",
+      "lane": -2.0
+    },
+    {
+      "distance": -32.0,
+      "id": "spawn-3",
+      "lane": 2.0
+    },
+    {
+      "distance": -44.0,
+      "id": "spawn-4",
+      "lane": -2.0
+    },
+    {
+      "distance": -56.0,
+      "id": "spawn-5",
+      "lane": 2.0
+    },
+    {
+      "distance": -68.0,
+      "id": "spawn-6",
+      "lane": -2.0
+    },
+    {
+      "distance": -80.0,
+      "id": "spawn-7",
+      "lane": 2.0
+    },
+    {
+      "distance": -92.0,
+      "id": "spawn-8",
+      "lane": -2.0
+    },
+    {
+      "distance": -104.0,
+      "id": "spawn-9",
+      "lane": 2.0
+    },
+    {
+      "distance": -116.0,
+      "id": "spawn-10",
+      "lane": -2.0
+    },
+    {
+      "distance": -128.0,
+      "id": "spawn-11",
+      "lane": 2.0
+    },
+    {
+      "distance": -140.0,
+      "id": "spawn-12",
+      "lane": -2.0
+    },
+    {
+      "distance": -152.0,
+      "id": "spawn-13",
+      "lane": 2.0
+    },
+    {
+      "distance": -164.0,
+      "id": "spawn-14",
+      "lane": -2.0
+    }
+  ],
+  "track_id": "city-run-5300"
+}

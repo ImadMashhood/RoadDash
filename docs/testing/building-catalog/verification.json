@@ -1,0 +1,33 @@
+{
+  "branch": "codex/all-building-models",
+  "catalog_assets": 146,
+  "asset_counts": {
+    "facade": 100,
+    "structure": 28,
+    "surface_module": 18
+  },
+  "glb_files": 438,
+  "source_scenes": 25,
+  "first_six_hashes_preserved": true,
+  "rust_tests_passed": 167,
+  "rust_tests_ignored": 1,
+  "python_tests_passed": 38,
+  "fmt": "pass",
+  "clippy": "pass",
+  "build": "pass",
+  "audit": "pass",
+  "binary_validation_assets": 146,
+  "binary_validation_glbs": 438,
+  "native_map_captures": 5,
+  "native_gallery_captures": 25,
+  "default_game_smoke": true,
+  "new_task_ids": [],
+  "repositories_investigated": [],
+  "decisions": [
+    "ADR042"
+  ],
+  "gameplay_source_changes": false,
+  "production_art_approval": false,
+  "production_game_integration": false,
+  "git": "uncommitted local branch; no push or merge performed"
+}

@@ -1,0 +1,2777 @@
+{
+  "schema_version": 2,
+  "source": "All 25 draft concept-render sheets inspected; explicit per-ID authoring parameters",
+  "designs": [
+    {
+      "id": "BUSS1",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.0,
+      "masonry": "ochre_brick",
+      "trim": "oxblood",
+      "shop": "green_metal",
+      "upper": "arched_sash",
+      "sign": null,
+      "awning": false,
+      "asset_type": "facade",
+      "builder": "accepted_first_sheet",
+      "reference_sheet": "facades_01.png",
+      "review_note": "User-liked first-six model retained without geometry changes"
+    },
+    {
+      "id": "BUSS10",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.0,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "shop": "black_metal",
+      "upper": "sash",
+      "sign": null,
+      "awning": false,
+      "asset_type": "facade",
+      "builder": "accepted_first_sheet",
+      "reference_sheet": "facades_01.png",
+      "review_note": "User-liked first-six model retained without geometry changes"
+    },
+    {
+      "id": "BUSS2",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.0,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "shop": "old_timber",
+      "upper": "red_panel",
+      "sign": null,
+      "awning": true,
+      "asset_type": "facade",
+      "builder": "accepted_first_sheet",
+      "reference_sheet": "facades_01.png",
+      "review_note": "User-liked first-six model retained without geometry changes"
+    },
+    {
+      "id": "BUSS4",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.0,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "shop": "black_metal",
+      "upper": "radio",
+      "sign": "RADIO",
+      "awning": false,
+      "asset_type": "facade",
+      "builder": "accepted_first_sheet",
+      "reference_sheet": "facades_01.png",
+      "review_note": "User-liked first-six model retained without geometry changes"
+    },
+    {
+      "id": "BUSS5",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.0,
+      "masonry": "ochre_brick",
+      "trim": "oxblood",
+      "shop": "old_timber",
+      "upper": "drugs",
+      "sign": "DRUGS",
+      "awning": false,
+      "asset_type": "facade",
+      "builder": "accepted_first_sheet",
+      "reference_sheet": "facades_01.png",
+      "review_note": "User-liked first-six model retained without geometry changes"
+    },
+    {
+      "id": "BUSS6",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.0,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "shop": "black_metal",
+      "upper": "double_bay",
+      "sign": null,
+      "awning": false,
+      "asset_type": "facade",
+      "builder": "accepted_first_sheet",
+      "reference_sheet": "facades_01.png",
+      "review_note": "User-liked first-six model retained without geometry changes"
+    },
+    {
+      "id": "BUSS7",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "bay",
+      "roof": "steep_gable",
+      "entry": "shop",
+      "features": [
+        "slate",
+        "attic",
+        "blue_sign"
+      ],
+      "reference_sheet": "facades_02.png",
+      "review_note": "bay / steep_gable / shop; slate,attic,blue_sign"
+    },
+    {
+      "id": "BUSS8",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "shop",
+      "features": [
+        "green_awning",
+        "flower_boxes",
+        "gothic_sign"
+      ],
+      "reference_sheet": "facades_02.png",
+      "review_note": "sash / flat / shop; green_awning,flower_boxes,gothic_sign"
+    },
+    {
+      "id": "BUSS9",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "deco",
+      "roof": "flat",
+      "entry": "shop",
+      "features": [
+        "vertical_piers",
+        "pink_awning"
+      ],
+      "reference_sheet": "facades_02.png",
+      "review_note": "deco / flat / shop; vertical_piers,pink_awning"
+    },
+    {
+      "id": "CHINA12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "lattice",
+      "roof": "pagoda_green",
+      "entry": "shop",
+      "features": [
+        "tiered_eaves",
+        "red_columns",
+        "lanterns",
+        "gold_sign"
+      ],
+      "reference_sheet": "facades_02.png",
+      "review_note": "lattice / pagoda_green / shop; tiered_eaves,red_columns,lanterns,gold_sign"
+    },
+    {
+      "id": "CHINA13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "lattice",
+      "roof": "pagoda_slate",
+      "entry": "shop",
+      "features": [
+        "tiered_eaves",
+        "upturned_finials",
+        "pottery",
+        "gold_sign"
+      ],
+      "reference_sheet": "facades_02.png",
+      "review_note": "lattice / pagoda_slate / shop; tiered_eaves,upturned_finials,pottery,gold_sign"
+    },
+    {
+      "id": "CHINA14",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "green_plaster",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 3,
+      "window": "shutters",
+      "roof": "flat",
+      "entry": "shop",
+      "features": [
+        "tiered_eaves",
+        "balcony",
+        "lanterns",
+        "gold_sign"
+      ],
+      "reference_sheet": "facades_02.png",
+      "review_note": "shutters / flat / shop; tiered_eaves,balcony,lanterns,gold_sign"
+    },
+    {
+      "id": "CHINA15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 3,
+      "window": "shutters",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "tiered_eaves",
+        "terracotta",
+        "red_columns"
+      ],
+      "reference_sheet": "facades_03.png",
+      "review_note": "shutters / flat / door; tiered_eaves,terracotta,red_columns"
+    },
+    {
+      "id": "CHINA16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "doorlights",
+      "roof": "dutch",
+      "entry": "door",
+      "features": [
+        "tiered_eaves",
+        "balconies",
+        "green_timber",
+        "flower_boxes"
+      ],
+      "reference_sheet": "facades_03.png",
+      "review_note": "doorlights / dutch / door; tiered_eaves,balconies,green_timber,flower_boxes"
+    },
+    {
+      "id": "CHINA17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "lattice",
+      "roof": "flat",
+      "entry": "shop",
+      "features": [
+        "tiered_eaves",
+        "balconies",
+        "green_timber",
+        "gold_sign"
+      ],
+      "reference_sheet": "facades_03.png",
+      "review_note": "lattice / flat / shop; tiered_eaves,balconies,green_timber,gold_sign"
+    },
+    {
+      "id": "CLSTGA11",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "sash",
+      "roof": "dutch",
+      "entry": "double_arch",
+      "features": [
+        "ornate_storefront"
+      ],
+      "reference_sheet": "facades_03.png",
+      "review_note": "sash / dutch / double_arch; ornate_storefront"
+    },
+    {
+      "id": "CLSTGA12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "boarded",
+      "roof": "flat",
+      "entry": "shop",
+      "features": [
+        "plank_awning",
+        "flower_boxes",
+        "sign_board"
+      ],
+      "reference_sheet": "facades_03.png",
+      "review_note": "boarded / flat / shop; plank_awning,flower_boxes,sign_board"
+    },
+    {
+      "id": "CLSTGA13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 3,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "shop",
+      "features": [
+        "black_belt",
+        "ornate_storefront"
+      ],
+      "reference_sheet": "facades_03.png",
+      "review_note": "sash / flat / shop; black_belt,ornate_storefront"
+    },
+    {
+      "id": "CLSTGA14",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "oxblood",
+      "storeys": 2,
+      "columns": 2,
+      "window": "shutters",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "ornate_cornice",
+        "red_trim"
+      ],
+      "reference_sheet": "facades_04.png",
+      "review_note": "shutters / flat / door; ornate_cornice,red_trim"
+    },
+    {
+      "id": "CLSTGA15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 3,
+      "window": "shutters",
+      "roof": "flat",
+      "entry": "double_arch",
+      "features": [
+        "green_shutters",
+        "stone_belt",
+        "vents"
+      ],
+      "reference_sheet": "facades_04.png",
+      "review_note": "shutters / flat / double_arch; green_shutters,stone_belt,vents"
+    },
+    {
+      "id": "CLSTGA16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 3,
+      "window": "sash",
+      "roof": "dutch",
+      "entry": "shop",
+      "features": [
+        "stone_belt",
+        "sign_board"
+      ],
+      "reference_sheet": "facades_04.png",
+      "review_note": "sash / dutch / shop; stone_belt,sign_board"
+    },
+    {
+      "id": "CLSTGA17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "gothic",
+      "roof": "gable_parapet",
+      "entry": "gothic_pair",
+      "features": [
+        "corner_piers"
+      ],
+      "reference_sheet": "facades_04.png",
+      "review_note": "gothic / gable_parapet / gothic_pair; corner_piers"
+    },
+    {
+      "id": "CLSTGA18",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "relief_panels",
+        "black_shop"
+      ],
+      "reference_sheet": "facades_04.png",
+      "review_note": "small / flat / door; relief_panels,black_shop"
+    },
+    {
+      "id": "CLSTGA19",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "stone",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 3,
+      "window": "gothic",
+      "roof": "steep_gable",
+      "entry": "gothic",
+      "features": [
+        "tracery",
+        "rose_window"
+      ],
+      "reference_sheet": "facades_04.png",
+      "review_note": "gothic / steep_gable / gothic; tracery,rose_window"
+    },
+    {
+      "id": "CLSTGA20",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "rust",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "boarded",
+      "roof": "flat",
+      "entry": "barn",
+      "features": [
+        "corrugated",
+        "boarded_upper"
+      ],
+      "reference_sheet": "facades_05.png",
+      "review_note": "boarded / flat / barn; corrugated,boarded_upper"
+    },
+    {
+      "id": "CLSTGA21",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "stone",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "sash",
+      "roof": "battlement",
+      "entry": "double_arch",
+      "features": [
+        "crest"
+      ],
+      "reference_sheet": "facades_05.png",
+      "review_note": "sash / battlement / double_arch; crest"
+    },
+    {
+      "id": "OFFC1",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 14.5,
+      "masonry": "blue_plaster",
+      "trim": "ivory",
+      "storeys": 5,
+      "columns": 1,
+      "window": "arched",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "balconies",
+        "floor_bands"
+      ],
+      "reference_sheet": "facades_05.png",
+      "review_note": "arched / flat / arch; balconies,floor_bands"
+    },
+    {
+      "id": "OFFC10",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "glazed",
+      "features": [
+        "red_frames"
+      ],
+      "reference_sheet": "facades_05.png",
+      "review_note": "sash / flat / glazed; red_frames"
+    },
+    {
+      "id": "OFFC11",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "blue_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "stone_belt"
+      ],
+      "reference_sheet": "facades_05.png",
+      "review_note": "wide / flat / arch; stone_belt"
+    },
+    {
+      "id": "OFFC12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "blue_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "stone_ground"
+      ],
+      "reference_sheet": "facades_05.png",
+      "review_note": "sash / flat / arch; stone_ground"
+    },
+    {
+      "id": "OFFC13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "blue_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "corner_quoins"
+      ],
+      "reference_sheet": "facades_06.png",
+      "review_note": "sash / flat / door; corner_quoins"
+    },
+    {
+      "id": "OFFC14",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "brown_stone",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 2,
+      "window": "deco",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "full_height_piers",
+        "wood_panels"
+      ],
+      "reference_sheet": "facades_06.png",
+      "review_note": "deco / flat / door; full_height_piers,wood_panels"
+    },
+    {
+      "id": "OFFC15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 3,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "blue_glass",
+        "floor_bands"
+      ],
+      "reference_sheet": "facades_06.png",
+      "review_note": "wide / flat / arch; blue_glass,floor_bands"
+    },
+    {
+      "id": "OFFC16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 1,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "corner_piers",
+        "diamonds"
+      ],
+      "reference_sheet": "facades_06.png",
+      "review_note": "wide / flat / door; corner_piers,diamonds"
+    },
+    {
+      "id": "OFFC17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "stone_belt",
+        "wide_base_window"
+      ],
+      "reference_sheet": "facades_06.png",
+      "review_note": "sash / flat / arch; stone_belt,wide_base_window"
+    },
+    {
+      "id": "OFFC18",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "rusticated_ground",
+        "ornate_cornice"
+      ],
+      "reference_sheet": "facades_06.png",
+      "review_note": "sash / flat / arch; rusticated_ground,ornate_cornice"
+    },
+    {
+      "id": "OFFC19",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 3,
+      "window": "slender",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "ornate_storefront",
+        "crest"
+      ],
+      "reference_sheet": "facades_07.png",
+      "review_note": "slender / flat / door; ornate_storefront,crest"
+    },
+    {
+      "id": "OFFC2",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 17.1,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 6,
+      "columns": 2,
+      "window": "arched",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "fanlight",
+        "stone_ground"
+      ],
+      "reference_sheet": "facades_07.png",
+      "review_note": "arched / flat / arch; fanlight,stone_ground"
+    },
+    {
+      "id": "OFFC20",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 3,
+      "window": "deco",
+      "roof": "flat",
+      "entry": "glazed",
+      "features": [
+        "full_height_piers"
+      ],
+      "reference_sheet": "facades_07.png",
+      "review_note": "deco / flat / glazed; full_height_piers"
+    },
+    {
+      "id": "OFFC21",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 3,
+      "window": "slender",
+      "roof": "flat",
+      "entry": "gothic",
+      "features": [
+        "floor_bands",
+        "ornate_cornice"
+      ],
+      "reference_sheet": "facades_07.png",
+      "review_note": "slender / flat / gothic; floor_bands,ornate_cornice"
+    },
+    {
+      "id": "OFFC22",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 14.5,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 5,
+      "columns": 1,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "balconies",
+        "side_door"
+      ],
+      "reference_sheet": "facades_07.png",
+      "review_note": "wide / flat / door; balconies,side_door"
+    },
+    {
+      "id": "OFFC5",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "blue_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "stone_belt"
+      ],
+      "reference_sheet": "facades_07.png",
+      "review_note": "small / flat / arch; stone_belt"
+    },
+    {
+      "id": "RUNDWN11",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "pediment",
+      "entry": "shop",
+      "features": [
+        "projecting_upper",
+        "small_lower_pair",
+        "red_sign"
+      ],
+      "reference_sheet": "facades_08.png",
+      "review_note": "sash / pediment / shop; projecting_upper,small_lower_pair,red_sign"
+    },
+    {
+      "id": "RUNDWN12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "bay",
+      "roof": "twin_gable",
+      "entry": "door",
+      "features": [
+        "steps",
+        "railing",
+        "stone_base"
+      ],
+      "reference_sheet": "facades_08.png",
+      "review_note": "bay / twin_gable / door; steps,railing,stone_base"
+    },
+    {
+      "id": "RUNDWN13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "stacked",
+      "roof": "flat",
+      "entry": "window",
+      "features": [
+        "projecting_upper",
+        "ornate_cornice"
+      ],
+      "reference_sheet": "facades_08.png",
+      "review_note": "stacked / flat / window; projecting_upper,ornate_cornice"
+    },
+    {
+      "id": "RUNDWN14",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "offset_bay",
+        "side_slits"
+      ],
+      "reference_sheet": "facades_08.png",
+      "review_note": "bay / flat / door; offset_bay,side_slits"
+    },
+    {
+      "id": "RUNDWN15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "side_door",
+      "features": [
+        "arch_window",
+        "balcony",
+        "stone_base"
+      ],
+      "reference_sheet": "facades_08.png",
+      "review_note": "sash / flat / side_door; arch_window,balcony,stone_base"
+    },
+    {
+      "id": "RUNDWN16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "balconies",
+        "exposed_brick"
+      ],
+      "reference_sheet": "facades_08.png",
+      "review_note": "sash / flat / sealed; balconies,exposed_brick"
+    },
+    {
+      "id": "RUNDWN17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "stone_base",
+        "black_cornice"
+      ],
+      "reference_sheet": "facades_09.png",
+      "review_note": "small / flat / door; stone_base,black_cornice"
+    },
+    {
+      "id": "VICT11",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "blue_plaster",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "scroll_pediment",
+        "floor_corbels"
+      ],
+      "reference_sheet": "facades_09.png",
+      "review_note": "sash / flat / door; scroll_pediment,floor_corbels"
+    },
+    {
+      "id": "VICT12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "green_plaster",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "steep_gable",
+      "entry": "barn",
+      "features": [
+        "attic",
+        "red_door",
+        "fishscale"
+      ],
+      "reference_sheet": "facades_09.png",
+      "review_note": "bay / steep_gable / barn; attic,red_door,fishscale"
+    },
+    {
+      "id": "VICT13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "blue_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "ornate_cornice",
+        "fanlight"
+      ],
+      "reference_sheet": "facades_09.png",
+      "review_note": "bay / flat / arch; ornate_cornice,fanlight"
+    },
+    {
+      "id": "VICT14",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "arched_pediment",
+      "entry": "arch",
+      "features": [
+        "balconies",
+        "scrolls",
+        "attic"
+      ],
+      "reference_sheet": "facades_09.png",
+      "review_note": "sash / arched_pediment / arch; balconies,scrolls,attic"
+    },
+    {
+      "id": "VICT15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "boarded",
+      "features": [
+        "plain_entry"
+      ],
+      "reference_sheet": "facades_09.png",
+      "review_note": "small / flat / boarded; plain_entry"
+    },
+    {
+      "id": "VICT16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "turret_bay",
+      "roof": "turret",
+      "entry": "arch",
+      "features": [
+        "steps",
+        "railing",
+        "attic"
+      ],
+      "reference_sheet": "facades_10.png",
+      "review_note": "turret_bay / turret / arch; steps,railing,attic"
+    },
+    {
+      "id": "VICT17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "projecting_upper",
+        "planter"
+      ],
+      "reference_sheet": "facades_10.png",
+      "review_note": "bay / flat / sealed; projecting_upper,planter"
+    },
+    {
+      "id": "VICT18",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "brown_stone",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "picket_fence",
+        "planter"
+      ],
+      "reference_sheet": "facades_10.png",
+      "review_note": "sash / flat / sealed; picket_fence,planter"
+    },
+    {
+      "id": "VICT19",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "oxblood",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "triangular_hood",
+        "red_trim",
+        "stone_base"
+      ],
+      "reference_sheet": "facades_10.png",
+      "review_note": "sash / flat / sealed; triangular_hood,red_trim,stone_base"
+    },
+    {
+      "id": "VICT1A",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "oxblood",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "side_door",
+      "features": [
+        "triangular_hood",
+        "red_trim",
+        "stone_base"
+      ],
+      "reference_sheet": "facades_10.png",
+      "review_note": "sash / flat / side_door; triangular_hood,red_trim,stone_base"
+    },
+    {
+      "id": "VICT1B",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "oxblood",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "side_door",
+      "features": [
+        "triangular_hood",
+        "red_trim",
+        "stone_base",
+        "boarded_lower"
+      ],
+      "reference_sheet": "facades_10.png",
+      "review_note": "sash / flat / side_door; triangular_hood,red_trim,stone_base,boarded_lower"
+    },
+    {
+      "id": "VICT20",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "bay",
+      "roof": "gable_parapet",
+      "entry": "door",
+      "features": [
+        "steps",
+        "brick_stair_walls",
+        "attic"
+      ],
+      "reference_sheet": "facades_11.png",
+      "review_note": "bay / gable_parapet / door; steps,brick_stair_walls,attic"
+    },
+    {
+      "id": "VICT21",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "brown_stone",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "barn",
+      "features": [
+        "heavy_bands"
+      ],
+      "reference_sheet": "facades_11.png",
+      "review_note": "bay / flat / barn; heavy_bands"
+    },
+    {
+      "id": "VICT22",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "arched_pediment",
+      "entry": "arch",
+      "features": [
+        "balconies",
+        "scrolls",
+        "attic"
+      ],
+      "reference_sheet": "facades_11.png",
+      "review_note": "sash / arched_pediment / arch; balconies,scrolls,attic"
+    },
+    {
+      "id": "VICT23",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "plain_entry"
+      ],
+      "reference_sheet": "facades_11.png",
+      "review_note": "sash / flat / sealed; plain_entry"
+    },
+    {
+      "id": "VICT24",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "gable_parapet",
+      "entry": "arch",
+      "features": [
+        "decorative_bay_panels",
+        "attic"
+      ],
+      "reference_sheet": "facades_11.png",
+      "review_note": "bay / gable_parapet / arch; decorative_bay_panels,attic"
+    },
+    {
+      "id": "VICT25",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "turret_bay",
+      "roof": "flat",
+      "entry": "door",
+      "features": [
+        "steps",
+        "brick_stair_walls",
+        "heavy_bands"
+      ],
+      "reference_sheet": "facades_11.png",
+      "review_note": "turret_bay / flat / door; steps,brick_stair_walls,heavy_bands"
+    },
+    {
+      "id": "VICT26",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "moss_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "picket_fence",
+        "planter"
+      ],
+      "reference_sheet": "facades_12.png",
+      "review_note": "sash / flat / sealed; picket_fence,planter"
+    },
+    {
+      "id": "VICT27",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "oxblood",
+      "storeys": 3,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "passage",
+      "features": [
+        "arched_passage",
+        "red_trim"
+      ],
+      "reference_sheet": "facades_12.png",
+      "review_note": "sash / flat / passage; arched_passage,red_trim"
+    },
+    {
+      "id": "VICT28",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "blue_plaster",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "garage",
+      "features": [
+        "heavy_bands"
+      ],
+      "reference_sheet": "facades_12.png",
+      "review_note": "bay / flat / garage; heavy_bands"
+    },
+    {
+      "id": "VICT29",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "brown_stone",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "sash",
+      "roof": "steep_gable",
+      "entry": "side_door",
+      "features": [
+        "balconies",
+        "gothic_door",
+        "arched_passage"
+      ],
+      "reference_sheet": "facades_12.png",
+      "review_note": "sash / steep_gable / side_door; balconies,gothic_door,arched_passage"
+    },
+    {
+      "id": "VICT2A",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "gable_parapet",
+      "entry": "barn",
+      "features": [
+        "decorative_bay_panels",
+        "attic",
+        "red_door"
+      ],
+      "reference_sheet": "facades_12.png",
+      "review_note": "bay / gable_parapet / barn; decorative_bay_panels,attic,red_door"
+    },
+    {
+      "id": "VICT2B",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "bay",
+      "roof": "gable_parapet",
+      "entry": "door",
+      "features": [
+        "steps",
+        "brick_stair_walls",
+        "attic",
+        "red_door"
+      ],
+      "reference_sheet": "facades_12.png",
+      "review_note": "bay / gable_parapet / door; steps,brick_stair_walls,attic,red_door"
+    },
+    {
+      "id": "VICT31",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "side_door",
+      "features": [
+        "offset_windows",
+        "wood_panels"
+      ],
+      "reference_sheet": "facades_13.png",
+      "review_note": "sash / flat / side_door; offset_windows,wood_panels"
+    },
+    {
+      "id": "VICT32",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "stone",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "garage",
+      "features": [
+        "stone_belt"
+      ],
+      "reference_sheet": "facades_13.png",
+      "review_note": "sash / flat / garage; stone_belt"
+    },
+    {
+      "id": "VICT33",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 3,
+      "window": "sash",
+      "roof": "hip_front",
+      "entry": "side_door",
+      "features": [
+        "gothic_door",
+        "terracotta",
+        "offset_windows"
+      ],
+      "reference_sheet": "facades_13.png",
+      "review_note": "sash / hip_front / side_door; gothic_door,terracotta,offset_windows"
+    },
+    {
+      "id": "VICT34",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "gothic",
+      "roof": "steep_gable",
+      "entry": "side_door",
+      "features": [
+        "corner_piers",
+        "side_slits"
+      ],
+      "reference_sheet": "facades_13.png",
+      "review_note": "gothic / steep_gable / side_door; corner_piers,side_slits"
+    },
+    {
+      "id": "VICT3A",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "blue_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "arch",
+      "features": [
+        "iron_gate",
+        "heavy_bands"
+      ],
+      "reference_sheet": "facades_13.png",
+      "review_note": "bay / flat / arch; iron_gate,heavy_bands"
+    },
+    {
+      "id": "VICT3B",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "purple_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "flat",
+      "entry": "garage",
+      "features": [
+        "purple_ground",
+        "heavy_bands"
+      ],
+      "reference_sheet": "facades_13.png",
+      "review_note": "bay / flat / garage; purple_ground,heavy_bands"
+    },
+    {
+      "id": "VICT6A",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "turret_bay",
+      "roof": "turret",
+      "entry": "arch",
+      "features": [
+        "steps",
+        "railing",
+        "attic"
+      ],
+      "reference_sheet": "facades_14.png",
+      "review_note": "turret_bay / turret / arch; steps,railing,attic"
+    },
+    {
+      "id": "VICT6B",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "bay",
+      "roof": "gable_parapet",
+      "entry": "barn",
+      "features": [
+        "attic",
+        "red_door"
+      ],
+      "reference_sheet": "facades_14.png",
+      "review_note": "bay / gable_parapet / barn; attic,red_door"
+    },
+    {
+      "id": "WHSE11",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "black_metal",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "none",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "metal_cladding",
+        "rust_belts"
+      ],
+      "reference_sheet": "facades_14.png",
+      "review_note": "none / flat / sealed; metal_cladding,rust_belts"
+    },
+    {
+      "id": "WHSE12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "whitewashed_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "barn",
+      "features": [
+        "wire_glass",
+        "black_barn"
+      ],
+      "reference_sheet": "facades_14.png",
+      "review_note": "wide / flat / barn; wire_glass,black_barn"
+    },
+    {
+      "id": "WHSE13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "brown_stone",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "stone_belts",
+        "slit_window"
+      ],
+      "reference_sheet": "facades_14.png",
+      "review_note": "small / flat / sealed; stone_belts,slit_window"
+    },
+    {
+      "id": "WHSE14",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "black_metal",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 2,
+      "window": "small",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "metal_cladding",
+        "wire_glass",
+        "red_brick_base"
+      ],
+      "reference_sheet": "facades_14.png",
+      "review_note": "small / flat / sealed; metal_cladding,wire_glass,red_brick_base"
+    },
+    {
+      "id": "WHSE15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "garage",
+      "features": [
+        "bollards"
+      ],
+      "reference_sheet": "facades_15.png",
+      "review_note": "wide / flat / garage; bollards"
+    },
+    {
+      "id": "WHSE16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "rust",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "none",
+      "roof": "flat",
+      "entry": "loading",
+      "features": [
+        "corrugated",
+        "loading_platform"
+      ],
+      "reference_sheet": "facades_15.png",
+      "review_note": "none / flat / loading; corrugated,loading_platform"
+    },
+    {
+      "id": "WHSE17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "rust",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "sash",
+      "roof": "flat",
+      "entry": "loading",
+      "features": [
+        "corrugated",
+        "red_frame",
+        "wire_glass"
+      ],
+      "reference_sheet": "facades_15.png",
+      "review_note": "sash / flat / loading; corrugated,red_frame,wire_glass"
+    },
+    {
+      "id": "WHSE18",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "brown_stone",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "loading",
+      "features": [
+        "black_cornice",
+        "red_ground"
+      ],
+      "reference_sheet": "facades_15.png",
+      "review_note": "small / flat / loading; black_cornice,red_ground"
+    },
+    {
+      "id": "WHSE19",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "black_belts"
+      ],
+      "reference_sheet": "facades_15.png",
+      "review_note": "small / flat / sealed; black_belts"
+    },
+    {
+      "id": "WHSE20",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "small",
+      "roof": "flat",
+      "entry": "garage",
+      "features": [
+        "vents",
+        "stone_belts"
+      ],
+      "reference_sheet": "facades_15.png",
+      "review_note": "small / flat / garage; vents,stone_belts"
+    },
+    {
+      "id": "WHSE22",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "stone",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "small",
+      "features": [
+        "boarded_windows",
+        "metal_straps",
+        "red_brick_side"
+      ],
+      "reference_sheet": "facades_16.png",
+      "review_note": "small / flat / small; boarded_windows,metal_straps,red_brick_side"
+    },
+    {
+      "id": "WHSE23",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "loading",
+      "roof": "flat",
+      "entry": "loading",
+      "features": [
+        "loading_platform",
+        "plank_awning"
+      ],
+      "reference_sheet": "facades_16.png",
+      "review_note": "loading / flat / loading; loading_platform,plank_awning"
+    },
+    {
+      "id": "WRHS1",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 11.9,
+      "masonry": "ochre_brick",
+      "trim": "ivory",
+      "storeys": 4,
+      "columns": 1,
+      "window": "industrial",
+      "roof": "flat",
+      "entry": "vent",
+      "features": [
+        "full_height_grid"
+      ],
+      "reference_sheet": "facades_16.png",
+      "review_note": "industrial / flat / vent; full_height_grid"
+    },
+    {
+      "id": "WRHS2",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "industrial",
+      "roof": "flat",
+      "entry": "loading",
+      "features": [
+        "boarded_upper"
+      ],
+      "reference_sheet": "facades_16.png",
+      "review_note": "industrial / flat / loading; boarded_upper"
+    },
+    {
+      "id": "WRHS3",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "red_brick",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 1,
+      "window": "industrial",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "stone_belts"
+      ],
+      "reference_sheet": "facades_16.png",
+      "review_note": "industrial / flat / sealed; stone_belts"
+    },
+    {
+      "id": "WRHS4",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "weathered_cream",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "arched",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "ivory_frames"
+      ],
+      "reference_sheet": "facades_16.png",
+      "review_note": "arched / flat / sealed; ivory_frames"
+    },
+    {
+      "id": "WRHS5",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.6,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "black_metal",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 3,
+      "window": "none",
+      "roof": "flat",
+      "entry": "barn",
+      "features": [
+        "star_bolts",
+        "metal_cladding",
+        "rust_belts"
+      ],
+      "reference_sheet": "facades_17.png",
+      "review_note": "none / flat / barn; star_bolts,metal_cladding,rust_belts"
+    },
+    {
+      "id": "WRHS6",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "blue_plaster",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "wide",
+      "roof": "flat",
+      "entry": "barn",
+      "features": [
+        "wire_glass",
+        "black_barn"
+      ],
+      "reference_sheet": "facades_17.png",
+      "review_note": "wide / flat / barn; wire_glass,black_barn"
+    },
+    {
+      "id": "WRHS7",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 6.7,
+      "masonry": "stone",
+      "trim": "ivory",
+      "storeys": 2,
+      "columns": 1,
+      "window": "small",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "stone_belts",
+        "slit_window"
+      ],
+      "reference_sheet": "facades_17.png",
+      "review_note": "small / flat / sealed; stone_belts,slit_window"
+    },
+    {
+      "id": "WRHS8",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "width": 3.2,
+      "depth": 6.0,
+      "height": 9.3,
+      "masonry": "black_metal",
+      "trim": "ivory",
+      "storeys": 3,
+      "columns": 2,
+      "window": "small",
+      "roof": "flat",
+      "entry": "sealed",
+      "features": [
+        "metal_cladding",
+        "boarded_windows",
+        "red_brick_base"
+      ],
+      "reference_sheet": "facades_17.png",
+      "review_note": "small / flat / sealed; metal_cladding,boarded_windows,red_brick_base"
+    },
+    {
+      "id": "BARN12",
+      "asset_type": "structure",
+      "builder": "barn",
+      "width": 9.0,
+      "depth": 13.0,
+      "height": 7.0,
+      "features": [
+        "red_timber",
+        "raised_centre",
+        "lean_to",
+        "cupola",
+        "cross_braced_doors"
+      ],
+      "reference_sheet": "structures_01.png",
+      "review_note": "red_timber,raised_centre,lean_to,cupola,cross_braced_doors"
+    },
+    {
+      "id": "BARN22",
+      "asset_type": "structure",
+      "builder": "barn",
+      "width": 8.0,
+      "depth": 11.0,
+      "height": 5.5,
+      "features": [
+        "old_timber",
+        "rust_roof",
+        "lean_to",
+        "fenced_pen"
+      ],
+      "reference_sheet": "structures_01.png",
+      "review_note": "old_timber,rust_roof,lean_to,fenced_pen"
+    },
+    {
+      "id": "BARN32",
+      "asset_type": "structure",
+      "builder": "shed",
+      "width": 7.0,
+      "depth": 9.0,
+      "height": 4.5,
+      "features": [
+        "old_timber",
+        "open_work_bay",
+        "workbench"
+      ],
+      "reference_sheet": "structures_01.png",
+      "review_note": "old_timber,open_work_bay,workbench"
+    },
+    {
+      "id": "BARND2",
+      "asset_type": "structure",
+      "builder": "barn",
+      "width": 9.0,
+      "depth": 11.0,
+      "height": 5.5,
+      "features": [
+        "red_timber",
+        "clerestory",
+        "lean_to",
+        "side_hatch"
+      ],
+      "reference_sheet": "structures_01.png",
+      "review_note": "red_timber,clerestory,lean_to,side_hatch"
+    },
+    {
+      "id": "BUSSTOP2",
+      "asset_type": "structure",
+      "builder": "bus_shelter",
+      "width": 3.5,
+      "depth": 2.0,
+      "height": 3.0,
+      "features": [
+        "clear_glass",
+        "bench",
+        "route_board",
+        "curved_roof"
+      ],
+      "reference_sheet": "structures_01.png",
+      "review_note": "clear_glass,bench,route_board,curved_roof"
+    },
+    {
+      "id": "CARWASH2",
+      "asset_type": "structure",
+      "builder": "shed",
+      "width": 7.0,
+      "depth": 8.0,
+      "height": 3.6,
+      "features": [
+        "old_timber",
+        "open_bays",
+        "divider_walls"
+      ],
+      "reference_sheet": "structures_01.png",
+      "review_note": "old_timber,open_bays,divider_walls"
+    },
+    {
+      "id": "CHINGAT2",
+      "asset_type": "structure",
+      "builder": "gate",
+      "width": 8.0,
+      "depth": 2.0,
+      "height": 7.0,
+      "features": [
+        "pagoda_green",
+        "paired_stone_piers",
+        "upturned_finials",
+        "lattice"
+      ],
+      "reference_sheet": "structures_02.png",
+      "review_note": "pagoda_green,paired_stone_piers,upturned_finials,lattice"
+    },
+    {
+      "id": "CHURCH2",
+      "asset_type": "structure",
+      "builder": "church",
+      "width": 9.0,
+      "depth": 18.0,
+      "height": 7.0,
+      "features": [
+        "white_siding",
+        "pointed_windows",
+        "bell_tower",
+        "spire"
+      ],
+      "reference_sheet": "structures_02.png",
+      "review_note": "white_siding,pointed_windows,bell_tower,spire"
+    },
+    {
+      "id": "GASA2",
+      "asset_type": "structure",
+      "builder": "gas_station",
+      "width": 9.0,
+      "depth": 8.0,
+      "height": 4.0,
+      "features": [
+        "red_brick",
+        "forecourt_canopy",
+        "two_pumps",
+        "shop_glass"
+      ],
+      "reference_sheet": "structures_02.png",
+      "review_note": "red_brick,forecourt_canopy,two_pumps,shop_glass"
+    },
+    {
+      "id": "GASB2",
+      "asset_type": "structure",
+      "builder": "gas_station",
+      "width": 10.0,
+      "depth": 9.0,
+      "height": 4.0,
+      "features": [
+        "whitewashed_brick",
+        "wide_canopy",
+        "three_pumps",
+        "garage"
+      ],
+      "reference_sheet": "structures_02.png",
+      "review_note": "whitewashed_brick,wide_canopy,three_pumps,garage"
+    },
+    {
+      "id": "GRNTNK2",
+      "asset_type": "structure",
+      "builder": "silos",
+      "width": 10.0,
+      "depth": 5.0,
+      "height": 8.0,
+      "features": [
+        "three_silos",
+        "conical_caps",
+        "ladder",
+        "small_silo"
+      ],
+      "reference_sheet": "structures_02.png",
+      "review_note": "three_silos,conical_caps,ladder,small_silo"
+    },
+    {
+      "id": "HAYSHED2",
+      "asset_type": "structure",
+      "builder": "hay_shed",
+      "width": 10.0,
+      "depth": 9.0,
+      "height": 5.0,
+      "features": [
+        "open_timber_frame",
+        "corrugated_roof",
+        "stacked_bales"
+      ],
+      "reference_sheet": "structures_02.png",
+      "review_note": "open_timber_frame,corrugated_roof,stacked_bales"
+    },
+    {
+      "id": "HOUSEB2",
+      "asset_type": "structure",
+      "builder": "house",
+      "width": 7.0,
+      "depth": 9.0,
+      "height": 5.0,
+      "features": [
+        "white_siding",
+        "porch",
+        "railings",
+        "steep_roof"
+      ],
+      "reference_sheet": "structures_03.png",
+      "review_note": "white_siding,porch,railings,steep_roof"
+    },
+    {
+      "id": "METL21CC",
+      "asset_type": "surface_module",
+      "builder": "metal_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "riveted metal diagonal bracing and hinge strip"
+      ],
+      "reference_sheet": "structures_03.png",
+      "review_note": "riveted metal diagonal bracing and hinge strip"
+    },
+    {
+      "id": "METL21RC",
+      "asset_type": "surface_module",
+      "builder": "stone_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "irregular dark stone masonry"
+      ],
+      "reference_sheet": "structures_03.png",
+      "review_note": "irregular dark stone masonry"
+    },
+    {
+      "id": "METL21RW",
+      "asset_type": "surface_module",
+      "builder": "vent_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "concrete ventilation blocks over dark stone"
+      ],
+      "reference_sheet": "structures_03.png",
+      "review_note": "concrete ventilation blocks over dark stone"
+    },
+    {
+      "id": "METL22CC",
+      "asset_type": "surface_module",
+      "builder": "metal_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "riveted metal diagonal bracing with cylindrical hinge"
+      ],
+      "reference_sheet": "structures_03.png",
+      "review_note": "riveted metal diagonal bracing with cylindrical hinge"
+    },
+    {
+      "id": "OUTHOUS2",
+      "asset_type": "structure",
+      "builder": "outhouse",
+      "width": 1.6,
+      "depth": 1.8,
+      "height": 2.6,
+      "features": [
+        "red_timber",
+        "pitched_roof",
+        "door_latch"
+      ],
+      "reference_sheet": "structures_03.png",
+      "review_note": "red_timber,pitched_roof,door_latch"
+    },
+    {
+      "id": "PHONSHK2",
+      "asset_type": "structure",
+      "builder": "phone_shack",
+      "width": 1.5,
+      "depth": 1.6,
+      "height": 2.7,
+      "features": [
+        "rough_planks",
+        "hardware",
+        "irregular_roofline"
+      ],
+      "reference_sheet": "structures_04.png",
+      "review_note": "rough_planks,hardware,irregular_roofline"
+    },
+    {
+      "id": "PORTLET2",
+      "asset_type": "structure",
+      "builder": "portable_toilet",
+      "width": 1.3,
+      "depth": 1.4,
+      "height": 2.5,
+      "features": [
+        "blue_plastic",
+        "rounded_cap",
+        "vents",
+        "hinges",
+        "latch"
+      ],
+      "reference_sheet": "structures_04.png",
+      "review_note": "blue_plastic,rounded_cap,vents,hinges,latch"
+    },
+    {
+      "id": "RUSTICA2",
+      "asset_type": "structure",
+      "builder": "cabin",
+      "width": 9.0,
+      "depth": 10.0,
+      "height": 5.0,
+      "features": [
+        "old_timber",
+        "rust_roof",
+        "porch",
+        "stove_pipe"
+      ],
+      "reference_sheet": "structures_04.png",
+      "review_note": "old_timber,rust_roof,porch,stove_pipe"
+    },
+    {
+      "id": "RUSTICB2",
+      "asset_type": "structure",
+      "builder": "cabin",
+      "width": 9.0,
+      "depth": 10.0,
+      "height": 5.0,
+      "features": [
+        "white_siding",
+        "porch",
+        "fuel_pump",
+        "stove_pipe"
+      ],
+      "reference_sheet": "structures_04.png",
+      "review_note": "white_siding,porch,fuel_pump,stove_pipe"
+    },
+    {
+      "id": "SCHOOL2",
+      "asset_type": "structure",
+      "builder": "school",
+      "width": 9.0,
+      "depth": 13.0,
+      "height": 6.0,
+      "features": [
+        "white_siding",
+        "gabled_entry",
+        "tall_windows",
+        "flagpole"
+      ],
+      "reference_sheet": "structures_04.png",
+      "review_note": "white_siding,gabled_entry,tall_windows,flagpole"
+    },
+    {
+      "id": "SHOPD2",
+      "asset_type": "structure",
+      "builder": "grocery",
+      "width": 7.0,
+      "depth": 8.0,
+      "height": 4.0,
+      "features": [
+        "whitewashed_brick",
+        "porch",
+        "green_trim",
+        "grocery_sign"
+      ],
+      "reference_sheet": "structures_04.png",
+      "review_note": "whitewashed_brick,porch,green_trim,grocery_sign"
+    },
+    {
+      "id": "SHOPE2",
+      "asset_type": "structure",
+      "builder": "shop",
+      "width": 7.0,
+      "depth": 7.0,
+      "height": 3.6,
+      "features": [
+        "whitewashed_brick",
+        "flat_roof",
+        "cassette_shop",
+        "storefront_shelves"
+      ],
+      "reference_sheet": "structures_05.png",
+      "review_note": "whitewashed_brick,flat_roof,cassette_shop,storefront_shelves"
+    },
+    {
+      "id": "SHOPICE2",
+      "asset_type": "structure",
+      "builder": "ice_shop",
+      "width": 8.0,
+      "depth": 8.0,
+      "height": 4.0,
+      "features": [
+        "white_siding",
+        "gable_roof",
+        "ice_freezer",
+        "storefront_shelves"
+      ],
+      "reference_sheet": "structures_05.png",
+      "review_note": "white_siding,gable_roof,ice_freezer,storefront_shelves"
+    },
+    {
+      "id": "SNCKSHP2",
+      "asset_type": "structure",
+      "builder": "snack_shop",
+      "width": 8.0,
+      "depth": 7.0,
+      "height": 4.0,
+      "features": [
+        "whitewashed_brick",
+        "canopy",
+        "serving_windows",
+        "snack_sign"
+      ],
+      "reference_sheet": "structures_05.png",
+      "review_note": "whitewashed_brick,canopy,serving_windows,snack_sign"
+    },
+    {
+      "id": "TANKSEP2",
+      "asset_type": "structure",
+      "builder": "septic_tank",
+      "width": 3.6,
+      "depth": 3.6,
+      "height": 3.5,
+      "features": [
+        "black_ribbed_cylinder",
+        "inlet",
+        "outlet",
+        "lid"
+      ],
+      "reference_sheet": "structures_05.png",
+      "review_note": "black_ribbed_cylinder,inlet,outlet,lid"
+    },
+    {
+      "id": "TOP",
+      "asset_type": "surface_module",
+      "builder": "wood_strip",
+      "width": 4,
+      "depth": 0.25,
+      "height": 0.6,
+      "features": [
+        "horizontal old timber planks with bolts"
+      ],
+      "reference_sheet": "structures_05.png",
+      "review_note": "horizontal old timber planks with bolts"
+    },
+    {
+      "id": "TOP1A",
+      "asset_type": "surface_module",
+      "builder": "metal_strip",
+      "width": 4,
+      "depth": 0.25,
+      "height": 0.6,
+      "features": [
+        "green painted rusty edge strip"
+      ],
+      "reference_sheet": "structures_05.png",
+      "review_note": "green painted rusty edge strip"
+    },
+    {
+      "id": "TOP2A",
+      "asset_type": "surface_module",
+      "builder": "stone_strip",
+      "width": 4,
+      "depth": 0.25,
+      "height": 0.6,
+      "features": [
+        "mossy low stone wall cap course"
+      ],
+      "reference_sheet": "structures_06.png",
+      "review_note": "mossy low stone wall cap course"
+    },
+    {
+      "id": "TOP3A",
+      "asset_type": "surface_module",
+      "builder": "stone_strip",
+      "width": 4,
+      "depth": 0.25,
+      "height": 0.6,
+      "features": [
+        "staggered mossy stone cap course"
+      ],
+      "reference_sheet": "structures_06.png",
+      "review_note": "staggered mossy stone cap course"
+    },
+    {
+      "id": "TOWERB2",
+      "asset_type": "structure",
+      "builder": "stone_tower",
+      "width": 4.0,
+      "depth": 4.0,
+      "height": 8.0,
+      "features": [
+        "tapered_stone",
+        "door",
+        "coping"
+      ],
+      "reference_sheet": "structures_06.png",
+      "review_note": "tapered_stone,door,coping"
+    },
+    {
+      "id": "TUN1SHTP",
+      "asset_type": "surface_module",
+      "builder": "aggregate_slab",
+      "width": 4,
+      "depth": 2.5,
+      "height": 0.22,
+      "features": [
+        "exposed aggregate sloped concrete slab"
+      ],
+      "reference_sheet": "structures_06.png",
+      "review_note": "exposed aggregate sloped concrete slab"
+    },
+    {
+      "id": "TUNN1LIP",
+      "asset_type": "surface_module",
+      "builder": "aggregate_strip",
+      "width": 4,
+      "depth": 0.25,
+      "height": 0.6,
+      "features": [
+        "thick exposed aggregate tunnel lip"
+      ],
+      "reference_sheet": "structures_06.png",
+      "review_note": "thick exposed aggregate tunnel lip"
+    },
+    {
+      "id": "TUNN21CC",
+      "asset_type": "surface_module",
+      "builder": "timber_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "vertical timber wall with stone joints"
+      ],
+      "reference_sheet": "structures_06.png",
+      "review_note": "vertical timber wall with stone joints"
+    },
+    {
+      "id": "TUNN21RC",
+      "asset_type": "surface_module",
+      "builder": "brick_pier",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "dark brick square capped pier"
+      ],
+      "reference_sheet": "structures_07.png",
+      "review_note": "dark brick square capped pier"
+    },
+    {
+      "id": "TUNN21RW",
+      "asset_type": "surface_module",
+      "builder": "brick_pier",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "brick/concrete capped pier with metal strapping"
+      ],
+      "reference_sheet": "structures_07.png",
+      "review_note": "brick/concrete capped pier with metal strapping"
+    },
+    {
+      "id": "TUNN22CC",
+      "asset_type": "surface_module",
+      "builder": "concrete_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "horizontal concrete wall panel with coping"
+      ],
+      "reference_sheet": "structures_07.png",
+      "review_note": "horizontal concrete wall panel with coping"
+    },
+    {
+      "id": "TUNN31CC",
+      "asset_type": "surface_module",
+      "builder": "aggregate_slab",
+      "width": 4,
+      "depth": 2.5,
+      "height": 0.22,
+      "features": [
+        "exposed aggregate concrete ground slab"
+      ],
+      "reference_sheet": "structures_07.png",
+      "review_note": "exposed aggregate concrete ground slab"
+    },
+    {
+      "id": "TUNN31RC",
+      "asset_type": "surface_module",
+      "builder": "concrete_pier",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "aggregate-faced pier with three bands"
+      ],
+      "reference_sheet": "structures_07.png",
+      "review_note": "aggregate-faced pier with three bands"
+    },
+    {
+      "id": "TUNN31RW",
+      "asset_type": "surface_module",
+      "builder": "vent_pier",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "concrete pier with louver vent and bands"
+      ],
+      "reference_sheet": "structures_07.png",
+      "review_note": "concrete pier with louver vent and bands"
+    },
+    {
+      "id": "TUNN32RC",
+      "asset_type": "surface_module",
+      "builder": "aggregate_panel",
+      "width": 2,
+      "depth": 0.25,
+      "height": 3,
+      "features": [
+        "dark cracked wall panel with horizontal metal straps"
+      ],
+      "reference_sheet": "structures_08.png",
+      "review_note": "dark cracked wall panel with horizontal metal straps"
+    },
+    {
+      "id": "WATRTNK2",
+      "asset_type": "structure",
+      "builder": "water_tank",
+      "width": 5.0,
+      "depth": 5.0,
+      "height": 6.0,
+      "features": [
+        "vertical_riveted_tank",
+        "conical_cap",
+        "ladder"
+      ],
+      "reference_sheet": "structures_08.png",
+      "review_note": "vertical_riveted_tank,conical_cap,ladder"
+    },
+    {
+      "id": "WHTTANK2",
+      "asset_type": "structure",
+      "builder": "fuel_tank",
+      "width": 7.0,
+      "depth": 3.5,
+      "height": 4.0,
+      "features": [
+        "horizontal_cylinder",
+        "metal_supports",
+        "end_flanges"
+      ],
+      "reference_sheet": "structures_08.png",
+      "review_note": "horizontal_cylinder,metal_supports,end_flanges"
+    },
+    {
+      "id": "WINNERY2",
+      "asset_type": "structure",
+      "builder": "winery",
+      "width": 9.0,
+      "depth": 12.0,
+      "height": 7.0,
+      "features": [
+        "stone_walls",
+        "hip_roof",
+        "porch",
+        "arched_windows"
+      ],
+      "reference_sheet": "structures_08.png",
+      "review_note": "stone_walls,hip_roof,porch,arched_windows"
+    }
+  ],
+  "asset_counts": {
+    "facade": 100,
+    "structure": 28,
+    "surface_module": 18
+  },
+  "status": "Authoring plan only until model exports/validation/render review are complete"
+}

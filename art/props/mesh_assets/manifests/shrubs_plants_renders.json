@@ -1,0 +1,138 @@
+[
+  {
+    "file": "renders/shrubs_plants_01.png",
+    "sha256": "eb054f1ce199423aaf7247071f491574ef1ba0475e660c5355baa3cc702583f4",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-70BCB4C8377F",
+        "name": "BSHCMB2",
+        "glb": "models/PROP-70BCB4C8377F_lod0.glb",
+        "sha256": "23cc8c51681a01927407181d8c231b7c58a09ed7d39eef6302b42fe7a8756291"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-22E75A0AB4D0",
+        "name": "BSHCMBA2",
+        "glb": "models/PROP-22E75A0AB4D0_lod0.glb",
+        "sha256": "405c569a60e2db0c9025df9baf01a480a04c887889d964122741ddd6aaea819e"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-E506F8AF3772",
+        "name": "BSHCMC2",
+        "glb": "models/PROP-E506F8AF3772_lod0.glb",
+        "sha256": "69713147b3f9acdbf95c59b3531f4cab67b744440e302efac53ee061df12d1a9"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-1E72768CE36F",
+        "name": "BSHCMD2",
+        "glb": "models/PROP-1E72768CE36F_lod0.glb",
+        "sha256": "daf21c2bd7eb634e966517f368fdfd222ea1b8f357518d546673884f83604007"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-595D1B8CDE5C",
+        "name": "BUSHA2",
+        "glb": "models/PROP-595D1B8CDE5C_lod0.glb",
+        "sha256": "97e3d4529d89fc1b1fdd82d0528c289c7a63fc425a837058a645dc26313b206a"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-B7292E77C7F9",
+        "name": "BUSHB2",
+        "glb": "models/PROP-B7292E77C7F9_lod0.glb",
+        "sha256": "6ce1ac105dc1b6742c14fac1fa2cbebc50541df1dddf3d7d690874bd1119b6e7"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/shrubs_plants_02.png",
+    "sha256": "e6495ad8bf314c34d480695aa81e5b60ba12d97d5a5a14356533434d47032a46",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-965FC320AF72",
+        "name": "BUSHC2",
+        "glb": "models/PROP-965FC320AF72_lod0.glb",
+        "sha256": "b71d0ba81ba4b2160c8c292eeacd5363ff819fd52edfec71ad77450687b5ba7e"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-ADD27719D27D",
+        "name": "BUSHD2",
+        "glb": "models/PROP-ADD27719D27D_lod0.glb",
+        "sha256": "8e352692768b90f79bdfa33227d8931d1ee5dc8c20512dfe819cb882052ad3a7"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-CE1E7C480E20",
+        "name": "BUSHE2",
+        "glb": "models/PROP-CE1E7C480E20_lod0.glb",
+        "sha256": "3065c746378bf53a6ff96bef98f05f4dcc39a9c9fa286cba50ff8af319b1d8b1"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-E9BEBA3A5649",
+        "name": "BUSHF2",
+        "glb": "models/PROP-E9BEBA3A5649_lod0.glb",
+        "sha256": "f52025d1de7f17192ecb68079d037381d9576431efdd77d7fc64daf899df1ef2"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-7FFB497B4844",
+        "name": "BUSHG2",
+        "glb": "models/PROP-7FFB497B4844_lod0.glb",
+        "sha256": "408b9e5f7cd1c243ce2a961db956a965376997c09811bd2dbb4eb66d3c04cd8e"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-232976AA95F2",
+        "name": "BUSHH2",
+        "glb": "models/PROP-232976AA95F2_lod0.glb",
+        "sha256": "0f00addddfba8e82f51437887f925cf37f62ad2e49d04ba398c850d18ea18595"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/shrubs_plants_03.png",
+    "sha256": "4383ac4be3f8c31e87c9a0f790f9424d0bba443ae21142cbabb6b29c4a332865",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-1BA4EAB36F19",
+        "name": "BUSHJ2",
+        "glb": "models/PROP-1BA4EAB36F19_lod0.glb",
+        "sha256": "7a2d09740a2aeb7be76719fbef24f5cc88ea5057918cb5a1c80386a5ccafe564"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-595EFDBBC346",
+        "name": "FLOWRBX2",
+        "glb": "models/PROP-595EFDBBC346_lod0.glb",
+        "sha256": "272df4feafabbd52ae758b7e73494407965d2ebed49547c9c25034a0f5d8bc0c"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-4E5DD56A1882",
+        "name": "VINEA2",
+        "glb": "models/PROP-4E5DD56A1882_lod0.glb",
+        "sha256": "1d2edbefd0c87704cffb29d399fcaf4c615f39118e08d6e250e93c058420cc56"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-39FE989620EB",
+        "name": "VINEB2",
+        "glb": "models/PROP-39FE989620EB_lod0.glb",
+        "sha256": "59ec0177e625dde0caedbc1f80d15133114f967c4a08bda2f9ed5783c8421ea2"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

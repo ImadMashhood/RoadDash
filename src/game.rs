@@ -295,6 +295,11 @@ pub fn setup_race(
                 ActiveCollisionTypes::all(),
             ))
             .id();
+        if let Some(props) = &art.props {
+            let visual = props.vehicle(&mut commands, i);
+            crate::runtime::attach_visuals(&mut commands, root, &[visual]);
+            continue;
+        }
         let mut parts = vec![];
         for (p, s, mat) in [
             (
@@ -505,10 +510,11 @@ pub fn drive(
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
-    (ground, owned, poses): (
+    (ground, owned, poses, shapes): (
         Query<(), With<world::Ground>>,
         Query<&recovery::OwnedBody>,
         Query<&GlobalTransform>,
+        Query<&Collider>,
     ),
     (mut swept, mut attacks): (
         MessageWriter<recovery::SweptContact>,
@@ -894,11 +900,42 @@ pub fn drive(
                 options,
                 filter,
             ) {
-                destination = transform.translation + delta * hit.time_of_impact.clamp(0.0, 1.0);
-                let (progress, lane, _) = track.project(destination, r.progress);
-                r.progress = progress;
-                r.lane = lane;
-                r.hop_height = (destination.y - p.y).max(0.0);
+                let low = shapes.get(other).ok().zip(poses.get(other).ok()).and_then(
+                    |(shape, global)| {
+                        let pose = global.compute_transform();
+                        let (lo, hi) = recovery::collider_bounds(&pose, shape);
+                        rr_core::contact::low_geometry(lo.y, hi.y, p.y).then_some(hi.y)
+                    },
+                );
+                if let Some(top) = low {
+                    let rise = (top - p.y + 0.08).max(0.0);
+                    // Assisted mode follows the original's low-object height stack.
+                    // Re-sweep at that height; a wall behind the low object stays solid.
+                    let raised = transform.translation.with_y(p.y + rise);
+                    let clear = context
+                        .cast_shape(
+                            raised + transform.rotation * Vec3::Y,
+                            transform.rotation,
+                            delta.with_y(0.0),
+                            shape.raw.as_ref(),
+                            options,
+                            filter,
+                        )
+                        .map_or(1.0, |(_, hit)| hit.time_of_impact.clamp(0.0, 1.0));
+                    r.hop_height = r.hop_height.max(rise);
+                    r.hop_velocity = r.hop_velocity.max(0.0);
+                    destination = raised + delta.with_y(0.0) * clear;
+                    let (progress, lane, _) = track.project(destination, r.progress);
+                    r.progress = progress;
+                    r.lane = lane;
+                } else {
+                    destination =
+                        transform.translation + delta * hit.time_of_impact.clamp(0.0, 1.0);
+                    let (progress, lane, _) = track.project(destination, r.progress);
+                    r.progress = progress;
+                    r.lane = lane;
+                    r.hop_height = (destination.y - p.y).max(0.0);
+                }
                 swept.write(recovery::SweptContact(entity, other));
             }
         }
@@ -1376,6 +1413,7 @@ pub(crate) mod tests {
         .init_resource::<crate::ui::MenuAction>()
         .insert_resource(Persistence(false))
         .insert_resource(Art {
+            props: None,
             models: None,
             cube: Handle::default(),
             sphere: Handle::default(),

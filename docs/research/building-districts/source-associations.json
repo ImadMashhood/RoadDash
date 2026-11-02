@@ -1,0 +1,3086 @@
+{
+  "schema_version": 1,
+  "source": "User-local 1997 rerelease; numeric/text metadata only",
+  "reference_commit": "aa9cb6d3181e20736af71022cd4d6aac0e2788d1",
+  "families_sha256": "3aed4fe527a1c6847251619ed2aa6be974c84e906d328b5213f92305c0d50a68",
+  "decoder_sha256": "4f698a5489d22c4989f84c5be5d02531ebfb54c7d5a0f44bfb4862fbbed9d298",
+  "courses": {
+    "CITY": {
+      "label": "The City",
+      "sha256": "d9601f717d6d4a6b273be6dba6775dd513ac1754eaeb34f3953735772bd31ca4",
+      "section_count": 15,
+      "loaded_family_ids": [
+        1,
+        3,
+        7,
+        10,
+        11,
+        12,
+        35,
+        36,
+        37,
+        38,
+        39,
+        41,
+        42,
+        52,
+        57,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        110,
+        111,
+        112,
+        113,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        127,
+        128,
+        132,
+        135,
+        138,
+        144,
+        145,
+        148,
+        161,
+        164,
+        165,
+        166,
+        170,
+        173,
+        181,
+        185,
+        186
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "loaded_family_ids": [
+            1,
+            3,
+            7,
+            10,
+            11,
+            12,
+            35,
+            36,
+            38,
+            39,
+            41,
+            42,
+            115
+          ]
+        },
+        {
+          "section": 1,
+          "loaded_family_ids": [
+            57,
+            102,
+            112,
+            161,
+            170
+          ]
+        },
+        {
+          "section": 2,
+          "loaded_family_ids": [
+            52,
+            57,
+            102,
+            103,
+            105,
+            113,
+            127,
+            128,
+            144,
+            145,
+            165,
+            170
+          ]
+        },
+        {
+          "section": 3,
+          "loaded_family_ids": [
+            52,
+            105,
+            144,
+            170
+          ]
+        },
+        {
+          "section": 4,
+          "loaded_family_ids": [
+            52,
+            105,
+            110,
+            111,
+            170
+          ]
+        },
+        {
+          "section": 5,
+          "loaded_family_ids": [
+            39,
+            101,
+            102,
+            110,
+            111,
+            161,
+            170
+          ]
+        },
+        {
+          "section": 6,
+          "loaded_family_ids": [
+            39,
+            101,
+            102,
+            110,
+            111,
+            161,
+            170
+          ]
+        },
+        {
+          "section": 7,
+          "loaded_family_ids": [
+            101,
+            102,
+            118,
+            119,
+            122,
+            132,
+            161
+          ]
+        },
+        {
+          "section": 8,
+          "loaded_family_ids": [
+            12,
+            37,
+            101,
+            103,
+            104,
+            106,
+            113,
+            115,
+            116,
+            117,
+            120,
+            121,
+            122,
+            132,
+            138,
+            161,
+            164,
+            165,
+            166,
+            173,
+            185,
+            186
+          ]
+        },
+        {
+          "section": 9,
+          "loaded_family_ids": [
+            12,
+            161,
+            173,
+            181
+          ]
+        },
+        {
+          "section": 10,
+          "loaded_family_ids": [
+            57,
+            112,
+            161
+          ]
+        },
+        {
+          "section": 11,
+          "loaded_family_ids": [
+            57,
+            112,
+            161
+          ]
+        },
+        {
+          "section": 12,
+          "loaded_family_ids": [
+            148,
+            161,
+            173,
+            181
+          ]
+        },
+        {
+          "section": 13,
+          "loaded_family_ids": [
+            7,
+            37,
+            38,
+            57,
+            101,
+            104,
+            105,
+            107,
+            111,
+            112,
+            115,
+            120,
+            135,
+            161
+          ]
+        },
+        {
+          "section": 14,
+          "loaded_family_ids": [
+            7,
+            38,
+            115
+          ]
+        }
+      ]
+    },
+    "HIWAY": {
+      "label": "Sierra Nevada",
+      "sha256": "4efe00e6314623bf0811aad00bb1c88aded6e69e52d1e72a59a9b28582bc7dc4",
+      "section_count": 26,
+      "loaded_family_ids": [
+        85,
+        101,
+        102,
+        131,
+        139,
+        148,
+        149,
+        168,
+        169,
+        171,
+        172,
+        174,
+        175,
+        176,
+        177,
+        179,
+        180,
+        181,
+        182,
+        183,
+        240
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "loaded_family_ids": [
+            131,
+            148,
+            149,
+            169,
+            171,
+            176,
+            180,
+            182
+          ]
+        },
+        {
+          "section": 1,
+          "loaded_family_ids": [
+            85,
+            148,
+            171,
+            182,
+            240
+          ]
+        },
+        {
+          "section": 2,
+          "loaded_family_ids": [
+            101,
+            102,
+            139,
+            148,
+            171
+          ]
+        },
+        {
+          "section": 3,
+          "loaded_family_ids": [
+            148,
+            169,
+            171,
+            172
+          ]
+        },
+        {
+          "section": 4,
+          "loaded_family_ids": [
+            148,
+            149,
+            171,
+            172,
+            177,
+            179,
+            182
+          ]
+        },
+        {
+          "section": 5,
+          "loaded_family_ids": [
+            101,
+            148,
+            169,
+            171
+          ]
+        },
+        {
+          "section": 6,
+          "loaded_family_ids": [
+            101,
+            148,
+            149,
+            171,
+            182
+          ]
+        },
+        {
+          "section": 7,
+          "loaded_family_ids": [
+            148,
+            168,
+            171,
+            172
+          ]
+        },
+        {
+          "section": 8,
+          "loaded_family_ids": [
+            148,
+            149,
+            171,
+            182
+          ]
+        },
+        {
+          "section": 9,
+          "loaded_family_ids": [
+            148,
+            171,
+            172,
+            182
+          ]
+        },
+        {
+          "section": 10,
+          "loaded_family_ids": [
+            148,
+            171,
+            174,
+            175,
+            177,
+            179,
+            181,
+            182
+          ]
+        },
+        {
+          "section": 11,
+          "loaded_family_ids": [
+            85,
+            148,
+            171,
+            179,
+            180,
+            182,
+            240
+          ]
+        },
+        {
+          "section": 12,
+          "loaded_family_ids": [
+            148,
+            171,
+            172,
+            174
+          ]
+        },
+        {
+          "section": 13,
+          "loaded_family_ids": [
+            148,
+            171,
+            174,
+            175
+          ]
+        },
+        {
+          "section": 14,
+          "loaded_family_ids": [
+            148,
+            171,
+            177,
+            179,
+            181,
+            182,
+            183
+          ]
+        },
+        {
+          "section": 15,
+          "loaded_family_ids": [
+            148,
+            168,
+            171,
+            172
+          ]
+        },
+        {
+          "section": 16,
+          "loaded_family_ids": [
+            148,
+            171
+          ]
+        },
+        {
+          "section": 17,
+          "loaded_family_ids": [
+            148,
+            171
+          ]
+        },
+        {
+          "section": 18,
+          "loaded_family_ids": [
+            148,
+            171
+          ]
+        },
+        {
+          "section": 19,
+          "loaded_family_ids": [
+            148,
+            171,
+            172
+          ]
+        },
+        {
+          "section": 20,
+          "loaded_family_ids": [
+            148,
+            171,
+            172
+          ]
+        },
+        {
+          "section": 21,
+          "loaded_family_ids": [
+            148,
+            171
+          ]
+        },
+        {
+          "section": 22,
+          "loaded_family_ids": [
+            148,
+            171,
+            172
+          ]
+        },
+        {
+          "section": 23,
+          "loaded_family_ids": [
+            148,
+            179,
+            181,
+            183
+          ]
+        },
+        {
+          "section": 24,
+          "loaded_family_ids": [
+            148,
+            171,
+            174
+          ]
+        },
+        {
+          "section": 25,
+          "loaded_family_ids": [
+            148,
+            171,
+            174
+          ]
+        }
+      ]
+    },
+    "MEDLY": {
+      "label": "The Peninsula",
+      "sha256": "6d4397aa3c898739640ec7b731c1092038cad7398254bb7656e390aa30cd3776",
+      "section_count": 35,
+      "loaded_family_ids": [
+        61,
+        62,
+        63,
+        65,
+        66,
+        68,
+        69,
+        150,
+        151,
+        153,
+        154,
+        156,
+        158,
+        159,
+        160,
+        220,
+        221,
+        223,
+        224,
+        225,
+        226,
+        228,
+        230,
+        231,
+        234,
+        235,
+        237,
+        238,
+        239,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "loaded_family_ids": [
+            61,
+            62,
+            66,
+            153,
+            158,
+            159,
+            160,
+            239,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249
+          ]
+        },
+        {
+          "section": 1,
+          "loaded_family_ids": [
+            65,
+            66
+          ]
+        },
+        {
+          "section": 2,
+          "loaded_family_ids": [
+            62,
+            66,
+            150,
+            151,
+            156,
+            158,
+            159,
+            160,
+            231
+          ]
+        },
+        {
+          "section": 3,
+          "loaded_family_ids": [
+            61,
+            65,
+            66,
+            69,
+            159,
+            221,
+            228,
+            237,
+            238
+          ]
+        },
+        {
+          "section": 4,
+          "loaded_family_ids": [
+            65,
+            66,
+            69,
+            237
+          ]
+        },
+        {
+          "section": 5,
+          "loaded_family_ids": [
+            65,
+            66,
+            69,
+            237
+          ]
+        },
+        {
+          "section": 6,
+          "loaded_family_ids": [
+            62,
+            66,
+            69,
+            159
+          ]
+        },
+        {
+          "section": 7,
+          "loaded_family_ids": [
+            61,
+            66,
+            221,
+            243
+          ]
+        },
+        {
+          "section": 8,
+          "loaded_family_ids": [
+            61,
+            68,
+            224,
+            246
+          ]
+        },
+        {
+          "section": 9,
+          "loaded_family_ids": [
+            61,
+            66,
+            154,
+            220,
+            225
+          ]
+        },
+        {
+          "section": 10,
+          "loaded_family_ids": [
+            61,
+            68,
+            224,
+            246
+          ]
+        },
+        {
+          "section": 11,
+          "loaded_family_ids": [
+            61,
+            68,
+            154,
+            220
+          ]
+        },
+        {
+          "section": 12,
+          "loaded_family_ids": [
+            61,
+            65,
+            66,
+            69,
+            234,
+            237
+          ]
+        },
+        {
+          "section": 13,
+          "loaded_family_ids": [
+            66,
+            234,
+            235,
+            237,
+            242
+          ]
+        },
+        {
+          "section": 14,
+          "loaded_family_ids": [
+            65,
+            66,
+            223,
+            231
+          ]
+        },
+        {
+          "section": 15,
+          "loaded_family_ids": [
+            65,
+            68,
+            223,
+            226,
+            241
+          ]
+        },
+        {
+          "section": 16,
+          "loaded_family_ids": [
+            68,
+            223,
+            226,
+            241
+          ]
+        },
+        {
+          "section": 17,
+          "loaded_family_ids": [
+            68,
+            223,
+            226,
+            241
+          ]
+        },
+        {
+          "section": 18,
+          "loaded_family_ids": [
+            68,
+            153,
+            230,
+            241
+          ]
+        },
+        {
+          "section": 19,
+          "loaded_family_ids": [
+            68,
+            153,
+            241
+          ]
+        },
+        {
+          "section": 20,
+          "loaded_family_ids": [
+            68,
+            153,
+            230,
+            241
+          ]
+        },
+        {
+          "section": 21,
+          "loaded_family_ids": [
+            65,
+            234,
+            237,
+            242
+          ]
+        },
+        {
+          "section": 22,
+          "loaded_family_ids": [
+            63,
+            65,
+            68,
+            221,
+            244
+          ]
+        },
+        {
+          "section": 23,
+          "loaded_family_ids": [
+            63,
+            68,
+            221
+          ]
+        },
+        {
+          "section": 24,
+          "loaded_family_ids": [
+            65,
+            66,
+            221,
+            234
+          ]
+        },
+        {
+          "section": 25,
+          "loaded_family_ids": [
+            63,
+            66,
+            68,
+            221
+          ]
+        },
+        {
+          "section": 26,
+          "loaded_family_ids": [
+            65,
+            66,
+            231
+          ]
+        },
+        {
+          "section": 27,
+          "loaded_family_ids": [
+            65,
+            66,
+            231
+          ]
+        },
+        {
+          "section": 28,
+          "loaded_family_ids": [
+            65,
+            66,
+            234,
+            242
+          ]
+        },
+        {
+          "section": 29,
+          "loaded_family_ids": [
+            65,
+            66,
+            234,
+            242
+          ]
+        },
+        {
+          "section": 30,
+          "loaded_family_ids": [
+            61,
+            68,
+            153,
+            221,
+            224,
+            243,
+            244,
+            246
+          ]
+        },
+        {
+          "section": 31,
+          "loaded_family_ids": [
+            61,
+            153,
+            221,
+            224,
+            243,
+            244,
+            246
+          ]
+        },
+        {
+          "section": 32,
+          "loaded_family_ids": [
+            61,
+            68,
+            154,
+            220,
+            224
+          ]
+        },
+        {
+          "section": 33,
+          "loaded_family_ids": [
+            61,
+            68,
+            224,
+            246
+          ]
+        },
+        {
+          "section": 34,
+          "loaded_family_ids": [
+            61,
+            68,
+            224,
+            245
+          ]
+        }
+      ]
+    },
+    "NAPA": {
+      "label": "Napa Valley",
+      "sha256": "56a43f5cda65285694dc747c284b7862410887eba8067938af61d14ad156bc90",
+      "section_count": 15,
+      "loaded_family_ids": [
+        36,
+        54,
+        123,
+        124,
+        134,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        264,
+        265,
+        266,
+        267,
+        268
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "loaded_family_ids": [
+            54,
+            252,
+            258,
+            259,
+            266
+          ]
+        },
+        {
+          "section": 1,
+          "loaded_family_ids": [
+            54,
+            258,
+            259,
+            260,
+            261,
+            262
+          ]
+        },
+        {
+          "section": 2,
+          "loaded_family_ids": [
+            54,
+            250,
+            251,
+            253,
+            257,
+            259,
+            260,
+            261,
+            262,
+            264,
+            265
+          ]
+        },
+        {
+          "section": 3,
+          "loaded_family_ids": [
+            54,
+            258,
+            259,
+            260,
+            261,
+            262,
+            267
+          ]
+        },
+        {
+          "section": 4,
+          "loaded_family_ids": [
+            54,
+            123,
+            250,
+            251,
+            252,
+            254,
+            259,
+            261,
+            268
+          ]
+        },
+        {
+          "section": 5,
+          "loaded_family_ids": [
+            54,
+            252,
+            254,
+            255,
+            256,
+            257,
+            259,
+            264,
+            265
+          ]
+        },
+        {
+          "section": 6,
+          "loaded_family_ids": [
+            36,
+            54,
+            123,
+            250,
+            251,
+            259
+          ]
+        },
+        {
+          "section": 7,
+          "loaded_family_ids": [
+            36,
+            54,
+            123,
+            124,
+            134
+          ]
+        },
+        {
+          "section": 8,
+          "loaded_family_ids": [
+            36,
+            54,
+            123,
+            252,
+            254,
+            261
+          ]
+        },
+        {
+          "section": 9,
+          "loaded_family_ids": [
+            54,
+            256,
+            257,
+            258,
+            259,
+            264
+          ]
+        },
+        {
+          "section": 10,
+          "loaded_family_ids": [
+            54,
+            258,
+            259,
+            260,
+            264
+          ]
+        },
+        {
+          "section": 11,
+          "loaded_family_ids": [
+            54,
+            256,
+            257,
+            258,
+            259,
+            264
+          ]
+        },
+        {
+          "section": 12,
+          "loaded_family_ids": [
+            54,
+            259,
+            260,
+            264
+          ]
+        },
+        {
+          "section": 13,
+          "loaded_family_ids": [
+            36,
+            54,
+            124,
+            259,
+            260,
+            264
+          ]
+        },
+        {
+          "section": 14,
+          "loaded_family_ids": [
+            36,
+            123,
+            124,
+            265
+          ]
+        }
+      ]
+    },
+    "CANYN": {
+      "label": "Pacific Coast Highway",
+      "sha256": "5071e45b77f7b2ec92e44423bbb1f6d26c57c0e527d92eac9c92c296ca61f53c",
+      "section_count": 18,
+      "loaded_family_ids": [
+        15,
+        17,
+        18,
+        22,
+        23,
+        24,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        77,
+        81,
+        85,
+        86,
+        87,
+        92,
+        94,
+        123,
+        125,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204
+      ],
+      "sections": [
+        {
+          "section": 0,
+          "loaded_family_ids": [
+            15,
+            86,
+            87,
+            198
+          ]
+        },
+        {
+          "section": 1,
+          "loaded_family_ids": [
+            15,
+            22,
+            23,
+            85,
+            86,
+            87,
+            125,
+            202
+          ]
+        },
+        {
+          "section": 2,
+          "loaded_family_ids": [
+            123,
+            125,
+            202
+          ]
+        },
+        {
+          "section": 3,
+          "loaded_family_ids": [
+            23,
+            24,
+            26,
+            202,
+            204
+          ]
+        },
+        {
+          "section": 4,
+          "loaded_family_ids": [
+            23,
+            24,
+            26,
+            27,
+            28,
+            204
+          ]
+        },
+        {
+          "section": 5,
+          "loaded_family_ids": [
+            23,
+            24,
+            26,
+            27,
+            28,
+            204
+          ]
+        },
+        {
+          "section": 6,
+          "loaded_family_ids": [
+            17,
+            23,
+            24,
+            27,
+            29
+          ]
+        },
+        {
+          "section": 7,
+          "loaded_family_ids": [
+            17,
+            24,
+            30,
+            31,
+            32,
+            81,
+            201
+          ]
+        },
+        {
+          "section": 8,
+          "loaded_family_ids": [
+            18,
+            31,
+            32,
+            191,
+            192,
+            193,
+            194
+          ]
+        },
+        {
+          "section": 9,
+          "loaded_family_ids": [
+            26,
+            196,
+            197,
+            203
+          ]
+        },
+        {
+          "section": 10,
+          "loaded_family_ids": [
+            26,
+            196,
+            197,
+            203
+          ]
+        },
+        {
+          "section": 11,
+          "loaded_family_ids": [
+            26,
+            196,
+            197,
+            203
+          ]
+        },
+        {
+          "section": 12,
+          "loaded_family_ids": [
+            86,
+            92,
+            191,
+            192,
+            193,
+            197,
+            203
+          ]
+        },
+        {
+          "section": 13,
+          "loaded_family_ids": [
+            27,
+            192,
+            194,
+            195,
+            196,
+            197
+          ]
+        },
+        {
+          "section": 14,
+          "loaded_family_ids": [
+            31,
+            32,
+            77,
+            94,
+            192,
+            194,
+            197,
+            198,
+            199
+          ]
+        },
+        {
+          "section": 15,
+          "loaded_family_ids": [
+            192,
+            197,
+            203
+          ]
+        },
+        {
+          "section": 16,
+          "loaded_family_ids": [
+            123,
+            125,
+            200,
+            202
+          ]
+        },
+        {
+          "section": 17,
+          "loaded_family_ids": [
+            123,
+            125,
+            202
+          ]
+        }
+      ]
+    }
+  },
+  "assets": [
+    {
+      "id": "BARN12",
+      "family_ids": [
+        26,
+        261
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BARN22",
+      "family_ids": [
+        85,
+        251
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BARN32",
+      "family_ids": [
+        26,
+        251,
+        261
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BARND2",
+      "family_ids": [
+        28
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS1",
+      "family_ids": [
+        154,
+        269
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS10",
+      "family_ids": [
+        103,
+        153
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS2",
+      "family_ids": [
+        103,
+        153
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS4",
+      "family_ids": [
+        101,
+        103,
+        153
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS5",
+      "family_ids": [
+        101,
+        154
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS6",
+      "family_ids": [
+        101,
+        154,
+        269
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS7",
+      "family_ids": [
+        102,
+        269
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS8",
+      "family_ids": [
+        102,
+        154
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSS9",
+      "family_ids": [
+        102,
+        154,
+        269
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "BUSSTOP2",
+      "family_ids": [
+        36,
+        61,
+        156,
+        158,
+        160,
+        202
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CARWASH2",
+      "family_ids": [
+        255
+      ],
+      "course_family_load_matches": [
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINA12",
+      "family_ids": [
+        128
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINA13",
+      "family_ids": [
+        128
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINA14",
+      "family_ids": [
+        127
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINA15",
+      "family_ids": [
+        127
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINA16",
+      "family_ids": [
+        128
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINA17",
+      "family_ids": [
+        127
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHINGAT2",
+      "family_ids": [
+        127,
+        128
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CHURCH2",
+      "family_ids": [
+        26,
+        261
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA11",
+      "family_ids": [
+        123
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA12",
+      "family_ids": [
+        124,
+        174,
+        223
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA13",
+      "family_ids": [
+        124,
+        174,
+        223
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA14",
+      "family_ids": [
+        124,
+        174,
+        223
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA15",
+      "family_ids": [
+        123
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA16",
+      "family_ids": [
+        226
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA17",
+      "family_ids": [
+        125,
+        175
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA18",
+      "family_ids": [
+        223
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA19",
+      "family_ids": [
+        125,
+        175,
+        226
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA20",
+      "family_ids": [
+        125,
+        175,
+        223
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "CLSTGA21",
+      "family_ids": [
+        123,
+        226
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "GASA2",
+      "family_ids": [
+        251
+      ],
+      "course_family_load_matches": [
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "GASB2",
+      "family_ids": [
+        255
+      ],
+      "course_family_load_matches": [
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "GRNTNK2",
+      "family_ids": [
+        85,
+        251
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "HAYSHED2",
+      "family_ids": [
+        250
+      ],
+      "course_family_load_matches": [
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "HOUSEB2",
+      "family_ids": [
+        26,
+        261
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "METL21CC",
+      "family_ids": [
+        15,
+        242
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "METL21RC",
+      "family_ids": [
+        15,
+        242
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "METL21RW",
+      "family_ids": [
+        15,
+        242
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "METL22CC",
+      "family_ids": [
+        15,
+        242
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC1",
+      "family_ids": [
+        1,
+        3,
+        7
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC10",
+      "family_ids": [
+        166,
+        183,
+        224
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC11",
+      "family_ids": [
+        166,
+        183
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC12",
+      "family_ids": [
+        224
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC13",
+      "family_ids": [
+        111,
+        224,
+        245
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC14",
+      "family_ids": [
+        110,
+        113,
+        246
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC15",
+      "family_ids": [
+        166,
+        183,
+        224
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC16",
+      "family_ids": [
+        110,
+        113,
+        224,
+        246
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC17",
+      "family_ids": [
+        111,
+        245
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC18",
+      "family_ids": [
+        113
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC19",
+      "family_ids": [
+        111,
+        112,
+        245
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC2",
+      "family_ids": [
+        1,
+        3,
+        7
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC20",
+      "family_ids": [
+        112,
+        113
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC21",
+      "family_ids": [
+        110,
+        112,
+        246
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC22",
+      "family_ids": [
+        166
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OFFC5",
+      "family_ids": [
+        1,
+        3,
+        7
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "OUTHOUS2",
+      "family_ids": [
+        22,
+        24,
+        30,
+        87,
+        193,
+        197,
+        255,
+        259,
+        260,
+        262
+      ],
+      "course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "PHONSHK2",
+      "family_ids": [
+        193,
+        235,
+        259
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "PORTLET2",
+      "family_ids": [
+        31,
+        87,
+        161
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN11",
+      "family_ids": [
+        165,
+        220
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN12",
+      "family_ids": [
+        145,
+        220
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN13",
+      "family_ids": [
+        145,
+        225
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN14",
+      "family_ids": [
+        144,
+        165,
+        220
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN15",
+      "family_ids": [
+        145,
+        220
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN16",
+      "family_ids": [
+        144,
+        165,
+        225
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUNDWN17",
+      "family_ids": [
+        144,
+        165,
+        220
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUSTICA2",
+      "family_ids": [
+        26,
+        173,
+        261
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "RUSTICB2",
+      "family_ids": [
+        85
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "SCHOOL2",
+      "family_ids": [
+        27
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "SHOPD2",
+      "family_ids": [
+        28
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "SHOPE2",
+      "family_ids": [
+        256
+      ],
+      "course_family_load_matches": [
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "SHOPICE2",
+      "family_ids": [
+        257
+      ],
+      "course_family_load_matches": [
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "SNCKSHP2",
+      "family_ids": [
+        85
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TANKSEP2",
+      "family_ids": [
+        65,
+        256,
+        262
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TOP",
+      "family_ids": [
+        148
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "HIWAY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TOP1A",
+      "family_ids": [
+        15,
+        17,
+        172
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TOP2A",
+      "family_ids": [
+        18,
+        77,
+        81,
+        92,
+        94
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TOP3A",
+      "family_ids": [
+        242
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TOWERB2",
+      "family_ids": [
+        242,
+        251
+      ],
+      "course_family_load_matches": [
+        "MEDLY",
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUN1SHTP",
+      "family_ids": [
+        17,
+        31,
+        81
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN1LIP",
+      "family_ids": [
+        17,
+        31,
+        81
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN21CC",
+      "family_ids": [
+        31
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN21RC",
+      "family_ids": [
+        31
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN21RW",
+      "family_ids": [
+        31
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN22CC",
+      "family_ids": [
+        31
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN31CC",
+      "family_ids": [
+        17,
+        81
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN31RC",
+      "family_ids": [
+        17,
+        81
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN31RW",
+      "family_ids": [
+        17,
+        81
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "TUNN32RC",
+      "family_ids": [
+        17,
+        81
+      ],
+      "course_family_load_matches": [
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT11",
+      "family_ids": [
+        115,
+        249
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT12",
+      "family_ids": [
+        117,
+        120,
+        173
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT13",
+      "family_ids": [
+        119,
+        159
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT14",
+      "family_ids": [
+        121
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT15",
+      "family_ids": [
+        116,
+        249
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT16",
+      "family_ids": [
+        121,
+        173
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT17",
+      "family_ids": [
+        160,
+        230
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT18",
+      "family_ids": [
+        115,
+        158,
+        159
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT19",
+      "family_ids": [
+        117
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT1A",
+      "family_ids": [
+        41
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT1B",
+      "family_ids": [
+        41
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT20",
+      "family_ids": [
+        122
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT21",
+      "family_ids": [
+        118,
+        160,
+        230,
+        231
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT22",
+      "family_ids": [
+        118,
+        231
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT23",
+      "family_ids": [
+        122,
+        158
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT24",
+      "family_ids": [
+        117
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT25",
+      "family_ids": [
+        122
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT26",
+      "family_ids": [
+        118,
+        158,
+        231
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT27",
+      "family_ids": [
+        115,
+        249
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT28",
+      "family_ids": [
+        120,
+        121,
+        160,
+        230
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT29",
+      "family_ids": [
+        119,
+        156
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT2A",
+      "family_ids": [
+        41
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT2B",
+      "family_ids": [
+        41
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT31",
+      "family_ids": [
+        173
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT32",
+      "family_ids": [
+        119,
+        120,
+        159
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT33",
+      "family_ids": [
+        156
+      ],
+      "course_family_load_matches": [
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT34",
+      "family_ids": [
+        116,
+        156
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT3A",
+      "family_ids": [
+        42
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT3B",
+      "family_ids": [
+        42
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT6A",
+      "family_ids": [
+        42
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "VICT6B",
+      "family_ids": [
+        42
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WATRTNK2",
+      "family_ids": [
+        235,
+        240,
+        257
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE11",
+      "family_ids": [
+        104,
+        150,
+        243
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE12",
+      "family_ids": [
+        104,
+        150,
+        243
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE13",
+      "family_ids": [
+        107,
+        248
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE14",
+      "family_ids": [
+        104,
+        150,
+        243
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE15",
+      "family_ids": [
+        106,
+        151,
+        244
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE16",
+      "family_ids": [
+        105,
+        247
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE17",
+      "family_ids": [
+        105,
+        247
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE18",
+      "family_ids": [
+        106,
+        151,
+        244
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE19",
+      "family_ids": [
+        106,
+        151,
+        221,
+        244
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE20",
+      "family_ids": [
+        107,
+        248
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE22",
+      "family_ids": [
+        107,
+        221,
+        248
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHSE23",
+      "family_ids": [
+        105,
+        247
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WHTTANK2",
+      "family_ids": [
+        27,
+        85,
+        252
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WINNERY2",
+      "family_ids": [
+        27,
+        85,
+        252
+      ],
+      "course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS1",
+      "family_ids": [
+        10,
+        11,
+        221
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS2",
+      "family_ids": [
+        10,
+        12,
+        221
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS3",
+      "family_ids": [
+        11
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS4",
+      "family_ids": [
+        10,
+        11,
+        221
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS5",
+      "family_ids": [
+        11
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS6",
+      "family_ids": [
+        12
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS7",
+      "family_ids": [
+        12,
+        221
+      ],
+      "course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    },
+    {
+      "id": "WRHS8",
+      "family_ids": [
+        12
+      ],
+      "course_family_load_matches": [
+        "CITY"
+      ],
+      "evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed"
+    }
+  ],
+  "limitation": "Family residency is not texture placement. Section definitions are not a measured route order. District labels and kit roles are RoadDash art direction, not original named districts."
+}

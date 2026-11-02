@@ -370,3 +370,224 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
   139 complete / 225 open; corrected inherited stale 357-ID progress prose.
   Recorded ADR037, source/license research and remaining acceptance. No assets,
   original source/media or new game dependencies incorporated; no merge performed.
+
+## 2026-11-01 — First procedural facade authoring kit
+
+- Created codex/procedural-facade-kit from merged original-crash main.
+- Recorded inherited local 39-name city facade catalog; inspected three reference
+  images and pinned R01 family/panel selection. No original pixels/source copied.
+- Added editable three-family grammar and independent offline geometry exporter:
+  12 width/height/corner variants, connected frontage, OBJ/MTL and preview.
+- Added four authoring tests, source/provenance notes and ADR038. V2-04 tasks
+  remain open/partial; this is not final production art or native integration.
+
+## 2026-11-01 — Realistic building reference batch
+
+- User requested ChatGPT image-generation edits across all 25 extracted sheets.
+  Used built-in image generation once per sheet: 17 facade and eight structure/
+  surface sheets covering 146 catalog IDs. Saved originals unchanged and all edits
+  locally under art/buildings/realistic_sheets with prompts, source/output hashes
+  and an unapproved-reference manifest. Packaged ZIP in Downloads.
+- PNG decoding and expected filename coverage passed for 25/25; ZIP integrity
+  passed. Generated signs/detail/layout may drift; precise UVs, material maps,
+  modeling, production rights and art approval remain open. No gameplay changes,
+  new dependencies, pushed assets or merged work. V2-04-002 remains unchecked.
+
+## 2026-11-01 — Volumetric building concept batch
+
+- Generated 25 three-quarter architectural concept sheets using built-in ChatGPT
+  image generation, based on the realistic reference batch and a shared first-sheet
+  style reference. Covers 146 catalog IDs, including surface/relief samples.
+- Saved PNGs, exact prompts, source/output hashes and a row/column ID map under
+  art/buildings/concept_3d. These are 2D concepts, not meshes; hidden geometry is
+  inferred and some generated labels are absent. Art approval, production rights,
+  modeling, UVs, LOD/collision and runtime gates remain open (V2-04-004).
+- Verified all 25 PNGs decode and the download ZIP passes integrity testing.
+  No gameplay changes; Rust/native tests not rerun for image-only work.
+
+## 2026-11-01 — Procedural one-kilometre city study
+
+- Created codex/city-kilometre-preview, preserving earlier uncommitted art sheets.
+  Added editable seeded block/lot/facade generator and isolated native Bevy viewer
+  (city_preview); default game and accepted ragdoll/physics remain unchanged.
+- Generated 414 supported geometric building drafts from six concept-reference
+  families in four touching rows along a 1 km avenue, ten blocks, parallel roads,
+  rear courts, sidewalks, crosswalks, canopies/roofs, lamps and sparse trees.
+  Geometry batches into 61 meshes; these are not final conversions of 146 designs.
+- Added five authoring tests and one mesh winding/bounds test. Full workspace
+  tests: 164 pass / one existing ignored; Python 29 pass; fmt, clippy, builds and
+  asset audit pass. Captured and inspected four native views; explicit timing/
+  smoke receipts in testing/city-preview. Production performance remains open.
+- Recorded CITY-REF-01 (AGPL reference only, no copied source), authored generator
+  provenance and ADR039; updated README/progress and known issues. No new task
+  IDs or checked exit gates. No push, merge or game-map replacement performed.
+
+## 2026-11-01 — Correct city preview to use the actual new facades
+
+- User rejected the preceding palette-only result. Replaced generated window/sign
+  fronts with the actual unchanged enhanced facade artwork: 100 IDs / 17 PNGs,
+  source hashes, explicit body UV metadata and native texture loading. Existing
+  images/prompts are preserved; no bitmap edit, new image generation or original
+  retail texture import. All IDs are assigned before repeating the seeded catalog.
+- Added continuous textured-relief surfaces, first-six detail profiles, roof/shell
+  volume and end/rear returns in 416 buildings along the existing kilometre study.
+  Added fifth native proof view, corrected mirrored lettering and tested source
+  orientation on both road sides. Archived rejected generic captures.
+- Full tests: 165 Rust pass, one prior soak ignored; 33 Python pass. Format,
+  clippy, builds, audit and five native captures pass. Original new PNG hashes
+  verified unchanged. See testing/city-preview for scope/timing and remaining gates.
+- Recorded ADR040, local-only draft media provenance and limitations; updated
+  README/progress without closing broad production-art/mesh/physics/gameplay gates.
+  No new task IDs or repository investigation/dependency. Nothing pushed/merged.
+
+## 2026-11-01 — Actual first-sheet building meshes
+
+- Created codex/building-mesh-assets; preserved preceding uncommitted work.
+  Authored six specific approved first-sheet designs in Blender4.5.1: actual
+  masonry/openings/shopfronts/arches/canopy/bays/cornices/sides/roofs. Exported18
+  embedded GLBs with3geometric LODs and retained editable source/materials.
+- Independent GLB/clay checks caught buried brick geometry; corrected depth and
+  re-exported. All six detailed assets now verify52.5mm projecting brickwork.
+  No facade PNG/render card or original-game media is embedded in these meshes.
+- Default city viewer now places actual shared GLB scenes, not earlier substitutes,
+  with LOD/hysteresis and forced-high proof gallery. Native static scene import
+  initially exposed missing reflection registrations; fixed in preview plugin
+  without changing dependency features or default game/physics/ragdoll systems.
+-167Rust tests pass /1prior soak ignored;36Python tests pass; format/clippy/build/
+  audit and18GLB binary/material/geometry checks pass. Actual geometry, re-imported
+  clay and five native views captured. Performance remains a preview-only sample.
+- Added open MESH-01 (other94facades) and MESH-02 (46structures/surface references),
+  synchronized README/progress/task placement/counts, recorded ADR041 and draft
+  asset provenance. First-six material/fidelity review and production integration
+  remain open. No new repository/source dependency or software source copied.
+
+
+## 2026-11-01 — Full architectural draft catalog
+
+Branch codex/all-building-models: showed existing kilometre map first, retained
+six accepted models, then authored the remaining 140 IDs as actual geometric
+facades/structures/surface modules. Added explicit classified parameters, bounded
+sheet authoring, editable sources, GLB LODs, actual renders, reconciliation and
+binary validation. Expanded isolated city preview to all 100 facades with lazy
+high-detail loading and a 25-page catalog gallery. See
+[verification](testing/building-catalog/README.md). Art approval and production
+integration remain open; no racing/ragdoll source or dependency changes.
+
+
+## 2026-11-01 — District and original-course catalog grouping
+
+Branch codex/building-district-groups. Independently recorded all146 named CEL
+memberships and five-course MSRR family load sets from user-local data (no pixel
+extraction). Added13 authored district/support sets, five overlapping course
+eligibility views, relative manifests/438 canonical GLB links, CSV and labeled
+contact sheets. DISTRICT-01 verified; ADR043 separates research evidence from
+inferred art direction. Current map selection/gameplay remains unchanged.
+Evidence: [district tests](testing/building-districts/README.md).
+
+
+## 2026-11-01 — Playable 5.3 km whole-building city
+
+Branch codex/city-5300-buildings. User clarified actual playable race scope.
+CITYGEN-01 adds977 complete exterior building lots,53 blocks/eight district zones,
+85 original City-family-eligible facades,300 own-model geometric front LOD files,
+shared roof/rear/end assembly and solid world support. New default City Run is
+5,300m open/point-to-point; Valley remains selectable and unchanged. Added content
+contract, deterministic bake/check, shared preview/game renderer, independent
+colliders and foot routing. Existing crossing cars and physics are reused.
+[Evidence](testing/city-5300/README.md) includes native retries/two recoveries/finish,
+all-building roof rays and actual-game district survey. ADR044 records choices;
+production art/platform/performance and fine collision gates remain open.
+
+## 2026-11-01 — Downed rider/wreck contact routing
+
+- On codex/original-contact-routing, replaced the unconditional foreign-body
+  wipeout with separate downed/standing/mounted contact routing. Solid downed
+  colliders remain; low geometry supports suspension and assisted clearance.
+- Preserved car entry policy and accepted ragdoll body/joint configuration;
+  standing runner knockdowns use current movement, parked cars do not repeatedly
+  re-knock recovering runners. Added pure policy and runtime regression coverage.
+- Studied pinned original race.cpp contact callbacks without copying source.
+  ADR045 records modern calibration and remaining native parity limits.
+- Verification receipt: docs/testing/contact-routing/README.md. Earlier city
+  generation work in this checkout is preserved; no commit/push/merge performed.
+
+## 2026-11-01 — Full world-prop source inventory and first concept sheet
+
+- Created codex/prop-reference-catalog preserving all prior city/collision work.
+- Scanned269 families,54 vehicle ANIM resources across five courses and global CELs;
+  reconciled4172 CEL occurrences/1310 unique images into597 review banks,1063x2
+  sheets, searchable local gallery and a369-entry prop rebuild queue. Eleven unknown
+  groups remain visible. Architecture/material banks are explicit cross-references.
+- Added independent bounds/coverage tests, local validated zip and metadata-only
+  source inventory. Retail pixels remain in Downloads; no runtime source changed.
+- Used imagegen skill for the first six new art-direction concepts matching building
+  concepts; recorded IDs/hash/provenance, with concept/model states kept distinct.
+- ADR046, PROP-01 and docs/testing/prop-catalog record verified extraction and open
+  identity/model/material/placement/audio/native gates. No commit/push/merge.
+
+## 2026-11-01 — Generated prop concepts, batch02
+
+- User requested visible reference sheets and image generation. Showed six source
+  selections, generated six corresponding3x2 concept sheets/36 subjects using the
+  existing building concept style. Six imagegen calls plus two typography-cleanup
+  edits; original drafts retained.39 unique IDs now have concepts including batch01.
+- Cars, pedestrians, trees, utilities, street furniture and rural props are mapped
+  by stable source ID/cell. Prompts, source-sheet hashes, output hashes, review and
+  file mappings in art/props/concept_3d/BATCH_02.json / PROMPTS_BATCH_02.json.
+- Corrected DEER2 to deer-crossing sign after visual inspection; BIGFNCN2 is a
+  checked bollard, not a fence. Updated taxonomy/test and retained historical
+  numbers/hashes used for generation. Active reference sheets106→105; original
+  superseded sheet archived locally, no source-image coverage reduced.
+- Saved all final sheets/project gallery and local comparison zip. No new meshes,
+  rigs, runtime art, gameplay/physics, dependencies, commits, pushes or merges.
+- Nine Python tests, formatting/Clippy/build/audit and176 workspace Rust tests
+  pass (one existing soak ignored). Art approval/full-catalog/geometry/native gates
+  stay open; no new checkbox completed or task ID introduced this session.
+
+
+## 2026-11-01 — Full prop concept generation
+
+Generated every remaining scoped prop/actor reference bank: 330 IDs, 59 sheets,
+plus prior 39 IDs for 369/369 coverage across 66 selected sheets. Added resumable
+manifest, source clarifications, serialized output receipts, searchable gallery,
+provenance and portable zip. Retained three edited first drafts. Reconciled queue,
+README/PROGRESS and stage separation; geometry/rig/runtime tasks remain open.
+No gameplay/physics modifications, new dependencies or repository investigations.
+Required Rust checks pass (176 tests; one existing ignored), nine Python and five
+roadmap tests pass; coverage/hash/PNG/zip verification and audit pass. Browser
+file-URL QA blocked by policy; native smoke not rerun. Branch remains
+`codex/prop-reference-catalog`; no commit/push/merge requested or performed.
+
+
+## 2026-11-01 — Draft 3D prop authoring and isolated inspection
+
+Created codex/prop-mesh-catalog. Authored 369 source-mapped volumetric drafts using
+85 semantic recipes, 1,107 self-contained GLBs/three LODs and 13 editable Blender
+category scenes. Generated 66 proof sheets by re-importing exported GLBs and an
+additional untextured parked-vehicle proof. Added native prop_preview inspector,
+ID/LOD/material/binary validation, malformed-input regressions and packaging.
+Fixed incorrect export colors, hidden reflector bands, a truck cabin gap and the
+viewer's missing reflected scene types. No changes to race/physics/accepted rider.
+
+PROP-02 verifies only the draft export/inspection infrastructure; V2-05-002 and
+V2-06-001 retain faithful art, anatomy, skinning, colliders, placement and production
+gates. Source recipes are rough interpretations, not finished copies of concepts.
+No new dependencies/repository research/source copying; generated art registered
+local-only with unresolved release-design review. Tests/evidence in
+docs/testing/prop-meshes. No commit, push or merge requested/performed.
+
+
+## 2026-11-01 — Apply draft props in gameplay (PROP-03)
+
+- Added validated prop intake/asset source, bounds normalization and distance LODs;
+  replaced selected traffic/scenery visuals while retaining physical owners.
+- Added reserved city sidewalk/parallel-street fixtures with independent colliders.
+- Generated 118 visual-only human/cow skins; existing walking and interpolated
+  ragdoll frames drive them. Body construction, ejection and recovery remain intact.
+- Added physical-spec/momentum/bounded-contact and socket-clearance regressions,
+  independent binary skin checks and actual scene-selected ID receipts. Native
+  city survey, Valley actor knockdowns and City crash/recovery/finish smoke pass.
+- Recorded ADR048, limitations and development-only asset provenance. Final art,
+  full placement/behavior/audio/performance/release approval remain open. No new
+  dependency/repository research or source/media reuse. No push/merge performed.
+- Full files, evidence, metrics and next steps: testing/props-in-game/README.md.

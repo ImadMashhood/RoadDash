@@ -3,6 +3,8 @@ use rr_core::ContentId;
 use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 pub mod animation;
+pub mod city;
+pub mod props;
 pub mod riding_model;
 pub mod rivals;
 pub const CONTENT_SCHEMA_VERSION: u32 = 1;

@@ -1,0 +1,633 @@
+{
+  "id": "industrial_warehouses",
+  "label": "Industrial / warehouses",
+  "asset_ids": [
+    "WHSE11",
+    "WHSE12",
+    "WHSE13",
+    "WHSE14",
+    "WHSE15",
+    "WHSE16",
+    "WHSE17",
+    "WHSE18",
+    "WHSE19",
+    "WHSE20",
+    "WHSE22",
+    "WHSE23",
+    "WRHS1",
+    "WRHS2",
+    "WRHS3",
+    "WRHS4",
+    "WRHS5",
+    "WRHS6",
+    "WRHS7",
+    "WRHS8"
+  ],
+  "placement_guidance": "Loading bays, large gridded windows and service yards; reserve access outside the race carriageway.",
+  "assets": [
+    {
+      "id": "WHSE11",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        104,
+        150,
+        243
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE11_lod0.glb",
+          "sha256": "e5a0a3ebf7bf7851cbd38aa1de6bfe5c83b98e4f7202f2bc0601550d9d73662c"
+        },
+        {
+          "file": "../../models/WHSE11_lod1.glb",
+          "sha256": "ff863605e7eeb493a2d1ab6b02b9cf53646e2efd602e19894fb07d2eda979a53"
+        },
+        {
+          "file": "../../models/WHSE11_lod2.glb",
+          "sha256": "4d897695cb25f955c884809c301adba72bd3d768a497ed386a8e122c25f296f5"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE11.png"
+    },
+    {
+      "id": "WHSE12",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        104,
+        150,
+        243
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE12_lod0.glb",
+          "sha256": "63c9e299710d3822c28d123187fb11be758640dabed6fd46b3815d50331183a8"
+        },
+        {
+          "file": "../../models/WHSE12_lod1.glb",
+          "sha256": "a6a68c7c19098ab33128fa87a07183cbf12aa4b0fa5fff3d4b8ac722483ac410"
+        },
+        {
+          "file": "../../models/WHSE12_lod2.glb",
+          "sha256": "a0518c8af2ecde6a7832c509d3c2643135b9e34823f806932ba51e5870b9c372"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE12.png"
+    },
+    {
+      "id": "WHSE13",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        107,
+        248
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE13_lod0.glb",
+          "sha256": "c8c970a42d3cbec0bb9966f052d51d303ce2c610378b8bfffc91788752b3cad1"
+        },
+        {
+          "file": "../../models/WHSE13_lod1.glb",
+          "sha256": "1006fe9f939fa8c149f0db09ece6db09f130013151b242490b82bff2673b75c8"
+        },
+        {
+          "file": "../../models/WHSE13_lod2.glb",
+          "sha256": "6cc777f54da158c703c3cc35ceae660c4f5096938e93969e07055974d241ddeb"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE13.png"
+    },
+    {
+      "id": "WHSE14",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        104,
+        150,
+        243
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE14_lod0.glb",
+          "sha256": "a4f48c803acc3feb5abb554b58ad0f7feeaa1993c8198ac2fbe7edf9561e5508"
+        },
+        {
+          "file": "../../models/WHSE14_lod1.glb",
+          "sha256": "d04cb6d93e86b9a2c9910bc37ee351108c9b297e1dd05e56b581f040e4f24b9c"
+        },
+        {
+          "file": "../../models/WHSE14_lod2.glb",
+          "sha256": "ca7453ad70a501250b5b48b2b2ec9a6e07b0476057dd08d80e3dcaebad93fd0f"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE14.png"
+    },
+    {
+      "id": "WHSE15",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        106,
+        151,
+        244
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE15_lod0.glb",
+          "sha256": "f1df4020be95bbd3ac611a2cef3eca79bddf4e0bbd4a3f105cab0089278b0a5e"
+        },
+        {
+          "file": "../../models/WHSE15_lod1.glb",
+          "sha256": "2e2e12f376e9a47e8234e86dc114593e3f9f14daaab91d9256f420e719b0ee08"
+        },
+        {
+          "file": "../../models/WHSE15_lod2.glb",
+          "sha256": "4ebc1d5a70ae6eae7a36e53a42b53488e1782fc3296e132a3d0af3f6ae216742"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE15.png"
+    },
+    {
+      "id": "WHSE16",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        105,
+        247
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE16_lod0.glb",
+          "sha256": "063effaa7f12a342c41ac2db36418497670723a0f5ce1685334864022bb3bbae"
+        },
+        {
+          "file": "../../models/WHSE16_lod1.glb",
+          "sha256": "5e907582ea8f1d518d901a317381648daabb80dd4da0cb0206453dc92a79fed9"
+        },
+        {
+          "file": "../../models/WHSE16_lod2.glb",
+          "sha256": "af54865b6963f304732283fa299c833124cedf454c31ad17137beafe3d54fe3b"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE16.png"
+    },
+    {
+      "id": "WHSE17",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        105,
+        247
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE17_lod0.glb",
+          "sha256": "76f1a573b73dc073e298c1daeb73e122e30e70081e2e39e22a6c489c1ff8c4e3"
+        },
+        {
+          "file": "../../models/WHSE17_lod1.glb",
+          "sha256": "b5441e6b6418daf1f8303c7e08366e37d215ad0675770844bee27a603db467e7"
+        },
+        {
+          "file": "../../models/WHSE17_lod2.glb",
+          "sha256": "c6d2ea86f092ee38ff01db28282b07cc47484ad3bfd141b7886c4b34abd2a650"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE17.png"
+    },
+    {
+      "id": "WHSE18",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        106,
+        151,
+        244
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE18_lod0.glb",
+          "sha256": "4634e3912e4e0fa9eeb3e2a2270dcc71c5f8419aac49614382cd977db8b7112b"
+        },
+        {
+          "file": "../../models/WHSE18_lod1.glb",
+          "sha256": "8519b9d02071ccce994eef6f1e15e7b50f0b6e95fdca3ba5c8ca6789a0c6a955"
+        },
+        {
+          "file": "../../models/WHSE18_lod2.glb",
+          "sha256": "1557fde93331ce967cace1da0dae0cbdc82f468dd8fc8c8b05e9ff72b33243d7"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE18.png"
+    },
+    {
+      "id": "WHSE19",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        106,
+        151,
+        221,
+        244
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE19_lod0.glb",
+          "sha256": "caefbd00108a881ccdf2ab065679b075d4bf9180c42547620e2d57efbe08303d"
+        },
+        {
+          "file": "../../models/WHSE19_lod1.glb",
+          "sha256": "7bae4fb56b1f1d89c0dbfb66747f2d674deb2a664426c55494306bdcb68e992e"
+        },
+        {
+          "file": "../../models/WHSE19_lod2.glb",
+          "sha256": "e87b9bbf432529e7794a9d241ef44adc44b10cf3d812e6c210c0ac3b4563e039"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE19.png"
+    },
+    {
+      "id": "WHSE20",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        107,
+        248
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE20_lod0.glb",
+          "sha256": "232b6ad286d31f1e1d083da919dddd8863c21c07f5613467b5465cb8aad56635"
+        },
+        {
+          "file": "../../models/WHSE20_lod1.glb",
+          "sha256": "bae3ec993100f66a88b686450d1079c4dd27c81f1479856f518c63568bc0693a"
+        },
+        {
+          "file": "../../models/WHSE20_lod2.glb",
+          "sha256": "1d809defb1a336a5075309106f23a501873b56ee416f856bc819799305a3ccfb"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE20.png"
+    },
+    {
+      "id": "WHSE22",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        107,
+        221,
+        248
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE22_lod0.glb",
+          "sha256": "5348088fc48a9d534307f49cecad94e8771a0c3321aef23aa4752a3aae7c8edf"
+        },
+        {
+          "file": "../../models/WHSE22_lod1.glb",
+          "sha256": "be7446abf65cd35626a3840618927fc1145eb7cb859aa0531edd3210c05fc219"
+        },
+        {
+          "file": "../../models/WHSE22_lod2.glb",
+          "sha256": "6ba2b8164e1d609e88ead4fd12ca35d46104aaeaeb43b58361fa2f6bcebe5463"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE22.png"
+    },
+    {
+      "id": "WHSE23",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        105,
+        247
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WHSE23_lod0.glb",
+          "sha256": "3e02ad44d9ca54980b7955af155da23e500cc8e1e244fde00bc64af158d04d58"
+        },
+        {
+          "file": "../../models/WHSE23_lod1.glb",
+          "sha256": "ee610931dcc04319bbb0023f3f4f9d0c2fc09c06fc06c39adb8e6fc803b8cf6a"
+        },
+        {
+          "file": "../../models/WHSE23_lod2.glb",
+          "sha256": "7e69d926d58f157a83aa97832b7ae2a427f3ad65ab71e10558a0c1dd3d1f323d"
+        }
+      ],
+      "render": "../../catalog_renders/WHSE23.png"
+    },
+    {
+      "id": "WRHS1",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        10,
+        11,
+        221
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS1_lod0.glb",
+          "sha256": "9b63b4a4ffd10176085e9136bbc91d9b0148f3175f61493a601099a71402822e"
+        },
+        {
+          "file": "../../models/WRHS1_lod1.glb",
+          "sha256": "a177bee7ce8f0c96c42ef170250df50e55d0d914068ee4592de85663d98f5039"
+        },
+        {
+          "file": "../../models/WRHS1_lod2.glb",
+          "sha256": "45532b9eb421dd2976f7b2884e875617300c368041f91e0b31fce70656f4d7b6"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS1.png"
+    },
+    {
+      "id": "WRHS2",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        10,
+        12,
+        221
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS2_lod0.glb",
+          "sha256": "e579927738a1b0de47cbd96c395e18e7164063470c56d99e55f11911d0486a99"
+        },
+        {
+          "file": "../../models/WRHS2_lod1.glb",
+          "sha256": "bc7f68d6bf06e7e18fe1bfd79f0231b576e73fd08cdd959a133f6c8e22b2b4de"
+        },
+        {
+          "file": "../../models/WRHS2_lod2.glb",
+          "sha256": "af03735346619c71eb13e8bd2c58abc7e621e4fa1a1e623f03231c1660804b89"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS2.png"
+    },
+    {
+      "id": "WRHS3",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        11
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS3_lod0.glb",
+          "sha256": "2e8734b4f03f09ec7af914b710d26c622d0047b701ff0b7b17ab5ed77d2a7e67"
+        },
+        {
+          "file": "../../models/WRHS3_lod1.glb",
+          "sha256": "81d1ab76e700cbb076b6ba845b68d62324cb3fcaf3fb92814cfdd7e8828bc27d"
+        },
+        {
+          "file": "../../models/WRHS3_lod2.glb",
+          "sha256": "9e58d1dabcaae6039fbb798a00fa26dfcd902b39dac6dc1d3ce51e2ac99b9ca8"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS3.png"
+    },
+    {
+      "id": "WRHS4",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        10,
+        11,
+        221
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS4_lod0.glb",
+          "sha256": "d13572d28994e58f6cc52efad1d07b21654ab84d911a4a16a926ea7e2787daae"
+        },
+        {
+          "file": "../../models/WRHS4_lod1.glb",
+          "sha256": "9e6a0c9d633f34026634d90eed3830492c0dc42c59db51a9dd352d0edb3d2e57"
+        },
+        {
+          "file": "../../models/WRHS4_lod2.glb",
+          "sha256": "9ecefe2491f237a68d3d2d49ab911555bb27d828d9c852793c2cab4e9bb3a1ee"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS4.png"
+    },
+    {
+      "id": "WRHS5",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        11
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS5_lod0.glb",
+          "sha256": "0090a41e25110d8d4ccc5073935be632ceef37677d61b3c9cbef410027a4ae67"
+        },
+        {
+          "file": "../../models/WRHS5_lod1.glb",
+          "sha256": "6febae17ceccb7dda0dc7232dcc4fd1d797426242fc5a51289c1d134c4d35ce2"
+        },
+        {
+          "file": "../../models/WRHS5_lod2.glb",
+          "sha256": "8d7df4d35478b3927d76b0c1adb738454458ea7ea43c736f373be55c8d7526b4"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS5.png"
+    },
+    {
+      "id": "WRHS6",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        12
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS6_lod0.glb",
+          "sha256": "07c898b80d3967e7b664cae43dfed73dfcf2f060493aa17dd39bc72b209dbb14"
+        },
+        {
+          "file": "../../models/WRHS6_lod1.glb",
+          "sha256": "ebf30da47c7494495a1c0f947ab011d0dbc168bfd85e3de85de033e5bc741ef6"
+        },
+        {
+          "file": "../../models/WRHS6_lod2.glb",
+          "sha256": "16e846b1fd3dc54eb78210309b4702acc0aca9ac38c6727a21732b875b7362db"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS6.png"
+    },
+    {
+      "id": "WRHS7",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        12,
+        221
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS7_lod0.glb",
+          "sha256": "76c5d331b6ad56e0690ee63f08f0ff09904b3a51f1935e1d66c5bd4f192bb504"
+        },
+        {
+          "file": "../../models/WRHS7_lod1.glb",
+          "sha256": "241ac5d7a282dec3fb7e0d9ea2be33fe7cae41539593ebbf992339ddd79efccc"
+        },
+        {
+          "file": "../../models/WRHS7_lod2.glb",
+          "sha256": "85c3bf5a191090e4b42cef63ea68e8630500ab352f64742191cca438ccdada10"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS7.png"
+    },
+    {
+      "id": "WRHS8",
+      "asset_type": "facade",
+      "primary_district": "industrial_warehouses",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        12
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WRHS8_lod0.glb",
+          "sha256": "003994d4f318d35f24c8986b79be0dc1348192ebb6981128e6d2dd49311979c6"
+        },
+        {
+          "file": "../../models/WRHS8_lod1.glb",
+          "sha256": "74865029aa580c0bdcae167a81670ed9bdb1a651487ae7e17ee7e9afc4ba9f04"
+        },
+        {
+          "file": "../../models/WRHS8_lod2.glb",
+          "sha256": "00f02c7c837d78419078cfc86c6ff564fb41d1b2d96662d00a04eea5ac505935"
+        }
+      ],
+      "render": "../../catalog_renders/WRHS8.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

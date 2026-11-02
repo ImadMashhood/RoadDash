@@ -1,0 +1,469 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_02.png",
+  "reference_sha256": "23473435ee5d2e2a23e69518a59824e1e929c14a5e094b30dc61eed4bf221752",
+  "source_blend": "catalog_sources/structures_02.blend",
+  "source_sha256": "4f96bd8783787e8396716f43447db99120bef6aa912307f506fe12fabc0fb6a8",
+  "records": [
+    {
+      "id": "CHINGAT2",
+      "asset_type": "structure",
+      "builder": "gate",
+      "reference_sheet": "structures_02.png",
+      "geometry_parts": {
+        "gate_stone_pier": 2,
+        "gate_base": 2,
+        "gate_pier_relief": 8,
+        "gate_lintel": 1,
+        "curved_pagoda_roof": 14,
+        "pagoda_tile_roll": 252,
+        "upturned_roof_finial": 2,
+        "pagoda_bracket": 3,
+        "gate_lattice": 14,
+        "gate_beam_bolt": 4
+      },
+      "description": "pagoda_green,paired_stone_piers,upturned_finials,lattice",
+      "body_dimensions_m": [
+        8.0,
+        2.0,
+        7.0
+      ],
+      "lods": [
+        {
+          "file": "CHINGAT2_lod0.glb",
+          "lod": 0,
+          "vertices": 10272,
+          "triangles": 19336,
+          "bytes": 3111236,
+          "sha256": "076ddf9c044c5b2ccbacfd38d775d43cb3dcbf17a75e3737955f84006a351416"
+        },
+        {
+          "file": "CHINGAT2_lod1.glb",
+          "lod": 1,
+          "vertices": 10176,
+          "triangles": 19160,
+          "bytes": 3097892,
+          "sha256": "73b319ee77bd820645a51f580f5274d15e566e9cd2368e3dc22231bee0e47b34"
+        },
+        {
+          "file": "CHINGAT2_lod2.glb",
+          "lod": 2,
+          "vertices": 152,
+          "triangles": 228,
+          "bytes": 1330636,
+          "sha256": "adb49d9917f639bef7933e12f470395d0b40eea3c27668475abc9a65388aa397"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.816173553466797,
+          -1.534999966621399,
+          0.0
+        ],
+        "max": [
+          4.816173553466797,
+          1.500000238418579,
+          6.935705184936523
+        ]
+      }
+    },
+    {
+      "id": "CHURCH2",
+      "asset_type": "structure",
+      "builder": "church",
+      "reference_sheet": "structures_02.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "siding_plank": 573,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 2,
+        "structure_entry_glass": 2,
+        "structure_entry_jamb": 4,
+        "structure_entry_sill": 4,
+        "structure_entry_vertical_mullion": 2,
+        "structure_entry_sash": 2,
+        "stone_window_reveal": 12,
+        "structure_door_panel": 2,
+        "structure_door_rail": 4,
+        "door_latch": 2,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 42,
+        "bell_tower": 1,
+        "tower_band": 4,
+        "belfry_window_cavity": 2,
+        "belfry_window_glass": 2,
+        "belfry_window_jamb": 4,
+        "belfry_window_sill": 4,
+        "belfry_window_vertical_mullion": 2,
+        "belfry_window_sash": 2,
+        "church_spire": 1,
+        "church_side_gothic_glass": 6,
+        "church_pointed_entry": 18
+      },
+      "description": "white_siding,pointed_windows,bell_tower,spire",
+      "body_dimensions_m": [
+        9.0,
+        18.0,
+        7.0
+      ],
+      "lods": [
+        {
+          "file": "CHURCH2_lod0.glb",
+          "lod": 0,
+          "vertices": 18394,
+          "triangles": 33552,
+          "bytes": 5193964,
+          "sha256": "ed1fd23235dc2797c2444a25464598e44adf066e0ddefdc3129a4609a69d3c6d"
+        },
+        {
+          "file": "CHURCH2_lod1.glb",
+          "lod": 1,
+          "vertices": 17194,
+          "triangles": 31352,
+          "bytes": 4697688,
+          "sha256": "bde3e4228677ec9d84a447c19b7b7e4cc855a390981ef2e055ba3d4c22f3b667"
+        },
+        {
+          "file": "CHURCH2_lod2.glb",
+          "lod": 2,
+          "vertices": 5866,
+          "triangles": 8800,
+          "bytes": 2938548,
+          "sha256": "35d3c9b65f933d1e3ecdca115e0b9d959c29d8bd7123ed7a392d57a3e886573d"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.755000114440918,
+          -10.847171783447266,
+          0.0
+        ],
+        "max": [
+          4.755000114440918,
+          9.260000228881836,
+          13.600000381469727
+        ]
+      }
+    },
+    {
+      "id": "GASA2",
+      "asset_type": "structure",
+      "builder": "gas_station",
+      "reference_sheet": "structures_02.png",
+      "geometry_parts": {
+        "wall_backing_front": 13,
+        "individual_bricks_front": 257,
+        "wall_backing_rear": 8,
+        "individual_bricks_rear": 573,
+        "wall_backing_left": 13,
+        "individual_bricks_left": 468,
+        "wall_backing_right": 13,
+        "individual_bricks_right": 468,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 4,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "station_showroom_cavity": 1,
+        "station_showroom_glass": 1,
+        "station_showroom_jamb": 2,
+        "station_showroom_sill": 2,
+        "station_showroom_vertical_mullion": 1,
+        "station_showroom_sash": 1,
+        "station_roof": 1,
+        "forecourt_canopy": 1,
+        "canopy_steel_post": 2,
+        "pump_base": 2,
+        "pump_body": 2,
+        "pump_head": 2,
+        "pump_meter": 2,
+        "pump_meter_digit": 8,
+        "pump_red_band": 2,
+        "fuel_hose": 8,
+        "fuel_nozzle": 2,
+        "structure_weathering_chip": 10
+      },
+      "description": "red_brick,forecourt_canopy,two_pumps,shop_glass",
+      "body_dimensions_m": [
+        9.0,
+        8.0,
+        4.0
+      ],
+      "lods": [
+        {
+          "file": "GASA2_lod0.glb",
+          "lod": 0,
+          "vertices": 45160,
+          "triangles": 82700,
+          "bytes": 9318916,
+          "sha256": "fb7ea8138780c60918d5576e2334b1b5ed1ce400d8adde34720dbb66114a779b"
+        },
+        {
+          "file": "GASA2_lod1.glb",
+          "lod": 1,
+          "vertices": 2368,
+          "triangles": 4248,
+          "bytes": 2746336,
+          "sha256": "54f00eca728261b3a3f84b57fd335e8e8512c6dcf74e4d1631481a24f8f6122e"
+        },
+        {
+          "file": "GASA2_lod2.glb",
+          "lod": 2,
+          "vertices": 752,
+          "triangles": 1128,
+          "bytes": 2177892,
+          "sha256": "ee183cdc82a936cdd33f62656c2a135686bd4b0db145adb3fb5c1766c3d2eefe"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -5.0,
+          -8.100000381469727,
+          0.0
+        ],
+        "max": [
+          5.0,
+          4.199999809265137,
+          4.125
+        ]
+      }
+    },
+    {
+      "id": "GASB2",
+      "asset_type": "structure",
+      "builder": "gas_station",
+      "reference_sheet": "structures_02.png",
+      "geometry_parts": {
+        "wall_backing_front": 13,
+        "individual_bricks_front": 296,
+        "wall_backing_rear": 8,
+        "individual_bricks_rear": 631,
+        "wall_backing_left": 13,
+        "individual_bricks_left": 541,
+        "wall_backing_right": 13,
+        "individual_bricks_right": 541,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 2,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "garage_roller": 14,
+        "station_roof": 1,
+        "forecourt_canopy": 1,
+        "canopy_steel_post": 2,
+        "pump_base": 3,
+        "pump_body": 3,
+        "pump_head": 3,
+        "pump_meter": 3,
+        "pump_meter_digit": 12,
+        "pump_red_band": 3,
+        "fuel_hose": 12,
+        "fuel_nozzle": 3,
+        "structure_weathering_chip": 10
+      },
+      "description": "whitewashed_brick,wide_canopy,three_pumps,garage",
+      "body_dimensions_m": [
+        10.0,
+        9.0,
+        4.0
+      ],
+      "lods": [
+        {
+          "file": "GASB2_lod0.glb",
+          "lod": 0,
+          "vertices": 51520,
+          "triangles": 94376,
+          "bytes": 10343940,
+          "sha256": "1684836f38e2818ec3fe128a24e672901ca1af77d24c220ec908ccadbbdf59cd"
+        },
+        {
+          "file": "GASB2_lod1.glb",
+          "lod": 1,
+          "vertices": 2896,
+          "triangles": 5232,
+          "bytes": 2915548,
+          "sha256": "91b54dba340ceee77b84c9b1f9cae650db4b0524291c1f2aacbf66340b10b023"
+        },
+        {
+          "file": "GASB2_lod2.glb",
+          "lod": 2,
+          "vertices": 728,
+          "triangles": 1092,
+          "bytes": 2271352,
+          "sha256": "dfd8c8b26df17b37828e39f93dc39e8945e7f365b4cbb69345f9ee889d487133"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -5.5,
+          -8.600000381469727,
+          0.0
+        ],
+        "max": [
+          5.5,
+          4.699999809265137,
+          4.125
+        ]
+      }
+    },
+    {
+      "id": "GRNTNK2",
+      "asset_type": "structure",
+      "builder": "silos",
+      "reference_sheet": "structures_02.png",
+      "geometry_parts": {
+        "tank_shell": 4,
+        "tank_band": 20,
+        "conical_tank_roof": 4,
+        "tank_ladder_rail": 8,
+        "tank_ladder_rung": 77,
+        "tank_rivet": 64
+      },
+      "description": "three_silos,conical_caps,ladder,small_silo",
+      "body_dimensions_m": [
+        10.0,
+        5.0,
+        8.0
+      ],
+      "lods": [
+        {
+          "file": "GRNTNK2_lod0.glb",
+          "lod": 0,
+          "vertices": 9072,
+          "triangles": 17436,
+          "bytes": 2200376,
+          "sha256": "388cc6c28baf0b952b653065d8fb6285033392cd3e57963ea38c891285f69b4e"
+        },
+        {
+          "file": "GRNTNK2_lod1.glb",
+          "lod": 1,
+          "vertices": 6768,
+          "triangles": 13084,
+          "bytes": 1879356,
+          "sha256": "547270d9cd2613d27dae88dc7aa8f0849fde74e39ae05f3b38eb038200621525"
+        },
+        {
+          "file": "GRNTNK2_lod2.glb",
+          "lod": 2,
+          "vertices": 480,
+          "triangles": 928,
+          "bytes": 735636,
+          "sha256": "e37a847f605c6efc15c13d8d3a04f78ef6474076401b0b04cd73692e9bffbb8b"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.318192958831787,
+          -1.6181939840316772,
+          0.0
+        ],
+        "max": [
+          5.568188190460205,
+          1.6181939840316772,
+          8.75
+        ]
+      }
+    },
+    {
+      "id": "HAYSHED2",
+      "asset_type": "structure",
+      "builder": "hay_shed",
+      "reference_sheet": "structures_02.png",
+      "geometry_parts": {
+        "hay_shed_post": 6,
+        "hay_shed_diagonal": 6,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 44,
+        "hay_bale": 25,
+        "bale_binding": 50,
+        "timber_post_bolt": 6
+      },
+      "description": "open_timber_frame,corrugated_roof,stacked_bales",
+      "body_dimensions_m": [
+        10.0,
+        9.0,
+        5.0
+      ],
+      "lods": [
+        {
+          "file": "HAYSHED2_lod0.glb",
+          "lod": 0,
+          "vertices": 3402,
+          "triangles": 6236,
+          "bytes": 2148072,
+          "sha256": "36c14bcf489cb1621e8bb146f368a45504be5fa84557f6381661d069da310cf9"
+        },
+        {
+          "file": "HAYSHED2_lod1.glb",
+          "lod": 1,
+          "vertices": 2202,
+          "triangles": 4036,
+          "bytes": 1684652,
+          "sha256": "fa8cf6409bbe0b908b10c2b734281e41e07a4b45f533cf0e29021d8618f7066a"
+        },
+        {
+          "file": "HAYSHED2_lod2.glb",
+          "lod": 2,
+          "vertices": 286,
+          "triangles": 428,
+          "bytes": 1408532,
+          "sha256": "4c8a5d182e83b1ef94a3a52260b641956ee19a07072a8f80940fe895cdcde298"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -5.09890604019165,
+          -4.659999847412109,
+          0.0
+        ],
+        "max": [
+          5.09890604019165,
+          4.610000133514404,
+          6.919413089752197
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

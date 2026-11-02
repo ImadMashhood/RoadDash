@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "reference": "art/buildings/concept_3d/facades_01.png",
+  "units": "metres; Blender Z up, front -Y; glTF Y up, front +Z",
+  "designs": [
+    {"id":"BUSS1","width":3.2,"depth":6.0,"height":9.0,"masonry":"ochre_brick","trim":"oxblood","shop":"green_metal","upper":"arched_sash","sign":null,"awning":false},
+    {"id":"BUSS10","width":3.2,"depth":6.0,"height":9.0,"masonry":"weathered_cream","trim":"ivory","shop":"black_metal","upper":"sash","sign":null,"awning":false},
+    {"id":"BUSS2","width":3.2,"depth":6.0,"height":9.0,"masonry":"weathered_cream","trim":"ivory","shop":"old_timber","upper":"red_panel","sign":null,"awning":true},
+    {"id":"BUSS4","width":3.2,"depth":6.0,"height":9.0,"masonry":"whitewashed_brick","trim":"ivory","shop":"black_metal","upper":"radio","sign":"RADIO","awning":false},
+    {"id":"BUSS5","width":3.2,"depth":6.0,"height":9.0,"masonry":"ochre_brick","trim":"oxblood","shop":"old_timber","upper":"drugs","sign":"DRUGS","awning":false},
+    {"id":"BUSS6","width":3.2,"depth":6.0,"height":9.0,"masonry":"whitewashed_brick","trim":"ivory","shop":"black_metal","upper":"double_bay","sign":null,"awning":false}
+  ]
+}

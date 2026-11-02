@@ -1,0 +1,31 @@
+{
+  "code": "HIWAY",
+  "label": "Sierra Nevada",
+  "asset_ids": [
+    "BUSS4",
+    "BUSS5",
+    "BUSS6",
+    "BUSS7",
+    "BUSS8",
+    "BUSS9",
+    "CLSTGA12",
+    "CLSTGA13",
+    "CLSTGA14",
+    "CLSTGA17",
+    "CLSTGA19",
+    "CLSTGA20",
+    "OFFC10",
+    "OFFC11",
+    "OFFC15",
+    "BARN22",
+    "GRNTNK2",
+    "RUSTICB2",
+    "SNCKSHP2",
+    "TOP",
+    "TOP1A",
+    "WATRTNK2",
+    "WHTTANK2",
+    "WINNERY2"
+  ],
+  "evidence": "Named assets in loaded families across stored section definitions; not exact placement, route order, frequency or availability at every point"
+}

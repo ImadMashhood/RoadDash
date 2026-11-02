@@ -1,0 +1,3455 @@
+{
+  "group": "traffic_vehicles",
+  "source": "sources/traffic_vehicles.blend",
+  "source_sha256": "1e9c9f0e1064e9722be284be4a27f9f1b6eb8007e28e334fc3953860dfe498f4",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-F665D881C574",
+      "name": "GOLFC00",
+      "builder": "hatchback",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/cars_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F665D881C574_lod0.glb",
+          "sha256": "9cb0cbdb4373f14d9df626ff6d91eacdbc48e6544b4b98fbf2a42598d0848313",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F665D881C574_lod1.glb",
+          "sha256": "7746036a13cf664b019652c13de80374830b77d9ed1fcb507c8358ff2c3e4351",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F665D881C574_lod2.glb",
+          "sha256": "8e1635a4f7736e25b1367cd790986700c43bfd3958ba5eb24c0f5c7f1abd8199",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7BE04B79B634",
+      "name": "GOLFG00",
+      "builder": "hatchback",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7BE04B79B634_lod0.glb",
+          "sha256": "92ef35c84dd09b1e5c6cb04bb017ff1875155ee943bf891f58f28c7bc7175930",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7BE04B79B634_lod1.glb",
+          "sha256": "13805df2e4f613bc37f691017eba9cf605d5243ee903d051fafab3bd0caaf88d",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7BE04B79B634_lod2.glb",
+          "sha256": "026c3e391076b2476c56aefa5e878f217ef4cc37121e51e662a159b1c748f339",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1BE4037C3DC3",
+      "name": "GOLFS0",
+      "builder": "hatchback",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1BE4037C3DC3_lod0.glb",
+          "sha256": "0c7f22137e76f7e74c12c89be067cad2c26bb5105cd688b2453a6efc55490c63",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1BE4037C3DC3_lod1.glb",
+          "sha256": "44e78747465ef63baacb6e1864016594e09b3d58d60780f473e93e986c4d2889",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1BE4037C3DC3_lod2.glb",
+          "sha256": "0b5737056bc653ab03b60406d6c8a019636c9ce2b6cba7ddf82b891a474d63f2",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F28FFDA2C4F5",
+      "name": "HONDAC00",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/cars_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F28FFDA2C4F5_lod0.glb",
+          "sha256": "7002521468f01a9d70fd65d14961b56e796a132048193752cad27d0050aa8183",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F28FFDA2C4F5_lod1.glb",
+          "sha256": "3b09b52c684ddfc102cbd0deb8b85ed2f3bd20a5d4c190036ece52e13ee37324",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F28FFDA2C4F5_lod2.glb",
+          "sha256": "cf6e7d33646f91bb2d5e9b10b70e8708fda199ceed68093e5cbc56af9b801d2d",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-222FD1ABC060",
+      "name": "HONDAG00",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-222FD1ABC060_lod0.glb",
+          "sha256": "8f399c743ee19b64f51cd0411d221239ee99b09ef22c555706472069653aaa9e",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-222FD1ABC060_lod1.glb",
+          "sha256": "e33dd5d94d0183c30edd3ca5dcde3f6b4b82b815ad5148711d8afd2f39290204",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-222FD1ABC060_lod2.glb",
+          "sha256": "510b7171ded850b5755c277d243e88bcb1c22ce8befe408d5a9b9ade74e8e89d",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1FC5D951DC33",
+      "name": "HONDAS0",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1FC5D951DC33_lod0.glb",
+          "sha256": "d66645696cce05b6b2529ff3591071662f5208e7edb5374c557a6f6393c00de4",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1FC5D951DC33_lod1.glb",
+          "sha256": "b05d7ebb6122b4ee6b6874669d095e25fd44ce52d5f8ffa6db8d437c22b3fc40",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1FC5D951DC33_lod2.glb",
+          "sha256": "453e25b566b87c8b264fb725b34b7bef9886c13718b8aa11934c244d5d305d55",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-83548312E542",
+      "name": "JETTAG00",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/cars_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-83548312E542_lod0.glb",
+          "sha256": "0e76d8cea1aaebea4b90bb89ecd86a1e6cc98784664f83b5aaad6d104b9e3a78",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-83548312E542_lod1.glb",
+          "sha256": "62889bc36424ad8dede5666499e7b7fd62b0be20ec349f7a5ecb8be7878f685e",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-83548312E542_lod2.glb",
+          "sha256": "d118a7032deb7334d21e0af61d8d045d98fa4c622ff556162111fdee1f385280",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-058F3FEA7D7B",
+      "name": "JETTAS0",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-058F3FEA7D7B_lod0.glb",
+          "sha256": "b6bca263fab93d1be4a379d3bac76a00bcaf9b2a46d3b6614a7041b3447d2b2c",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-058F3FEA7D7B_lod1.glb",
+          "sha256": "7ebd9dcbbf0f10773ea9997be10f487a38c8fa82c514288e0c83a69f89f4a39f",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-058F3FEA7D7B_lod2.glb",
+          "sha256": "2afd6ecbcae6e26c7e7efcf92696e615f0e8ef1c9de72b33d063ef9942f2490e",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-ACB559A1E02D",
+      "name": "MAZDAC00",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-ACB559A1E02D_lod0.glb",
+          "sha256": "269bb714e46fe0d08434b5de55fef349ba883a97b76bddbdadbc77888e633f73",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-ACB559A1E02D_lod1.glb",
+          "sha256": "363ff6a19e12a10e613d825805419e376c43cfd4a424a3186f1200e780518796",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-ACB559A1E02D_lod2.glb",
+          "sha256": "397533ecd92077e21eb4a019b758ea1702d9d1ccb8a4a3bf2b7b31f6dc752bfa",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E698DF31D488",
+      "name": "MAZDAG00",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E698DF31D488_lod0.glb",
+          "sha256": "4e947b9b2deffdb105b70c685b35c91cb9e138d69fa7eb26bd3caec763a99855",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E698DF31D488_lod1.glb",
+          "sha256": "7f8a14a095f50a5fa9bc61c9599186bc1dc0a1d61057ef57b2fdf45413a150da",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E698DF31D488_lod2.glb",
+          "sha256": "8daf59f99f9f1a75befa85690895d6876482a31d831c71390d5772846dc4a724",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0960AC08F1C0",
+      "name": "MIATAC00",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0960AC08F1C0_lod0.glb",
+          "sha256": "84bbe39dd050a9632e653ff8e0ab007fc9152c82d719eb85595b0a84ac30df5c",
+          "triangles": 12864,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.3700000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0960AC08F1C0_lod1.glb",
+          "sha256": "d17e036d39da5274001894b6401590d57ed899a9d0ba83ea130d5ecbfd14e3d0",
+          "triangles": 5992,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.3700000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0960AC08F1C0_lod2.glb",
+          "sha256": "5e0ea9b1f20a44744a05c81e4c41337fe0bc9b6dba13c1a619c87ee4ddc09243",
+          "triangles": 620,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.3700000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "convertible_seats": 2,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.3700000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6850000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4250C1AC6917",
+      "name": "MIATAG00",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4250C1AC6917_lod0.glb",
+          "sha256": "c989c8e971825823278714694d6e16db799c4603e8fcbffd612f570c378169c7",
+          "triangles": 12864,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.3700000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4250C1AC6917_lod1.glb",
+          "sha256": "343e5bbba17099e0856ab5bf3e7db96ec68c8c3b91c3254a9ff38a344c1e6f7d",
+          "triangles": 5992,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.3700000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4250C1AC6917_lod2.glb",
+          "sha256": "a64753d63c5217ac6009ccc5a779a0d868e0095d4ee4e75feaefc76176f78fc8",
+          "triangles": 620,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.3700000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "convertible_seats": 2,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.3700000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6850000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E11282A197D6",
+      "name": "MUSTX0",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E11282A197D6_lod0.glb",
+          "sha256": "ff31a2276d4993636bcfb313cb0c1ed61fde67b9591ba6fac5cee587a60b38e2",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E11282A197D6_lod1.glb",
+          "sha256": "7cbdb62c2911ef63e3177d1698eb15d873778e9b15620bc6732fd5288b90340a",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E11282A197D6_lod2.glb",
+          "sha256": "440f5a08280129cb3c0713c2a6f53e1516e47615fd702bbc3d21965e6fe164f7",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8644DD4656B9",
+      "name": "MZDRX7S0",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8644DD4656B9_lod0.glb",
+          "sha256": "021ee2d9beff593fef20f32fcf104c28143743588a18632f31b600dbb8bcae19",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8644DD4656B9_lod1.glb",
+          "sha256": "f910b8db66809fd8c9cabb2d99440ee381ba6d5128b6ef55042f865d150ff746",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8644DD4656B9_lod2.glb",
+          "sha256": "5a6ebf7e8e7e3ee71326bccae754b134907c4a28f8c0de5d2e258f094ec03636",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-04660392D4EA",
+      "name": "MZRX7C00",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_02.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-04660392D4EA_lod0.glb",
+          "sha256": "727e3c919e81b9b224c29451696366ac772ea78b70c87335abf79a486fb57c8d",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-04660392D4EA_lod1.glb",
+          "sha256": "52606e770b81946764c5f4c64fb236cf97df992c0a47570eecad360e2d674cf5",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-04660392D4EA_lod2.glb",
+          "sha256": "c6dac009d5496c6aef309148b08a842518446d4c7b981fb5a077fa50979ff9a1",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-29544492C2EF",
+      "name": "MZRX7G00",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-29544492C2EF_lod0.glb",
+          "sha256": "de99b0f481b0e4dd9137cf005ff1bc42fd26d8c085543ff7aad86627aaa7e489",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-29544492C2EF_lod1.glb",
+          "sha256": "7fc3dfb87a3adf32fe27e898012809949313cd521c503413b8d43fcb84d6ae1d",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-29544492C2EF_lod2.glb",
+          "sha256": "23bd3e739d51642225ff209ad79cec2fb76007520d3b90c26cefd9f7d86befcc",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-54B144E9C32A",
+      "name": "PICKPC00",
+      "builder": "pickup",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/cars_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-54B144E9C32A_lod0.glb",
+          "sha256": "2cd5fda073398b76ccbfe3c683f0d2a8905c138ebd46ed408a282802c8c580af",
+          "triangles": 12850,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6232004165649414
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-54B144E9C32A_lod1.glb",
+          "sha256": "6f99f22de86d0d76ba154a29c582357cf42df9368ceb013525d7b945a6467946",
+          "triangles": 5770,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.5996484756469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-54B144E9C32A_lod2.glb",
+          "sha256": "9b82d099bdeb9af4625aa8da1548c83170e9d45071ae8980c3258ba936b2255c",
+          "triangles": 598,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.558810234069824
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bed_sides": 2,
+        "bed_deck": 1,
+        "tailgate": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6232004165649414,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3116002082824707,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-14432A517177",
+      "name": "PICKPG00",
+      "builder": "pickup",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_03.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-14432A517177_lod0.glb",
+          "sha256": "b5792c583462a7b2f672d64dc29f764ed44eb966a7729dadc792a0e796830fb8",
+          "triangles": 12850,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6232004165649414
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-14432A517177_lod1.glb",
+          "sha256": "04e57caef15614c224f330ebcadda1ec6969d4b44ab76180cada04fa6ee56f25",
+          "triangles": 5770,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.5996484756469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-14432A517177_lod2.glb",
+          "sha256": "f9f296cf53c1b67292184ad160e606d4b8712050c8c66b17b34c3d3e1a2cd680",
+          "triangles": 598,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.558810234069824
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bed_sides": 2,
+        "bed_deck": 1,
+        "tailgate": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6232004165649414,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3116002082824707,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B7C7CF04E654",
+      "name": "PICKUPS0",
+      "builder": "pickup",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_03.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B7C7CF04E654_lod0.glb",
+          "sha256": "0a1068b4f391f096dc784a8ac556c55f77e6f6fe7f8b82faf9cb3b02bcf5aef7",
+          "triangles": 12850,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.6232004165649414
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B7C7CF04E654_lod1.glb",
+          "sha256": "82e2efab6f4a79d381244d807b3a2451842038e5ef32fadc8c4a97529b8c408b",
+          "triangles": 5770,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -1.2799999713897705,
+              -3.309999942779541,
+              0.0
+            ],
+            [
+              1.2799999713897705,
+              3.2950000762939453,
+              2.5996484756469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B7C7CF04E654_lod2.glb",
+          "sha256": "cfde76f940e98e720269c8029e83dd87afd3cb338c25efe7a2cf6a3dc3009de7",
+          "triangles": 598,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -1.2353999614715576,
+              -3.2950000762939453,
+              0.0
+            ],
+            [
+              1.2353999614715576,
+              3.2950000762939453,
+              2.558810234069824
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bed_sides": 2,
+        "bed_deck": 1,
+        "tailgate": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.559999942779541,
+          2.6232004165649414,
+          6.605000019073486
+        ],
+        "center_y_up": [
+          0.0,
+          1.3116002082824707,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FF2D8E417D6A",
+      "name": "POLICES0",
+      "builder": "police_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_03.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FF2D8E417D6A_lod0.glb",
+          "sha256": "9cb3995c01d23f716e89f4effd6be66dca3fa467578c389f0337bf04aa3f282e",
+          "triangles": 12958,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FF2D8E417D6A_lod1.glb",
+          "sha256": "f597f9dd489eadf700cf07d6619e327c1ab44fbce70e89f9014b35e47bb31829",
+          "triangles": 5814,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FF2D8E417D6A_lod2.glb",
+          "sha256": "4dec29dcb6f63932618be9caf342081fb9fb3bac9cc7c969d0e56c1a148fa1e3",
+          "triangles": 610,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.6699999570846558
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "black_hood": 1,
+        "black_trunk": 1,
+        "lightbar": 1,
+        "emergency_lenses": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.6699999570846558,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.8349999785423279,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CAF780D9A6D0",
+      "name": "PORCHC00",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_03.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CAF780D9A6D0_lod0.glb",
+          "sha256": "d02f6b46c2605415916492a65610983a04aa1be4b94ad09a1e280deb02cea34c",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CAF780D9A6D0_lod1.glb",
+          "sha256": "ab80e8207660cba4eaa527f60c33249c9c93e56f7ff1f904e212fd222ffa41f2",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CAF780D9A6D0_lod2.glb",
+          "sha256": "c0daf52ee25558911f1f3ccaa051b33148acf6e524c94b2e05aa67fc722bb6c7",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CB7672FE1584",
+      "name": "SAABG00",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_03.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CB7672FE1584_lod0.glb",
+          "sha256": "9c7615f1ef2c3806f0c46da7940863e803e2cf261e13e5ca057a5cbfcdea675b",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CB7672FE1584_lod1.glb",
+          "sha256": "265403f9892341874bee6e202fb67e4121394a5fed7d27b192af3d6e29e034e0",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CB7672FE1584_lod2.glb",
+          "sha256": "879ca7c0aeb7e58fdd2f5dfe3bbf8b4bf5fffce1410a0ed9673efacbd49f10c9",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CF223D3C1500",
+      "name": "SAABS0",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_04.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CF223D3C1500_lod0.glb",
+          "sha256": "da7bbb8f2ea4a4a3ebc434f620e7098787e49018249b8e7c25f3a505e36e466f",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CF223D3C1500_lod1.glb",
+          "sha256": "fdbbfe80766372b336d64916ba3c099ddc66fa8e97960747dc46eea83a636f25",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CF223D3C1500_lod2.glb",
+          "sha256": "3c1074ec9ea786ba6af73b1dba444429f39f1903bee04f6c11b0c42f1600cc38",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-924E1D8366D6",
+      "name": "TAXIG00",
+      "builder": "taxi",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/cars_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-924E1D8366D6_lod0.glb",
+          "sha256": "b79032f7241b9a128ea626db4aeb63a09fe1b41ca3946dbd8a9b1d3f9a3de5d6",
+          "triangles": 12526,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.690000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-924E1D8366D6_lod1.glb",
+          "sha256": "21b3be8441dc4682be8ea193f2bbb272dbd3a1cd23f9dfe2445cb17693c55663",
+          "triangles": 5638,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.690000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-924E1D8366D6_lod2.glb",
+          "sha256": "e78d26803263066f7db91f2ffb7003b62088c1d1f09da44274990c08b546bdbc",
+          "triangles": 562,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.690000057220459
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "taxi_roof_sign": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.690000057220459,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.8450000286102295,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-78AF102C3CAE",
+      "name": "TAXIS0",
+      "builder": "taxi",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_04.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-78AF102C3CAE_lod0.glb",
+          "sha256": "c737990a3285637331c0fa303d7a7479f5620a574397058bdbf49c51782ab4d8",
+          "triangles": 12526,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.690000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-78AF102C3CAE_lod1.glb",
+          "sha256": "0f28c6570cab42d4f35d2c2fbeb1dcd9010d2fc795805ab9ae7e9c9e8559616e",
+          "triangles": 5638,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.690000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-78AF102C3CAE_lod2.glb",
+          "sha256": "51383f1253fbf0524aff93e67baac8a727ceca6ffff982629df5b03505005316",
+          "triangles": 562,
+          "parts": 13,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.690000057220459
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "taxi_roof_sign": 1,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.690000057220459,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.8450000286102295,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B230B34D5FA8",
+      "name": "TERCELS0",
+      "builder": "sedan",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_04.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B230B34D5FA8_lod0.glb",
+          "sha256": "2193e31e5e1b9bce4c54ad777b772d7772d4174aa92f0937647b5a458ef0dd14",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B230B34D5FA8_lod1.glb",
+          "sha256": "55f2318e6622998fd03b63629c91e99984319b87a9074a7d789eb2af44892315",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B230B34D5FA8_lod2.glb",
+          "sha256": "5e34e74e7a88fd018f0ce841520e1d4044b4b2239d0ffb249eddbecc2d96f7f6",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6E33C62B2894",
+      "name": "TERCLC00",
+      "builder": "hatchback",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_04.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6E33C62B2894_lod0.glb",
+          "sha256": "97c2b6f116d01b108e0adbb0e5bed170d206b32ebdfb529bd2afb1b07a1b9829",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6E33C62B2894_lod1.glb",
+          "sha256": "a303a96f577a1de6fe8e58dfe3c7d500ee6dcacd55f69a96baf56449ca25d807",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6E33C62B2894_lod2.glb",
+          "sha256": "fa82e7513244de2ffb03fcf2bbf4be30d4a3ef2b509c598be076b83a692971d5",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D457A41F6BF7",
+      "name": "TERCLG00",
+      "builder": "hatchback",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_04.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D457A41F6BF7_lod0.glb",
+          "sha256": "f0ab3d0444bb9aa8b389ff533eff4de0256f88ff3dc50bcaa29147f9c7f51763",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.4249728918075562
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D457A41F6BF7_lod1.glb",
+          "sha256": "64fd870d26170b882e4ae94ea2bfc2a833a91e2cae6c38302853dea56844862f",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              1.424828052520752
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D457A41F6BF7_lod2.glb",
+          "sha256": "4bd0842a74de28018d7d2d65b348036961840839982188eb40572b26e58858ab",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              1.4248720407485962
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.4249728918075562,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          0.7124864459037781,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F037C09BF524",
+      "name": "VANC00",
+      "builder": "van",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/cars_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F037C09BF524_lod0.glb",
+          "sha256": "ac775d36646346c4db999e800ae4fa0ac22015ad1312191cce2a06c007e4112b",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111236572265625
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F037C09BF524_lod1.glb",
+          "sha256": "deb5c540d5657f6ca7eb2df0761b7c9c62ec68a6e4e76186003ec997ad58ddff",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111262083053589
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F037C09BF524_lod2.glb",
+          "sha256": "a427bbbe8efd7df6542cb91c56665cddfa70e4d06378b1f81ae7084a8f36712c",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              2.1110408306121826
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          2.111236572265625,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          1.0556182861328125,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-DDEC0485A258",
+      "name": "VANG00",
+      "builder": "van",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_04.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-DDEC0485A258_lod0.glb",
+          "sha256": "64a22f5c23d8d534f9f746123e40628f5b758cd98c0fd88ad318cecf6507ee0c",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111236572265625
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-DDEC0485A258_lod1.glb",
+          "sha256": "8349ba6be24914348430e8ff72865f2c52b6ffb86d381adac973b6a584e16a04",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111262083053589
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-DDEC0485A258_lod2.glb",
+          "sha256": "2d7c02455f0aacd17a8f3e0d507e9d05d80ce37b052c4b488abcf3a3446ebbd9",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              2.1110408306121826
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          2.111236572265625,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          1.0556182861328125,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8209AA61FCC5",
+      "name": "VANS0",
+      "builder": "van",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_05.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8209AA61FCC5_lod0.glb",
+          "sha256": "e6c52b2ecb67937a3e1fce28759a9f62ed1bede35abccebb5672fa597b119000",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111236572265625
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8209AA61FCC5_lod1.glb",
+          "sha256": "d07df49c60f2e118ab458d2abedff13fc9aba609b04c68dd99ff72703a12d69b",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2100000381469727,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.195000171661377,
+              2.111262083053589
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8209AA61FCC5_lod2.glb",
+          "sha256": "91eb72974ac0e172b871db0382e9de5b2114ec476e826ba519917961be5c0c7e",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.195000171661377,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.195000171661377,
+              2.1110408306121826
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          2.111236572265625,
+          4.40500020980835
+        ],
+        "center_y_up": [
+          0.0,
+          1.0556182861328125,
+          0.0074999332427978516
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C60F94CA98D3",
+      "name": "VETTEC00",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_05.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C60F94CA98D3_lod0.glb",
+          "sha256": "530c8d657d383046b8fb7f8c1182a935b9fbdd86aa7db135f4c509161b0334a1",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C60F94CA98D3_lod1.glb",
+          "sha256": "707754990f8c65e0111484a6e14aef0e8051859e1056c71c795a74a32b8062f2",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C60F94CA98D3_lod2.glb",
+          "sha256": "84010f6696db6e75b1704610451b1448853edf24ca5ca3e226f2bd466db62d4b",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E4E48824DC10",
+      "name": "VETTES0",
+      "builder": "sports_car",
+      "group": "traffic_vehicles",
+      "concept": {
+        "file": "art/props/concept_3d/all_traffic_vehicles_05.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E4E48824DC10_lod0.glb",
+          "sha256": "9bc9a6aab63a9904c582d657a6b7f982e2aa99dd642a199ccb3b0824ca32d100",
+          "triangles": 12418,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.0
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E4E48824DC10_lod1.glb",
+          "sha256": "86fd5a2b17fd3e3f1794fa51bf58b207591f1b2dfa114359763e033b646f2874",
+          "triangles": 5594,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -1.0449999570846558,
+              -2.2850000858306885,
+              0.018109088763594627
+            ],
+            [
+              1.0449999570846558,
+              2.2699999809265137,
+              1.2450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E4E48824DC10_lod2.glb",
+          "sha256": "0cbf96ed3f385d95908622b3ec83d002e5099f3d70d57b8f745cf5e18d5b36ca",
+          "triangles": 550,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.9900000095367432,
+              -2.2699999809265137,
+              0.04957060143351555
+            ],
+            [
+              0.9900000095367432,
+              2.2699999809265137,
+              1.164069652557373
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "chassis": 1,
+        "shaped_body_panels": 1,
+        "tire": 4,
+        "rim": 4,
+        "hub": 4,
+        "rim_spokes": 20,
+        "sloped_cabin_glazing": 1,
+        "roof_panel": 1,
+        "window_pillars": 6,
+        "window_belt": 2,
+        "door_handle": 2,
+        "mirror_stalk": 2,
+        "mirror": 2,
+        "bumper": 2,
+        "lamp_lenses": 4,
+        "radiator_grille": 1,
+        "grille_slats": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.0899999141693115,
+          1.2450000047683716,
+          4.555000066757202
+        ],
+        "center_y_up": [
+          0.0,
+          0.6225000023841858,
+          0.007500052452087402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

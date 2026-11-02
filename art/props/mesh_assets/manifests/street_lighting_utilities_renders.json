@@ -1,0 +1,117 @@
+[
+  {
+    "file": "renders/street_lighting_utilities_01.png",
+    "sha256": "25c9165254594e1be2513ea8b36ed5970b98bb1fe44227d60e39b311b5e380d8",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-76BC0C7FD4B4",
+        "name": "HYDRNTA2",
+        "glb": "models/PROP-76BC0C7FD4B4_lod0.glb",
+        "sha256": "f81aa4c19a75498136edb966d981e6cbd19f8ce3d1dd13c56a00d149b7f7e3ce"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-A10C19B6AFC9",
+        "name": "HYDRNTB2",
+        "glb": "models/PROP-A10C19B6AFC9_lod0.glb",
+        "sha256": "ecfddfaa8e5d4519c7827649b8882a7cb8aec52ce3452d497fa25cc464de730f"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-C17B2166B9A8",
+        "name": "HYDRNTC2",
+        "glb": "models/PROP-C17B2166B9A8_lod0.glb",
+        "sha256": "ec25b8154b74e0101110c27838e052a5cada9ab9c4311c7b4d2d125d8ff7105a"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-1F0523FFD8D4",
+        "name": "LAMPPST2",
+        "glb": "models/PROP-1F0523FFD8D4_lod0.glb",
+        "sha256": "c9cd5dfae1ff63b1569c56d96548f04133985da40f2b0422d1708f907b43ec86"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-373B78893E1E",
+        "name": "LIGAHDR2",
+        "glb": "models/PROP-373B78893E1E_lod0.glb",
+        "sha256": "d26ea08a425e7b41af41f363e294773d1f64b43da20f6bbb77cb944048e3a20c"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-83D81D9FD604",
+        "name": "LIGAHDY2",
+        "glb": "models/PROP-83D81D9FD604_lod0.glb",
+        "sha256": "0fee84e7a4c896d55312a399fe43d9b725d2d44f5b92e7175bf9b0d0c06b4c93"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_lighting_utilities_02.png",
+    "sha256": "846e3d961da07ab568dee91948e309f48c9fd5c74ac05d1410d5ba57319a6543",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-448222CCA57B",
+        "name": "LMPPST32",
+        "glb": "models/PROP-448222CCA57B_lod0.glb",
+        "sha256": "ca67c3d6fd4d86491b5207f3b59a470732b53ba2f49ada1512feb7950927042e"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-52D0386E0603",
+        "name": "METER2",
+        "glb": "models/PROP-52D0386E0603_lod0.glb",
+        "sha256": "3f16eba84d92389b2ecde83e8fec46ff34d85395a3644927cfd991b2b38d33b7"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-A2548A127159",
+        "name": "METERMD2",
+        "glb": "models/PROP-A2548A127159_lod0.glb",
+        "sha256": "d4391d12e64c169406705c6dd9119af66d845344d88eb3ac3ea0f8ef25afa7c0"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-1E4FA37E8EA1",
+        "name": "PRKGLMP2",
+        "glb": "models/PROP-1E4FA37E8EA1_lod0.glb",
+        "sha256": "81d0a9d15cb42ea3654ed8b8f30d027d582cd279807fc45627fd66955608510d"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-AFCACF124A63",
+        "name": "STRTLTE2",
+        "glb": "models/PROP-AFCACF124A63_lod0.glb",
+        "sha256": "9737bb216e627e2db99c230cfc8c27bdc0ea311ecc69152b9bfe6e15ba22c107"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-2112E0AB2672",
+        "name": "TELE2",
+        "glb": "models/PROP-2112E0AB2672_lod0.glb",
+        "sha256": "0be5960eb33ab2cd27b1a292b3710273c6b1dc28b234e005e5c31946fd4cc8c2"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_lighting_utilities_03.png",
+    "sha256": "28c962e8e6d02207ce1afa3a3c962d3a92e8f11e29fcd9726e14d40f5e8ec3a5",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-FF927E45F8D0",
+        "name": "TELPLEA2",
+        "glb": "models/PROP-FF927E45F8D0_lod0.glb",
+        "sha256": "62bca10c6ed9bad57273731a1b48184b23819eb650736ed804e4a7406ba27c97"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

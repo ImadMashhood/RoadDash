@@ -1,0 +1,70 @@
+{
+  "status": "Visual observations of extracted sheets; interpretation is not original runtime semantics",
+  "entries": [
+    {
+      "source_name": "BRNGRN2",
+      "appearance": "green barn/shed with pitched roof",
+      "remaining": "architecture cross-check; absent from earlier146-ID mesh set"
+    },
+    {
+      "source_name": "CHINLN2",
+      "appearance": "carved stone guardian lion on plinth",
+      "remaining": "landmark/statue; not a living quadruped"
+    },
+    {
+      "source_name": "COMBOA2",
+      "appearance": "ornate streetlamp with attached traffic/parking sign",
+      "remaining": "composite fixture; preserve constituent sockets"
+    },
+    {
+      "source_name": "COMBOB2",
+      "appearance": "streetlight/sign post beside mesh waste bin",
+      "remaining": "composite fixture; avoid duplicating standalone bin/post"
+    },
+    {
+      "source_name": "CRITPIL2",
+      "appearance": "flattened small animal/carcass silhouette",
+      "remaining": "species/use not established; do not infer a live actor"
+    },
+    {
+      "source_name": "CRITPSM2",
+      "appearance": "smaller flattened animal silhouette",
+      "remaining": "possible size variant of CRITPIL2; compare pixels before consolidation"
+    },
+    {
+      "source_name": "CRNRGRP2",
+      "appearance": "box-shaped roadside fixture with projecting frame",
+      "remaining": "exact identity remains unresolved"
+    },
+    {
+      "source_name": "GRNDMKB2",
+      "appearance": "white angled wall/panel fragment with dark inset",
+      "remaining": "exact intended assembly remains unresolved"
+    },
+    {
+      "source_name": "GRNDMKC2",
+      "appearance": "brown angled wall/panel fragment with dark inset",
+      "remaining": "exact intended assembly remains unresolved"
+    },
+    {
+      "source_name": "ICEPDSM2",
+      "appearance": "pale blue irregular ground patch",
+      "remaining": "ice-patch interpretation; actual collision/grip caller not yet established"
+    },
+    {
+      "source_name": "RECYSTF2",
+      "appearance": "blue recycling bin plus paper bundles",
+      "remaining": "composite recycling pile"
+    },
+    {
+      "source_name": "DEER2",
+      "appearance": "yellow diamond deer-crossing sign on a gray post",
+      "remaining": "filename had been wrongly classified as an animal; concept batch uses sign"
+    },
+    {
+      "source_name": "BIGFNCN2",
+      "appearance": "black-and-white checked tapered bollard on a concrete base",
+      "remaining": "barrier category is valid, but do not model this as a fence"
+    }
+  ]
+}

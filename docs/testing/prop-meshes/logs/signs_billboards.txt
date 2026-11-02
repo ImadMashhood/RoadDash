@@ -1,0 +1,1623 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_post
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: sign_plate
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: symbol_stem
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: direction_symbol
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: fasteners
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.02400374412536621 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_post.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: sign_plate.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: symbol_stem.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: direction_symbol.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.017800092697143555 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_post.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: sign_plate.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.008466720581054688 s
+
+EXPORTED PROP-992B6FB769E1 2HOUR2 [1077, 205, 32]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_post.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: sign_plate.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: fasteners.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.012531757354736328 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_post.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: sign_plate.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.007928133010864258 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_post.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: sign_plate.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.006612062454223633 s
+
+EXPORTED PROP-F9099D7F03FB 2HRBACK2 [968, 160, 32]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.024254798889160156 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.001
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.024028778076171875 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.016524314880371094 s
+
+EXPORTED PROP-7062E9653A48 BLLBRDC2 [1027, 499, 112]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.002
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.024534225463867188 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.003
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.015507221221923828 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.011298894882202148 s
+
+EXPORTED PROP-C5EEDAF78BAE BLLBRDD2 [1027, 499, 112]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.006
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.006
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.006
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.006
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.004
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.016851425170898438 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.007
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.007
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.007
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.007
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.005
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.036810874938964844 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.008
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.008
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.008
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.008
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.01113271713256836 s
+
+EXPORTED PROP-12FCED67F9D9 BLLBRDE2 [1027, 499, 112]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.009
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.009
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.009
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.009
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.006
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.030724287033081055 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.010
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.010
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.010
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.010
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.007
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.02261805534362793 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.011
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.011
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.011
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.011
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.016231060028076172 s
+
+EXPORTED PROP-C0591691B65E BLLBRDF2 [1027, 499, 112]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.012
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.012
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.012
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.012
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.008
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.024643898010253906 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.013
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.013
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.013
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.013
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.009
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.022444963455200195 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.014
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.014
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.014
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.014
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.015765905380249023 s
+
+EXPORTED PROP-E6E25A6FDF99 BLLBRDH2 [1027, 499, 112]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.015
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.015
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.015
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.015
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.010
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.02469635009765625 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.016
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.016
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.016
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.016
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.011
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.017362117767333984 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.017
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.017
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.017
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.017
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.011141538619995117 s
+
+EXPORTED PROP-C2963D44C70E BLLBRDJ2 [1027, 499, 112]
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.018
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.018
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.018
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.018
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.012
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.018189430236816406 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.019
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.019
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.019
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.019
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: original_mountain_graphic.013
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Finished glTF 2.0 export in 0.015125036239624023 s
+
+20:17:40 | INFO: Starting glTF 2.0 export
+20:17:40 | INFO: Extracting primitive: sign_support.020
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: panel_back.020
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: painted_sign_face.020
+20:17:40 | INFO: Primitives created: 1
+20:17:40 | INFO: Extracting primitive: frame.020
+20:17:40 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.011419296264648438 s
+
+EXPORTED PROP-6239D3FA2D89 BLLBRDM2 [1027, 499, 112]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_support.021
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: panel_back.021
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: painted_sign_face.021
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: frame.021
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_mountain_graphic.014
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.0160980224609375 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_support.022
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: panel_back.022
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: painted_sign_face.022
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: frame.022
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_mountain_graphic.015
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.014525175094604492 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_support.023
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: panel_back.023
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: painted_sign_face.023
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: frame.023
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.010709285736083984 s
+
+EXPORTED PROP-B2D227D84717 BLLBRDN2 [1027, 499, 112]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_support.024
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: panel_back.024
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: painted_sign_face.024
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: frame.024
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_mountain_graphic.016
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.01593160629272461 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_support.025
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: panel_back.025
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: painted_sign_face.025
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: frame.025
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_mountain_graphic.017
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.01570892333984375 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_support.026
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: panel_back.026
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: painted_sign_face.026
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: frame.026
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.010823965072631836 s
+
+EXPORTED PROP-85C48501CEE1 BLLBRDP2 [1027, 499, 112]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: trailer_chassis
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: tire
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: rim
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: hub
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: rim_spokes
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_board_legs
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_board
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_bulbs
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_head_bulbs
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.05156970024108887 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: trailer_chassis.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: tire.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: rim.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: hub.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: rim_spokes.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_board_legs.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_board.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_bulbs.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_head_bulbs.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.03329610824584961 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: trailer_chassis.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: tire.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: rim.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_board_legs.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: arrow_board.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.013566017150878906 s
+
+EXPORTED PROP-6F830F9B52DC CALTRAN2 [10392, 3984, 184]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.006
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.01681065559387207 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.007
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.003
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.003
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.011815071105957031 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.008
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.00738835334777832 s
+
+EXPORTED PROP-0527948B50ED CURVES2 [1077, 205, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.009
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.003
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.004
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.004
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.003
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.03470659255981445 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.010
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.004
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.005
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.005
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.011808395385742188 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.011
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.005
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.007388114929199219 s
+
+EXPORTED PROP-8CA7E4602EE8 DEER2 [1077, 205, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.012
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.006
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.004
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.010621070861816406 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.013
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.007
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.005949735641479492 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.014
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.008
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.005334377288818359 s
+
+EXPORTED PROP-F687F73DE07E DIAGBCK2 [968, 160, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.015
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.009
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: no_entry_bar
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.005
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.015348672866821289 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.016
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.010
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: no_entry_bar.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.010248422622680664 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.017
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.011
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.007166385650634766 s
+
+EXPORTED PROP-89FEA3749085 DONTENT2 [1076, 204, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.018
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.012
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.006
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.006
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.006
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.016347885131835938 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.019
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.013
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.007
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.007
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.011495351791381836 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.020
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.014
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.008178472518920898 s
+
+EXPORTED PROP-82CFF763B8F5 FLGSAHD2 [1077, 205, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.021
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.015
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.008
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.008
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.007
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.01757645606994629 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.022
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.016
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.009
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.009
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.012177467346191406 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.023
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.017
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.009280920028686523 s
+
+EXPORTED PROP-7695E368A5D3 FLSHFLD2 [1077, 205, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.024
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.018
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.010
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.010
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.008
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.016623258590698242 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.025
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.019
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.011
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.011
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.012569665908813477 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.026
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.020
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.007401704788208008 s
+
+EXPORTED PROP-11099881720B FWENTR2 [1077, 205, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.027
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.021
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.009
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.010934114456176758 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.028
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.022
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.007032871246337891 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.029
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.023
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.007085323333740234 s
+
+EXPORTED PROP-488994DB3F1A HNDCPBK2 [968, 160, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.030
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.024
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.010
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.015420675277709961 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.031
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.025
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.014984846115112305 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.032
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.026
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.008469581604003906 s
+
+EXPORTED PROP-3079075B0F84 HWYJNBK2 [968, 160, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.033
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.027
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.012
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.012
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.011
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.026923418045043945 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.034
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.028
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.013
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.013
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.020982980728149414 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.035
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: sign_plate.029
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.012705326080322266 s
+
+EXPORTED PROP-7F4A2C901710 HWYJUNC2 [1077, 205, 32]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: information_posts
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: map_backboard
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_map_panel
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: pitched_information_roof
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: schematic_map_paths
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.018373727798461914 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: information_posts.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: map_backboard.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_map_panel.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: pitched_information_roof.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: schematic_map_paths.001
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.016083955764770508 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: information_posts.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: map_backboard.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: original_map_panel.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: pitched_information_roof.002
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.012397527694702148 s
+
+EXPORTED PROP-A3E04046058F INTRSGN2 [1468, 604, 72]
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.036
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.006
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.014
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.014
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: fasteners.012
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.017733335494995117 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.037
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.007
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: symbol_stem.015
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: direction_symbol.015
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.012424945831298828 s
+
+20:17:41 | INFO: Starting glTF 2.0 export
+20:17:41 | INFO: Extracting primitive: sign_post.038
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Extracting primitive: shaped_sign_plate.008
+20:17:41 | INFO: Primitives created: 1
+20:17:41 | INFO: Finished glTF 2.0 export in 0.008949995040893555 s
+
+EXPORTED PROP-0DDA8873F67B L-TURN2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.039
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.009
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.016
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.016
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.013
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.01833033561706543 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.040
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.010
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.017
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.017
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.012860774993896484 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.041
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.011
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.009216070175170898 s
+
+EXPORTED PROP-E0053C7FF185 LANEMRG2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.042
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.012
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.018
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.018
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.014
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.01794600486755371 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.043
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.013
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.019
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.019
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013981819152832031 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.044
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.014
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.008232355117797852 s
+
+EXPORTED PROP-FA6342A2CD79 LANEOPN2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.001
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.0140533447265625 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.001
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.002
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.003
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.018263816833496094 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.002
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.00791478157043457 s
+
+EXPORTED PROP-76C715F03198 MARKERA2 [1128, 696, 20]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.003
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.004
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.005
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.0221254825592041 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.004
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.006
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.007
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.020049095153808594 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.005
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.00794219970703125 s
+
+EXPORTED PROP-0923AE5B836E MARKERB2 [1128, 696, 20]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.006
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.008
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.009
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.014117002487182617 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.007
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.010
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: reflective_bands.011
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013872623443603516 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: bollard.008
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.005228281021118164 s
+
+EXPORTED PROP-FA0E9EC9FECC MARKERC2 [1128, 696, 20]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.045
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.020
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.020
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.015
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.039782047271728516 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.046
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.021
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.021
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013312339782714844 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.047
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.008556604385375977 s
+
+EXPORTED PROP-84171B5C015F NOPRKNG2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.048
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.033
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.022
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.022
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.016
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.019601821899414062 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.049
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.034
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.023
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.023
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.012915611267089844 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.050
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.035
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.008684635162353516 s
+
+EXPORTED PROP-56DF42C17296 NOUTURN2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.051
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.036
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.024
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.024
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.017
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.017724037170410156 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.052
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.037
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.025
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.025
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.012465953826904297 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.053
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.038
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.00823974609375 s
+
+EXPORTED PROP-D5B981CF3524 PARKING2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_support.027
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: panel_back.027
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: painted_sign_face.027
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: frame.027
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: original_mountain_graphic.018
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.016667604446411133 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_support.028
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: panel_back.028
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: painted_sign_face.028
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: frame.028
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: original_mountain_graphic.019
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.017510175704956055 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_support.029
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: panel_back.029
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: painted_sign_face.029
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: frame.029
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013529062271118164 s
+
+EXPORTED PROP-EF784F3F7403 RTRYCLB2 [1027, 499, 112]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.054
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.039
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.026
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.026
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.018
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.019001483917236328 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.055
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.040
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.027
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.027
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013531684875488281 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.056
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.041
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.00856161117553711 s
+
+EXPORTED PROP-82D0372B00F5 SGNPDRN2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.057
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.042
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.028
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.028
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.019
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.018912553787231445 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.058
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.043
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.029
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.029
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013533830642700195 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.059
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.044
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.008603572845458984 s
+
+EXPORTED PROP-5F9893490335 SIGNDVA2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: motel_post
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: motel_vertical_sign
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.009562969207763672 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: motel_post.001
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: motel_vertical_sign.001
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.009588241577148438 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: motel_post.002
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: motel_vertical_sign.002
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.00900125503540039 s
+
+EXPORTED PROP-336B99EB1AE5 SIGNMTL2 [296, 160, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_support.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: panel_back.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: painted_sign_face.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: frame.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: original_mountain_graphic.020
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.01798081398010254 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_support.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: panel_back.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: painted_sign_face.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: frame.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: original_mountain_graphic.021
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.01651310920715332 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_support.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: panel_back.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: painted_sign_face.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: frame.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.013768196105957031 s
+
+EXPORTED PROP-3E7A6A79B8DE SIGNPUM2 [1027, 499, 112]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.060
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.015
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.030
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.020
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.025985002517700195 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.061
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.016
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.031
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.014218807220458984 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.062
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.017
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.010436058044433594 s
+
+EXPORTED PROP-D41961B709AF SIGNZIG2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.063
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.018
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.032
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.021
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.02195429801940918 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.064
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.019
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.033
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.033
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.014394044876098633 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.065
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: shaped_sign_plate.020
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.010044574737548828 s
+
+EXPORTED PROP-BEDC5F4F469F SLIPPRY2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.066
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.045
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.034
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.034
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: fasteners.022
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.021720170974731445 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.067
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.046
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: symbol_stem.035
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: direction_symbol.035
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.01571059226989746 s
+
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:42 | INFO: Extracting primitive: sign_post.068
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Extracting primitive: sign_plate.047
+20:17:42 | INFO: Primitives created: 1
+20:17:42 | INFO: Finished glTF 2.0 export in 0.008937597274780273 s
+
+EXPORTED PROP-66C456FCBE18 SLOWARW2 [1077, 205, 32]
+20:17:42 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.069
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.048
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.023
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.014029264450073242 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.070
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.049
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.009287595748901367 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.071
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.050
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.010561466217041016 s
+
+EXPORTED PROP-D11A3014691B SLWARBK2 [968, 160, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.072
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.051
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.024
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 25
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.03130316734313965 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.073
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.052
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 25.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.04902148246765137 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.074
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.053
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.009374856948852539 s
+
+EXPORTED PROP-2023BC139293 SPEED252 [2768, 1960, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.075
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.054
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.025
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.002
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 35
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.02219414710998535 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.076
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.055
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.003
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 35.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.01590442657470703 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.077
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.056
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.00908517837524414 s
+
+EXPORTED PROP-44C775E16189 SPEED352 [3000, 2192, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.078
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.057
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.026
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.004
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 45
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.020121097564697266 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.079
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.058
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.005
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 45.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.01561284065246582 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.080
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.059
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.00879216194152832 s
+
+EXPORTED PROP-75AC14A98E6C SPEED452 [2476, 1668, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.081
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.060
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.027
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.006
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 55
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.02046680450439453 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.082
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.061
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering SPEED LIMIT.007
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering 55.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.015465259552001953 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.083
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.062
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.009177446365356445 s
+
+EXPORTED PROP-2765DFD7C074 SPEED552 [2724, 1916, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.084
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.063
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.028
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.012584447860717773 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.085
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.064
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.008275985717773438 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.086
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: sign_plate.065
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.007216453552246094 s
+
+EXPORTED PROP-EBB3495928BE SPEEDBK2 [968, 160, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.087
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.021
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.029
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering STOP
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.02066326141357422 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.088
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.022
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering STOP.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.015422582626342773 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.089
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.023
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.009553670883178711 s
+
+EXPORTED PROP-FA0FFFDCB22C STOP2 [2200, 1328, 48]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.090
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.024
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.030
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.013617277145385742 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.091
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.025
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.008431196212768555 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.092
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.026
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.008247852325439453 s
+
+EXPORTED PROP-3F00E4E46820 STOPBCK2 [1080, 208, 48]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.093
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.027
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: symbol_stem.036
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: direction_symbol.036
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.031
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.02232217788696289 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.094
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.028
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: symbol_stem.037
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: direction_symbol.037
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.015599250793457031 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.095
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.029
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.009374380111694336 s
+
+EXPORTED PROP-2932CA004800 XWALK2 [1077, 205, 32]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.096
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.030
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.032
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering YIELD
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.018799781799316406 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.097
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.031
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: Dimensional lettering YIELD.001
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.013233423233032227 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.098
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.032
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.010188102722167969 s
+
+EXPORTED PROP-773118451561 YIELD2 [1264, 472, 28]
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.099
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.033
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: fasteners.033
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.012991666793823242 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.100
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.034
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.008093118667602539 s
+
+20:17:43 | INFO: Starting glTF 2.0 export
+20:17:43 | INFO: Extracting primitive: sign_post.101
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Extracting primitive: shaped_sign_plate.035
+20:17:43 | INFO: Primitives created: 1
+20:17:43 | INFO: Finished glTF 2.0 export in 0.007431745529174805 s
+
+EXPORTED PROP-A0EEC9A844C4 YIELDBK2 [940, 148, 28]
+Info: Saved as "signs_billboards.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

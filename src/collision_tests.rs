@@ -253,3 +253,73 @@ fn real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel() {
         println!("REAL_CAR_TRAJECTORY direction={direction} forward_travel_8_ticks_m={travel}");
     }
 }
+
+#[test]
+fn detached_body_contacts_never_script_a_new_mounted_wipeout() {
+    for id in [0, 1] {
+        for original in [false, true] {
+            for own in [false, true] {
+                for kind in [recovery::BodyKind::Ragdoll, recovery::BodyKind::Wreck] {
+                    let mut app = game::tests::simulation();
+                    app.insert_resource(crate::original_crash::OriginalCrashes(original));
+                    let owner = app
+                        .world_mut()
+                        .query_filtered::<Entity, With<Rider>>()
+                        .single(app.world())
+                        .unwrap();
+                    let foreign = app.world_mut().spawn_empty().id();
+                    let origin = *app.world().get::<Transform>(owner).unwrap();
+                    {
+                        let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                        r.id = id;
+                        r.immunity = 0.0;
+                        r.speed = 40.0;
+                        r.motion_velocity = origin.rotation * Vec3::Z * 40.0;
+                    }
+                    let bodies: Vec<_> = (0..11)
+                        .map(|i| {
+                            app.world_mut()
+                                .spawn((
+                                    OwnedBody {
+                                        owner: if own { owner } else { foreign },
+                                        kind,
+                                    },
+                                    Transform::from_translation(
+                                        origin.translation
+                                            + origin.rotation * Vec3::Z * (2.0 + i as f32),
+                                    ),
+                                    Collider::ball(0.2),
+                                    RigidBody::Dynamic,
+                                    Velocity::zero(),
+                                ))
+                                .id()
+                        })
+                        .collect();
+                    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+                    for body in &bodies {
+                        app.world_mut()
+                            .write_message(recovery::SweptContact(owner, *body));
+                    }
+                    app.update();
+                    assert_eq!(
+                        app.world().get::<Recovery>(owner).unwrap().stage,
+                        RecoveryStage::Riding,
+                        "id={id}, original={original}, own={own}"
+                    );
+                    assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, 0.0);
+                    assert_eq!(
+                        app.world_mut()
+                            .query::<&OwnedBody>()
+                            .iter(app.world())
+                            .count(),
+                        11
+                    );
+                    for body in bodies {
+                        assert!(app.world().get::<Collider>(body).is_some());
+                        assert!(app.world().get::<ColliderDisabled>(body).is_none());
+                    }
+                }
+            }
+        }
+    }
+}
