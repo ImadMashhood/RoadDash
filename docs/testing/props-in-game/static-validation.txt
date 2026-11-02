@@ -1,0 +1,1 @@
+{"models": 369, "glbs": 1107, "source_scenes": 13, "rendered_ids": 369, "render_missing": [], "scope": "Geometry/bytes/LOD/material coverage, not art approval, skinning, manifold proof or live gameplay validation"}

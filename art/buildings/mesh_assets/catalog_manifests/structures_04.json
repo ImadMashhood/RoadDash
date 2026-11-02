@@ -1,0 +1,523 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_04.png",
+  "reference_sha256": "579f066d6ee86f6e5232c5b6ee5793c47525c1bde22d417304a6119d76b38071",
+  "source_blend": "catalog_sources/structures_04.blend",
+  "source_sha256": "04800b4979686f562941f3c175f6268f3122f8e7b6a98e8ab9c1a8c215af819f",
+  "records": [
+    {
+      "id": "PHONSHK2",
+      "asset_type": "structure",
+      "builder": "phone_shack",
+      "reference_sheet": "structures_04.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 60,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 1,
+        "wall_backing_right": 1,
+        "structure_foundation": 1,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 2,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "irregular_roof_plank": 9,
+        "phone_unit": 1
+      },
+      "description": "rough_planks,hardware,irregular_roofline",
+      "body_dimensions_m": [
+        1.5,
+        1.6,
+        2.7
+      ],
+      "lods": [
+        {
+          "file": "PHONSHK2_lod0.glb",
+          "lod": 0,
+          "vertices": 2328,
+          "triangles": 4220,
+          "bytes": 1986812,
+          "sha256": "8785e7cb3a44f2cdefbb5a4726232c3ab9eb62641460fdd3849177d733175a06"
+        },
+        {
+          "file": "PHONSHK2_lod1.glb",
+          "lod": 1,
+          "vertices": 2160,
+          "triangles": 3912,
+          "bytes": 1636096,
+          "sha256": "073a19217ce0d79ed3cbfd1eebcfe22ac723b0b4e65ab578858d819418f0842c"
+        },
+        {
+          "file": "PHONSHK2_lod2.glb",
+          "lod": 2,
+          "vertices": 768,
+          "triangles": 1152,
+          "bytes": 760460,
+          "sha256": "daca52651eac4ffb98573cce6bdded88232e4db17c0397d209310be70c66fe78"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.875,
+          -1.0799999237060547,
+          0.0
+        ],
+        "max": [
+          0.875,
+          0.925000011920929,
+          2.8500559329986572
+        ]
+      }
+    },
+    {
+      "id": "PORTLET2",
+      "asset_type": "structure",
+      "builder": "portable_toilet",
+      "reference_sheet": "structures_04.png",
+      "geometry_parts": {
+        "toilet_body": 1,
+        "toilet_base": 1,
+        "toilet_door": 1,
+        "door_rib": 2,
+        "toilet_vent": 5,
+        "toilet_latch": 1,
+        "door_hinge": 2,
+        "rounded_toilet_cap": 8,
+        "structure_weathering_chip": 10
+      },
+      "description": "blue_plastic,rounded_cap,vents,hinges,latch",
+      "body_dimensions_m": [
+        1.3,
+        1.4,
+        2.5
+      ],
+      "lods": [
+        {
+          "file": "PORTLET2_lod0.glb",
+          "lod": 0,
+          "vertices": 744,
+          "triangles": 1364,
+          "bytes": 1722020,
+          "sha256": "1893eabb038b6b51d25640e7a208cc57c65a25dab9830ee75c939b18a4dd8027"
+        },
+        {
+          "file": "PORTLET2_lod1.glb",
+          "lod": 1,
+          "vertices": 432,
+          "triangles": 792,
+          "bytes": 1350128,
+          "sha256": "450d157aaeee77242215c67564483bf8a6b2460d059ecfe2adbc152f4c04ea09"
+        },
+        {
+          "file": "PORTLET2_lod2.glb",
+          "lod": 2,
+          "vertices": 88,
+          "triangles": 132,
+          "bytes": 1011340,
+          "sha256": "06bfc49351ed29cf612869c590a023bc3843ca1e7bdf25bb69fb3b33ae923356"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.7099999785423279,
+          -0.89000004529953,
+          0.0
+        ],
+        "max": [
+          0.7099999785423279,
+          0.7599999904632568,
+          2.687502145767212
+        ]
+      }
+    },
+    {
+      "id": "RUSTICA2",
+      "asset_type": "structure",
+      "builder": "cabin",
+      "reference_sheet": "structures_04.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "siding_plank": 666,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 42,
+        "porch_floor": 1,
+        "porch_column": 2,
+        "porch_brace": 2,
+        "porch_roof": 1,
+        "porch_rail_post": 4,
+        "porch_side_rail": 4,
+        "porch_diagonal": 2,
+        "porch_step": 3,
+        "stove_pipe": 1,
+        "structure_weathering_chip": 10
+      },
+      "description": "old_timber,rust_roof,porch,stove_pipe",
+      "body_dimensions_m": [
+        9.0,
+        10.0,
+        5.0
+      ],
+      "lods": [
+        {
+          "file": "RUSTICA2_lod0.glb",
+          "lod": 0,
+          "vertices": 19838,
+          "triangles": 36204,
+          "bytes": 4114896,
+          "sha256": "40dd5c4c9d7487f9e86cfaf3611086a291a5689401440adce15c42d0fd307b22"
+        },
+        {
+          "file": "RUSTICA2_lod1.glb",
+          "lod": 1,
+          "vertices": 18422,
+          "triangles": 33608,
+          "bytes": 3917112,
+          "sha256": "f1b8ebedd6184debaed31723c33a8ec62a3767575c5ef1e4c09356c44b1640d4"
+        },
+        {
+          "file": "RUSTICA2_lod2.glb",
+          "lod": 2,
+          "vertices": 6330,
+          "triangles": 9500,
+          "bytes": 2038468,
+          "sha256": "ed9f990832d989a5c8c63542a71eb659b8f6073c6c7b281d06d7d5afa5fd495c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.755000114440918,
+          -7.5,
+          0.0
+        ],
+        "max": [
+          4.755000114440918,
+          5.260000228881836,
+          7.416332244873047
+        ]
+      }
+    },
+    {
+      "id": "RUSTICB2",
+      "asset_type": "structure",
+      "builder": "cabin",
+      "reference_sheet": "structures_04.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "siding_plank": 393,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 42,
+        "porch_floor": 1,
+        "porch_column": 2,
+        "porch_brace": 2,
+        "porch_roof": 1,
+        "porch_rail_post": 4,
+        "porch_side_rail": 4,
+        "porch_diagonal": 2,
+        "porch_step": 3,
+        "stove_pipe": 1,
+        "pump_base": 1,
+        "pump_body": 1,
+        "pump_head": 1,
+        "pump_meter": 1,
+        "pump_meter_digit": 4,
+        "pump_red_band": 1,
+        "fuel_hose": 4,
+        "fuel_nozzle": 1,
+        "structure_weathering_chip": 10
+      },
+      "description": "white_siding,porch,fuel_pump,stove_pipe",
+      "body_dimensions_m": [
+        9.0,
+        10.0,
+        5.0
+      ],
+      "lods": [
+        {
+          "file": "RUSTICB2_lod0.glb",
+          "lod": 0,
+          "vertices": 13718,
+          "triangles": 25000,
+          "bytes": 4847500,
+          "sha256": "7a47e3f2989c8a45c742af381ac63bb9dc5447cbf2a1c59b46dab3258d22506a"
+        },
+        {
+          "file": "RUSTICB2_lod1.glb",
+          "lod": 1,
+          "vertices": 12302,
+          "triangles": 22404,
+          "bytes": 4650104,
+          "sha256": "cfcb229a58619bccb593375d5e55b69e77a8ead1f44905504213cf8e2544c3a2"
+        },
+        {
+          "file": "RUSTICB2_lod2.glb",
+          "lod": 2,
+          "vertices": 4178,
+          "triangles": 6272,
+          "bytes": 2769228,
+          "sha256": "c5efcf81228dad1523a9947052fbda424353e6cf4b8b5b8b5244e8df6e5a5223"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.755000114440918,
+          -7.5,
+          0.0
+        ],
+        "max": [
+          4.755000114440918,
+          5.260000228881836,
+          7.416332244873047
+        ]
+      }
+    },
+    {
+      "id": "SCHOOL2",
+      "asset_type": "structure",
+      "builder": "school",
+      "reference_sheet": "structures_04.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "siding_plank": 489,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "gable_wall": 2,
+        "pitched_roof_plane": 4,
+        "gable_bargeboard": 4,
+        "roof_shingle_course": 56,
+        "porch_floor": 1,
+        "porch_column": 2,
+        "porch_brace": 2,
+        "porch_roof": 1,
+        "porch_step": 3,
+        "school_flagpole": 1,
+        "flag_stripe": 7,
+        "flag_field": 1,
+        "structure_weathering_chip": 10
+      },
+      "description": "white_siding,gabled_entry,tall_windows,flagpole",
+      "body_dimensions_m": [
+        9.0,
+        13.0,
+        6.0
+      ],
+      "lods": [
+        {
+          "file": "SCHOOL2_lod0.glb",
+          "lod": 0,
+          "vertices": 15980,
+          "triangles": 29128,
+          "bytes": 4874256,
+          "sha256": "4e1d7d814c59ad13b62d5a27b91a731663140d05709731997df53ccdee3f6170"
+        },
+        {
+          "file": "SCHOOL2_lod1.glb",
+          "lod": 1,
+          "vertices": 14228,
+          "triangles": 25916,
+          "bytes": 4629748,
+          "sha256": "b7af8df0ac06622763bd9020314000478a43cd44d955cd888347a9e3a15d49f8"
+        },
+        {
+          "file": "SCHOOL2_lod2.glb",
+          "lod": 2,
+          "vertices": 4916,
+          "triangles": 7376,
+          "bytes": 2855068,
+          "sha256": "88574e0d8cbd3df2a865b48b4c5aa4dfe735119e57f6985fba5a89face29f0ba"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -4.755000114440918,
+          -8.800000190734863,
+          0.0
+        ],
+        "max": [
+          6.579999923706055,
+          6.760000228881836,
+          8.416332244873047
+        ]
+      }
+    },
+    {
+      "id": "SHOPD2",
+      "asset_type": "structure",
+      "builder": "grocery",
+      "reference_sheet": "structures_04.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "individual_bricks_front": 290,
+        "wall_backing_rear": 8,
+        "individual_bricks_rear": 440,
+        "wall_backing_left": 13,
+        "individual_bricks_left": 468,
+        "wall_backing_right": 13,
+        "individual_bricks_right": 468,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 6,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "flat_shop_roof": 1,
+        "shop_fascia": 2,
+        "porch_floor": 1,
+        "porch_column": 2,
+        "porch_brace": 2,
+        "porch_roof": 1,
+        "porch_step": 3,
+        "shop_shelf": 6,
+        "shelf_product": 24,
+        "serving_canopy": 1,
+        "structure_weathering_chip": 10
+      },
+      "description": "whitewashed_brick,porch,green_trim,grocery_sign",
+      "body_dimensions_m": [
+        7.0,
+        8.0,
+        4.0
+      ],
+      "lods": [
+        {
+          "file": "SHOPD2_lod0.glb",
+          "lod": 0,
+          "vertices": 50302,
+          "triangles": 91192,
+          "bytes": 11190056,
+          "sha256": "437785acb87bae9748463457d9c04f34bd722e0b281815ea1e5b7c4647c154b7"
+        },
+        {
+          "file": "SHOPD2_lod1.glb",
+          "lod": 1,
+          "vertices": 9334,
+          "triangles": 16084,
+          "bytes": 3228792,
+          "sha256": "18b386b3ea4e3155086ffa4adcdd576790cb345fe5d17fce7d43597107d11208"
+        },
+        {
+          "file": "SHOPD2_lod2.glb",
+          "lod": 2,
+          "vertices": 944,
+          "triangles": 1416,
+          "bytes": 2291604,
+          "sha256": "4d0b2c8b22ef8fcc4c5187eb6655964b126037fc3f9c54cf9fb6e16c9aa50a36"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -3.755000114440918,
+          -6.5,
+          0.0
+        ],
+        "max": [
+          3.755000114440918,
+          4.125,
+          4.375
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

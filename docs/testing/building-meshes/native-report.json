@@ -1,0 +1,16 @@
+{
+  "actual_glb_building_instances": 1360,
+  "facade_cards_loaded": 0,
+  "frames": 540,
+  "glb_lods": 18,
+  "limitation": "Bounded preview wall-frame sample with vsync and screenshot IO; not GPU timing, racing or production performance acceptance",
+  "median_wall_frame_ms": 8.698307,
+  "mesh_designs": 6,
+  "p95_wall_frame_ms": 14.061378,
+  "physics": "None; isolated visual study",
+  "resolution": [
+    1600,
+    971
+  ],
+  "sample_count": 479
+}

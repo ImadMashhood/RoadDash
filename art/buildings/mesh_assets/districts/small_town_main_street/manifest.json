@@ -1,0 +1,356 @@
+{
+  "id": "small_town_main_street",
+  "label": "Small-town main street",
+  "asset_ids": [
+    "CLSTGA11",
+    "CLSTGA12",
+    "CLSTGA13",
+    "CLSTGA14",
+    "CLSTGA15",
+    "CLSTGA16",
+    "CLSTGA17",
+    "CLSTGA18",
+    "CLSTGA19",
+    "CLSTGA20",
+    "CLSTGA21"
+  ],
+  "placement_guidance": "Lower town-centre frontages; use in rural/coastal towns rather than treating all as downtown offices.",
+  "assets": [
+    {
+      "id": "CLSTGA11",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        123
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA11_lod0.glb",
+          "sha256": "e83502c74a4b54a144d4d8268bc671e1c94b38cbfb2efa3c0421b42bcd2a0662"
+        },
+        {
+          "file": "../../models/CLSTGA11_lod1.glb",
+          "sha256": "9f9167baac577c16a7892a0d5110659fbfdfa79617290b164a80d22e191f9545"
+        },
+        {
+          "file": "../../models/CLSTGA11_lod2.glb",
+          "sha256": "2c4e2f95cd11f8175c69b80d0912eb58da40c5abb01c0df7b6a35874adf856f5"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA11.png"
+    },
+    {
+      "id": "CLSTGA12",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        124,
+        174,
+        223
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA12_lod0.glb",
+          "sha256": "2f610f89a31de3461e2b81259dbbebe8248e3b5e3d534ca7427cda060e9aa499"
+        },
+        {
+          "file": "../../models/CLSTGA12_lod1.glb",
+          "sha256": "5ae67a991858abfe0beeac9bf46faa7ca98d74d639b8a034e07bb799191ed363"
+        },
+        {
+          "file": "../../models/CLSTGA12_lod2.glb",
+          "sha256": "b101017f6f3244c5fff066e66296364dcd97a83b167431e7b1d329758b8a9ebf"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA12.png"
+    },
+    {
+      "id": "CLSTGA13",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        124,
+        174,
+        223
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA13_lod0.glb",
+          "sha256": "3f49b343d4dd240d32c1ca0708461d70be3b146f02815f10928165ba7702c9d9"
+        },
+        {
+          "file": "../../models/CLSTGA13_lod1.glb",
+          "sha256": "2531450b29f38cce1a1b3b49754b6f7086f58121f9dbe7682ee0ec084b525753"
+        },
+        {
+          "file": "../../models/CLSTGA13_lod2.glb",
+          "sha256": "29e27b46099a356059237e464c60b6750ea98a575b3dc76c1dc6389d5bc8d67c"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA13.png"
+    },
+    {
+      "id": "CLSTGA14",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        124,
+        174,
+        223
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA14_lod0.glb",
+          "sha256": "9d7798ef46924c86a1b3dfad295083cd71545f5502d84df3b44e0ef1b852e91c"
+        },
+        {
+          "file": "../../models/CLSTGA14_lod1.glb",
+          "sha256": "f46869473d7d10593bc884d8da8ab8cc8bd6425d834b36dec0fc3815392379f2"
+        },
+        {
+          "file": "../../models/CLSTGA14_lod2.glb",
+          "sha256": "c8fa5dff2a4ebeaf33c8d0c13863f78515c85079b8f604135c3d6fd206daa7dc"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA14.png"
+    },
+    {
+      "id": "CLSTGA15",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        123
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA15_lod0.glb",
+          "sha256": "acab50509ffce190d06bebcbb8764c81a70196298748c397d588fa0467b03757"
+        },
+        {
+          "file": "../../models/CLSTGA15_lod1.glb",
+          "sha256": "fc03abfa62d18ff1b2ccb72ea9f81edd7d1c13d76f455f91ba9aa027d3aaa2b6"
+        },
+        {
+          "file": "../../models/CLSTGA15_lod2.glb",
+          "sha256": "f8a852a23d1c04fdebace51636b8ad58cd49517852ad63ea1fd4e7d265aa2aa7"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA15.png"
+    },
+    {
+      "id": "CLSTGA16",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        226
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA16_lod0.glb",
+          "sha256": "5ef58e3927a3ae6dec8cfea525011ac587b85f3ce8a13b8897b1a727f9f19eba"
+        },
+        {
+          "file": "../../models/CLSTGA16_lod1.glb",
+          "sha256": "f814e5421c16d2170d45eac8b0d7eddf21e082768c32a66819f793bea2c64687"
+        },
+        {
+          "file": "../../models/CLSTGA16_lod2.glb",
+          "sha256": "9b36a35337b6245e1937e00e4b67e47b9c1e1fb3579b82759a4f41eb0b6bda9f"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA16.png"
+    },
+    {
+      "id": "CLSTGA17",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        125,
+        175
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA17_lod0.glb",
+          "sha256": "074e392de8bebdc669e95eb971cdce5a1b978d277980d54d1f1ed4fc2e7380d3"
+        },
+        {
+          "file": "../../models/CLSTGA17_lod1.glb",
+          "sha256": "65f3852bc334cf4582881f2c10c392a3f95a51dcf0d8aaed7a157ed9816737b6"
+        },
+        {
+          "file": "../../models/CLSTGA17_lod2.glb",
+          "sha256": "bee45ba0a08775f67f0597040ca341c2eb3170ff29d6c0def9ddcef3a0aed44d"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA17.png"
+    },
+    {
+      "id": "CLSTGA18",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        223
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA18_lod0.glb",
+          "sha256": "f815d37ef356a4c27c88441aa63fe9b934f9ba0fe9bd8cbb8d0674fa89981c37"
+        },
+        {
+          "file": "../../models/CLSTGA18_lod1.glb",
+          "sha256": "1b3265ad789c16a299b1c3844f7f5f6aae618b198247b74ba449592050c26f16"
+        },
+        {
+          "file": "../../models/CLSTGA18_lod2.glb",
+          "sha256": "d2660c564feaffe665426609c95126b188f2e106997381216134882e87b5c0d0"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA18.png"
+    },
+    {
+      "id": "CLSTGA19",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        125,
+        175,
+        226
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA19_lod0.glb",
+          "sha256": "7d397ef9ec867f7bbb6f5b2b79f0b94cfd5ae68a170974a202a02c25679beaad"
+        },
+        {
+          "file": "../../models/CLSTGA19_lod1.glb",
+          "sha256": "6f4537fee11cc0cd57b2030d8abcd126354cc7b3481a08d6fb05cf571f17be2b"
+        },
+        {
+          "file": "../../models/CLSTGA19_lod2.glb",
+          "sha256": "19c2b0ac364f86a932df9766d47512d911a1edd660c70c195dcb4fa250bd92bf"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA19.png"
+    },
+    {
+      "id": "CLSTGA20",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        125,
+        175,
+        223
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "MEDLY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA20_lod0.glb",
+          "sha256": "e7bfeca68a36461c54a6617d741778afadebeac1b6010e40e40acff643b75908"
+        },
+        {
+          "file": "../../models/CLSTGA20_lod1.glb",
+          "sha256": "9e7139b6ce6324d15b4ac374ef0775b9419d13f3a7c55b7cbc5a4d57e0a2a5f0"
+        },
+        {
+          "file": "../../models/CLSTGA20_lod2.glb",
+          "sha256": "d465974d5b1f54957a31711eec4a9c5d5d3b78b066e7b96962a9f7c984e8bb19"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA20.png"
+    },
+    {
+      "id": "CLSTGA21",
+      "asset_type": "facade",
+      "primary_district": "small_town_main_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        123,
+        226
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CLSTGA21_lod0.glb",
+          "sha256": "8cd31602f60f03074b091a081f33faac6b7b7ba485a8d81b42f8c8dc35fd3c73"
+        },
+        {
+          "file": "../../models/CLSTGA21_lod1.glb",
+          "sha256": "0d8cd5705249292beb7bda82299e14ae42ef5c531d9244766a7ee66f73440282"
+        },
+        {
+          "file": "../../models/CLSTGA21_lod2.glb",
+          "sha256": "9e1a6090e618e17679aa3b46430fb6ef0b124bdcb884895e60c7110c071e1ff0"
+        }
+      ],
+      "render": "../../catalog_renders/CLSTGA21.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

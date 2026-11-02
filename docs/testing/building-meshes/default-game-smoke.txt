@@ -1,0 +1,10 @@
+2026-11-01T21:31:42.721337Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-01T21:31:42.722477Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-01T21:31:42.728488Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-01T21:31:42.728518Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x55a24978f480, name: ?)
+2026-11-01T21:31:43.029347Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+2026-11-01T21:31:47.541050Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+Audio output initialized: 4 playback sinks
+Render smoke test passed: farm crash -> remount -> city/hills -> hill crash -> remount -> finish

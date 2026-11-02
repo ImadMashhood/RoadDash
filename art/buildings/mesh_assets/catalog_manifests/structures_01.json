@@ -1,0 +1,473 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_01.png",
+  "reference_sha256": "29b8a6748344fd1b69eeafcf65d023230d3a93245853ca08b915a679831ea5a9",
+  "source_blend": "catalog_sources/structures_01.blend",
+  "source_sha256": "685d5833ff5f25afee247559a857ec7b39ade0f35b907438dfb58d0e16d1266c",
+  "records": [
+    {
+      "id": "BARN12",
+      "asset_type": "structure",
+      "builder": "barn",
+      "reference_sheet": "structures_01.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 686,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 2,
+        "structure_entry_glass": 2,
+        "structure_entry_jamb": 4,
+        "structure_entry_sill": 4,
+        "structure_entry_vertical_mullion": 2,
+        "structure_entry_sash": 2,
+        "stone_window_reveal": 4,
+        "structure_door_panel": 2,
+        "structure_door_rail": 4,
+        "door_latch": 2,
+        "barn_door_cross_brace": 2,
+        "barn_door_frame": 2,
+        "gable_wall": 2,
+        "pitched_roof_plane": 4,
+        "gable_bargeboard": 4,
+        "roof_shingle_course": 46,
+        "lean_to_roof": 2,
+        "barn_cupola": 1,
+        "structure_weathering_chip": 10
+      },
+      "description": "red_timber,raised_centre,lean_to,cupola,cross_braced_doors",
+      "body_dimensions_m": [
+        9.0,
+        13.0,
+        7.0
+      ],
+      "lods": [
+        {
+          "file": "BARN12_lod0.glb",
+          "lod": 0,
+          "vertices": 19860,
+          "triangles": 36296,
+          "bytes": 4430520,
+          "sha256": "b9589c5745d605b69600ad42320e4ed9456141271e78c66695c462bb4286a1b3"
+        },
+        {
+          "file": "BARN12_lod1.glb",
+          "lod": 1,
+          "vertices": 18324,
+          "triangles": 33480,
+          "bytes": 3888196,
+          "sha256": "f11945bb7336166936923ab6a92ec4fedac365296e14910143287552a95d8a03"
+        },
+        {
+          "file": "BARN12_lod2.glb",
+          "lod": 2,
+          "vertices": 6252,
+          "triangles": 9376,
+          "bytes": 2008988,
+          "sha256": "fd6589828a6c0dcd9fd97036adce9699a6f4a021eca236233fadfe26359b979c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -5.857203483581543,
+          -6.78000020980835,
+          -0.02499997615814209
+        ],
+        "max": [
+          5.857203483581543,
+          6.625,
+          10.607565879821777
+        ]
+      }
+    },
+    {
+      "id": "BARN22",
+      "asset_type": "structure",
+      "builder": "barn",
+      "reference_sheet": "structures_01.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 588,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 2,
+        "structure_entry_glass": 2,
+        "structure_entry_jamb": 4,
+        "structure_entry_sill": 4,
+        "structure_entry_vertical_mullion": 2,
+        "structure_entry_sash": 2,
+        "stone_window_reveal": 4,
+        "structure_door_panel": 2,
+        "structure_door_rail": 4,
+        "door_latch": 2,
+        "barn_door_cross_brace": 2,
+        "barn_door_frame": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 38,
+        "lean_to_roof": 2,
+        "pen_post": 4,
+        "pen_side_rail": 6,
+        "pen_front_rail": 3,
+        "structure_weathering_chip": 10
+      },
+      "description": "old_timber,rust_roof,lean_to,fenced_pen",
+      "body_dimensions_m": [
+        8.0,
+        11.0,
+        5.5
+      ],
+      "lods": [
+        {
+          "file": "BARN22_lod0.glb",
+          "lod": 0,
+          "vertices": 17490,
+          "triangles": 31952,
+          "bytes": 4105784,
+          "sha256": "379e8db67692b6366cbedf1605ddb5c49724991f55c8a3836ab233b273c77157"
+        },
+        {
+          "file": "BARN22_lod1.glb",
+          "lod": 1,
+          "vertices": 16146,
+          "triangles": 29488,
+          "bytes": 3918664,
+          "sha256": "9e0c57e9cbfe7f6d7b1ab0e95e41f9a37b1bc29a79aaf7baab3ddff8ff6fb237"
+        },
+        {
+          "file": "BARN22_lod2.glb",
+          "lod": 2,
+          "vertices": 5454,
+          "triangles": 8180,
+          "bytes": 2258132,
+          "sha256": "bffa6ddb0eaba5830e0e621f941aa8a787d1064d81473fe75c0394fc9ef7e8a5"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -5.357203483581543,
+          -8.59000015258789,
+          -0.02499997615814209
+        ],
+        "max": [
+          5.357203483581543,
+          5.625,
+          7.81496524810791
+        ]
+      }
+    },
+    {
+      "id": "BARN32",
+      "asset_type": "structure",
+      "builder": "shed",
+      "reference_sheet": "structures_01.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 305,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 1,
+        "wall_backing_right": 1,
+        "structure_foundation": 1,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 2,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "work_bench": 1,
+        "bench_leg": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 34
+      },
+      "description": "old_timber,open_work_bay,workbench",
+      "body_dimensions_m": [
+        7.0,
+        9.0,
+        4.5
+      ],
+      "lods": [
+        {
+          "file": "BARN32_lod0.glb",
+          "lod": 0,
+          "vertices": 8970,
+          "triangles": 16396,
+          "bytes": 2927508,
+          "sha256": "dbf5836db585fe20854ef70ec39dd0a8f4373858852282f5df8099abf9325db0"
+        },
+        {
+          "file": "BARN32_lod1.glb",
+          "lod": 1,
+          "vertices": 7986,
+          "triangles": 14592,
+          "bytes": 2461660,
+          "sha256": "27081653a878adffb2e5879bf2030ce5bd97cb11380ad8139cf9ec3189b4f633"
+        },
+        {
+          "file": "BARN32_lod2.glb",
+          "lod": 2,
+          "vertices": 2702,
+          "triangles": 4052,
+          "bytes": 1640532,
+          "sha256": "39d5cce93c9a669c2340067aa752b4cc7c3de3ca1e890fb6cab19359b25d989e"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -3.625,
+          -4.78000020980835,
+          0.0
+        ],
+        "max": [
+          3.625,
+          4.625,
+          6.813030242919922
+        ]
+      }
+    },
+    {
+      "id": "BARND2",
+      "asset_type": "structure",
+      "builder": "barn",
+      "reference_sheet": "structures_01.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 620,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 2,
+        "structure_entry_glass": 2,
+        "structure_entry_jamb": 4,
+        "structure_entry_sill": 4,
+        "structure_entry_vertical_mullion": 2,
+        "structure_entry_sash": 2,
+        "stone_window_reveal": 4,
+        "structure_door_panel": 2,
+        "structure_door_rail": 4,
+        "door_latch": 2,
+        "barn_door_cross_brace": 2,
+        "barn_door_frame": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 40,
+        "lean_to_roof": 2,
+        "clerestory_vent": 3,
+        "structure_weathering_chip": 10
+      },
+      "description": "red_timber,clerestory,lean_to,side_hatch",
+      "body_dimensions_m": [
+        9.0,
+        11.0,
+        5.5
+      ],
+      "lods": [
+        {
+          "file": "BARND2_lod0.glb",
+          "lod": 0,
+          "vertices": 18066,
+          "triangles": 33008,
+          "bytes": 4469124,
+          "sha256": "78f07646e8ed5ea1c8735574d25f4c80460e246919cebf6ae71171c2c52447a7"
+        },
+        {
+          "file": "BARND2_lod1.glb",
+          "lod": 1,
+          "vertices": 16674,
+          "triangles": 30456,
+          "bytes": 3946816,
+          "sha256": "38ec3f67093f440652a9b013986f9e74ad4772e24cb950d1396511375c1575ab"
+        },
+        {
+          "file": "BARND2_lod2.glb",
+          "lod": 2,
+          "vertices": 5678,
+          "triangles": 8516,
+          "bytes": 1948736,
+          "sha256": "fc66021ab1eddaaa2df785438274502ba8ac32a145cb553197df0287b64510b0"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -5.857203483581543,
+          -5.78000020980835,
+          -0.02499997615814209
+        ],
+        "max": [
+          5.857203483581543,
+          5.625,
+          7.816457748413086
+        ]
+      }
+    },
+    {
+      "id": "BUSSTOP2",
+      "asset_type": "structure",
+      "builder": "bus_shelter",
+      "reference_sheet": "structures_01.png",
+      "geometry_parts": {
+        "shelter_frame_post": 4,
+        "shelter_back_glass": 1,
+        "shelter_side_glass": 2,
+        "shelter_bench": 1,
+        "bench_support": 2,
+        "route_board": 1,
+        "route_map_line": 6,
+        "curved_shelter_roof": 10,
+        "shelter_floor": 1,
+        "bench_mount_bolt": 2
+      },
+      "description": "clear_glass,bench,route_board,curved_roof",
+      "body_dimensions_m": [
+        3.5,
+        2.0,
+        3.0
+      ],
+      "lods": [
+        {
+          "file": "BUSSTOP2_lod0.glb",
+          "lod": 0,
+          "vertices": 720,
+          "triangles": 1320,
+          "bytes": 2077232,
+          "sha256": "532925464c9c4dda047960b0a6c1624ba7e6f6c3946f5b47e344b0fe4678f39a"
+        },
+        {
+          "file": "BUSSTOP2_lod1.glb",
+          "lod": 1,
+          "vertices": 672,
+          "triangles": 1232,
+          "bytes": 2069600,
+          "sha256": "7418a493f61a869581f9725c9b739ec07c550e9fa07df25f65c7c89fd6bb1746"
+        },
+        {
+          "file": "BUSSTOP2_lod2.glb",
+          "lod": 2,
+          "vertices": 160,
+          "triangles": 240,
+          "bytes": 1355520,
+          "sha256": "cf0ac3c247e721db6fe6ee1fdb3773950fc75c00717a7974b3143c3b2d71f736"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8250000476837158,
+          -1.1100000143051147,
+          0.0
+        ],
+        "max": [
+          1.8250000476837158,
+          1.1100000143051147,
+          3.280879020690918
+        ]
+      }
+    },
+    {
+      "id": "CARWASH2",
+      "asset_type": "structure",
+      "builder": "shed",
+      "reference_sheet": "structures_01.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 295,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 1,
+        "wall_backing_right": 1,
+        "structure_foundation": 1,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 2,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "work_bench": 1,
+        "bench_leg": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 34
+      },
+      "description": "old_timber,open_bays,divider_walls",
+      "body_dimensions_m": [
+        7.0,
+        8.0,
+        3.6
+      ],
+      "lods": [
+        {
+          "file": "CARWASH2_lod0.glb",
+          "lod": 0,
+          "vertices": 8730,
+          "triangles": 15956,
+          "bytes": 2894184,
+          "sha256": "cd763dbe464a0925b0ba3e10373ec43c29e642dfe321782651a0e5bc6b0ef7af"
+        },
+        {
+          "file": "CARWASH2_lod1.glb",
+          "lod": 1,
+          "vertices": 7746,
+          "triangles": 14152,
+          "bytes": 2428336,
+          "sha256": "7161ee244abbf442403f3c7b04b6cbbecdde238637112566e41de77d5275db11"
+        },
+        {
+          "file": "CARWASH2_lod2.glb",
+          "lod": 2,
+          "vertices": 2622,
+          "triangles": 3932,
+          "bytes": 1632168,
+          "sha256": "7db90d894066c0f9c0574f77262e510a919d1165093d17511acdfb9fc0a163f7"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -3.625,
+          -4.28000020980835,
+          0.0
+        ],
+        "max": [
+          3.625,
+          4.125,
+          5.91303014755249
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

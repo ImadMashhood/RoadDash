@@ -1,0 +1,438 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: TUNN32RC_surface_panel_body.001
+16:05:22 | INFO: Primitives created: 4
+16:05:22 | INFO: Finished glTF 2.0 export in 0.06258463859558105 s
+
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: TUNN32RC_surface_panel_body.002
+16:05:22 | INFO: Primitives created: 2
+16:05:22 | INFO: Finished glTF 2.0 export in 0.011388778686523438 s
+
+Warning: No mesh data to join
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: TUNN32RC_surface_panel_body.003
+16:05:22 | INFO: Primitives created: 1
+16:05:22 | INFO: Finished glTF 2.0 export in 0.007173061370849609 s
+
+CATALOG_EXPORTED TUNN32RC [1364, 132, 12]
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: WATRTNK2_tank_shell.001
+16:05:22 | INFO: Primitives created: 3
+16:05:22 | INFO: Finished glTF 2.0 export in 0.03685569763183594 s
+
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: WATRTNK2_tank_shell.002
+16:05:22 | INFO: Primitives created: 3
+16:05:22 | INFO: Finished glTF 2.0 export in 0.024379253387451172 s
+
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: WATRTNK2_tank_shell.003
+16:05:22 | INFO: Primitives created: 2
+16:05:22 | INFO: Finished glTF 2.0 export in 0.01033163070678711 s
+
+CATALOG_EXPORTED WATRTNK2 [4428, 3340, 232]
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: WHTTANK2_horizontal_tank.001
+16:05:22 | INFO: Primitives created: 2
+16:05:22 | INFO: Finished glTF 2.0 export in 0.011340856552124023 s
+
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: WHTTANK2_horizontal_tank.002
+16:05:22 | INFO: Primitives created: 2
+16:05:22 | INFO: Finished glTF 2.0 export in 0.01235198974609375 s
+
+16:05:22 | INFO: Starting glTF 2.0 export
+16:05:22 | INFO: Extracting primitive: WHTTANK2_horizontal_tank.003
+16:05:22 | INFO: Primitives created: 2
+16:05:22 | INFO: Finished glTF 2.0 export in 0.010728597640991211 s
+
+CATALOG_EXPORTED WHTTANK2 [1700, 644, 260]
+16:05:24 | INFO: Starting glTF 2.0 export
+16:05:24 | INFO: Extracting primitive: WINNERY2_wall_backing_front.001
+16:05:25 | INFO: Primitives created: 12
+16:05:25 | INFO: Finished glTF 2.0 export in 0.4651203155517578 s
+
+16:05:25 | INFO: Starting glTF 2.0 export
+16:05:25 | INFO: Extracting primitive: WINNERY2_wall_backing_front.002
+16:05:25 | INFO: Primitives created: 8
+16:05:25 | INFO: Finished glTF 2.0 export in 0.04025435447692871 s
+
+16:05:25 | INFO: Starting glTF 2.0 export
+16:05:25 | INFO: Extracting primitive: WINNERY2_wall_backing_front.003
+16:05:25 | INFO: Primitives created: 8
+16:05:25 | INFO: Finished glTF 2.0 export in 0.03236794471740723 s
+
+CATALOG_EXPORTED WINNERY2 [212232, 6136, 1932]
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:109.74M (Peak 109.74M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:109.74M (Peak 109.74M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TUNN32RC_surface_strap_ivory
+Fra:1 Mem:109.74M (Peak 109.74M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TUNN32RC_surface_bolt_gold
+Fra:1 Mem:109.94M (Peak 109.94M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:109.72M (Peak 109.94M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:109.72M (Peak 109.94M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:112.30M (Peak 112.30M) | Time:00:00.14 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:112.30M (Peak 112.30M) | Time:00:00.14 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:112.30M (Peak 112.30M) | Time:00:00.14 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:112.38M (Peak 112.38M) | Time:00:00.14 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:112.38M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:112.44M (Peak 139.55M) | Time:00:00.24 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:112.44M (Peak 139.55M) | Time:00:00.25 | Mem:3.07M, Peak:3.07M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:112.44M (Peak 139.55M) | Time:00:00.25 | Mem:3.07M, Peak:3.07M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:112.52M (Peak 139.55M) | Time:00:00.25 | Mem:3.07M, Peak:3.07M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:112.52M (Peak 139.55M) | Time:00:00.25 | Mem:3.07M, Peak:3.07M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:112.52M (Peak 139.55M) | Time:00:00.25 | Mem:3.07M, Peak:3.07M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:112.52M (Peak 139.55M) | Time:00:00.25 | Mem:3.11M, Peak:3.11M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.11M, Peak:3.11M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.20M, Peak:3.20M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.20M, Peak:3.20M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.20M, Peak:3.20M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.20M, Peak:3.20M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.20M, Peak:3.20M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.28M, Peak:3.28M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.28M, Peak:3.28M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.28M, Peak:3.28M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:112.61M (Peak 139.55M) | Time:00:00.25 | Mem:3.28M, Peak:3.28M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:112.62M (Peak 139.55M) | Time:00:00.25 | Mem:3.20M, Peak:3.28M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:112.62M (Peak 139.55M) | Time:00:00.25 | Mem:3.29M, Peak:3.29M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:112.62M (Peak 139.55M) | Time:00:00.25 | Mem:3.29M, Peak:3.29M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:112.62M (Peak 139.55M) | Time:00:00.25 | Mem:3.29M, Peak:3.29M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:119.00M (Peak 139.55M) | Time:00:00.28 | Mem:564.29M, Peak:564.29M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:160.40M (Peak 160.40M) | Time:00:00.29 | Remaining:00:00.20 | Mem:605.69M, Peak:605.69M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:177.84M (Peak 203.99M) | Time:00:03.46 | Mem:605.70M, Peak:605.70M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:177.84M (Peak 203.99M) | Time:00:03.46 | Mem:605.70M, Peak:605.70M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/TUNN32RC.png'
+Time: 00:04.07 (Saving: 00:00.44)
+
+Fra:1 Mem:110.08M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_rivet_roof
+Fra:1 Mem:110.22M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:110.23M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:110.23M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_shell_whitewashed_brick
+Fra:1 Mem:110.23M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_band_rust
+Fra:1 Mem:110.33M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_conical_tank_roof_rust
+Fra:1 Mem:110.38M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_ladder_rail_rust
+Fra:1 Mem:110.47M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_ladder_rung_roof
+Fra:1 Mem:110.72M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:110.13M (Peak 111.64M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading roof_albedo
+Fra:1 Mem:111.15M (Peak 111.64M) | Time:00:00.36 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:112.15M (Peak 112.15M) | Time:00:00.36 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading whitewashed_brick_albedo
+Fra:1 Mem:112.70M (Peak 112.70M) | Time:00:00.37 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:112.70M (Peak 112.70M) | Time:00:00.37 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:112.70M (Peak 112.70M) | Time:00:00.37 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:112.78M (Peak 112.78M) | Time:00:00.37 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.01M, Peak:3.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:112.78M (Peak 139.95M) | Time:00:00.51 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:112.79M (Peak 139.95M) | Time:00:00.51 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:112.79M (Peak 139.95M) | Time:00:00.51 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:112.79M (Peak 139.95M) | Time:00:00.51 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:112.99M (Peak 139.95M) | Time:00:00.52 | Mem:3.02M, Peak:3.02M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:112.99M (Peak 139.95M) | Time:00:00.52 | Mem:3.22M, Peak:3.22M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:112.99M (Peak 139.95M) | Time:00:00.52 | Mem:3.22M, Peak:3.22M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:113.24M (Peak 139.95M) | Time:00:00.52 | Mem:3.22M, Peak:3.22M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:113.26M (Peak 139.95M) | Time:00:00.52 | Mem:3.22M, Peak:3.22M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:113.26M (Peak 139.95M) | Time:00:00.52 | Mem:3.22M, Peak:3.22M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:113.26M (Peak 139.95M) | Time:00:00.52 | Mem:3.35M, Peak:3.35M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.52 | Mem:3.35M, Peak:3.35M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.52 | Mem:3.63M, Peak:3.63M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.63M, Peak:3.63M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.63M, Peak:3.63M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.63M, Peak:3.63M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.63M, Peak:3.63M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.63M, Peak:3.71M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:113.53M (Peak 139.95M) | Time:00:00.53 | Mem:3.71M, Peak:3.71M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:119.91M (Peak 139.95M) | Time:00:00.56 | Mem:564.71M, Peak:564.71M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:161.32M (Peak 161.32M) | Time:00:00.57 | Remaining:00:00.22 | Mem:606.11M, Peak:606.11M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:178.76M (Peak 204.91M) | Time:00:03.50 | Mem:606.12M, Peak:606.12M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:178.76M (Peak 204.91M) | Time:00:03.50 | Mem:606.12M, Peak:606.12M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/WATRTNK2.png'
+Time: 00:03.73 (Saving: 00:00.07)
+
+Fra:1 Mem:109.68M (Peak 109.68M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:109.68M (Peak 109.68M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:109.68M (Peak 109.68M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:109.68M (Peak 109.68M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WHTTANK2_horizontal_tank_ivory
+Fra:1 Mem:109.68M (Peak 109.68M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WHTTANK2_tank_support_leg_rust
+Fra:1 Mem:109.76M (Peak 109.76M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WHTTANK2_tank_support_crossbar_rust
+Fra:1 Mem:109.93M (Peak 109.93M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:109.68M (Peak 109.93M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:110.68M (Peak 110.68M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:111.35M (Peak 111.35M) | Time:00:00.13 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:111.35M (Peak 111.35M) | Time:00:00.13 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:111.35M (Peak 111.35M) | Time:00:00.13 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:111.43M (Peak 111.43M) | Time:00:00.13 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.02M, Peak:2.02M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.02M, Peak:2.02M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.02M, Peak:2.02M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.02M, Peak:2.02M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:111.43M (Peak 138.60M) | Time:00:00.23 | Mem:2.02M, Peak:2.02M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:111.52M (Peak 138.60M) | Time:00:00.23 | Mem:2.02M, Peak:2.02M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:111.52M (Peak 138.60M) | Time:00:00.23 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:111.52M (Peak 138.60M) | Time:00:00.23 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:111.61M (Peak 138.60M) | Time:00:00.24 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:111.62M (Peak 138.60M) | Time:00:00.24 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:111.62M (Peak 138.60M) | Time:00:00.24 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:111.62M (Peak 138.60M) | Time:00:00.24 | Mem:2.15M, Peak:2.15M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.15M, Peak:2.15M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.26M, Peak:2.26M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.26M, Peak:2.26M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.26M, Peak:2.26M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.26M, Peak:2.26M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.26M, Peak:2.26M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:111.73M (Peak 138.60M) | Time:00:00.24 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:111.74M (Peak 138.60M) | Time:00:00.24 | Mem:2.26M, Peak:2.34M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:111.74M (Peak 138.60M) | Time:00:00.25 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:111.74M (Peak 138.60M) | Time:00:00.25 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:111.74M (Peak 138.60M) | Time:00:00.25 | Mem:2.34M, Peak:2.34M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:118.12M (Peak 138.60M) | Time:00:00.27 | Mem:563.35M, Peak:563.35M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:159.52M (Peak 159.52M) | Time:00:00.28 | Remaining:00:00.09 | Mem:604.75M, Peak:604.75M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:176.96M (Peak 203.11M) | Time:00:03.02 | Mem:604.75M, Peak:604.75M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:176.96M (Peak 203.11M) | Time:00:03.02 | Mem:604.75M, Peak:604.75M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/WHTTANK2.png'
+Time: 00:03.25 (Saving: 00:00.07)
+
+Fra:1 Mem:136.35M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:136.35M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:136.35M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:136.35M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_front_stone_masonry_tile
+Fra:1 Mem:136.39M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_front_stone
+Fra:1 Mem:136.44M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_front_stone_dark
+Fra:1 Mem:136.97M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_front_stone_light
+Fra:1 Mem:137.89M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_rear_stone_masonry_tile
+Fra:1 Mem:137.96M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_sash_old_timber
+Fra:1 Mem:138.32M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_rear_stone_dark
+Fra:1 Mem:139.25M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_vertical_mullion_old_timber
+Fra:1 Mem:139.66M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_sill_old_timber
+Fra:1 Mem:141.81M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_jamb_old_timber
+Fra:1 Mem:141.13M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_glass_glass
+Fra:1 Mem:142.44M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_cavity_interior
+Fra:1 Mem:142.52M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_rear_stone
+Fra:1 Mem:142.66M (Peak 238.94M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_rear_stone_light
+Fra:1 Mem:149.46M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_diagonal_ivory
+Fra:1 Mem:146.75M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_side_rail_ivory
+Fra:1 Mem:147.59M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_rail_post_ivory
+Fra:1 Mem:148.71M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_left_stone_masonry_tile
+Fra:1 Mem:149.06M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_left_stone_dark
+Fra:1 Mem:149.69M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_right_stone_masonry_tile
+Fra:1 Mem:149.78M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_right_stone_light
+Fra:1 Mem:149.92M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_right_stone_dark
+Fra:1 Mem:149.29M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_roof_rust
+Fra:1 Mem:156.09M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_foundation_concrete
+Fra:1 Mem:154.91M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_side_glass_glass
+Fra:1 Mem:157.12M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_window_jamb_ivory
+Fra:1 Mem:159.26M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_corner_hardware_rust
+Fra:1 Mem:159.36M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_brace_ivory
+Fra:1 Mem:159.51M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_column_ivory
+Fra:1 Mem:159.53M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_cavity_interior
+Fra:1 Mem:159.54M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_floor_old_timber
+Fra:1 Mem:159.43M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_winery_window_arch_ivory
+Fra:1 Mem:159.69M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_glass_glass
+Fra:1 Mem:159.66M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_jamb_old_timber
+Fra:1 Mem:159.81M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_sill_old_timber
+Fra:1 Mem:159.77M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_vertical_mullion_old_timber
+Fra:1 Mem:159.74M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_sash_old_timber
+Fra:1 Mem:159.72M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_winery_hip_roof_terracotta
+Fra:1 Mem:159.73M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_stone_window_reveal_ivory
+Fra:1 Mem:159.73M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_sash_old_timber
+Fra:1 Mem:159.83M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_vertical_mullion_old_timber
+Fra:1 Mem:159.81M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_sill_old_timber
+Fra:1 Mem:159.85M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_door_panel_old_timber
+Fra:1 Mem:159.86M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_jamb_old_timber
+Fra:1 Mem:159.86M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_door_rail_old_timber
+Fra:1 Mem:161.92M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_glass_glass
+Fra:1 Mem:162.24M (Peak 238.94M) | Time:00:00.55 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_cavity_interior
+Fra:1 Mem:168.38M (Peak 238.94M) | Time:00:00.59 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:140.68M (Peak 238.94M) | Time:00:00.59 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading stone_masonry_tile_albedo
+Fra:1 Mem:141.68M (Peak 238.94M) | Time:00:00.59 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading terracotta_albedo
+Fra:1 Mem:142.68M (Peak 238.94M) | Time:00:00.59 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:143.68M (Peak 238.94M) | Time:00:00.59 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:144.68M (Peak 238.94M) | Time:00:00.59 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading old_timber_albedo
+Fra:1 Mem:145.58M (Peak 238.94M) | Time:00:00.59 | Mem:7.00M, Peak:7.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:145.58M (Peak 238.94M) | Time:00:00.59 | Mem:7.00M, Peak:7.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:145.58M (Peak 238.94M) | Time:00:00.59 | Mem:7.00M, Peak:7.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.60 | Mem:7.00M, Peak:7.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.70 | Mem:7.02M, Peak:7.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.70 | Mem:7.02M, Peak:7.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.70 | Mem:7.02M, Peak:7.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.70 | Mem:7.02M, Peak:7.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.70 | Mem:7.02M, Peak:7.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:145.67M (Peak 238.94M) | Time:00:00.70 | Mem:7.02M, Peak:7.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:145.68M (Peak 238.94M) | Time:00:00.70 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:145.68M (Peak 238.94M) | Time:00:00.70 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:145.68M (Peak 238.94M) | Time:00:00.70 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:145.68M (Peak 238.94M) | Time:00:00.70 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:145.68M (Peak 238.94M) | Time:00:00.70 | Mem:7.03M, Peak:7.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:155.83M (Peak 238.94M) | Time:00:00.70 | Mem:7.04M, Peak:7.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:155.82M (Peak 238.94M) | Time:00:00.71 | Mem:17.17M, Peak:17.17M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:155.82M (Peak 238.94M) | Time:00:00.71 | Mem:17.17M, Peak:17.17M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:167.96M (Peak 238.94M) | Time:00:00.78 | Mem:17.17M, Peak:17.17M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:168.77M (Peak 238.94M) | Time:00:00.78 | Mem:17.17M, Peak:17.17M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:168.93M (Peak 238.94M) | Time:00:00.80 | Mem:17.17M, Peak:17.17M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:168.93M (Peak 238.94M) | Time:00:00.81 | Mem:23.73M, Peak:23.73M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:23.73M, Peak:23.73M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.54M, Peak:37.54M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.54M, Peak:37.54M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.54M, Peak:37.54M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.54M, Peak:37.54M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.54M, Peak:37.54M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:182.74M (Peak 238.94M) | Time:00:00.82 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:182.75M (Peak 238.94M) | Time:00:00.83 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:182.75M (Peak 238.94M) | Time:00:00.83 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:182.75M (Peak 238.94M) | Time:00:00.83 | Mem:37.54M, Peak:37.62M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:182.75M (Peak 238.94M) | Time:00:00.83 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:182.75M (Peak 238.94M) | Time:00:00.83 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:182.75M (Peak 238.94M) | Time:00:00.83 | Mem:37.62M, Peak:37.62M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:189.13M (Peak 238.94M) | Time:00:00.86 | Mem:598.63M, Peak:598.63M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:230.54M (Peak 238.94M) | Time:00:00.87 | Remaining:00:00.23 | Mem:640.03M, Peak:640.03M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:247.97M (Peak 274.12M) | Time:00:03.68 | Mem:640.03M, Peak:640.03M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:247.97M (Peak 274.12M) | Time:00:03.68 | Mem:640.03M, Peak:640.03M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/WINNERY2.png'
+Time: 00:03.92 (Saving: 00:00.07)
+
+Fra:1 Mem:165.99M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label TUNN32RC
+Fra:1 Mem:166.04M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:166.04M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TUNN32RC_surface_panel_body_concrete.001
+Fra:1 Mem:166.07M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label WATRTNK2
+Fra:1 Mem:166.10M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TUNN32RC_surface_bolt_gold.001
+Fra:1 Mem:166.11M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label WHTTANK2
+Fra:1 Mem:166.20M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | TUNN32RC_surface_wear_chip_rust.001
+Fra:1 Mem:166.30M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_shell_whitewashed_brick.001
+Fra:1 Mem:166.33M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label WINNERY2
+Fra:1 Mem:166.42M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_band_rust.001
+Fra:1 Mem:166.41M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_sash_old_timber.001
+Fra:1 Mem:166.48M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_conical_tank_roof_rust.001
+Fra:1 Mem:166.52M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_ladder_rail_rust.001
+Fra:1 Mem:166.50M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_ladder_rung_roof.001
+Fra:1 Mem:166.61M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WATRTNK2_tank_rivet_roof.001
+Fra:1 Mem:166.53M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WHTTANK2_tank_support_crossbar_rust.001
+Fra:1 Mem:166.55M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WHTTANK2_tank_end_bolt_rust.001
+Fra:1 Mem:166.95M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_front_stone_masonry_tile.001
+Fra:1 Mem:167.06M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_front_stone.001
+Fra:1 Mem:166.95M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_front_stone_dark.001
+Fra:1 Mem:166.99M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_front_stone_light.001
+Fra:1 Mem:167.25M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_rear_stone_masonry_tile.001
+Fra:1 Mem:167.32M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_rear_stone_dark.001
+Fra:1 Mem:167.29M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_rear_stone.001
+Fra:1 Mem:167.30M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_rear_stone_light.001
+Fra:1 Mem:167.31M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_backing_left_stone_masonry_tile.001
+Fra:1 Mem:167.73M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_left_stone.001
+Fra:1 Mem:167.69M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_vertical_mullion_old_timber.001
+Fra:1 Mem:168.39M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_sill_old_timber.001
+Fra:1 Mem:168.46M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_left_stone_dark.001
+Fra:1 Mem:168.63M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_jamb_old_timber.001
+Fra:1 Mem:168.72M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_right_stone.001
+Fra:1 Mem:168.75M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_right_stone_light.001
+Fra:1 Mem:177.77M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_glass_glass.001
+Fra:1 Mem:177.78M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_upper_house_window_cavity_interior.001
+Fra:1 Mem:176.99M (Peak 262.21M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_step_concrete.001
+Fra:1 Mem:177.65M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_diagonal_ivory.001
+Fra:1 Mem:177.87M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_side_rail_ivory.001
+Fra:1 Mem:178.35M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_rail_post_ivory.001
+Fra:1 Mem:178.55M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_roof_rust.001
+Fra:1 Mem:178.55M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_individual_bricks_right_stone_dark.001
+Fra:1 Mem:177.96M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_foundation_concrete.001
+Fra:1 Mem:184.72M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_window_jamb_ivory.001
+Fra:1 Mem:183.85M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_window_sill_ivory.001
+Fra:1 Mem:185.40M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_wall_corner_hardware_rust.001
+Fra:1 Mem:185.81M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_cavity_interior.001
+Fra:1 Mem:186.10M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_jamb_old_timber.001
+Fra:1 Mem:186.12M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_sill_old_timber.001
+Fra:1 Mem:187.40M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:189.87M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_entry_sash_old_timber.001
+Fra:1 Mem:189.88M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_stone_window_reveal_ivory.001
+Fra:1 Mem:190.99M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_door_panel_old_timber.001
+Fra:1 Mem:190.12M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_door_rail_old_timber.001
+Fra:1 Mem:190.07M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_door_latch_gold.001
+Fra:1 Mem:190.28M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_cavity_interior.001
+Fra:1 Mem:190.86M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_glass_glass.001
+Fra:1 Mem:191.62M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_jamb_old_timber.001
+Fra:1 Mem:191.80M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_vertical_mullion_old_timber.001
+Fra:1 Mem:192.64M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_structure_front_window_sash_old_timber.001
+Fra:1 Mem:192.84M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_winery_hip_roof_terracotta.001
+Fra:1 Mem:193.08M (Peak 262.21M) | Time:00:00.50 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_floor_old_timber.001
+Fra:1 Mem:193.35M (Peak 262.21M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | WINNERY2_porch_column_ivory.001
+Fra:1 Mem:199.23M (Peak 262.21M) | Time:00:00.53 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:170.16M (Peak 262.21M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading terracotta_albedo
+Fra:1 Mem:171.16M (Peak 262.21M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:171.16M (Peak 262.21M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading whitewashed_brick_albedo
+Fra:1 Mem:172.16M (Peak 262.21M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading stone_masonry_tile_albedo
+Fra:1 Mem:173.16M (Peak 262.21M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading stone_albedo
+Fra:1 Mem:174.16M (Peak 262.21M) | Time:00:00.54 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading old_timber_albedo
+Fra:1 Mem:176.50M (Peak 262.21M) | Time:00:00.54 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:176.50M (Peak 262.21M) | Time:00:00.54 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:176.50M (Peak 262.21M) | Time:00:00.54 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.54 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.64 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.64 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.64 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.64 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.64 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:176.59M (Peak 262.21M) | Time:00:00.64 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:176.61M (Peak 262.21M) | Time:00:00.64 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:176.61M (Peak 262.21M) | Time:00:00.64 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:176.61M (Peak 262.21M) | Time:00:00.64 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:176.61M (Peak 262.21M) | Time:00:00.64 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:176.61M (Peak 262.21M) | Time:00:00.64 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:187.13M (Peak 262.21M) | Time:00:00.65 | Mem:9.05M, Peak:9.05M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:187.12M (Peak 262.21M) | Time:00:00.65 | Mem:19.55M, Peak:19.55M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:187.12M (Peak 262.21M) | Time:00:00.65 | Mem:19.55M, Peak:19.55M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:199.76M (Peak 262.21M) | Time:00:00.74 | Mem:19.55M, Peak:19.55M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:200.60M (Peak 262.21M) | Time:00:00.74 | Mem:19.55M, Peak:19.55M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:199.46M (Peak 262.21M) | Time:00:00.76 | Mem:19.55M, Peak:19.55M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:199.46M (Peak 262.21M) | Time:00:00.77 | Mem:25.72M, Peak:25.72M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.77 | Mem:25.72M, Peak:25.72M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.04M, Peak:40.04M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.04M, Peak:40.04M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.04M, Peak:40.04M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.04M, Peak:40.04M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.04M, Peak:40.04M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.12M, Peak:40.12M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.12M, Peak:40.12M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.13M, Peak:40.13M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:213.78M (Peak 262.21M) | Time:00:00.78 | Mem:40.13M, Peak:40.13M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:213.79M (Peak 262.21M) | Time:00:00.78 | Mem:40.04M, Peak:40.13M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:213.79M (Peak 262.21M) | Time:00:00.78 | Mem:40.13M, Peak:40.13M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:213.79M (Peak 262.21M) | Time:00:00.78 | Mem:40.13M, Peak:40.13M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:213.79M (Peak 262.21M) | Time:00:00.78 | Mem:40.13M, Peak:40.13M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:220.17M (Peak 262.21M) | Time:00:00.81 | Mem:601.13M, Peak:601.13M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:394.12M (Peak 394.12M) | Time:00:00.84 | Remaining:00:00.51 | Mem:775.09M, Peak:775.09M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:467.37M (Peak 577.24M) | Time:00:14.03 | Mem:775.09M, Peak:775.09M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:467.37M (Peak 577.24M) | Time:00:14.03 | Mem:775.09M, Peak:775.09M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/structures_08.png'
+Time: 00:14.69 (Saving: 00:00.29)
+
+Info: Saved as "structures_08.blend"
+CATALOG_SHEET_COMPLETE structures_08.png 4
+
+Blender quit

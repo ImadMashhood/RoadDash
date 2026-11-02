@@ -1,0 +1,134 @@
+{
+  "id": "shared_roof_edges",
+  "label": "Shared roof / edge modules",
+  "asset_ids": [
+    "TOP",
+    "TOP1A",
+    "TOP2A",
+    "TOP3A"
+  ],
+  "placement_guidance": "Reusable trim modules; select for architectural compatibility and dimensions, not standalone building placement.",
+  "assets": [
+    {
+      "id": "TOP",
+      "asset_type": "surface_module",
+      "primary_district": "shared_roof_edges",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        148
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TOP_lod0.glb",
+          "sha256": "acfb03576c5b3917bd20fb1f9fabccc0528aceebb6e72dd46c387b41596989a8"
+        },
+        {
+          "file": "../../models/TOP_lod1.glb",
+          "sha256": "d0404853e809ab78ca04c7644f31ad025b61d61c92cce9f9e08ecc871a00db40"
+        },
+        {
+          "file": "../../models/TOP_lod2.glb",
+          "sha256": "2cd467d0627d7a6c3fabbe6769654865ad173b8f93ca213217ace2e49cdfdadc"
+        }
+      ],
+      "render": "../../catalog_renders/TOP.png"
+    },
+    {
+      "id": "TOP1A",
+      "asset_type": "surface_module",
+      "primary_district": "shared_roof_edges",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        15,
+        17,
+        172
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TOP1A_lod0.glb",
+          "sha256": "5a6b05857d226501550e1f48a272ad82073e6b4c343201e0a283619a51273726"
+        },
+        {
+          "file": "../../models/TOP1A_lod1.glb",
+          "sha256": "5a39c545f0009687759cd3e291a339c63f282ec09eee6d578a45842a2f4125c1"
+        },
+        {
+          "file": "../../models/TOP1A_lod2.glb",
+          "sha256": "d5de09c0e536f5918fa0bb912a8c75fcb933866d077139c9685a78e9eb9bc844"
+        }
+      ],
+      "render": "../../catalog_renders/TOP1A.png"
+    },
+    {
+      "id": "TOP2A",
+      "asset_type": "surface_module",
+      "primary_district": "shared_roof_edges",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        18,
+        77,
+        81,
+        92,
+        94
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TOP2A_lod0.glb",
+          "sha256": "70f4beb93fd38594bec9ed2a9c971ad7148605cf7cf41bd1ce38aeeb4f0944fe"
+        },
+        {
+          "file": "../../models/TOP2A_lod1.glb",
+          "sha256": "3b00fd435247e5f4943dc5e8f703bc971df70d01f6bee3cbcf5aa28571e4e808"
+        },
+        {
+          "file": "../../models/TOP2A_lod2.glb",
+          "sha256": "45661940487488de96ac9595e3e53c9fc018f4658c7c980a369ccab9ed842c07"
+        }
+      ],
+      "render": "../../catalog_renders/TOP2A.png"
+    },
+    {
+      "id": "TOP3A",
+      "asset_type": "surface_module",
+      "primary_district": "shared_roof_edges",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        242
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/TOP3A_lod0.glb",
+          "sha256": "d47552cd5acce9028d03f51cf7de49fde13d7b5db42248366bf5d82ec2519608"
+        },
+        {
+          "file": "../../models/TOP3A_lod1.glb",
+          "sha256": "68f09d2f3a2be54e720e007764caf2cd440ee85e418979022fb155367c03b01e"
+        },
+        {
+          "file": "../../models/TOP3A_lod2.glb",
+          "sha256": "fc3d4fe69d57ec04aeb2d4752979192df3b9c9c973b31d15f24270d3e08271eb"
+        }
+      ],
+      "render": "../../catalog_renders/TOP3A.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

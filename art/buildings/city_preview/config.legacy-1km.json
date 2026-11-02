@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "seed": 74219,
+  "length_m": 1000,
+  "block_pitch_m": 100,
+  "cross_street_width_m": 12,
+  "road_width_m": 14,
+  "sidewalk_width_m": 3.2,
+  "parallel_road_offset_m": 68,
+  "parallel_road_width_m": 10,
+  "building_depth_m": 18,
+  "tree_spacing_m": 40,
+  "facade_catalog": "art/buildings/city_preview/facade_assets.json",
+  "height_scale_range": [
+    0.95,
+    1.1
+  ]
+}

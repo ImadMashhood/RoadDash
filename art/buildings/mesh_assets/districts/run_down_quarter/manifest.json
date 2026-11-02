@@ -1,0 +1,230 @@
+{
+  "id": "run_down_quarter",
+  "label": "Run-down quarter",
+  "asset_ids": [
+    "RUNDWN11",
+    "RUNDWN12",
+    "RUNDWN13",
+    "RUNDWN14",
+    "RUNDWN15",
+    "RUNDWN16",
+    "RUNDWN17"
+  ],
+  "placement_guidance": "Boarded and worn urban streets; transition from industrial or older residential blocks.",
+  "assets": [
+    {
+      "id": "RUNDWN11",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        165,
+        220
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN11_lod0.glb",
+          "sha256": "df791fc24646d17517dc5fdc9ffb233356679127090db1b4936cb636da4ea945"
+        },
+        {
+          "file": "../../models/RUNDWN11_lod1.glb",
+          "sha256": "6593d26299eff2283990a6168f8d7fa060354dfd94d2a6227644e3744678b8cc"
+        },
+        {
+          "file": "../../models/RUNDWN11_lod2.glb",
+          "sha256": "a9c888edf574e6fea0e31af02eafbde9bcf09d0e6f6421ca24745b726723f7d9"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN11.png"
+    },
+    {
+      "id": "RUNDWN12",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        145,
+        220
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN12_lod0.glb",
+          "sha256": "4b79d9d4c462018181f33897fdcef37cb3a47d49b2493ca149a5083a86661e74"
+        },
+        {
+          "file": "../../models/RUNDWN12_lod1.glb",
+          "sha256": "faa07f5825fa08e6ae1556e4e0a71e35ece53c5f5198049cbc187dd9b6b7353d"
+        },
+        {
+          "file": "../../models/RUNDWN12_lod2.glb",
+          "sha256": "fb2c76a5eabb746549bc31f6a6e54dbbb1a8139f766359d6d178088155550c5f"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN12.png"
+    },
+    {
+      "id": "RUNDWN13",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        145,
+        225
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN13_lod0.glb",
+          "sha256": "fa808e3eb623d804b02e5ebc10ff1eb68291596afe553652b1d799a0811e236c"
+        },
+        {
+          "file": "../../models/RUNDWN13_lod1.glb",
+          "sha256": "e069aa5cccfeee3d4f32f633ef075b80b93275844e4304ba7c586407b2efa3fc"
+        },
+        {
+          "file": "../../models/RUNDWN13_lod2.glb",
+          "sha256": "4fd4283208b3432d09c8d2a6f6f55d4c26e2c972858dde1adf233503e66c9344"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN13.png"
+    },
+    {
+      "id": "RUNDWN14",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        144,
+        165,
+        220
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN14_lod0.glb",
+          "sha256": "90910f84976f7684615c1037c7b10236552a447bb1fd59935b98c7cebcb80b6f"
+        },
+        {
+          "file": "../../models/RUNDWN14_lod1.glb",
+          "sha256": "a03e4e30978f8e13c8102f6bf30497d7e7dd0a6e9fb09f4bf22f99471139afa0"
+        },
+        {
+          "file": "../../models/RUNDWN14_lod2.glb",
+          "sha256": "eca56aa8535b58405c07459f1bd5e67aeafeeddfb412b12c01a3161aa69bd001"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN14.png"
+    },
+    {
+      "id": "RUNDWN15",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        145,
+        220
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN15_lod0.glb",
+          "sha256": "f91c23ad55096661fa414069d2de8c56622a2f91ef92f0eb0c9334141655d696"
+        },
+        {
+          "file": "../../models/RUNDWN15_lod1.glb",
+          "sha256": "25288ea4cc7c675bf561a8917e78ceb2a2939471dcfbb46356910a49f54c600d"
+        },
+        {
+          "file": "../../models/RUNDWN15_lod2.glb",
+          "sha256": "b97e1d929d30dc96ab1dcaee4d6ab4db64e7146c4c33cc23e0d46c947b9f493a"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN15.png"
+    },
+    {
+      "id": "RUNDWN16",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        144,
+        165,
+        225
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN16_lod0.glb",
+          "sha256": "37184fc90c9495367eba8b655c6a6573c91451e73d9e0657f07acd735d436027"
+        },
+        {
+          "file": "../../models/RUNDWN16_lod1.glb",
+          "sha256": "fd11c140bbc2186fd15357c3f3cd298ef0a967184a11c315f4154fbdafcc192d"
+        },
+        {
+          "file": "../../models/RUNDWN16_lod2.glb",
+          "sha256": "a0440b08d72be7661898a3d1f6be7a62899078ab39a594cfa06c6fae565ef3db"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN16.png"
+    },
+    {
+      "id": "RUNDWN17",
+      "asset_type": "facade",
+      "primary_district": "run_down_quarter",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        144,
+        165,
+        220
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUNDWN17_lod0.glb",
+          "sha256": "ff8d9747cfdb60c3ae7da84dcc370b9bb4e446bf905af0ce2a10ae5d2cd6b771"
+        },
+        {
+          "file": "../../models/RUNDWN17_lod1.glb",
+          "sha256": "d0b978d1b822d479242f730b679a62c1f28ed35097e3018f8ed8a23d64ef84d1"
+        },
+        {
+          "file": "../../models/RUNDWN17_lod2.glb",
+          "sha256": "453e4069cf85e9550704664aeaa59da1c231d4ea031088185c1ad214126b28ea"
+        }
+      ],
+      "render": "../../catalog_renders/RUNDWN17.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

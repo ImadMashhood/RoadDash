@@ -1,0 +1,197 @@
+{
+  "id": "rural_village_winery",
+  "label": "Rural village / winery",
+  "asset_ids": [
+    "CHURCH2",
+    "HOUSEB2",
+    "RUSTICA2",
+    "RUSTICB2",
+    "SCHOOL2",
+    "WINNERY2"
+  ],
+  "placement_guidance": "Detached homes, community landmarks and winery; space these as settlements, not touching urban facades.",
+  "assets": [
+    {
+      "id": "CHURCH2",
+      "asset_type": "structure",
+      "primary_district": "rural_village_winery",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        26,
+        261
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHURCH2_lod0.glb",
+          "sha256": "ed1fd23235dc2797c2444a25464598e44adf066e0ddefdc3129a4609a69d3c6d"
+        },
+        {
+          "file": "../../models/CHURCH2_lod1.glb",
+          "sha256": "bde3e4228677ec9d84a447c19b7b7e4cc855a390981ef2e055ba3d4c22f3b667"
+        },
+        {
+          "file": "../../models/CHURCH2_lod2.glb",
+          "sha256": "35d3c9b65f933d1e3ecdca115e0b9d959c29d8bd7123ed7a392d57a3e886573d"
+        }
+      ],
+      "render": "../../catalog_renders/CHURCH2.png"
+    },
+    {
+      "id": "HOUSEB2",
+      "asset_type": "structure",
+      "primary_district": "rural_village_winery",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        26,
+        261
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/HOUSEB2_lod0.glb",
+          "sha256": "47a10bcdc0beed3a9fbdfeaacca9fd0dd1db64cfb6e6dfe570017cb7fd34d4bd"
+        },
+        {
+          "file": "../../models/HOUSEB2_lod1.glb",
+          "sha256": "8b3cb41b71c6ecaf457d32f7181e2a3c7a774c4491b0dd3bd153615a47b7547a"
+        },
+        {
+          "file": "../../models/HOUSEB2_lod2.glb",
+          "sha256": "e2327cecf299d69c3cd447effe9d2efc9f1b2b559a76213abe6f9760dedf4e85"
+        }
+      ],
+      "render": "../../catalog_renders/HOUSEB2.png"
+    },
+    {
+      "id": "RUSTICA2",
+      "asset_type": "structure",
+      "primary_district": "rural_village_winery",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        26,
+        173,
+        261
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUSTICA2_lod0.glb",
+          "sha256": "40dd5c4c9d7487f9e86cfaf3611086a291a5689401440adce15c42d0fd307b22"
+        },
+        {
+          "file": "../../models/RUSTICA2_lod1.glb",
+          "sha256": "f1b8ebedd6184debaed31723c33a8ec62a3767575c5ef1e4c09356c44b1640d4"
+        },
+        {
+          "file": "../../models/RUSTICA2_lod2.glb",
+          "sha256": "ed9f990832d989a5c8c63542a71eb659b8f6073c6c7b281d06d7d5afa5fd495c"
+        }
+      ],
+      "render": "../../catalog_renders/RUSTICA2.png"
+    },
+    {
+      "id": "RUSTICB2",
+      "asset_type": "structure",
+      "primary_district": "rural_village_winery",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        85
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/RUSTICB2_lod0.glb",
+          "sha256": "7a47e3f2989c8a45c742af381ac63bb9dc5447cbf2a1c59b46dab3258d22506a"
+        },
+        {
+          "file": "../../models/RUSTICB2_lod1.glb",
+          "sha256": "cfcb229a58619bccb593375d5e55b69e77a8ead1f44905504213cf8e2544c3a2"
+        },
+        {
+          "file": "../../models/RUSTICB2_lod2.glb",
+          "sha256": "c5efcf81228dad1523a9947052fbda424353e6cf4b8b5b8b5244e8df6e5a5223"
+        }
+      ],
+      "render": "../../catalog_renders/RUSTICB2.png"
+    },
+    {
+      "id": "SCHOOL2",
+      "asset_type": "structure",
+      "primary_district": "rural_village_winery",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        27
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/SCHOOL2_lod0.glb",
+          "sha256": "4e1d7d814c59ad13b62d5a27b91a731663140d05709731997df53ccdee3f6170"
+        },
+        {
+          "file": "../../models/SCHOOL2_lod1.glb",
+          "sha256": "b7af8df0ac06622763bd9020314000478a43cd44d955cd888347a9e3a15d49f8"
+        },
+        {
+          "file": "../../models/SCHOOL2_lod2.glb",
+          "sha256": "88574e0d8cbd3df2a865b48b4c5aa4dfe735119e57f6985fba5a89face29f0ba"
+        }
+      ],
+      "render": "../../catalog_renders/SCHOOL2.png"
+    },
+    {
+      "id": "WINNERY2",
+      "asset_type": "structure",
+      "primary_district": "rural_village_winery",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        27,
+        85,
+        252
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/WINNERY2_lod0.glb",
+          "sha256": "67a0dfec3c007c69b06af30c94a40100c7262f6f475eae0fbcc9d93db354e7ca"
+        },
+        {
+          "file": "../../models/WINNERY2_lod1.glb",
+          "sha256": "ef93c642bb6f3376d1a9dd93b2df7514ac59332ac060d6a975aa47e746027eb8"
+        },
+        {
+          "file": "../../models/WINNERY2_lod2.glb",
+          "sha256": "702a863698728fc13eb77c7aed25d1a93135bc2f07d4976433e05d8183a5c8ce"
+        }
+      ],
+      "render": "../../catalog_renders/WINNERY2.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

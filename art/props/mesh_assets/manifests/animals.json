@@ -1,0 +1,590 @@
+{
+  "group": "animals",
+  "source": "sources/animals.blend",
+  "source_sha256": "6b533c2f3772e2f5d4f6163ef6d3fd2321fb85ce345aefc18d88774104e339c1",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-39DEE01F00B0",
+      "name": "COWA2",
+      "builder": "cow",
+      "group": "animals",
+      "concept": {
+        "file": "art/props/concept_3d/rural_01_v2.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-39DEE01F00B0_lod0.glb",
+          "sha256": "de7a651b0f413998cafead8237efc173c1c35555a47c56c16a58e83d00279eb7",
+          "triangles": 4892,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.4049999713897705,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.094151258468628,
+              1.5048357248306274
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-39DEE01F00B0_lod1.glb",
+          "sha256": "81d42c54b499616266d79877ef56f82713679500c43ebdf3ebe800f0dc080c2f",
+          "triangles": 3196,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3328697681427002,
+              -1.3887664079666138,
+              0.0
+            ],
+            [
+              0.3328697681427002,
+              1.0936055183410645,
+              1.5047636032104492
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-39DEE01F00B0_lod2.glb",
+          "sha256": "927341bcef77d7bcb83067aaec0aa2dc1ff27fad56d06b24b46aefb3ce5d9c2d",
+          "triangles": 444,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.3822243213653564,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.0926573276519775,
+              1.3700000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "horn": 2,
+        "tail": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          1.5048357248306274,
+          2.4991512298583984
+        ],
+        "center_y_up": [
+          0.0,
+          0.7524178624153137,
+          0.1554243564605713
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-349A323395D9",
+      "name": "COWB2",
+      "builder": "cow",
+      "group": "animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_animals_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-349A323395D9_lod0.glb",
+          "sha256": "028012326e04a116e05e34008bb2cc7508c3536b40864f1ce1e0ce057b8a4205",
+          "triangles": 4892,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.4049999713897705,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.094151258468628,
+              1.5048357248306274
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-349A323395D9_lod1.glb",
+          "sha256": "37710cc7ea1180029f59eab45f364d72cec8e9931cdb91bbb8b877594c283c19",
+          "triangles": 3196,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3328697681427002,
+              -1.3887664079666138,
+              0.0
+            ],
+            [
+              0.3328697681427002,
+              1.0936055183410645,
+              1.5047636032104492
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-349A323395D9_lod2.glb",
+          "sha256": "7e1e0d1f42657bfd405f38f29e3683b664da5c75e4e31e0a647eb34ffb2a35f1",
+          "triangles": 444,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.3822243213653564,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.0926573276519775,
+              1.3700000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "horn": 2,
+        "tail": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          1.5048357248306274,
+          2.4991512298583984
+        ],
+        "center_y_up": [
+          0.0,
+          0.7524178624153137,
+          0.1554243564605713
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-ECF0E30EE86E",
+      "name": "COWC2",
+      "builder": "cow",
+      "group": "animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_animals_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-ECF0E30EE86E_lod0.glb",
+          "sha256": "7acadb262376c2d797048fd58a1bea0090c6b8d834e3dbf8b118dca92d517390",
+          "triangles": 4892,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.4049999713897705,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.094151258468628,
+              1.5048357248306274
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-ECF0E30EE86E_lod1.glb",
+          "sha256": "f7b323866ce142e9f738da6827bc49fd47f254604b9bea7435c106eb51784110",
+          "triangles": 3196,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3328697681427002,
+              -1.3887664079666138,
+              0.0
+            ],
+            [
+              0.3328697681427002,
+              1.0936055183410645,
+              1.5047636032104492
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-ECF0E30EE86E_lod2.glb",
+          "sha256": "d2b79bae46872d50b39bfba0258ea103ca23d211ba0215200e0ff2cae87d9dfe",
+          "triangles": 444,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.3822243213653564,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.0926573276519775,
+              1.3550000190734863
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "horn": 2,
+        "tail": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          1.5048357248306274,
+          2.4991512298583984
+        ],
+        "center_y_up": [
+          0.0,
+          0.7524178624153137,
+          0.1554243564605713
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-9094A227AFF2",
+      "name": "COWS2",
+      "builder": "warning_sign",
+      "group": "animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_animals_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-9094A227AFF2_lod0.glb",
+          "sha256": "8f4eb0396a0abe6f1d0b4ed4290a83aba8209829e2be52b8cd15ce7a8c52de5d",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-9094A227AFF2_lod1.glb",
+          "sha256": "025d7906fc45c32bb801aa8cba4aac6ecf898bc2bc38500dcff8987712a2c160",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-9094A227AFF2_lod2.glb",
+          "sha256": "2a735daf0abcfa937e96802b9d0a6e59e3027e296c1cf96849f0dee5c5ffe685",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-DBC77A1D1E95",
+      "name": "SHEEPB2",
+      "builder": "sheep",
+      "group": "animals",
+      "concept": {
+        "file": "art/props/concept_3d/rural_01_v2.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-DBC77A1D1E95_lod0.glb",
+          "sha256": "914f4779956ea1204530cfd8bc67db2a733814f8fa604fdd0bfc32a5c6b61373",
+          "triangles": 12828,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.40976807475090027,
+              -0.949999988079071,
+              0.0
+            ],
+            [
+              0.4099999964237213,
+              0.6970417499542236,
+              1.0700000524520874
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-DBC77A1D1E95_lod1.glb",
+          "sha256": "5d50c771e1447a358fcdb7449eca4d28ac96a0a7b2d2c22a364a056a20f6b91b",
+          "triangles": 6708,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.39934995770454407,
+              -0.9337664246559143,
+              0.0
+            ],
+            [
+              0.4036373496055603,
+              0.696403443813324,
+              1.0700000524520874
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-DBC77A1D1E95_lod2.glb",
+          "sha256": "2600a86798d45b99a1c1448d22ee210ff3fe61c09c87b501f10e1fb66bcf12c9",
+          "triangles": 444,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.927224338054657,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.6952944993972778,
+              1.0700000524520874
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "tail": 1,
+        "wool_tufts": 38
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8197680711746216,
+          1.0700000524520874,
+          1.6470417380332947
+        ],
+        "center_y_up": [
+          0.00011596083641052246,
+          0.5350000262260437,
+          0.1264791190624237
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-56B018EAFACF",
+      "name": "SHEEPC2",
+      "builder": "sheep",
+      "group": "animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_animals_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-56B018EAFACF_lod0.glb",
+          "sha256": "04bc2489c76e7147711c580dad91802c365fccaef10583e50fdc9c3089040bea",
+          "triangles": 12828,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.40976807475090027,
+              -0.949999988079071,
+              0.0
+            ],
+            [
+              0.4099999964237213,
+              0.6970417499542236,
+              1.0700000524520874
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-56B018EAFACF_lod1.glb",
+          "sha256": "b4beed6c45e715a3f03920b3267f38b0f2e2de4744dd40889a456b31061ec104",
+          "triangles": 6708,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.39934995770454407,
+              -0.9337664246559143,
+              0.0
+            ],
+            [
+              0.4036373496055603,
+              0.696403443813324,
+              1.0700000524520874
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-56B018EAFACF_lod2.glb",
+          "sha256": "846dcab4611c99b15df271e64088d786cfd033c4eb6bba7f7ac158cb64399e8e",
+          "triangles": 444,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.927224338054657,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.6952944993972778,
+              1.0700000524520874
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "tail": 1,
+        "wool_tufts": 38
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8197680711746216,
+          1.0700000524520874,
+          1.6470417380332947
+        ],
+        "center_y_up": [
+          0.00011596083641052246,
+          0.5350000262260437,
+          0.1264791190624237
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "active_fixed_ticks": 928,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 2420,
+  "comfort": {
+    "anti_nausea": false,
+    "deadzone": 0.15000000596046448,
+    "fov_degrees": 75.0,
+    "shake": 0.5,
+    "smoothing": 10.0,
+    "speed_fov": true,
+    "speed_lines": false
+  },
+  "entities": 115900,
+  "fixed_recovery_stages": [
+    true,
+    true,
+    true
+  ],
+  "fixed_ticks": 1074,
+  "gamepads_connected": 1,
+  "last_gameplay_ms": 0.1849759966135025,
+  "last_physics_ms": 0.7119809985160828,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "recovery_at_run_capture": {
+    "farm_distance_and_height_delta_m": [
+      3.2138240337371826,
+      0.7614481449127197
+    ],
+    "hill_distance_and_height_delta_m": [
+      8.982376098632812,
+      0.761454164981842
+    ]
+  },
+  "render_frames": 1075,
+  "render_running_captured": true,
+  "target_hz": 60.0,
+  "track": {
+    "closed": false,
+    "collision_triangles": 0,
+    "gates": 9,
+    "id": "city-run-5300",
+    "length_m": 5300.0,
+    "render_triangles": 0
+  },
+  "vehicle": {
+    "bike_id": "prototype-bike-01",
+    "crash_state": "Riding",
+    "dt": 0.01666666753590107,
+    "gear": 1,
+    "grip_force_n": 4120.20361328125,
+    "grounded": [
+      true,
+      true
+    ],
+    "health": 100.0,
+    "intent": {
+      "brake": false,
+      "brake_amount": 0.0,
+      "nitro": false,
+      "steer": 0.0,
+      "throttle": false,
+      "throttle_amount": 0.0
+    },
+    "lane": -0.3623700439929962,
+    "lean": 0.0,
+    "position": [
+      0.3623700439929962,
+      0.02499997615814209,
+      3852.67333984375
+    ],
+    "preset": "balanced",
+    "raw_steer": 0.0,
+    "rider_id": 0,
+    "rpm": 1200.0,
+    "slip": 0.0,
+    "slip_angle": 0.0,
+    "speed_mps": 0.0,
+    "spring_force_n": [
+      1373.4012451171875,
+      1373.4012451171875
+    ],
+    "steering_force": 0.0,
+    "surface_mu": 1.5,
+    "suspension_m": [
+      5.960464477539063e-8,
+      5.960464477539063e-8
+    ],
+    "tick": 928,
+    "tire_force_n": [
+      0.0,
+      0.0
+    ],
+    "velocity": [
+      0.0,
+      1.4528951908232557e-7,
+      0.0
+    ],
+    "yaw_rate": -4.236242162180409e-15
+  },
+  "wall_frame_average_ms": 18.336936950683594,
+  "wall_frame_p95_ms": 22.62417221069336
+}

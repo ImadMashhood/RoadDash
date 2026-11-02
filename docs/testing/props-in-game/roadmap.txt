@@ -1,0 +1,6 @@
+Canonical README / progress IDs and states match
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK

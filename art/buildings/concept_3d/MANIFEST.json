@@ -1,0 +1,469 @@
+{
+  "tool": "ChatGPT built-in image generation",
+  "type": "2D concept renders depicting 3D assets; not meshes or GLB models",
+  "sheets": 25,
+  "source_references": 146,
+  "style": "Stylized mid-poly game architecture with rich colors, beveled forms and restrained material wear",
+  "status": "Drafts awaiting art review; generated labels may be absent or distorted, use the row-major ID map; inferred side walls/roofs are concepts, not recovered source geometry",
+  "runtime_integrated": false,
+  "records": [
+    {
+      "file": "facades_01.png",
+      "source_sheet": "facades_01.png",
+      "ids_in_row_major_order": [
+        "BUSS1",
+        "BUSS10",
+        "BUSS2",
+        "BUSS4",
+        "BUSS5",
+        "BUSS6"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "3a4905cff580a5b92defd5bbc57fb7a08261d747cdbc8b7915f561fea62ff741",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f"
+    },
+    {
+      "file": "facades_02.png",
+      "source_sheet": "facades_02.png",
+      "ids_in_row_major_order": [
+        "BUSS7",
+        "BUSS8",
+        "BUSS9",
+        "CHINA12",
+        "CHINA13",
+        "CHINA14"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "07ff687a3db36e8b0c04ea23ee53296a9cde22af1565f943092c484fdc0efe80",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec"
+    },
+    {
+      "file": "facades_03.png",
+      "source_sheet": "facades_03.png",
+      "ids_in_row_major_order": [
+        "CHINA15",
+        "CHINA16",
+        "CHINA17",
+        "CLSTGA11",
+        "CLSTGA12",
+        "CLSTGA13"
+      ],
+      "pixels": [
+        1038,
+        1516
+      ],
+      "sha256": "46b1b03301a9f9ae15962811a71c5775e388e0db5473dacea6187d9214d491b7",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928"
+    },
+    {
+      "file": "facades_04.png",
+      "source_sheet": "facades_04.png",
+      "ids_in_row_major_order": [
+        "CLSTGA14",
+        "CLSTGA15",
+        "CLSTGA16",
+        "CLSTGA17",
+        "CLSTGA18",
+        "CLSTGA19"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "05a8d4f46a100d7f930a3a90a4b69a8e72ea7b9375696c3c66789516f1460902",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537"
+    },
+    {
+      "file": "facades_05.png",
+      "source_sheet": "facades_05.png",
+      "ids_in_row_major_order": [
+        "CLSTGA20",
+        "CLSTGA21",
+        "OFFC1",
+        "OFFC10",
+        "OFFC11",
+        "OFFC12"
+      ],
+      "pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "b241e6fc472c9265c0508769a6d7c2321b81b53f6e2b3facc5e70d659ddfe2d8",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4"
+    },
+    {
+      "file": "facades_06.png",
+      "source_sheet": "facades_06.png",
+      "ids_in_row_major_order": [
+        "OFFC13",
+        "OFFC14",
+        "OFFC15",
+        "OFFC16",
+        "OFFC17",
+        "OFFC18"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "826f43a43a1b69e2eb1e031e347d3be036f040451b974152fdd1e72d03fefaf5",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109"
+    },
+    {
+      "file": "facades_07.png",
+      "source_sheet": "facades_07.png",
+      "ids_in_row_major_order": [
+        "OFFC19",
+        "OFFC2",
+        "OFFC20",
+        "OFFC21",
+        "OFFC22",
+        "OFFC5"
+      ],
+      "pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "f977c89d913f615ee9a2c65c6be594fff4b61e4d52af94aa4c4352e0a18c144c",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8"
+    },
+    {
+      "file": "facades_08.png",
+      "source_sheet": "facades_08.png",
+      "ids_in_row_major_order": [
+        "RUNDWN11",
+        "RUNDWN12",
+        "RUNDWN13",
+        "RUNDWN14",
+        "RUNDWN15",
+        "RUNDWN16"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "771e72a163be5da335e3483e12e72480790e9924d16dbd23ad314922d68903b1",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c"
+    },
+    {
+      "file": "facades_09.png",
+      "source_sheet": "facades_09.png",
+      "ids_in_row_major_order": [
+        "RUNDWN17",
+        "VICT11",
+        "VICT12",
+        "VICT13",
+        "VICT14",
+        "VICT15"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "ee10c205c12ff519fa4a8d0073f898324320fe10a64cf04d136cefe47fe2b1f0",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8"
+    },
+    {
+      "file": "facades_10.png",
+      "source_sheet": "facades_10.png",
+      "ids_in_row_major_order": [
+        "VICT16",
+        "VICT17",
+        "VICT18",
+        "VICT19",
+        "VICT1A",
+        "VICT1B"
+      ],
+      "pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "81ece888fca83a52f15c9775d191e6f1c55d116129ff91ec88e7c345c46dc03c",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20"
+    },
+    {
+      "file": "facades_11.png",
+      "source_sheet": "facades_11.png",
+      "ids_in_row_major_order": [
+        "VICT20",
+        "VICT21",
+        "VICT22",
+        "VICT23",
+        "VICT24",
+        "VICT25"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "59e051bfae67a88d8669263e9550a9a92ae4dd2d58a2b061b4620a1579e826ef",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f"
+    },
+    {
+      "file": "facades_12.png",
+      "source_sheet": "facades_12.png",
+      "ids_in_row_major_order": [
+        "VICT26",
+        "VICT27",
+        "VICT28",
+        "VICT29",
+        "VICT2A",
+        "VICT2B"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "f7974bb4b752c54146cb8d947e3f91ee46b40305954050d27f10530f0277b4cf",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957"
+    },
+    {
+      "file": "facades_13.png",
+      "source_sheet": "facades_13.png",
+      "ids_in_row_major_order": [
+        "VICT31",
+        "VICT32",
+        "VICT33",
+        "VICT34",
+        "VICT3A",
+        "VICT3B"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "8d9bef6de034146542c2eff4159672c9cff50fd838400402ad928e00bf3d499e",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c"
+    },
+    {
+      "file": "facades_14.png",
+      "source_sheet": "facades_14.png",
+      "ids_in_row_major_order": [
+        "VICT6A",
+        "VICT6B",
+        "WHSE11",
+        "WHSE12",
+        "WHSE13",
+        "WHSE14"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "0344deda9a0f13d00237eef816fcfc6d7317af46e3f1e0475afdbd645238c2ae",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5"
+    },
+    {
+      "file": "facades_15.png",
+      "source_sheet": "facades_15.png",
+      "ids_in_row_major_order": [
+        "WHSE15",
+        "WHSE16",
+        "WHSE17",
+        "WHSE18",
+        "WHSE19",
+        "WHSE20"
+      ],
+      "pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "ac08780a802ed58e810bf108286f99f3bc184190be24e9e60cb236c460ae7d75",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e"
+    },
+    {
+      "file": "facades_16.png",
+      "source_sheet": "facades_16.png",
+      "ids_in_row_major_order": [
+        "WHSE22",
+        "WHSE23",
+        "WRHS1",
+        "WRHS2",
+        "WRHS3",
+        "WRHS4"
+      ],
+      "pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "6135045f06cc1c40d34d00541c923bdf7b61423afd2f93c20ef2e1c73c8c50ba",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8"
+    },
+    {
+      "file": "facades_17.png",
+      "source_sheet": "facades_17.png",
+      "ids_in_row_major_order": [
+        "WRHS5",
+        "WRHS6",
+        "WRHS7",
+        "WRHS8"
+      ],
+      "pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "0300e7de1804facc3561fb78f331ab71dfef44d1865119e57a0790d1924e3081",
+      "source_sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4"
+    },
+    {
+      "file": "structures_01.png",
+      "source_sheet": "structures_01.png",
+      "ids_in_row_major_order": [
+        "BARN12",
+        "BARN22",
+        "BARN32",
+        "BARND2",
+        "BUSSTOP2",
+        "CARWASH2"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "29b8a6748344fd1b69eeafcf65d023230d3a93245853ca08b915a679831ea5a9",
+      "source_sha256": "45f97337d587da703294c76a3285f24fcb045b8f68bcb1892db752bc63336c61"
+    },
+    {
+      "file": "structures_02.png",
+      "source_sheet": "structures_02.png",
+      "ids_in_row_major_order": [
+        "CHINGAT2",
+        "CHURCH2",
+        "GASA2",
+        "GASB2",
+        "GRNTNK2",
+        "HAYSHED2"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "23473435ee5d2e2a23e69518a59824e1e929c14a5e094b30dc61eed4bf221752",
+      "source_sha256": "2f11d4bf5bcb0cb62ae989d42dc8c32c3de17679f56c097dfa5f697e96f8956e"
+    },
+    {
+      "file": "structures_03.png",
+      "source_sheet": "structures_03.png",
+      "ids_in_row_major_order": [
+        "HOUSEB2",
+        "METL21CC",
+        "METL21RC",
+        "METL21RW",
+        "METL22CC",
+        "OUTHOUS2"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "537e81d47d863c20abdcb79a2b152da5cfaff61a3336a48266253989f2c24d0e",
+      "source_sha256": "f908ff283d7d91887cb9e2ea5fa81d01d2f044150c6235bc17d098b7ac4ae01f"
+    },
+    {
+      "file": "structures_04.png",
+      "source_sheet": "structures_04.png",
+      "ids_in_row_major_order": [
+        "PHONSHK2",
+        "PORTLET2",
+        "RUSTICA2",
+        "RUSTICB2",
+        "SCHOOL2",
+        "SHOPD2"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "579f066d6ee86f6e5232c5b6ee5793c47525c1bde22d417304a6119d76b38071",
+      "source_sha256": "87d41651c1eab2e824fb4b0321c3fee8a814d2eddcec41d6701795e05680fa0e"
+    },
+    {
+      "file": "structures_05.png",
+      "source_sheet": "structures_05.png",
+      "ids_in_row_major_order": [
+        "SHOPE2",
+        "SHOPICE2",
+        "SNCKSHP2",
+        "TANKSEP2",
+        "TOP",
+        "TOP1A"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "4c364e2af0f51f33c5531d3bc6ee0c42b5f79e30d955616e00dbac0fc02647c4",
+      "source_sha256": "70a1ef1311c41c3a88a39e2c68233884fda3d41b88dc344dd3e9b6378ae18da3"
+    },
+    {
+      "file": "structures_06.png",
+      "source_sheet": "structures_06.png",
+      "ids_in_row_major_order": [
+        "TOP2A",
+        "TOP3A",
+        "TOWERB2",
+        "TUN1SHTP",
+        "TUNN1LIP",
+        "TUNN21CC"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "23a57f1ba7969e3773d829a71b899050b24298918e8519decc4436f3c282c1b3",
+      "source_sha256": "3552a05bba5e14d18f98a2a45d59f9a24e09eeec6b51c78f1ec06391b1cc1b8f"
+    },
+    {
+      "file": "structures_07.png",
+      "source_sheet": "structures_07.png",
+      "ids_in_row_major_order": [
+        "TUNN21RC",
+        "TUNN21RW",
+        "TUNN22CC",
+        "TUNN31CC",
+        "TUNN31RC",
+        "TUNN31RW"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "18543d312f72a2269f27a1ec0ceee53d0f3c53722334d13f563545e8769c2128",
+      "source_sha256": "6e06908c67574e05fc4da425fb81b047536a4833def7327789864d3cd9f4850f"
+    },
+    {
+      "file": "structures_08.png",
+      "source_sheet": "structures_08.png",
+      "ids_in_row_major_order": [
+        "TUNN32RC",
+        "WATRTNK2",
+        "WHTTANK2",
+        "WINNERY2"
+      ],
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "e6eb6528244aa13baa8118883e3acce8c7dcdea005d7f77c27a89e4f812313df",
+      "source_sha256": "640211eade7562f937616a79c345721ec136ab8740118d7070d0c2d49c617957"
+    }
+  ],
+  "actual_mesh_conversion": {
+    "designs": [
+      "BUSS1",
+      "BUSS10",
+      "BUSS2",
+      "BUSS4",
+      "BUSS5",
+      "BUSS6"
+    ],
+    "manifest": "../mesh_assets/MANIFEST.json",
+    "remaining": "Other94facade and46structure/surface designs remain unconverted; PNG sheets are not meshes"
+  }
+}

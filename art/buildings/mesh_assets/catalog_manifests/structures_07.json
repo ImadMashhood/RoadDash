@@ -1,0 +1,354 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_07.png",
+  "reference_sha256": "18543d312f72a2269f27a1ec0ceee53d0f3c53722334d13f563545e8769c2128",
+  "source_blend": "catalog_sources/structures_07.blend",
+  "source_sha256": "b6fbbc3cb2a6988f897d2f56f8ea6bdd2af317bfb8b8c1ca3ad6c154e1ca9c89",
+  "records": [
+    {
+      "id": "TUNN21RC",
+      "asset_type": "surface_module",
+      "builder": "brick_pier",
+      "reference_sheet": "structures_07.png",
+      "geometry_parts": {
+        "surface_pier_body": 1,
+        "surface_pier_coping": 2,
+        "pier_brick_course": 15,
+        "pier_banding": 3,
+        "surface_wear_chip": 16
+      },
+      "description": "dark brick square capped pier",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN21RC_lod0.glb",
+          "lod": 0,
+          "vertices": 888,
+          "triangles": 1628,
+          "bytes": 1474656,
+          "sha256": "7c075f25dac588fb0137ae32f80ed6e8a95c9bfc037224145ba45db165ada259"
+        },
+        {
+          "file": "TUNN21RC_lod1.glb",
+          "lod": 1,
+          "vertices": 144,
+          "triangles": 264,
+          "bytes": 714896,
+          "sha256": "a3c05cf72330c145af9a867e978cd1dbb0c0872e409f2254bedf09ed7c44bc3c"
+        },
+        {
+          "file": "TUNN21RC_lod2.glb",
+          "lod": 2,
+          "vertices": 24,
+          "triangles": 36,
+          "bytes": 697384,
+          "sha256": "d065f06de327402096eccc3f06fffdb7c14bbd2a5ada801a206d213d64b9810c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.7149999737739563,
+          -0.6899999976158142,
+          0.0
+        ],
+        "max": [
+          0.7149999737739563,
+          0.6549999713897705,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "TUNN21RW",
+      "asset_type": "surface_module",
+      "builder": "brick_pier",
+      "reference_sheet": "structures_07.png",
+      "geometry_parts": {
+        "surface_pier_body": 1,
+        "surface_pier_coping": 2,
+        "pier_brick_course": 15,
+        "pier_banding": 3,
+        "surface_wear_chip": 16
+      },
+      "description": "brick/concrete capped pier with metal strapping",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN21RW_lod0.glb",
+          "lod": 0,
+          "vertices": 888,
+          "triangles": 1628,
+          "bytes": 1474652,
+          "sha256": "1e7f97597a9b03855155a38a2334d89e78b513d14a7ee31fa78e44f68f277281"
+        },
+        {
+          "file": "TUNN21RW_lod1.glb",
+          "lod": 1,
+          "vertices": 144,
+          "triangles": 264,
+          "bytes": 714896,
+          "sha256": "ca1817c85c6b506ca833498bc7cbaf3b636e0b83f5475ed402feb2220a99c643"
+        },
+        {
+          "file": "TUNN21RW_lod2.glb",
+          "lod": 2,
+          "vertices": 24,
+          "triangles": 36,
+          "bytes": 697384,
+          "sha256": "9c56fd689df0063891500fcef593de0f8b82dde2753a43ef40f0b1cd22c7ed69"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.7149999737739563,
+          -0.6899999976158142,
+          0.0
+        ],
+        "max": [
+          0.7149999737739563,
+          0.6549999713897705,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "TUNN22CC",
+      "asset_type": "surface_module",
+      "builder": "concrete_panel",
+      "reference_sheet": "structures_07.png",
+      "geometry_parts": {
+        "surface_panel_body": 1,
+        "surface_strap": 2,
+        "surface_bolt": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "horizontal concrete wall panel with coping",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN22CC_lod0.glb",
+          "lod": 0,
+          "vertices": 744,
+          "triangles": 1364,
+          "bytes": 1139424,
+          "sha256": "e3e80dc3f54a6cc29812be5e1d9cd9ab955563b8a763542b021be9f86cb6fe2a"
+        },
+        {
+          "file": "TUNN22CC_lod1.glb",
+          "lod": 1,
+          "vertices": 72,
+          "triangles": 132,
+          "bytes": 716532,
+          "sha256": "75fb32a347daedf5bb9c2e37137099b2fb80748f6fab6425651f333a3fd697a1"
+        },
+        {
+          "file": "TUNN22CC_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 342312,
+          "sha256": "98223ec181a08652a6020c0b3ca93b554e6710812f1c506b8ed7c05886161eb7"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.26500001549720764,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "TUNN31CC",
+      "asset_type": "surface_module",
+      "builder": "aggregate_slab",
+      "reference_sheet": "structures_07.png",
+      "geometry_parts": {
+        "aggregate_slab": 1,
+        "exposed_aggregate": 150,
+        "slab_edge_bevel": 2,
+        "surface_wear_chip": 16
+      },
+      "description": "exposed aggregate concrete ground slab",
+      "body_dimensions_m": [
+        4,
+        2.5,
+        0.22
+      ],
+      "lods": [
+        {
+          "file": "TUNN31CC_lod0.glb",
+          "lod": 0,
+          "vertices": 7764,
+          "triangles": 14852,
+          "bytes": 2425092,
+          "sha256": "5b251e64b362e2abe9837b8c92927573d2724b3e3616935d6e2a6000f86d5e01"
+        },
+        {
+          "file": "TUNN31CC_lod1.glb",
+          "lod": 1,
+          "vertices": 72,
+          "triangles": 132,
+          "bytes": 351500,
+          "sha256": "82d403f5a501c4fd119ac919b12144df86c8b600900fe1c90cd1e5cc5675c701"
+        },
+        {
+          "file": "TUNN31CC_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 342320,
+          "sha256": "58c085da53826264031acd4d11a1fe34ea708d3c2cc5fbe6ccf870a4532153e1"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -1.2899999618530273,
+          0.0
+        ],
+        "max": [
+          2.0,
+          1.25,
+          0.25999999046325684
+        ]
+      }
+    },
+    {
+      "id": "TUNN31RC",
+      "asset_type": "surface_module",
+      "builder": "concrete_pier",
+      "reference_sheet": "structures_07.png",
+      "geometry_parts": {
+        "surface_pier_body": 1,
+        "surface_pier_coping": 2,
+        "pier_banding": 3,
+        "surface_wear_chip": 16
+      },
+      "description": "aggregate-faced pier with three bands",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN31RC_lod0.glb",
+          "lod": 0,
+          "vertices": 528,
+          "triangles": 968,
+          "bytes": 1108488,
+          "sha256": "eb1f48888b94e301408325de773c9198142bec3a09e8b6147f365026a9ee4001"
+        },
+        {
+          "file": "TUNN31RC_lod1.glb",
+          "lod": 1,
+          "vertices": 144,
+          "triangles": 264,
+          "bytes": 726592,
+          "sha256": "3e8bb1cc64e6cbc37a382235f0001af46a2bc812ada11edd01ae3e4faa281f69"
+        },
+        {
+          "file": "TUNN31RC_lod2.glb",
+          "lod": 2,
+          "vertices": 24,
+          "triangles": 36,
+          "bytes": 709080,
+          "sha256": "0dcfd9790000b98868df74f46422a11559eeff4adb69c438584c7d0830f777c1"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.7149999737739563,
+          -0.6899999976158142,
+          0.0
+        ],
+        "max": [
+          0.7149999737739563,
+          0.6549999713897705,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "TUNN31RW",
+      "asset_type": "surface_module",
+      "builder": "vent_pier",
+      "reference_sheet": "structures_07.png",
+      "geometry_parts": {
+        "surface_pier_body": 1,
+        "surface_pier_coping": 2,
+        "pier_louver": 5,
+        "surface_wear_chip": 16
+      },
+      "description": "concrete pier with louver vent and bands",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN31RW_lod0.glb",
+          "lod": 0,
+          "vertices": 576,
+          "triangles": 1056,
+          "bytes": 1411764,
+          "sha256": "293debec923b445e5a9a63668fefaf4b4012e81d938c1842d9b291cf48aea9d4"
+        },
+        {
+          "file": "TUNN31RW_lod1.glb",
+          "lod": 1,
+          "vertices": 192,
+          "triangles": 352,
+          "bytes": 1029864,
+          "sha256": "ff4dd420e4588c5721a71a9f46e9cfb89ca8fbc54805bb2ac6629a8006a4b8d2"
+        },
+        {
+          "file": "TUNN31RW_lod2.glb",
+          "lod": 2,
+          "vertices": 24,
+          "triangles": 36,
+          "bytes": 709080,
+          "sha256": "f778559c7aa6eeee73d350c7aa13d5f1e7a4a93f2077141edad2f844d567de16"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.7149999737739563,
+          -0.73499995470047,
+          0.0
+        ],
+        "max": [
+          0.7149999737739563,
+          0.6549999713897705,
+          3.0
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

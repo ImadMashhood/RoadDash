@@ -1,0 +1,624 @@
+{
+  "schema_version": 2,
+  "sheet": "facades_11.png",
+  "reference_sha256": "59e051bfae67a88d8669263e9550a9a92ae4dd2d58a2b061b4620a1579e826ef",
+  "source_blend": "catalog_sources/facades_11.blend",
+  "source_sha256": "2879af958ccd9746c4ea91234d1e9982710524bb01e9c709b4adc952d3d85289",
+  "records": [
+    {
+      "id": "VICT20",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_11.png",
+      "geometry_parts": {
+        "wall_backing_front": 16,
+        "individual_bricks_front": 135,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 588,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 588,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 314,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 1,
+        "entry_glass": 1,
+        "entry_jamb": 2,
+        "entry_sill": 2,
+        "entry_vertical_mullion": 1,
+        "entry_sash": 1,
+        "stone_window_reveal": 6,
+        "entry_kickpanel": 1,
+        "entry_handle": 1,
+        "bay_base": 1,
+        "bay_crown": 1,
+        "bay_front_cavity": 1,
+        "bay_front_glass": 1,
+        "bay_front_jamb": 2,
+        "bay_front_sill": 2,
+        "bay_front_vertical_mullion": 1,
+        "bay_front_sash": 1,
+        "bay_cheek_glass": 2,
+        "bay_cheek_post": 2,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 16,
+        "gable_attic_light_cavity": 1,
+        "gable_attic_light_glass": 1,
+        "gable_attic_light_jamb": 2,
+        "gable_attic_light_sill": 2,
+        "gable_attic_light_vertical_mullion": 1,
+        "gable_attic_light_sash": 1,
+        "entry_step": 6,
+        "stair_cheek_wall": 2,
+        "surface_chip": 6
+      },
+      "description": "bay / gable_parapet / door; steps,brick_stair_walls,attic",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        6.7
+      ],
+      "lods": [
+        {
+          "file": "VICT20_lod0.glb",
+          "lod": 0,
+          "vertices": 43330,
+          "triangles": 79248,
+          "bytes": 9179756,
+          "sha256": "445edb0ea52b1bdfd4e31328a1b0a5e2758eff56c3b78d0143fe64c2508fa5fc"
+        },
+        {
+          "file": "VICT20_lod1.glb",
+          "lod": 1,
+          "vertices": 3778,
+          "triangles": 6736,
+          "bytes": 3430920,
+          "sha256": "0d37e085d181c74e1bcf7e02ff54368da4a2acc06cf7e781de66396e26d203fe"
+        },
+        {
+          "file": "VICT20_lod2.glb",
+          "lod": 2,
+          "vertices": 1374,
+          "triangles": 2060,
+          "bytes": 2780636,
+          "sha256": "00bba4646d5bb715ca8acc62a5a3474144ff96934b433c0ff046658f4c752b16"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -5.350000381469727,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          7.859545707702637
+        ]
+      }
+    },
+    {
+      "id": "VICT21",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_11.png",
+      "geometry_parts": {
+        "wall_backing_front": 25,
+        "individual_bricks_front": 203,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "door_board": 17,
+        "door_crossbar": 2,
+        "door_diagonal_brace": 1,
+        "bay_base": 2,
+        "bay_crown": 2,
+        "bay_front_cavity": 2,
+        "bay_front_glass": 2,
+        "bay_front_jamb": 4,
+        "bay_front_sill": 4,
+        "bay_front_vertical_mullion": 2,
+        "bay_front_sash": 2,
+        "stone_window_reveal": 4,
+        "bay_cheek_glass": 4,
+        "bay_cheek_post": 4,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "floor_belt": 2,
+        "surface_chip": 12
+      },
+      "description": "bay / flat / barn; heavy_bands",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "VICT21_lod0.glb",
+          "lod": 0,
+          "vertices": 61072,
+          "triangles": 111752,
+          "bytes": 11381084,
+          "sha256": "9610f164be3e40157f8712f4a79517af9a9d9670209d05e10c7e1a66538699f5"
+        },
+        {
+          "file": "VICT21_lod1.glb",
+          "lod": 1,
+          "vertices": 3976,
+          "triangles": 7076,
+          "bytes": 3067060,
+          "sha256": "fa96c461e748770b6c1eebb94095be7dd67debd0dd83c6a487dc0220bcb19a9c"
+        },
+        {
+          "file": "VICT21_lod2.glb",
+          "lod": 2,
+          "vertices": 1488,
+          "triangles": 2232,
+          "bytes": 2404112,
+          "sha256": "656a99f00ce6f842adb958c76552b02df2ad047f8da0508674a4830d9260263e"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -3.575000047683716,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          10.449999809265137
+        ]
+      }
+    },
+    {
+      "id": "VICT22",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_11.png",
+      "geometry_parts": {
+        "wall_backing_front": 25,
+        "individual_bricks_front": 234,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 1,
+        "entry_glass": 1,
+        "entry_jamb": 2,
+        "entry_sill": 2,
+        "entry_vertical_mullion": 1,
+        "entry_sash": 1,
+        "stone_window_reveal": 8,
+        "entry_kickpanel": 1,
+        "entry_handle": 1,
+        "entry_arch": 14,
+        "fanlight_spoke": 7,
+        "catalog_window_cavity": 2,
+        "catalog_window_glass": 2,
+        "catalog_window_jamb": 4,
+        "catalog_window_sill": 4,
+        "catalog_window_vertical_mullion": 2,
+        "catalog_window_sash": 2,
+        "balcony_deck": 2,
+        "balcony_rail": 4,
+        "balcony_spindle": 24,
+        "scroll_volute": 32,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "shaped_parapet": 1,
+        "parapet_profile": 7,
+        "attic_arch_cavity": 1,
+        "attic_arch_glass": 1,
+        "attic_arch_jamb": 2,
+        "attic_arch_sill": 2,
+        "attic_arch_vertical_mullion": 1,
+        "attic_arch_sash": 1,
+        "attic_arched_hood": 14,
+        "surface_chip": 8
+      },
+      "description": "sash / arched_pediment / arch; balconies,scrolls,attic",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "VICT22_lod0.glb",
+          "lod": 0,
+          "vertices": 64818,
+          "triangles": 118764,
+          "bytes": 11970424,
+          "sha256": "0db13ae07d6b5aa0d3ed86217d26cbe6d6d1f4c03f149aa93d203badf92bc4ea"
+        },
+        {
+          "file": "VICT22_lod1.glb",
+          "lod": 1,
+          "vertices": 7050,
+          "triangles": 12856,
+          "bytes": 3572068,
+          "sha256": "da155013467e65ed580b359ee20a0863a12abeb9322883ac7004e18bcd0f8f4c"
+        },
+        {
+          "file": "VICT22_lod2.glb",
+          "lod": 2,
+          "vertices": 1562,
+          "triangles": 2348,
+          "bytes": 2489164,
+          "sha256": "293f96a6a5fc000ce474708eb06b6f762d2d3974da4b44a5de279184df61a9b1"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -3.6042346954345703,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          10.64358901977539
+        ]
+      }
+    },
+    {
+      "id": "VICT23",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_11.png",
+      "geometry_parts": {
+        "wall_backing_front": 13,
+        "individual_bricks_front": 414,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "catalog_window_cavity": 2,
+        "catalog_window_glass": 2,
+        "catalog_window_jamb": 4,
+        "catalog_window_sill": 4,
+        "catalog_window_vertical_mullion": 2,
+        "catalog_window_sash": 2,
+        "stone_window_reveal": 4,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "surface_chip": 14
+      },
+      "description": "sash / flat / sealed; plain_entry",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "VICT23_lod0.glb",
+          "lod": 0,
+          "vertices": 65272,
+          "triangles": 119484,
+          "bytes": 11593120,
+          "sha256": "1ccaeda182df9ed6de5dbeec935f7bc1ee2259520f05834a21232f197abb8f27"
+        },
+        {
+          "file": "VICT23_lod1.glb",
+          "lod": 1,
+          "vertices": 3064,
+          "triangles": 5436,
+          "bytes": 2505584,
+          "sha256": "27d318249f405276ecfbce427b05673d42f2c01c58f7534388b7e68da19177ec"
+        },
+        {
+          "file": "VICT23_lod2.glb",
+          "lod": 2,
+          "vertices": 1144,
+          "triangles": 1716,
+          "bytes": 1931476,
+          "sha256": "5127846a96fe2dc0d593737a519246b6473a54a2d4a96d03e7014a91ca89f66c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -3.490000009536743,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          10.449999809265137
+        ]
+      }
+    },
+    {
+      "id": "VICT24",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_11.png",
+      "geometry_parts": {
+        "wall_backing_front": 25,
+        "individual_bricks_front": 203,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 1,
+        "entry_glass": 1,
+        "entry_jamb": 2,
+        "entry_sill": 2,
+        "entry_vertical_mullion": 1,
+        "entry_sash": 1,
+        "stone_window_reveal": 8,
+        "entry_kickpanel": 1,
+        "entry_handle": 1,
+        "entry_arch": 14,
+        "fanlight_spoke": 7,
+        "bay_base": 2,
+        "bay_crown": 2,
+        "bay_front_cavity": 2,
+        "bay_front_glass": 2,
+        "bay_front_jamb": 4,
+        "bay_front_sill": 4,
+        "bay_front_vertical_mullion": 2,
+        "bay_front_sash": 2,
+        "bay_cheek_glass": 4,
+        "bay_cheek_post": 4,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 16,
+        "gable_attic_light_cavity": 1,
+        "gable_attic_light_glass": 1,
+        "gable_attic_light_jamb": 2,
+        "gable_attic_light_sill": 2,
+        "gable_attic_light_vertical_mullion": 1,
+        "gable_attic_light_sash": 1,
+        "surface_chip": 9
+      },
+      "description": "bay / gable_parapet / arch; decorative_bay_panels,attic",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "VICT24_lod0.glb",
+          "lod": 0,
+          "vertices": 62146,
+          "triangles": 113748,
+          "bytes": 11920996,
+          "sha256": "696cca0dcd6a7da0ecc082ae3e056cfeadda824c8004e077a788d7ac00bfa031"
+        },
+        {
+          "file": "VICT24_lod1.glb",
+          "lod": 1,
+          "vertices": 4714,
+          "triangles": 8456,
+          "bytes": 3558764,
+          "sha256": "2e0e75dc3545f590c6de70f55d1fd0a454f690e210d6ecf45d698601b6bb22f9"
+        },
+        {
+          "file": "VICT24_lod2.glb",
+          "lod": 2,
+          "vertices": 1598,
+          "triangles": 2396,
+          "bytes": 2804884,
+          "sha256": "9619683e761163f4d0458d42f4b295c43966755a6eff5ecddb5f22abf6146b06"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -3.575000047683716,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          10.45954704284668
+        ]
+      }
+    },
+    {
+      "id": "VICT25",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_11.png",
+      "geometry_parts": {
+        "wall_backing_front": 25,
+        "individual_bricks_front": 203,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 1,
+        "entry_glass": 1,
+        "entry_jamb": 2,
+        "entry_sill": 2,
+        "entry_vertical_mullion": 1,
+        "entry_sash": 1,
+        "stone_window_reveal": 6,
+        "entry_kickpanel": 1,
+        "entry_handle": 1,
+        "bay_base": 2,
+        "bay_crown": 2,
+        "bay_front_cavity": 2,
+        "bay_front_glass": 2,
+        "bay_front_jamb": 4,
+        "bay_front_sill": 4,
+        "bay_front_vertical_mullion": 2,
+        "bay_front_sash": 2,
+        "bay_cheek_glass": 4,
+        "bay_cheek_post": 4,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "floor_belt": 2,
+        "entry_step": 6,
+        "stair_cheek_wall": 2,
+        "surface_chip": 11
+      },
+      "description": "turret_bay / flat / door; steps,brick_stair_walls,heavy_bands",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "VICT25_lod0.glb",
+          "lod": 0,
+          "vertices": 61048,
+          "triangles": 111708,
+          "bytes": 10975392,
+          "sha256": "00a3f594455bbbdaae0552ee0d0da46ddae4906d8e6d03d087d8dfec3f059c75"
+        },
+        {
+          "file": "VICT25_lod1.glb",
+          "lod": 1,
+          "vertices": 3952,
+          "triangles": 7032,
+          "bytes": 2627184,
+          "sha256": "ca1e715bdc4ecf973790499981e50973101dd6af8f071a948471cff8d8194d38"
+        },
+        {
+          "file": "VICT25_lod2.glb",
+          "lod": 2,
+          "vertices": 1480,
+          "triangles": 2220,
+          "bytes": 1966668,
+          "sha256": "91b6823d5906f47f485360062ed49cd62153a0e8828d0c8524f477135cdcac76"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -5.350000381469727,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          10.449999809265137
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "de49baa964cc678adf45f7f92730b6485c76ce3477df78d061ffcc7d22c61c37",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

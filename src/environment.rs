@@ -529,6 +529,19 @@ pub fn build(
                             true,
                         );
                         commands.entity(e).insert(SceneryFootprint { radius: 0.5 });
+                        if let Some(props) = &art.props {
+                            commands.entity(e).remove::<Mesh3d>();
+                            let prop =
+                                props.choose(if noise > 0.65 { "broadleaf" } else { "conifer" }, i);
+                            props.fitted(
+                                commands,
+                                prop,
+                                v,
+                                Quat::IDENTITY,
+                                Vec3::new(h * 0.8, h * 1.3, h * 0.8),
+                                "tree",
+                            );
+                        }
                         let broad = noise > 0.65;
                         let e = world::part(
                             commands,
@@ -556,6 +569,9 @@ pub fn build(
                             Obstacle,
                             SceneryFootprint { radius: h * 0.4 },
                         ));
+                        if art.props.is_some() {
+                            commands.entity(e).remove::<Mesh3d>();
+                        }
                     }
                 }
             }
@@ -649,78 +665,7 @@ pub fn build(
                         false,
                     );
                 }
-                for offset in [-18.0, 18.0] {
-                    let sign = if offset < 0.0 { 1.0 } else { -1.0 };
-                    let center = p + q * Vec3::Z * sign * 2.4;
-                    let axis = q * Vec3::X * sign;
-                    let root = commands
-                        .spawn((
-                            Transform::from_translation(center + axis * offset),
-                            Visibility::default(),
-                            RigidBody::KinematicPositionBased,
-                            Collider::compound(vec![(
-                                Vec3::Y,
-                                Quat::IDENTITY,
-                                Collider::cuboid(0.95, 0.9, 1.95),
-                            )]),
-                            Obstacle,
-                            CrossTraffic,
-                            ActiveCollisionTypes::all(),
-                            Ccd::enabled(),
-                            ActiveEvents::COLLISION_EVENTS,
-                            Patrol {
-                                center,
-                                axis,
-                                extent: 47.0,
-                                speed: 9.0,
-                                phase: offset / 47.0,
-                                one_way: true,
-                            },
-                        ))
-                        .id();
-                    let child = world::part(
-                        commands,
-                        art.cube.clone(),
-                        art.colors[2].clone(),
-                        Vec3::Y * 0.8,
-                        Vec3::new(1.9, 1.3, 3.9),
-                        Quat::IDENTITY,
-                    );
-                    let mut parts = vec![
-                        child,
-                        world::part(
-                            commands,
-                            art.cube.clone(),
-                            window.clone(),
-                            Vec3::new(0.0, 1.5, -0.1),
-                            Vec3::new(1.6, 0.65, 1.8),
-                            Quat::IDENTITY,
-                        ),
-                    ];
-                    for x in [-0.9, 0.9] {
-                        for z in [-1.2, 1.2] {
-                            parts.push(world::part(
-                                commands,
-                                art.wheel.clone(),
-                                art.dark.clone(),
-                                Vec3::new(x, 0.42, z),
-                                Vec3::ONE,
-                                Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
-                            ));
-                        }
-                    }
-                    for x in [-0.6, 0.6] {
-                        parts.push(world::part(
-                            commands,
-                            art.cube.clone(),
-                            art.white.clone(),
-                            Vec3::new(x, 0.8, 1.97),
-                            Vec3::new(0.4, 0.2, 0.04),
-                            Quat::IDENTITY,
-                        ));
-                    }
-                    crate::runtime::attach_visuals(commands, root, &parts);
-                }
+                spawn_crossing(commands, art, &window, p, q);
             }
             PropKind::Cliff | PropKind::AnimalCrossing => {
                 commands.spawn((
@@ -784,6 +729,36 @@ fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
             ActiveEvents::COLLISION_EVENTS,
         ))
         .id();
+    if let Some(props) = &art.props {
+        let prop = props.choose("cow", (p.z.abs() as usize / 80) % 3);
+        let mut frames = vec![Vec3::Y, Vec3::new(1.25, 1.25, 0.0)];
+        for x in [-0.7, 0.7] {
+            for z in [-0.32, 0.32] {
+                for y in [0.55, 0.15] {
+                    frames.push(Vec3::new(x, y, z));
+                }
+            }
+        }
+        let drivers: Vec<_> = frames
+            .into_iter()
+            .map(|p| {
+                commands
+                    .spawn((Transform::from_translation(p), Visibility::default()))
+                    .id()
+            })
+            .collect();
+        commands
+            .entity(root)
+            .add_children(&drivers)
+            .insert(crate::props::ActorAppearance(prop.name.clone()));
+        let skin = props.skin(commands, prop, &drivers);
+        crate::runtime::attach_visuals(commands, root, &[skin]);
+        commands.entity(root).insert(crate::npc::Npc::new(
+            crate::npc::NpcKind::Cow,
+            Transform::from_translation(p).with_rotation(q),
+        ));
+        return;
+    }
     let mut parts = vec![
         world::part(
             commands,
@@ -850,7 +825,17 @@ pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Q
     ));
     let mut parts = Vec::new();
     for (i, (position, _, _)) in crate::human::SPECS.iter().enumerate() {
-        let e = crate::human::segment(commands, art, 4, i, *position, Quat::IDENTITY);
+        let e = if art.props.is_some() {
+            commands
+                .spawn((
+                    crate::human::HumanSegment(i),
+                    Transform::from_translation(*position),
+                    Visibility::default(),
+                ))
+                .id()
+        } else {
+            crate::human::segment(commands, art, 4, i, *position, Quat::IDENTITY)
+        };
         if let Some((side, leg, pivot)) = crate::human::limb(i) {
             commands.entity(e).insert(PedestrianLimb {
                 side: side * if leg { 1.0 } else { -1.0 },
@@ -860,7 +845,13 @@ pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Q
         }
         parts.push(e);
     }
-    if let Some(models) = &art.models {
+    if let Some(props) = &art.props {
+        let prop = props.choose("human", seed.abs() as usize / 7);
+        commands
+            .entity(root)
+            .insert(crate::props::ActorAppearance(prop.name.clone()));
+        parts.push(props.skin(commands, prop, &parts));
+    } else if let Some(models) = &art.models {
         parts.extend(models.human(commands, 4, &parts, false));
     }
     crate::runtime::attach_visuals(commands, root, &parts);
@@ -910,7 +901,7 @@ pub fn inspector(
     if keys.just_pressed(KeyCode::F4) {
         state.visible = !state.visible;
         info!(
-            "Track {}: {:.0}m, {} render triangles, {} collision triangles, {} gates",
+            "Track {}: {:0.0}m, {} render triangles, {} collision triangles, {} gates",
             track.definition.id.as_str(),
             track.length,
             state.render_triangles,
@@ -978,6 +969,93 @@ pub fn animate_civilians(
             t.translation = limb.pivot + turn * (limb.rest.translation - limb.pivot);
             t.rotation = turn * limb.rest.rotation;
         }
+    }
+}
+
+/// Existing solid crossing-traffic actor, shared with the generated city.
+pub(crate) fn spawn_crossing(
+    commands: &mut Commands,
+    art: &Art,
+    window: &Handle<StandardMaterial>,
+    p: Vec3,
+    q: Quat,
+) {
+    for offset in [-18.0, 18.0] {
+        let sign = if offset < 0.0 { 1.0 } else { -1.0 };
+        let center = p + q * Vec3::Z * sign * 2.4;
+        let axis = q * Vec3::X * sign;
+        let root = commands
+            .spawn((
+                Transform::from_translation(center + axis * offset),
+                Visibility::default(),
+                RigidBody::KinematicPositionBased,
+                Collider::compound(vec![(
+                    Vec3::Y,
+                    Quat::IDENTITY,
+                    Collider::cuboid(0.95, 0.9, 1.95),
+                )]),
+                Obstacle,
+                CrossTraffic,
+                ActiveCollisionTypes::all(),
+                Ccd::enabled(),
+                ActiveEvents::COLLISION_EVENTS,
+                Patrol {
+                    center,
+                    axis,
+                    extent: 47.0,
+                    speed: 9.0,
+                    phase: offset / 47.0,
+                    one_way: true,
+                },
+            ))
+            .id();
+        if let Some(props) = &art.props {
+            let visual = props.vehicle(commands, if offset < 0.0 { 2 } else { 9 });
+            crate::runtime::attach_visuals(commands, root, &[visual]);
+            continue;
+        }
+        let child = world::part(
+            commands,
+            art.cube.clone(),
+            art.colors[2].clone(),
+            Vec3::Y * 0.8,
+            Vec3::new(1.9, 1.3, 3.9),
+            Quat::IDENTITY,
+        );
+        let mut parts = vec![
+            child,
+            world::part(
+                commands,
+                art.cube.clone(),
+                window.clone(),
+                Vec3::new(0.0, 1.5, -0.1),
+                Vec3::new(1.6, 0.65, 1.8),
+                Quat::IDENTITY,
+            ),
+        ];
+        for x in [-0.9, 0.9] {
+            for z in [-1.2, 1.2] {
+                parts.push(world::part(
+                    commands,
+                    art.wheel.clone(),
+                    art.dark.clone(),
+                    Vec3::new(x, 0.42, z),
+                    Vec3::ONE,
+                    Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+                ));
+            }
+        }
+        for x in [-0.6, 0.6] {
+            parts.push(world::part(
+                commands,
+                art.cube.clone(),
+                art.white.clone(),
+                Vec3::new(x, 0.8, 1.97),
+                Vec3::new(0.4, 0.2, 0.04),
+                Quat::IDENTITY,
+            ));
+        }
+        crate::runtime::attach_visuals(commands, root, &parts);
     }
 }
 

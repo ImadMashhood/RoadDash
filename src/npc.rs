@@ -42,6 +42,7 @@ fn cow_ragdoll(
     owner: Entity,
     t: &Transform,
     velocity: Vec3,
+    appearance: Option<&str>,
 ) -> Vec<Entity> {
     let mut specs = vec![
         (Vec3::Y, Vec3::new(2.1, 1.0, 0.9), None, 220.0),
@@ -70,6 +71,7 @@ fn cow_ragdoll(
         }
     }
     let mut bodies = vec![];
+    let mut drivers = vec![];
     for (i, (p, size, parent, mass)) in specs.iter().enumerate() {
         let e = commands
             .spawn((
@@ -94,19 +96,28 @@ fn cow_ragdoll(
                 Debris(f32::INFINITY),
             ))
             .id();
-        let mesh = world::part(
-            commands,
-            art.cube.clone(),
-            if i == 0 {
-                art.white.clone()
-            } else {
-                art.dark.clone()
-            },
-            Vec3::ZERO,
-            *size,
-            Quat::IDENTITY,
-        );
-        crate::runtime::attach_visuals(commands, e, &[mesh]);
+        if appearance.is_none() || art.props.is_none() {
+            let mesh = world::part(
+                commands,
+                art.cube.clone(),
+                if i == 0 {
+                    art.white.clone()
+                } else {
+                    art.dark.clone()
+                },
+                Vec3::ZERO,
+                *size,
+                Quat::IDENTITY,
+            );
+            crate::runtime::attach_visuals(commands, e, &[mesh]);
+        }
+        if appearance.is_some() && art.props.is_some() {
+            let driver = commands
+                .spawn((Transform::IDENTITY, Visibility::default()))
+                .id();
+            crate::runtime::attach_visuals(commands, e, &[driver]);
+            drivers.push(driver);
+        }
         if let Some((parent, anchor)) = parent {
             let hinge = i >= 3 && i % 2 == 1;
             let mut j = GenericJointBuilder::new(if hinge {
@@ -140,6 +151,10 @@ fn cow_ragdoll(
         }
         bodies.push(e);
     }
+    if let (Some(props), Some(name)) = (&art.props, appearance) {
+        let skin = props.skin(commands, props.named(name), &drivers);
+        commands.entity(bodies[0]).add_child(skin);
+    }
     bodies
 }
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
@@ -168,6 +183,7 @@ pub fn knockdowns(
     owned: Query<&OwnedBody>,
     ground: Query<(), With<crate::world::Ground>>,
     mut audio: MessageWriter<crate::sound::AudioCue>,
+    appearances: Query<&crate::props::ActorAppearance>,
 ) {
     if race.phase == Phase::Paused {
         hits.clear();
@@ -237,9 +253,10 @@ pub fn knockdowns(
             } else {
                 velocity
             };
+            let appearance = appearances.get(entity).ok().map(|a| a.0.as_str());
             npc.parts = match npc.kind {
-                NpcKind::Cow => cow_ragdoll(&mut commands, &art, entity, &t, velocity),
-                NpcKind::Pedestrian => recovery::humanoid(
+                NpcKind::Cow => cow_ragdoll(&mut commands, &art, entity, &t, velocity, appearance),
+                NpcKind::Pedestrian => recovery::humanoid_with_prop(
                     &mut commands,
                     &art,
                     entity,
@@ -247,6 +264,7 @@ pub fn knockdowns(
                     t.translation,
                     t.rotation,
                     velocity,
+                    appearance,
                 ),
             };
             audio.write(crate::sound::AudioCue::new(
@@ -351,6 +369,94 @@ mod tests {
             ))
             .id();
         (app, e)
+    }
+    #[test]
+    fn new_actor_skins_preserve_physical_specs_and_ejection_momentum() {
+        for kind in [NpcKind::Cow, NpcKind::Pedestrian] {
+            let (mut old, a) = fixture(kind);
+            let (mut new, b) = fixture(kind);
+            new.world_mut().resource_mut::<Art>().props = Some(crate::props::PropArt {
+                catalog: rr_content::props::Catalog::from_json(crate::props::JSON).unwrap(),
+                server: None,
+            });
+            new.world_mut()
+                .entity_mut(b)
+                .insert(crate::props::ActorAppearance(
+                    if kind == NpcKind::Cow {
+                        "COWB2"
+                    } else {
+                        "CTM1A00"
+                    }
+                    .into(),
+                ));
+            for (app, owner) in [(&mut old, a), (&mut new, b)] {
+                app.world_mut()
+                    .write_message(NpcHit(owner, Vec3::new(3.0, 0.0, 9.0), false));
+                app.update();
+            }
+            let aa = old.world().get::<Npc>(a).unwrap().parts.clone();
+            let bb = new.world().get::<Npc>(b).unwrap().parts.clone();
+            assert_eq!(aa.len(), if kind == NpcKind::Cow { 10 } else { 11 });
+            assert_eq!(aa.len(), bb.len());
+            for (&a, &b) in aa.iter().zip(&bb) {
+                let wa = old.world();
+                let wb = new.world();
+                assert_eq!(
+                    format!(
+                        "{:?}",
+                        wa.get::<Collider>(a)
+                            .unwrap()
+                            .as_cuboid()
+                            .unwrap()
+                            .half_extents()
+                    ),
+                    format!(
+                        "{:?}",
+                        wb.get::<Collider>(b)
+                            .unwrap()
+                            .as_cuboid()
+                            .unwrap()
+                            .half_extents()
+                    )
+                );
+                assert_eq!(
+                    format!("{:?}", wa.get::<ColliderMassProperties>(a)),
+                    format!("{:?}", wb.get::<ColliderMassProperties>(b))
+                );
+                assert_eq!(
+                    format!("{:?}", wa.get::<Damping>(a)),
+                    format!("{:?}", wb.get::<Damping>(b))
+                );
+                assert_eq!(
+                    format!("{:?}", wa.get::<ImpulseJoint>(a).map(|j| &j.data)),
+                    format!("{:?}", wb.get::<ImpulseJoint>(b).map(|j| &j.data))
+                );
+            }
+            for (&a, &b) in aa.iter().zip(&bb) {
+                let va = old.world().get::<Velocity>(a).unwrap();
+                let vb = new.world().get::<Velocity>(b).unwrap();
+                assert!(va.linvel.distance(vb.linvel) < 0.0001);
+                assert!(va.angvel.distance(vb.angvel) < 0.0001);
+            }
+            // Entity/archetype allocation changes contact ordering. Do not demand
+            // bitwise equality of chaotic contact trajectories across two ECS worlds.
+            // Verify the unchanged body definitions above and bounded simulations.
+            for _ in 0..180 {
+                for (app, parts) in [(&mut old, &aa), (&mut new, &bb)] {
+                    app.update();
+                    for &part in parts {
+                        if let Some(t) = app.world().get::<Transform>(part) {
+                            assert!(t.translation.is_finite() && t.rotation.is_finite());
+                            assert!(t.translation.y > -2.0 && t.translation.y < 20.0);
+                        }
+                        if let Some(v) = app.world().get::<Velocity>(part) {
+                            assert!(v.linvel.is_finite() && v.angvel.is_finite());
+                            assert!(v.linvel.length() < 50.0 && v.angvel.length() < 100.0);
+                        }
+                    }
+                }
+            }
+        }
     }
     #[test]
     fn direct_melee_spawns_human_and_quadruped_topologies_without_bikes() {

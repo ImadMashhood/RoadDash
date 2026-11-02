@@ -226,3 +226,126 @@ are authoring proxies. No runtime interpolation or ragdoll change is included.
   distinctive roofs, production textures, optimized topology, GLB/LOD/collision,
   native placement/navigation/performance and art review remain open. Details:
   research/FACADE_PROTOTYPE.md. No map or physical gameplay changes.
+
+- V2-04-003/004/006 city study (2026-11-01): optional city_preview binary
+  builds 414 geometric draft buildings along a separate kilometre avenue from six
+  BUSS-family concept references. This is not all-146 asset conversion or Valley
+  integration. Shared rectangular windows, untextured solid-color materials,
+  generic signs/trees, projecting party-wall trim and no interiors/traffic/LOD/
+  colliders/navigation remain. Native frame statistics include vsync/capture IO
+  and are not a production performance pass. See testing/city-preview/README.md.
+
+- Facade correction supersedes the preceding color-only city study: actual new
+  PNGs now texture 416 buildings (100 facade IDs / 17 unchanged sheets), with
+  relief on cornices and first-six details. This remains a local textured-relief
+  preview, not final all-family model conversion. Baked lighting/unlit fronts,
+  existing AI sign lettering, gable background corners, shared height/width rules,
+  provisional side/rear reuse and generic roof/vegetation remain. Production
+  clearance, detailed meshes, LOD/colliders/navigation and Valley integration are
+  still open. Previous generic captures are retained under rejected-geometric.
+
+- Actual mesh milestone supersedes both rejected city representations. Six first-
+  sheet buildings have real geometry / embedded GLBs and editable Blender source;
+  other94 facade and46 structure/surface assets are still unmodeled (MESH-01/02).
+  Materials/paint wear are cleaner/simpler than approved renders; small trim
+  intersections and repeated storefront/side variations need art review. Prototype
+  LOD swapping causes frame spikes in the kilometre viewer; no production 60fps
+  approval. No colliders/navigation/canonical Valley integration yet. Scene glTF
+  reflection types are explicitly registered without changing engine dependencies.
+
+
+### Full building catalog — draft art and isolated preview
+
+All 146 reference IDs have geometric authoring coverage; this supersedes earlier
+first-six-only scope notes. Additional models are drafts: exact concept proportions,
+wear, joints/trim cleanup, side/rear diversity and user art acceptance remain open.
+Surface modules are not standalone buildings. Gallery scales specimens to fit;
+source and GLB manifests retain actual dimensions. The 1 km map uses uniform
+frontage scaling, shared model instances and lazy LODs; runtime performance is a
+preview observation, not production racing acceptance. No building physics,
+traffic/navigation, world_gen/canonical Valley integration or release-rights
+approval is supplied by this art pass.
+
+
+### District sets — eligibility versus actual original placement
+
+All146 catalog IDs are grouped, but course indexes measure named assets inside
+loaded families, not the exact original scenery selections/coordinates, route
+order or spawn frequencies. District labels are RoadDash interpretations. Applying
+pools/transitions to preview/canonical world generation remains V2-04-003 work;
+this catalog-only change does not alter either map. Windows symlink restoration
+is unverified; portable JSON/CSV canonical mesh paths are supplied.
+
+
+### City Run5300 — playable development-world limitations
+
+The default race is now the generated5.3km city, not the separate earlier Valley.
+Select ROADDASH_TRACK=valley to play the unchanged farmland/city/hills route.
+New city is a straight open avenue with reserved grid side streets; it does not
+reconstruct the original game's route coordinates or level scenery selectors.
+Building fronts/returns are actual3D geometry, roofs/rears are shared complete
+exteriors. Interiors are solid collision volumes, not enterable rooms. Ornamental
+stoops/awnings/trim do not have exact mesh collision; core building, street,
+sidewalk, trunk and lamp collisions are independent of rendered LOD. Fine collision
+fidelity remains V2-04-005 work. Large scene uses shared/lazy LOD assets but broad
+hardware, cold-load, long-session and simultaneous-crash profiling remains open.
+Default runtime resolves local development art through architecture://; production
+packaging must include the front modules/materials and preserve draft-art review
+gates. Existing rider/bike/ragdoll dynamics and Valley quotas/IDs remain intact.
+
+- COLLISION-04: original-style contact routing uses modern0.8m low geometry and
+  collider-projected containment, not exact native dimensions/damage units.
+  Downed bodies stay physically solid and can slow or block vehicles; removing
+  the forced wipeout is not noclip. No change to accepted passive ragdoll tuning.
+  Full retail parity, airborne-debris behavior and subjective pile-up feel remain
+  within the existing crash-reference/playtest gates.
+
+- PROP-01 / V2-05: full scoped indexed-image coverage is extracted, not a finished
+  model set. Eleven prop banks need identification;369 rebuild entries include
+  alternate view/color/size banks requiring archetype consolidation.3521 non-CEL
+  frame references remain explicit. Family residency does not prove placement.
+  The first six concept images have no editable mesh/rig/GLB; vehicle badge and
+  character style consistency need review. No new props integrated into runtime.
+
+
+- Full prop bitmap concepts preserve source-bank coverage, not final 3D geometry
+  or exact hidden topology. Art direction, lettering, small generated symbols,
+  animal/character anatomy and archetype consolidation need production review.
+  Source category names remain provisional even where generation prompts correct
+  a visibly misclassified object. Reference-derived designs remain local review
+  assets pending release review. No runtime props or accepted ragdoll changes.
+
+
+### Draft 3D prop catalog (PROP-02; V2-05-002/V2-06-001 remain open)
+
+- Geometry exists for 369 IDs, but shared procedural recipes do not faithfully
+  match all 66 concept sheets. Several source views share the same silhouette.
+  Human forms are simple disconnected static authoring parts, not a validated
+  skin or replacement ragdoll; cows/sheep and their coat patterns are approximate.
+- Vehicles need distinct bodies, wheel arches, interior and mechanical detail;
+  foliage uses simplified volumes; signs/billboards need proper original icons
+  and complete graphics. Current warning emblems are generic on several IDs.
+- Some narrow geometry intersects, and most category source collections are hidden
+  on initial opening to prevent all IDs overlapping. Unhide one collection in Blender.
+- Bounding proxies are metadata only, not production colliders. No placement,
+  performance budget, rigging/animation, release approval or native race replacement.
+- Early native prop smoke found missing scene-type registration; fixed by reusing
+  the existing GLB registration plugin. Early export colors were invalid; replaced
+  with independently authored embedded material tiles and re-exported before delivery.
+
+
+### 2026-11-01 — Draft prop gameplay integration (supersedes isolation notes above)
+
+Default gameplay now presents selected draft props: traffic/cross traffic, city
+and Valley trees, city lamps/furniture/parked cars, pedestrian and cow skins.
+The 369-ID intake is not 369 distinct placed/approved objects. Unused categories
+remain catalogued; native receipts identify actual selected variants. New actor
+skins retain draft segmented anatomy and rigid weights; joints can show gaps and
+clothing deformation is not production quality. Existing rider/bike art stays intact.
+These are the rough volumetric drafts, not faithful finished versions of the AI
+concept sheets. Pictograms, foliage, vehicles, topology and materials need refinement.
+Original game media is not embedded. Existing design-release review remains pending;
+local development use is not a legal-clearance claim or distributable release gate.
+No new prop-specific audio or animal species behavior is claimed. Broad performance,
+Windows/macOS and human gameplay acceptance remain open. Static furniture adds solid
+objects only in reserved sockets; collision shapes for replaced objects are preserved.

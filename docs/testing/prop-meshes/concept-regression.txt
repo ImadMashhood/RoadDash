@@ -1,0 +1,1 @@
+{"covered_ids": 369, "new_sheets": 59, "missing": 0, "source_reviewed": true, "output_reviewed": true, "all_png_hashes_and_zip_crc_valid": true}

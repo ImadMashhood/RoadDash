@@ -1,0 +1,281 @@
+[
+  {
+    "file": "renders/traffic_vehicles_01.png",
+    "sha256": "1a310560008e9b3494afe31715893b495fb0c6b61b2ae83694e5e00a17f6aca2",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-F665D881C574",
+        "name": "GOLFC00",
+        "glb": "models/PROP-F665D881C574_lod0.glb",
+        "sha256": "9cb0cbdb4373f14d9df626ff6d91eacdbc48e6544b4b98fbf2a42598d0848313"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-7BE04B79B634",
+        "name": "GOLFG00",
+        "glb": "models/PROP-7BE04B79B634_lod0.glb",
+        "sha256": "92ef35c84dd09b1e5c6cb04bb017ff1875155ee943bf891f58f28c7bc7175930"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-1BE4037C3DC3",
+        "name": "GOLFS0",
+        "glb": "models/PROP-1BE4037C3DC3_lod0.glb",
+        "sha256": "0c7f22137e76f7e74c12c89be067cad2c26bb5105cd688b2453a6efc55490c63"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-F28FFDA2C4F5",
+        "name": "HONDAC00",
+        "glb": "models/PROP-F28FFDA2C4F5_lod0.glb",
+        "sha256": "7002521468f01a9d70fd65d14961b56e796a132048193752cad27d0050aa8183"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-222FD1ABC060",
+        "name": "HONDAG00",
+        "glb": "models/PROP-222FD1ABC060_lod0.glb",
+        "sha256": "8f399c743ee19b64f51cd0411d221239ee99b09ef22c555706472069653aaa9e"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-1FC5D951DC33",
+        "name": "HONDAS0",
+        "glb": "models/PROP-1FC5D951DC33_lod0.glb",
+        "sha256": "d66645696cce05b6b2529ff3591071662f5208e7edb5374c557a6f6393c00de4"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/traffic_vehicles_02.png",
+    "sha256": "7822a89765b00a0ef92ca91899a5534633a98b5e7893d37fe3c140e58313392f",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-83548312E542",
+        "name": "JETTAG00",
+        "glb": "models/PROP-83548312E542_lod0.glb",
+        "sha256": "0e76d8cea1aaebea4b90bb89ecd86a1e6cc98784664f83b5aaad6d104b9e3a78"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-058F3FEA7D7B",
+        "name": "JETTAS0",
+        "glb": "models/PROP-058F3FEA7D7B_lod0.glb",
+        "sha256": "b6bca263fab93d1be4a379d3bac76a00bcaf9b2a46d3b6614a7041b3447d2b2c"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-ACB559A1E02D",
+        "name": "MAZDAC00",
+        "glb": "models/PROP-ACB559A1E02D_lod0.glb",
+        "sha256": "269bb714e46fe0d08434b5de55fef349ba883a97b76bddbdadbc77888e633f73"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-E698DF31D488",
+        "name": "MAZDAG00",
+        "glb": "models/PROP-E698DF31D488_lod0.glb",
+        "sha256": "4e947b9b2deffdb105b70c685b35c91cb9e138d69fa7eb26bd3caec763a99855"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-0960AC08F1C0",
+        "name": "MIATAC00",
+        "glb": "models/PROP-0960AC08F1C0_lod0.glb",
+        "sha256": "84bbe39dd050a9632e653ff8e0ab007fc9152c82d719eb85595b0a84ac30df5c"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-4250C1AC6917",
+        "name": "MIATAG00",
+        "glb": "models/PROP-4250C1AC6917_lod0.glb",
+        "sha256": "c989c8e971825823278714694d6e16db799c4603e8fcbffd612f570c378169c7"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/traffic_vehicles_03.png",
+    "sha256": "0cafbf11830eae13eea519ed9ff06410b327526c2e9a3595c89c77aa419c22b2",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-E11282A197D6",
+        "name": "MUSTX0",
+        "glb": "models/PROP-E11282A197D6_lod0.glb",
+        "sha256": "ff31a2276d4993636bcfb313cb0c1ed61fde67b9591ba6fac5cee587a60b38e2"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-8644DD4656B9",
+        "name": "MZDRX7S0",
+        "glb": "models/PROP-8644DD4656B9_lod0.glb",
+        "sha256": "021ee2d9beff593fef20f32fcf104c28143743588a18632f31b600dbb8bcae19"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-04660392D4EA",
+        "name": "MZRX7C00",
+        "glb": "models/PROP-04660392D4EA_lod0.glb",
+        "sha256": "727e3c919e81b9b224c29451696366ac772ea78b70c87335abf79a486fb57c8d"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-29544492C2EF",
+        "name": "MZRX7G00",
+        "glb": "models/PROP-29544492C2EF_lod0.glb",
+        "sha256": "de99b0f481b0e4dd9137cf005ff1bc42fd26d8c085543ff7aad86627aaa7e489"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-54B144E9C32A",
+        "name": "PICKPC00",
+        "glb": "models/PROP-54B144E9C32A_lod0.glb",
+        "sha256": "2cd5fda073398b76ccbfe3c683f0d2a8905c138ebd46ed408a282802c8c580af"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-14432A517177",
+        "name": "PICKPG00",
+        "glb": "models/PROP-14432A517177_lod0.glb",
+        "sha256": "b5792c583462a7b2f672d64dc29f764ed44eb966a7729dadc792a0e796830fb8"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/traffic_vehicles_04.png",
+    "sha256": "0f2a0e0b0217482715d37167c1e41a848551ce42de7ce4587cf91cf4f55726c2",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-B7C7CF04E654",
+        "name": "PICKUPS0",
+        "glb": "models/PROP-B7C7CF04E654_lod0.glb",
+        "sha256": "0a1068b4f391f096dc784a8ac556c55f77e6f6fe7f8b82faf9cb3b02bcf5aef7"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-FF2D8E417D6A",
+        "name": "POLICES0",
+        "glb": "models/PROP-FF2D8E417D6A_lod0.glb",
+        "sha256": "9cb3995c01d23f716e89f4effd6be66dca3fa467578c389f0337bf04aa3f282e"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-CAF780D9A6D0",
+        "name": "PORCHC00",
+        "glb": "models/PROP-CAF780D9A6D0_lod0.glb",
+        "sha256": "d02f6b46c2605415916492a65610983a04aa1be4b94ad09a1e280deb02cea34c"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-CB7672FE1584",
+        "name": "SAABG00",
+        "glb": "models/PROP-CB7672FE1584_lod0.glb",
+        "sha256": "9c7615f1ef2c3806f0c46da7940863e803e2cf261e13e5ca057a5cbfcdea675b"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-CF223D3C1500",
+        "name": "SAABS0",
+        "glb": "models/PROP-CF223D3C1500_lod0.glb",
+        "sha256": "da7bbb8f2ea4a4a3ebc434f620e7098787e49018249b8e7c25f3a505e36e466f"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-924E1D8366D6",
+        "name": "TAXIG00",
+        "glb": "models/PROP-924E1D8366D6_lod0.glb",
+        "sha256": "b79032f7241b9a128ea626db4aeb63a09fe1b41ca3946dbd8a9b1d3f9a3de5d6"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/traffic_vehicles_05.png",
+    "sha256": "6b71335db97fa7b9997a6351d381233a046f2b91450080f0533c09403ef8fa7f",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-78AF102C3CAE",
+        "name": "TAXIS0",
+        "glb": "models/PROP-78AF102C3CAE_lod0.glb",
+        "sha256": "c737990a3285637331c0fa303d7a7479f5620a574397058bdbf49c51782ab4d8"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-B230B34D5FA8",
+        "name": "TERCELS0",
+        "glb": "models/PROP-B230B34D5FA8_lod0.glb",
+        "sha256": "2193e31e5e1b9bce4c54ad777b772d7772d4174aa92f0937647b5a458ef0dd14"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-6E33C62B2894",
+        "name": "TERCLC00",
+        "glb": "models/PROP-6E33C62B2894_lod0.glb",
+        "sha256": "97c2b6f116d01b108e0adbb0e5bed170d206b32ebdfb529bd2afb1b07a1b9829"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-D457A41F6BF7",
+        "name": "TERCLG00",
+        "glb": "models/PROP-D457A41F6BF7_lod0.glb",
+        "sha256": "f0ab3d0444bb9aa8b389ff533eff4de0256f88ff3dc50bcaa29147f9c7f51763"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-F037C09BF524",
+        "name": "VANC00",
+        "glb": "models/PROP-F037C09BF524_lod0.glb",
+        "sha256": "ac775d36646346c4db999e800ae4fa0ac22015ad1312191cce2a06c007e4112b"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-DDEC0485A258",
+        "name": "VANG00",
+        "glb": "models/PROP-DDEC0485A258_lod0.glb",
+        "sha256": "64a22f5c23d8d534f9f746123e40628f5b758cd98c0fd88ad318cecf6507ee0c"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/traffic_vehicles_06.png",
+    "sha256": "d145499eb154363e4a6ac0ab6232f64da4eb1175273911fbbc85e88e046f01fb",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-8209AA61FCC5",
+        "name": "VANS0",
+        "glb": "models/PROP-8209AA61FCC5_lod0.glb",
+        "sha256": "e6c52b2ecb67937a3e1fce28759a9f62ed1bede35abccebb5672fa597b119000"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-C60F94CA98D3",
+        "name": "VETTEC00",
+        "glb": "models/PROP-C60F94CA98D3_lod0.glb",
+        "sha256": "530c8d657d383046b8fb7f8c1182a935b9fbdd86aa7db135f4c509161b0334a1"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-E4E48824DC10",
+        "name": "VETTES0",
+        "glb": "models/PROP-E4E48824DC10_lod0.glb",
+        "sha256": "9bc9a6aab63a9904c582d657a6b7f982e2aa99dd642a199ccb3b0824ca32d100"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

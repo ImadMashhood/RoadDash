@@ -1,0 +1,10 @@
+{
+  "covered_ids": 369,
+  "expected_ids": 369,
+  "missing_ids": [],
+  "new_sheets": 59,
+  "total_sheets": 66,
+  "archive": "/home/imad/Downloads/RoadDash_All_Prop_Concepts.zip",
+  "archive_sha256": "1b48b0584406e8f42c315e6067609bd591f7e53234d06d649aa6d2e38588e9be",
+  "output_visually_reviewed": 59
+}

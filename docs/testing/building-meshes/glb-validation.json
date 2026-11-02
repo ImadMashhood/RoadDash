@@ -1,0 +1,439 @@
+{
+  "models": 6,
+  "glb_files": 18,
+  "records": [
+    {
+      "file": "BUSS1_lod0.glb",
+      "vertices": 237000,
+      "triangles": 108760,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": 0.052500009536743164,
+      "materials": 16,
+      "embedded_material_tiles": 11,
+      "sha256": "1adea7ce6a1546722a226376efc3f377e64e4e81d5e7a0a74a865ec7badb83b3"
+    },
+    {
+      "file": "BUSS1_lod1.glb",
+      "vertices": 23112,
+      "triangles": 10728,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 12,
+      "embedded_material_tiles": 10,
+      "sha256": "72a045464287ae0d34df4c7a21146943216f29e5b23ee6f468efe2a1d959f037"
+    },
+    {
+      "file": "BUSS1_lod2.glb",
+      "vertices": 5952,
+      "triangles": 2976,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 12,
+      "embedded_material_tiles": 10,
+      "sha256": "3c062f1977935d7356156c36d0a7bb07e0a5d572bc4f550bbdeb3fda038b38ae"
+    },
+    {
+      "file": "BUSS10_lod0.glb",
+      "vertices": 234504,
+      "triangles": 107616,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": 0.052500009536743164,
+      "materials": 14,
+      "embedded_material_tiles": 9,
+      "sha256": "d4d3f85c9e54149eb16849f289d738e4db20f96ff7ae94285819391911d5a923"
+    },
+    {
+      "file": "BUSS10_lod1.glb",
+      "vertices": 20616,
+      "triangles": 9584,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 8,
+      "sha256": "d2cac301b6bd8abaaa760d358ca5c3bdce81a0026e7d5a33398f25e71643f034"
+    },
+    {
+      "file": "BUSS10_lod2.glb",
+      "vertices": 6024,
+      "triangles": 3012,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 10,
+      "embedded_material_tiles": 8,
+      "sha256": "429b953c5ef855c4445f82aaf66dda61c265b00a1b7fc251ab058896e912e416"
+    },
+    {
+      "file": "BUSS2_lod0.glb",
+      "vertices": 245448,
+      "triangles": 112612,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        7.474999904632568
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        4.164999961853027
+      ],
+      "masonry_projection_m": 0.052500009536743164,
+      "materials": 16,
+      "embedded_material_tiles": 11,
+      "sha256": "8341fc7f85fd54a9df65d3d587126ed8ad276ace3060a8cbfceade7ff2275f2b"
+    },
+    {
+      "file": "BUSS2_lod1.glb",
+      "vertices": 19848,
+      "triangles": 9212,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        7.474999904632568
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        4.164999961853027
+      ],
+      "masonry_projection_m": null,
+      "materials": 14,
+      "embedded_material_tiles": 11,
+      "sha256": "0c4946790688f31ffa53ae40fbe044b8c9b11ffb915fb5a8a0e2aadb64fa397b"
+    },
+    {
+      "file": "BUSS2_lod2.glb",
+      "vertices": 5328,
+      "triangles": 2664,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        7.457499980926514
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        4.147500038146973
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 9,
+      "sha256": "73d8cd256b6bb85f63499114044d477545baa2df3120cac4ee0155c9297e8184"
+    },
+    {
+      "file": "BUSS4_lod0.glb",
+      "vertices": 249999,
+      "triangles": 121488,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": 0.052500009536743164,
+      "materials": 15,
+      "embedded_material_tiles": 10,
+      "sha256": "3fabfcd564f112cb441fbaf5abaa4c11f3176563bfc9a70acdd1563df511f773"
+    },
+    {
+      "file": "BUSS4_lod1.glb",
+      "vertices": 24399,
+      "triangles": 18088,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 9,
+      "sha256": "27c8153ff9f7f0e3935554b9d841bf62ce6f3b8b31abf2ee1397a10397d1efbb"
+    },
+    {
+      "file": "BUSS4_lod2.glb",
+      "vertices": 5314,
+      "triangles": 2660,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 9,
+      "sha256": "93108a4a23e098dc3e429f2065ae5f3e404ad4e50b78f61316af21742ed1ae49"
+    },
+    {
+      "file": "BUSS5_lod0.glb",
+      "vertices": 245494,
+      "triangles": 120320,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": 0.052500009536743164,
+      "materials": 15,
+      "embedded_material_tiles": 10,
+      "sha256": "c4e04a5ba5517d3ff8153bdd4c99107cefef3843d257a408aca5e8509bbd38c8"
+    },
+    {
+      "file": "BUSS5_lod1.glb",
+      "vertices": 25654,
+      "triangles": 19560,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 12,
+      "embedded_material_tiles": 9,
+      "sha256": "228de12add0f1d0b220b99cc8d7b4617370fe586d04cbc3ba3f791a2b223913f"
+    },
+    {
+      "file": "BUSS5_lod2.glb",
+      "vertices": 5280,
+      "triangles": 2640,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.8999998569488525
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.5899999141693115
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 9,
+      "sha256": "138e9e3c6805c67eb3f1e8c6ee511263fadb79387a8776f0ca079b097622a035"
+    },
+    {
+      "file": "BUSS6_lod0.glb",
+      "vertices": 238344,
+      "triangles": 109376,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.924999952316284
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.615000009536743
+      ],
+      "masonry_projection_m": 0.052500009536743164,
+      "materials": 15,
+      "embedded_material_tiles": 10,
+      "sha256": "43ab6bc700075054e02247b22ab65fadbfbfcb45aad166de141b6c1cac35e7a9"
+    },
+    {
+      "file": "BUSS6_lod1.glb",
+      "vertices": 23208,
+      "triangles": 10772,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.924999952316284
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.615000009536743
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 9,
+      "sha256": "9ebece90395e4c7374c59cb525ff4c1ada48ed39d5b849ae1624b5c36e8e2169"
+    },
+    {
+      "file": "BUSS6_lod2.glb",
+      "vertices": 6360,
+      "triangles": 3180,
+      "dimensions_m": [
+        3.7800002098083496,
+        10.25,
+        6.924999952316284
+      ],
+      "min_m": [
+        -1.8900001049041748,
+        0.0,
+        -3.309999942779541
+      ],
+      "max_m": [
+        1.8900001049041748,
+        10.25,
+        3.615000009536743
+      ],
+      "masonry_projection_m": null,
+      "materials": 11,
+      "embedded_material_tiles": 9,
+      "sha256": "0a2a96bc3b81285860d5d7a9286728b002367428e68db91a6e007f5f69342f6e"
+    }
+  ],
+  "scope": "Binary/geometry/material validation; visual fidelity and game integration acceptance separate"
+}

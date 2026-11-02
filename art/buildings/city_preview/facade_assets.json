@@ -1,0 +1,2108 @@
+{
+  "schema_version": 1,
+  "source": "Unchanged new AI-enhanced facade sheets; not original retail pixels",
+  "scope": "Local authoring preview only; production media clearance remains unverified",
+  "uv_convention": "Top-left origin, body bounds in source pixels; images remain byte-identical",
+  "assets": [
+    {
+      "id": "BUSS1",
+      "sheet": "art/buildings/realistic_sheets/facades_01.png",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        126,
+        240,
+        653
+      ],
+      "side_color": [
+        186,
+        139,
+        90
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS10",
+      "sheet": "art/buildings/realistic_sheets/facades_01.png",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        128,
+        585,
+        653
+      ],
+      "side_color": [
+        98,
+        92,
+        82
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS2",
+      "sheet": "art/buildings/realistic_sheets/facades_01.png",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        126,
+        932,
+        653
+      ],
+      "side_color": [
+        183,
+        175,
+        159
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS4",
+      "sheet": "art/buildings/realistic_sheets/facades_01.png",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        107,
+        880,
+        240,
+        1408
+      ],
+      "side_color": [
+        196,
+        186,
+        178
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS5",
+      "sheet": "art/buildings/realistic_sheets/facades_01.png",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        880,
+        585,
+        1408
+      ],
+      "side_color": [
+        183,
+        150,
+        108
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS6",
+      "sheet": "art/buildings/realistic_sheets/facades_01.png",
+      "source_sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        799,
+        880,
+        932,
+        1408
+      ],
+      "side_color": [
+        152,
+        156,
+        157
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS7",
+      "sheet": "art/buildings/realistic_sheets/facades_02.png",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        107,
+        116,
+        240,
+        656
+      ],
+      "side_color": [
+        74,
+        64,
+        61
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS8",
+      "sheet": "art/buildings/realistic_sheets/facades_02.png",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        453,
+        122,
+        586,
+        656
+      ],
+      "side_color": [
+        68,
+        64,
+        58
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "BUSS9",
+      "sheet": "art/buildings/realistic_sheets/facades_02.png",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        798,
+        122,
+        932,
+        654
+      ],
+      "side_color": [
+        127,
+        101,
+        82
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CHINA12",
+      "sheet": "art/buildings/realistic_sheets/facades_02.png",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        107,
+        856,
+        239,
+        1409
+      ],
+      "side_color": [
+        90,
+        95,
+        73
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CHINA13",
+      "sheet": "art/buildings/realistic_sheets/facades_02.png",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        453,
+        851,
+        586,
+        1409
+      ],
+      "side_color": [
+        126,
+        100,
+        84
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CHINA14",
+      "sheet": "art/buildings/realistic_sheets/facades_02.png",
+      "source_sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        799,
+        857,
+        932,
+        1410
+      ],
+      "side_color": [
+        159,
+        155,
+        134
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CHINA15",
+      "sheet": "art/buildings/realistic_sheets/facades_03.png",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        104,
+        90,
+        242,
+        671
+      ],
+      "side_color": [
+        187,
+        140,
+        86
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CHINA16",
+      "sheet": "art/buildings/realistic_sheets/facades_03.png",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        447,
+        90,
+        590,
+        672
+      ],
+      "side_color": [
+        84,
+        52,
+        44
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CHINA17",
+      "sheet": "art/buildings/realistic_sheets/facades_03.png",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        795,
+        90,
+        934,
+        672
+      ],
+      "side_color": [
+        159,
+        138,
+        113
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "CLSTGA11",
+      "sheet": "art/buildings/realistic_sheets/facades_03.png",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        104,
+        848,
+        242,
+        1408
+      ],
+      "side_color": [
+        185,
+        176,
+        171
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA12",
+      "sheet": "art/buildings/realistic_sheets/facades_03.png",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        447,
+        859,
+        590,
+        1408
+      ],
+      "side_color": [
+        127,
+        60,
+        49
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA13",
+      "sheet": "art/buildings/realistic_sheets/facades_03.png",
+      "source_sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        795,
+        848,
+        934,
+        1408
+      ],
+      "side_color": [
+        206,
+        197,
+        184
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA14",
+      "sheet": "art/buildings/realistic_sheets/facades_04.png",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        132,
+        239,
+        651
+      ],
+      "side_color": [
+        144,
+        114,
+        90
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA15",
+      "sheet": "art/buildings/realistic_sheets/facades_04.png",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        132,
+        585,
+        651
+      ],
+      "side_color": [
+        176,
+        168,
+        149
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA16",
+      "sheet": "art/buildings/realistic_sheets/facades_04.png",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        132,
+        931,
+        652
+      ],
+      "side_color": [
+        120,
+        115,
+        112
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA17",
+      "sheet": "art/buildings/realistic_sheets/facades_04.png",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        888,
+        239,
+        1408
+      ],
+      "side_color": [
+        95,
+        61,
+        45
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA18",
+      "sheet": "art/buildings/realistic_sheets/facades_04.png",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        888,
+        585,
+        1408
+      ],
+      "side_color": [
+        191,
+        172,
+        144
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA19",
+      "sheet": "art/buildings/realistic_sheets/facades_04.png",
+      "source_sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        888,
+        931,
+        1408
+      ],
+      "side_color": [
+        29,
+        32,
+        37
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA20",
+      "sheet": "art/buildings/realistic_sheets/facades_05.png",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        105,
+        239,
+        653
+      ],
+      "side_color": [
+        101,
+        86,
+        55
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "CLSTGA21",
+      "sheet": "art/buildings/realistic_sheets/facades_05.png",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        102,
+        585,
+        653
+      ],
+      "side_color": [
+        116,
+        93,
+        68
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC1",
+      "sheet": "art/buildings/realistic_sheets/facades_05.png",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        102,
+        931,
+        654
+      ],
+      "side_color": [
+        126,
+        128,
+        140
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC10",
+      "sheet": "art/buildings/realistic_sheets/facades_05.png",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        847,
+        239,
+        1408
+      ],
+      "side_color": [
+        136,
+        100,
+        70
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC11",
+      "sheet": "art/buildings/realistic_sheets/facades_05.png",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        848,
+        585,
+        1408
+      ],
+      "side_color": [
+        47,
+        51,
+        60
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC12",
+      "sheet": "art/buildings/realistic_sheets/facades_05.png",
+      "source_sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        848,
+        931,
+        1408
+      ],
+      "side_color": [
+        56,
+        60,
+        72
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC13",
+      "sheet": "art/buildings/realistic_sheets/facades_06.png",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        109,
+        104,
+        238,
+        653
+      ],
+      "side_color": [
+        50,
+        59,
+        73
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC14",
+      "sheet": "art/buildings/realistic_sheets/facades_06.png",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        456,
+        104,
+        583,
+        653
+      ],
+      "side_color": [
+        136,
+        98,
+        74
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC15",
+      "sheet": "art/buildings/realistic_sheets/facades_06.png",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        800,
+        104,
+        930,
+        652
+      ],
+      "side_color": [
+        189,
+        175,
+        167
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC16",
+      "sheet": "art/buildings/realistic_sheets/facades_06.png",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        109,
+        849,
+        238,
+        1411
+      ],
+      "side_color": [
+        130,
+        79,
+        61
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC17",
+      "sheet": "art/buildings/realistic_sheets/facades_06.png",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        456,
+        849,
+        583,
+        1411
+      ],
+      "side_color": [
+        140,
+        128,
+        119
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC18",
+      "sheet": "art/buildings/realistic_sheets/facades_06.png",
+      "source_sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        800,
+        849,
+        930,
+        1411
+      ],
+      "side_color": [
+        215,
+        204,
+        194
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC19",
+      "sheet": "art/buildings/realistic_sheets/facades_07.png",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        106,
+        122,
+        240,
+        656
+      ],
+      "side_color": [
+        119,
+        102,
+        92
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC2",
+      "sheet": "art/buildings/realistic_sheets/facades_07.png",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        453,
+        122,
+        586,
+        656
+      ],
+      "side_color": [
+        80,
+        57,
+        52
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC20",
+      "sheet": "art/buildings/realistic_sheets/facades_07.png",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        799,
+        122,
+        933,
+        656
+      ],
+      "side_color": [
+        165,
+        158,
+        153
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC21",
+      "sheet": "art/buildings/realistic_sheets/facades_07.png",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        106,
+        867,
+        240,
+        1412
+      ],
+      "side_color": [
+        156,
+        144,
+        138
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC22",
+      "sheet": "art/buildings/realistic_sheets/facades_07.png",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        452,
+        867,
+        586,
+        1412
+      ],
+      "side_color": [
+        39,
+        32,
+        33
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "OFFC5",
+      "sheet": "art/buildings/realistic_sheets/facades_07.png",
+      "source_sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        799,
+        868,
+        933,
+        1412
+      ],
+      "side_color": [
+        41,
+        48,
+        64
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN11",
+      "sheet": "art/buildings/realistic_sheets/facades_08.png",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        108,
+        104,
+        239,
+        659
+      ],
+      "side_color": [
+        83,
+        62,
+        38
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN12",
+      "sheet": "art/buildings/realistic_sheets/facades_08.png",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        452,
+        111,
+        586,
+        659
+      ],
+      "side_color": [
+        163,
+        140,
+        105
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN13",
+      "sheet": "art/buildings/realistic_sheets/facades_08.png",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        799,
+        108,
+        930,
+        658
+      ],
+      "side_color": [
+        89,
+        52,
+        39
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN14",
+      "sheet": "art/buildings/realistic_sheets/facades_08.png",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        107,
+        855,
+        240,
+        1413
+      ],
+      "side_color": [
+        98,
+        70,
+        48
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN15",
+      "sheet": "art/buildings/realistic_sheets/facades_08.png",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        452,
+        861,
+        586,
+        1413
+      ],
+      "side_color": [
+        176,
+        147,
+        108
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN16",
+      "sheet": "art/buildings/realistic_sheets/facades_08.png",
+      "source_sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        800,
+        860,
+        930,
+        1412
+      ],
+      "side_color": [
+        81,
+        66,
+        54
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "RUNDWN17",
+      "sheet": "art/buildings/realistic_sheets/facades_09.png",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        109,
+        97,
+        241,
+        665
+      ],
+      "side_color": [
+        181,
+        143,
+        92
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT11",
+      "sheet": "art/buildings/realistic_sheets/facades_09.png",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        451,
+        93,
+        586,
+        665
+      ],
+      "side_color": [
+        62,
+        73,
+        82
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT12",
+      "sheet": "art/buildings/realistic_sheets/facades_09.png",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        793,
+        93,
+        934,
+        665
+      ],
+      "side_color": [
+        28,
+        32,
+        36
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT13",
+      "sheet": "art/buildings/realistic_sheets/facades_09.png",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        108,
+        848,
+        240,
+        1424
+      ],
+      "side_color": [
+        75,
+        83,
+        94
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT14",
+      "sheet": "art/buildings/realistic_sheets/facades_09.png",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        449,
+        848,
+        588,
+        1424
+      ],
+      "side_color": [
+        81,
+        64,
+        50
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT15",
+      "sheet": "art/buildings/realistic_sheets/facades_09.png",
+      "source_sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        793,
+        849,
+        935,
+        1424
+      ],
+      "side_color": [
+        82,
+        50,
+        40
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT16",
+      "sheet": "art/buildings/realistic_sheets/facades_10.png",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        107,
+        125,
+        239,
+        665
+      ],
+      "side_color": [
+        26,
+        31,
+        35
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT17",
+      "sheet": "art/buildings/realistic_sheets/facades_10.png",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        453,
+        126,
+        585,
+        665
+      ],
+      "side_color": [
+        88,
+        53,
+        37
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT18",
+      "sheet": "art/buildings/realistic_sheets/facades_10.png",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        799,
+        125,
+        932,
+        665
+      ],
+      "side_color": [
+        55,
+        43,
+        37
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT19",
+      "sheet": "art/buildings/realistic_sheets/facades_10.png",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        105,
+        855,
+        240,
+        1413
+      ],
+      "side_color": [
+        172,
+        107,
+        63
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT1A",
+      "sheet": "art/buildings/realistic_sheets/facades_10.png",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        452,
+        855,
+        587,
+        1413
+      ],
+      "side_color": [
+        153,
+        93,
+        57
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT1B",
+      "sheet": "art/buildings/realistic_sheets/facades_10.png",
+      "source_sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        798,
+        855,
+        933,
+        1413
+      ],
+      "side_color": [
+        165,
+        101,
+        60
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT20",
+      "sheet": "art/buildings/realistic_sheets/facades_11.png",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        106,
+        116,
+        240,
+        668
+      ],
+      "side_color": [
+        84,
+        53,
+        37
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT21",
+      "sheet": "art/buildings/realistic_sheets/facades_11.png",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        451,
+        114,
+        586,
+        668
+      ],
+      "side_color": [
+        105,
+        86,
+        77
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT22",
+      "sheet": "art/buildings/realistic_sheets/facades_11.png",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        114,
+        932,
+        667
+      ],
+      "side_color": [
+        43,
+        38,
+        38
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT23",
+      "sheet": "art/buildings/realistic_sheets/facades_11.png",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        107,
+        865,
+        240,
+        1416
+      ],
+      "side_color": [
+        68,
+        42,
+        34
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT24",
+      "sheet": "art/buildings/realistic_sheets/facades_11.png",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        451,
+        860,
+        587,
+        1416
+      ],
+      "side_color": [
+        115,
+        66,
+        39
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT25",
+      "sheet": "art/buildings/realistic_sheets/facades_11.png",
+      "source_sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        798,
+        859,
+        933,
+        1415
+      ],
+      "side_color": [
+        123,
+        72,
+        51
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT26",
+      "sheet": "art/buildings/realistic_sheets/facades_12.png",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        108,
+        112,
+        240,
+        674
+      ],
+      "side_color": [
+        43,
+        43,
+        31
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT27",
+      "sheet": "art/buildings/realistic_sheets/facades_12.png",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        452,
+        111,
+        585,
+        674
+      ],
+      "side_color": [
+        74,
+        45,
+        38
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT28",
+      "sheet": "art/buildings/realistic_sheets/facades_12.png",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        798,
+        110,
+        931,
+        675
+      ],
+      "side_color": [
+        30,
+        33,
+        36
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT29",
+      "sheet": "art/buildings/realistic_sheets/facades_12.png",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        108,
+        848,
+        240,
+        1417
+      ],
+      "side_color": [
+        69,
+        64,
+        62
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT2A",
+      "sheet": "art/buildings/realistic_sheets/facades_12.png",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        452,
+        848,
+        585,
+        1417
+      ],
+      "side_color": [
+        110,
+        60,
+        39
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT2B",
+      "sheet": "art/buildings/realistic_sheets/facades_12.png",
+      "source_sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        798,
+        848,
+        931,
+        1417
+      ],
+      "side_color": [
+        95,
+        41,
+        38
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT31",
+      "sheet": "art/buildings/realistic_sheets/facades_13.png",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        108,
+        239,
+        671
+      ],
+      "side_color": [
+        177,
+        133,
+        84
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT32",
+      "sheet": "art/buildings/realistic_sheets/facades_13.png",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        106,
+        584,
+        671
+      ],
+      "side_color": [
+        82,
+        77,
+        73
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT33",
+      "sheet": "art/buildings/realistic_sheets/facades_13.png",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        104,
+        931,
+        671
+      ],
+      "side_color": [
+        71,
+        53,
+        45
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT34",
+      "sheet": "art/buildings/realistic_sheets/facades_13.png",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        859,
+        239,
+        1426
+      ],
+      "side_color": [
+        58,
+        55,
+        57
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT3A",
+      "sheet": "art/buildings/realistic_sheets/facades_13.png",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        858,
+        584,
+        1426
+      ],
+      "side_color": [
+        63,
+        61,
+        67
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT3B",
+      "sheet": "art/buildings/realistic_sheets/facades_13.png",
+      "source_sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        858,
+        931,
+        1425
+      ],
+      "side_color": [
+        100,
+        76,
+        91
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT6A",
+      "sheet": "art/buildings/realistic_sheets/facades_14.png",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        118,
+        239,
+        652
+      ],
+      "side_color": [
+        29,
+        32,
+        36
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "VICT6B",
+      "sheet": "art/buildings/realistic_sheets/facades_14.png",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        130,
+        585,
+        652
+      ],
+      "side_color": [
+        73,
+        38,
+        37
+      ],
+      "height_m": 11.5
+    },
+    {
+      "id": "WHSE11",
+      "sheet": "art/buildings/realistic_sheets/facades_14.png",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        801,
+        132,
+        931,
+        647
+      ],
+      "side_color": [
+        23,
+        23,
+        22
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE12",
+      "sheet": "art/buildings/realistic_sheets/facades_14.png",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        887,
+        238,
+        1409
+      ],
+      "side_color": [
+        187,
+        182,
+        177
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE13",
+      "sheet": "art/buildings/realistic_sheets/facades_14.png",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        455,
+        887,
+        585,
+        1408
+      ],
+      "side_color": [
+        47,
+        40,
+        38
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE14",
+      "sheet": "art/buildings/realistic_sheets/facades_14.png",
+      "source_sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        801,
+        887,
+        931,
+        1409
+      ],
+      "side_color": [
+        22,
+        22,
+        23
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE15",
+      "sheet": "art/buildings/realistic_sheets/facades_15.png",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        109,
+        106,
+        241,
+        662
+      ],
+      "side_color": [
+        150,
+        85,
+        58
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE16",
+      "sheet": "art/buildings/realistic_sheets/facades_15.png",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        455,
+        106,
+        585,
+        662
+      ],
+      "side_color": [
+        130,
+        115,
+        94
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE17",
+      "sheet": "art/buildings/realistic_sheets/facades_15.png",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        801,
+        106,
+        932,
+        662
+      ],
+      "side_color": [
+        150,
+        133,
+        119
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE18",
+      "sheet": "art/buildings/realistic_sheets/facades_15.png",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        109,
+        854,
+        240,
+        1417
+      ],
+      "side_color": [
+        36,
+        33,
+        31
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE19",
+      "sheet": "art/buildings/realistic_sheets/facades_15.png",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        454,
+        854,
+        586,
+        1417
+      ],
+      "side_color": [
+        49,
+        45,
+        39
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE20",
+      "sheet": "art/buildings/realistic_sheets/facades_15.png",
+      "source_sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        800,
+        854,
+        932,
+        1417
+      ],
+      "side_color": [
+        142,
+        124,
+        99
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE22",
+      "sheet": "art/buildings/realistic_sheets/facades_16.png",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        107,
+        127,
+        239,
+        653
+      ],
+      "side_color": [
+        132,
+        124,
+        121
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WHSE23",
+      "sheet": "art/buildings/realistic_sheets/facades_16.png",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        453,
+        127,
+        586,
+        653
+      ],
+      "side_color": [
+        29,
+        21,
+        20
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS1",
+      "sheet": "art/buildings/realistic_sheets/facades_16.png",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        798,
+        127,
+        931,
+        650
+      ],
+      "side_color": [
+        197,
+        158,
+        109
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS2",
+      "sheet": "art/buildings/realistic_sheets/facades_16.png",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        108,
+        879,
+        240,
+        1409
+      ],
+      "side_color": [
+        71,
+        42,
+        32
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS3",
+      "sheet": "art/buildings/realistic_sheets/facades_16.png",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        453,
+        879,
+        586,
+        1409
+      ],
+      "side_color": [
+        100,
+        59,
+        49
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS4",
+      "sheet": "art/buildings/realistic_sheets/facades_16.png",
+      "source_sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "pixels": [
+        1039,
+        1514
+      ],
+      "rect_px": [
+        798,
+        879,
+        931,
+        1409
+      ],
+      "side_color": [
+        177,
+        148,
+        121
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS5",
+      "sheet": "art/buildings/realistic_sheets/facades_17.png",
+      "source_sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        101,
+        92,
+        244,
+        705
+      ],
+      "side_color": [
+        40,
+        37,
+        31
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS6",
+      "sheet": "art/buildings/realistic_sheets/facades_17.png",
+      "source_sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        448,
+        92,
+        589,
+        705
+      ],
+      "side_color": [
+        114,
+        138,
+        161
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS7",
+      "sheet": "art/buildings/realistic_sheets/facades_17.png",
+      "source_sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        794,
+        92,
+        937,
+        705
+      ],
+      "side_color": [
+        109,
+        103,
+        91
+      ],
+      "height_m": 9.2
+    },
+    {
+      "id": "WRHS8",
+      "sheet": "art/buildings/realistic_sheets/facades_17.png",
+      "source_sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4",
+      "pixels": [
+        1038,
+        1515
+      ],
+      "rect_px": [
+        101,
+        848,
+        244,
+        1433
+      ],
+      "side_color": [
+        32,
+        33,
+        36
+      ],
+      "height_m": 9.2
+    }
+  ]
+}

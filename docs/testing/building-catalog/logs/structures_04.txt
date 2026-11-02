@@ -1,0 +1,818 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+16:02:48 | INFO: Starting glTF 2.0 export
+16:02:49 | INFO: Extracting primitive: PHONSHK2_wall_backing_front.001
+16:02:49 | INFO: Primitives created: 10
+16:02:49 | INFO: Finished glTF 2.0 export in 0.10827112197875977 s
+
+16:02:49 | INFO: Starting glTF 2.0 export
+16:02:49 | INFO: Extracting primitive: PHONSHK2_wall_backing_front.002
+16:02:49 | INFO: Primitives created: 8
+16:02:49 | INFO: Finished glTF 2.0 export in 0.036934614181518555 s
+
+16:02:49 | INFO: Starting glTF 2.0 export
+16:02:49 | INFO: Extracting primitive: PHONSHK2_wall_backing_front.003
+16:02:49 | INFO: Primitives created: 6
+16:02:49 | INFO: Finished glTF 2.0 export in 0.032003164291381836 s
+
+CATALOG_EXPORTED PHONSHK2 [4220, 3912, 1152]
+16:02:49 | INFO: Starting glTF 2.0 export
+16:02:49 | INFO: Extracting primitive: PORTLET2_toilet_body.001
+16:02:49 | INFO: Primitives created: 5
+16:02:49 | INFO: Finished glTF 2.0 export in 0.03844857215881348 s
+
+16:02:49 | INFO: Starting glTF 2.0 export
+16:02:49 | INFO: Extracting primitive: PORTLET2_toilet_body.002
+16:02:49 | INFO: Primitives created: 4
+16:02:49 | INFO: Finished glTF 2.0 export in 0.019521713256835938 s
+
+16:02:49 | INFO: Starting glTF 2.0 export
+16:02:49 | INFO: Extracting primitive: PORTLET2_toilet_body.003
+16:02:49 | INFO: Primitives created: 3
+16:02:49 | INFO: Finished glTF 2.0 export in 0.01511836051940918 s
+
+CATALOG_EXPORTED PORTLET2 [1364, 792, 132]
+16:02:50 | INFO: Starting glTF 2.0 export
+16:02:50 | INFO: Extracting primitive: RUSTICA2_wall_backing_front.001
+16:02:50 | INFO: Primitives created: 9
+16:02:50 | INFO: Finished glTF 2.0 export in 0.08964776992797852 s
+
+16:02:50 | INFO: Starting glTF 2.0 export
+16:02:50 | INFO: Extracting primitive: RUSTICA2_wall_backing_front.002
+16:02:50 | INFO: Primitives created: 8
+16:02:50 | INFO: Finished glTF 2.0 export in 0.08266663551330566 s
+
+16:02:50 | INFO: Starting glTF 2.0 export
+16:02:50 | INFO: Extracting primitive: RUSTICA2_wall_backing_front.003
+16:02:50 | INFO: Primitives created: 8
+16:02:50 | INFO: Finished glTF 2.0 export in 0.04441237449645996 s
+
+CATALOG_EXPORTED RUSTICA2 [36204, 33608, 9500]
+16:02:51 | INFO: Starting glTF 2.0 export
+16:02:51 | INFO: Extracting primitive: RUSTICB2_wall_backing_front.001
+16:02:51 | INFO: Primitives created: 14
+16:02:51 | INFO: Finished glTF 2.0 export in 0.16123199462890625 s
+
+16:02:51 | INFO: Starting glTF 2.0 export
+16:02:51 | INFO: Extracting primitive: RUSTICB2_wall_backing_front.002
+16:02:51 | INFO: Primitives created: 13
+16:02:51 | INFO: Finished glTF 2.0 export in 0.09833836555480957 s
+
+16:02:51 | INFO: Starting glTF 2.0 export
+16:02:51 | INFO: Extracting primitive: RUSTICB2_wall_backing_front.003
+16:02:51 | INFO: Primitives created: 11
+16:02:51 | INFO: Finished glTF 2.0 export in 0.05495786666870117 s
+
+CATALOG_EXPORTED RUSTICB2 [25000, 22404, 6272]
+16:02:52 | INFO: Starting glTF 2.0 export
+16:02:52 | INFO: Extracting primitive: SCHOOL2_wall_backing_front.001
+16:02:52 | INFO: Primitives created: 13
+16:02:52 | INFO: Finished glTF 2.0 export in 0.10733842849731445 s
+
+16:02:52 | INFO: Starting glTF 2.0 export
+16:02:52 | INFO: Extracting primitive: SCHOOL2_wall_backing_front.002
+16:02:53 | INFO: Primitives created: 12
+16:02:53 | INFO: Finished glTF 2.0 export in 0.08853268623352051 s
+
+16:02:53 | INFO: Starting glTF 2.0 export
+16:02:53 | INFO: Extracting primitive: SCHOOL2_wall_backing_front.003
+16:02:53 | INFO: Primitives created: 11
+16:02:53 | INFO: Finished glTF 2.0 export in 0.05277228355407715 s
+
+CATALOG_EXPORTED SCHOOL2 [29128, 25916, 7376]
+16:02:54 | INFO: Starting glTF 2.0 export
+16:02:54 | INFO: Extracting primitive: SHOPD2_wall_backing_front.001
+16:02:54 | INFO: Primitives created: 15
+16:02:54 | INFO: Finished glTF 2.0 export in 0.2516777515411377 s
+
+16:02:54 | INFO: Starting glTF 2.0 export
+16:02:54 | INFO: Extracting primitive: SHOPD2_wall_backing_front.002
+16:02:54 | INFO: Primitives created: 10
+16:02:54 | INFO: Finished glTF 2.0 export in 0.06713175773620605 s
+
+16:02:54 | INFO: Starting glTF 2.0 export
+16:02:54 | INFO: Extracting primitive: SHOPD2_wall_backing_front.003
+16:02:54 | INFO: Primitives created: 9
+16:02:54 | INFO: Finished glTF 2.0 export in 0.03886818885803223 s
+
+CATALOG_EXPORTED SHOPD2 [91192, 16084, 1416]
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:134.19M (Peak 135.85M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:134.19M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_siding_plank_old_timber
+Fra:1 Mem:134.25M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_phone_unit_roof
+Fra:1 Mem:134.47M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_irregular_roof_plank_old_timber
+Fra:1 Mem:134.54M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_siding_plank_old_timber_light
+Fra:1 Mem:134.52M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_door_latch_gold
+Fra:1 Mem:134.55M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_door_rail_old_timber
+Fra:1 Mem:134.76M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_door_panel_old_timber
+Fra:1 Mem:134.81M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_siding_plank_old_timber_dark
+Fra:1 Mem:134.71M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_backing_rear_old_timber
+Fra:1 Mem:134.69M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_backing_left_old_timber
+Fra:1 Mem:134.69M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_backing_right_old_timber
+Fra:1 Mem:134.74M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_foundation_concrete
+Fra:1 Mem:134.70M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_corner_hardware_rust
+Fra:1 Mem:134.75M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_cavity_interior
+Fra:1 Mem:134.76M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_glass_glass
+Fra:1 Mem:134.75M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_jamb_old_timber
+Fra:1 Mem:134.78M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_sill_old_timber
+Fra:1 Mem:134.77M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_sash_old_timber
+Fra:1 Mem:134.80M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_vertical_mullion_old_timber
+Fra:1 Mem:134.82M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:134.13M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading roof_albedo
+Fra:1 Mem:134.13M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:134.13M (Peak 135.85M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:137.97M (Peak 139.15M) | Time:00:00.19 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:137.97M (Peak 139.15M) | Time:00:00.19 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:137.97M (Peak 139.15M) | Time:00:00.19 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:138.06M (Peak 139.15M) | Time:00:00.19 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.03M, Peak:5.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.03M, Peak:5.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.03M, Peak:5.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.03M, Peak:5.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:138.06M (Peak 165.22M) | Time:00:00.30 | Mem:5.03M, Peak:5.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:138.26M (Peak 165.22M) | Time:00:00.30 | Mem:5.03M, Peak:5.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:138.26M (Peak 165.22M) | Time:00:00.30 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:138.26M (Peak 165.22M) | Time:00:00.30 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:138.50M (Peak 165.22M) | Time:00:00.30 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:138.52M (Peak 165.22M) | Time:00:00.30 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:138.52M (Peak 165.22M) | Time:00:00.30 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:138.52M (Peak 165.22M) | Time:00:00.31 | Mem:5.35M, Peak:5.35M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.35M, Peak:5.35M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.62M, Peak:5.62M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.62M, Peak:5.62M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.62M, Peak:5.62M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.62M, Peak:5.62M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.62M, Peak:5.62M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.70M, Peak:5.70M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.70M, Peak:5.70M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.70M, Peak:5.70M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.70M, Peak:5.70M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.62M, Peak:5.70M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.71M, Peak:5.71M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.71M, Peak:5.71M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:138.79M (Peak 165.22M) | Time:00:00.31 | Mem:5.71M, Peak:5.71M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:145.17M (Peak 165.22M) | Time:00:00.34 | Mem:566.71M, Peak:566.71M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:186.58M (Peak 186.58M) | Time:00:00.36 | Remaining:00:00.29 | Mem:608.11M, Peak:608.11M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:204.02M (Peak 230.17M) | Time:00:02.99 | Mem:608.11M, Peak:608.11M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:204.02M (Peak 230.17M) | Time:00:02.99 | Mem:608.11M, Peak:608.11M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/PHONSHK2.png'
+Time: 00:03.33 (Saving: 00:00.17)
+
+Fra:1 Mem:133.25M (Peak 133.25M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_structure_weathering_chip_rust
+Fra:1 Mem:133.32M (Peak 133.32M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_rounded_toilet_cap_ivory
+Fra:1 Mem:133.37M (Peak 133.37M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:133.37M (Peak 133.37M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:133.37M (Peak 133.37M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:133.38M (Peak 133.38M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_body_blue_plastic
+Fra:1 Mem:133.39M (Peak 133.39M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_latch_ivory
+Fra:1 Mem:133.41M (Peak 133.41M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_vent_black_metal
+Fra:1 Mem:133.44M (Peak 133.44M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_base_roof
+Fra:1 Mem:133.46M (Peak 133.46M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_door_blue_plastic
+Fra:1 Mem:133.45M (Peak 133.46M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_door_rib_blue_plastic
+Fra:1 Mem:133.46M (Peak 133.46M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:133.20M (Peak 133.46M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:134.20M (Peak 134.20M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading blue_plastic_albedo
+Fra:1 Mem:134.20M (Peak 134.20M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:137.20M (Peak 137.20M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:137.58M (Peak 137.58M) | Time:00:00.16 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:137.58M (Peak 137.58M) | Time:00:00.16 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:137.58M (Peak 137.58M) | Time:00:00.16 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:137.67M (Peak 137.67M) | Time:00:00.16 | Mem:5.00M, Peak:5.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:137.67M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:137.74M (Peak 164.83M) | Time:00:00.27 | Mem:5.02M, Peak:5.02M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:137.74M (Peak 164.83M) | Time:00:00.27 | Mem:5.09M, Peak:5.09M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:137.74M (Peak 164.83M) | Time:00:00.27 | Mem:5.09M, Peak:5.09M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:137.82M (Peak 164.83M) | Time:00:00.27 | Mem:5.09M, Peak:5.09M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:137.82M (Peak 164.83M) | Time:00:00.27 | Mem:5.09M, Peak:5.09M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:137.82M (Peak 164.83M) | Time:00:00.27 | Mem:5.09M, Peak:5.09M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:137.82M (Peak 164.83M) | Time:00:00.27 | Mem:5.13M, Peak:5.13M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.27 | Mem:5.13M, Peak:5.13M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.27 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.27 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.27 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.27 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.27 | Mem:5.22M, Peak:5.22M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:137.91M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:137.92M (Peak 164.83M) | Time:00:00.28 | Mem:5.22M, Peak:5.30M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:137.92M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:137.92M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:137.92M (Peak 164.83M) | Time:00:00.28 | Mem:5.30M, Peak:5.30M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:144.30M (Peak 164.83M) | Time:00:00.31 | Mem:566.30M, Peak:566.30M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:185.70M (Peak 185.70M) | Time:00:00.32 | Remaining:00:00.18 | Mem:607.71M, Peak:607.71M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:203.14M (Peak 229.29M) | Time:00:02.90 | Mem:607.71M, Peak:607.71M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:203.14M (Peak 229.29M) | Time:00:02.90 | Mem:607.71M, Peak:607.71M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/PORTLET2.png'
+Time: 00:03.15 (Saving: 00:00.09)
+
+Fra:1 Mem:138.53M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:138.53M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_siding_plank_old_timber_light
+Fra:1 Mem:138.83M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_backing_left_old_timber
+Fra:1 Mem:138.92M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_foundation_concrete
+Fra:1 Mem:138.95M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_side_glass_glass
+Fra:1 Mem:138.98M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_window_jamb_ivory
+Fra:1 Mem:138.98M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_window_sill_ivory
+Fra:1 Mem:139.10M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_corner_hardware_rust
+Fra:1 Mem:139.16M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_cavity_interior
+Fra:1 Mem:139.15M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_sill_old_timber
+Fra:1 Mem:139.16M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_vertical_mullion_old_timber
+Fra:1 Mem:139.10M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_sash_old_timber
+Fra:1 Mem:139.11M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_stone_window_reveal_ivory
+Fra:1 Mem:139.15M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_door_panel_old_timber
+Fra:1 Mem:139.16M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_door_rail_old_timber
+Fra:1 Mem:139.18M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_door_latch_gold
+Fra:1 Mem:139.21M (Peak 154.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_glass_glass
+Fra:1 Mem:139.21M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_jamb_old_timber
+Fra:1 Mem:139.23M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_sill_old_timber
+Fra:1 Mem:139.24M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_vertical_mullion_old_timber
+Fra:1 Mem:139.29M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_sash_old_timber
+Fra:1 Mem:139.29M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_gable_wall_old_timber
+Fra:1 Mem:139.30M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_pitched_roof_plane_rust
+Fra:1 Mem:139.31M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_gable_bargeboard_ivory
+Fra:1 Mem:139.34M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_roof_shingle_course_rust
+Fra:1 Mem:139.33M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_floor_old_timber
+Fra:1 Mem:139.39M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_column_old_timber
+Fra:1 Mem:139.59M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_brace_old_timber
+Fra:1 Mem:139.69M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_roof_rust
+Fra:1 Mem:139.71M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_rail_post_old_timber
+Fra:1 Mem:139.77M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_side_rail_old_timber
+Fra:1 Mem:139.89M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_diagonal_old_timber
+Fra:1 Mem:139.86M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_step_concrete
+Fra:1 Mem:140.38M (Peak 154.97M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_stove_pipe_rust
+Fra:1 Mem:143.96M (Peak 154.97M) | Time:00:00.34 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:139.05M (Peak 154.97M) | Time:00:00.34 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:140.06M (Peak 154.97M) | Time:00:00.34 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:141.39M (Peak 154.97M) | Time:00:00.35 | Mem:4.00M, Peak:4.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:141.39M (Peak 154.97M) | Time:00:00.35 | Mem:4.00M, Peak:4.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:141.39M (Peak 154.97M) | Time:00:00.35 | Mem:4.00M, Peak:4.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:141.48M (Peak 154.97M) | Time:00:00.35 | Mem:4.00M, Peak:4.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:141.48M (Peak 168.65M) | Time:00:00.47 | Mem:4.02M, Peak:4.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:141.48M (Peak 168.65M) | Time:00:00.47 | Mem:4.02M, Peak:4.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:141.48M (Peak 168.65M) | Time:00:00.47 | Mem:4.02M, Peak:4.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:141.48M (Peak 168.65M) | Time:00:00.47 | Mem:4.02M, Peak:4.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:141.48M (Peak 168.65M) | Time:00:00.47 | Mem:4.02M, Peak:4.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:141.48M (Peak 168.65M) | Time:00:00.47 | Mem:4.02M, Peak:4.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:141.49M (Peak 168.65M) | Time:00:00.47 | Mem:4.03M, Peak:4.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:141.49M (Peak 168.65M) | Time:00:00.47 | Mem:4.03M, Peak:4.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:141.49M (Peak 168.65M) | Time:00:00.47 | Mem:4.03M, Peak:4.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:141.49M (Peak 168.65M) | Time:00:00.47 | Mem:4.03M, Peak:4.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:141.49M (Peak 168.65M) | Time:00:00.47 | Mem:4.03M, Peak:4.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:143.21M (Peak 168.65M) | Time:00:00.47 | Mem:4.03M, Peak:4.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:143.20M (Peak 168.65M) | Time:00:00.47 | Mem:5.74M, Peak:5.74M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:143.20M (Peak 168.65M) | Time:00:00.47 | Mem:5.74M, Peak:5.74M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:145.28M (Peak 168.65M) | Time:00:00.48 | Mem:5.74M, Peak:5.74M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:145.42M (Peak 168.65M) | Time:00:00.48 | Mem:5.74M, Peak:5.74M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:145.39M (Peak 168.65M) | Time:00:00.49 | Mem:5.74M, Peak:5.74M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:145.39M (Peak 168.65M) | Time:00:00.49 | Mem:6.83M, Peak:6.83M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:6.83M, Peak:6.83M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.17M, Peak:9.17M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.17M, Peak:9.17M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.17M, Peak:9.17M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.17M, Peak:9.17M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.17M, Peak:9.17M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:147.72M (Peak 168.65M) | Time:00:00.49 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:147.73M (Peak 168.65M) | Time:00:00.50 | Mem:9.17M, Peak:9.25M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:147.73M (Peak 168.65M) | Time:00:00.50 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:147.73M (Peak 168.65M) | Time:00:00.50 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:147.73M (Peak 168.65M) | Time:00:00.50 | Mem:9.25M, Peak:9.25M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:154.11M (Peak 168.65M) | Time:00:00.52 | Mem:570.26M, Peak:570.26M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:195.51M (Peak 195.51M) | Time:00:00.54 | Remaining:00:00.27 | Mem:611.66M, Peak:611.66M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:212.95M (Peak 239.10M) | Time:00:03.17 | Mem:611.66M, Peak:611.66M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:212.95M (Peak 239.10M) | Time:00:03.17 | Mem:611.66M, Peak:611.66M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/RUSTICA2.png'
+Time: 00:03.40 (Saving: 00:00.07)
+
+Fra:1 Mem:137.79M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:137.79M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:137.79M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_front_white_siding
+Fra:1 Mem:137.82M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_siding_plank_white_siding
+Fra:1 Mem:137.84M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_siding_plank_white_siding_dark
+Fra:1 Mem:138.39M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_weathering_chip_rust
+Fra:1 Mem:138.50M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_siding_plank_white_siding_light
+Fra:1 Mem:138.68M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_rear_white_siding
+Fra:1 Mem:138.83M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_left_white_siding
+Fra:1 Mem:138.93M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_foundation_concrete
+Fra:1 Mem:138.94M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_side_glass_glass
+Fra:1 Mem:138.98M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_window_sill_ivory
+Fra:1 Mem:139.04M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_cavity_interior
+Fra:1 Mem:139.06M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_fuel_nozzle_roof
+Fra:1 Mem:139.04M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_glass_glass
+Fra:1 Mem:139.04M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_jamb_old_timber
+Fra:1 Mem:138.99M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_fuel_hose_black_metal
+Fra:1 Mem:140.39M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_sill_old_timber
+Fra:1 Mem:140.40M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_vertical_mullion_old_timber
+Fra:1 Mem:140.34M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_stone_window_reveal_ivory
+Fra:1 Mem:140.34M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_door_panel_old_timber
+Fra:1 Mem:140.41M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_door_rail_old_timber
+Fra:1 Mem:140.41M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_jamb_old_timber
+Fra:1 Mem:140.54M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_sill_old_timber
+Fra:1 Mem:140.54M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_sash_old_timber
+Fra:1 Mem:140.63M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_gable_wall_white_siding
+Fra:1 Mem:140.68M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pitched_roof_plane_slate
+Fra:1 Mem:140.68M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_gable_bargeboard_ivory
+Fra:1 Mem:140.69M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_roof_shingle_course_slate
+Fra:1 Mem:140.74M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_floor_old_timber
+Fra:1 Mem:140.87M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_brace_ivory
+Fra:1 Mem:141.06M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_roof_rust
+Fra:1 Mem:141.09M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_rail_post_ivory
+Fra:1 Mem:141.39M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_head_ivory
+Fra:1 Mem:141.48M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_base_concrete
+Fra:1 Mem:141.50M (Peak 147.84M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_body_ivory
+Fra:1 Mem:141.53M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:137.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading roof_albedo
+Fra:1 Mem:137.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:139.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:140.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading old_timber_albedo
+Fra:1 Mem:141.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading slate_albedo
+Fra:1 Mem:141.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:141.99M (Peak 147.84M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_paint_albedo
+Fra:1 Mem:144.87M (Peak 147.84M) | Time:00:00.27 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:144.87M (Peak 147.84M) | Time:00:00.27 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:144.87M (Peak 147.84M) | Time:00:00.27 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:144.96M (Peak 147.84M) | Time:00:00.27 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:144.96M (Peak 172.12M) | Time:00:00.39 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:144.96M (Peak 172.12M) | Time:00:00.39 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:144.96M (Peak 172.12M) | Time:00:00.39 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:144.96M (Peak 172.12M) | Time:00:00.39 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:144.96M (Peak 172.12M) | Time:00:00.39 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:144.96M (Peak 172.12M) | Time:00:00.39 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:144.97M (Peak 172.12M) | Time:00:00.39 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:144.97M (Peak 172.12M) | Time:00:00.39 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:144.97M (Peak 172.12M) | Time:00:00.39 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:144.97M (Peak 172.12M) | Time:00:00.39 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:144.97M (Peak 172.12M) | Time:00:00.39 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:146.15M (Peak 172.12M) | Time:00:00.39 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:146.15M (Peak 172.12M) | Time:00:00.39 | Mem:10.21M, Peak:10.21M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:146.15M (Peak 172.12M) | Time:00:00.39 | Mem:10.21M, Peak:10.21M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:147.58M (Peak 172.12M) | Time:00:00.40 | Mem:10.21M, Peak:10.21M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:147.67M (Peak 172.12M) | Time:00:00.40 | Mem:10.21M, Peak:10.21M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:147.65M (Peak 172.12M) | Time:00:00.40 | Mem:10.21M, Peak:10.21M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:147.65M (Peak 172.12M) | Time:00:00.41 | Mem:10.96M, Peak:10.96M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:10.96M, Peak:10.96M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.57M, Peak:12.57M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.57M, Peak:12.57M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.57M, Peak:12.57M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.57M, Peak:12.57M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.57M, Peak:12.57M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:149.25M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:149.26M (Peak 172.12M) | Time:00:00.41 | Mem:12.57M, Peak:12.65M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:149.26M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:149.26M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:149.26M (Peak 172.12M) | Time:00:00.41 | Mem:12.65M, Peak:12.65M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:155.64M (Peak 172.12M) | Time:00:00.44 | Mem:573.66M, Peak:573.66M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:197.05M (Peak 197.05M) | Time:00:00.46 | Remaining:00:00.26 | Mem:615.06M, Peak:615.06M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:214.48M (Peak 240.63M) | Time:00:03.13 | Mem:615.06M, Peak:615.06M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:214.48M (Peak 240.63M) | Time:00:03.13 | Mem:615.06M, Peak:615.06M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/RUSTICB2.png'
+Time: 00:03.36 (Saving: 00:00.07)
+
+Fra:1 Mem:138.03M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:138.03M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_siding_plank_white_siding_light
+Fra:1 Mem:138.03M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_backing_left_white_siding
+Fra:1 Mem:138.04M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_side_glass_glass
+Fra:1 Mem:138.05M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_window_jamb_ivory
+Fra:1 Mem:138.15M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_window_sill_ivory
+Fra:1 Mem:138.52M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_corner_hardware_rust
+Fra:1 Mem:138.61M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_weathering_chip_rust
+Fra:1 Mem:138.57M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_cavity_interior
+Fra:1 Mem:138.76M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_glass_glass
+Fra:1 Mem:138.82M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_sill_old_timber
+Fra:1 Mem:138.78M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_sash_old_timber
+Fra:1 Mem:138.81M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_stone_window_reveal_ivory
+Fra:1 Mem:139.25M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_door_panel_old_timber
+Fra:1 Mem:139.43M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_flag_field_slate
+Fra:1 Mem:139.43M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_door_latch_gold
+Fra:1 Mem:139.53M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_jamb_old_timber
+Fra:1 Mem:139.84M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_flag_stripe_ivory
+Fra:1 Mem:139.87M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_sill_old_timber
+Fra:1 Mem:140.02M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_vertical_mullion_old_timber
+Fra:1 Mem:139.91M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_sash_old_timber
+Fra:1 Mem:139.95M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_flag_stripe_red_paint
+Fra:1 Mem:140.02M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_gable_wall_white_siding
+Fra:1 Mem:140.02M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_roof_shingle_course_slate
+Fra:1 Mem:140.04M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_floor_old_timber
+Fra:1 Mem:140.05M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_column_ivory
+Fra:1 Mem:139.59M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_school_flagpole_ivory
+Fra:1 Mem:139.74M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_roof_rust
+Fra:1 Mem:139.77M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_step_concrete
+Fra:1 Mem:139.89M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_roof_shingle_course_roof
+Fra:1 Mem:139.88M (Peak 150.54M) | Time:00:00.25 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_pitched_roof_plane_roof
+Fra:1 Mem:142.39M (Peak 150.54M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:138.38M (Peak 150.54M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_paint_albedo
+Fra:1 Mem:139.38M (Peak 150.54M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading white_siding_albedo
+Fra:1 Mem:139.38M (Peak 150.54M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading old_timber_albedo
+Fra:1 Mem:140.39M (Peak 150.54M) | Time:00:00.26 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading roof_albedo
+Fra:1 Mem:145.39M (Peak 150.54M) | Time:00:00.26 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading slate_albedo
+Fra:1 Mem:144.47M (Peak 150.54M) | Time:00:00.26 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:144.47M (Peak 150.54M) | Time:00:00.26 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:144.47M (Peak 150.54M) | Time:00:00.26 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:144.56M (Peak 150.54M) | Time:00:00.27 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:144.56M (Peak 171.72M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:144.56M (Peak 171.72M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:144.56M (Peak 171.72M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:144.56M (Peak 171.72M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:144.56M (Peak 171.72M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:144.56M (Peak 171.72M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:144.57M (Peak 171.72M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:144.57M (Peak 171.72M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:144.57M (Peak 171.72M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:144.57M (Peak 171.72M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:144.57M (Peak 171.72M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:145.95M (Peak 171.72M) | Time:00:00.38 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:145.94M (Peak 171.72M) | Time:00:00.38 | Mem:9.41M, Peak:9.41M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:145.95M (Peak 171.72M) | Time:00:00.38 | Mem:9.41M, Peak:9.41M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:147.61M (Peak 171.72M) | Time:00:00.39 | Mem:9.41M, Peak:9.41M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:147.72M (Peak 171.72M) | Time:00:00.39 | Mem:9.41M, Peak:9.41M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:147.73M (Peak 171.72M) | Time:00:00.40 | Mem:9.41M, Peak:9.41M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:147.73M (Peak 171.72M) | Time:00:00.40 | Mem:10.30M, Peak:10.30M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:10.30M, Peak:10.30M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.17M, Peak:12.17M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.17M, Peak:12.17M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.17M, Peak:12.17M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.17M, Peak:12.17M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.17M, Peak:12.17M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.25M, Peak:12.25M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:149.60M (Peak 171.72M) | Time:00:00.40 | Mem:12.25M, Peak:12.25M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:149.61M (Peak 171.72M) | Time:00:00.40 | Mem:12.26M, Peak:12.26M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:149.61M (Peak 171.72M) | Time:00:00.40 | Mem:12.26M, Peak:12.26M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:149.61M (Peak 171.72M) | Time:00:00.40 | Mem:12.17M, Peak:12.26M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:149.61M (Peak 171.72M) | Time:00:00.40 | Mem:12.26M, Peak:12.26M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:149.61M (Peak 171.72M) | Time:00:00.40 | Mem:12.26M, Peak:12.26M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:149.61M (Peak 171.72M) | Time:00:00.41 | Mem:12.26M, Peak:12.26M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:155.99M (Peak 171.72M) | Time:00:00.43 | Mem:573.26M, Peak:573.26M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:197.40M (Peak 197.40M) | Time:00:00.44 | Remaining:00:00.22 | Mem:614.66M, Peak:614.66M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:214.83M (Peak 240.98M) | Time:00:03.15 | Mem:614.67M, Peak:614.67M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:214.83M (Peak 240.98M) | Time:00:03.15 | Mem:614.67M, Peak:614.67M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/SCHOOL2.png'
+Time: 00:03.38 (Saving: 00:00.08)
+
+Fra:1 Mem:145.07M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:145.07M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:146.34M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_front_whitewashed_brick_masonry_tile
+Fra:1 Mem:146.34M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_front_whitewashed_brick
+Fra:1 Mem:146.38M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_front_whitewashed_brick_dark
+Fra:1 Mem:146.47M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_front_whitewashed_brick_light
+Fra:1 Mem:148.00M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_weathering_chip_rust
+Fra:1 Mem:148.15M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_rear_whitewashed_brick_masonry_tile
+Fra:1 Mem:148.15M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_serving_canopy_green_metal
+Fra:1 Mem:148.07M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shelf_product_gold
+Fra:1 Mem:148.08M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_rear_whitewashed_brick
+Fra:1 Mem:148.09M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_rear_whitewashed_brick_light
+Fra:1 Mem:148.61M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_rear_whitewashed_brick_dark
+Fra:1 Mem:148.92M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shelf_product_oxblood
+Fra:1 Mem:150.88M (Peak 186.20M) | Time:00:00.29 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shop_shelf_old_timber
+Fra:1 Mem:150.69M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_step_concrete
+Fra:1 Mem:150.88M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_left_whitewashed_brick_masonry_tile
+Fra:1 Mem:151.08M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_left_whitewashed_brick_light
+Fra:1 Mem:151.41M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_left_whitewashed_brick_dark
+Fra:1 Mem:151.41M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_right_whitewashed_brick_masonry_tile
+Fra:1 Mem:151.42M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_right_whitewashed_brick
+Fra:1 Mem:154.02M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_right_whitewashed_brick_dark
+Fra:1 Mem:154.31M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_right_whitewashed_brick_light
+Fra:1 Mem:154.51M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_foundation_concrete
+Fra:1 Mem:156.84M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_window_jamb_ivory
+Fra:1 Mem:157.52M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_corner_hardware_rust
+Fra:1 Mem:156.93M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_cavity_interior
+Fra:1 Mem:157.41M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_brace_ivory
+Fra:1 Mem:157.10M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_glass_glass
+Fra:1 Mem:157.13M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_column_ivory
+Fra:1 Mem:155.93M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_jamb_old_timber
+Fra:1 Mem:156.37M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_floor_old_timber
+Fra:1 Mem:156.46M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shop_fascia_ivory
+Fra:1 Mem:156.35M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_sill_old_timber
+Fra:1 Mem:156.36M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_flat_shop_roof_roof
+Fra:1 Mem:156.65M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_vertical_mullion_old_timber
+Fra:1 Mem:156.64M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_sash_old_timber
+Fra:1 Mem:156.64M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_sash_old_timber
+Fra:1 Mem:157.13M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_vertical_mullion_old_timber
+Fra:1 Mem:157.62M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_sill_old_timber
+Fra:1 Mem:157.09M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_door_panel_old_timber
+Fra:1 Mem:157.09M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_jamb_old_timber
+Fra:1 Mem:157.02M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_door_rail_old_timber
+Fra:1 Mem:156.85M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_door_latch_gold
+Fra:1 Mem:157.54M (Peak 186.20M) | Time:00:00.30 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_cavity_interior
+Fra:1 Mem:158.24M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:146.40M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading green_metal_albedo
+Fra:1 Mem:147.40M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:148.40M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading whitewashed_brick_masonry_tile_albedo
+Fra:1 Mem:149.40M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading whitewashed_brick_albedo
+Fra:1 Mem:149.40M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:149.40M (Peak 186.20M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:152.41M (Peak 186.20M) | Time:00:00.31 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading roof_albedo
+Fra:1 Mem:153.41M (Peak 186.20M) | Time:00:00.31 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Updating Images | Loading oxblood_albedo
+Fra:1 Mem:154.23M (Peak 186.20M) | Time:00:00.32 | Mem:10.00M, Peak:10.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:154.23M (Peak 186.20M) | Time:00:00.32 | Mem:10.00M, Peak:10.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:154.23M (Peak 186.20M) | Time:00:00.32 | Mem:10.00M, Peak:10.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.32 | Mem:10.00M, Peak:10.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.44 | Mem:10.02M, Peak:10.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.44 | Mem:10.02M, Peak:10.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.44 | Mem:10.02M, Peak:10.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.44 | Mem:10.02M, Peak:10.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.44 | Mem:10.02M, Peak:10.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:154.32M (Peak 186.20M) | Time:00:00.44 | Mem:10.02M, Peak:10.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:154.33M (Peak 186.20M) | Time:00:00.44 | Mem:10.04M, Peak:10.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:154.33M (Peak 186.20M) | Time:00:00.44 | Mem:10.04M, Peak:10.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:154.33M (Peak 186.20M) | Time:00:00.44 | Mem:10.04M, Peak:10.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:154.33M (Peak 186.20M) | Time:00:00.44 | Mem:10.04M, Peak:10.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:154.33M (Peak 186.20M) | Time:00:00.44 | Mem:10.04M, Peak:10.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:158.45M (Peak 186.20M) | Time:00:00.44 | Mem:10.04M, Peak:10.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:158.44M (Peak 186.20M) | Time:00:00.44 | Mem:14.15M, Peak:14.15M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:158.44M (Peak 186.20M) | Time:00:00.44 | Mem:14.15M, Peak:14.15M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:163.66M (Peak 186.20M) | Time:00:00.47 | Mem:14.15M, Peak:14.15M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:164.01M (Peak 186.20M) | Time:00:00.47 | Mem:14.15M, Peak:14.15M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:164.11M (Peak 186.20M) | Time:00:00.48 | Mem:14.15M, Peak:14.15M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:164.11M (Peak 186.20M) | Time:00:00.49 | Mem:16.98M, Peak:16.98M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.49 | Mem:16.98M, Peak:16.98M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.46M, Peak:22.46M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.46M, Peak:22.46M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.46M, Peak:22.46M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.46M, Peak:22.46M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.46M, Peak:22.46M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.46M, Peak:22.54M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:169.59M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:169.60M (Peak 186.20M) | Time:00:00.50 | Mem:22.54M, Peak:22.54M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:175.98M (Peak 186.20M) | Time:00:00.54 | Mem:583.55M, Peak:583.55M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:217.38M (Peak 217.38M) | Time:00:00.55 | Remaining:00:00.21 | Mem:624.95M, Peak:624.95M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:234.82M (Peak 260.97M) | Time:00:03.28 | Mem:624.95M, Peak:624.95M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:234.82M (Peak 260.97M) | Time:00:03.28 | Mem:624.95M, Peak:624.95M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/SHOPD2.png'
+Time: 00:03.51 (Saving: 00:00.07)
+
+Fra:1 Mem:190.69M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:190.69M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_siding_plank_old_timber_light.001
+Fra:1 Mem:190.69M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_siding_plank_old_timber_dark.001
+Fra:1 Mem:190.74M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_backing_rear_old_timber.001
+Fra:1 Mem:190.77M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_backing_left_old_timber.001
+Fra:1 Mem:190.75M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_backing_right_old_timber.001
+Fra:1 Mem:190.75M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label PHONSHK2
+Fra:1 Mem:190.75M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_foundation_concrete.001
+Fra:1 Mem:190.77M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_wall_corner_hardware_rust.001
+Fra:1 Mem:190.79M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_cavity_interior.001
+Fra:1 Mem:191.05M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_glass_glass.001
+Fra:1 Mem:191.18M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_jamb_old_timber.001
+Fra:1 Mem:191.07M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_sill_old_timber.001
+Fra:1 Mem:191.09M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:191.09M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_door_panel_old_timber.001
+Fra:1 Mem:191.11M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_structure_door_rail_old_timber.001
+Fra:1 Mem:191.11M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_door_latch_gold.001
+Fra:1 Mem:191.12M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_irregular_roof_plank_old_timber.001
+Fra:1 Mem:191.12M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PHONSHK2_phone_unit_roof.001
+Fra:1 Mem:191.28M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_body_blue_plastic.001
+Fra:1 Mem:191.28M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_base_roof.001
+Fra:1 Mem:191.30M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_door_rib_blue_plastic.001
+Fra:1 Mem:191.29M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_vent_black_metal.001
+Fra:1 Mem:191.36M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_toilet_latch_ivory.001
+Fra:1 Mem:191.35M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_rounded_toilet_cap_ivory.001
+Fra:1 Mem:191.45M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | PORTLET2_structure_weathering_chip_rust.001
+Fra:1 Mem:191.55M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_backing_front_old_timber.001
+Fra:1 Mem:191.62M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_siding_plank_old_timber.001
+Fra:1 Mem:191.60M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_siding_plank_old_timber_light.001
+Fra:1 Mem:191.68M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_backing_rear_old_timber.001
+Fra:1 Mem:191.70M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_backing_left_old_timber.001
+Fra:1 Mem:191.92M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_backing_right_old_timber.001
+Fra:1 Mem:191.93M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_foundation_concrete.001
+Fra:1 Mem:191.94M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_window_jamb_ivory.001
+Fra:1 Mem:191.96M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_window_sill_ivory.001
+Fra:1 Mem:192.02M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label RUSTICA2
+Fra:1 Mem:192.01M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_wall_corner_hardware_rust.001
+Fra:1 Mem:192.10M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_cavity_interior.001
+Fra:1 Mem:192.44M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_glass_glass.001
+Fra:1 Mem:192.43M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_jamb_old_timber.001
+Fra:1 Mem:192.52M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_sill_old_timber.001
+Fra:1 Mem:193.13M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:193.19M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_entry_sash_old_timber.001
+Fra:1 Mem:193.19M (Peak 245.60M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_door_panel_old_timber.001
+Fra:1 Mem:193.41M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_door_rail_old_timber.001
+Fra:1 Mem:193.67M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_cavity_interior.001
+Fra:1 Mem:193.74M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_glass_glass.001
+Fra:1 Mem:193.91M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label RUSTICB2
+Fra:1 Mem:193.93M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_jamb_old_timber.001
+Fra:1 Mem:193.41M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_vertical_mullion_old_timber.001
+Fra:1 Mem:193.48M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_front_window_sash_old_timber.001
+Fra:1 Mem:193.70M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_gable_wall_old_timber.001
+Fra:1 Mem:195.75M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_pitched_roof_plane_rust.001
+Fra:1 Mem:195.86M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_gable_bargeboard_ivory.001
+Fra:1 Mem:195.86M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_roof_shingle_course_rust.001
+Fra:1 Mem:195.87M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_column_old_timber.001
+Fra:1 Mem:195.87M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_brace_old_timber.001
+Fra:1 Mem:196.19M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_roof_rust.001
+Fra:1 Mem:196.24M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_rail_post_old_timber.001
+Fra:1 Mem:196.23M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_porch_diagonal_old_timber.001
+Fra:1 Mem:196.25M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_stove_pipe_rust.001
+Fra:1 Mem:196.27M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICA2_structure_weathering_chip_rust.001
+Fra:1 Mem:196.32M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_front_white_siding.001
+Fra:1 Mem:196.51M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_siding_plank_white_siding.001
+Fra:1 Mem:196.53M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_siding_plank_white_siding_dark.001
+Fra:1 Mem:196.60M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_siding_plank_white_siding_light.001
+Fra:1 Mem:197.44M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_rear_white_siding.001
+Fra:1 Mem:197.75M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_left_white_siding.001
+Fra:1 Mem:198.11M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_backing_right_white_siding.001
+Fra:1 Mem:198.20M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_foundation_concrete.001
+Fra:1 Mem:198.20M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_side_glass_glass.001
+Fra:1 Mem:199.55M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_window_jamb_ivory.001
+Fra:1 Mem:200.58M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_window_sill_ivory.001
+Fra:1 Mem:200.01M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_wall_corner_hardware_rust.001
+Fra:1 Mem:200.09M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_cavity_interior.001
+Fra:1 Mem:200.06M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_glass_glass.001
+Fra:1 Mem:200.08M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_jamb_old_timber.001
+Fra:1 Mem:200.11M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_sill_old_timber.001
+Fra:1 Mem:197.92M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:197.93M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_entry_sash_old_timber.001
+Fra:1 Mem:197.93M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_stone_window_reveal_ivory.001
+Fra:1 Mem:199.24M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_door_panel_old_timber.001
+Fra:1 Mem:199.20M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label SCHOOL2
+Fra:1 Mem:199.49M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_door_rail_old_timber.001
+Fra:1 Mem:199.48M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_door_latch_gold.001
+Fra:1 Mem:199.65M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_cavity_interior.001
+Fra:1 Mem:199.61M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_glass_glass.001
+Fra:1 Mem:199.56M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_jamb_old_timber.001
+Fra:1 Mem:199.56M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_sill_old_timber.001
+Fra:1 Mem:199.64M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_vertical_mullion_old_timber.001
+Fra:1 Mem:199.61M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_front_window_sash_old_timber.001
+Fra:1 Mem:199.65M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_gable_wall_white_siding.001
+Fra:1 Mem:199.66M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_roof_shingle_course_slate.001
+Fra:1 Mem:200.62M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_floor_old_timber.001
+Fra:1 Mem:201.04M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_column_ivory.001
+Fra:1 Mem:201.49M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_brace_ivory.001
+Fra:1 Mem:202.30M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_roof_rust.001
+Fra:1 Mem:201.85M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Sign_GROCERY.001
+Fra:1 Mem:202.33M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_rail_post_ivory.001
+Fra:1 Mem:202.61M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_side_rail_ivory.001
+Fra:1 Mem:202.96M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_diagonal_ivory.001
+Fra:1 Mem:202.33M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_porch_step_concrete.001
+Fra:1 Mem:203.54M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_stove_pipe_rust.001
+Fra:1 Mem:203.73M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_base_concrete.001
+Fra:1 Mem:203.70M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_body_ivory.001
+Fra:1 Mem:203.71M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_head_ivory.001
+Fra:1 Mem:203.72M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_meter_black_metal.001
+Fra:1 Mem:203.76M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_meter_digit_ivory.001
+Fra:1 Mem:204.49M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_pump_red_band_red_paint.001
+Fra:1 Mem:204.39M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_fuel_hose_black_metal.001
+Fra:1 Mem:204.39M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_fuel_nozzle_roof.001
+Fra:1 Mem:204.45M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | RUSTICB2_structure_weathering_chip_rust.001
+Fra:1 Mem:204.46M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_backing_front_white_siding.001
+Fra:1 Mem:204.47M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_siding_plank_white_siding.001
+Fra:1 Mem:204.22M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_siding_plank_white_siding_dark.001
+Fra:1 Mem:204.27M (Peak 245.60M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_backing_rear_white_siding.001
+Fra:1 Mem:204.26M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_backing_left_white_siding.001
+Fra:1 Mem:204.36M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_backing_right_white_siding.001
+Fra:1 Mem:204.49M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_foundation_concrete.001
+Fra:1 Mem:205.18M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_side_glass_glass.001
+Fra:1 Mem:205.26M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_window_sill_ivory.001
+Fra:1 Mem:205.57M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_wall_corner_hardware_rust.001
+Fra:1 Mem:205.16M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_cavity_interior.001
+Fra:1 Mem:205.84M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_glass_glass.001
+Fra:1 Mem:205.82M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_jamb_old_timber.001
+Fra:1 Mem:205.82M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_sill_old_timber.001
+Fra:1 Mem:205.94M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:205.96M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_entry_sash_old_timber.001
+Fra:1 Mem:205.98M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_stone_window_reveal_ivory.001
+Fra:1 Mem:205.97M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_door_rail_old_timber.001
+Fra:1 Mem:204.13M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_door_latch_gold.001
+Fra:1 Mem:204.40M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_glass_glass.001
+Fra:1 Mem:204.35M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_sill_old_timber.001
+Fra:1 Mem:204.34M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_vertical_mullion_old_timber.001
+Fra:1 Mem:204.29M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_structure_front_window_sash_old_timber.001
+Fra:1 Mem:204.28M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_pitched_roof_plane_slate.001
+Fra:1 Mem:204.32M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_gable_bargeboard_ivory.001
+Fra:1 Mem:204.37M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_roof_shingle_course_slate.001
+Fra:1 Mem:204.39M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_column_ivory.001
+Fra:1 Mem:204.39M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_brace_ivory.001
+Fra:1 Mem:204.44M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_roof_rust.001
+Fra:1 Mem:204.64M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_porch_step_concrete.001
+Fra:1 Mem:204.76M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_pitched_roof_plane_roof.001
+Fra:1 Mem:204.33M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_roof_shingle_course_roof.001
+Fra:1 Mem:204.51M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_school_flagpole_ivory.001
+Fra:1 Mem:204.21M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_flag_stripe_red_paint.001
+Fra:1 Mem:204.36M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_flag_stripe_ivory.001
+Fra:1 Mem:204.31M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SCHOOL2_flag_field_slate.001
+Fra:1 Mem:204.28M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_front_whitewashed_brick_masonry_tile.001
+Fra:1 Mem:204.32M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_front_whitewashed_brick.001
+Fra:1 Mem:204.62M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_front_whitewashed_brick_dark.001
+Fra:1 Mem:204.63M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_rear_whitewashed_brick.001
+Fra:1 Mem:204.99M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_rear_whitewashed_brick_light.001
+Fra:1 Mem:204.98M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_rear_whitewashed_brick_dark.001
+Fra:1 Mem:205.26M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_left_whitewashed_brick_masonry_tile.001
+Fra:1 Mem:205.29M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_left_whitewashed_brick.001
+Fra:1 Mem:206.40M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_left_whitewashed_brick_light.001
+Fra:1 Mem:206.44M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_left_whitewashed_brick_dark.001
+Fra:1 Mem:207.24M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label SHOPD2
+Fra:1 Mem:207.70M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_backing_right_whitewashed_brick_masonry_tile.001
+Fra:1 Mem:207.92M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_right_whitewashed_brick.001
+Fra:1 Mem:208.82M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_weathering_chip_rust.001
+Fra:1 Mem:210.51M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_right_whitewashed_brick_dark.001
+Fra:1 Mem:210.87M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_serving_canopy_green_metal.001
+Fra:1 Mem:211.61M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shelf_product_gold.001
+Fra:1 Mem:215.37M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shelf_product_oxblood.001
+Fra:1 Mem:217.88M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shop_shelf_old_timber.001
+Fra:1 Mem:216.11M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_step_concrete.001
+Fra:1 Mem:216.33M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_roof_rust.001
+Fra:1 Mem:216.21M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_individual_bricks_right_whitewashed_brick_light.001
+Fra:1 Mem:216.21M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_brace_ivory.001
+Fra:1 Mem:216.81M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_foundation_concrete.001
+Fra:1 Mem:217.39M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_column_ivory.001
+Fra:1 Mem:218.39M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_porch_floor_old_timber.001
+Fra:1 Mem:218.28M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_side_glass_glass.001
+Fra:1 Mem:218.22M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_shop_fascia_ivory.001
+Fra:1 Mem:217.88M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_flat_shop_roof_roof.001
+Fra:1 Mem:218.40M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_sash_old_timber.001
+Fra:1 Mem:216.00M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_vertical_mullion_old_timber.001
+Fra:1 Mem:216.81M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_sill_old_timber.001
+Fra:1 Mem:216.97M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_jamb_old_timber.001
+Fra:1 Mem:217.37M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_glass_glass.001
+Fra:1 Mem:217.12M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_front_window_cavity_interior.001
+Fra:1 Mem:217.55M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_window_jamb_ivory.001
+Fra:1 Mem:217.55M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_window_sill_ivory.001
+Fra:1 Mem:218.68M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_wall_corner_hardware_rust.001
+Fra:1 Mem:219.16M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_cavity_interior.001
+Fra:1 Mem:219.31M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_glass_glass.001
+Fra:1 Mem:218.93M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_jamb_old_timber.001
+Fra:1 Mem:219.34M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_sill_old_timber.001
+Fra:1 Mem:219.36M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:219.24M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_entry_sash_old_timber.001
+Fra:1 Mem:219.33M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_stone_window_reveal_ivory.001
+Fra:1 Mem:219.33M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_door_panel_old_timber.001
+Fra:1 Mem:219.34M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_structure_door_rail_old_timber.001
+Fra:1 Mem:219.35M (Peak 245.60M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | SHOPD2_door_latch_gold.001
+Fra:1 Mem:218.49M (Peak 245.60M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:192.50M (Peak 245.60M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading green_metal_albedo
+Fra:1 Mem:192.50M (Peak 245.60M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:194.50M (Peak 245.60M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading blue_plastic_albedo
+Fra:1 Mem:195.50M (Peak 245.60M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading whitewashed_brick_masonry_tile_albedo
+Fra:1 Mem:195.51M (Peak 245.60M) | Time:00:00.42 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading whitewashed_brick_albedo
+Fra:1 Mem:195.51M (Peak 245.60M) | Time:00:00.42 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Updating Images | Loading oxblood_albedo
+Fra:1 Mem:199.34M (Peak 245.60M) | Time:00:00.44 | Mem:14.00M, Peak:14.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:199.34M (Peak 245.60M) | Time:00:00.44 | Mem:14.00M, Peak:14.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:199.34M (Peak 245.60M) | Time:00:00.44 | Mem:14.00M, Peak:14.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.44 | Mem:14.00M, Peak:14.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.55 | Mem:14.03M, Peak:14.03M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.55 | Mem:14.03M, Peak:14.03M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.55 | Mem:14.03M, Peak:14.03M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.55 | Mem:14.03M, Peak:14.03M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.55 | Mem:14.03M, Peak:14.03M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:199.44M (Peak 245.60M) | Time:00:00.55 | Mem:14.03M, Peak:14.03M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:199.50M (Peak 245.60M) | Time:00:00.55 | Mem:14.08M, Peak:14.08M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:199.50M (Peak 245.60M) | Time:00:00.55 | Mem:14.08M, Peak:14.08M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:199.50M (Peak 245.60M) | Time:00:00.55 | Mem:14.08M, Peak:14.08M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:199.50M (Peak 245.60M) | Time:00:00.55 | Mem:14.08M, Peak:14.08M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:199.50M (Peak 245.60M) | Time:00:00.56 | Mem:14.08M, Peak:14.08M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:208.26M (Peak 245.60M) | Time:00:00.56 | Mem:14.10M, Peak:14.10M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:208.23M (Peak 245.60M) | Time:00:00.57 | Mem:22.81M, Peak:22.81M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:208.23M (Peak 245.60M) | Time:00:00.57 | Mem:22.81M, Peak:22.81M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:219.10M (Peak 245.60M) | Time:00:00.63 | Mem:22.81M, Peak:22.81M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:219.82M (Peak 245.60M) | Time:00:00.63 | Mem:22.81M, Peak:22.81M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:219.16M (Peak 245.60M) | Time:00:00.65 | Mem:22.81M, Peak:22.81M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:219.16M (Peak 245.60M) | Time:00:00.65 | Mem:28.28M, Peak:28.28M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.66 | Mem:28.28M, Peak:28.28M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.03M, Peak:40.03M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.03M, Peak:40.03M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.03M, Peak:40.03M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.03M, Peak:40.03M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.03M, Peak:40.03M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.11M, Peak:40.11M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.11M, Peak:40.11M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.11M, Peak:40.11M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:230.91M (Peak 245.60M) | Time:00:00.67 | Mem:40.11M, Peak:40.11M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:230.92M (Peak 245.60M) | Time:00:00.67 | Mem:40.03M, Peak:40.11M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:230.92M (Peak 245.60M) | Time:00:00.67 | Mem:40.12M, Peak:40.12M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:230.92M (Peak 245.60M) | Time:00:00.67 | Mem:40.12M, Peak:40.12M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:230.92M (Peak 245.60M) | Time:00:00.67 | Mem:40.12M, Peak:40.12M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:237.31M (Peak 245.60M) | Time:00:00.70 | Mem:601.12M, Peak:601.12M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:411.26M (Peak 411.26M) | Time:00:00.76 | Remaining:00:01.06 | Mem:775.07M, Peak:775.07M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:484.51M (Peak 594.37M) | Time:00:11.17 | Mem:775.08M, Peak:775.08M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:484.51M (Peak 594.37M) | Time:00:11.17 | Mem:775.08M, Peak:775.08M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/structures_04.png'
+Time: 00:11.62 (Saving: 00:00.28)
+
+Info: Saved as "structures_04.blend"
+CATALOG_SHEET_COMPLETE structures_04.png 6
+
+Blender quit

@@ -1,0 +1,49 @@
+{
+  "branch": "codex/city-kilometre-preview",
+  "workspace_rust_passed": 164,
+  "workspace_rust_ignored": 1,
+  "python_passed": 29,
+  "fmt": "pass",
+  "clippy": "pass",
+  "build": "pass",
+  "audit": "pass",
+  "game_smoke_exit": 0,
+  "city_native_exit": 0,
+  "images": [
+    {
+      "file": "01-avenue-overview.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "e0e03d3b2c595c06b69a49eea596b45c460afd34c015c00a79b2a3a5819db082"
+    },
+    {
+      "file": "02-street-height.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "d0b188aa6c22e542eb1a68ae8a4ac2a4ba5362501825d5081218c1e201ce4936"
+    },
+    {
+      "file": "03-junction.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "1d19b4fec6f6ea2b6e561b29ab592b71e15a2c3a8fa61f3b80627d09df21b5b0"
+    },
+    {
+      "file": "04-block-grid.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "91ce12c088e1ed54841e20fc68ee804af2ad0a67d5edd352e4fd2242ae6f03c5"
+    }
+  ],
+  "config_sha256": "c62b7b0bd628c5850c2cd790b05935df0333378da556322a3cee48643f4d3881",
+  "generator_sha256": "a5032c34df68633e3b360b235621bae5a8b494f9ff29c90904fd5a6187c855a0",
+  "renderer_sha256": "bb2252d1fbd6d9fc5a384f7c7efb2dd77fec80ef7f30740ea865227d3aa5abaa"
+}

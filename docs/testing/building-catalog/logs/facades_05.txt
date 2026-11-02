@@ -1,0 +1,988 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+15:53:55 | INFO: Starting glTF 2.0 export
+15:53:55 | INFO: Extracting primitive: CLSTGA20_wall_backing_front.001
+15:53:55 | INFO: Primitives created: 12
+15:53:55 | INFO: Finished glTF 2.0 export in 0.24809765815734863 s
+
+15:53:55 | INFO: Starting glTF 2.0 export
+15:53:55 | INFO: Extracting primitive: CLSTGA20_wall_backing_front.002
+15:53:56 | INFO: Primitives created: 10
+15:53:56 | INFO: Finished glTF 2.0 export in 0.045197248458862305 s
+
+15:53:56 | INFO: Starting glTF 2.0 export
+15:53:56 | INFO: Extracting primitive: CLSTGA20_wall_backing_front.003
+15:53:56 | INFO: Primitives created: 9
+15:53:56 | INFO: Finished glTF 2.0 export in 0.03516650199890137 s
+
+CATALOG_EXPORTED CLSTGA20 [74436, 7556, 2016]
+15:53:56 | INFO: Starting glTF 2.0 export
+15:53:56 | INFO: Extracting primitive: CLSTGA21_wall_backing_front.001
+15:53:56 | INFO: Primitives created: 13
+15:53:56 | INFO: Finished glTF 2.0 export in 0.1746535301208496 s
+
+15:53:57 | INFO: Starting glTF 2.0 export
+15:53:57 | INFO: Extracting primitive: CLSTGA21_wall_backing_front.002
+15:53:57 | INFO: Primitives created: 11
+15:53:57 | INFO: Finished glTF 2.0 export in 0.0508732795715332 s
+
+15:53:57 | INFO: Starting glTF 2.0 export
+15:53:57 | INFO: Extracting primitive: CLSTGA21_wall_backing_front.003
+15:53:57 | INFO: Primitives created: 9
+15:53:57 | INFO: Finished glTF 2.0 export in 0.03230762481689453 s
+
+CATALOG_EXPORTED CLSTGA21 [81356, 9416, 2400]
+15:53:59 | INFO: Starting glTF 2.0 export
+15:53:59 | INFO: Extracting primitive: OFFC1_wall_backing_front.001
+15:53:59 | INFO: Primitives created: 13
+15:53:59 | INFO: Finished glTF 2.0 export in 0.3413429260253906 s
+
+15:53:59 | INFO: Starting glTF 2.0 export
+15:53:59 | INFO: Extracting primitive: OFFC1_wall_backing_front.002
+15:53:59 | INFO: Primitives created: 10
+15:53:59 | INFO: Finished glTF 2.0 export in 0.056704044342041016 s
+
+15:53:59 | INFO: Starting glTF 2.0 export
+15:53:59 | INFO: Extracting primitive: OFFC1_wall_backing_front.003
+15:53:59 | INFO: Primitives created: 9
+15:53:59 | INFO: Finished glTF 2.0 export in 0.03744959831237793 s
+
+CATALOG_EXPORTED OFFC1 [175008, 16388, 3276]
+15:54:00 | INFO: Starting glTF 2.0 export
+15:54:00 | INFO: Extracting primitive: OFFC10_wall_backing_front.001
+15:54:01 | INFO: Primitives created: 16
+15:54:01 | INFO: Finished glTF 2.0 export in 0.2321336269378662 s
+
+15:54:01 | INFO: Starting glTF 2.0 export
+15:54:01 | INFO: Extracting primitive: OFFC10_wall_backing_front.002
+15:54:01 | INFO: Primitives created: 11
+15:54:01 | INFO: Finished glTF 2.0 export in 0.0479893684387207 s
+
+15:54:01 | INFO: Starting glTF 2.0 export
+15:54:01 | INFO: Extracting primitive: OFFC10_wall_backing_front.003
+15:54:01 | INFO: Primitives created: 10
+15:54:01 | INFO: Finished glTF 2.0 export in 0.03560209274291992 s
+
+CATALOG_EXPORTED OFFC10 [112456, 6548, 2052]
+15:54:02 | INFO: Starting glTF 2.0 export
+15:54:02 | INFO: Extracting primitive: OFFC11_wall_backing_front.001
+15:54:03 | INFO: Primitives created: 13
+15:54:03 | INFO: Finished glTF 2.0 export in 0.23070240020751953 s
+
+15:54:03 | INFO: Starting glTF 2.0 export
+15:54:03 | INFO: Extracting primitive: OFFC11_wall_backing_front.002
+15:54:03 | INFO: Primitives created: 10
+15:54:03 | INFO: Finished glTF 2.0 export in 0.048880577087402344 s
+
+15:54:03 | INFO: Starting glTF 2.0 export
+15:54:03 | INFO: Extracting primitive: OFFC11_wall_backing_front.003
+15:54:03 | INFO: Primitives created: 9
+15:54:03 | INFO: Finished glTF 2.0 export in 0.04325509071350098 s
+
+CATALOG_EXPORTED OFFC11 [113232, 7412, 2148]
+15:54:04 | INFO: Starting glTF 2.0 export
+15:54:04 | INFO: Extracting primitive: OFFC12_wall_backing_front.001
+15:54:04 | INFO: Primitives created: 13
+15:54:04 | INFO: Finished glTF 2.0 export in 0.23435282707214355 s
+
+15:54:05 | INFO: Starting glTF 2.0 export
+15:54:05 | INFO: Extracting primitive: OFFC12_wall_backing_front.002
+15:54:05 | INFO: Primitives created: 10
+15:54:05 | INFO: Finished glTF 2.0 export in 0.05255532264709473 s
+
+15:54:05 | INFO: Starting glTF 2.0 export
+15:54:05 | INFO: Extracting primitive: OFFC12_wall_backing_front.003
+15:54:05 | INFO: Primitives created: 9
+15:54:05 | INFO: Finished glTF 2.0 export in 0.038555145263671875 s
+
+CATALOG_EXPORTED OFFC12 [113680, 8740, 2508]
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:292.04M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:292.05M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_left_red_brick
+Fra:1 Mem:292.05M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_side_sill_ivory
+Fra:1 Mem:292.05M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_side_jamb_old_timber
+Fra:1 Mem:292.05M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_downpipe_roof
+Fra:1 Mem:292.09M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_right_red_brick
+Fra:1 Mem:292.10M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_right_red_brick_dark
+Fra:1 Mem:292.12M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_surface_chip_concrete
+Fra:1 Mem:294.08M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_right_red_brick_light
+Fra:1 Mem:296.02M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_wall_backing_rear_red_brick_masonry_tile
+Fra:1 Mem:296.03M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_rear_red_brick
+Fra:1 Mem:296.05M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_rear_red_brick_dark
+Fra:1 Mem:296.40M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_rear_glazing_glass
+Fra:1 Mem:296.90M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_foundation_concrete
+Fra:1 Mem:297.00M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_entry_threshold_concrete
+Fra:1 Mem:297.01M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_door_board_old_timber
+Fra:1 Mem:297.09M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_cavity_interior
+Fra:1 Mem:297.19M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_glass_glass
+Fra:1 Mem:297.08M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_jamb_ivory
+Fra:1 Mem:297.22M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_sill_ivory
+Fra:1 Mem:298.12M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_vertical_mullion_ivory
+Fra:1 Mem:298.87M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_sash_ivory
+Fra:1 Mem:299.03M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_louver_slats_roof
+Fra:1 Mem:299.19M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_stone_window_reveal_ivory
+Fra:1 Mem:299.22M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_parapet_side_rust
+Fra:1 Mem:299.31M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_parapet_front_rust
+Fra:1 Mem:299.33M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_cornice_front_ivory
+Fra:1 Mem:300.18M (Peak 324.66M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_cornice_return_ivory
+Fra:1 Mem:299.89M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_cornice_corbel_ivory
+Fra:1 Mem:299.93M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_hvac_roof
+Fra:1 Mem:300.03M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_hvac_fins_black_metal
+Fra:1 Mem:300.13M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_chimney_red_brick
+Fra:1 Mem:300.25M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_chimney_cap_roof
+Fra:1 Mem:300.37M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_cladding_vertical_rib_rust
+Fra:1 Mem:300.43M (Peak 324.66M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_window_board_old_timber
+Fra:1 Mem:303.25M (Peak 324.66M) | Time:00:00.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:293.40M (Peak 324.66M) | Time:00:00.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading rust_albedo
+Fra:1 Mem:293.40M (Peak 324.66M) | Time:00:00.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_brick_albedo
+Fra:1 Mem:293.40M (Peak 324.66M) | Time:00:00.28 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:299.51M (Peak 324.66M) | Time:00:00.29 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:299.51M (Peak 324.66M) | Time:00:00.29 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:299.51M (Peak 324.66M) | Time:00:00.29 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:299.60M (Peak 324.66M) | Time:00:00.29 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:299.60M (Peak 326.76M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:299.60M (Peak 326.76M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:299.60M (Peak 326.76M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:299.60M (Peak 326.76M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:299.60M (Peak 326.76M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:299.60M (Peak 326.76M) | Time:00:00.38 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:299.61M (Peak 326.76M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:299.61M (Peak 326.76M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:299.61M (Peak 326.76M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:299.61M (Peak 326.76M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:299.61M (Peak 326.76M) | Time:00:00.38 | Mem:8.03M, Peak:8.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:303.15M (Peak 326.76M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:303.15M (Peak 326.76M) | Time:00:00.39 | Mem:11.57M, Peak:11.57M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:303.15M (Peak 326.76M) | Time:00:00.39 | Mem:11.57M, Peak:11.57M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:307.41M (Peak 326.76M) | Time:00:00.41 | Mem:11.57M, Peak:11.57M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:307.69M (Peak 326.76M) | Time:00:00.41 | Mem:11.57M, Peak:11.57M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:307.78M (Peak 326.76M) | Time:00:00.42 | Mem:11.57M, Peak:11.57M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:307.78M (Peak 326.76M) | Time:00:00.42 | Mem:13.89M, Peak:13.89M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.42 | Mem:13.89M, Peak:13.89M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.42 | Mem:18.71M, Peak:18.71M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.42 | Mem:18.71M, Peak:18.71M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.43 | Mem:18.71M, Peak:18.71M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.43 | Mem:18.71M, Peak:18.71M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.43 | Mem:18.71M, Peak:18.71M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.43 | Mem:18.79M, Peak:18.79M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:312.60M (Peak 326.76M) | Time:00:00.43 | Mem:18.79M, Peak:18.79M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:312.61M (Peak 326.76M) | Time:00:00.43 | Mem:18.79M, Peak:18.79M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:312.61M (Peak 326.76M) | Time:00:00.43 | Mem:18.79M, Peak:18.79M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:312.61M (Peak 326.76M) | Time:00:00.43 | Mem:18.71M, Peak:18.79M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:312.61M (Peak 326.76M) | Time:00:00.43 | Mem:18.80M, Peak:18.80M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:312.61M (Peak 326.76M) | Time:00:00.43 | Mem:18.80M, Peak:18.80M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:312.61M (Peak 326.76M) | Time:00:00.43 | Mem:18.80M, Peak:18.80M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:318.99M (Peak 326.76M) | Time:00:00.45 | Mem:579.80M, Peak:579.80M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:360.40M (Peak 360.40M) | Time:00:00.47 | Remaining:00:00.25 | Mem:621.20M, Peak:621.20M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:377.83M (Peak 403.98M) | Time:00:03.29 | Mem:621.20M, Peak:621.20M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:377.83M (Peak 403.98M) | Time:00:03.29 | Mem:621.20M, Peak:621.20M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/CLSTGA20.png'
+Time: 00:03.60 (Saving: 00:00.16)
+
+Fra:1 Mem:293.28M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:293.28M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_front_stone_dark
+Fra:1 Mem:293.28M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_wall_backing_left_stone_masonry_tile
+Fra:1 Mem:293.28M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_left_stone
+Fra:1 Mem:293.31M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_left_stone_light
+Fra:1 Mem:293.50M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_side_glazing_glass
+Fra:1 Mem:294.01M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_side_sill_ivory
+Fra:1 Mem:294.11M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_side_jamb_old_timber
+Fra:1 Mem:294.31M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_downpipe_roof
+Fra:1 Mem:294.49M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_wall_backing_right_stone_masonry_tile
+Fra:1 Mem:294.11M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_surface_chip_concrete
+Fra:1 Mem:294.21M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_right_stone
+Fra:1 Mem:294.32M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_right_stone_light
+Fra:1 Mem:294.31M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_wall_backing_rear_stone_masonry_tile
+Fra:1 Mem:294.73M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_rear_stone
+Fra:1 Mem:294.93M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_rear_stone_light
+Fra:1 Mem:297.97M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_rear_stone_dark
+Fra:1 Mem:302.16M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_raised_crest_gold
+Fra:1 Mem:302.17M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_rear_glazing_glass
+Fra:1 Mem:302.19M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_stone_relief_panel_ivory
+Fra:1 Mem:302.42M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_crenellation_stone
+Fra:1 Mem:303.04M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_chimney_cap_roof
+Fra:1 Mem:303.31M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_threshold_concrete
+Fra:1 Mem:303.38M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_chimney_red_brick
+Fra:1 Mem:303.68M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_hvac_fins_black_metal
+Fra:1 Mem:303.69M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_cavity_interior
+Fra:1 Mem:303.99M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_glass_glass
+Fra:1 Mem:304.30M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_jamb_old_timber
+Fra:1 Mem:304.38M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_hvac_roof
+Fra:1 Mem:304.39M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_sill_old_timber
+Fra:1 Mem:304.36M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_vertical_mullion_old_timber
+Fra:1 Mem:304.37M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_sash_old_timber
+Fra:1 Mem:304.85M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_cornice_corbel_ivory
+Fra:1 Mem:304.14M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_stone_window_reveal_ivory
+Fra:1 Mem:304.39M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_handle_gold
+Fra:1 Mem:304.47M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_arch_ivory
+Fra:1 Mem:304.81M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_fanlight_spoke_black_metal
+Fra:1 Mem:304.91M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_cavity_interior
+Fra:1 Mem:303.45M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_jamb_ivory
+Fra:1 Mem:304.78M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_sill_ivory
+Fra:1 Mem:304.77M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_sash_ivory
+Fra:1 Mem:305.02M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_deck_roof
+Fra:1 Mem:304.90M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_parapet_side_stone
+Fra:1 Mem:305.55M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_parapet_rear_stone
+Fra:1 Mem:305.51M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_cornice_front_ivory
+Fra:1 Mem:305.33M (Peak 327.46M) | Time:00:00.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_cornice_return_ivory
+Fra:1 Mem:305.51M (Peak 327.46M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:294.69M (Peak 327.46M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_brick_albedo
+Fra:1 Mem:294.69M (Peak 327.46M) | Time:00:00.27 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:300.49M (Peak 327.46M) | Time:00:00.28 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:300.49M (Peak 327.46M) | Time:00:00.28 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:300.49M (Peak 327.46M) | Time:00:00.28 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:300.58M (Peak 327.46M) | Time:00:00.28 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:300.58M (Peak 327.74M) | Time:00:00.39 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:300.58M (Peak 327.74M) | Time:00:00.39 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:300.58M (Peak 327.74M) | Time:00:00.39 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:300.58M (Peak 327.74M) | Time:00:00.39 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:300.58M (Peak 327.74M) | Time:00:00.39 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:300.58M (Peak 327.74M) | Time:00:00.39 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:300.59M (Peak 327.74M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:300.59M (Peak 327.74M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:300.59M (Peak 327.74M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:300.59M (Peak 327.74M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:300.59M (Peak 327.74M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:304.46M (Peak 327.74M) | Time:00:00.39 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:304.45M (Peak 327.74M) | Time:00:00.39 | Mem:11.90M, Peak:11.90M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:304.45M (Peak 327.74M) | Time:00:00.39 | Mem:11.90M, Peak:11.90M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:309.11M (Peak 327.74M) | Time:00:00.42 | Mem:11.90M, Peak:11.90M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:309.42M (Peak 327.74M) | Time:00:00.42 | Mem:11.90M, Peak:11.90M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:309.49M (Peak 327.74M) | Time:00:00.42 | Mem:11.90M, Peak:11.90M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:309.49M (Peak 327.74M) | Time:00:00.43 | Mem:14.41M, Peak:14.41M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:14.41M, Peak:14.41M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.68M, Peak:19.68M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.68M, Peak:19.68M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.68M, Peak:19.68M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.68M, Peak:19.68M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.68M, Peak:19.68M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.76M, Peak:19.76M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.43 | Mem:19.77M, Peak:19.77M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.44 | Mem:19.77M, Peak:19.77M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:314.76M (Peak 327.74M) | Time:00:00.44 | Mem:19.77M, Peak:19.77M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:314.77M (Peak 327.74M) | Time:00:00.44 | Mem:19.69M, Peak:19.77M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:314.77M (Peak 327.74M) | Time:00:00.44 | Mem:19.77M, Peak:19.77M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:314.77M (Peak 327.74M) | Time:00:00.44 | Mem:19.77M, Peak:19.77M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:314.77M (Peak 327.74M) | Time:00:00.44 | Mem:19.77M, Peak:19.77M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:321.15M (Peak 327.74M) | Time:00:00.47 | Mem:580.77M, Peak:580.77M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:362.55M (Peak 362.55M) | Time:00:00.48 | Remaining:00:00.22 | Mem:622.17M, Peak:622.17M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:379.99M (Peak 406.14M) | Time:00:03.11 | Mem:622.18M, Peak:622.18M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:379.99M (Peak 406.14M) | Time:00:03.11 | Mem:622.18M, Peak:622.18M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/CLSTGA21.png'
+Time: 00:03.33 (Saving: 00:00.07)
+
+Fra:1 Mem:304.15M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:304.15M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_wall_backing_front_blue_plaster
+Fra:1 Mem:304.15M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_left_red_brick_dark
+Fra:1 Mem:304.15M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_side_sill_ivory
+Fra:1 Mem:304.15M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_side_jamb_old_timber
+Fra:1 Mem:304.16M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_downpipe_roof
+Fra:1 Mem:304.36M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_wall_backing_right_red_brick_masonry_tile
+Fra:1 Mem:304.41M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_right_red_brick
+Fra:1 Mem:304.42M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_right_red_brick_light
+Fra:1 Mem:304.45M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_right_red_brick_dark
+Fra:1 Mem:304.62M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_surface_chip_concrete
+Fra:1 Mem:304.67M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_rear_red_brick
+Fra:1 Mem:304.68M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_rear_red_brick_light
+Fra:1 Mem:306.84M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_rear_red_brick_dark
+Fra:1 Mem:306.90M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_rear_glazing_glass
+Fra:1 Mem:307.09M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_foundation_concrete
+Fra:1 Mem:307.16M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_threshold_concrete
+Fra:1 Mem:307.29M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_cavity_interior
+Fra:1 Mem:307.37M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_glass_glass
+Fra:1 Mem:307.40M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_jamb_old_timber
+Fra:1 Mem:307.55M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_sill_old_timber
+Fra:1 Mem:308.66M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_vertical_mullion_old_timber
+Fra:1 Mem:310.47M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_stone_window_reveal_ivory
+Fra:1 Mem:310.66M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_floor_belt_ivory
+Fra:1 Mem:311.55M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_chimney_cap_roof
+Fra:1 Mem:311.62M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_chimney_red_brick
+Fra:1 Mem:311.92M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_hvac_fins_black_metal
+Fra:1 Mem:312.58M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_hvac_roof
+Fra:1 Mem:314.00M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_cornice_corbel_ivory
+Fra:1 Mem:317.68M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_cornice_return_ivory
+Fra:1 Mem:318.07M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_kickpanel_old_timber
+Fra:1 Mem:317.46M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_handle_gold
+Fra:1 Mem:317.47M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_cornice_front_ivory
+Fra:1 Mem:318.32M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_parapet_front_blue_plaster
+Fra:1 Mem:318.48M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_parapet_rear_blue_plaster
+Fra:1 Mem:317.92M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_parapet_side_blue_plaster
+Fra:1 Mem:317.96M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_deck_roof
+Fra:1 Mem:318.00M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_balcony_spindle_black_metal
+Fra:1 Mem:317.93M (Peak 385.41M) | Time:00:00.48 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_arch_ivory
+Fra:1 Mem:328.09M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_fanlight_spoke_black_metal
+Fra:1 Mem:330.58M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_cavity_interior
+Fra:1 Mem:330.98M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_glass_glass
+Fra:1 Mem:331.01M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_jamb_ivory
+Fra:1 Mem:331.02M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_sill_ivory
+Fra:1 Mem:332.02M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_vertical_mullion_ivory
+Fra:1 Mem:331.50M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_sash_ivory
+Fra:1 Mem:331.18M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_window_arch_ivory
+Fra:1 Mem:333.11M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_balcony_deck_ivory
+Fra:1 Mem:334.23M (Peak 385.41M) | Time:00:00.49 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_balcony_rail_black_metal
+Fra:1 Mem:330.51M (Peak 385.41M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:307.69M (Peak 385.41M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:307.69M (Peak 385.41M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:307.69M (Peak 385.41M) | Time:00:00.51 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:313.51M (Peak 385.41M) | Time:00:00.53 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:313.51M (Peak 385.41M) | Time:00:00.53 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:313.51M (Peak 385.41M) | Time:00:00.53 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.53 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.65 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.65 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.65 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.65 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.65 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:313.60M (Peak 385.41M) | Time:00:00.65 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:313.62M (Peak 385.41M) | Time:00:00.65 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:313.62M (Peak 385.41M) | Time:00:00.65 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:313.62M (Peak 385.41M) | Time:00:00.65 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:313.62M (Peak 385.41M) | Time:00:00.65 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:313.62M (Peak 385.41M) | Time:00:00.65 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:321.96M (Peak 385.41M) | Time:00:00.66 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:321.95M (Peak 385.41M) | Time:00:00.66 | Mem:16.37M, Peak:16.37M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:321.95M (Peak 385.41M) | Time:00:00.66 | Mem:16.37M, Peak:16.37M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:331.96M (Peak 385.41M) | Time:00:00.72 | Mem:16.37M, Peak:16.37M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:332.63M (Peak 385.41M) | Time:00:00.72 | Mem:16.37M, Peak:16.37M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:332.81M (Peak 385.41M) | Time:00:00.74 | Mem:16.37M, Peak:16.37M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:332.81M (Peak 385.41M) | Time:00:00.74 | Mem:21.80M, Peak:21.80M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.75 | Mem:21.80M, Peak:21.80M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.75 | Mem:33.15M, Peak:33.15M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.75 | Mem:33.15M, Peak:33.15M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.76 | Mem:33.15M, Peak:33.15M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.76 | Mem:33.15M, Peak:33.15M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.76 | Mem:33.15M, Peak:33.15M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:344.16M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:344.17M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:344.17M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:344.17M (Peak 385.41M) | Time:00:00.76 | Mem:33.16M, Peak:33.24M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:344.17M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:344.17M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:344.17M (Peak 385.41M) | Time:00:00.76 | Mem:33.24M, Peak:33.24M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:350.55M (Peak 385.41M) | Time:00:00.80 | Mem:594.25M, Peak:594.25M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:391.96M (Peak 391.96M) | Time:00:00.81 | Remaining:00:00.19 | Mem:635.65M, Peak:635.65M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:409.40M (Peak 435.54M) | Time:00:05.03 | Mem:635.65M, Peak:635.65M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:409.40M (Peak 435.54M) | Time:00:05.03 | Mem:635.65M, Peak:635.65M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/OFFC1.png'
+Time: 00:05.28 (Saving: 00:00.07)
+
+Fra:1 Mem:296.97M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:296.97M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_front_ochre_brick
+Fra:1 Mem:296.97M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_left_red_brick
+Fra:1 Mem:296.98M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_left_red_brick_light
+Fra:1 Mem:296.98M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_side_glazing_glass
+Fra:1 Mem:297.09M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_side_sill_ivory
+Fra:1 Mem:298.20M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_surface_chip_concrete
+Fra:1 Mem:298.93M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_chimney_cap_roof
+Fra:1 Mem:299.81M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_chimney_red_brick
+Fra:1 Mem:299.15M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_hvac_fins_black_metal
+Fra:1 Mem:299.55M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_side_jamb_old_timber
+Fra:1 Mem:299.69M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_downpipe_roof
+Fra:1 Mem:299.79M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_wall_backing_right_red_brick_masonry_tile
+Fra:1 Mem:299.85M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_right_red_brick
+Fra:1 Mem:299.87M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_hvac_roof
+Fra:1 Mem:299.90M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_right_red_brick_dark
+Fra:1 Mem:300.03M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_cornice_corbel_ivory
+Fra:1 Mem:300.24M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_right_red_brick_light
+Fra:1 Mem:300.33M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_wall_backing_rear_red_brick_masonry_tile
+Fra:1 Mem:300.42M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_rear_red_brick_dark
+Fra:1 Mem:300.87M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_rear_red_brick
+Fra:1 Mem:300.87M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_rear_red_brick_light
+Fra:1 Mem:300.91M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_cornice_return_ivory
+Fra:1 Mem:302.79M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_cornice_front_ivory
+Fra:1 Mem:305.37M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_parapet_front_ochre_brick
+Fra:1 Mem:305.24M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_parapet_rear_ochre_brick
+Fra:1 Mem:305.50M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_parapet_side_ochre_brick
+Fra:1 Mem:305.77M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_deck_roof
+Fra:1 Mem:305.86M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_sash_ivory
+Fra:1 Mem:306.57M (Peak 342.70M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_vertical_mullion_ivory
+Fra:1 Mem:307.29M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_sill_ivory
+Fra:1 Mem:306.23M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_jamb_ivory
+Fra:1 Mem:306.37M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_glass_glass
+Fra:1 Mem:306.67M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_cavity_interior
+Fra:1 Mem:306.88M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_handle_gold
+Fra:1 Mem:306.08M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_kickpanel_old_timber
+Fra:1 Mem:306.31M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_stone_window_reveal_ivory
+Fra:1 Mem:306.42M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_rear_glazing_glass
+Fra:1 Mem:306.64M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_foundation_concrete
+Fra:1 Mem:306.96M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_threshold_concrete
+Fra:1 Mem:306.88M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_cavity_interior
+Fra:1 Mem:306.56M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_glass_glass
+Fra:1 Mem:306.64M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_jamb_old_timber
+Fra:1 Mem:306.80M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_sill_old_timber
+Fra:1 Mem:306.79M (Peak 342.70M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_vertical_mullion_old_timber
+Fra:1 Mem:313.91M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:299.12M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:299.12M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ochre_brick_albedo
+Fra:1 Mem:299.12M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_brick_masonry_tile_albedo
+Fra:1 Mem:299.12M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_brick_albedo
+Fra:1 Mem:299.12M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading ivory_albedo
+Fra:1 Mem:301.12M (Peak 342.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading old_timber_albedo
+Fra:1 Mem:302.14M (Peak 342.70M) | Time:00:00.39 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:303.14M (Peak 342.70M) | Time:00:00.39 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading roof_albedo
+Fra:1 Mem:305.90M (Peak 342.70M) | Time:00:00.39 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:305.90M (Peak 342.70M) | Time:00:00.39 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:305.90M (Peak 342.70M) | Time:00:00.39 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.40 | Mem:9.00M, Peak:9.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.52 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.52 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.52 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.52 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.52 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:305.99M (Peak 342.70M) | Time:00:00.52 | Mem:9.02M, Peak:9.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:306.00M (Peak 342.70M) | Time:00:00.52 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:306.00M (Peak 342.70M) | Time:00:00.52 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:306.00M (Peak 342.70M) | Time:00:00.52 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:306.00M (Peak 342.70M) | Time:00:00.52 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:306.00M (Peak 342.70M) | Time:00:00.52 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:311.36M (Peak 342.70M) | Time:00:00.52 | Mem:9.04M, Peak:9.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:311.35M (Peak 342.70M) | Time:00:00.54 | Mem:14.39M, Peak:14.39M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:311.35M (Peak 342.70M) | Time:00:00.54 | Mem:14.39M, Peak:14.39M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:317.79M (Peak 342.70M) | Time:00:00.57 | Mem:14.39M, Peak:14.39M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:318.22M (Peak 342.70M) | Time:00:00.57 | Mem:14.39M, Peak:14.39M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:318.33M (Peak 342.70M) | Time:00:00.59 | Mem:14.39M, Peak:14.39M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:318.33M (Peak 342.70M) | Time:00:00.60 | Mem:17.87M, Peak:17.87M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.60 | Mem:17.87M, Peak:17.87M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.60 | Mem:25.17M, Peak:25.17M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.60 | Mem:25.17M, Peak:25.17M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.61 | Mem:25.17M, Peak:25.17M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.61 | Mem:25.17M, Peak:25.17M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.61 | Mem:25.17M, Peak:25.17M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.61 | Mem:25.25M, Peak:25.25M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:325.62M (Peak 342.70M) | Time:00:00.61 | Mem:25.25M, Peak:25.25M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:325.63M (Peak 342.70M) | Time:00:00.61 | Mem:25.25M, Peak:25.25M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:325.63M (Peak 342.70M) | Time:00:00.61 | Mem:25.25M, Peak:25.25M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:325.63M (Peak 342.70M) | Time:00:00.61 | Mem:25.17M, Peak:25.25M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:325.63M (Peak 342.70M) | Time:00:00.61 | Mem:25.26M, Peak:25.26M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:325.63M (Peak 342.70M) | Time:00:00.61 | Mem:25.26M, Peak:25.26M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:325.63M (Peak 342.70M) | Time:00:00.61 | Mem:25.26M, Peak:25.26M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:332.01M (Peak 342.70M) | Time:00:00.63 | Mem:586.26M, Peak:586.26M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:373.42M (Peak 373.42M) | Time:00:00.64 | Remaining:00:00.20 | Mem:627.66M, Peak:627.66M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:390.86M (Peak 417.01M) | Time:00:04.67 | Mem:627.67M, Peak:627.67M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:390.86M (Peak 417.01M) | Time:00:04.67 | Mem:627.67M, Peak:627.67M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/OFFC10.png'
+Time: 00:04.93 (Saving: 00:00.07)
+
+Fra:1 Mem:297.04M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:297.04M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_front_blue_brick_light
+Fra:1 Mem:297.04M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_front_blue_brick
+Fra:1 Mem:297.04M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_front_blue_brick_dark
+Fra:1 Mem:297.05M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_left_blue_brick
+Fra:1 Mem:297.10M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_left_blue_brick_light
+Fra:1 Mem:297.12M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_left_blue_brick_dark
+Fra:1 Mem:297.39M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_side_glazing_glass
+Fra:1 Mem:300.10M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_surface_chip_concrete
+Fra:1 Mem:300.47M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_side_jamb_old_timber
+Fra:1 Mem:300.49M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_floor_belt_ivory
+Fra:1 Mem:301.07M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_chimney_cap_roof
+Fra:1 Mem:301.43M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_downpipe_roof
+Fra:1 Mem:301.48M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_wall_backing_right_blue_brick_masonry_tile
+Fra:1 Mem:300.16M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_right_blue_brick
+Fra:1 Mem:300.33M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_right_blue_brick_light
+Fra:1 Mem:300.63M (Peak 345.43M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_right_blue_brick_dark
+Fra:1 Mem:306.09M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_rear_blue_brick_dark
+Fra:1 Mem:306.10M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_rear_blue_brick
+Fra:1 Mem:306.09M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_rear_glazing_glass
+Fra:1 Mem:306.67M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_foundation_concrete
+Fra:1 Mem:309.35M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_threshold_concrete
+Fra:1 Mem:310.64M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_cavity_interior
+Fra:1 Mem:310.92M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_glass_glass
+Fra:1 Mem:311.05M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_jamb_old_timber
+Fra:1 Mem:310.49M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_sill_old_timber
+Fra:1 Mem:310.49M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_vertical_mullion_old_timber
+Fra:1 Mem:310.45M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_sash_old_timber
+Fra:1 Mem:310.67M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_kickpanel_old_timber
+Fra:1 Mem:310.66M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_arch_ivory
+Fra:1 Mem:311.50M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_fanlight_spoke_black_metal
+Fra:1 Mem:312.58M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_glass_glass
+Fra:1 Mem:312.56M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_jamb_ivory
+Fra:1 Mem:312.37M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_sill_ivory
+Fra:1 Mem:312.83M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_vertical_mullion_ivory
+Fra:1 Mem:312.98M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_sash_ivory
+Fra:1 Mem:313.66M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_deck_roof
+Fra:1 Mem:313.12M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_parapet_side_blue_brick
+Fra:1 Mem:313.06M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_parapet_rear_blue_brick
+Fra:1 Mem:313.07M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_parapet_front_blue_brick
+Fra:1 Mem:313.06M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_cornice_front_ivory
+Fra:1 Mem:313.07M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_cornice_return_ivory
+Fra:1 Mem:310.49M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_hvac_roof
+Fra:1 Mem:310.53M (Peak 345.43M) | Time:00:00.36 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_hvac_fins_black_metal
+Fra:1 Mem:314.10M (Peak 345.43M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:299.19M (Peak 345.43M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_brick_albedo
+Fra:1 Mem:299.19M (Peak 345.43M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading blue_brick_albedo
+Fra:1 Mem:300.19M (Peak 345.43M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading concrete_albedo
+Fra:1 Mem:305.04M (Peak 345.43M) | Time:00:00.39 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:305.04M (Peak 345.43M) | Time:00:00.39 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:305.04M (Peak 345.43M) | Time:00:00.39 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.39 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:305.13M (Peak 345.43M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:305.14M (Peak 345.43M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:305.14M (Peak 345.43M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:305.14M (Peak 345.43M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:305.14M (Peak 345.43M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:305.14M (Peak 345.43M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:310.54M (Peak 345.43M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:310.53M (Peak 345.43M) | Time:00:00.49 | Mem:13.42M, Peak:13.42M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:310.53M (Peak 345.43M) | Time:00:00.49 | Mem:13.42M, Peak:13.42M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:317.01M (Peak 345.43M) | Time:00:00.52 | Mem:13.42M, Peak:13.42M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:317.44M (Peak 345.43M) | Time:00:00.52 | Mem:13.42M, Peak:13.42M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:317.57M (Peak 345.43M) | Time:00:00.53 | Mem:13.42M, Peak:13.42M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:317.57M (Peak 345.43M) | Time:00:00.54 | Mem:16.95M, Peak:16.95M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.54 | Mem:16.95M, Peak:16.95M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.55 | Mem:24.29M, Peak:24.29M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.55 | Mem:24.29M, Peak:24.29M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.56 | Mem:24.29M, Peak:24.29M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.56 | Mem:24.29M, Peak:24.29M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.56 | Mem:24.29M, Peak:24.29M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.56 | Mem:24.37M, Peak:24.37M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.56 | Mem:24.38M, Peak:24.38M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.57 | Mem:24.38M, Peak:24.38M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:324.92M (Peak 345.43M) | Time:00:00.57 | Mem:24.38M, Peak:24.38M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:324.93M (Peak 345.43M) | Time:00:00.57 | Mem:24.30M, Peak:24.38M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:324.93M (Peak 345.43M) | Time:00:00.57 | Mem:24.38M, Peak:24.38M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:324.93M (Peak 345.43M) | Time:00:00.57 | Mem:24.38M, Peak:24.38M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:324.93M (Peak 345.43M) | Time:00:00.58 | Mem:24.38M, Peak:24.38M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:331.31M (Peak 345.43M) | Time:00:00.61 | Mem:585.38M, Peak:585.38M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:372.71M (Peak 372.71M) | Time:00:00.62 | Remaining:00:00.20 | Mem:626.78M, Peak:626.78M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:390.15M (Peak 416.30M) | Time:00:04.70 | Mem:626.79M, Peak:626.79M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:390.15M (Peak 416.30M) | Time:00:04.70 | Mem:626.79M, Peak:626.79M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/OFFC11.png'
+Time: 00:04.98 (Saving: 00:00.06)
+
+Fra:1 Mem:297.12M (Peak 351.23M) | Time:00:00.34 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:297.12M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_wall_backing_left_blue_brick_masonry_tile
+Fra:1 Mem:297.12M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_left_blue_brick_dark
+Fra:1 Mem:297.12M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_left_blue_brick_light
+Fra:1 Mem:297.13M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_side_sill_ivory
+Fra:1 Mem:297.53M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_side_jamb_old_timber
+Fra:1 Mem:297.82M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_downpipe_roof
+Fra:1 Mem:297.90M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_wall_backing_right_blue_brick_masonry_tile
+Fra:1 Mem:297.96M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_right_blue_brick
+Fra:1 Mem:298.31M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_surface_chip_concrete
+Fra:1 Mem:300.05M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_rusticated_ground_quoin_ivory
+Fra:1 Mem:300.33M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_right_blue_brick_dark
+Fra:1 Mem:300.38M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_right_blue_brick_light
+Fra:1 Mem:300.45M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_chimney_cap_roof
+Fra:1 Mem:300.56M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_chimney_red_brick
+Fra:1 Mem:301.00M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_hvac_fins_black_metal
+Fra:1 Mem:302.35M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_hvac_roof
+Fra:1 Mem:304.96M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_cornice_corbel_ivory
+Fra:1 Mem:304.91M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_wall_backing_rear_blue_brick_masonry_tile
+Fra:1 Mem:304.46M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_rear_blue_brick
+Fra:1 Mem:304.69M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_cornice_return_ivory
+Fra:1 Mem:304.81M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_rear_blue_brick_light
+Fra:1 Mem:304.88M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_cornice_front_ivory
+Fra:1 Mem:305.70M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_parapet_front_blue_brick
+Fra:1 Mem:305.74M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_parapet_rear_blue_brick
+Fra:1 Mem:305.87M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_rear_blue_brick_dark
+Fra:1 Mem:305.94M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_parapet_side_blue_brick
+Fra:1 Mem:308.91M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_deck_roof
+Fra:1 Mem:308.49M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_rear_glazing_glass
+Fra:1 Mem:308.81M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_sash_ivory
+Fra:1 Mem:309.92M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_vertical_mullion_ivory
+Fra:1 Mem:312.29M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_sill_ivory
+Fra:1 Mem:311.62M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_jamb_ivory
+Fra:1 Mem:311.67M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_glass_glass
+Fra:1 Mem:311.84M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_cavity_interior
+Fra:1 Mem:312.37M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_foundation_concrete
+Fra:1 Mem:312.37M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_fanlight_spoke_black_metal
+Fra:1 Mem:312.88M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_threshold_concrete
+Fra:1 Mem:313.10M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_cavity_interior
+Fra:1 Mem:313.08M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_glass_glass
+Fra:1 Mem:313.24M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_sill_old_timber
+Fra:1 Mem:313.74M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_vertical_mullion_old_timber
+Fra:1 Mem:314.14M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_sash_old_timber
+Fra:1 Mem:314.29M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_stone_window_reveal_ivory
+Fra:1 Mem:313.88M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_kickpanel_old_timber
+Fra:1 Mem:312.61M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_arch_ivory
+Fra:1 Mem:312.73M (Peak 351.23M) | Time:00:00.35 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_handle_gold
+Fra:1 Mem:314.23M (Peak 351.23M) | Time:00:00.37 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:299.28M (Peak 351.23M) | Time:00:00.37 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading red_brick_albedo
+Fra:1 Mem:299.28M (Peak 351.23M) | Time:00:00.37 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_metal_albedo
+Fra:1 Mem:305.13M (Peak 351.23M) | Time:00:00.38 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:305.13M (Peak 351.23M) | Time:00:00.38 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:305.13M (Peak 351.23M) | Time:00:00.38 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.38 | Mem:8.00M, Peak:8.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:305.22M (Peak 351.23M) | Time:00:00.48 | Mem:8.02M, Peak:8.02M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:305.23M (Peak 351.23M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:305.23M (Peak 351.23M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:305.23M (Peak 351.23M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:305.23M (Peak 351.23M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:305.23M (Peak 351.23M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:310.64M (Peak 351.23M) | Time:00:00.48 | Mem:8.04M, Peak:8.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:310.64M (Peak 351.23M) | Time:00:00.49 | Mem:13.44M, Peak:13.44M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:310.64M (Peak 351.23M) | Time:00:00.49 | Mem:13.44M, Peak:13.44M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:317.14M (Peak 351.23M) | Time:00:00.53 | Mem:13.44M, Peak:13.44M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:317.58M (Peak 351.23M) | Time:00:00.53 | Mem:13.44M, Peak:13.44M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:317.67M (Peak 351.23M) | Time:00:00.54 | Mem:13.44M, Peak:13.44M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:317.67M (Peak 351.23M) | Time:00:00.54 | Mem:16.96M, Peak:16.96M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:16.96M, Peak:16.96M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.33M, Peak:24.33M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.33M, Peak:24.33M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.33M, Peak:24.33M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.33M, Peak:24.33M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.33M, Peak:24.33M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.41M, Peak:24.41M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.41M, Peak:24.41M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.41M, Peak:24.41M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.41M, Peak:24.41M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.33M, Peak:24.41M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.42M, Peak:24.42M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:325.05M (Peak 351.23M) | Time:00:00.55 | Mem:24.42M, Peak:24.42M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:325.06M (Peak 351.23M) | Time:00:00.55 | Mem:24.42M, Peak:24.42M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:331.44M (Peak 351.23M) | Time:00:00.58 | Mem:585.42M, Peak:585.42M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:372.84M (Peak 372.84M) | Time:00:00.59 | Remaining:00:00.18 | Mem:626.82M, Peak:626.82M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:390.28M (Peak 416.43M) | Time:00:04.45 | Mem:626.83M, Peak:626.83M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:390.28M (Peak 416.43M) | Time:00:04.45 | Mem:626.83M, Peak:626.83M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/OFFC12.png'
+Time: 00:04.78 (Saving: 00:00.11)
+
+Fra:1 Mem:458.65M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label CLSTGA20
+Fra:1 Mem:458.65M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Key
+Fra:1 Mem:458.65M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Fill
+Fra:1 Mem:458.65M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Roof rim
+Fra:1 Mem:458.65M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_wall_backing_front_rust.001
+Fra:1 Mem:458.66M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_wall_backing_left_red_brick_masonry_tile.001
+Fra:1 Mem:458.68M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_left_red_brick.001
+Fra:1 Mem:458.88M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_left_red_brick_dark.001
+Fra:1 Mem:461.81M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_left_red_brick_light.001
+Fra:1 Mem:462.23M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label CLSTGA21
+Fra:1 Mem:462.30M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label OFFC1
+Fra:1 Mem:462.61M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label OFFC10
+Fra:1 Mem:463.05M (Peak 607.47M) | Time:00:01.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_side_glazing_glass.001
+Fra:1 Mem:463.10M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_side_sill_ivory.001
+Fra:1 Mem:463.12M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label OFFC11
+Fra:1 Mem:463.24M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_side_jamb_old_timber.001
+Fra:1 Mem:463.35M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_downpipe_roof.001
+Fra:1 Mem:463.36M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_wall_backing_right_red_brick_masonry_tile.001
+Fra:1 Mem:463.63M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_right_red_brick.001
+Fra:1 Mem:463.87M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Catalog label OFFC12
+Fra:1 Mem:464.12M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_surface_chip_concrete.001
+Fra:1 Mem:466.70M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_rusticated_ground_quoin_ivory.001
+Fra:1 Mem:466.06M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_chimney_cap_roof.001
+Fra:1 Mem:466.07M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_chimney_red_brick.001
+Fra:1 Mem:466.07M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_hvac_fins_black_metal.001
+Fra:1 Mem:466.13M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_right_red_brick_light.001
+Fra:1 Mem:466.53M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_hvac_roof.001
+Fra:1 Mem:466.53M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_cornice_corbel_ivory.001
+Fra:1 Mem:466.62M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_cornice_return_ivory.001
+Fra:1 Mem:466.66M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_cornice_front_ivory.001
+Fra:1 Mem:466.67M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_wall_backing_rear_red_brick_masonry_tile.001
+Fra:1 Mem:466.69M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_parapet_front_blue_brick.001
+Fra:1 Mem:466.70M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_rear_red_brick.001
+Fra:1 Mem:466.71M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_parapet_rear_blue_brick.001
+Fra:1 Mem:466.81M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_parapet_side_blue_brick.001
+Fra:1 Mem:466.96M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_roof_deck_roof.001
+Fra:1 Mem:467.87M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_sash_ivory.001
+Fra:1 Mem:467.90M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_vertical_mullion_ivory.001
+Fra:1 Mem:467.94M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_rear_red_brick_dark.001
+Fra:1 Mem:468.00M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_sill_ivory.001
+Fra:1 Mem:469.60M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_jamb_ivory.001
+Fra:1 Mem:469.93M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_glass_glass.001
+Fra:1 Mem:468.93M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_catalog_window_cavity_interior.001
+Fra:1 Mem:469.20M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_individual_bricks_rear_red_brick_light.001
+Fra:1 Mem:469.11M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_rear_glazing_glass.001
+Fra:1 Mem:469.37M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_foundation_concrete.001
+Fra:1 Mem:469.37M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_entry_threshold_concrete.001
+Fra:1 Mem:469.47M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_door_board_old_timber.001
+Fra:1 Mem:467.88M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_arch_ivory.001
+Fra:1 Mem:468.71M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_door_crossbar_black_metal.001
+Fra:1 Mem:468.69M (Peak 607.47M) | Time:00:01.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_handle_gold.001
+Fra:1 Mem:468.77M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_kickpanel_old_timber.001
+Fra:1 Mem:468.77M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_stone_window_reveal_ivory.001
+Fra:1 Mem:469.21M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_sash_old_timber.001
+Fra:1 Mem:469.33M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:469.03M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_sill_old_timber.001
+Fra:1 Mem:468.96M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_jamb_old_timber.001
+Fra:1 Mem:469.44M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_door_diagonal_brace_old_timber.001
+Fra:1 Mem:470.14M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_cavity_interior.001
+Fra:1 Mem:470.46M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_glass_glass.001
+Fra:1 Mem:470.24M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_jamb_ivory.001
+Fra:1 Mem:470.22M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_glass_glass.001
+Fra:1 Mem:470.15M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_vertical_mullion_ivory.001
+Fra:1 Mem:470.20M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_entry_cavity_interior.001
+Fra:1 Mem:470.23M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_catalog_window_sash_ivory.001
+Fra:1 Mem:470.45M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_louver_slats_roof.001
+Fra:1 Mem:470.45M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_stone_window_reveal_ivory.001
+Fra:1 Mem:470.52M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_deck_roof.001
+Fra:1 Mem:469.89M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_parapet_side_rust.001
+Fra:1 Mem:469.81M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_parapet_rear_rust.001
+Fra:1 Mem:469.85M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_parapet_front_rust.001
+Fra:1 Mem:470.26M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_cornice_corbel_ivory.001
+Fra:1 Mem:470.01M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_roof_hvac_roof.001
+Fra:1 Mem:470.00M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_hvac_fins_black_metal.001
+Fra:1 Mem:470.01M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_chimney_red_brick.001
+Fra:1 Mem:469.98M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_chimney_cap_roof.001
+Fra:1 Mem:470.12M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_cladding_vertical_rib_rust.001
+Fra:1 Mem:470.18M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_window_board_old_timber.001
+Fra:1 Mem:470.80M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA20_surface_chip_concrete.001
+Fra:1 Mem:470.80M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_wall_backing_front_stone_masonry_tile.001
+Fra:1 Mem:470.83M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_front_stone.001
+Fra:1 Mem:471.17M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_front_stone_dark.001
+Fra:1 Mem:471.60M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_left_stone.001
+Fra:1 Mem:471.61M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_left_stone_dark.001
+Fra:1 Mem:471.64M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_left_stone_light.001
+Fra:1 Mem:471.76M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_foundation_concrete.001
+Fra:1 Mem:471.95M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_rear_glazing_glass.001
+Fra:1 Mem:472.33M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_rear_blue_brick_dark.001
+Fra:1 Mem:473.89M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_side_glazing_glass.001
+Fra:1 Mem:473.57M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_side_sill_ivory.001
+Fra:1 Mem:474.07M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_side_jamb_old_timber.001
+Fra:1 Mem:473.89M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_downpipe_roof.001
+Fra:1 Mem:474.49M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_wall_backing_right_stone_masonry_tile.001
+Fra:1 Mem:475.05M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_right_stone.001
+Fra:1 Mem:475.07M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_right_stone_light.001
+Fra:1 Mem:476.00M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_right_stone_dark.001
+Fra:1 Mem:475.87M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_wall_backing_rear_stone_masonry_tile.001
+Fra:1 Mem:476.00M (Peak 607.47M) | Time:00:01.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_rear_stone.001
+Fra:1 Mem:482.34M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_rear_stone_light.001
+Fra:1 Mem:482.21M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_individual_bricks_rear_stone_dark.001
+Fra:1 Mem:482.27M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_rear_glazing_glass.001
+Fra:1 Mem:482.78M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_foundation_concrete.001
+Fra:1 Mem:483.33M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_threshold_concrete.001
+Fra:1 Mem:483.10M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_cavity_interior.001
+Fra:1 Mem:482.86M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_glass_glass.001
+Fra:1 Mem:482.78M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_jamb_old_timber.001
+Fra:1 Mem:482.78M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_sill_old_timber.001
+Fra:1 Mem:482.64M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:482.65M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_sash_old_timber.001
+Fra:1 Mem:482.53M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_stone_window_reveal_ivory.001
+Fra:1 Mem:482.75M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_handle_gold.001
+Fra:1 Mem:482.78M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_entry_arch_ivory.001
+Fra:1 Mem:483.04M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_fanlight_spoke_black_metal.001
+Fra:1 Mem:483.00M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_rear_blue_brick_light.001
+Fra:1 Mem:483.09M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_cavity_interior.001
+Fra:1 Mem:483.93M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_glass_glass.001
+Fra:1 Mem:483.99M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_jamb_ivory.001
+Fra:1 Mem:483.52M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_sill_ivory.001
+Fra:1 Mem:483.66M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_vertical_mullion_ivory.001
+Fra:1 Mem:483.71M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_catalog_window_sash_ivory.001
+Fra:1 Mem:484.04M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_deck_roof.001
+Fra:1 Mem:483.40M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_parapet_side_stone.001
+Fra:1 Mem:483.38M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_parapet_rear_stone.001
+Fra:1 Mem:483.39M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_parapet_front_stone.001
+Fra:1 Mem:483.39M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_cornice_front_ivory.001
+Fra:1 Mem:481.66M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_cornice_return_ivory.001
+Fra:1 Mem:481.64M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_cornice_corbel_ivory.001
+Fra:1 Mem:481.70M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_roof_hvac_roof.001
+Fra:1 Mem:482.23M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_hvac_fins_black_metal.001
+Fra:1 Mem:482.23M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_chimney_red_brick.001
+Fra:1 Mem:482.54M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_chimney_cap_roof.001
+Fra:1 Mem:482.75M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_crenellation_stone.001
+Fra:1 Mem:482.63M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_stone_relief_panel_ivory.001
+Fra:1 Mem:482.62M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_raised_crest_gold.001
+Fra:1 Mem:482.86M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_rear_blue_brick.001
+Fra:1 Mem:482.85M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | CLSTGA21_surface_chip_concrete.001
+Fra:1 Mem:482.85M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_wall_backing_front_blue_plaster.001
+Fra:1 Mem:483.14M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_left_red_brick_dark.001
+Fra:1 Mem:483.15M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_left_red_brick_light.001
+Fra:1 Mem:483.62M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_side_glazing_glass.001
+Fra:1 Mem:486.41M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_side_sill_ivory.001
+Fra:1 Mem:486.96M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_side_jamb_old_timber.001
+Fra:1 Mem:486.51M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_downpipe_roof.001
+Fra:1 Mem:487.91M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_wall_backing_right_red_brick_masonry_tile.001
+Fra:1 Mem:488.20M (Peak 607.47M) | Time:00:01.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_right_red_brick.001
+Fra:1 Mem:489.05M (Peak 607.47M) | Time:00:01.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_right_red_brick_light.001
+Fra:1 Mem:498.91M (Peak 607.47M) | Time:00:01.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_right_red_brick_dark.001
+Fra:1 Mem:500.14M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_wall_backing_rear_red_brick_masonry_tile.001
+Fra:1 Mem:501.09M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_rear_red_brick.001
+Fra:1 Mem:500.52M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_rear_red_brick_light.001
+Fra:1 Mem:500.52M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_individual_bricks_rear_red_brick_dark.001
+Fra:1 Mem:500.66M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_rear_glazing_glass.001
+Fra:1 Mem:509.61M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_foundation_concrete.001
+Fra:1 Mem:510.62M (Peak 607.47M) | Time:00:01.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_threshold_concrete.001
+Fra:1 Mem:511.47M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_sill_old_timber.001
+Fra:1 Mem:513.37M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:513.21M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_stone_window_reveal_ivory.001
+Fra:1 Mem:512.45M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_kickpanel_old_timber.001
+Fra:1 Mem:512.46M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_handle_gold.001
+Fra:1 Mem:512.47M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_entry_arch_ivory.001
+Fra:1 Mem:512.10M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_fanlight_spoke_black_metal.001
+Fra:1 Mem:512.21M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_cavity_interior.001
+Fra:1 Mem:512.21M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_glass_glass.001
+Fra:1 Mem:512.24M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_jamb_ivory.001
+Fra:1 Mem:513.50M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_sill_ivory.001
+Fra:1 Mem:513.46M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_vertical_mullion_ivory.001
+Fra:1 Mem:514.03M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_catalog_window_sash_ivory.001
+Fra:1 Mem:514.06M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_window_arch_ivory.001
+Fra:1 Mem:508.98M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_wall_backing_rear_blue_brick_masonry_tile.001
+Fra:1 Mem:510.21M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_right_blue_brick_light.001
+Fra:1 Mem:511.40M (Peak 607.47M) | Time:00:01.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_balcony_deck_ivory.001
+Fra:1 Mem:513.75M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_balcony_rail_black_metal.001
+Fra:1 Mem:513.75M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_balcony_spindle_black_metal.001
+Fra:1 Mem:513.89M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_deck_roof.001
+Fra:1 Mem:512.86M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_parapet_side_blue_plaster.001
+Fra:1 Mem:512.87M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_parapet_rear_blue_plaster.001
+Fra:1 Mem:512.88M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_parapet_front_blue_plaster.001
+Fra:1 Mem:512.96M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_cornice_front_ivory.001
+Fra:1 Mem:508.44M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_cornice_return_ivory.001
+Fra:1 Mem:509.76M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_cornice_corbel_ivory.001
+Fra:1 Mem:510.87M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_roof_hvac_roof.001
+Fra:1 Mem:510.87M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_hvac_fins_black_metal.001
+Fra:1 Mem:510.95M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_chimney_red_brick.001
+Fra:1 Mem:511.47M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_chimney_cap_roof.001
+Fra:1 Mem:511.47M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_floor_belt_ivory.001
+Fra:1 Mem:511.50M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC1_surface_chip_concrete.001
+Fra:1 Mem:511.53M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_wall_backing_front_ochre_brick_masonry_tile.001
+Fra:1 Mem:511.65M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_front_ochre_brick_dark.001
+Fra:1 Mem:511.80M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_right_blue_brick_dark.001
+Fra:1 Mem:512.14M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_front_ochre_brick.001
+Fra:1 Mem:513.80M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_front_ochre_brick_light.001
+Fra:1 Mem:514.53M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_wall_backing_left_red_brick_masonry_tile.001
+Fra:1 Mem:514.55M (Peak 607.47M) | Time:00:01.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_left_red_brick_dark.001
+Fra:1 Mem:515.58M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_left_red_brick.001
+Fra:1 Mem:519.63M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_left_red_brick_light.001
+Fra:1 Mem:519.77M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_side_glazing_glass.001
+Fra:1 Mem:521.20M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_side_sill_ivory.001
+Fra:1 Mem:520.53M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_side_jamb_old_timber.001
+Fra:1 Mem:520.58M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_downpipe_roof.001
+Fra:1 Mem:520.78M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_wall_backing_right_red_brick_masonry_tile.001
+Fra:1 Mem:520.74M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_right_red_brick.001
+Fra:1 Mem:520.77M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_right_red_brick_dark.001
+Fra:1 Mem:520.87M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_right_red_brick_light.001
+Fra:1 Mem:520.89M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_wall_backing_rear_red_brick_masonry_tile.001
+Fra:1 Mem:520.92M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_rear_red_brick_dark.001
+Fra:1 Mem:521.79M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_rear_red_brick.001
+Fra:1 Mem:521.53M (Peak 607.47M) | Time:00:01.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_right_blue_brick.001
+Fra:1 Mem:521.80M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_individual_bricks_rear_red_brick_light.001
+Fra:1 Mem:526.59M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_rear_glazing_glass.001
+Fra:1 Mem:527.59M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_foundation_concrete.001
+Fra:1 Mem:529.01M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_cavity_interior.001
+Fra:1 Mem:528.13M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_jamb_old_timber.001
+Fra:1 Mem:529.24M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_sill_old_timber.001
+Fra:1 Mem:529.25M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:529.65M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_sash_old_timber.001
+Fra:1 Mem:526.82M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_stone_window_reveal_ivory.001
+Fra:1 Mem:527.45M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_kickpanel_old_timber.001
+Fra:1 Mem:527.42M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_entry_handle_gold.001
+Fra:1 Mem:527.42M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_cavity_interior.001
+Fra:1 Mem:527.43M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_glass_glass.001
+Fra:1 Mem:527.44M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_jamb_ivory.001
+Fra:1 Mem:527.47M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_sill_ivory.001
+Fra:1 Mem:527.49M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_vertical_mullion_ivory.001
+Fra:1 Mem:527.51M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_catalog_window_sash_ivory.001
+Fra:1 Mem:527.52M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_deck_roof.001
+Fra:1 Mem:527.53M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_parapet_rear_ochre_brick.001
+Fra:1 Mem:527.53M (Peak 607.47M) | Time:00:01.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_parapet_front_ochre_brick.001
+Fra:1 Mem:534.09M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_cornice_front_ivory.001
+Fra:1 Mem:537.33M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_cornice_return_ivory.001
+Fra:1 Mem:537.83M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_cornice_corbel_ivory.001
+Fra:1 Mem:537.85M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_roof_hvac_roof.001
+Fra:1 Mem:537.94M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_hvac_fins_black_metal.001
+Fra:1 Mem:538.41M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_chimney_red_brick.001
+Fra:1 Mem:538.78M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC10_chimney_cap_roof.001
+Fra:1 Mem:538.05M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_front_blue_brick_dark.001
+Fra:1 Mem:539.29M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_wall_backing_left_blue_brick_masonry_tile.001
+Fra:1 Mem:540.27M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_left_blue_brick.001
+Fra:1 Mem:542.57M (Peak 607.47M) | Time:00:01.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_left_blue_brick_light.001
+Fra:1 Mem:543.85M (Peak 607.47M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_left_blue_brick_dark.001
+Fra:1 Mem:544.37M (Peak 607.47M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_side_glazing_glass.001
+Fra:1 Mem:546.91M (Peak 607.47M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_side_sill_ivory.001
+Fra:1 Mem:544.70M (Peak 607.47M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_wall_backing_rear_blue_brick_masonry_tile.001
+Fra:1 Mem:544.76M (Peak 607.47M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_rear_blue_brick_dark.001
+Fra:1 Mem:545.41M (Peak 607.47M) | Time:00:01.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_rear_blue_brick.001
+Fra:1 Mem:543.77M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_individual_bricks_rear_blue_brick_light.001
+Fra:1 Mem:546.58M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_foundation_concrete.001
+Fra:1 Mem:547.13M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_threshold_concrete.001
+Fra:1 Mem:547.14M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_cavity_interior.001
+Fra:1 Mem:547.04M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_glass_glass.001
+Fra:1 Mem:545.03M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_jamb_old_timber.001
+Fra:1 Mem:544.80M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_sill_old_timber.001
+Fra:1 Mem:544.81M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_vertical_mullion_old_timber.001
+Fra:1 Mem:544.82M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_sash_old_timber.001
+Fra:1 Mem:544.28M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_wall_backing_right_blue_brick_masonry_tile.001
+Fra:1 Mem:544.30M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_stone_window_reveal_ivory.001
+Fra:1 Mem:544.35M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_kickpanel_old_timber.001
+Fra:1 Mem:544.23M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_handle_gold.001
+Fra:1 Mem:544.25M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_entry_arch_ivory.001
+Fra:1 Mem:546.21M (Peak 607.47M) | Time:00:01.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_fanlight_spoke_black_metal.001
+Fra:1 Mem:546.63M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_cavity_interior.001
+Fra:1 Mem:547.07M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_glass_glass.001
+Fra:1 Mem:547.08M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_jamb_ivory.001
+Fra:1 Mem:547.11M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_sill_ivory.001
+Fra:1 Mem:547.14M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_vertical_mullion_ivory.001
+Fra:1 Mem:547.45M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_catalog_window_sash_ivory.001
+Fra:1 Mem:547.82M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_parapet_side_blue_brick.001
+Fra:1 Mem:545.68M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_parapet_rear_blue_brick.001
+Fra:1 Mem:547.08M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_parapet_front_blue_brick.001
+Fra:1 Mem:546.98M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_cornice_front_ivory.001
+Fra:1 Mem:546.51M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_cornice_return_ivory.001
+Fra:1 Mem:546.69M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_cornice_corbel_ivory.001
+Fra:1 Mem:547.00M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_roof_hvac_roof.001
+Fra:1 Mem:547.01M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_hvac_fins_black_metal.001
+Fra:1 Mem:546.95M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_chimney_red_brick.001
+Fra:1 Mem:547.03M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_chimney_cap_roof.001
+Fra:1 Mem:547.04M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_floor_belt_ivory.001
+Fra:1 Mem:547.12M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC11_surface_chip_concrete.001
+Fra:1 Mem:547.46M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_wall_backing_front_blue_brick_masonry_tile.001
+Fra:1 Mem:547.49M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_front_blue_brick_light.001
+Fra:1 Mem:547.49M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_left_blue_brick.001
+Fra:1 Mem:547.72M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_side_sill_ivory.001
+Fra:1 Mem:548.08M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_side_glazing_glass.001
+Fra:1 Mem:548.74M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_left_blue_brick_dark.001
+Fra:1 Mem:548.72M (Peak 607.47M) | Time:00:01.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | OFFC12_individual_bricks_left_blue_brick_light.001
+Fra:1 Mem:559.60M (Peak 607.47M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:470.93M (Peak 607.47M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading blue_brick_albedo
+Fra:1 Mem:470.93M (Peak 607.47M) | Time:00:01.26 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading stone_masonry_tile_albedo
+Fra:1 Mem:472.94M (Peak 607.47M) | Time:00:01.26 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading stone_albedo
+Fra:1 Mem:472.94M (Peak 607.47M) | Time:00:01.26 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading blue_plaster_albedo
+Fra:1 Mem:473.94M (Peak 607.47M) | Time:00:01.26 | Mem:2.00M, Peak:2.00M | Scene, ViewLayer | Updating Images | Loading ochre_brick_albedo
+Fra:1 Mem:474.94M (Peak 607.47M) | Time:00:01.27 | Mem:3.00M, Peak:3.00M | Scene, ViewLayer | Updating Images | Loading blue_brick_masonry_tile_albedo
+Fra:1 Mem:476.19M (Peak 607.47M) | Time:00:01.29 | Mem:15.00M, Peak:15.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:476.19M (Peak 607.47M) | Time:00:01.29 | Mem:15.00M, Peak:15.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:476.19M (Peak 607.47M) | Time:00:01.29 | Mem:15.00M, Peak:15.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.29 | Mem:15.00M, Peak:15.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.40 | Mem:15.03M, Peak:15.03M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.40 | Mem:15.03M, Peak:15.03M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.40 | Mem:15.03M, Peak:15.03M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.40 | Mem:15.03M, Peak:15.03M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.40 | Mem:15.03M, Peak:15.03M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:476.29M (Peak 607.47M) | Time:00:01.40 | Mem:15.03M, Peak:15.03M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:476.37M (Peak 607.47M) | Time:00:01.40 | Mem:15.10M, Peak:15.10M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:476.37M (Peak 607.47M) | Time:00:01.40 | Mem:15.10M, Peak:15.10M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:476.37M (Peak 607.47M) | Time:00:01.40 | Mem:15.10M, Peak:15.10M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:476.37M (Peak 607.47M) | Time:00:01.40 | Mem:15.10M, Peak:15.10M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:476.37M (Peak 607.47M) | Time:00:01.41 | Mem:15.10M, Peak:15.10M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:508.36M (Peak 607.47M) | Time:00:01.43 | Mem:15.13M, Peak:15.13M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:508.31M (Peak 607.47M) | Time:00:01.44 | Mem:47.04M, Peak:47.04M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:508.31M (Peak 607.47M) | Time:00:01.44 | Mem:47.04M, Peak:47.04M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:546.78M (Peak 607.47M) | Time:00:01.74 | Mem:47.04M, Peak:47.04M | Scene, ViewLayer | Updating Scene BVH | Building BVH 75%, duplicates 0%
+Fra:1 Mem:546.78M (Peak 607.47M) | Time:00:01.78 | Mem:47.04M, Peak:47.04M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:549.34M (Peak 607.47M) | Time:00:01.78 | Mem:47.04M, Peak:47.04M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:546.37M (Peak 607.47M) | Time:00:01.87 | Mem:47.04M, Peak:47.04M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:546.37M (Peak 607.47M) | Time:00:01.88 | Mem:66.07M, Peak:66.07M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.90 | Mem:66.07M, Peak:66.07M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.62M, Peak:109.62M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.62M, Peak:109.62M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.62M, Peak:109.62M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.62M, Peak:109.62M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.62M, Peak:109.62M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.70M, Peak:109.70M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:589.91M (Peak 607.47M) | Time:00:01.93 | Mem:109.70M, Peak:109.70M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:589.92M (Peak 607.47M) | Time:00:01.94 | Mem:109.70M, Peak:109.70M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:589.92M (Peak 607.47M) | Time:00:01.94 | Mem:109.70M, Peak:109.70M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:589.92M (Peak 607.47M) | Time:00:01.94 | Mem:109.62M, Peak:109.70M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:589.92M (Peak 607.47M) | Time:00:01.94 | Mem:109.71M, Peak:109.71M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:589.92M (Peak 607.47M) | Time:00:01.94 | Mem:109.71M, Peak:109.71M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:589.93M (Peak 607.47M) | Time:00:01.94 | Mem:109.71M, Peak:109.71M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:596.31M (Peak 607.47M) | Time:00:02.02 | Mem:670.71M, Peak:670.71M | Scene, ViewLayer | Sample 0/20
+Fra:1 Mem:770.26M (Peak 770.26M) | Time:00:02.07 | Remaining:00:00.88 | Mem:844.67M, Peak:844.67M | Scene, ViewLayer | Sample 1/20
+Fra:1 Mem:843.51M (Peak 953.38M) | Time:00:14.68 | Mem:844.67M, Peak:844.67M | Scene, ViewLayer | Sample 20/20
+Fra:1 Mem:843.51M (Peak 953.38M) | Time:00:14.68 | Mem:844.67M, Peak:844.67M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/buildings/mesh_assets/catalog_renders/facades_05.png'
+Time: 00:15.49 (Saving: 00:00.54)
+
+Info: Saved as "facades_05.blend"
+CATALOG_SHEET_COMPLETE facades_05.png 6
+
+Blender quit

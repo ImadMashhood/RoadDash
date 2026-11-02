@@ -1,0 +1,167 @@
+[
+  {
+    "file": "renders/loose_materials_hazards_01.png",
+    "sha256": "358aa5b6fec5d51b6d642a67caf57eb5ea7fecb10f038b90484c1b50a1e90220",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-FA8578652230",
+        "name": "GRAVPL12",
+        "glb": "models/PROP-FA8578652230_lod0.glb",
+        "sha256": "3eb7ae0ab442a5883846003f86d4f3c0afb310fb1bc514d940e4eae78fa2d823"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-8567FBD06306",
+        "name": "GRVP1SM2",
+        "glb": "models/PROP-8567FBD06306_lod0.glb",
+        "sha256": "7c045778f06965bb0f0b34e21f908cfd51fc728c09a5a089c80bd11a8ad31a04"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-A033083676EE",
+        "name": "GRVP2SM2",
+        "glb": "models/PROP-A033083676EE_lod0.glb",
+        "sha256": "295a076c350273551e93298abf6e3cbf38bedab5ac1f07735560770ce1f1f439"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-10F3F5166282",
+        "name": "GRVP3SM2",
+        "glb": "models/PROP-10F3F5166282_lod0.glb",
+        "sha256": "2861fd6b9dd777efd9450b769d1885095a31f0aeb0ab1d7c89bb8b434b47f5c9"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-86E1D1FF95BA",
+        "name": "HAYDOUB2",
+        "glb": "models/PROP-86E1D1FF95BA_lod0.glb",
+        "sha256": "12ae80fee1a06169d7dc4594f41b641ab903226c1f6afcd5a4faff60863c1484"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-64E08261D88E",
+        "name": "HAYTRIP2",
+        "glb": "models/PROP-64E08261D88E_lod0.glb",
+        "sha256": "7c3f3262c9b7b4cdc54a4a5bf0799cfddb010306801e27ed736009746986da97"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/loose_materials_hazards_02.png",
+    "sha256": "333e38f6ef0edc7c0e7ee0ae2f00c6a21ccf79086ea4e042224b4ccd674a5945",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-2B06BEBE5CC3",
+        "name": "OILP1SM2",
+        "glb": "models/PROP-2B06BEBE5CC3_lod0.glb",
+        "sha256": "fa408d7f0ad7882626b6ae32c7fb5aa27993715a1c8e73177dd8a3354b9721d5"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-F082445C329F",
+        "name": "OILP1SM2",
+        "glb": "models/PROP-F082445C329F_lod0.glb",
+        "sha256": "066fc99f7fbe4f97462ec6b296defdfbe3012ff27045a8f6e11c1daaad9c1957"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-8D841B97F4C1",
+        "name": "OILP2SM2",
+        "glb": "models/PROP-8D841B97F4C1_lod0.glb",
+        "sha256": "a881cb48b6bd8c4a909228fac2628e9d5bd97bdc58db67bb3348006f7f2419c0"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-26E3E95F30AF",
+        "name": "OILP3SM2",
+        "glb": "models/PROP-26E3E95F30AF_lod0.glb",
+        "sha256": "8c43032226610be642ace7a865476606fdb02ff8389e1ac41f4ba18ef1ab120d"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-DED91ED32490",
+        "name": "OILPUD12",
+        "glb": "models/PROP-DED91ED32490_lod0.glb",
+        "sha256": "96f56988fdab51b01d789c2188b58eee6b17298212dc83ecfc54f8cd67f9beb4"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-86BC53B68C31",
+        "name": "PILEDRT2",
+        "glb": "models/PROP-86BC53B68C31_lod0.glb",
+        "sha256": "1387f3706d3df8cf06656aa556a896adda559c198a307dedcae5385fc02b4044"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/loose_materials_hazards_03.png",
+    "sha256": "fe96eca670c5ae46781224f91a7d60670a5ae9821f32647ead101e821bca5a56",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-D143798EFE91",
+        "name": "PILEGRV2",
+        "glb": "models/PROP-D143798EFE91_lod0.glb",
+        "sha256": "b53ec468d3b8c53245b8ef85c4a878ba166e3977fe36d3bc21a6a430bcf80c8a"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-852CB1BCD0F4",
+        "name": "SNDP1SM2",
+        "glb": "models/PROP-852CB1BCD0F4_lod0.glb",
+        "sha256": "8cac933f6dcb301c29a0a6622d8523f68958c5e493795fb23385e22061750ecc"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-7FF3B6AEE82E",
+        "name": "SNDP2SM2",
+        "glb": "models/PROP-7FF3B6AEE82E_lod0.glb",
+        "sha256": "1a9bcefa31ef00106b81966f90adf7bebd4c39abb78985c21056137f9fe2b4a7"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-43CEDB2E4D55",
+        "name": "SNDP3SM2",
+        "glb": "models/PROP-43CEDB2E4D55_lod0.glb",
+        "sha256": "c6bb1bcf880f45dca36364d1cb1058484ef23f66ee30ac372242417baef318eb"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-50249ED4F3ED",
+        "name": "WATP1SM2",
+        "glb": "models/PROP-50249ED4F3ED_lod0.glb",
+        "sha256": "10939ce3b4ef2209c7fa3d97850bb62f1b569a54388156e594be8fd628f12016"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-0FDB03DA32AA",
+        "name": "WTRP2SM2",
+        "glb": "models/PROP-0FDB03DA32AA_lod0.glb",
+        "sha256": "c7a3b0b129b8a8fc802d33f6a76da3668ecbfbd95164668d97a2dc88307ea570"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/loose_materials_hazards_04.png",
+    "sha256": "04cde092e71efcc803093b413da369fd94bf2cd825b4839750ec659c07b57452",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-B23E778664CA",
+        "name": "WTRP3SM2",
+        "glb": "models/PROP-B23E778664CA_lod0.glb",
+        "sha256": "95f5be018b6866045ceb0b013b4ca1ddd9f73db63fb48328f3d2f4ad6df29ea2"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

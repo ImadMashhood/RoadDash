@@ -1,0 +1,509 @@
+{
+  "id": "office_centre",
+  "label": "Office centre",
+  "asset_ids": [
+    "OFFC1",
+    "OFFC10",
+    "OFFC11",
+    "OFFC12",
+    "OFFC13",
+    "OFFC14",
+    "OFFC15",
+    "OFFC16",
+    "OFFC17",
+    "OFFC18",
+    "OFFC19",
+    "OFFC2",
+    "OFFC20",
+    "OFFC21",
+    "OFFC22",
+    "OFFC5"
+  ],
+  "placement_guidance": "Taller urban business blocks; concentrate rather than scatter among farms.",
+  "assets": [
+    {
+      "id": "OFFC1",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        1,
+        3,
+        7
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC1_lod0.glb",
+          "sha256": "8752551c9bb5f86719e4277afd743a44695f2e68a28a8269767a1222cc79e519"
+        },
+        {
+          "file": "../../models/OFFC1_lod1.glb",
+          "sha256": "e06178c938eda043e9a339f21798d1fab57f1bbcd7e5f02cfb349f62b7363727"
+        },
+        {
+          "file": "../../models/OFFC1_lod2.glb",
+          "sha256": "ee39eca8f34fe0d333c025aee5bf09dca3cee589d6a16fa375cd47df6657d0d2"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC1.png"
+    },
+    {
+      "id": "OFFC10",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        166,
+        183,
+        224
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC10_lod0.glb",
+          "sha256": "eb875f769e021e52276dbe39e0c25733ec646da50447145992bef09467b8168c"
+        },
+        {
+          "file": "../../models/OFFC10_lod1.glb",
+          "sha256": "88a047d489985d81b6f4957c9c0de744809053a3021948b594f252d1d3a339e7"
+        },
+        {
+          "file": "../../models/OFFC10_lod2.glb",
+          "sha256": "5c6b8bca94ab8248256bfd0fed2263dc4587683134fc7d9590c7ed9bfc267106"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC10.png"
+    },
+    {
+      "id": "OFFC11",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        166,
+        183
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC11_lod0.glb",
+          "sha256": "666f468a36d42c57243a97b02cea031a37f81228233ce75e9d0f5e774f8b2028"
+        },
+        {
+          "file": "../../models/OFFC11_lod1.glb",
+          "sha256": "844d4dc8c0486a05ba270fb59191662a6f44cb5187ae4d4bf49cd02b63dc7617"
+        },
+        {
+          "file": "../../models/OFFC11_lod2.glb",
+          "sha256": "50141a5d0e4f52c66e980d204f7dcceb331fad337ab3b66b725b056201828913"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC11.png"
+    },
+    {
+      "id": "OFFC12",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        224
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC12_lod0.glb",
+          "sha256": "10f98175c1b237c70aa40e9745caad77c79c94a0278e88770deb03682092fbbd"
+        },
+        {
+          "file": "../../models/OFFC12_lod1.glb",
+          "sha256": "e86dba94ff41224f207af8bb6c86e4b4c71dd313e6291ecf2560b554a65bae37"
+        },
+        {
+          "file": "../../models/OFFC12_lod2.glb",
+          "sha256": "178725dd2307fc26f9997499a90dc5a701fe63481d67ece5406f0ee3bb581e2f"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC12.png"
+    },
+    {
+      "id": "OFFC13",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        111,
+        224,
+        245
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC13_lod0.glb",
+          "sha256": "74e86b326bbed2ef892f9202ecd43b085edef436321404c2f0e2c52d79230e37"
+        },
+        {
+          "file": "../../models/OFFC13_lod1.glb",
+          "sha256": "ed120db84aea71460aa5071653268f54ed373fd56a52ccc3477f68e28b2314bb"
+        },
+        {
+          "file": "../../models/OFFC13_lod2.glb",
+          "sha256": "ea8ae2ef7c555273ab5ae635f8297139ae4ffc79ac33d5eeaf217096005584ba"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC13.png"
+    },
+    {
+      "id": "OFFC14",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        110,
+        113,
+        246
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC14_lod0.glb",
+          "sha256": "94747c0f817f3d4b181df8747c6e194cc83881c14abf557cf200eba846b42072"
+        },
+        {
+          "file": "../../models/OFFC14_lod1.glb",
+          "sha256": "8fd1de0889b9ecf9c5b89ff6fdc2d735479e50f8a624416b6bed2fa3eb06620d"
+        },
+        {
+          "file": "../../models/OFFC14_lod2.glb",
+          "sha256": "0a267b45015066b73f34d71e581f7663d43b97f54639dabf6212967f8cf9e333"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC14.png"
+    },
+    {
+      "id": "OFFC15",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        166,
+        183,
+        224
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC15_lod0.glb",
+          "sha256": "939423317cbab4aca42d278cbafafc8e38ee896a1930c0954b9f6c2597eb4625"
+        },
+        {
+          "file": "../../models/OFFC15_lod1.glb",
+          "sha256": "759062c58e866af74324cde53f1cb2f961184337be510f563997fb5caefe508e"
+        },
+        {
+          "file": "../../models/OFFC15_lod2.glb",
+          "sha256": "7d3bafb0970e32f77edfd214d05a0d0f56a429b11e49814dec93d83f769e9905"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC15.png"
+    },
+    {
+      "id": "OFFC16",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        110,
+        113,
+        224,
+        246
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC16_lod0.glb",
+          "sha256": "b0af9de7169599bbfe3b29205df03712f71a86fb86fe77ed2efac39d295bce15"
+        },
+        {
+          "file": "../../models/OFFC16_lod1.glb",
+          "sha256": "f1a439fd152f8e99d7bb5f23a11c06dd6e15de400d42264e5e278f4b7469203b"
+        },
+        {
+          "file": "../../models/OFFC16_lod2.glb",
+          "sha256": "ba070eec2aef4892736ddb69600a473074b7bb886fcf5ee1748a08ea7a298ccb"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC16.png"
+    },
+    {
+      "id": "OFFC17",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        111,
+        245
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC17_lod0.glb",
+          "sha256": "dad6760411d56b294680a22a9ef68fc405810dfb7a2c819cb77692f80724f5d3"
+        },
+        {
+          "file": "../../models/OFFC17_lod1.glb",
+          "sha256": "af76ed5a85f82ad840b542347eb65ec93661b7054bea41ac4c62afcaff3255ed"
+        },
+        {
+          "file": "../../models/OFFC17_lod2.glb",
+          "sha256": "fe6166f6c3709351f71f6d904626d922d596f2ff80bf8e450b42b151fa36141f"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC17.png"
+    },
+    {
+      "id": "OFFC18",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        113
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC18_lod0.glb",
+          "sha256": "06a9d4b9d2239648e17dce05a44e50f69d893cfca28bbda7b78cd97a689e0c5b"
+        },
+        {
+          "file": "../../models/OFFC18_lod1.glb",
+          "sha256": "9258fae099c657e9a14d7bb765aabda1f17c9548826fbb71f18ab287caf5dcd3"
+        },
+        {
+          "file": "../../models/OFFC18_lod2.glb",
+          "sha256": "d9c23290b4fc981b1e4b3444db8bbae27e02f352084f75f7fadb782021a60d24"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC18.png"
+    },
+    {
+      "id": "OFFC19",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        111,
+        112,
+        245
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC19_lod0.glb",
+          "sha256": "4501e2358fbffab5643755b8e3e195464459bbad031e701fa52fd5e702f2d01c"
+        },
+        {
+          "file": "../../models/OFFC19_lod1.glb",
+          "sha256": "3af6d5d36a2fe2a12e5a4383917711b3df7418f088fdccd01b736bce3a7d005b"
+        },
+        {
+          "file": "../../models/OFFC19_lod2.glb",
+          "sha256": "a79f3cf8b2d51b63517d1afdaa8eb00e854d11793c5d02df3de2a3a25d1db20c"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC19.png"
+    },
+    {
+      "id": "OFFC2",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        1,
+        3,
+        7
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC2_lod0.glb",
+          "sha256": "8afb2ce8ae41630bb8bd67227c4454588884a64841cf4b9c104deacbd012c763"
+        },
+        {
+          "file": "../../models/OFFC2_lod1.glb",
+          "sha256": "8084fd22d21d7e51c3f6ae865cb89ff501f58e441b6cc18fdbe24651ce44f9b7"
+        },
+        {
+          "file": "../../models/OFFC2_lod2.glb",
+          "sha256": "81d59e5611025a8667a0317c75084543bb3a9b7582ca6846b6623f5f0a944b00"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC2.png"
+    },
+    {
+      "id": "OFFC20",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        112,
+        113
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC20_lod0.glb",
+          "sha256": "08d6fe96297aeabd0c8308bb67484ef1b05b48629d4b9aeb0c9621288d6056b8"
+        },
+        {
+          "file": "../../models/OFFC20_lod1.glb",
+          "sha256": "6167e495f59ab1cd2e6c6511afb02c5375cbc69e084a46c325259fb5202ca31d"
+        },
+        {
+          "file": "../../models/OFFC20_lod2.glb",
+          "sha256": "08209b7908dd9b0626c8e58ba9f086426871e83b2d974407cdf418c8c332ee0a"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC20.png"
+    },
+    {
+      "id": "OFFC21",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        110,
+        112,
+        246
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC21_lod0.glb",
+          "sha256": "97de74e299ccc7cedc6a70e73154f11ab6c152a79e6baaa5c6912b8056bd8139"
+        },
+        {
+          "file": "../../models/OFFC21_lod1.glb",
+          "sha256": "994b708fd533c5ce7fbfdad59f77ce057072e4b587b08a14b57ce866d313db16"
+        },
+        {
+          "file": "../../models/OFFC21_lod2.glb",
+          "sha256": "b73051fa7c999ef3f597a3b64bfd3e0d0e6bf989a6b285b9570a2ef8948a53fd"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC21.png"
+    },
+    {
+      "id": "OFFC22",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        166
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC22_lod0.glb",
+          "sha256": "fa68514ee0951eef523a13aa72a976c636aa6423719a6288ec9feb0f489febbe"
+        },
+        {
+          "file": "../../models/OFFC22_lod1.glb",
+          "sha256": "62e124773d748aa88bd35524b92c8625af1415a752b2102584f75c5a35fb011e"
+        },
+        {
+          "file": "../../models/OFFC22_lod2.glb",
+          "sha256": "86936acfa4435ecea2fb65940d9b9b5fd8b3d80b72f8b97bd639ffb7dac44cb4"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC22.png"
+    },
+    {
+      "id": "OFFC5",
+      "asset_type": "facade",
+      "primary_district": "office_centre",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        1,
+        3,
+        7
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/OFFC5_lod0.glb",
+          "sha256": "bd716c4e238a1db1375e0b93fd43b0401300dd5216836cc7c0dfc48915b5ca38"
+        },
+        {
+          "file": "../../models/OFFC5_lod1.glb",
+          "sha256": "3c9f91ffc75b387fdfff0d93ffd0e7bd4327e883eb58bf45263ba125a63f7577"
+        },
+        {
+          "file": "../../models/OFFC5_lod2.glb",
+          "sha256": "7d51179722d816c9c876a38d6862aac4d42a9f980f9425e3bad56f2468478f13"
+        }
+      ],
+      "render": "../../catalog_renders/OFFC5.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

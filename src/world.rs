@@ -21,6 +21,7 @@ pub fn shirt_color(index: usize) -> Color {
 }
 #[derive(Resource)]
 pub struct Art {
+    pub props: Option<crate::props::PropArt>,
     pub models: Option<crate::models::AuthoredModels>,
     pub helmets: Vec<Handle<StandardMaterial>>,
     pub bike_colors: Vec<Handle<StandardMaterial>>,
@@ -89,6 +90,7 @@ pub fn setup_world(
         _ => None,
     };
     let art = Art {
+        props: server.as_deref().and_then(crate::props::PropArt::load),
         models,
         helmets: HELMET_COLORS
             .iter()
@@ -114,12 +116,20 @@ pub fn setup_world(
     commands.insert_resource(ClearColor(Color::srgb(0.39, 0.62, 0.72)));
     commands.insert_resource(AmbientLight {
         color: Color::srgb(0.96, 0.98, 1.0),
-        brightness: 6500.0,
+        brightness: if track.city_surface.is_some() {
+            2500.0
+        } else {
+            6500.0
+        },
         ..default()
     });
     commands.spawn((
         DirectionalLight {
-            illuminance: 25000.0,
+            illuminance: if track.city_surface.is_some() {
+                16000.0
+            } else {
+                25000.0
+            },
             shadows_enabled: true,
             ..default()
         },
@@ -152,6 +162,18 @@ pub fn setup_world(
     } else {
         None
     };
+    if track.definition.id.as_str() == rr_content::city::TRACK_ID {
+        crate::world_gen::city::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            server.as_deref(),
+            &art,
+            &track,
+        );
+        commands.insert_resource(art);
+        return;
+    }
     crate::environment::build(
         &mut commands,
         &mut meshes,

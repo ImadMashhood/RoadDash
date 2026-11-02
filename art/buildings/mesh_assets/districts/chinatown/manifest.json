@@ -1,0 +1,214 @@
+{
+  "id": "chinatown",
+  "label": "Chinatown",
+  "asset_ids": [
+    "CHINA12",
+    "CHINA13",
+    "CHINA14",
+    "CHINA15",
+    "CHINA16",
+    "CHINA17",
+    "CHINGAT2"
+  ],
+  "placement_guidance": "Chinese-influenced fronts with the gateway as a landmark; City-family association observed.",
+  "assets": [
+    {
+      "id": "CHINA12",
+      "asset_type": "facade",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        128
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINA12_lod0.glb",
+          "sha256": "d3fa287bf4f9af0ef2a7cb1958d2e4a6228735d20fdfe5c425d939103531cf12"
+        },
+        {
+          "file": "../../models/CHINA12_lod1.glb",
+          "sha256": "9250c7df2c9525259fa9fb0bda85edc8a4d4d1d7bcf0a27d6dca81ee4367b89a"
+        },
+        {
+          "file": "../../models/CHINA12_lod2.glb",
+          "sha256": "90e039c0eb22a800acb64916ad64e455103f17483ef54b0c032560dd22f77b8a"
+        }
+      ],
+      "render": "../../catalog_renders/CHINA12.png"
+    },
+    {
+      "id": "CHINA13",
+      "asset_type": "facade",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        128
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINA13_lod0.glb",
+          "sha256": "9a1c648c454746a3e29662c59c76ddd238c938ec853f6cab44d500791574d8c9"
+        },
+        {
+          "file": "../../models/CHINA13_lod1.glb",
+          "sha256": "78b2d098ecb83c061fb0d60f8db38eecdf588ffabf1b24a6cf35fd44786188e0"
+        },
+        {
+          "file": "../../models/CHINA13_lod2.glb",
+          "sha256": "95f842bd48a06f68992de9371af25212fffb6e4e66c5c057e4d0475a064cb5ee"
+        }
+      ],
+      "render": "../../catalog_renders/CHINA13.png"
+    },
+    {
+      "id": "CHINA14",
+      "asset_type": "facade",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        127
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINA14_lod0.glb",
+          "sha256": "26d27d3c699348631d6ab2e62d04fcce9d5d2b55c0642a9f3a9bb45de40357f6"
+        },
+        {
+          "file": "../../models/CHINA14_lod1.glb",
+          "sha256": "356911a9bbc7f63edd0fdfe42de50dd112bf5983435d13fadc76eb5edcabaf05"
+        },
+        {
+          "file": "../../models/CHINA14_lod2.glb",
+          "sha256": "0245420fc8a2db0715778bf1b25abfb7d17f853a3eeafcc43ad7061a6418a1fe"
+        }
+      ],
+      "render": "../../catalog_renders/CHINA14.png"
+    },
+    {
+      "id": "CHINA15",
+      "asset_type": "facade",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        127
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINA15_lod0.glb",
+          "sha256": "a9e613b683e9ce00a54eee7408c350fc7544d0e16a4b1541ae9eb08ff39ff441"
+        },
+        {
+          "file": "../../models/CHINA15_lod1.glb",
+          "sha256": "bded2b7ad39053409b6ebd50a28f39eb97395d83f4a72e9b98b30816efef322b"
+        },
+        {
+          "file": "../../models/CHINA15_lod2.glb",
+          "sha256": "f9826643ae153749b6bbad5b468c0763487e0b8703754e0107de06d22533e471"
+        }
+      ],
+      "render": "../../catalog_renders/CHINA15.png"
+    },
+    {
+      "id": "CHINA16",
+      "asset_type": "facade",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        128
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINA16_lod0.glb",
+          "sha256": "d91314797e3925c9acdfa8a8d02b720433b139c0e340d582ac099ce9c8d5a041"
+        },
+        {
+          "file": "../../models/CHINA16_lod1.glb",
+          "sha256": "c71c2eccc684acd22147b4424e021f266661dc0bf4980c14b54afd3029f7f495"
+        },
+        {
+          "file": "../../models/CHINA16_lod2.glb",
+          "sha256": "a6270d39d349137d4b337657bb4a949fedcfc66cfc703840c1095931d404e508"
+        }
+      ],
+      "render": "../../catalog_renders/CHINA16.png"
+    },
+    {
+      "id": "CHINA17",
+      "asset_type": "facade",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        127
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINA17_lod0.glb",
+          "sha256": "2d4d54192ad7ba1d15c019f2e0e28203bd83f9dd8ee64d13fbaef95166319518"
+        },
+        {
+          "file": "../../models/CHINA17_lod1.glb",
+          "sha256": "8952275c63b571986dced4ec7155549fded240e55b35ec3932a22700be732442"
+        },
+        {
+          "file": "../../models/CHINA17_lod2.glb",
+          "sha256": "1f111825fb66257957750ba31da4026a1b5707e3a0cffd15cc54237a6db52b22"
+        }
+      ],
+      "render": "../../catalog_renders/CHINA17.png"
+    },
+    {
+      "id": "CHINGAT2",
+      "asset_type": "structure",
+      "primary_district": "chinatown",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        127,
+        128
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/CHINGAT2_lod0.glb",
+          "sha256": "076ddf9c044c5b2ccbacfd38d775d43cb3dcbf17a75e3737955f84006a351416"
+        },
+        {
+          "file": "../../models/CHINGAT2_lod1.glb",
+          "sha256": "73b319ee77bd820645a51f580f5274d15e566e9cd2368e3dc22231bee0e47b34"
+        },
+        {
+          "file": "../../models/CHINGAT2_lod2.glb",
+          "sha256": "adb49d9917f639bef7933e12f470395d0b40eea3c27668475abc9a65388aa397"
+        }
+      ],
+      "render": "../../catalog_renders/CHINGAT2.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

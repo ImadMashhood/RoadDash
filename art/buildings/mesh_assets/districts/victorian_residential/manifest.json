@@ -1,0 +1,946 @@
+{
+  "id": "victorian_residential",
+  "label": "Victorian residential",
+  "asset_ids": [
+    "VICT11",
+    "VICT12",
+    "VICT13",
+    "VICT14",
+    "VICT15",
+    "VICT16",
+    "VICT17",
+    "VICT18",
+    "VICT19",
+    "VICT1A",
+    "VICT1B",
+    "VICT20",
+    "VICT21",
+    "VICT22",
+    "VICT23",
+    "VICT24",
+    "VICT25",
+    "VICT26",
+    "VICT27",
+    "VICT28",
+    "VICT29",
+    "VICT2A",
+    "VICT2B",
+    "VICT31",
+    "VICT32",
+    "VICT33",
+    "VICT34",
+    "VICT3A",
+    "VICT3B",
+    "VICT6A",
+    "VICT6B"
+  ],
+  "placement_guidance": "Residential rows with bays and stoops; keep neighbouring heights and roof language coherent.",
+  "assets": [
+    {
+      "id": "VICT11",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        115,
+        249
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT11_lod0.glb",
+          "sha256": "208f50eed5835dc26129b991870843919405de781239ca923b12f88bce93d9ff"
+        },
+        {
+          "file": "../../models/VICT11_lod1.glb",
+          "sha256": "1254f57e818c7f2739974c2bf7dab3d77865a10d1431881431f3a21eb895d316"
+        },
+        {
+          "file": "../../models/VICT11_lod2.glb",
+          "sha256": "5246cd5c91afbb484f4f32257d3ff6c486c3a39dcaad20e3cd588c9cbdb275e9"
+        }
+      ],
+      "render": "../../catalog_renders/VICT11.png"
+    },
+    {
+      "id": "VICT12",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        117,
+        120,
+        173
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT12_lod0.glb",
+          "sha256": "ca06f7af86a45a75c59d351b032f4fe097d92ac20fde9b406d2a18f4362aafeb"
+        },
+        {
+          "file": "../../models/VICT12_lod1.glb",
+          "sha256": "0be4267a5c423cfa417b052f00a5c107e9734d91eb088cbabe3db180715633a0"
+        },
+        {
+          "file": "../../models/VICT12_lod2.glb",
+          "sha256": "6d65aa7dc19ca9fef9edd20435ecaadec5b647fed62a4a6f636e6d9b07a27d65"
+        }
+      ],
+      "render": "../../catalog_renders/VICT12.png"
+    },
+    {
+      "id": "VICT13",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        119,
+        159
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT13_lod0.glb",
+          "sha256": "767e207cbdaddef46c15ffc6372dc85f890195b7dfb337ee6a192b5f6493a257"
+        },
+        {
+          "file": "../../models/VICT13_lod1.glb",
+          "sha256": "e690993b6af099dfcb15101503682375539f0076b717d7503992af1492d78818"
+        },
+        {
+          "file": "../../models/VICT13_lod2.glb",
+          "sha256": "976d1ad6319c001efece6a8a69706e305d6df0bf79c863f90380145a08c30669"
+        }
+      ],
+      "render": "../../catalog_renders/VICT13.png"
+    },
+    {
+      "id": "VICT14",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        121
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT14_lod0.glb",
+          "sha256": "0747d51a7626b323fd4948e1c7a8de8b116bdf5fa3484314052642add18e8917"
+        },
+        {
+          "file": "../../models/VICT14_lod1.glb",
+          "sha256": "e4db1940fd5ab1399213baaa0ab050bd10523e42c338e4fd99d07600056f4b95"
+        },
+        {
+          "file": "../../models/VICT14_lod2.glb",
+          "sha256": "ed66ae2eff7bbc0bdfea29bf577bf165d9c151ec0965a5321e18ce780ae7911e"
+        }
+      ],
+      "render": "../../catalog_renders/VICT14.png"
+    },
+    {
+      "id": "VICT15",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        116,
+        249
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT15_lod0.glb",
+          "sha256": "dcb433b821c834ccedca65ed95af3cd919a3dbc8c82f1d199483f315a8680acd"
+        },
+        {
+          "file": "../../models/VICT15_lod1.glb",
+          "sha256": "acb20134ea10936a03d9dfcf709db5d92594c65312750fe35bd950b4a1efc5db"
+        },
+        {
+          "file": "../../models/VICT15_lod2.glb",
+          "sha256": "e00129c6351e98d877dca85b5ed19ebc2e9a219262a5d05f2dcf939ec3e1c065"
+        }
+      ],
+      "render": "../../catalog_renders/VICT15.png"
+    },
+    {
+      "id": "VICT16",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        121,
+        173
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT16_lod0.glb",
+          "sha256": "0526b5ba86dc25f3001e3a3b60f091bebc58f69bf05f2b7896747ad65cb97b27"
+        },
+        {
+          "file": "../../models/VICT16_lod1.glb",
+          "sha256": "3e1afd85133e86266f6db9dce6e7409a98146bc6cd4a69a74f9edbce4f3d045a"
+        },
+        {
+          "file": "../../models/VICT16_lod2.glb",
+          "sha256": "22f930b0914455639dfa2d33ef9141e3f4d9600d7f534546358e76b2aaa78ea5"
+        }
+      ],
+      "render": "../../catalog_renders/VICT16.png"
+    },
+    {
+      "id": "VICT17",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        160,
+        230
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT17_lod0.glb",
+          "sha256": "0801574ddf9e215a181e359d7bec4612cafffd65356760a2f6764c8617559826"
+        },
+        {
+          "file": "../../models/VICT17_lod1.glb",
+          "sha256": "265080a9f685d34e0c5990fde286e94486ae6b4a3176636f1a3ae52e593691dc"
+        },
+        {
+          "file": "../../models/VICT17_lod2.glb",
+          "sha256": "a7c39084bf24cbe3fb75f930982b995485251fe61bbabaec96f7200e0970ff1e"
+        }
+      ],
+      "render": "../../catalog_renders/VICT17.png"
+    },
+    {
+      "id": "VICT18",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        115,
+        158,
+        159
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT18_lod0.glb",
+          "sha256": "62db26cb101072e433b102d1d7870cfcb145baba000cdab0799c06c5852aeaf2"
+        },
+        {
+          "file": "../../models/VICT18_lod1.glb",
+          "sha256": "2d9ab4f3f2f66444b58039642fca03d5072aacb9799bdeca76d02ebf44ae9b2c"
+        },
+        {
+          "file": "../../models/VICT18_lod2.glb",
+          "sha256": "d93ac05c858c35a41bb818df3534d2565020fef6a118bb7039eee93134e039ae"
+        }
+      ],
+      "render": "../../catalog_renders/VICT18.png"
+    },
+    {
+      "id": "VICT19",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        117
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT19_lod0.glb",
+          "sha256": "12e3af98835e404728b0c2e8b82c13cb3e67037d8eff40279909d4338fe7280f"
+        },
+        {
+          "file": "../../models/VICT19_lod1.glb",
+          "sha256": "3fff0c60c789784b40e805ba0cfab55e50cb3e7d14cbb939627a67ebd4ae186f"
+        },
+        {
+          "file": "../../models/VICT19_lod2.glb",
+          "sha256": "8da76e05c6af7b1f6176da9b06a9f6b3e34c968a8644a4686d5c4fcc7941126c"
+        }
+      ],
+      "render": "../../catalog_renders/VICT19.png"
+    },
+    {
+      "id": "VICT1A",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        41
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT1A_lod0.glb",
+          "sha256": "ddee551d281dfe56ce5ae061f4e0eb859f4c5ed7a7cbf876dabf4c106e9db4ac"
+        },
+        {
+          "file": "../../models/VICT1A_lod1.glb",
+          "sha256": "d353427f3b06c92561a2bb17f4b572e6122f8430c1dd54853602643260024903"
+        },
+        {
+          "file": "../../models/VICT1A_lod2.glb",
+          "sha256": "860919bd5556e0429e260cba090f468f4dee86b58607cc71d1d9c4c11c334090"
+        }
+      ],
+      "render": "../../catalog_renders/VICT1A.png"
+    },
+    {
+      "id": "VICT1B",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        41
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT1B_lod0.glb",
+          "sha256": "c468f0e2a7ca6fa0f7338b12ef6d5ca128b9d2e62b85ac3f582c1abd9b68a997"
+        },
+        {
+          "file": "../../models/VICT1B_lod1.glb",
+          "sha256": "23897847213dfcf965ec0b298b3d2b4ab31537f20f4252524e3517673c8ff8c5"
+        },
+        {
+          "file": "../../models/VICT1B_lod2.glb",
+          "sha256": "04e509926005d0c05deb9bcc965d4789bfbce927a6e9356a763f67b3021f9543"
+        }
+      ],
+      "render": "../../catalog_renders/VICT1B.png"
+    },
+    {
+      "id": "VICT20",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        122
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT20_lod0.glb",
+          "sha256": "445edb0ea52b1bdfd4e31328a1b0a5e2758eff56c3b78d0143fe64c2508fa5fc"
+        },
+        {
+          "file": "../../models/VICT20_lod1.glb",
+          "sha256": "0d37e085d181c74e1bcf7e02ff54368da4a2acc06cf7e781de66396e26d203fe"
+        },
+        {
+          "file": "../../models/VICT20_lod2.glb",
+          "sha256": "00bba4646d5bb715ca8acc62a5a3474144ff96934b433c0ff046658f4c752b16"
+        }
+      ],
+      "render": "../../catalog_renders/VICT20.png"
+    },
+    {
+      "id": "VICT21",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        118,
+        160,
+        230,
+        231
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT21_lod0.glb",
+          "sha256": "9610f164be3e40157f8712f4a79517af9a9d9670209d05e10c7e1a66538699f5"
+        },
+        {
+          "file": "../../models/VICT21_lod1.glb",
+          "sha256": "fa96c461e748770b6c1eebb94095be7dd67debd0dd83c6a487dc0220bcb19a9c"
+        },
+        {
+          "file": "../../models/VICT21_lod2.glb",
+          "sha256": "656a99f00ce6f842adb958c76552b02df2ad047f8da0508674a4830d9260263e"
+        }
+      ],
+      "render": "../../catalog_renders/VICT21.png"
+    },
+    {
+      "id": "VICT22",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        118,
+        231
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT22_lod0.glb",
+          "sha256": "0db13ae07d6b5aa0d3ed86217d26cbe6d6d1f4c03f149aa93d203badf92bc4ea"
+        },
+        {
+          "file": "../../models/VICT22_lod1.glb",
+          "sha256": "da155013467e65ed580b359ee20a0863a12abeb9322883ac7004e18bcd0f8f4c"
+        },
+        {
+          "file": "../../models/VICT22_lod2.glb",
+          "sha256": "293f96a6a5fc000ce474708eb06b6f762d2d3974da4b44a5de279184df61a9b1"
+        }
+      ],
+      "render": "../../catalog_renders/VICT22.png"
+    },
+    {
+      "id": "VICT23",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        122,
+        158
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT23_lod0.glb",
+          "sha256": "1ccaeda182df9ed6de5dbeec935f7bc1ee2259520f05834a21232f197abb8f27"
+        },
+        {
+          "file": "../../models/VICT23_lod1.glb",
+          "sha256": "27d318249f405276ecfbce427b05673d42f2c01c58f7534388b7e68da19177ec"
+        },
+        {
+          "file": "../../models/VICT23_lod2.glb",
+          "sha256": "5127846a96fe2dc0d593737a519246b6473a54a2d4a96d03e7014a91ca89f66c"
+        }
+      ],
+      "render": "../../catalog_renders/VICT23.png"
+    },
+    {
+      "id": "VICT24",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        117
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT24_lod0.glb",
+          "sha256": "696cca0dcd6a7da0ecc082ae3e056cfeadda824c8004e077a788d7ac00bfa031"
+        },
+        {
+          "file": "../../models/VICT24_lod1.glb",
+          "sha256": "2e0e75dc3545f590c6de70f55d1fd0a454f690e210d6ecf45d698601b6bb22f9"
+        },
+        {
+          "file": "../../models/VICT24_lod2.glb",
+          "sha256": "9619683e761163f4d0458d42f4b295c43966755a6eff5ecddb5f22abf6146b06"
+        }
+      ],
+      "render": "../../catalog_renders/VICT24.png"
+    },
+    {
+      "id": "VICT25",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        122
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT25_lod0.glb",
+          "sha256": "00a3f594455bbbdaae0552ee0d0da46ddae4906d8e6d03d087d8dfec3f059c75"
+        },
+        {
+          "file": "../../models/VICT25_lod1.glb",
+          "sha256": "ca1e715bdc4ecf973790499981e50973101dd6af8f071a948471cff8d8194d38"
+        },
+        {
+          "file": "../../models/VICT25_lod2.glb",
+          "sha256": "91b6823d5906f47f485360062ed49cd62153a0e8828d0c8524f477135cdcac76"
+        }
+      ],
+      "render": "../../catalog_renders/VICT25.png"
+    },
+    {
+      "id": "VICT26",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        118,
+        158,
+        231
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT26_lod0.glb",
+          "sha256": "4fab31cda7e8a75a1cd871049a45044356ec1e64910abbcaa35cc1a2a73dd6f6"
+        },
+        {
+          "file": "../../models/VICT26_lod1.glb",
+          "sha256": "c8ec0e2e6d1671717905479344191bb96e68101807fe7cfa07207a16683ec127"
+        },
+        {
+          "file": "../../models/VICT26_lod2.glb",
+          "sha256": "58c1b7f85937c1c028b785b22c4126af91182d3ac8f35abf9995f2aa98d83e4e"
+        }
+      ],
+      "render": "../../catalog_renders/VICT26.png"
+    },
+    {
+      "id": "VICT27",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        115,
+        249
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT27_lod0.glb",
+          "sha256": "37b7230dc98c5f624dfadf34859347594d1477aac7a9256c644e2edc14cb4c99"
+        },
+        {
+          "file": "../../models/VICT27_lod1.glb",
+          "sha256": "d5eb25c32d45ab3be2b6bfedd3bd33bd3f336424b9f9495211402770ac5062f6"
+        },
+        {
+          "file": "../../models/VICT27_lod2.glb",
+          "sha256": "db030cbea2018ae5af7bc02865af98e3fe112474f2cf338a2d2d21c721726c63"
+        }
+      ],
+      "render": "../../catalog_renders/VICT27.png"
+    },
+    {
+      "id": "VICT28",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        120,
+        121,
+        160,
+        230
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT28_lod0.glb",
+          "sha256": "3c992f06388d6d2732c3eb9a60f157ca046797a88c12b3ba9ac2382eadd98731"
+        },
+        {
+          "file": "../../models/VICT28_lod1.glb",
+          "sha256": "84926e97e4ac6ef9557f2155205d7a395f1989eb41c507a36d49edfcc4e8c119"
+        },
+        {
+          "file": "../../models/VICT28_lod2.glb",
+          "sha256": "73f9842e20071e2ba4408daa4aa2d330cf667eb69a7cff281d2d035e559b2cd8"
+        }
+      ],
+      "render": "../../catalog_renders/VICT28.png"
+    },
+    {
+      "id": "VICT29",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        119,
+        156
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT29_lod0.glb",
+          "sha256": "72cd48286b5d2b38569616a97a3d8571c7ee8e73b8f9991dbe5209a3d518846b"
+        },
+        {
+          "file": "../../models/VICT29_lod1.glb",
+          "sha256": "56198dfbfdb47a1cde1da248296d77b2f692fa8e1e95a0a87bab8299e3b822ff"
+        },
+        {
+          "file": "../../models/VICT29_lod2.glb",
+          "sha256": "52ac7e46b5a3241d1fb7e107dd06b37531bd2d669bc3de4abce7986fd57337a9"
+        }
+      ],
+      "render": "../../catalog_renders/VICT29.png"
+    },
+    {
+      "id": "VICT2A",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        41
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT2A_lod0.glb",
+          "sha256": "77cda00c7ea5c9bb5621072ceae1345c0226ba2d075ead93d38f6b2ff271518d"
+        },
+        {
+          "file": "../../models/VICT2A_lod1.glb",
+          "sha256": "5ee0ce5243a7db8627d51216b9fc634f30daebe2ee71408dcf303875ba437a55"
+        },
+        {
+          "file": "../../models/VICT2A_lod2.glb",
+          "sha256": "75a71c0a6b9a34f5b34cc9c19b68dd0f0c91d64e29e5f2bf3515894750f978a4"
+        }
+      ],
+      "render": "../../catalog_renders/VICT2A.png"
+    },
+    {
+      "id": "VICT2B",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        41
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT2B_lod0.glb",
+          "sha256": "357522552f56878c70a73a9f75304ebcff8ff04a1ee4a05f60046553a4b9e4f2"
+        },
+        {
+          "file": "../../models/VICT2B_lod1.glb",
+          "sha256": "ba14308a683df75f7db33c066c9504e5949ed19ba66ad817be432e6c971c8357"
+        },
+        {
+          "file": "../../models/VICT2B_lod2.glb",
+          "sha256": "89752866f74b0f0e0a858d29d3513262f8647237ad088877d01d4524b87e6f86"
+        }
+      ],
+      "render": "../../catalog_renders/VICT2B.png"
+    },
+    {
+      "id": "VICT31",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        173
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT31_lod0.glb",
+          "sha256": "c9edb0ad14f5cd90253ab273b2dd562e0346f0494597ac7aed3334426cc41f6b"
+        },
+        {
+          "file": "../../models/VICT31_lod1.glb",
+          "sha256": "9d45c79ddba581c1343d5b9b27ad48f800cbcff8845c464ae337c2dd42ee3600"
+        },
+        {
+          "file": "../../models/VICT31_lod2.glb",
+          "sha256": "4f89ede11e0d78e41af3e10f8dd69dbe991462085929d72c46afffbbfe86b3fa"
+        }
+      ],
+      "render": "../../catalog_renders/VICT31.png"
+    },
+    {
+      "id": "VICT32",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        119,
+        120,
+        159
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT32_lod0.glb",
+          "sha256": "7497e48334c7dfa1ebe5a3ccdbc1e33041372c44fd38f4cef937e3ed317b38e9"
+        },
+        {
+          "file": "../../models/VICT32_lod1.glb",
+          "sha256": "1c85522160b59dc19982efca5a9cad122ad7eff2e3ba114e5a58c966cad20ce2"
+        },
+        {
+          "file": "../../models/VICT32_lod2.glb",
+          "sha256": "31a07506c528c4030f7cc6fa3912ede04d44de46109212f5a97767cd80b0746e"
+        }
+      ],
+      "render": "../../catalog_renders/VICT32.png"
+    },
+    {
+      "id": "VICT33",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        156
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT33_lod0.glb",
+          "sha256": "9c9da05a768609d00ee421ab068d7c3dddd3339248b03b5a60c8f8cf3e379f7e"
+        },
+        {
+          "file": "../../models/VICT33_lod1.glb",
+          "sha256": "0314d5cecde97919c6f9461b9ecd8d461073d04be38d8b94547d7b50d7524a14"
+        },
+        {
+          "file": "../../models/VICT33_lod2.glb",
+          "sha256": "2c8a208f0e8aa1c6286c0fa444253d86743c97b5e53e7e45322436703cb4df3f"
+        }
+      ],
+      "render": "../../catalog_renders/VICT33.png"
+    },
+    {
+      "id": "VICT34",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        116,
+        156
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT34_lod0.glb",
+          "sha256": "292d01718cb69ea118b509e8867db73a1a9fa9faf728379f366bc45978dc0e73"
+        },
+        {
+          "file": "../../models/VICT34_lod1.glb",
+          "sha256": "2cbd6551d51cdb7e3b718aa0dd25fea6eb01f7bcf7393b3c0cd0f8435a53e4f3"
+        },
+        {
+          "file": "../../models/VICT34_lod2.glb",
+          "sha256": "ed88984ffbd54df3a1c76fa5b86f7f4d55eb59c13a552f137ee42981ea021cd5"
+        }
+      ],
+      "render": "../../catalog_renders/VICT34.png"
+    },
+    {
+      "id": "VICT3A",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        42
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT3A_lod0.glb",
+          "sha256": "52ac0ea3e124f31e4f1f7035a30326d7820a90c260209dc182b0928b9226491d"
+        },
+        {
+          "file": "../../models/VICT3A_lod1.glb",
+          "sha256": "be7d09ce3a47b8bcb1f327c82e165b617b6f0656fbed47897e08b13840f4c4ea"
+        },
+        {
+          "file": "../../models/VICT3A_lod2.glb",
+          "sha256": "2c787596e93c3e5122a56cc2e246179772501691fbce8234affe5d074e681761"
+        }
+      ],
+      "render": "../../catalog_renders/VICT3A.png"
+    },
+    {
+      "id": "VICT3B",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        42
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT3B_lod0.glb",
+          "sha256": "f44fa0ec731a0d1753694b3e2dbb339bfbbe11efaaa41576901afef933a02efa"
+        },
+        {
+          "file": "../../models/VICT3B_lod1.glb",
+          "sha256": "a6551c7ee9eb4ab67652608dbe380bcdd2d8698bf056caace40bc2c8f72f5e27"
+        },
+        {
+          "file": "../../models/VICT3B_lod2.glb",
+          "sha256": "8ef71b4ba6963aeefda1359145739d4b1169de6fe48f6e814d979909649e3915"
+        }
+      ],
+      "render": "../../catalog_renders/VICT3B.png"
+    },
+    {
+      "id": "VICT6A",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        42
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT6A_lod0.glb",
+          "sha256": "fdf44915ec98f00f7df201f38de91c0ecedfa09a3599627609451ffe398e6f31"
+        },
+        {
+          "file": "../../models/VICT6A_lod1.glb",
+          "sha256": "3dd7334d97a4710bd42632cb7fae788d91cbcf9dd85e483043a74e43d5295d94"
+        },
+        {
+          "file": "../../models/VICT6A_lod2.glb",
+          "sha256": "d7cae0e8c6d48c57381cd19c5171ca8a0707d9ee0b18de655dcc1ba39d2d31ca"
+        }
+      ],
+      "render": "../../catalog_renders/VICT6A.png"
+    },
+    {
+      "id": "VICT6B",
+      "asset_type": "facade",
+      "primary_district": "victorian_residential",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        42
+      ],
+      "original_course_family_load_matches": [
+        "CITY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/VICT6B_lod0.glb",
+          "sha256": "9cc1be79fb0cad580dc7204cb69efcc019e21c43fa4ef8237845f69dd66caabb"
+        },
+        {
+          "file": "../../models/VICT6B_lod1.glb",
+          "sha256": "4a2829eafab76a383e402a815d09bec971731560400063f8227c69374d4682d5"
+        },
+        {
+          "file": "../../models/VICT6B_lod2.glb",
+          "sha256": "396b1c169b8be0a0db332071769629bcc75d3bf6e8ab6ca54a1433bee9074ff7"
+        }
+      ],
+      "render": "../../catalog_renders/VICT6B.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

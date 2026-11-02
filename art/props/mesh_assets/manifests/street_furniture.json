@@ -1,0 +1,3832 @@
+{
+  "group": "street_furniture",
+  "source": "sources/street_furniture.blend",
+  "source_sha256": "0b2b0aaea3391a2e530dfb103ffa9c3f9cbaf9ba581e703c9c2aa4db83eb272f",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-AC6D4F926102",
+      "name": "BAGSGRP2",
+      "builder": "trash_bags",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-AC6D4F926102_lod0.glb",
+          "sha256": "ee9af7514647397108cca67e58a79622e9d6b3e72a7f3c19ae54df25df98b55a",
+          "triangles": 1648,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6499999761581421,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-AC6D4F926102_lod1.glb",
+          "sha256": "3b4e881709da52c8b850c374e58e28d8ae41103341b7c521eed6136e224e219f",
+          "triangles": 1456,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7867852449417114,
+              -0.20803695917129517,
+              0.0
+            ],
+            [
+              0.7867852449417114,
+              0.6280369758605957,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-AC6D4F926102_lod2.glb",
+          "sha256": "89b063b0625f32b38977012f39684bb6965da7687d254b909f943ea8a22914f9",
+          "triangles": 144,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.19918584823608398,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6191858649253845,
+              0.47999998927116394
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rubbish_bag": 4,
+        "bag_knot": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.600000023841858,
+          0.5032966732978821,
+          0.8799999803304672
+        ],
+        "center_y_up": [
+          0.0,
+          0.25164833664894104,
+          -0.20999998599290848
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-64DCD9A70698",
+      "name": "BAGSINA2",
+      "builder": "trash_bags",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-64DCD9A70698_lod0.glb",
+          "sha256": "a459c1b5d31ffe3bb1fc12bf0545eda568c2ae7c0f1c2e6362c13c0523b96474",
+          "triangles": 1648,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6499999761581421,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-64DCD9A70698_lod1.glb",
+          "sha256": "e605ebff666d08534333b07f92b01b97a048b8550669daf041ae113db80d8eb7",
+          "triangles": 1456,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7867852449417114,
+              -0.20803695917129517,
+              0.0
+            ],
+            [
+              0.7867852449417114,
+              0.6280369758605957,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-64DCD9A70698_lod2.glb",
+          "sha256": "f5e29c1fd1a452b3ca5b2871ecd1d90260ab73e1e839fe98dbb7d33018e19469",
+          "triangles": 144,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.19918584823608398,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6191858649253845,
+              0.47999998927116394
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rubbish_bag": 4,
+        "bag_knot": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.600000023841858,
+          0.5032966732978821,
+          0.8799999803304672
+        ],
+        "center_y_up": [
+          0.0,
+          0.25164833664894104,
+          -0.20999998599290848
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7FB2DCCA8FE9",
+      "name": "BAGSINB2",
+      "builder": "trash_bags",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7FB2DCCA8FE9_lod0.glb",
+          "sha256": "6e4cab827c890b8f362a9a2fafe61f364f671931ba1bd901197f3e3e0f061d8d",
+          "triangles": 1648,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6499999761581421,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7FB2DCCA8FE9_lod1.glb",
+          "sha256": "26003dbae400afc5cab6c6ed5c29ee0850ff987f26877ba63aacf40aa11f5c06",
+          "triangles": 1456,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7867852449417114,
+              -0.20803695917129517,
+              0.0
+            ],
+            [
+              0.7867852449417114,
+              0.6280369758605957,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7FB2DCCA8FE9_lod2.glb",
+          "sha256": "2a2ba237ae41ccdc5d4cb95a27ad3fc4a6ea137637581723c37df2a58ae198bf",
+          "triangles": 144,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.19918584823608398,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6191858649253845,
+              0.47999998927116394
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rubbish_bag": 4,
+        "bag_knot": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.600000023841858,
+          0.5032966732978821,
+          0.8799999803304672
+        ],
+        "center_y_up": [
+          0.0,
+          0.25164833664894104,
+          -0.20999998599290848
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B68BB8439525",
+      "name": "BENCH12",
+      "builder": "bench",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/props_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B68BB8439525_lod0.glb",
+          "sha256": "ad7a4b7d95fd1921527bd9612bc7605f2a4acf68ad8e9926488bf51e6703fdca",
+          "triangles": 1992,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3548485338687897,
+              1.0032525062561035
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B68BB8439525_lod1.glb",
+          "sha256": "93790527f260d7609f70a3fa638396caa78105da075fed9f97e6e1dc4e4e21b6",
+          "triangles": 1048,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3531429171562195,
+              1.0030933618545532
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B68BB8439525_lod2.glb",
+          "sha256": "edee3ee6f81539353774cc6beeac42c65b9fb8fb12102d7f4749e27082424fea",
+          "triangles": 216,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3501797020435333,
+              1.0028167963027954
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bench_legs": 4,
+        "seat_slats": 5,
+        "back_support": 2,
+        "back_slats": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.850000023841858,
+          1.0032525062561035,
+          0.597348541021347
+        ],
+        "center_y_up": [
+          0.0,
+          0.5016262531280518,
+          -0.05617426335811615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-94930BE6CE09",
+      "name": "BENCH2",
+      "builder": "bench",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/street_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-94930BE6CE09_lod0.glb",
+          "sha256": "2d346a38ac88315eae7b3cef925eb2f32942a9ab502bbb7e9a1ab8246f6203f0",
+          "triangles": 1992,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3548485338687897,
+              1.0032525062561035
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-94930BE6CE09_lod1.glb",
+          "sha256": "e353a636c8cea19fabc2ec3400c1fa1f53b446505f12eb89590ed2b60dc7c50d",
+          "triangles": 1048,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3531429171562195,
+              1.0030933618545532
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-94930BE6CE09_lod2.glb",
+          "sha256": "52044bab03dfe0efc7adf39eb432b7ae94d1543c38f8535ebf516ed44f1fad01",
+          "triangles": 216,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3501797020435333,
+              1.0028167963027954
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bench_legs": 4,
+        "seat_slats": 5,
+        "back_support": 2,
+        "back_slats": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.850000023841858,
+          1.0032525062561035,
+          0.597348541021347
+        ],
+        "center_y_up": [
+          0.0,
+          0.5016262531280518,
+          -0.05617426335811615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-BD48A707CE80",
+      "name": "BINBLU@2",
+      "builder": "street_bin",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/street_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-BD48A707CE80_lod0.glb",
+          "sha256": "18b74fc55b255f4166d9f292adc2a2ad59c7944290c45ea167e5b3c975bb4144",
+          "triangles": 432,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-BD48A707CE80_lod1.glb",
+          "sha256": "0352c828348e7ab9309524d8d1f82e74759fa6c0b8c91b947b6be85c7beb6de7",
+          "triangles": 176,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-BD48A707CE80_lod2.glb",
+          "sha256": "012901f9232824f2be9d9e5832cce542eb8d3ef04b72d9887eadcb63ae17b05c",
+          "triangles": 24,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "waste_container": 1,
+        "bin_lid": 1,
+        "bin_handle": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          1.0099999606609344,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.0,
+          0.5299999862909317,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CFD19FE0CA6D",
+      "name": "BNCHBCK2",
+      "builder": "bench",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CFD19FE0CA6D_lod0.glb",
+          "sha256": "63204d4cb25b14bcc5ef6083719a9a5a4a022a280e6f57f07368d4858c622047",
+          "triangles": 1992,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3548485338687897,
+              1.0032525062561035
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CFD19FE0CA6D_lod1.glb",
+          "sha256": "d17d9b9abc07c394c7e940f2e871a2ca4fb92c7a11e178344171936c73af792c",
+          "triangles": 1048,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3531429171562195,
+              1.0030933618545532
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CFD19FE0CA6D_lod2.glb",
+          "sha256": "e1e87a912493770963b95d3bbe9026ad6e4ec55aef3dc4a0dbc56cc3c195366d",
+          "triangles": 216,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              0.925000011920929,
+              0.3501797020435333,
+              1.0028167963027954
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bench_legs": 4,
+        "seat_slats": 5,
+        "back_support": 2,
+        "back_slats": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.850000023841858,
+          1.0032525062561035,
+          0.597348541021347
+        ],
+        "center_y_up": [
+          0.0,
+          0.5016262531280518,
+          -0.05617426335811615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3BF17570D415",
+      "name": "BNCHMUN2",
+      "builder": "bench",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3BF17570D415_lod0.glb",
+          "sha256": "5502c8dbc65761d6fec7993d0338676003d26e936b185ffdd40046ed8d99f426",
+          "triangles": 3069,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              1.2100000381469727,
+              0.3548485338687897,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3BF17570D415_lod1.glb",
+          "sha256": "ff9d814218752fef4ca50a5358b28cf3ae7b7d547b6123653414b2568ded6a16",
+          "triangles": 1253,
+          "parts": 8,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              1.2100000381469727,
+              0.3531429171562195,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3BF17570D415_lod2.glb",
+          "sha256": "ca6b53f474651ffc24886f285becc388e73d52dd216dc3d6f6091f9d2418daa8",
+          "triangles": 248,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.925000011920929,
+              -0.24250000715255737,
+              0.0
+            ],
+            [
+              1.2100000381469727,
+              0.3501797020435333,
+              2.450000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bench_legs": 4,
+        "seat_slats": 5,
+        "back_support": 2,
+        "back_slats": 3,
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.1350000500679016,
+          2.450000047683716,
+          0.597348541021347
+        ],
+        "center_y_up": [
+          0.14250001311302185,
+          1.225000023841858,
+          -0.05617426335811615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E9F7C84EEC24",
+      "name": "BOXES2",
+      "builder": "box_pile",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E9F7C84EEC24_lod0.glb",
+          "sha256": "a338b3f73ac1be843885e9b8ffeac77c63114d821c5efc4a3e5323359955b3ed",
+          "triangles": 864,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7799999713897705,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7799999713897705,
+              0.6200000047683716,
+              0.41100001335144043
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E9F7C84EEC24_lod1.glb",
+          "sha256": "31f72f45298d3e7eeac58df9e89c0c5c58989c464db7d55a1993caaeefdedb3f",
+          "triangles": 352,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7799999713897705,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7799999713897705,
+              0.6200000047683716,
+              0.41100001335144043
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E9F7C84EEC24_lod2.glb",
+          "sha256": "147ddfb369a331052d7fa3d66dfe7658a6c755ffb5fa8fbbec115f0457b899b2",
+          "triangles": 48,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7799999713897705,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7799999713897705,
+              0.6200000047683716,
+              0.4000000059604645
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cardboard_box": 4,
+        "box_tape": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.559999942779541,
+          0.41100001335144043,
+          0.8200000077486038
+        ],
+        "center_y_up": [
+          0.0,
+          0.20550000667572021,
+          -0.21000000089406967
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A0ABBE1125F4",
+      "name": "CLBXGRY2",
+      "builder": "callbox",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A0ABBE1125F4_lod0.glb",
+          "sha256": "13f38380efcc1f273fcf220c2f097334469902a362b6b9021484bb9e0d365d69",
+          "triangles": 512,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A0ABBE1125F4_lod1.glb",
+          "sha256": "f0b9cb11114deb805734904503cf6f8f4fcb97c87e5684413f82814617e5cf56",
+          "triangles": 248,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A0ABBE1125F4_lod2.glb",
+          "sha256": "2fe77a4f1bfe815587789ef42f2b310242b1dc58412ecd60aed538447e83cee2",
+          "triangles": 44,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3799999952316284,
+          1.5,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F51EB5F3003D",
+      "name": "CLBXRED2",
+      "builder": "callbox",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F51EB5F3003D_lod0.glb",
+          "sha256": "cf8e0ef4a94d8b7f44cdb0ee3a944dfb584c8f8a82dfcba60b9af483c0bfbfbd",
+          "triangles": 512,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F51EB5F3003D_lod1.glb",
+          "sha256": "1a0f4c92a429d036317c35a32e91cdc0f5f5872da43dd83b48e418bd35b46a5f",
+          "triangles": 248,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F51EB5F3003D_lod2.glb",
+          "sha256": "92ee385ce84ae36599ceec6c085574cc39aac3a160769b1c20f041d32ea3d6cb",
+          "triangles": 44,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3799999952316284,
+          1.5,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-AB95405B1FB3",
+      "name": "CLLBXBL2",
+      "builder": "callbox",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-AB95405B1FB3_lod0.glb",
+          "sha256": "4459085830f7f3c5b15c29e77c9ec3a351bf6931039163925935b3bfdc6d1258",
+          "triangles": 512,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-AB95405B1FB3_lod1.glb",
+          "sha256": "a30aca7b34813c5957c0118e398ef4a2099820038258993c1bbdb2a5124c6605",
+          "triangles": 248,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-AB95405B1FB3_lod2.glb",
+          "sha256": "464cadb1e5d3cd40f7568e4a73798ee6deb309d8f18f7a1d92268173788f862a",
+          "triangles": 44,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3799999952316284,
+          1.5,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1D0869785A01",
+      "name": "CNTAINY2",
+      "builder": "crash_barrels",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1D0869785A01_lod0.glb",
+          "sha256": "c228df14e7cf3f24894746c61a2056fa3596844915d9894ea5656d9fc7ba6c7f",
+          "triangles": 3448,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33500000834465027,
+              -0.33500000834465027,
+              0.03999999910593033
+            ],
+            [
+              0.33500000834465027,
+              0.33500000834465027,
+              0.9300000071525574
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1D0869785A01_lod1.glb",
+          "sha256": "7b9795471870945a541d81aabd02967dfd9ace8b20919578f69076c39587f2f9",
+          "triangles": 1192,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33500000834465027,
+              -0.3186039328575134,
+              0.03999999910593033
+            ],
+            [
+              0.33500000834465027,
+              0.3186039328575134,
+              0.9300000071525574
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1D0869785A01_lod2.glb",
+          "sha256": "2ec738d8b3c1fd9e5083ebe9fe686492906ed7dcf05374aa2d94657abe0b3aee",
+          "triangles": 40,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.26846787333488464,
+              0.03999999910593033
+            ],
+            [
+              0.3100000023841858,
+              0.26846787333488464,
+              0.9300000071525574
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barrel_body": 1,
+        "barrel_ribs": 4,
+        "barrel_lid": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6700000166893005,
+          0.890000008046627,
+          0.6700000166893005
+        ],
+        "center_y_up": [
+          0.0,
+          0.48500000312924385,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-5F26DBB829FB",
+      "name": "CONTNBY2",
+      "builder": "crash_barrels",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-5F26DBB829FB_lod0.glb",
+          "sha256": "72ac21a4fdb9cbc35e24d88801ebd00e753ff3c9231d2dff733b0b7e67976f40",
+          "triangles": 10344,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.9750000238418579,
+              -0.33500000834465027,
+              0.03999999910593033
+            ],
+            [
+              0.9750000238418579,
+              0.33500000834465027,
+              0.9300000071525574
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-5F26DBB829FB_lod1.glb",
+          "sha256": "65d0a3c82891eb56fbf273f4ddb1364ade7845c93b4403b6f3e714df51e8bd15",
+          "triangles": 3576,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.9750000238418579,
+              -0.3186039328575134,
+              0.03999999910593033
+            ],
+            [
+              0.9750000238418579,
+              0.3186039328575134,
+              0.9300000071525574
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-5F26DBB829FB_lod2.glb",
+          "sha256": "d9e24a247cf07a7d34aaee70458318ab3e23861725723c6367511a84e020f417",
+          "triangles": 120,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.949999988079071,
+              -0.26846787333488464,
+              0.03999999910593033
+            ],
+            [
+              0.949999988079071,
+              0.26846787333488464,
+              0.9300000071525574
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barrel_body": 3,
+        "barrel_ribs": 12,
+        "barrel_lid": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.9500000476837158,
+          0.890000008046627,
+          0.6700000166893005
+        ],
+        "center_y_up": [
+          0.0,
+          0.48500000312924385,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-31612EA52928",
+      "name": "MAIL2",
+      "builder": "mailbox",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/street_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-31612EA52928_lod0.glb",
+          "sha256": "8136c792f4bcf657a6853b4a58c4760b6618b3c5057386fd8d0e0ad1ddb76ed0",
+          "triangles": 824,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.17000000178813934,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.1925000101327896,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-31612EA52928_lod1.glb",
+          "sha256": "bfab4978f060b7506cccd828215f81e5bf215063dbadb7c5fae7989a790b9437",
+          "triangles": 368,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.17000000178813934,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.1925000101327896,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-31612EA52928_lod2.glb",
+          "sha256": "a402ea01389cd08470bfbb8cf973a03aff7802fc946f77fa38601e3c0ff249eb",
+          "triangles": 72,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.17000000178813934,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.17000000178813934,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "mail_post": 1,
+        "mailbox_lower": 1,
+        "mailbox_round_roof": 1,
+        "mailbox_door": 1,
+        "mailbox_flag": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.36250001192092896,
+          1.440000057220459,
+          0.6025000214576721
+        ],
+        "center_y_up": [
+          0.011250004172325134,
+          0.7200000286102295,
+          0.016250014305114746
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1B4657A9BD58",
+      "name": "MAILBXS2",
+      "builder": "mailboxes",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_02.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1B4657A9BD58_lod0.glb",
+          "sha256": "7f1711fa2b5b9305524c9444230ad3ef031a099a481ceb5ade6225297c09da53",
+          "triangles": 3296,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.8224999904632568,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1B4657A9BD58_lod1.glb",
+          "sha256": "57ca777f98a10722ecf31567e93b39999ff8f340d650386f5286796ff24c2b9e",
+          "triangles": 1472,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.8224999904632568,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1B4657A9BD58_lod2.glb",
+          "sha256": "2e5c5576677af6d1164930db084782bad5458112a4ed97929e9ec4db044e67e9",
+          "triangles": 288,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "mail_post": 4,
+        "mailbox_lower": 4,
+        "mailbox_round_roof": 4,
+        "mailbox_door": 4,
+        "mailbox_flag": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6225000023841858,
+          1.440000057220459,
+          0.6025000214576721
+        ],
+        "center_y_up": [
+          0.01124998927116394,
+          0.7200000286102295,
+          0.016250014305114746
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-96DD200946B3",
+      "name": "MLBXROW2",
+      "builder": "mailboxes",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-96DD200946B3_lod0.glb",
+          "sha256": "54aa32b7929669df7d576901d694e0ab0829b260634c42dcb41619ad1bd2fb12",
+          "triangles": 3296,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.8224999904632568,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-96DD200946B3_lod1.glb",
+          "sha256": "e633bac1b16e37b64cec95e785fa1407177e6fe2474c07c380880d27fa289a1d",
+          "triangles": 1472,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.8224999904632568,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-96DD200946B3_lod2.glb",
+          "sha256": "83d7453a3506c8069dd095b38f80f071b38648492585c2c6e0d99f02f847578d",
+          "triangles": 288,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.3175000250339508,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.2849999964237213,
+              1.440000057220459
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "mail_post": 4,
+        "mailbox_lower": 4,
+        "mailbox_round_roof": 4,
+        "mailbox_door": 4,
+        "mailbox_flag": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6225000023841858,
+          1.440000057220459,
+          0.6025000214576721
+        ],
+        "center_y_up": [
+          0.01124998927116394,
+          0.7200000286102295,
+          0.016250014305114746
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2EFBB56C7E2A",
+      "name": "MUNI2",
+      "builder": "bus_sign",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_03.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2EFBB56C7E2A_lod0.glb",
+          "sha256": "94a5063a376929ca8bca635397d8ca934b9df74212b31a041d83d71a1cb8db74",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.20999999344348907,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.20999999344348907,
+              0.03500000014901161,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2EFBB56C7E2A_lod1.glb",
+          "sha256": "372cd70d7810322d60232f618b34f236a5900a0a5e7679e8a8bb39503c2e5ac1",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.20999999344348907,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.20999999344348907,
+              0.03328697755932808,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2EFBB56C7E2A_lod2.glb",
+          "sha256": "25ccc8dc6dcd1bfaa1f9130d9695db1f1a0071fea823498267e241bd59c131f9",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.20999999344348907,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.20999999344348907,
+              0.030310887843370438,
+              2.450000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.41999998688697815,
+          2.450000047683716,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.225000023841858,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-981E2FAE23CB",
+      "name": "NEWSPIL2",
+      "builder": "paper_pile",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_03.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-981E2FAE23CB_lod0.glb",
+          "sha256": "e0805b943ed7549095fff01170cd571498942b8aa0b861102d939856af4d2460",
+          "triangles": 1296,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6518115401268005,
+              -0.44108209013938904,
+              0.007999999448657036
+            ],
+            [
+              0.6686626672744751,
+              0.5745248794555664,
+              0.04500000178813934
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-981E2FAE23CB_lod1.glb",
+          "sha256": "b3cd4199f13ba7064f0192c3741a356529c97f8f5709fc8e665a0208692e9c4c",
+          "triangles": 528,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6518115401268005,
+              -0.44108209013938904,
+              0.007999999448657036
+            ],
+            [
+              0.6686626672744751,
+              0.5745248794555664,
+              0.04500000178813934
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-981E2FAE23CB_lod2.glb",
+          "sha256": "82edb5b46014fe47e16ad2afca3cf75b671ee225d3b25d5b8a250d9b438f3f57",
+          "triangles": 144,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6518115401268005,
+              -0.44108209013938904,
+              0.007999999448657036
+            ],
+            [
+              0.6686626672744751,
+              0.5745248794555664,
+              0.04500000178813934
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "loose_paper": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3204742074012756,
+          0.03700000233948231,
+          1.0156069695949554
+        ],
+        "center_y_up": [
+          0.00842556357383728,
+          0.02650000061839819,
+          -0.06672139465808868
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-62F6C9794B12",
+      "name": "NEWSRCK2",
+      "builder": "news_boxes",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/street_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-62F6C9794B12_lod0.glb",
+          "sha256": "a9957aefa904416c39a9c0f9838fb74894b5cd58182fe8bd9a8d98881406396a",
+          "triangles": 972,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-62F6C9794B12_lod1.glb",
+          "sha256": "bfba17bbd6357ed60842ba119011ab6cee97bfd0067c5a0987745571550678ba",
+          "triangles": 396,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-62F6C9794B12_lod2.glb",
+          "sha256": "a8ddf56294a8a5138fc41c690207aecc1d00b8534a332663df5bbfbdfdd08193",
+          "triangles": 72,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.20749999582767487,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cabinet": 3,
+        "recessed_front": 3,
+        "coin_slot": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.299999952316284,
+          1.149999976158142,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.675000011920929,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C33DE3A76E7C",
+      "name": "NWSRCKA2",
+      "builder": "news_boxes",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_03.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C33DE3A76E7C_lod0.glb",
+          "sha256": "0f3cebebd3c9a0f0091b8fdedafb64ece6290a876d702b60effc3561f1f66422",
+          "triangles": 972,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C33DE3A76E7C_lod1.glb",
+          "sha256": "71f057d6d1dafc04b3ea095c929989b2e9a5045766f49142d981d3c135de6391",
+          "triangles": 396,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C33DE3A76E7C_lod2.glb",
+          "sha256": "218e54b02f3cbdab0aafb2ffd9c77a1df112c45dd52c7aca0f6fbe80f5a27f50",
+          "triangles": 72,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.20749999582767487,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cabinet": 3,
+        "recessed_front": 3,
+        "coin_slot": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.299999952316284,
+          1.149999976158142,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.675000011920929,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-398C09779703",
+      "name": "NWSRCKB2",
+      "builder": "news_boxes",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_03.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-398C09779703_lod0.glb",
+          "sha256": "3937aa1ed8e6a06eed52cd6a7bc874df0dd3a49112306db906428d443cae7564",
+          "triangles": 972,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-398C09779703_lod1.glb",
+          "sha256": "754cf8bf7b088c42244099701c8bc4e657060068a20b22c8f1cf0466919246a3",
+          "triangles": 396,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-398C09779703_lod2.glb",
+          "sha256": "dee724cd73693979f6f2d2a8bf1aaee6bc364e0313fbae77f0cc634387591ef6",
+          "triangles": 72,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.20749999582767487,
+              0.10000002384185791
+            ],
+            [
+              1.149999976158142,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cabinet": 3,
+        "recessed_front": 3,
+        "coin_slot": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.299999952316284,
+          1.149999976158142,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.675000011920929,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E8800E0F7319",
+      "name": "ORNGBOX2",
+      "builder": "utility_box",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_03.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E8800E0F7319_lod0.glb",
+          "sha256": "f7a12e4917b403dc6dc215cfb5e38ca0a502954633249c6e9621881e14a92144",
+          "triangles": 324,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E8800E0F7319_lod1.glb",
+          "sha256": "98df3dac52b4eb7216e3179a3468cf8723af26ac2004cdb6c03091492b76fc8b",
+          "triangles": 132,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E8800E0F7319_lod2.glb",
+          "sha256": "024f0ee49102e47cb12840d2b7a942eed21a60780f1ea698a82e38141cb01ffd",
+          "triangles": 24,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.20749999582767487,
+              0.10000002384185791
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          1.149999976158142,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.675000011920929,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1286FE789E92",
+      "name": "PARCEL2",
+      "builder": "parcel_box",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_04.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1286FE789E92_lod0.glb",
+          "sha256": "2fdb7a3f37f9fdfe0e0dd9476160c139cc4ea932a89923a863b78d96b088a763",
+          "triangles": 324,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1286FE789E92_lod1.glb",
+          "sha256": "f88de43e80ee023e4eb5ce5f7ca24f036b9486db510edfc8faee568f26950055",
+          "triangles": 132,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.23000000417232513,
+              0.10000002384185791
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1286FE789E92_lod2.glb",
+          "sha256": "b865094eadeada6777ef0d73e4a10752ca50d9b94208459366eb48cc27e350f0",
+          "triangles": 24,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.20749999582767487,
+              0.10000002384185791
+            ],
+            [
+              0.3499999940395355,
+              0.17499999701976776,
+              1.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          1.149999976158142,
+          0.4050000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.675000011920929,
+          0.027500003576278687
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-66FA8ACD424A",
+      "name": "PHNBTH22",
+      "builder": "pagoda_phone_booth",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_04.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-66FA8ACD424A_lod0.glb",
+          "sha256": "6f7a9a15d010fdd493fc62927f94b1e60198a141abc9d4a43a3c81fc6918f621",
+          "triangles": 12184,
+          "parts": 12,
+          "bounds_blender": [
+            [
+              -0.7669377326965332,
+              -0.6100000143051147,
+              0.0
+            ],
+            [
+              0.7669377326965332,
+              0.6100000143051147,
+              2.7133610248565674
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-66FA8ACD424A_lod1.glb",
+          "sha256": "9d76d563a1039751520befcaf3b68f350edd25d59a2965ed7beb5a2ca4c5498e",
+          "triangles": 1288,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.7669377326965332,
+              -0.6100000143051147,
+              0.0
+            ],
+            [
+              0.7669377326965332,
+              0.6100000143051147,
+              2.7133610248565674
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-66FA8ACD424A_lod2.glb",
+          "sha256": "b2cafb7d80fc9d03d4198a7b5170005038f879d3ac75fadd4a560ae36067404b",
+          "triangles": 188,
+          "parts": 8,
+          "bounds_blender": [
+            [
+              -0.7669377326965332,
+              -0.6100000143051147,
+              0.0
+            ],
+            [
+              0.7669377326965332,
+              0.6100000143051147,
+              2.7133610248565674
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "booth_posts": 4,
+        "booth_front_rails": 3,
+        "booth_glazing": 2,
+        "booth_roof": 1,
+        "pagoda_roof_wings": 2,
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1,
+        "phone_keypad": 9,
+        "handset": 1,
+        "phone_cord": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5338754653930664,
+          2.7133610248565674,
+          1.2200000286102295
+        ],
+        "center_y_up": [
+          0.0,
+          1.3566805124282837,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0D93FAFB066D",
+      "name": "PHONBTH2",
+      "builder": "phone_booth",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/street_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0D93FAFB066D_lod0.glb",
+          "sha256": "4e59dc106e4391579c3941d992f4d45943290c51c69dbad480fa0d8e46028767",
+          "triangles": 11968,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.574999988079071,
+              -0.5249999761581421,
+              0.0
+            ],
+            [
+              0.574999988079071,
+              0.5249999761581421,
+              2.315000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0D93FAFB066D_lod1.glb",
+          "sha256": "795beaf8e06a542d33e4c1b6b1e8acdb63cb30b068c5cf5ce6cc657f511f1c40",
+          "triangles": 1200,
+          "parts": 10,
+          "bounds_blender": [
+            [
+              -0.574999988079071,
+              -0.5249999761581421,
+              0.0
+            ],
+            [
+              0.574999988079071,
+              0.5249999761581421,
+              2.315000057220459
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0D93FAFB066D_lod2.glb",
+          "sha256": "411c0c1a40c9e1dd4f542b7128eabd11e9b9cd92190524e6b35c3b468d255ac1",
+          "triangles": 164,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.574999988079071,
+              -0.5249999761581421,
+              0.0
+            ],
+            [
+              0.574999988079071,
+              0.5249999761581421,
+              2.315000057220459
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "booth_posts": 4,
+        "booth_front_rails": 3,
+        "booth_glazing": 2,
+        "booth_roof": 1,
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1,
+        "phone_keypad": 9,
+        "handset": 1,
+        "phone_cord": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.149999976158142,
+          2.315000057220459,
+          1.0499999523162842
+        ],
+        "center_y_up": [
+          0.0,
+          1.1575000286102295,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A1C328826BD8",
+      "name": "PHONE2",
+      "builder": "payphone_pair",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_04.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A1C328826BD8_lod0.glb",
+          "sha256": "86fc993415bb40228ff0c5a0320e8d3bc98e5d85d6975feb4a2ac7c7179aea72",
+          "triangles": 21776,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.5900000333786011,
+              -0.29500001668930054,
+              0.0
+            ],
+            [
+              0.5900000333786011,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A1C328826BD8_lod1.glb",
+          "sha256": "3753790484da1657a4b00994bc5343859f696497fd84adc3981a994356e4ef73",
+          "triangles": 1520,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.5900000333786011,
+              -0.2927975356578827,
+              0.0
+            ],
+            [
+              0.5900000333786011,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A1C328826BD8_lod2.glb",
+          "sha256": "984d2fc71b8899c749462829695f1f558e7b61136ffcb8bec0786bd63d7ba918",
+          "triangles": 88,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.5900000333786011,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.5900000333786011,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fixture_post": 2,
+        "cabinet": 2,
+        "recessed_front": 2,
+        "coin_slot": 2,
+        "phone_keypad": 18,
+        "handset": 2,
+        "phone_cord": 24
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.1800000667572021,
+          1.5,
+          0.4700000137090683
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.06000000983476639
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D754A11E670E",
+      "name": "PHONEB2",
+      "builder": "payphone",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_04.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D754A11E670E_lod0.glb",
+          "sha256": "fbf27b3e66df18f4d1ad88d311880f64fdc5902b6279d2860019e896f640b9f7",
+          "triangles": 10888,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.29500001668930054,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D754A11E670E_lod1.glb",
+          "sha256": "c5fc00fcc37ffdfd2334f318ccceb72326c536f4f505644703c3b78278e9d4a6",
+          "triangles": 760,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.2927975356578827,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D754A11E670E_lod2.glb",
+          "sha256": "efd4e8e936bc05a39a016b47ac2555ce27d96cf4c03563606a4fe686e80d788d",
+          "triangles": 44,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1,
+        "phone_keypad": 9,
+        "handset": 1,
+        "phone_cord": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3799999952316284,
+          1.5,
+          0.4700000137090683
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.06000000983476639
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-EC9C7FC58D70",
+      "name": "PHONEC2",
+      "builder": "payphone",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_04.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-EC9C7FC58D70_lod0.glb",
+          "sha256": "f94180dbe172f85e85ada64788d83ad3e5b7df7b1c0fad2c183fd014d15d2b58",
+          "triangles": 10888,
+          "parts": 7,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.29500001668930054,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-EC9C7FC58D70_lod1.glb",
+          "sha256": "6e0a3b0ce2f364bbacb4d9a121116e9b8792860ddfff4c62bdfa9eac037a7532",
+          "triangles": 760,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.2927975356578827,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-EC9C7FC58D70_lod2.glb",
+          "sha256": "8e2f50866a0fd3d09b829efe4d68904fdfcaf434e03641630441e4d835154b82",
+          "triangles": 44,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1899999976158142,
+              -0.20749999582767487,
+              0.0
+            ],
+            [
+              0.1899999976158142,
+              0.17499999701976776,
+              1.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fixture_post": 1,
+        "cabinet": 1,
+        "recessed_front": 1,
+        "coin_slot": 1,
+        "phone_keypad": 9,
+        "handset": 1,
+        "phone_cord": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3799999952316284,
+          1.5,
+          0.4700000137090683
+        ],
+        "center_y_up": [
+          0.0,
+          0.75,
+          0.06000000983476639
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-61744FEF0A60",
+      "name": "PICNTBL2",
+      "builder": "picnic_table",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_04.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-61744FEF0A60_lod0.glb",
+          "sha256": "63d978a5e601568da1285fbb33d54939f6a2f9589d2782d0d27b4528a087d413",
+          "triangles": 3016,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.9750000238418579,
+              -0.6899999976158142,
+              0.0
+            ],
+            [
+              0.9750000238418579,
+              0.6899999976158142,
+              0.8338820934295654
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-61744FEF0A60_lod1.glb",
+          "sha256": "e9dbc7b7e704f7504e5d4d9f7c52d954f19f5397a1e01684792a1330a0a8d6e7",
+          "triangles": 1544,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.9750000238418579,
+              -0.6899999976158142,
+              0.0
+            ],
+            [
+              0.9750000238418579,
+              0.6899999976158142,
+              0.8325908184051514
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-61744FEF0A60_lod2.glb",
+          "sha256": "5b49e0e65ebd1c628fcc5d834448889e84e4830d67da642d03e2ad7dc9e8d780",
+          "triangles": 328,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.9750000238418579,
+              -0.6899999976158142,
+              0.0
+            ],
+            [
+              0.9750000238418579,
+              0.6899999976158142,
+              0.8303475379943848
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bench_legs": 4,
+        "seat_slats": 5,
+        "table_planks": 7,
+        "picnic_seat": 2,
+        "A_frame": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.9500000476837158,
+          0.8338820934295654,
+          1.3799999952316284
+        ],
+        "center_y_up": [
+          0.0,
+          0.4169410467147827,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8BC64D3E0481",
+      "name": "RECYCLE2",
+      "builder": "recycling_pair",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/street_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8BC64D3E0481_lod0.glb",
+          "sha256": "8ff048c7507848f4876b58d056e001a9e5b02f0df7601dc8243c9e330eb29841",
+          "triangles": 864,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8BC64D3E0481_lod1.glb",
+          "sha256": "154372c15a08e62b2ee97cf2a6efa3497df61bf5631876c946126aeacb8d21ac",
+          "triangles": 352,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8BC64D3E0481_lod2.glb",
+          "sha256": "3d8715a73e40479685605e0511b5d352cfc3b309a990d2ae78888b34a4326104",
+          "triangles": 48,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "waste_container": 2,
+        "bin_lid": 2,
+        "bin_handle": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3800000846385956,
+          1.0099999606609344,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.36000002920627594,
+          0.5299999862909317,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D9B4A3B9AFC2",
+      "name": "SDWLKBX2",
+      "builder": "flower_planter",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_05.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D9B4A3B9AFC2_lod0.glb",
+          "sha256": "4eead9b1f090df9b473c8b09095b8caa5c044e44b8a56c87a7ce0f85446ed864",
+          "triangles": 5832,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.7980465888977051,
+              -0.4695085287094116,
+              0.0
+            ],
+            [
+              0.7733473181724548,
+              0.5110706090927124,
+              1.3331226110458374
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D9B4A3B9AFC2_lod1.glb",
+          "sha256": "663d4cd0fadf194d5712577eadeff7a95e06c49aaffea1b72f9a5565b855d6cc",
+          "triangles": 5120,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.7833635807037354,
+              -0.4465905427932739,
+              0.0
+            ],
+            [
+              0.7586642503738403,
+              0.4881526231765747,
+              1.3331226110458374
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D9B4A3B9AFC2_lod2.glb",
+          "sha256": "d5685ba2061b3b809e288c6e24c569e3e6570c9d51cc00ff6556ca938f9b54f4",
+          "triangles": 336,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7980465888977051,
+              -0.4373546242713928,
+              0.0
+            ],
+            [
+              0.7733473181724548,
+              0.4789167046546936,
+              1.3331226110458374
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "planter": 1,
+        "plant_stem": 9,
+        "foliage": 9,
+        "flowers": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.57139390707016,
+          1.3331226110458374,
+          0.980579137802124
+        ],
+        "center_y_up": [
+          -0.012349635362625122,
+          0.6665613055229187,
+          -0.02078104019165039
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-5233094C648C",
+      "name": "TRASHA2",
+      "builder": "trash_can",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_05.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-5233094C648C_lod0.glb",
+          "sha256": "f0ecbfec4d6be26f880aa60785ca8c1e025f3ae87aa77b00d02b8bd73c7eced5",
+          "triangles": 432,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-5233094C648C_lod1.glb",
+          "sha256": "b932a19f1a997d17a89b8d2a2f3c44e3318aa07d0c274eac350cef74050c3f4d",
+          "triangles": 176,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-5233094C648C_lod2.glb",
+          "sha256": "88ba5a7205da0c285ffd1aaab5b23f6cd22daa766df77407eb4c34883f94a65c",
+          "triangles": 24,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "waste_container": 1,
+        "bin_lid": 1,
+        "bin_handle": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          1.0099999606609344,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.0,
+          0.5299999862909317,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-78013D8C2257",
+      "name": "TRASHB2",
+      "builder": "fallen_can",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_05.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-78013D8C2257_lod0.glb",
+          "sha256": "6029fb8f769b0e7a9583c629326428332b289256df1697e7f56de34298ead3fd",
+          "triangles": 604,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.5,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.25,
+              0.4000000059604645,
+              0.6100000143051147
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-78013D8C2257_lod1.glb",
+          "sha256": "6d80f8365042117fa273abec0eaab5c476e8d1dbcc4389f68999e134dd9c9641",
+          "triangles": 260,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.5,
+              -0.36180341243743896,
+              0.0
+            ],
+            [
+              1.223081111907959,
+              0.36180341243743896,
+              0.6100000143051147
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-78013D8C2257_lod2.glb",
+          "sha256": "807fd6e3a5faca505c3451202ca702209fbc258f70107b4e8a5a7aa0e86fc138",
+          "triangles": 56,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.5,
+              -0.3464101552963257,
+              0.0
+            ],
+            [
+              1.25,
+              0.3464101552963257,
+              0.6100000143051147
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "fallen_can": 1,
+        "spilled_rubbish": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.75,
+          0.6100000143051147,
+          0.800000011920929
+        ],
+        "center_y_up": [
+          0.375,
+          0.3050000071525574,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-909DC4F4D92E",
+      "name": "TRSHBGA2",
+      "builder": "trash_bags",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_05.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-909DC4F4D92E_lod0.glb",
+          "sha256": "5518d334b8a62c75199985a9318704528e530d02c3f31837fad826dbf3deaf35",
+          "triangles": 1648,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6499999761581421,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-909DC4F4D92E_lod1.glb",
+          "sha256": "3251b26fa9f4ee15c6e960ba7d335e556e15b14a452c8473af095f2b1a35c8e9",
+          "triangles": 1456,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7867852449417114,
+              -0.20803695917129517,
+              0.0
+            ],
+            [
+              0.7867852449417114,
+              0.6280369758605957,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-909DC4F4D92E_lod2.glb",
+          "sha256": "480188ae719d630a2434d9ae6179d8088622af31261ae67bd3137a15577fc3a9",
+          "triangles": 144,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.19918584823608398,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6191858649253845,
+              0.47999998927116394
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rubbish_bag": 4,
+        "bag_knot": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.600000023841858,
+          0.5032966732978821,
+          0.8799999803304672
+        ],
+        "center_y_up": [
+          0.0,
+          0.25164833664894104,
+          -0.20999998599290848
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4B81B9F9CDBE",
+      "name": "TRSHBGB2",
+      "builder": "trash_bags",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_05.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4B81B9F9CDBE_lod0.glb",
+          "sha256": "c676d72aadb7d9210e69431dfab266887883ea9bf0ca1996fed3df8fc2fc725d",
+          "triangles": 1648,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6499999761581421,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4B81B9F9CDBE_lod1.glb",
+          "sha256": "57adc46fb7f5bdeb9f9e316fa127ae1a28d901a050299b1cc995da91dc4a3221",
+          "triangles": 1456,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7867852449417114,
+              -0.20803695917129517,
+              0.0
+            ],
+            [
+              0.7867852449417114,
+              0.6280369758605957,
+              0.5032966732978821
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4B81B9F9CDBE_lod2.glb",
+          "sha256": "123b22bb968c76e13f21a7f62688cfc9d0c3c26e8c258128c39fd0bb29df0c1b",
+          "triangles": 144,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.800000011920929,
+              -0.19918584823608398,
+              0.0
+            ],
+            [
+              0.800000011920929,
+              0.6191858649253845,
+              0.47999998927116394
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rubbish_bag": 4,
+        "bag_knot": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.600000023841858,
+          0.5032966732978821,
+          0.8799999803304672
+        ],
+        "center_y_up": [
+          0.0,
+          0.25164833664894104,
+          -0.20999998599290848
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-193FC185D553",
+      "name": "TRSHBNA2",
+      "builder": "street_bin",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_05.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-193FC185D553_lod0.glb",
+          "sha256": "41186218e57ffb813b4c2ffd66d2a29d98026a2022bc459a95ec705d706a0ae7",
+          "triangles": 432,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-193FC185D553_lod1.glb",
+          "sha256": "47e7b887011490487548df771faa0a331f8ca02960c209ac3caf184ce8307365",
+          "triangles": 176,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-193FC185D553_lod2.glb",
+          "sha256": "6099815f4ea88ca3b083dbf22dca10c280bbcf08648bd89a3dd1f239264f591c",
+          "triangles": 24,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              0.33000001311302185,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "waste_container": 1,
+        "bin_lid": 1,
+        "bin_handle": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          1.0099999606609344,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.0,
+          0.5299999862909317,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-9523B2D29DAD",
+      "name": "TRSHBNB2",
+      "builder": "barrel",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_06.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-9523B2D29DAD_lod0.glb",
+          "sha256": "16575a3e8ee98a8f951fe6747c8c752194d9fac78fc25f53fa17c6bc82bb852f",
+          "triangles": 3448,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33500000834465027,
+              -0.33500000834465027,
+              0.03999999910593033
+            ],
+            [
+              0.33500000834465027,
+              0.33500000834465027,
+              0.9300000071525574
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-9523B2D29DAD_lod1.glb",
+          "sha256": "ea1cd11236b9d0e45d51e34a090eb261403e936777cb703ab7648c311e109c65",
+          "triangles": 1192,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33500000834465027,
+              -0.3186039328575134,
+              0.03999999910593033
+            ],
+            [
+              0.33500000834465027,
+              0.3186039328575134,
+              0.9300000071525574
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-9523B2D29DAD_lod2.glb",
+          "sha256": "9c4769fc2632503c74399b835a5024bd8482ceb51c775a4d2e3d52202be76987",
+          "triangles": 40,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.26846787333488464,
+              0.03999999910593033
+            ],
+            [
+              0.3100000023841858,
+              0.26846787333488464,
+              0.9300000071525574
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barrel_body": 1,
+        "barrel_ribs": 4,
+        "barrel_lid": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6700000166893005,
+          0.890000008046627,
+          0.6700000166893005
+        ],
+        "center_y_up": [
+          0.0,
+          0.48500000312924385,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CACC5298FEF3",
+      "name": "TRSHDBL2",
+      "builder": "bin_pair",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_06.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CACC5298FEF3_lod0.glb",
+          "sha256": "37a8f0233634a09323fba36b3937a8fbc4506694bcb56bd9ba57793bd5cb1ec1",
+          "triangles": 864,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CACC5298FEF3_lod1.glb",
+          "sha256": "d9fba00857c49a45da8e9d1123819f58969ceb49b87122edfd61df573d53a54b",
+          "triangles": 352,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CACC5298FEF3_lod2.glb",
+          "sha256": "149557656b2e1ae05294c2951ba8a66d67d5c270e1f9a834af541b4508521fc2",
+          "triangles": 48,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.3050000071525574,
+              0.025000005960464478
+            ],
+            [
+              1.0500000715255737,
+              0.3050000071525574,
+              1.034999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "waste_container": 2,
+        "bin_lid": 2,
+        "bin_handle": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3800000846385956,
+          1.0099999606609344,
+          0.6100000143051147
+        ],
+        "center_y_up": [
+          0.36000002920627594,
+          0.5299999862909317,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F7CB7C9D706C",
+      "name": "VEGSTND2",
+      "builder": "produce_stand",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_06.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F7CB7C9D706C_lod0.glb",
+          "sha256": "c8f18689300f46f5fd2825aceb238e7ac1659efe4a859ddb7fd862fe0b2927c0",
+          "triangles": 7044,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.149999976158142,
+              0.4000000059604645,
+              1.1299999952316284
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F7CB7C9D706C_lod1.glb",
+          "sha256": "9816c43315a68158326ab21c8e5c12b203f4613f7575b47899a2ddd8b1bf946f",
+          "triangles": 6612,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.149999976158142,
+              0.4000000059604645,
+              1.1299999952316284
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F7CB7C9D706C_lod2.glb",
+          "sha256": "d21fbdd35c0f810ebf3dd6bf3f8f5a321ce35242aab209af1ce4cd20d6c9fe6d",
+          "triangles": 36,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.149999976158142,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.149999976158142,
+              0.4000000059604645,
+              1.0499999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "produce_bin": 1,
+        "stand_legs": 2,
+        "produce_fruit": 30
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.299999952316284,
+          1.1299999952316284,
+          0.800000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          0.5649999976158142,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-77A6C5843E47",
+      "name": "WGNBRRL2",
+      "builder": "barrel_wagon",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_06.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-77A6C5843E47_lod0.glb",
+          "sha256": "166f5993dc8133f3b4f96105dfecae5a64aaa0a263ef8bd88dd75b0f1dbac74f",
+          "triangles": 16972,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.399999976158142,
+              -0.8399999737739563,
+              0.25999999046325684
+            ],
+            [
+              1.399999976158142,
+              0.8399999737739563,
+              1.3300000429153442
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-77A6C5843E47_lod1.glb",
+          "sha256": "2cd6c52162b40a757d2446c30aedc752d8953856fef176307756daf19050561d",
+          "triangles": 5772,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.399999976158142,
+              -0.8258063793182373,
+              0.26195773482322693
+            ],
+            [
+              1.399999976158142,
+              0.8258063793182373,
+              1.3300000429153442
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-77A6C5843E47_lod2.glb",
+          "sha256": "8d99a270408855e9111a9c929011a74b1836978e12fe8d077a15e73e023e59db",
+          "triangles": 364,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.399999976158142,
+              -0.8011473417282104,
+              0.25999999046325684
+            ],
+            [
+              1.399999976158142,
+              0.8011473417282104,
+              1.3300000429153442
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barrel_body": 4,
+        "barrel_ribs": 16,
+        "barrel_lid": 4,
+        "wagon_deck": 1,
+        "wagon_wheels": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.799999952316284,
+          1.0700000524520874,
+          1.6799999475479126
+        ],
+        "center_y_up": [
+          0.0,
+          0.7950000166893005,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-5DA0FFA05D33",
+      "name": "WINDVN2",
+      "builder": "windmill",
+      "group": "street_furniture",
+      "concept": {
+        "file": "art/props/concept_3d/all_street_furniture_06.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-5DA0FFA05D33_lod0.glb",
+          "sha256": "87d34b035f8816317945a41de02ac72ad2b15e654cedb9b23996cf12fa902783",
+          "triangles": 596,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.100000023841858,
+              -0.5397002100944519,
+              0.0
+            ],
+            [
+              1.100000023841858,
+              0.6894820928573608,
+              5.108280181884766
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-5DA0FFA05D33_lod1.glb",
+          "sha256": "86cce17e2e2ee44e58a20e65daddf94bdbcfefcb57e7d4cd234b1623818ad5a7",
+          "triangles": 380,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.100000023841858,
+              -0.5377570986747742,
+              0.0
+            ],
+            [
+              1.100000023841858,
+              0.6875497102737427,
+              5.108408451080322
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-5DA0FFA05D33_lod2.glb",
+          "sha256": "8b9c97599518e76e43f96f833d57176a972ea5cbf52c57c21b4cf11e65821a97",
+          "triangles": 92,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -1.100000023841858,
+              -0.5343813896179199,
+              0.0
+            ],
+            [
+              1.100000023841858,
+              0.6841924786567688,
+              5.107617378234863
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "windmill_tower": 3,
+        "windmill_sails": 16
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.200000047683716,
+          5.108280181884766,
+          1.2291823029518127
+        ],
+        "center_y_up": [
+          0.0,
+          2.554140090942383,
+          -0.07489094138145447
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

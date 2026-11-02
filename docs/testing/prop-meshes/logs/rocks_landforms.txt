@@ -1,0 +1,209 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.007168769836425781 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.001
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.004402637481689453 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.002
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.005454540252685547 s
+
+EXPORTED PROP-CFF281F9BD5B BOULDA22 [654, 248, 56]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.003
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.00554347038269043 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.004
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.004540205001831055 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.005
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.003613710403442383 s
+
+EXPORTED PROP-4B85C37FDB2E BOULDC22 [804, 264, 56]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.006
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.006485939025878906 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.007
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.004382610321044922 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.008
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.004050254821777344 s
+
+EXPORTED PROP-BB5EFFBC48E1 BOULDRA2 [728, 256, 56]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.009
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.006203413009643555 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.010
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0043032169342041016 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.011
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0049974918365478516 s
+
+EXPORTED PROP-25FFB21EAFCE BOULDRD2 [726, 256, 56]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: log
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Extracting primitive: cut_log_end
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.014131546020507812 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: log.001
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Extracting primitive: cut_log_end.001
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.010660648345947266 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: log.002
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Extracting primitive: cut_log_end.002
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.006658077239990234 s
+
+EXPORTED PROP-B50FBD8BC166 LOGS2 [2632, 1624, 280]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: stump
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Extracting primitive: cut_growth_rings
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.007371425628662109 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: stump.001
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Extracting primitive: cut_growth_rings.001
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.007173061370849609 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: stump.002
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Extracting primitive: cut_growth_rings.002
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.00617218017578125 s
+
+EXPORTED PROP-C06900B3BF02 LOGV2 [376, 232, 40]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.012
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.011843442916870117 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.013
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0071527957916259766 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.014
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0043413639068603516 s
+
+EXPORTED PROP-ED02F1904540 ROCKB2 [3114, 1002, 224]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.015
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.013108491897583008 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.016
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0074291229248046875 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.017
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0036814212799072266 s
+
+EXPORTED PROP-76445B97A926 ROCKS12 [3206, 1052, 224]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.018
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.012456655502319336 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.019
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.007263898849487305 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.020
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.003816366195678711 s
+
+EXPORTED PROP-844848DA7F11 ROCKS22 [3188, 994, 224]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.021
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.01111745834350586 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.022
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.01010441780090332 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.023
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.004100322723388672 s
+
+EXPORTED PROP-CD51229BED7C ROCKS32 [2958, 1036, 224]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.024
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.011635065078735352 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.025
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.007080793380737305 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.026
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.0038907527923583984 s
+
+EXPORTED PROP-A00CEBC2C86C ROCKS42 [3114, 1036, 224]
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.027
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.011612176895141602 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.028
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.006715297698974609 s
+
+20:17:35 | INFO: Starting glTF 2.0 export
+20:17:35 | INFO: Extracting primitive: rock.029
+20:17:35 | INFO: Primitives created: 1
+20:17:35 | INFO: Finished glTF 2.0 export in 0.003811359405517578 s
+
+EXPORTED PROP-45E813BF273E ROCKS52 [3084, 994, 224]
+Info: Saved as "rocks_landforms.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

@@ -1,0 +1,69 @@
+{
+  "active_fixed_ticks": 864,
+  "city": {
+    "buildings": 977,
+    "captures": 9,
+    "district_zones": [
+      {
+        "district": "victorian_residential",
+        "end_m": 600.0,
+        "start_m": 0.0
+      },
+      {
+        "district": "industrial_warehouses",
+        "end_m": 1300.0,
+        "start_m": 600.0
+      },
+      {
+        "district": "run_down_quarter",
+        "end_m": 1800.0,
+        "start_m": 1300.0
+      },
+      {
+        "district": "commercial_high_street",
+        "end_m": 2600.0,
+        "start_m": 1800.0
+      },
+      {
+        "district": "office_centre",
+        "end_m": 3300.0,
+        "start_m": 2600.0
+      },
+      {
+        "district": "chinatown",
+        "end_m": 3800.0,
+        "start_m": 3300.0
+      },
+      {
+        "district": "commercial_high_street",
+        "end_m": 4400.0,
+        "start_m": 3800.0
+      },
+      {
+        "district": "victorian_residential",
+        "end_m": 5300.0,
+        "start_m": 4400.0
+      }
+    ],
+    "facade_designs_used": 85,
+    "geometric_facade_instances": 8904,
+    "length_m": 5300.0,
+    "requested_lods": 181,
+    "scope": "actual playable world; survey viewpoints are developer camera overrides; no steady-state racing performance approval"
+  },
+  "colliders": 2430,
+  "entities": 115611,
+  "fixed_ticks": 900,
+  "last_gameplay_ms": 0.4307760000228882,
+  "last_physics_ms": 4.609823226928711,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "render_frames": 901,
+  "survey_wall_frames_ms": {
+    "median": 16.12352,
+    "p95": 24.426872,
+    "samples": 809
+  },
+  "target_hz": 60.0,
+  "wall_frame_average_ms": 16.73567008972168,
+  "wall_frame_p95_ms": 20.388246536254883
+}

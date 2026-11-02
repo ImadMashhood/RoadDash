@@ -1,0 +1,195 @@
+{
+  "id": "farms_agriculture",
+  "label": "Farms / agriculture",
+  "asset_ids": [
+    "BARN12",
+    "BARN22",
+    "BARN32",
+    "BARND2",
+    "GRNTNK2",
+    "HAYSHED2"
+  ],
+  "placement_guidance": "Barns, grain storage and open hay shelters; standalone field-edge placement with yard clearance.",
+  "assets": [
+    {
+      "id": "BARN12",
+      "asset_type": "structure",
+      "primary_district": "farms_agriculture",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        26,
+        261
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BARN12_lod0.glb",
+          "sha256": "b9589c5745d605b69600ad42320e4ed9456141271e78c66695c462bb4286a1b3"
+        },
+        {
+          "file": "../../models/BARN12_lod1.glb",
+          "sha256": "f11945bb7336166936923ab6a92ec4fedac365296e14910143287552a95d8a03"
+        },
+        {
+          "file": "../../models/BARN12_lod2.glb",
+          "sha256": "fd6589828a6c0dcd9fd97036adce9699a6f4a021eca236233fadfe26359b979c"
+        }
+      ],
+      "render": "../../catalog_renders/BARN12.png"
+    },
+    {
+      "id": "BARN22",
+      "asset_type": "structure",
+      "primary_district": "farms_agriculture",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        85,
+        251
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BARN22_lod0.glb",
+          "sha256": "379e8db67692b6366cbedf1605ddb5c49724991f55c8a3836ab233b273c77157"
+        },
+        {
+          "file": "../../models/BARN22_lod1.glb",
+          "sha256": "9e0c57e9cbfe7f6d7b1ab0e95e41f9a37b1bc29a79aaf7baab3ddff8ff6fb237"
+        },
+        {
+          "file": "../../models/BARN22_lod2.glb",
+          "sha256": "bffa6ddb0eaba5830e0e621f941aa8a787d1064d81473fe75c0394fc9ef7e8a5"
+        }
+      ],
+      "render": "../../catalog_renders/BARN22.png"
+    },
+    {
+      "id": "BARN32",
+      "asset_type": "structure",
+      "primary_district": "farms_agriculture",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        26,
+        251,
+        261
+      ],
+      "original_course_family_load_matches": [
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BARN32_lod0.glb",
+          "sha256": "dbf5836db585fe20854ef70ec39dd0a8f4373858852282f5df8099abf9325db0"
+        },
+        {
+          "file": "../../models/BARN32_lod1.glb",
+          "sha256": "27081653a878adffb2e5879bf2030ce5bd97cb11380ad8139cf9ec3189b4f633"
+        },
+        {
+          "file": "../../models/BARN32_lod2.glb",
+          "sha256": "39d5cce93c9a669c2340067aa752b4cc7c3de3ca1e890fb6cab19359b25d989e"
+        }
+      ],
+      "render": "../../catalog_renders/BARN32.png"
+    },
+    {
+      "id": "BARND2",
+      "asset_type": "structure",
+      "primary_district": "farms_agriculture",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        28
+      ],
+      "original_course_family_load_matches": [
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BARND2_lod0.glb",
+          "sha256": "78f07646e8ed5ea1c8735574d25f4c80460e246919cebf6ae71171c2c52447a7"
+        },
+        {
+          "file": "../../models/BARND2_lod1.glb",
+          "sha256": "38ec3f67093f440652a9b013986f9e74ad4772e24cb950d1396511375c1575ab"
+        },
+        {
+          "file": "../../models/BARND2_lod2.glb",
+          "sha256": "fc66021ab1eddaaa2df785438274502ba8ac32a145cb553197df0287b64510b0"
+        }
+      ],
+      "render": "../../catalog_renders/BARND2.png"
+    },
+    {
+      "id": "GRNTNK2",
+      "asset_type": "structure",
+      "primary_district": "farms_agriculture",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        85,
+        251
+      ],
+      "original_course_family_load_matches": [
+        "HIWAY",
+        "NAPA",
+        "CANYN"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/GRNTNK2_lod0.glb",
+          "sha256": "388cc6c28baf0b952b653065d8fb6285033392cd3e57963ea38c891285f69b4e"
+        },
+        {
+          "file": "../../models/GRNTNK2_lod1.glb",
+          "sha256": "547270d9cd2613d27dae88dc7aa8f0849fde74e39ae05f3b38eb038200621525"
+        },
+        {
+          "file": "../../models/GRNTNK2_lod2.glb",
+          "sha256": "e37a847f605c6efc15c13d8d3a04f78ef6474076401b0b04cd73692e9bffbb8b"
+        }
+      ],
+      "render": "../../catalog_renders/GRNTNK2.png"
+    },
+    {
+      "id": "HAYSHED2",
+      "asset_type": "structure",
+      "primary_district": "farms_agriculture",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        250
+      ],
+      "original_course_family_load_matches": [
+        "NAPA"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/HAYSHED2_lod0.glb",
+          "sha256": "36c14bcf489cb1621e8bb146f368a45504be5fa84557f6381661d069da310cf9"
+        },
+        {
+          "file": "../../models/HAYSHED2_lod1.glb",
+          "sha256": "fa8cf6409bbe0b908b10c2b734281e41e07a4b45f533cf0e29021d8618f7066a"
+        },
+        {
+          "file": "../../models/HAYSHED2_lod2.glb",
+          "sha256": "4c8a5d182e83b1ef94a3a52260b641956ee19a07072a8f80940fe895cdcde298"
+        }
+      ],
+      "render": "../../catalog_renders/HAYSHED2.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

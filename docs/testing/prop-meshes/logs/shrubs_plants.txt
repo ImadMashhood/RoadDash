@@ -1,0 +1,347 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.019289016723632812 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.001
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.001
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.015445947647094727 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.002
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.0040934085845947266 s
+
+EXPORTED PROP-70BCB4C8377F BSHCMB2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.002
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.003
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.014293909072875977 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.003
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.004
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.015113353729248047 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.005
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.003750324249267578 s
+
+EXPORTED PROP-22E75A0AB4D0 BSHCMBA2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.004
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.006
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.014292716979980469 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.005
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.007
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.015239715576171875 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.008
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.0037767887115478516 s
+
+EXPORTED PROP-E506F8AF3772 BSHCMC2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.006
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.009
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.014240026473999023 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.007
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.010
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.014816761016845703 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.011
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.0038101673126220703 s
+
+EXPORTED PROP-1E72768CE36F BSHCMD2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.008
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.012
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.014629840850830078 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.009
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.013
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.01564478874206543 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.014
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.003869295120239258 s
+
+EXPORTED PROP-595D1B8CDE5C BUSHA2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.010
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.015
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.013991117477416992 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.011
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.016
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.015125274658203125 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.017
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.004822492599487305 s
+
+EXPORTED PROP-B7292E77C7F9 BUSHB2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.012
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.018
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.013714075088500977 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.013
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.019
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.015203237533569336 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.020
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.019782304763793945 s
+
+EXPORTED PROP-965FC320AF72 BUSHC2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.014
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.021
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.013529539108276367 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.015
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Extracting primitive: foliage.022
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.015102386474609375 s
+
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: foliage.023
+20:17:37 | INFO: Primitives created: 1
+20:17:37 | INFO: Finished glTF 2.0 export in 0.004126548767089844 s
+
+EXPORTED PROP-ADD27719D27D BUSHD2 [3708, 3276, 324]
+20:17:37 | INFO: Starting glTF 2.0 export
+20:17:37 | INFO: Extracting primitive: plant_stem.016
+20:17:37 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.024
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.014087677001953125 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.017
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.025
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.014841079711914062 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: foliage.026
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.003964424133300781 s
+
+EXPORTED PROP-CE1E7C480E20 BUSHE2 [3708, 3276, 324]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.018
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.027
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.015040159225463867 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.019
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.028
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.015154600143432617 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: foliage.029
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.004303932189941406 s
+
+EXPORTED PROP-E9BEBA3A5649 BUSHF2 [3708, 3276, 324]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.020
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.030
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.013795614242553711 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.021
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.031
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.015481710433959961 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: foliage.032
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.00391840934753418 s
+
+EXPORTED PROP-7FFB497B4844 BUSHG2 [3708, 3276, 324]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.022
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.033
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.01376652717590332 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.023
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.034
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.015377283096313477 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: foliage.035
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.004051923751831055 s
+
+EXPORTED PROP-232976AA95F2 BUSHH2 [3708, 3276, 324]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.024
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.036
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.013480186462402344 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: plant_stem.025
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.037
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.014898538589477539 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: foliage.038
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.004050016403198242 s
+
+EXPORTED PROP-1BA4EAB36F19 BUSHJ2 [3708, 3276, 324]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: planter
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: plant_stem.026
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.039
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: flowers
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.022303342819213867 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: planter.001
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: plant_stem.027
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.040
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: flowers.001
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.02583146095275879 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: planter.002
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.041
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.006684541702270508 s
+
+EXPORTED PROP-595EFDBBC346 FLOWRBX2 [5832, 5120, 336]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: vine_stake
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: plant_stem.028
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.042
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.015089035034179688 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: vine_stake.001
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: plant_stem.029
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.043
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.017101764678955078 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: vine_stake.002
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.044
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.006967067718505859 s
+
+EXPORTED PROP-4E5DD56A1882 VINEA2 [3072, 2664, 272]
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: vine_stake.003
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: plant_stem.030
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.045
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.01564955711364746 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: vine_stake.004
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: plant_stem.031
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.046
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.016594648361206055 s
+
+20:17:38 | INFO: Starting glTF 2.0 export
+20:17:38 | INFO: Extracting primitive: vine_stake.005
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Extracting primitive: foliage.047
+20:17:38 | INFO: Primitives created: 1
+20:17:38 | INFO: Finished glTF 2.0 export in 0.007006645202636719 s
+
+EXPORTED PROP-39FE989620EB VINEB2 [3072, 2664, 272]
+Info: Saved as "shrubs_plants.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

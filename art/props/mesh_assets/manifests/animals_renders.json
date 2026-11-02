@@ -1,0 +1,52 @@
+[
+  {
+    "file": "renders/animals_01.png",
+    "sha256": "a0b53c56c0f9cd2a61d5657e7bbc529f89ed31a18e999e205460215b0075647d",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-39DEE01F00B0",
+        "name": "COWA2",
+        "glb": "models/PROP-39DEE01F00B0_lod0.glb",
+        "sha256": "de7a651b0f413998cafead8237efc173c1c35555a47c56c16a58e83d00279eb7"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-349A323395D9",
+        "name": "COWB2",
+        "glb": "models/PROP-349A323395D9_lod0.glb",
+        "sha256": "028012326e04a116e05e34008bb2cc7508c3536b40864f1ce1e0ce057b8a4205"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-ECF0E30EE86E",
+        "name": "COWC2",
+        "glb": "models/PROP-ECF0E30EE86E_lod0.glb",
+        "sha256": "7acadb262376c2d797048fd58a1bea0090c6b8d834e3dbf8b118dca92d517390"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-9094A227AFF2",
+        "name": "COWS2",
+        "glb": "models/PROP-9094A227AFF2_lod0.glb",
+        "sha256": "8f4eb0396a0abe6f1d0b4ed4290a83aba8209829e2be52b8cd15ce7a8c52de5d"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-DBC77A1D1E95",
+        "name": "SHEEPB2",
+        "glb": "models/PROP-DBC77A1D1E95_lod0.glb",
+        "sha256": "914f4779956ea1204530cfd8bc67db2a733814f8fa604fdd0bfc32a5c6b61373"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-56B018EAFACF",
+        "name": "SHEEPC2",
+        "glb": "models/PROP-56B018EAFACF_lod0.glb",
+        "sha256": "04bc2489c76e7147711c580dad91802c365fccaef10583e50fdc9c3089040bea"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

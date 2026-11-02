@@ -1,0 +1,1 @@
+{"ids": 146, "matched": 146, "courses": {"CITY": 51, "HIWAY": 21, "MEDLY": 38, "NAPA": 23, "CANYN": 36}}

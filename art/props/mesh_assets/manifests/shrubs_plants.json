@@ -1,0 +1,1436 @@
+{
+  "group": "shrubs_plants",
+  "source": "sources/shrubs_plants.blend",
+  "source_sha256": "fe6b23e53ad5b91a01fff30f557b3839ef6f9e393a9f638d5e05c4b03ffb8d6f",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-70BCB4C8377F",
+      "name": "BSHCMB2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-70BCB4C8377F_lod0.glb",
+          "sha256": "23cc8c51681a01927407181d8c231b7c58a09ed7d39eef6302b42fe7a8756291",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6516001224517822,
+              -0.41668903827667236,
+              0.18714523315429688
+            ],
+            [
+              0.4919893741607666,
+              0.5225561857223511,
+              0.9155476689338684
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-70BCB4C8377F_lod1.glb",
+          "sha256": "ee45f79f557c1ddd09db1c0821addfaeb13a85ec078068da491726f71197e1ae",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6369170546531677,
+              -0.39377105236053467,
+              0.18714523315429688
+            ],
+            [
+              0.4773063063621521,
+              0.4996381998062134,
+              0.9155476689338684
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-70BCB4C8377F_lod2.glb",
+          "sha256": "8c0f3f56a83581bbe5aab945ee376572e789dc1b88eb868708a56b8fd20577dc",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6516001224517822,
+              -0.38453513383865356,
+              0.18714523315429688
+            ],
+            [
+              0.4919893741607666,
+              0.4904022514820099,
+              0.9155476689338684
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.1435894966125488,
+          0.7284024357795715,
+          0.9392452239990234
+        ],
+        "center_y_up": [
+          -0.07980537414550781,
+          0.5513464510440826,
+          -0.052933573722839355
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-22E75A0AB4D0",
+      "name": "BSHCMBA2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-22E75A0AB4D0_lod0.glb",
+          "sha256": "405c569a60e2db0c9025df9baf01a480a04c887889d964122741ddd6aaea819e",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7750899195671082,
+              -0.4804486036300659,
+              0.05494172126054764
+            ],
+            [
+              0.6520004868507385,
+              0.49947357177734375,
+              0.8058205246925354
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-22E75A0AB4D0_lod1.glb",
+          "sha256": "7633dfd04245b70c81ced82090306e74973a782da528f7c4b73c37b623a73483",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7604068517684937,
+              -0.4575306475162506,
+              0.05494172126054764
+            ],
+            [
+              0.6373174786567688,
+              0.47655561566352844,
+              0.8058205246925354
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-22E75A0AB4D0_lod2.glb",
+          "sha256": "8979495fcf24e5421a7978ae4dc1c9b64908d69e7c1fc2794a0a7e6da25d00d3",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7750899195671082,
+              -0.4482946991920471,
+              0.05494172126054764
+            ],
+            [
+              0.6520004868507385,
+              0.46731966733932495,
+              0.8058205246925354
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.4270904064178467,
+          0.7508788034319878,
+          0.9799221754074097
+        ],
+        "center_y_up": [
+          -0.061544716358184814,
+          0.4303811229765415,
+          -0.009512484073638916
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E506F8AF3772",
+      "name": "BSHCMC2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E506F8AF3772_lod0.glb",
+          "sha256": "69713147b3f9acdbf95c59b3531f4cab67b744440e302efac53ee061df12d1a9",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7946040034294128,
+              -0.4870736598968506,
+              0.07715528458356857
+            ],
+            [
+              0.4865476191043854,
+              0.40645352005958557,
+              0.8813570737838745
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E506F8AF3772_lod1.glb",
+          "sha256": "98ba1656ab2b975148f414a2d66e2453e43652fdef5842e4a32eea671b576377",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7799209356307983,
+              -0.4641557037830353,
+              0.07715528458356857
+            ],
+            [
+              0.47186458110809326,
+              0.38353556394577026,
+              0.8813570737838745
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E506F8AF3772_lod2.glb",
+          "sha256": "3bbc5a542c2cbde5fd40284912502fa336d2402fdc4fe1600c02bba9594dcb20",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7946040034294128,
+              -0.4549197554588318,
+              0.07715528458356857
+            ],
+            [
+              0.4865476191043854,
+              0.3742996156215668,
+              0.8813570737838745
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.2811516225337982,
+          0.8042017892003059,
+          0.8935271799564362
+        ],
+        "center_y_up": [
+          -0.15402819216251373,
+          0.47925617918372154,
+          0.04031006991863251
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1E72768CE36F",
+      "name": "BSHCMD2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1E72768CE36F_lod0.glb",
+          "sha256": "daf21c2bd7eb634e966517f368fdfd222ea1b8f357518d546673884f83604007",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.358312726020813,
+              -0.4003649353981018,
+              0.11780184507369995
+            ],
+            [
+              0.7957472205162048,
+              0.5158358812332153,
+              0.9160846471786499
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1E72768CE36F_lod1.glb",
+          "sha256": "6f75632b9b8f4fead2b9a993060dad73774b6edb66703ffb61d752e166910332",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3436296880245209,
+              -0.3774469792842865,
+              0.11780184507369995
+            ],
+            [
+              0.7810642123222351,
+              0.4929179251194,
+              0.9160846471786499
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1E72768CE36F_lod2.glb",
+          "sha256": "6211d386cfb64b17328f34b4d1d732cfa81449cd39d3386a63a0906fe2a3a485",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.358312726020813,
+              -0.368211030960083,
+              0.11780184507369995
+            ],
+            [
+              0.7957472205162048,
+              0.48368197679519653,
+              0.9160846471786499
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.1540599465370178,
+          0.79828280210495,
+          0.9162008166313171
+        ],
+        "center_y_up": [
+          0.21871724724769592,
+          0.5169432461261749,
+          -0.05773547291755676
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-595D1B8CDE5C",
+      "name": "BUSHA2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-595D1B8CDE5C_lod0.glb",
+          "sha256": "97e3d4529d89fc1b1fdd82d0528c289c7a63fc425a837058a645dc26313b206a",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7195965051651001,
+              -0.5060989856719971,
+              0.08728165179491043
+            ],
+            [
+              0.736257016658783,
+              0.35550302267074585,
+              0.9467039108276367
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-595D1B8CDE5C_lod1.glb",
+          "sha256": "e9bc5ff9eb3f9baee05cc30d1d626aa9f66c0a0bc0eb14aaebd0f5a9ade918f9",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7049134373664856,
+              -0.48318102955818176,
+              0.08728165179491043
+            ],
+            [
+              0.7215740084648132,
+              0.33258506655693054,
+              0.9467039108276367
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-595D1B8CDE5C_lod2.glb",
+          "sha256": "3b14b45b47fd3b73bd02779fa2ec74bb369e170bf038c7f191a1e9256d14f8a1",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7195965051651001,
+              -0.47394508123397827,
+              0.08728165179491043
+            ],
+            [
+              0.736257016658783,
+              0.32334911823272705,
+              0.9467039108276367
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.455853521823883,
+          0.8594222590327263,
+          0.8616020083427429
+        ],
+        "center_y_up": [
+          0.00833025574684143,
+          0.5169927813112736,
+          0.07529798150062561
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B7292E77C7F9",
+      "name": "BUSHB2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B7292E77C7F9_lod0.glb",
+          "sha256": "6ce1ac105dc1b6742c14fac1fa2cbebc50541df1dddf3d7d690874bd1119b6e7",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7930959463119507,
+              -0.5085636973381042,
+              0.08666719496250153
+            ],
+            [
+              0.7848387956619263,
+              0.4995630979537964,
+              0.9287634491920471
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B7292E77C7F9_lod1.glb",
+          "sha256": "73eabf5c8936dc447ba7d119d61fa682fdfc08671ea5940304ea24bab66545b7",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7784128785133362,
+              -0.48564577102661133,
+              0.08666719496250153
+            ],
+            [
+              0.7701557278633118,
+              0.4766451120376587,
+              0.9287634491920471
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B7292E77C7F9_lod2.glb",
+          "sha256": "e179c504e7671b41b3afb9fca510ee4c18ec34a5cb094518e33e2cc264f04f29",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7930959463119507,
+              -0.47640982270240784,
+              0.08666719496250153
+            ],
+            [
+              0.7848387956619263,
+              0.4674091935157776,
+              0.9287634491920471
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.577934741973877,
+          0.8420962542295456,
+          1.0081267952919006
+        ],
+        "center_y_up": [
+          -0.004128575325012207,
+          0.5077153220772743,
+          0.004500299692153931
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-965FC320AF72",
+      "name": "BUSHC2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-965FC320AF72_lod0.glb",
+          "sha256": "b71d0ba81ba4b2160c8c292eeacd5363ff819fd52edfec71ad77450687b5ba7e",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.40045279264450073,
+              -0.46311402320861816,
+              0.07770340889692307
+            ],
+            [
+              0.7631015777587891,
+              0.48533380031585693,
+              0.9391968846321106
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-965FC320AF72_lod1.glb",
+          "sha256": "ffa05524d0b1307170092585cb0ec956dbc994e6b02e52a30e6a31be69aa89e6",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3857697546482086,
+              -0.44019606709480286,
+              0.07770340889692307
+            ],
+            [
+              0.7484185099601746,
+              0.4624158442020416,
+              0.9391968846321106
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-965FC320AF72_lod2.glb",
+          "sha256": "1910b95fb77e6c8e166ec6dc6d695ca63fa9d638f2f744b8b7bc69b1a2aa9f50",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.40045279264450073,
+              -0.43096014857292175,
+              0.07770340889692307
+            ],
+            [
+              0.7631015777587891,
+              0.45317989587783813,
+              0.9391968846321106
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.1635543704032898,
+          0.8614934757351875,
+          0.9484478235244751
+        ],
+        "center_y_up": [
+          0.18132439255714417,
+          0.5084501467645168,
+          -0.011109888553619385
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-ADD27719D27D",
+      "name": "BUSHD2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-ADD27719D27D_lod0.glb",
+          "sha256": "8e352692768b90f79bdfa33227d8931d1ee5dc8c20512dfe819cb882052ad3a7",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7444652318954468,
+              -0.3649682402610779,
+              0.1167534664273262
+            ],
+            [
+              0.751214861869812,
+              0.5207992196083069,
+              0.8735684156417847
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-ADD27719D27D_lod1.glb",
+          "sha256": "ecc9c4f408dd5be036d00ea4a026b8ea3f5546f4626c948ef7bd8f46ae6dae58",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7297821640968323,
+              -0.3420502841472626,
+              0.1167534664273262
+            ],
+            [
+              0.7365318536758423,
+              0.4978812634944916,
+              0.8735684156417847
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-ADD27719D27D_lod2.glb",
+          "sha256": "5cdd8bfd28602282245b13b339f65e5e2f4008dc13fe22104990809bc3361ed4",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7444652318954468,
+              -0.3328143358230591,
+              0.1167534664273262
+            ],
+            [
+              0.751214861869812,
+              0.4886453151702881,
+              0.8735684156417847
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.4956800937652588,
+          0.7568149492144585,
+          0.8857674598693848
+        ],
+        "center_y_up": [
+          0.003374814987182617,
+          0.49516094103455544,
+          -0.0779154896736145
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CE1E7C480E20",
+      "name": "BUSHE2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CE1E7C480E20_lod0.glb",
+          "sha256": "3065c746378bf53a6ff96bef98f05f4dcc39a9c9fa286cba50ff8af319b1d8b1",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6074205636978149,
+              -0.5355399250984192,
+              0.09065644443035126
+            ],
+            [
+              0.683471143245697,
+              0.5249171853065491,
+              0.9393435716629028
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CE1E7C480E20_lod1.glb",
+          "sha256": "b0302df088659ab10faa547a5116aeda5752a1818a42804527eacf2141bcd159",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.5927374958992004,
+              -0.5126219987869263,
+              0.09065644443035126
+            ],
+            [
+              0.6687881350517273,
+              0.5019992589950562,
+              0.9393435716629028
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CE1E7C480E20_lod2.glb",
+          "sha256": "26dc70c15379945994b78feefc87c11db6e3143c338c9cacd4f345ef843b10d0",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6074205636978149,
+              -0.5033860206604004,
+              0.09065644443035126
+            ],
+            [
+              0.683471143245697,
+              0.4927632808685303,
+              0.9393435716629028
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.290891706943512,
+          0.8486871272325516,
+          1.0604571104049683
+        ],
+        "center_y_up": [
+          0.03802528977394104,
+          0.515000008046627,
+          0.005311369895935059
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E9BEBA3A5649",
+      "name": "BUSHF2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E9BEBA3A5649_lod0.glb",
+          "sha256": "f52025d1de7f17192ecb68079d037381d9576431efdd77d7fc64daf899df1ef2",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7230675220489502,
+              -0.5238037109375,
+              0.07027997821569443
+            ],
+            [
+              0.753953218460083,
+              0.5360241532325745,
+              0.8646560907363892
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E9BEBA3A5649_lod1.glb",
+          "sha256": "598b68e99f9486bd0d2e6a886b85141f01984d7f46f6c523e40406be26c54c02",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7083844542503357,
+              -0.5008857250213623,
+              0.07027997821569443
+            ],
+            [
+              0.7392702102661133,
+              0.5131062269210815,
+              0.8646560907363892
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E9BEBA3A5649_lod2.glb",
+          "sha256": "4077451333077b2d996f35e1487ebcf87327f6d6f0b584b5675a016aea24e75e",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7230675220489502,
+              -0.4916498064994812,
+              0.07027997821569443
+            ],
+            [
+              0.753953218460083,
+              0.5038702487945557,
+              0.8646560907363892
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.4770207405090332,
+          0.7943761125206947,
+          1.0598278641700745
+        ],
+        "center_y_up": [
+          0.015442848205566406,
+          0.4674680344760418,
+          -0.0061102211475372314
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7FFB497B4844",
+      "name": "BUSHG2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7FFB497B4844_lod0.glb",
+          "sha256": "408b9e5f7cd1c243ce2a961db956a965376997c09811bd2dbb4eb66d3c04cd8e",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7601780295372009,
+              -0.44643697142601013,
+              0.10395205020904541
+            ],
+            [
+              0.7772432565689087,
+              0.5373641848564148,
+              0.9294400215148926
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7FFB497B4844_lod1.glb",
+          "sha256": "23ed61a618f4b49acc2f590101f99c564028f23bc63e13922356c21145c2055e",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7454949617385864,
+              -0.4235190153121948,
+              0.10395205020904541
+            ],
+            [
+              0.762560248374939,
+              0.5144462585449219,
+              0.9294400215148926
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7FFB497B4844_lod2.glb",
+          "sha256": "d3dd327f06815361caf7f053b0d327b67b81dccefb99d5f7365541a06fec21cc",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7601780295372009,
+              -0.41428306698799133,
+              0.10395205020904541
+            ],
+            [
+              0.7772432565689087,
+              0.505210280418396,
+              0.9294400215148926
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5374212861061096,
+          0.8254879713058472,
+          0.9838011562824249
+        ],
+        "center_y_up": [
+          0.008532613515853882,
+          0.516696035861969,
+          -0.04546360671520233
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-232976AA95F2",
+      "name": "BUSHH2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_02.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-232976AA95F2_lod0.glb",
+          "sha256": "0f00addddfba8e82f51437887f925cf37f62ad2e49d04ba398c850d18ea18595",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7636225819587708,
+              -0.45705288648605347,
+              0.10318763554096222
+            ],
+            [
+              0.7766783237457275,
+              0.5064114928245544,
+              0.9054805040359497
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-232976AA95F2_lod1.glb",
+          "sha256": "1cf73a8d7976b3405ca54b0b82f24032a7fa56919f4bc2f41e025f7e34241eba",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7489395141601562,
+              -0.43413490056991577,
+              0.10318763554096222
+            ],
+            [
+              0.7619953155517578,
+              0.48349353671073914,
+              0.9054805040359497
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-232976AA95F2_lod2.glb",
+          "sha256": "df0c4d703e0506b504732405a5d7ca9f7772e96e66ed296259dd5e472530b347",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7636225819587708,
+              -0.42489898204803467,
+              0.10318763554096222
+            ],
+            [
+              0.7766783237457275,
+              0.47425758838653564,
+              0.9054805040359497
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5403009057044983,
+          0.8022928684949875,
+          0.9634643793106079
+        ],
+        "center_y_up": [
+          0.0065278708934783936,
+          0.504334069788456,
+          -0.02467930316925049
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1BA4EAB36F19",
+      "name": "BUSHJ2",
+      "builder": "shrub",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1BA4EAB36F19_lod0.glb",
+          "sha256": "7a2d09740a2aeb7be76719fbef24f5cc88ea5057918cb5a1c80386a5ccafe564",
+          "triangles": 3708,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7306379675865173,
+              -0.29952511191368103,
+              0.05330939590930939
+            ],
+            [
+              0.66938316822052,
+              0.4426417946815491,
+              0.919719398021698
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1BA4EAB36F19_lod1.glb",
+          "sha256": "5026401954e6dd0fb82b85cbc13f71328b168c3e41502fb4b288ab521fb15db8",
+          "triangles": 3276,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7159549593925476,
+              -0.2766071557998657,
+              0.05330939590930939
+            ],
+            [
+              0.6547001600265503,
+              0.41972383856773376,
+              0.919719398021698
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1BA4EAB36F19_lod2.glb",
+          "sha256": "4b38b5e47fb466593d56bc84aab1b0ee801a5fd2a9f9c69aa55c8f972e9d208b",
+          "triangles": 324,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7306379675865173,
+              -0.26737120747566223,
+              0.05330939590930939
+            ],
+            [
+              0.66938316822052,
+              0.4104878902435303,
+              0.919719398021698
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "plant_stem": 9,
+        "foliage": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.4000211358070374,
+          0.8664100021123886,
+          0.7421669065952301
+        ],
+        "center_y_up": [
+          -0.030627399682998657,
+          0.4865143969655037,
+          -0.07155834138393402
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-595EFDBBC346",
+      "name": "FLOWRBX2",
+      "builder": "flower_planter",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_03.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-595EFDBBC346_lod0.glb",
+          "sha256": "272df4feafabbd52ae758b7e73494407965d2ebed49547c9c25034a0f5d8bc0c",
+          "triangles": 5832,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.765961766242981,
+              -0.4742126762866974,
+              0.0
+            ],
+            [
+              0.7250000238418579,
+              0.4809771180152893,
+              1.3691097497940063
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-595EFDBBC346_lod1.glb",
+          "sha256": "cc5b75a62075307aa6d165725ca1768c805560e3506c093b59c0e7e3dd2803a9",
+          "triangles": 5120,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.7512786984443665,
+              -0.4512947201728821,
+              0.0
+            ],
+            [
+              0.7250000238418579,
+              0.4580591320991516,
+              1.3691097497940063
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-595EFDBBC346_lod2.glb",
+          "sha256": "0c1677a05a03b25ea317ac892ffbe68a5b5b5b38d76fc659761767da4d750b78",
+          "triangles": 336,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.765961766242981,
+              -0.4420587718486786,
+              0.0
+            ],
+            [
+              0.7250000238418579,
+              0.4488232135772705,
+              1.3691097497940063
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "planter": 1,
+        "plant_stem": 9,
+        "foliage": 9,
+        "flowers": 9
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.4909617900848389,
+          1.3691097497940063,
+          0.9551897943019867
+        ],
+        "center_y_up": [
+          -0.020480871200561523,
+          0.6845548748970032,
+          -0.0033822208642959595
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4E5DD56A1882",
+      "name": "VINEA2",
+      "builder": "vine",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_03.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4E5DD56A1882_lod0.glb",
+          "sha256": "1d2edbefd0c87704cffb29d399fcaf4c615f39118e08d6e250e93c058420cc56",
+          "triangles": 3072,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.6931724548339844,
+              -0.5191115140914917,
+              0.0
+            ],
+            [
+              0.7996162176132202,
+              0.4249730110168457,
+              1.600000023841858
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4E5DD56A1882_lod1.glb",
+          "sha256": "d90692021f6caca502fbfd5bb77bcdb74bccc959c95dc999017aca68e1365c6e",
+          "triangles": 2664,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.6784894466400146,
+              -0.4961935877799988,
+              0.0
+            ],
+            [
+              0.7849331498146057,
+              0.4020550549030304,
+              1.600000023841858
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4E5DD56A1882_lod2.glb",
+          "sha256": "6df100b9d4700d6fec246867bb8e578fec26e58f7602cc68b1d95ad369cf2069",
+          "triangles": 272,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6931724548339844,
+              -0.4869576394557953,
+              0.0
+            ],
+            [
+              0.7996162176132202,
+              0.3928191065788269,
+              1.600000023841858
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "vine_stake": 1,
+        "plant_stem": 7,
+        "foliage": 7
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.4927886724472046,
+          1.600000023841858,
+          0.9440845251083374
+        ],
+        "center_y_up": [
+          0.05322188138961792,
+          0.800000011920929,
+          0.047069251537323
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-39FE989620EB",
+      "name": "VINEB2",
+      "builder": "vine",
+      "group": "shrubs_plants",
+      "concept": {
+        "file": "art/props/concept_3d/all_shrubs_plants_03.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-39FE989620EB_lod0.glb",
+          "sha256": "59ec0177e625dde0caedbc1f80d15133114f967c4a08bda2f9ed5783c8421ea2",
+          "triangles": 3072,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.6302094459533691,
+              -0.3832615613937378,
+              0.0
+            ],
+            [
+              0.7688365578651428,
+              0.5037534832954407,
+              1.600000023841858
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-39FE989620EB_lod1.glb",
+          "sha256": "ec70e2234540540b25d6a791e68a7cc2b8843f94d7d652cea7ac27c6bd55f173",
+          "triangles": 2664,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.6155264377593994,
+              -0.3603436052799225,
+              0.0
+            ],
+            [
+              0.7541535496711731,
+              0.48083552718162537,
+              1.600000023841858
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-39FE989620EB_lod2.glb",
+          "sha256": "beb1ec556633a56c1590f16c5865b451e44249c16a63f4abf3606dc9c83de0d6",
+          "triangles": 272,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6302094459533691,
+              -0.351107656955719,
+              0.0
+            ],
+            [
+              0.7688365578651428,
+              0.4715995788574219,
+              1.600000023841858
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "vine_stake": 1,
+        "plant_stem": 7,
+        "foliage": 7
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.399046003818512,
+          1.600000023841858,
+          0.8870150446891785
+        ],
+        "center_y_up": [
+          0.06931355595588684,
+          0.800000011920929,
+          -0.06024596095085144
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

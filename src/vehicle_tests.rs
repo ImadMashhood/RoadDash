@@ -767,3 +767,66 @@ fn abandoned_motorcycle_tips_onto_its_side_after_knockoff() {
     }
     assert!(tipped, "wreck stayed upright");
 }
+
+#[test]
+fn dynamic_bike_physically_traverses_a_solid_low_wreck() {
+    let mut app = app(1, 60);
+    let owner = app
+        .world_mut()
+        .query_filtered::<Entity, With<Rider>>()
+        .single(app.world())
+        .unwrap();
+    app.world_mut().get_mut::<Rider>(owner).unwrap().immunity = 0.0;
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyW);
+    for _ in 0..120 {
+        app.update();
+    }
+    let start = *app.world().get::<Transform>(owner).unwrap();
+    let forward = start.rotation * Vec3::Z;
+    let foreign = app.world_mut().spawn_empty().id();
+    let wreck = app
+        .world_mut()
+        .spawn((
+            crate::recovery::OwnedBody {
+                owner: foreign,
+                kind: crate::recovery::BodyKind::Wreck,
+            },
+            RigidBody::Dynamic,
+            Collider::cuboid(1.1, 0.3, 0.5),
+            ColliderMassProperties::Mass(180.0),
+            Transform::from_translation((start.translation + forward * 8.0).with_y(0.3))
+                .with_rotation(start.rotation),
+            Velocity::zero(),
+            ActiveEvents::COLLISION_EVENTS,
+            ActiveCollisionTypes::all(),
+        ))
+        .id();
+    let mut touched = false;
+    for _ in 0..120 {
+        app.update();
+        touched |= app
+            .world()
+            .get::<Velocity>(wreck)
+            .unwrap()
+            .linvel
+            .with_y(0.0)
+            .length()
+            > 0.01;
+        assert_eq!(
+            app.world()
+                .get::<crate::recovery::Recovery>(owner)
+                .unwrap()
+                .stage,
+            crate::recovery::RecoveryStage::Riding
+        );
+    }
+    let finish = app.world().get::<Transform>(owner).unwrap().translation;
+    assert!(
+        (finish - start.translation).dot(forward) > 12.0,
+        "bike blocked: {start:?} -> {finish:?}"
+    );
+    assert!(touched, "solid wreck received no physical contact response");
+    assert!(app.world().get::<ColliderDisabled>(wreck).is_none());
+}
