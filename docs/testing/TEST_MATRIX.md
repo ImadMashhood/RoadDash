@@ -362,3 +362,29 @@ motor-only frontal release without direct velocity impulses. Native eleven-motio
 review, optional crash-style comparison, Valley bare/default/baseline recovery and
 NPC actors provide local rendering/physics evidence. Production subjective motion,
 full terrain/clearance, Windows and15-racer profiling gates remain open.
+
+## Part04 Valley architecture — 2026-11-06
+
+Receipt: [architecture-valley/README.md](architecture-valley/README.md).
+231workspace tests pass (1existing ignored soak), including deterministic657lot
+role binding, allband/LOD transformed envelopes, real repeated floors, malformed
+pools/budgets/paths/hashes/bounds. Independent binary check covers384GLBs/34PNGs
+and original source SHA256s. --inspect-world retains canonical quotas, support/
+walk audits and unchanged geometry fingerprint. --world-survey captures15sections,
+counts actual Mesh3d descendants, rejects decorative colliders and asserts pending/
+active streaming limits. Native smoke covers farm/hill crash/remount, city and
+finish/audio on the default stack. Native frame p95 target is still unmet; this
+is a failed acceptance measurement, not a fully passing Part04 exit gate. Native
+AppExit errors now propagate to process status. Art/user, seam/stream stress,
+Windows and broad hardware performance certification remain open.
+
+## Surface/loading/offscreen crash follow-up — 2026-11-06
+
+Receipt: [world-polish/README.md](world-polish/README.md).237 workspace tests pass,
+1existing ignored soak. Added relief bounds/winding, original mipmapped asphalt
+PBR validation, distant-rear/camera eligibility and integrated no-body/five-second/
+pause/road-centre/reset tests. Native default Valley and explicit City Run smoke
+pass without a stack environment override after configuring asset IO workers.
+World survey checks actual displayed geometry, bounded hidden preparations/cache
+and unchanged657 physical lots; frame target and broader art/hardware gates stay
+separate. Part05 is explicitly requested after commit/push/merge, not auto-advanced.

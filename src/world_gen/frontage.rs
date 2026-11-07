@@ -103,7 +103,13 @@ pub fn spawn(
     meshes: &mut Assets<Mesh>,
     materials: &mut Assets<StandardMaterial>,
     layout: &WorldLayout,
+    plan: &super::WorldPlan,
+    server: Option<&AssetServer>,
 ) {
+    let architecture =
+        super::architecture::Architecture::new(plan, layout).expect("validated infill styles");
+    let mut surfaces = BTreeMap::new();
+    let trim = materials.add(Color::srgb(0.58, 0.56, 0.51));
     let wall = materials.add(StandardMaterial {
         base_color: Color::srgb(0.38, 0.43, 0.47),
         perceptual_roughness: 0.88,
@@ -142,14 +148,57 @@ pub fn spawn(
                 Friction::coefficient(0.75),
             ))
             .id();
+        let style = architecture
+            .buildings
+            .iter()
+            .find(|b| b.id == join.owners[0])
+            .map(|b| architecture.catalog.records[b.design].masonry.as_str())
+            .unwrap_or("concrete");
+        let facing = surfaces
+            .entry(style.to_string())
+            .or_insert_with(|| {
+                materials.add(StandardMaterial {
+                    base_color: Color::WHITE,
+                    base_color_texture: server.map(|s| {
+                        s.load_with_settings(
+                            format!("architecture://materials/{style}_albedo.png"),
+                            |setting: &mut bevy::image::ImageLoaderSettings| {
+                                setting.sampler = bevy::image::ImageSampler::Descriptor(
+                                    bevy::image::ImageSamplerDescriptor {
+                                        address_mode_u: bevy::image::ImageAddressMode::Repeat,
+                                        address_mode_v: bevy::image::ImageAddressMode::Repeat,
+                                        ..default()
+                                    },
+                                );
+                            },
+                        )
+                    }),
+                    perceptual_roughness: 0.88,
+                    ..default()
+                })
+            })
+            .clone();
         let mut solid_mesh = crate::environment::mesh(&vertices, &ix);
         solid_mesh.duplicate_vertices();
         solid_mesh.compute_flat_normals();
+        if let Some(bevy::mesh::VertexAttributeValues::Float32x3(p)) =
+            solid_mesh.attribute(Mesh::ATTRIBUTE_POSITION)
+        {
+            let uv = p
+                .iter()
+                .map(|v| [(v[0] + v[2]) * 0.5, v[1] * 0.5])
+                .collect::<Vec<_>>();
+            solid_mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, uv);
+        }
         let mesh = meshes.add(solid_mesh);
         let body = commands
             .spawn((
                 Mesh3d(mesh),
-                MeshMaterial3d(wall.clone()),
+                MeshMaterial3d(if server.is_some() {
+                    facing
+                } else {
+                    wall.clone()
+                }),
                 Transform::default(),
                 VisibilityRange {
                     start_margin: 0.0..0.0,
@@ -159,49 +208,43 @@ pub fn spawn(
             ))
             .id();
         commands.entity(root).add_child(body);
-        let mut windows = Vec::new();
-        let mut wi = Vec::new();
+        let mut detail = super::elevation::Elevation::default();
+        let base = join
+            .owners
+            .iter()
+            .filter_map(|id| {
+                layout
+                    .all_buildings()
+                    .find(|b| &b.id == id)
+                    .map(|b| b.foundation_m)
+            })
+            .fold(join.bottom, f32::max)
+            - origin.y;
         for (a, b) in [(0, 3), (2, 1)] {
-            let a = Vec3::from_array(join.corners[a]);
-            let b = Vec3::from_array(join.corners[b]);
-            let edge = (b - a).with_y(0.0);
-            let length = edge.length();
-            let along = edge.normalize_or_zero();
-            let outward = (a + b) * 0.5 - origin;
-            let outward = outward.with_y(0.0).normalize_or_zero() * 0.035;
-            for column in 0..(length / 3.0) as usize {
-                let p = a + along * (1.5 + column as f32 * 3.0) + outward;
-                let mut y = join.bottom + 2.5;
-                while y < join.top - 1.0 {
-                    let n = windows.len() as u32;
-                    for (x, dy) in [(-0.65, -0.6), (0.65, -0.6), (0.65, 0.6), (-0.65, 0.6)] {
-                        windows.push((p + along * x).with_y(y + dy) - origin);
-                    }
-                    let mut faces = [[n, n + 1, n + 2], [n, n + 2, n + 3]];
-                    if along.cross(Vec3::Y).dot(outward) < 0.0 {
-                        for face in &mut faces {
-                            face.swap(1, 2);
-                        }
-                    }
-                    wi.extend(faces);
-                    y += 3.2;
-                }
-            }
+            let a = Vec3::from_array(join.corners[a]) - origin;
+            let b = Vec3::from_array(join.corners[b]) - origin;
+            let outward = ((a + b) * 0.5).with_y(0.0).normalize_or_zero();
+            detail.wall(a, b, base, join.top - origin.y, outward);
         }
-        if !wi.is_empty() {
-            let e = commands
-                .spawn((
-                    Mesh3d(meshes.add(crate::environment::mesh(&windows, &wi))),
-                    MeshMaterial3d(glass.clone()),
-                    Transform::default(),
-                    VisibilityRange {
-                        start_margin: 0.0..0.0,
-                        end_margin: 200.0..230.0,
-                        use_aabb: false,
-                    },
-                ))
-                .id();
-            commands.entity(root).add_child(e);
+        if !detail.glass_indices.is_empty() {
+            let (glass_mesh, frame_mesh) = detail.meshes();
+            for (mesh, material) in [(glass_mesh, glass.clone()), (frame_mesh, trim.clone())] {
+                let e = commands
+                    .spawn((
+                        bevy::light::NotShadowCaster,
+                        Mesh3d(meshes.add(mesh)),
+                        MeshMaterial3d(material),
+                        Transform::default(),
+                        VisibilityRange {
+                            start_margin: 0.0..0.0,
+                            end_margin: layout.settings.render_far_m
+                                ..layout.settings.render_far_m + 50.0,
+                            use_aabb: false,
+                        },
+                    ))
+                    .id();
+                commands.entity(root).add_child(e);
+            }
         }
     }
 }

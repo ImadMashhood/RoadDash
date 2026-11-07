@@ -15,7 +15,7 @@ pub struct Survey {
     frame: u32,
     benchmark_passed: bool,
 }
-#[allow(clippy::too_many_arguments)]
+#[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn run(
     mut commands: Commands,
     mut survey: ResMut<Survey>,
@@ -36,6 +36,14 @@ pub fn run(
     sinks: Query<&AudioSink>,
     mut exit: MessageWriter<AppExit>,
     windows: Query<&Window>,
+    (architecture, streaming, slots, children, meshes, physics): (
+        Option<Res<super::architecture::Architecture>>,
+        Option<Res<super::architecture::render::Streaming>>,
+        Query<&super::architecture::render::Slot>,
+        Query<&Children>,
+        Query<(), With<Mesh3d>>,
+        Query<(), With<bevy_rapier3d::prelude::Collider>>,
+    ),
     lods: Query<(&super::buildings::BuildingLod, &ViewVisibility)>,
 ) {
     survey.frame += 1;
@@ -94,7 +102,24 @@ pub fn run(
             layout.all_buildings().count(),
             "lost logical building root"
         );
-        let report = serde_json::json!({"metrics":metrics.evidence(&clock),"resolution":windows.single().ok().map(|w|[w.resolution.physical_width(),w.resolution.physical_height()]),"present_mode":"AutoNoVsync","update_mode":"Continuous focused and unfocused (benchmark only)","window_focused":windows.single().ok().map(|w|w.focused),"visible_near_parts":lods.iter().filter(|(l,v)|l.near&&v.get()).count(),"visible_far_proxies":lods.iter().filter(|(l,v)|!l.near&&v.get()).count(),"benchmark":"warmed city view with active fifteen-racer simulation; current default rendering, no production quality preset", "logical_buildings":buildings.iter().count(),"junctions":layout.settings.junctions.len(),"fields":layout.fields.len(),"sections_captured":15,"p95_target_ms":16.7,"p95_target_met":metrics.p95_ms<=16.7,"limitations":"bounded wall-frame sample, not GPU timing or Windows hardware certification"});
+        let architecture_evidence=architecture.as_ref().zip(streaming.as_ref()).map(|(a,s)| {
+            assert!(s.active_buildings<=a.rules.max_active_buildings && s.active_panels<=a.rules.max_active_panels && s.active_triangles<=a.rules.max_active_triangles && s.cached_lods()<=48);
+            let mut actual_meshes=0;let mut scene_roots=0;let mut prepared=0;
+            for slot in &slots {
+                scene_roots+=slot.scene_roots().len();prepared+=slot.prepared_roots().len();
+                let mut stack=slot.scene_roots().to_vec();
+                while let Some(e)=stack.pop() {
+                    assert!(!physics.contains(e),"decorative building geometry acquired a collider");
+                    actual_meshes+=usize::from(meshes.contains(e));
+                    if let Ok(c)=children.get(e) {stack.extend(c.iter());}
+                }
+            }
+            assert!(prepared<=a.rules.max_active_panels,"unbounded hidden preparations");
+            assert!(actual_meshes>0,"architecture preview contains no instantiated GLB geometry");
+            assert_eq!(scene_roots,s.active_panels,"streaming census differs from actual scene roots");
+            serde_json::json!({"bound_lots":a.buildings.len(),"active_buildings":s.active_buildings,"active_panels":s.active_panels,"scene_roots":scene_roots,"prepared_panels":prepared,"actual_mesh_entities":actual_meshes,"visible_triangle_instances":s.active_triangles,"cached_lods":s.cached_lods(),"resident_coarse_lods":s.resident_coarse_lods(),"switches":s.switches,"catalog_designs":a.catalog.records.len(),"limits":{"buildings":a.rules.max_active_buildings,"panels":a.rules.max_active_panels,"triangles":a.rules.max_active_triangles}})
+        });
+        let report = serde_json::json!({"architecture":architecture_evidence,"metrics":metrics.evidence(&clock),"resolution":windows.single().ok().map(|w|[w.resolution.physical_width(),w.resolution.physical_height()]),"present_mode":"AutoNoVsync","update_mode":"Continuous focused and unfocused (benchmark only)","window_focused":windows.single().ok().map(|w|w.focused),"visible_near_parts":lods.iter().filter(|(l,v)|l.near&&v.get()).count(),"visible_far_proxies":lods.iter().filter(|(l,v)|!l.near&&v.get()).count(),"benchmark":"warmed city view with active fifteen-racer simulation; current default rendering, no production quality preset", "logical_buildings":buildings.iter().count(),"junctions":layout.settings.junctions.len(),"fields":layout.fields.len(),"sections_captured":15,"p95_target_ms":16.7,"p95_target_met":metrics.p95_ms<=16.7,"limitations":"bounded wall-frame sample, not GPU timing or Windows hardware certification"});
         std::fs::write(
             "screenshots/world-survey.json",
             serde_json::to_string_pretty(&report).unwrap(),

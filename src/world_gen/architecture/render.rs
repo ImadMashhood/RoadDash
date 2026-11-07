@@ -1,0 +1,404 @@
+//! Bounded, on-demand authored storeys. All geometry stays cosmetic and nested under lot roots.
+use super::*;
+use std::collections::{BTreeMap, BTreeSet};
+#[derive(Component)]
+pub struct Slot {
+    pub index: usize,
+    active: Option<(usize, u8)>,
+    children: Vec<Entity>,
+    prepared: Option<Prepared>,
+}
+struct Prepared {
+    key: (usize, u8),
+    children: Vec<Entity>,
+}
+impl Slot {
+    pub fn prepared_roots(&self) -> &[Entity] {
+        self.prepared
+            .as_ref()
+            .map_or(&[], |p| p.children.as_slice())
+    }
+    pub fn scene_roots(&self) -> &[Entity] {
+        &self.children
+    }
+
+    pub fn new(index: usize) -> Self {
+        Self {
+            index,
+            active: None,
+            children: vec![],
+            prepared: None,
+        }
+    }
+}
+#[derive(Component)]
+pub struct Fallback {
+    pub index: usize,
+    pub wall: bool,
+    pub size: Vec3,
+}
+struct Cached {
+    scenes: [Handle<Scene>; 3],
+    used: u64,
+}
+#[derive(Resource, Default)]
+pub struct Streaming {
+    cache: BTreeMap<(usize, usize), Cached>,
+    coarse: BTreeMap<usize, Cached>,
+    masonry: Vec<Handle<Image>>,
+    tick: u64,
+    elapsed: f32,
+    pub active_buildings: usize,
+    pub active_panels: usize,
+    pub active_triangles: usize,
+    pub switches: u64,
+}
+impl Streaming {
+    pub fn preload(plan: &Architecture, server: &AssetServer) -> Self {
+        let mut s = Self::default();
+        for design in plan
+            .buildings
+            .iter()
+            .map(|b| b.design)
+            .collect::<BTreeSet<_>>()
+        {
+            s.coarse.insert(
+                design,
+                Cached {
+                    scenes: std::array::from_fn(|band| {
+                        server.load(format!(
+                            "architecture://storey_kit/{}_lod2.glb#Scene{band}",
+                            plan.catalog.records[design].id
+                        ))
+                    }),
+                    used: 0,
+                },
+            );
+        }
+        s.masonry = plan
+            .catalog
+            .records
+            .iter()
+            .map(|d| d.masonry.as_str())
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .map(|m| server.load(format!("architecture://materials/{m}_albedo.png")))
+            .collect();
+        s
+    }
+
+    pub fn ready(&self, server: &AssetServer) -> bool {
+        self.masonry
+            .iter()
+            .all(|h| server.is_loaded_with_dependencies(h.id()))
+            && self.cache.values().chain(self.coarse.values()).all(|c| {
+                c.scenes.iter().all(|h| {
+                    if let Some(bevy::asset::LoadState::Failed(e)) = server.get_load_state(h.id()) {
+                        panic!("Required architecture kit failed: {e}");
+                    }
+                    server.is_loaded_with_dependencies(h.id())
+                })
+            })
+    }
+    pub fn resident_coarse_lods(&self) -> usize {
+        self.coarse.len()
+    }
+    pub fn cached_lods(&self) -> usize {
+        self.cache.len()
+    }
+}
+#[allow(clippy::too_many_arguments, clippy::type_complexity)]
+pub fn update(
+    mut commands: Commands,
+    time: Res<Time>,
+    plan: Res<Architecture>,
+    server: Res<AssetServer>,
+    cameras: Query<&Transform, With<Camera3d>>,
+    mut stream: ResMut<Streaming>,
+    instances: Query<&bevy::scene::SceneInstance>,
+    spawner: Res<bevy::scene::SceneSpawner>,
+    mut slots: Query<(Entity, &mut Slot), Without<Fallback>>,
+    mut fallback: Query<
+        (&Fallback, &mut Visibility, &mut Transform),
+        (
+            Without<Slot>,
+            Without<Camera3d>,
+            Without<bevy_rapier3d::prelude::RigidBody>,
+        ),
+    >,
+) {
+    let Ok(camera) = cameras.single() else {
+        return;
+    };
+    stream.tick += 1;
+    // Re-evaluate at 10Hz, not every render frame; visual-only scene changes belong in Update.
+    stream.elapsed += time.delta_secs();
+    if stream.elapsed < 0.1 {
+        return;
+    }
+    stream.elapsed = 0.0;
+    let mut nearest: Vec<_> = slots
+        .iter()
+        .map(|(e, s)| {
+            (
+                e,
+                s.index,
+                plan.buildings[s.index]
+                    .position
+                    .distance(camera.translation),
+            )
+        })
+        .filter(|(e, _, d)| {
+            *d < plan.rules.detail_distance_m
+                + if slots.get(*e).is_ok_and(|(_, s)| s.active.is_some()) {
+                    25.0
+                } else {
+                    0.0
+                }
+        })
+        .collect();
+    nearest.sort_by(|a, b| {
+        let priority = |v: &(Entity, usize, f32)| {
+            v.2 - if slots.get(v.0).is_ok_and(|(_, s)| s.active.is_some()) {
+                25.0
+            } else {
+                0.0
+            }
+        };
+        priority(a)
+            .total_cmp(&priority(b))
+            .then_with(|| a.1.cmp(&b.1))
+    });
+    let mut selected = BTreeMap::new();
+    let mut reserved = 0;
+    let mut considered = 0;
+    let mut triangles = 0;
+    let mut requested = BTreeSet::new();
+    for (entity, index, distance) in nearest {
+        if considered >= plan.rules.max_active_buildings {
+            break;
+        }
+        let b = &plan.buildings[index];
+        let design = &plan.catalog.records[b.design];
+        let mask = b.face_mask(camera.translation);
+        let panels = b.panels(design, mask);
+        if reserved + panels.len() > plan.rules.max_active_panels {
+            continue;
+        }
+        let mut lod = if distance < 18.0 {
+            0
+        } else if distance < 55.0 {
+            1
+        } else {
+            2
+        };
+        let previous = slots
+            .get(entity)
+            .ok()
+            .and_then(|(_, s)| s.active.map(|v| v.0));
+        if let Some(old) = previous
+            && ((old == 0 && lod == 1 && distance < 21.0)
+                || (old == 1 && lod == 0 && distance > 15.0)
+                || (old == 1 && lod == 2 && distance < 60.0)
+                || (old == 2 && lod == 1 && distance > 50.0))
+        {
+            lod = old;
+        }
+        let displayed = previous.map_or(0, |lod| {
+            panels
+                .iter()
+                .map(|p| design.lods[lod].triangles[p.band])
+                .sum::<usize>()
+        });
+        let mut count = panels
+            .iter()
+            .map(|p| design.lods[lod].triangles[p.band])
+            .sum::<usize>()
+            .max(displayed);
+        while lod < 2 && triangles + count > plan.rules.max_active_triangles {
+            lod += 1;
+            count = panels
+                .iter()
+                .map(|p| design.lods[lod].triangles[p.band])
+                .sum::<usize>()
+                .max(displayed);
+        }
+        if triangles + count > plan.rules.max_active_triangles {
+            continue;
+        }
+        considered += 1;
+        reserved += panels.len();
+        triangles += count;
+        let tick = stream.tick;
+        let scenes = if lod == 2 {
+            stream.coarse[&b.design].scenes.clone()
+        } else {
+            let cached = stream
+                .cache
+                .entry((b.design, lod))
+                .or_insert_with(|| Cached {
+                    scenes: std::array::from_fn(|band| {
+                        server.load(format!(
+                            "architecture://storey_kit/{}_lod{lod}.glb#Scene{band}",
+                            design.id
+                        ))
+                    }),
+                    used: tick,
+                });
+            cached.used = tick;
+            requested.insert((b.design, lod));
+            cached.scenes.clone()
+        };
+        if !scenes
+            .iter()
+            .all(|h| server.is_loaded_with_dependencies(h.id()))
+        {
+            // A requested high LOD must never replace a ready scene with a blank shell.
+            // Keep the old ready LOD, or the permanently resident coarse facade.
+            let old = previous.unwrap_or(2);
+            let held = if old == 2 {
+                Some(stream.coarse[&b.design].scenes.clone())
+            } else {
+                stream.cache.get(&(b.design, old)).map(|c| c.scenes.clone())
+            };
+            if let Some(held) = held {
+                let held_count = panels
+                    .iter()
+                    .map(|p| design.lods[old].triangles[p.band])
+                    .sum::<usize>();
+                if triangles - count + held_count <= plan.rules.max_active_triangles {
+                    triangles = triangles - count + held_count;
+                    if old != 2 {
+                        requested.insert((b.design, old));
+                    }
+                    selected.insert(entity, (index, old, mask, panels, held));
+                }
+            }
+            continue;
+        }
+        selected.insert(entity, (index, lod, mask, panels, scenes));
+    }
+    for (entity, mut slot) in &mut slots {
+        let next = selected.remove(&entity);
+        let key = next.as_ref().map(|(_, lod, mask, _, _)| (*lod, *mask));
+        if slot.prepared.as_ref().is_some_and(|p| Some(p.key) != key) {
+            for child in slot.prepared.take().unwrap().children {
+                commands.entity(child).despawn();
+            }
+        }
+        if slot.active == key {
+            continue;
+        }
+        let ready = slot.prepared.as_ref().is_some_and(|p| {
+            p.children.iter().all(|e| {
+                instances
+                    .get(*e)
+                    .is_ok_and(|i| spawner.instance_is_ready(**i))
+            })
+        });
+        if key.is_none() || ready {
+            for child in slot.children.drain(..) {
+                commands.entity(child).despawn();
+            }
+            if let Some(prepared) = slot.prepared.take() {
+                for child in &prepared.children {
+                    commands.entity(*child).insert(Visibility::Inherited);
+                }
+                slot.children = prepared.children;
+            }
+            slot.active = key;
+            stream.switches += 1;
+        } else if slot.prepared.is_none()
+            && let Some((_, lod, mask, panels, scenes)) = next
+        {
+            let mut children = Vec::with_capacity(panels.len());
+            for panel in panels {
+                let child = commands
+                    .spawn((
+                        SceneRoot(scenes[panel.band].clone()),
+                        panel.transform,
+                        Visibility::Hidden,
+                    ))
+                    .id();
+                if lod == 2 {
+                    commands.entity(child).observe(coarse_shadows);
+                }
+                commands.entity(entity).add_child(child);
+                children.push(child);
+            }
+            slot.prepared = Some(Prepared {
+                key: (lod, mask),
+                children,
+            });
+        }
+    }
+    // Count the displayed group, not pending load requests or prepared hidden scenes.
+    stream.active_buildings = 0;
+    stream.active_panels = 0;
+    stream.active_triangles = 0;
+    let mut active_indices = BTreeSet::new();
+    for (_, slot) in &slots {
+        if let Some((lod, mask)) = slot.active {
+            active_indices.insert(slot.index);
+            stream.active_buildings += 1;
+            stream.active_panels += slot.children.len();
+            let b = &plan.buildings[slot.index];
+            let design = &plan.catalog.records[b.design];
+            stream.active_triangles += b
+                .panels(design, mask)
+                .iter()
+                .map(|p| design.lods[lod].triangles[p.band])
+                .sum::<usize>();
+        }
+    }
+    for (f, mut visible, mut t) in &mut fallback {
+        let active = active_indices.contains(&f.index);
+        if f.wall {
+            let a = &plan.buildings[f.index];
+            let inset = if active {
+                a.inset(&plan.catalog.records[a.design])
+            } else {
+                0.0
+            };
+            t.scale = Vec3::new(
+                (f.size.x - 2.0 * inset).max(1.0),
+                f.size.y,
+                (f.size.z - 2.0 * inset).max(1.0),
+            );
+        } else {
+            *visible = if active {
+                Visibility::Hidden
+            } else {
+                Visibility::Inherited
+            };
+        }
+    }
+    if stream.cache.len() > 48 {
+        let mut old: Vec<_> = stream
+            .cache
+            .iter()
+            .filter(|(k, _)| !requested.contains(k))
+            .map(|(k, v)| (*k, v.used))
+            .collect();
+        old.sort_by_key(|v| v.1);
+        let remove = stream.cache.len() - 48;
+        for (key, _) in old.into_iter().take(remove) {
+            stream.cache.remove(&key);
+        }
+    }
+}
+
+// The structural shell keeps the building shadow. Distant small facade ornaments
+// do not need another shadow draw per primitive; near/mid details retain theirs.
+fn coarse_shadows(
+    event: On<bevy::scene::SceneInstanceReady>,
+    children: Query<&Children>,
+    meshes: Query<(), With<Mesh3d>>,
+    mut commands: Commands,
+) {
+    for entity in children.iter_descendants(event.entity) {
+        if meshes.contains(entity) {
+            commands.entity(entity).insert(bevy::light::NotShadowCaster);
+        }
+    }
+}

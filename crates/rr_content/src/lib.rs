@@ -168,3 +168,5 @@ pub mod biomechanics;
 pub mod recovery;
 
 pub mod crash_motion;
+
+pub mod architecture;

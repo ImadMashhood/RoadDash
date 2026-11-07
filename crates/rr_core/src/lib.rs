@@ -277,3 +277,5 @@ pub mod motion;
 pub mod biomechanics;
 
 pub mod recovery;
+
+pub mod performance;

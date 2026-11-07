@@ -67,6 +67,18 @@ pub fn document(
         track,
         super::layout::Construction::from_json(super::layout::CONSTRUCTION_JSON, track)?,
     )?;
+    let architecture = super::architecture::Architecture::new(plan, &layout)?;
+    let mut design_counts = std::collections::BTreeMap::<String, usize>::new();
+    let bindings: Vec<_> = architecture
+        .buildings
+        .iter()
+        .map(|b| {
+            let d = &architecture.catalog.records[b.design];
+            *design_counts.entry(d.id.clone()).or_default() += 1;
+            json!({"lot_id":b.id,"design":d.id,"all_face_panels":b.panels(d,15).len()})
+        })
+        .collect();
+    let architecture_metadata = json!({"kind":"authored_storey_kit_bindings_not_placement_or_fps_proof","catalog":architecture.catalog.records.len(),"design_counts":design_counts,"bindings":bindings,"limits":{"active_buildings":architecture.rules.max_active_buildings,"active_panels":architecture.rules.max_active_panels,"active_triangles":architecture.rules.max_active_triangles}});
     let geometry_hash = fingerprint(&serde_json::to_vec(&layout).map_err(|e| e.to_string())?);
     let mut supported_track = Track::from_definition(track.definition.clone())?;
     supported_track.earthworks = Some(Box::new(super::ground::Earthworks::new(
@@ -81,7 +93,7 @@ pub fn document(
         json!({"id":s.id,"name":s.name,"district":s.district,"start_m":s.start_m,"end_m":end,"authored_end_m":s.end_m,"start_position":track.sample(s.start_m,0.0).0.to_array(),"end_position":track.sample(end,0.0).0.to_array(),"near":s.near,"secondary":s.secondary,"total":s.total,"live_masses":baseline.map(|b| b["buildings"].as_array().expect("census records").iter().filter(|b| plan.section_at(b["station_m"].as_f64().unwrap() as f32,track)==Some(i)).count())})
     }).collect();
     Ok(
-        json!({"phase":"City grid follow-up", "city_additions":layout.neighborhood.len(),"grid_street_segments":layout.grid_streets.len(), "layout":layout,"urban_block_faces":layout.settings.junctions.windows(2).enumerate().flat_map(|(i,pair)|[-1,1].map(move|side|json!({"id":format!("BLOCK-{:02}-{}",i+1,side),"start_m":pair[0].station_m,"end_m":pair[1].station_m,"side":side}))).collect::<Vec<_>>(),"centerline":track.points.iter().step_by(4).map(|p|p.to_array()).collect::<Vec<_>>(),"geometry_fingerprint":geometry_hash,"walk_audit":walk_audit, "generator_version":plan.definition.generator_version,"track_id":plan.definition.track_id,"seed":plan.definition.seed,"closed":track.definition.closed,"baked_length_m":track.length,"authored_length_m":plan.definition.road_length_m,"end_snap_delta_m":track.length-plan.definition.road_length_m,"elevation_range_m":[track.bounds.0.y,track.bounds.1.y],"gates":track.definition.checkpoints.len(),"grid_spawns":track.definition.spawns.len(),"target":{"sections":sections.len(),"archetypes":plan.archetypes.archetypes.len(),"buildings":plan.definition.building_target_total,"near":plan.definition.near_road,"secondary":plan.definition.secondary_row,"families":plan.definition.archetype_counts},"placement_generated":true,"allocation_fingerprint":allocation_hash,"fingerprint_scope":"quota assignment only; not transforms, lots, foundations or completed-world determinism", "sections":sections,"archetypes":plan.archetypes.archetypes,"planned_assignments":plan.assignments,"baseline":baseline}),
+        json!({"architecture":architecture_metadata,"phase":"Authored architecture integration", "city_additions":layout.neighborhood.len(),"grid_street_segments":layout.grid_streets.len(), "layout":layout,"urban_block_faces":layout.settings.junctions.windows(2).enumerate().flat_map(|(i,pair)|[-1,1].map(move|side|json!({"id":format!("BLOCK-{:02}-{}",i+1,side),"start_m":pair[0].station_m,"end_m":pair[1].station_m,"side":side}))).collect::<Vec<_>>(),"centerline":track.points.iter().step_by(4).map(|p|p.to_array()).collect::<Vec<_>>(),"geometry_fingerprint":geometry_hash,"walk_audit":walk_audit, "generator_version":plan.definition.generator_version,"track_id":plan.definition.track_id,"seed":plan.definition.seed,"closed":track.definition.closed,"baked_length_m":track.length,"authored_length_m":plan.definition.road_length_m,"end_snap_delta_m":track.length-plan.definition.road_length_m,"elevation_range_m":[track.bounds.0.y,track.bounds.1.y],"gates":track.definition.checkpoints.len(),"grid_spawns":track.definition.spawns.len(),"target":{"sections":sections.len(),"archetypes":plan.archetypes.archetypes.len(),"buildings":plan.definition.building_target_total,"near":plan.definition.near_road,"secondary":plan.definition.secondary_row,"families":plan.definition.archetype_counts},"placement_generated":true,"allocation_fingerprint":allocation_hash,"fingerprint_scope":"quota assignment only; not transforms, lots, foundations or completed-world determinism", "sections":sections,"archetypes":plan.archetypes.archetypes,"planned_assignments":plan.assignments,"baseline":baseline}),
     )
 }
 /// Same setup function as the game; does not initialize a window/GPU/audio.

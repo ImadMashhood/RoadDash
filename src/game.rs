@@ -477,7 +477,8 @@ pub fn input(
                         current: pose,
                     },
                 ))
-                .remove::<ColliderDisabled>();
+                .remove::<ColliderDisabled>()
+                .remove::<RigidBodyDisabled>();
         }
         for e in &mut debris {
             commands.entity(e).despawn();
@@ -1439,6 +1440,117 @@ pub(crate) mod tests {
                 "first physics tick restored old progress"
             );
         }
+    }
+    #[test]
+    fn unseen_rear_crash_skips_bodies_waits_five_seconds_and_reset_cancels_it() {
+        let mut app = simulation();
+        let (front, fq, back, bq) = {
+            let track = app.world().resource::<Track>();
+            let (p, q) = track.sample(1000.0, 0.0);
+            let (b, bq) = track.sample(900.0, 0.0);
+            (p, q, b, bq)
+        };
+        let player = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        {
+            let mut r = app.world_mut().get_mut::<Rider>(player).unwrap();
+            r.progress = 1000.0;
+            r.immunity = 1000.0;
+        }
+        *app.world_mut().get_mut::<Transform>(player).unwrap() =
+            Transform::from_translation(front).with_rotation(fq);
+        app.world_mut().spawn((
+            Camera3d::default(),
+            Transform::from_translation(front - fq * Vec3::Z * 6.0 + Vec3::Y * 3.0)
+                .looking_at(front + fq * Vec3::Z * 30.0, Vec3::Y),
+        ));
+        let mut rider = Rider::new(1);
+        rider.progress = 900.0;
+        rider.lane = 0.0;
+        rider.health = 0.0;
+        let enemy = app
+            .world_mut()
+            .spawn((
+                rider,
+                Transform::from_translation(back).with_rotation(bq),
+                Visibility::Visible,
+                recovery::bike_body(),
+            ))
+            .id();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        step(&mut app, 1);
+        assert!(
+            app.world()
+                .get::<Recovery>(enemy)
+                .unwrap()
+                .deferred
+                .is_some()
+        );
+        assert!(app.world().get::<Recovery>(enemy).unwrap().parts.is_empty());
+        assert!(app.world().get::<RigidBodyDisabled>(enemy).is_some());
+        assert_eq!(
+            app.world_mut()
+                .query::<&recovery::OwnedBody>()
+                .iter(app.world())
+                .filter(|b| b.owner == enemy)
+                .count(),
+            0
+        );
+        app.world_mut().resource_mut::<Race>().phase = Phase::Paused;
+        step(&mut app, 60);
+        assert_eq!(
+            app.world()
+                .get::<Recovery>(enemy)
+                .unwrap()
+                .deferred
+                .unwrap()
+                .ticks,
+            300
+        );
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        step(&mut app, 299);
+        assert!(
+            app.world()
+                .get::<Recovery>(enemy)
+                .unwrap()
+                .deferred
+                .is_some()
+        );
+        step(&mut app, 1);
+        assert!(
+            app.world()
+                .get::<Recovery>(enemy)
+                .unwrap()
+                .deferred
+                .is_none()
+        );
+        assert!(app.world().get::<RigidBodyDisabled>(enemy).is_none());
+        let r = app.world().get::<Rider>(enemy).unwrap();
+        assert!((r.progress - 900.0).abs() < 0.2 && r.lane.abs() < 0.1 && r.health == 100.0);
+        app.world_mut().get_mut::<Rider>(enemy).unwrap().health = 0.0;
+        step(&mut app, 1);
+        assert!(
+            app.world()
+                .get::<Recovery>(enemy)
+                .unwrap()
+                .deferred
+                .is_some()
+        );
+        app.world_mut()
+            .resource_mut::<crate::controls::Controls>()
+            .restart = true;
+        step(&mut app, 1);
+        assert!(
+            app.world()
+                .get::<Recovery>(enemy)
+                .unwrap()
+                .deferred
+                .is_none()
+        );
+        assert!(app.world().get::<RigidBodyDisabled>(enemy).is_none());
     }
     #[test]
     fn collision_gap_wraps_at_finish() {

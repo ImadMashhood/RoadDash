@@ -126,6 +126,7 @@ fn loaded(
     mut next: ResMut<NextState<AppScreen>>,
     art: Option<Res<world::Art>>,
     city: Option<Res<crate::world_gen::city::visuals::ModelCatalog>>,
+    architecture: Option<Res<crate::world_gen::architecture::render::Streaming>>,
     server: Option<Res<AssetServer>>,
     props: Query<
         &SceneRoot,
@@ -135,6 +136,11 @@ fn loaded(
         )>,
     >,
 ) {
+    if let (Some(architecture), Some(server)) = (&architecture, &server)
+        && !architecture.ready(server)
+    {
+        return;
+    }
     if let (Some(city), Some(server)) = (&city, &server)
         && !city.ready(server)
     {
@@ -215,6 +221,7 @@ impl Plugin for RoadSimulationPlugin {
             .add_systems(
                 FixedUpdate,
                 (
+                    crate::offscreen_crash::classify,
                     recovery::impacts,
                     recovery::recover,
                     game::drive,
@@ -289,6 +296,12 @@ impl Plugin for RoadWorldPlugin {
             crate::world_gen::city::visuals::update_lod
                 .run_if(resource_exists::<crate::world_gen::city::visuals::ModelCatalog>),
         )
+        .add_systems(
+            Update,
+            crate::world_gen::architecture::render::update
+                .run_if(resource_exists::<crate::world_gen::architecture::render::Streaming>),
+        )
+        .add_systems(PostStartup, crate::road_detail::install)
         .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
         .init_resource::<crate::environment::TrackInspector>()
         .add_systems(

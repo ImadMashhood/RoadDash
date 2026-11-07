@@ -433,3 +433,46 @@ art and independent visual distal joints remain unfinished under RAG-05.
 - Camera avoids static scenery with lower-boom candidates; transient actors no
   longer collapse its distance. Extremely enclosed geometry and broad user comfort
   review remain outside the small tested ceiling/wall cases.
+
+## Part04 Valley architecture integration (2026-11-06, ADR052)
+
+- All657 existing lots are bound to authored exterior designs. Detailed geometry
+  is deliberately bounded and camera-facing; far and streaming fallback remain
+  simpler shells/windows. Review pop-in, seams, over-scaled bay/ground dimensions
+  and texel density before production art acceptance (MESH/V2-04).
+- KIT-03: party-wall infill remains plain; parking/service roles can use industrial
+  facade drafts without their intended bespoke full exterior. Rural structures
+  are frontage adaptations around unchanged solid collision masses. Navigable
+  interior barns/buildings are not implemented by this kit (ENV-005 remains open).
+- The warmed1080p15-racer survey still misses16.7ms wall-frame p95 after bounded
+  detail/shadow tuning. Native logs/JSON record measurements; no60FPS production
+  certification is claimed. Frame time, cache memory and streaming stress across
+  hardware remain V2-04-006. The original1,200-panel19.36ms result is retained too.
+- Existing art covers facade/structure drafts, not final material/layout/style
+  acceptance for every design. Coast/cliff/woodland bible remains P11-002 work.
+- Optional City Run's ANIM-12 loading-stack issue remains separate; Valley's new
+  kit loads/runs on the default worker stack here. No Windows certification.
+
+## User-requested world/performance follow-up — ADR053
+
+- ANIM-12 resolved locally: explicit16MiB asset IO stacks permit both native Valley
+  and City Run smoke without RUST_MIN_STACK. The old failures/workarounds above are
+  historical; default compute/physics pools and worker-count policy remain intact.
+- Plain high-rise/infill surfaces and road material improved; resident coarse
+  textures and ready-instance swaps remove empty-scene gaps. LOD silhouette changes,
+  layout/material fidelity, bespoke service/parking geometry and final user/art
+  approval remain open. This does not close KIT-03/MESH/Part04 production gates.
+- Offscreen mounted NPC crash shortcuts intentionally discard physical crash
+  simulation: no ragdoll/wreck, five active seconds, then road-centre return at the
+  original impact station with zero speed. Turning back does not materialize a
+  physical crash mid-delay. Existing physical ragdolls remain simulated; nearby,
+  camera-visible and player crashes stay on the accepted physical path.
+- Coarse residency trades a finite catalog memory cost for less texture reload;
+  high-LOD cache and hidden preparation are separately bounded. Long streaming/
+  memory stress, frame-time acceptance and Windows certification remain open.
+- The user explicitly authorizes Part05 after merging this work even though broad
+  Part04 art/performance acceptance remains unfinished. Keep those tasks open.
+
+- Latest ADR053 survey meets the local1080p wall-frame target at15.83ms p95 after
+  ornament-shadow trimming. The earlier failed snapshots remain historical evidence;
+  long-race/streaming-memory and multi-hardware performance gates are still open.

@@ -202,8 +202,16 @@ pub fn setup_world(
             &art,
             plan,
             &layout,
+            server.as_deref(),
         );
-        crate::world_gen::frontage::spawn(&mut commands, &mut meshes, &mut materials, &layout);
+        crate::world_gen::frontage::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            &layout,
+            plan,
+            server.as_deref(),
+        );
         commands.insert_resource(layout);
     }
     commands.insert_resource(art);

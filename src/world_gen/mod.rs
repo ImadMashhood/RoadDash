@@ -181,3 +181,6 @@ mod tests {
 #[cfg(test)]
 #[path = "tests.rs"]
 mod construction_tests;
+
+pub mod architecture;
+pub mod elevation;

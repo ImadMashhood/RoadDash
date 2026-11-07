@@ -1,0 +1,1 @@
+{'designs': 128, 'glbs': 384, 'shared_textures': 34, 'geometry_bytes': 300063068, 'source': 'Own authored original models; no retail pixels'}

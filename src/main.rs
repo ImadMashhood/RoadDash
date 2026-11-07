@@ -174,9 +174,14 @@ fn main() {
             }
         }
     }
-    road_dash::build_app(
+    let status = road_dash::build_app(
         std::env::args()
             .any(|a| a == "--smoke-test" || a == "--actor-smoke-test" || a == "--world-survey"),
     )
     .run();
+    // Native test fixtures report failed acceptance via AppExit. Preserve that
+    // status for scripts rather than returning a misleading successful process.
+    if let bevy::app::AppExit::Error(code) = status {
+        std::process::exit(i32::from(code.get()));
+    }
 }
