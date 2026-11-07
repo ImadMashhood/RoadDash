@@ -63,6 +63,9 @@ impl Default for Queue {
     }
 }
 impl Queue {
+    pub fn material_ready(&self, id: AssetId<StandardMaterial>) -> bool {
+        self.done.contains(&id)
+    }
     pub fn settled(&self) -> bool {
         self.jobs.is_empty() && self.pending.is_empty() && self.stable >= 2
     }

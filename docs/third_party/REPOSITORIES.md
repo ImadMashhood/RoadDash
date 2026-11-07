@@ -736,3 +736,9 @@ above. No external source/media copied and no package adopted. Godot/Rust
 repositories remain REFERENCE ONLY; native Rapier anatomy/passive drives retained.
 Full world inverse inertia and exact per-pair positive work replace scalar/directed
 velocity heuristics; no animation-position follower. See ADR058-B and Method B QA.
+
+2026-11-07 facade follow-up: inspected installed bevy_camera/bevy_pbr0.17.3
+visibility/range.rs, render/mesh_functions.wgsl and pbr_functions.wgsl (Cargo.lock
+pinned crates, bevyengine/bevy, MIT OR Apache-2.0; existing DEPENDENCY). Confirmed
+start/end complementary dither and origin semantics; no source copied or new
+dependency/media. ADR060 and velocity-popin evidence record actual use.

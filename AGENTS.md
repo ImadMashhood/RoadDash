@@ -69,3 +69,9 @@ in the blueprint are not installed dependencies.
   energy once; frontal leg-release uses existing motor limits. Preserve baseline.
   Neutral distal skin frames must inherit animated parents; do not add standing
   wrist twist to hide a bind mismatch. Valley is default; explicit city remains.
+
+- 2026-11-07: user selected velocity muscles after A/B comparison. Do not integrate
+  the native-motor candidate. Anatomical constraints/passive resistance are still
+  required. Facade LOD changes must crossfade ready groups directly, use opposing
+  dither branches and final propagated render-camera origins; overlap counts
+  against displayed geometry budgets and cannot remove collision.

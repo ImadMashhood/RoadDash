@@ -1643,3 +1643,30 @@ expire at4.95s by default, so zero-positive-work damping cannot keep limbs awake
 indefinitely. Native logical resting accepts genuinely motionless distal ground
 support; active roll eligibility remains the stricter core-support proxy. The
 prone fixture achieved onlyabout7degrees, so full roll-to-back remains open.
+
+## ADR060 — Selected velocity muscles and direct, render-aligned facade handoff
+
+2026-11-07. Problem: user selected velocity after two isolated candidates and
+reports severe texture pop-in. Selected: build on Method B, with bounded reciprocal
+angular corrections and supported guide; exclude Method A. Keep native anatomical
+constraints/passive springs because removing these disconnects the body. No engine,
+dependency, mass, anatomy, contact or save migration. Historical eleven-body
+control and comparison triggers remain diagnostic-only options.
+
+Facade investigation found authored LOD changes faded out to the generic fallback
+then faded in the new facade, both groups used the same positive dither branch,
+and Update-time ranges lagged the final PostUpdate camera. Selected: keep old
+ready geometry while hidden new scenes/materials/tangents finish, crossfade them
+directly using opposing start/end dither branches, recenter ranges after transform
+propagation before visibility, and prefetch detail inside130m instead of18/55m.
+Native Bevy0.17.3 installed range/render shader sources confirm branch quantization
+and origin semantics. Source is studied, not copied; existing Bevy MIT/Apache
+dependency/license applies. No new repository or media imported.
+
+Reserve25% of the existing display panel/triangle budget for overlapping groups;
+count both and defer upgrades if they do not fit. Keep the48-entry high-LOD cache
+strictly bounded with referenced groups pinned. Tradeoffs: modestly fewer steady
+detail panels, earlier asynchronous IO, finite hidden preparation, and dither grain.
+This is not silhouette morphing or a new distant facade art pass. Physical lots,
+colliders, support, navigation and structural IDs are unchanged. Multiplayer remains
+independent of cosmetic LOD; rollback renderer independently of velocity physics.

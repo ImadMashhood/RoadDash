@@ -169,7 +169,7 @@ struct Compare {
 }
 #[derive(Component)]
 pub(crate) struct CompareLabel;
-pub const METHOD: &str = "METHOD B / VELOCITY MUSCLES + SUPPORT GUIDE";
+pub const METHOD: &str = "VELOCITY MUSCLES + SUPPORT GUIDE";
 pub fn install_comparison(app: &mut App) {
     if !std::env::args().any(|s| s == "--crash-comparison") {
         return;

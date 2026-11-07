@@ -432,3 +432,13 @@ invalid/zero budget handling, actual wall contacts rejected as support, finite
 retries/high-motion yield/rest and eleven-body baseline exclusion. Full workspace,
 headless lab, native smoke and common swerve/release/recovery regressions are
 recorded in crash-comparison/method-b after execution; no visual/user gate inferred.
+
+## 2026-11-07 — Velocity selection and facade pop-in
+
+RAG-12/LOD-02 verified on codex/velocity-popin; detailed commands/logs/screenshots
+in velocity-popin/README.md.258workspace tests pass,1ignored; strict Clippy/fmt/
+build/audit/roadmap pass. Paired18finite ragdoll cases preserve9baseline rows.
+Native crash/recovery/remount/route/finish/audio smoke passes. Native world survey
+validates15sections657roots,9actualdirectcrossfades and bounded displayed/cache
+counts, but deliberately exits1: p95=16.94174ms exceeds16.7ms. Productionperf,
+LOD-03 distant/alternate-map art and full roll recovery remain open.

@@ -558,3 +558,18 @@ The final worst-case fully-prone8m/s fixture starts attempts but reaches only
 supine score-0.9932 (about7degrees torso roll), not a completed roll-to-back.
 This remains an explicitly partial comparison prototype; no full active
 recovery/animation gate has been checked.
+
+## Velocity selection / facade handoff — 2026-11-07
+
+Velocity is user-selected; the native-motor comparison candidate is excluded.
+The existing worst prone fixture still does not complete a rollover. RAG-B gates
+remain open beyond selecting the controller. Anatomical constraints are retained.
+Facade replacements now crossfade directly; old fallback detours and same-sign
+dither are corrected, but genuine geometry/silhouette differences at initial
+activation, optional City Run's independent LOD renderer and long streaming/
+production performance require further review. No universal zero-pop-in claim.
+
+Final survey sample: p95=16.94174ms (16.7ms target missed), average14.05263ms.
+Actual displayed731panels/731523triangles and48cachedLODs fit unchanged bounds.
+LOD-03 tracks distant identity and optional City Run; full zero-pop-in and broad
+production/hardware/performance acceptance are not claimed.

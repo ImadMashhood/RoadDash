@@ -345,6 +345,12 @@ impl Plugin for RoadWorldPlugin {
                     .run_if(resource_exists::<crate::world_gen::architecture::render::Streaming>),
             )
             .add_systems(
+                PostUpdate,
+                crate::world_gen::architecture::render::synchronize_fades
+                    .after(bevy::transform::TransformSystems::Propagate)
+                    .before(bevy::camera::visibility::VisibilitySystems::CheckVisibility),
+            )
+            .add_systems(
                 PostStartup,
                 (
                     crate::road_detail::install,

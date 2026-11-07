@@ -186,7 +186,9 @@
         "RAG-08",
         "COLLISION-05",
         "DISTRICT-01",
-        "CITYGEN-01"
+        "CITYGEN-01",
+        "RAG-12",
+        "LOD-02"
       ]
     },
     "01": {
@@ -294,7 +296,8 @@
         "ARCH-005",
         "RIGHTS-007",
         "P02-004",
-        "KIT-03"
+        "KIT-03",
+        "LOD-03"
       ]
     },
     "05": {

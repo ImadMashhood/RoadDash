@@ -773,3 +773,16 @@ nine baseline rows exactly equal excluding timing. Native passive-rest support
 recognizes genuinely quiet distal ground support; active corrections expire
 after4.95s to preserve240-body pileup sleep. Worst fully-prone8m/s attempt
 rotated torso onlyabout7degrees; full roll-to-back and user acceptance stay open.
+
+## 2026-11-07 — Select velocity and correct facade transitions
+
+User chose Method B; based focused codex/velocity-popin on its clean candidate.
+Retain passive anatomical joints, baseline, shared swerve/release/recovery and
+unchanged map; no native-motor candidate integration. Correct facade handoff,
+dither coverage, camera timing, readiness, prefetch and finite overlap/cache.
+RAG-12/LOD-02 track verification; ADR060 records tradeoffs. No new media/dependency.
+
+Final verification:258tests pass/1ignored; fmt/strictClippy/build/audit/5roadmap
+pass; native recovery smoke pass;18finitepairedlab withbaselinepreserved. World
+survey15sections657roots,9directcrossfades, boundsvalid; p95=16.94174ms misses
+16.7ms (surveyexit1). RAG-12/LOD-02 completed; LOD-03 remains open.

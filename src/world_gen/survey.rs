@@ -145,7 +145,7 @@ pub fn run(
             assert!(prepared<=a.rules.max_active_panels,"unbounded hidden preparations");
             assert!(actual_meshes>0,"architecture preview contains no instantiated GLB geometry");
             assert_eq!(scene_roots,s.active_panels,"streaming census differs from actual scene roots");
-            serde_json::json!({"bound_lots":a.buildings.len(),"active_buildings":s.active_buildings,"active_panels":s.active_panels,"scene_roots":scene_roots,"prepared_panels":prepared,"actual_mesh_entities":actual_meshes,"visible_triangle_instances":s.active_triangles,"cached_lods":s.cached_lods(),"resident_coarse_lods":s.resident_coarse_lods(),"switches":s.switches,"catalog_designs":a.catalog.records.len(),"limits":{"buildings":a.rules.max_active_buildings,"panels":a.rules.max_active_panels,"triangles":a.rules.max_active_triangles}})
+            serde_json::json!({"bound_lots":a.buildings.len(),"active_buildings":s.active_buildings,"active_panels":s.active_panels,"scene_roots":scene_roots,"prepared_panels":prepared,"actual_mesh_entities":actual_meshes,"visible_triangle_instances":s.active_triangles,"cached_lods":s.cached_lods(),"resident_coarse_lods":s.resident_coarse_lods(),"switches":s.switches,"direct_crossfades":s.direct_switches,"overlap_budget_holds":s.budget_holds,"catalog_designs":a.catalog.records.len(),"limits":{"buildings":a.rules.max_active_buildings,"panels":a.rules.max_active_panels,"triangles":a.rules.max_active_triangles}})
         });
         let dressing_evidence=dressing.as_ref().map(|e|{
             assert_eq!(dressed.iter().count(),e.placed);assert!(e.placed>20,"semantic props missing");

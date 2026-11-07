@@ -1,4 +1,4 @@
-//! Method B: reference-inspired angular velocity feedback with native anatomy.
+//! Selected velocity muscle controller with constrained passive anatomy.
 //! No body position or linear velocity is authored by this controller.
 use super::*;
 use rr_core::velocity_muscles::{Phase, Sense};

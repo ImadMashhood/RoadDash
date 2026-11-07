@@ -75,7 +75,7 @@ Keyboard JSON through `ROADDASH_BINDINGS` still overrides the loaded keyboard ma
 Gamepad support uses Bevy's Gilrs backend; Linux now also needs the libudev development
 package listed above. Multiple pads use the lowest entity ID; disconnect clears input.
 
-The [biomechanical ragdoll](docs/testing/RAGDOLL_BIOMECHANICS.md) is now the default:16 physical bodies, constrained anatomy and passive/active muscle motors. Run `cargo run --release` normally; no B press or extra flag is required. Use `--ragdoll-baseline` to compare the original eleven-body rig, or `--ragdoll-lab-view` for the standalone lab (B switches modes there). [Integration evidence](docs/testing/ragdoll/integration/README.md).
+The [biomechanical ragdoll](docs/testing/RAGDOLL_BIOMECHANICS.md) defaults to the selected velocity-muscle controller:16 physical bodies, anatomical constraints, passive tissue resistance and bounded angular muscle corrections. The native-motor comparison candidate is not integrated. [Selection and facade-streaming follow-up](docs/testing/velocity-popin/README.md). Run `cargo run --release` normally; no B press or extra flag is required. Use `--ragdoll-baseline` to compare the original eleven-body rig, or `--ragdoll-lab-view` for the standalone lab (B switches modes there). [Integration evidence](docs/testing/ragdoll/integration/README.md).
 
 See the dedicated [animation production plan](#animation-production) for the full reference/keyframe and runtime-animation backlog.
 
@@ -125,7 +125,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**181 verified tasks complete; 226 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**183 verified tasks complete; 227 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -143,11 +143,11 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 181 verified complete |
+| [00](#part-00) | Completed and verified foundations | 183 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 26 open |
-| [04](#part-04) | World A — facade study, original textures and procedural buildings | 20 open |
+| [04](#part-04) | World A — facade study, original textures and procedural buildings | 21 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 7 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 10 open |
 | [07](#part-07) | Weapons and complete riding combat | 11 open |
@@ -164,6 +164,10 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RAG-12** Adopt the user-selected velocity muscles as the default without the native-motor candidate. Reason: user selected velocity after A/B comparison; part: 03; dependencies: shared continuous release and Method B; acceptance: normal launch uses velocity, anatomical constraints/passive resistance and baseline remain intact, paired lab and crash/recovery pass; verification: [selection evidence](docs/testing/velocity-popin/README.md).
+
+- [x] **LOD-02** Remove fallback flashes and incorrect dither during authored facade replacements. Reason: severe user-reported texture pop-in; part: 04; dependencies: LOD-01 and KIT-05; acceptance: direct ready-to-ready transitions, complementary pixel coverage, final-camera range synchronization, material/tangent readiness, early requests and bounded overlap/cache; verification: shader-equivalent regression, native route survey/census and recovery smoke in [evidence](docs/testing/velocity-popin/README.md).
 
 - [x] **RAG-11** Audit original crash animation/control and open-source active-ragdoll approaches before changing gameplay. Reason: requested realistic roll-to-back, protective arms and continuous combat ejection, then findings before implementation; originating part: 03; dependencies: RAG-10, V2-01-006 and existing physical rig; acceptance: identify current teleport/support/roll gaps, pin actual source/licenses/compatibility, distinguish original behavior from proposals, adopt no runtime changes; verification: [source audit and file hashes](docs/research/crash-behavior/README.md). This completes research only; V2-01-006 and V2-03-005 remain open.
 
@@ -653,11 +657,12 @@ First study every original rider animation category, use sprites as reference ke
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
 
+
 - [ ] **RAG-B-01** Implement and verify reciprocal angular-impulse muscle control on the existing constrained rig. Reason: user requested a second method for comparison; part: 03; dependencies: RAG-11 and shared crash lifecycle; acceptance: tensor reciprocal momentum, no authored linear/position correction, torque/rate/work caps, real support, finite attempts and baseline/sleep preservation; verification: focused/backend/full regression and native evidence in [Method B](docs/testing/crash-comparison/method-b/README.md). Automated subset implemented; native/user gates remain open.
 
 - [ ] **RAG-B-02** Verify complete Method B combat/crash/recovery integration. Reason: compare both methods using identical triggers; part: 03; dependencies: RAG-B-01 and shared A/B lifecycle; acceptance: real three-hit swerve/countersteer, continuous release, obstacle interruption, safe own-wreck grace, manual foot finish/remount/reset/pause, comparison saves disabled; verification: headless integration, native smoke and F8/F9/F10 review.
 
-- [ ] **RAG-B-03** Choose the preferred crash behavior after A/B gameplay review. Reason: the user will select the winner; part: 03; dependencies: RAG-B-01/02 and Method A; acceptance: identical20/60/120/200km/h cases, documented keep/change decisions, approved feel and no critical regressions; verification: user playtest and recorded comparison. Neither branch is automatically merged.
+- [ ] **RAG-B-03** Choose the preferred crash behavior after A/B gameplay review. Reason: the user will select the winner; part: 03; dependencies: RAG-B-01/02 and Method A; acceptance: identical20/60/120/200km/h cases, documented keep/change decisions, approved feel and no critical regressions; verification: user playtest and recorded comparison. Velocity was selected by the user on 2026-11-07; prototype B acceptance and broad tuning gates remain open. The native comparison candidate is not integrated. User selection is now recorded: velocity on 2026-11-07 (RAG-12); remaining integration/tuning acceptance depends on RAG-B-01/02, not another selection question.
 
 The user authorized the initial clip integration after correcting torso motion; ANIM-08 records that verified subset. Full keyframe approval and the production gates below remain open. Animate and interpolate the full set. Make walking/running feel grounded through terrain-aware stride, foot planting, starts/stops and turns. Preserve universal seat/grip/peg contacts, improve get-up/remount, and prototype bounded attempts to regain control during ragdoll. Include manual on-foot control and valid foot finishes; keep the accepted passive ragdoll as the comparison fixture.
 
@@ -695,6 +700,9 @@ Continue here after the animation gates: buildings → props → NPCs → sky/la
 <a id="part-04"></a>
 
 ### Part 04 — World A — facade study, original textures and procedural buildings
+
+- [ ] **LOD-03** Match distant facade identity and extend direct fades to optional City Run. Reason: initial generic-to-authored geometry still differs and City Run uses a separate scene-swap renderer; part: 04; dependencies: LOD-02 and approved facade families; acceptance: matching window/trim/material layout across distance levels, ready complementary transitions on both maps, prolonged high-speed and reverse-camera review without visible facade identity changes; verification: repeated native moving-camera captures, stream/cache census and user visual review. This broader art/alternate-map gate is not closed by the Valley handoff fix.
+
 
 Study the original building/facade textures locally, rebuild them as original art in the approved RoadDash style, define the procedural city/world grammar, then generate detailed building families and whole blocks. Existing structural graybox and dense street fronts are completed foundations, not final facade art.
 
