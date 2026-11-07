@@ -1,0 +1,335 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: bollard
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: checker_pattern
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: checker_pattern.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.021596670150756836 s
+
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: bollard.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: checker_pattern.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: checker_pattern.003
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.01438760757446289 s
+
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: bollard.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.007271289825439453 s
+
+EXPORTED PROP-994B2FFBFC1E BIGFNCN2 [268, 196, 20]
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: barrier_leg
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_foot
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_board
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: painted_diagonal_stripe
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_beacon
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.029262542724609375 s
+
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: barrier_leg.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_foot.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_board.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: painted_diagonal_stripe.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_beacon.001
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.05745434761047363 s
+
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: barrier_leg.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_foot.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_board.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_beacon.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.040813446044921875 s
+
+EXPORTED PROP-D89DFF822F38 BRRICDB2 [872, 400, 96]
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: barrier_leg.003
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_foot.003
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_board.003
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: painted_diagonal_stripe.002
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.04053378105163574 s
+
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: barrier_leg.004
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_foot.004
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_board.004
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: painted_diagonal_stripe.003
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.02396678924560547 s
+
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: barrier_leg.005
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_foot.005
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: barrier_board.005
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.013037681579589844 s
+
+EXPORTED PROP-FB235CC5B080 BRRICDC2 [552, 232, 60]
+20:23:51 | INFO: Starting glTF 2.0 export
+20:23:51 | INFO: Extracting primitive: crowd_barrier_sides
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: crowd_barrier_feet
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: crowd_barrier_rails
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: crowd_barrier_pickets
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: road_closed_plate
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Extracting primitive: Dimensional lettering ROAD
+CLOSED
+20:23:51 | INFO: Primitives created: 1
+20:23:51 | INFO: Finished glTF 2.0 export in 0.05148053169250488 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: crowd_barrier_sides.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: crowd_barrier_feet.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: crowd_barrier_rails.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: crowd_barrier_pickets.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: road_closed_plate.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: Dimensional lettering ROAD
+CLOSED.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.03478550910949707 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: crowd_barrier_sides.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: crowd_barrier_feet.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: crowd_barrier_rails.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: crowd_barrier_pickets.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: road_closed_plate.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.017418384552001953 s
+
+EXPORTED PROP-31AAA08519C0 BRRICDD2 [5700, 4428, 336]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: cone_base
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: cone
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: cone_reflector
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.018703937530517578 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: cone_base.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: cone.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: cone_reflector.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.06347274780273438 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: cone_base.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: cone.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.0111541748046875 s
+
+EXPORTED PROP-137C8FF83416 CONE2 [484, 276, 32]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.003
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: checker_pattern.004
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: checker_pattern.005
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.014399528503417969 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.004
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: checker_pattern.006
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: checker_pattern.007
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.014268875122070312 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.005
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.006422996520996094 s
+
+EXPORTED PROP-FB458921C458 FNSHCON2 [268, 196, 20]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.006
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.02107858657836914 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.007
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.003
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.017786502838134766 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.008
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.006384134292602539 s
+
+EXPORTED PROP-3F7886CCB732 POSTRST2 [1128, 696, 20]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.009
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.004
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.005
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.024544477462768555 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.010
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.006
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.007
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.02971673011779785 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.011
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.006662845611572266 s
+
+EXPORTED PROP-3BFBA58A5A72 POSTWDN2 [1128, 696, 20]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.012
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.008
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.009
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.021416425704956055 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.013
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.010
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.011
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.019350767135620117 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.014
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.0062787532806396484 s
+
+EXPORTED PROP-B0FC71B0C1D3 PSTSTRY2 [1128, 696, 20]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.015
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.012
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.013
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.053769588470458984 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.016
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.014
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: reflective_bands.015
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.040183067321777344 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: bollard.017
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.016158580780029297 s
+
+EXPORTED PROP-8CA8D5733259 PSTYLLW2 [1128, 696, 20]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: pallet_feet
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: pallet_deck
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.03597521781921387 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: pallet_feet.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: pallet_deck.001
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.028469085693359375 s
+
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: pallet_feet.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Extracting primitive: pallet_deck.002
+20:23:52 | INFO: Primitives created: 1
+20:23:52 | INFO: Finished glTF 2.0 export in 0.01785731315612793 s
+
+EXPORTED PROP-7E4D927A8681 SLATS12 [2592, 1056, 288]
+20:23:52 | INFO: Starting glTF 2.0 export
+20:23:52 | INFO: Extracting primitive: pallet_feet.003
+20:23:52 | INFO: Primitives created: 1
+20:23:53 | INFO: Extracting primitive: pallet_deck.003
+20:23:53 | INFO: Primitives created: 1
+20:23:53 | INFO: Finished glTF 2.0 export in 0.14914226531982422 s
+
+20:23:53 | INFO: Starting glTF 2.0 export
+20:23:53 | INFO: Extracting primitive: pallet_feet.004
+20:23:53 | INFO: Primitives created: 1
+20:23:53 | INFO: Extracting primitive: pallet_deck.004
+20:23:53 | INFO: Primitives created: 1
+20:23:53 | INFO: Finished glTF 2.0 export in 0.018265962600708008 s
+
+20:23:53 | INFO: Starting glTF 2.0 export
+20:23:53 | INFO: Extracting primitive: pallet_feet.005
+20:23:53 | INFO: Primitives created: 1
+20:23:53 | INFO: Extracting primitive: pallet_deck.005
+20:23:53 | INFO: Primitives created: 1
+20:23:53 | INFO: Finished glTF 2.0 export in 0.010587930679321289 s
+
+EXPORTED PROP-F4DA946D6EB2 SLATS22 [5184, 2112, 576]
+Info: Saved as "fences_barriers.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

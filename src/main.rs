@@ -4,6 +4,29 @@ fn main() {
         panic!("intentional panic-report verification");
     }
     let args: Vec<_> = std::env::args().collect();
+    if args.iter().any(|a| a == "--inspect-city")
+        || (args.get(1).is_some_and(|a| a == "--inspect-world")
+            && args.get(2).is_none_or(|a| a.starts_with("--")))
+    {
+        let report = road_dash::world_gen::city::document().expect("validated city authoring");
+        let json = serde_json::to_string_pretty(&report).expect("city report");
+        if let Some(index) = args.iter().position(|a| a == "--output") {
+            std::fs::write(args.get(index + 1).expect("report output path"), json)
+                .expect("write city report");
+        } else {
+            println!("{json}");
+        }
+        return;
+    }
+    if args.iter().any(|a| a == "--original-crash-report") {
+        println!(
+            "{}",
+            serde_json::to_string_pretty(&road_dash::original_crash::report())
+                .expect("crash report")
+        );
+        return;
+    }
+
     if let Err(error) = road_dash::biomechanics::Settings::selected() {
         eprintln!("Ragdoll configuration: {error}");
         std::process::exit(2);

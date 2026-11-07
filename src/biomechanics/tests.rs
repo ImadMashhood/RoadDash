@@ -280,3 +280,124 @@ fn repeat_on_foot_knockdown_does_not_reuse_bike_anchor_space_animation() {
         );
     }
 }
+
+#[test]
+fn upgrading_a_ragdoll_preserves_original_crash_direction_policy() {
+    for reverse in [false, true] {
+        let mut app = lab::fixture(false, lab::Scenario::EjectionLow);
+        let w = app.world_mut();
+        let bodies: Vec<_> = w
+            .query::<(Entity, &crate::recovery::CrashEnvelope)>()
+            .iter(w)
+            .map(|(e, c)| (e, c.with_original_direction(reverse)))
+            .collect();
+        assert_eq!(bodies.len(), 11);
+        for (e, c) in bodies {
+            w.entity_mut(e).insert(c);
+        }
+        w.resource_mut::<Settings>().enabled = true;
+        initialize(w);
+        let envelopes: Vec<_> = w
+            .query_filtered::<&crate::recovery::CrashEnvelope, With<Segment>>()
+            .iter(w)
+            .collect();
+        assert_eq!(envelopes.len(), 16);
+        assert!(envelopes.iter().all(|c| c.allows_reverse() == reverse));
+    }
+}
+
+#[test]
+fn passive_knee_resistance_reduces_deflection_under_the_same_load() {
+    fn deflection(legacy: bool) -> f32 {
+        let mut app = App::new();
+        app.add_plugins((
+            MinimalPlugins,
+            TransformPlugin,
+            RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule(),
+        ))
+        .insert_resource(Time::<Fixed>::from_hz(60.0))
+        .insert_resource(TimestepMode::Fixed {
+            dt: 1.0 / 60.0,
+            substeps: 4,
+        })
+        .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+            std::time::Duration::from_secs_f64(1.0 / 60.0),
+        ));
+        let mut config = Settings::default().config;
+        if legacy {
+            let k = &mut config.joints[8];
+            k.passive_k = 5.0;
+            k.passive_d = 2.0;
+            k.passive_torque = 12.0;
+        }
+        let mut knee = joint(&config, 8);
+        knee.set_local_anchor1(Vec3::ZERO);
+        knee.set_local_anchor2(Vec3::Y * 0.22);
+        let parent = app
+            .world_mut()
+            .spawn((RigidBody::Fixed, Transform::IDENTITY))
+            .id();
+        let shin = app
+            .world_mut()
+            .spawn((
+                RigidBody::Dynamic,
+                GravityScale(0.0),
+                Collider::capsule_y(0.13, 0.09),
+                ColliderMassProperties::Mass(3.2),
+                Transform::from_xyz(0.0, -0.22, 0.0),
+                Velocity::zero(),
+                ExternalForce {
+                    torque: Vec3::X * 3.0,
+                    ..default()
+                },
+                ImpulseJoint::new(parent, TypedJoint::GenericJoint(knee)),
+            ))
+            .id();
+        for _ in 0..180 {
+            app.update();
+        }
+        (coordinates(app.world().get::<Transform>(shin).unwrap().rotation).x
+            - config.joints[8].rest[0])
+            .abs()
+    }
+    let old = deflection(true);
+    let new = deflection(false);
+    println!("KNEE_PASSIVE_LOAD old={old} new={new}");
+    assert!(
+        old > 0.3 && new < old * 0.5 && new > 0.03,
+        "must resist more while still yielding"
+    );
+}
+#[test]
+fn inward_hip_loading_keeps_knees_on_their_own_sides() {
+    let mut app = lab::fixture(true, lab::Scenario::Drop);
+    let w = app.world_mut();
+    let parts: std::collections::HashMap<_, _> = w
+        .query::<(Entity, &Segment)>()
+        .iter(w)
+        .map(|(e, s)| (s.part, e))
+        .collect();
+    for (part, direction) in [(7, 1.0), (9, -1.0)] {
+        w.entity_mut(parts[&part]).insert(ExternalForce {
+            torque: Vec3::Z * direction * 20.0,
+            ..default()
+        });
+    }
+    let mut minimum = f32::INFINITY;
+    for _ in 0..240 {
+        app.update();
+        let w = app.world();
+        let pelvis = w.get::<Transform>(parts[&2]).unwrap();
+        let knee = |part: usize| {
+            let t = w.get::<Transform>(parts[&part]).unwrap();
+            let anchor = t.transform_point(specs()[part].anchor - specs()[part].position);
+            (pelvis.rotation.inverse() * (anchor - pelvis.translation)).x
+        };
+        minimum = minimum.min(knee(10) - knee(8));
+    }
+    println!("KNEE_SEPARATION minimum={minimum}");
+    assert!(
+        minimum > 0.12,
+        "knees crossed or collapsed inward under paired load: {minimum}"
+    );
+}

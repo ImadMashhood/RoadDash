@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-01",
+  "date": "2026-11-06",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
@@ -142,10 +142,22 @@
         "ANIM-05",
         "ANIM-07",
         "ANIM-08",
+        "CRASHREF-001",
+        "CRASHREF-002",
+        "CRASHREF-003",
+        "DISTRICT-01",
+        "CITYGEN-01",
+        "COLLISION-04",
+        "PROP-01",
+        "PROP-02",
+        "PROP-03",
         "RAG-01",
         "RAG-02",
         "RAG-03",
-        "RAG-04"
+        "RAG-04",
+        "RAG-07",
+        "RAG-08",
+        "COLLISION-05"
       ]
     },
     "01": {
@@ -177,7 +189,8 @@
         "P04-008",
         "P04-009",
         "P04-014",
-        "P06-006"
+        "P06-006",
+        "CRASHREF-004"
       ]
     },
     "02": {
@@ -210,8 +223,6 @@
         "V2-03-006",
         "V2-03-007",
         "ANIM-09",
-        "RAG-05",
-        "RAG-06",
         "V2-03-008",
         "P11-008",
         "FOOT-001",
@@ -231,7 +242,9 @@
         "P06-009",
         "P06-010",
         "P06-012",
-        "P06-013"
+        "P06-013",
+        "RAG-05",
+        "RAG-06"
       ]
     },
     "04": {
@@ -254,7 +267,9 @@
         "ENV-007",
         "ARCH-005",
         "RIGHTS-007",
-        "P02-004"
+        "P02-004",
+        "MESH-01",
+        "MESH-02"
       ]
     },
     "05": {

@@ -1,0 +1,620 @@
+{
+  "schema_version": 2,
+  "sheet": "facades_03.png",
+  "reference_sha256": "46b1b03301a9f9ae15962811a71c5775e388e0db5473dacea6187d9214d491b7",
+  "source_blend": "catalog_sources/facades_03.blend",
+  "source_sha256": "49638895b64febcaf65d3ee1ac60d7fb1d5ee5ffcb3abc6b50fca12d9132f474",
+  "records": [
+    {
+      "id": "CHINA15",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 41,
+        "individual_bricks_front": 205,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 514,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 1,
+        "entry_glass": 1,
+        "entry_jamb": 2,
+        "entry_sill": 2,
+        "entry_vertical_mullion": 1,
+        "entry_sash": 1,
+        "stone_window_reveal": 14,
+        "entry_kickpanel": 1,
+        "entry_handle": 1,
+        "catalog_window_cavity": 6,
+        "catalog_window_glass": 6,
+        "catalog_window_jamb": 12,
+        "catalog_window_sill": 12,
+        "catalog_window_vertical_mullion": 6,
+        "catalog_window_sash": 6,
+        "louver_slats": 66,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 15,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "curved_pagoda_roof": 28,
+        "pagoda_tile_roll": 168,
+        "upturned_roof_finial": 4,
+        "pagoda_bracket": 6,
+        "red_store_column": 2,
+        "surface_chip": 7
+      },
+      "description": "shutters / flat / door; tiered_eaves,terracotta,red_columns",
+      "body_dimensions_m": [
+        3.6,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "CHINA15_lod0.glb",
+          "lod": 0,
+          "vertices": 71568,
+          "triangles": 131300,
+          "bytes": 13870356,
+          "sha256": "a9e613b683e9ce00a54eee7408c350fc7544d0e16a4b1541ae9eb08ff39ff441"
+        },
+        {
+          "file": "CHINA15_lod1.glb",
+          "lod": 1,
+          "vertices": 11640,
+          "triangles": 21432,
+          "bytes": 5167384,
+          "sha256": "bded2b7ad39053409b6ebd50a28f39eb97395d83f4a72e9b98b30816efef322b"
+        },
+        {
+          "file": "CHINA15_lod2.glb",
+          "lod": 2,
+          "vertices": 1920,
+          "triangles": 2892,
+          "bytes": 3165492,
+          "sha256": "f9826643ae153749b6bbad5b468c0763487e0b8703754e0107de06d22533e471"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.2454278469085693,
+          -3.7350001335144043,
+          0.0
+        ],
+        "max": [
+          2.2454278469085693,
+          3.112499952316284,
+          10.449999809265137
+        ]
+      }
+    },
+    {
+      "id": "CHINA16",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 33,
+        "individual_bricks_front": 214,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 1,
+        "entry_glass": 1,
+        "entry_jamb": 2,
+        "entry_sill": 2,
+        "entry_vertical_mullion": 1,
+        "entry_sash": 1,
+        "stone_window_reveal": 10,
+        "entry_kickpanel": 1,
+        "entry_handle": 1,
+        "catalog_window_cavity": 4,
+        "catalog_window_glass": 4,
+        "catalog_window_jamb": 8,
+        "catalog_window_sill": 8,
+        "catalog_window_vertical_mullion": 4,
+        "catalog_window_sash": 4,
+        "balcony_deck": 4,
+        "balcony_rail": 8,
+        "stone_baluster": 28,
+        "planter_box": 4,
+        "planter_foliage": 28,
+        "planter_flower": 16,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "shaped_parapet": 1,
+        "parapet_profile": 7,
+        "curved_pagoda_roof": 28,
+        "pagoda_tile_roll": 168,
+        "upturned_roof_finial": 4,
+        "pagoda_bracket": 6,
+        "surface_chip": 11
+      },
+      "description": "doorlights / dutch / door; tiered_eaves,balconies,green_timber,flower_boxes",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "CHINA16_lod0.glb",
+          "lod": 0,
+          "vertices": 75082,
+          "triangles": 138500,
+          "bytes": 15048696,
+          "sha256": "d91314797e3925c9acdfa8a8d02b720433b139c0e340d582ac099ce9c8d5a041"
+        },
+        {
+          "file": "CHINA16_lod1.glb",
+          "lod": 1,
+          "vertices": 14410,
+          "triangles": 26892,
+          "bytes": 5592688,
+          "sha256": "c71c2eccc684acd22147b4424e021f266661dc0bf4980c14b54afd3029f7f495"
+        },
+        {
+          "file": "CHINA16_lod2.glb",
+          "lod": 2,
+          "vertices": 1810,
+          "triangles": 2720,
+          "bytes": 3189952,
+          "sha256": "a6270d39d349137d4b337657bb4a949fedcfc66cfc703840c1095931d404e508"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.006687879562378,
+          -3.7350001335144043,
+          0.0
+        ],
+        "max": [
+          2.006687879562378,
+          3.112499952316284,
+          10.64358901977539
+        ]
+      }
+    },
+    {
+      "id": "CHINA17",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 33,
+        "individual_bricks_front": 214,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 852,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 852,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 460,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 2,
+        "entry_glass": 2,
+        "entry_jamb": 4,
+        "entry_sill": 4,
+        "entry_vertical_mullion": 2,
+        "entry_sash": 2,
+        "stone_window_reveal": 12,
+        "entry_kickpanel": 2,
+        "entry_handle": 2,
+        "catalog_window_cavity": 4,
+        "catalog_window_glass": 4,
+        "catalog_window_jamb": 8,
+        "catalog_window_sill": 8,
+        "catalog_window_vertical_mullion": 4,
+        "catalog_window_sash": 4,
+        "window_lattice": 12,
+        "balcony_deck": 4,
+        "balcony_rail": 8,
+        "balcony_spindle": 28,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "curved_pagoda_roof": 28,
+        "pagoda_tile_roll": 168,
+        "upturned_roof_finial": 4,
+        "pagoda_bracket": 6,
+        "gold_shop_sign": 1,
+        "embossed_abstract_sign_stroke": 18,
+        "surface_chip": 8
+      },
+      "description": "lattice / flat / shop; tiered_eaves,balconies,green_timber,gold_sign",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        9.3
+      ],
+      "lods": [
+        {
+          "file": "CHINA17_lod0.glb",
+          "lod": 0,
+          "vertices": 71216,
+          "triangles": 130832,
+          "bytes": 13837680,
+          "sha256": "2d4d54192ad7ba1d15c019f2e0e28203bd83f9dd8ee64d13fbaef95166319518"
+        },
+        {
+          "file": "CHINA17_lod1.glb",
+          "lod": 1,
+          "vertices": 13904,
+          "triangles": 25760,
+          "bytes": 5512876,
+          "sha256": "8952275c63b571986dced4ec7155549fded240e55b35ec3932a22700be732442"
+        },
+        {
+          "file": "CHINA17_lod2.glb",
+          "lod": 2,
+          "vertices": 1808,
+          "triangles": 2712,
+          "bytes": 3501756,
+          "sha256": "1f111825fb66257957750ba31da4026a1b5707e3a0cffd15cc54237a6db52b22"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.006687879562378,
+          -3.7350001335144043,
+          0.0
+        ],
+        "max": [
+          2.006687879562378,
+          3.112499952316284,
+          10.449999809265137
+        ]
+      }
+    },
+    {
+      "id": "CLSTGA11",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 21,
+        "individual_bricks_front": 140,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 588,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 588,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 314,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 2,
+        "entry_glass": 2,
+        "entry_jamb": 4,
+        "entry_sill": 4,
+        "entry_vertical_mullion": 2,
+        "entry_sash": 2,
+        "stone_window_reveal": 8,
+        "entry_kickpanel": 2,
+        "entry_handle": 2,
+        "entry_arch": 28,
+        "fanlight_spoke": 14,
+        "catalog_window_cavity": 2,
+        "catalog_window_glass": 2,
+        "catalog_window_jamb": 4,
+        "catalog_window_sill": 4,
+        "catalog_window_vertical_mullion": 2,
+        "catalog_window_sash": 2,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "shaped_parapet": 1,
+        "parapet_profile": 7,
+        "surface_chip": 8
+      },
+      "description": "sash / dutch / double_arch; ornate_storefront",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        6.7
+      ],
+      "lods": [
+        {
+          "file": "CLSTGA11_lod0.glb",
+          "lod": 0,
+          "vertices": 44578,
+          "triangles": 81584,
+          "bytes": 9105976,
+          "sha256": "e83502c74a4b54a144d4d8268bc671e1c94b38cbfb2efa3c0421b42bcd2a0662"
+        },
+        {
+          "file": "CLSTGA11_lod1.glb",
+          "lod": 1,
+          "vertices": 5218,
+          "triangles": 9424,
+          "bytes": 3372216,
+          "sha256": "9f9167baac577c16a7892a0d5110659fbfdfa79617290b164a80d22e191f9545"
+        },
+        {
+          "file": "CLSTGA11_lod2.glb",
+          "lod": 2,
+          "vertices": 1634,
+          "triangles": 2456,
+          "bytes": 2550924,
+          "sha256": "2c4e2f95cd11f8175c69b80d0912eb58da40c5abb01c0df7b6a35874adf856f5"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -3.490000009536743,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          8.043587684631348
+        ]
+      }
+    },
+    {
+      "id": "CLSTGA12",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 21,
+        "individual_bricks_front": 140,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 588,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 588,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 314,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 2,
+        "entry_glass": 2,
+        "entry_jamb": 4,
+        "entry_sill": 4,
+        "entry_vertical_mullion": 2,
+        "entry_sash": 2,
+        "stone_window_reveal": 8,
+        "entry_kickpanel": 2,
+        "entry_handle": 2,
+        "catalog_window_cavity": 2,
+        "catalog_window_glass": 2,
+        "catalog_window_jamb": 4,
+        "catalog_window_sill": 4,
+        "catalog_window_vertical_mullion": 2,
+        "catalog_window_sash": 2,
+        "louver_slats": 22,
+        "planter_box": 2,
+        "planter_foliage": 14,
+        "planter_flower": 8,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 13,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "storefront_awning": 1,
+        "awning_brace": 2,
+        "storefront_sign": 1,
+        "surface_chip": 10
+      },
+      "description": "boarded / flat / shop; plank_awning,flower_boxes,sign_board",
+      "body_dimensions_m": [
+        3.2,
+        6.0,
+        6.7
+      ],
+      "lods": [
+        {
+          "file": "CLSTGA12_lod0.glb",
+          "lod": 0,
+          "vertices": 45392,
+          "triangles": 83204,
+          "bytes": 9324212,
+          "sha256": "2f610f89a31de3461e2b81259dbbebe8248e3b5e3d534ca7427cda060e9aa499"
+        },
+        {
+          "file": "CLSTGA12_lod1.glb",
+          "lod": 1,
+          "vertices": 3800,
+          "triangles": 6764,
+          "bytes": 2605712,
+          "sha256": "5ae67a991858abfe0beeac9bf46faa7ca98d74d639b8a034e07bb799191ed363"
+        },
+        {
+          "file": "CLSTGA12_lod2.glb",
+          "lod": 2,
+          "vertices": 1352,
+          "triangles": 2028,
+          "bytes": 2241548,
+          "sha256": "b101017f6f3244c5fff066e66296364dcd97a83b167431e7b1d329758b8a9ebf"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.8550000190734863,
+          -4.055778503417969,
+          0.0
+        ],
+        "max": [
+          1.8550000190734863,
+          3.112499952316284,
+          7.850000381469727
+        ]
+      }
+    },
+    {
+      "id": "CLSTGA13",
+      "asset_type": "facade",
+      "builder": "catalog_facade",
+      "reference_sheet": "facades_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 26,
+        "individual_bricks_front": 139,
+        "wall_backing_left": 21,
+        "individual_bricks_left": 588,
+        "side_glazing": 8,
+        "side_sill": 16,
+        "side_jamb": 16,
+        "downpipe": 2,
+        "wall_backing_right": 21,
+        "individual_bricks_right": 588,
+        "wall_backing_rear": 13,
+        "individual_bricks_rear": 353,
+        "rear_glazing": 2,
+        "foundation": 1,
+        "entry_threshold": 1,
+        "entry_cavity": 2,
+        "entry_glass": 2,
+        "entry_jamb": 4,
+        "entry_sill": 4,
+        "entry_vertical_mullion": 2,
+        "entry_sash": 2,
+        "stone_window_reveal": 10,
+        "entry_kickpanel": 2,
+        "entry_handle": 2,
+        "catalog_window_cavity": 3,
+        "catalog_window_glass": 3,
+        "catalog_window_jamb": 6,
+        "catalog_window_sill": 6,
+        "catalog_window_vertical_mullion": 3,
+        "catalog_window_sash": 3,
+        "roof_deck": 1,
+        "roof_parapet_side": 2,
+        "roof_parapet_rear": 1,
+        "roof_parapet_front": 1,
+        "cornice_front": 3,
+        "cornice_return": 6,
+        "cornice_corbel": 15,
+        "roof_hvac": 1,
+        "hvac_fins": 9,
+        "chimney": 1,
+        "chimney_cap": 1,
+        "floor_belt": 1,
+        "surface_chip": 4
+      },
+      "description": "sash / flat / shop; black_belt,ornate_storefront",
+      "body_dimensions_m": [
+        3.6,
+        6.0,
+        6.7
+      ],
+      "lods": [
+        {
+          "file": "CLSTGA13_lod0.glb",
+          "lod": 0,
+          "vertices": 44184,
+          "triangles": 80788,
+          "bytes": 9055088,
+          "sha256": "3f49b343d4dd240d32c1ca0708461d70be3b146f02815f10928165ba7702c9d9"
+        },
+        {
+          "file": "CLSTGA13_lod1.glb",
+          "lod": 1,
+          "vertices": 4008,
+          "triangles": 7132,
+          "bytes": 3202364,
+          "sha256": "2531450b29f38cce1a1b3b49754b6f7086f58121f9dbe7682ee0ec084b525753"
+        },
+        {
+          "file": "CLSTGA13_lod2.glb",
+          "lod": 2,
+          "vertices": 1440,
+          "triangles": 2160,
+          "bytes": 2818236,
+          "sha256": "29e27b46099a356059237e464c60b6750ea98a575b3dc76c1dc6389d5bc8d67c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.054999828338623,
+          -3.490000009536743,
+          0.0
+        ],
+        "max": [
+          2.054999828338623,
+          3.112499952316284,
+          7.850000381469727
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

@@ -1,0 +1,416 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_03.png",
+  "reference_sha256": "537e81d47d863c20abdcb79a2b152da5cfaff61a3336a48266253989f2c24d0e",
+  "source_blend": "catalog_sources/structures_03.blend",
+  "source_sha256": "3f9b781c115eac7f190406a25edac21121bf7cd88bf3ba92c6d721a93fad861d",
+  "records": [
+    {
+      "id": "HOUSEB2",
+      "asset_type": "structure",
+      "builder": "house",
+      "reference_sheet": "structures_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 30,
+        "siding_plank": 393,
+        "wall_backing_rear": 8,
+        "wall_backing_left": 13,
+        "wall_backing_right": 13,
+        "structure_foundation": 1,
+        "structure_side_glass": 4,
+        "structure_window_jamb": 8,
+        "structure_window_sill": 8,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 10,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "structure_front_window_cavity": 2,
+        "structure_front_window_glass": 2,
+        "structure_front_window_jamb": 4,
+        "structure_front_window_sill": 4,
+        "structure_front_window_vertical_mullion": 2,
+        "structure_front_window_sash": 2,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 34,
+        "porch_floor": 1,
+        "porch_column": 2,
+        "porch_brace": 2,
+        "porch_roof": 1,
+        "porch_rail_post": 4,
+        "porch_side_rail": 4,
+        "porch_diagonal": 2,
+        "porch_step": 3,
+        "upper_house_window_cavity": 2,
+        "upper_house_window_glass": 2,
+        "upper_house_window_jamb": 4,
+        "upper_house_window_sill": 4,
+        "upper_house_window_vertical_mullion": 2,
+        "upper_house_window_sash": 2,
+        "structure_weathering_chip": 10
+      },
+      "description": "white_siding,porch,railings,steep_roof",
+      "body_dimensions_m": [
+        7.0,
+        9.0,
+        5.0
+      ],
+      "lods": [
+        {
+          "file": "HOUSEB2_lod0.glb",
+          "lod": 0,
+          "vertices": 13514,
+          "triangles": 24604,
+          "bytes": 3904632,
+          "sha256": "47a10bcdc0beed3a9fbdfeaacca9fd0dd1db64cfb6e6dfe570017cb7fd34d4bd"
+        },
+        {
+          "file": "HOUSEB2_lod1.glb",
+          "lod": 1,
+          "vertices": 12290,
+          "triangles": 22360,
+          "bytes": 3733524,
+          "sha256": "8b3cb41b71c6ecaf457d32f7181e2a3c7a774c4491b0dd3bd153615a47b7547a"
+        },
+        {
+          "file": "HOUSEB2_lod2.glb",
+          "lod": 2,
+          "vertices": 4238,
+          "triangles": 6356,
+          "bytes": 2487556,
+          "sha256": "e2327cecf299d69c3cd447effe9d2efc9f1b2b559a76213abe6f9760dedf4e85"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -3.756513833999634,
+          -7.0,
+          0.0
+        ],
+        "max": [
+          3.756513833999634,
+          4.760000228881836,
+          7.41300630569458
+        ]
+      }
+    },
+    {
+      "id": "METL21CC",
+      "asset_type": "surface_module",
+      "builder": "metal_panel",
+      "reference_sheet": "structures_03.png",
+      "geometry_parts": {
+        "surface_panel_body": 1,
+        "surface_strap": 2,
+        "hinge_bar": 2,
+        "diagonal_metal_brace": 1,
+        "surface_bolt": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "riveted metal diagonal bracing and hinge strip",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "METL21CC_lod0.glb",
+          "lod": 0,
+          "vertices": 816,
+          "triangles": 1496,
+          "bytes": 1392852,
+          "sha256": "fe7a97beaced75d615a29aad2b807383af32e83af401553df0f080cd7cce51a7"
+        },
+        {
+          "file": "METL21CC_lod1.glb",
+          "lod": 1,
+          "vertices": 144,
+          "triangles": 264,
+          "bytes": 1297808,
+          "sha256": "676d1692184c0f892d3849e4d8e197c71c25f0880ad10e1d31cbd4347c6b38a3"
+        },
+        {
+          "file": "METL21CC_lod2.glb",
+          "lod": 2,
+          "vertices": 24,
+          "triangles": 36,
+          "bytes": 587396,
+          "sha256": "3c6d2d1b3c6a6db7de8cfb2f5bf564906a1eb81ac726f698358926aee0cc798d"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.29499998688697815,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "METL21RC",
+      "asset_type": "surface_module",
+      "builder": "stone_panel",
+      "reference_sheet": "structures_03.png",
+      "geometry_parts": {
+        "stone_panel_backing": 1,
+        "raised_stone": 65,
+        "surface_wear_chip": 16
+      },
+      "description": "irregular dark stone masonry",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "METL21RC_lod0.glb",
+          "lod": 0,
+          "vertices": 1968,
+          "triangles": 3608,
+          "bytes": 1602824,
+          "sha256": "46c84bf3247ca152b6facd28c577d2686d5a27997f4204765b6d42ab6aa4772c"
+        },
+        {
+          "file": "METL21RC_lod1.glb",
+          "lod": 1,
+          "vertices": 24,
+          "triangles": 44,
+          "bytes": 348016,
+          "sha256": "6e0f7a3dd271054b36c34fd4916d6191b086dd37a9e989d59e27a5dfae9899f6"
+        },
+        {
+          "file": "METL21RC_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 345512,
+          "sha256": "6c700eb4fb142b4ebb3feb04570d18299a1db34942a74fe8d7ca2b8b05ac2d37"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.25999999046325684,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "METL21RW",
+      "asset_type": "surface_module",
+      "builder": "vent_panel",
+      "reference_sheet": "structures_03.png",
+      "geometry_parts": {
+        "stone_panel_backing": 1,
+        "raised_stone": 65,
+        "vent_block_jamb": 12,
+        "vent_block_lintel": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "concrete ventilation blocks over dark stone",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "METL21RW_lod0.glb",
+          "lod": 0,
+          "vertices": 2544,
+          "triangles": 4664,
+          "bytes": 2023984,
+          "sha256": "d253f42f0ccc378c9258b1a3098385295f34f6d9f154bcb7db9b0e8d9838e575"
+        },
+        {
+          "file": "METL21RW_lod1.glb",
+          "lod": 1,
+          "vertices": 600,
+          "triangles": 1100,
+          "bytes": 769164,
+          "sha256": "c76e34e31b678720fd569e1f3907a271e0f182b75aef016d7a20351b30a263d6"
+        },
+        {
+          "file": "METL21RW_lod2.glb",
+          "lod": 2,
+          "vertices": 104,
+          "triangles": 156,
+          "bytes": 696684,
+          "sha256": "70774543f4f8af44a5e810b904990e26d6b55d8643341b9ea1195c7eeb91efcb"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.3100000023841858,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "METL22CC",
+      "asset_type": "surface_module",
+      "builder": "metal_panel",
+      "reference_sheet": "structures_03.png",
+      "geometry_parts": {
+        "surface_panel_body": 1,
+        "surface_strap": 2,
+        "hinge_bar": 2,
+        "diagonal_metal_brace": 1,
+        "gate_hinge": 1,
+        "surface_bolt": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "riveted metal diagonal bracing with cylindrical hinge",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "METL22CC_lod0.glb",
+          "lod": 0,
+          "vertices": 870,
+          "triangles": 1600,
+          "bytes": 1399832,
+          "sha256": "b77759e4578e3da4bc7ee6f86b361c8d000eb6fcd902e0e5d034055fa32c2a74"
+        },
+        {
+          "file": "METL22CC_lod1.glb",
+          "lod": 1,
+          "vertices": 198,
+          "triangles": 368,
+          "bytes": 1304784,
+          "sha256": "8f014b2a0986ef2dac36c748ac5fb4b0df8d99d97af79f83cbfaf02e6068a828"
+        },
+        {
+          "file": "METL22CC_lod2.glb",
+          "lod": 2,
+          "vertices": 48,
+          "triangles": 80,
+          "bytes": 589988,
+          "sha256": "3611d9d412d5b59d9648e35aa3294c5009edaaab4c0a03b3640326d96ad72aa0"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.38499999046325684,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    },
+    {
+      "id": "OUTHOUS2",
+      "asset_type": "structure",
+      "builder": "outhouse",
+      "reference_sheet": "structures_03.png",
+      "geometry_parts": {
+        "wall_backing_front": 8,
+        "siding_plank": 53,
+        "wall_backing_rear": 5,
+        "wall_backing_left": 1,
+        "wall_backing_right": 1,
+        "structure_foundation": 1,
+        "wall_corner_hardware": 6,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 2,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1,
+        "gable_wall": 1,
+        "pitched_roof_plane": 2,
+        "gable_bargeboard": 2,
+        "roof_shingle_course": 8,
+        "structure_weathering_chip": 10
+      },
+      "description": "red_timber,pitched_roof,door_latch",
+      "body_dimensions_m": [
+        1.6,
+        1.8,
+        2.6
+      ],
+      "lods": [
+        {
+          "file": "OUTHOUS2_lod0.glb",
+          "lod": 0,
+          "vertices": 2442,
+          "triangles": 4436,
+          "bytes": 2351264,
+          "sha256": "c921eb10f552da7a16c60f3a675e7fe736e96f6a8c2ef68756d5312a6652d6b2"
+        },
+        {
+          "file": "OUTHOUS2_lod1.glb",
+          "lod": 1,
+          "vertices": 1842,
+          "triangles": 3336,
+          "bytes": 1938772,
+          "sha256": "3b329e570f5e4e888fe081376e7a1f80f0a54d5745169b02b6a7e4dc4e7aa292"
+        },
+        {
+          "file": "OUTHOUS2_lod2.glb",
+          "lod": 2,
+          "vertices": 654,
+          "triangles": 980,
+          "bytes": 1755800,
+          "sha256": "0e1ae09bab018ec7b3e677ad333503e8e8dcee3c92da892710efcb16d395ee21"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -0.9794542789459229,
+          -1.1799999475479126,
+          0.0
+        ],
+        "max": [
+          0.9794542789459229,
+          1.0850000381469727,
+          3.1646664142608643
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

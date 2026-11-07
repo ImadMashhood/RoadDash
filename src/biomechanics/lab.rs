@@ -71,6 +71,7 @@ pub struct Measurement {
 pub(super) fn art() -> crate::world::Art {
     crate::world::Art {
         models: None,
+        props: None,
         cube: Handle::default(),
         sphere: Handle::default(),
         wheel: Handle::default(),

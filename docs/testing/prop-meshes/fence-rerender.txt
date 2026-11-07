@@ -1,0 +1,1 @@
+{"group": "fences_barriers", "exit_code": 0}

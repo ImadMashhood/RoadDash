@@ -1,0 +1,4669 @@
+{
+  "group": "signs_billboards",
+  "source": "sources/signs_billboards.blend",
+  "source_sha256": "8a66d2187198f065bb53090cab66fbafc99dfd818786795d5ff326a7f17a67f7",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-992B6FB769E1",
+      "name": "2HOUR2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-992B6FB769E1_lod0.glb",
+          "sha256": "cc63d1469fc28f595ce9f5c54433e57d6639cb1bb3e027926fb2da2851158e23",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-992B6FB769E1_lod1.glb",
+          "sha256": "5e4c76bc485ca50b67c3570bae309c116e6b3255afcf2ec465d0871459030a75",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-992B6FB769E1_lod2.glb",
+          "sha256": "83e11867c091b4d3b9f440764a0a94e9b866cecba4b6b346d9d56e25b154f135",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F9099D7F03FB",
+      "name": "2HRBACK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F9099D7F03FB_lod0.glb",
+          "sha256": "a4fa9771d9322ac2d3befda8c5a8acd924bc4d88c27c6959653cd69250ca14ff",
+          "triangles": 968,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F9099D7F03FB_lod1.glb",
+          "sha256": "69ba4639e4494b2397eab2095df7caa97e33f6a53c2c1a108faa35965d5e91f5",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F9099D7F03FB_lod2.glb",
+          "sha256": "79eb6669ae7a51ef61d2f82e305531d40b2287fdde7494fd1f9e33aa1e0e1fd3",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7062E9653A48",
+      "name": "BLLBRDC2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7062E9653A48_lod0.glb",
+          "sha256": "43b5f8f994860402f3f59a304729e053f2fecca746a3e98e8a2a5b5c8e7d88d6",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7062E9653A48_lod1.glb",
+          "sha256": "7339e4466910d85c7e057fa8b67c49f5991d4434ae63bff4527a09f4626f3cf0",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7062E9653A48_lod2.glb",
+          "sha256": "16b643e48f7a3b7df779529a7eaf0aa4aacf2622a9f006967d12e95c25575490",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C5EEDAF78BAE",
+      "name": "BLLBRDD2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C5EEDAF78BAE_lod0.glb",
+          "sha256": "4d81c9688c3490fb26d394e65e47d69690a2f06acf626da5ce9a8ecaae33b389",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C5EEDAF78BAE_lod1.glb",
+          "sha256": "af3e094ac141ecb04f9239e13fc4fecce89144507cd5cef0a3d8481be561e007",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C5EEDAF78BAE_lod2.glb",
+          "sha256": "af5b58dc46fcfb53b60d8172f001d30e8b383d727a859d1dbede304ab573da13",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-12FCED67F9D9",
+      "name": "BLLBRDE2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-12FCED67F9D9_lod0.glb",
+          "sha256": "2f934a2c267427ffe69f1952677cd7f1fab99c5cc18bf203fe1fda867e993e58",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-12FCED67F9D9_lod1.glb",
+          "sha256": "4fc9f9dc5a3db948541e60796c63bcdb64635436eca52a4bf22d0a305c08bfb9",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-12FCED67F9D9_lod2.glb",
+          "sha256": "82bb9a8a8644dc15debd0ee94682ff948a98bf06f67530340d09ddd3d68b1b08",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C0591691B65E",
+      "name": "BLLBRDF2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C0591691B65E_lod0.glb",
+          "sha256": "6d97bdc4fcd355c8e53f64254a449f4669a07c4c693cf4eff501e31ab66e16a4",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C0591691B65E_lod1.glb",
+          "sha256": "c697a20cd1369cbb3e961b00c27c7a55a4e8f9b65139ee06e354813616697043",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C0591691B65E_lod2.glb",
+          "sha256": "6130905001b2d59d75618640a866d2bcff6f1a6ee728dac9f9670207bc03f66c",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E6E25A6FDF99",
+      "name": "BLLBRDH2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_02_v2.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E6E25A6FDF99_lod0.glb",
+          "sha256": "140b8341b56bdf74c5da82476bcaa18850663b9dfbd7defaa979a03ef5cedea2",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E6E25A6FDF99_lod1.glb",
+          "sha256": "66ec3a3a34ab00aa14d095a2e7544fcbf7d5a4287b75914489a41d5243184687",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E6E25A6FDF99_lod2.glb",
+          "sha256": "5223b2658f32896aa143d56113eee8432f05626a248afa89f8a6ba3e83aa14b2",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C2963D44C70E",
+      "name": "BLLBRDJ2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_02_v2.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C2963D44C70E_lod0.glb",
+          "sha256": "0a8f07440b2a9fdf0c32b610b6b9365e3325024589f59934d6dbd405dde3532c",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C2963D44C70E_lod1.glb",
+          "sha256": "ed47d1082b9fd2907df9a02e5f9fe67fecbfa87a37e449ee24961fd0342d00f1",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C2963D44C70E_lod2.glb",
+          "sha256": "100a26040b7a581ab9e1408a6d00db17a522bdcbdba7f42e9d5fe78ed2e5c505",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6239D3FA2D89",
+      "name": "BLLBRDM2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_02_v2.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6239D3FA2D89_lod0.glb",
+          "sha256": "8422597295e5d6d7999c0ddcf29ce95d343e5b239424ec063f0b643d1751631d",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6239D3FA2D89_lod1.glb",
+          "sha256": "ad153534b5422f207b9adfece94975b0e7ab8f0222760236352f5b570cc4d9be",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6239D3FA2D89_lod2.glb",
+          "sha256": "d93f6de424021ffc10a0eab6a15329e16f507ce4c0e23b26a641ada7ba8c1c11",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B2D227D84717",
+      "name": "BLLBRDN2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_02_v2.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B2D227D84717_lod0.glb",
+          "sha256": "c962fa917d7fa34238dbe5991d469bd2788afcb6ba763956dd5ed4b4fbd18536",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B2D227D84717_lod1.glb",
+          "sha256": "09f807d2dab00693eb4b6cfbc551b01bdcc6bfae0216a0ca66d4e454b684bad3",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B2D227D84717_lod2.glb",
+          "sha256": "7f90cc9d4c4a66febf29f8debac0adb088f90d709a3dc275095fc168765d950c",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-85C48501CEE1",
+      "name": "BLLBRDP2",
+      "builder": "billboard",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_02_v2.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-85C48501CEE1_lod0.glb",
+          "sha256": "ee061e96097d69832c441f3a0cf8de22166ff1e8ade89afbb6472c5935c5583f",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-85C48501CEE1_lod1.glb",
+          "sha256": "e6aab063cfdfc4c9417a73b9cd05b844272806b64fdf0c449394601927adf9fe",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-85C48501CEE1_lod2.glb",
+          "sha256": "964ed795b8d600e1acc860e6e4136f3fba835902452ddb3e8836094b6cbbbdb4",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -2.549999952316284,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              2.549999952316284,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          5.099999904632568,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6F830F9B52DC",
+      "name": "CALTRAN2",
+      "builder": "arrow_trailer",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_02_v2.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6F830F9B52DC_lod0.glb",
+          "sha256": "34d2f9731585b35f4a4435083ae201c7afae2b354b32f902f776cfd568f4831d",
+          "triangles": 10392,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -1.100000023841858,
+              -0.6499999761581421,
+              0.0
+            ],
+            [
+              1.100000023841858,
+              0.6499999761581421,
+              2.5
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6F830F9B52DC_lod1.glb",
+          "sha256": "fbae6967de970705bd2ef1924dcbbcd86a108b461cdf063d23fb86f8d2619ba4",
+          "triangles": 3984,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -1.100000023841858,
+              -0.6499999761581421,
+              0.014683045446872711
+            ],
+            [
+              1.100000023841858,
+              0.6499999761581421,
+              2.5
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6F830F9B52DC_lod2.glb",
+          "sha256": "4faf8c6ea6fedf580c49358e948458438cb1ab4d07e9c7f2abd1b1a0853a2f49",
+          "triangles": 184,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.100000023841858,
+              -0.6499999761581421,
+              0.0401923805475235
+            ],
+            [
+              1.100000023841858,
+              0.6499999761581421,
+              2.5
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "trailer_chassis": 1,
+        "tire": 2,
+        "rim": 2,
+        "hub": 2,
+        "rim_spokes": 10,
+        "arrow_board_legs": 2,
+        "arrow_board": 1,
+        "arrow_bulbs": 7,
+        "arrow_head_bulbs": 6
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.200000047683716,
+          2.5,
+          1.2999999523162842
+        ],
+        "center_y_up": [
+          0.0,
+          1.25,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0527948B50ED",
+      "name": "CURVES2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0527948B50ED_lod0.glb",
+          "sha256": "4512bab123c69044d0a3c36fa50214e8c26c231e93c7d662ce23c7f4d57c04b7",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0527948B50ED_lod1.glb",
+          "sha256": "2d5808030f6dbe8067d447badc7f3f497877014542a78096223c1edab4ec5b89",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0527948B50ED_lod2.glb",
+          "sha256": "48d945fcc19f5dbed0e8ccbfa06bc2f05520f470fb24ab3bbd4a693f9de00aa4",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8CA7E4602EE8",
+      "name": "DEER2",
+      "builder": "warning_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/rural_01_v2.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8CA7E4602EE8_lod0.glb",
+          "sha256": "6a7b5ad88a9d10ebc4531d811eed6757aaf2aebcd64bccfb0531de1518608815",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8CA7E4602EE8_lod1.glb",
+          "sha256": "4a523e495a663f693430657fbd5509f791ed6913dc90eca037884efbf92fc066",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8CA7E4602EE8_lod2.glb",
+          "sha256": "6268e7dbedbfc9636f3c31a18dd9d305e23e9a451450de2b1a04cba9ebc6a868",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F687F73DE07E",
+      "name": "DIAGBCK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_03.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F687F73DE07E_lod0.glb",
+          "sha256": "d40e5f547f75c181eb75095c03bdbf6ff35a93ad8046088fc8c333aa3a679b2b",
+          "triangles": 968,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F687F73DE07E_lod1.glb",
+          "sha256": "b4edd62bf267b0a301fcfb3195042e38dcf0213940bd065bdfb464ad7c841f98",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F687F73DE07E_lod2.glb",
+          "sha256": "b20995fbe815484901404ddb2fe554bc074ffa9dc1ee9e0f8f4bde603944cf1d",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-89FEA3749085",
+      "name": "DONTENT2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_03.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-89FEA3749085_lod0.glb",
+          "sha256": "c7352234f2cf9bf700f98c0f416c19993d94f7b8706a8b39b043bcd638fd06fe",
+          "triangles": 1076,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-89FEA3749085_lod1.glb",
+          "sha256": "c9a1164342d7b60046bd8ed9af08e254fdf291d6b9c23801242b6ad1a765f9b2",
+          "triangles": 204,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04699999839067459,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-89FEA3749085_lod2.glb",
+          "sha256": "2c597c096e23f898cb362deea73723f5fd50082d29d254039a0582b86e3ddbc8",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "no_entry_bar": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-82CFF763B8F5",
+      "name": "FLGSAHD2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_03.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-82CFF763B8F5_lod0.glb",
+          "sha256": "fa9313710be639b3478c845027a5afde46caae1571c807e7fcc06b93f57633e5",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-82CFF763B8F5_lod1.glb",
+          "sha256": "24b1035800139a4d28fc3e86e6bf8baa38792e76e97394a2a868bdc64d8f7170",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-82CFF763B8F5_lod2.glb",
+          "sha256": "0a56a7554a62b0c9b96b170738bb4a00bba240aeca955f3c09c0dd9a280ba09f",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7695E368A5D3",
+      "name": "FLSHFLD2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_03.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7695E368A5D3_lod0.glb",
+          "sha256": "74e0f797e41834ec63394432c03a58345e5332f6df75c21a85246086c8b32f86",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7695E368A5D3_lod1.glb",
+          "sha256": "b19dce63f2a353550174cc3c4b535b0fd82d56c05e10ecd988d2d6dd5746682b",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7695E368A5D3_lod2.glb",
+          "sha256": "e861a148014447dcd8a779919c8958372f34cef831f95d4f73f6e4f202438fbe",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-11099881720B",
+      "name": "FWENTR2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_03.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-11099881720B_lod0.glb",
+          "sha256": "c77f8a3ab1cb40be24c5d6dfcb37819b30192933355aca55a5ace4a68ceb3c9f",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-11099881720B_lod1.glb",
+          "sha256": "f113ecad010189554c08a5aa4c9d11987c8610785ab35a2e4c2402a770a5ba51",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-11099881720B_lod2.glb",
+          "sha256": "58cf9691d5f662962e3f9e5da48c1eae545607d61232cc38dbdb18ff5ce0e230",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-488994DB3F1A",
+      "name": "HNDCPBK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_04.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-488994DB3F1A_lod0.glb",
+          "sha256": "c03c5c515d1b4c452d3955f562781df3b412ae46b95febd0a2ab1e075a1a268c",
+          "triangles": 968,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-488994DB3F1A_lod1.glb",
+          "sha256": "75dcfcfb565293ab5bc9fc169bb73ee3cb1c16bba4f10e06bd85af6610b93fb4",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-488994DB3F1A_lod2.glb",
+          "sha256": "65b091e90bc628b279a7abdafc96aa7317481c617ceff81a3982c749f296859d",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3079075B0F84",
+      "name": "HWYJNBK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_04.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3079075B0F84_lod0.glb",
+          "sha256": "73319d31e5fcd7b3d976a55c55487c4fd369f2e183d3ff2808f3899b62f1cb36",
+          "triangles": 968,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3079075B0F84_lod1.glb",
+          "sha256": "a69a76e05de7c754b3d68b7eab67732f7d8924174174dbf4f623ecdca5e4d728",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3079075B0F84_lod2.glb",
+          "sha256": "028079ee510272e4f5dbeeebe8c0ac1462c9b12f98a0c28d61080e3ae6e5fc97",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7F4A2C901710",
+      "name": "HWYJUNC2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_04.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7F4A2C901710_lod0.glb",
+          "sha256": "219fef9b1a3baa9b112516aafa9c808bc79a4b1e2555c997cf1f47f21f970f06",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7F4A2C901710_lod1.glb",
+          "sha256": "1421a42219692c21a09b38905418abbc3137b6099f25a2e515c9ffba94141f76",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7F4A2C901710_lod2.glb",
+          "sha256": "dd8fe1e45c014e69dc611a178f3f1197e93a79b18aba67ae1d08a6affc6006a0",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A3E04046058F",
+      "name": "INTRSGN2",
+      "builder": "information_board",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_04.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A3E04046058F_lod0.glb",
+          "sha256": "a9b248fd8df8849c241f06b3a829fa9d295487ed847a76a2c282ede8306512e3",
+          "triangles": 1468,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.0525872707366943,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.0525872707366943,
+              0.4000000059604645,
+              3.2724204063415527
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A3E04046058F_lod1.glb",
+          "sha256": "259fccf5f3865350c38d6cf99c4a8fad1a71b693dbf8a909a7e7b66d477e44e8",
+          "triangles": 604,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.0525872707366943,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.0525872707366943,
+              0.4000000059604645,
+              3.2724204063415527
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A3E04046058F_lod2.glb",
+          "sha256": "c1a6cf4b988f846ba414a01dd96e5a16dfbd6a54d7c85bb7335c4fd1d393500b",
+          "triangles": 72,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.0525872707366943,
+              -0.4000000059604645,
+              0.0
+            ],
+            [
+              1.0525872707366943,
+              0.4000000059604645,
+              3.2724204063415527
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "information_posts": 2,
+        "map_backboard": 1,
+        "original_map_panel": 1,
+        "pitched_information_roof": 2,
+        "schematic_map_paths": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.1051745414733887,
+          3.2724204063415527,
+          0.800000011920929
+        ],
+        "center_y_up": [
+          0.0,
+          1.6362102031707764,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0DDA8873F67B",
+      "name": "L-TURN2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_04.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0DDA8873F67B_lod0.glb",
+          "sha256": "9a2d6b2bf82386f959caccfcda8f240364916dfa9bf648d7ffeb0b663be26c1d",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0DDA8873F67B_lod1.glb",
+          "sha256": "e7c00b93a14153fe468bee97d9c912bc5f3a31eeef34f9a1e2ddb67129e465c6",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0DDA8873F67B_lod2.glb",
+          "sha256": "a1bab2383cb544b3b843baf58dfd783b18c74701f1b75010deadba59cebee366",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E0053C7FF185",
+      "name": "LANEMRG2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_04.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E0053C7FF185_lod0.glb",
+          "sha256": "f47a9233ee37b352f3f84d42f269dd70bc101a2ecbab69598ff517f9a3ba2249",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E0053C7FF185_lod1.glb",
+          "sha256": "8de00ef18b5632780820be0a4af1310c7168045a62e6e0bed0f90407387f32f9",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E0053C7FF185_lod2.glb",
+          "sha256": "5cce06187746988bc84dd8859c5894d0acd0185511d9e52bd8c73be3fdb83b2a",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FA6342A2CD79",
+      "name": "LANEOPN2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_05.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FA6342A2CD79_lod0.glb",
+          "sha256": "d2097998dedc39994d3691b096876029932873ac404445b7c044f6c3729007fa",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FA6342A2CD79_lod1.glb",
+          "sha256": "5ef254fc88df28c6457b4ad064be414c4b0d6b6b71a71f7a0fbae722074b3f8a",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FA6342A2CD79_lod2.glb",
+          "sha256": "2411224a649c3bdc76469b282f4daa1ac6a9885137dd2ab81cadf2fb2c086ffd",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-76C715F03198",
+      "name": "MARKERA2",
+      "builder": "reflector_post",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_05.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-76C715F03198_lod0.glb",
+          "sha256": "c5be5b8fe55af460338ca1c97a2a5a0eee0e1f42df8ccd444c134f05d5b25df0",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-76C715F03198_lod1.glb",
+          "sha256": "c4e56caaa5448bbd614cc8692231a6bb9e906e562591664487f8b6b586051331",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-76C715F03198_lod2.glb",
+          "sha256": "cdb565f5ed8c6a2e8d8fd8c76e0163de0583c956ff88bdb278563e29d59619da",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0923AE5B836E",
+      "name": "MARKERB2",
+      "builder": "reflector_post",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_05.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0923AE5B836E_lod0.glb",
+          "sha256": "195ed5e6a73a506c4f0b6f00fcb9f05fd35698d5b858f2d63da80b4ff436caaf",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0923AE5B836E_lod1.glb",
+          "sha256": "c290319cc6e7c2be69a5dd6b0f4325be7149c95af36c93a6c975dbef9fb2440b",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0923AE5B836E_lod2.glb",
+          "sha256": "7c10267cdef2f9a496d87f4d348332df3a27fe22898a65a7b7b101597bdda40c",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FA0E9EC9FECC",
+      "name": "MARKERC2",
+      "builder": "reflector_post",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_05.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FA0E9EC9FECC_lod0.glb",
+          "sha256": "b81211806eb94188c6b71d6a2da230ea9742e8d1b8dc6bb4a5401c4acefc33e6",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FA0E9EC9FECC_lod1.glb",
+          "sha256": "666b1a608e01eb663688716a76c6e4ebd688606b1a8c45de21a5fca0374346d0",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FA0E9EC9FECC_lod2.glb",
+          "sha256": "244ee0dc7ad9995b11f439820f0ada634d695fbb0670eb19e7dfdc23bbb7c82a",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-84171B5C015F",
+      "name": "NOPRKNG2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_05.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-84171B5C015F_lod0.glb",
+          "sha256": "50a3d0d98bedf672b55862e0839923b7d4a4e62eafb8e929cfc3f796231fda75",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-84171B5C015F_lod1.glb",
+          "sha256": "aabf448766a14e225ca1b1c3ce06b45444027fc34fc308521896a676da139354",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-84171B5C015F_lod2.glb",
+          "sha256": "838a5792845ea5e26ea71534e5e06b1496e397d51d2bf26be38e902ef3cbcdec",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-56DF42C17296",
+      "name": "NOUTURN2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_05.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-56DF42C17296_lod0.glb",
+          "sha256": "c2a0150000be0393dde6e70a26d2d10184b123e6fb8bff89676d7a3901fba163",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-56DF42C17296_lod1.glb",
+          "sha256": "3d72cf70fff88cbfce448b290d9bc5cdab5288891c9b984cee996c150a11e84e",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-56DF42C17296_lod2.glb",
+          "sha256": "8f8c84cdf3b5287db07b12db2d270ebe115a5bf37d1757a35c6fc243348639c3",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D5B981CF3524",
+      "name": "PARKING2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_06.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D5B981CF3524_lod0.glb",
+          "sha256": "d014fd13bc1c58a7d1fb2bef535ca443783e57870c642bd7cf415fb5d2e62490",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D5B981CF3524_lod1.glb",
+          "sha256": "b9712cf9d496ef51458c3eff4b855508ea9409703d2fcf2efed37aa8993e2732",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D5B981CF3524_lod2.glb",
+          "sha256": "7005e7bc844442a7f30de208853510a89084172914cabb4460fe84f2b58e679f",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-EF784F3F7403",
+      "name": "RTRYCLB2",
+      "builder": "civic_board",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_06.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-EF784F3F7403_lod0.glb",
+          "sha256": "a681dbc418e0208f2719b0b76b6cabd36a3b6b098fe08ae36ada94576a99c6b1",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.4500000476837158,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              1.4500000476837158,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-EF784F3F7403_lod1.glb",
+          "sha256": "7e9abe78ab3e79c0c284370329ecea3a4e59eae1f74acaffe2858687cdb0d6c5",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.4500000476837158,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              1.4500000476837158,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-EF784F3F7403_lod2.glb",
+          "sha256": "fd0cd382a0a4052a4d97a0a954b39993c6e1672c93cb4ca7925e75074e86639e",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.4500000476837158,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              1.4500000476837158,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.9000000953674316,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-82D0372B00F5",
+      "name": "SGNPDRN2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_06.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-82D0372B00F5_lod0.glb",
+          "sha256": "a1a160b0f483093d005c53aa0769eb744435220ffa5a2c3409358bae291d3513",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-82D0372B00F5_lod1.glb",
+          "sha256": "f7b4cee7ae15b224dd66bc8aa16e004c2274d2a47865adda65358bbfc9c52383",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-82D0372B00F5_lod2.glb",
+          "sha256": "1ba30b89c924a222b8fcb9614d52d6bd68158312b496b25302f90ad346735ffa",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-5F9893490335",
+      "name": "SIGNDVA2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_06.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-5F9893490335_lod0.glb",
+          "sha256": "b3a8ae78e7d6440fae92ce08367f2961915917763217d514aa20ed3a82fa6ad1",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-5F9893490335_lod1.glb",
+          "sha256": "d268b0c6774e2aa2586b9083d6b0bd813c6aa363f353b0d34aeda973cdc999d4",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-5F9893490335_lod2.glb",
+          "sha256": "9b928828433814503559582e0eb5ba137fd6d76ac8462da5db5220789f132ec6",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-336B99EB1AE5",
+      "name": "SIGNMTL2",
+      "builder": "motel_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_06.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-336B99EB1AE5_lod0.glb",
+          "sha256": "a1e127cedc8579355df878026a79872cfb5ecc2e9ecf5dd375db54c973ffd4b5",
+          "triangles": 296,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.11999999731779099,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.11999999731779099,
+              4.300000190734863
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-336B99EB1AE5_lod1.glb",
+          "sha256": "f519aff6208dce834edee95cca4f92fe5876e34a67e76ed49605897d2b1d1963",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.11999999731779099,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.11999999731779099,
+              4.300000190734863
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-336B99EB1AE5_lod2.glb",
+          "sha256": "8a38d3113498870846ee1170e4ccb5c94ad10128230a4e824ddb7a77f81b3452",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -0.11999999731779099,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              0.11999999731779099,
+              4.300000190734863
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "motel_post": 1,
+        "motel_vertical_sign": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          4.300000190734863,
+          0.23999999463558197
+        ],
+        "center_y_up": [
+          0.0,
+          2.1500000953674316,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3E7A6A79B8DE",
+      "name": "SIGNPUM2",
+      "builder": "produce_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_06.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3E7A6A79B8DE_lod0.glb",
+          "sha256": "f7f4d1baf42629aac5d64ca33f394cdb6683eceddc7241ad8ed445f5311927a2",
+          "triangles": 1027,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.4500000476837158,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              1.4500000476837158,
+              0.10000000149011612,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3E7A6A79B8DE_lod1.glb",
+          "sha256": "5becf7a827a09b5c8d8cf651598026fba788dd03cb71a28dbe08848228274a48",
+          "triangles": 499,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -1.4500000476837158,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              1.4500000476837158,
+              0.09510565549135208,
+              4.25
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3E7A6A79B8DE_lod2.glb",
+          "sha256": "ded8537bd1ad08b79d22e812fcee2e099881f1c3ac60fb311ff15719b52a5d55",
+          "triangles": 112,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.4500000476837158,
+              -0.12999999523162842,
+              0.0
+            ],
+            [
+              1.4500000476837158,
+              0.08660253882408142,
+              4.25
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_support": 2,
+        "panel_back": 1,
+        "painted_sign_face": 1,
+        "frame": 4,
+        "original_mountain_graphic": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.9000000953674316,
+          4.25,
+          0.22999999672174454
+        ],
+        "center_y_up": [
+          0.0,
+          2.125,
+          0.01499999687075615
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D41961B709AF",
+      "name": "SIGNZIG2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_07.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D41961B709AF_lod0.glb",
+          "sha256": "f4cfd18d6cfebae95812c0633b70398931e04f3541ed56cb204cd636aa64f329",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D41961B709AF_lod1.glb",
+          "sha256": "a61085635f3aea39b0faefe57f8f10295ae0476e68f19190db1804abdeca3bdc",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D41961B709AF_lod2.glb",
+          "sha256": "dbd39c5300d72008cf1d6f393865522d857e7a45a479a5cdd6616d0f18ce9837",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-BEDC5F4F469F",
+      "name": "SLIPPRY2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_07.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-BEDC5F4F469F_lod0.glb",
+          "sha256": "0f55ea51ab840bae197cd13ca5ca5d980f0e1765e2b9801559494e5ad5cf8a68",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-BEDC5F4F469F_lod1.glb",
+          "sha256": "5efcc51eba1d2d02753aa676cd34d6c24f9fa21e7b784e272cb10b564bdae618",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-BEDC5F4F469F_lod2.glb",
+          "sha256": "352aef9deb248a6c29d23aaf5bbd99d70912aab8cd36c3d67d78bc61f82ce831",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-66C456FCBE18",
+      "name": "SLOWARW2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_07.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-66C456FCBE18_lod0.glb",
+          "sha256": "e85e5ff6d0b5c9756d2d50d8b5d5975a2b53f1c5fab69d471d9d2abc9edaf5e3",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-66C456FCBE18_lod1.glb",
+          "sha256": "071f9d611a10c8cd86063024b61e2067cb192d7a6f366c379deb84140d6d41ac",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-66C456FCBE18_lod2.glb",
+          "sha256": "be4793dbd168b3264b7c707d0b41395392b12163daf37359a31cfbf5ad9bf7df",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D11A3014691B",
+      "name": "SLWARBK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_07.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D11A3014691B_lod0.glb",
+          "sha256": "5e2a14a3aa4438cdb8fb215403981352275b5cb4b8b9fb83bc2dcb231629e269",
+          "triangles": 968,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03500000014901161,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D11A3014691B_lod1.glb",
+          "sha256": "ad1366a5a6a2713907f03d135e3229d821f400728744c802c292613c083d81e3",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.03328697755932808,
+              2.4600000381469727
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D11A3014691B_lod2.glb",
+          "sha256": "a2508bdc09a82e4628f925b6e1897b8eb2a3ef325ee46927a48493b4d43793fa",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.33000001311302185,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.33000001311302185,
+              0.030310887843370438,
+              2.4600000381469727
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6600000262260437,
+          2.4600000381469727,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2300000190734863,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2023BC139293",
+      "name": "SPEED252",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_07.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2023BC139293_lod0.glb",
+          "sha256": "6decbe38be714a337341ad3fc0d8cf905d99dc5a910b9db20e06f2829f5466d5",
+          "triangles": 2768,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03500000014901161,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2023BC139293_lod1.glb",
+          "sha256": "e06a4ae7e84e3715397174d336051a5771e71eaa3c5470a538dde50c7f7e0fa3",
+          "triangles": 1960,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03328697755932808,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2023BC139293_lod2.glb",
+          "sha256": "625c9e0b6994a52cc3cbcf938d91e22c13b71233a7ffae4c904b585ac967ec18",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.030310887843370438,
+              2.5249998569488525
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2,
+        "dimensional_lettering": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6200000047683716,
+          2.524999784422107,
+          0.08400000259280205
+        ],
+        "center_y_up": [
+          0.0,
+          1.263499892258551,
+          0.007000001147389412
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-44C775E16189",
+      "name": "SPEED352",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_07.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-44C775E16189_lod0.glb",
+          "sha256": "f963ce3a76516a32c20202d0c264904308e94e4f2fb0f9bfed19050b7edd9586",
+          "triangles": 3000,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03500000014901161,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-44C775E16189_lod1.glb",
+          "sha256": "9c57e4d4a38368ef4ddf340de7825326c7474814849e4985b3252566a384bd05",
+          "triangles": 2192,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03328697755932808,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-44C775E16189_lod2.glb",
+          "sha256": "ae71b056bd1785d5f64250c75b52e13753522260b8c458fce3724568a744587d",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.030310887843370438,
+              2.5249998569488525
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2,
+        "dimensional_lettering": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6200000047683716,
+          2.524999784422107,
+          0.08400000259280205
+        ],
+        "center_y_up": [
+          0.0,
+          1.263499892258551,
+          0.007000001147389412
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-75AC14A98E6C",
+      "name": "SPEED452",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_08.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-75AC14A98E6C_lod0.glb",
+          "sha256": "980dee87e78bef4cb800c68808977216b89e16b45dad1c9f642bf39058aeb089",
+          "triangles": 2476,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03500000014901161,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-75AC14A98E6C_lod1.glb",
+          "sha256": "45d4bbb6abf9842e93022ef9ee238723ebca20d8f3cbd0e79c592c9eda892f00",
+          "triangles": 1668,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03328697755932808,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-75AC14A98E6C_lod2.glb",
+          "sha256": "b2db9c676f188d6c8551b5b034725a8bca6c1211211b494984b0a6d9569460e7",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.030310887843370438,
+              2.5249998569488525
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2,
+        "dimensional_lettering": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6200000047683716,
+          2.524999784422107,
+          0.08400000259280205
+        ],
+        "center_y_up": [
+          0.0,
+          1.263499892258551,
+          0.007000001147389412
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2765DFD7C074",
+      "name": "SPEED552",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_08.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2765DFD7C074_lod0.glb",
+          "sha256": "9130d0ee7be4e765e28b396ca3174ae8843a3ef97375cad618eaaef054cb8a13",
+          "triangles": 2724,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03500000014901161,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2765DFD7C074_lod1.glb",
+          "sha256": "1c9ac5062bd4184780f91e14f58571863423dc772dc6d488f2dca72fcf73d158",
+          "triangles": 1916,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3100000023841858,
+              0.03328697755932808,
+              2.5259997844696045
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2765DFD7C074_lod2.glb",
+          "sha256": "cb3a6e826d23c65996a8d6b9d85d0d0acf704511a93f0c6f1c8712d7a9b92aac",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.030310887843370438,
+              2.5249998569488525
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2,
+        "dimensional_lettering": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6200000047683716,
+          2.524999784422107,
+          0.08400000259280205
+        ],
+        "center_y_up": [
+          0.0,
+          1.263499892258551,
+          0.007000001147389412
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-EBB3495928BE",
+      "name": "SPEEDBK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_08.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-EBB3495928BE_lod0.glb",
+          "sha256": "2fb9414d201f1ac69453d747125007a6f5f4ea38c9047126455306c9425308de",
+          "triangles": 968,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.03500000014901161,
+              2.5249998569488525
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-EBB3495928BE_lod1.glb",
+          "sha256": "240faed996324b747aa2a2cb59737f8e9976125b9591893d5339ed8a82ac4cc3",
+          "triangles": 160,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.03328697755932808,
+              2.5249998569488525
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-EBB3495928BE_lod2.glb",
+          "sha256": "0f29a8083b1eea6c0627963f4d2df6cd24248b9b71f863b2e24a99d9a942b641",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3100000023841858,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3100000023841858,
+              0.030310887843370438,
+              2.5249998569488525
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.6200000047683716,
+          2.5249998569488525,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2624999284744263,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FA0FFFDCB22C",
+      "name": "STOP2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_08.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FA0FFFDCB22C_lod0.glb",
+          "sha256": "9ebb71802c52d50efbb4908e7f108724d1e0a4c1e76cb6a3e5498da545542d90",
+          "triangles": 2200,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.3963443338871002,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3963443338871002,
+              0.03500000014901161,
+              2.5333755016326904
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FA0FFFDCB22C_lod1.glb",
+          "sha256": "f4bad1489327aea794af31bdf3de9a645bcaa6c637ce9e44a678bb6ab7d9424e",
+          "triangles": 1328,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3963443338871002,
+              -0.049000002443790436,
+              0.0010000000474974513
+            ],
+            [
+              0.3963443338871002,
+              0.03328697755932808,
+              2.5333755016326904
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FA0FFFDCB22C_lod2.glb",
+          "sha256": "d9f4fb82ab56db64b6fcca1a39565d7e849c0e92957fb6e7ce9cb24ec9613cc9",
+          "triangles": 48,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3963443338871002,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3963443338871002,
+              0.030310887843370438,
+              2.5323755741119385
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "fasteners": 2,
+        "dimensional_lettering": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7926886677742004,
+          2.532375501585193,
+          0.08400000259280205
+        ],
+        "center_y_up": [
+          0.0,
+          1.267187750840094,
+          0.007000001147389412
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3F00E4E46820",
+      "name": "STOPBCK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_08.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3F00E4E46820_lod0.glb",
+          "sha256": "1bde94012e2b37b76c04318f7f9463dbbfce07930968007b07fb501a308104fc",
+          "triangles": 1080,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.3963443338871002,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.3963443338871002,
+              0.03500000014901161,
+              2.5323755741119385
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3F00E4E46820_lod1.glb",
+          "sha256": "7917beb7eed2cc82bf0d03d4a6e3ab540ceb5503d110253d82322fe7857ea822",
+          "triangles": 208,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3963443338871002,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.3963443338871002,
+              0.03328697755932808,
+              2.5323755741119385
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3F00E4E46820_lod2.glb",
+          "sha256": "e6fa281d692267a019c23d7fb1888399b138c82d665309230f3983bc3a85d24b",
+          "triangles": 48,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.3963443338871002,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.3963443338871002,
+              0.030310887843370438,
+              2.5323755741119385
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7926886677742004,
+          2.5323755741119385,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.2661877870559692,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2932CA004800",
+      "name": "XWALK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_08.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2932CA004800_lod0.glb",
+          "sha256": "db15f700e34ffbb422ae46ed15f277c3a2e7b8d38c0ce11733c5397d821d9161",
+          "triangles": 1077,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03500000014901161,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2932CA004800_lod1.glb",
+          "sha256": "8dc722cf914abd55b425e35fda92168552d91bc5a32cb2a5afd20e5d4f54e95e",
+          "triangles": 205,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.041999999433755875,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.03328697755932808,
+              2.568000078201294
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2932CA004800_lod2.glb",
+          "sha256": "26e325d0dffe20113d8ad86423cc2d4e777f425e78cc6b67176db93fb7315db3",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.42899999022483826,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.42899999022483826,
+              0.030310887843370438,
+              2.568000078201294
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "symbol_stem": 1,
+        "direction_symbol": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8579999804496765,
+          2.568000078201294,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.284000039100647,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-773118451561",
+      "name": "YIELD2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_09.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-773118451561_lod0.glb",
+          "sha256": "d54b42b4c1c0707c64e35fbafd96e68c27157c55e914d770377982263150fe63",
+          "triangles": 1264,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.45033320784568787,
+              -0.04899999871850014,
+              0.0010000000474974513
+            ],
+            [
+              0.45033320784568787,
+              0.03500000014901161,
+              2.4509999752044678
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-773118451561_lod1.glb",
+          "sha256": "ba02de842f09c7438c336334b5525d95a5583fbad7db848372ad9fefc371a37c",
+          "triangles": 472,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.45033320784568787,
+              -0.04899999871850014,
+              0.0010000000474974513
+            ],
+            [
+              0.45033320784568787,
+              0.03328697755932808,
+              2.4509999752044678
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-773118451561_lod2.glb",
+          "sha256": "4c703de18c55c198b95cc04f912fb4b75971bde07d8756d582a664ec8d38a1dc",
+          "triangles": 28,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.45033320784568787,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.45033320784568787,
+              0.030310887843370438,
+              2.450000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "fasteners": 2,
+        "dimensional_lettering": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.9006664156913757,
+          2.4499999751569703,
+          0.08399999886751175
+        ],
+        "center_y_up": [
+          0.0,
+          1.2259999876259826,
+          0.006999999284744263
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A0EEC9A844C4",
+      "name": "YIELDBK2",
+      "builder": "traffic_sign",
+      "group": "signs_billboards",
+      "concept": {
+        "file": "art/props/concept_3d/all_signs_billboards_09.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A0EEC9A844C4_lod0.glb",
+          "sha256": "5780ee3ac9d6de256694dd7111cc5dface06bcb560fee0b7d0044dd3e5827a6d",
+          "triangles": 940,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.45033320784568787,
+              -0.04800000041723251,
+              0.0
+            ],
+            [
+              0.45033320784568787,
+              0.03500000014901161,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A0EEC9A844C4_lod1.glb",
+          "sha256": "2cc0cdf3b198862d64c73ce047b413a33fb12633d85e8f8667589a6d3888e308",
+          "triangles": 148,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.45033320784568787,
+              -0.03328697755932808,
+              0.0
+            ],
+            [
+              0.45033320784568787,
+              0.03328697755932808,
+              2.450000047683716
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A0EEC9A844C4_lod2.glb",
+          "sha256": "bca55e08277049863945a3dbb40fb68284ee0395d3702f0516fce980c462d1ea",
+          "triangles": 28,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.45033320784568787,
+              -0.030310887843370438,
+              0.0
+            ],
+            [
+              0.45033320784568787,
+              0.030310887843370438,
+              2.450000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "sign_post": 1,
+        "shaped_sign_plate": 1,
+        "fasteners": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.9006664156913757,
+          2.450000047683716,
+          0.08300000056624413
+        ],
+        "center_y_up": [
+          0.0,
+          1.225000023841858,
+          0.006500000134110451
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

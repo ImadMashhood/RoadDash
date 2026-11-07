@@ -13,6 +13,8 @@ pub mod game;
 pub mod human;
 pub mod models;
 pub mod npc;
+pub mod original_crash;
+pub mod props;
 pub mod recovery;
 pub mod runtime;
 pub mod settings;
@@ -29,6 +31,10 @@ use bevy::prelude::*;
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
     let mut app = App::new();
+    app.insert_resource(original_crash::OriginalCrashes(
+        std::env::args().any(|a| a == "--original-crashes"),
+    ));
+
     app.insert_resource(
         biomechanics::Settings::selected().expect("valid ragdoll arguments/configuration"),
     );
@@ -44,6 +50,12 @@ pub fn build_app(smoke: bool) -> App {
             vehicle::VehiclePhysicsAdapter::Dynamic
         },
     );
+    let window_title = format!(
+        "ROAD / DASH — {}",
+        app.world().resource::<track::Track>().definition.name
+    );
+    world_gen::city::register_assets(&mut app);
+    props::register_assets(&mut app);
     app.add_plugins(
         DefaultPlugins
             .set(AssetPlugin {
@@ -52,7 +64,7 @@ pub fn build_app(smoke: bool) -> App {
             })
             .set(WindowPlugin {
                 primary_window: Some(Window {
-                    title: "ROAD / DASH — Valley Run".into(),
+                    title: window_title,
                     mode: if std::env::args().any(|a| a == "--world-survey") {
                         bevy::window::WindowMode::BorderlessFullscreen(
                             bevy::window::MonitorSelection::Current,
@@ -75,12 +87,14 @@ pub fn build_app(smoke: bool) -> App {
                 ..default()
             }),
     )
+    .add_plugins(world_gen::city::visuals::BuildingSceneTypesPlugin)
     .add_plugins((
         content::RoadContentPlugin,
         runtime::RoadLifecyclePlugin,
         runtime::RoadSimulationPlugin,
         controls::RoadInputPlugin,
         models::RoadModelPlugin,
+        props::PropPlugin,
         runtime::RoadWorldPlugin,
         runtime::RoadPresentationPlugin,
         runtime::RoadAudioPlugin,
@@ -96,13 +110,28 @@ pub fn build_app(smoke: bool) -> App {
             ));
         if std::env::args().any(|a| a == "--world-survey") {
             app.insert_resource(bevy::winit::WinitSettings::continuous());
-            app.init_resource::<world_gen::survey::Survey>()
-                .add_systems(
-                    PostUpdate,
-                    world_gen::survey::run
-                        .after(game::camera)
-                        .before(bevy::transform::TransformSystems::Propagate),
-                );
+            if app
+                .world()
+                .resource::<track::Track>()
+                .city_surface
+                .is_some()
+            {
+                app.init_resource::<world_gen::city::survey::Survey>()
+                    .add_systems(
+                        PostUpdate,
+                        world_gen::city::survey::run
+                            .after(game::camera)
+                            .before(bevy::transform::TransformSystems::Propagate),
+                    );
+            } else {
+                app.init_resource::<world_gen::survey::Survey>()
+                    .add_systems(
+                        PostUpdate,
+                        world_gen::survey::run
+                            .after(game::camera)
+                            .before(bevy::transform::TransformSystems::Propagate),
+                    );
+            }
         } else if std::env::args().any(|a| a == "--actor-smoke-test") {
             app.add_systems(Update, verification::actor_smoke.after(ui::update_ui));
         } else {

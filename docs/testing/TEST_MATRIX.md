@@ -232,6 +232,82 @@ race smoke passed crash/get-up/run/remount twice and finish, 15-racer restart an
 five audio sinks. Full attack/tuck native visual matrix, terrain-foot fidelity,
 Windows and user approval remain ANIM-09. See [receipt](ANIMATION_B.md).
 
+## Original-crash comparison — 2026-11-01
+
+CRASHREF-001–003: native-unit integer rules, bounded retail x86 corroboration,
+opt-in bike/car and bike/bike bridge, separate rider/wreck velocities, default
+rig/control/recovery regression. Full command evidence and explicit parity limits:
+[ORIGINAL_CRASHES.md](ORIGINAL_CRASHES.md). CRASHREF-004 remains open. Retail checks
+need the user's original EXE plus optional Unicorn2.1.4 and are not represented
+as ordinary CI coverage or original Windows-game execution.
+
+## Facade authoring prototype — 2026-11-01
+
+Four new offline authoring tests pass (24 total Python tests): constant bay/window
+sizes and recessed glass, corner geometry/ground bounds, OBJ indices/material
+references and invalid configuration. Full Rust regression: 163 pass, one existing
+ignored soak; fmt, clippy, locked build, audit and progress sync pass. Preview
+inspected. No runtime geometry changes; native city placement/performance and
+complete catalog/art acceptance remain open under V2-04. Source and reproduction:
+[facade prototype](../research/FACADE_PROTOTYPE.md).
+
+## Playable City Run5300 — 2026-11-01
+
+Current default: city-run-5300,5,300m open course. See
+[full receipts](city-5300/README.md). Required checks cover the rr_content city
+contract; deterministic source/compiled-data equality; City-family district
+filtering; all300 derived-front GLB/source hashes; whole-lot/sidewalk reservations;
+all977 actual Rapier building-roof rays; grid/road/sidewalk/runoff support; foot
+routes from rear courts; ordered checkpoint crossings; all15 native restart
+positions; two native crash/recovery cycles and results; nine actual-game district
+survey views; unchanged Valley native smoke and existing rig differential tests.
+171 Rust tests pass (one existing600s soak ignored by default),48 Python tests pass;
+format/strict Clippy/build/audit/reproduction checks pass. Broader production,
+ornamental collision, long-session/multi-crash/Windows/performance gates stay open.
+
+| T-DOWNED-CONTACT / COLLISION-04 | Original-style downed/mounted/standing routing; solid low-wreck passage without forced wipeout | rr_core::contact tests; collision_tests::detached_body_contacts_never_script_a_new_mounted_wipeout (16 cases,11 contacts each); vehicle::tests::dynamic_bike_physically_traverses_a_solid_low_wreck; full car/runner/recovery regressions and native City Run smoke. [Receipt](contact-routing/README.md). Exact retail/SI parity and subjective pile-up approval remain open. |
+
+| T-PROP-CATALOG / PROP-01 | Complete scoped local reference extraction, hierarchy/frame aliases,3×2 sheet review, stage/provenance separation | Nine malformed-input/alias/frame/grid/queue/output-boundary tests;4172 source CELs reconciled;1310 images validated;597 unique review groups in105 sheets; zip CRC and browser filter/search/view checks. [Receipt](prop-catalog/README.md). Actual new geometry, semantic placement, art/physics/audio/native acceptance remain V2-05/V2-06. |
+
+
+### Full prop concept authoring coverage (2026-11-01)
+
+- 369/369 queue IDs covered; 59 additional source-mapped sheets, 66 selected total.
+- Evidence: `prop-catalog/all-concepts.json` and `prop-catalog/all-concepts/`.
+- PNG/hash/slot/queue-stage/archive validation passed; nine Python catalog tests
+  and five roadmap tests passed; required fmt, Clippy, test/build and audit passed.
+- All new output sheets visually inspected; three targeted v2 edits retained.
+- Browser file URL blocked by policy; interactive UI and native integration
+  unverified. Bitmap coverage does not close mesh/rig/art-approval gates.
+
+
+### Draft prop GLB catalog (PROP-02, 2026-11-01)
+
+- All 369 IDs, three indexed-triangle LODs each, embedded original 128px material
+  tiles, valid normals/UVs/indices, positive-volume extents, reduced triangle counts
+  and exact model/source/render hashes checked independently of Blender.
+- Every ID has a proof sheet rendered after re-import; parked-vehicle clay renders
+  remove material imagery. Selected sheets inspected visually; this is not final
+  art review of every asset.
+- Isolated Bevy GLB native captures: fire engine, cow and human. First importer
+  failure fixed through existing explicit scene-type registration. No racing-body
+  replacement; full Rust regressions include accepted-model physics checks.
+- Six mesh-authoring tests (including malformed binaries and semantic exceptions),
+  nine reference-catalog tests, roadmap synchronization and asset declaration audit.
+- Evidence: prop-meshes/README.md and adjacent command logs.
+
+
+### 2026-11-01 — PROP-03 draft props in gameplay
+
+[Integration evidence](props-in-game/README.md): strict locked Rust checks,
+179tests passing/one ignored, prop authoring/reference tests, independent118skin
+GLB checks and1,107static GLB checks. Socket tests preserve crossings, road and
+pedestrian lane; NPC tests preserve physical definitions/ejection velocity and
+bound180tick simulations. Actual City nine-view survey, Valley actor knockdown
+smoke and City two-crash/recovery/finish smoke pass onVulkan/RTX3080. Scene receipts
+identify selected IDs, not approved art or all catalog entries placed. Performance,
+platform breadth, deformation quality and production release remain open.
+
 ## Biomechanical ragdoll comparison — 2026-11-01
 
 RAG-01–04: domain activation/zero-control, anatomical hard limits and passive
@@ -248,3 +324,11 @@ production p95/Windows/user approval remain RAG-05/06. Exact receipts:
 CLI/environment remains available, explicit CLI wins, conflicting flags fail,
 and game/lab share mode selection. Run default and explicit-baseline native race
 smoke plus the two-mode standalone view. Evidence: ragdoll/default-launch/.
+
+
+2026-11-06 RAG-07/08 and COLLISION-05: integration suite has200passing Rust tests,
+one preexisting ignored soak; equal-load knee deflection, paired inward hip stress,
+original direction-policy handoff, rear entity ordering and actual dynamic ride-over
+contacts included. Native default/baseline City race recovery, Valley NPCs and
+paired lab view pass;18headless cases finite. Full receipts: ragdoll/integration/.
+New per-joint resistance does not close distal-art or broad performance gates.

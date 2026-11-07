@@ -1,0 +1,1066 @@
+{
+  "group": "rocks_landforms",
+  "source": "sources/rocks_landforms.blend",
+  "source_sha256": "b08866a46b480bf524f8396a41585cb554103bab820ab0fffc0997ee28f6210a",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-CFF281F9BD5B",
+      "name": "BOULDA22",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CFF281F9BD5B_lod0.glb",
+          "sha256": "e2ee85637903501dbe5898ddddd2d8d05c33f463eb6237f2b67c20ff5247c804",
+          "triangles": 654,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.5161857604980469,
+              -0.12820802628993988,
+              0.0
+            ],
+            [
+              0.6941496133804321,
+              0.8028095364570618,
+              0.8360177278518677
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CFF281F9BD5B_lod1.glb",
+          "sha256": "544da54c7e3d9efc7fd48ec57acb92a64fed2296fd87578bd6c15425ac897a30",
+          "triangles": 248,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4951273798942566,
+              -0.12774816155433655,
+              0.0
+            ],
+            [
+              0.5920103192329407,
+              0.7693497538566589,
+              0.8244963884353638
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CFF281F9BD5B_lod2.glb",
+          "sha256": "bab3e5bab5866e643fdb9b357ff2e30ed2a371e028414c64b5a2900cd1f630fb",
+          "triangles": 56,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.47716742753982544,
+              -0.1054815798997879,
+              0.0
+            ],
+            [
+              0.5767038464546204,
+              0.7793594598770142,
+              0.8356918096542358
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.210335373878479,
+          0.8360177278518677,
+          0.9310175627470016
+        ],
+        "center_y_up": [
+          0.08898192644119263,
+          0.41800886392593384,
+          -0.33730075508356094
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4B85C37FDB2E",
+      "name": "BOULDC22",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4B85C37FDB2E_lod0.glb",
+          "sha256": "6dcc9277a9d8268103a37b1a22d60ebb6b00f9644ef45ebecbf4b55f55f9d04c",
+          "triangles": 804,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.39272820949554443,
+              -0.7536769509315491,
+              0.0
+            ],
+            [
+              0.934169590473175,
+              0.3773670494556427,
+              0.9592682123184204
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4B85C37FDB2E_lod1.glb",
+          "sha256": "233a941f762191b1a472b7e9b132792c99e97e3bb28bb7b66cdb61fb98605338",
+          "triangles": 264,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.42186641693115234,
+              -0.6894393563270569,
+              0.0
+            ],
+            [
+              0.9187470078468323,
+              0.3052991032600403,
+              0.9409739375114441
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4B85C37FDB2E_lod2.glb",
+          "sha256": "7cd17ffa8c135de72eb391a1347720ab0c73363edc2c0e036eee3de214edc282",
+          "triangles": 56,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4579930603504181,
+              -0.7125731706619263,
+              0.0
+            ],
+            [
+              0.9327861070632935,
+              0.3027777373790741,
+              0.9181856513023376
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.3268977999687195,
+          0.9592682123184204,
+          1.1310440003871918
+        ],
+        "center_y_up": [
+          0.2707206904888153,
+          0.4796341061592102,
+          0.18815495073795319
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-BB5EFFBC48E1",
+      "name": "BOULDRA2",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/rural_01_v2.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-BB5EFFBC48E1_lod0.glb",
+          "sha256": "ffa3a4162cb1a5d5960a25aefed6a53e8dc198188f0ce918e7da09f8fa852810",
+          "triangles": 728,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.18256141245365143,
+              -0.10455062985420227,
+              0.0
+            ],
+            [
+              0.7289994359016418,
+              0.6008000373840332,
+              0.5957412123680115
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-BB5EFFBC48E1_lod1.glb",
+          "sha256": "c7c09f5f46db1ad632e77a68d0f292980f96a35f0e61dd0cedfc9a19f47b6127",
+          "triangles": 256,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.12864316999912262,
+              -0.09087414294481277,
+              0.0
+            ],
+            [
+              0.7063981890678406,
+              0.596973180770874,
+              0.6079643964767456
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-BB5EFFBC48E1_lod2.glb",
+          "sha256": "2b32db51665876fb957567867eb57d4749b195d5ecca8e92a615586e180ad362",
+          "triangles": 56,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.1395653784275055,
+              -0.06306453794240952,
+              0.0
+            ],
+            [
+              0.7429574131965637,
+              0.540178656578064,
+              0.6034485697746277
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.9115608483552933,
+          0.5957412123680115,
+          0.7053506672382355
+        ],
+        "center_y_up": [
+          0.2732190117239952,
+          0.29787060618400574,
+          -0.24812470376491547
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-25FFB21EAFCE",
+      "name": "BOULDRD2",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-25FFB21EAFCE_lod0.glb",
+          "sha256": "13e6f559b10b59a2ceec4389692ba460b4d8aa05af218ba0d386126c67342f74",
+          "triangles": 726,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              0.06881838291883469,
+              -0.7114067077636719,
+              0.0
+            ],
+            [
+              1.1093143224716187,
+              0.1568475216627121,
+              0.7657815217971802
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-25FFB21EAFCE_lod1.glb",
+          "sha256": "e8bd47d0f1a89737020bed8f7c32ab6a8069942b8e4564169c4bc4d88c46556e",
+          "triangles": 256,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              0.0616535022854805,
+              -0.6893408894538879,
+              0.0
+            ],
+            [
+              1.0992578268051147,
+              0.1433590054512024,
+              0.7603973746299744
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-25FFB21EAFCE_lod2.glb",
+          "sha256": "a2487c78539db88e2526719843493bfc60ac7026278f00b5f7de18b96de2c74c",
+          "triangles": 56,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.03222840651869774,
+              -0.6884064674377441,
+              0.0
+            ],
+            [
+              1.0478346347808838,
+              0.13264338672161102,
+              0.7674753665924072
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.040495939552784,
+          0.7657815217971802,
+          0.868254229426384
+        ],
+        "center_y_up": [
+          0.5890663526952267,
+          0.3828907608985901,
+          0.2772795930504799
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B50FBD8BC166",
+      "name": "LOGS2",
+      "builder": "log_stack",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B50FBD8BC166_lod0.glb",
+          "sha256": "982d6ef81a2bfab17703bf746e3430e26be4eec65e7ff7317bc88faab16b68e5",
+          "triangles": 2632,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.550000011920929,
+              -0.6200000047683716,
+              0.0
+            ],
+            [
+              0.550000011920929,
+              0.6000000238418579,
+              0.9399999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B50FBD8BC166_lod1.glb",
+          "sha256": "e0f273e89b5f35e307b776453226ec9bb5aed0b527a3c41a8448b2fc30e2e46f",
+          "triangles": 1624,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.5411902070045471,
+              -0.6200000047683716,
+              0.0
+            ],
+            [
+              0.5411902070045471,
+              0.6000000238418579,
+              0.9399999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B50FBD8BC166_lod2.glb",
+          "sha256": "450f5f8f1840e14848f741f1330eed29ba6a001edc3a8bd1b67e0c674c06def0",
+          "triangles": 280,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.5258845686912537,
+              -0.6200000047683716,
+              0.0
+            ],
+            [
+              0.5258845686912537,
+              0.6000000238418579,
+              0.9399999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "log": 7,
+        "cut_log_end": 7
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.100000023841858,
+          0.9399999976158142,
+          1.2200000286102295
+        ],
+        "center_y_up": [
+          0.0,
+          0.4699999988079071,
+          0.009999990463256836
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C06900B3BF02",
+      "name": "LOGV2",
+      "builder": "stump",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C06900B3BF02_lod0.glb",
+          "sha256": "7edaf32e081b4bac2b25c1ad0bfff02dd3694e8d7a884bac67fd67bd735c7856",
+          "triangles": 376,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.44999998807907104,
+              -0.44999998807907104,
+              0.0
+            ],
+            [
+              0.44999998807907104,
+              0.44999998807907104,
+              0.6600000262260437
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C06900B3BF02_lod1.glb",
+          "sha256": "7ee8f211fc4b56c853689c412ba8d69e59fd914e39f0e3dbfd5a951ac69099e0",
+          "triangles": 232,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.44999998807907104,
+              -0.42797544598579407,
+              0.0
+            ],
+            [
+              0.44999998807907104,
+              0.42797544598579407,
+              0.6600000262260437
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C06900B3BF02_lod2.glb",
+          "sha256": "b6322c0a217f4ef26a5e9d96fec1207b4ef40adb27f55eb468151ec2f5b30075",
+          "triangles": 40,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.44999998807907104,
+              -0.3897114098072052,
+              0.0
+            ],
+            [
+              0.44999998807907104,
+              0.3897114098072052,
+              0.6600000262260437
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "stump": 1,
+        "cut_growth_rings": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8999999761581421,
+          0.6600000262260437,
+          0.8999999761581421
+        ],
+        "center_y_up": [
+          0.0,
+          0.33000001311302185,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-ED02F1904540",
+      "name": "ROCKB2",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-ED02F1904540_lod0.glb",
+          "sha256": "8cdccd10fbce69ab05faddcfe9f232914069b5f028d6392e19bd59af56071364",
+          "triangles": 3114,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.112177848815918,
+              -0.923418402671814,
+              0.0
+            ],
+            [
+              1.2641524076461792,
+              0.7669962644577026,
+              0.9928715229034424
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-ED02F1904540_lod1.glb",
+          "sha256": "f4f0aada2f69d79a7a2f434a55cbd37e633fa897ae7d6cd09d66e8f42c474dbe",
+          "triangles": 1002,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8152890801429749,
+              -0.5150853395462036,
+              0.0
+            ],
+            [
+              1.2238075733184814,
+              0.8535915017127991,
+              0.953274130821228
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-ED02F1904540_lod2.glb",
+          "sha256": "6469f46cbc26394f328dcf3a276ec0cf58008016f17c5ba45b8c332b95f75e70",
+          "triangles": 224,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.782489001750946,
+              -0.7728012800216675,
+              0.0
+            ],
+            [
+              1.3263331651687622,
+              0.48600900173187256,
+              1.0312519073486328
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.376330256462097,
+          0.9928715229034424,
+          1.6904146671295166
+        ],
+        "center_y_up": [
+          0.07598727941513062,
+          0.4964357614517212,
+          0.07821106910705566
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-76445B97A926",
+      "name": "ROCKS12",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-76445B97A926_lod0.glb",
+          "sha256": "71ba99b15323f2745b9da9554056bc0f28b973c36690fb81ee3eb454ff7445f0",
+          "triangles": 3206,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9130954742431641,
+              -0.8537548184394836,
+              0.0
+            ],
+            [
+              1.1219313144683838,
+              0.6971191763877869,
+              0.9266198873519897
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-76445B97A926_lod1.glb",
+          "sha256": "d47fa3c18247e82139de9eb90014f9252759780ec7bae06ea3d06a3caa851a7e",
+          "triangles": 1052,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4681856036186218,
+              -0.8244936466217041,
+              0.0
+            ],
+            [
+              0.8824166655540466,
+              0.4865000545978546,
+              0.901610255241394
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-76445B97A926_lod2.glb",
+          "sha256": "2f438e9b0d57ea33a28b931a640142fad38fcdba4c0abee0afc49aface736265",
+          "triangles": 224,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.1254076957702637,
+              -0.8244704604148865,
+              0.0
+            ],
+            [
+              0.7605974674224854,
+              0.6860924363136292,
+              1.0552369356155396
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.035026788711548,
+          0.9266198873519897,
+          1.5508739948272705
+        ],
+        "center_y_up": [
+          0.10441792011260986,
+          0.4633099436759949,
+          0.07831782102584839
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-844848DA7F11",
+      "name": "ROCKS22",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-844848DA7F11_lod0.glb",
+          "sha256": "5a1794d0ad2f1022e9ede49211a996bd44c205f5a8d9aacf0301d2713936e28e",
+          "triangles": 3188,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.812699556350708,
+              -0.486960232257843,
+              0.0
+            ],
+            [
+              1.1345852613449097,
+              0.6558936834335327,
+              0.9542950391769409
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-844848DA7F11_lod1.glb",
+          "sha256": "103497a1ed667c9a8f030355621a9df40cf5327fbe7cf62c288475af28ec0b68",
+          "triangles": 994,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.1026688814163208,
+              -0.8758970499038696,
+              0.0
+            ],
+            [
+              0.9375101327896118,
+              0.5935583114624023,
+              1.0289825201034546
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-844848DA7F11_lod2.glb",
+          "sha256": "9da6fdc31f6011e5d8a5b57eb0932a066e01ce5e7b96d912096d7637f368ae27",
+          "triangles": 224,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.1992731094360352,
+              -0.5045667290687561,
+              0.0
+            ],
+            [
+              0.7267860770225525,
+              0.5907689332962036,
+              0.8297911882400513
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.9472848176956177,
+          0.9542950391769409,
+          1.1428539156913757
+        ],
+        "center_y_up": [
+          0.16094285249710083,
+          0.47714751958847046,
+          -0.08446672558784485
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CD51229BED7C",
+      "name": "ROCKS32",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CD51229BED7C_lod0.glb",
+          "sha256": "58d0c660bdf643672a2f5c3bacf836e8a12360c2379eb79b7e7b073b01fec984",
+          "triangles": 2958,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7999441623687744,
+              -0.9071924090385437,
+              0.0
+            ],
+            [
+              0.939016580581665,
+              0.6837594509124756,
+              0.9657586216926575
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CD51229BED7C_lod1.glb",
+          "sha256": "2c44611791c05cfe6a61cd014062477462096df75344ea2c3802c9eaa048b381",
+          "triangles": 1036,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.0144941806793213,
+              -0.7654209733009338,
+              0.0
+            ],
+            [
+              0.6602081656455994,
+              0.7340126633644104,
+              0.8907340168952942
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CD51229BED7C_lod2.glb",
+          "sha256": "b91c5d1f27d03efd4915ed2bc0e47266e43b1deba3b548518f18d6c424d1c553",
+          "triangles": 224,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.4838584363460541,
+              -0.6580137610435486,
+              0.0
+            ],
+            [
+              0.772928774356842,
+              0.45266759395599365,
+              0.8026161193847656
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7389607429504395,
+          0.9657586216926575,
+          1.5909518599510193
+        ],
+        "center_y_up": [
+          0.06953620910644531,
+          0.48287931084632874,
+          0.11171647906303406
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A00CEBC2C86C",
+      "name": "ROCKS42",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A00CEBC2C86C_lod0.glb",
+          "sha256": "c2a19451a123f829125a6f660839c86ebfabe2f3b9f3977dc6fa01b18114171a",
+          "triangles": 3114,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.0371891260147095,
+              -0.9971647262573242,
+              0.0
+            ],
+            [
+              1.0024778842926025,
+              0.7373315691947937,
+              1.0308197736740112
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A00CEBC2C86C_lod1.glb",
+          "sha256": "3fb5eca0b237e00d2a5a1414eca8812361ba55f4ef96e3cef7321ace139a5ab9",
+          "triangles": 1036,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8676067590713501,
+              -0.9759418964385986,
+              0.0
+            ],
+            [
+              1.1142828464508057,
+              0.5227491855621338,
+              1.0278412103652954
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A00CEBC2C86C_lod2.glb",
+          "sha256": "d8044fe7d55d77a2664e512ab7c6c5054fef9701506d9a71976a72cedaf96fcd",
+          "triangles": 224,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9440683722496033,
+              -0.8900901079177856,
+              0.0
+            ],
+            [
+              0.5349807143211365,
+              0.2748800814151764,
+              1.0176218748092651
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.039667010307312,
+          1.0308197736740112,
+          1.734496295452118
+        ],
+        "center_y_up": [
+          -0.017355620861053467,
+          0.5154098868370056,
+          0.12991657853126526
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-45E813BF273E",
+      "name": "ROCKS52",
+      "builder": "rock_cluster",
+      "group": "rocks_landforms",
+      "concept": {
+        "file": "art/props/concept_3d/all_rocks_landforms_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-45E813BF273E_lod0.glb",
+          "sha256": "a35ba9936f434dca43b31aa5de0ce12e7de5a890fd16a7c4985e7025a61b8992",
+          "triangles": 3084,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.0960766077041626,
+              -0.6738688945770264,
+              0.0
+            ],
+            [
+              0.7488118410110474,
+              0.773445725440979,
+              0.8809805512428284
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-45E813BF273E_lod1.glb",
+          "sha256": "d4519cd459c587a871b93a8865437822a35b966bf86eaef2f6c01528591e03b2",
+          "triangles": 994,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.2207324504852295,
+              -0.7122674584388733,
+              0.0
+            ],
+            [
+              0.514139711856842,
+              0.5422706007957458,
+              0.923149585723877
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-45E813BF273E_lod2.glb",
+          "sha256": "58506c825d71a7114a696075af41a473e82794e929c40e0924a62b2875fc9c75",
+          "triangles": 224,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6963096261024475,
+              -0.7094339728355408,
+              0.0
+            ],
+            [
+              1.1445131301879883,
+              0.5289919376373291,
+              1.0141867399215698
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.84488844871521,
+          0.8809805512428284,
+          1.4473146200180054
+        ],
+        "center_y_up": [
+          -0.17363238334655762,
+          0.4404902756214142,
+          -0.04978841543197632
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

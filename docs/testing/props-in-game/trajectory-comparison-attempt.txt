@@ -1,0 +1,21 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 17.35s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 1 test
+Cow maxima: position=0.15428431, rotation=0.51660806, linear=1.3424844, angular=5.948397
+
+thread 'npc::tests::new_actor_skins_preserve_bodies_joints_and_180_tick_momentum' (2428057) panicked at src/npc.rs:475:13:
+assertion failed: max_position < 0.02 && max_rotation < 0.02 && max_linear < 0.05 &&
+    max_angular < 0.1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test npc::tests::new_actor_skins_preserve_bodies_joints_and_180_tick_momentum ... FAILED
+
+failures:
+
+failures:
+    npc::tests::new_actor_skins_preserve_bodies_joints_and_180_tick_momentum
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 123 filtered out; finished in 0.28s
+
+error: test failed, to rerun pass `-p road-dash --lib`

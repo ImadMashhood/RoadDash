@@ -1,10 +1,12 @@
 # ROAD / DASH
 
-A native Rust + Bevy motorcycle combat racer. Race a point-to-point farmland → city → hills route against fourteen rivals, dodge two-way traffic, throw punches and kicks, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, using measured approach velocity and gravity.
+A native Rust + Bevy motorcycle combat racer. Race a generated 5.3 km point-to-point city route against fourteen rivals, dodge two-way traffic, throw punches and kicks, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, using measured approach velocity and gravity.
 
-This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data.
+This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data. City Run now uses our modeled facades assembled into complete exterior buildings; the earlier 6.85 km Valley race remains available with `ROADDASH_TRACK=valley cargo run --release`.
 
-![Valley Run farmland](docs/testing/part-04/02-racing.jpg)
+![City Run — generated 5.3 km city](docs/testing/city-5300/game-smoke/08-city.png)
+
+Selected 3D prop drafts now appear in gameplay: traffic, city furniture/lamps/trees and human/cow NPC skins. [Integration screenshots and limits](docs/testing/props-in-game/README.md). Use `ROADDASH_LEGACY_PROPS=1` to compare the earlier presentation.
 
 ## Run
 
@@ -73,9 +75,18 @@ Keyboard JSON through `ROADDASH_BINDINGS` still overrides the loaded keyboard ma
 Gamepad support uses Bevy's Gilrs backend; Linux now also needs the libudev development
 package listed above. Multiple pads use the lowest entity ID; disconnect clears input.
 
-This separate [biomechanical ragdoll comparison branch](docs/testing/RAGDOLL_BIOMECHANICS.md) now enables the16-body rig automatically: run `cargo run --release` for racing or `cargo run --release -- --ragdoll-lab-view` for the standalone lab. No B press is needed. B only switches modes inside the lab; it is not a race control. Use `--ragdoll-baseline` to select the original eleven-body rig explicitly. This default change applies only to this unmerged comparison branch; main keeps its accepted physics.
+The [biomechanical ragdoll](docs/testing/RAGDOLL_BIOMECHANICS.md) is now the default:16 physical bodies, constrained anatomy and passive/active muscle motors. Run `cargo run --release` normally; no B press or extra flag is required. Use `--ragdoll-baseline` to compare the original eleven-body rig, or `--ragdoll-lab-view` for the standalone lab (B switches modes there). [Integration evidence](docs/testing/ragdoll/integration/README.md).
 
 See the dedicated [animation production plan](#animation-production) for the full reference/keyframe and runtime-animation backlog.
+
+## Original crash comparison (separate branch)
+
+`cargo run --release -- --original-crashes` opts into recovered original bike/bike
+and bike/car contact calculations. `cargo run -- --original-crash-report` prints
+the formulas' numeric scenarios without graphics. See the [calculation report](docs/research/ORIGINAL_CRASH_CALCULATIONS.md)
+for original boosts, damage and signed velocity rules, retail verification and
+explicit 3D adaptation limits. This does not include the biomechanical PR12;
+full native trajectory/caller parity remains CRASHREF-004.
 
 ## Included
 
@@ -112,7 +123,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**140 verified tasks complete; 226 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**152 verified tasks complete; 229 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -122,11 +133,11 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 140 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 27 open |
+| [00](#part-00) | Completed and verified foundations | 152 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 30 open |
-| [04](#part-04) | World A — facade study, original textures and procedural buildings | 18 open |
+| [04](#part-04) | World A — facade study, original textures and procedural buildings | 20 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 6 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 10 open |
 | [07](#part-07) | Weapons and complete riding combat | 11 open |
@@ -169,12 +180,17 @@ Everything checked off lives here, grouped by the original system. These are ver
 </details>
 
 <details>
-<summary>Stabilize restart, rival steering and crash entry — 4 verified tasks</summary>
+<summary>Stabilize restart, rival steering and crash entry — 7 verified tasks</summary>
 
 - [x] **V2-01-001** Restart at the authored grid, including on a zero-physics-tick frame.
 - [x] **V2-01-002** Give AI proportionate, gradual steering and lean.
 - [x] **V2-01-003** Use pre-contact world momentum for physical knockoffs.
 - [x] **V2-01-004** Repair visual skeleton attachments and anatomical bending. [Verification for corrections 001–004](docs/testing/MOTION_REPAIRS.md).
+
+- [x] **CRASHREF-001** Independently implement original integer contact, damage, entry and scalar drag calculations. Reason: compare actual original crash rules; part: 01; dependencies: pinned R01 and retail facts; acceptance: explicit fixed-point rounding, mass/order, signed velocity, damage scaling, caller-specific boosts and clamps; verification: nine domain tests and [calculation report](docs/research/ORIGINAL_CRASH_CALCULATIONS.md).
+- [x] **CRASHREF-002** Verify recovered arithmetic against the local retail executable. Reason: reconstruction comments can differ from native fields; part: 01; dependencies: CRASHREF-001 and user's hashed EXE; acceptance: compare Rust outputs to bounded native x86 execution without distributing original bytes; verification: 23 passing [retail checks](docs/testing/ORIGINAL_CRASHES.md), signed-field discrepancy recorded.
+- [x] **CRASHREF-003** Integrate an opt-in bike/bike and bike/car crash comparison while preserving the passive rig. Reason: compare independently of biomechanical PR12; part: 01; dependencies: CRASHREF-001/002 and existing collision/recovery; acceptance: separate rider/wreck entry velocities, persistent comparison condition, explicit SI/geometry adaptation, default behavior retained, remount resets state; verification: adapter tests, native-window smoke and fixed-simulation contact-to-remount regression in [test receipt](docs/testing/ORIGINAL_CRASHES.md).
+
 
 </details>
 
@@ -392,6 +408,14 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 - [x] **COLLISION-02** Remove scripted collision launches and spawn spin. Reason: latest request supersedes civilian clearance jumps; part: 01; dependencies: separated rider/wreck and civilian knockdowns; acceptance: zero added upward/spin velocity at entry, gravity-led wreck toppling, civilian momentum sharing and working recovery; verification: six civilian/bike-class cases, entry snapshots, slope/toppling tests and native actor/race smoke.
 - [x] **COLLISION-03** Apply measured arcade vehicle speed loss and a dissipative crash envelope. Reason: player/AI crashes reverse or gain energy; part: 01; dependencies: pre-contact samples and physical body mass/inertia; acceptance: 120 km/h rider versus either direction of 40 km/h car seeds 80 km/h forward, never negative retained speed, no added aggregate energy beyond gravity or reverse crash centre-of-mass motion; verification: player/AI directional cases, kinetic/potential/rotation budget checks, cross-traffic contacts and native recovery.
 
+- [x] **COLLISION-04** Separate fallen rider/wreck ride-over contacts from mounted wipeouts. Reason: any detached limb or bike triggered another crash; part: 01; dependencies: separated bodies and contact events; acceptance: solid downed contacts do not script another wipeout, low shapes support passage, mounted glances nudge, standing runners and car crashes remain functional; verification: player/AI and own/foreign body matrix in both crash modes, physical wreck traversal, full regressions and native crash/recovery smoke. [Evidence](docs/testing/contact-routing/README.md).
+
+- [x] **PROP-01** Deliver exhaustive scoped world-prop reference extraction and review infrastructure. Reason: the building workflow must extend to all roadside props and actors without hidden exclusions; originating part: 05; dependencies: local source resources and building catalog; acceptance: every indexed CEL in all families, five vehicle libraries and global CELs is accounted for, stable IDs/aliases/views retained, labeled 3×2 sheets/searchable gallery and explicit rebuild stages; verification: [4,172 source CELs, 1,310 images, 597 review banks, 105 sheets, independent coverage/image/zip validation and browser checks](docs/testing/prop-catalog/README.md). This verifies extraction, not completed prop models or production art.
+
+- [x] **PROP-02** Deliver source-mapped draft volumetric prop exports and an isolated GLB inspector. Reason: move the full bitmap catalog into editable 3D authoring; originating part: 05; dependencies: PROP-01 and the 369-ID concept queue; acceptance: all IDs have actual volumes, three reduced geometry LODs, original self-contained materials, editable category sources, independently re-imported render proofs and a working native viewer; verification: [binary/LOD/material/ID checks, authoring regressions and native smoke](docs/testing/prop-meshes/README.md). This closes draft export infrastructure only; V2-05-002 retains concept fidelity, finished art, rigs, collider/placement and performance gates.
+- [x] **PROP-03** Apply selected draft props in the playable maps. Reason: connect the 3D catalog to gameplay; originating part: 05; dependencies: PROP-02, existing traffic/NPC/physics and city reservations; acceptance: working moving/cross traffic, trees/lamps, clear sidewalk/parallel-street sockets, consistent human/cow visuals through knockdown, independent preserved body definitions and momentum, validated LOD skins, native survey and recovery smoke; verification: [integration tests, actual-game screenshots and selected-ID receipts](docs/testing/props-in-game/README.md). This verifies development integration, not all 369 banks placed or final art/performance/release approval.
+
+
 [Verification and limitations](docs/testing/COLLISION_RESPONSE.md).
 
 </details>
@@ -411,15 +435,36 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 <summary>Biomechanical ragdoll comparison — 4 verified tasks</summary>
 
 - [x] **RAG-01** Audit the current rig and five requested biomechanics references. Reason: the existing system already had limits and must be diagnosed before replacement; originating part: 03; dependencies: current source/lockfile and reference source access; acceptance: actual joint/CCD/mass/bind/control causes, five pinned source and license decisions, no unlicensed imports; verification: [investigation](docs/research/RAGDOLL_BIOMECHANICS.md), repository register and ADR-036.
-- [x] **RAG-02** Implement the optional 16-body anatomical articulation and passive resistance. Reason: wrists/ankles/split spine and bounded resistance were missing; originating part: 03; dependencies: RAG-01 and native Rapier; acceptance: calibrated local frames, elbow/knee hinges, bounded neck/spine/shoulders/hips/wrists/ankles, safe quaternion chart, 70 kg distribution/shape inertia, persistent passive motors and predictive collision; verification: native joint/torque tests and [nine dual-mode fixtures](docs/testing/ragdoll/lab-results.json). Original eleven-body control remains selectable.
+- [x] **RAG-02** Implement the 16-body anatomical articulation and passive resistance. Reason: wrists/ankles/split spine and bounded resistance were missing; originating part: 03; dependencies: RAG-01 and native Rapier; acceptance: calibrated local frames, elbow/knee hinges, bounded neck/spine/shoulders/hips/wrists/ankles, safe quaternion chart, 70 kg distribution/shape inertia, persistent passive motors and predictive collision; verification: native joint/torque tests and [nine dual-mode fixtures](docs/testing/ragdoll/lab-results.json). Original eleven-body control remains selectable.
 - [x] **RAG-03** Integrate capped muscles and coherent crash release. Reason: crash states lacked smooth loss of strength and animation/spin handoff; originating part: 03; dependencies: RAG-02 and animation bind frames; acceptance: configurable native PD pose tracking, bracing/ejection/tumble/rest curves, bind-calibrated initial pose with coincident anchors, COM/pre-impact spin preservation, unchanged ejection events, no forced upright motion and natural sleep; verification: pose-hold/external-force/state/bind/momentum tests, bounded energy and 15-rider settling results in [report](docs/testing/RAGDOLL_BIOMECHANICS.md).
-- [x] **RAG-04** Deliver the reproducible ragdoll comparison and tuning tools. Reason: the overhaul must be reviewable before merging; originating part: 03; dependencies: RAG-02/03; acceptance: central validated JSON, F7 shape/axis/limit/motor diagnostics, nine headless and native scenarios, B/reset baseline comparison, native clips and recovery/actor regressions; branch-only [automatic launch selection](docs/testing/ragdoll/default-launch/README.md) with explicit baseline override (2026-11-02); verification: 164 Rust tests, 20 tooling tests, native comparison/race/actor smoke, build/Clippy/format/audit [receipts](docs/testing/ragdoll/receipt.json).
+- [x] **RAG-04** Deliver the reproducible ragdoll comparison and tuning tools. Reason: the overhaul must be reviewable before merging; originating part: 03; dependencies: RAG-02/03; acceptance: central validated JSON, F7 shape/axis/limit/motor diagnostics, nine headless and native scenarios, B/reset baseline comparison, native clips and recovery/actor regressions; [automatic launch selection](docs/testing/ragdoll/default-launch/README.md) with explicit baseline override (2026-11-02); verification: 164 Rust tests, 20 tooling tests, native comparison/race/actor smoke, build/Clippy/format/audit [receipts](docs/testing/ragdoll/receipt.json).
+- [x] **RAG-07** Integrate the approved biomechanical rig with current City Run, props and contact routing. Reason: comparison branch predates the live race; part: 03; dependencies: RAG-04, CITYGEN-01, PROP-03, COLLISION-04; acceptance: automatic new mode, explicit original baseline, current human/cow skins and recovery, original-crash direction policy retained; verification: [200 Rust tests, native paired race/actor/view and 18 lab runs](docs/testing/ragdoll/integration/README.md). User authorized merge on2026-11-06; distal art and broad performance gates remain open.
+- [x] **RAG-08** Strengthen passive hip/knee resistance and constrain inward leg crossing. Reason: user reported crossing knees and loose legs; part: 03; dependencies: RAG-02/07; acceptance: mirrored hip adduction/twist limits, persistent stronger leg motors, knees remain separated under paired inward torque, improved equal-load deflection and bounded high-speed settling; verification: [physical knee-load/separation tests and native settled capture](docs/testing/ragdoll/integration/README.md). Baseline control articulation remains selectable.
+- [x] **COLLISION-05** Hop over rear/downed rider and bike contacts without ejecting the attacking rider. Reason: user requested ramp-like arcade contacts; part: 01; dependencies: COLLISION-04; acceptance: bounded speed-gated hop, fast rear hit knocks target down, downed/runner impacts push or knock target over, own bodies and tiny taps excluded, repeated limb hits deduplicated by cooldown, head-on/car behavior retained; verification: [both entity orders, actual dynamic contacts, no duplicate bodies and native recovery tests](docs/testing/ragdoll/integration/README.md). This user-requested hop supersedes the earlier no-launch policy for these contact classes only.
+
 
 </details>
 
 <a id="part-01"></a>
 
+<details>
+<summary>Architectural district organization — 1 verified task</summary>
+
+- [x] **DISTRICT-01** Organize all 146 modeled IDs into district/support sets and original-course eligibility indexes. Reason: procedural scenery needs coherent local pools instead of a global random mix; originating part: 04; dependencies: complete draft mesh catalog and local resource research; acceptance: exactly one primary group per ID, five measured course-family views, labeled previews, canonical mesh links and explicit evidence/inference separation; verification: [146 name matches, 13 groups, 438 unchanged linked LODs, parser/coverage tests](docs/testing/building-districts/README.md). District placement and transitions remain under V2-04-003.
+
+</details>
+
+<details>
+<summary>Playable generated city — 1 verified task</summary>
+
+- [x] **CITYGEN-01** Assemble full-depth buildings from the modeled facades and generate the playable 5.3 km City Run. Reason: district catalogs need a real race-world implementation rather than another isolated preview; originating part: 04; dependencies: DISTRICT-01, geometric facade assets, shared physics/recovery; acceptance: complete facade/roof/rear/end assemblies, coherent districts, exact 5,300 m open race, solid support/buildings, all 15 grid starts, working recovery/restart/checkpoints/finish, preserved Valley fallback; verification: [deterministic bake, per-building Rapier rays, foot routes, all gates, native city and Valley smoke, nine actual-game survey views](docs/testing/city-5300/README.md). Production fidelity, fine collision/art review and broad performance/platform acceptance remain V2-04 gates.
+
+</details>
+
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **CRASHREF-004** Extend original-crash coverage and establish trajectory parity before changing the default. Reason: native 2.5D geometry, other callers and post-entry laws exceed the first 3D comparison; part: 01; dependencies: CRASHREF-001–003, retail trajectory fixtures and explicit gameplay review; acceptance: low/static object, combat, downed-body/traction/wall caller routing, original condition/regeneration tables, pair ordering/reciprocal traffic response, and justified native-vs-Rapier bounce/drag trajectories documented and tested; verification: reproducible original-vs-modern traces, multi-rider contact/energy/recovery scenes and user comparison. Current comparison boundaries remain explicit in [research](docs/research/ORIGINAL_CRASH_CALCULATIONS.md).
+
 
 Next implementation work: measured vehicle crashes, over-car nose-down/vault behavior, combat knockoff swerve/countersteer and acceptance. Preserve the accepted player handling and passive ragdoll. The gradual AI steering, pre-contact velocity handoff, anatomical visual chains and grid retry fixes are already completed in Part 00. Older control/platform/architecture requirements below remain open where their full acceptance has not passed.
 
@@ -534,8 +579,8 @@ The user authorized the initial clip integration after correcting torso motion; 
 - [ ] **V2-03-006** Blend physical landings into terrain-aware get-up and remount.
 - [ ] **V2-03-007** Add motion/audio polish without changing gameplay outcomes.
 - [ ] **ANIM-09** Finish native full-body animation acceptance. Reason: authoring renders and numeric constraints do not certify every runtime deformation/transition; part: 03; dependencies: ANIM-08, ANIM-02/04/06 and terrain locomotion; acceptance: native multi-angle normal/tuck-to-all-attacks, mirrored pickup and physical-pose get-up review, fingers/feet and cloth/bike clearance, Windows hardware and user approval; verification: labeled native video matrix, contact/deformation checks and regression parity.
-- [ ] **RAG-05** Approve native biomechanics silhouettes and finish distal skin articulation. Reason: sixteen physical proxies still feed an eleven-joint skin and impact peaks require human review; part: 03; dependencies: RAG-02/03, ART-04 and ANIM-02/09; acceptance: independently visible wrists/feet/spine, reviewed source-pose release and multi-angle drop/car/terrain/knockoff clearance, acceptable distal impact velocities and user comparison approval before replacing defaults; verification: native videos, deformation/contact metrics and explicit user review.
-- [ ] **RAG-06** Profile and approve worst-case race ragdoll performance. Reason: additional bodies/solver work cost more than the baseline and instrumented headless timing is not race FPS; part: 03; dependencies: RAG-04 and representative traffic/environment load; acceptance: compare frame/physics p95 and allocations across15 racers plus bounded NPC crashes, sleeping/wakeup, Windows hardware and quality presets without regressions; verification: repeatable native profiling on target hardware and user acceptance, keeping main unchanged until approved.
+- [ ] **RAG-05** Approve native biomechanics silhouettes and finish distal skin articulation. Reason: sixteen physical proxies still feed an eleven-joint skin and impact peaks require human review; part: 03; dependencies: RAG-02/03, ART-04 and ANIM-02/09; acceptance: independently visible wrists/feet/spine, reviewed source-pose release and multi-angle drop/car/terrain/knockoff clearance, acceptable distal impact velocities and remaining multi-angle art approval; the user approved default integration on2026-11-06; verification: native videos, deformation/contact metrics and explicit user review.
+- [ ] **RAG-06** Profile and approve worst-case race ragdoll performance. Reason: additional bodies/solver work cost more than the baseline and instrumented headless timing is not race FPS; part: 03; dependencies: RAG-04 and representative traffic/environment load; acceptance: compare frame/physics p95 and allocations across15 racers plus bounded NPC crashes, sleeping/wakeup, Windows hardware and quality presets without regressions; verification: repeatable native profiling on target hardware and user acceptance, recording remaining production performance acceptance separately from the2026-11-06 default integration approval.
 - [ ] **V2-03-008** Exit gate: motion is responsive, coherent and physically readable.
 
 #### Carried-forward requirements — still unfinished
@@ -571,12 +616,14 @@ Continue here after the animation gates: buildings → props → NPCs → sky/la
 Study the original building/facade textures locally, rebuild them as original art in the approved RoadDash style, define the procedural city/world grammar, then generate detailed building families and whole blocks. Existing structural graybox and dense street fronts are completed foundations, not final facade art.
 
 - [ ] **V2-04-001** Catalog every reference building/facade family locally.
-- [ ] **V2-04-002** Create original facade textures in the RoadDash style.
-- [ ] **V2-04-003** Plan a data-driven city/world construction grammar.
-- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks.
+- [ ] **V2-04-002** Create original facade textures in the RoadDash style. A first realistic AI reference batch covers 25 sheets / 146 source IDs; [manifest](art/buildings/realistic_sheets/MANIFEST.json) and [prompts](art/buildings/realistic_sheets/PROMPTS.json). Production textures, exact layout/text cleanup and art/rights acceptance remain open.
+- [ ] **V2-04-003** Plan a data-driven city/world construction grammar. Partial: the [playable 5.3 km City Run](docs/testing/city-5300/README.md) now builds 977 complete exterior lots across 53 blocks and eight district zones using 85 City-eligible geometric facade designs, shared closed roofs, recessed rear openings and cross-street facade returns. Canonical Valley quotas/IDs remain unchanged. Broader terrain grammar, final transitions/site variety and full world acceptance remain open.
+- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks. [Complete draft model catalog](art/buildings/mesh_assets/README.md) now covers 100 facades, 28 structures and 18 surface modules with editable Blender sources and 438 embedded GLB LOD files, real apertures/storefronts/canopies/bays/roof geometry, independent binary validation and native placement in the 5.3 km playable city. Earlier palette/flat-facade previews were rejected and do not satisfy this task. Draft mesh coverage and city runtime assembly are implemented; full material/art fidelity, user review, optimization and production acceptance remain open.
 - [ ] **V2-04-005** Retain supported ground, roads, collision and navigation.
-- [ ] **V2-04-006** Validate city life, visual density and performance.
+- [ ] **V2-04-006** Validate city life, visual density and performance. [Native playable-city survey and crash/recovery/retry evidence](docs/testing/city-5300/README.md) available; production art/LOD, encounter tuning and broad racing performance acceptance remain open.
 - [ ] **V2-04-007** Exit gate: coherent procedural buildings are accepted.
+- [ ] **MESH-01** Model the remaining 94 facade designs from the approved three-quarter renders. Reason: the first sheet supplies six genuine meshes, not the full catalog; part: 04; dependencies: six-model kit, per-design reference review and material authoring; acceptance: every remaining facade ID maps to a distinct editable 3D model with actual openings/details/roof/sides and verified GLB LODs; verification: catalog coverage, mesh/material/bounds validation, native multi-angle renders and user art review. Partial: all 94 additional facade drafts exported with editable sources and three LODs; artist/user fidelity approval remains open.
+- [ ] **MESH-02** Author the 46 structure/surface references appropriately. Reason: barns, churches, tanks and surface samples must not be miscounted as completed facade buildings; part: 04; dependencies: structure classification and reference/model grammar; acceptance: each ID becomes its appropriate volumetric structure or usable material asset with scale, provenance and export metadata; verification: type-aware coverage, geometry/material intake and native visual review. Partial: 28 standalone structures and 18 volumetric surface modules exported; final material/art and production intake gates remain open.
 
 #### Carried-forward requirements — still unfinished
 
@@ -598,10 +645,10 @@ Study the original building/facade textures locally, rebuild them as original ar
 
 Repeat the reference → original textures/models → procedural placement → collision/audio/QA pipeline for props after buildings are accepted.
 
-- [ ] **V2-05-001** Inventory reference prop categories and gameplay roles.
-- [ ] **V2-05-002** Author original prop meshes and texture families.
-- [ ] **V2-05-003** Place props through semantic rules.
-- [ ] **V2-05-004** Give gameplay props reliable physical/audio behavior.
+- [ ] **V2-05-001** Inventory reference prop categories and gameplay roles. [Scoped source catalog and rebuild queue](docs/research/props/README.md) extracted across all five courses; category/role proposals and eleven visually reviewed unresolved banks remain subject to identity/archetype/source-use review. Includes pedestrians, animals, traffic/parked vehicles, lamps/utilities, trees/plants, signs, furniture, fences, rocks and ground hazards. Source view/color/size banks are not unique finished models.
+- [ ] **V2-05-002** Author original prop meshes and texture families. [Actual draft mesh catalog](art/props/mesh_assets/README.md): 369 source IDs, 1,107 GLBs, 13 editable Blender scenes and exported-mesh proof renders. These are rough shared-archetype geometry drafts, not faithful finished reproductions of the [66 concept sheets](art/props/concept_3d/ALL_CONCEPTS.html). Significant silhouette/material/pictogram/actor refinement, finished deformation rigs, collider refinement, wider placement and final art approval remain open. Selected drafts now run in game through PROP-03. Inspect with `cargo run --locked --bin prop_preview`; accepted race physics remain unchanged.
+- [ ] **V2-05-003** Place props through semantic rules. PROP-03 adds reserved city sockets, existing tree/lamp replacements and traffic/NPC attachment; full category placement, variety and encounter review remain open.
+- [ ] **V2-05-004** Give gameplay props reliable physical/audio behavior. PROP-03 preserves existing moving-owner and ragdoll collisions and adds solid furniture; category-specific audio, breakables and comprehensive behavior QA remain open.
 - [ ] **V2-05-005** Exit gate: dressed world remains playable.
 
 #### Carried-forward requirements — still unfinished
@@ -614,7 +661,7 @@ Repeat the reference → original textures/models → procedural placement → c
 
 Repeat the same pipeline for pedestrians, riders, animals and believable NPC activity first. Then study and rebuild skyboxes, atmosphere, landscape textures and terrain materials; integrate them into the first map.
 
-- [ ] **V2-06-001** Build NPC reference catalog and original character variants.
+- [ ] **V2-06-001** Build NPC reference catalog and original character variants. Pedestrian/animal source banks are included in the [shared prop catalog](docs/research/props/README.md); PROP-03 binds draft human/cow appearances to existing walking and ragdoll frames; identity/species review, finished deformation and animations remain open. Preserve the accepted human/quadruped physical rigs when replacing visuals.
 - [ ] **V2-06-002** Create animal-specific art, animation and physical responses.
 - [ ] **V2-06-003** Populate the world with believable NPC activity.
 - [ ] **V2-06-004** NPC exit gate before the landscape pass.

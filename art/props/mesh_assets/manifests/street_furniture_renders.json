@@ -1,0 +1,352 @@
+[
+  {
+    "file": "renders/street_furniture_01.png",
+    "sha256": "853814b521163a29b69152ceef7225055c64703b964cf6da48ec574ea55355ac",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-AC6D4F926102",
+        "name": "BAGSGRP2",
+        "glb": "models/PROP-AC6D4F926102_lod0.glb",
+        "sha256": "ee9af7514647397108cca67e58a79622e9d6b3e72a7f3c19ae54df25df98b55a"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-64DCD9A70698",
+        "name": "BAGSINA2",
+        "glb": "models/PROP-64DCD9A70698_lod0.glb",
+        "sha256": "a459c1b5d31ffe3bb1fc12bf0545eda568c2ae7c0f1c2e6362c13c0523b96474"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-7FB2DCCA8FE9",
+        "name": "BAGSINB2",
+        "glb": "models/PROP-7FB2DCCA8FE9_lod0.glb",
+        "sha256": "6e4cab827c890b8f362a9a2fafe61f364f671931ba1bd901197f3e3e0f061d8d"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-B68BB8439525",
+        "name": "BENCH12",
+        "glb": "models/PROP-B68BB8439525_lod0.glb",
+        "sha256": "ad7a4b7d95fd1921527bd9612bc7605f2a4acf68ad8e9926488bf51e6703fdca"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-94930BE6CE09",
+        "name": "BENCH2",
+        "glb": "models/PROP-94930BE6CE09_lod0.glb",
+        "sha256": "2d346a38ac88315eae7b3cef925eb2f32942a9ab502bbb7e9a1ab8246f6203f0"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-BD48A707CE80",
+        "name": "BINBLU@2",
+        "glb": "models/PROP-BD48A707CE80_lod0.glb",
+        "sha256": "18b74fc55b255f4166d9f292adc2a2ad59c7944290c45ea167e5b3c975bb4144"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_furniture_02.png",
+    "sha256": "de59382c3fb56f15a6cb083d2bde7a623206128f1718ae67837de6ef042a0832",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-CFD19FE0CA6D",
+        "name": "BNCHBCK2",
+        "glb": "models/PROP-CFD19FE0CA6D_lod0.glb",
+        "sha256": "63204d4cb25b14bcc5ef6083719a9a5a4a022a280e6f57f07368d4858c622047"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-3BF17570D415",
+        "name": "BNCHMUN2",
+        "glb": "models/PROP-3BF17570D415_lod0.glb",
+        "sha256": "5502c8dbc65761d6fec7993d0338676003d26e936b185ffdd40046ed8d99f426"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-E9F7C84EEC24",
+        "name": "BOXES2",
+        "glb": "models/PROP-E9F7C84EEC24_lod0.glb",
+        "sha256": "a338b3f73ac1be843885e9b8ffeac77c63114d821c5efc4a3e5323359955b3ed"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-A0ABBE1125F4",
+        "name": "CLBXGRY2",
+        "glb": "models/PROP-A0ABBE1125F4_lod0.glb",
+        "sha256": "13f38380efcc1f273fcf220c2f097334469902a362b6b9021484bb9e0d365d69"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-F51EB5F3003D",
+        "name": "CLBXRED2",
+        "glb": "models/PROP-F51EB5F3003D_lod0.glb",
+        "sha256": "cf8e0ef4a94d8b7f44cdb0ee3a944dfb584c8f8a82dfcba60b9af483c0bfbfbd"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-AB95405B1FB3",
+        "name": "CLLBXBL2",
+        "glb": "models/PROP-AB95405B1FB3_lod0.glb",
+        "sha256": "4459085830f7f3c5b15c29e77c9ec3a351bf6931039163925935b3bfdc6d1258"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_furniture_03.png",
+    "sha256": "ca38888dfd78fca92b4232927114b46f09fae8361d610d70d6be92cda459e647",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-1D0869785A01",
+        "name": "CNTAINY2",
+        "glb": "models/PROP-1D0869785A01_lod0.glb",
+        "sha256": "c228df14e7cf3f24894746c61a2056fa3596844915d9894ea5656d9fc7ba6c7f"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-5F26DBB829FB",
+        "name": "CONTNBY2",
+        "glb": "models/PROP-5F26DBB829FB_lod0.glb",
+        "sha256": "72ac21a4fdb9cbc35e24d88801ebd00e753ff3c9231d2dff733b0b7e67976f40"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-31612EA52928",
+        "name": "MAIL2",
+        "glb": "models/PROP-31612EA52928_lod0.glb",
+        "sha256": "8136c792f4bcf657a6853b4a58c4760b6618b3c5057386fd8d0e0ad1ddb76ed0"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-1B4657A9BD58",
+        "name": "MAILBXS2",
+        "glb": "models/PROP-1B4657A9BD58_lod0.glb",
+        "sha256": "7f1711fa2b5b9305524c9444230ad3ef031a099a481ceb5ade6225297c09da53"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-96DD200946B3",
+        "name": "MLBXROW2",
+        "glb": "models/PROP-96DD200946B3_lod0.glb",
+        "sha256": "54aa32b7929669df7d576901d694e0ab0829b260634c42dcb41619ad1bd2fb12"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-2EFBB56C7E2A",
+        "name": "MUNI2",
+        "glb": "models/PROP-2EFBB56C7E2A_lod0.glb",
+        "sha256": "94a5063a376929ca8bca635397d8ca934b9df74212b31a041d83d71a1cb8db74"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_furniture_04.png",
+    "sha256": "529f4163a8404903c55c6f271f48c7a8b97a98a49668aa97aa1c7beef50ecc25",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-981E2FAE23CB",
+        "name": "NEWSPIL2",
+        "glb": "models/PROP-981E2FAE23CB_lod0.glb",
+        "sha256": "e0805b943ed7549095fff01170cd571498942b8aa0b861102d939856af4d2460"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-62F6C9794B12",
+        "name": "NEWSRCK2",
+        "glb": "models/PROP-62F6C9794B12_lod0.glb",
+        "sha256": "a9957aefa904416c39a9c0f9838fb74894b5cd58182fe8bd9a8d98881406396a"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-C33DE3A76E7C",
+        "name": "NWSRCKA2",
+        "glb": "models/PROP-C33DE3A76E7C_lod0.glb",
+        "sha256": "0f3cebebd3c9a0f0091b8fdedafb64ece6290a876d702b60effc3561f1f66422"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-398C09779703",
+        "name": "NWSRCKB2",
+        "glb": "models/PROP-398C09779703_lod0.glb",
+        "sha256": "3937aa1ed8e6a06eed52cd6a7bc874df0dd3a49112306db906428d443cae7564"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-E8800E0F7319",
+        "name": "ORNGBOX2",
+        "glb": "models/PROP-E8800E0F7319_lod0.glb",
+        "sha256": "f7a12e4917b403dc6dc215cfb5e38ca0a502954633249c6e9621881e14a92144"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-1286FE789E92",
+        "name": "PARCEL2",
+        "glb": "models/PROP-1286FE789E92_lod0.glb",
+        "sha256": "2fdb7a3f37f9fdfe0e0dd9476160c139cc4ea932a89923a863b78d96b088a763"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_furniture_05.png",
+    "sha256": "a368ffd8a032a95e6e1be5595a51e7c26d59902b878c0795d5cb51dda0f58506",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-66FA8ACD424A",
+        "name": "PHNBTH22",
+        "glb": "models/PROP-66FA8ACD424A_lod0.glb",
+        "sha256": "6f7a9a15d010fdd493fc62927f94b1e60198a141abc9d4a43a3c81fc6918f621"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-0D93FAFB066D",
+        "name": "PHONBTH2",
+        "glb": "models/PROP-0D93FAFB066D_lod0.glb",
+        "sha256": "4e59dc106e4391579c3941d992f4d45943290c51c69dbad480fa0d8e46028767"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-A1C328826BD8",
+        "name": "PHONE2",
+        "glb": "models/PROP-A1C328826BD8_lod0.glb",
+        "sha256": "86fc993415bb40228ff0c5a0320e8d3bc98e5d85d6975feb4a2ac7c7179aea72"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-D754A11E670E",
+        "name": "PHONEB2",
+        "glb": "models/PROP-D754A11E670E_lod0.glb",
+        "sha256": "fbf27b3e66df18f4d1ad88d311880f64fdc5902b6279d2860019e896f640b9f7"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-EC9C7FC58D70",
+        "name": "PHONEC2",
+        "glb": "models/PROP-EC9C7FC58D70_lod0.glb",
+        "sha256": "f94180dbe172f85e85ada64788d83ad3e5b7df7b1c0fad2c183fd014d15d2b58"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-61744FEF0A60",
+        "name": "PICNTBL2",
+        "glb": "models/PROP-61744FEF0A60_lod0.glb",
+        "sha256": "63d978a5e601568da1285fbb33d54939f6a2f9589d2782d0d27b4528a087d413"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_furniture_06.png",
+    "sha256": "641ff6ecec6bc1201ddf68933ef6941a62659c5da2751a118ea4d9485133fc3d",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-8BC64D3E0481",
+        "name": "RECYCLE2",
+        "glb": "models/PROP-8BC64D3E0481_lod0.glb",
+        "sha256": "8ff048c7507848f4876b58d056e001a9e5b02f0df7601dc8243c9e330eb29841"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-D9B4A3B9AFC2",
+        "name": "SDWLKBX2",
+        "glb": "models/PROP-D9B4A3B9AFC2_lod0.glb",
+        "sha256": "4eead9b1f090df9b473c8b09095b8caa5c044e44b8a56c87a7ce0f85446ed864"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-5233094C648C",
+        "name": "TRASHA2",
+        "glb": "models/PROP-5233094C648C_lod0.glb",
+        "sha256": "f0ecbfec4d6be26f880aa60785ca8c1e025f3ae87aa77b00d02b8bd73c7eced5"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-78013D8C2257",
+        "name": "TRASHB2",
+        "glb": "models/PROP-78013D8C2257_lod0.glb",
+        "sha256": "6029fb8f769b0e7a9583c629326428332b289256df1697e7f56de34298ead3fd"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-909DC4F4D92E",
+        "name": "TRSHBGA2",
+        "glb": "models/PROP-909DC4F4D92E_lod0.glb",
+        "sha256": "5518d334b8a62c75199985a9318704528e530d02c3f31837fad826dbf3deaf35"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-4B81B9F9CDBE",
+        "name": "TRSHBGB2",
+        "glb": "models/PROP-4B81B9F9CDBE_lod0.glb",
+        "sha256": "c676d72aadb7d9210e69431dfab266887883ea9bf0ca1996fed3df8fc2fc725d"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/street_furniture_07.png",
+    "sha256": "7d8e0f39e66609e71616dfc56dea587d09ccfd6bf89c8cd44dfdca06587a6e15",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-193FC185D553",
+        "name": "TRSHBNA2",
+        "glb": "models/PROP-193FC185D553_lod0.glb",
+        "sha256": "41186218e57ffb813b4c2ffd66d2a29d98026a2022bc459a95ec705d706a0ae7"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-9523B2D29DAD",
+        "name": "TRSHBNB2",
+        "glb": "models/PROP-9523B2D29DAD_lod0.glb",
+        "sha256": "16575a3e8ee98a8f951fe6747c8c752194d9fac78fc25f53fa17c6bc82bb852f"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-CACC5298FEF3",
+        "name": "TRSHDBL2",
+        "glb": "models/PROP-CACC5298FEF3_lod0.glb",
+        "sha256": "37a8f0233634a09323fba36b3937a8fbc4506694bcb56bd9ba57793bd5cb1ec1"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-F7CB7C9D706C",
+        "name": "VEGSTND2",
+        "glb": "models/PROP-F7CB7C9D706C_lod0.glb",
+        "sha256": "c8f18689300f46f5fd2825aceb238e7ac1659efe4a859ddb7fd862fe0b2927c0"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-77A6C5843E47",
+        "name": "WGNBRRL2",
+        "glb": "models/PROP-77A6C5843E47_lod0.glb",
+        "sha256": "166f5993dc8133f3b4f96105dfecae5a64aaa0a263ef8bd88dd75b0f1dbac74f"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-5DA0FFA05D33",
+        "name": "WINDVN2",
+        "glb": "models/PROP-5DA0FFA05D33_lod0.glb",
+        "sha256": "87d34b035f8816317945a41de02ac72ad2b15e654cedb9b23996cf12fa902783"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

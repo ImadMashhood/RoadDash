@@ -1,0 +1,136 @@
+{
+  "branch": "codex/city-kilometre-preview",
+  "correction": "Use actual enhanced facade art; earlier generic palette study rejected",
+  "workspace_rust_passed": 165,
+  "workspace_rust_ignored": 1,
+  "python_passed": 33,
+  "city_authoring_tests": 9,
+  "fmt": "pass",
+  "clippy": "pass",
+  "build": "pass",
+  "audit": "pass",
+  "city_native_exit": 0,
+  "images": [
+    {
+      "file": "01-avenue-overview.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "6b42c924b2274e29b89a4b16c5771cf8f7344218dc6d0477ce5c35c9ad5dc8f8"
+    },
+    {
+      "file": "02-street-height.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "05afd288e0ef998e247fc14d7a6eb6a20b751a35bddffd19224ce77b295597f0"
+    },
+    {
+      "file": "03-junction.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "c9054550b48d3fb7258fda64a051cde77cc0a02a0a2eb35fea973a8cbb159f3c"
+    },
+    {
+      "file": "04-block-grid.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "8b06859a6543282bf8a4b93289c474e352d9dab36ad8f8789b72db6011da1b8a"
+    },
+    {
+      "file": "05-actual-facade-proof.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "a08e3f12732cc2739f9bdca1730ef2d426d78ebb49f58dd856ff45d7ac1c41bd"
+    }
+  ],
+  "unchanged_source_images": [
+    {
+      "path": "art/buildings/realistic_sheets/facades_01.png",
+      "sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_02.png",
+      "sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_03.png",
+      "sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_04.png",
+      "sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_05.png",
+      "sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_06.png",
+      "sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_07.png",
+      "sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_08.png",
+      "sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_09.png",
+      "sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_10.png",
+      "sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_11.png",
+      "sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_12.png",
+      "sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_13.png",
+      "sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_14.png",
+      "sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_15.png",
+      "sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_16.png",
+      "sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8"
+    },
+    {
+      "path": "art/buildings/realistic_sheets/facades_17.png",
+      "sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4"
+    }
+  ],
+  "facade_ids": 100,
+  "facade_source_sheets": 17,
+  "physical_gameplay_changed": false,
+  "implementation_hashes": {
+    "tools/build_city_preview.py": "e2281c94dc28f5137ea5e8a31696c5dc7e109cbaf01eb3318dd30b7f666ae097",
+    "tools/catalog_facade_uvs.py": "3f8167ff613342d1037cf2c695a364a7a693e79f4da54ce51c243145a28fdfbd",
+    "tools/facade_surfaces.py": "0c755c0c1a779c82686ae8e18f2ccae53b8a336eb2f00cf0bc717946d0d9b570",
+    "src/bin/city_preview.rs": "1d41ad468a7aeb982decfd99a25484c75668b6eae47ad3de8bb8bed4f6e5b90a",
+    "src/bin/city_preview/facades.rs": "c7dd6aa32bb28730b20e160cd3b237f94442e775699411731bef0a0a33eca1cd",
+    "art/buildings/city_preview/config.json": "12ac92e2bd8e831cff68ffb82c605364dd2203c9b450ca9372812cc58ff17de0"
+  }
+}

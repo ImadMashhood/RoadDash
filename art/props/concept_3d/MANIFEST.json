@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "file": "props_01.png",
+  "sha256": "bc11136f35295bd32dee8b9cccc59ca08b9be4167614509973740f924d208cf3",
+  "generator": "OpenAI image_gen tool; model identifier not reported",
+  "status": "draft_concept_not_mesh_not_approved",
+  "reference_style": "art/buildings/concept_3d/facades_01.png",
+  "style_sha256": "3a4905cff580a5b92defd5bbc57fb7a08261d747cdbc8b7915f561fea62ff741",
+  "art_direction": "Detailed stylized realistic 3D-looking concepts; dark full colors, worn materials and controlled faceting; charcoal studio, three-quarter views. Match original subject silhouettes and building concept style.",
+  "inputs": "User-local original world sprites, six subject selection and existing project building concept style; retail references not copied into repository.",
+  "required_review": [
+    "Vehicle badge cleanup/generic design",
+    "Human silhouette/style consistency",
+    "Source proportions and details",
+    "Full geometry/UV/material/rig authoring and independent collision"
+  ],
+  "cells": [
+    {
+      "slot": 1,
+      "id": "PROP-F665D881C574",
+      "source_names": [
+        "GOLFC00",
+        "GOLFC03",
+        "GOLFC06",
+        "GOLFC09"
+      ],
+      "reference_review_number": 470,
+      "original_source_aliases": [
+        "DATA/CARS/NAPA.CAR:ANIM:5:"
+      ]
+    },
+    {
+      "slot": 2,
+      "id": "PROP-1F0523FFD8D4",
+      "source_names": [
+        "LAMPPST2",
+        "LMPPSTC2"
+      ],
+      "reference_review_number": 460,
+      "original_source_aliases": [
+        "DATA/FAMILIES.RSC:FAM:36:0.31",
+        "DATA/FAMILIES.RSC:FAM:38:0.6",
+        "DATA/FAMILIES.RSC:FAM:39:0.6",
+        "DATA/FAMILIES.RSC:FAM:62:0.6",
+        "DATA/FAMILIES.RSC:FAM:102:0.5",
+        "DATA/FAMILIES.RSC:FAM:122:0.1",
+        "DATA/FAMILIES.RSC:FAM:127:0.0",
+        "DATA/FAMILIES.RSC:FAM:128:0.0",
+        "DATA/FAMILIES.RSC:FAM:161:0.6",
+        "DATA/FAMILIES.RSC:FAM:161:0.9",
+        "DATA/FAMILIES.RSC:FAM:175:0.5",
+        "DATA/FAMILIES.RSC:FAM:179:0.0",
+        "DATA/FAMILIES.RSC:FAM:185:0.6",
+        "DATA/FAMILIES.RSC:FAM:202:0.31"
+      ]
+    },
+    {
+      "slot": 3,
+      "id": "PROP-1F0D6152AFB3",
+      "source_names": [
+        "TREOAKA2"
+      ],
+      "reference_review_number": 578,
+      "original_source_aliases": [
+        "DATA/FAMILIES.RSC:FAM:250:0.0"
+      ]
+    },
+    {
+      "slot": 4,
+      "id": "PROP-B68BB8439525",
+      "source_names": [
+        "BENCH12"
+      ],
+      "reference_review_number": 418,
+      "original_source_aliases": [
+        "DATA/FAMILIES.RSC:FAM:29:0.7",
+        "DATA/FAMILIES.RSC:FAM:196:0.7",
+        "DATA/FAMILIES.RSC:FAM:234:0.16"
+      ]
+    },
+    {
+      "slot": 5,
+      "id": "PROP-0DAC2E802A51",
+      "source_names": [
+        "BKM100",
+        "BKM101",
+        "BKM102",
+        "BKM103",
+        "BKM104",
+        "BKM105",
+        "BKM106",
+        "BKM107",
+        "BKM108",
+        "BKM109",
+        "BKM110",
+        "BKM111",
+        "BKM112",
+        "BKM113",
+        "BKM114",
+        "BKM115",
+        "BKM116",
+        "BKM117",
+        "BKM118"
+      ],
+      "reference_review_number": 284,
+      "original_source_aliases": [
+        "DATA/FAMILIES.RSC:FAM:10:2.0",
+        "DATA/FAMILIES.RSC:FAM:104:2.0"
+      ]
+    },
+    {
+      "slot": 6,
+      "id": "PROP-76BC0C7FD4B4",
+      "source_names": [
+        "HYDRNTA2"
+      ],
+      "reference_review_number": 457,
+      "original_source_aliases": [
+        "DATA/FAMILIES.RSC:FAM:36:0.16",
+        "DATA/FAMILIES.RSC:FAM:61:0.18",
+        "DATA/FAMILIES.RSC:FAM:63:0.18",
+        "DATA/FAMILIES.RSC:FAM:104:0.5",
+        "DATA/FAMILIES.RSC:FAM:150:0.6",
+        "DATA/FAMILIES.RSC:FAM:151:0.6",
+        "DATA/FAMILIES.RSC:FAM:156:0.6",
+        "DATA/FAMILIES.RSC:FAM:158:0.6",
+        "DATA/FAMILIES.RSC:FAM:159:0.6",
+        "DATA/FAMILIES.RSC:FAM:160:0.6",
+        "DATA/FAMILIES.RSC:FAM:161:0.10",
+        "DATA/FAMILIES.RSC:FAM:202:0.16"
+      ]
+    }
+  ]
+}

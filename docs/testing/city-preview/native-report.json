@@ -1,0 +1,12 @@
+{
+  "frames": 540,
+  "limitation": "Bounded preview wall-frame sample with vsync and screenshot IO; not GPU timing, racing or production performance acceptance",
+  "median_wall_frame_ms": 6.878574,
+  "p95_wall_frame_ms": 12.577031,
+  "physics": "None; isolated visual study",
+  "resolution": [
+    1600,
+    971
+  ],
+  "sample_count": 479
+}

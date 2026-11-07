@@ -1,0 +1,219 @@
+{
+  "branch": "codex/building-mesh-assets",
+  "models": 6,
+  "glb_lod_files": 18,
+  "other_facade_designs_unmodeled": 94,
+  "structure_surface_references_unmodeled": 46,
+  "rust_tests_passed": 167,
+  "rust_tests_ignored": 1,
+  "python_tests_passed": 36,
+  "roadmap_tests_rerun_passed": 5,
+  "fmt": "pass",
+  "clippy": "pass",
+  "build": "pass",
+  "audit": "pass",
+  "native_glb_viewer_exit": 0,
+  "default_game_smoke_exit": 0,
+  "binary_validation": "18/18 pass; finite indexed geometry, actual volumetric bounds, embedded512-square tiles only, LOD reductions, visible brick projection and output hashes",
+  "clay_roundtrip": "Delivered BUSS1_lod0.glb re-imported into Blender and rendered with all image textures removed",
+  "images": [
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS1-exported-clay.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "c61b1b5d77c2cfe519f4401cd4057d3d044ec4cc680f57f1627f392312c5437c"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS1.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "ff17f720fc0d70f08222c2c1254d81f5ba2969bb78f54a2452157c65a534a1c4"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS10.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "aa073602259f9f00a61b9fbfbc4de3d685b0b36520e4f2ecb1932596e7a52598"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS2.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "1e2ca93fa386016d0e39d270f96c366c81516c956787a2e65cc00d55322ec049"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS4.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "5eecdfdd32b548c73b3638ac4519dadc1e8c7be38b92a960c3ce2f70cb82da8c"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS5.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "756726a164bc8e25d80b831548bfa69a90b4b23aafb8619cc0cd36bbdc51441c"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/BUSS6.png",
+      "pixels": [
+        850,
+        1050
+      ],
+      "sha256": "531dd555a676b0330fe09acd6d0ba4021ff34dfd0f91b0c9904a0b0d165be050"
+    },
+    {
+      "path": "art/buildings/mesh_assets/renders/six-modeled-buildings.png",
+      "pixels": [
+        1800,
+        1900
+      ],
+      "sha256": "4250fdd75ebed1f3f4b18d6bbf4faf3c8de1f34416a41ede963d2c08cc24c87d"
+    },
+    {
+      "path": "docs/testing/building-meshes/01-avenue-overview.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "5da31204c0407a31337e3a825f9e468d28e714031c1c1fb5ad23b24b352e6d68"
+    },
+    {
+      "path": "docs/testing/building-meshes/02-street-height.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "374c56b205478ae948819350095f5d8c43244857b2326f8de09862c3fb525883"
+    },
+    {
+      "path": "docs/testing/building-meshes/03-junction.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "3a4ff01e806cbbd93d58efa16edee6c2e7cf1251870377d709f37d6bbfb1c96e"
+    },
+    {
+      "path": "docs/testing/building-meshes/04-block-grid.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "c02255faaa5358675aac657ce0a6d67066e3687efdf601b758e6fb76324b7ec4"
+    },
+    {
+      "path": "docs/testing/building-meshes/05-actual-glb-models.png",
+      "pixels": [
+        1600,
+        971
+      ],
+      "sha256": "a54da7dffdeeb464aec70dfb2a33671cbde147e9982cc4559d111360a09a52d7"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS1_lod0.glb",
+      "sha256": "1adea7ce6a1546722a226376efc3f377e64e4e81d5e7a0a74a865ec7badb83b3"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS1_lod1.glb",
+      "sha256": "72a045464287ae0d34df4c7a21146943216f29e5b23ee6f468efe2a1d959f037"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS1_lod2.glb",
+      "sha256": "3c062f1977935d7356156c36d0a7bb07e0a5d572bc4f550bbdeb3fda038b38ae"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS10_lod0.glb",
+      "sha256": "d4d3f85c9e54149eb16849f289d738e4db20f96ff7ae94285819391911d5a923"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS10_lod1.glb",
+      "sha256": "d2cac301b6bd8abaaa760d358ca5c3bdce81a0026e7d5a33398f25e71643f034"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS10_lod2.glb",
+      "sha256": "429b953c5ef855c4445f82aaf66dda61c265b00a1b7fc251ab058896e912e416"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS2_lod0.glb",
+      "sha256": "8341fc7f85fd54a9df65d3d587126ed8ad276ace3060a8cbfceade7ff2275f2b"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS2_lod1.glb",
+      "sha256": "0c4946790688f31ffa53ae40fbe044b8c9b11ffb915fb5a8a0e2aadb64fa397b"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS2_lod2.glb",
+      "sha256": "73d8cd256b6bb85f63499114044d477545baa2df3120cac4ee0155c9297e8184"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS4_lod0.glb",
+      "sha256": "3fabfcd564f112cb441fbaf5abaa4c11f3176563bfc9a70acdd1563df511f773"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS4_lod1.glb",
+      "sha256": "27c8153ff9f7f0e3935554b9d841bf62ce6f3b8b31abf2ee1397a10397d1efbb"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS4_lod2.glb",
+      "sha256": "93108a4a23e098dc3e429f2065ae5f3e404ad4e50b78f61316af21742ed1ae49"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS5_lod0.glb",
+      "sha256": "c4e04a5ba5517d3ff8153bdd4c99107cefef3843d257a408aca5e8509bbd38c8"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS5_lod1.glb",
+      "sha256": "228de12add0f1d0b220b99cc8d7b4617370fe586d04cbc3ba3f791a2b223913f"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS5_lod2.glb",
+      "sha256": "138e9e3c6805c67eb3f1e8c6ee511263fadb79387a8776f0ca079b097622a035"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS6_lod0.glb",
+      "sha256": "43ab6bc700075054e02247b22ab65fadbfbfcb45aad166de141b6c1cac35e7a9"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS6_lod1.glb",
+      "sha256": "9ebece90395e4c7374c59cb525ff4c1ada48ed39d5b849ae1624b5c36e8e2169"
+    },
+    {
+      "path": "art/buildings/mesh_assets/models/BUSS6_lod2.glb",
+      "sha256": "0a2a96bc3b81285860d5d7a9286728b002367428e68db91a6e007f5f69342f6e"
+    },
+    {
+      "path": "art/buildings/mesh_assets/RoadDash_Building_Models.blend",
+      "sha256": "df71d445514b0f1b1dc1292b9f22a2320751ff9b53ade65154f3862e4e65e955"
+    },
+    {
+      "path": "art/buildings/mesh_assets/designs.json",
+      "sha256": "d5bcabb4ae7ced0f7e3a906ea17d78d14056f6a37e7c725c068e5c6c2984dd5e"
+    },
+    {
+      "path": "tools/build_building_meshes.py",
+      "sha256": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+    },
+    {
+      "path": "tools/verify_building_mesh_assets.py",
+      "sha256": "c234221a71e4ac9db043a1a1745ac1f9d8376536fda5a5ea92aad2e4ae5fb0c7"
+    },
+    {
+      "path": "src/bin/city_preview/models.rs",
+      "sha256": "46a6d0b7a796347faf801312ea2466d3b23d18329dff555c8100b4f18d32e4e4"
+    }
+  ]
+}

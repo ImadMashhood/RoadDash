@@ -1,0 +1,295 @@
+20:20:56 | INFO: Data are loaded, start creating Blender stuff
+20:20:56 | INFO: Blender create Mesh node plant_stem
+20:20:56 | INFO: Blender create Mesh node foliage
+20:20:56 | INFO: glTF import finished in 0.05s
+20:20:56 | INFO: Data are loaded, start creating Blender stuff
+20:20:56 | INFO: Blender create Mesh node plant_stem.002
+20:20:56 | INFO: Blender create Mesh node foliage.003
+20:20:56 | INFO: glTF import finished in 0.04s
+20:20:56 | INFO: Data are loaded, start creating Blender stuff
+20:20:56 | INFO: Blender create Mesh node plant_stem.004
+20:20:56 | INFO: Blender create Mesh node foliage.006
+20:20:56 | INFO: glTF import finished in 0.04s
+20:20:56 | INFO: Data are loaded, start creating Blender stuff
+20:20:56 | INFO: Blender create Mesh node plant_stem.006
+20:20:56 | INFO: Blender create Mesh node foliage.009
+20:20:56 | INFO: glTF import finished in 0.03s
+20:20:56 | INFO: Data are loaded, start creating Blender stuff
+20:20:56 | INFO: Blender create Mesh node plant_stem.008
+20:20:56 | INFO: Blender create Mesh node foliage.012
+20:20:56 | INFO: glTF import finished in 0.02s
+20:20:56 | INFO: Data are loaded, start creating Blender stuff
+20:20:56 | INFO: Blender create Mesh node plant_stem.010
+20:20:56 | INFO: Blender create Mesh node foliage.015
+20:20:56 | INFO: glTF import finished in 0.02s
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:17.59M (Peak 17.59M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:17.66M (Peak 17.66M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:17.70M (Peak 17.70M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:17.73M (Peak 17.73M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:17.73M (Peak 17.73M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:17.73M (Peak 17.73M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem
+Fra:1 Mem:19.74M (Peak 19.74M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.82M (Peak 19.82M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:19.88M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:20.67M (Peak 20.67M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.005
+Fra:1 Mem:20.74M (Peak 21.36M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.005
+Fra:1 Mem:21.06M (Peak 21.36M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage
+Fra:1 Mem:21.95M (Peak 21.95M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.001
+Fra:1 Mem:21.95M (Peak 21.95M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.001
+Fra:1 Mem:22.66M (Peak 23.76M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.002
+Fra:1 Mem:22.63M (Peak 23.76M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.004
+Fra:1 Mem:22.57M (Peak 23.76M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.002
+Fra:1 Mem:23.88M (Peak 24.66M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.003
+Fra:1 Mem:24.77M (Peak 24.77M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.004
+Fra:1 Mem:25.46M (Peak 25.46M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.003
+Fra:1 Mem:24.52M (Peak 25.57M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.005
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.001
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.001
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.002
+Fra:1 Mem:23.37M (Peak 25.57M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.002
+Fra:1 Mem:23.83M (Peak 25.57M) | Time:00:00.22 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.005
+Fra:1 Mem:23.90M (Peak 25.57M) | Time:00:00.22 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.004
+Fra:1 Mem:22.86M (Peak 25.57M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:22.86M (Peak 25.57M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:22.86M (Peak 25.57M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:22.95M (Peak 25.57M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.62 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:22.95M (Peak 50.11M) | Time:00:00.63 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:24.23M (Peak 50.11M) | Time:00:00.63 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:24.22M (Peak 50.11M) | Time:00:00.63 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:24.22M (Peak 50.11M) | Time:00:00.63 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:25.73M (Peak 50.11M) | Time:00:00.66 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:25.83M (Peak 50.11M) | Time:00:00.66 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:25.81M (Peak 50.11M) | Time:00:00.66 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:25.81M (Peak 50.11M) | Time:00:00.66 | Mem:2.84M, Peak:2.84M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.67 | Mem:2.84M, Peak:2.84M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.67 | Mem:4.86M, Peak:4.86M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.67 | Mem:4.86M, Peak:4.86M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.67 | Mem:4.86M, Peak:4.86M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.67 | Mem:4.86M, Peak:4.86M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.67 | Mem:4.86M, Peak:4.86M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.68 | Mem:4.94M, Peak:4.94M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.68 | Mem:4.94M, Peak:4.94M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.68 | Mem:4.95M, Peak:4.95M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:27.83M (Peak 50.11M) | Time:00:00.68 | Mem:4.95M, Peak:4.95M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:27.84M (Peak 50.11M) | Time:00:00.68 | Mem:4.86M, Peak:4.95M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:27.84M (Peak 50.11M) | Time:00:00.68 | Mem:4.95M, Peak:4.95M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:27.84M (Peak 50.11M) | Time:00:00.68 | Mem:4.95M, Peak:4.95M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:27.84M (Peak 50.11M) | Time:00:00.68 | Mem:4.95M, Peak:4.95M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:34.22M (Peak 50.11M) | Time:00:00.74 | Mem:565.95M, Peak:565.95M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:161.79M (Peak 161.79M) | Time:00:00.76 | Remaining:00:00.20 | Mem:693.52M, Peak:693.52M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:215.50M (Peak 296.07M) | Time:00:10.46 | Mem:693.52M, Peak:693.52M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:215.50M (Peak 296.07M) | Time:00:10.47 | Mem:693.52M, Peak:693.52M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/shrubs_plants_01.png'
+Time: 00:11.22 (Saving: 00:00.56)
+
+RENDERED_EXPORTED_MESHES shrubs_plants_01.png
+20:21:08 | INFO: Data are loaded, start creating Blender stuff
+20:21:08 | INFO: Blender create Mesh node plant_stem.012
+20:21:08 | INFO: Blender create Mesh node foliage.018
+20:21:08 | INFO: glTF import finished in 0.04s
+20:21:08 | INFO: Data are loaded, start creating Blender stuff
+20:21:08 | INFO: Blender create Mesh node plant_stem.014
+20:21:08 | INFO: Blender create Mesh node foliage.021
+20:21:08 | INFO: glTF import finished in 0.02s
+20:21:08 | INFO: Data are loaded, start creating Blender stuff
+20:21:08 | INFO: Blender create Mesh node plant_stem.016
+20:21:08 | INFO: Blender create Mesh node foliage.024
+20:21:08 | INFO: glTF import finished in 0.02s
+20:21:08 | INFO: Data are loaded, start creating Blender stuff
+20:21:08 | INFO: Blender create Mesh node plant_stem.018
+20:21:08 | INFO: Blender create Mesh node foliage.027
+20:21:08 | INFO: glTF import finished in 0.04s
+20:21:08 | INFO: Data are loaded, start creating Blender stuff
+20:21:08 | INFO: Blender create Mesh node plant_stem.020
+20:21:08 | INFO: Blender create Mesh node foliage.030
+20:21:08 | INFO: glTF import finished in 0.04s
+20:21:08 | INFO: Data are loaded, start creating Blender stuff
+20:21:08 | INFO: Blender create Mesh node plant_stem.022
+20:21:08 | INFO: Blender create Mesh node foliage.033
+20:21:08 | INFO: glTF import finished in 0.04s
+Fra:1 Mem:19.45M (Peak 19.45M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:19.51M (Peak 19.51M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:19.51M (Peak 19.51M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:19.51M (Peak 19.51M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.006
+Fra:1 Mem:19.51M (Peak 19.51M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.007
+Fra:1 Mem:21.18M (Peak 21.28M) | Time:00:00.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:21.24M (Peak 21.28M) | Time:00:00.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:21.20M (Peak 21.28M) | Time:00:00.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.008
+Fra:1 Mem:21.25M (Peak 21.28M) | Time:00:00.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:21.93M (Peak 21.93M) | Time:00:00.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:22.00M (Peak 22.00M) | Time:00:00.22 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.011
+Fra:1 Mem:22.30M (Peak 22.63M) | Time:00:00.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.008
+Fra:1 Mem:23.20M (Peak 23.20M) | Time:00:00.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.011
+Fra:1 Mem:23.03M (Peak 23.20M) | Time:00:00.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.009
+Fra:1 Mem:23.50M (Peak 23.50M) | Time:00:00.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.009
+Fra:1 Mem:23.51M (Peak 23.51M) | Time:00:00.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.010
+Fra:1 Mem:24.55M (Peak 25.17M) | Time:00:00.23 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.010
+Fra:1 Mem:24.34M (Peak 25.56M) | Time:00:00.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:23.29M (Peak 25.56M) | Time:00:00.24 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading autumn_authored_surface.001
+Fra:1 Mem:23.36M (Peak 25.56M) | Time:00:00.24 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.005
+Fra:1 Mem:23.43M (Peak 25.56M) | Time:00:00.25 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.003
+Fra:1 Mem:23.49M (Peak 25.56M) | Time:00:00.25 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface
+Fra:1 Mem:23.63M (Peak 25.56M) | Time:00:00.25 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface
+Fra:1 Mem:23.69M (Peak 25.56M) | Time:00:00.25 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.001
+Fra:1 Mem:23.76M (Peak 25.56M) | Time:00:00.25 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading autumn_authored_surface
+Fra:1 Mem:23.82M (Peak 25.56M) | Time:00:00.25 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.004
+Fra:1 Mem:23.89M (Peak 25.56M) | Time:00:00.25 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.002
+Fra:1 Mem:23.96M (Peak 25.56M) | Time:00:00.25 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.002
+Fra:1 Mem:24.01M (Peak 25.56M) | Time:00:00.25 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.001
+Fra:1 Mem:24.07M (Peak 25.56M) | Time:00:00.25 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.003
+Fra:1 Mem:22.77M (Peak 25.56M) | Time:00:00.26 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:22.77M (Peak 25.56M) | Time:00:00.26 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:22.77M (Peak 25.56M) | Time:00:00.26 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:22.86M (Peak 25.56M) | Time:00:00.26 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:22.86M (Peak 50.03M) | Time:00:00.34 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:22.86M (Peak 50.03M) | Time:00:00.34 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:22.86M (Peak 50.03M) | Time:00:00.34 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:22.86M (Peak 50.03M) | Time:00:00.34 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:22.86M (Peak 50.03M) | Time:00:00.34 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:22.86M (Peak 50.03M) | Time:00:00.34 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:22.87M (Peak 50.03M) | Time:00:00.34 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:22.87M (Peak 50.03M) | Time:00:00.34 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:22.87M (Peak 50.03M) | Time:00:00.34 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:22.87M (Peak 50.03M) | Time:00:00.34 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:22.87M (Peak 50.03M) | Time:00:00.34 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:24.14M (Peak 50.03M) | Time:00:00.34 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:24.14M (Peak 50.03M) | Time:00:00.35 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:24.14M (Peak 50.03M) | Time:00:00.35 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:25.63M (Peak 50.03M) | Time:00:00.37 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:25.73M (Peak 50.03M) | Time:00:00.37 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:25.70M (Peak 50.03M) | Time:00:00.37 | Mem:2.05M, Peak:2.05M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:25.70M (Peak 50.03M) | Time:00:00.38 | Mem:2.83M, Peak:2.83M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:2.83M, Peak:2.83M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.83M, Peak:4.83M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.84M, Peak:4.84M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.84M, Peak:4.84M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.84M, Peak:4.84M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.84M, Peak:4.84M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:27.70M (Peak 50.03M) | Time:00:00.38 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:27.71M (Peak 50.03M) | Time:00:00.39 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:27.71M (Peak 50.03M) | Time:00:00.39 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:27.71M (Peak 50.03M) | Time:00:00.39 | Mem:4.84M, Peak:4.92M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:27.71M (Peak 50.03M) | Time:00:00.39 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:27.71M (Peak 50.03M) | Time:00:00.39 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:27.71M (Peak 50.03M) | Time:00:00.39 | Mem:4.92M, Peak:4.92M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:34.09M (Peak 50.03M) | Time:00:00.45 | Mem:565.93M, Peak:565.93M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:161.66M (Peak 161.66M) | Time:00:00.46 | Remaining:00:00.11 | Mem:693.49M, Peak:693.49M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:215.38M (Peak 295.94M) | Time:00:12.47 | Mem:693.49M, Peak:693.49M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:215.38M (Peak 295.94M) | Time:00:12.48 | Mem:693.49M, Peak:693.49M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/shrubs_plants_02.png'
+Time: 00:13.12 (Saving: 00:00.39)
+
+RENDERED_EXPORTED_MESHES shrubs_plants_02.png
+20:21:21 | INFO: Data are loaded, start creating Blender stuff
+20:21:21 | INFO: Blender create Mesh node plant_stem.024
+20:21:21 | INFO: Blender create Mesh node foliage.036
+20:21:21 | INFO: glTF import finished in 0.05s
+20:21:21 | INFO: Data are loaded, start creating Blender stuff
+20:21:21 | INFO: Blender create Mesh node planter
+20:21:21 | INFO: Blender create Mesh node plant_stem.026
+20:21:21 | INFO: Blender create Mesh node foliage.039
+20:21:21 | INFO: Blender create Mesh node flowers
+20:21:21 | INFO: glTF import finished in 0.06s
+20:21:21 | INFO: Data are loaded, start creating Blender stuff
+20:21:21 | INFO: Blender create Mesh node vine_stake
+20:21:21 | INFO: Blender create Mesh node plant_stem.028
+20:21:21 | INFO: Blender create Mesh node foliage.042
+20:21:21 | INFO: glTF import finished in 0.03s
+20:21:21 | INFO: Data are loaded, start creating Blender stuff
+20:21:21 | INFO: Blender create Mesh node vine_stake.003
+20:21:21 | INFO: Blender create Mesh node plant_stem.030
+20:21:21 | INFO: Blender create Mesh node foliage.045
+20:21:22 | INFO: glTF import finished in 0.10s
+Fra:1 Mem:17.28M (Peak 17.28M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:17.33M (Peak 17.33M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:17.33M (Peak 17.33M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:17.33M (Peak 17.33M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:17.33M (Peak 17.33M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.012
+Fra:1 Mem:18.20M (Peak 18.20M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.012
+Fra:1 Mem:18.02M (Peak 18.66M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | planter
+Fra:1 Mem:18.04M (Peak 18.66M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.013
+Fra:1 Mem:18.06M (Peak 18.66M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.013
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | flowers
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:20.13M (Peak 20.13M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:20.94M (Peak 20.94M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.015
+Fra:1 Mem:20.99M (Peak 20.99M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | vine_stake
+Fra:1 Mem:20.86M (Peak 20.99M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.015
+Fra:1 Mem:20.47M (Peak 20.99M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | plant_stem.014
+Fra:1 Mem:21.02M (Peak 21.02M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | foliage.014
+Fra:1 Mem:21.75M (Peak 21.75M) | Time:00:00.18 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | vine_stake.001
+Fra:1 Mem:20.65M (Peak 21.75M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:20.08M (Peak 21.75M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.003
+Fra:1 Mem:20.16M (Peak 21.75M) | Time:00:00.19 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.003
+Fra:1 Mem:20.22M (Peak 21.75M) | Time:00:00.20 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.001
+Fra:1 Mem:20.28M (Peak 21.75M) | Time:00:00.20 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.002
+Fra:1 Mem:20.35M (Peak 21.75M) | Time:00:00.20 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface
+Fra:1 Mem:20.42M (Peak 21.75M) | Time:00:00.21 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.002
+Fra:1 Mem:20.47M (Peak 21.75M) | Time:00:00.21 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface
+Fra:1 Mem:20.53M (Peak 21.75M) | Time:00:00.21 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface
+Fra:1 Mem:20.60M (Peak 21.75M) | Time:00:00.21 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading concrete_authored_surface
+Fra:1 Mem:20.66M (Peak 21.75M) | Time:00:00.21 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:20.72M (Peak 21.75M) | Time:00:00.21 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading bark_authored_surface.001
+Fra:1 Mem:20.78M (Peak 21.75M) | Time:00:00.22 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading leaf_authored_surface.001
+Fra:1 Mem:19.64M (Peak 21.75M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:19.64M (Peak 21.75M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:19.64M (Peak 21.75M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:19.73M (Peak 21.75M) | Time:00:00.23 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:19.73M (Peak 46.90M) | Time:00:00.51 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:19.73M (Peak 46.90M) | Time:00:00.51 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:19.73M (Peak 46.90M) | Time:00:00.51 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:19.73M (Peak 46.90M) | Time:00:00.51 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:19.73M (Peak 46.90M) | Time:00:00.51 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:19.73M (Peak 46.90M) | Time:00:00.51 | Mem:0.77M, Peak:0.77M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:19.74M (Peak 46.90M) | Time:00:00.51 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:19.74M (Peak 46.90M) | Time:00:00.51 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:19.74M (Peak 46.90M) | Time:00:00.51 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:19.74M (Peak 46.90M) | Time:00:00.51 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:19.74M (Peak 46.90M) | Time:00:00.51 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:20.64M (Peak 46.90M) | Time:00:00.51 | Mem:0.78M, Peak:0.78M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:20.64M (Peak 46.90M) | Time:00:00.51 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:20.64M (Peak 46.90M) | Time:00:00.51 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:21.64M (Peak 46.90M) | Time:00:00.54 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:21.71M (Peak 46.90M) | Time:00:00.54 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:21.69M (Peak 46.90M) | Time:00:00.54 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:21.69M (Peak 46.90M) | Time:00:00.55 | Mem:2.20M, Peak:2.20M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.55 | Mem:2.20M, Peak:2.20M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.58M, Peak:3.58M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.58M, Peak:3.58M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.58M, Peak:3.58M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.58M, Peak:3.58M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.58M, Peak:3.58M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:23.07M (Peak 46.90M) | Time:00:00.56 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:23.08M (Peak 46.90M) | Time:00:00.56 | Mem:3.59M, Peak:3.67M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:23.08M (Peak 46.90M) | Time:00:00.57 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:23.08M (Peak 46.90M) | Time:00:00.57 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:23.08M (Peak 46.90M) | Time:00:00.57 | Mem:3.67M, Peak:3.67M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:29.46M (Peak 46.90M) | Time:00:00.66 | Mem:564.67M, Peak:564.67M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:157.03M (Peak 157.03M) | Time:00:00.69 | Remaining:00:00.29 | Mem:692.24M, Peak:692.24M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:210.74M (Peak 291.31M) | Time:00:12.35 | Mem:692.24M, Peak:692.24M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:210.74M (Peak 291.31M) | Time:00:12.35 | Mem:692.24M, Peak:692.24M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/shrubs_plants_03.png'
+Time: 00:12.83 (Saving: 00:00.31)
+
+RENDERED_EXPORTED_MESHES shrubs_plants_03.png
+
+Blender quit

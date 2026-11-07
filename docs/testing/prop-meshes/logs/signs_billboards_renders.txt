@@ -1,0 +1,1133 @@
+20:21:35 | INFO: Data are loaded, start creating Blender stuff
+20:21:35 | INFO: Blender create Mesh node sign_post
+20:21:35 | INFO: Blender create Mesh node sign_plate
+20:21:35 | INFO: Blender create Mesh node symbol_stem
+20:21:35 | INFO: Blender create Mesh node direction_symbol
+20:21:35 | INFO: Blender create Mesh node fasteners
+20:21:35 | INFO: glTF import finished in 0.03s
+20:21:35 | INFO: Data are loaded, start creating Blender stuff
+20:21:35 | INFO: Blender create Mesh node sign_post.003
+20:21:35 | INFO: Blender create Mesh node sign_plate.003
+20:21:35 | INFO: Blender create Mesh node fasteners.001
+20:21:35 | INFO: glTF import finished in 0.01s
+20:21:35 | INFO: Data are loaded, start creating Blender stuff
+20:21:35 | INFO: Blender create Mesh node sign_support
+20:21:35 | INFO: Blender create Mesh node panel_back
+20:21:35 | INFO: Blender create Mesh node painted_sign_face
+20:21:35 | INFO: Blender create Mesh node frame
+20:21:35 | INFO: Blender create Mesh node original_mountain_graphic
+20:21:35 | INFO: glTF import finished in 0.01s
+20:21:35 | INFO: Data are loaded, start creating Blender stuff
+20:21:35 | INFO: Blender create Mesh node sign_support.003
+20:21:35 | INFO: Blender create Mesh node panel_back.003
+20:21:35 | INFO: Blender create Mesh node painted_sign_face.003
+20:21:35 | INFO: Blender create Mesh node frame.003
+20:21:35 | INFO: Blender create Mesh node original_mountain_graphic.002
+20:21:35 | INFO: glTF import finished in 0.01s
+20:21:35 | INFO: Data are loaded, start creating Blender stuff
+20:21:35 | INFO: Blender create Mesh node sign_support.006
+20:21:35 | INFO: Blender create Mesh node panel_back.006
+20:21:36 | INFO: Blender create Mesh node painted_sign_face.006
+20:21:36 | INFO: Blender create Mesh node frame.006
+20:21:36 | INFO: Blender create Mesh node original_mountain_graphic.004
+20:21:36 | INFO: glTF import finished in 0.01s
+20:21:36 | INFO: Data are loaded, start creating Blender stuff
+20:21:36 | INFO: Blender create Mesh node sign_support.009
+20:21:36 | INFO: Blender create Mesh node panel_back.009
+20:21:36 | INFO: Blender create Mesh node painted_sign_face.009
+20:21:36 | INFO: Blender create Mesh node frame.009
+20:21:36 | INFO: Blender create Mesh node original_mountain_graphic.006
+20:21:36 | INFO: glTF import finished in 0.01s
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:17.36M (Peak 17.36M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:17.42M (Peak 17.42M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:17.42M (Peak 17.42M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:17.42M (Peak 17.42M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:17.42M (Peak 17.42M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post
+Fra:1 Mem:19.46M (Peak 19.46M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate
+Fra:1 Mem:19.48M (Peak 19.48M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem
+Fra:1 Mem:19.50M (Peak 19.50M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol
+Fra:1 Mem:19.50M (Peak 19.50M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners
+Fra:1 Mem:19.63M (Peak 19.63M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.70M (Peak 19.70M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.78M (Peak 19.78M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:19.85M (Peak 19.85M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:19.91M (Peak 19.91M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic.003
+Fra:1 Mem:19.98M (Peak 19.98M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.003
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.001
+Fra:1 Mem:20.10M (Peak 20.10M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.003
+Fra:1 Mem:20.12M (Peak 20.12M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.001
+Fra:1 Mem:20.13M (Peak 20.13M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.003
+Fra:1 Mem:20.16M (Peak 20.16M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.003
+Fra:1 Mem:20.23M (Peak 20.23M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.001
+Fra:1 Mem:20.37M (Peak 20.37M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support
+Fra:1 Mem:20.45M (Peak 20.45M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back
+Fra:1 Mem:20.46M (Peak 20.46M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face
+Fra:1 Mem:20.48M (Peak 20.48M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame
+Fra:1 Mem:20.62M (Peak 20.62M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic
+Fra:1 Mem:20.57M (Peak 20.62M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.001
+Fra:1 Mem:20.59M (Peak 20.62M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.001
+Fra:1 Mem:20.62M (Peak 20.62M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.001
+Fra:1 Mem:20.74M (Peak 20.74M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic.001
+Fra:1 Mem:20.76M (Peak 20.76M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.002
+Fra:1 Mem:20.75M (Peak 20.76M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic.002
+Fra:1 Mem:20.89M (Peak 20.89M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.002
+Fra:1 Mem:20.96M (Peak 20.96M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.002
+Fra:1 Mem:20.93M (Peak 20.96M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.002
+Fra:1 Mem:20.88M (Peak 20.96M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.001
+Fra:1 Mem:20.95M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.004
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_authored_surface
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.001
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.001
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface
+Fra:1 Mem:19.75M (Peak 20.96M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface
+Fra:1 Mem:19.83M (Peak 20.96M) | Time:00:00.16 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.001
+Fra:1 Mem:20.02M (Peak 20.96M) | Time:00:00.17 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.003
+Fra:1 Mem:20.15M (Peak 20.96M) | Time:00:00.17 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.001
+Fra:1 Mem:20.14M (Peak 20.96M) | Time:00:00.17 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.001
+Fra:1 Mem:20.27M (Peak 20.96M) | Time:00:00.17 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.002
+Fra:1 Mem:20.33M (Peak 20.96M) | Time:00:00.17 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:20.40M (Peak 20.96M) | Time:00:00.17 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.002
+Fra:1 Mem:20.52M (Peak 20.96M) | Time:00:00.17 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.002
+Fra:1 Mem:20.58M (Peak 20.96M) | Time:00:00.17 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.003
+Fra:1 Mem:20.71M (Peak 20.96M) | Time:00:00.17 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.005
+Fra:1 Mem:20.83M (Peak 20.96M) | Time:00:00.17 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.003
+Fra:1 Mem:20.90M (Peak 20.96M) | Time:00:00.17 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.003
+Fra:1 Mem:18.92M (Peak 20.96M) | Time:00:00.18 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:18.92M (Peak 20.96M) | Time:00:00.18 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:18.92M (Peak 20.96M) | Time:00:00.18 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:19.02M (Peak 20.96M) | Time:00:00.18 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:19.02M (Peak 46.19M) | Time:00:00.33 | Mem:1.40M, Peak:1.40M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:19.02M (Peak 46.19M) | Time:00:00.33 | Mem:1.40M, Peak:1.40M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:19.02M (Peak 46.19M) | Time:00:00.33 | Mem:1.40M, Peak:1.40M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:19.02M (Peak 46.19M) | Time:00:00.33 | Mem:1.40M, Peak:1.40M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:19.02M (Peak 46.19M) | Time:00:00.33 | Mem:1.40M, Peak:1.40M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:19.02M (Peak 46.19M) | Time:00:00.33 | Mem:1.40M, Peak:1.40M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:19.03M (Peak 46.19M) | Time:00:00.33 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:19.03M (Peak 46.19M) | Time:00:00.33 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:19.03M (Peak 46.19M) | Time:00:00.33 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:19.03M (Peak 46.19M) | Time:00:00.33 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:19.03M (Peak 46.19M) | Time:00:00.33 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:19.37M (Peak 46.19M) | Time:00:00.33 | Mem:1.42M, Peak:1.42M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:19.37M (Peak 46.19M) | Time:00:00.33 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:19.37M (Peak 46.19M) | Time:00:00.33 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:19.95M (Peak 46.19M) | Time:00:00.34 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:19.99M (Peak 46.19M) | Time:00:00.34 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:20.00M (Peak 46.19M) | Time:00:00.34 | Mem:1.75M, Peak:1.75M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:20.00M (Peak 46.19M) | Time:00:00.35 | Mem:2.07M, Peak:2.07M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.07M, Peak:2.07M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.70M, Peak:2.70M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.70M, Peak:2.70M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.70M, Peak:2.70M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.70M, Peak:2.70M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.70M, Peak:2.70M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:20.64M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:20.65M (Peak 46.19M) | Time:00:00.35 | Mem:2.71M, Peak:2.79M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.65M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:20.65M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:20.65M (Peak 46.19M) | Time:00:00.35 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:27.03M (Peak 46.19M) | Time:00:00.38 | Mem:563.80M, Peak:563.80M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:154.60M (Peak 154.60M) | Time:00:00.39 | Remaining:00:00.09 | Mem:691.36M, Peak:691.36M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:208.31M (Peak 288.88M) | Time:00:09.88 | Mem:691.36M, Peak:691.36M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:208.31M (Peak 288.88M) | Time:00:09.88 | Mem:691.36M, Peak:691.36M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_01.png'
+Time: 00:10.45 (Saving: 00:00.41)
+
+RENDERED_EXPORTED_MESHES signs_billboards_01.png
+20:21:46 | INFO: Data are loaded, start creating Blender stuff
+20:21:46 | INFO: Blender create Mesh node sign_support.012
+20:21:46 | INFO: Blender create Mesh node panel_back.012
+20:21:46 | INFO: Blender create Mesh node painted_sign_face.012
+20:21:46 | INFO: Blender create Mesh node frame.012
+20:21:46 | INFO: Blender create Mesh node original_mountain_graphic.008
+20:21:46 | INFO: glTF import finished in 0.01s
+20:21:46 | INFO: Data are loaded, start creating Blender stuff
+20:21:46 | INFO: Blender create Mesh node sign_support.015
+20:21:46 | INFO: Blender create Mesh node panel_back.015
+20:21:46 | INFO: Blender create Mesh node painted_sign_face.015
+20:21:46 | INFO: Blender create Mesh node frame.015
+20:21:46 | INFO: Blender create Mesh node original_mountain_graphic.010
+20:21:46 | INFO: glTF import finished in 0.01s
+20:21:46 | INFO: Data are loaded, start creating Blender stuff
+20:21:46 | INFO: Blender create Mesh node sign_support.018
+20:21:46 | INFO: Blender create Mesh node panel_back.018
+20:21:46 | INFO: Blender create Mesh node painted_sign_face.018
+20:21:46 | INFO: Blender create Mesh node frame.018
+20:21:46 | INFO: Blender create Mesh node original_mountain_graphic.012
+20:21:46 | INFO: glTF import finished in 0.01s
+20:21:46 | INFO: Data are loaded, start creating Blender stuff
+20:21:46 | INFO: Blender create Mesh node sign_support.021
+20:21:46 | INFO: Blender create Mesh node panel_back.021
+20:21:46 | INFO: Blender create Mesh node painted_sign_face.021
+20:21:46 | INFO: Blender create Mesh node frame.021
+20:21:46 | INFO: Blender create Mesh node original_mountain_graphic.014
+20:21:46 | INFO: glTF import finished in 0.01s
+20:21:46 | INFO: Data are loaded, start creating Blender stuff
+20:21:46 | INFO: Blender create Mesh node sign_support.024
+20:21:46 | INFO: Blender create Mesh node panel_back.024
+20:21:46 | INFO: Blender create Mesh node painted_sign_face.024
+20:21:46 | INFO: Blender create Mesh node frame.024
+20:21:46 | INFO: Blender create Mesh node original_mountain_graphic.016
+20:21:46 | INFO: glTF import finished in 0.01s
+20:21:46 | INFO: Data are loaded, start creating Blender stuff
+20:21:46 | INFO: Blender create Mesh node trailer_chassis
+20:21:46 | INFO: Blender create Mesh node tire
+20:21:46 | INFO: Blender create Mesh node rim
+20:21:46 | INFO: Blender create Mesh node hub
+20:21:46 | INFO: Blender create Mesh node rim_spokes
+20:21:46 | INFO: Blender create Mesh node arrow_board_legs
+20:21:46 | INFO: Blender create Mesh node arrow_board
+20:21:46 | INFO: Blender create Mesh node arrow_bulbs
+20:21:46 | INFO: Blender create Mesh node arrow_head_bulbs
+20:21:46 | INFO: glTF import finished in 0.10s
+Fra:1 Mem:22.18M (Peak 22.18M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:22.23M (Peak 22.23M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:22.23M (Peak 22.23M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:22.23M (Peak 22.23M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:22.23M (Peak 22.23M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.004
+Fra:1 Mem:22.24M (Peak 22.24M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:22.38M (Peak 22.38M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:22.51M (Peak 22.51M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.004
+Fra:1 Mem:22.45M (Peak 22.51M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.004
+Fra:1 Mem:22.45M (Peak 22.51M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.005
+Fra:1 Mem:22.53M (Peak 22.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:22.53M (Peak 22.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.005
+Fra:1 Mem:22.53M (Peak 22.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic.005
+Fra:1 Mem:22.54M (Peak 22.54M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.006
+Fra:1 Mem:22.63M (Peak 22.63M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.006
+Fra:1 Mem:22.67M (Peak 22.67M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.006
+Fra:1 Mem:22.65M (Peak 22.67M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.006
+Fra:1 Mem:22.81M (Peak 22.81M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic.006
+Fra:1 Mem:22.75M (Peak 22.81M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.007
+Fra:1 Mem:22.82M (Peak 22.82M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.007
+Fra:1 Mem:22.90M (Peak 22.90M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.007
+Fra:1 Mem:22.88M (Peak 22.90M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.007
+Fra:1 Mem:22.99M (Peak 22.99M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_mountain_graphic.007
+Fra:1 Mem:22.94M (Peak 22.99M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.008
+Fra:1 Mem:23.02M (Peak 23.02M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | panel_back.008
+Fra:1 Mem:23.04M (Peak 23.04M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | painted_sign_face.008
+Fra:1 Mem:23.12M (Peak 23.12M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.008
+Fra:1 Mem:23.23M (Peak 23.23M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:23.26M (Peak 23.26M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | arrow_head_bulbs
+Fra:1 Mem:23.35M (Peak 23.35M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | trailer_chassis
+Fra:1 Mem:24.41M (Peak 24.43M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire
+Fra:1 Mem:24.40M (Peak 24.43M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim
+Fra:1 Mem:24.32M (Peak 24.43M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub
+Fra:1 Mem:24.43M (Peak 24.43M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes
+Fra:1 Mem:24.72M (Peak 24.72M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | arrow_board_legs
+Fra:1 Mem:24.86M (Peak 24.86M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | arrow_board
+Fra:1 Mem:24.86M (Peak 24.86M) | Time:00:00.12 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | arrow_bulbs
+Fra:1 Mem:25.59M (Peak 26.27M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:24.42M (Peak 26.27M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface
+Fra:1 Mem:24.50M (Peak 26.27M) | Time:00:00.13 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading black_authored_surface
+Fra:1 Mem:24.56M (Peak 26.27M) | Time:00:00.13 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:24.62M (Peak 26.27M) | Time:00:00.13 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.005
+Fra:1 Mem:24.69M (Peak 26.27M) | Time:00:00.13 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading rubber_authored_surface
+Fra:1 Mem:24.75M (Peak 26.27M) | Time:00:00.13 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading orange_authored_surface
+Fra:1 Mem:24.81M (Peak 26.27M) | Time:00:00.14 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:24.88M (Peak 26.27M) | Time:00:00.14 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.004
+Fra:1 Mem:24.94M (Peak 26.27M) | Time:00:00.14 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface
+Fra:1 Mem:25.00M (Peak 26.27M) | Time:00:00.14 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.004
+Fra:1 Mem:25.06M (Peak 26.27M) | Time:00:00.14 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface
+Fra:1 Mem:25.13M (Peak 26.27M) | Time:00:00.14 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.004
+Fra:1 Mem:25.19M (Peak 26.27M) | Time:00:00.14 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:25.25M (Peak 26.27M) | Time:00:00.14 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.001
+Fra:1 Mem:25.32M (Peak 26.27M) | Time:00:00.14 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.001
+Fra:1 Mem:25.39M (Peak 26.27M) | Time:00:00.14 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:25.45M (Peak 26.27M) | Time:00:00.14 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.001
+Fra:1 Mem:25.51M (Peak 26.27M) | Time:00:00.14 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.003
+Fra:1 Mem:25.58M (Peak 26.27M) | Time:00:00.14 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.001
+Fra:1 Mem:25.66M (Peak 26.27M) | Time:00:00.14 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:25.73M (Peak 26.27M) | Time:00:00.14 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.002
+Fra:1 Mem:25.79M (Peak 26.27M) | Time:00:00.14 | Mem:0.94M, Peak:0.94M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.002
+Fra:1 Mem:25.86M (Peak 26.27M) | Time:00:00.14 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.002
+Fra:1 Mem:25.92M (Peak 26.27M) | Time:00:00.14 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.003
+Fra:1 Mem:25.98M (Peak 26.27M) | Time:00:00.14 | Mem:1.12M, Peak:1.12M | Scene, ViewLayer | Updating Images | Loading blue_authored_surface.003
+Fra:1 Mem:26.04M (Peak 26.27M) | Time:00:00.15 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.003
+Fra:1 Mem:23.47M (Peak 26.27M) | Time:00:00.15 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:23.47M (Peak 26.27M) | Time:00:00.15 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:23.47M (Peak 26.27M) | Time:00:00.15 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:23.57M (Peak 26.27M) | Time:00:00.15 | Mem:1.62M, Peak:1.62M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:23.57M (Peak 50.73M) | Time:00:00.24 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:23.57M (Peak 50.73M) | Time:00:00.24 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:23.57M (Peak 50.73M) | Time:00:00.24 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:23.57M (Peak 50.73M) | Time:00:00.24 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:23.57M (Peak 50.73M) | Time:00:00.24 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:23.57M (Peak 50.73M) | Time:00:00.24 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:23.58M (Peak 50.73M) | Time:00:00.24 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:23.58M (Peak 50.73M) | Time:00:00.24 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:23.58M (Peak 50.73M) | Time:00:00.24 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:23.58M (Peak 50.73M) | Time:00:00.24 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:23.58M (Peak 50.73M) | Time:00:00.24 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:24.45M (Peak 50.73M) | Time:00:00.24 | Mem:1.67M, Peak:1.67M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:24.44M (Peak 50.73M) | Time:00:00.24 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:24.44M (Peak 50.73M) | Time:00:00.24 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:25.54M (Peak 50.73M) | Time:00:00.25 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:25.62M (Peak 50.73M) | Time:00:00.25 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:25.62M (Peak 50.73M) | Time:00:00.25 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:25.62M (Peak 50.73M) | Time:00:00.25 | Mem:3.12M, Peak:3.12M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.25 | Mem:3.12M, Peak:3.12M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.51M, Peak:4.51M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.51M, Peak:4.51M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.51M, Peak:4.51M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.51M, Peak:4.51M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.51M, Peak:4.51M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.51M, Peak:4.59M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:27.01M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:27.02M (Peak 50.73M) | Time:00:00.26 | Mem:4.59M, Peak:4.59M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:33.40M (Peak 50.73M) | Time:00:00.29 | Mem:565.60M, Peak:565.60M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:160.97M (Peak 160.97M) | Time:00:00.30 | Remaining:00:00.12 | Mem:693.17M, Peak:693.17M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:214.68M (Peak 295.25M) | Time:00:09.80 | Mem:693.17M, Peak:693.17M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:214.68M (Peak 295.25M) | Time:00:09.80 | Mem:693.17M, Peak:693.17M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_02.png'
+Time: 00:10.29 (Saving: 00:00.34)
+
+RENDERED_EXPORTED_MESHES signs_billboards_02.png
+20:21:57 | INFO: Data are loaded, start creating Blender stuff
+20:21:57 | INFO: Blender create Mesh node sign_post.006
+20:21:57 | INFO: Blender create Mesh node shaped_sign_plate
+20:21:57 | INFO: Blender create Mesh node symbol_stem.002
+20:21:57 | INFO: Blender create Mesh node direction_symbol.002
+20:21:57 | INFO: Blender create Mesh node fasteners.002
+20:21:57 | INFO: glTF import finished in 0.01s
+20:21:57 | INFO: Data are loaded, start creating Blender stuff
+20:21:57 | INFO: Blender create Mesh node sign_post.009
+20:21:57 | INFO: Blender create Mesh node shaped_sign_plate.003
+20:21:57 | INFO: Blender create Mesh node symbol_stem.004
+20:21:57 | INFO: Blender create Mesh node direction_symbol.004
+20:21:57 | INFO: Blender create Mesh node fasteners.003
+20:21:57 | INFO: glTF import finished in 0.01s
+20:21:57 | INFO: Data are loaded, start creating Blender stuff
+20:21:57 | INFO: Blender create Mesh node sign_post.012
+20:21:57 | INFO: Blender create Mesh node sign_plate.006
+20:21:57 | INFO: Blender create Mesh node fasteners.004
+20:21:57 | INFO: glTF import finished in 0.01s
+20:21:57 | INFO: Data are loaded, start creating Blender stuff
+20:21:57 | INFO: Blender create Mesh node sign_post.015
+20:21:57 | INFO: Blender create Mesh node sign_plate.009
+20:21:57 | INFO: Blender create Mesh node no_entry_bar
+20:21:57 | INFO: Blender create Mesh node fasteners.005
+20:21:57 | INFO: glTF import finished in 0.01s
+20:21:57 | INFO: Data are loaded, start creating Blender stuff
+20:21:57 | INFO: Blender create Mesh node sign_post.018
+20:21:57 | INFO: Blender create Mesh node sign_plate.012
+20:21:57 | INFO: Blender create Mesh node symbol_stem.006
+20:21:57 | INFO: Blender create Mesh node direction_symbol.006
+20:21:57 | INFO: Blender create Mesh node fasteners.006
+20:21:57 | INFO: glTF import finished in 0.01s
+20:21:57 | INFO: Data are loaded, start creating Blender stuff
+20:21:57 | INFO: Blender create Mesh node sign_post.021
+20:21:57 | INFO: Blender create Mesh node sign_plate.015
+20:21:57 | INFO: Blender create Mesh node symbol_stem.008
+20:21:57 | INFO: Blender create Mesh node direction_symbol.008
+20:21:57 | INFO: Blender create Mesh node fasteners.007
+20:21:57 | INFO: glTF import finished in 0.01s
+Fra:1 Mem:19.02M (Peak 19.02M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:19.08M (Peak 19.08M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.12M (Peak 19.12M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.20M (Peak 19.20M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:19.24M (Peak 19.24M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:19.24M (Peak 19.24M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:19.29M (Peak 19.29M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:19.29M (Peak 19.29M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:19.29M (Peak 19.29M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.002
+Fra:1 Mem:19.32M (Peak 19.32M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:19.42M (Peak 19.42M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.007
+Fra:1 Mem:19.39M (Peak 19.42M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate
+Fra:1 Mem:19.72M (Peak 19.72M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.001
+Fra:1 Mem:19.56M (Peak 19.72M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.001
+Fra:1 Mem:19.56M (Peak 19.72M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.002
+Fra:1 Mem:19.88M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.004
+Fra:1 Mem:19.65M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.004
+Fra:1 Mem:19.71M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.005
+Fra:1 Mem:19.73M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.007
+Fra:1 Mem:19.77M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.003
+Fra:1 Mem:19.81M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.006
+Fra:1 Mem:19.83M (Peak 19.88M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.001
+Fra:1 Mem:20.15M (Peak 20.15M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.002
+Fra:1 Mem:19.98M (Peak 20.15M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.002
+Fra:1 Mem:19.98M (Peak 20.15M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.003
+Fra:1 Mem:20.12M (Peak 20.15M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.003
+Fra:1 Mem:20.12M (Peak 20.15M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.003
+Fra:1 Mem:20.14M (Peak 20.15M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.004
+Fra:1 Mem:20.17M (Peak 20.17M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.004
+Fra:1 Mem:20.17M (Peak 20.17M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.006
+Fra:1 Mem:20.24M (Peak 20.24M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.005
+Fra:1 Mem:20.37M (Peak 20.37M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | no_entry_bar
+Fra:1 Mem:20.39M (Peak 20.39M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.003
+Fra:1 Mem:20.41M (Peak 20.41M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.005
+Fra:1 Mem:20.45M (Peak 20.45M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.004
+Fra:1 Mem:20.58M (Peak 20.58M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.002
+Fra:1 Mem:20.60M (Peak 20.60M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:19.61M (Peak 20.60M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.005
+Fra:1 Mem:19.67M (Peak 20.60M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:19.73M (Peak 20.60M) | Time:00:00.16 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.001
+Fra:1 Mem:19.81M (Peak 20.60M) | Time:00:00.16 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.001
+Fra:1 Mem:19.95M (Peak 20.60M) | Time:00:00.17 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.001
+Fra:1 Mem:20.03M (Peak 20.60M) | Time:00:00.17 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.001
+Fra:1 Mem:20.11M (Peak 20.60M) | Time:00:00.17 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:20.27M (Peak 20.60M) | Time:00:00.17 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.003
+Fra:1 Mem:20.39M (Peak 20.60M) | Time:00:00.17 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.002
+Fra:1 Mem:20.46M (Peak 20.60M) | Time:00:00.17 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.003
+Fra:1 Mem:20.52M (Peak 20.60M) | Time:00:00.17 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading red_authored_surface
+Fra:1 Mem:20.58M (Peak 20.60M) | Time:00:00.17 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:20.64M (Peak 20.64M) | Time:00:00.17 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.003
+Fra:1 Mem:20.71M (Peak 20.71M) | Time:00:00.17 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:20.76M (Peak 20.76M) | Time:00:00.17 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.002
+Fra:1 Mem:20.82M (Peak 20.82M) | Time:00:00.17 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:20.89M (Peak 20.89M) | Time:00:00.17 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.004
+Fra:1 Mem:20.95M (Peak 20.95M) | Time:00:00.17 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.005
+Fra:1 Mem:21.01M (Peak 21.01M) | Time:00:00.18 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.003
+Fra:1 Mem:18.81M (Peak 21.01M) | Time:00:00.19 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:18.81M (Peak 21.01M) | Time:00:00.19 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:18.81M (Peak 21.01M) | Time:00:00.19 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:18.90M (Peak 21.01M) | Time:00:00.19 | Mem:1.38M, Peak:1.38M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:18.90M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:18.90M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:18.90M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:18.90M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:18.90M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:18.90M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:18.91M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:18.91M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:18.91M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:18.91M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:18.91M (Peak 46.07M) | Time:00:00.27 | Mem:1.41M, Peak:1.41M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:19.28M (Peak 46.07M) | Time:00:00.27 | Mem:1.42M, Peak:1.42M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:19.27M (Peak 46.07M) | Time:00:00.27 | Mem:1.77M, Peak:1.77M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:19.27M (Peak 46.07M) | Time:00:00.27 | Mem:1.77M, Peak:1.77M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:19.82M (Peak 46.07M) | Time:00:00.28 | Mem:1.77M, Peak:1.77M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:19.85M (Peak 46.07M) | Time:00:00.28 | Mem:1.77M, Peak:1.77M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:19.86M (Peak 46.07M) | Time:00:00.28 | Mem:1.77M, Peak:1.77M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:19.86M (Peak 46.07M) | Time:00:00.29 | Mem:2.06M, Peak:2.06M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.06M, Peak:2.06M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.29 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.30 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.30 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.30 | Mem:2.71M, Peak:2.79M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.30 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:20.50M (Peak 46.07M) | Time:00:00.30 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:20.51M (Peak 46.07M) | Time:00:00.30 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:26.89M (Peak 46.07M) | Time:00:00.33 | Mem:563.80M, Peak:563.80M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:154.45M (Peak 154.45M) | Time:00:00.34 | Remaining:00:00.06 | Mem:691.36M, Peak:691.36M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:208.17M (Peak 288.74M) | Time:00:10.94 | Mem:691.36M, Peak:691.36M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:208.17M (Peak 288.74M) | Time:00:10.94 | Mem:691.36M, Peak:691.36M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_03.png'
+Time: 00:11.21 (Saving: 00:00.15)
+
+RENDERED_EXPORTED_MESHES signs_billboards_03.png
+20:22:08 | INFO: Data are loaded, start creating Blender stuff
+20:22:08 | INFO: Blender create Mesh node sign_post.024
+20:22:08 | INFO: Blender create Mesh node sign_plate.018
+20:22:08 | INFO: Blender create Mesh node symbol_stem.010
+20:22:08 | INFO: Blender create Mesh node direction_symbol.010
+20:22:08 | INFO: Blender create Mesh node fasteners.008
+20:22:08 | INFO: glTF import finished in 0.01s
+20:22:08 | INFO: Data are loaded, start creating Blender stuff
+20:22:08 | INFO: Blender create Mesh node sign_post.027
+20:22:08 | INFO: Blender create Mesh node sign_plate.021
+20:22:08 | INFO: Blender create Mesh node fasteners.009
+20:22:08 | INFO: glTF import finished in 0.01s
+20:22:08 | INFO: Data are loaded, start creating Blender stuff
+20:22:08 | INFO: Blender create Mesh node sign_post.030
+20:22:08 | INFO: Blender create Mesh node sign_plate.024
+20:22:08 | INFO: Blender create Mesh node fasteners.010
+20:22:08 | INFO: glTF import finished in 0.01s
+20:22:08 | INFO: Data are loaded, start creating Blender stuff
+20:22:08 | INFO: Blender create Mesh node sign_post.033
+20:22:08 | INFO: Blender create Mesh node sign_plate.027
+20:22:08 | INFO: Blender create Mesh node symbol_stem.012
+20:22:08 | INFO: Blender create Mesh node direction_symbol.012
+20:22:08 | INFO: Blender create Mesh node fasteners.011
+20:22:08 | INFO: glTF import finished in 0.01s
+20:22:08 | INFO: Data are loaded, start creating Blender stuff
+20:22:08 | INFO: Blender create Mesh node information_posts
+20:22:08 | INFO: Blender create Mesh node map_backboard
+20:22:08 | INFO: Blender create Mesh node original_map_panel
+20:22:08 | INFO: Blender create Mesh node pitched_information_roof
+20:22:08 | INFO: Blender create Mesh node schematic_map_paths
+20:22:08 | INFO: glTF import finished in 0.01s
+20:22:08 | INFO: Data are loaded, start creating Blender stuff
+20:22:08 | INFO: Blender create Mesh node sign_post.036
+20:22:08 | INFO: Blender create Mesh node shaped_sign_plate.006
+20:22:08 | INFO: Blender create Mesh node symbol_stem.014
+20:22:08 | INFO: Blender create Mesh node direction_symbol.014
+20:22:08 | INFO: Blender create Mesh node fasteners.012
+20:22:08 | INFO: glTF import finished in 0.01s
+Fra:1 Mem:18.43M (Peak 18.43M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:18.43M (Peak 18.43M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.005
+Fra:1 Mem:18.43M (Peak 18.43M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:18.85M (Peak 18.85M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.009
+Fra:1 Mem:18.85M (Peak 18.85M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.009
+Fra:1 Mem:18.90M (Peak 18.90M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.28M (Peak 19.28M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.010
+Fra:1 Mem:19.31M (Peak 19.31M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.010
+Fra:1 Mem:19.07M (Peak 19.31M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.52M (Peak 19.52M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.011
+Fra:1 Mem:19.55M (Peak 19.55M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.006
+Fra:1 Mem:19.60M (Peak 19.60M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:19.87M (Peak 19.87M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | information_posts
+Fra:1 Mem:19.87M (Peak 19.87M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_map_panel
+Fra:1 Mem:19.92M (Peak 19.92M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:19.99M (Peak 19.99M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.012
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.007
+Fra:1 Mem:20.00M (Peak 20.04M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.012
+Fra:1 Mem:20.10M (Peak 20.10M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:20.03M (Peak 20.10M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:19.09M (Peak 20.10M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:19.09M (Peak 20.10M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.001
+Fra:1 Mem:19.75M (Peak 20.10M) | Time:00:00.13 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.003
+Fra:1 Mem:19.73M (Peak 20.10M) | Time:00:00.13 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:20.10M (Peak 20.10M) | Time:00:00.13 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface
+Fra:1 Mem:20.16M (Peak 20.16M) | Time:00:00.13 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading paper_authored_surface
+Fra:1 Mem:20.16M (Peak 20.16M) | Time:00:00.13 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading green_authored_surface
+Fra:1 Mem:20.30M (Peak 20.30M) | Time:00:00.13 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:20.29M (Peak 20.30M) | Time:00:00.13 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.001
+Fra:1 Mem:18.27M (Peak 20.30M) | Time:00:00.13 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:18.27M (Peak 20.30M) | Time:00:00.13 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:18.27M (Peak 20.30M) | Time:00:00.13 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:18.37M (Peak 20.30M) | Time:00:00.14 | Mem:1.19M, Peak:1.19M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.21M, Peak:1.21M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.21M, Peak:1.21M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.21M, Peak:1.21M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.21M, Peak:1.21M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.21M, Peak:1.21M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.21M, Peak:1.21M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.22M, Peak:1.22M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.22M, Peak:1.22M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.22M, Peak:1.22M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.22M, Peak:1.22M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:18.37M (Peak 45.53M) | Time:00:00.31 | Mem:1.22M, Peak:1.22M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:18.75M (Peak 45.53M) | Time:00:00.31 | Mem:1.22M, Peak:1.22M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:18.74M (Peak 45.53M) | Time:00:00.31 | Mem:1.59M, Peak:1.59M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:18.74M (Peak 45.53M) | Time:00:00.31 | Mem:1.59M, Peak:1.59M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:19.29M (Peak 45.53M) | Time:00:00.32 | Mem:1.59M, Peak:1.59M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:19.33M (Peak 45.53M) | Time:00:00.32 | Mem:1.59M, Peak:1.59M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:19.33M (Peak 45.53M) | Time:00:00.32 | Mem:1.59M, Peak:1.59M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:19.33M (Peak 45.53M) | Time:00:00.32 | Mem:1.88M, Peak:1.88M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:1.88M, Peak:1.88M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.53M, Peak:2.53M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.61M, Peak:2.61M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.61M, Peak:2.61M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.61M, Peak:2.61M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.61M, Peak:2.61M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.53M, Peak:2.61M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:19.98M (Peak 45.53M) | Time:00:00.32 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:19.99M (Peak 45.53M) | Time:00:00.32 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:26.37M (Peak 45.53M) | Time:00:00.35 | Mem:563.62M, Peak:563.62M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:153.93M (Peak 153.93M) | Time:00:00.36 | Remaining:00:00.07 | Mem:691.19M, Peak:691.19M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:207.65M (Peak 288.22M) | Time:00:10.84 | Mem:691.19M, Peak:691.19M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:207.65M (Peak 288.22M) | Time:00:10.84 | Mem:691.19M, Peak:691.19M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_04.png'
+Time: 00:11.12 (Saving: 00:00.16)
+
+RENDERED_EXPORTED_MESHES signs_billboards_04.png
+20:22:19 | INFO: Data are loaded, start creating Blender stuff
+20:22:19 | INFO: Blender create Mesh node sign_post.039
+20:22:19 | INFO: Blender create Mesh node shaped_sign_plate.009
+20:22:19 | INFO: Blender create Mesh node symbol_stem.016
+20:22:19 | INFO: Blender create Mesh node direction_symbol.016
+20:22:19 | INFO: Blender create Mesh node fasteners.013
+20:22:19 | INFO: glTF import finished in 0.01s
+20:22:19 | INFO: Data are loaded, start creating Blender stuff
+20:22:19 | INFO: Blender create Mesh node sign_post.042
+20:22:19 | INFO: Blender create Mesh node shaped_sign_plate.012
+20:22:19 | INFO: Blender create Mesh node symbol_stem.018
+20:22:19 | INFO: Blender create Mesh node direction_symbol.018
+20:22:19 | INFO: Blender create Mesh node fasteners.014
+20:22:19 | INFO: glTF import finished in 0.01s
+20:22:19 | INFO: Data are loaded, start creating Blender stuff
+20:22:19 | INFO: Blender create Mesh node bollard
+20:22:19 | INFO: Blender create Mesh node reflective_bands
+20:22:19 | INFO: Blender create Mesh node reflective_bands.001
+20:22:19 | INFO: glTF import finished in 0.01s
+20:22:19 | INFO: Data are loaded, start creating Blender stuff
+20:22:19 | INFO: Blender create Mesh node bollard.003
+20:22:19 | INFO: Blender create Mesh node reflective_bands.004
+20:22:19 | INFO: Blender create Mesh node reflective_bands.005
+20:22:19 | INFO: glTF import finished in 0.01s
+20:22:19 | INFO: Data are loaded, start creating Blender stuff
+20:22:19 | INFO: Blender create Mesh node bollard.006
+20:22:19 | INFO: Blender create Mesh node reflective_bands.008
+20:22:19 | INFO: Blender create Mesh node reflective_bands.009
+20:22:19 | INFO: glTF import finished in 0.01s
+20:22:19 | INFO: Data are loaded, start creating Blender stuff
+20:22:19 | INFO: Blender create Mesh node sign_post.045
+20:22:19 | INFO: Blender create Mesh node sign_plate.030
+20:22:19 | INFO: Blender create Mesh node symbol_stem.020
+20:22:19 | INFO: Blender create Mesh node direction_symbol.020
+20:22:19 | INFO: Blender create Mesh node fasteners.015
+20:22:19 | INFO: glTF import finished in 0.01s
+Fra:1 Mem:18.67M (Peak 18.67M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:18.67M (Peak 18.67M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.003
+Fra:1 Mem:18.72M (Peak 18.72M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:19.09M (Peak 19.09M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.014
+Fra:1 Mem:19.10M (Peak 19.10M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.009
+Fra:1 Mem:19.12M (Peak 19.12M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.014
+Fra:1 Mem:19.22M (Peak 19.22M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.41M (Peak 19.41M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bollard
+Fra:1 Mem:19.20M (Peak 19.41M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.78M (Peak 19.78M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bollard.001
+Fra:1 Mem:19.83M (Peak 19.83M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | reflective_bands.002
+Fra:1 Mem:19.43M (Peak 19.83M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | reflective_bands.003
+Fra:1 Mem:19.86M (Peak 19.86M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bollard.002
+Fra:1 Mem:19.84M (Peak 19.86M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:20.19M (Peak 20.19M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.015
+Fra:1 Mem:20.28M (Peak 20.28M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.010
+Fra:1 Mem:19.98M (Peak 20.28M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.015
+Fra:1 Mem:20.33M (Peak 20.33M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:19.32M (Peak 20.33M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:19.32M (Peak 20.33M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:19.32M (Peak 20.33M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:20.14M (Peak 20.33M) | Time:00:00.09 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.001
+Fra:1 Mem:20.24M (Peak 20.33M) | Time:00:00.10 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.001
+Fra:1 Mem:20.37M (Peak 20.37M) | Time:00:00.10 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.003
+Fra:1 Mem:20.35M (Peak 20.37M) | Time:00:00.10 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface.002
+Fra:1 Mem:20.39M (Peak 20.39M) | Time:00:00.10 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.002
+Fra:1 Mem:20.43M (Peak 20.50M) | Time:00:00.10 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.004
+Fra:1 Mem:20.49M (Peak 20.50M) | Time:00:00.10 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:20.56M (Peak 20.56M) | Time:00:00.10 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.003
+Fra:1 Mem:20.62M (Peak 20.62M) | Time:00:00.10 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.005
+Fra:1 Mem:18.59M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:18.59M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:18.59M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:18.69M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:18.69M (Peak 45.85M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:19.08M (Peak 45.85M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:19.07M (Peak 45.85M) | Time:00:00.16 | Mem:1.72M, Peak:1.72M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:19.07M (Peak 45.85M) | Time:00:00.16 | Mem:1.72M, Peak:1.72M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:19.64M (Peak 45.85M) | Time:00:00.17 | Mem:1.72M, Peak:1.72M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:19.67M (Peak 45.85M) | Time:00:00.17 | Mem:1.72M, Peak:1.72M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:19.71M (Peak 45.85M) | Time:00:00.17 | Mem:1.72M, Peak:1.72M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:19.71M (Peak 45.85M) | Time:00:00.18 | Mem:2.04M, Peak:2.04M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.18 | Mem:2.04M, Peak:2.04M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.18 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.18 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.18 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.18 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.18 | Mem:2.71M, Peak:2.71M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.19 | Mem:2.79M, Peak:2.79M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.19 | Mem:2.80M, Peak:2.80M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.19 | Mem:2.80M, Peak:2.80M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.19 | Mem:2.80M, Peak:2.80M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.19 | Mem:2.71M, Peak:2.80M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.20 | Mem:2.80M, Peak:2.80M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:20.38M (Peak 45.85M) | Time:00:00.20 | Mem:2.80M, Peak:2.80M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:20.39M (Peak 45.85M) | Time:00:00.20 | Mem:2.80M, Peak:2.80M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:26.77M (Peak 45.85M) | Time:00:00.22 | Mem:563.81M, Peak:563.81M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:154.34M (Peak 154.34M) | Time:00:00.23 | Remaining:00:00.06 | Mem:691.37M, Peak:691.37M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:208.05M (Peak 288.62M) | Time:00:12.46 | Mem:691.37M, Peak:691.37M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:208.05M (Peak 288.62M) | Time:00:12.46 | Mem:691.37M, Peak:691.37M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_05.png'
+Time: 00:12.85 (Saving: 00:00.17)
+
+RENDERED_EXPORTED_MESHES signs_billboards_05.png
+20:22:32 | INFO: Data are loaded, start creating Blender stuff
+20:22:32 | INFO: Blender create Mesh node sign_post.048
+20:22:32 | INFO: Blender create Mesh node sign_plate.033
+20:22:32 | INFO: Blender create Mesh node symbol_stem.022
+20:22:32 | INFO: Blender create Mesh node direction_symbol.022
+20:22:32 | INFO: Blender create Mesh node fasteners.016
+20:22:32 | INFO: glTF import finished in 0.01s
+20:22:32 | INFO: Data are loaded, start creating Blender stuff
+20:22:32 | INFO: Blender create Mesh node sign_post.051
+20:22:32 | INFO: Blender create Mesh node sign_plate.036
+20:22:32 | INFO: Blender create Mesh node symbol_stem.024
+20:22:32 | INFO: Blender create Mesh node direction_symbol.024
+20:22:32 | INFO: Blender create Mesh node fasteners.017
+20:22:32 | INFO: glTF import finished in 0.01s
+20:22:32 | INFO: Data are loaded, start creating Blender stuff
+20:22:32 | INFO: Blender create Mesh node sign_support.027
+20:22:32 | INFO: Blender create Mesh node panel_back.027
+20:22:32 | INFO: Blender create Mesh node painted_sign_face.027
+20:22:32 | INFO: Blender create Mesh node frame.027
+20:22:32 | INFO: Blender create Mesh node original_mountain_graphic.018
+20:22:32 | INFO: glTF import finished in 0.01s
+20:22:32 | INFO: Data are loaded, start creating Blender stuff
+20:22:32 | INFO: Blender create Mesh node sign_post.054
+20:22:32 | INFO: Blender create Mesh node sign_plate.039
+20:22:32 | INFO: Blender create Mesh node symbol_stem.026
+20:22:32 | INFO: Blender create Mesh node direction_symbol.026
+20:22:32 | INFO: Blender create Mesh node fasteners.018
+20:22:32 | INFO: glTF import finished in 0.01s
+20:22:32 | INFO: Data are loaded, start creating Blender stuff
+20:22:32 | INFO: Blender create Mesh node sign_post.057
+20:22:32 | INFO: Blender create Mesh node sign_plate.042
+20:22:32 | INFO: Blender create Mesh node symbol_stem.028
+20:22:32 | INFO: Blender create Mesh node direction_symbol.028
+20:22:32 | INFO: Blender create Mesh node fasteners.019
+20:22:32 | INFO: glTF import finished in 0.01s
+20:22:32 | INFO: Data are loaded, start creating Blender stuff
+20:22:32 | INFO: Blender create Mesh node motel_post
+20:22:32 | INFO: Blender create Mesh node motel_vertical_sign
+20:22:32 | INFO: glTF import finished in 0.01s
+Fra:1 Mem:18.87M (Peak 18.87M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:18.87M (Peak 18.87M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.011
+Fra:1 Mem:18.87M (Peak 18.87M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:19.14M (Peak 19.14M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.017
+Fra:1 Mem:19.14M (Peak 19.14M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.012
+Fra:1 Mem:19.15M (Peak 19.15M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.017
+Fra:1 Mem:19.23M (Peak 19.23M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.61M (Peak 19.61M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_support.009
+Fra:1 Mem:19.69M (Peak 19.69M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.009
+Fra:1 Mem:19.72M (Peak 19.72M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.84M (Peak 19.84M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.018
+Fra:1 Mem:19.65M (Peak 19.84M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.013
+Fra:1 Mem:19.66M (Peak 19.84M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.018
+Fra:1 Mem:19.76M (Peak 19.84M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:20.22M (Peak 20.22M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.019
+Fra:1 Mem:20.02M (Peak 20.22M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.014
+Fra:1 Mem:20.09M (Peak 20.22M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:20.09M (Peak 20.22M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.019
+Fra:1 Mem:20.37M (Peak 20.37M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | motel_post
+Fra:1 Mem:20.59M (Peak 20.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:20.34M (Peak 20.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:19.24M (Peak 20.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:19.24M (Peak 20.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:19.24M (Peak 20.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface
+Fra:1 Mem:20.13M (Peak 20.59M) | Time:00:00.09 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.003
+Fra:1 Mem:20.21M (Peak 20.59M) | Time:00:00.09 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface
+Fra:1 Mem:20.26M (Peak 20.59M) | Time:00:00.09 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:20.25M (Peak 20.59M) | Time:00:00.09 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.002
+Fra:1 Mem:20.29M (Peak 20.59M) | Time:00:00.09 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:20.38M (Peak 20.59M) | Time:00:00.09 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.001
+Fra:1 Mem:20.42M (Peak 20.59M) | Time:00:00.09 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.003
+Fra:1 Mem:20.49M (Peak 20.59M) | Time:00:00.09 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.003
+Fra:1 Mem:20.62M (Peak 20.62M) | Time:00:00.09 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.005
+Fra:1 Mem:18.43M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:18.43M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:18.43M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:18.52M (Peak 20.62M) | Time:00:00.10 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:18.52M (Peak 45.69M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:18.52M (Peak 45.69M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:18.52M (Peak 45.69M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:18.52M (Peak 45.69M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:18.52M (Peak 45.69M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:18.52M (Peak 45.69M) | Time:00:00.16 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:18.53M (Peak 45.69M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:18.53M (Peak 45.69M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:18.53M (Peak 45.69M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:18.53M (Peak 45.69M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:18.53M (Peak 45.69M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:18.85M (Peak 45.69M) | Time:00:00.16 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:18.85M (Peak 45.69M) | Time:00:00.16 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:18.85M (Peak 45.69M) | Time:00:00.16 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:19.38M (Peak 45.69M) | Time:00:00.16 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:19.41M (Peak 45.69M) | Time:00:00.16 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:19.42M (Peak 45.69M) | Time:00:00.16 | Mem:1.66M, Peak:1.66M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:19.42M (Peak 45.69M) | Time:00:00.16 | Mem:1.95M, Peak:1.95M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.16 | Mem:1.95M, Peak:1.95M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.16 | Mem:2.54M, Peak:2.54M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.54M, Peak:2.54M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.54M, Peak:2.54M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.54M, Peak:2.54M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.54M, Peak:2.54M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.62M, Peak:2.62M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.54M, Peak:2.62M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.63M, Peak:2.63M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:20.01M (Peak 45.69M) | Time:00:00.17 | Mem:2.63M, Peak:2.63M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:20.02M (Peak 45.69M) | Time:00:00.17 | Mem:2.63M, Peak:2.63M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:26.40M (Peak 45.69M) | Time:00:00.19 | Mem:563.63M, Peak:563.63M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:153.97M (Peak 153.97M) | Time:00:00.19 | Remaining:00:00.07 | Mem:691.20M, Peak:691.20M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:207.68M (Peak 288.25M) | Time:00:11.34 | Mem:691.20M, Peak:691.20M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:207.68M (Peak 288.25M) | Time:00:11.34 | Mem:691.20M, Peak:691.20M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_06.png'
+Time: 00:11.91 (Saving: 00:00.33)
+
+RENDERED_EXPORTED_MESHES signs_billboards_06.png
+20:22:45 | INFO: Data are loaded, start creating Blender stuff
+20:22:45 | INFO: Blender create Mesh node sign_support.030
+20:22:45 | INFO: Blender create Mesh node panel_back.030
+20:22:45 | INFO: Blender create Mesh node painted_sign_face.030
+20:22:45 | INFO: Blender create Mesh node frame.030
+20:22:45 | INFO: Blender create Mesh node original_mountain_graphic.020
+20:22:45 | INFO: glTF import finished in 0.03s
+20:22:45 | INFO: Data are loaded, start creating Blender stuff
+20:22:45 | INFO: Blender create Mesh node sign_post.060
+20:22:45 | INFO: Blender create Mesh node shaped_sign_plate.015
+20:22:45 | INFO: Blender create Mesh node symbol_stem.030
+20:22:45 | INFO: Blender create Mesh node direction_symbol.030
+20:22:45 | INFO: Blender create Mesh node fasteners.020
+20:22:45 | INFO: glTF import finished in 0.02s
+20:22:45 | INFO: Data are loaded, start creating Blender stuff
+20:22:45 | INFO: Blender create Mesh node sign_post.063
+20:22:45 | INFO: Blender create Mesh node shaped_sign_plate.018
+20:22:45 | INFO: Blender create Mesh node symbol_stem.032
+20:22:45 | INFO: Blender create Mesh node direction_symbol.032
+20:22:45 | INFO: Blender create Mesh node fasteners.021
+20:22:45 | INFO: glTF import finished in 0.02s
+20:22:45 | INFO: Data are loaded, start creating Blender stuff
+20:22:45 | INFO: Blender create Mesh node sign_post.066
+20:22:45 | INFO: Blender create Mesh node sign_plate.045
+20:22:45 | INFO: Blender create Mesh node symbol_stem.034
+20:22:45 | INFO: Blender create Mesh node direction_symbol.034
+20:22:45 | INFO: Blender create Mesh node fasteners.022
+20:22:45 | INFO: glTF import finished in 0.01s
+20:22:45 | INFO: Data are loaded, start creating Blender stuff
+20:22:45 | INFO: Blender create Mesh node sign_post.069
+20:22:45 | INFO: Blender create Mesh node sign_plate.048
+20:22:45 | INFO: Blender create Mesh node fasteners.023
+20:22:45 | INFO: glTF import finished in 0.01s
+20:22:45 | INFO: Data are loaded, start creating Blender stuff
+20:22:45 | INFO: Blender create Mesh node sign_post.072
+20:22:45 | INFO: Blender create Mesh node sign_plate.051
+20:22:45 | INFO: Blender create Mesh node fasteners.024
+20:22:45 | INFO: Blender create Mesh node Dimensional lettering SPEED LIMIT
+20:22:45 | INFO: Blender create Mesh node Dimensional lettering 25
+20:22:45 | INFO: glTF import finished in 0.02s
+Fra:1 Mem:19.36M (Peak 19.36M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:19.42M (Peak 19.42M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.49M (Peak 19.49M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.55M (Peak 19.55M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:19.61M (Peak 19.61M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:19.67M (Peak 19.67M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:19.75M (Peak 19.75M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_25
+Fra:1 Mem:19.84M (Peak 19.84M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:19.85M (Peak 19.85M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | frame.010
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.005
+Fra:1 Mem:19.96M (Peak 20.00M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.015
+Fra:1 Mem:19.98M (Peak 20.00M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.015
+Fra:1 Mem:19.98M (Peak 20.00M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.020
+Fra:1 Mem:19.98M (Peak 20.00M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.021
+Fra:1 Mem:20.04M (Peak 20.04M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.006
+Fra:1 Mem:20.07M (Peak 20.07M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.016
+Fra:1 Mem:20.08M (Peak 20.08M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.016
+Fra:1 Mem:20.08M (Peak 20.08M) | Time:00:00.19 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.022
+Fra:1 Mem:20.12M (Peak 20.12M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.015
+Fra:1 Mem:20.13M (Peak 20.13M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_SPEED LIMIT
+Fra:1 Mem:20.15M (Peak 20.15M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.017
+Fra:1 Mem:20.34M (Peak 20.34M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.017
+Fra:1 Mem:20.39M (Peak 20.39M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.022
+Fra:1 Mem:20.59M (Peak 20.59M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.023
+Fra:1 Mem:20.65M (Peak 20.65M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.023
+Fra:1 Mem:20.77M (Peak 20.77M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.024
+Fra:1 Mem:21.05M (Peak 21.05M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.024
+Fra:1 Mem:21.16M (Peak 21.16M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.017
+Fra:1 Mem:21.25M (Peak 21.25M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:20.11M (Peak 21.25M) | Time:00:00.20 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.003
+Fra:1 Mem:20.19M (Peak 21.25M) | Time:00:00.21 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.004
+Fra:1 Mem:20.25M (Peak 21.25M) | Time:00:00.21 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:20.32M (Peak 21.25M) | Time:00:00.21 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.001
+Fra:1 Mem:20.38M (Peak 21.25M) | Time:00:00.21 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:20.44M (Peak 21.25M) | Time:00:00.21 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.005
+Fra:1 Mem:20.50M (Peak 21.25M) | Time:00:00.21 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading wood_authored_surface
+Fra:1 Mem:20.50M (Peak 21.25M) | Time:00:00.22 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.001
+Fra:1 Mem:20.50M (Peak 21.25M) | Time:00:00.22 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.003
+Fra:1 Mem:20.63M (Peak 21.25M) | Time:00:00.22 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:20.69M (Peak 21.25M) | Time:00:00.22 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface
+Fra:1 Mem:20.76M (Peak 21.25M) | Time:00:00.22 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.002
+Fra:1 Mem:20.83M (Peak 21.25M) | Time:00:00.22 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:20.89M (Peak 21.25M) | Time:00:00.22 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.002
+Fra:1 Mem:20.95M (Peak 21.25M) | Time:00:00.22 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.003
+Fra:1 Mem:21.01M (Peak 21.25M) | Time:00:00.22 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.001
+Fra:1 Mem:21.08M (Peak 21.25M) | Time:00:00.22 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.001
+Fra:1 Mem:21.14M (Peak 21.25M) | Time:00:00.22 | Mem:0.94M, Peak:0.94M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface.001
+Fra:1 Mem:21.20M (Peak 21.25M) | Time:00:00.22 | Mem:1.00M, Peak:1.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:21.26M (Peak 21.26M) | Time:00:00.22 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:21.40M (Peak 21.40M) | Time:00:00.23 | Mem:1.12M, Peak:1.12M | Scene, ViewLayer | Updating Images | Loading black_authored_surface
+Fra:1 Mem:19.27M (Peak 21.40M) | Time:00:00.23 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:19.27M (Peak 21.40M) | Time:00:00.23 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:19.27M (Peak 21.40M) | Time:00:00.23 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:19.37M (Peak 21.40M) | Time:00:00.23 | Mem:1.31M, Peak:1.31M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:19.37M (Peak 46.53M) | Time:00:00.35 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:19.37M (Peak 46.53M) | Time:00:00.35 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:19.37M (Peak 46.53M) | Time:00:00.35 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:19.37M (Peak 46.53M) | Time:00:00.35 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:19.37M (Peak 46.53M) | Time:00:00.35 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:19.37M (Peak 46.53M) | Time:00:00.35 | Mem:1.34M, Peak:1.34M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:19.38M (Peak 46.53M) | Time:00:00.35 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:19.38M (Peak 46.53M) | Time:00:00.35 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:19.38M (Peak 46.53M) | Time:00:00.35 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:19.38M (Peak 46.53M) | Time:00:00.35 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:19.38M (Peak 46.53M) | Time:00:00.35 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:19.81M (Peak 46.53M) | Time:00:00.35 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:19.81M (Peak 46.53M) | Time:00:00.35 | Mem:1.78M, Peak:1.78M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:19.81M (Peak 46.53M) | Time:00:00.35 | Mem:1.78M, Peak:1.78M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:20.48M (Peak 46.53M) | Time:00:00.37 | Mem:1.78M, Peak:1.78M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:20.52M (Peak 46.53M) | Time:00:00.37 | Mem:1.78M, Peak:1.78M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:20.53M (Peak 46.53M) | Time:00:00.37 | Mem:1.78M, Peak:1.78M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:20.53M (Peak 46.53M) | Time:00:00.38 | Mem:2.14M, Peak:2.14M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.38 | Mem:2.14M, Peak:2.14M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.38 | Mem:2.89M, Peak:2.89M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.89M, Peak:2.89M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.89M, Peak:2.89M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.89M, Peak:2.89M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.89M, Peak:2.89M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.97M, Peak:2.97M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.97M, Peak:2.97M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.97M, Peak:2.97M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.97M, Peak:2.97M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.89M, Peak:2.97M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.98M, Peak:2.98M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:21.28M (Peak 46.53M) | Time:00:00.39 | Mem:2.98M, Peak:2.98M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:21.29M (Peak 46.53M) | Time:00:00.39 | Mem:2.98M, Peak:2.98M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:27.67M (Peak 46.53M) | Time:00:00.42 | Mem:563.98M, Peak:563.98M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:155.24M (Peak 155.24M) | Time:00:00.42 | Remaining:00:00.08 | Mem:691.55M, Peak:691.55M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:208.95M (Peak 289.52M) | Time:00:11.57 | Mem:691.55M, Peak:691.55M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:208.95M (Peak 289.52M) | Time:00:11.57 | Mem:691.55M, Peak:691.55M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_07.png'
+Time: 00:12.02 (Saving: 00:00.33)
+
+RENDERED_EXPORTED_MESHES signs_billboards_07.png
+20:22:57 | INFO: Data are loaded, start creating Blender stuff
+20:22:57 | INFO: Blender create Mesh node sign_post.075
+20:22:57 | INFO: Blender create Mesh node sign_plate.054
+20:22:57 | INFO: Blender create Mesh node fasteners.025
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering SPEED LIMIT.002
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering 35
+20:22:57 | INFO: glTF import finished in 0.02s
+20:22:57 | INFO: Data are loaded, start creating Blender stuff
+20:22:57 | INFO: Blender create Mesh node sign_post.078
+20:22:57 | INFO: Blender create Mesh node sign_plate.057
+20:22:57 | INFO: Blender create Mesh node fasteners.026
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering SPEED LIMIT.004
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering 45
+20:22:57 | INFO: glTF import finished in 0.02s
+20:22:57 | INFO: Data are loaded, start creating Blender stuff
+20:22:57 | INFO: Blender create Mesh node sign_post.081
+20:22:57 | INFO: Blender create Mesh node sign_plate.060
+20:22:57 | INFO: Blender create Mesh node fasteners.027
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering SPEED LIMIT.006
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering 55
+20:22:57 | INFO: glTF import finished in 0.02s
+20:22:57 | INFO: Data are loaded, start creating Blender stuff
+20:22:57 | INFO: Blender create Mesh node sign_post.084
+20:22:57 | INFO: Blender create Mesh node sign_plate.063
+20:22:57 | INFO: Blender create Mesh node fasteners.028
+20:22:57 | INFO: glTF import finished in 0.01s
+20:22:57 | INFO: Data are loaded, start creating Blender stuff
+20:22:57 | INFO: Blender create Mesh node sign_post.087
+20:22:57 | INFO: Blender create Mesh node shaped_sign_plate.021
+20:22:57 | INFO: Blender create Mesh node fasteners.029
+20:22:57 | INFO: Blender create Mesh node Dimensional lettering STOP
+20:22:57 | INFO: glTF import finished in 0.03s
+20:22:57 | INFO: Data are loaded, start creating Blender stuff
+20:22:57 | INFO: Blender create Mesh node sign_post.090
+20:22:57 | INFO: Blender create Mesh node shaped_sign_plate.024
+20:22:57 | INFO: Blender create Mesh node fasteners.030
+20:22:57 | INFO: glTF import finished in 0.02s
+Fra:1 Mem:19.72M (Peak 19.72M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:19.78M (Peak 19.78M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:19.85M (Peak 19.85M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:19.92M (Peak 19.92M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:19.92M (Peak 19.92M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:19.92M (Peak 19.92M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:19.92M (Peak 19.92M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.025
+Fra:1 Mem:20.00M (Peak 20.00M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:20.02M (Peak 20.02M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.018
+Fra:1 Mem:20.05M (Peak 20.05M) | Time:00:00.13 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.025
+Fra:1 Mem:20.31M (Peak 20.31M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_SPEED LIMIT.001
+Fra:1 Mem:20.37M (Peak 20.37M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_35
+Fra:1 Mem:20.49M (Peak 20.49M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.026
+Fra:1 Mem:20.53M (Peak 20.53M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.019
+Fra:1 Mem:20.55M (Peak 20.55M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.026
+Fra:1 Mem:20.93M (Peak 20.93M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:20.94M (Peak 20.94M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_45
+Fra:1 Mem:21.02M (Peak 21.02M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.030
+Fra:1 Mem:21.43M (Peak 21.43M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.027
+Fra:1 Mem:21.42M (Peak 21.43M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.008
+Fra:1 Mem:21.41M (Peak 21.43M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.020
+Fra:1 Mem:21.45M (Peak 21.45M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.030
+Fra:1 Mem:21.51M (Peak 21.51M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.027
+Fra:1 Mem:21.50M (Peak 21.51M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_SPEED LIMIT.003
+Fra:1 Mem:21.82M (Peak 21.83M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_STOP
+Fra:1 Mem:22.03M (Peak 22.03M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_55
+Fra:1 Mem:22.12M (Peak 22.12M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.028
+Fra:1 Mem:22.29M (Peak 22.29M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_plate.021
+Fra:1 Mem:22.17M (Peak 22.29M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.029
+Fra:1 Mem:22.17M (Peak 22.29M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.028
+Fra:1 Mem:22.24M (Peak 22.29M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.029
+Fra:1 Mem:22.40M (Peak 22.40M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.007
+Fra:1 Mem:22.32M (Peak 22.40M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:21.16M (Peak 22.40M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.005
+Fra:1 Mem:21.22M (Peak 22.40M) | Time:00:00.15 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:21.31M (Peak 22.40M) | Time:00:00.15 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.005
+Fra:1 Mem:21.37M (Peak 22.40M) | Time:00:00.15 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.003
+Fra:1 Mem:21.43M (Peak 22.40M) | Time:00:00.15 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:21.50M (Peak 22.40M) | Time:00:00.15 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:21.55M (Peak 22.40M) | Time:00:00.16 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.004
+Fra:1 Mem:21.61M (Peak 22.40M) | Time:00:00.16 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading black_authored_surface
+Fra:1 Mem:21.68M (Peak 22.40M) | Time:00:00.16 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading red_authored_surface
+Fra:1 Mem:21.74M (Peak 22.40M) | Time:00:00.16 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.001
+Fra:1 Mem:21.81M (Peak 22.40M) | Time:00:00.16 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.004
+Fra:1 Mem:21.86M (Peak 22.40M) | Time:00:00.16 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.001
+Fra:1 Mem:21.93M (Peak 22.40M) | Time:00:00.16 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.003
+Fra:1 Mem:22.06M (Peak 22.40M) | Time:00:00.16 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.001
+Fra:1 Mem:22.13M (Peak 22.40M) | Time:00:00.16 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.001
+Fra:1 Mem:22.19M (Peak 22.40M) | Time:00:00.16 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:22.26M (Peak 22.40M) | Time:00:00.16 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.002
+Fra:1 Mem:22.26M (Peak 22.40M) | Time:00:00.16 | Mem:0.81M, Peak:0.81M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.002
+Fra:1 Mem:22.46M (Peak 22.46M) | Time:00:00.16 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:22.38M (Peak 22.46M) | Time:00:00.16 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.003
+Fra:1 Mem:20.39M (Peak 22.46M) | Time:00:00.17 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:20.39M (Peak 22.46M) | Time:00:00.17 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:20.39M (Peak 22.46M) | Time:00:00.17 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:20.48M (Peak 22.46M) | Time:00:00.17 | Mem:1.25M, Peak:1.25M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:20.48M (Peak 47.65M) | Time:00:00.28 | Mem:1.28M, Peak:1.28M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:20.48M (Peak 47.65M) | Time:00:00.28 | Mem:1.28M, Peak:1.28M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:20.48M (Peak 47.65M) | Time:00:00.28 | Mem:1.28M, Peak:1.28M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:20.48M (Peak 47.65M) | Time:00:00.28 | Mem:1.28M, Peak:1.28M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:20.48M (Peak 47.65M) | Time:00:00.28 | Mem:1.28M, Peak:1.28M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:20.48M (Peak 47.65M) | Time:00:00.28 | Mem:1.28M, Peak:1.28M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:20.49M (Peak 47.65M) | Time:00:00.28 | Mem:1.29M, Peak:1.29M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:20.49M (Peak 47.65M) | Time:00:00.28 | Mem:1.29M, Peak:1.29M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:20.49M (Peak 47.65M) | Time:00:00.28 | Mem:1.29M, Peak:1.29M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:20.49M (Peak 47.65M) | Time:00:00.28 | Mem:1.29M, Peak:1.29M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:20.49M (Peak 47.65M) | Time:00:00.28 | Mem:1.29M, Peak:1.29M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:21.13M (Peak 47.65M) | Time:00:00.28 | Mem:1.29M, Peak:1.29M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:21.13M (Peak 47.65M) | Time:00:00.28 | Mem:1.92M, Peak:1.92M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:21.13M (Peak 47.65M) | Time:00:00.28 | Mem:1.92M, Peak:1.92M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:22.06M (Peak 47.65M) | Time:00:00.30 | Mem:1.92M, Peak:1.92M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:22.12M (Peak 47.65M) | Time:00:00.30 | Mem:1.92M, Peak:1.92M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:22.12M (Peak 47.65M) | Time:00:00.30 | Mem:1.92M, Peak:1.92M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:22.12M (Peak 47.65M) | Time:00:00.31 | Mem:2.42M, Peak:2.42M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.31 | Mem:2.42M, Peak:2.42M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.31 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.31 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.31 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.32 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.32 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.32 | Mem:3.53M, Peak:3.53M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.32 | Mem:3.53M, Peak:3.53M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.32 | Mem:3.53M, Peak:3.53M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:23.15M (Peak 47.65M) | Time:00:00.32 | Mem:3.53M, Peak:3.53M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:23.16M (Peak 47.65M) | Time:00:00.32 | Mem:3.45M, Peak:3.53M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:23.16M (Peak 47.65M) | Time:00:00.32 | Mem:3.54M, Peak:3.54M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:23.16M (Peak 47.65M) | Time:00:00.32 | Mem:3.54M, Peak:3.54M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:23.16M (Peak 47.65M) | Time:00:00.32 | Mem:3.54M, Peak:3.54M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:29.54M (Peak 47.65M) | Time:00:00.37 | Mem:564.54M, Peak:564.54M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:157.11M (Peak 157.11M) | Time:00:00.39 | Remaining:00:00.13 | Mem:692.11M, Peak:692.11M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:210.82M (Peak 291.39M) | Time:00:11.38 | Mem:692.11M, Peak:692.11M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:210.82M (Peak 291.39M) | Time:00:11.38 | Mem:692.11M, Peak:692.11M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_08.png'
+Time: 00:11.84 (Saving: 00:00.31)
+
+RENDERED_EXPORTED_MESHES signs_billboards_08.png
+20:23:09 | INFO: Data are loaded, start creating Blender stuff
+20:23:09 | INFO: Blender create Mesh node sign_post.093
+20:23:09 | INFO: Blender create Mesh node shaped_sign_plate.027
+20:23:09 | INFO: Blender create Mesh node symbol_stem.036
+20:23:09 | INFO: Blender create Mesh node direction_symbol.036
+20:23:09 | INFO: Blender create Mesh node fasteners.031
+20:23:09 | INFO: glTF import finished in 0.01s
+20:23:09 | INFO: Data are loaded, start creating Blender stuff
+20:23:09 | INFO: Blender create Mesh node sign_post.096
+20:23:09 | INFO: Blender create Mesh node shaped_sign_plate.030
+20:23:09 | INFO: Blender create Mesh node fasteners.032
+20:23:09 | INFO: Blender create Mesh node Dimensional lettering YIELD
+20:23:09 | INFO: glTF import finished in 0.01s
+20:23:09 | INFO: Data are loaded, start creating Blender stuff
+20:23:09 | INFO: Blender create Mesh node sign_post.099
+20:23:09 | INFO: Blender create Mesh node shaped_sign_plate.033
+20:23:09 | INFO: Blender create Mesh node fasteners.033
+20:23:09 | INFO: glTF import finished in 0.01s
+Fra:1 Mem:14.20M (Peak 14.20M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:14.23M (Peak 14.23M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:14.26M (Peak 14.26M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:14.32M (Peak 14.32M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:14.32M (Peak 14.32M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:14.32M (Peak 14.32M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.002
+Fra:1 Mem:14.32M (Peak 14.32M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.031
+Fra:1 Mem:14.40M (Peak 14.40M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.033
+Fra:1 Mem:14.63M (Peak 14.63M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.009
+Fra:1 Mem:14.72M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem.018
+Fra:1 Mem:14.52M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol.018
+Fra:1 Mem:14.52M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.031
+Fra:1 Mem:14.66M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.011
+Fra:1 Mem:14.67M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.033
+Fra:1 Mem:14.72M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post.032
+Fra:1 Mem:14.72M (Peak 14.72M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_letters_YIELD
+Fra:1 Mem:14.85M (Peak 14.85M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate.010
+Fra:1 Mem:14.81M (Peak 14.85M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners.032
+Fra:1 Mem:14.96M (Peak 14.96M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:14.59M (Peak 14.96M) | Time:00:00.21 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.002
+Fra:1 Mem:14.66M (Peak 14.96M) | Time:00:00.21 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.002
+Fra:1 Mem:14.73M (Peak 14.96M) | Time:00:00.22 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:14.85M (Peak 14.96M) | Time:00:00.22 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface.001
+Fra:1 Mem:14.91M (Peak 14.96M) | Time:00:00.22 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:14.98M (Peak 14.98M) | Time:00:00.22 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading red_authored_surface
+Fra:1 Mem:15.11M (Peak 15.11M) | Time:00:00.22 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface.001
+Fra:1 Mem:14.16M (Peak 15.11M) | Time:00:00.22 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:14.16M (Peak 15.11M) | Time:00:00.22 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:14.16M (Peak 15.11M) | Time:00:00.22 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:14.25M (Peak 15.11M) | Time:00:00.22 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:14.25M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:14.44M (Peak 41.41M) | Time:00:00.47 | Mem:0.65M, Peak:0.65M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:14.43M (Peak 41.41M) | Time:00:00.47 | Mem:0.83M, Peak:0.83M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:14.43M (Peak 41.41M) | Time:00:00.47 | Mem:0.83M, Peak:0.83M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:14.68M (Peak 41.41M) | Time:00:00.48 | Mem:0.83M, Peak:0.83M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:14.70M (Peak 41.41M) | Time:00:00.48 | Mem:0.83M, Peak:0.83M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:14.70M (Peak 41.41M) | Time:00:00.48 | Mem:0.83M, Peak:0.83M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:14.70M (Peak 41.41M) | Time:00:00.48 | Mem:0.97M, Peak:0.97M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:0.97M, Peak:0.97M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.27M, Peak:1.27M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.27M, Peak:1.27M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.27M, Peak:1.27M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.27M, Peak:1.27M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.27M, Peak:1.27M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.35M, Peak:1.35M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.27M, Peak:1.35M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.36M, Peak:1.36M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.36M, Peak:1.36M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:15.01M (Peak 41.41M) | Time:00:00.48 | Mem:1.36M, Peak:1.36M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:21.39M (Peak 41.41M) | Time:00:00.55 | Mem:562.36M, Peak:562.36M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:148.96M (Peak 148.96M) | Time:00:00.56 | Remaining:00:00.11 | Mem:689.92M, Peak:689.92M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:202.68M (Peak 283.24M) | Time:00:10.80 | Mem:689.93M, Peak:689.93M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:202.68M (Peak 283.24M) | Time:00:10.80 | Mem:689.93M, Peak:689.93M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/signs_billboards_09.png'
+Time: 00:11.44 (Saving: 00:00.47)
+
+RENDERED_EXPORTED_MESHES signs_billboards_09.png
+
+Blender quit

@@ -1,0 +1,117 @@
+[
+  {
+    "file": "renders/parked_vehicles_machinery_01.png",
+    "sha256": "96bbb576c7c0847540ec63d3a8fb1d10ce842a8d29cafcd56907e2bb56ec853d",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-A0AA45648C61",
+        "name": "CARSLIP2",
+        "glb": "models/PROP-A0AA45648C61_lod0.glb",
+        "sha256": "0ec8abec9a2b1d2aa8010795e3c2867e7165ead3ae5fc393ae2287babea47a2d"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-0D9A97D596D8",
+        "name": "CARSTRF2",
+        "glb": "models/PROP-0D9A97D596D8_lod0.glb",
+        "sha256": "a8ce8c471e7acd25098a887f4f2e75e92900cac31e004cdd9bf2c3d0ba323a0b"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-D786E7CC7187",
+        "name": "CARSTRR2",
+        "glb": "models/PROP-D786E7CC7187_lod0.glb",
+        "sha256": "55886acc63af8d24f3fb95e870387fa2cc29cf1c490d2d45c0f52265d43cca08"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-E8ECB0D02123",
+        "name": "COPCARF2",
+        "glb": "models/PROP-E8ECB0D02123_lod0.glb",
+        "sha256": "22f4165d786135de33b1a7fb3b46044381ca63b449e688e82a15c243b78de909"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-2E5F09116ABF",
+        "name": "COPCARR2",
+        "glb": "models/PROP-2E5F09116ABF_lod0.glb",
+        "sha256": "65a6acd13f3faa53dde68c8ab4cfb0b2e08578829cf5a005664dcdc75c0be5d9"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-46E9AFECE787",
+        "name": "TIRE2",
+        "glb": "models/PROP-46E9AFECE787_lod0.glb",
+        "sha256": "85505f8f3f67ae8080f354c8750f49381be8dbac5a5fc9816eedcee6bf6c92d3"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/parked_vehicles_machinery_02.png",
+    "sha256": "920a4fea9d9b20b3411e377b1c44889ee989a95dbae6f3d8be0c522ee591ca63",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-99314465D6DD",
+        "name": "TRAILSN2",
+        "glb": "models/PROP-99314465D6DD_lod0.glb",
+        "sha256": "e7c2ff85d65f48f9552d22df3f7059adaab9a0e459d31d5a3e4bce586ab77abf"
+      },
+      {
+        "slot": 2,
+        "id": "PROP-DC867A434090",
+        "name": "TRCKWHT2",
+        "glb": "models/PROP-DC867A434090_lod0.glb",
+        "sha256": "7872df5e9935e8009503faf5d3e95cc143c4f9854ad5b4452d74acda0ea3de4e"
+      },
+      {
+        "slot": 3,
+        "id": "PROP-E419AE50712D",
+        "name": "TRKORGR2",
+        "glb": "models/PROP-E419AE50712D_lod0.glb",
+        "sha256": "1252eed020304df1a2a14b47e1ac421d6e8db4f1ac8aa61879161b5e67ec4418"
+      },
+      {
+        "slot": 4,
+        "id": "PROP-EAE1C359D468",
+        "name": "TRKPGEF2",
+        "glb": "models/PROP-EAE1C359D468_lod0.glb",
+        "sha256": "26aa3f07e65c8a08d22ce2a5a67ecaa0ad73be00c7bcbc82c82a352089fa39a6"
+      },
+      {
+        "slot": 5,
+        "id": "PROP-532EF1E6365B",
+        "name": "TRUCK2",
+        "glb": "models/PROP-532EF1E6365B_lod0.glb",
+        "sha256": "8529219e4fccd90f587b8338fe6bf0f17b52472e4ea20629859095fb1223d4b2"
+      },
+      {
+        "slot": 6,
+        "id": "PROP-96EE149660DB",
+        "name": "VAN2",
+        "glb": "models/PROP-96EE149660DB_lod0.glb",
+        "sha256": "423974493bfec96c49767cf7cae96d55298b236c11fc8afa9e3582790d680a5a"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  },
+  {
+    "file": "renders/parked_vehicles_machinery_03.png",
+    "sha256": "cc4ccdf1c834b297ac3283db61f7d4b11b2ea0c672119b91af1d223ced4e97a4",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-418469EB72DB",
+        "name": "VWBUS2",
+        "glb": "models/PROP-418469EB72DB_lod0.glb",
+        "sha256": "86a5e3beb89f60efdd994f4a62bb5dfd5e587b67968bcb014cf48c608b68feda"
+      }
+    ],
+    "method": "Blender render of re-imported delivered GLBs; no concept image inputs",
+    "clay": false
+  }
+]

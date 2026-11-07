@@ -1,0 +1,6175 @@
+{
+  "group": "pedestrians_animals",
+  "source": "sources/pedestrians_animals.blend",
+  "source_sha256": "7a939b32a647299a8b29c5c92e102b2b6cab8444d0c0e8d6982152c57b332f61",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-AD62F66BA933",
+      "name": "AVGMSM06",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/people_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-AD62F66BA933_lod0.glb",
+          "sha256": "55718f226ffac24f699756adf31a7abfd360246d24fa938815177944a1a00e86",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-AD62F66BA933_lod1.glb",
+          "sha256": "1a5de3030236635ba41e94fc399c390ce15f75f44110aa0e255a5482b56b595a",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-AD62F66BA933_lod2.glb",
+          "sha256": "d5f02178bdc5f69c5bde35b24ecc24caa2efcb079741d495fab302e2631a5eab",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-97D77E55EDE4",
+      "name": "AVGW100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/people_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-97D77E55EDE4_lod0.glb",
+          "sha256": "6091c90a0fef1cd33e34aebd9de4462dac0a767ba0ebdd7454c75455b44d56c4",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-97D77E55EDE4_lod1.glb",
+          "sha256": "2778f1251d0eeb2ad7d3cc7fc87c9190684ddc5c9a34fd2597e8f0eb1e2694ad",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-97D77E55EDE4_lod2.glb",
+          "sha256": "60347b46b0ca014bbfaf2eed1d33878e0d081687764c81277c4daf50e18ee9cc",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-47C70E6EBCE4",
+      "name": "AVGWSM08",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-47C70E6EBCE4_lod0.glb",
+          "sha256": "cc942e4945385e91a0b788ec908f65104fef994ce04c5ae1a9687f9682f8d9f2",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-47C70E6EBCE4_lod1.glb",
+          "sha256": "6952bda485128fac8c7e2ae722032dd655258ce39a7b7a282e866f2743373ede",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-47C70E6EBCE4_lod2.glb",
+          "sha256": "a41442d65a721e200ef9d8f7fc5930e69fac4fca2822f342e2d4f797fa4def83",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A5F252D0A464",
+      "name": "BCHW100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/people_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A5F252D0A464_lod0.glb",
+          "sha256": "e2fbd80bf34ef7f34f57ce84c1f55735d423b32cce74f6938c0cc085a3da7f6e",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A5F252D0A464_lod1.glb",
+          "sha256": "df8332fffccf90e07440d6edee2eb9bd887f2cce5307c82f17f33e2316d0b05c",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A5F252D0A464_lod2.glb",
+          "sha256": "98e6e9943f3c4294c9a3abc4054f56b6d0854ce500adc7a524a0712c7dd896b9",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0DAC2E802A51",
+      "name": "BKM100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/people_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0DAC2E802A51_lod0.glb",
+          "sha256": "6109d2a8ce526137195cfb7b87210df91e04ad2baae7246f57b754086baa496c",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0DAC2E802A51_lod1.glb",
+          "sha256": "1dd19c6f43ac8cbdab34003443784246a44e27f2cea274b240bc8a39da400118",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0DAC2E802A51_lod2.glb",
+          "sha256": "d06905259ff30afcdf6b446536cb5dda380fae3ed910f30e857f073526011c31",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2FF6F916AA1C",
+      "name": "BKM1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2FF6F916AA1C_lod0.glb",
+          "sha256": "f319df981f300fa94de7c7ff1b49c66394ec1b458ac5f1d3021eeb139a89bc93",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2FF6F916AA1C_lod1.glb",
+          "sha256": "1cd6c8026e58f0393ca758f0ae4becd2d23354e6e804ab9cf8ed834ed69c0256",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2FF6F916AA1C_lod2.glb",
+          "sha256": "77d6abda240b9824f7bf4efb8ae796ee08c315cb5059cf9e0a6f7373724e2df0",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-EE7B1BE6B145",
+      "name": "BKM3SM02",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-EE7B1BE6B145_lod0.glb",
+          "sha256": "1ab8bc16ac263f27aaebab6247f38efbc9578f347be631c5fb9dd8aee63d6977",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-EE7B1BE6B145_lod1.glb",
+          "sha256": "35407529759982cf528b3c3510351a72e371214cd17cb8b374e78ba3912a0615",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-EE7B1BE6B145_lod2.glb",
+          "sha256": "e0706bc29a3597e8fbef5c22ea58263e5a6955dc87d9d0cc1257c6553d1992a8",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-016720A1701E",
+      "name": "BKR2MD00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-016720A1701E_lod0.glb",
+          "sha256": "dedab11d90fc3cdfb84f285d20529da8d5081bb2170f6586add14524d424452f",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-016720A1701E_lod1.glb",
+          "sha256": "ebd55aa71987382193e2e208921fbf9c58d7ca17ec1970a4cb1e3a4c7be95d91",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-016720A1701E_lod2.glb",
+          "sha256": "4206429d9bd3fcd95b9e612f9909accab9ecca79bac30da041299e6252694d61",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-ADDD154FBF37",
+      "name": "BKR4DL09",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-ADDD154FBF37_lod0.glb",
+          "sha256": "39c6b896d42c55dada89fdf0c8803953ccc996dc7a910f304e52549b32c270cc",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-ADDD154FBF37_lod1.glb",
+          "sha256": "07b0ebac292f16b6f5693094328d6d8bae8bc04bd82ef53d4618045ab0f1d3cf",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-ADDD154FBF37_lod2.glb",
+          "sha256": "de1925b0c382e4cef65197117535fdf8b1b67702e176ff074c56e4e5213ba870",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CF476531CEB6",
+      "name": "BKRGRP10",
+      "builder": "biker_group",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CF476531CEB6_lod0.glb",
+          "sha256": "f2a5e137208c342a3f1b92d015c0b5f153a81772974a8faa46a734c557b6e42a",
+          "triangles": 48360,
+          "parts": 26,
+          "bounds_blender": [
+            [
+              -1.8600000143051147,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              1.8600000143051147,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CF476531CEB6_lod1.glb",
+          "sha256": "d0e636f07bb48c726def33e737d7de1dd073e0a325a517afc77b58edfb4b553c",
+          "triangles": 25000,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -1.8580422401428223,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              1.8580422401428223,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CF476531CEB6_lod2.glb",
+          "sha256": "31c33e6d840af929f95e7f4c4289e4598b0aef6511984db2a0a1fed0ea7679d5",
+          "triangles": 3420,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -1.8600000143051147,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              1.8600000143051147,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 5,
+        "torso": 5,
+        "neck": 5,
+        "head": 5,
+        "hair_cap": 5,
+        "nose": 5,
+        "ear": 10,
+        "eyes": 10,
+        "thigh": 10,
+        "knee": 10,
+        "calf": 10,
+        "shoe": 10,
+        "shoulder": 10,
+        "upper_arm": 10,
+        "elbow": 10,
+        "forearm": 10,
+        "hand": 10,
+        "fingers": 40,
+        "elbow_protection": 10,
+        "belt": 5,
+        "shirt_buttons": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          3.7200000286102295,
+          1.8403571713715792,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.9248214429244399,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4EF066700816",
+      "name": "BKW100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/people_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4EF066700816_lod0.glb",
+          "sha256": "7d3e699a0977f01f8c008ab1c2a9aaaf963be59fb8680228c716eb56e5e3ec2a",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4EF066700816_lod1.glb",
+          "sha256": "889c6f1d64e679da5863425316b9903df2d1ff329a171603b8fe75b524efac95",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4EF066700816_lod2.glb",
+          "sha256": "900082cb18a8f086e85531172fa567c02dd41c89f7bf628f948a409d6dd72e03",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-48E4A4110F9E",
+      "name": "BKW1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-48E4A4110F9E_lod0.glb",
+          "sha256": "4b8072444a31169bc57a5a6f7a8af38cc47c4e1777a836e7cd8d973c74ccccb6",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-48E4A4110F9E_lod1.glb",
+          "sha256": "8a6396e337b46ee73452b8d048e09d8740a3b4fd8809430824f602d757e3ddd9",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-48E4A4110F9E_lod2.glb",
+          "sha256": "1a3dfbe79e5555d8a9f05f790499492386d1457b115bb40811f7e1454807874b",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-9807569BB162",
+      "name": "BKW2SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-9807569BB162_lod0.glb",
+          "sha256": "4a159c4afe300165a886dd9253b3565013b65b23e6de0de418774816ceef7e44",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-9807569BB162_lod1.glb",
+          "sha256": "d98b521f6822bb8483ff280b1d1612d5b3fd490823188f4222bb11d792b4ce93",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-9807569BB162_lod2.glb",
+          "sha256": "0a8207ae4738031428bf107cabd5d5acbaeedf8c29c2d82d755b9767eec55498",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-5BB9D09990BE",
+      "name": "BKW30",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-5BB9D09990BE_lod0.glb",
+          "sha256": "324c65b055c98e5fd55664bb873e3d70a06faf3d4e0f9920a082b1743c34809d",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-5BB9D09990BE_lod1.glb",
+          "sha256": "bf3f76fbd56497e78c463189a19043e7d4662d7c1cb61bcc749f72d6f2345278",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-5BB9D09990BE_lod2.glb",
+          "sha256": "6f114e3bc4724cc95c2dab15f3e2bc4d468660badda91441c1c1377c60e78568",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4E3B7983E298",
+      "name": "BKW3SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4E3B7983E298_lod0.glb",
+          "sha256": "2d84a44fb55104e42d434399c30bd5b16fddd031b87866e62ba92f137fecabdd",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4E3B7983E298_lod1.glb",
+          "sha256": "05fc2ad89bb7a2075577024c465389a0762fbdb2b78540ff14d1c72ccdf7bd3e",
+          "triangles": 5000,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4E3B7983E298_lod2.glb",
+          "sha256": "c278bd8b08b077982bfcbbd21506ababaf748409015db964eef1cc9bb771c41f",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "elbow_protection": 2,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-978D357C5F72",
+      "name": "BMN1DS00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-978D357C5F72_lod0.glb",
+          "sha256": "7193e4cb435c2c5641e8e6ab13bc6bc0076023435b083f29f6b000c938eccd9d",
+          "triangles": 10100,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-978D357C5F72_lod1.glb",
+          "sha256": "945a8285825f32486cf5cdde2be81e0746bd29a1a0044b5df6a0fe714ac6379c",
+          "triangles": 4820,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-978D357C5F72_lod2.glb",
+          "sha256": "0455b2f1b0e644e4776b133d959bd9e74bd0679a644032cc9949e14183eb061a",
+          "triangles": 696,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "briefcase": 1,
+        "briefcase_handle": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8050000071525574,
+          1.835000028833747,
+          0.375
+        ],
+        "center_y_up": [
+          0.04249998927116394,
+          0.927500014193356,
+          0.03749999403953552
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2A02835D05DC",
+      "name": "BUSM200",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/people_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2A02835D05DC_lod0.glb",
+          "sha256": "978f5d2312e1facb04c0aaea3291006ef588b13e89199e6090a6943aefef1a97",
+          "triangles": 10100,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2A02835D05DC_lod1.glb",
+          "sha256": "769108a27d2140683a37cc039e0a13751568881f7b8532379e8318508e40b532",
+          "triangles": 4820,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2A02835D05DC_lod2.glb",
+          "sha256": "27561f32ab295d0893b6e8b0529d5eef57a0a8aaf769434454cc6acabc4f6984",
+          "triangles": 696,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "briefcase": 1,
+        "briefcase_handle": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8050000071525574,
+          1.835000028833747,
+          0.375
+        ],
+        "center_y_up": [
+          0.04249998927116394,
+          0.927500014193356,
+          0.03749999403953552
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1112B1E6E76B",
+      "name": "BUSM2SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_02.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1112B1E6E76B_lod0.glb",
+          "sha256": "bc621c6b7011fcb7c8609dd6e2b59c61323d3ba90d5e87efb6eb711c9c4905cd",
+          "triangles": 10100,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1112B1E6E76B_lod1.glb",
+          "sha256": "c331f406e7e9d7a8ffac894af5b23b8a3e08eaf60e5266bfc4b1147c27d10000",
+          "triangles": 4820,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1112B1E6E76B_lod2.glb",
+          "sha256": "11616ae361c3a0d70bbc6aa58521362d11db90c4618d9bcfe6fed39d88b862a0",
+          "triangles": 696,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "briefcase": 1,
+        "briefcase_handle": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8050000071525574,
+          1.835000028833747,
+          0.375
+        ],
+        "center_y_up": [
+          0.04249998927116394,
+          0.927500014193356,
+          0.03749999403953552
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-EBA4EF231506",
+      "name": "BUSM300",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-EBA4EF231506_lod0.glb",
+          "sha256": "244166ee667a8f370264c7e055e9a84166a146a153ac80e3226cfcc7d4c06625",
+          "triangles": 10100,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-EBA4EF231506_lod1.glb",
+          "sha256": "62fe21ae819f9f689842cb76f252c88845248ea060bbde7ff27f7153651ffee0",
+          "triangles": 4820,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-EBA4EF231506_lod2.glb",
+          "sha256": "7baeb94370e844e02967e7452349c89e2ebc7561f9738b2227ab662beb1828a5",
+          "triangles": 696,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "briefcase": 1,
+        "briefcase_handle": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8050000071525574,
+          1.835000028833747,
+          0.375
+        ],
+        "center_y_up": [
+          0.04249998927116394,
+          0.927500014193356,
+          0.03749999403953552
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0E30B36C2427",
+      "name": "BUSW2E00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_03.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0E30B36C2427_lod0.glb",
+          "sha256": "e098ca8b896a7b446f14715b6867020b5a1729cfbad51655c9001fc4e4bb5661",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0E30B36C2427_lod1.glb",
+          "sha256": "7e7f95ed2e7ef7b67fb7fc76ad0b3b5add750f4d7398754ad4434a6a5d49e4fa",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0E30B36C2427_lod2.glb",
+          "sha256": "4b4ba2c0c5d44b7fff07da55ce31fc221dc8c6f9838118bee35f678641136bd5",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CDB4FEE9DBAA",
+      "name": "BUSW2SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_03.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CDB4FEE9DBAA_lod0.glb",
+          "sha256": "5a34fdb0dd7588fb28da48686450bbe7371b4d9371368a88aee5a3cff18d7e28",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CDB4FEE9DBAA_lod1.glb",
+          "sha256": "d4ad3d69e34e8863512b09c6d0edfd3d1fbe7bf2d5de1a90130bb124ce20956a",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CDB4FEE9DBAA_lod2.glb",
+          "sha256": "44d176b6c92b2fea2ebe1ad674e00ddb3e81c9c5b094086abd2a68e3a9e95db6",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-032FAAB95574",
+      "name": "BUSW300",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_03.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-032FAAB95574_lod0.glb",
+          "sha256": "b99fdda248aa08381111cdc2b8669a7abc218f9fb80e42d73c0ebd552968d305",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-032FAAB95574_lod1.glb",
+          "sha256": "5dd3bcb80d4252a89a636a1fcdf574459974391232024bcd4f0be74332fdd15e",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-032FAAB95574_lod2.glb",
+          "sha256": "6eb511915964590aa08874c152a765528e71d044c5e39641455dba2e2c471aa9",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-CFF62B98E0B2",
+      "name": "BUSW3SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_03.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-CFF62B98E0B2_lod0.glb",
+          "sha256": "d8294be127618749eb3b296eb370b2ff22752fda1731fabb465d947a77ba84bb",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-CFF62B98E0B2_lod1.glb",
+          "sha256": "b0479f683568d399636a4bcfb68a0ebb653923162ce3856decce1757118dd060",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-CFF62B98E0B2_lod2.glb",
+          "sha256": "79f81f279dbefdd4a5ea9c152295f65783ace573c973e2d9d92525b7c1f6aa44",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-06B4CC358501",
+      "name": "COWEEK0",
+      "builder": "cow",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_03.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-06B4CC358501_lod0.glb",
+          "sha256": "3b94226a0612d592df648080dd699574d38894d3e8fd337f576d4283b0eff40a",
+          "triangles": 4892,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.4049999713897705,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.094151258468628,
+              1.5048357248306274
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-06B4CC358501_lod1.glb",
+          "sha256": "e2f67beda4491bc9d8fb86d6079229b1979df674a7aaea11036e38320a378415",
+          "triangles": 3196,
+          "parts": 11,
+          "bounds_blender": [
+            [
+              -0.3328697681427002,
+              -1.3887664079666138,
+              0.0
+            ],
+            [
+              0.3328697681427002,
+              1.0936055183410645,
+              1.5047636032104492
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-06B4CC358501_lod2.glb",
+          "sha256": "629bd453ba46340054becb7081f5edd61af530ca9b436130e11e1853df5672e4",
+          "triangles": 444,
+          "parts": 9,
+          "bounds_blender": [
+            [
+              -0.3499999940395355,
+              -1.3822243213653564,
+              0.0
+            ],
+            [
+              0.3499999940395355,
+              1.0926573276519775,
+              1.3700000047683716
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "animal_torso": 1,
+        "upper_leg": 4,
+        "lower_leg": 4,
+        "hoof": 4,
+        "animal_neck": 1,
+        "animal_head": 1,
+        "muzzle": 1,
+        "animal_ears": 2,
+        "animal_eyes": 2,
+        "horn": 2,
+        "tail": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.699999988079071,
+          1.5048357248306274,
+          2.4991512298583984
+        ],
+        "center_y_up": [
+          0.0,
+          0.7524178624153137,
+          0.1554243564605713
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-551DA44848C9",
+      "name": "CTM1A00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_04.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-551DA44848C9_lod0.glb",
+          "sha256": "6783d8c4adbe17760f7007de73e17a55da42046334860a4d3dc14bdc999f0942",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-551DA44848C9_lod1.glb",
+          "sha256": "01c7e14a323bd4dc9872c06405b7a024d5a12b044307d161da60cf49d42e20f1",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-551DA44848C9_lod2.glb",
+          "sha256": "0771cd67c1fab27a574a1b50a94caaa5a0f7dd6df2ae71b8f4fc8ab94b9b9698",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B3EF80680AE8",
+      "name": "CTM1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_04.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B3EF80680AE8_lod0.glb",
+          "sha256": "b0c1faf3e628157e4966d66e111983ae6cc5bdd289c4d2faf81157e398c94ad3",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B3EF80680AE8_lod1.glb",
+          "sha256": "b16cf1383fd5be4e74f7b95edc7b9bd5c34d54b8b9ed828175e3cb27caed3baf",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B3EF80680AE8_lod2.glb",
+          "sha256": "08d9413db702a81d447f89c43856194a66ebdda0e00d3e8d179842f088ad412d",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F3A0B2D5D4CD",
+      "name": "CTM2A00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_04.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F3A0B2D5D4CD_lod0.glb",
+          "sha256": "03bd9ecf45318f286dfe94444096921fe8ef0e3f80ee635ce34f1693bbac55fc",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F3A0B2D5D4CD_lod1.glb",
+          "sha256": "1dd20de25aa295fe6c5a338d323be96db04d5dd5165bcb6968af654ed30aa301",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F3A0B2D5D4CD_lod2.glb",
+          "sha256": "8360119233f8091f49d4402a3f83d1fffb595657b9e7794e8690bc6c1f916dbb",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2C3D4D3ACEE4",
+      "name": "CTM2B0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_04.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2C3D4D3ACEE4_lod0.glb",
+          "sha256": "2584cf390d904f5dd8b8509bf62351933a35a7b48891d4cd02ba2754dff5c510",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2C3D4D3ACEE4_lod1.glb",
+          "sha256": "631acb71c93239ebc301b2355758879843efd1809c849b36fbbedf66e9951128",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2C3D4D3ACEE4_lod2.glb",
+          "sha256": "61bab3a9ebbf079aa09726f820300b2706e4be66bb46308822cfbebdd8b29ca7",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-60AE32F2B9FA",
+      "name": "CTM300",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_04.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-60AE32F2B9FA_lod0.glb",
+          "sha256": "db17172b87d22e02845da545d2acfc130aa51f6afbf2c2fc9ef8f8726e6b9d83",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-60AE32F2B9FA_lod1.glb",
+          "sha256": "9cec4ee10603c7b9cb498734e153268a53163c980b9024dbd29ffc08b2b6ca9b",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-60AE32F2B9FA_lod2.glb",
+          "sha256": "a313b75852a10da79217980ecab8eabde33ce0f201e978a0587590f860947624",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D066826A6C7F",
+      "name": "CTM3SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_04.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D066826A6C7F_lod0.glb",
+          "sha256": "fa9744cff2df34b632a9a8d1baf0860fce4ae164e3ba423844c7c48b0ade0935",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D066826A6C7F_lod1.glb",
+          "sha256": "ebf1e07ab267b932277fa83ed89970ecacbeebfbfb97a1a5e5031cd6fd455094",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D066826A6C7F_lod2.glb",
+          "sha256": "1f82f8e3065f7f0e910da521bd76f029933f871f4af48b587af31dc56fe4776a",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-AA52C09B2FFC",
+      "name": "CTM400",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_05_v2.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-AA52C09B2FFC_lod0.glb",
+          "sha256": "f03939a58c99a1dfc05ede1a4827ea2525241f655637e9ae8bac1560d5c92e31",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-AA52C09B2FFC_lod1.glb",
+          "sha256": "91b70de1139117073f7eea16f87a247aeb5f57e40d5b16e11817875f39ff169c",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-AA52C09B2FFC_lod2.glb",
+          "sha256": "7b8e7d08eb06792b49dc40851316d5fb2b60e5cd66db21326a5da56500305395",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-635D1FA232D0",
+      "name": "CTM4SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_05_v2.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-635D1FA232D0_lod0.glb",
+          "sha256": "7767e6b42dbb965f5abe974fa5422a5ac1f24ccd07b931e0c1b2b9191cba5653",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-635D1FA232D0_lod1.glb",
+          "sha256": "3be90ba3afb3bc7d913f93d64e7a71b5c29f7ff864d36ee137ca667395b9c6a0",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-635D1FA232D0_lod2.glb",
+          "sha256": "6eb6a678b0818c4320449e7890d901b3bb7230ff5ae3f57e9d07624ee424021b",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-397D1FC5C817",
+      "name": "CTW1A00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_05_v2.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-397D1FC5C817_lod0.glb",
+          "sha256": "96dc96ece7141313b08e5ce391b4e43fae42fc54de84cb7a070a70fcfebd991c",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.7699999809265137
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-397D1FC5C817_lod1.glb",
+          "sha256": "9abb6e5a3373ea31022e82e11b18d5b3a50d1278896b73140d2a3c017e11d8b9",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.7699999809265137
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-397D1FC5C817_lod2.glb",
+          "sha256": "f27b424b463f2df484945483dea755eec9e732441116d0676d2fafbf4455bd19",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.7699999809265137
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7653571236878633,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.887321419082582,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E46F27058B0F",
+      "name": "CTW1B0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_05_v2.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E46F27058B0F_lod0.glb",
+          "sha256": "ac2022a77c3285b188053360cd41e765e3ac1886421f39476f9100efdac2e7cd",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.7699999809265137
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E46F27058B0F_lod1.glb",
+          "sha256": "a51fb69a1e97d466faa273607886b8ad162d1ceb7bcf763d6c060a6df3d290ac",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.7699999809265137
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E46F27058B0F_lod2.glb",
+          "sha256": "680dc56c62a12db1d3b792a01d6bd67926e08eb4a8b9278ee879af39c4d03c88",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.7699999809265137
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7653571236878633,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.887321419082582,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D9542803DE23",
+      "name": "CTW1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_05_v2.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D9542803DE23_lod0.glb",
+          "sha256": "83016145e4f92639f40ee664c7334f4b8dc6da9a91baebb2a4432609e2cedca2",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.7699999809265137
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D9542803DE23_lod1.glb",
+          "sha256": "e85542590234779a061ff936089a49a45445713dcdf0cd12adc28408307ef30a",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.7699999809265137
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D9542803DE23_lod2.glb",
+          "sha256": "c6cb41df77267266ae1f47f80496e633f4353c4cedf68715a1e64e60a7c8b2ea",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.7699999809265137
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7653571236878633,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.887321419082582,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-44C55BAB860E",
+      "name": "DAVEEK00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_05_v2.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-44C55BAB860E_lod0.glb",
+          "sha256": "a4360c19011c3923af4939655664c44a1a483fc82c04a03544d56d2c671c7343",
+          "triangles": 10100,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-44C55BAB860E_lod1.glb",
+          "sha256": "e5a8a61130eb6708e885f24dd6cd515daeb6ae5332d26b60a3b75b09acd2c4f5",
+          "triangles": 4820,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-44C55BAB860E_lod2.glb",
+          "sha256": "de49d7d1d490aeac77fd75edeaaf6bb900732fd813310fc48ef218f13e183542",
+          "triangles": 696,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.4449999928474426,
+              0.15000000596046448,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "briefcase": 1,
+        "briefcase_handle": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8050000071525574,
+          1.835000028833747,
+          0.375
+        ],
+        "center_y_up": [
+          0.04249998927116394,
+          0.927500014193356,
+          0.03749999403953552
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F5195071E480",
+      "name": "DVRW100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_06.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F5195071E480_lod0.glb",
+          "sha256": "57b8ca1806a46a99eac238f86e04c75e95d55d14f88dc32a38d16ad33ec72826",
+          "triangles": 10072,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.4300000071525574,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.4300000071525574,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F5195071E480_lod1.glb",
+          "sha256": "7c59ce6e2fc93bce3b752da69a2723fb97946a06a6370c13cd699ee9f1684997",
+          "triangles": 4832,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.4265739619731903,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.4265739619731903,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F5195071E480_lod2.glb",
+          "sha256": "00577d140eeff2042a121343eb995b4ddeaa3fc16b41b5f06f43dde847c961d9",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "diving_fins": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8600000143051147,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-18651CC63CD8",
+      "name": "FEMHIT00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_06.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-18651CC63CD8_lod0.glb",
+          "sha256": "fb545a7c548f05f2a8285664a10989b1f642d7fcfbd9a6b7f7d9ca538ccf4ee7",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-18651CC63CD8_lod1.glb",
+          "sha256": "55197cc0000484c7b15d8dc854c79a95790d6e7d8f88946af9534c74e1f1ca4d",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-18651CC63CD8_lod2.glb",
+          "sha256": "102b40c5ebe5b2e43f866d8db3b7dbb196fec9611feb7d69d16c8ab0675af4f3",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E296DF5CA9A6",
+      "name": "FLG201",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_06.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E296DF5CA9A6_lod0.glb",
+          "sha256": "8d601515475d6b4699ac8f6364972932cf96d96951517aa51f3ade33552118d4",
+          "triangles": 11140,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.64000004529953,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E296DF5CA9A6_lod1.glb",
+          "sha256": "a049bcd77d3463b637ee69e247430bb77af04fb93bb5c17c3ca4b3903496b23c",
+          "triangles": 5356,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.64000004529953,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E296DF5CA9A6_lod2.glb",
+          "sha256": "23b2db4a25c0ea4008a642a89c2769f2e59a0d92c4ee53c370506f04b022e928",
+          "triangles": 704,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.37800002098083496,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "flag_pole": 1,
+        "checker_flag": 16
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.0000000596046448,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.14000001549720764,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-4BAFAB2A8AC8",
+      "name": "FLGRL100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_06.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-4BAFAB2A8AC8_lod0.glb",
+          "sha256": "a4399ec849fd5d6d7204db70052ac0ee8563eb75a7e6f94e9f4e4e7d29999795",
+          "triangles": 11140,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.64000004529953,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-4BAFAB2A8AC8_lod1.glb",
+          "sha256": "fa7245cfca6e98176bb1bee9079622d5b34f0efe996dc867a7b5318910bbf97b",
+          "triangles": 5356,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.64000004529953,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-4BAFAB2A8AC8_lod2.glb",
+          "sha256": "d44bc8acbcb123da86737bfd763c294155512afec6e15221d38a6df96fc896ef",
+          "triangles": 704,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.37800002098083496,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "flag_pole": 1,
+        "checker_flag": 16
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.0000000596046448,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.14000001549720764,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B530645DC3EC",
+      "name": "FLM100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_06.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B530645DC3EC_lod0.glb",
+          "sha256": "9a776b4fb8cdb580f4ce16de5d6487e507c148364f8603549a51ea6737060bfa",
+          "triangles": 9916,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.14499999582767487,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B530645DC3EC_lod1.glb",
+          "sha256": "aed1841191636f371ee009246f18839b62c88f98020d3981acff9d3555d32f59",
+          "triangles": 4940,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.13790319859981537,
+              1.899999976158142
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B530645DC3EC_lod2.glb",
+          "sha256": "3e7bca0e7e3d1bf7f4be69e6db517c8d8aeff12fa7aae98b323bc591cd245bc5",
+          "triangles": 740,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.12557367980480194,
+              1.899999976158142
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "hardhat": 1,
+        "hardhat_brim": 1,
+        "vest_reflective_tape": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.8899999763816595,
+          0.3699999898672104
+        ],
+        "center_y_up": [
+          0.0,
+          0.9549999879673123,
+          0.03999999910593033
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C251166071E9",
+      "name": "HHM100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_06.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C251166071E9_lod0.glb",
+          "sha256": "f2fdf7bb21250b5405498eaff34fd4cb746d7235784f8af688cfb0568de9b3fd",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C251166071E9_lod1.glb",
+          "sha256": "fe33ab3a867c0d875a0168fbde0322d35b3cdc5d658674ec70f9b9c516094db3",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C251166071E9_lod2.glb",
+          "sha256": "8e3df03b59bc8ea6a3119780f18e71cef92d7e780cd5038774b3e7bb489bda40",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6F42EC224460",
+      "name": "HHM1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_07.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6F42EC224460_lod0.glb",
+          "sha256": "383083e2a10998754069390e0be5145cb12e01effccb66af31e1d2cb36e1ecde",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6F42EC224460_lod1.glb",
+          "sha256": "3a798e23a5fcb933273ae623914c831608fccd7c683644cb81fbfa5021df1307",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6F42EC224460_lod2.glb",
+          "sha256": "9eb3af790548779ef0ed9b15a34c9943f0f895867e1b6fadadfd468db704d925",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F3C6F593DB8B",
+      "name": "HHW1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_07.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F3C6F593DB8B_lod0.glb",
+          "sha256": "ea96666d3360b61d30ad141de7e60690f066473e62c767ab6a4bef0753ad50a6",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F3C6F593DB8B_lod1.glb",
+          "sha256": "88e662f9d6a49bc1376fb4ef93d8eef770151a0d1280eb1eb82ae7166c898b26",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F3C6F593DB8B_lod2.glb",
+          "sha256": "7db6f7bfda35301889532da798956589e1ae21a8eb5fed2f856f7ecc7cd076b1",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-1FAB968E3F60",
+      "name": "JGW100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_07.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-1FAB968E3F60_lod0.glb",
+          "sha256": "1bcb59a2fe9ebfe17bb0651fba88c966d4699b16e0a6eefaa009c57827b88acd",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-1FAB968E3F60_lod1.glb",
+          "sha256": "8a165f5872cacfaeaa7ce8d6b96a0c1143fa3206d61fed7b6dec5e697a919a53",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-1FAB968E3F60_lod2.glb",
+          "sha256": "d73f2549ba71cf3902efb25b4da3a8c2b39fc4329c61a1253a13f6bf028e90ed",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-36E34792A832",
+      "name": "JGW1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_07.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-36E34792A832_lod0.glb",
+          "sha256": "d1ddebabc156850d613a14d993c864c4f12d03953e45b4ad4d01f46e66173e56",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-36E34792A832_lod1.glb",
+          "sha256": "a75d53c62b68333bdea28de9c6ca2f1f78374ad18401c47a04ab0dca0d7e094f",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-36E34792A832_lod2.glb",
+          "sha256": "5317d631bdf3a14faf845785b7a46682a1e8c37cbaf87d8381940d7de87e92db",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-E9FDE33E57FF",
+      "name": "MJOG100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_07.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-E9FDE33E57FF_lod0.glb",
+          "sha256": "0d885ef3e5f5bcc688c44e0d4994a47f5a4a32c7cf3840b1dc1baaab484e3cc5",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-E9FDE33E57FF_lod1.glb",
+          "sha256": "ae437f59b8a8670719a7aa0c792efcece1d29fde58647225b4b594a5ee1ff12c",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-E9FDE33E57FF_lod2.glb",
+          "sha256": "68c8470bc465dc4f8884d4dd87d03c0274fed674ee97b2223bb7a43342744c07",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-6259F2823CFF",
+      "name": "MJOG1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_07.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-6259F2823CFF_lod0.glb",
+          "sha256": "664361069d42a3de9d055363a8c1af0ae439b07d3b6b5f4db7202790e17d4206",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-6259F2823CFF_lod1.glb",
+          "sha256": "78ceb64399e8d35a34ff6180c1f5eac8ef2b807873ea2b795f1ada987486679f",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.009999999776482582
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-6259F2823CFF_lod2.glb",
+          "sha256": "e27bbfc635ee97723f1a62ee806d620e09895173a70402497624aa85879c0e79",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.009999999776482582
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.835000028833747,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.927500014193356,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F42FE027C62A",
+      "name": "OLDWMN0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_08_v2.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F42FE027C62A_lod0.glb",
+          "sha256": "afcb3b4dca3426ae47800fabe212d22212faef11f8b56c62fe5f7908ab9447cf",
+          "triangles": 10728,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.6679999828338623,
+              0.0
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F42FE027C62A_lod1.glb",
+          "sha256": "4f4a28d700bd258f6ac32919b611b8d874464ad62f60450849dc2df90ba99f46",
+          "triangles": 5464,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.6671189665794373,
+              0.0
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F42FE027C62A_lod2.glb",
+          "sha256": "46d5ecfdd61d289fbc2e6304fd1cb562f5d39bd65de82d900a8e7910fdccc84e",
+          "triangles": 844,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.6655884385108948,
+              0.0
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "walker_legs": 4,
+        "walker_handle": 2,
+        "walker_brace": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.718571424484253,
+          0.8029999881982803
+        ],
+        "center_y_up": [
+          0.0,
+          0.8592857122421265,
+          0.26649998873472214
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F4F320430EFE",
+      "name": "OLDWMN00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_08_v2.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F4F320430EFE_lod0.glb",
+          "sha256": "7f2eaeac7d8c5754e79e6c1a8ee806e9186b0ff730fb431c1d335e391fe92c54",
+          "triangles": 10728,
+          "parts": 23,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.6679999828338623,
+              0.0
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F4F320430EFE_lod1.glb",
+          "sha256": "1b2313448962344afa2e63c9a8eb18e21209197de25ff2c2bcb33e4f9370f807",
+          "triangles": 5464,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.6671189665794373,
+              0.0
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F4F320430EFE_lod2.glb",
+          "sha256": "bede795a170436d8a8fc3c10b495affa27a0f82a185dfbbac206a8269253c461",
+          "triangles": 844,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.6655884385108948,
+              0.0
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "walker_legs": 4,
+        "walker_handle": 2,
+        "walker_brace": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.718571424484253,
+          0.8029999881982803
+        ],
+        "center_y_up": [
+          0.0,
+          0.8592857122421265,
+          0.26649998873472214
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-C54FF15880B2",
+      "name": "SFRM00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_08_v2.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-C54FF15880B2_lod0.glb",
+          "sha256": "fc778e8e23db1a428ce50ed017b87053c5820f2501641babbb5307e20ab2cf8b",
+          "triangles": 9672,
+          "parts": 21,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.23000000417232513,
+              0.0
+            ],
+            [
+              0.4749999940395355,
+              0.23000000417232513,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-C54FF15880B2_lod1.glb",
+          "sha256": "d2a566c69295ab44822077acff3bcf2218919b1fa5e6b80376594eec49757875",
+          "triangles": 4660,
+          "parts": 18,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.0
+            ],
+            [
+              0.4713292419910431,
+              0.20803695917129517,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-C54FF15880B2_lod2.glb",
+          "sha256": "fa4f1c735f1faf36d1b00e69498caf939017e84cff9a60647e6fe776cb50d555",
+          "triangles": 720,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.0
+            ],
+            [
+              0.4749999940395355,
+              0.19918584823608398,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "surfboard": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.8350000083446503,
+          1.8450000286102295,
+          0.46000000834465027
+        ],
+        "center_y_up": [
+          0.05749998986721039,
+          0.9225000143051147,
+          -0.0
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D6813A330876",
+      "name": "SKR2NW00",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_08_v2.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D6813A330876_lod0.glb",
+          "sha256": "909635ec0d2fcf75d66957360a45e7730504c21b9cf792c04c8bda19e3b86a94",
+          "triangles": 10536,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.3799999952316284,
+              -0.23999999463558197,
+              0.0
+            ],
+            [
+              0.3799999952316284,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D6813A330876_lod1.glb",
+          "sha256": "897e783d8b1761cfdb229e3313ece308c769728fd407cbdbc54e88c2e6e71991",
+          "triangles": 5464,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.3614014685153961,
+              -0.22949592769145966,
+              0.0
+            ],
+            [
+              0.3614014685153961,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D6813A330876_lod2.glb",
+          "sha256": "b82a1e74ff34fb7fe013805118c1fa252ebc3eb2c23f7d26372c3c354807fb1a",
+          "triangles": 720,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.3799999952316284,
+              -0.22526279091835022,
+              0.009999999776482582
+            ],
+            [
+              0.3799999952316284,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "skateboard_deck": 1,
+        "skate_wheels": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7599999904632568,
+          1.8450000286102295,
+          0.375
+        ],
+        "center_y_up": [
+          0.0,
+          0.9225000143051147,
+          0.05249999463558197
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-20E648B16FBA",
+      "name": "SKTR2SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_08_v2.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-20E648B16FBA_lod0.glb",
+          "sha256": "8222173369c6877fb0ac8c705ee6c700bf64ad881f9a0123ebfbe7b81ef87796",
+          "triangles": 10536,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.3799999952316284,
+              -0.23999999463558197,
+              0.0
+            ],
+            [
+              0.3799999952316284,
+              0.13500000536441803,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-20E648B16FBA_lod1.glb",
+          "sha256": "6b8160de04463643f19aeb544486dda476b84fedafbf6343c1e8dc6d42c9c0d6",
+          "triangles": 5464,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.3614014685153961,
+              -0.22949592769145966,
+              0.0
+            ],
+            [
+              0.3614014685153961,
+              0.125,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-20E648B16FBA_lod2.glb",
+          "sha256": "2c5bc89aaf39df98e830c240d87af0c384c7af76c74e154b8f67fcff66263d2d",
+          "triangles": 720,
+          "parts": 15,
+          "bounds_blender": [
+            [
+              -0.3799999952316284,
+              -0.22526279091835022,
+              0.009999999776482582
+            ],
+            [
+              0.3799999952316284,
+              0.11691343039274216,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "skateboard_deck": 1,
+        "skate_wheels": 4
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7599999904632568,
+          1.8450000286102295,
+          0.375
+        ],
+        "center_y_up": [
+          0.0,
+          0.9225000143051147,
+          0.05249999463558197
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3BB82CCD4F67",
+      "name": "TNSM100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_08_v2.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3BB82CCD4F67_lod0.glb",
+          "sha256": "88e47902e173e3138387295e7f1648831d4ea0d460d168cf35815fc8a0837f89",
+          "triangles": 10180,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.41600000858306885,
+              0.13600000739097595,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3BB82CCD4F67_lod1.glb",
+          "sha256": "56ba1a91525ecbc8a9a54041080535fc33ac9aed123b56b7ecae54937201b92e",
+          "triangles": 4892,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.2160000056028366,
+              0.009999999776482582
+            ],
+            [
+              0.4152168929576874,
+              0.13600000739097595,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3BB82CCD4F67_lod2.glb",
+          "sha256": "3a02bbacf14dd8fa4839a7393432f506f20ee4795564d355d3aa77cc83d385ad",
+          "triangles": 752,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.2160000056028366,
+              0.009999999776482582
+            ],
+            [
+              0.41600000858306885,
+              0.13600000739097595,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "racket_handle": 1,
+        "tennis_racket": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7760000228881836,
+          1.835000028833747,
+          0.3610000014305115
+        ],
+        "center_y_up": [
+          0.02799999713897705,
+          0.927500014193356,
+          0.044499993324279785
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-89576C1C949B",
+      "name": "TNSM1SM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_09.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-89576C1C949B_lod0.glb",
+          "sha256": "1da48f6343c7ca0eee1a0bb2b455b16d46ef5b4b6f44b7fb6d6ef8d0e5364b29",
+          "triangles": 10180,
+          "parts": 22,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.009999999776482582
+            ],
+            [
+              0.41600000858306885,
+              0.13600000739097595,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-89576C1C949B_lod1.glb",
+          "sha256": "cd0880fdf600e9dd07ed58bd7b6d826a01ce09b91ed9a1c906acccde3f998bc7",
+          "triangles": 4892,
+          "parts": 19,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.2160000056028366,
+              0.009999999776482582
+            ],
+            [
+              0.4152168929576874,
+              0.13600000739097595,
+              1.8450000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-89576C1C949B_lod2.glb",
+          "sha256": "9be1daf9bd364004a48338ff56c2bbd4e6c153991e089e20124e023e164248e0",
+          "triangles": 752,
+          "parts": 16,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.2160000056028366,
+              0.009999999776482582
+            ],
+            [
+              0.41600000858306885,
+              0.13600000739097595,
+              1.8450000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3,
+        "racket_handle": 1,
+        "tennis_racket": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7760000228881836,
+          1.835000028833747,
+          0.3610000014305115
+        ],
+        "center_y_up": [
+          0.02799999713897705,
+          0.927500014193356,
+          0.044499993324279785
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-64B1D8C0B5C9",
+      "name": "TRSTW100",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_09.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-64B1D8C0B5C9_lod0.glb",
+          "sha256": "43cf5e5feed25218b0342afa6ba1ee0082a80873757cc2362726e99880c32f9b",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-64B1D8C0B5C9_lod1.glb",
+          "sha256": "8a5632accd8c253ea3517366dc9a7eeeb564379036e87d9c5f10958e68b60520",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-64B1D8C0B5C9_lod2.glb",
+          "sha256": "1c5effe9b5a5cdfed2d38b65ca85b437f6f9ec91615fbac399c471f96487d4eb",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7697DF451B7E",
+      "name": "TRSTWSM0",
+      "builder": "human",
+      "group": "pedestrians_animals",
+      "concept": {
+        "file": "art/props/concept_3d/all_pedestrians_animals_09.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7697DF451B7E_lod0.glb",
+          "sha256": "b61ceb5d8db4eaf1956d2c3aa38d3383c351c06385738bc4a49f1fdf6ba1d5aa",
+          "triangles": 9224,
+          "parts": 20,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.22499999403953552,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.13500000536441803,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7697DF451B7E_lod1.glb",
+          "sha256": "d7b39d55a09f0ed110234fbc6c1b2ad4ebd29bda464df3826b8c459bc1cc1c2e",
+          "triangles": 4536,
+          "parts": 17,
+          "bounds_blender": [
+            [
+              -0.35804226994514465,
+              -0.21067626774311066,
+              0.004642857238650322
+            ],
+            [
+              0.35804226994514465,
+              0.125,
+              1.718571424484253
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7697DF451B7E_lod2.glb",
+          "sha256": "08fe802ab60099f6c94ee1e8c19f7644acec17abfb7190aa452004e024756c12",
+          "triangles": 684,
+          "parts": 14,
+          "bounds_blender": [
+            [
+              -0.36000001430511475,
+              -0.20490381121635437,
+              0.004642857238650322
+            ],
+            [
+              0.36000001430511475,
+              0.11691343039274216,
+              1.718571424484253
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pelvis": 1,
+        "torso": 1,
+        "neck": 1,
+        "head": 1,
+        "hair_cap": 1,
+        "nose": 1,
+        "ear": 2,
+        "eyes": 2,
+        "thigh": 2,
+        "knee": 2,
+        "calf": 2,
+        "shoe": 2,
+        "shoulder": 2,
+        "upper_arm": 2,
+        "elbow": 2,
+        "forearm": 2,
+        "hand": 2,
+        "fingers": 8,
+        "belt": 1,
+        "shirt_buttons": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.7200000286102295,
+          1.7139285672456026,
+          0.35999999940395355
+        ],
+        "center_y_up": [
+          0.0,
+          0.8616071408614516,
+          0.044999994337558746
+        ]
+      },
+      "rig_status": "not_rigged",
+      "production_approved": false
+    }
+  ]
+}

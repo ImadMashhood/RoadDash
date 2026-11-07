@@ -1,0 +1,296 @@
+{
+  "id": "commercial_high_street",
+  "label": "Commercial high street",
+  "asset_ids": [
+    "BUSS1",
+    "BUSS10",
+    "BUSS2",
+    "BUSS4",
+    "BUSS5",
+    "BUSS6",
+    "BUSS7",
+    "BUSS8",
+    "BUSS9"
+  ],
+  "placement_guidance": "Continuous shopfronts, awnings and signs; group related storefronts along the same block.",
+  "assets": [
+    {
+      "id": "BUSS1",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        154,
+        269
+      ],
+      "original_course_family_load_matches": [
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS1_lod0.glb",
+          "sha256": "1adea7ce6a1546722a226376efc3f377e64e4e81d5e7a0a74a865ec7badb83b3"
+        },
+        {
+          "file": "../../models/BUSS1_lod1.glb",
+          "sha256": "72a045464287ae0d34df4c7a21146943216f29e5b23ee6f468efe2a1d959f037"
+        },
+        {
+          "file": "../../models/BUSS1_lod2.glb",
+          "sha256": "3c062f1977935d7356156c36d0a7bb07e0a5d572bc4f550bbdeb3fda038b38ae"
+        }
+      ],
+      "render": "../../renders/BUSS1.png"
+    },
+    {
+      "id": "BUSS10",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        103,
+        153
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS10_lod0.glb",
+          "sha256": "d4d3f85c9e54149eb16849f289d738e4db20f96ff7ae94285819391911d5a923"
+        },
+        {
+          "file": "../../models/BUSS10_lod1.glb",
+          "sha256": "d2cac301b6bd8abaaa760d358ca5c3bdce81a0026e7d5a33398f25e71643f034"
+        },
+        {
+          "file": "../../models/BUSS10_lod2.glb",
+          "sha256": "429b953c5ef855c4445f82aaf66dda61c265b00a1b7fc251ab058896e912e416"
+        }
+      ],
+      "render": "../../renders/BUSS10.png"
+    },
+    {
+      "id": "BUSS2",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        103,
+        153
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS2_lod0.glb",
+          "sha256": "8341fc7f85fd54a9df65d3d587126ed8ad276ace3060a8cbfceade7ff2275f2b"
+        },
+        {
+          "file": "../../models/BUSS2_lod1.glb",
+          "sha256": "0c4946790688f31ffa53ae40fbe044b8c9b11ffb915fb5a8a0e2aadb64fa397b"
+        },
+        {
+          "file": "../../models/BUSS2_lod2.glb",
+          "sha256": "73d8cd256b6bb85f63499114044d477545baa2df3120cac4ee0155c9297e8184"
+        }
+      ],
+      "render": "../../renders/BUSS2.png"
+    },
+    {
+      "id": "BUSS4",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        101,
+        103,
+        153
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS4_lod0.glb",
+          "sha256": "3fabfcd564f112cb441fbaf5abaa4c11f3176563bfc9a70acdd1563df511f773"
+        },
+        {
+          "file": "../../models/BUSS4_lod1.glb",
+          "sha256": "27c8153ff9f7f0e3935554b9d841bf62ce6f3b8b31abf2ee1397a10397d1efbb"
+        },
+        {
+          "file": "../../models/BUSS4_lod2.glb",
+          "sha256": "93108a4a23e098dc3e429f2065ae5f3e404ad4e50b78f61316af21742ed1ae49"
+        }
+      ],
+      "render": "../../renders/BUSS4.png"
+    },
+    {
+      "id": "BUSS5",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        101,
+        154
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS5_lod0.glb",
+          "sha256": "c4e04a5ba5517d3ff8153bdd4c99107cefef3843d257a408aca5e8509bbd38c8"
+        },
+        {
+          "file": "../../models/BUSS5_lod1.glb",
+          "sha256": "228de12add0f1d0b220b99cc8d7b4617370fe586d04cbc3ba3f791a2b223913f"
+        },
+        {
+          "file": "../../models/BUSS5_lod2.glb",
+          "sha256": "138e9e3c6805c67eb3f1e8c6ee511263fadb79387a8776f0ca079b097622a035"
+        }
+      ],
+      "render": "../../renders/BUSS5.png"
+    },
+    {
+      "id": "BUSS6",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        101,
+        154,
+        269
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS6_lod0.glb",
+          "sha256": "43ab6bc700075054e02247b22ab65fadbfbfcb45aad166de141b6c1cac35e7a9"
+        },
+        {
+          "file": "../../models/BUSS6_lod1.glb",
+          "sha256": "9ebece90395e4c7374c59cb525ff4c1ada48ed39d5b849ae1624b5c36e8e2169"
+        },
+        {
+          "file": "../../models/BUSS6_lod2.glb",
+          "sha256": "0a2a96bc3b81285860d5d7a9286728b002367428e68db91a6e007f5f69342f6e"
+        }
+      ],
+      "render": "../../renders/BUSS6.png"
+    },
+    {
+      "id": "BUSS7",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        102,
+        269
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS7_lod0.glb",
+          "sha256": "e4570fb27afd0597b485ab744faee328d5d362f3c784b06552dbb805c76ac1bc"
+        },
+        {
+          "file": "../../models/BUSS7_lod1.glb",
+          "sha256": "4e1c33830fd5f61dfe15162deb9959ff99cdc9fe786c728c8315a4af855dbcd6"
+        },
+        {
+          "file": "../../models/BUSS7_lod2.glb",
+          "sha256": "d094ee08a8585755c30f8a50fcbbb964b41813ad20e876a1532af5719a23a20c"
+        }
+      ],
+      "render": "../../catalog_renders/BUSS7.png"
+    },
+    {
+      "id": "BUSS8",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        102,
+        154
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS8_lod0.glb",
+          "sha256": "55a7177ee7190a4d5256ff187ffb6b5a3a4caea522b54e6120e90705d36e447b"
+        },
+        {
+          "file": "../../models/BUSS8_lod1.glb",
+          "sha256": "3561add9e725535d0227de0b63aa0af55d39429f16073a7df57aae74b81ca6c5"
+        },
+        {
+          "file": "../../models/BUSS8_lod2.glb",
+          "sha256": "8f0b523cd748c21e93a0186c83df4b125898ad93f309b38353fad3a2517f4d98"
+        }
+      ],
+      "render": "../../catalog_renders/BUSS8.png"
+    },
+    {
+      "id": "BUSS9",
+      "asset_type": "facade",
+      "primary_district": "commercial_high_street",
+      "assignment_basis": "RoadDash art-direction inference from original named asset family and modeled form",
+      "original_family_ids": [
+        102,
+        154,
+        269
+      ],
+      "original_course_family_load_matches": [
+        "CITY",
+        "HIWAY",
+        "MEDLY"
+      ],
+      "course_evidence": "named CEL inside loaded family; eligibility only, not proof this exact texture was selected or placed",
+      "lods": [
+        {
+          "file": "../../models/BUSS9_lod0.glb",
+          "sha256": "5eca9aa2f273ee5dde19295f5912e41b9166dc069e6765ed1543c47286b29bb5"
+        },
+        {
+          "file": "../../models/BUSS9_lod1.glb",
+          "sha256": "953aa9a1a1af9bc11366231ea38bdab6307988ec691adf3802885f097c0a2e21"
+        },
+        {
+          "file": "../../models/BUSS9_lod2.glb",
+          "sha256": "a509d51d7aad0139c1d1656bab0c7fbf59a3f0a6fba1b1a9f111f29317618a08"
+        }
+      ],
+      "render": "../../catalog_renders/BUSS9.png"
+    }
+  ],
+  "paths_relative_to_manifest": true
+}

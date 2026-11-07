@@ -278,6 +278,7 @@ fn initialize(world: &mut World) {
         }
         let mut entities: Vec<_> = entries.iter().map(|e| e.1).collect();
         let root = entities[0];
+        let inherited_envelope = world.get::<crate::recovery::CrashEnvelope>(root).copied();
         let transform = *world.get::<Transform>(root).unwrap();
         let q = transform.rotation;
         let s = specs();
@@ -377,7 +378,7 @@ fn initialize(world: &mut World) {
                     },
                 ));
             }
-            if world.get::<crate::recovery::CrashEnvelope>(root).is_some() {
+            if let Some(envelope) = inherited_envelope {
                 world.entity_mut(e).insert(
                     crate::recovery::CrashEnvelope::new(
                         v.linvel,
@@ -385,7 +386,8 @@ fn initialize(world: &mut World) {
                         t.rotation,
                         q * Vec3::Z,
                     )
-                    .with_angular_velocity(omega),
+                    .with_angular_velocity(omega)
+                    .with_original_direction(envelope.allows_reverse()),
                 );
             }
         }

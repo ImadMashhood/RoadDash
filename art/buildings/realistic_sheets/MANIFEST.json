@@ -1,0 +1,465 @@
+{
+  "tool": "Built-in ChatGPT image generation",
+  "sheets": 25,
+  "named_references": 146,
+  "game_integration": false,
+  "production_art_approved": false,
+  "rights": "Derived from user-supplied original-game references; production redistribution clearance unverified",
+  "prompt_file": "PROMPTS.json",
+  "records": [
+    {
+      "file": "facades_01.png",
+      "ids": [
+        "BUSS1",
+        "BUSS10",
+        "BUSS2",
+        "BUSS4",
+        "BUSS5",
+        "BUSS6"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "0281aac0fa10c1f5a71ba49e1794db8c1bb8a0e3b30edbe1295b83a76e776a6f",
+      "source_sha256": "2df69f44e1662733e8d9322825235c0a51b75a3ec495187f451b2d403cbf4508",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_02.png",
+      "ids": [
+        "BUSS7",
+        "BUSS8",
+        "BUSS9",
+        "CHINA12",
+        "CHINA13",
+        "CHINA14"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "5ad765b7b43eff1aed0e4d3115c3290a08500de40efd3edc0053c167db540fec",
+      "source_sha256": "1638ac6e650a44c043f3e598bf2917758520758149673731a782ba9b168cbc74",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_03.png",
+      "ids": [
+        "CHINA15",
+        "CHINA16",
+        "CHINA17",
+        "CLSTGA11",
+        "CLSTGA12",
+        "CLSTGA13"
+      ],
+      "output_pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "1242dc30d6540d8299ed6df673a5cd5ea7e0fd71525ebaadda196ab80ceb3928",
+      "source_sha256": "8178b022d88c13b0d328617e3c93bffc0afad5aa84f419c0519d82f4d299b529",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_04.png",
+      "ids": [
+        "CLSTGA14",
+        "CLSTGA15",
+        "CLSTGA16",
+        "CLSTGA17",
+        "CLSTGA18",
+        "CLSTGA19"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "1aa0405379a97916c870b32f70a2a995ba0431a4e57a8bb48694173150d38537",
+      "source_sha256": "e2cd9d1f858cc82db48b4091c187a4623c2bc261987137cbd1326b58e829e58b",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_05.png",
+      "ids": [
+        "CLSTGA20",
+        "CLSTGA21",
+        "OFFC1",
+        "OFFC10",
+        "OFFC11",
+        "OFFC12"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "d912315847139b0b814e551677b60c777b35d14283c5c2a16ac9c74d38fd9df4",
+      "source_sha256": "c9c4f49254658fbbd73dc2689d54ccfda5b51f6d3bcf11c7a75252c33967a2fe",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_06.png",
+      "ids": [
+        "OFFC13",
+        "OFFC14",
+        "OFFC15",
+        "OFFC16",
+        "OFFC17",
+        "OFFC18"
+      ],
+      "output_pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "06fda0a00a49fb0a51bc89ed863304d330166620d7f543c5891b98537c12d109",
+      "source_sha256": "2b1ce5c3acab1e47a53dba73794c45faa0445dc27429b5e322ef4f68b868878f",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_07.png",
+      "ids": [
+        "OFFC19",
+        "OFFC2",
+        "OFFC20",
+        "OFFC21",
+        "OFFC22",
+        "OFFC5"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "157ad2d0befe2ff4e36c2dc0c0851d4329a0cae6b95c9a5dbcae6a22d68349e8",
+      "source_sha256": "f394de6103aae0acfd01405566c7c9491753ca4a5f02f6ac5158c6df86672c7d",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_08.png",
+      "ids": [
+        "RUNDWN11",
+        "RUNDWN12",
+        "RUNDWN13",
+        "RUNDWN14",
+        "RUNDWN15",
+        "RUNDWN16"
+      ],
+      "output_pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "8fd627fc5cee945de435a8c04dc66a26d21bf7d559c1960494c3396ff0553b5c",
+      "source_sha256": "47b50245ac9a3803b6aff1a53375bdddd10800566e580b127e75a8f877f03b36",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_09.png",
+      "ids": [
+        "RUNDWN17",
+        "VICT11",
+        "VICT12",
+        "VICT13",
+        "VICT14",
+        "VICT15"
+      ],
+      "output_pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "b5c5e33be9ad3282f891fbbe8c4608be8316d390895918ee3e56f758d722d3a8",
+      "source_sha256": "79843b44646c233bc8ca654c7280dbeccbfbb733fdc2750c4b3acddca8c91beb",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_10.png",
+      "ids": [
+        "VICT16",
+        "VICT17",
+        "VICT18",
+        "VICT19",
+        "VICT1A",
+        "VICT1B"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "15f344eccec354d72649e305e93a00e62493fe3a89adc8eb132d9f12245d1e20",
+      "source_sha256": "9a1ed66562f4108205615f690eded60df7a851e3b0cb7d144924821318df1071",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_11.png",
+      "ids": [
+        "VICT20",
+        "VICT21",
+        "VICT22",
+        "VICT23",
+        "VICT24",
+        "VICT25"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "70cb5776594512bb2fae0318c43e5f9b527446e7a1651996e7374254cb67911f",
+      "source_sha256": "2688cb9218cdce85be6ef5165ae5c45142c6447c6000d70004bf2c9527eb3be4",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_12.png",
+      "ids": [
+        "VICT26",
+        "VICT27",
+        "VICT28",
+        "VICT29",
+        "VICT2A",
+        "VICT2B"
+      ],
+      "output_pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "177979506b87a93bc1abc1273dd247e9dbae5df0da88af064ebe14e74312c957",
+      "source_sha256": "045fc7547579c52d73d7185cf4c1b382ad540b8324264c8959d9344806778ff7",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_13.png",
+      "ids": [
+        "VICT31",
+        "VICT32",
+        "VICT33",
+        "VICT34",
+        "VICT3A",
+        "VICT3B"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "7f1d7e2cab29c6d674e3b6861e92ffeae063579699619093a1303c4d1172e70c",
+      "source_sha256": "d487a9731b52bff94644d9e3832553f7b84257f44caf6df25a3d7a96c229e048",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_14.png",
+      "ids": [
+        "VICT6A",
+        "VICT6B",
+        "WHSE11",
+        "WHSE12",
+        "WHSE13",
+        "WHSE14"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "699c0d1000ff8b3feaecb1c1bcea8d6b098bc4222b56ffbe6d65c28b12a3a4e5",
+      "source_sha256": "dcf9b379c261013025d4b28dcce741a413bb64a79ae756fb59adf028723691a6",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_15.png",
+      "ids": [
+        "WHSE15",
+        "WHSE16",
+        "WHSE17",
+        "WHSE18",
+        "WHSE19",
+        "WHSE20"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "39a3f256ecf60f81002ccc0a9e41488ba6c0c83f1d2b3687e5d946f54bec7f2e",
+      "source_sha256": "72d4e27309b04747f377eb671623593f8ca0207cb5f57fd6a4c5a932917383af",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_16.png",
+      "ids": [
+        "WHSE22",
+        "WHSE23",
+        "WRHS1",
+        "WRHS2",
+        "WRHS3",
+        "WRHS4"
+      ],
+      "output_pixels": [
+        1039,
+        1514
+      ],
+      "sha256": "5590f7e8a59b9604140c3b42d35dbe8b800e5ded2271588622317e74242a37b8",
+      "source_sha256": "ddc1602c08f83f4d9ca081044d96f625bebd9cb7f12b8d7d1bdc888b1c46e5cc",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "facades_17.png",
+      "ids": [
+        "WRHS5",
+        "WRHS6",
+        "WRHS7",
+        "WRHS8"
+      ],
+      "output_pixels": [
+        1038,
+        1515
+      ],
+      "sha256": "01739c37e13111067d25ff0e98ce419e22accee1c3589275ce70ed0fd2dc99d4",
+      "source_sha256": "227dd04bedaa6b7425e1072ab6627d5a7138572d26fd7be8ce8c3293a8066f88",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_01.png",
+      "ids": [
+        "BARN12",
+        "BARN22",
+        "BARN32",
+        "BARND2",
+        "BUSSTOP2",
+        "CARWASH2"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "45f97337d587da703294c76a3285f24fcb045b8f68bcb1892db752bc63336c61",
+      "source_sha256": "253559633fada8fb34a03bb0186ede815374eac036c61a5cca375c5523433734",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_02.png",
+      "ids": [
+        "CHINGAT2",
+        "CHURCH2",
+        "GASA2",
+        "GASB2",
+        "GRNTNK2",
+        "HAYSHED2"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "2f11d4bf5bcb0cb62ae989d42dc8c32c3de17679f56c097dfa5f697e96f8956e",
+      "source_sha256": "47c37c5428c09ae60513bd769122350d3e6e914909720aeca16f22148d8cce05",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_03.png",
+      "ids": [
+        "HOUSEB2",
+        "METL21CC",
+        "METL21RC",
+        "METL21RW",
+        "METL22CC",
+        "OUTHOUS2"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "f908ff283d7d91887cb9e2ea5fa81d01d2f044150c6235bc17d098b7ac4ae01f",
+      "source_sha256": "4322c6882f8a2a904b389f7e1eafadd751d0325039acef45be8ba7d449d4a894",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_04.png",
+      "ids": [
+        "PHONSHK2",
+        "PORTLET2",
+        "RUSTICA2",
+        "RUSTICB2",
+        "SCHOOL2",
+        "SHOPD2"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "87d41651c1eab2e824fb4b0321c3fee8a814d2eddcec41d6701795e05680fa0e",
+      "source_sha256": "16eac34f1691a610357d29024022d76fda2eae7829c00c50dae34b882f4c8c79",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_05.png",
+      "ids": [
+        "SHOPE2",
+        "SHOPICE2",
+        "SNCKSHP2",
+        "TANKSEP2",
+        "TOP",
+        "TOP1A"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "70a1ef1311c41c3a88a39e2c68233884fda3d41b88dc344dd3e9b6378ae18da3",
+      "source_sha256": "705c488451142ee22bdfbdcc14481e3e338581b3406865799977c58e1cff4bec",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_06.png",
+      "ids": [
+        "TOP2A",
+        "TOP3A",
+        "TOWERB2",
+        "TUN1SHTP",
+        "TUNN1LIP",
+        "TUNN21CC"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "3552a05bba5e14d18f98a2a45d59f9a24e09eeec6b51c78f1ec06391b1cc1b8f",
+      "source_sha256": "5dd13cc180ea32f321d74110fab9250ab9aacc3d9952cf49442226e63bd9af43",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_07.png",
+      "ids": [
+        "TUNN21RC",
+        "TUNN21RW",
+        "TUNN22CC",
+        "TUNN31CC",
+        "TUNN31RC",
+        "TUNN31RW"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "6e06908c67574e05fc4da425fb81b047536a4833def7327789864d3cd9f4850f",
+      "source_sha256": "889bed121a612264b253969f7c33d62299c3bce7b4b4a283e6996a0da4a20815",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    },
+    {
+      "file": "structures_08.png",
+      "ids": [
+        "TUNN32RC",
+        "WATRTNK2",
+        "WHTTANK2",
+        "WINNERY2"
+      ],
+      "output_pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "640211eade7562f937616a79c345721ec136ab8740118d7070d0c2d49c617957",
+      "source_sha256": "38662b5eec1486c9a647c0b252542f838f555c17d545dc2ae5867f531f4dffcc",
+      "status": "AI-enhanced reference draft; inspect architecture, labels and signs; not an exact pixel/UV match"
+    }
+  ],
+  "local_city_preview": {
+    "facade_ids": 100,
+    "facade_sheets": 17,
+    "consumer": "src/bin/city_preview.rs",
+    "game_integration": false,
+    "use": "Unchanged facade PNGs consumed by isolated local UV/relief preview; not shipped production media",
+    "status": "Historical rejected flat-facade study; not loaded by the current default GLB viewer"
+  }
+}

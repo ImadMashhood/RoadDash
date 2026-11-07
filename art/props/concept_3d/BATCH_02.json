@@ -1,0 +1,542 @@
+[
+  {
+    "batch": "cars_01",
+    "source_sheet": "/home/imad/Downloads/RoadDash_Prop_References/cars_01-source.png",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-F665D881C574",
+        "name": "GOLFC00",
+        "names": [
+          "GOLFC00",
+          "GOLFC03",
+          "GOLFC06",
+          "GOLFC09"
+        ]
+      },
+      {
+        "slot": 2,
+        "id": "PROP-F28FFDA2C4F5",
+        "name": "HONDAC00",
+        "names": [
+          "HONDAC00",
+          "HONDAC03",
+          "HONDAC06",
+          "HONDAC09"
+        ]
+      },
+      {
+        "slot": 3,
+        "id": "PROP-83548312E542",
+        "name": "JETTAG00",
+        "names": [
+          "JETTAG00",
+          "JETTAG03",
+          "JETTAG06",
+          "JETTAG09"
+        ]
+      },
+      {
+        "slot": 4,
+        "id": "PROP-54B144E9C32A",
+        "name": "PICKPC00",
+        "names": [
+          "PICKPC00",
+          "PICKPC03",
+          "PICKPC06",
+          "PICKPC09"
+        ]
+      },
+      {
+        "slot": 5,
+        "id": "PROP-F037C09BF524",
+        "name": "VANC00",
+        "names": [
+          "VANC00",
+          "VANC03",
+          "VANC06",
+          "VANC09"
+        ]
+      },
+      {
+        "slot": 6,
+        "id": "PROP-924E1D8366D6",
+        "name": "TAXIG00",
+        "names": [
+          "TAXIG00",
+          "TAXIG03",
+          "TAXIG06",
+          "TAXIG09"
+        ]
+      }
+    ],
+    "status": "draft_not_approved",
+    "source_sheet_sha256": "59a8b6b32c65610fac5b95cb5630346c15881aa0ffdb1810fba9a43f5474697c",
+    "source_catalog_sha256": "b8789a41858c7ea891332dd67fb76a6c8cb059e60166d47797b34987848ec813",
+    "deliverable": "bitmap concept sheet; not 3D model",
+    "file": "cars_01.png",
+    "sha256": "4fa9b2f58086c4f538bfc87ad4e3a0354ffe3080eb5d778959c594086fcb8da6",
+    "generator": "OpenAI image_gen tool; model not reported",
+    "visually_inspected": true,
+    "size_px": [
+      1737,
+      906
+    ],
+    "required_review": [
+      "user art approval",
+      "source proportion/hidden-side interpretation",
+      "actual geometry/material/rig/collider authoring",
+      "remove badge-like grille symbols before production"
+    ]
+  },
+  {
+    "batch": "people_01",
+    "source_sheet": "/home/imad/Downloads/RoadDash_Prop_References/people_01-source.png",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-AD62F66BA933",
+        "name": "AVGMSM06",
+        "names": [
+          "AVGMSM06",
+          "AVGMSM07",
+          "AVGMSM09",
+          "AVGMSM10",
+          "AVGMSM11",
+          "AVGMSM12"
+        ]
+      },
+      {
+        "slot": 2,
+        "id": "PROP-97D77E55EDE4",
+        "name": "AVGW100",
+        "names": [
+          "AVGW100",
+          "AVGW101",
+          "AVGW102",
+          "AVGW103",
+          "AVGW104",
+          "AVGW105",
+          "AVGW106",
+          "AVGW107",
+          "AVGW108",
+          "AVGW109",
+          "AVGW110",
+          "AVGW111",
+          "AVGW112",
+          "AVGW113",
+          "AVGW114",
+          "AVGW115",
+          "AVGW116"
+        ]
+      },
+      {
+        "slot": 3,
+        "id": "PROP-0DAC2E802A51",
+        "name": "BKM100",
+        "names": [
+          "BKM100",
+          "BKM101",
+          "BKM102",
+          "BKM103",
+          "BKM104",
+          "BKM105",
+          "BKM106",
+          "BKM107",
+          "BKM108",
+          "BKM109",
+          "BKM110",
+          "BKM111",
+          "BKM112",
+          "BKM113",
+          "BKM114",
+          "BKM115",
+          "BKM116",
+          "BKM117",
+          "BKM118"
+        ]
+      },
+      {
+        "slot": 4,
+        "id": "PROP-4EF066700816",
+        "name": "BKW100",
+        "names": [
+          "BKW100",
+          "BKW101",
+          "BKW102",
+          "BKW103",
+          "BKW104",
+          "BKW105",
+          "BKW106",
+          "BKW107",
+          "BKW108",
+          "BKW109",
+          "BKW110",
+          "BKW111",
+          "BKW112",
+          "BKW113",
+          "BKW114",
+          "BKW115",
+          "BKW116",
+          "BKW117",
+          "BKW118"
+        ]
+      },
+      {
+        "slot": 5,
+        "id": "PROP-2A02835D05DC",
+        "name": "BUSM200",
+        "names": [
+          "BUSM200",
+          "BUSM201",
+          "BUSM202",
+          "BUSM203",
+          "BUSM204",
+          "BUSM205",
+          "BUSM206",
+          "BUSM207",
+          "BUSM208",
+          "BUSM209",
+          "BUSM210",
+          "BUSM211",
+          "BUSM212",
+          "BUSM213",
+          "BUSM214",
+          "BUSM215",
+          "BUSM216",
+          "BUSM217"
+        ]
+      },
+      {
+        "slot": 6,
+        "id": "PROP-A5F252D0A464",
+        "name": "BCHW100",
+        "names": [
+          "BCHW100",
+          "BCHW101",
+          "BCHW102",
+          "BCHW103",
+          "BCHW104",
+          "BCHW105",
+          "BCHW106",
+          "BCHW107",
+          "BCHW108",
+          "BCHW109",
+          "BCHW110",
+          "BCHW111",
+          "BCHW112",
+          "BCHW113",
+          "BCHW114",
+          "BCHW115",
+          "BCHW116"
+        ]
+      }
+    ],
+    "status": "draft_not_approved",
+    "source_sheet_sha256": "e17d7831220346797f7346168c2da093abf314052be540a9a7e9ce4ba05b83c2",
+    "source_catalog_sha256": "b8789a41858c7ea891332dd67fb76a6c8cb059e60166d47797b34987848ec813",
+    "deliverable": "bitmap concept sheet; not 3D model",
+    "file": "people_01.png",
+    "sha256": "ca0acf7be691004970219c37fd99ffc92ba6c940804cc05dc869de3a8e6b25d6",
+    "generator": "OpenAI image_gen tool; model not reported",
+    "visually_inspected": true,
+    "size_px": [
+      1536,
+      1024
+    ],
+    "required_review": [
+      "user art approval",
+      "source proportion/hidden-side interpretation",
+      "actual geometry/material/rig/collider authoring"
+    ]
+  },
+  {
+    "batch": "trees_01",
+    "source_sheet": "/home/imad/Downloads/RoadDash_Prop_References/trees_01-source.png",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-1F0D6152AFB3",
+        "name": "TREOAKA2",
+        "names": [
+          "TREOAKA2"
+        ]
+      },
+      {
+        "slot": 2,
+        "id": "PROP-EDA374C629E4",
+        "name": "TREPLMA2",
+        "names": [
+          "TREPLMA2"
+        ]
+      },
+      {
+        "slot": 3,
+        "id": "PROP-840095B90CA7",
+        "name": "TREEA2",
+        "names": [
+          "TREEA2"
+        ]
+      },
+      {
+        "slot": 4,
+        "id": "PROP-881789B6E63D",
+        "name": "TREEUCA2",
+        "names": [
+          "TREEUCA2"
+        ]
+      },
+      {
+        "slot": 5,
+        "id": "PROP-0D643D1E1EEE",
+        "name": "TREEZ2",
+        "names": [
+          "TREEZ2"
+        ]
+      },
+      {
+        "slot": 6,
+        "id": "PROP-A8AC198588A0",
+        "name": "TREEBRA2",
+        "names": [
+          "TREEBRA2"
+        ]
+      }
+    ],
+    "status": "draft_not_approved",
+    "source_sheet_sha256": "faeb53124f5a251ecee2cdc25a2560c3a227cc380813153911316496a4efc66d",
+    "source_catalog_sha256": "b8789a41858c7ea891332dd67fb76a6c8cb059e60166d47797b34987848ec813",
+    "deliverable": "bitmap concept sheet; not 3D model",
+    "file": "trees_01_v2.png",
+    "sha256": "b719f6e651692673fd36d7ddd18d885b0c7fb3a993774d5ac1d73b593b1447dd",
+    "generator": "OpenAI image_gen tool; model not reported",
+    "visually_inspected": true,
+    "size_px": [
+      1736,
+      906
+    ],
+    "required_review": [
+      "user art approval",
+      "source proportion/hidden-side interpretation",
+      "actual geometry/material/rig/collider authoring"
+    ],
+    "retained_earlier_draft": "trees_01.png",
+    "edit": "removed copied sprite metadata; preserved rendered subjects"
+  },
+  {
+    "batch": "utilities_01",
+    "source_sheet": "/home/imad/Downloads/RoadDash_Prop_References/utilities_01-source.png",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-448222CCA57B",
+        "name": "LMPPST32",
+        "names": [
+          "LMPPST32"
+        ]
+      },
+      {
+        "slot": 2,
+        "id": "PROP-AFCACF124A63",
+        "name": "STRTLTE2",
+        "names": [
+          "STRTLTE2"
+        ]
+      },
+      {
+        "slot": 3,
+        "id": "PROP-FF927E45F8D0",
+        "name": "TELPLEA2",
+        "names": [
+          "TELPLEA2"
+        ]
+      },
+      {
+        "slot": 4,
+        "id": "PROP-52D0386E0603",
+        "name": "METER2",
+        "names": [
+          "METER2"
+        ]
+      },
+      {
+        "slot": 5,
+        "id": "PROP-1E4FA37E8EA1",
+        "name": "PRKGLMP2",
+        "names": [
+          "PRKGLMP2"
+        ]
+      },
+      {
+        "slot": 6,
+        "id": "PROP-A10C19B6AFC9",
+        "name": "HYDRNTB2",
+        "names": [
+          "HYDRNTB2"
+        ]
+      }
+    ],
+    "status": "draft_not_approved",
+    "source_sheet_sha256": "daf19a279ea5c01a04df58c24c9529f9c102284d73838e7f8079e74985f301ba",
+    "source_catalog_sha256": "b8789a41858c7ea891332dd67fb76a6c8cb059e60166d47797b34987848ec813",
+    "deliverable": "bitmap concept sheet; not 3D model",
+    "file": "utilities_01.png",
+    "sha256": "711df84e6ff4ce42930ddae45e077251cbdbd2456ffa4d9c1d5ef246a04027fe",
+    "generator": "OpenAI image_gen tool; model not reported",
+    "visually_inspected": true,
+    "size_px": [
+      1536,
+      1024
+    ],
+    "required_review": [
+      "user art approval",
+      "source proportion/hidden-side interpretation",
+      "actual geometry/material/rig/collider authoring"
+    ]
+  },
+  {
+    "batch": "street_01",
+    "source_sheet": "/home/imad/Downloads/RoadDash_Prop_References/street_01-source.png",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-94930BE6CE09",
+        "name": "BENCH2",
+        "names": [
+          "BENCH2"
+        ]
+      },
+      {
+        "slot": 2,
+        "id": "PROP-31612EA52928",
+        "name": "MAIL2",
+        "names": [
+          "MAIL2"
+        ]
+      },
+      {
+        "slot": 3,
+        "id": "PROP-0D93FAFB066D",
+        "name": "PHONBTH2",
+        "names": [
+          "PHONBTH2"
+        ]
+      },
+      {
+        "slot": 4,
+        "id": "PROP-62F6C9794B12",
+        "name": "NEWSRCK2",
+        "names": [
+          "NEWSRCK2"
+        ]
+      },
+      {
+        "slot": 5,
+        "id": "PROP-8BC64D3E0481",
+        "name": "RECYCLE2",
+        "names": [
+          "RECYCLE2"
+        ]
+      },
+      {
+        "slot": 6,
+        "id": "PROP-BD48A707CE80",
+        "name": "BINBLUE2",
+        "names": [
+          "BINBLU@2",
+          "BINBLUE2"
+        ]
+      }
+    ],
+    "status": "draft_not_approved",
+    "source_sheet_sha256": "3c407de48fa461efb9f567cfe008c02efd55d171cf4813c2db558a168b2d5e8e",
+    "source_catalog_sha256": "b8789a41858c7ea891332dd67fb76a6c8cb059e60166d47797b34987848ec813",
+    "deliverable": "bitmap concept sheet; not 3D model",
+    "file": "street_01.png",
+    "sha256": "841139abca088bfa6537458ade6a9659abc01fd5934afd8247bb21e47f7ca2d6",
+    "generator": "OpenAI image_gen tool; model not reported",
+    "visually_inspected": true,
+    "size_px": [
+      1736,
+      906
+    ],
+    "required_review": [
+      "user art approval",
+      "source proportion/hidden-side interpretation",
+      "actual geometry/material/rig/collider authoring"
+    ]
+  },
+  {
+    "batch": "rural_01",
+    "source_sheet": "/home/imad/Downloads/RoadDash_Prop_References/rural_01-source.png",
+    "cells": [
+      {
+        "slot": 1,
+        "id": "PROP-39DEE01F00B0",
+        "name": "COWA2",
+        "names": [
+          "COWA2"
+        ]
+      },
+      {
+        "slot": 2,
+        "id": "PROP-8CA7E4602EE8",
+        "name": "DEER2",
+        "names": [
+          "DEER2"
+        ]
+      },
+      {
+        "slot": 3,
+        "id": "PROP-DBC77A1D1E95",
+        "name": "SHEEPB2",
+        "names": [
+          "SHEEPB2"
+        ]
+      },
+      {
+        "slot": 4,
+        "id": "PROP-994B2FFBFC1E",
+        "name": "BIGFNCN2",
+        "names": [
+          "BIGFNCN2"
+        ]
+      },
+      {
+        "slot": 5,
+        "id": "PROP-86E1D1FF95BA",
+        "name": "HAYDOUB2",
+        "names": [
+          "HAYDOUB2"
+        ]
+      },
+      {
+        "slot": 6,
+        "id": "PROP-BB5EFFBC48E1",
+        "name": "BOULDRA2",
+        "names": [
+          "BOULDRA2"
+        ]
+      }
+    ],
+    "status": "draft_not_approved",
+    "source_sheet_sha256": "ea76dc34507c481b1e66b00445374c2851e43dc7b83e75239d76ab9d418358d4",
+    "source_catalog_sha256": "b8789a41858c7ea891332dd67fb76a6c8cb059e60166d47797b34987848ec813",
+    "deliverable": "bitmap concept sheet; not 3D model",
+    "file": "rural_01_v2.png",
+    "sha256": "5123e92446f08ef56c2266f24b7f66f75b8096848b8f998e0b4c4e982ad76da3",
+    "generator": "OpenAI image_gen tool; model not reported",
+    "visually_inspected": true,
+    "size_px": [
+      1736,
+      906
+    ],
+    "required_review": [
+      "user art approval",
+      "source proportion/hidden-side interpretation",
+      "actual geometry/material/rig/collider authoring"
+    ],
+    "retained_earlier_draft": "rural_01.png",
+    "edit": "removed copied sprite metadata; preserved rendered subjects"
+  }
+]

@@ -1,0 +1,1086 @@
+{
+  "group": "fences_barriers",
+  "source": "sources/fences_barriers.blend",
+  "source_sha256": "c6d310fe5630b76f7071623e570b6f53131d57cf96b7a548493dc0ef70531a53",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-994B2FFBFC1E",
+      "name": "BIGFNCN2",
+      "builder": "checked_bollard",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/rural_01_v2.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-994B2FFBFC1E_lod0.glb",
+          "sha256": "7b212cd41b3c0427b4b6917e5eb94454bedbb1d5e816e3bb149ea6a75a3db507",
+          "triangles": 268,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1550000011920929,
+              -0.1550000011920929,
+              0.0
+            ],
+            [
+              0.1550000011920929,
+              0.1550000011920929,
+              0.949999988079071
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-994B2FFBFC1E_lod1.glb",
+          "sha256": "76c4d4b639495e7cab2dee529b44041dd03bffdbec28148852eb1fe93dfab040",
+          "triangles": 196,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1550000011920929,
+              -0.1550000011920929,
+              0.0
+            ],
+            [
+              0.1550000011920929,
+              0.1550000011920929,
+              0.949999988079071
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-994B2FFBFC1E_lod2.glb",
+          "sha256": "d764b714bd9ad578a49364a8d46f8432ba8d558e69e637744a4afc98c6284324",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.14000000059604645,
+              -0.12124355137348175,
+              0.0
+            ],
+            [
+              0.14000000059604645,
+              0.12124355137348175,
+              0.949999988079071
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "checker_pattern": 40
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3100000023841858,
+          0.949999988079071,
+          0.3100000023841858
+        ],
+        "center_y_up": [
+          0.0,
+          0.4749999940395355,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D89DFF822F38",
+      "name": "BRRICDB2",
+      "builder": "barrier",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D89DFF822F38_lod0.glb",
+          "sha256": "4a0199b4aab2e65e4550ba2c48b15abe6ed23bd6f39197f3043141b2257ec799",
+          "triangles": 872,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.8500000238418579,
+              -0.375,
+              0.0
+            ],
+            [
+              0.8500000238418579,
+              0.375,
+              1.409999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D89DFF822F38_lod1.glb",
+          "sha256": "9a66a0658b3365b52431dd5f286ca89a20391617be4bb585bf33a51b62630c3c",
+          "triangles": 400,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.8500000238418579,
+              -0.375,
+              0.0
+            ],
+            [
+              0.8500000238418579,
+              0.375,
+              1.409999966621399
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D89DFF822F38_lod2.glb",
+          "sha256": "9fe428aff6252f4efa1dbb531dc2db9fecc03f5ddd04e38ac6fe7f468d205d3f",
+          "triangles": 96,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8500000238418579,
+              -0.375,
+              0.0
+            ],
+            [
+              0.8500000238418579,
+              0.375,
+              1.409999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barrier_leg": 2,
+        "barrier_foot": 2,
+        "barrier_board": 1,
+        "painted_diagonal_stripe": 6,
+        "barrier_beacon": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7000000476837158,
+          1.409999966621399,
+          0.75
+        ],
+        "center_y_up": [
+          0.0,
+          0.7049999833106995,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FB235CC5B080",
+      "name": "BRRICDC2",
+      "builder": "barrier",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FB235CC5B080_lod0.glb",
+          "sha256": "b1bfb98623ec9c0ead0876abeee90400e39402e0e98c72058e2b9212635e3dd0",
+          "triangles": 552,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8500000238418579,
+              -0.375,
+              0.0
+            ],
+            [
+              0.8500000238418579,
+              0.375,
+              1.1100000143051147
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FB235CC5B080_lod1.glb",
+          "sha256": "dc8e11ab454068e7a17df9a1d96825dca2762a3a6f5146ed36517af84d32026e",
+          "triangles": 232,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -0.8500000238418579,
+              -0.375,
+              0.0
+            ],
+            [
+              0.8500000238418579,
+              0.375,
+              1.1100000143051147
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FB235CC5B080_lod2.glb",
+          "sha256": "13bf8fa5a91021baa85409ec93e4e2012dcaa658bedef1d74298726a2f934e60",
+          "triangles": 60,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.8500000238418579,
+              -0.375,
+              0.0
+            ],
+            [
+              0.8500000238418579,
+              0.375,
+              1.1100000143051147
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "barrier_leg": 2,
+        "barrier_foot": 2,
+        "barrier_board": 1,
+        "painted_diagonal_stripe": 6
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7000000476837158,
+          1.1100000143051147,
+          0.75
+        ],
+        "center_y_up": [
+          0.0,
+          0.5550000071525574,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-31AAA08519C0",
+      "name": "BRRICDD2",
+      "builder": "barrier",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-31AAA08519C0_lod0.glb",
+          "sha256": "da2f96859f6439fecd026c885e8f576ff3914225e5fdff0bfe0445d468df6ed5",
+          "triangles": 5700,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.9200000166893005,
+              -0.30000001192092896,
+              0.0010000000474974513
+            ],
+            [
+              0.9200000166893005,
+              0.30000001192092896,
+              1.2860000133514404
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-31AAA08519C0_lod1.glb",
+          "sha256": "2ec5e962c74c70114e7ea6017fd8e18c1e574fe39de4b9f533aa398e96f31ef8",
+          "triangles": 4428,
+          "parts": 6,
+          "bounds_blender": [
+            [
+              -0.9200000166893005,
+              -0.30000001192092896,
+              0.0010000000474974513
+            ],
+            [
+              0.9200000166893005,
+              0.30000001192092896,
+              1.2860000133514404
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-31AAA08519C0_lod2.glb",
+          "sha256": "07f397610499ec28e0b97d658124ec7af347aab397acd43e89c48d694c6d95f6",
+          "triangles": 336,
+          "parts": 5,
+          "bounds_blender": [
+            [
+              -0.9200000166893005,
+              -0.30000001192092896,
+              0.0
+            ],
+            [
+              0.9200000166893005,
+              0.30000001192092896,
+              1.284999966621399
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "crowd_barrier_sides": 2,
+        "crowd_barrier_feet": 2,
+        "crowd_barrier_rails": 2,
+        "crowd_barrier_pickets": 11,
+        "road_closed_plate": 1,
+        "dimensional_lettering": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.840000033378601,
+          1.285000013303943,
+          0.6000000238418579
+        ],
+        "center_y_up": [
+          0.0,
+          0.6435000066994689,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-137C8FF83416",
+      "name": "CONE2",
+      "builder": "cone",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-137C8FF83416_lod0.glb",
+          "sha256": "31b314cdcbe856b5b2ff8755ff13e9726c4e17b2fc4e0cdcff6d9e4182f924e6",
+          "triangles": 484,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.22499999403953552,
+              -0.22499999403953552,
+              0.0
+            ],
+            [
+              0.22499999403953552,
+              0.22499999403953552,
+              0.7200000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-137C8FF83416_lod1.glb",
+          "sha256": "80af4b562853cf9ebe0e337564c34ec5aab354d29c258a010aabd6bee6aa777a",
+          "triangles": 276,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.22499999403953552,
+              -0.22499999403953552,
+              0.0
+            ],
+            [
+              0.22499999403953552,
+              0.22499999403953552,
+              0.7200000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-137C8FF83416_lod2.glb",
+          "sha256": "464f1f30eab0ebb967be153b72bd9b4288be3f25d27d13731eb180716e66d30b",
+          "triangles": 32,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.22499999403953552,
+              -0.22499999403953552,
+              0.0
+            ],
+            [
+              0.22499999403953552,
+              0.22499999403953552,
+              0.7200000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "cone_base": 1,
+        "cone": 1,
+        "cone_reflector": 1
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.44999998807907104,
+          0.7200000286102295,
+          0.44999998807907104
+        ],
+        "center_y_up": [
+          0.0,
+          0.36000001430511475,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-FB458921C458",
+      "name": "FNSHCON2",
+      "builder": "checked_bollard",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FB458921C458_lod0.glb",
+          "sha256": "53cda320a8ae137020449a842d55e50a2edecf698278934e12f49f5fcf681e20",
+          "triangles": 268,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1550000011920929,
+              -0.1550000011920929,
+              0.0
+            ],
+            [
+              0.1550000011920929,
+              0.1550000011920929,
+              0.949999988079071
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FB458921C458_lod1.glb",
+          "sha256": "992c98e3228bbd79e58ccfda8d34cadb5d097457de4679e438d7b6d92ec2f19c",
+          "triangles": 196,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.1550000011920929,
+              -0.1550000011920929,
+              0.0
+            ],
+            [
+              0.1550000011920929,
+              0.1550000011920929,
+              0.949999988079071
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FB458921C458_lod2.glb",
+          "sha256": "e58db2489bd5a74fad9feba60a4bf5309a9b731633e8958db271135bf45e3024",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.14000000059604645,
+              -0.12124355137348175,
+              0.0
+            ],
+            [
+              0.14000000059604645,
+              0.12124355137348175,
+              0.949999988079071
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "checker_pattern": 40
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.3100000023841858,
+          0.949999988079071,
+          0.3100000023841858
+        ],
+        "center_y_up": [
+          0.0,
+          0.4749999940395355,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3F7886CCB732",
+      "name": "POSTRST2",
+      "builder": "bollard",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3F7886CCB732_lod0.glb",
+          "sha256": "2577f8d573645e805b2266ddb025dceb5e0639bce77e3d953098f3b9354fb868",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3F7886CCB732_lod1.glb",
+          "sha256": "48f7b528048c9a19fd7c94ab0fccfc35980efa37d0777970470d922942c9215d",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3F7886CCB732_lod2.glb",
+          "sha256": "244ee0dc7ad9995b11f439820f0ada634d695fbb0670eb19e7dfdc23bbb7c82a",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-3BFBA58A5A72",
+      "name": "POSTWDN2",
+      "builder": "bollard",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-3BFBA58A5A72_lod0.glb",
+          "sha256": "58be8a305cc8d6e15532135deeebdb51b80e526a455f4eecbebbef6fa6123395",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-3BFBA58A5A72_lod1.glb",
+          "sha256": "075130b3749241bebe951e16ed08c09acf837c0d89cf9c084b7fa92e4b09f149",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-3BFBA58A5A72_lod2.glb",
+          "sha256": "7c7740d66ae85fc93093da6a0bbed293279935c391b3b4b34220943e72e125a7",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B0FC71B0C1D3",
+      "name": "PSTSTRY2",
+      "builder": "bollard",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B0FC71B0C1D3_lod0.glb",
+          "sha256": "f93ef2337851aee7ecabcdab0dc713d0f9a0a8ed3c36aa34790b71b29597baa4",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B0FC71B0C1D3_lod1.glb",
+          "sha256": "b6b285a4ce6ea35bcfc09d9ba4fdb02692700ad3fa47d8ea06863b1141c03cb4",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B0FC71B0C1D3_lod2.glb",
+          "sha256": "7f986562794c5ce05e4fd2f5e10e3d3117c8699f842683a2811565c8c193be0e",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8CA8D5733259",
+      "name": "PSTYLLW2",
+      "builder": "bollard",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8CA8D5733259_lod0.glb",
+          "sha256": "5bca814d0e691ff40387603685f1de914379a76a90c1489ec1a25e4422cf305b",
+          "triangles": 1128,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07500000298023224,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07500000298023224,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8CA8D5733259_lod1.glb",
+          "sha256": "0f537634d9069f36631fe15a08fabe6996209e08872596ccbcd05c9b3fc38569",
+          "triangles": 696,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -0.07500000298023224,
+              -0.07132924348115921,
+              0.0
+            ],
+            [
+              0.07500000298023224,
+              0.07132924348115921,
+              1.2999999523162842
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8CA8D5733259_lod2.glb",
+          "sha256": "399712f0ef5dee0aa666219d2b6b8d38d8434bf50d69ce6ecffc3ccc6a8b8499",
+          "triangles": 20,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.07000000029802322,
+              -0.060621775686740875,
+              0.0
+            ],
+            [
+              0.07000000029802322,
+              0.060621775686740875,
+              1.2999999523162842
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "bollard": 1,
+        "reflective_bands": 5
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          0.15000000596046448,
+          1.2999999523162842,
+          0.15000000596046448
+        ],
+        "center_y_up": [
+          0.0,
+          0.6499999761581421,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7E4D927A8681",
+      "name": "SLATS12",
+      "builder": "pallets",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7E4D927A8681_lod0.glb",
+          "sha256": "dac0487ea0e03d2796e51cfef194b0abc79528c045ed43200a1bb3ec3ef8c994",
+          "triangles": 2592,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6000000238418579,
+              -0.4950000047683716,
+              0.0
+            ],
+            [
+              0.6000000238418579,
+              0.4950000047683716,
+              0.4675000011920929
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7E4D927A8681_lod1.glb",
+          "sha256": "3d8eda4b343528c0efcf76794502fd7715240564b4bc5279f6f28d5193e6f6bd",
+          "triangles": 1056,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6000000238418579,
+              -0.4950000047683716,
+              0.0
+            ],
+            [
+              0.6000000238418579,
+              0.4950000047683716,
+              0.4675000011920929
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7E4D927A8681_lod2.glb",
+          "sha256": "845e1bf96409158570df4680791156b0912d24162a695642f63b1c21bf9ae249",
+          "triangles": 288,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6000000238418579,
+              -0.4950000047683716,
+              0.0
+            ],
+            [
+              0.6000000238418579,
+              0.4950000047683716,
+              0.4675000011920929
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pallet_feet": 9,
+        "pallet_deck": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.2000000476837158,
+          0.4675000011920929,
+          0.9900000095367432
+        ],
+        "center_y_up": [
+          0.0,
+          0.23375000059604645,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F4DA946D6EB2",
+      "name": "SLATS22",
+      "builder": "pallets",
+      "group": "fences_barriers",
+      "concept": {
+        "file": "art/props/concept_3d/all_fences_barriers_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F4DA946D6EB2_lod0.glb",
+          "sha256": "93551ff7becb0c3e066f03215d3b130d0a8cd31210dffc4927681ef060838f7b",
+          "triangles": 5184,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6000000238418579,
+              -0.4950000047683716,
+              0.0
+            ],
+            [
+              0.6000000238418579,
+              0.4950000047683716,
+              0.9474999904632568
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F4DA946D6EB2_lod1.glb",
+          "sha256": "f084913f02297abc54b519b69e0b4b6c2856e781f60886ca57f3c402b031bd29",
+          "triangles": 2112,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6000000238418579,
+              -0.4950000047683716,
+              0.0
+            ],
+            [
+              0.6000000238418579,
+              0.4950000047683716,
+              0.9474999904632568
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F4DA946D6EB2_lod2.glb",
+          "sha256": "d72089bbdbbee7dcd321f4833ca9d096b07a725b47d14866c06e0f9aa1988c0a",
+          "triangles": 576,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.6000000238418579,
+              -0.4950000047683716,
+              0.0
+            ],
+            [
+              0.6000000238418579,
+              0.4950000047683716,
+              0.9474999904632568
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "pallet_feet": 18,
+        "pallet_deck": 30
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.2000000476837158,
+          0.9474999904632568,
+          0.9900000095367432
+        ],
+        "center_y_up": [
+          0.0,
+          0.4737499952316284,
+          -0.0
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

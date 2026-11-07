@@ -1,0 +1,360 @@
+{
+  "schema_version": 2,
+  "sheet": "structures_06.png",
+  "reference_sha256": "23a57f1ba7969e3773d829a71b899050b24298918e8519decc4436f3c282c1b3",
+  "source_blend": "catalog_sources/structures_06.blend",
+  "source_sha256": "4148dd4cd147bb77a39ba9dd304d614d04ae05bcf05f71eabf7515bcd7d466ec",
+  "records": [
+    {
+      "id": "TOP2A",
+      "asset_type": "surface_module",
+      "builder": "stone_strip",
+      "reference_sheet": "structures_06.png",
+      "geometry_parts": {
+        "stone_panel_backing": 1,
+        "raised_stone": 22,
+        "surface_wear_chip": 16
+      },
+      "description": "mossy low stone wall cap course",
+      "body_dimensions_m": [
+        4,
+        0.25,
+        0.6
+      ],
+      "lods": [
+        {
+          "file": "TOP2A_lod0.glb",
+          "lod": 0,
+          "vertices": 936,
+          "triangles": 1716,
+          "bytes": 1459368,
+          "sha256": "70f4beb93fd38594bec9ed2a9c971ad7148605cf7cf41bd1ce38aeeb4f0944fe"
+        },
+        {
+          "file": "TOP2A_lod1.glb",
+          "lod": 1,
+          "vertices": 24,
+          "triangles": 44,
+          "bytes": 348028,
+          "sha256": "3b00fd435247e5f4943dc5e8f703bc971df70d01f6bee3cbcf5aa28571e4e808"
+        },
+        {
+          "file": "TOP2A_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 345524,
+          "sha256": "45661940487488de96ac9595e3e53c9fc018f4658c7c980a369ccab9ed842c07"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -0.25999999046325684,
+          0.0
+        ],
+        "max": [
+          2.0,
+          0.125,
+          0.6000000238418579
+        ]
+      }
+    },
+    {
+      "id": "TOP3A",
+      "asset_type": "surface_module",
+      "builder": "stone_strip",
+      "reference_sheet": "structures_06.png",
+      "geometry_parts": {
+        "stone_panel_backing": 1,
+        "raised_stone": 22,
+        "staggered_cap_course": 1,
+        "surface_wear_chip": 16
+      },
+      "description": "staggered mossy stone cap course",
+      "body_dimensions_m": [
+        4,
+        0.25,
+        0.6
+      ],
+      "lods": [
+        {
+          "file": "TOP3A_lod0.glb",
+          "lod": 0,
+          "vertices": 960,
+          "triangles": 1760,
+          "bytes": 1462704,
+          "sha256": "d47552cd5acce9028d03f51cf7de49fde13d7b5db42248366bf5d82ec2519608"
+        },
+        {
+          "file": "TOP3A_lod1.glb",
+          "lod": 1,
+          "vertices": 48,
+          "triangles": 88,
+          "bytes": 351380,
+          "sha256": "68f09d2f3a2be54e720e007764caf2cd440ee85e418979022fb155367c03b01e"
+        },
+        {
+          "file": "TOP3A_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 345524,
+          "sha256": "fc3d4fe69d57ec04aeb2d4752979192df3b9c9c973b31d15f24270d3e08271eb"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -0.25999999046325684,
+          0.0
+        ],
+        "max": [
+          2.0,
+          0.125,
+          0.7450000047683716
+        ]
+      }
+    },
+    {
+      "id": "TOWERB2",
+      "asset_type": "structure",
+      "builder": "stone_tower",
+      "reference_sheet": "structures_06.png",
+      "geometry_parts": {
+        "tapered_tower_body": 1,
+        "tower_stone_block": 187,
+        "tower_coping": 1,
+        "structure_entry_cavity": 1,
+        "structure_entry_glass": 1,
+        "structure_entry_jamb": 2,
+        "structure_entry_sill": 2,
+        "structure_entry_vertical_mullion": 1,
+        "structure_entry_sash": 1,
+        "stone_window_reveal": 2,
+        "structure_door_panel": 1,
+        "structure_door_rail": 2,
+        "door_latch": 1
+      },
+      "description": "tapered_stone,door,coping",
+      "body_dimensions_m": [
+        4.0,
+        4.0,
+        8.0
+      ],
+      "lods": [
+        {
+          "file": "TOWERB2_lod0.glb",
+          "lod": 0,
+          "vertices": 4872,
+          "triangles": 8932,
+          "bytes": 2051940,
+          "sha256": "bd32ff200169c02009ae2da90e4bf8098bd12087e44bc963b8b275ed1e24b671"
+        },
+        {
+          "file": "TOWERB2_lod1.glb",
+          "lod": 1,
+          "vertices": 360,
+          "triangles": 660,
+          "bytes": 1096332,
+          "sha256": "3eecea0b90d4844df43c3769baeab675b8ddd5d9b80f81fc593ce6075025d685"
+        },
+        {
+          "file": "TOWERB2_lod2.glb",
+          "lod": 2,
+          "vertices": 80,
+          "triangles": 120,
+          "bytes": 1054380,
+          "sha256": "af3fec68cbc4e1862a4a345cde267efb3b31cd85fc0657325f1fcebfc69fff22"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.9994016885757446,
+          -2.3299999237060547,
+          0.0
+        ],
+        "max": [
+          1.9994016885757446,
+          1.9994016885757446,
+          8.225000381469727
+        ]
+      }
+    },
+    {
+      "id": "TUN1SHTP",
+      "asset_type": "surface_module",
+      "builder": "aggregate_slab",
+      "reference_sheet": "structures_06.png",
+      "geometry_parts": {
+        "aggregate_slab": 1,
+        "exposed_aggregate": 150,
+        "slab_edge_bevel": 2,
+        "surface_wear_chip": 16
+      },
+      "description": "exposed aggregate sloped concrete slab",
+      "body_dimensions_m": [
+        4,
+        2.5,
+        0.22
+      ],
+      "lods": [
+        {
+          "file": "TUN1SHTP_lod0.glb",
+          "lod": 0,
+          "vertices": 7734,
+          "triangles": 14792,
+          "bytes": 2420892,
+          "sha256": "61a648e5cae14f7cfd034d204a95871d47b2563a7d1e82d74c8806ab7fe0b037"
+        },
+        {
+          "file": "TUN1SHTP_lod1.glb",
+          "lod": 1,
+          "vertices": 72,
+          "triangles": 132,
+          "bytes": 351500,
+          "sha256": "44ad5d6c7c38aa0be7f55b8dd849b40279c587f16ff29fd53f3c75ffbf1664ca"
+        },
+        {
+          "file": "TUN1SHTP_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 342320,
+          "sha256": "b930994bb50d3ac5965c970369996916c5ea1914ad732a54920bfc0b5f32f3a1"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -1.2899999618530273,
+          0.0
+        ],
+        "max": [
+          2.0,
+          1.25,
+          0.25999999046325684
+        ]
+      }
+    },
+    {
+      "id": "TUNN1LIP",
+      "asset_type": "surface_module",
+      "builder": "aggregate_strip",
+      "reference_sheet": "structures_06.png",
+      "geometry_parts": {
+        "surface_panel_body": 1,
+        "surface_strap": 2,
+        "surface_bolt": 12,
+        "surface_wear_chip": 16
+      },
+      "description": "thick exposed aggregate tunnel lip",
+      "body_dimensions_m": [
+        4,
+        0.25,
+        0.6
+      ],
+      "lods": [
+        {
+          "file": "TUNN1LIP_lod0.glb",
+          "lod": 0,
+          "vertices": 744,
+          "triangles": 1364,
+          "bytes": 1139444,
+          "sha256": "549f82c09a7cc94436366f4ca695bb6610f8ac9f91a82563b788af9e7dabd57c"
+        },
+        {
+          "file": "TUNN1LIP_lod1.glb",
+          "lod": 1,
+          "vertices": 72,
+          "triangles": 132,
+          "bytes": 716552,
+          "sha256": "0c9285be61ab44076a0d9fba2b981d640422b3ae504c9f457283065349745968"
+        },
+        {
+          "file": "TUNN1LIP_lod2.glb",
+          "lod": 2,
+          "vertices": 8,
+          "triangles": 12,
+          "bytes": 342328,
+          "sha256": "b8e879783d2800564814b726e91fca32e5c329d5439eecee61499834dfe638c5"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -2.0,
+          -0.26500001549720764,
+          0.0
+        ],
+        "max": [
+          2.0,
+          0.125,
+          0.6000000238418579
+        ]
+      }
+    },
+    {
+      "id": "TUNN21CC",
+      "asset_type": "surface_module",
+      "builder": "timber_panel",
+      "reference_sheet": "structures_06.png",
+      "geometry_parts": {
+        "wood_panel_backing": 1,
+        "timber_board": 11,
+        "timber_bolt": 22,
+        "surface_wear_chip": 16
+      },
+      "description": "vertical timber wall with stone joints",
+      "body_dimensions_m": [
+        2,
+        0.25,
+        3
+      ],
+      "lods": [
+        {
+          "file": "TUNN21CC_lod0.glb",
+          "lod": 0,
+          "vertices": 1200,
+          "triangles": 2200,
+          "bytes": 1128172,
+          "sha256": "27e7ee1c77352c06dcc2fe163102c414ccb0c74ee4ad194dc6cb95ce849e24da"
+        },
+        {
+          "file": "TUNN21CC_lod1.glb",
+          "lod": 1,
+          "vertices": 288,
+          "triangles": 528,
+          "bytes": 376272,
+          "sha256": "c9704b79ff62d3c003d35c5bcb293f59547563d2f67ce7a1bb4fe85c9433219a"
+        },
+        {
+          "file": "TUNN21CC_lod2.glb",
+          "lod": 2,
+          "vertices": 96,
+          "triangles": 144,
+          "bytes": 346312,
+          "sha256": "09bfbf55bfdbd76153921fbd41bf7ab4181486e40dfb902a609a84db69a6495c"
+        }
+      ],
+      "source_bounds_m": {
+        "min": [
+          -1.0,
+          -0.27000001072883606,
+          0.0
+        ],
+        "max": [
+          1.0,
+          0.125,
+          3.0
+        ]
+      }
+    }
+  ],
+  "authoring_hashes": {
+    "build_catalog_batch.py": "94cc24ed42adc39b293568f9e477cde6ab03d22c8f9d8f51a91ffe9d84dc26d8",
+    "catalog_mesh_geometry.py": "fa2688f426993a98559a980d97d83162b1dfb2d85035158f40d444af8b75dab7",
+    "catalog_structure_geometry.py": "427a27b3f6aed107d5a0843335a837ff40e129c5533e1684d242dc6a06d9e993",
+    "build_building_meshes.py": "a5dbd45eb81ba670890fea5313971390683b699f0db9484911c6c01006730f5c"
+  },
+  "scope": "Actual modeled draft assets. All-family user art approval and production integration remain separate."
+}

@@ -45,6 +45,9 @@ pub fn census(world: &mut World) -> Value {
             buildings.push(json!({"id":id,"archetype_id":archetype,"section_id":section,"station_m":b.station_m,"position":position,"size":b.size,"solid":solid,"render_mass":true}));
         }
     }
+    let city=world.query::<(&super::city::CityBuilding,&Transform,Option<&Collider>)>().iter(world).map(|(b,t,c)|json!({"id":b.id,"position":t.translation.to_array(),"rotation_xyzw":t.rotation.to_array(),"solid":c.is_some(),"kind":"assembled_city_building"})).collect::<Vec<_>>();
+    let city_count = city.len();
+    buildings.extend(city);
     buildings.sort_by(|a, b| a["id"].as_str().cmp(&b["id"].as_str()));
     let geometry_hash = fingerprint(&serde_json::to_vec(&buildings).expect("finite scene census"));
     let meshes = world.query::<&Mesh3d>().iter(world).count();
@@ -52,7 +55,7 @@ pub fn census(world: &mut World) -> Value {
     let road_chunks = world.query::<&RoadChunk>().iter(world).count();
     let terrain_chunks = world.query::<&Terrain>().iter(world).count();
     let inspector = world.resource::<TrackInspector>();
-    json!({"kind":if legacy_count>0 {"legacy_scene"}else{"generated_structural_world"}, "legacy_building_masses":legacy_count, "building_masses":buildings.len(),"render_mesh_entities":meshes,"collider_entities":colliders,"road_chunks":road_chunks,"terrain_chunks":terrain_chunks,"environment_render_triangles":inspector.render_triangles,"environment_collision_triangles":inspector.collision_triangles,"building_geometry_fingerprint":geometry_hash,"buildings":buildings,"limitations":"Environment-only snapshot before racers/UI/audio; triangle counters are existing ribbon/terrain counters, not total building triangles or draw calls. Legacy placement is not validated lot/foundation generation."})
+    json!({"kind":if city_count>0 {"assembled_city_world"}else if legacy_count>0 {"legacy_scene"}else{"generated_structural_world"}, "legacy_building_masses":legacy_count, "building_masses":buildings.len(),"render_mesh_entities":meshes,"collider_entities":colliders,"road_chunks":road_chunks,"terrain_chunks":terrain_chunks,"environment_render_triangles":inspector.render_triangles,"environment_collision_triangles":inspector.collision_triangles,"building_geometry_fingerprint":geometry_hash,"buildings":buildings,"limitations":"Environment-only snapshot before racers/UI/audio; triangle counters are existing ribbon/terrain counters, not total building triangles or draw calls. Legacy placement is not validated lot/foundation generation."})
 }
 pub fn document(
     plan: &WorldPlan,

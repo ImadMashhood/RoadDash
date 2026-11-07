@@ -1,0 +1,2675 @@
+INFO Draco mesh compression is available, use library at /tmp/roaddash-character-tools/blender-4.5.1-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.001
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.021113157272338867 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.001
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.002
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.003
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.01429295539855957 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.002
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.004
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.005
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.009972810745239258 s
+
+EXPORTED PROP-3144CAFE9465 TR5GPAG2 [3384, 1968, 360]
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.003
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.006
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.007
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.019021272659301758 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.004
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.008
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.009
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.01481771469116211 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.005
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.010
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.011
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.010254621505737305 s
+
+EXPORTED PROP-30C0B691D2DE TR5GRPB2 [3384, 1968, 360]
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.006
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.012
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.013
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.0195462703704834 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.007
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.014
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.015
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.014725923538208008 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.008
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.016
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.017
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.010184288024902344 s
+
+EXPORTED PROP-F9037A353B38 TRE5GRP2 [3384, 1968, 360]
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.009
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: branch
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: leaf_crown
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: leaf_crown.001
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.017568349838256836 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.010
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: branch.001
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: leaf_crown.002
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: leaf_crown.003
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.018068313598632812 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.011
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: branch.002
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: leaf_crown.004
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: leaf_crown.005
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.01053619384765625 s
+
+EXPORTED PROP-F97BA6DF9B0B TREE22 [3072, 2664, 412]
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.012
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.018
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.019
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.012603521347045898 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.013
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.020
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.021
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.010910511016845703 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.014
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.022
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.023
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.03179311752319336 s
+
+EXPORTED PROP-8E29C7F539DB TREE4A2 [1128, 656, 120]
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.015
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.024
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.025
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.017972469329833984 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.016
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.026
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.027
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Finished glTF 2.0 export in 0.01370549201965332 s
+
+20:17:57 | INFO: Starting glTF 2.0 export
+20:17:57 | INFO: Extracting primitive: trunk.017
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.028
+20:17:57 | INFO: Primitives created: 1
+20:17:57 | INFO: Extracting primitive: layered_conifer_crown.029
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.009268999099731445 s
+
+EXPORTED PROP-2A1C4BD5FC24 TREE4B2 [1128, 656, 120]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.018
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.030
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.031
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.018086671829223633 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.019
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.032
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.033
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.015589475631713867 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.020
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.034
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.035
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.009541749954223633 s
+
+EXPORTED PROP-7425B681F110 TREE4C2 [3384, 1968, 360]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.021
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.036
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.037
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.019661903381347656 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.022
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.038
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.039
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.015017271041870117 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.023
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.040
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.041
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.010629415512084961 s
+
+EXPORTED PROP-97E77F35FC57 TREE4D2 [3384, 1968, 360]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.024
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.042
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.043
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01360940933227539 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.025
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.044
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.045
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.012248039245605469 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.026
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.046
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.047
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.010171651840209961 s
+
+EXPORTED PROP-4DE365B8EDE1 TREE5A2 [1128, 656, 120]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.027
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.048
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.049
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01256704330444336 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.028
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.050
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.051
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.011638641357421875 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.029
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.052
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.053
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.009931325912475586 s
+
+EXPORTED PROP-0312DDA5EF6E TREE5B2 [1128, 656, 120]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.030
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.054
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.055
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.019498109817504883 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.031
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.056
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.057
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.015020608901977539 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.032
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.058
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.059
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.009473562240600586 s
+
+EXPORTED PROP-196A5C36326A TREE5C2 [3384, 1968, 360]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.033
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.060
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.061
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.012880325317382812 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.034
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.062
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.063
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.010987281799316406 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.035
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.064
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.065
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.009846687316894531 s
+
+EXPORTED PROP-DD08FCDEE421 TREE5D2 [1128, 656, 120]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.036
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.066
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.067
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.02168893814086914 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.037
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.068
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.069
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01571345329284668 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.038
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.070
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: layered_conifer_crown.071
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.010032415390014648 s
+
+EXPORTED PROP-718FCA933D52 TREE5E2 [3384, 1968, 360]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.039
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.003
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.006
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.007
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.016962528228759766 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.040
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.004
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.008
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.009
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01896047592163086 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.041
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.005
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.010
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.011
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01096796989440918 s
+
+EXPORTED PROP-840095B90CA7 TREEA2 [3072, 2664, 412]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.042
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.006
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.012
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.013
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.017067670822143555 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.043
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.007
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.014
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.015
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01990675926208496 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.044
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.008
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.016
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.017
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.012016534805297852 s
+
+EXPORTED PROP-3405314E8565 TREEA22 [3072, 2664, 412]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.045
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.009
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.018
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.019
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01729273796081543 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.046
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.010
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.020
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.021
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.019222259521484375 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.047
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.011
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.022
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.023
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.011199951171875 s
+
+EXPORTED PROP-7B81C30A68B4 TREEA32 [3072, 2664, 412]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.048
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.012
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.024
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.025
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: tree_planter
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.020573139190673828 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.049
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.013
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.026
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.027
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: tree_planter.001
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.021257877349853516 s
+
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.050
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.014
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.028
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.029
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: tree_planter.002
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.01561284065246582 s
+
+EXPORTED PROP-74F7C6896AD0 TREEB2 [3260, 2780, 432]
+20:17:58 | INFO: Starting glTF 2.0 export
+20:17:58 | INFO: Extracting primitive: trunk.051
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: branch.015
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.030
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: leaf_crown.031
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Extracting primitive: tree_planter.003
+20:17:58 | INFO: Primitives created: 1
+20:17:58 | INFO: Finished glTF 2.0 export in 0.021953344345092773 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.052
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.016
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: leaf_crown.032
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: leaf_crown.033
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: tree_planter.004
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.021424055099487305 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.053
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.017
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: leaf_crown.034
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: leaf_crown.035
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: tree_planter.005
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.014264583587646484 s
+
+EXPORTED PROP-72A4847564C8 TREEB22 [3260, 2780, 432]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.054
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.018
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.023992300033569336 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.055
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.019
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.001
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.036252498626708984 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.056
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.020
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.006000995635986328 s
+
+EXPORTED PROP-A8AC198588A0 TREEBRA2 [6392, 3944, 240]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.057
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.021
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.002
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.02694988250732422 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.058
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.022
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.003
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.017469406127929688 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.059
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.023
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.005987644195556641 s
+
+EXPORTED PROP-B3FCEFD77653 TREEBRB2 [6392, 3944, 240]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.060
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.024
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.004
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.029555320739746094 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.061
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.025
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.005
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.016945838928222656 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.062
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.026
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.006865501403808594 s
+
+EXPORTED PROP-64D99EA09800 TREEBRC2 [6392, 3944, 240]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.063
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.027
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.006
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.025391817092895508 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.064
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.028
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: bare_twigs.007
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.024916887283325195 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.065
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.029
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.006772756576538086 s
+
+EXPORTED PROP-B1192AF51085 TREED2 [6392, 3944, 240]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.066
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond_spine
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.01677846908569336 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.067
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond_spine.001
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond.001
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.012391090393066406 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.068
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond.002
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.007863044738769531 s
+
+EXPORTED PROP-51390D05C8EC TREEE2 [1898, 1178, 38]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.069
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond_spine.002
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond.003
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.015110015869140625 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.070
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond_spine.003
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond.004
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.016587018966674805 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.071
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: palm_frond.005
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.007102012634277344 s
+
+EXPORTED PROP-8D9AC08D491F TREEE22 [1898, 1178, 38]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.072
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.072
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.073
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.013051986694335938 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.073
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.074
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.075
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.011656522750854492 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.074
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.076
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.077
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.010148286819458008 s
+
+EXPORTED PROP-C40F1E7CB8AD TREEF2 [1128, 656, 120]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.075
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.078
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.079
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.01324605941772461 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.076
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.080
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.081
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.011443614959716797 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.077
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.082
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.083
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.010423421859741211 s
+
+EXPORTED PROP-2BA110F163E1 TREEF22 [1128, 656, 120]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.078
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.084
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.085
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.017177104949951172 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.079
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.086
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.087
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.013922452926635742 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.080
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.088
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.089
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.010877132415771484 s
+
+EXPORTED PROP-A4320127E5B2 TREEF32 [1128, 656, 120]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.081
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.090
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.091
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.015090227127075195 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.082
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.092
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.093
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.01290130615234375 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.083
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.094
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: layered_conifer_crown.095
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.013085365295410156 s
+
+EXPORTED PROP-94E4BCFB61AE TREEG22 [1128, 656, 120]
+20:17:59 | INFO: Starting glTF 2.0 export
+20:17:59 | INFO: Extracting primitive: trunk.084
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: branch.030
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: leaf_crown.036
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: leaf_crown.037
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: support_stake
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Extracting primitive: tree_tie
+20:17:59 | INFO: Primitives created: 1
+20:17:59 | INFO: Finished glTF 2.0 export in 0.03463625907897949 s
+
+20:17:59 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.085
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.031
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.038
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.039
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: support_stake.001
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: tree_tie.001
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.030457258224487305 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.086
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.032
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.040
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.041
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: support_stake.002
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.015809059143066406 s
+
+EXPORTED PROP-0CA80A3E7991 TREEH2 [3824, 3128, 452]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.087
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.033
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.042
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.043
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: support_stake.003
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: tree_tie.002
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.02941131591796875 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.088
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.034
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.044
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.045
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: support_stake.004
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: tree_tie.003
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.031302690505981445 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.089
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.035
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.046
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.047
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: support_stake.005
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.01641702651977539 s
+
+EXPORTED PROP-5451E45E3B44 TREEH22 [3824, 3128, 452]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.090
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.036
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.048
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.049
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.02056598663330078 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.091
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.037
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.050
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.051
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.024059295654296875 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.092
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.038
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.052
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.053
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.014889717102050781 s
+
+EXPORTED PROP-64201A8F10D3 TREEJ2 [3072, 2664, 412]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.093
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.039
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.054
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.055
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.02144169807434082 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.094
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.040
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.056
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.057
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.02803492546081543 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.095
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.041
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.058
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.059
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.018242835998535156 s
+
+EXPORTED PROP-7292C5DF1176 TREEJ22 [3072, 2664, 412]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.096
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.042
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.060
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.061
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.025289535522460938 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.097
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.043
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.062
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.063
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.026732206344604492 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.098
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.044
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.064
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.065
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.014096975326538086 s
+
+EXPORTED PROP-4EC2BAFB0F00 TREEJ32 [3072, 2664, 412]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.099
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.045
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.066
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.067
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.021844863891601562 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.100
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.046
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.068
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.069
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.02346491813659668 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.101
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.047
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.070
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.071
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.015724897384643555 s
+
+EXPORTED PROP-1363EB3367A2 TREEK2 [3072, 2664, 412]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.102
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.048
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.072
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.073
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.023148536682128906 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.103
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.049
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.074
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.075
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.019091129302978516 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.104
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.050
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.076
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.077
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.01332712173461914 s
+
+EXPORTED PROP-3714FEE1CF31 TREEK22 [3072, 2664, 412]
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.105
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.051
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.078
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.079
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Finished glTF 2.0 export in 0.02259516716003418 s
+
+20:18:00 | INFO: Starting glTF 2.0 export
+20:18:00 | INFO: Extracting primitive: trunk.106
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: branch.052
+20:18:00 | INFO: Primitives created: 1
+20:18:00 | INFO: Extracting primitive: leaf_crown.080
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.081
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.025532245635986328 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.107
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.053
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.082
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.083
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.01953291893005371 s
+
+EXPORTED PROP-2446E480B525 TREEK32 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.108
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.054
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.084
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.085
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.025674819946289062 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.109
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.055
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.086
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.087
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.02325296401977539 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.110
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.056
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.088
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.089
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.01639723777770996 s
+
+EXPORTED PROP-E5EDA0D60414 TREEL2 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.111
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.057
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.090
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.091
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.02322983741760254 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.112
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.058
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.092
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.093
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.024352550506591797 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.113
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.059
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.094
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.095
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.013807058334350586 s
+
+EXPORTED PROP-B632D22A98E7 TREEL22 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.114
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.060
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.096
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.097
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.024115562438964844 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.115
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.061
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.098
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.099
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.027025938034057617 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.116
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.062
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.100
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.101
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.016443729400634766 s
+
+EXPORTED PROP-E6B39C87AFBD TREEL32 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.117
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.063
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.102
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.103
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.022665023803710938 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.118
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.064
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.104
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.105
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.02006697654724121 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.119
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.065
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.106
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.107
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.013721227645874023 s
+
+EXPORTED PROP-4AD5E00BC2E2 TREEN2 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.120
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.066
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.108
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.109
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.02089691162109375 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.121
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.067
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.110
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.111
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.020937681198120117 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.122
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.068
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.112
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.113
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.012474775314331055 s
+
+EXPORTED PROP-96EAA477DA82 TREEN22 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.123
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.069
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.114
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.115
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.019097566604614258 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.124
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.070
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.116
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.117
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.021501779556274414 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.125
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.071
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.118
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.119
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.013173341751098633 s
+
+EXPORTED PROP-6A61A09B7DF1 TREEN32 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.126
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.072
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.120
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.121
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.01985025405883789 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.127
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.073
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.122
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.123
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.02168726921081543 s
+
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.128
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.074
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.124
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.125
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.012542486190795898 s
+
+EXPORTED PROP-DCC6991263C1 TREEO2 [3072, 2664, 412]
+20:18:01 | INFO: Starting glTF 2.0 export
+20:18:01 | INFO: Extracting primitive: trunk.129
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: branch.075
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.126
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Extracting primitive: leaf_crown.127
+20:18:01 | INFO: Primitives created: 1
+20:18:01 | INFO: Finished glTF 2.0 export in 0.01870560646057129 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.130
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.076
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.128
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.129
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.0408329963684082 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.131
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.077
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.130
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.131
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.012946605682373047 s
+
+EXPORTED PROP-F7F5759178A1 TREEO22 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.132
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.078
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.132
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.133
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.01921868324279785 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.133
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.079
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.134
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.135
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.020456552505493164 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.134
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.080
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.136
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.137
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.014123201370239258 s
+
+EXPORTED PROP-DF10820B9FAD TREEO32 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.135
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.081
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.138
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.139
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.01876544952392578 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.136
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.082
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.140
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.141
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.02356719970703125 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.137
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.083
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.142
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.143
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.014843940734863281 s
+
+EXPORTED PROP-A4BC1013C7B6 TREEP2 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.138
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.084
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.144
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.145
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.0211331844329834 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.139
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.085
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.146
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.147
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.020965576171875 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.140
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.086
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.148
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.149
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.018870830535888672 s
+
+EXPORTED PROP-2EA295D04C53 TREEP22 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.141
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.087
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.150
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.151
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.02045750617980957 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.142
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.088
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.152
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.153
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.021224498748779297 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.143
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.089
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.154
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.155
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.012857437133789062 s
+
+EXPORTED PROP-05D8ADA474F3 TREEQ2 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.144
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.090
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.156
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.157
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.01884627342224121 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.145
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.091
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.158
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.159
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.021871566772460938 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.146
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.092
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.160
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.161
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.015026330947875977 s
+
+EXPORTED PROP-FEEFE5D2DF86 TREEQ32 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.147
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.093
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.162
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.163
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.020957469940185547 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.148
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.094
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.164
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.165
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.02028656005859375 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.149
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.095
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.166
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.167
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.016733646392822266 s
+
+EXPORTED PROP-2AABEECDD263 TREER12 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.150
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.096
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.168
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.169
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.018735408782958984 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.151
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.097
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.170
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.171
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.0200808048248291 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.152
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.098
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.172
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.173
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.017255783081054688 s
+
+EXPORTED PROP-2F926A198071 TREER2 [3072, 2664, 412]
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.153
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.099
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.174
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.175
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Finished glTF 2.0 export in 0.019696950912475586 s
+
+20:18:02 | INFO: Starting glTF 2.0 export
+20:18:02 | INFO: Extracting primitive: trunk.154
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: branch.100
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.176
+20:18:02 | INFO: Primitives created: 1
+20:18:02 | INFO: Extracting primitive: leaf_crown.177
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.020348072052001953 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.155
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.101
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.178
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.179
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.013192176818847656 s
+
+EXPORTED PROP-DAB2E25CEC74 TREES12 [3072, 2664, 412]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.156
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.102
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.180
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.181
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.020925521850585938 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.157
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.103
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.182
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.183
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.02093672752380371 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.158
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.104
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.184
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.185
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.013178348541259766 s
+
+EXPORTED PROP-49465586A42C TREES2 [3072, 2664, 412]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.159
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.105
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.186
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.187
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.018979549407958984 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.160
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.106
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.188
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.189
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.02053070068359375 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.161
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.107
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.190
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.191
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.01359868049621582 s
+
+EXPORTED PROP-5F62EBC96A95 TREES22 [3072, 2664, 412]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.162
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.096
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.097
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.03627133369445801 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.163
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.098
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.099
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.015838623046875 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.164
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.100
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.101
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.012583494186401367 s
+
+EXPORTED PROP-315EB82D7787 TREEU12 [1128, 656, 120]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.165
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.102
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.103
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.016062259674072266 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.166
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.104
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.105
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.013318300247192383 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.167
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.106
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.107
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.012439250946044922 s
+
+EXPORTED PROP-C475ABDB3345 TREEU122 [1128, 656, 120]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.168
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.108
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.109
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.014671564102172852 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.169
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.110
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.111
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.01363682746887207 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.170
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.112
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.113
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.011687040328979492 s
+
+EXPORTED PROP-B4095458D7BA TREEU2 [1128, 656, 120]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.171
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.114
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.115
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.015221118927001953 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.172
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.116
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.117
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.013493776321411133 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.173
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.118
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.119
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.016271114349365234 s
+
+EXPORTED PROP-C1E201B52957 TREEU22 [1128, 656, 120]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.174
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.120
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.121
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.015986204147338867 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.175
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.122
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.123
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.014204740524291992 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.176
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.124
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: layered_conifer_crown.125
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.011854887008666992 s
+
+EXPORTED PROP-D13CC4802811 TREEU222 [1128, 656, 120]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.177
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.108
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.192
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.0184328556060791 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.178
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.109
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.193
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.017853260040283203 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.179
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.110
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.194
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.0106353759765625 s
+
+EXPORTED PROP-881789B6E63D TREEUCA2 [3072, 2664, 412]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.180
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.111
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.195
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.196
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.019176006317138672 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.181
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.112
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.197
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.198
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.020920515060424805 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.182
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.113
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.199
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.200
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.014088630676269531 s
+
+EXPORTED PROP-79AFE6831372 TREEUCB2 [3072, 2664, 412]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.183
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.114
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.201
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.202
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.02778768539428711 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.184
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.115
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.203
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.204
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.02307748794555664 s
+
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.185
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.116
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.205
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.206
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.013873100280761719 s
+
+EXPORTED PROP-4565F369DE85 TREEV12 [3072, 2664, 412]
+20:18:03 | INFO: Starting glTF 2.0 export
+20:18:03 | INFO: Extracting primitive: trunk.186
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: branch.117
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.207
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Extracting primitive: leaf_crown.208
+20:18:03 | INFO: Primitives created: 1
+20:18:03 | INFO: Finished glTF 2.0 export in 0.01970195770263672 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.187
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.118
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.209
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.210
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.020941495895385742 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.188
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.119
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.211
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.212
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.01349496841430664 s
+
+EXPORTED PROP-922A2CE99CA8 TREEV2 [3072, 2664, 412]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.189
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.126
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.127
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.01596689224243164 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.190
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.128
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.129
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.015303611755371094 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.191
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.130
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.131
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.012531042098999023 s
+
+EXPORTED PROP-2146154934F5 TREEW12 [1128, 656, 120]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.192
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.132
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.133
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.015541553497314453 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.193
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.134
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.135
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.015285015106201172 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.194
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.136
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.137
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.015700101852416992 s
+
+EXPORTED PROP-D50B21B39299 TREEW2 [1128, 656, 120]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.195
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.138
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.139
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.02166152000427246 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.196
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.140
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.141
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.037091970443725586 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.197
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.142
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.143
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.011906623840332031 s
+
+EXPORTED PROP-7ABB2DAFC75E TREEX12 [1128, 656, 120]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.198
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.144
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.145
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.01535654067993164 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.199
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.146
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.147
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.013694286346435547 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.200
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.148
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.149
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.012203454971313477 s
+
+EXPORTED PROP-636D09FE8217 TREEX2 [1128, 656, 120]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.201
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.150
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.151
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.016377687454223633 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.202
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.152
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.153
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.016568660736083984 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.203
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.154
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: layered_conifer_crown.155
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.013502359390258789 s
+
+EXPORTED PROP-7AF20947BB61 TREEX22 [1128, 656, 120]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.204
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.120
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.213
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.214
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.020594120025634766 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.205
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.121
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.215
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.216
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.022567272186279297 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.206
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.122
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.217
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.218
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.014241218566894531 s
+
+EXPORTED PROP-7382EBFB99EA TREEZ12 [3072, 2664, 412]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.207
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.123
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.219
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.220
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.0203857421875 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.208
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.124
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.221
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.222
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.0207517147064209 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.209
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.125
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.223
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.224
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.014244318008422852 s
+
+EXPORTED PROP-0D643D1E1EEE TREEZ2 [3072, 2664, 412]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.210
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.126
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.225
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.226
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.020844221115112305 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.211
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.127
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.227
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.228
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.021259784698486328 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.212
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.128
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.229
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.230
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.013390541076660156 s
+
+EXPORTED PROP-87A0960788C0 TREEZ22 [3072, 2664, 412]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.213
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.129
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.231
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.232
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.02034139633178711 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.214
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.130
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.233
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.234
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.02134561538696289 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.215
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.131
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.235
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.236
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.013887643814086914 s
+
+EXPORTED PROP-C105F468ACE9 TREEZ32 [3072, 2664, 412]
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.216
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.132
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.237
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.017212867736816406 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.217
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.133
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.238
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Finished glTF 2.0 export in 0.01957416534423828 s
+
+20:18:04 | INFO: Starting glTF 2.0 export
+20:18:04 | INFO: Extracting primitive: trunk.218
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: branch.134
+20:18:04 | INFO: Primitives created: 1
+20:18:04 | INFO: Extracting primitive: leaf_crown.239
+20:18:04 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.011849403381347656 s
+
+EXPORTED PROP-D74198CA5F61 TREEZA2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.219
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.135
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.240
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.017110347747802734 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.220
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.136
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.241
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.019630908966064453 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.221
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.137
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.242
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.011643171310424805 s
+
+EXPORTED PROP-361C75B756FE TREEZB2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.222
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.138
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.243
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.244
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_base
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_barrel
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_cap
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hose_nozzle
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hose_cap
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: front_nozzle
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: cap_chain
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.04935741424560547 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.223
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.139
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.245
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.246
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_base.001
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_barrel.001
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_cap.001
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hose_nozzle.001
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hose_cap.001
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: front_nozzle.001
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.03569293022155762 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.224
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.140
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.247
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.248
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_base.002
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_barrel.002
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hydrant_cap.002
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hose_nozzle.002
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: hose_cap.002
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: front_nozzle.002
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.024399280548095703 s
+
+EXPORTED PROP-ED73F6D75EF1 TREJHYD2 [8452, 3676, 588]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.225
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.141
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.249
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.017306804656982422 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.226
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.142
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.250
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.0392460823059082 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.227
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.143
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.251
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.010745048522949219 s
+
+EXPORTED PROP-1F0D6152AFB3 TREOAKA2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.228
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.144
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.252
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.016888141632080078 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.229
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.145
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.253
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.0180971622467041 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.230
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.146
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.254
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.01136922836303711 s
+
+EXPORTED PROP-D93C2EC22851 TREOAKB2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.231
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.147
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.255
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.017615556716918945 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.232
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.148
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.256
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.0188138484954834 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.233
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.149
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.257
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.012065649032592773 s
+
+EXPORTED PROP-10B04C281AA0 TREOAKC2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.234
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.150
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.258
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.0171205997467041 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.235
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.151
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.259
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.018282651901245117 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.236
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.152
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.260
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.013859987258911133 s
+
+EXPORTED PROP-33F2FF54F9EC TREOAKD2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.237
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.153
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.261
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.01729583740234375 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.238
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.154
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.262
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.018581628799438477 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.239
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: branch.155
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: leaf_crown.263
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.011692047119140625 s
+
+EXPORTED PROP-635CD1A62687 TREOAKF2 [3072, 2664, 412]
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.240
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: palm_frond_spine.004
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: palm_frond.006
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.01725602149963379 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.241
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: palm_frond_spine.005
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: palm_frond.007
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.01711416244506836 s
+
+20:18:05 | INFO: Starting glTF 2.0 export
+20:18:05 | INFO: Extracting primitive: trunk.242
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Extracting primitive: palm_frond.008
+20:18:05 | INFO: Primitives created: 1
+20:18:05 | INFO: Finished glTF 2.0 export in 0.011920690536499023 s
+
+EXPORTED PROP-EDA374C629E4 TREPLMA2 [1898, 1178, 38]
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.243
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.156
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.264
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.018126964569091797 s
+
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.244
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.157
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.265
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.019178390502929688 s
+
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.245
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.158
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.266
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.011649847030639648 s
+
+EXPORTED PROP-4DAAAEB662D6 TREUCA22 [3072, 2664, 412]
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.246
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.159
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.267
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.01952219009399414 s
+
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.247
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.160
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.268
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.0198974609375 s
+
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.248
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.161
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.269
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.01235055923461914 s
+
+EXPORTED PROP-5486CA371067 TREUCA32 [3072, 2664, 412]
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.249
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.162
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.270
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.271
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: waste_container
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: bin_lid
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: bin_handle
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.030487537384033203 s
+
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.250
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.163
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.272
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.273
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: waste_container.001
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: bin_lid.001
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: bin_handle.001
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.02976083755493164 s
+
+20:18:06 | INFO: Starting glTF 2.0 export
+20:18:06 | INFO: Extracting primitive: trunk.251
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: branch.164
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.274
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: leaf_crown.275
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: waste_container.002
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Extracting primitive: bin_lid.002
+20:18:06 | INFO: Primitives created: 1
+20:18:06 | INFO: Finished glTF 2.0 export in 0.019838571548461914 s
+
+EXPORTED PROP-B2791134C201 TRJ3CMB2 [3504, 2840, 436]
+Info: Saved as "trees.blend"
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+
+Blender quit

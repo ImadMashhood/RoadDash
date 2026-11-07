@@ -1,3 +1,7 @@
+> Current status (2026-11-06): user approved integration into main. New physics
+> starts automatically; --ragdoll-baseline selects the old rig. The comparison-only
+> instructions below are historical. [Current integration and tuning evidence](ragdoll/integration/README.md).
+
 # Biomechanical ragdoll comparison — 2026-11-01
 
 PR #11 merged at 5fac329fce868e9e8db9fd5caa930624f84b2770. This overhaul is a

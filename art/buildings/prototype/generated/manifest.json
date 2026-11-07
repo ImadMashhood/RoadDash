@@ -1,0 +1,122 @@
+[
+  {
+    "id": "warehouse_2b_2f",
+    "family": "warehouse",
+    "reference": "WRHS1",
+    "bays": 2,
+    "floors": 2,
+    "corner": false,
+    "width_m": 6.0,
+    "boxes": 58
+  },
+  {
+    "id": "warehouse_4b_2f",
+    "family": "warehouse",
+    "reference": "WRHS1",
+    "bays": 4,
+    "floors": 2,
+    "corner": false,
+    "width_m": 12.0,
+    "boxes": 110
+  },
+  {
+    "id": "warehouse_3b_4f",
+    "family": "warehouse",
+    "reference": "WRHS1",
+    "bays": 3,
+    "floors": 4,
+    "corner": false,
+    "width_m": 9.0,
+    "boxes": 164
+  },
+  {
+    "id": "warehouse_3b_3f_corner",
+    "family": "warehouse",
+    "reference": "WRHS1",
+    "bays": 3,
+    "floors": 3,
+    "corner": true,
+    "width_m": 9.0,
+    "boxes": 242
+  },
+  {
+    "id": "office_2b_2f",
+    "family": "office",
+    "reference": "OFFC1",
+    "bays": 2,
+    "floors": 2,
+    "corner": false,
+    "width_m": 5.4,
+    "boxes": 50
+  },
+  {
+    "id": "office_4b_2f",
+    "family": "office",
+    "reference": "OFFC1",
+    "bays": 4,
+    "floors": 2,
+    "corner": false,
+    "width_m": 10.8,
+    "boxes": 94
+  },
+  {
+    "id": "office_3b_4f",
+    "family": "office",
+    "reference": "OFFC1",
+    "bays": 3,
+    "floors": 4,
+    "corner": false,
+    "width_m": 8.100000000000001,
+    "boxes": 140
+  },
+  {
+    "id": "office_3b_3f_corner",
+    "family": "office",
+    "reference": "OFFC1",
+    "bays": 3,
+    "floors": 3,
+    "corner": true,
+    "width_m": 8.100000000000001,
+    "boxes": 206
+  },
+  {
+    "id": "residential_2b_2f",
+    "family": "residential",
+    "reference": "VICT1A",
+    "bays": 2,
+    "floors": 2,
+    "corner": false,
+    "width_m": 5.6,
+    "boxes": 50
+  },
+  {
+    "id": "residential_4b_2f",
+    "family": "residential",
+    "reference": "VICT1A",
+    "bays": 4,
+    "floors": 2,
+    "corner": false,
+    "width_m": 11.2,
+    "boxes": 94
+  },
+  {
+    "id": "residential_3b_4f",
+    "family": "residential",
+    "reference": "VICT1A",
+    "bays": 3,
+    "floors": 4,
+    "corner": false,
+    "width_m": 8.399999999999999,
+    "boxes": 140
+  },
+  {
+    "id": "residential_3b_3f_corner",
+    "family": "residential",
+    "reference": "VICT1A",
+    "bays": 3,
+    "floors": 3,
+    "corner": true,
+    "width_m": 8.399999999999999,
+    "boxes": 206
+  }
+]

@@ -1,0 +1,1 @@
+Validated 118 actor GLBs: bind frames, inverse matrices, weights, indices and intake hashes

@@ -1,0 +1,1685 @@
+{
+  "group": "loose_materials_hazards",
+  "source": "sources/loose_materials_hazards.blend",
+  "source_sha256": "cabcc0133601e89a5f9070c61ab256f66c44ed6c329cce58719f55df158df2b8",
+  "tool": "Blender 4.5.1 LTS",
+  "records": [
+    {
+      "id": "PROP-FA8578652230",
+      "name": "GRAVPL12",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_01.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-FA8578652230_lod0.glb",
+          "sha256": "3eb7ae0ab442a5883846003f86d4f3c0afb310fb1bc514d940e4eae78fa2d823",
+          "triangles": 11696,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8142687082290649,
+              -0.618630588054657,
+              0.0
+            ],
+            [
+              0.8927169442176819,
+              0.4546773135662079,
+              0.4671928286552429
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-FA8578652230_lod1.glb",
+          "sha256": "0f26652669e0ec08ac6e413776aae75ad4754dc86718bfc610a4917161159aa6",
+          "triangles": 3882,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7167261838912964,
+              -0.5794072151184082,
+              0.0
+            ],
+            [
+              0.7976874709129333,
+              0.6163398623466492,
+              0.4713846445083618
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-FA8578652230_lod2.glb",
+          "sha256": "351e797b1a5d83005706d1ce2b5a85f049cfbcb3f8d0c02dfb26de03d0fc13a0",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7700887322425842,
+              -0.5999961495399475,
+              0.0
+            ],
+            [
+              0.7751358151435852,
+              0.40688556432724,
+              0.47880831360816956
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7069856524467468,
+          0.4671928286552429,
+          1.0733079016208649
+        ],
+        "center_y_up": [
+          0.03922411799430847,
+          0.23359641432762146,
+          0.08197663724422455
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8567FBD06306",
+      "name": "GRVP1SM2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_01.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8567FBD06306_lod0.glb",
+          "sha256": "7c045778f06965bb0f0b34e21f908cfd51fc728c09a5a089c80bd11a8ad31a04",
+          "triangles": 11658,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6901844143867493,
+              -0.5718781352043152,
+              0.0
+            ],
+            [
+              0.6022404432296753,
+              0.5792787671089172,
+              0.409096896648407
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8567FBD06306_lod1.glb",
+          "sha256": "0615b03db7d56bb27d46d237e13efe59833e65e483768f1e3b9cb4c8388ee202",
+          "triangles": 3812,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7982307076454163,
+              -0.602782130241394,
+              0.0
+            ],
+            [
+              0.734857976436615,
+              0.6428970098495483,
+              0.45844030380249023
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8567FBD06306_lod2.glb",
+          "sha256": "df7eedd23dd5d3ca5fa3da34ba6ab2a2df6d6bb5ccde6ec40848a60591179829",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8178101181983948,
+              -0.4660870134830475,
+              0.0
+            ],
+            [
+              0.9003182649612427,
+              0.5882787704467773,
+              0.4393955171108246
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.2924248576164246,
+          0.409096896648407,
+          1.1511569023132324
+        ],
+        "center_y_up": [
+          -0.04397198557853699,
+          0.2045484483242035,
+          -0.0037003159523010254
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-A033083676EE",
+      "name": "GRVP2SM2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_01.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-A033083676EE_lod0.glb",
+          "sha256": "295a076c350273551e93298abf6e3cbf38bedab5ac1f07735560770ce1f1f439",
+          "triangles": 11510,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.73464035987854,
+              -0.5014007687568665,
+              0.0
+            ],
+            [
+              0.7920655012130737,
+              0.6589639186859131,
+              0.49057769775390625
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-A033083676EE_lod1.glb",
+          "sha256": "aa3002f3531b08e939c55d772109a362ca58f2593deda209462c22eb6aaad996",
+          "triangles": 3830,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.809424102306366,
+              -0.6159011125564575,
+              0.0
+            ],
+            [
+              0.8489302396774292,
+              0.5721092224121094,
+              0.4583834111690521
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-A033083676EE_lod2.glb",
+          "sha256": "b3350e2e1a4b52c1ff1a66f81523db42bc8d26f152da035fc88556ca7f9f29c8",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8563998937606812,
+              -0.5737977623939514,
+              0.0
+            ],
+            [
+              0.8247549533843994,
+              0.4301236867904663,
+              0.4724562168121338
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5267058610916138,
+          0.49057769775390625,
+          1.1603646874427795
+        ],
+        "center_y_up": [
+          0.028712570667266846,
+          0.24528884887695312,
+          -0.07878157496452332
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-10F3F5166282",
+      "name": "GRVP3SM2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_01.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-10F3F5166282_lod0.glb",
+          "sha256": "2861fd6b9dd777efd9450b769d1885095a31f0aeb0ab1d7c89bb8b434b47f5c9",
+          "triangles": 11388,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6601836681365967,
+              -0.5531531572341919,
+              0.0
+            ],
+            [
+              0.6288831830024719,
+              0.5574206113815308,
+              0.454997181892395
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-10F3F5166282_lod1.glb",
+          "sha256": "4138aa232f4f33a4c1db612c78fe667f856bd51763c157502a4882e06cd09456",
+          "triangles": 3828,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7394031286239624,
+              -0.5081458687782288,
+              0.0
+            ],
+            [
+              0.7781128287315369,
+              0.6031520366668701,
+              0.4590241312980652
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-10F3F5166282_lod2.glb",
+          "sha256": "130b923227b4b8aa865ae63c15564253db5228627d8503bfba02738c7ece7a27",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8237675428390503,
+              -0.4729594588279724,
+              0.0
+            ],
+            [
+              0.7706679105758667,
+              0.523074209690094,
+              0.4180162250995636
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.2890668511390686,
+          0.454997181892395,
+          1.1105737686157227
+        ],
+        "center_y_up": [
+          -0.015650242567062378,
+          0.2274985909461975,
+          -0.0021337270736694336
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-86E1D1FF95BA",
+      "name": "HAYDOUB2",
+      "builder": "hay_bales",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/rural_01_v2.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-86E1D1FF95BA_lod0.glb",
+          "sha256": "12ae80fee1a06169d7dc4594f41b641ab903226c1f6afcd5a4faff60863c1484",
+          "triangles": 1944,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7849999666213989,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7849999666213989,
+              0.6200000047683716,
+              0.4099999964237213
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-86E1D1FF95BA_lod1.glb",
+          "sha256": "72f9ac28f0fac2f52c2070dbf79184c79ccbb3aea1357220cdcc6b58db5addcc",
+          "triangles": 792,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7849999666213989,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7849999666213989,
+              0.6200000047683716,
+              0.4099999964237213
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-86E1D1FF95BA_lod2.glb",
+          "sha256": "afcdbb9ac671699ce8dcaf7ad68471799cc1044c5effdc53b4a81230ba948aa2",
+          "triangles": 72,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7799999713897705,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7799999713897705,
+              0.6200000047683716,
+              0.4000000059604645
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "hay_bale": 6,
+        "bale_twine": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5699999332427979,
+          0.4099999964237213,
+          0.8200000077486038
+        ],
+        "center_y_up": [
+          0.0,
+          0.20499999821186066,
+          -0.21000000089406967
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-64E08261D88E",
+      "name": "HAYTRIP2",
+      "builder": "hay_bales",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_01.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-64E08261D88E_lod0.glb",
+          "sha256": "7c3f3262c9b7b4cdc54a4a5bf0799cfddb010306801e27ed736009746986da97",
+          "triangles": 1944,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7849999666213989,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7849999666213989,
+              0.6200000047683716,
+              0.4099999964237213
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-64E08261D88E_lod1.glb",
+          "sha256": "8cc92b4a7f8636adfcbd60da5fa8ba7102f89b3b05efa03faa3d4d32922cdcfa",
+          "triangles": 792,
+          "parts": 2,
+          "bounds_blender": [
+            [
+              -0.7849999666213989,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7849999666213989,
+              0.6200000047683716,
+              0.4099999964237213
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-64E08261D88E_lod2.glb",
+          "sha256": "c595174acaf4e81d28eb86dbc7e20d5cd250561fb2e6427aee67105c0ed25457",
+          "triangles": 72,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7799999713897705,
+              -0.20000000298023224,
+              0.0
+            ],
+            [
+              0.7799999713897705,
+              0.6200000047683716,
+              0.4000000059604645
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "hay_bale": 6,
+        "bale_twine": 12
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5699999332427979,
+          0.4099999964237213,
+          0.8200000077486038
+        ],
+        "center_y_up": [
+          0.0,
+          0.20499999821186066,
+          -0.21000000089406967
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-2B06BEBE5CC3",
+      "name": "OILP1SM2",
+      "builder": "oil_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_01.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-2B06BEBE5CC3_lod0.glb",
+          "sha256": "fa408d7f0ad7882626b6ae32c7fb5aa27993715a1c8e73177dd8a3354b9721d5",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.033013105392456,
+              -0.6757798194885254,
+              0.0
+            ],
+            [
+              0.8529816269874573,
+              0.699183464050293,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-2B06BEBE5CC3_lod1.glb",
+          "sha256": "02adb0058e13c589bbdc971686654ce82ebf0c42760ddc0318e0901a9858746a",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.003646969795227,
+              -0.6347184777259827,
+              0.0
+            ],
+            [
+              0.823615550994873,
+              0.6581221222877502,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-2B06BEBE5CC3_lod2.glb",
+          "sha256": "8df637f1f48edbdf8496ae55d8fb05958e0bdda4a5e6a01e4aab5462b2e60a01",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.033013105392456,
+              -0.6181707382202148,
+              0.0
+            ],
+            [
+              0.8529816269874573,
+              0.6415743827819824,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.8859947323799133,
+          0.035999998450279236,
+          1.3749632835388184
+        ],
+        "center_y_up": [
+          -0.09001573920249939,
+          0.017999999225139618,
+          -0.011701822280883789
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-F082445C329F",
+      "name": "OILP1SM2",
+      "builder": "oil_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_02.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-F082445C329F_lod0.glb",
+          "sha256": "066fc99f7fbe4f97462ec6b296defdfbe3012ff27045a8f6e11c1daaad9c1957",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.033013105392456,
+              -0.6757798194885254,
+              0.0
+            ],
+            [
+              0.8529816269874573,
+              0.699183464050293,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-F082445C329F_lod1.glb",
+          "sha256": "9a46dbc49a2e94708293f5df044a64d6e1a85da0d1b04c8516c76973f00dff53",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.003646969795227,
+              -0.6347184777259827,
+              0.0
+            ],
+            [
+              0.823615550994873,
+              0.6581221222877502,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-F082445C329F_lod2.glb",
+          "sha256": "192ba7fdd0d541b29d3c227c77b3e62dc51a52219a622f57e7e69a2d43bae112",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -1.033013105392456,
+              -0.6181707382202148,
+              0.0
+            ],
+            [
+              0.8529816269874573,
+              0.6415743827819824,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.8859947323799133,
+          0.035999998450279236,
+          1.3749632835388184
+        ],
+        "center_y_up": [
+          -0.09001573920249939,
+          0.017999999225139618,
+          -0.011701822280883789
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-8D841B97F4C1",
+      "name": "OILP2SM2",
+      "builder": "oil_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_02.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-8D841B97F4C1_lod0.glb",
+          "sha256": "a881cb48b6bd8c4a909228fac2628e9d5bd97bdc58db67bb3348006f7f2419c0",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7102790474891663,
+              -0.5290576219558716,
+              0.0
+            ],
+            [
+              0.9805445671081543,
+              0.6635241508483887,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-8D841B97F4C1_lod1.glb",
+          "sha256": "33cd8fee54ed5d01dcfd41dea8b9b4db87486c6d9de853f90ac44c4812cb8a7b",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.680912971496582,
+              -0.48799625039100647,
+              0.0
+            ],
+            [
+              0.9511784911155701,
+              0.622462809085846,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-8D841B97F4C1_lod2.glb",
+          "sha256": "d93cb515e3dac02c22e76dd219d5d27f2b6b21f5ca90a72b0f80c51027f1173a",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7102790474891663,
+              -0.47144851088523865,
+              0.0
+            ],
+            [
+              0.9805445671081543,
+              0.6059150695800781,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6908236145973206,
+          0.035999998450279236,
+          1.1925817728042603
+        ],
+        "center_y_up": [
+          0.13513275980949402,
+          0.017999999225139618,
+          -0.06723326444625854
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-26E3E95F30AF",
+      "name": "OILP3SM2",
+      "builder": "oil_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_02.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-26E3E95F30AF_lod0.glb",
+          "sha256": "8c43032226610be642ace7a865476606fdb02ff8389e1ac41f4ba18ef1ab120d",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7690780758857727,
+              -0.6543467044830322,
+              0.0
+            ],
+            [
+              0.9522700309753418,
+              0.4976727068424225,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-26E3E95F30AF_lod1.glb",
+          "sha256": "716f80c9d98e3c3ad9e04ab9b2a9822501a71bcf74b21db9161c48f906d37c7a",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7397119998931885,
+              -0.6132853627204895,
+              0.0
+            ],
+            [
+              0.9229038953781128,
+              0.45661136507987976,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-26E3E95F30AF_lod2.glb",
+          "sha256": "80b3c836dc5bee5357a616c182d9d4bd6c93aa3495c3546cb2863035e6ad3068",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7690780758857727,
+              -0.5967376232147217,
+              0.0
+            ],
+            [
+              0.9522700309753418,
+              0.44006362557411194,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7213481068611145,
+          0.035999998450279236,
+          1.1520194113254547
+        ],
+        "center_y_up": [
+          0.09159597754478455,
+          0.017999999225139618,
+          0.07833699882030487
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-DED91ED32490",
+      "name": "OILPUD12",
+      "builder": "oil_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_02.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-DED91ED32490_lod0.glb",
+          "sha256": "96f56988fdab51b01d789c2188b58eee6b17298212dc83ecfc54f8cd67f9beb4",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.957444965839386,
+              -0.44496193528175354,
+              0.0
+            ],
+            [
+              0.8371598720550537,
+              0.6860828399658203,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-DED91ED32490_lod1.glb",
+          "sha256": "6710f682a66d57cdd1d169bee933b30568208512aad5c8531a104e0b6ff0fdad",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9280788898468018,
+              -0.4039005935192108,
+              0.0
+            ],
+            [
+              0.8077937960624695,
+              0.6450214982032776,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-DED91ED32490_lod2.glb",
+          "sha256": "e98743472fe4601dbee0fe4aa3d1e02e9a0211cd63456717e1a2e96d9895b100",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.957444965839386,
+              -0.387352854013443,
+              0.0
+            ],
+            [
+              0.8371598720550537,
+              0.6284737586975098,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7946048378944397,
+          0.035999998450279236,
+          1.1310447752475739
+        ],
+        "center_y_up": [
+          -0.06014254689216614,
+          0.017999999225139618,
+          -0.12056045234203339
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-86BC53B68C31",
+      "name": "PILEDRT2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_02.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-86BC53B68C31_lod0.glb",
+          "sha256": "1387f3706d3df8cf06656aa556a896adda559c198a307dedcae5385fc02b4044",
+          "triangles": 11498,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7537896037101746,
+              -0.5683589577674866,
+              0.0
+            ],
+            [
+              0.8674774765968323,
+              0.5111932158470154,
+              0.422250360250473
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-86BC53B68C31_lod1.glb",
+          "sha256": "8f1f279d069b8e8c569dc4bce76dcfffe8fda1d023c4f3ae768b2f533b56d1d9",
+          "triangles": 3816,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7927431464195251,
+              -0.562823474407196,
+              0.0
+            ],
+            [
+              0.7286624312400818,
+              0.46641528606414795,
+              0.4706372916698456
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-86BC53B68C31_lod2.glb",
+          "sha256": "8694688554694900b6acf2efad1eb86ec9a1f24cc8f67620b31f38c5ce6e0e1c",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.5662170648574829,
+              -0.5305972099304199,
+              0.0
+            ],
+            [
+              0.7004091143608093,
+              0.6385270953178406,
+              0.45571279525756836
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6212670803070068,
+          0.422250360250473,
+          1.079552173614502
+        ],
+        "center_y_up": [
+          0.05684393644332886,
+          0.2111251801252365,
+          0.028582870960235596
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-D143798EFE91",
+      "name": "PILEGRV2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_02.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-D143798EFE91_lod0.glb",
+          "sha256": "b53ec468d3b8c53245b8ef85c4a878ba166e3977fe36d3bc21a6a430bcf80c8a",
+          "triangles": 12554,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.225000023841858,
+              -0.5249999761581421,
+              0.0
+            ],
+            [
+              1.225000023841858,
+              0.5317017436027527,
+              0.7200000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-D143798EFE91_lod1.glb",
+          "sha256": "8083ec16044e523e64bd26bbcccbfe310bb70e968427915a3e0faae4e8fdb959",
+          "triangles": 4398,
+          "parts": 4,
+          "bounds_blender": [
+            [
+              -1.225000023841858,
+              -0.5249999761581421,
+              0.0
+            ],
+            [
+              1.225000023841858,
+              0.5201247334480286,
+              0.7200000286102295
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-D143798EFE91_lod2.glb",
+          "sha256": "f29fe2095a5730c0694ac5056e81eb3eb910764032b547e47499014395a09b10",
+          "triangles": 904,
+          "parts": 3,
+          "bounds_blender": [
+            [
+              -1.225000023841858,
+              -0.5807731747627258,
+              0.0
+            ],
+            [
+              1.225000023841858,
+              0.5303993225097656,
+              0.7200000286102295
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15,
+        "cone_base": 2,
+        "cone": 2,
+        "cone_reflector": 2
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          2.450000047683716,
+          0.7200000286102295,
+          1.0567017197608948
+        ],
+        "center_y_up": [
+          0.0,
+          0.36000001430511475,
+          -0.003350883722305298
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-852CB1BCD0F4",
+      "name": "SNDP1SM2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_03.png",
+        "slot": 1
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-852CB1BCD0F4_lod0.glb",
+          "sha256": "8cac933f6dcb301c29a0a6622d8523f68958c5e493795fb23385e22061750ecc",
+          "triangles": 11484,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7112801671028137,
+              -0.5427044034004211,
+              0.0
+            ],
+            [
+              0.8233253359794617,
+              0.5055809617042542,
+              0.4646059572696686
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-852CB1BCD0F4_lod1.glb",
+          "sha256": "b82f4d10eeb4608b3585474bf00766ac052fdc74d99e81631a8d010e003e2070",
+          "triangles": 3824,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6915811896324158,
+              -0.5013192892074585,
+              0.0
+            ],
+            [
+              0.6843171119689941,
+              0.4443894922733307,
+              0.48572850227355957
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-852CB1BCD0F4_lod2.glb",
+          "sha256": "3fd66125cbd19b4a04dce2ab5c48d57eaa87296f2bf7e2722462a43421e0d335",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8230709433555603,
+              -0.5448790788650513,
+              0.0
+            ],
+            [
+              0.8069882392883301,
+              0.5943211317062378,
+              0.4756661653518677
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.5346055030822754,
+          0.4646059572696686,
+          1.0482853651046753
+        ],
+        "center_y_up": [
+          0.056022584438323975,
+          0.2323029786348343,
+          0.018561720848083496
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-7FF3B6AEE82E",
+      "name": "SNDP2SM2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_03.png",
+        "slot": 2
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-7FF3B6AEE82E_lod0.glb",
+          "sha256": "1a9bcefa31ef00106b81966f90adf7bebd4c39abb78985c21056137f9fe2b4a7",
+          "triangles": 11486,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8498178720474243,
+              -0.6171500086784363,
+              0.0
+            ],
+            [
+              0.9391225576400757,
+              0.59220951795578,
+              0.4505647122859955
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-7FF3B6AEE82E_lod1.glb",
+          "sha256": "6eb88a0fd91e81fcb2a03e3949c25179d52e3850a01f30fc8f002ce8171a3f5e",
+          "triangles": 3838,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7767625451087952,
+              -0.4697549641132355,
+              0.0
+            ],
+            [
+              0.7381301522254944,
+              0.49863845109939575,
+              0.39937105774879456
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-7FF3B6AEE82E_lod2.glb",
+          "sha256": "96a4b94d47dc661df30baca47ffc507c2205d1c11a9770bdedc09ede218f4b7f",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7474203109741211,
+              -0.5570493340492249,
+              0.0
+            ],
+            [
+              0.8233879804611206,
+              0.6032160520553589,
+              0.47153642773628235
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.7889404296875,
+          0.4505647122859955,
+          1.2093595266342163
+        ],
+        "center_y_up": [
+          0.044652342796325684,
+          0.22528235614299774,
+          0.012470245361328125
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-43CEDB2E4D55",
+      "name": "SNDP3SM2",
+      "builder": "rubble_pile",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_03.png",
+        "slot": 3
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-43CEDB2E4D55_lod0.glb",
+          "sha256": "c6bb1bcf880f45dca36364d1cb1058484ef23f66ee30ac372242417baef318eb",
+          "triangles": 11710,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7984865307807922,
+              -0.5404709577560425,
+              0.0
+            ],
+            [
+              0.8678650856018066,
+              0.5456927418708801,
+              0.45928993821144104
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-43CEDB2E4D55_lod1.glb",
+          "sha256": "af7c25c4c162a10451a837db897b82a13cedbb3bdd00736a27b1b9551bf60de7",
+          "triangles": 3872,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.7645580172538757,
+              -0.4685671925544739,
+              0.0
+            ],
+            [
+              0.8769412040710449,
+              0.639265775680542,
+              0.4236512780189514
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-43CEDB2E4D55_lod2.glb",
+          "sha256": "5d64579f1ed3b174e15d60f13a65853553fff9d1bcad99ec03b69e3fee5a5204",
+          "triangles": 840,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.5829752087593079,
+              -0.5130410194396973,
+              0.0
+            ],
+            [
+              0.683844268321991,
+              0.5818365216255188,
+              0.46622234582901
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "rock": 15
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6663516163825989,
+          0.45928993821144104,
+          1.0861636996269226
+        ],
+        "center_y_up": [
+          0.0346892774105072,
+          0.22964496910572052,
+          -0.0026108920574188232
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-50249ED4F3ED",
+      "name": "WATP1SM2",
+      "builder": "water_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_03.png",
+        "slot": 4
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-50249ED4F3ED_lod0.glb",
+          "sha256": "10939ce3b4ef2209c7fa3d97850bb62f1b569a54388156e594be8fd628f12016",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.5276184678077698,
+              -0.34111061692237854,
+              0.0
+            ],
+            [
+              1.0398057699203491,
+              0.6191418170928955,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-50249ED4F3ED_lod1.glb",
+          "sha256": "6c25a69a4be22dd1d5200f6d10b662bd1a9c9c6db1b65802092a6dc8f91f95cf",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.49825236201286316,
+              -0.3000492751598358,
+              0.0
+            ],
+            [
+              1.0104397535324097,
+              0.5780804753303528,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-50249ED4F3ED_lod2.glb",
+          "sha256": "f1dcd188b172786ffba92cb7a240d74864a81745fc05919b13cb0c4d68791369",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.5276184678077698,
+              -0.283501535654068,
+              0.0
+            ],
+            [
+              1.0398057699203491,
+              0.561532735824585,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.567424237728119,
+          0.035999998450279236,
+          0.960252434015274
+        ],
+        "center_y_up": [
+          0.2560936510562897,
+          0.017999999225139618,
+          -0.13901560008525848
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-0FDB03DA32AA",
+      "name": "WTRP2SM2",
+      "builder": "water_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_03.png",
+        "slot": 5
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-0FDB03DA32AA_lod0.glb",
+          "sha256": "c7a3b0b129b8a8fc802d33f6a76da3668ecbfbd95164668d97a2dc88307ea570",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6235412955284119,
+              -0.7114253640174866,
+              0.0
+            ],
+            [
+              1.022344708442688,
+              0.392931193113327,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-0FDB03DA32AA_lod1.glb",
+          "sha256": "bfbea1fa8e1717bdf01727f5297d674d3c61049ef0aa78d5f8f10ea2b43d42d8",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.5941752195358276,
+              -0.6703640222549438,
+              0.0
+            ],
+            [
+              0.9929786920547485,
+              0.3518698513507843,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-0FDB03DA32AA_lod2.glb",
+          "sha256": "120089fce5ff4340c72488f531f79cf23207e3fb7cc3bb02b9148b95d0451b73",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.6235412955284119,
+              -0.653816282749176,
+              0.0
+            ],
+            [
+              1.022344708442688,
+              0.33532214164733887,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6458860039710999,
+          0.035999998450279236,
+          1.1043565571308136
+        ],
+        "center_y_up": [
+          0.19940170645713806,
+          0.017999999225139618,
+          0.15924708545207977
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    },
+    {
+      "id": "PROP-B23E778664CA",
+      "name": "WTRP3SM2",
+      "builder": "water_patch",
+      "group": "loose_materials_hazards",
+      "concept": {
+        "file": "art/props/concept_3d/all_loose_materials_hazards_03.png",
+        "slot": 6
+      },
+      "lods": [
+        {
+          "lod": 0,
+          "file": "models/PROP-B23E778664CA_lod0.glb",
+          "sha256": "95f5be018b6866045ceb0b013b4ca1ddd9f73db63fb48328f3d2f4ad6df29ea2",
+          "triangles": 864,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9237735271453857,
+              -0.7079902291297913,
+              0.0
+            ],
+            [
+              0.7529162764549255,
+              0.5560985207557678,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 1,
+          "file": "models/PROP-B23E778664CA_lod1.glb",
+          "sha256": "31ef8f51b44021af53b47bde90b7da4ef0f405524c5858c77f297e0d683abbce",
+          "triangles": 432,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.8944073915481567,
+              -0.6669288873672485,
+              0.0
+            ],
+            [
+              0.7235501408576965,
+              0.5150371789932251,
+              0.035999998450279236
+            ]
+          ]
+        },
+        {
+          "lod": 2,
+          "file": "models/PROP-B23E778664CA_lod2.glb",
+          "sha256": "23074478577908f7f93cfecfe8d68dc9baeb30f4924279d0dd21e54b2656d143",
+          "triangles": 108,
+          "parts": 1,
+          "bounds_blender": [
+            [
+              -0.9237735271453857,
+              -0.6503811478614807,
+              0.0
+            ],
+            [
+              0.7529162764549255,
+              0.49848946928977966,
+              0.035999998450279236
+            ]
+          ]
+        }
+      ],
+      "geometry_parts": {
+        "surface_hazard": 3
+      },
+      "collider": {
+        "status": "authoring_bounds_only_not_gameplay_validated",
+        "kind": "box",
+        "size_y_up": [
+          1.6766898036003113,
+          0.035999998450279236,
+          1.264088749885559
+        ],
+        "center_y_up": [
+          -0.0854286253452301,
+          0.017999999225139618,
+          0.07594585418701172
+        ]
+      },
+      "rig_status": "not_applicable",
+      "production_approved": false
+    }
+  ]
+}

@@ -1,0 +1,542 @@
+20:29:02 | INFO: Data are loaded, start creating Blender stuff
+20:29:02 | INFO: Blender create Mesh node sign_post
+20:29:02 | INFO: Blender create Mesh node shaped_sign_plate
+20:29:02 | INFO: Blender create Mesh node symbol_stem
+20:29:02 | INFO: Blender create Mesh node direction_symbol
+20:29:02 | INFO: Blender create Mesh node fasteners
+20:29:02 | INFO: glTF import finished in 0.01s
+20:29:02 | INFO: Data are loaded, start creating Blender stuff
+20:29:02 | INFO: Blender create Mesh node chassis
+20:29:02 | INFO: Blender create Mesh node shaped_body_panels
+20:29:02 | INFO: Blender create Mesh node tire
+20:29:02 | INFO: Blender create Mesh node rim
+20:29:02 | INFO: Blender create Mesh node hub
+20:29:02 | INFO: Blender create Mesh node rim_spokes
+20:29:02 | INFO: Blender create Mesh node empty_cabin_frame
+20:29:02 | INFO: Blender create Mesh node dashboard
+20:29:02 | INFO: Blender create Mesh node bumper
+20:29:02 | INFO: Blender create Mesh node lamp_lenses
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.001
+20:29:02 | INFO: Blender create Mesh node radiator_grille
+20:29:02 | INFO: Blender create Mesh node grille_slats
+20:29:02 | INFO: glTF import finished in 0.04s
+20:29:02 | INFO: Data are loaded, start creating Blender stuff
+20:29:02 | INFO: Blender create Mesh node chassis.003
+20:29:02 | INFO: Blender create Mesh node shaped_body_panels.003
+20:29:02 | INFO: Blender create Mesh node tire.003
+20:29:02 | INFO: Blender create Mesh node rim.003
+20:29:02 | INFO: Blender create Mesh node hub.002
+20:29:02 | INFO: Blender create Mesh node rim_spokes.002
+20:29:02 | INFO: Blender create Mesh node empty_cabin_frame.003
+20:29:02 | INFO: Blender create Mesh node dashboard.003
+20:29:02 | INFO: Blender create Mesh node bumper.003
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.006
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.007
+20:29:02 | INFO: Blender create Mesh node radiator_grille.003
+20:29:02 | INFO: Blender create Mesh node grille_slats.002
+20:29:02 | INFO: glTF import finished in 0.04s
+20:29:02 | INFO: Data are loaded, start creating Blender stuff
+20:29:02 | INFO: Blender create Mesh node chassis.006
+20:29:02 | INFO: Blender create Mesh node shaped_body_panels.006
+20:29:02 | INFO: Blender create Mesh node tire.006
+20:29:02 | INFO: Blender create Mesh node rim.006
+20:29:02 | INFO: Blender create Mesh node hub.004
+20:29:02 | INFO: Blender create Mesh node rim_spokes.004
+20:29:02 | INFO: Blender create Mesh node sloped_cabin_glazing
+20:29:02 | INFO: Blender create Mesh node roof_panel
+20:29:02 | INFO: Blender create Mesh node window_pillars
+20:29:02 | INFO: Blender create Mesh node window_belt
+20:29:02 | INFO: Blender create Mesh node door_handle
+20:29:02 | INFO: Blender create Mesh node mirror_stalk
+20:29:02 | INFO: Blender create Mesh node mirror
+20:29:02 | INFO: Blender create Mesh node black_hood
+20:29:02 | INFO: Blender create Mesh node black_trunk
+20:29:02 | INFO: Blender create Mesh node lightbar
+20:29:02 | INFO: Blender create Mesh node emergency_lenses
+20:29:02 | INFO: Blender create Mesh node emergency_lenses.001
+20:29:02 | INFO: Blender create Mesh node bumper.006
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.012
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.013
+20:29:02 | INFO: Blender create Mesh node radiator_grille.006
+20:29:02 | INFO: Blender create Mesh node grille_slats.004
+20:29:02 | INFO: glTF import finished in 0.05s
+20:29:02 | INFO: Data are loaded, start creating Blender stuff
+20:29:02 | INFO: Blender create Mesh node chassis.009
+20:29:02 | INFO: Blender create Mesh node shaped_body_panels.009
+20:29:02 | INFO: Blender create Mesh node tire.009
+20:29:02 | INFO: Blender create Mesh node rim.009
+20:29:02 | INFO: Blender create Mesh node hub.006
+20:29:02 | INFO: Blender create Mesh node rim_spokes.006
+20:29:02 | INFO: Blender create Mesh node sloped_cabin_glazing.003
+20:29:02 | INFO: Blender create Mesh node roof_panel.003
+20:29:02 | INFO: Blender create Mesh node window_pillars.003
+20:29:02 | INFO: Blender create Mesh node window_belt.003
+20:29:02 | INFO: Blender create Mesh node door_handle.002
+20:29:02 | INFO: Blender create Mesh node mirror_stalk.002
+20:29:02 | INFO: Blender create Mesh node mirror.002
+20:29:02 | INFO: Blender create Mesh node black_hood.003
+20:29:02 | INFO: Blender create Mesh node black_trunk.003
+20:29:02 | INFO: Blender create Mesh node lightbar.003
+20:29:02 | INFO: Blender create Mesh node emergency_lenses.006
+20:29:02 | INFO: Blender create Mesh node emergency_lenses.007
+20:29:02 | INFO: Blender create Mesh node bumper.009
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.018
+20:29:02 | INFO: Blender create Mesh node lamp_lenses.019
+20:29:02 | INFO: Blender create Mesh node radiator_grille.009
+20:29:02 | INFO: Blender create Mesh node grille_slats.006
+20:29:02 | INFO: glTF import finished in 0.05s
+20:29:02 | INFO: Data are loaded, start creating Blender stuff
+20:29:02 | INFO: Blender create Mesh node discarded_tire
+20:29:02 | INFO: glTF import finished in 0.01s
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:27.23M (Peak 27.23M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:27.23M (Peak 27.23M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol
+Fra:1 Mem:27.23M (Peak 27.23M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:29.31M (Peak 29.31M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis
+Fra:1 Mem:29.32M (Peak 29.32M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:29.32M (Peak 29.32M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels
+Fra:1 Mem:29.38M (Peak 29.38M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire
+Fra:1 Mem:29.39M (Peak 29.39M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes
+Fra:1 Mem:29.66M (Peak 29.66M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | empty_cabin_frame
+Fra:1 Mem:30.24M (Peak 30.24M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | dashboard
+Fra:1 Mem:30.26M (Peak 30.26M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats
+Fra:1 Mem:30.31M (Peak 30.31M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.001
+Fra:1 Mem:30.48M (Peak 30.48M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels.001
+Fra:1 Mem:30.38M (Peak 30.48M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire.001
+Fra:1 Mem:30.68M (Peak 30.68M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim.001
+Fra:1 Mem:31.73M (Peak 31.74M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.001
+Fra:1 Mem:31.78M (Peak 31.78M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes.001
+Fra:1 Mem:33.01M (Peak 33.01M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | empty_cabin_frame.001
+Fra:1 Mem:33.08M (Peak 33.08M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | dashboard.001
+Fra:1 Mem:32.83M (Peak 33.08M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.001
+Fra:1 Mem:34.56M (Peak 34.56M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.002
+Fra:1 Mem:34.55M (Peak 34.56M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.003
+Fra:1 Mem:34.73M (Peak 34.73M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.001
+Fra:1 Mem:34.60M (Peak 34.73M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.001
+Fra:1 Mem:35.01M (Peak 35.01M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.002
+Fra:1 Mem:35.04M (Peak 35.04M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire.002
+Fra:1 Mem:34.91M (Peak 35.04M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes.002
+Fra:1 Mem:34.96M (Peak 35.04M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | roof_panel
+Fra:1 Mem:35.04M (Peak 35.04M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars
+Fra:1 Mem:35.17M (Peak 35.20M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_belt
+Fra:1 Mem:35.53M (Peak 35.53M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:35.98M (Peak 35.98M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle
+Fra:1 Mem:36.01M (Peak 36.00M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk
+Fra:1 Mem:35.91M (Peak 36.00M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror
+Fra:1 Mem:37.96M (Peak 37.96M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:38.69M (Peak 38.69M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lightbar
+Fra:1 Mem:38.75M (Peak 38.75M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:38.72M (Peak 38.75M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | emergency_lenses.001
+Fra:1 Mem:38.76M (Peak 38.76M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | discarded_tire
+Fra:1 Mem:38.91M (Peak 38.91M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.004
+Fra:1 Mem:38.99M (Peak 38.99M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.005
+Fra:1 Mem:39.19M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.002
+Fra:1 Mem:36.13M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.002
+Fra:1 Mem:36.62M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.003
+Fra:1 Mem:36.46M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels.003
+Fra:1 Mem:36.92M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire.003
+Fra:1 Mem:37.07M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim.003
+Fra:1 Mem:37.00M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.003
+Fra:1 Mem:37.03M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.003
+Fra:1 Mem:37.21M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes.003
+Fra:1 Mem:38.61M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sloped_cabin_glazing.001
+Fra:1 Mem:38.05M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | roof_panel.001
+Fra:1 Mem:39.00M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars.001
+Fra:1 Mem:39.09M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.003
+Fra:1 Mem:39.07M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_belt.001
+Fra:1 Mem:39.14M (Peak 39.19M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle.001
+Fra:1 Mem:39.35M (Peak 39.35M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.007
+Fra:1 Mem:39.36M (Peak 39.36M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.001
+Fra:1 Mem:39.37M (Peak 39.37M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | black_hood.001
+Fra:1 Mem:40.03M (Peak 40.03M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | black_trunk.001
+Fra:1 Mem:40.04M (Peak 40.04M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.006
+Fra:1 Mem:40.28M (Peak 40.28M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lightbar.001
+Fra:1 Mem:40.13M (Peak 40.28M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | emergency_lenses.002
+Fra:1 Mem:40.53M (Peak 40.53M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.003
+Fra:1 Mem:40.26M (Peak 40.53M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | emergency_lenses.003
+Fra:1 Mem:38.02M (Peak 40.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:33.83M (Peak 40.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:33.83M (Peak 40.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:33.83M (Peak 40.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:33.92M (Peak 40.53M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:33.92M (Peak 61.08M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:33.92M (Peak 61.08M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:33.92M (Peak 61.08M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:33.92M (Peak 61.08M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:33.92M (Peak 61.08M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:33.92M (Peak 61.08M) | Time:00:00.17 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:33.94M (Peak 61.08M) | Time:00:00.17 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:33.94M (Peak 61.08M) | Time:00:00.17 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:33.94M (Peak 61.08M) | Time:00:00.17 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:33.94M (Peak 61.08M) | Time:00:00.17 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:33.94M (Peak 61.08M) | Time:00:00.17 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:35.52M (Peak 61.08M) | Time:00:00.17 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:35.51M (Peak 61.08M) | Time:00:00.18 | Mem:1.60M, Peak:1.60M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:35.51M (Peak 61.08M) | Time:00:00.18 | Mem:1.60M, Peak:1.60M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:38.55M (Peak 61.08M) | Time:00:00.19 | Mem:1.60M, Peak:1.60M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:38.76M (Peak 61.08M) | Time:00:00.19 | Mem:1.60M, Peak:1.60M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:38.68M (Peak 61.08M) | Time:00:00.19 | Mem:1.60M, Peak:1.60M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:38.68M (Peak 61.08M) | Time:00:00.19 | Mem:3.18M, Peak:3.18M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:3.18M, Peak:3.18M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:7.22M, Peak:7.22M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:7.22M, Peak:7.22M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:7.22M, Peak:7.22M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:7.22M, Peak:7.22M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:7.22M, Peak:7.22M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:42.71M (Peak 61.08M) | Time:00:00.19 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.19 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.20 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.20 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.20 | Mem:7.22M, Peak:7.30M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.20 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.20 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:42.72M (Peak 61.08M) | Time:00:00.20 | Mem:7.30M, Peak:7.30M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:49.10M (Peak 61.08M) | Time:00:00.22 | Mem:568.31M, Peak:568.31M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:176.67M (Peak 176.67M) | Time:00:00.23 | Remaining:00:00.11 | Mem:695.87M, Peak:695.87M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:230.39M (Peak 310.95M) | Time:00:05.92 | Mem:695.87M, Peak:695.87M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:230.39M (Peak 310.95M) | Time:00:05.92 | Mem:695.87M, Peak:695.87M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/parked_vehicles_machinery_01_clay.png'
+Time: 00:06.27 (Saving: 00:00.23)
+
+RENDERED_EXPORTED_MESHES parked_vehicles_machinery_01_clay.png
+20:29:09 | INFO: Data are loaded, start creating Blender stuff
+20:29:09 | INFO: Blender create Mesh node information_posts
+20:29:09 | INFO: Blender create Mesh node map_backboard
+20:29:09 | INFO: Blender create Mesh node original_map_panel
+20:29:09 | INFO: Blender create Mesh node pitched_information_roof
+20:29:09 | INFO: Blender create Mesh node schematic_map_paths
+20:29:09 | INFO: glTF import finished in 0.01s
+20:29:09 | INFO: Data are loaded, start creating Blender stuff
+20:29:09 | INFO: Blender create Mesh node chassis.012
+20:29:09 | INFO: Blender create Mesh node shaped_body_panels.012
+20:29:09 | INFO: Blender create Mesh node tire.012
+20:29:09 | INFO: Blender create Mesh node rim.012
+20:29:09 | INFO: Blender create Mesh node hub.008
+20:29:09 | INFO: Blender create Mesh node rim_spokes.008
+20:29:09 | INFO: Blender create Mesh node lower_cab_shell
+20:29:09 | INFO: Blender create Mesh node sloped_cabin_glazing.006
+20:29:09 | INFO: Blender create Mesh node roof_panel.006
+20:29:09 | INFO: Blender create Mesh node window_pillars.006
+20:29:09 | INFO: Blender create Mesh node window_belt.006
+20:29:09 | INFO: Blender create Mesh node door_handle.004
+20:29:09 | INFO: Blender create Mesh node mirror_stalk.004
+20:29:09 | INFO: Blender create Mesh node mirror.004
+20:29:09 | INFO: Blender create Mesh node bed_sides
+20:29:09 | INFO: Blender create Mesh node bed_deck
+20:29:09 | INFO: Blender create Mesh node tailgate
+20:29:09 | INFO: Blender create Mesh node bumper.012
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.024
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.025
+20:29:09 | INFO: Blender create Mesh node radiator_grille.012
+20:29:09 | INFO: Blender create Mesh node grille_slats.008
+20:29:09 | INFO: glTF import finished in 0.04s
+20:29:09 | INFO: Data are loaded, start creating Blender stuff
+20:29:09 | INFO: Blender create Mesh node chassis.015
+20:29:09 | INFO: Blender create Mesh node shaped_body_panels.015
+20:29:09 | INFO: Blender create Mesh node tire.015
+20:29:09 | INFO: Blender create Mesh node rim.015
+20:29:09 | INFO: Blender create Mesh node hub.010
+20:29:09 | INFO: Blender create Mesh node rim_spokes.010
+20:29:09 | INFO: Blender create Mesh node lower_cab_shell.003
+20:29:09 | INFO: Blender create Mesh node sloped_cabin_glazing.009
+20:29:09 | INFO: Blender create Mesh node roof_panel.009
+20:29:09 | INFO: Blender create Mesh node window_pillars.009
+20:29:09 | INFO: Blender create Mesh node window_belt.009
+20:29:09 | INFO: Blender create Mesh node door_handle.006
+20:29:09 | INFO: Blender create Mesh node mirror_stalk.006
+20:29:09 | INFO: Blender create Mesh node mirror.006
+20:29:09 | INFO: Blender create Mesh node bed_sides.003
+20:29:09 | INFO: Blender create Mesh node bed_deck.003
+20:29:09 | INFO: Blender create Mesh node tailgate.003
+20:29:09 | INFO: Blender create Mesh node bumper.015
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.030
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.031
+20:29:09 | INFO: Blender create Mesh node radiator_grille.015
+20:29:09 | INFO: Blender create Mesh node grille_slats.010
+20:29:09 | INFO: glTF import finished in 0.05s
+20:29:09 | INFO: Data are loaded, start creating Blender stuff
+20:29:09 | INFO: Blender create Mesh node chassis.018
+20:29:09 | INFO: Blender create Mesh node shaped_body_panels.018
+20:29:09 | INFO: Blender create Mesh node tire.018
+20:29:09 | INFO: Blender create Mesh node rim.018
+20:29:09 | INFO: Blender create Mesh node hub.012
+20:29:09 | INFO: Blender create Mesh node rim_spokes.012
+20:29:09 | INFO: Blender create Mesh node lower_cab_shell.006
+20:29:09 | INFO: Blender create Mesh node sloped_cabin_glazing.012
+20:29:09 | INFO: Blender create Mesh node roof_panel.012
+20:29:09 | INFO: Blender create Mesh node window_pillars.012
+20:29:09 | INFO: Blender create Mesh node window_belt.012
+20:29:09 | INFO: Blender create Mesh node door_handle.008
+20:29:09 | INFO: Blender create Mesh node mirror_stalk.008
+20:29:09 | INFO: Blender create Mesh node mirror.008
+20:29:09 | INFO: Blender create Mesh node equipment_body
+20:29:09 | INFO: Blender create Mesh node locker_door
+20:29:09 | INFO: Blender create Mesh node locker_slats
+20:29:09 | INFO: Blender create Mesh node ladder_rails
+20:29:09 | INFO: Blender create Mesh node ladder_rungs
+20:29:09 | INFO: Blender create Mesh node bumper.018
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.036
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.037
+20:29:09 | INFO: Blender create Mesh node radiator_grille.018
+20:29:09 | INFO: Blender create Mesh node grille_slats.012
+20:29:09 | INFO: glTF import finished in 0.07s
+20:29:09 | INFO: Data are loaded, start creating Blender stuff
+20:29:09 | INFO: Blender create Mesh node chassis.021
+20:29:09 | INFO: Blender create Mesh node shaped_body_panels.021
+20:29:09 | INFO: Blender create Mesh node tire.021
+20:29:09 | INFO: Blender create Mesh node rim.021
+20:29:09 | INFO: Blender create Mesh node hub.014
+20:29:09 | INFO: Blender create Mesh node rim_spokes.014
+20:29:09 | INFO: Blender create Mesh node lower_cab_shell.009
+20:29:09 | INFO: Blender create Mesh node sloped_cabin_glazing.015
+20:29:09 | INFO: Blender create Mesh node roof_panel.015
+20:29:09 | INFO: Blender create Mesh node window_pillars.015
+20:29:09 | INFO: Blender create Mesh node window_belt.015
+20:29:09 | INFO: Blender create Mesh node door_handle.010
+20:29:09 | INFO: Blender create Mesh node mirror_stalk.010
+20:29:09 | INFO: Blender create Mesh node mirror.010
+20:29:09 | INFO: Blender create Mesh node bed_sides.006
+20:29:09 | INFO: Blender create Mesh node bed_deck.006
+20:29:09 | INFO: Blender create Mesh node tailgate.006
+20:29:09 | INFO: Blender create Mesh node bumper.021
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.042
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.043
+20:29:09 | INFO: Blender create Mesh node radiator_grille.021
+20:29:09 | INFO: Blender create Mesh node grille_slats.014
+20:29:09 | INFO: glTF import finished in 0.05s
+20:29:09 | INFO: Data are loaded, start creating Blender stuff
+20:29:09 | INFO: Blender create Mesh node chassis.024
+20:29:09 | INFO: Blender create Mesh node shaped_body_panels.024
+20:29:09 | INFO: Blender create Mesh node tire.024
+20:29:09 | INFO: Blender create Mesh node rim.024
+20:29:09 | INFO: Blender create Mesh node hub.016
+20:29:09 | INFO: Blender create Mesh node rim_spokes.016
+20:29:09 | INFO: Blender create Mesh node sloped_cabin_glazing.018
+20:29:09 | INFO: Blender create Mesh node roof_panel.018
+20:29:09 | INFO: Blender create Mesh node window_pillars.018
+20:29:09 | INFO: Blender create Mesh node window_belt.018
+20:29:09 | INFO: Blender create Mesh node door_handle.012
+20:29:09 | INFO: Blender create Mesh node mirror_stalk.012
+20:29:09 | INFO: Blender create Mesh node mirror.012
+20:29:09 | INFO: Blender create Mesh node bumper.024
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.048
+20:29:09 | INFO: Blender create Mesh node lamp_lenses.049
+20:29:09 | INFO: Blender create Mesh node radiator_grille.024
+20:29:09 | INFO: Blender create Mesh node grille_slats.016
+20:29:09 | INFO: glTF import finished in 0.05s
+Fra:1 Mem:36.02M (Peak 36.02M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:36.02M (Peak 36.02M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | map_backboard
+Fra:1 Mem:36.02M (Peak 36.02M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | original_map_panel
+Fra:1 Mem:36.03M (Peak 36.03M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:36.27M (Peak 36.27M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.004
+Fra:1 Mem:36.44M (Peak 36.45M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sloped_cabin_glazing.002
+Fra:1 Mem:36.44M (Peak 36.45M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | roof_panel.002
+Fra:1 Mem:36.41M (Peak 36.45M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:36.74M (Peak 36.74M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle.002
+Fra:1 Mem:37.02M (Peak 37.02M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.002
+Fra:1 Mem:37.11M (Peak 37.11M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror.002
+Fra:1 Mem:37.33M (Peak 37.33M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bed_sides
+Fra:1 Mem:37.88M (Peak 37.88M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bed_deck
+Fra:1 Mem:37.99M (Peak 37.99M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.008
+Fra:1 Mem:38.04M (Peak 38.04M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.009
+Fra:1 Mem:38.40M (Peak 38.40M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.004
+Fra:1 Mem:39.64M (Peak 39.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.004
+Fra:1 Mem:39.59M (Peak 39.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.005
+Fra:1 Mem:39.63M (Peak 39.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels.005
+Fra:1 Mem:39.66M (Peak 39.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire.005
+Fra:1 Mem:39.72M (Peak 39.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.005
+Fra:1 Mem:39.75M (Peak 39.81M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lower_cab_shell.001
+Fra:1 Mem:40.19M (Peak 40.19M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sloped_cabin_glazing.003
+Fra:1 Mem:40.51M (Peak 40.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars.003
+Fra:1 Mem:40.78M (Peak 40.78M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_belt.003
+Fra:1 Mem:41.00M (Peak 41.00M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle.003
+Fra:1 Mem:41.34M (Peak 41.34M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.003
+Fra:1 Mem:41.52M (Peak 41.55M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror.003
+Fra:1 Mem:41.66M (Peak 41.66M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bed_sides.001
+Fra:1 Mem:41.48M (Peak 41.66M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bed_deck.001
+Fra:1 Mem:41.58M (Peak 41.66M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:41.78M (Peak 41.78M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.005
+Fra:1 Mem:41.79M (Peak 41.79M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.010
+Fra:1 Mem:42.91M (Peak 42.91M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.005
+Fra:1 Mem:42.96M (Peak 42.96M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.005
+Fra:1 Mem:43.15M (Peak 43.14M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.006
+Fra:1 Mem:43.21M (Peak 43.21M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels.006
+Fra:1 Mem:43.24M (Peak 43.24M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:43.47M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire.006
+Fra:1 Mem:42.70M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim.006
+Fra:1 Mem:43.10M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.006
+Fra:1 Mem:43.12M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:42.54M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.008
+Fra:1 Mem:42.91M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes.006
+Fra:1 Mem:43.14M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lower_cab_shell.002
+Fra:1 Mem:43.26M (Peak 43.47M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sloped_cabin_glazing.004
+Fra:1 Mem:43.97M (Peak 43.99M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | roof_panel.004
+Fra:1 Mem:43.77M (Peak 43.99M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars.004
+Fra:1 Mem:43.59M (Peak 43.99M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_belt.004
+Fra:1 Mem:43.52M (Peak 43.99M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle.004
+Fra:1 Mem:44.99M (Peak 44.99M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.004
+Fra:1 Mem:45.22M (Peak 45.22M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror.004
+Fra:1 Mem:45.70M (Peak 45.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | equipment_body
+Fra:1 Mem:45.70M (Peak 45.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | ladder_rungs
+Fra:1 Mem:45.91M (Peak 45.91M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.006
+Fra:1 Mem:46.00M (Peak 46.00M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.008
+Fra:1 Mem:46.46M (Peak 46.46M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.017
+Fra:1 Mem:46.69M (Peak 46.69M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.012
+Fra:1 Mem:47.41M (Peak 47.41M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.016
+Fra:1 Mem:48.19M (Peak 48.19M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.013
+Fra:1 Mem:48.57M (Peak 48.57M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.006
+Fra:1 Mem:48.70M (Peak 48.70M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.006
+Fra:1 Mem:48.78M (Peak 48.78M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.008
+Fra:1 Mem:48.80M (Peak 48.80M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.007
+Fra:1 Mem:49.01M (Peak 49.01M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels.007
+Fra:1 Mem:49.04M (Peak 49.04M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tire.007
+Fra:1 Mem:49.06M (Peak 49.06M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim.007
+Fra:1 Mem:47.84M (Peak 49.06M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.007
+Fra:1 Mem:47.92M (Peak 49.06M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror.006
+Fra:1 Mem:48.72M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes.007
+Fra:1 Mem:48.41M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sloped_cabin_glazing.005
+Fra:1 Mem:48.37M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | roof_panel.005
+Fra:1 Mem:48.51M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars.005
+Fra:1 Mem:48.29M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.005
+Fra:1 Mem:48.44M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror.005
+Fra:1 Mem:48.32M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bed_sides.002
+Fra:1 Mem:48.50M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bed_deck.002
+Fra:1 Mem:48.40M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tailgate.002
+Fra:1 Mem:49.27M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.007
+Fra:1 Mem:49.34M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.006
+Fra:1 Mem:49.23M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.014
+Fra:1 Mem:49.12M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lamp_lenses.015
+Fra:1 Mem:48.78M (Peak 49.51M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.007
+Fra:1 Mem:48.79M (Peak 49.51M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.007
+Fra:1 Mem:48.92M (Peak 49.51M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | chassis.008
+Fra:1 Mem:48.83M (Peak 49.51M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle.006
+Fra:1 Mem:49.00M (Peak 49.51M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_body_panels.008
+Fra:1 Mem:49.58M (Peak 49.58M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim.008
+Fra:1 Mem:49.57M (Peak 49.58M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.008
+Fra:1 Mem:49.88M (Peak 49.88M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | rim_spokes.008
+Fra:1 Mem:50.31M (Peak 50.31M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sloped_cabin_glazing.006
+Fra:1 Mem:50.16M (Peak 50.31M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | roof_panel.006
+Fra:1 Mem:49.99M (Peak 50.31M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars.006
+Fra:1 Mem:48.74M (Peak 52.24M) | Time:00:00.10 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:43.62M (Peak 52.24M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:43.62M (Peak 52.24M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:43.62M (Peak 52.24M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:43.70M (Peak 52.24M) | Time:00:00.11 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:43.70M (Peak 70.87M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:43.70M (Peak 70.87M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:43.70M (Peak 70.87M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:43.70M (Peak 70.87M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:43.70M (Peak 70.87M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:43.70M (Peak 70.87M) | Time:00:00.16 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:43.73M (Peak 70.87M) | Time:00:00.16 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:43.73M (Peak 70.87M) | Time:00:00.16 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:43.73M (Peak 70.87M) | Time:00:00.16 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:43.73M (Peak 70.87M) | Time:00:00.16 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:43.73M (Peak 70.87M) | Time:00:00.16 | Mem:0.03M, Peak:0.03M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:46.07M (Peak 70.87M) | Time:00:00.16 | Mem:0.04M, Peak:0.04M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:46.05M (Peak 70.87M) | Time:00:00.16 | Mem:2.35M, Peak:2.35M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:46.05M (Peak 70.87M) | Time:00:00.16 | Mem:2.35M, Peak:2.35M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:50.40M (Peak 70.87M) | Time:00:00.18 | Mem:2.35M, Peak:2.35M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:50.69M (Peak 70.87M) | Time:00:00.18 | Mem:2.35M, Peak:2.35M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:50.59M (Peak 70.87M) | Time:00:00.18 | Mem:2.35M, Peak:2.35M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:50.59M (Peak 70.87M) | Time:00:00.18 | Mem:4.62M, Peak:4.62M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:4.62M, Peak:4.62M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.48M, Peak:10.48M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.48M, Peak:10.48M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.48M, Peak:10.48M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.48M, Peak:10.48M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.48M, Peak:10.48M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.56M, Peak:10.56M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.56M, Peak:10.56M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.57M, Peak:10.57M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:56.45M (Peak 70.87M) | Time:00:00.19 | Mem:10.57M, Peak:10.57M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:56.46M (Peak 70.87M) | Time:00:00.19 | Mem:10.48M, Peak:10.57M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:56.46M (Peak 70.87M) | Time:00:00.19 | Mem:10.57M, Peak:10.57M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:56.46M (Peak 70.87M) | Time:00:00.19 | Mem:10.57M, Peak:10.57M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:56.46M (Peak 70.87M) | Time:00:00.19 | Mem:10.57M, Peak:10.57M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:62.84M (Peak 70.87M) | Time:00:00.21 | Mem:571.57M, Peak:571.57M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:190.41M (Peak 190.41M) | Time:00:00.22 | Remaining:00:00.12 | Mem:699.14M, Peak:699.14M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:244.12M (Peak 324.69M) | Time:00:05.75 | Mem:699.14M, Peak:699.14M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:244.12M (Peak 324.69M) | Time:00:05.75 | Mem:699.14M, Peak:699.14M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/parked_vehicles_machinery_02_clay.png'
+Time: 00:06.01 (Saving: 00:00.15)
+
+RENDERED_EXPORTED_MESHES parked_vehicles_machinery_02_clay.png
+20:29:15 | INFO: Data are loaded, start creating Blender stuff
+20:29:15 | INFO: Blender create Mesh node chassis.027
+20:29:15 | INFO: Blender create Mesh node shaped_body_panels.027
+20:29:15 | INFO: Blender create Mesh node tire.027
+20:29:15 | INFO: Blender create Mesh node rim.027
+20:29:15 | INFO: Blender create Mesh node hub.018
+20:29:15 | INFO: Blender create Mesh node rim_spokes.018
+20:29:15 | INFO: Blender create Mesh node sloped_cabin_glazing.021
+20:29:15 | INFO: Blender create Mesh node roof_panel.021
+20:29:15 | INFO: Blender create Mesh node window_pillars.021
+20:29:15 | INFO: Blender create Mesh node window_belt.021
+20:29:15 | INFO: Blender create Mesh node door_handle.014
+20:29:15 | INFO: Blender create Mesh node mirror_stalk.014
+20:29:15 | INFO: Blender create Mesh node mirror.014
+20:29:15 | INFO: Blender create Mesh node bumper.027
+20:29:15 | INFO: Blender create Mesh node lamp_lenses.054
+20:29:15 | INFO: Blender create Mesh node lamp_lenses.055
+20:29:15 | INFO: Blender create Mesh node radiator_grille.027
+20:29:15 | INFO: Blender create Mesh node grille_slats.018
+20:29:15 | INFO: Blender create Mesh node rear_bicycle_wheels
+20:29:15 | INFO: glTF import finished in 0.05s
+Fra:1 Mem:14.84M (Peak 14.84M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:14.84M (Peak 14.84M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hub.009
+Fra:1 Mem:14.84M (Peak 14.84M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_pillars.007
+Fra:1 Mem:14.93M (Peak 14.93M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | window_belt.007
+Fra:1 Mem:16.12M (Peak 16.12M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | door_handle.007
+Fra:1 Mem:16.20M (Peak 16.20M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror_stalk.007
+Fra:1 Mem:16.44M (Peak 16.44M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | mirror.007
+Fra:1 Mem:16.25M (Peak 16.44M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | bumper.009
+Fra:1 Mem:16.29M (Peak 16.44M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | radiator_grille.009
+Fra:1 Mem:16.28M (Peak 16.44M) | Time:00:00.08 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | grille_slats.009
+Fra:1 Mem:17.29M (Peak 18.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:16.33M (Peak 18.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:16.33M (Peak 18.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:16.33M (Peak 18.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:16.41M (Peak 18.59M) | Time:00:00.09 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:16.41M (Peak 43.57M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:16.41M (Peak 43.57M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:16.41M (Peak 43.57M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:16.41M (Peak 43.57M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:16.41M (Peak 43.57M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:16.41M (Peak 43.57M) | Time:00:00.14 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:16.42M (Peak 43.57M) | Time:00:00.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:16.42M (Peak 43.57M) | Time:00:00.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:16.42M (Peak 43.57M) | Time:00:00.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:16.42M (Peak 43.57M) | Time:00:00.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:16.42M (Peak 43.57M) | Time:00:00.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:16.87M (Peak 43.57M) | Time:00:00.14 | Mem:0.01M, Peak:0.01M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:16.87M (Peak 43.57M) | Time:00:00.14 | Mem:0.46M, Peak:0.46M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:16.87M (Peak 43.57M) | Time:00:00.14 | Mem:0.46M, Peak:0.46M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:17.70M (Peak 43.57M) | Time:00:00.15 | Mem:0.46M, Peak:0.46M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:17.75M (Peak 43.57M) | Time:00:00.15 | Mem:0.46M, Peak:0.46M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:17.72M (Peak 43.57M) | Time:00:00.15 | Mem:0.46M, Peak:0.46M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:17.72M (Peak 43.57M) | Time:00:00.15 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:0.88M, Peak:0.88M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.01M, Peak:2.01M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.09M, Peak:2.09M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.09M, Peak:2.09M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.01M, Peak:2.10M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:18.85M (Peak 43.57M) | Time:00:00.15 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:18.86M (Peak 43.57M) | Time:00:00.15 | Mem:2.10M, Peak:2.10M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:25.23M (Peak 43.57M) | Time:00:00.17 | Mem:563.10M, Peak:563.10M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:152.80M (Peak 152.80M) | Time:00:00.18 | Remaining:00:00.07 | Mem:690.67M, Peak:690.67M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:206.52M (Peak 287.09M) | Time:00:05.68 | Mem:690.67M, Peak:690.67M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:206.52M (Peak 287.09M) | Time:00:05.68 | Mem:690.67M, Peak:690.67M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/parked_vehicles_machinery_03_clay.png'
+Time: 00:05.94 (Saving: 00:00.15)
+
+RENDERED_EXPORTED_MESHES parked_vehicles_machinery_03_clay.png
+
+Blender quit

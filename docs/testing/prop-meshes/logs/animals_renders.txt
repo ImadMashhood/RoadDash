@@ -1,0 +1,198 @@
+20:24:36 | INFO: Data are loaded, start creating Blender stuff
+20:24:36 | INFO: Blender create Mesh node animal_torso
+20:24:36 | INFO: Blender create Mesh node upper_leg
+20:24:36 | INFO: Blender create Mesh node lower_leg
+20:24:36 | INFO: Blender create Mesh node hoof
+20:24:36 | INFO: Blender create Mesh node animal_neck
+20:24:36 | INFO: Blender create Mesh node animal_head
+20:24:36 | INFO: Blender create Mesh node muzzle
+20:24:36 | INFO: Blender create Mesh node animal_ears
+20:24:36 | INFO: Blender create Mesh node animal_eyes
+20:24:36 | INFO: Blender create Mesh node horn
+20:24:36 | INFO: Blender create Mesh node tail
+20:24:36 | INFO: glTF import finished in 0.03s
+20:24:36 | INFO: Data are loaded, start creating Blender stuff
+20:24:36 | INFO: Blender create Mesh node animal_torso.003
+20:24:36 | INFO: Blender create Mesh node upper_leg.003
+20:24:36 | INFO: Blender create Mesh node lower_leg.003
+20:24:36 | INFO: Blender create Mesh node hoof.003
+20:24:36 | INFO: Blender create Mesh node animal_neck.003
+20:24:36 | INFO: Blender create Mesh node animal_head.003
+20:24:37 | INFO: Blender create Mesh node muzzle.003
+20:24:37 | INFO: Blender create Mesh node animal_ears.003
+20:24:37 | INFO: Blender create Mesh node animal_eyes.002
+20:24:37 | INFO: Blender create Mesh node horn.002
+20:24:37 | INFO: Blender create Mesh node tail.003
+20:24:37 | INFO: glTF import finished in 0.03s
+20:24:37 | INFO: Data are loaded, start creating Blender stuff
+20:24:37 | INFO: Blender create Mesh node animal_torso.006
+20:24:37 | INFO: Blender create Mesh node upper_leg.006
+20:24:37 | INFO: Blender create Mesh node lower_leg.006
+20:24:37 | INFO: Blender create Mesh node hoof.006
+20:24:37 | INFO: Blender create Mesh node animal_neck.006
+20:24:37 | INFO: Blender create Mesh node animal_head.006
+20:24:37 | INFO: Blender create Mesh node muzzle.006
+20:24:37 | INFO: Blender create Mesh node animal_ears.006
+20:24:37 | INFO: Blender create Mesh node animal_eyes.004
+20:24:37 | INFO: Blender create Mesh node horn.004
+20:24:37 | INFO: Blender create Mesh node tail.006
+20:24:37 | INFO: glTF import finished in 0.03s
+20:24:37 | INFO: Data are loaded, start creating Blender stuff
+20:24:37 | INFO: Blender create Mesh node sign_post
+20:24:37 | INFO: Blender create Mesh node shaped_sign_plate
+20:24:37 | INFO: Blender create Mesh node symbol_stem
+20:24:37 | INFO: Blender create Mesh node direction_symbol
+20:24:37 | INFO: Blender create Mesh node fasteners
+20:24:37 | INFO: glTF import finished in 0.01s
+20:24:37 | INFO: Data are loaded, start creating Blender stuff
+20:24:37 | INFO: Blender create Mesh node animal_torso.009
+20:24:37 | INFO: Blender create Mesh node upper_leg.009
+20:24:37 | INFO: Blender create Mesh node lower_leg.009
+20:24:37 | INFO: Blender create Mesh node hoof.009
+20:24:37 | INFO: Blender create Mesh node animal_neck.009
+20:24:37 | INFO: Blender create Mesh node animal_head.009
+20:24:37 | INFO: Blender create Mesh node muzzle.009
+20:24:37 | INFO: Blender create Mesh node animal_ears.009
+20:24:37 | INFO: Blender create Mesh node animal_eyes.006
+20:24:37 | INFO: Blender create Mesh node tail.009
+20:24:37 | INFO: Blender create Mesh node wool_tufts
+20:24:37 | INFO: glTF import finished in 0.09s
+20:24:37 | INFO: Data are loaded, start creating Blender stuff
+20:24:37 | INFO: Blender create Mesh node animal_torso.012
+20:24:37 | INFO: Blender create Mesh node upper_leg.012
+20:24:37 | INFO: Blender create Mesh node lower_leg.012
+20:24:37 | INFO: Blender create Mesh node hoof.012
+20:24:37 | INFO: Blender create Mesh node animal_neck.012
+20:24:37 | INFO: Blender create Mesh node animal_head.012
+20:24:37 | INFO: Blender create Mesh node muzzle.012
+20:24:37 | INFO: Blender create Mesh node animal_ears.012
+20:24:37 | INFO: Blender create Mesh node animal_eyes.008
+20:24:37 | INFO: Blender create Mesh node tail.012
+20:24:37 | INFO: Blender create Mesh node wool_tufts.002
+20:24:37 | INFO: glTF import finished in 0.14s
+Blender 4.5.1 LTS (hash b0a72b245dcf built 2025-07-29 06:24:35)
+Fra:1 Mem:25.25M (Peak 25.25M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label
+Fra:1 Mem:25.30M (Peak 25.30M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area
+Fra:1 Mem:25.30M (Peak 25.30M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Area.001
+Fra:1 Mem:25.30M (Peak 25.30M) | Time:00:00.31 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.001
+Fra:1 Mem:25.34M (Peak 25.34M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | muzzle
+Fra:1 Mem:25.34M (Peak 25.34M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_ears
+Fra:1 Mem:27.85M (Peak 27.85M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | horn
+Fra:1 Mem:27.73M (Peak 27.85M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_eyes
+Fra:1 Mem:27.97M (Peak 27.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tail
+Fra:1 Mem:27.88M (Peak 27.97M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_torso.001
+Fra:1 Mem:28.32M (Peak 28.32M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | upper_leg.001
+Fra:1 Mem:28.21M (Peak 28.32M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lower_leg.001
+Fra:1 Mem:28.53M (Peak 28.53M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hoof.001
+Fra:1 Mem:28.62M (Peak 28.62M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_neck.001
+Fra:1 Mem:28.78M (Peak 28.78M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_head.001
+Fra:1 Mem:28.84M (Peak 28.84M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_ears.001
+Fra:1 Mem:28.82M (Peak 28.84M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_eyes.001
+Fra:1 Mem:29.08M (Peak 29.08M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | muzzle.001
+Fra:1 Mem:29.01M (Peak 29.08M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.002
+Fra:1 Mem:29.12M (Peak 29.12M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | horn.001
+Fra:1 Mem:29.09M (Peak 29.12M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.003
+Fra:1 Mem:29.21M (Peak 29.21M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.004
+Fra:1 Mem:29.26M (Peak 29.26M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_torso.002
+Fra:1 Mem:29.39M (Peak 29.39M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | Review label.005
+Fra:1 Mem:29.41M (Peak 29.41M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | wool_tufts.001
+Fra:1 Mem:29.50M (Peak 29.50M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | upper_leg.002
+Fra:1 Mem:29.89M (Peak 29.89M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lower_leg.002
+Fra:1 Mem:29.89M (Peak 29.89M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hoof.002
+Fra:1 Mem:30.22M (Peak 30.22M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_neck.002
+Fra:1 Mem:30.38M (Peak 30.38M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_head.002
+Fra:1 Mem:30.40M (Peak 30.40M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | muzzle.002
+Fra:1 Mem:30.54M (Peak 30.54M) | Time:00:00.32 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_ears.002
+Fra:1 Mem:30.60M (Peak 30.60M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_eyes.002
+Fra:1 Mem:30.79M (Peak 30.79M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | horn.002
+Fra:1 Mem:30.78M (Peak 30.79M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tail.002
+Fra:1 Mem:30.84M (Peak 30.84M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | sign_post
+Fra:1 Mem:30.83M (Peak 30.84M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | shaped_sign_plate
+Fra:1 Mem:30.85M (Peak 30.85M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | symbol_stem
+Fra:1 Mem:30.88M (Peak 30.88M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | direction_symbol
+Fra:1 Mem:30.88M (Peak 30.88M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | fasteners
+Fra:1 Mem:30.87M (Peak 30.88M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_torso.003
+Fra:1 Mem:30.96M (Peak 30.96M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | upper_leg.003
+Fra:1 Mem:31.05M (Peak 31.05M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lower_leg.003
+Fra:1 Mem:31.40M (Peak 31.40M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hoof.003
+Fra:1 Mem:31.45M (Peak 31.45M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_neck.003
+Fra:1 Mem:31.43M (Peak 31.45M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_head.003
+Fra:1 Mem:31.59M (Peak 31.59M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | muzzle.003
+Fra:1 Mem:31.58M (Peak 31.59M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_ears.003
+Fra:1 Mem:31.57M (Peak 31.59M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_eyes.003
+Fra:1 Mem:31.75M (Peak 31.75M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tail.003
+Fra:1 Mem:31.76M (Peak 31.76M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | wool_tufts
+Fra:1 Mem:31.82M (Peak 31.82M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_torso.004
+Fra:1 Mem:31.90M (Peak 31.90M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | upper_leg.004
+Fra:1 Mem:32.11M (Peak 32.11M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | lower_leg.004
+Fra:1 Mem:32.65M (Peak 32.65M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | hoof.004
+Fra:1 Mem:32.73M (Peak 32.73M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_neck.004
+Fra:1 Mem:32.77M (Peak 32.77M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_head.004
+Fra:1 Mem:32.89M (Peak 32.89M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | muzzle.004
+Fra:1 Mem:33.08M (Peak 33.08M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_ears.004
+Fra:1 Mem:33.07M (Peak 33.08M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | animal_eyes.004
+Fra:1 Mem:33.28M (Peak 33.28M) | Time:00:00.33 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Synchronizing object | tail.004
+Fra:1 Mem:35.89M (Peak 39.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Initializing
+Fra:1 Mem:34.74M (Peak 39.70M) | Time:00:00.38 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.005
+Fra:1 Mem:34.74M (Peak 39.70M) | Time:00:00.39 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading cow_black_authored_surface
+Fra:1 Mem:34.74M (Peak 39.70M) | Time:00:00.40 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading black_authored_surface
+Fra:1 Mem:34.74M (Peak 39.70M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading white_authored_surface
+Fra:1 Mem:34.74M (Peak 39.70M) | Time:00:00.42 | Mem:0.00M, Peak:0.00M | Scene, ViewLayer | Updating Images | Loading cow_brown_authored_surface
+Fra:1 Mem:35.08M (Peak 39.70M) | Time:00:00.43 | Mem:0.06M, Peak:0.06M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.001
+Fra:1 Mem:35.14M (Peak 39.70M) | Time:00:00.43 | Mem:0.12M, Peak:0.12M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.001
+Fra:1 Mem:35.20M (Peak 39.70M) | Time:00:00.43 | Mem:0.19M, Peak:0.19M | Scene, ViewLayer | Updating Images | Loading cow_brown_authored_surface.001
+Fra:1 Mem:35.26M (Peak 39.70M) | Time:00:00.44 | Mem:0.25M, Peak:0.25M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.002
+Fra:1 Mem:35.32M (Peak 39.70M) | Time:00:00.44 | Mem:0.31M, Peak:0.31M | Scene, ViewLayer | Updating Images | Loading white_authored_surface.002
+Fra:1 Mem:35.46M (Peak 39.70M) | Time:00:00.44 | Mem:0.38M, Peak:0.38M | Scene, ViewLayer | Updating Images | Loading steel_authored_surface
+Fra:1 Mem:35.52M (Peak 39.70M) | Time:00:00.44 | Mem:0.44M, Peak:0.44M | Scene, ViewLayer | Updating Images | Loading cream_fur_authored_surface.001
+Fra:1 Mem:35.58M (Peak 39.70M) | Time:00:00.44 | Mem:0.50M, Peak:0.50M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.004
+Fra:1 Mem:35.65M (Peak 39.70M) | Time:00:00.44 | Mem:0.56M, Peak:0.56M | Scene, ViewLayer | Updating Images | Loading cream_fur_authored_surface
+Fra:1 Mem:35.71M (Peak 39.70M) | Time:00:00.45 | Mem:0.62M, Peak:0.62M | Scene, ViewLayer | Updating Images | Loading yellow_authored_surface
+Fra:1 Mem:35.77M (Peak 39.70M) | Time:00:00.45 | Mem:0.69M, Peak:0.69M | Scene, ViewLayer | Updating Images | Loading black_authored_surface.003
+Fra:1 Mem:35.83M (Peak 39.70M) | Time:00:00.45 | Mem:0.75M, Peak:0.75M | Scene, ViewLayer | Updating Images | Loading chrome_authored_surface
+Fra:1 Mem:32.95M (Peak 39.70M) | Time:00:00.46 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Waiting for render to start
+Fra:1 Mem:32.95M (Peak 39.70M) | Time:00:00.46 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Scene
+Fra:1 Mem:32.95M (Peak 39.70M) | Time:00:00.46 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Updating Shaders
+Fra:1 Mem:33.04M (Peak 39.70M) | Time:00:00.46 | Mem:1.06M, Peak:1.06M | Scene, ViewLayer | Loading render kernels (may take a few minutes the first time)
+Fra:1 Mem:33.04M (Peak 60.21M) | Time:00:00.81 | Mem:1.09M, Peak:1.09M | Scene, ViewLayer | Updating Procedurals
+Fra:1 Mem:33.04M (Peak 60.21M) | Time:00:00.81 | Mem:1.09M, Peak:1.09M | Scene, ViewLayer | Updating Background
+Fra:1 Mem:33.04M (Peak 60.21M) | Time:00:00.81 | Mem:1.09M, Peak:1.09M | Scene, ViewLayer | Updating Camera
+Fra:1 Mem:33.04M (Peak 60.21M) | Time:00:00.81 | Mem:1.09M, Peak:1.09M | Scene, ViewLayer | Updating Meshes Flags
+Fra:1 Mem:33.04M (Peak 60.21M) | Time:00:00.81 | Mem:1.09M, Peak:1.09M | Scene, ViewLayer | Updating Objects
+Fra:1 Mem:33.04M (Peak 60.21M) | Time:00:00.81 | Mem:1.09M, Peak:1.09M | Scene, ViewLayer | Updating Objects | Copying Transformations to device
+Fra:1 Mem:33.06M (Peak 60.21M) | Time:00:00.81 | Mem:1.10M, Peak:1.10M | Scene, ViewLayer | Updating Particle Systems
+Fra:1 Mem:33.06M (Peak 60.21M) | Time:00:00.81 | Mem:1.10M, Peak:1.10M | Scene, ViewLayer | Updating Particle Systems | Copying Particles to device
+Fra:1 Mem:33.06M (Peak 60.21M) | Time:00:00.81 | Mem:1.10M, Peak:1.10M | Scene, ViewLayer | Updating Meshes
+Fra:1 Mem:33.06M (Peak 60.21M) | Time:00:00.81 | Mem:1.10M, Peak:1.10M | Scene, ViewLayer | Updating Objects | Applying Static Transformations
+Fra:1 Mem:33.06M (Peak 60.21M) | Time:00:00.81 | Mem:1.10M, Peak:1.10M | Scene, ViewLayer | Updating Mesh | Computing attributes
+Fra:1 Mem:35.42M (Peak 60.21M) | Time:00:00.82 | Mem:1.11M, Peak:1.11M | Scene, ViewLayer | Updating Mesh | Copying Attributes to device
+Fra:1 Mem:35.41M (Peak 60.21M) | Time:00:00.82 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Scene BVH | Building
+Fra:1 Mem:35.41M (Peak 60.21M) | Time:00:00.82 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Scene BVH | Building BVH
+Fra:1 Mem:37.97M (Peak 60.21M) | Time:00:00.88 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Scene BVH | Packing BVH triangles and strands
+Fra:1 Mem:38.14M (Peak 60.21M) | Time:00:00.88 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Scene BVH | Packing BVH nodes
+Fra:1 Mem:38.13M (Peak 60.21M) | Time:00:00.90 | Mem:3.45M, Peak:3.45M | Scene, ViewLayer | Updating Scene BVH | Copying BVH to device
+Fra:1 Mem:38.13M (Peak 60.21M) | Time:00:00.91 | Mem:4.81M, Peak:4.81M | Scene, ViewLayer | Updating Mesh | Computing normals
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.91 | Mem:4.81M, Peak:4.81M | Scene, ViewLayer | Updating Mesh | Copying Mesh to device
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.92 | Mem:8.35M, Peak:8.35M | Scene, ViewLayer | Updating Objects Flags
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.92 | Mem:8.35M, Peak:8.35M | Scene, ViewLayer | Updating Primitive Offsets
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.35M, Peak:8.35M | Scene, ViewLayer | Updating Images
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.35M, Peak:8.35M | Scene, ViewLayer | Updating Camera Volume
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.35M, Peak:8.35M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Updating Lights
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Updating Lights | Computing tree
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Updating Integrator
+Fra:1 Mem:41.67M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Updating Film
+Fra:1 Mem:41.68M (Peak 60.21M) | Time:00:00.93 | Mem:8.36M, Peak:8.44M | Scene, ViewLayer | Updating Lookup Tables
+Fra:1 Mem:41.68M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Updating Baking
+Fra:1 Mem:41.68M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Updating Device | Writing constant memory
+Fra:1 Mem:41.68M (Peak 60.21M) | Time:00:00.93 | Mem:8.44M, Peak:8.44M | Scene, ViewLayer | Loading denoising kernels (may take a few minutes the first time)
+Fra:1 Mem:48.06M (Peak 60.21M) | Time:00:00.99 | Mem:569.45M, Peak:569.45M | Scene, ViewLayer | Sample 0/12
+Fra:1 Mem:175.63M (Peak 175.63M) | Time:00:01.00 | Remaining:00:00.19 | Mem:697.01M, Peak:697.01M | Scene, ViewLayer | Sample 1/12
+Fra:1 Mem:229.34M (Peak 309.91M) | Time:00:15.48 | Mem:697.01M, Peak:697.01M | Scene, ViewLayer | Sample 12/12
+Fra:1 Mem:229.34M (Peak 309.91M) | Time:00:15.49 | Mem:697.01M, Peak:697.01M | Scene, ViewLayer | Finished
+Saved: '/home/imad/Documents/ChatGPT/RoadRash/art/props/mesh_assets/renders/animals_01.png'
+Time: 00:16.46 (Saving: 00:00.77)
+
+RENDERED_EXPORTED_MESHES animals_01.png
+
+Blender quit
