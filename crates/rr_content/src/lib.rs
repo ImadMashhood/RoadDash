@@ -175,3 +175,5 @@ pub mod material_detail;
 pub mod world_art;
 
 pub mod velocity_muscles;
+
+pub mod facade_atlas;

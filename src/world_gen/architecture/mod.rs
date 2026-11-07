@@ -2,6 +2,7 @@
 use super::{WorldPlan, layout::WorldLayout};
 use bevy::prelude::*;
 use rr_content::architecture::{Catalog, Design, Rules};
+pub mod identity;
 pub mod render;
 #[cfg(test)]
 mod tests;
@@ -77,6 +78,17 @@ impl Architecture {
     }
 }
 impl Assembly {
+    /// Render detail follows distance to the facade, not the lot centre.
+    pub fn distance_to(&self, camera: Vec3) -> f32 {
+        let local = self.rotation.inverse() * (camera - self.position);
+        Vec3::new(
+            (local.x.abs() - self.size.x * 0.5).max(0.0),
+            (-local.y).max(local.y - self.size.y).max(0.0),
+            (local.z.abs() - self.size.z * 0.5).max(0.0),
+        )
+        .length()
+    }
+
     pub fn face_mask(&self, camera: Vec3) -> u8 {
         let d = self.rotation.inverse() * (camera - self.position);
         u8::from(d.x >= 0.0)

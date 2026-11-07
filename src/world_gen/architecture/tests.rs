@@ -95,3 +95,56 @@ fn catalog_rejects_unsafe_paths_bad_hashes_and_inverted_bounds() {
         );
     }
 }
+
+#[test]
+fn identity_proxies_match_the_authored_panels_and_keep_lot_footprints() {
+    use bevy::mesh::VertexAttributeValues;
+    let plan = plan();
+    let atlas = rr_content::facade_atlas::Atlas::from_json(identity::JSON, &plan.catalog).unwrap();
+    let mut i = identity::Identity::for_test(atlas);
+    let mut panels = 0;
+    for b in &plan.buildings {
+        let design = &plan.catalog.records[b.design];
+        panels += b.panels(design, 15).len();
+        for face in 0..4 {
+            let mesh = i.mesh(b, design, face);
+            let Some(VertexAttributeValues::Float32x3(vertices)) =
+                mesh.attribute(Mesh::ATTRIBUTE_POSITION)
+            else {
+                panic!("proxy needs real positions");
+            };
+            for v in vertices {
+                assert!(
+                    v[0].abs() <= b.size.x * 0.5 + 0.02
+                        && v[2].abs() <= b.size.z * 0.5 + 0.02
+                        && v[1] >= -0.001
+                        && v[1] <= b.size.y + 0.001,
+                    "{} face{face} {v:?}",
+                    b.id
+                );
+            }
+        }
+    }
+    assert_eq!(i.quads, panels);
+    assert_eq!(i.meshes, 657 * 4);
+    assert!(i.quads * 2 <= 250_000);
+}
+
+#[test]
+fn detail_distance_uses_the_actual_facade_instead_of_the_lot_centre() {
+    let b = Assembly {
+        id: "long-lot".into(),
+        design: 0,
+        position: Vec3::new(10.0, 5.0, 20.0),
+        rotation: Quat::from_rotation_y(0.6),
+        size: Vec3::new(80.0, 25.0, 20.0),
+    };
+    assert!(
+        (b.distance_to(b.position + b.rotation * Vec3::new(42.0, 3.0, 0.0)) - 2.0).abs() < 1e-4
+    );
+    assert_eq!(
+        b.distance_to(b.position + b.rotation * Vec3::new(0.0, 2.0, 0.0)),
+        0.0
+    );
+    assert!((b.distance_to(b.position + Vec3::Y * 30.0) - 5.0).abs() < 1e-4);
+}

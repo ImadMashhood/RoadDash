@@ -2,6 +2,8 @@
 use bevy::prelude::*;
 use serde::Deserialize;
 use std::f32::consts::FRAC_PI_2;
+mod stream;
+pub use stream::{Instance as CityLodInstance, Part as CityLodPart, fade, update_lod};
 
 pub struct BuildingSceneTypesPlugin;
 impl Plugin for BuildingSceneTypesPlugin {
@@ -50,6 +52,10 @@ pub struct ModelCatalog {
     front_scenes: Vec<[Option<Handle<Scene>>; 3]>,
     pub facade_designs: usize,
     pub instances: usize,
+    cache: stream::Cache,
+    initial_instances_ready: bool,
+    pub direct_crossfades: u64,
+    pub transition_groups: usize,
 }
 impl ModelCatalog {
     pub fn requested_lods(&self) -> usize {
@@ -60,18 +66,23 @@ impl ModelCatalog {
             .flatten()
             .count()
     }
+
     pub fn ready(&self, server: &AssetServer) -> bool {
-        self.scenes
-            .iter()
-            .chain(self.front_scenes.iter())
-            .flatten()
-            .flatten()
-            .all(|h| {
-                if let Some(bevy::asset::LoadState::Failed(error)) = server.get_load_state(h.id()) {
-                    panic!("Required city asset failed: {error}");
-                }
-                server.is_loaded_with_dependencies(h.id())
-            })
+        self.initial_instances_ready
+            && self
+                .scenes
+                .iter()
+                .chain(self.front_scenes.iter())
+                .flatten()
+                .flatten()
+                .all(|h| {
+                    if let Some(bevy::asset::LoadState::Failed(error)) =
+                        server.get_load_state(h.id())
+                    {
+                        panic!("Required city asset failed: {error}");
+                    }
+                    server.is_loaded_with_dependencies(h.id())
+                })
     }
 }
 #[derive(Component)]
@@ -105,7 +116,8 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
     ))
     .expect("valid catalog designs");
     let ids: Vec<String> = designs.designs.iter().map(|d| d.id.clone()).collect();
-    let scenes: Vec<[Option<Handle<Scene>>; 3]> = ids.iter().map(|_| [None, None, None]).collect();
+    let mut scenes: Vec<[Option<Handle<Scene>>; 3]> =
+        ids.iter().map(|_| [None, None, None]).collect();
     let mut front_scenes = scenes.clone();
     for lot in lots {
         let kind = ids
@@ -146,21 +158,17 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
                 Transform::from_xyz(lot.front_x, 0.16, lot.z_start + (bay as f32 + 0.5) * width)
                     .with_rotation(Quat::from_rotation_y(-inward * FRAC_PI_2))
                     .with_scale(Vec3::splat(scale));
-            commands.spawn((
-                Name::new(format!("{} / {} / module {}", ids[kind], lot.id, bay)),
+            stream::spawn(
+                commands,
+                format!("{} / {} / module {}", ids[kind], lot.id, bay),
                 BuildingInstance {
                     kind,
                     lod: 2,
                     proof: false,
                 },
-                SceneRoot(
-                    front_scenes[kind][2]
-                        .as_ref()
-                        .expect("coarse scene")
-                        .clone(),
-                ),
+                front_scenes[kind][2].as_ref().unwrap().clone(),
                 t,
-            ));
+            );
             instances += 1;
         }
     }
@@ -180,19 +188,15 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
                 continue;
             }
             for i in 0..count {
-                commands.spawn((
-                    Name::new(format!("{} / side return {}", lot.id, i)),
+                stream::spawn(
+                    commands,
+                    format!("{} / side return {}", lot.id, i),
                     BuildingInstance {
                         kind,
                         lod: 2,
                         proof: false,
                     },
-                    SceneRoot(
-                        front_scenes[kind][2]
-                            .as_ref()
-                            .expect("coarse front")
-                            .clone(),
-                    ),
+                    front_scenes[kind][2].as_ref().unwrap().clone(),
                     Transform::from_xyz(
                         lot.front_x + lot.inward() * (0.4 + (i as f32 + 0.5) * width),
                         0.16,
@@ -204,7 +208,7 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
                         std::f32::consts::PI
                     }))
                     .with_scale(Vec3::splat(lot.facade_scale)),
-                ));
+                );
                 instances += 1;
             }
         }
@@ -216,14 +220,20 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
             .min(9.5 / design.height)
             .min(8.0 / design.depth);
         let face = 2000.0 + page as f32 * 50.0;
-        commands.spawn((
-            Name::new(format!("Catalog {}", design.id)),
+        let scene = server.load(format!(
+            "architecture://models/{}_lod2.glb#Scene0",
+            design.id
+        ));
+        scenes[kind][2] = Some(scene.clone());
+        stream::spawn(
+            commands,
+            format!("Catalog {}", design.id),
             BuildingInstance {
                 kind,
                 lod: 2,
                 proof: true,
             },
-            SceneRoot(Handle::default()),
+            scene,
             Transform::from_xyz(
                 face + design.depth * 0.5 * scale,
                 0.16,
@@ -231,7 +241,7 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
             )
             .with_rotation(Quat::from_rotation_y(-FRAC_PI_2))
             .with_scale(Vec3::splat(scale)),
-        ));
+        );
     }
     println!(
         "ACTUAL GLB CITY: {instances} modules, {facade_designs} facade designs; {} total catalog assets",
@@ -243,63 +253,11 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
         front_scenes,
         facade_designs,
         instances,
+        cache: default(),
+        initial_instances_ready: false,
+        direct_crossfades: 0,
+        transition_groups: 0,
     });
-}
-
-pub fn update_lod(
-    mut catalog: ResMut<ModelCatalog>,
-    server: Res<AssetServer>,
-    cameras: Query<&Transform, With<Camera3d>>,
-    mut buildings: Query<(
-        &Transform,
-        &mut BuildingInstance,
-        &mut SceneRoot,
-        &mut Visibility,
-    )>,
-) {
-    let Ok(camera) = cameras.single() else {
-        return;
-    };
-    for (t, mut b, mut scene, mut visible) in &mut buildings {
-        let distance = t.translation.distance(camera.translation);
-        let max_distance = if camera.translation.y > 150.0 {
-            20000.0
-        } else {
-            700.0
-        };
-        *visible = if distance > max_distance {
-            Visibility::Hidden
-        } else {
-            Visibility::Inherited
-        };
-        if distance > max_distance {
-            continue;
-        }
-        let next = if b.proof && distance < 45.0 {
-            0
-        } else {
-            lod_for_distance(distance)
-        };
-        // Hysteresis prevents repeated scene replacement near an LOD boundary.
-        if next != b.lod && (distance - 28.0).abs() > 3.0 && (distance - 75.0).abs() > 5.0 {
-            let id = catalog.ids[b.kind].clone();
-            let source = if b.proof { "models" } else { "front_modules" };
-            let scenes = if b.proof {
-                &mut catalog.scenes
-            } else {
-                &mut catalog.front_scenes
-            };
-            if scenes[b.kind][next].is_none() {
-                scenes[b.kind][next] =
-                    Some(server.load(format!("architecture://{source}/{id}_lod{next}.glb#Scene0")));
-            }
-            let handle = scenes[b.kind][next].as_ref().expect("requested scene");
-            if server.is_loaded_with_dependencies(handle.id()) {
-                scene.0 = handle.clone();
-                b.lod = next;
-            }
-        }
-    }
 }
 
 #[cfg(test)]

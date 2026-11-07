@@ -50,6 +50,9 @@ pub fn run(
         tangents,
         screen,
         mut ui,
+        identity,
+        far_facades,
+        mesh_assets,
     ): (
         Option<Res<super::architecture::Architecture>>,
         Option<Res<super::architecture::render::Streaming>>,
@@ -63,6 +66,9 @@ pub fn run(
         Option<Res<crate::tangent_detail::Queue>>,
         Option<Res<State<crate::runtime::AppScreen>>>,
         Query<&mut Visibility, With<Node>>,
+        Option<Res<super::architecture::identity::Identity>>,
+        Query<(&super::architecture::render::Fallback, &Mesh3d)>,
+        Res<Assets<Mesh>>,
     ),
     lods: Query<(&super::buildings::BuildingLod, &ViewVisibility)>,
 ) {
@@ -157,7 +163,13 @@ pub fn run(
         });
         let material_evidence=details.as_ref().map(|d|{assert!(d.applied>20&&d.unique_maps()>5,"palette detail never applied");serde_json::json!({"materials_enhanced":d.applied,"unique_shared_map_pairs":d.unique_maps(),"settled_at_capture":d.settled()})});
         let tangent_evidence=tangents.as_ref().map(|t|serde_json::json!({"generated_meshes":t.generated,"unsupported_meshes":t.unsupported,"settled_at_capture":t.settled()}));
-        let report = serde_json::json!({"dressing":dressing_evidence,"material_detail":material_evidence,"tangents":tangent_evidence,"architecture":architecture_evidence,"metrics":metrics.evidence(&clock),"resolution":windows.single().ok().map(|w|[w.resolution.physical_width(),w.resolution.physical_height()]),"present_mode":"AutoNoVsync","update_mode":"Continuous focused and unfocused (benchmark only)","window_focused":windows.single().ok().map(|w|w.focused),"visible_near_parts":lods.iter().filter(|(l,v)|l.near&&v.get()).count(),"visible_far_proxies":lods.iter().filter(|(l,v)|!l.near&&v.get()).count(),"benchmark":"warmed city view with active fifteen-racer simulation; current default rendering, no production quality preset", "logical_buildings":buildings.iter().count(),"junctions":layout.settings.junctions.len(),"fields":layout.fields.len(),"sections_captured":15,"p95_target_ms":16.7,"p95_target_met":metrics.p95_ms<=16.7,"limitations":"bounded wall-frame sample, not GPU timing or Windows hardware certification"});
+        let far_identity=identity.as_ref().map(|i| {
+            let proxies:Vec<_>=far_facades.iter().filter(|(f,_)|f.face.is_some()).collect();
+            let triangles:usize=proxies.iter().map(|(_,m)|mesh_assets.get(&m.0).unwrap().indices().unwrap().len()/3).sum();
+            assert!(i.ready());assert_eq!(proxies.len(),657*4);assert_eq!(triangles,i.quads*2);assert!(triangles<=250_000);assert!(i.bytes<=128*1024*1024);
+            serde_json::json!({"authored_designs":128,"baked_bands":i.tiles.len(),"actual_proxy_meshes":proxies.len(),"actual_proxy_triangles":triangles,"resident_texture_bytes":i.bytes,"mip_levels":5,"source":"original authored model projection; not generic windows"})
+        });
+        let report = serde_json::json!({"far_identity":far_identity,"dressing":dressing_evidence,"material_detail":material_evidence,"tangents":tangent_evidence,"architecture":architecture_evidence,"metrics":metrics.evidence(&clock),"resolution":windows.single().ok().map(|w|[w.resolution.physical_width(),w.resolution.physical_height()]),"present_mode":"AutoNoVsync","update_mode":"Continuous focused and unfocused (benchmark only)","window_focused":windows.single().ok().map(|w|w.focused),"visible_near_parts":lods.iter().filter(|(l,v)|l.near&&v.get()).count(),"visible_far_proxies":lods.iter().filter(|(l,v)|!l.near&&v.get()).count(),"benchmark":"warmed city view with active fifteen-racer simulation; current default rendering, no production quality preset", "logical_buildings":buildings.iter().count(),"junctions":layout.settings.junctions.len(),"fields":layout.fields.len(),"sections_captured":15,"p95_target_ms":16.7,"p95_target_met":metrics.p95_ms<=16.7,"limitations":"bounded wall-frame sample, not GPU timing or Windows hardware certification"});
         std::fs::write(
             "screenshots/world-survey.json",
             serde_json::to_string_pretty(&report).unwrap(),

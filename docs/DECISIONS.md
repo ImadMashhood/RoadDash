@@ -1670,3 +1670,34 @@ detail panels, earlier asynchronous IO, finite hidden preparation, and dither gr
 This is not silhouette morphing or a new distant facade art pass. Physical lots,
 colliders, support, navigation and structural IDs are unchanged. Multiplayer remains
 independent of cosmetic LOD; rollback renderer independently of velocity physics.
+
+## ADR061 — Model-derived distant identity and bounded City Run scene lifecycle
+
+2026-11-07. Problem: generic far windows/trim did not match authored facades;
+City Run still replaced live SceneRoot directly. Alternatives: raising detail
+budgets/global scene residency creates excessive entities; freezing coarse LOD
+loses close geometry; longer fades alone cannot repair facade identity. Selected:
+project the existing source triangles/UV/PBR materials into383storey-band tiles
+for128designs, batch four face proxies per657lots, keep authored close geometry.
+Projection uses original source data and a depth buffer, not retail media.
+Albedo filtering is alpha-weighted in linear light; normals renormalize; packed
+PBR stays linear.16pixel guards and a mip4clamp prevent neighboring atlas bleed.
+The composed map budget is128MiB; static proxies are separately capped250ktriangles.
+Keep source and output hashes and verify every source band.
+
+Fade proxies per face according to old/new authored masks, so an uncovered face
+remains visible until its replacement is actually ready. Use physical building
+extent only to select visual detail; authoritative transforms/colliders do not
+change. Cache settled fallback coverage. City separates logical instance roots
+from active/pending/retiring scene groups, waits for actual scene/material/tangent
+readiness, then reuses final-camera complementary dither. Cap transitions at8
+and high-detail caches at48; pin referenced groups and keep old geometry if full.
+The city design viewer shares the lifecycle. No engine/library/physics migration.
+
+Tradeoffs: about128MiB additional resident PBR images and flat projected distant
+surfaces; grazing-angle parallax/silhouette differences and dither grain remain.
+Technical coverage is not user art approval or a60FPS certificate. Existing
+production performance and longer streaming gates stay open. Bevy0.17.3 is the
+existing dependency; Blender4.5.9 is an external build tool only. No third-party
+code/media incorporated. Roll back proxy assembly and city stream independently;
+all physical layout/ID/navigation and selected velocity-ragdoll contracts remain.

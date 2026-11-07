@@ -126,10 +126,11 @@ fn loaded(
     mut next: ResMut<NextState<AppScreen>>,
     art: Option<Res<world::Art>>,
     city: Option<Res<crate::world_gen::city::visuals::ModelCatalog>>,
-    (architecture, details, tangents): (
+    (architecture, details, tangents, identity): (
         Option<Res<crate::world_gen::architecture::render::Streaming>>,
         Option<Res<crate::material_detail::Queue>>,
         Option<Res<crate::tangent_detail::Queue>>,
+        Option<Res<crate::world_gen::architecture::identity::Identity>>,
     ),
     server: Option<Res<AssetServer>>,
     props: Query<
@@ -140,6 +141,9 @@ fn loaded(
         )>,
     >,
 ) {
+    if identity.as_ref().is_some_and(|i| !i.ready()) {
+        return;
+    }
     if server.is_some()
         && (details.as_ref().is_some_and(|d| !d.settled())
             || tangents.as_ref().is_some_and(|t| !t.settled()))
@@ -331,7 +335,16 @@ impl Plugin for RoadWorldPlugin {
             )
             .add_systems(
                 Update,
-                crate::world_gen::city::visuals::update_lod
+                crate::world_gen::architecture::identity::prepare
+                    .run_if(resource_exists::<AssetServer>),
+            )
+            .add_systems(
+                Update,
+                (
+                    crate::world_gen::city::visuals::update_lod,
+                    crate::world_gen::city::visuals::fade,
+                )
+                    .chain()
                     .run_if(resource_exists::<crate::world_gen::city::visuals::ModelCatalog>),
             )
             .add_systems(

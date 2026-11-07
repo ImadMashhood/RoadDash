@@ -17,6 +17,19 @@ struct Prepared {
     children: Vec<Entity>,
 }
 impl Slot {
+    fn face_coverage(&self, face: usize) -> (f32, bool) {
+        let active = self.active.is_some_and(|(_, mask)| mask & (1 << face) != 0);
+        let retired = self
+            .retiring
+            .as_ref()
+            .is_some_and(|p| p.key.1 & (1 << face) != 0);
+        (
+            self.blend
+                * (f32::from(active) * self.transition
+                    + f32::from(retired) * (1.0 - self.transition)),
+            retired && !active,
+        )
+    }
     pub fn prepared_roots(&self) -> &[Entity] {
         self.prepared
             .as_ref()
@@ -45,10 +58,32 @@ impl Slot {
 }
 #[derive(Component)]
 pub struct Fallback {
+    pub face: Option<u8>,
     pub index: usize,
     pub wall: bool,
     pub size: Vec3,
     pub range: bevy::camera::visibility::VisibilityRange,
+    last_weight: f32,
+    last_incoming: bool,
+}
+impl Fallback {
+    pub fn new(
+        index: usize,
+        wall: bool,
+        size: Vec3,
+        range: bevy::camera::visibility::VisibilityRange,
+        face: Option<u8>,
+    ) -> Self {
+        Self {
+            index,
+            wall,
+            size,
+            range,
+            face,
+            last_weight: f32::NAN,
+            last_incoming: false,
+        }
+    }
 }
 struct Cached {
     scenes: [Handle<Scene>; 3],
@@ -194,9 +229,7 @@ pub fn update(
             (
                 e,
                 s.index,
-                plan.buildings[s.index]
-                    .position
-                    .distance(camera.translation),
+                plan.buildings[s.index].distance_to(camera.translation),
             )
         })
         .filter(|(e, _, d)| {
@@ -581,8 +614,8 @@ pub struct FadePart {
 }
 #[derive(Component)]
 pub struct TemporalFade {
-    weight: f32,
-    incoming: bool,
+    pub(crate) weight: f32,
+    pub(crate) incoming: bool,
 }
 fn scene_ready(
     event: On<bevy::scene::SceneInstanceReady>,
@@ -667,7 +700,7 @@ pub fn fade(
     mut fallback: Query<
         (
             Entity,
-            &Fallback,
+            &mut Fallback,
             &GlobalTransform,
             &mut Transform,
             &mut Visibility,
@@ -696,14 +729,24 @@ pub fn fade(
         slot.blend += (slot.target - slot.blend).clamp(-delta, delta);
         slot.transition = (slot.transition + delta).min(1.0);
     }
-    let mut values = vec![0.0; plan.buildings.len()];
+    let mut values = vec![(0.0, [(0.0, false); 4]); plan.buildings.len()];
     for (_, slot) in &slots {
-        values[slot.index] = slot.blend;
+        let faces = std::array::from_fn(|face| slot.face_coverage(face));
+        values[slot.index] = (slot.blend, faces);
     }
-    for (fallback_entity, f, global, mut transform, mut visibility, mut range, temporal) in
+    for (fallback_entity, mut f, global, mut transform, mut visibility, mut range, temporal) in
         &mut fallback
     {
-        let weight = values[f.index];
+        let (weight, proxy_incoming) = f.face.map_or((values[f.index].0, false), |face| {
+            values[f.index].1[usize::from(face)]
+        });
+        // Settled proxies retain their static range. Camera synchronization
+        // for partial fades runs separately; unchanged coverage needs no work.
+        if f.last_weight == weight && f.last_incoming == proxy_incoming {
+            continue;
+        }
+        f.last_weight = weight;
+        f.last_incoming = proxy_incoming;
         if f.wall {
             let b = &plan.buildings[f.index];
             let inset = b.inset(&plan.catalog.records[b.design]) * weight;
@@ -727,12 +770,16 @@ pub fn fade(
             let next_range = if !(0.001..0.999).contains(&weight) {
                 f.range.clone()
             } else {
-                fade_range(global.translation().distance(camera), 1.0 - weight, false)
+                fade_range(
+                    global.translation().distance(camera),
+                    1.0 - weight,
+                    proxy_incoming,
+                )
             };
             if (0.001..0.999).contains(&weight) {
                 commands.entity(fallback_entity).insert(TemporalFade {
                     weight: 1.0 - weight,
-                    incoming: false,
+                    incoming: proxy_incoming,
                 });
             } else if temporal.is_some() {
                 commands.entity(fallback_entity).remove::<TemporalFade>();
@@ -797,6 +844,38 @@ mod fade_tests {
                 && level < 16
                 && !((level >= 0 && level + threshold >= 16)
                     || (level < 0 && 1 + level + threshold <= 0)))
+    }
+    #[test]
+    fn identity_proxy_covers_faces_missing_from_either_ready_group() {
+        let mut slot = Slot::new(0);
+        slot.blend = 1.0;
+        for old in 0..16 {
+            for new in 0..16 {
+                for step in 0..=16 {
+                    slot.active = Some((0, new));
+                    slot.retiring = Some(Prepared {
+                        key: (2, old),
+                        children: vec![],
+                    });
+                    slot.transition = step as f32 / 16.0;
+                    for face in 0..4 {
+                        let (coverage, incoming) = slot.face_coverage(face);
+                        let proxy = level(&fade_range(35.0, 1.0 - coverage, incoming), 35.0);
+                        let a = level(&fade_range(2.0, slot.transition, true), 2.0);
+                        let b = level(&fade_range(120.0, 1.0 - slot.transition, false), 120.0);
+                        for pixel in 0..16 {
+                            let count = usize::from(visible(proxy, pixel))
+                                + usize::from(new & (1 << face) != 0 && visible(a, pixel))
+                                + usize::from(old & (1 << face) != 0 && visible(b, pixel));
+                            assert_eq!(
+                                count, 1,
+                                "old={old} new={new} face={face} step={step} pixel={pixel}"
+                            );
+                        }
+                    }
+                }
+            }
+        }
     }
     #[test]
     fn temporal_ranges_follow_the_propagated_render_camera() {

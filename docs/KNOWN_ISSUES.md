@@ -573,3 +573,16 @@ Final survey sample: p95=16.94174ms (16.7ms target missed), average14.05263ms.
 Actual displayed731panels/731523triangles and48cachedLODs fit unchanged bounds.
 LOD-03 tracks distant identity and optional City Run; full zero-pop-in and broad
 production/hardware/performance acceptance are not claimed.
+
+## Facade identity and City Run lifecycle — 2026-11-07
+
+LOD-04 supplies model-derived far identity and direct ready scene transitions on
+both maps. LOD-03 now awaits user visual/extended-streaming acceptance. Projected
+far surfaces can flatten depth/parallax; close real geometry can still change a
+silhouette, and dither grain is visible during transitions.128MiB texture and
+250kstatic-proxy triangle caps are distinct from near detail budgets. Native
+City cache/transition maxima are48/8. The initial isolated full-world sample
+p95=18.45385ms misses16.7ms; a later49.09ms sample overlapped test compilation
+and is not a controlled performance result. Keep broad performance/art gates open.
+
+Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance gate remains open (exit1); geometry/source/coverage assertions and all15sections pass. Final native Valley sweep54direct crossfades, City389; both recovery smokes and preview pass. Longer streaming/user approval remain open.

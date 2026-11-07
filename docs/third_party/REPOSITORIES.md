@@ -742,3 +742,20 @@ visibility/range.rs, render/mesh_functions.wgsl and pbr_functions.wgsl (Cargo.lo
 pinned crates, bevyengine/bevy, MIT OR Apache-2.0; existing DEPENDENCY). Confirmed
 start/end complementary dither and origin semantics; no source copied or new
 dependency/media. ADR060 and velocity-popin evidence record actual use.
+
+### 2026-11-07 facade LOD authoring/runtime follow-up
+
+Existing external Blender build tool:4.5.9 LTS, build8bf95cbd38d1 (2026-04-21),
+from the previously acquired local blender-4.5.9-linux-x64 archive. Verified runtime
+version and bundled license files. Official source/tag:
+https://projects.blender.org/blender/blender/src/tag/v4.5.9 ; license:
+https://www.blender.org/about/license/ (GPL; external tool, not shipped). Used
+bundled Python/numpy and image IO for our original triangle/UV/depth projection
+script. No Blender source/add-on/media imported; existing original model provenance
+continues through the atlas manifest. No new game dependency.
+
+Existing Bevy0.17.3 DEPENDENCY: SceneSpawner readiness, Assets/Images mip data,
+SceneRoot observers and VisibilityRange temporal masks. Installed pinned source
+informed API use; no source copied. Scene/material/tangent readiness and actual
+native captures verified. Optional city rendering is bounded independently of
+physics. No new GitHub project adopted; ADR061 records alternatives/tradeoffs.

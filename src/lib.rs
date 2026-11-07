@@ -126,7 +126,16 @@ pub fn build_app(smoke: bool) -> App {
             .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
                 std::time::Duration::from_secs_f64(1.0 / 60.0),
             ));
-        if std::env::args().any(|a| a == "--world-survey") {
+        if std::env::args().any(|a| a == "--lod-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<world_gen::lod_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    world_gen::lod_survey::run
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--world-survey") {
             app.insert_resource(bevy::winit::WinitSettings::continuous());
             if app
                 .world()

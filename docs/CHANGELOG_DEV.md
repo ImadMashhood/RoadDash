@@ -786,3 +786,16 @@ Final verification:258tests pass/1ignored; fmt/strictClippy/build/audit/5roadmap
 pass; native recovery smoke pass;18finitepairedlab withbaselinepreserved. World
 survey15sections657roots,9directcrossfades, boundsvalid; p95=16.94174ms misses
 16.7ms (surveyexit1). RAG-12/LOD-02 completed; LOD-03 remains open.
+
+## 2026-11-07 — Complete technical facade LOD follow-up
+
+User chose facade LOD before Part05. Added128design/383band model-derived PBR
+proxy atlas with original hashes/mips/guards, face-aware coverage and closest-face
+distance. City Run/preview now prepare then crossfade ready scenes under48cache/
+8transition limits. Source physics, world quotas, saves and selected velocity
+remain untouched.263tests pass/1ignored; formatting/strictClippy/build and both
+native moving-camera fixtures pass; city recovery and preview pass. World geometry
+assertions pass but60FPS remains open. ADR061/LOD-04 capture implementation;
+LOD-03 retains user visual/long-streaming signoff. Full receipts in facade-lod.
+
+Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance gate remains open (exit1); geometry/source/coverage assertions and all15sections pass. Final native Valley sweep54direct crossfades, City389; both recovery smokes and preview pass. Longer streaming/user approval remain open.

@@ -75,3 +75,14 @@ in the blueprint are not installed dependencies.
   required. Facade LOD changes must crossfade ready groups directly, use opposing
   dither branches and final propagated render-camera origins; overlap counts
   against displayed geometry budgets and cannot remove collision.
+
+- Facade LOD identity uses model-derived band proxies with per-face coverage.
+  Preserve source-band hashes, mip gutters, near geometry and separate static/
+  near budgets. City Run and city_preview share ready scene lifecycle: no direct
+  live SceneRoot replacement, max8transitions and48pinned high-LOD cache entries.
+  Verify both --lod-survey modes; keep user art/long-streaming/performance gates
+  separate from technical source/geometry coverage.
+
+- Any facade material/geometry change must update the model-derived far atlas and
+  its hashes/mips. Runtime-only material overrides cannot leave distant proxies
+  on the old appearance (MAT-03).

@@ -174,10 +174,12 @@ fn main() {
             }
         }
     }
-    let status = road_dash::build_app(
-        std::env::args()
-            .any(|a| a == "--smoke-test" || a == "--actor-smoke-test" || a == "--world-survey"),
-    )
+    let status = road_dash::build_app(std::env::args().any(|a| {
+        a == "--smoke-test"
+            || a == "--actor-smoke-test"
+            || a == "--world-survey"
+            || a == "--lod-survey"
+    }))
     .run();
     // Native test fixtures report failed acceptance via AppExit. Preserve that
     // status for scripts rather than returning a misleading successful process.

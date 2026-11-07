@@ -36,6 +36,8 @@ Keyboard bindings can be supplied through `ROADDASH_BINDINGS=/path/to/input.json
 
 The Linux build uses X11 (and XWayland on Wayland desktops). Windows and macOS are supported by the engine, but have not yet been runtime-tested for this project.
 
+Review facade transitions with `cargo run -- --lod-survey` or `ROADDASH_TRACK=city cargo run -- --lod-survey`. [Implementation and native evidence](docs/testing/facade-lod/README.md).
+
 ## Controls
 
 | Key | Action |
@@ -125,7 +127,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**183 verified tasks complete; 227 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**184 verified tasks complete; 228 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -143,12 +145,12 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 183 verified complete |
+| [00](#part-00) | Completed and verified foundations | 184 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 26 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 21 open |
-| [05](#part-05) | World B — props, materials and procedural dressing | 7 open |
+| [05](#part-05) | World B — props, materials and procedural dressing | 8 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 10 open |
 | [07](#part-07) | Weapons and complete riding combat | 11 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
@@ -164,6 +166,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **LOD-04** Integrate model-derived distant facade identity and bounded City Run scene crossfades. Reason: generic far windows changed facade identity and the alternate map still swapped scenes; part: 04; dependencies: LOD-02 and immutable authored source catalog; acceptance: all 128 designs/383 bands, provenance/mip guards, bounded resident proxies/cache/overlap, face-aware coverage, actual native transitions and preserved world/physics; verification: [source, unit, native and census evidence](docs/testing/facade-lod/README.md). User visual/long-streaming approval remains LOD-03.
 
 - [x] **RAG-12** Adopt the user-selected velocity muscles as the default without the native-motor candidate. Reason: user selected velocity after A/B comparison; part: 03; dependencies: shared continuous release and Method B; acceptance: normal launch uses velocity, anatomical constraints/passive resistance and baseline remain intact, paired lab and crash/recovery pass; verification: [selection evidence](docs/testing/velocity-popin/README.md).
 
@@ -701,7 +705,7 @@ Continue here after the animation gates: buildings → props → NPCs → sky/la
 
 ### Part 04 — World A — facade study, original textures and procedural buildings
 
-- [ ] **LOD-03** Match distant facade identity and extend direct fades to optional City Run. Reason: initial generic-to-authored geometry still differs and City Run uses a separate scene-swap renderer; part: 04; dependencies: LOD-02 and approved facade families; acceptance: matching window/trim/material layout across distance levels, ready complementary transitions on both maps, prolonged high-speed and reverse-camera review without visible facade identity changes; verification: repeated native moving-camera captures, stream/cache census and user visual review. This broader art/alternate-map gate is not closed by the Valley handoff fix.
+- [ ] **LOD-03** Match distant facade identity and extend direct fades to optional City Run. Reason: initial generic-to-authored geometry still differs and City Run uses a separate scene-swap renderer; part: 04; dependencies: LOD-02 and approved facade families; acceptance: matching window/trim/material layout across distance levels, ready complementary transitions on both maps, prolonged high-speed and reverse-camera review without visible facade identity changes; verification: repeated native moving-camera captures, stream/cache census and user visual review. Technical implementation is now integrated under LOD-04, including matching far proxies and optional City Run. This checkbox remains open for user visual acceptance and extended streaming review.
 
 
 Study the original building/facade textures locally, rebuild them as original art in the approved RoadDash style, define the procedural city/world grammar, then generate detailed building families and whole blocks. Existing structural graybox and dense street fronts are completed foundations, not final facade art.
@@ -733,6 +737,8 @@ Study the original building/facade textures locally, rebuild them as original ar
 <a id="part-05"></a>
 
 ### Part 05 — World B — props, materials and procedural dressing
+
+- [ ] **MAT-03** Keep distant facade proxies synchronized with new texture families. Reason: runtime-only palette or PBR changes would reintroduce close/far identity shifts; part: 05; dependencies: LOD-04 and MAT-02; acceptance: rebake against delivered close material data, update source/output hashes and mip guards, preserve matching close/far appearance; verification: source/hash audit, material coverage and paired native distance views.
 
 - [ ] **MAT-02** Author bespoke detailed albedo/PBR texture families for remaining buildings, vehicles, props and riders. Reason: shared microdetail does not finish every requested texture; part: 05; dependencies: MAT-01, source provenance and approved art direction; acceptance: per-family approved source art, consistent texel density, mip/normal/roughness review, native close/far views with no missing maps; verification: asset hash/license audit, contact sheets and in-game visual approval.
 

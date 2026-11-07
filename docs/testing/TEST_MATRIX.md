@@ -442,3 +442,18 @@ Native crash/recovery/remount/route/finish/audio smoke passes. Native world surv
 validates15sections657roots,9actualdirectcrossfades and bounded displayed/cache
 counts, but deliberately exits1: p95=16.94174ms exceeds16.7ms. Productionperf,
 LOD-03 distant/alternate-map art and full roll recovery remain open.
+
+## 2026-11-07 — Model-derived facade identity / City Run ready handoff
+
+LOD-04 technical integration:263workspace tests pass/1ignored; fmt/strictClippy/
+locked build pass.128designs383bands and15mips have source/output hash, guard,
+coverage and bounds verification. All old/new face masks have complementary pixel
+coverage. Native Valley/City continuous near/far/reverse/orbit fixtures pass, with
+53/389initialdirectcrossfades and48cache/8transition maxima forCity. Native Valley
+andCity crash/recovery/finish smokes and standalone preview pass. Actualworld
+15section/657root census validates2628proxy meshes/226956triangles/134086656bytes.
+Initialworld p95=18.45385ms fails16.7ms; repeat performance receipts and exclusions
+are recorded in facade-lod/README.md. LOD-03 user visual/long-streaming and broad
+production/hardware performance gates remain open. No physics tuning or Part05.
+
+Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance gate remains open (exit1); geometry/source/coverage assertions and all15sections pass. Final native Valley sweep54direct crossfades, City389; both recovery smokes and preview pass. Longer streaming/user approval remain open.
