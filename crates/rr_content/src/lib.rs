@@ -173,3 +173,5 @@ pub mod architecture;
 pub mod dressing;
 pub mod material_detail;
 pub mod world_art;
+
+pub mod velocity_muscles;

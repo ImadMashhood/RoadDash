@@ -741,3 +741,35 @@ mirrored cycle. Weighted per-zone shares preserve whole-route coverage within224
 static owners. Existing clearance/support/solid collision rules retained; no trees,
 new dependencies/media, rider/recovery or structural map changes. ADR056 and
 [test evidence](testing/roadside-variety/README.md) record acceptance and limits.
+
+## 2026-11-07 — Publish world changes; crash behavior research only
+
+Committed the verified Part05/world/contacts/variety tree locally as3d3194f,
+published identical tree b5c7c0a70a6ab5aed923f83d9c8563372250c27a through the connected
+GitHub API at d74d82799056d0e7b28fab60ab456d2c826331c1, and merged PR17 to main
+6aa3f17383c7773ebb81e09a8706128f873bfc08. Original local commit remains retained.
+Started codex/crash-behavior-research from merged main. User then explicitly asked
+for findings before implementation. No gameplay/physics/assets/dependencies changed.
+RAG-11 verifies source-level investigation of current ejection/support/muscle/roll
+behavior and five pinned repositories. Expanded the existing unfinished combat
+sequence and active-recovery tasks; no implementation gate closed. Source hashes,
+licenses, compatibility, recommendations and unverified runtime claims are in
+research/crash-behavior. Research notes remain separate from the merged world PR.
+
+## 2026-11-07 — Method B crash comparison implementation
+
+Created codex/crash-velocity-muscles worktree from the common research baseline;
+cherry-picked shared swerve/continuous-release/pair-grace/comparison controls and
+pending-KO fixes from Method A. Added original full-tensor reciprocal angular
+impulses, work/rate/torque caps, actual core ground-normal support, directional
+bracing and finite supine recovery attempts, with no authored linear velocity or
+body position. Native passive rig/constraints and baseline remain. No dependency
+or media import. New RAG-B-01..03 retain native/user acceptance gates. ADR058-B and
+docs/testing/crash-comparison/method-b record tuning/provenance/actual checks.
+
+Final B verification:257workspace tests passed/1preexisting ignored, strict
+Clippy/locked build/fmt/audit/5roadmap tests passed. Paired18-case lab finite;
+nine baseline rows exactly equal excluding timing. Native passive-rest support
+recognizes genuinely quiet distal ground support; active corrections expire
+after4.95s to preserve240-body pileup sleep. Worst fully-prone8m/s attempt
+rotated torso onlyabout7degrees; full roll-to-back and user acceptance stay open.

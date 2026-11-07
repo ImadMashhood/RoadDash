@@ -1570,3 +1570,76 @@ Tradeoff: up to64 more static owners than the previous cap, with existing prop
 LOD/distance policy; broad performance and finished prop art remain open. No new
 repository/dependency/media. Rollback only dressing grammar/placement; map quotas,
 collision rules, saves and accepted rider behavior are independent.
+
+## ADR057 — Crash behavior research and deferred implementation
+
+2026-11-07. Problem: requested swerve/release, protective arms and roll-to-back
+crashes need an evidence-based approach. User explicitly requires findings before
+implementation. Selected action: research/document only on a separate branch after
+merging PR17; preserve all runtime/tuning/assets/dependencies unchanged.
+Alternatives evaluated: adopting active-ragdoll-rs directly (version/policy mismatch),
+copying Godot/Unity controllers (engine and motion-policy mismatch), replacing
+Rapier (unnecessary), or adding behavior around the current native motors.
+Recommendation, not an approved migration: continuous seated release, real support
+sensing and bounded target-pose behavior over current constraints. Tradeoff: a
+custom small behavior layer needs fixtures/work accounting, while a wrapper adds
+translation tracking/type boundaries and threatens the accepted physical baseline.
+Sources/licenses/actual techniques: research/crash-behavior/README.md. No code or
+media incorporated. Future consequences: preserve baseline comparisons, explicit
+state transitions and authoritative fixed-tick inputs; no lane/body teleport or
+unbounded energy. No runtime rollback is needed because nothing was implemented;
+any later prototype should remain independently reviewable before default merge.
+
+## ADR058-B — Reciprocal angular-impulse muscle comparison
+
+2026-11-07. User authorized two isolated implementations for A/B review after
+research, with no automatic merge. Method B retains Rapier0.31 through existing
+bevy_rapier3d0.32/Bevy0.17.3 and all accepted anatomical stops/masses/passive drives.
+Its active controller is an original equivalent of reference velocity-muscle
+ideas, not copied source or a new incompatible dependency. The alternative is
+Method A's native constraint-motor targeting on the same shared crash lifecycle.
+
+Solve desired relative angular-velocity changes through full world inverse
+inertia tensors; apply equal/opposite angular impulses to connected child/parent.
+Clamp torque*fixed_dt, desired rate, correction rate, positive work per step180W
+and total180J per ragdoll. Exact work is J dot relativeOmega plus one-half J dot
+combinedInverseInertia J; exhausted/tiny budgets handle linear/quadratic cases.
+Never author linear COM velocities or body transforms. Existing CrashEnvelope
+remains the final mechanical-energy ceiling and may attenuate motor work.
+
+Genuine fixed-surface upward contact normals on torso/pelvis/spine govern support.
+A finite policy chooses brace, yield, attempt, supine slide and quiet rest. Failed
+attempts yield after0.85s without measurable progress, reverse once after cooldown
+and stop after two attempts. Airborne/high-speed/high-spin motion yields to
+physics. Arms/head/leg targets stay within existing anatomical joint limits.
+Native active drives are zeroed so the two active controllers do not compete;
+passive resistance stays. Settled/resting states stop velocity writes and preserve
+sleeping. Standalone16-body labs also exercise this method; baseline11-body does
+not acquire the new pilot. Shared swerve/release/hooks/debug controls match A.
+
+Tradeoffs: explicit positive work is bounded but not a production biomechanical
+muscle model; the old global energy guard can overpower intended active movement.
+Angular impulses are sensitive to contact geometry and may fail to roll a trapped
+body; no position pin or forced landing hides that failure. No claim of arbitrary
+frame-rate stability or high-speed recovery. Reference licenses/source pins:
+research/crash-behavior. No source/media imported; root source is original MIT.
+Rollback/select the other comparison branch; neither branch auto-merges to main.
+
+Method B now includes an explicit fixed-support reaction guide (120Nm aggregate torque cap,
+3.5rad/s target rate) for the roll attempt. Its positive work shares the same180J/180W
+ledger and existing energy ceiling. It never writes linear motion/body poses.
+The guide approximates reaction against the fixed supporting world; unlike the
+internal joint impulse pairs it does not conserve closed-ragdoll angular momentum.
+Upward core support, speed/spin eligibility, next-rotation obstruction checks,
+timeouts and failed-progress yield govern it. HUD labels this support guide and
+reports guide count/obstruction. This deliberate reference-style assistance is
+the meaningful alternative to Method A strict native motors, not a hidden claim
+of perfect anatomical actuation.
+
+Final calibration uses response coefficient12/s, torque40Nm (and existing
+per-joint caps), desired rate6rad/s, feedback delta5rad/s, exact positive-work
+cap180J/180W and aggregate support guide120Nm/3.5rad/s. All active corrections
+expire at4.95s by default, so zero-positive-work damping cannot keep limbs awake
+indefinitely. Native logical resting accepts genuinely motionless distal ground
+support; active roll eligibility remains the stricter core-support proxy. The
+prone fixture achieved onlyabout7degrees, so full roll-to-back remains open.

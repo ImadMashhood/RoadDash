@@ -97,7 +97,7 @@ pub fn fixture(enabled: bool, scenario: Scenario) -> App {
     app.add_plugins((
         MinimalPlugins,
         TransformPlugin,
-        RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule(),
+        RapierPhysicsPlugin::<crate::crash_behavior::ReleaseHooks>::default().in_fixed_schedule(),
         BiomechanicsPlugin,
     ))
     .insert_resource(settings)

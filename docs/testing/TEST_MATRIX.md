@@ -411,3 +411,24 @@ malformed/missing references. Native census must show at least28 roles/16 groups
 all five zones and actual descendant meshes/solid owners. Extended world survey
 adds close views of actual farm pickup, city transit and hill picnic groups after
 the existing benchmark/pose stages, without modifying measured simulation timing.
+
+## 2026-11-07 — Crash behavior research only
+
+[RAG-11 source audit](../research/crash-behavior/README.md): five exact upstream
+commits/file hashes and licenses inspected; current Bevy/Rapier/GLAM versions read
+from manifest/lockfile. Original animation selector/catalog and current combat,
+detached origin, support detection, muscle targets, roll and energy guard inspected.
+No external demos, retail replay or new crash feature was run; gameplay/native
+checks from PR17 remain historical baseline evidence. This change alters docs
+only. Verify roadmap synchronization/tests, formatting, declaration audit and a
+zero runtime/content/Cargo diff from merged main; proposed behavior acceptance
+remains unchecked. User receives findings before any implementation.
+
+## Method B — velocity muscle comparison
+
+Focused pure/backend cases prove real active angular changes, reciprocal tensor
+momentum, exact unchanged linear velocities, bounded measured work/power/impulses,
+invalid/zero budget handling, actual wall contacts rejected as support, finite
+retries/high-motion yield/rest and eleven-body baseline exclusion. Full workspace,
+headless lab, native smoke and common swerve/release/recovery regressions are
+recorded in crash-comparison/method-b after execution; no visual/user gate inferred.

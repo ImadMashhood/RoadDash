@@ -215,7 +215,10 @@ impl Plugin for RoadSimulationPlugin {
                 dt: 1.0 / rr_core::SIMULATION_HZ as f32,
                 substeps,
             })
-            .add_plugins(RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule())
+            .add_plugins(
+                RapierPhysicsPlugin::<crate::crash_behavior::ReleaseHooks>::default()
+                    .in_fixed_schedule(),
+            )
             .configure_sets(
                 FixedUpdate,
                 SimSet::Gameplay.before(PhysicsSet::SyncBackend),
@@ -226,7 +229,12 @@ impl Plugin for RoadSimulationPlugin {
             )
             .add_systems(
                 FixedPreUpdate,
-                (crate::vehicle::attach, remember_previous).chain(),
+                (
+                    crate::vehicle::attach,
+                    remember_previous,
+                    crate::crash_behavior::prepare,
+                )
+                    .chain(),
             )
             .add_systems(
                 FixedUpdate,
@@ -240,6 +248,7 @@ impl Plugin for RoadSimulationPlugin {
                     crate::environment::patrol,
                     game::debris_cleanup,
                     recovery::slope_friction,
+                    crate::crash_behavior::stagger,
                     crate::vehicle::forces,
                     recovery::remember_owned_motion,
                 )

@@ -44,7 +44,7 @@ pub fn melee(
         let Ok((_, rider, state, t, _)) = riders.get(attacker) else {
             continue;
         };
-        if state.stage != RecoveryStage::Riding {
+        if state.stage != RecoveryStage::Riding || state.stagger.is_some() {
             continue;
         }
         let kicking = matches!(action, rr_core::AttackSide::Kick);
@@ -94,6 +94,7 @@ pub fn melee(
         for (e, r, s, t, _) in &riders {
             if e != attacker
                 && s.stage == RecoveryStage::Riding
+                && s.stagger.is_none()
                 && r.immunity <= 0.0
                 && (t.rotation * Vec3::Z).dot(forward) > 0.7
             {
@@ -150,18 +151,26 @@ pub fn melee(
                 race.message_time = 1.0;
             }
             if knocked_out {
-                recovery::crash(
-                    &mut commands,
-                    &art,
-                    target,
-                    &mut r,
-                    &mut state,
-                    t.translation,
-                    t.rotation,
-                    Vec3::ZERO,
-                    &context,
-                );
-                *visible = Visibility::Hidden;
+                if state.active_crash_behavior {
+                    if state.stagger.is_none() {
+                        state.stagger = Some(rr_core::crash_behavior::Stagger::new(
+                            (p - origin).dot(right),
+                        ));
+                    }
+                } else {
+                    recovery::crash(
+                        &mut commands,
+                        &art,
+                        target,
+                        &mut r,
+                        &mut state,
+                        t.translation,
+                        t.rotation,
+                        Vec3::ZERO,
+                        &context,
+                    );
+                    *visible = Visibility::Hidden;
+                }
                 audio.write(AudioCue::new(Cue::Crash, t.translation));
                 if player {
                     race.takedowns += 1;
@@ -227,5 +236,78 @@ mod tests {
             assert_eq!(app.world().get::<Rider>(targets[0]).unwrap().health, 100.0);
             assert_eq!(app.world().get::<Rider>(owner).unwrap().attack_side, side);
         }
+    }
+    #[test]
+    fn decisive_punch_stays_mounted_through_both_swerve_phases_and_counts_once() {
+        let mut app = crate::game::tests::simulation();
+        app.world_mut()
+            .resource_mut::<crate::biomechanics::Settings>()
+            .enabled = true;
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        for _ in 0..3 {
+            app.update();
+        }
+        let target = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let pose = *app.world().get::<Transform>(target).unwrap();
+        let right = (pose.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+        app.world_mut().get_mut::<Rider>(target).unwrap().immunity = 0.0;
+        let attacker = app
+            .world_mut()
+            .spawn((
+                Rider::new(1),
+                Transform::from_translation(pose.translation - right * 1.4)
+                    .with_rotation(pose.rotation),
+                Visibility::Visible,
+                Velocity::zero(),
+            ))
+            .id();
+        for _ in 0..3 {
+            app.world_mut().resource_mut::<Race>().elapsed += 0.30;
+            app.world_mut()
+                .write_message(AttackAttempt(attacker, rr_core::AttackSide::Right));
+            app.world_mut().run_system_once(melee).unwrap();
+        }
+        assert_eq!(app.world().get::<Rider>(target).unwrap().health, 0.0);
+        assert!(
+            app.world()
+                .get::<Recovery>(target)
+                .unwrap()
+                .stagger
+                .is_some()
+        );
+        app.world_mut().resource_mut::<Race>().elapsed += 0.30;
+        app.world_mut()
+            .write_message(AttackAttempt(attacker, rr_core::AttackSide::Right));
+        app.world_mut().run_system_once(melee).unwrap();
+        assert_eq!(
+            app.world().get::<Recovery>(target).unwrap().stage,
+            RecoveryStage::Riding
+        );
+        app.world_mut().despawn(attacker);
+        let mut away = false;
+        let mut counter = false;
+        for tick in 0..85 {
+            app.update();
+            let rec = app.world().get::<Recovery>(target).unwrap();
+            let r = app.world().get::<Rider>(target).unwrap();
+            if tick < 30 {
+                assert_eq!(
+                    rec.stage,
+                    RecoveryStage::Riding,
+                    "early release tick={tick}"
+                );
+            }
+            away |= r.drive_intent.steer > 0.2;
+            counter |= r.drive_intent.steer < -0.2;
+        }
+        assert!(away && counter);
+        assert_eq!(
+            app.world().get::<Recovery>(target).unwrap().stage,
+            RecoveryStage::Falling
+        );
     }
 }

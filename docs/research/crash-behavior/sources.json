@@ -1,0 +1,136 @@
+[
+  {
+    "repository": "arkits/road-rash",
+    "commit": "40829dbb2d30c5961cfd46c4fcf6373247126125",
+    "commit_date": "2026-11-05T00:31:12-08:00",
+    "inspected_on": "2026-11-07",
+    "classification": "REFERENCE ONLY",
+    "actual_source_or_assets_incorporated": [],
+    "files": [
+      {
+        "path": "src/actor_animation.cpp",
+        "sha256": "f72096126834a0e9999df95eef7848aba7b9cce52126ad42ff8b6adebb1d2c00"
+      },
+      {
+        "path": "src/crash.cpp",
+        "sha256": "8b9c0033279b49f3da9c246e26dc5730c5028e6c4165af5029994c2b85d00883"
+      },
+      {
+        "path": "src/race.cpp",
+        "sha256": "d1fb0e8164eebd22e1789ff979dc3c5c2e4d12e640ea62bc007dc615d3a0c0e6"
+      },
+      {
+        "path": "src/bike.cpp",
+        "sha256": "2b4ab095a39dae590f8f09f965b46ec75784bb1e07f1acee44e8a5a23f34df0f"
+      }
+    ]
+  },
+  {
+    "repository": "bhubbard/active-ragdoll-rs",
+    "commit": "f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5",
+    "commit_date": "2026-11-01T16:43:54-05:00",
+    "inspected_on": "2026-11-07",
+    "classification": "REFERENCE ONLY",
+    "actual_source_or_assets_incorporated": [],
+    "files": [
+      {
+        "path": "Cargo.toml",
+        "sha256": "32f4a78f94e3792d6a92a1e18c29019cde76c93e81bc6ae1cf9c06ef64bdc77a"
+      },
+      {
+        "path": "LICENSE-MIT",
+        "sha256": "62a0173a57e5d9b8822399cabd606c3e1877dcb00587201a9cd1bceb03533ad5"
+      },
+      {
+        "path": "LICENSE-APACHE",
+        "sha256": "62c7a1e35f56406896d7aa7ca52d0cc0d272ac022b5d2796e7d6905db8a3636a"
+      },
+      {
+        "path": "src/follower.rs",
+        "sha256": "cd12fcc49c5cef25e5b30f2ec38cd74cbeee9506ab41bfd0ef196561e3fc5a0c"
+      },
+      {
+        "path": "src/pd.rs",
+        "sha256": "4544568ebbf4864aa2058fff547a8fceac57c93d59bf3a8d6d1aeac591e07448"
+      },
+      {
+        "path": "src/rapier/adapter.rs",
+        "sha256": "aefba6dc4fed3cc9e4c801f9d8838c33ae2d5f485caf2f834cea1aa24b81ead8"
+      }
+    ]
+  },
+  {
+    "repository": "sergioabreu-g/active-ragdolls",
+    "commit": "459cbab9489c7481e65bf16ac93fcfff98e6a594",
+    "commit_date": "2021-02-02T15:51:26+01:00",
+    "inspected_on": "2026-11-07",
+    "classification": "REFERENCE ONLY",
+    "actual_source_or_assets_incorporated": [],
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      },
+      {
+        "path": "active-ragdolls/Assets/Scripts/Active Ragdoll/Modules/PhysicsModule.cs",
+        "sha256": "5e629c6bc6b89c36de512b3a873b32e4ad10ad091311bfbbf9462534fa954f01"
+      },
+      {
+        "path": "active-ragdolls/Assets/Scripts/Active Ragdoll/Modules/AnimationModule.cs",
+        "sha256": "ae3155ad96c4248c680c07fefaf16fba0c3b50a6832ae42e3f5e1ef2807c5e38"
+      },
+      {
+        "path": "active-ragdolls/Assets/Scripts/Active Ragdoll/Others/ConfigurableJointExtensions.cs",
+        "sha256": "13bc631350b456a256c969d5462d21365bfb0bf5879fdd437024577c26cd842c"
+      }
+    ]
+  },
+  {
+    "repository": "ashleve/ActiveRagdoll",
+    "commit": "749cd80dbccd73dffb7bb1d3827ad0e719b84f1c",
+    "commit_date": "2023-03-05T14:15:13+01:00",
+    "inspected_on": "2026-11-07",
+    "classification": "REFERENCE ONLY",
+    "actual_source_or_assets_incorporated": [],
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "166668e94e938dfd388eb72d6dd5b2e7790eec228b444b57412b73b2c73d9f4e"
+      },
+      {
+        "path": "Assets/ActiveRagdollScripts/SlaveController.cs",
+        "sha256": "6859ad4485d0d37544aa124397523226fea0d4d88dfa717a325b9c026346e8b6"
+      },
+      {
+        "path": "Assets/ActiveRagdollScripts/AnimationFollowing.cs",
+        "sha256": "a904ce590c7af1ec7751c6e6dbe48d17f551fce837135e746530abc5de9d5265"
+      }
+    ]
+  },
+  {
+    "repository": "DanilKhmyrov/godot-active-ragdoll",
+    "commit": "bd212867145484aafb9393a0ccc2bfc3ec0befae",
+    "commit_date": "2026-11-05T19:24:08+03:00",
+    "inspected_on": "2026-11-07",
+    "classification": "REFERENCE ONLY",
+    "actual_source_or_assets_incorporated": [],
+    "files": [
+      {
+        "path": "LICENSE",
+        "sha256": "8c0016cff2491d1123fa58bdbeea17ceca6707188de709c9f5004bd35316d5e9"
+      },
+      {
+        "path": "addons/active_ragdoll/active_ragdoll.gd",
+        "sha256": "42e5f66cbb383d6869b5ff65199e216e7f98207c396f4536728df0fb37332643"
+      },
+      {
+        "path": "demo/getup_front.gd",
+        "sha256": "a4ae66c7a97ac17d7721d7c9ced3dce7763b8adc35bc067a8c4902cf7b92ccd8"
+      },
+      {
+        "path": "demo/mannequin/LICENSE.txt",
+        "sha256": "86e0232ee0b7f441ca4041f3402114cab40e3df78efa0888e48cdd0c819cf7cc"
+      }
+    ]
+  }
+]

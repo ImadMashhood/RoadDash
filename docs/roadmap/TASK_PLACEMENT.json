@@ -6,6 +6,7 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RAG-11",
         "DRESS-02",
         "COLLISION-07",
         "LOD-01",
@@ -243,6 +244,9 @@
     "03": {
       "title": "Animation B \u2014 interpolation, terrain locomotion and active recovery",
       "task_ids": [
+        "RAG-B-01",
+        "RAG-B-02",
+        "RAG-B-03",
         "V2-03-001",
         "V2-03-002",
         "V2-03-003",

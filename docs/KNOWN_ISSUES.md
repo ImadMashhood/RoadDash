@@ -513,3 +513,48 @@ art and independent visual distal joints remain unfinished under RAG-05.
 - Roadside-variety native survey retained all224 owners/680 rendered mesh
   descendants; the final local sample measured17.11ms p95, still above16.7ms.
   Placement acceptance is separate from the still-open performance gate.
+
+## Crash research findings — 2026-11-07; fixes NOT implemented
+
+- Decisive punches call immediate crash; detached_origin searches metre-scale
+  lateral offsets (first1.25m), causing visible separation. No mounted swerve/
+  countersteer release stage exists. Changing only animation would not fix this.
+- Current one-shot grounded roll follows slide direction, not a supine goal;
+  support accepts any non-dynamic contact, including walls/kinematic vehicles.
+  Directional hand protection, high-speed yield and progress-aware roll attempts
+  remain proposed V2-01-006/V2-03-005 work pending user direction.
+- Original reference confirms animation speed/height gating, not autonomous3D
+  biomechanical recovery. Rust candidate uses incompatible Rapier0.36/glam0.33;
+  Godot/Unity examples cannot be imported as native Bevy plugins. Their direct
+  velocity/pin techniques would need momentum/work safeguards. No dependency added.
+
+## Method B comparison branch — 2026-11-07
+
+- Experimental reciprocal angular-impulse muscles preserve native anatomy/passive
+  drives and avoid linear velocity/position pursuit.180J total/180W positive-work
+  cap may lose against contacts or the existing energy guard; roll success is not
+  guaranteed. Native/user feel/performance/hardware gates remain open.
+- RAG-B-01..03 remain unchecked until their full acceptance, including native and
+  user comparison. This is not a default/main merge. Existing world/art gates stay.
+
+Method B now includes an explicit fixed-support reaction guide (120Nm aggregate torque cap,
+3.5rad/s target rate) for the roll attempt. Its positive work shares the same180J/180W
+ledger and existing energy ceiling. It never writes linear motion/body poses.
+The guide approximates reaction against the fixed supporting world; unlike the
+internal joint impulse pairs it does not conserve closed-ragdoll angular momentum.
+Upward core support, speed/spin eligibility, next-rotation obstruction checks,
+timeouts and failed-progress yield govern it. HUD labels this support guide and
+reports guide count/obstruction. This deliberate reference-style assistance is
+the meaningful alternative to Method A strict native motors, not a hidden claim
+of perfect anatomical actuation.
+
+Active corrections expire after the configured brace plus both attempt/retry
+windows and1s (4.95s with defaults), including cheap slide damping. This returns
+control to native passive tissue/sleep rather than repeatedly waking limbs.
+Native recovery/bracing consumes the previous fixed tick's verified ground
+support proxy; support clears on the next sample after contact loss.
+
+The final worst-case fully-prone8m/s fixture starts attempts but reaches only
+supine score-0.9932 (about7degrees torso roll), not a completed roll-to-back.
+This remains an explicitly partial comparison prototype; no full active
+recovery/animation gate has been checked.
