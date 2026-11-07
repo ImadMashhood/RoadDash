@@ -117,7 +117,7 @@ Progressive steering is implemented; **the entire original handling is not yet
 reproduced**. Original bike/table data is absent, and current physics/profile
 values remain RoadDash-authored. [Correction evidence](docs/testing/HANDLING_CORRECTION.md).
 
-For a mounted animation review, run `cargo run -- --animation-lab-view`: keys 1–8 select mounted motions, 9 selects standing, 0 walking, R running, and C changes view. [Part 03 implementation and limits](docs/testing/animation-part03/README.md). If this host overflows an asset-loader stack during the large debug city load, `RUST_MIN_STACK=16777216 cargo run -- --smoke-test` is a tested workaround; ANIM-12 tracks diagnosis.
+For a mounted animation review, run `cargo run -- --animation-lab-view`: keys 1–8 select mounted motions, 9 selects standing, 0 walking, R running, and C changes view. [Part 03 implementation and limits](docs/testing/animation-part03/README.md). Asset IO workers now have an explicit stack budget; both native Valley and City Run load without RUST_MIN_STACK. [Loader and surface follow-up](docs/testing/world-polish/README.md).
 
 ## Current scope
 
@@ -125,7 +125,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**167 verified tasks complete; 223 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**174 verified tasks complete; 222 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -133,14 +133,18 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 Upright rear-bike contacts now share normal momentum without a hop; closing speed of 60 km/h or more knocks the front rider down. Downed-object ride-over remains separate. Crash motion uses a bounded, energy-paid grounded roll and brief frontal leg-release motors. [Fixes, screenshots and limits](docs/testing/recovery-polish/README.md).
 
+High-rise/infill fallback detail, mipmapped asphalt and ready-scene LOD swaps are integrated. Unseen rear NPC crashes now use the requested five-second recovery approximation; visible/player physics remain physical. [Behavior and limits](docs/testing/world-polish/README.md).
+
+Part 04 now applies the existing authored 3D building drafts to Valley with repeated storeys, deterministic role pools and bounded detail loading. [Native views, test results and remaining gates](docs/testing/architecture-valley/README.md).
+
 Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bevy audio**. The PDF's dependency upgrades remain proposals. The Animation A authoring tools use these installed versions; no dependency migration is included.
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 167 verified complete |
+| [00](#part-00) | Completed and verified foundations | 174 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
-| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 24 open |
+| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 23 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 20 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 6 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 10 open |
@@ -160,6 +164,25 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 ### Part 00 — Completed and verified foundations
 
 Everything checked off lives here, grouped by the original system. These are verified requirements, not a claim that every broader feature or production milestone is finished. Expand a group for the exact IDs and evidence.
+
+<details>
+<summary>World detail, loading and unseen-crash follow-up — 4 verified tasks</summary>
+
+- [x] **KIT-04** Improve high-rise/infill and road surface detail. Reason: fallback towers/infill were visibly plain and roads were flat gray; part: 04; dependencies: KIT-02 and immutable structural geometry; acceptance: measured-scale batched window reveals/mullions/floor bands/cornices, owner-family infill masonry and original mipmapped asphalt albedo/normal/roughness across main/side roads without collider changes; verification: [relief/PBR tests, native street views and unchanged support/recovery](docs/testing/world-polish/README.md). Full art approval and bespoke roles remain open.
+- [x] **KIT-05** Keep facades visible while replacement LODs load and instantiate. Reason: asset/cache changes and early scene swaps caused missing-detail frames; part: 04; dependencies: KIT-02 and native scene intake; acceptance: finite coarse/masonry residency, bounded high-LOD cache and hidden preparation, old scene retained until every replacement instance is ready, spatial hysteresis and displayed-budget assertions; verification: [native instantiated-mesh/preparation census and full-route survey](docs/testing/world-polish/README.md). Perfect geometry crossfades and production streaming stress remain open.
+- [x] **PERF-06** Abstract unseen rear NPC crashes to a five-second delay. Reason: the user requests skipping ragdoll simulation for racers behind them; part: 01 performance/contact; dependencies: current crash entry, fixed simulation and reset; acceptance: distant rear/out-of-view mounted NPCs allocate no ragdoll/wreck, wait exactly300 active ticks and return at road centre at the recorded crash station, pause/restart work, player/visible/already-physical crashes unchanged; verification: [eligibility/no-body/timer/pause/return/reset tests and native recovery regression](docs/testing/world-polish/README.md).
+- [x] **ANIM-12** Resolve and verify default-stack asset loading. Reproduced the IO worker overflow, configured only asset IO workers with16MiB stacks while retaining Bevy's1–4 thread policy, and verified native Valley and City Run startup/crash/recovery/finish without RUST_MIN_STACK. [Before trace, design and native receipts](docs/testing/world-polish/README.md). Broader platforms/loader memory optimization remain open; no upstream parser stack reduction is claimed.
+
+</details>
+
+<details>
+<summary>Part 04 Valley architecture integration — 3 verified tasks</summary>
+
+- [x] **KIT-01** Compile and validate reusable authored facade storeys. Reason: Valley needs the existing modeled assets with real repeated floors rather than whole-building vertical stretching; part: 04; dependencies: original 100 facade/28 structure drafts and source provenance; acceptance: 128 designs, three ground/upper/crown GLB LODs per ID, shared own-textures, unchanged source hashes and independent binary geometry validation; verification: [384 GLBs, 34 shared textures, source/export hashes and band bounds](docs/testing/architecture-valley/README.md). Final art approval remains MESH/V2-04 work.
+- [x] **KIT-02** Integrate bounded authored geometry on every existing Valley building lot. Reason: the default Valley still used generic shells despite the modeled City Run assets; part: 04; dependencies: KIT-01 and existing supported lot generator; acceptance: all 657 existing lot IDs mapped through 19 role pools, deterministic in-envelope storey assembly, bounded pending/active scenes and cache, actual native GLB geometry with no added colliders; verification: [all-lot tests, native mesh census, 15-section survey and recovery smoke](docs/testing/architecture-valley/README.md). The measured frame-time target is unmet and remains V2-04-006; this task does not certify production performance.
+- [x] **V2-04-005** Retain supported ground, roads, collision and navigation. Verified canonical quotas/IDs/rights of way and geometry fingerprint unchanged; visual kit remains independent of colliders and pad support, with existing route/walk/recovery tests and native smoke passing. [Evidence](docs/testing/architecture-valley/README.md). New building interiors/navigation remain ENV-005.
+
+</details>
 
 <details>
 <summary>Baseline and dependency decisions — 1 verified task</summary>
@@ -626,7 +649,6 @@ The user authorized the initial clip integration after correcting torso motion; 
 - [ ] **ANIM-09** Finish native full-body animation acceptance. Reason: authoring renders and numeric constraints do not certify every runtime deformation/transition; part: 03; dependencies: ANIM-08, ANIM-02/04/06 and terrain locomotion; acceptance: native multi-angle normal/tuck-to-all-attacks, mirrored pickup and physical-pose get-up review, fingers/feet and cloth/bike clearance, Windows hardware and user approval; verification: labeled native video matrix, contact/deformation checks and regression parity.
 - [ ] **RAG-05** Approve native biomechanics silhouettes and finish distal skin articulation. Reason: pilot distal skin articulation and impact peaks require human review; prop NPC skins still use eleven joints; part: 03; dependencies: RAG-02/03, ART-04 and ANIM-02/09; acceptance: independently visible wrists/feet/spine, reviewed source-pose release and multi-angle drop/car/terrain/knockoff clearance, acceptable distal impact velocities and remaining multi-angle art approval; the user approved default integration on2026-11-06; verification: native videos, deformation/contact metrics and explicit user review. Partial: pilot wrists/feet/spine now use sixteen independent visual joints. Prop pedestrian skins, finger detail, all impact-camera views and final art approval remain open.
 - [ ] **RAG-06** Profile and approve worst-case race ragdoll performance. Reason: additional bodies/solver work cost more than the baseline and instrumented headless timing is not race FPS; part: 03; dependencies: RAG-04 and representative traffic/environment load; acceptance: compare frame/physics p95 and allocations across15 racers plus bounded NPC crashes, sleeping/wakeup, Windows hardware and quality presets without regressions; verification: repeatable native profiling on target hardware and user acceptance, recording remaining production performance acceptance separately from the2026-11-06 default integration approval.
-- [ ] **ANIM-12** Resolve and verify default-stack city asset loading. Reason: this session hit an IO Task Pool stack overflow at city startup without RUST_MIN_STACK; part: 03; dependencies: current GLB city and native debug build; acceptance: reproduce/isolate the loader stack requirement and run clean native startup without an environment workaround; verification: baseline/current launch traces and repeat city/actor smoke with default worker stack. A 16 MiB RUST_MIN_STACK workaround passed; no cause or fix is claimed.
 - [ ] **V2-03-008** Exit gate: motion is responsive, coherent and physically readable.
 
 #### Carried-forward requirements — still unfinished
@@ -656,17 +678,17 @@ Study the original building/facade textures locally, rebuild them as original ar
 
 - [ ] **V2-04-001** Catalog every reference building/facade family locally.
 - [ ] **V2-04-002** Create original facade textures in the RoadDash style. A first realistic AI reference batch covers 25 sheets / 146 source IDs; [manifest](art/buildings/realistic_sheets/MANIFEST.json) and [prompts](art/buildings/realistic_sheets/PROMPTS.json). Production textures, exact layout/text cleanup and art/rights acceptance remain open.
-- [ ] **V2-04-003** Plan a data-driven city/world construction grammar. Partial: the [playable 5.3 km City Run](docs/testing/city-5300/README.md) now builds 977 complete exterior lots across 53 blocks and eight district zones using 85 City-eligible geometric facade designs, shared closed roofs, recessed rear openings and cross-street facade returns. Canonical Valley quotas/IDs remain unchanged. Broader terrain grammar, final transitions/site variety and full world acceptance remain open.
-- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks. [Complete draft model catalog](art/buildings/mesh_assets/README.md) now covers 100 facades, 28 structures and 18 surface modules with editable Blender sources and 438 embedded GLB LOD files, real apertures/storefronts/canopies/bays/roof geometry, independent binary validation and native placement in the 5.3 km playable city. Earlier palette/flat-facade previews were rejected and do not satisfy this task. Draft mesh coverage and city runtime assembly are implemented; full material/art fidelity, user review, optimization and production acceptance remain open.
-- [ ] **V2-04-005** Retain supported ground, roads, collision and navigation.
-- [ ] **V2-04-006** Validate city life, visual density and performance. [Native playable-city survey and crash/recovery/retry evidence](docs/testing/city-5300/README.md) available; production art/LOD, encounter tuning and broad racing performance acceptance remain open.
+- [ ] **V2-04-003** Plan a data-driven city/world construction grammar. Valley now maps all 657 unchanged lots through 19 role pools and actual ground/repeated-upper/crown geometry; [grammar and limits](docs/art/BUILDING_GRAMMAR.md). Broader acceptance stays open. Earlier partial: the [playable 5.3 km City Run](docs/testing/city-5300/README.md) now builds 977 complete exterior lots across 53 blocks and eight district zones using 85 City-eligible geometric facade designs, shared closed roofs, recessed rear openings and cross-street facade returns. Canonical Valley quotas/IDs remain unchanged. Broader terrain grammar, final transitions/site variety and full world acceptance remain open.
+- [ ] **V2-04-004** Generate detailed building archetypes and whole blocks. The default Valley now uses the derived storey kit with bounded streaming (KIT-01/02); final infill/role fidelity and material/user approval remain open. [Complete draft model catalog](art/buildings/mesh_assets/README.md) now covers 100 facades, 28 structures and 18 surface modules with editable Blender sources and 438 embedded GLB LOD files, real apertures/storefronts/canopies/bays/roof geometry, independent binary validation and native placement in the 5.3 km playable city. Earlier palette/flat-facade previews were rejected and do not satisfy this task. Draft mesh coverage and city runtime assembly are implemented; full material/art fidelity, user review, optimization and production acceptance remain open.
+- [ ] **V2-04-006** Validate city life, visual density and performance. The latest Valley native survey meets its local 16.7 ms wall-frame p95 target at15.83 ms after ornament-shadow trimming; [measurement and limits](docs/testing/world-polish/README.md). Broader racing/memory/platform acceptance remains open. [Native playable-city survey and crash/recovery/retry evidence](docs/testing/city-5300/README.md) available; production art/LOD, encounter tuning and broad racing performance acceptance remain open.
 - [ ] **V2-04-007** Exit gate: coherent procedural buildings are accepted.
+- [ ] **KIT-03** Finish Valley infill skins and bespoke role geometry. Reason: native views expose plain party-wall infill and parking/service roles using generic industrial cladding; part: 04; dependencies: KIT-02, immutable lot/rights-of-way constraints and material/art review; acceptance: infill joins visually match neighbors without street intrusion, and parking/service/farm roles have appropriate full exterior geometry rather than misleading reused fronts; verification: join-envelope tests, per-role coverage and native multi-angle riding/on-foot review. Performance remains V2-04-006.
 - [ ] **MESH-01** Model the remaining 94 facade designs from the approved three-quarter renders. Reason: the first sheet supplies six genuine meshes, not the full catalog; part: 04; dependencies: six-model kit, per-design reference review and material authoring; acceptance: every remaining facade ID maps to a distinct editable 3D model with actual openings/details/roof/sides and verified GLB LODs; verification: catalog coverage, mesh/material/bounds validation, native multi-angle renders and user art review. Partial: all 94 additional facade drafts exported with editable sources and three LODs; artist/user fidelity approval remains open.
 - [ ] **MESH-02** Author the 46 structure/surface references appropriately. Reason: barns, churches, tanks and surface samples must not be miscounted as completed facade buildings; part: 04; dependencies: structure classification and reference/model grammar; acceptance: each ID becomes its appropriate volumetric structure or usable material asset with scale, provenance and export metadata; verification: type-aware coverage, geometry/material intake and native visual review. Partial: 28 standalone structures and 18 volumetric surface modules exported; final material/art and production intake gates remain open.
 
 #### Carried-forward requirements — still unfinished
 
-- [ ] **P11-002** Create a road-world art bible for distinct town, farm, cliff, coast, and woodland identities before polishing bike/rider art.
+- [ ] **P11-002** Create a road-world art bible for distinct town, farm, cliff, coast, and woodland identities before polishing bike/rider art. Partial: [Valley architecture vocabulary and construction contract](docs/art/BUILDING_GRAMMAR.md); cliff/coast/woodland and full art direction remain open.
 - [ ] **P11-004** Author modular roads/intersections/sidewalks, storefronts/homes, barns/silos/fields/fences, cattle/tractors, cliffs/rocks/barriers, signs, poles, and landmarks.
 - [ ] **P11-005** Build the route-zone/lot/terrain/encounter pipeline and foot-accessible collision/navigation surfaces described in the environment checklist below.
 - [ ] **ENV-001** E0: author spline, widths, shoulders/sidewalks, vertical curves, checkpoint and finish volumes.
