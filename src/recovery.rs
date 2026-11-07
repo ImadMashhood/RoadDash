@@ -19,6 +19,8 @@ pub enum RecoveryStage {
 }
 #[derive(Component, Default)]
 pub struct Recovery {
+    pub active_crash_behavior: bool,
+    pub stagger: Option<rr_core::crash_behavior::Stagger>,
     pub defer_allowed: bool,
     pub deferred: Option<crate::offscreen_crash::Deferred>,
     pub stage: RecoveryStage,
@@ -352,7 +354,13 @@ fn crash_with_response(
     rider.steering = default();
     rider.raw_steer = 0.0;
     let velocity = original.map_or(momentum + kick, |(rider, _)| rider);
-    let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
+    let continuous = recovery.active_crash_behavior && old_runner.is_none();
+    recovery.stagger = None;
+    let rider_origin = if continuous {
+        origin
+    } else {
+        detached_origin(context, origin, rotation, owner, old_runner)
+    };
     let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {
         -1.0
     } else {
@@ -408,6 +416,26 @@ fn crash_with_response(
         ));
         wreck
     };
+    if continuous {
+        // ColliderDisabled does not exclude the hidden chassis from KCC casts.
+        // The new solid wreck replaces this mounted-only collision proxy.
+        commands.queue(move |world: &mut World| {
+            if let Some(collider) = world.entity_mut(owner).take::<Collider>() {
+                world
+                    .entity_mut(owner)
+                    .insert(crate::crash_behavior::DormantChassis(collider));
+            }
+        });
+        commands
+            .entity(owner)
+            .insert(crate::crash_behavior::ReleaseGrace {
+                wreck,
+                remaining: 0.65,
+            });
+        commands
+            .entity(wreck)
+            .insert(ActiveHooks::FILTER_CONTACT_PAIRS);
+    }
     // Collision entry has no artificial angular kick. Physical contacts may
     // subsequently tumble the bodies within their original joint constraints.
     for (i, body) in bodies.iter().enumerate() {
@@ -857,6 +885,7 @@ pub fn recover(
                     *root = Transform::from_translation(p).with_rotation(q);
                     *visibility = Visibility::Visible;
                     commands.entity(owner).remove::<ColliderDisabled>();
+                    crate::crash_behavior::restore_chassis(&mut commands, owner);
                     if let Some(runner) = recovery.runner {
                         commands.entity(runner).despawn();
                     }

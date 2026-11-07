@@ -193,6 +193,7 @@ fn real_ejection_keeps_preimpact_spin_even_after_the_hidden_chassis_is_stopped()
                 let (e, mut rider, mut recovery) = riders.single_mut().unwrap();
                 rider.motion_velocity = Vec3::Z * 12.0;
                 rider.motion_angular_velocity = Vec3::Y * 0.8;
+                recovery.active_crash_behavior = true;
                 crate::recovery::crash(
                     &mut commands,
                     &art,
@@ -208,7 +209,28 @@ fn real_ejection_keeps_preimpact_spin_even_after_the_hidden_chassis_is_stopped()
         )
         .unwrap();
     initialize(app.world_mut());
+    let expected = {
+        let lib = app.world().resource::<crate::animation::Library>();
+        let frames = lib.frames(pose);
+        let offset = bind_frames()[0]
+            .to_matrix()
+            .inverse()
+            .transform_point3(specs()[0].position);
+        Vec3::Y * 2.0 + frames[0].transform_point(offset)
+    };
     let w = app.world_mut();
+    let root = w
+        .query::<(&Segment, &Transform)>()
+        .iter(w)
+        .find(|(s, _)| s.part == 0)
+        .unwrap()
+        .1;
+    assert!(
+        root.translation.distance(expected) < 0.00001,
+        "released seated torso teleported: {:?} expected{:?}",
+        root.translation,
+        expected
+    );
     let joints: Vec<_> = w
         .query::<(Entity, &ImpulseJoint)>()
         .iter(w)
@@ -614,4 +636,151 @@ fn frontal_leg_release_uses_limited_motors_without_a_velocity_impulse() {
             assert!(coordinates(m.target).x > 0.2 && coordinates(m.target).x <= 1.0);
         }
     }
+}
+
+#[test]
+fn seated_release_has_no_global_offset_and_root_matches_visible_pose() {
+    let lib = crate::animation::Library::default();
+    let config = Settings::default().config;
+    let origin = Vec3::new(12.0, 3.0, 45.0);
+    let yaw = Quat::from_rotation_y(0.8);
+    for key in [2020, 2030, 2221, 2260] {
+        let frames = lib.frames(lib.key(key));
+        let local = animation_targets(frames);
+        let mut targets = [Quat::IDENTITY; 16];
+        targets[..11].copy_from_slice(&local);
+        targets[11] = Quat::IDENTITY.slerp(targets[2], 0.5);
+        targets[2] = targets[11];
+        let pose = release_pose(&config, &targets, Some(frames), origin, yaw);
+        let offset = bind_frames()[0]
+            .to_matrix()
+            .inverse()
+            .transform_point3(specs()[0].position);
+        let expected = origin + yaw * frames[0].transform_point(offset);
+        assert!(
+            pose[0].translation.distance(expected) < 0.00001,
+            "root snapped for key{key}"
+        );
+        for i in 1..16 {
+            let p = specs()[i].parent.unwrap();
+            let anchor = specs()[i].anchor;
+            assert!(
+                pose[p]
+                    .transform_point(anchor - specs()[p].position)
+                    .distance(pose[i].transform_point(anchor - specs()[i].position))
+                    < 0.00001
+            );
+        }
+    }
+}
+
+#[test]
+fn native_target_drive_never_authors_body_velocity_or_position() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = lab::fixture(true, lab::Scenario::Drop);
+    for _ in 0..10 {
+        app.update();
+    }
+    let before: Vec<_> = app
+        .world_mut()
+        .query::<(Entity, &Transform, &Velocity, &Segment)>()
+        .iter(app.world())
+        .map(|(e, t, v, _)| (e, *t, *v))
+        .collect();
+    app.world_mut().run_system_once(muscles::update).unwrap();
+    for (e, t, v) in before {
+        assert_eq!(*app.world().get::<Transform>(e).unwrap(), t);
+        assert_eq!(*app.world().get::<Velocity>(e).unwrap(), v);
+    }
+}
+
+#[test]
+fn native_controller_rejects_wall_only_support_in_actual_backend() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = lab::fixture(true, lab::Scenario::Wall);
+    let fixed: Vec<_> = app
+        .world_mut()
+        .query_filtered::<(Entity, &Transform), With<RigidBody>>()
+        .iter(app.world())
+        .filter(|(e, _)| app.world().get::<OwnedBody>(*e).is_none())
+        .map(|(e, t)| (e, *t))
+        .collect();
+    for (e, t) in fixed {
+        if t.translation.z.abs() < 1.0 {
+            app.world_mut().despawn(e);
+        } else {
+            app.world_mut()
+                .entity_mut(e)
+                .insert(Collider::cuboid(8.0, 10.0, 0.6));
+        }
+    }
+    let owner = app
+        .world_mut()
+        .query::<&OwnedBody>()
+        .iter(app.world())
+        .next()
+        .unwrap()
+        .owner;
+    app.world_mut()
+        .entity_mut(owner)
+        .insert(crate::game::Rider::new(0));
+    let mut touched = false;
+    for _ in 0..75 {
+        app.update();
+        touched |= app
+            .world_mut()
+            .run_system_once(
+                |context: ReadRapierContext, segments: Query<(Entity, &Segment)>| {
+                    context.single().is_ok_and(|ctx| {
+                        segments
+                            .iter()
+                            .filter(|(_, s)| matches!(s.part, 0 | 2 | 11))
+                            .any(|(e, _)| {
+                                ctx.contact_pairs_with(e)
+                                    .any(|p| p.has_any_active_contact())
+                            })
+                    })
+                },
+            )
+            .unwrap();
+        for brain in app.world_mut().query::<&Brain>().iter(app.world()) {
+            assert!(!brain.supported, "wall was treated as ground");
+            assert!(!matches!(
+                brain.reaction.mode,
+                rr_core::physical_reaction::Mode::Roll | rr_core::physical_reaction::Mode::Slide
+            ));
+        }
+    }
+    assert!(
+        touched,
+        "fixture never touched the wall with the torso/pelvis"
+    );
+}
+
+#[test]
+fn native_grounded_rider_attempts_are_finite_and_never_require_success() {
+    let mut app = lab::fixture(true, lab::Scenario::Drop);
+    let owner = app
+        .world_mut()
+        .query::<&OwnedBody>()
+        .iter(app.world())
+        .next()
+        .unwrap()
+        .owner;
+    app.world_mut()
+        .entity_mut(owner)
+        .insert(crate::game::Rider::new(0));
+    let mut attempted = false;
+    for _ in 0..360 {
+        app.update();
+        for brain in app.world_mut().query::<&Brain>().iter(app.world()) {
+            attempted |= brain.reaction.attempts > 0;
+            assert!(brain.reaction.attempts <= 2);
+            assert!(brain.reaction.work_left.is_finite() && brain.reaction.work_left >= 0.0);
+        }
+    }
+    assert!(
+        attempted,
+        "grounded Rider fixture never exercised native roll policy"
+    );
 }

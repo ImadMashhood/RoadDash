@@ -6,6 +6,7 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RAG-11",
         "DRESS-02",
         "COLLISION-07",
         "LOD-01",
@@ -265,7 +266,9 @@
         "P06-009",
         "P06-010",
         "P06-012",
-        "P06-013"
+        "P06-013",
+        "RAG-A-01",
+        "RAG-A-02"
       ]
     },
     "04": {

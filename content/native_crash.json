@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "max_speed": 16.0,
+  "max_spin": 6.0,
+  "attempt_seconds": 1.4,
+  "max_attempts": 2,
+  "work_joules": 180.0,
+  "protect_activation": 0.45,
+  "roll_activation": 0.34,
+  "slide_activation": 0.08
+}

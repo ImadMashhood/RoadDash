@@ -513,3 +513,27 @@ art and independent visual distal joints remain unfinished under RAG-05.
 - Roadside-variety native survey retained all224 owners/680 rendered mesh
   descendants; the final local sample measured17.11ms p95, still above16.7ms.
   Placement acceptance is separate from the still-open performance gate.
+
+## Crash research findings — 2026-11-07; fixes NOT implemented
+
+- Decisive punches call immediate crash; detached_origin searches metre-scale
+  lateral offsets (first1.25m), causing visible separation. No mounted swerve/
+  countersteer release stage exists. Changing only animation would not fix this.
+- Current one-shot grounded roll follows slide direction, not a supine goal;
+  support accepts any non-dynamic contact, including walls/kinematic vehicles.
+  Directional hand protection, high-speed yield and progress-aware roll attempts
+  remain proposed V2-01-006/V2-03-005 work pending user direction.
+- Original reference confirms animation speed/height gating, not autonomous3D
+  biomechanical recovery. Rust candidate uses incompatible Rapier0.36/glam0.33;
+  Godot/Unity examples cannot be imported as native Bevy plugins. Their direct
+  velocity/pin techniques would need momentum/work safeguards. No dependency added.
+
+
+### Unmerged native-motor comparison (2026-11-07)
+Method A attempts rather than guarantees supine recovery. Strict torso/pelvis
+contact can end an attempt when limbs prop the core slightly above ground; actual
+limb-supported coverage/tuning remains RAG-A-02. The 180 J budget is an effort
+estimate, not measured native solver work. Native feel, user selection and broad
+performance/hardware gates remain open. Original hidden chassis blocking manual
+foot recovery is fixed by storing/removing its collider while dismounted; visible
+wrecks remain solid. See testing/crash-comparison/METHOD_A.md.

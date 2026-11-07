@@ -711,3 +711,27 @@ Inspected the existing local369-record original prop catalog and semantic placem
 source. No new GitHub repository, dependency or media researched/adopted. Reused
 registered draft models and existing source/license records; grouped placement and
 seeded variation are original project code. Parked vehicles are scenery only.
+
+## Crash behavior source audit — 2026-11-07 (research only)
+
+The user requested findings before any implementation. Full comparison, exact
+source hashes and no-adoption evidence: [crash-behavior](../research/crash-behavior/README.md)
+and [sources.json](../research/crash-behavior/sources.json). Nothing copied into
+runtime, no new dependencies, no third-party assets imported or external demos run.
+
+| Repository / author | Inspected commit / last commit date | License and reuse | Findings / compatibility / decision |
+| --- | --- | --- | --- |
+| [arkits/road-rash](https://github.com/arkits/road-rash), arkits |40829dbb2d30c5961cfd46c4fcf6373247126125 /2026-11-05 | Root code grant not found; upstream third_party notices do not license the main source. UNVERIFIED permission; behavioral research only, no copying. Retail media has separate restrictions. | C++/SDL3 reverse-engineered port. actor_animation.cpp, crash.cpp, race.cpp and bike.cpp: speed/height-selected crash cycles, motion integration, immediate decisive knock-off versus surviving steering reactions. REFERENCE ONLY; no Bevy dependency. No fresh retail parity replay; do not treat simplified paths or rendered sprites as a biomechanical simulation. |
+| [bhubbard/active-ragdoll-rs](https://github.com/bhubbard/active-ragdoll-rs), Brandon Hubbard |f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5 /2026-11-01 | [MIT](https://github.com/bhubbard/active-ragdoll-rs/blob/f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5/LICENSE-MIT) OR [Apache-2.0](https://github.com/bhubbard/active-ragdoll-rs/blob/f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5/LICENSE-APACHE), grants read; licensed source reuse possible with notice, none adopted. No media imported. |0.1.1, Rapier0.36/glam0.33.10 versus RoadDash Rapier0.31/Bevy glam0.30.10. Recent development, not production certification. Follower/PD/adapter inspected; linear animation pursuit, direct torque and zero limp drives conflict with current policies. REFERENCE ONLY; defer dependency, retain native constraint motors. |
+| [DanilKhmyrov/godot-active-ragdoll](https://github.com/DanilKhmyrov/godot-active-ragdoll), Danil Khmyrov |bd212867145484aafb9393a0ccc2bfc3ec0befae /2026-11-05 | [MIT](https://github.com/DanilKhmyrov/godot-active-ragdoll/blob/bd212867145484aafb9393a0ccc2bfc3ec0befae/LICENSE), root/addon grants read; source reuse possible with notice, none adopted. Demo mannequin separately declares Quaternius CC0; other bundled media not comprehensively cleared, no assets imported. | Godot4/GDScript/Jolt-or-Godot, no native Bevy integration. Strongest behavioral reference: roll_over, orientation tests, directional braces, per-group tone and get-up alignment. Direct velocity/pin/transform corrections and friction changes require redesign for our momentum/work policy. Recent repo, unbenchmarked here. REFERENCE ONLY, study behavior rather than copy the solver adapter. |
+| [sergioabreu-g/active-ragdolls](https://github.com/sergioabreu-g/active-ragdolls), Sergio Abreu García; joint helper credits Michael Stevenson |459cbab9489c7481e65bf16ac93fcfff98e6a594 /2021-02-02 | [Apache-2.0](https://github.com/sergioabreu-g/active-ragdolls/blob/459cbab9489c7481e65bf16ac93fcfff98e6a594/LICENSE), verified; source reuse possible subject to notices, none adopted. Sample assets require separate review, excluded. | Unity C#, no Bevy compatibility; older example. AnimationModule/PhysicsModule/ConfigurableJointExtensions studied. Useful target/physics separation and joint frames; stabilizer/frozen-rotation modes are unsuitable for uncontrolled crashes. REFERENCE ONLY, no engine substitution. |
+| [ashleve/ActiveRagdoll](https://github.com/ashleve/ActiveRagdoll), ashleve; source license Lucas Z. |749cd80dbccd73dffb7bb1d3827ad0e719b84f1c /2023-03-05 | [MIT](https://github.com/ashleve/ActiveRagdoll/blob/749cd80dbccd73dffb7bb1d3827ad0e719b84f1c/LICENSE), verified; source reuse possible with notice, none adopted. No asset clearance inferred, none imported. | Unity C#, older example; SlaveController and AnimationFollowing inspected. Reuse strength transition concepts; reject world-position velocity chasing and disabling passive resistance for our crashes. REFERENCE ONLY. |
+
+Maintenance descriptions above are dated source observations, not assurances of
+upstream support. No license permission is inferred from GitHub visibility.
+
+
+2026-11-07 Method A follow-through: the pinned crash-behavior investigation above
+informed directional bracing, physical/target separation and finite roll attempts.
+No additional repository investigated, no source/media copied, no new dependency.
+RoadDash authors implemented native Rapier constraint-target policy independently.

@@ -411,3 +411,53 @@ malformed/missing references. Native census must show at least28 roles/16 groups
 all five zones and actual descendant meshes/solid owners. Extended world survey
 adds close views of actual farm pickup, city transit and hill picnic groups after
 the existing benchmark/pose stages, without modifying measured simulation timing.
+
+## 2026-11-07 — Crash behavior research only
+
+[RAG-11 source audit](../research/crash-behavior/README.md): five exact upstream
+commits/file hashes and licenses inspected; current Bevy/Rapier/GLAM versions read
+from manifest/lockfile. Original animation selector/catalog and current combat,
+detached origin, support detection, muscle targets, roll and energy guard inspected.
+No external demos, retail replay or new crash feature was run; gameplay/native
+checks from PR17 remain historical baseline evidence. This change alters docs
+only. Verify roadmap synchronization/tests, formatting, declaration audit and a
+zero runtime/content/Cargo diff from merged main; proposed behavior acceptance
+remains unchecked. User receives findings before any implementation.
+
+## 2026-11-07 — Method A native-motor candidate (unmerged)
+
+- `cargo fmt --all --check`, strict locked workspace all-target Clippy, locked
+  workspace tests and locked build executed successfully. Full tests: 184 game-lib,
+  1 main, 26 rr_content and 44 rr_core pass (255 total); one existing ignored test.
+- Actual-backend regressions: seated root/anchor continuity for normal/tuck/attack
+  poses; native target update leaves transforms/velocities identical; wall-only
+  contact never enables ground assist; actual grounded Rider exercises finite roll
+  attempts; three direct hits retain mounted away/countersteer before release;
+  pause/reset restores exact dormant chassis shape; manual foot finish succeeds
+  after a crash five metres before the line in both rigs.
+- `python3 tools/audit.py`, `python3 tools/test_roadmap.py`, and
+  `python3 tools/sync_progress.py --check` pass. Audit is declarations/hashes only.
+- Headless paired lab: [18 results](crash-comparison/native-headless-lab.json), all
+  finite; maximum new-rig anchor separation 0.0032 m; all 16/240 bodies sleep by
+  final tick in single/15-rider fixtures. Baseline rows match research control
+  `/tmp/roaddash-crash-base/lab.json` exactly after excluding elapsed wall timing.
+  Generic lab owners lack Rider, so these stability rows do not prove gameplay
+  roll success; the focused grounded-Rider regression separately exercises it.
+- Native game/compare review is coordinated by parent agent; no visual success is
+  claimed by these headless results. User feel/selection, exact motor-work and
+  multi-rider hardware performance remain open RAG-A-01/02.
+
+Parent-coordinated native Method A default game smoke also passed: farm crash →
+remount → city/hills → second hill crash → remount → finish, and four playback
+sinks initialized. [Runtime log](crash-comparison/native-game-smoke.txt) and
+[world survey](crash-comparison/native-world-survey.json). This verifies integrated
+recovery/audio/map flow; it does not close comparative roll-feel/user approval.
+
+Native baseline and comparison-mode scripted game smoke both also passed:
+[baseline log](crash-comparison/native-baseline-smoke.txt),
+[comparison log](crash-comparison/native-comparison-smoke.txt), and
+[comparison world survey](crash-comparison/native-comparison-world-survey.json).
+Comparison plugin/HUD launch is verified; manual F8/F9/F10 keyboard delivery and
+subjective A/B feel are not. X11 focus/image capture returned BadMatch on this
+Wayland/Xwayland surface, preventing injected-key verification. User testing remains
+required; no new harness or production behavior was added for this limitation.

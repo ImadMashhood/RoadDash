@@ -172,4 +172,5 @@ pub mod crash_motion;
 pub mod architecture;
 pub mod dressing;
 pub mod material_detail;
+pub mod physical_reaction;
 pub mod world_art;

@@ -831,7 +831,7 @@ pub fn drive(
                 r.attack_side = attack_side.sign();
                 attacks.write(crate::combat::AttackAttempt(entity, attack_side));
             }
-            if r.health <= 0.0 {
+            if r.health <= 0.0 && recovery.stagger.is_none() {
                 let (origin, rotation) = if dynamic {
                     (transform.translation, transform.rotation)
                 } else {

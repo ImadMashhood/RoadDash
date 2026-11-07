@@ -741,3 +741,26 @@ mirrored cycle. Weighted per-zone shares preserve whole-route coverage within224
 static owners. Existing clearance/support/solid collision rules retained; no trees,
 new dependencies/media, rider/recovery or structural map changes. ADR056 and
 [test evidence](testing/roadside-variety/README.md) record acceptance and limits.
+
+## 2026-11-07 — Publish world changes; crash behavior research only
+
+Committed the verified Part05/world/contacts/variety tree locally as3d3194f,
+published identical tree b5c7c0a70a6ab5aed923f83d9c8563372250c27a through the connected
+GitHub API at d74d82799056d0e7b28fab60ab456d2c826331c1, and merged PR17 to main
+6aa3f17383c7773ebb81e09a8706128f873bfc08. Original local commit remains retained.
+Started codex/crash-behavior-research from merged main. User then explicitly asked
+for findings before implementation. No gameplay/physics/assets/dependencies changed.
+RAG-11 verifies source-level investigation of current ejection/support/muscle/roll
+behavior and five pinned repositories. Expanded the existing unfinished combat
+sequence and active-recovery tasks; no implementation gate closed. Source hashes,
+licenses, compatibility, recommendations and unverified runtime claims are in
+research/crash-behavior. Research notes remain separate from the merged world PR.
+
+
+## 2026-11-07 — Method A unmerged crash comparison
+Implemented shared continuous release, finite owner/wreck grace, mounted combat
+swerve/countersteer and save-disabled comparison controls. Fixed hidden chassis
+shape blocking walking casts; restored exactly on reset/remount. Added bounded
+support/posture-aware native joint target controller, typed tuning and real-backend
+regressions. Preserved baseline, dependencies, world, models and anatomical data.
+RAG-A-01/02 track user feel and measured-work/performance gates; no merge selected.

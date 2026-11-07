@@ -14,6 +14,7 @@ impl Default for Tuning {
 }
 #[derive(Component)]
 pub(crate) struct FrontalRelease;
+#[cfg(test)]
 #[allow(clippy::type_complexity)]
 pub(super) fn roll(
     settings: Res<Settings>,

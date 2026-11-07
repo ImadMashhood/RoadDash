@@ -6,6 +6,7 @@ pub mod biomechanics;
 pub mod combat;
 pub mod content;
 pub mod controls;
+pub mod crash_behavior;
 pub mod diagnostics;
 pub mod environment;
 pub mod feedback;
@@ -116,6 +117,7 @@ pub fn build_app(smoke: bool) -> App {
         runtime::RoadAudioPlugin,
         diagnostics::RoadDiagnosticsPlugin,
     ));
+    crash_behavior::install_comparison(&mut app);
     #[cfg(feature = "debug_physics")]
     app.add_plugins(bevy_rapier3d::render::RapierDebugRenderPlugin::default());
     if smoke {

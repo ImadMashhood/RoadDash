@@ -125,7 +125,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**180 verified tasks complete; 223 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**181 verified tasks complete; 225 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -143,10 +143,10 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 180 verified complete |
+| [00](#part-00) | Completed and verified foundations | 181 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
-| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 23 open |
+| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 25 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 20 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 7 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 10 open |
@@ -164,6 +164,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RAG-11** Audit original crash animation/control and open-source active-ragdoll approaches before changing gameplay. Reason: requested realistic roll-to-back, protective arms and continuous combat ejection, then findings before implementation; originating part: 03; dependencies: RAG-10, V2-01-006 and existing physical rig; acceptance: identify current teleport/support/roll gaps, pin actual source/licenses/compatibility, distinguish original behavior from proposals, adopt no runtime changes; verification: [source audit and file hashes](docs/research/crash-behavior/README.md). This completes research only; V2-01-006 and V2-03-005 remain open.
 
 - [x] **DRESS-02** Vary roadside scenery through biome-specific groups and independent seeded sides. Reason: repeated mirrored single-object placement; part: 05; dependencies: DRESS-01 and PROP-03; acceptance: at least28 actual roles and16 groups in all five zones, broad zone coverage, bounded224 owners, guarded road/access/support and unchanged tree counts; verification: deterministic/group validation tests, native mesh/role/zone census and farm/city/hill captures ([evidence](docs/testing/roadside-variety/README.md)). Finished prop art and broad performance acceptance remain separate.
 
@@ -552,7 +554,7 @@ Next implementation work: measured vehicle crashes, over-car nose-down/vault beh
 
 
 - [ ] **V2-01-005** Design and implement measured vehicle-impact and over-car crash responses.
-- [ ] **V2-01-006** Add a combat knockoff loss-of-balance sequence.
+- [ ] **V2-01-006** Add a combat knockoff loss-of-balance sequence. Research RAG-11 identifies immediate knockout plus metre-scale detached-origin offsets. Proposed work awaits user direction: mounted away-from-hit swerve, physical countersteer toward the previous line, obstacle-interruptible release during countersteer and continuous seated-pose/velocity handoff with protective arms. Preserve the three-hit rule, repeat foot knockdowns, ordinary input-owned heading and collision/momentum; test both hit sides, obstacles at each phase, pause/reset and no position snap. [Findings, not implementation](docs/research/crash-behavior/README.md).
 - [ ] **V2-01-007** Compare the reference crash/control code and evaluate bounded physics changes.
 - [ ] **V2-01-008** Exit gate: accept corrections before authoring motion.
 
@@ -651,13 +653,17 @@ First study every original rider animation category, use sprites as reference ke
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
 
+- [ ] **RAG-A-01** Review the native-motor crash candidate against the accepted passive baseline and Method B. Reason: user requested two isolated implementations before selection; part: 03; dependencies: RAG-11 and shared continuous-ejection lifecycle; acceptance: convincing brace/roll/slide attempts without free launch, joint instability or recovery regression at 20/60/120/200 km/h, then user selection; verification: [Method A implementation, controls and test evidence](docs/testing/crash-comparison/METHOD_A.md), native comparison and user review. Code and automated evidence exist; feel gate remains open and branch is unmerged.
+
+- [ ] **RAG-A-02** Measure native-motor solver work and multi-rider frame cost before production tuning. Reason: torque-limit times relative angular speed is a conservative effort estimate, not exact solver impulse work; part: 03; dependencies: RAG-A-01 and profiler; acceptance: actual backend work/energy and repeated simultaneous-crash timings recorded with target hardware, bounded supported attempts under limb-propped torso contact; verification: solver telemetry, paired deterministic lab and native performance capture.
+
 The user authorized the initial clip integration after correcting torso motion; ANIM-08 records that verified subset. Full keyframe approval and the production gates below remain open. Animate and interpolate the full set. Make walking/running feel grounded through terrain-aware stride, foot planting, starts/stops and turns. Preserve universal seat/grip/peg contacts, improve get-up/remount, and prototype bounded attempts to regain control during ragdoll. Include manual on-foot control and valid foot finishes; keep the accepted passive ragdoll as the comparison fixture.
 
 - [ ] **V2-03-001** Implement a data-driven animation state/blend graph. Initial riding/attack/recovery graph verified under ANIM-08; full weapon/police/locomotion coverage and approval remain open.
 - [ ] **V2-03-002** Interpolate approved keyframes and combat/recovery transitions.
 - [ ] **V2-03-003** Make walking/running match velocity and terrain. Partial: distance-driven stride, velocity blend, support-ray sole alignment and stance locking are integrated; pelvis/stair/turn-in-place and measured terrain slip acceptance remain open.
 - [ ] **V2-03-004** Keep hands and feet on bike contacts when required. Initial four-contact render solver passes fixed-length/endpoint tests; full runtime hand/foot deformation and clearance approval remain open.
-- [ ] **V2-03-005** Prototype bounded active ragdoll and player attempts to recover. Partial: supported player input raises only existing capped joint motors to 0.12 activation; neutral restores the passive crash curve. Controlled work/energy, conscious/unconscious policy and user feel approval remain open.
+- [ ] **V2-03-005** Prototype bounded active ragdoll and player attempts to recover. Partial: supported player input raises only existing capped joint motors to 0.12 activation; neutral restores the passive crash curve. Controlled work/energy, conscious/unconscious policy and user feel approval remain open. RAG-11 proposes true ground-normal support checks, posture-aware directional bracing, bounded attempts to roll supine, physical back sliding, timeout/yield under speed/spin/obstruction and work-budget integration with the existing energy guard. An unmerged Method A candidate now implements these rules through native motors; its effort budget is an estimate rather than measured solver work. User/native comparison acceptance remains open; retain passive fallback and verify high-speed/airborne/wall contacts, failed attempts, momentum, joint integrity and recovery.
 - [ ] **V2-03-006** Blend physical landings into terrain-aware get-up and remount. Partial: capture the settled physical pose and blend into get-up, followed by terrain-aware feet and existing mirrored remount. Confined clearance, recovery direction selection and full terrain approval remain open.
 - [ ] **V2-03-007** Add motion/audio polish without changing gameplay outcomes. Partial: footsteps follow measured travel instead of elapsed recovery time. Contact-event timing, breathing/look and broader motion/audio polish remain open.
 - [ ] **ANIM-09** Finish native full-body animation acceptance. Reason: authoring renders and numeric constraints do not certify every runtime deformation/transition; part: 03; dependencies: ANIM-08, ANIM-02/04/06 and terrain locomotion; acceptance: native multi-angle normal/tuck-to-all-attacks, mirrored pickup and physical-pose get-up review, fingers/feet and cloth/bike clearance, Windows hardware and user approval; verification: labeled native video matrix, contact/deformation checks and regression parity.

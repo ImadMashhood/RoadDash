@@ -72,6 +72,7 @@ pub struct Brain {
     pub supported: bool,
     pub roll_assisted: bool,
     pub frontal_release: bool,
+    pub reaction: rr_core::physical_reaction::Reaction,
 }
 #[derive(Component)]
 pub struct Muscle {
@@ -407,6 +408,7 @@ fn initialize(world: &mut World) {
             .entity_mut(owner)
             .take::<reactions::FrontalRelease>()
             .is_some();
+        let work = world.resource::<muscles::NativeTuning>().0.work_joules;
         world.entity_mut(root).insert((
             Brain {
                 control: CrashControl::impact(severity, &settings.config.activation),
@@ -414,6 +416,7 @@ fn initialize(world: &mut World) {
                 supported: false,
                 roll_assisted: false,
                 frontal_release,
+                reaction: rr_core::physical_reaction::Reaction::new(work),
             },
             AdditionalSolverIterations(settings.config.extra_solver_iterations),
         ));
@@ -438,13 +441,16 @@ impl Plugin for BiomechanicsPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<Settings>()
             .init_resource::<reactions::Tuning>()
+            .init_resource::<muscles::NativeTuning>()
             .add_systems(
                 FixedUpdate,
-                (initialize, muscles::update, reactions::roll)
+                (initialize, muscles::update)
                     .chain()
                     .after(crate::runtime::SimSet::Gameplay)
                     .before(PhysicsSet::SyncBackend),
-            );
+            )
+            .add_systems(Update, muscles::status);
+
         // Lab uses MinimalPlugins and does not install rendering resources.
     }
 }

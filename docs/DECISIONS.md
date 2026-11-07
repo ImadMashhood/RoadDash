@@ -1570,3 +1570,39 @@ Tradeoff: up to64 more static owners than the previous cap, with existing prop
 LOD/distance policy; broad performance and finished prop art remain open. No new
 repository/dependency/media. Rollback only dressing grammar/placement; map quotas,
 collision rules, saves and accepted rider behavior are independent.
+
+## ADR057 — Crash behavior research and deferred implementation
+
+2026-11-07. Problem: requested swerve/release, protective arms and roll-to-back
+crashes need an evidence-based approach. User explicitly requires findings before
+implementation. Selected action: research/document only on a separate branch after
+merging PR17; preserve all runtime/tuning/assets/dependencies unchanged.
+Alternatives evaluated: adopting active-ragdoll-rs directly (version/policy mismatch),
+copying Godot/Unity controllers (engine and motion-policy mismatch), replacing
+Rapier (unnecessary), or adding behavior around the current native motors.
+Recommendation, not an approved migration: continuous seated release, real support
+sensing and bounded target-pose behavior over current constraints. Tradeoff: a
+custom small behavior layer needs fixtures/work accounting, while a wrapper adds
+translation tracking/type boundaries and threatens the accepted physical baseline.
+Sources/licenses/actual techniques: research/crash-behavior/README.md. No code or
+media incorporated. Future consequences: preserve baseline comparisons, explicit
+state transitions and authoritative fixed-tick inputs; no lane/body teleport or
+unbounded energy. No runtime rollback is needed because nothing was implemented;
+any later prototype should remain independently reviewable before default merge.
+
+## ADR058A — Compare bounded native constraint targets without root guidance
+
+2026-11-07. User approved two unmerged candidates. Selected Method A: preserve
+Rapier anatomy/masses/solver and apply a support/posture/timeout state machine to
+existing capped native joint motors. Alternatives: reciprocal angular impulse
+controller (separate Method B), direct root pose/velocity tracking (rejected here),
+or engine migration (unnecessary). Typed tuning and pure rules isolate policy.
+Tradeoff: internal articulation may fail to turn a supported body; finite retries
+yield rather than force success. Torque-cap × measured relative speed is an effort
+estimate, not exact solver work; broad performance/feel gates remain open. Shared
+continuous release preserves seated anchors, staged combat countersteer and
+pair-specific grace. Remove/store the dormant original chassis shape because KCC
+casts still found ColliderDisabled chassis; restore on remount/reset. Other solids
+remain. References are the pinned REFERENCE ONLY crash-behavior audit; no imported
+code/media/dependencies. Rollback: retain baseline flag or select the other branch;
+no save schema change and no candidate merged automatically.
