@@ -31,6 +31,11 @@ fn main() {
         eprintln!("Ragdoll configuration: {error}");
         std::process::exit(2);
     }
+    if args.iter().any(|a| a == "--animation-lab-view") {
+        road_dash::animation::preview::build(args.iter().any(|a| a == "--animation-lab-smoke"))
+            .run();
+        return;
+    }
     if args.iter().any(|a| a == "--ragdoll-lab-view") {
         road_dash::biomechanics::view::build(args.iter().any(|a| a == "--ragdoll-view-smoke"))
             .run();

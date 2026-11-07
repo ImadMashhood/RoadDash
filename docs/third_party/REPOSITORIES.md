@@ -667,3 +667,15 @@ new physics wrapper or copying Unity controllers. No package additions.
 2026-11-06 integration: reused the five previously pinned ragdoll investigations
 and existing Bevy/Rapier dependencies. No new repository inspected or source/assets
 copied. ADR049 and testing/ragdoll/integration/README.md record current integration.
+
+
+2026-11-06 Part03: consulted existing pinned animation/ragdoll investigations
+(recorded source-level findings in research/ANIMATION_AND_RAGDOLL.md); no new
+repository investigation, dependency, copied source or media. Existing native
+FK/two-link fitting and capped Rapier motors were extended in original code;
+ADR050 records why no incompatible IK/animation wrapper was introduced.
+
+2026-11-06 camera/contact/gait follow-up (ADR051): no new repository researched
+or third-party source/media incorporated. Extended existing original FK/IK,
+pre-contact response and Rapier motors; no dependency migration. Normal-speed
+sharing and kinetic roll budgeting are original elementary mechanics code.

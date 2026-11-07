@@ -1,5 +1,6 @@
 //! Authored meshes driven by existing visual joints. No physics systems or components.
 use crate::{human, world};
+mod articulation;
 use bevy::{
     asset::RenderAssetUsages,
     camera::visibility::NoFrustumCulling,
@@ -42,8 +43,8 @@ pub struct AuthoredModels {
     standing_bind: Handle<SkinnedMeshInverseBindposes>,
     seated_bind: Handle<SkinnedMeshInverseBindposes>,
     textures: Vec<Handle<Image>>,
-    standing_frames: [Transform; 11],
-    seated_frames: [Transform; 11],
+    standing_frames: [Transform; 16],
+    seated_frames: [Transform; 16],
 }
 #[derive(Component)]
 pub struct AuthoredHuman;
@@ -62,6 +63,18 @@ impl AuthoredModels {
         binds: &mut Assets<SkinnedMeshInverseBindposes>,
         server: Option<&AssetServer>,
     ) -> Self {
+        let bindings = rr_content::riding_model::Bindings::from_json(include_str!(
+            "../assets/models/rider-bindings.json"
+        ))
+        .expect("validated source bind frames");
+        let standing_frames = bindings
+            .standing
+            .map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
+        let seated_frames = bindings
+            .seated
+            .map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
+        let standing_frames = articulation::bind_frames(standing_frames);
+        let seated_frames = articulation::bind_frames(seated_frames);
         let decoded =
             rr_content::riding_model::decode(BUNDLE).expect("validated authored visual bundle");
         let base = server.map(|s| s.load("textures/rider-base.png"));
@@ -79,6 +92,17 @@ impl AuthoredModels {
         });
         let mut parts = Vec::new();
         for mut data in decoded {
+            if matches!(data.group.as_str(), "standing" | "seated") {
+                let standing = data.group == "standing";
+                articulation::weights(
+                    &mut data,
+                    if standing {
+                        &standing_frames
+                    } else {
+                        &seated_frames
+                    },
+                );
+            }
             let wheel = matches!(data.group.as_str(), "front-wheel" | "rear-wheel");
             let rest = if wheel {
                 Transform::from_xyz(
@@ -167,16 +191,6 @@ impl AuthoredModels {
                 rest,
             });
         }
-        let bindings = rr_content::riding_model::Bindings::from_json(include_str!(
-            "../assets/models/rider-bindings.json"
-        ))
-        .expect("validated source bind frames");
-        let standing_frames = bindings
-            .standing
-            .map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
-        let seated_frames = bindings
-            .seated
-            .map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
         Self {
             parts,
             textures: [base, normal, roughness].into_iter().flatten().collect(),
@@ -195,6 +209,16 @@ impl AuthoredModels {
             standing_frames,
             seated_frames,
         }
+    }
+    pub(crate) fn physical_frames(&self, physical: &[Transform]) -> Option<[Transform; 16]> {
+        let input: [Transform; 11] = physical.get(..11)?.try_into().ok()?;
+        let source: [Transform; 11] = self.standing_frames[..11].try_into().unwrap();
+        let legacy = human::SPECS.map(|s| Transform::from_translation(s.0));
+        Some(articulation::extend(
+            connected_pose(input, source, legacy),
+            self.standing_frames,
+            Some(physical),
+        ))
     }
     pub fn ready(&self, server: &AssetServer) -> bool {
         self.textures.iter().all(|h| {
@@ -221,6 +245,8 @@ impl AuthoredModels {
         } else {
             self.standing_frames
         };
+        let bind = source;
+        let source: [Transform; 11] = source[..11].try_into().unwrap();
         let legacy = std::array::from_fn(|i| {
             if seated {
                 human::seated(i)
@@ -235,13 +261,9 @@ impl AuthoredModels {
                 Visibility::default(),
             ))
             .id();
-        let skin_joints = std::array::from_fn(|i| {
+        let skin_joints: [Entity; 16] = std::array::from_fn(|i| {
             commands
-                .spawn((
-                    Name::new(format!("Skin joint {i}")),
-                    SkinJoint(i),
-                    source[i],
-                ))
+                .spawn((Name::new(format!("Skin joint {i}")), SkinJoint(i), bind[i]))
                 .id()
         });
         commands
@@ -252,6 +274,8 @@ impl AuthoredModels {
                 joints: skin_joints,
                 source,
                 legacy,
+                bind,
+                seated,
             });
         for p in self
             .parts
@@ -332,9 +356,11 @@ pub struct SkinJoint(pub usize);
 #[derive(Component)]
 struct ConnectedRig {
     drivers: [Entity; 11],
-    joints: [Entity; 11],
+    joints: [Entity; 16],
     source: [Transform; 11],
     legacy: [Transform; 11],
+    bind: [Transform; 16],
+    seated: bool,
 }
 const RIG_ORDER: [usize; 11] = [2, 0, 1, 3, 4, 5, 6, 7, 8, 9, 10];
 /// Source-anatomy forward kinematics: driver rotations, never disconnected driver translations.
@@ -384,18 +410,32 @@ fn connected_pose(
     }
     out
 }
+#[allow(clippy::type_complexity, clippy::too_many_arguments)]
 fn retarget(
-    rigs: Query<(Entity, &ConnectedRig, Option<&crate::animation::Binding>)>,
+    rigs: Query<(
+        Entity,
+        &ConnectedRig,
+        Option<&crate::animation::Binding>,
+        Option<&RagdollOwner>,
+    )>,
+    physical_rigs: Query<&crate::biomechanics::PhysicalRig>,
+    physical: Query<
+        (&Transform, Option<&crate::runtime::PoseHistory>),
+        With<bevy_rapier3d::prelude::RigidBody>,
+    >,
     library: Res<crate::animation::Library>,
     animators: Query<(&crate::animation::Animator, &crate::recovery::Recovery)>,
     owners: Query<&crate::recovery::OwnedBody>,
     fixed: Option<Res<Time<Fixed>>>,
-    mut transforms: ParamSet<(TransformHelper, Query<&mut Transform, With<SkinJoint>>)>,
+    mut transforms: ParamSet<(
+        TransformHelper,
+        Query<&mut Transform, (With<SkinJoint>, Without<bevy_rapier3d::prelude::RigidBody>)>,
+    )>,
 ) {
     let mut updates = Vec::new();
     {
         let helper = transforms.p0();
-        for (root, rig, binding) in &rigs {
+        for (root, rig, binding, ragdoll) in &rigs {
             let Ok(root) = helper.compute_global_transform(root) else {
                 continue;
             };
@@ -411,7 +451,25 @@ fn retarget(
             let Ok(frames) = frames else {
                 continue;
             };
-            let mut pose = connected_pose(frames.try_into().unwrap(), rig.source, rig.legacy);
+            let base = connected_pose(frames.try_into().unwrap(), rig.source, rig.legacy);
+            let physical_frames =
+                ragdoll
+                    .and_then(|r| physical_rigs.get(r.0).ok())
+                    .and_then(|rig| {
+                        rig.0
+                            .iter()
+                            .map(|e| {
+                                physical.get(*e).ok().map(|(t, h)| {
+                                    crate::runtime::interpolated(
+                                        t,
+                                        h,
+                                        fixed.as_ref().map_or(1.0, |t| t.overstep_fraction()),
+                                    )
+                                })
+                            })
+                            .collect::<Option<Vec<_>>>()
+                    });
+            let mut pose = articulation::extend(base, rig.bind, physical_frames.as_deref());
             let inverse = root.affine().inverse();
             let owner = binding.and_then(|b| match *b {
                 crate::animation::Binding::Riding(e) => Some(e),
@@ -422,7 +480,8 @@ fn retarget(
                 .filter(|(a, _)| a.ready)
             {
                 let alpha = fixed.as_ref().map_or(1.0, |t| t.overstep_fraction());
-                let sampled = library.frames(a.previous.blend(a.current, alpha));
+                let sampled =
+                    library.skin_frames(a.previous.blend(a.current, alpha), rig.bind, rig.seated);
                 if rec.stage == crate::recovery::RecoveryStage::Mounting {
                     if let Some(anchor) = rec
                         .wreck
@@ -463,9 +522,20 @@ impl Plugin for RoadModelPlugin {
 }
 /// Attach to the first visual joint: it has the same cleanup lifetime as the body.
 /// GPU skinning uses all joint GlobalTransforms; this never writes body transforms.
-pub fn ragdoll(commands: &mut Commands, art: &world::Art, color: usize, joints: &[Entity]) {
+#[derive(Component)]
+struct RagdollOwner(Entity);
+pub fn ragdoll(
+    commands: &mut Commands,
+    art: &world::Art,
+    owner: Entity,
+    color: usize,
+    joints: &[Entity],
+) {
     if let Some(models) = &art.models {
         let skins = models.human(commands, color, joints, false);
+        for &skin in &skins {
+            commands.entity(skin).insert(RagdollOwner(owner));
+        }
         commands.entity(joints[0]).add_children(&skins);
     }
 }

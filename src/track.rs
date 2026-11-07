@@ -25,17 +25,20 @@ impl Default for Track {
 impl Track {
     pub fn selected() -> Self {
         if let Some(path) = std::env::var_os("ROADDASH_TRACK") {
-            let path = if path == "valley" {
-                std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                    .join("content/tracks/valley.json")
+            let path = if path == "valley" || path == "city" {
+                std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(if path == "city" {
+                    "content/tracks/city5300.json"
+                } else {
+                    "content/tracks/valley.json"
+                })
             } else {
                 path.into()
             };
             Self::from_json(&std::fs::read_to_string(path).expect("read ROADDASH_TRACK"))
                 .expect("validate ROADDASH_TRACK")
         } else {
-            Self::from_json(include_str!("../content/tracks/city5300.json"))
-                .expect("built-in generated City Run")
+            Self::from_json(include_str!("../content/tracks/valley.json"))
+                .expect("built-in Valley Run")
         }
     }
     pub fn from_json(json: &str) -> Result<Self, String> {

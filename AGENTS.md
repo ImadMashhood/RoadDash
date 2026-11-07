@@ -62,3 +62,10 @@ in the blueprint are not installed dependencies.
   restrictions in older evidence are historical. Keep crash contact policy,
   current world/props, controls, saves and recovery integrated. Production distal
   skinning, broad performance and hardware coverage remain open roadmap gates.
+
+- Latest user follow-up supersedes upright rear-bike hops: share pre-contact
+  normal momentum and knock the front rider off at60km/h closing speed. Keep
+  downed-body/wreck lift separate. Grounded roll cues spend existing kinetic
+  energy once; frontal leg-release uses existing motor limits. Preserve baseline.
+  Neutral distal skin frames must inherit animated parents; do not add standing
+  wrist twist to hide a bind mismatch. Valley is default; explicit city remains.

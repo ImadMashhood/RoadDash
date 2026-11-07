@@ -401,3 +401,217 @@ fn inward_hip_loading_keeps_knees_on_their_own_sides() {
         "knees crossed or collapsed inward under paired load: {minimum}"
     );
 }
+
+#[test]
+fn player_bracing_is_supported_bounded_and_released_without_changing_limits() {
+    let mut app = lab::fixture(true, lab::Scenario::Drop);
+    let owner = app
+        .world_mut()
+        .query::<&OwnedBody>()
+        .iter(app.world())
+        .next()
+        .unwrap()
+        .owner;
+    app.world_mut()
+        .entity_mut(owner)
+        .insert(crate::game::Rider::new(0));
+    app.init_resource::<crate::controls::Controls>()
+        .init_resource::<crate::recovery::RecoveryTuning>();
+    for _ in 0..900 {
+        app.update();
+    }
+    assert!(
+        app.world_mut()
+            .query::<&Brain>()
+            .iter(app.world())
+            .all(|b| b.supported)
+    );
+    app.world_mut()
+        .resource_mut::<crate::controls::Controls>()
+        .foot = Vec2::X;
+    app.update();
+    let limit = app
+        .world()
+        .resource::<crate::recovery::RecoveryTuning>()
+        .0
+        .brace_activation;
+    for m in app.world_mut().query::<&Muscle>().iter(app.world()) {
+        assert!((m.activation - limit).abs() < 1e-5);
+    }
+    for (s, j) in app
+        .world_mut()
+        .query::<(&Segment, &ImpulseJoint)>()
+        .iter(app.world())
+    {
+        let c = &app.world().resource::<Settings>().config.joints[s.part];
+        for (axis, range) in AXES.into_iter().zip(c.limits) {
+            if range != [0.0, 0.0] {
+                let l = j.data.as_ref().limits(axis).unwrap();
+                assert_eq!([l.min, l.max], range);
+            }
+        }
+    }
+    app.world_mut()
+        .resource_mut::<crate::controls::Controls>()
+        .foot = Vec2::ZERO;
+    app.update();
+    for m in app.world_mut().query::<&Muscle>().iter(app.world()) {
+        assert!(m.activation < limit);
+    }
+}
+
+#[test]
+fn grounded_roll_converts_existing_energy_once_in_forward_and_side_directions() {
+    use bevy::ecs::system::RunSystemOnce;
+    for direction in [Vec3::Z, Vec3::X] {
+        let mut app = lab::fixture(true, lab::Scenario::Drop);
+        for _ in 0..5 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query::<&OwnedBody>()
+            .iter(app.world())
+            .next()
+            .unwrap()
+            .owner;
+        app.world_mut()
+            .entity_mut(owner)
+            .insert(crate::game::Rider::new(0));
+        for mut v in app
+            .world_mut()
+            .query_filtered::<&mut Velocity, With<Segment>>()
+            .iter_mut(app.world_mut())
+        {
+            *v = Velocity::linear(direction * 8.0);
+        }
+        for mut b in app
+            .world_mut()
+            .query::<&mut Brain>()
+            .iter_mut(app.world_mut())
+        {
+            b.supported = true;
+            b.control.age = 1.0;
+        }
+        fn measure(app: &mut App) -> (f32, Vec3, Vec3) {
+            let mut energy = 0.0;
+            let mut momentum = Vec3::ZERO;
+            let mut angular = Vec3::ZERO;
+            for (t, m, v) in app
+                .world_mut()
+                .query_filtered::<(&Transform, &ReadMassProperties, &Velocity), With<Segment>>()
+                .iter(app.world())
+            {
+                let w = (t.rotation * m.principal_inertia_local_frame).inverse() * v.angvel;
+                energy += 0.5
+                    * (m.mass * v.linvel.length_squared()
+                        + (m.principal_inertia * w * w).element_sum());
+                momentum += m.mass * v.linvel;
+                angular += v.angvel;
+            }
+            (energy, momentum, angular)
+        }
+        let before = measure(&mut app);
+        app.world_mut().run_system_once(reactions::roll).unwrap();
+        let after = measure(&mut app);
+        assert!(after.0 <= before.0 + 0.02, "energy {before:?} -> {after:?}");
+        assert!(
+            after.1.dot(direction) > before.1.dot(direction) * 0.95,
+            "direction={direction:?} before={before:?} after={after:?}"
+        );
+        assert!(after.2.dot(Vec3::Y.cross(direction)) > 0.5);
+        app.world_mut().run_system_once(reactions::roll).unwrap();
+        let twice = measure(&mut app);
+        assert!((twice.0 - after.0).abs() < 1e-5 && twice.1.distance(after.1) < 1e-5);
+    }
+}
+#[test]
+fn roll_assistance_needs_support_and_does_not_change_the_baseline() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = lab::fixture(true, lab::Scenario::Drop);
+    app.update();
+    let owner = app
+        .world_mut()
+        .query::<&OwnedBody>()
+        .iter(app.world())
+        .next()
+        .unwrap()
+        .owner;
+    app.world_mut()
+        .entity_mut(owner)
+        .insert(crate::game::Rider::new(0));
+    for mut b in app
+        .world_mut()
+        .query::<&mut Brain>()
+        .iter_mut(app.world_mut())
+    {
+        b.supported = false;
+        b.control.age = 1.0;
+    }
+    app.world_mut().run_system_once(reactions::roll).unwrap();
+    assert!(
+        app.world_mut()
+            .query::<&Brain>()
+            .iter(app.world())
+            .all(|b| !b.roll_assisted)
+    );
+    app.world_mut().resource_mut::<Settings>().enabled = false;
+    for mut b in app
+        .world_mut()
+        .query::<&mut Brain>()
+        .iter_mut(app.world_mut())
+    {
+        b.supported = true;
+    }
+    for mut v in app
+        .world_mut()
+        .query::<&mut Velocity>()
+        .iter_mut(app.world_mut())
+    {
+        *v = Velocity::linear(Vec3::Z * 8.0);
+    }
+    app.world_mut().run_system_once(reactions::roll).unwrap();
+    for v in app.world_mut().query::<&Velocity>().iter(app.world()) {
+        assert_eq!(v.linvel, Vec3::Z * 8.0);
+        assert_eq!(v.angvel, Vec3::ZERO);
+    }
+}
+
+#[test]
+fn frontal_leg_release_uses_limited_motors_without_a_velocity_impulse() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = lab::fixture(true, lab::Scenario::Drop);
+    app.update();
+    for mut b in app
+        .world_mut()
+        .query::<&mut Brain>()
+        .iter_mut(app.world_mut())
+    {
+        b.frontal_release = true;
+        b.control.age = 0.1;
+    }
+    let before: Vec<_> = app
+        .world_mut()
+        .query::<(Entity, &Velocity)>()
+        .iter(app.world())
+        .map(|(e, v)| (e, *v))
+        .collect();
+    app.world_mut().run_system_once(muscles::update).unwrap();
+    for (e, v) in before {
+        let now = app.world().get::<Velocity>(e).unwrap();
+        assert_eq!(v.linvel, now.linvel);
+        assert_eq!(v.angvel, now.angvel);
+    }
+    for (s, m) in app
+        .world_mut()
+        .query::<(&Segment, &Muscle)>()
+        .iter(app.world())
+    {
+        if matches!(s.part, 7 | 9) {
+            assert!(coordinates(m.target).x > 0.02 && coordinates(m.target).x <= 0.4);
+        }
+        if matches!(s.part, 8 | 10) {
+            assert!(coordinates(m.target).x > 0.2 && coordinates(m.target).x <= 1.0);
+        }
+    }
+}

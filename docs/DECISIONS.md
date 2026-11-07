@@ -1307,3 +1307,104 @@ the target off; gentle contacts nudge. Side/head-on/car routing stays separate.
 This requested vertical assist is a deliberate gameplay-energy exception, not a
 claim of original crash arithmetic parity. No arbitrary crash launch was added
 for other classes. Integration tests cover physical contacts and both entity orders.
+
+
+## ADR050 — Part 03 visual articulation and on-foot authority (2026-11-06)
+
+Problem: authored attack sides opposed gameplay's forward-cross-up right vector;
+fixed elbow poles flared during tuck/lean; time-only running ignored blocked
+motion; generic get-up discarded the landing pose. The pilot's eleven skin
+joints concealed the accepted physical rig's five additional articulations.
+
+Alternatives: replace the physical rig, import an IK/animation dependency, or
+extend existing visual FK/two-link constraints and fixed recovery. Selected the
+last. No dependency/engine/asset replacement: Bevy0.17.3/Rapier0.32.0 remain pinned.
+Correct side selection at the presentation boundary; bounded inward elbow poles
+retain held grip endpoints and authored chain lengths. Sixteen skin matrices and
+smooth distal weight remapping are generated at startup from original binds;
+source model/texture files are untouched. The prop pedestrian rig remains separate.
+
+Animation reads interpolated physical joints, captures the settled pose at get-up,
+blends into existing authored recovery, and fits soles to support normals while
+locking stance feet. Stride follows measured travel, with a velocity stop blend.
+All targets write SkinJoint transforms only, explicitly excluding rigid bodies.
+No root motion changes simulation. Production pelvis/stair/contact quality and
+confined get-up clearance remain open rather than inferred from numeric tests.
+
+Pure rr_core FootControl owns manual/assist/finished priority and neutral delay.
+Validated rr_content recovery tuning owns speed, stride, mount and rescue bounds.
+Fixed recovery owns character movement, checkpoints and a shared racer-level
+finish guard/payout. Manual movement wins over bike seeking; neutral assist waits
+0.35s, or remains disabled via --manual-recovery. Both stick axes are used. Manual
+mount requires interaction, proximity, facing and a slow bike. Below-terrain rescue
+is explicit, penalized and clamped before the finish; fully enclosed traps remain
+open. No save-schema migration; existing progression has one completion path.
+
+Optional player action while supported and at least0.8s into a crash raises only
+native capped joint motors to0.12 activation. It applies no direct root impulses,
+teleports or limit changes and returns to the ordinary curve on release. This is
+a bounded brace prototype, not a balance/recovery simulation or energy-budget
+certificate. Existing baseline and no-input trajectories remain regression controls.
+
+Previously pinned research (research/ANIMATION_AND_RAGDOLL.md and
+research/RAGDOLL_BIOMECHANICS.md) informed the target/physics separation. No new
+repository/source/media imported. Tradeoffs: pilot skin has five extra matrices;
+IK probes cost at most two rays per recovering rider per tick, source-key get-up
+is still an approximation, and production profiling/user acceptance remain open.
+Rollback: revert these visual/recovery changes; --ragdoll-baseline and
+brace_activation=0 preserve comparison options without changing saves or content.
+
+## ADR051 — User camera, rear-contact, locomotion and crash-style follow-up (2026-11-06)
+
+Problem: transient actors shortened the camera boom; a ceiling/start penetration
+could collapse it onto the focus and make look-at unstable. The earlier requested
+rear hop now contradicts the user's latest60km/h push/knockoff rule. The source
+run clip and raised elbows were rejected; distal skin neutral frames also differed
+from animated parent frames, visibly bending otherwise neutral wrists.
+
+Selected: keep the static camera obstruction sphere, filter dynamic/kinematic,
+owned and NPC actors, try horizontal/lower boom candidates under low ceilings,
+and retain orientation for degenerate look vectors. Recovery holds its initial
+chase heading instead of snapping to a different nearest road tangent while on foot. Static walls still block the
+camera. Alternative aggressive near-focus look-at/zoom was the reported defect;
+ignoring all scenery would clip buildings. Actor render occlusion can still occur;
+this does not turn moving people/cars into camera walls.
+
+Upright same-direction rear contacts always share normal velocity using pair
+masses (bike plus70kg rider). This conserves normal momentum and dissipates energy.
+Closing>=60km/h knocks the front rider down with that shared response; no scripted
+hop. Apply resolved pre-contact velocity to both native bodies instead of retaining
+the solver bounce. Downed-body/wreck lift, side/head-on/car and original integer
+calculation tests remain separate. This user override supersedes ADR049's upright
+rear-hop portion, including the modern optional original-contact bridge; it is not
+claimed to be retail arithmetic parity. Native damping/handling otherwise retained.
+
+Replace running clip playback with a continuous distance-phase gait: opposed foot
+stance/swing, knee lift, counter-rotating shoulders/pelvis, arm swing and vertical
+weight shift. Keep stable forward knee poles during planted two-link fitting.
+For wrists/feet/spine, derive each neutral local frame relative to its animated
+parent and apply local motion delta there. Carry wrist pivots with forearms; no
+extra standing wrist roll. Earlier world-reference calibration mixed authoring and
+animation frames and caused the visible kink. Bike grip fitting and physical body
+transforms stay independent from this visual correction.
+
+User-authorized crash motion: a one-shot supported sliding roll starts after0.3s
+at>=3m/s. Axis is up cross horizontal travel (forward somersault tendency or lateral
+roll). Cap angular cue2.2rad/s and pay its full kinetic cost from at most8% of the
+current horizontal COM kinetic energy; ground contact supplies momentum reaction.
+Preserve vertical momentum and forward direction. No free-air assist, repeated
+energy source, teleport, body/joint/solver migration or baseline modification.
+Frontal speed loss>3m/s arms a0.38s hip/knee release: hip+.25rad, knee+.65rad,
+activation floor<=.35 through existing capped motors. Existing energy envelope
+remains active. These are deliberate arcade cues, not an unconscious-body model
+or a guarantee of a complete somersault against every obstacle. Alternatives:
+free angular kicks rejected for energy gain; pose-only roll rejected because it
+would conceal physical collision motion. Both changes retain native solid contacts.
+
+Restore original6.85km Valley as default; explicit city/valley aliases preserve
+both courses. No regeneration/quota/asset or save-format changes. No new dependency,
+third-party repository investigation or code/media import. Original validated
+content/crash_motion.json centralizes style tuning. Set roll_energy_fraction=0 or
+release_activation=0 and rebuild to disable those cues; --ragdoll-baseline remains
+the physical control. Future consequence: art/contact/energy tuning and platform
+acceptance remain explicit gates rather than a claim that Part03 is complete.

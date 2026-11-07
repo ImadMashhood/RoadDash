@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "auto_seek": true,
+  "brace_activation": 0.12,
+  "neutral_delay": 0.35,
+  "walk_speed": 6.0,
+  "stride_length": 3.2,
+  "mount_radius": 0.8,
+  "mount_height": 1.2,
+  "mount_speed": 2.0,
+  "mount_facing": 0.45,
+  "rescue_after": 120.0,
+  "rescue_penalty": 5.0
+}

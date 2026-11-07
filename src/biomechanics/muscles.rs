@@ -8,14 +8,19 @@ pub(super) struct Measure {
     activation: f32,
     age: f32,
     targets: [Quat; 16],
+    frontal_release: bool,
 }
 /// Reuses scratch buckets and visits each segment/joint once per fixed tick.
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub(super) fn update(
     settings: Res<Settings>,
+    reaction: Res<super::reactions::Tuning>,
     time: Res<Time<Fixed>>,
     race: Option<Res<crate::game::Race>>,
     context: ReadRapierContext,
+    controls: Option<Res<crate::controls::Controls>>,
+    recovery_tuning: Option<Res<crate::recovery::RecoveryTuning>>,
+    riders: Query<&crate::game::Rider>,
     mut forces: MessageReader<ContactForceEvent>,
     mut brains: Query<(&OwnedBody, &mut Brain)>,
     segments: Query<(Entity, &OwnedBody, &Velocity, &Segment)>,
@@ -71,24 +76,56 @@ pub(super) fn update(
             stats.supported,
             &settings.config.activation,
         );
-        stats.activation = brain.control.activation;
+        let bracing = controls
+            .as_ref()
+            .is_some_and(|c| c.foot.length_squared() > 0.01)
+            && riders.get(owner.owner).is_ok_and(|r| r.id == 0)
+            && stats.supported
+            && brain.control.age >= 0.8;
+        stats.activation = if bracing {
+            brain.control.activation.max(
+                recovery_tuning
+                    .as_ref()
+                    .map_or(0.12, |t| t.0.brace_activation),
+            )
+        } else {
+            brain.control.activation
+        };
         stats.age = brain.control.age;
         stats.targets = brain.targets;
+        stats.frontal_release = brain.frontal_release;
     }
     for (owner, s, mut joint, mut muscle) in &mut joints {
         let Some(stats) = scratch.get(&owner.owner) else {
             continue;
         };
         let c = &settings.config.joints[s.part];
-        let target = stats.targets[s.part].slerp(
+        let mut target = stats.targets[s.part].slerp(
             rotation(c.brace),
             (stats.age / settings.config.activation.impact_seconds).clamp(0.0, 1.0),
         );
-        if (muscle.activation - stats.activation).abs() > 0.00001
+        let mut activation = stats.activation;
+        if stats.frontal_release
+            && reaction.0.release_activation > 0.0
+            && stats.age < reaction.0.release_seconds
+            && matches!(s.part, 7..=10)
+        {
+            let weight = (std::f32::consts::PI * stats.age / reaction.0.release_seconds)
+                .sin()
+                .max(0.0);
+            let angle = if matches!(s.part, 7 | 9) {
+                reaction.0.hip_back
+            } else {
+                reaction.0.knee_back
+            };
+            target = target.slerp(rotation([angle, 0.0, 0.0]), weight);
+            activation = activation.max(reaction.0.release_activation * weight);
+        }
+        if (muscle.activation - activation).abs() > 0.00001
             || muscle.target.dot(target).abs() < 0.99999
         {
-            set_drive(joint.data.as_mut(), c, stats.activation, target);
-            muscle.activation = stats.activation;
+            set_drive(joint.data.as_mut(), c, activation, target);
+            muscle.activation = activation;
             muscle.target = target;
         }
     }

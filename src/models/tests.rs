@@ -80,7 +80,7 @@ fn all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics()
     );
     assert_eq!(w.query::<&human::HumanSegment>().iter(w).count(), 44);
     for (e, joints, _) in &skins {
-        assert_eq!(joints.len(), 11);
+        assert_eq!(joints.len(), 16);
         for joint in joints {
             assert!(w.get::<SkinJoint>(*joint).is_some());
             assert!((w.get::<Transform>(*joint).unwrap().scale - Vec3::ONE).length() < 0.00001);
@@ -108,90 +108,133 @@ fn all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics()
 fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory() {
     use bevy::ecs::system::RunSystemOnce;
     use bevy_rapier3d::prelude::*;
-    let mut old = crate::game::tests::simulation();
-    let mut new = crate::game::tests::simulation();
-    authored(&mut new);
-    fn spawn(app: &mut App) -> Vec<Entity> {
-        app.world_mut()
-            .run_system_once(|mut commands: Commands, art: Res<world::Art>| {
-                let owner = commands.spawn_empty().id();
-                crate::recovery::humanoid(
-                    &mut commands,
-                    &art,
-                    owner,
-                    4,
-                    Vec3::new(0.0, 3.0, 8.0),
-                    Quat::from_rotation_y(0.3),
-                    Vec3::new(3.0, -2.0, 18.0),
-                )
-            })
-            .unwrap()
-    }
-    let a = spawn(&mut old);
-    let b = spawn(&mut new);
-    for (a, b) in a.iter().zip(&b) {
-        let a = old.world().entity(*a);
-        let b = new.world().entity(*b);
-        for component in [
-            "body",
-            "collider",
-            "mass",
-            "damping",
-            "friction",
-            "restitution",
-            "ccd",
-            "joint",
-        ] {
-            let signature = |e: bevy::ecs::world::EntityRef<'_>| match component {
-                "body" => format!("{:?}", e.get::<RigidBody>()),
-                "collider" => format!(
-                    "{:?}",
-                    e.get::<Collider>()
-                        .unwrap()
-                        .as_cuboid()
-                        .unwrap()
-                        .half_extents()
-                ),
-                "mass" => format!("{:?}", e.get::<ColliderMassProperties>()),
-                "damping" => format!("{:?}", e.get::<Damping>()),
-                "friction" => format!("{:?}", e.get::<Friction>()),
-                "restitution" => format!("{:?}", e.get::<Restitution>()),
-                "ccd" => format!("{:?}", e.get::<Ccd>()),
-                _ => format!("{:?}", e.get::<ImpulseJoint>().map(|j| &j.data)),
-            };
-            assert_eq!(
-                signature(a),
-                signature(b),
-                "physics component changed: {component}"
-            );
+    for enabled in [false, true] {
+        let mut old = crate::game::tests::simulation();
+        let mut new = crate::game::tests::simulation();
+        authored(&mut new);
+        old.world_mut()
+            .resource_mut::<crate::biomechanics::Settings>()
+            .enabled = enabled;
+        new.world_mut()
+            .resource_mut::<crate::biomechanics::Settings>()
+            .enabled = enabled;
+        fn spawn(app: &mut App) -> Vec<Entity> {
+            app.world_mut()
+                .run_system_once(|mut commands: Commands, art: Res<world::Art>| {
+                    let owner = commands.spawn_empty().id();
+                    crate::recovery::humanoid(
+                        &mut commands,
+                        &art,
+                        owner,
+                        4,
+                        Vec3::new(0.0, 3.0, 8.0),
+                        Quat::from_rotation_y(0.3),
+                        Vec3::new(3.0, -2.0, 18.0),
+                    )
+                })
+                .unwrap()
         }
-    }
-    let mut max_position_error = 0.0_f32;
-    for tick in 0..180 {
-        old.update();
-        new.update();
+        let a = spawn(&mut old);
+        let b = spawn(&mut new);
         for (a, b) in a.iter().zip(&b) {
-            let ta = old.world().get::<Transform>(*a).unwrap();
-            let tb = new.world().get::<Transform>(*b).unwrap();
-            let va = old.world().get::<Velocity>(*a).unwrap();
-            let vb = new.world().get::<Velocity>(*b).unwrap();
-            max_position_error = max_position_error.max(ta.translation.distance(tb.translation));
-            assert!(
-                ta.translation.distance(tb.translation) < 0.0001,
-                "body trajectory changed at tick {tick}: {ta:?} vs {tb:?}"
-            );
-            assert!(
-                ta.rotation.angle_between(tb.rotation) < 0.001,
-                "body rotation changed at tick {tick}"
-            );
-            assert!(
-                va.linvel.distance(vb.linvel) < 0.0001 && va.angvel.distance(vb.angvel) < 0.0001,
-                "momentum changed at {tick}"
-            );
-            assert_eq!(ta.scale, tb.scale);
+            let a = old.world().entity(*a);
+            let b = new.world().entity(*b);
+            for component in [
+                "body",
+                "collider",
+                "mass",
+                "damping",
+                "friction",
+                "restitution",
+                "ccd",
+                "joint",
+            ] {
+                let signature = |e: bevy::ecs::world::EntityRef<'_>| match component {
+                    "body" => format!("{:?}", e.get::<RigidBody>()),
+                    "collider" => format!(
+                        "{:?}",
+                        e.get::<Collider>()
+                            .unwrap()
+                            .as_cuboid()
+                            .unwrap()
+                            .half_extents()
+                    ),
+                    "mass" => format!("{:?}", e.get::<ColliderMassProperties>()),
+                    "damping" => format!("{:?}", e.get::<Damping>()),
+                    "friction" => format!("{:?}", e.get::<Friction>()),
+                    "restitution" => format!("{:?}", e.get::<Restitution>()),
+                    "ccd" => format!("{:?}", e.get::<Ccd>()),
+                    _ => format!("{:?}", e.get::<ImpulseJoint>().map(|j| &j.data)),
+                };
+                assert_eq!(
+                    signature(a),
+                    signature(b),
+                    "physics component changed: {component}"
+                );
+            }
         }
+        let mut max_position_error = 0.0_f32;
+        for tick in 0..180 {
+            old.update();
+            new.update();
+            if enabled {
+                fn segments(
+                    app: &mut App,
+                ) -> std::collections::BTreeMap<usize, (Transform, Velocity)> {
+                    app.world_mut()
+                        .query::<(&crate::biomechanics::Segment, &Transform, &Velocity)>()
+                        .iter(app.world())
+                        .map(|(s, t, v)| (s.part, (*t, *v)))
+                        .collect()
+                }
+                let physical_a = segments(&mut old);
+                let physical_b = segments(&mut new);
+                assert_eq!(physical_a.len(), 16);
+                assert_eq!(physical_b.len(), 16);
+                for (part, (ta, va)) in physical_a {
+                    let (tb, vb) = physical_b[&part];
+                    assert!(
+                        ta.translation.distance(tb.translation) < 0.0001,
+                        "distal position {part} at {tick}"
+                    );
+                    assert!(
+                        ta.rotation.angle_between(tb.rotation) < 0.001,
+                        "distal rotation {part} at {tick}"
+                    );
+                    assert!(
+                        va.linvel.distance(vb.linvel) < 0.0001
+                            && va.angvel.distance(vb.angvel) < 0.0001,
+                        "distal velocity {part} at {tick}"
+                    );
+                }
+            }
+            for (a, b) in a.iter().zip(&b) {
+                let ta = old.world().get::<Transform>(*a).unwrap();
+                let tb = new.world().get::<Transform>(*b).unwrap();
+                let va = old.world().get::<Velocity>(*a).unwrap();
+                let vb = new.world().get::<Velocity>(*b).unwrap();
+                max_position_error =
+                    max_position_error.max(ta.translation.distance(tb.translation));
+                assert!(
+                    ta.translation.distance(tb.translation) < 0.0001,
+                    "body trajectory changed at tick {tick}: {ta:?} vs {tb:?}"
+                );
+                assert!(
+                    ta.rotation.angle_between(tb.rotation) < 0.001,
+                    "body rotation changed at tick {tick}"
+                );
+                assert!(
+                    va.linvel.distance(vb.linvel) < 0.0001
+                        && va.angvel.distance(vb.angvel) < 0.0001,
+                    "momentum changed at {tick}"
+                );
+                assert_eq!(ta.scale, tb.scale);
+            }
+        }
+        println!(
+            "MODEL_PHYSICS_PARITY enabled={enabled} ticks=180 source_bodies=11 max_position_error_m={max_position_error}"
+        );
     }
-    println!("MODEL_PHYSICS_PARITY ticks=180 bodies=11 max_position_error_m={max_position_error}");
 }
 #[test]
 fn visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin() {
@@ -343,6 +386,73 @@ fn visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose() 
                 }
                 assert!(pose[i].translation.is_finite() && pose[i].rotation.is_finite());
             }
+        }
+    }
+}
+
+#[test]
+fn distal_skin_weights_are_normalized_and_all_five_joints_are_used() {
+    let data = rr_content::riding_model::Bindings::from_json(include_str!(
+        "../../assets/models/rider-bindings.json"
+    ))
+    .unwrap();
+    let mut used = [0usize; 16];
+    for mut mesh in rr_content::riding_model::decode(BUNDLE).unwrap() {
+        let frames = match mesh.group.as_str() {
+            "standing" => data.standing,
+            "seated" => data.seated,
+            _ => continue,
+        };
+        let base = frames.map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
+        let bind = articulation::bind_frames(base);
+        articulation::weights(&mut mesh, &bind);
+        for (joints, weights) in mesh.joints.iter().zip(&mesh.weights) {
+            assert!((weights.iter().sum::<f32>() - 1.0).abs() < 1e-5);
+            for (&j, &w) in joints.iter().zip(weights) {
+                assert!(j < 16 && w.is_finite() && w >= 0.0);
+                if w > 0.01 {
+                    used[j as usize] += 1;
+                }
+            }
+        }
+        let mut physical = [Transform::IDENTITY; 16];
+        for frame in physical.iter_mut().skip(11) {
+            frame.rotation = Quat::from_rotation_x(0.4);
+        }
+        let pose = articulation::extend(base, bind, Some(&physical));
+        for i in 11..16 {
+            assert!(pose[i].rotation.angle_between(bind[i].rotation) > 0.39);
+            assert!(pose[i].translation.distance(bind[i].translation) < 1e-5);
+        }
+    }
+    for (i, n) in used.into_iter().enumerate().skip(11) {
+        assert!(n > 10, "unused distal joint {i}: {n}");
+    }
+}
+
+#[test]
+fn neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms() {
+    let data = rr_content::riding_model::Bindings::from_json(include_str!(
+        "../../assets/models/rider-bindings.json"
+    ))
+    .unwrap();
+    let lib = crate::animation::Library::default();
+    for (seated, frames, id) in [(false, data.standing, 2364), (true, data.seated, 2020)] {
+        let base = frames.map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
+        let bind = articulation::bind_frames(base);
+        let out = lib.skin_frames(lib.key(id), bind, seated);
+        for (i, parent) in [(12, 4), (13, 6)] {
+            let rest =
+                Transform::from_matrix(bind[parent].to_matrix().inverse() * bind[i].to_matrix());
+            let expected = out[parent].mul_transform(rest);
+            assert!(
+                out[i].rotation.angle_between(expected.rotation) < 0.001,
+                "neutral wrist kink {i}"
+            );
+            assert!(
+                out[i].translation.distance(expected.translation) < 1e-5,
+                "detached wrist {i}"
+            );
         }
     }
 }

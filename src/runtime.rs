@@ -188,6 +188,7 @@ impl Plugin for RoadSimulationPlugin {
             .init_resource::<game::Profile>()
             .init_resource::<game::Persistence>()
             .init_resource::<SimulationClock>()
+            .init_resource::<recovery::RecoveryTuning>()
             .init_resource::<crate::track::Track>()
             .add_message::<crate::sound::AudioCue>()
             .add_message::<recovery::SweptContact>()

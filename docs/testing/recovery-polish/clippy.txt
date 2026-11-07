@@ -1,0 +1,3 @@
+    Blocking waiting for file lock on package cache
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 6.81s

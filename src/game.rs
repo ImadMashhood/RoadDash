@@ -177,6 +177,7 @@ pub struct Rider {
     pub kicking: bool,
     pub lean: f32,
     pub finished: Option<f32>,
+    pub finished_on_foot: bool,
     pub hop_height: f32,
     pub hop_velocity: f32,
     pub impact_cooldown: f32,
@@ -212,6 +213,7 @@ impl Rider {
             kicking: false,
             lean: 0.0,
             finished: None,
+            finished_on_foot: false,
             hop_height: 0.0,
             hop_velocity: 0.0,
             impact_cooldown: 0.0,
@@ -951,24 +953,15 @@ pub fn drive(
                 progress,
             );
             if r.gates.completed_laps >= LAPS && r.finished.is_none() {
-                r.finished = Some(race.elapsed);
+                finish_rider(
+                    &mut r,
+                    &mut race,
+                    &mut profile,
+                    persistence.0,
+                    1 + snapshots.iter().filter(|s| s.1 != 0 && s.6).count(),
+                    false,
+                );
                 commands.entity(entity).insert(ColliderDisabled);
-                if r.id == 0 {
-                    race.place = 1 + snapshots.iter().filter(|s| s.1 != 0 && s.6).count();
-                    race.earned = rr_core::race_award(race.place, race.takedowns);
-                    profile.races += 1;
-                    profile.wins += u32::from(race.place == 1);
-                    profile.credits += race.earned;
-                    profile.best_seconds = Some(
-                        profile
-                            .best_seconds
-                            .map_or(race.elapsed, |best| best.min(race.elapsed)),
-                    );
-                    if persistence.0 {
-                        profile.save();
-                    }
-                    race.phase = Phase::Finished;
-                }
             }
         }
         if !dynamic || !active {
@@ -1023,6 +1016,39 @@ pub fn drive(
     }
 }
 
+/// One racer-level completion path for bike and on-foot gate crossings.
+pub(crate) fn finish_rider(
+    rider: &mut Rider,
+    race: &mut Race,
+    profile: &mut Profile,
+    persist: bool,
+    place: usize,
+    on_foot: bool,
+) -> bool {
+    if rider.finished.is_some() || rider.gates.completed_laps < LAPS {
+        return false;
+    }
+    rider.finished = Some(race.elapsed);
+    rider.finished_on_foot = on_foot;
+    if rider.id == 0 {
+        race.place = place;
+        race.earned = rr_core::race_award(place, race.takedowns);
+        profile.races += 1;
+        profile.wins += u32::from(place == 1);
+        profile.credits += race.earned;
+        profile.best_seconds = Some(
+            profile
+                .best_seconds
+                .map_or(race.elapsed, |b| b.min(race.elapsed)),
+        );
+        if persist {
+            profile.save();
+        }
+        race.phase = Phase::Finished;
+    }
+    true
+}
+
 pub fn wrapped_gap(gap: f32, length: f32) -> f32 {
     (gap + length * 0.5).rem_euclid(length) - length * 0.5
 }
@@ -1056,6 +1082,8 @@ pub fn camera(
     bodies: Query<(&Transform, Option<&crate::runtime::PoseHistory>), Without<ChaseCamera>>,
     context: ReadRapierContext,
     owned: Query<&crate::recovery::OwnedBody>,
+    mut recovery_heading: Local<Option<Quat>>,
+    actors: Query<(), With<crate::npc::Npc>>,
     mut cameras: Query<(&mut Transform, &mut Projection), With<ChaseCamera>>,
 ) {
     let Some((player_entity, player, recovery)) = riders.iter().find(|(_, r, _)| r.id == 0) else {
@@ -1073,6 +1101,12 @@ pub fn camera(
             Quat::from_rotation_y(heading.x.atan2(heading.z))
         })
     } else {
+        rotation
+    };
+    let rotation = if recovering {
+        *recovery_heading.get_or_insert(rotation)
+    } else {
+        *recovery_heading = None;
         rotation
     };
     let focus = if recovering {
@@ -1152,34 +1186,58 @@ pub fn camera(
         // Prevent the camera itself from passing through solid scenery.
         if let Ok(context) = context.single() {
             let delta = position - focus;
-            let predicate = |e| {
-                riders.get(e).is_err()
-                    && !owned.get(e).is_ok_and(|body| body.owner == player_entity)
-            };
-            let filter = QueryFilter::default()
-                .exclude_rigid_body(player_entity)
-                .exclude_sensors()
-                .predicate(&predicate);
+            let predicate =
+                |e| riders.get(e).is_err() && owned.get(e).is_err() && !actors.contains(e);
+            let filter = QueryFilter::from(
+                QueryFilterFlags::EXCLUDE_DYNAMIC | QueryFilterFlags::EXCLUDE_KINEMATIC,
+            )
+            .exclude_rigid_body(player_entity)
+            .exclude_sensors()
+            .predicate(&predicate);
             let proxy = Collider::ball(0.3);
-            if let Some((_, hit)) = context.cast_shape(
-                focus,
-                Quat::IDENTITY,
-                delta.normalize_or_zero(),
-                proxy.raw.as_ref(),
-                ShapeCastOptions {
-                    max_time_of_impact: delta.length(),
-                    target_distance: 0.02,
-                    ..default()
-                },
-                filter,
-            ) {
-                position = focus + delta.normalize_or_zero() * (hit.time_of_impact - 0.05).max(0.0);
+            let mut best = focus;
+            let mut best_distance = 0.0;
+            // Keep the chase direction under low ceilings rather than collapsing onto the head.
+            for (pivot, boom) in [
+                (focus, delta),
+                (focus, delta.with_y(0.0)),
+                (focus - Vec3::Y * 0.5, delta.with_y(0.0)),
+            ] {
+                let direction = boom.normalize_or_zero();
+                let hit = context.cast_shape(
+                    pivot,
+                    Quat::IDENTITY,
+                    direction,
+                    proxy.raw.as_ref(),
+                    ShapeCastOptions {
+                        max_time_of_impact: boom.length(),
+                        target_distance: 0.02,
+                        ..default()
+                    },
+                    filter,
+                );
+                let length = hit.map_or(boom.length(), |(_, h)| (h.time_of_impact - 0.05).max(0.0));
+                let candidate = pivot + direction * length;
+                let distance = (candidate - focus).xz().length();
+                if distance > best_distance {
+                    best = candidate;
+                    best_distance = distance;
+                }
+                if length >= boom.length() - 0.01 {
+                    break;
+                }
             }
+            position = best;
         }
         transform.translation = position;
-        let looking = Transform::from_translation(position)
-            .looking_at(focus + rotation * Vec3::Z * look + anticipation, Vec3::Y)
-            .rotation;
+        let look_target = focus + rotation * Vec3::Z * look + anticipation;
+        let looking = if (look_target - position).xz().length_squared() < 0.0025 {
+            transform.rotation
+        } else {
+            Transform::from_translation(position)
+                .looking_at(look_target, Vec3::Y)
+                .rotation
+        };
         transform.rotation = transform
             .rotation
             .slerp(looking, 1.0 - (-dt * follow).exp());
@@ -1678,7 +1736,7 @@ pub(crate) mod tests {
         );
     }
     #[test]
-    fn fast_rear_contact_ragdolls_victim_and_hops_the_attacker() {
+    fn fast_rear_contact_ragdolls_victim_without_hopping_the_attacker() {
         let mut app = simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         {
@@ -1706,7 +1764,7 @@ pub(crate) mod tests {
             app.world().get::<Recovery>(victim).unwrap().stage,
             RecoveryStage::Falling
         );
-        assert!((2.0..=4.0).contains(&player(&mut app).hop_velocity));
+        assert_eq!(player(&mut app).hop_velocity, 0.0);
         assert_eq!(player(&mut app).crashed, 0.0);
     }
 

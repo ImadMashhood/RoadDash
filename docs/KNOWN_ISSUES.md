@@ -1,6 +1,6 @@
 # Known issues and remaining acceptance
 
-Updated 2026-10-30. This is not a list of fabricated failures; distinguish known
+Updated 2026-11-06. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
 - P01-WIN: Windows GPU/audio/input launch and clean install have not been run on
@@ -35,12 +35,12 @@ missing features, architectural debt and unverified platforms.
 - P03-TRACE: telemetry is authoritative 60 Hz, bounded to 3,600 samples; no
   fabricated 100 Hz trace or full-session persistence. Slip reports tire-demand
   saturation and lateral slip angle, not a detailed tire deformation model.
-- P05/P06/P07: kicks are implemented; weapons/stamina, manual foot override and foot finish remain open.
+- P05/P06/P07: kicks are implemented; weapons/stamina remain open. Part03 now implements manual foot override and checkpoint-valid foot finishes; production trap/clearance acceptance remains open.
   Ordered bike gates are verified in P02. Recovery auto-seeks the actual bike.
 - P06-CONFINED: assisted recovery is verified in representative fallen poses,
   not arbitrary fully enclosed geometry or moving traffic traps. Collision-clear
-  crash separation falls back in confined spaces; manual override/stuck recovery
-  remain open. Ordinary crashes no longer inject upward momentum.
+  crash separation falls back in confined spaces; manual override is implemented; arbitrary confined/stuck recovery
+  remains open. Ordinary crashes no longer inject upward momentum.
 - P08/P12/P13: police, real garage/economy, career and multiplayer absent.
 - P02-END: missing an ordered gate requires R-to-retry; unfinished riders stop at
   the finish. There is no reverse driving/manual return-to-gate feature yet.
@@ -384,3 +384,52 @@ Rear/downed contacts now intentionally receive a bounded arcade hop (COLLISION-0
 superseding the older no-scripted-hop statement for those classes. Baseline-labelled
 comparison screenshots still show the preserved original physical control. Broad
 art and independent visual distal joints remain unfinished under RAG-05.
+
+
+## Part 03 implementation (2026-11-06, ADR050)
+
+- Corrected mirrored attacks and inward tuck/lean elbow poles. Pilot skin now has
+  sixteen independently driven joints; prop pedestrian skins still use eleven.
+  Fingers, mesh/cloth/bike intersection, all viewpoints, Windows and user art
+  acceptance remain ANIM-09/RAG-05 gates.
+- Distance-driven gait, support-normal soles, stance locks and physical-pose
+  get-up are working prototypes. Pelvis adjustment, stair probes, directional
+  turn-in-place, measured slip/penetration budgets and confined clearance remain
+  V2-03-003/006. One generic get-up clip cannot represent every support posture.
+- Manual input/0.35s delayed assist, slow-bike interaction and once-only foot
+  finishes are tested. Manual cliff rescue handles below-terrain falls with a
+  penalty; arbitrary fence/car traps, user handoff feel and100 mixed-world
+  crashes remain open. BustedOrRecover waits for police implementation.
+- Supported player bracing caps activation at0.12 using existing motor torque
+  caps; zero input preserves normal passive behavior. No free-space COM control,
+  conscious/unconscious gameplay or measured active-work budget is claimed.
+- ANIM-12: one default-stack debug city launch overflowed IO Task Pool stack
+  during asset loading. RUST_MIN_STACK=16777216 passed city default/baseline
+  smoke. Cause/default-stack fix and release-build reproduction remain open;
+  do not infer it is an animation regression or claim it is resolved.
+- Actor smoke expects a cow and pedestrian: use ROADDASH_TRACK=valley. City Run
+  intentionally lacks a cow, so running that fixture on the default city fails
+  its two-actor precondition. No city cow was added to satisfy a test.
+- Local paired15-crash lab settles; it is not native race frame/physics p95,
+  allocation,15-racer-plus-NPC or Windows production certification (RAG-06).
+
+## User motion/camera follow-up (2026-11-06, ADR051)
+
+- Neutral wrist kink was a parent/rest-frame mismatch in visual retargeting, not
+  an anatomical joint-limit failure. Parent-relative distal calibration now keeps
+  neutral wrists straight; no extra twist is applied to standing. Gait and tuck
+  elbows were revised and reviewed natively. Final motion feel/mesh clearance and
+  platform acceptance remain ANIM-09; prop NPC skins are still separate.
+- Upright rear collisions now share momentum without hops and use60km/h closing
+  speed for the front-rider knockoff. This supersedes earlier rear-hop behavior;
+  downed-body/wreck hops remain. Side/head-on tuning is unchanged.
+- Supported slide rolls are one-shot, energy-paid cues, not guaranteed complete
+  rolls/somersaults. Terrain, obstacles and other bodies may interrupt them. The
+  frontal leg release uses capped joint motors; production subjective crash/energy
+  and worst-case race profiling still need review (RAG-05/06).
+- Valley Run is the launch default again; ROADDASH_TRACK=city selects the retained
+  city course. The Valley debug smoke passes without the thread-stack workaround.
+  This does not diagnose or close ANIM-12 for the optional large city load.
+- Camera avoids static scenery with lower-boom candidates; transient actors no
+  longer collapse its distance. Extremely enclosed geometry and broad user comfort
+  review remain outside the small tested ceiling/wall cases.

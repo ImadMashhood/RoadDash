@@ -26,7 +26,11 @@ pub fn build(smoke: bool) -> App {
     };
     app.insert_resource(settings)
         .insert_resource(View {
-            scenario: Scenario::Drop,
+            scenario: if std::env::args().any(|a| a == "--crash-motion-demo") {
+                Scenario::EjectionLow
+            } else {
+                Scenario::Drop
+            },
             owners: vec![],
             age: 0.0,
             injected: false,
@@ -271,6 +275,15 @@ fn controls(
                     ImpactSeverity(0.4),
                 ))
                 .id();
+            if std::env::args().any(|a| a == "--crash-motion-demo") {
+                commands.entity(owner).insert(crate::game::Rider::new(i));
+                if matches!(
+                    state.scenario,
+                    Scenario::EjectionLow | Scenario::EjectionHigh | Scenario::Wall
+                ) {
+                    commands.entity(owner).insert(reactions::FrontalRelease);
+                }
+            }
             state.owners.push(owner);
             let origin = Vec3::new((i % 5) as f32 * 1.6, 2.5, (i / 5) as f32 * 2.5);
             let parts = crate::recovery::humanoid(
@@ -355,8 +368,12 @@ fn controls(
         .next()
         .map_or("original passive motors".into(), |b| {
             format!(
-                "{:?} | activation {:.3} | supported {}",
-                b.control.state, b.control.activation, b.supported
+                "{:?} | activation {:.3} | supported {} | roll {} | frontal {}",
+                b.control.state,
+                b.control.activation,
+                b.supported,
+                b.roll_assisted,
+                b.frontal_release
             )
         });
     for mut text in &mut hud {

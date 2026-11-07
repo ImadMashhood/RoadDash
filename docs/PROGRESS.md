@@ -2,8 +2,8 @@
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 152 verified tasks;
-Parts 01–16 contain all 229 unfinished/partial/unverified requirements. The reorganization preserved status; four later collision corrections were
+README is the single live task source. Part 00 contains all 167 verified tasks;
+Parts 01–16 contain all 223 unfinished/partial/unverified requirements. The reorganization preserved status; four later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
@@ -11,12 +11,12 @@ The complete eleven-family animation coverage and two-stage deliverables are now
 explicit in README's dedicated Animation production section. Existing V2-02/V2-03
 IDs own the expanded coverage. Animation A source investigation and the first draft authoring deliverable are verified; full art approval remains open.
 
-Current user-authorized scope: integrate and merge the approved biomechanical ragdoll with the current game (2026-11-06, ADR049). Automatic startup, explicit baseline, original crash-direction policy and current prop NPC skins are retained. Earlier scope: apply selected 3D prop drafts in gameplay (PROP-03, ADR048). Traffic/scenery and human/cow visual bindings now use the existing physical owners; full art, category placement, bespoke audio and production acceptance remain open. Previous scope: author actual 3D prop drafts. PROP-02 covers 369 mesh IDs/1,107 GLBs and an isolated native viewer; faithful concept likeness, actor rigs and live replacement remain open. Previous scope: extend the building workflow to all world props and actors. PROP-01 verifies scoped extraction/review infrastructure, with a full rebuild queue and 369 source groups covered by 66 selected draft concept sheets. V2-05/V2-06 retain identity/art/mesh/placement/behavior acceptance. Prior scope: correct collisions with downed riders/bikes using original-style contact routing (COLLISION-04; ADR045). This preserves accepted ragdoll settings and existing car entry behavior. Prior scope: assemble complete buildings using original-game facade/roof/end/side-street principles and make the playable race a 5.3 km generated city. CITYGEN-01 verifies the new default City Run: 977 whole lots, 53 blocks, eight district zones, 85 measured City-eligible facades, actual 3D front/return modules, shared roofs and detailed rear walls. Physical collision, supported grid/roads/sidewalks, recovery paths, native retries and finish remain integrated. Original Valley content/quotas and the accepted physical rider/bike/ragdoll remain preserved. MESH/V2-04 retain final art, optimization and broader production gates. Earlier open work remains tracked:
+Current scope: camera/contact/gait/wrist/crash-style fixes and default Valley restoration (ADR051, testing/recovery-polish/README.md). Earlier scope: Part 03 animation/recovery and corrected tuck/attack sides; ADR050 and testing/animation-part03/README.md record implementation and remaining gates. Earlier user-authorized scope: integrate and merge the approved biomechanical ragdoll with the current game (2026-11-06, ADR049). Automatic startup, explicit baseline, original crash-direction policy and current prop NPC skins are retained. Earlier scope: apply selected 3D prop drafts in gameplay (PROP-03, ADR048). Traffic/scenery and human/cow visual bindings now use the existing physical owners; full art, category placement, bespoke audio and production acceptance remain open. Previous scope: author actual 3D prop drafts. PROP-02 covers 369 mesh IDs/1,107 GLBs and an isolated native viewer; faithful concept likeness, actor rigs and live replacement remain open. Previous scope: extend the building workflow to all world props and actors. PROP-01 verifies scoped extraction/review infrastructure, with a full rebuild queue and 369 source groups covered by 66 selected draft concept sheets. V2-05/V2-06 retain identity/art/mesh/placement/behavior acceptance. Prior scope: correct collisions with downed riders/bikes using original-style contact routing (COLLISION-04; ADR045). This preserves accepted ragdoll settings and existing car entry behavior. Prior scope: assemble complete buildings using original-game facade/roof/end/side-street principles and make the playable race a 5.3 km generated city. CITYGEN-01 verifies the new default City Run: 977 whole lots, 53 blocks, eight district zones, 85 measured City-eligible facades, actual 3D front/return modules, shared roofs and detailed rear walls. Physical collision, supported grid/roads/sidewalks, recovery paths, native retries and finish remain integrated. Original Valley content/quotas and the accepted physical rider/bike/ragdoll remain preserved. MESH/V2-04 retain final art, optimization and broader production gates. Earlier open work remains tracked:
 interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 381 task IDs are in README exactly once. This includes four new CRASHREF IDs;
+All 390 task IDs are in README exactly once. This includes four new CRASHREF IDs;
 the inherited 357-ID header was stale after the preceding animation additions. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
@@ -278,6 +278,36 @@ relationship-axis/event and random-stream parity gates.
 ### Part 00 — Completed and verified foundations
 
 - [x] **BASE-003** Record dependency versions, purposes, licenses, and notices in `docs/third_party/REPOSITORIES.md`; record media provenance in `docs/third_party/ASSETS.csv`.
+
+- [x] **CAM-02** Prevent actor proximity and low ceilings from collapsing/flipping the chase camera. Reason: reported nearby-body/under-object camera jumps; originating part: 01; dependencies: static obstruction cast and recovery focus; acceptance: moving/owned/NPC bodies do not shorten the boom, low-ceiling flat/lower candidates retain a usable chase direction and degenerate look vectors keep orientation; verification: mounted/on-foot ceiling plus foreign-ragdoll tests at 60/144 Hz, wall regression and native race in [receipt](testing/recovery-polish/README.md).
+
+- [x] **COLLISION-06** Replace upright rear-bike hops with momentum sharing and a 60 km/h closing-speed knockoff. Reason: latest user supersedes the earlier rear-hop request; originating part: 01; dependencies: contact classification and pre-solver velocity snapshots; acceptance: mass-weighted normal-speed exchange, no scripted rear lift, front victim knocked down at threshold, side/head-on/downed routing retained; verification: pair momentum/energy, below/above threshold, both entity orders and real-contact regressions in [receipt](testing/recovery-polish/README.md).
+
+- [x] **ANIM-13** Rewrite the gait and correct downward elbows and neutral wrist alignment. Reason: user rejected walking, raised tuck elbows and sideways wrists; originating part: 03; dependencies: ANIM-11, RAG-09 and shared FK/IK; acceptance: continuous opposing foot/arm cycle, stable forward knee poles, downward held-arm poles and parent-relative neutral distal binds with straight hanging wrists; verification: cycle continuity/chain tests, standing/seated wrist-axis tests and native eleven-motion/three-view review in [receipt](testing/recovery-polish/README.md). Full production/user motion acceptance remains ANIM-09.
+
+- [x] **RAG-10** Add a bounded grounded roll and brief frontal leg-release prototype. Reason: requested side rolling, forward somersault tendency and kick-back variation; originating part: 03; dependencies: accepted biomechanical rig and crash energy guard; acceptance: one-shot support/speed-gated angular cue paid from at most 8% of current horizontal COM energy, direction follows slide, frontal hip/knee targets use capped motors and no direct ejection impulse, baseline/limits preserved; verification: forward/side energy and one-shot tests, unsupported/baseline rejection, motor-only velocity parity and native comparison demo in [receipt](testing/recovery-polish/README.md). Contacts may interrupt rolls; final feel review remains RAG-05/ANIM-09.
+
+- [x] **MAP-01** Restore the original Valley route as the launch default while retaining City Run. Reason: user wants the original mixed-environment map instead of the city test route; originating part: 01; dependencies: both existing track definitions and structural generators; acceptance: bare launch selects Valley, explicit valley/city aliases work without altering geometry/quotas/IDs; verification: default native farm/city/hill recovery/results smoke and retained city tests in [receipt](testing/recovery-polish/README.md).
+
+- [x] **FOOT-001** Crash 5 m before the finish; manually run forward across it -> finish once with valid prior checkpoints. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **FOOT-002** Crash 5 m before the finish; run away from the bike across the line -> manual control wins and foot finish succeeds. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **FOOT-004** Hold left/right/back after a crash -> independent chosen movement immediately; release -> assist resumes only after the configured neutral delay. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **FOOT-005** Walk deliberately away near the bike -> no forced remount or teleport; camera follows rider and HUD shows bike arrow/distance. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **FOOT-006** Bike and rider cross in the same tick -> exactly one racer-level finish event and payout. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **FOOT-007** Walk backward through finish or skip a checkpoint -> reject until ordered forward progress is valid. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **P06-007** Add immediate camera-relative 360-degree WASD/stick manual walking override, including running away from the bike; resume assist only after 0.25-0.5 s neutral input. Evidence: [Part 03 receipt](testing/animation-part03/README.md), integrated fixed-loop tests and native recovery/HUD review.
+
+- [x] **ANIM-10** Correct resolved punch/kick side and draw elbows inward during tuck/lean while retaining grips. Reason: user-reported side inversion and flared elbows; originating part: 03; dependencies: ANIM-08; acceptance: both attacks select the matching gameplay side and both elbows move inward without stretched chains or grip release; verification: four-side selector, endpoint/length tests and native rear/front/side review in [Part 03 receipt](testing/animation-part03/README.md).
+
+- [x] **ANIM-11** Integrate a visual terrain-gait and physical-landing prototype. Reason: time-only running and a generic get-up start ignored actual displacement/landing; originating part: 03; dependencies: ANIM-08 and physical pose snapshots; acceptance: traveled-distance stride, stop blend, support-normal sole IK, stance locks and captured-pose get-up blend stay renderer-only; verification: slope/chain tests, paired physical parity and native recovery in [Part 03 receipt](testing/animation-part03/README.md). Production terrain/clearance metrics remain V2-03-003/006.
+
+- [x] **RAG-09** Drive the pilot skin with independent wrist/foot/spine joints. Reason: sixteen physical bodies were presented through eleven skin joints; originating part: 03; dependencies: RAG-07 and ART-03; acceptance: sixteen normalized skin influences, independently rotated distal skin joints and unchanged no-input body simulation; verification: skin-weight, distal articulation and paired 180-tick physics tests in [Part 03 receipt](testing/animation-part03/README.md). Prop NPC skins/fingers/final art approval remain RAG-05/ANIM-09.
 
 - [x] **P00-001** Document the original-successor approach and exclude the reference port's code, original game data, sprites, and soundtrack. Evidence: introduction and License sections of this README.
 
@@ -575,7 +605,7 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **RAG-08** Strengthen passive hip/knee resistance and constrain inward leg crossing. Reason: user reported crossing knees and loose legs; part: 03; dependencies: RAG-02/07; acceptance: mirrored hip adduction/twist limits, persistent stronger leg motors, knees remain separated under paired inward torque, improved equal-load deflection and bounded high-speed settling; verification: [physical knee-load/separation tests and native settled capture](testing/ragdoll/integration/README.md). Baseline control articulation remains selectable.
 
-- [x] **COLLISION-05** Hop over rear/downed rider and bike contacts without ejecting the attacking rider. Reason: user requested ramp-like arcade contacts; part: 01; dependencies: COLLISION-04; acceptance: bounded speed-gated hop, fast rear hit knocks target down, downed/runner impacts push or knock target over, own bodies and tiny taps excluded, repeated limb hits deduplicated by cooldown, head-on/car behavior retained; verification: [both entity orders, actual dynamic contacts, no duplicate bodies and native recovery tests](testing/ragdoll/integration/README.md). This user-requested hop supersedes the earlier no-launch policy for these contact classes only.
+- [x] **COLLISION-05** Hop over rear/downed rider and bike contacts without ejecting the attacking rider. Reason: user requested ramp-like arcade contacts; part: 01; dependencies: COLLISION-04; acceptance: bounded speed-gated hop, fast rear hit knocks target down, downed/runner impacts push or knock target over, own bodies and tiny taps excluded, repeated limb hits deduplicated by cooldown, head-on/car behavior retained; verification: [both entity orders, actual dynamic contacts, no duplicate bodies and native recovery tests](testing/ragdoll/integration/README.md). This user-requested hop supersedes the earlier no-launch policy for these contact classes only. Upright rear hops are superseded by COLLISION-06; downed-body/wreck hops remain.
 
 - [x] **DISTRICT-01** Organize all 146 modeled IDs into district/support sets and original-course eligibility indexes. Reason: procedural scenery needs coherent local pools instead of a global random mix; originating part: 04; dependencies: complete draft mesh catalog and local resource research; acceptance: exactly one primary group per ID, five measured course-family views, labeled previews, canonical mesh links and explicit evidence/inference separation; verification: [146 name matches, 13 groups, 438 unchanged linked LODs, parser/coverage tests](testing/building-districts/README.md). District placement and transitions remain under V2-04-003.
 
@@ -679,39 +709,29 @@ relationship-axis/event and random-stream parity gates.
 
 - [ ] **V2-03-002** Interpolate approved keyframes and combat/recovery transitions.
 
-- [ ] **V2-03-003** Make walking/running match velocity and terrain.
+- [ ] **V2-03-003** Make walking/running match velocity and terrain. Partial: distance-driven stride, velocity blend, support-ray sole alignment and stance locking are integrated; pelvis/stair/turn-in-place and measured terrain slip acceptance remain open.
 
 - [ ] **V2-03-004** Keep hands and feet on bike contacts when required. Initial four-contact render solver passes fixed-length/endpoint tests; full runtime hand/foot deformation and clearance approval remain open.
 
-- [ ] **V2-03-005** Prototype bounded active ragdoll and player attempts to recover.
+- [ ] **V2-03-005** Prototype bounded active ragdoll and player attempts to recover. Partial: supported player input raises only existing capped joint motors to 0.12 activation; neutral restores the passive crash curve. Controlled work/energy, conscious/unconscious policy and user feel approval remain open.
 
-- [ ] **V2-03-006** Blend physical landings into terrain-aware get-up and remount.
+- [ ] **V2-03-006** Blend physical landings into terrain-aware get-up and remount. Partial: capture the settled physical pose and blend into get-up, followed by terrain-aware feet and existing mirrored remount. Confined clearance, recovery direction selection and full terrain approval remain open.
 
-- [ ] **V2-03-007** Add motion/audio polish without changing gameplay outcomes.
+- [ ] **V2-03-007** Add motion/audio polish without changing gameplay outcomes. Partial: footsteps follow measured travel instead of elapsed recovery time. Contact-event timing, breathing/look and broader motion/audio polish remain open.
 
 - [ ] **ANIM-09** Finish native full-body animation acceptance. Reason: authoring renders and numeric constraints do not certify every runtime deformation/transition; part: 03; dependencies: ANIM-08, ANIM-02/04/06 and terrain locomotion; acceptance: native multi-angle normal/tuck-to-all-attacks, mirrored pickup and physical-pose get-up review, fingers/feet and cloth/bike clearance, Windows hardware and user approval; verification: labeled native video matrix, contact/deformation checks and regression parity.
 
-- [ ] **RAG-05** Approve native biomechanics silhouettes and finish distal skin articulation. Reason: sixteen physical proxies still feed an eleven-joint skin and impact peaks require human review; part: 03; dependencies: RAG-02/03, ART-04 and ANIM-02/09; acceptance: independently visible wrists/feet/spine, reviewed source-pose release and multi-angle drop/car/terrain/knockoff clearance, acceptable distal impact velocities and remaining multi-angle art approval; the user approved default integration on2026-11-06; verification: native videos, deformation/contact metrics and explicit user review.
+- [ ] **RAG-05** Approve native biomechanics silhouettes and finish distal skin articulation. Reason: pilot distal skin articulation and impact peaks require human review; prop NPC skins still use eleven joints; part: 03; dependencies: RAG-02/03, ART-04 and ANIM-02/09; acceptance: independently visible wrists/feet/spine, reviewed source-pose release and multi-angle drop/car/terrain/knockoff clearance, acceptable distal impact velocities and remaining multi-angle art approval; the user approved default integration on2026-11-06; verification: native videos, deformation/contact metrics and explicit user review. Partial: pilot wrists/feet/spine now use sixteen independent visual joints. Prop pedestrian skins, finger detail, all impact-camera views and final art approval remain open.
 
 - [ ] **RAG-06** Profile and approve worst-case race ragdoll performance. Reason: additional bodies/solver work cost more than the baseline and instrumented headless timing is not race FPS; part: 03; dependencies: RAG-04 and representative traffic/environment load; acceptance: compare frame/physics p95 and allocations across15 racers plus bounded NPC crashes, sleeping/wakeup, Windows hardware and quality presets without regressions; verification: repeatable native profiling on target hardware and user acceptance, recording remaining production performance acceptance separately from the2026-11-06 default integration approval.
+
+- [ ] **ANIM-12** Resolve and verify default-stack city asset loading. Reason: this session hit an IO Task Pool stack overflow at city startup without RUST_MIN_STACK; part: 03; dependencies: current GLB city and native debug build; acceptance: reproduce/isolate the loader stack requirement and run clean native startup without an environment workaround; verification: baseline/current launch traces and repeat city/actor smoke with default worker stack. A 16 MiB RUST_MIN_STACK workaround passed; no cause or fix is claimed.
 
 - [ ] **V2-03-008** Exit gate: motion is responsive, coherent and physically readable.
 
 - [ ] **P11-008** Animate riding, fighting, crash, walking, and remount through a production rig; add lightweight animal animation/AI and safe cliff recovery.
 
-- [ ] **FOOT-001** Crash 5 m before the finish; manually run forward across it -> finish once with valid prior checkpoints.
-
-- [ ] **FOOT-002** Crash 5 m before the finish; run away from the bike across the line -> manual control wins and foot finish succeeds.
-
 - [ ] **FOOT-003** Crash with neutral input -> seek bike around a known obstacle; verify safe proximity/facing/low-speed remount.
-
-- [ ] **FOOT-004** Hold left/right/back after a crash -> independent chosen movement immediately; release -> assist resumes only after the configured neutral delay.
-
-- [ ] **FOOT-005** Walk deliberately away near the bike -> no forced remount or teleport; camera follows rider and HUD shows bike arrow/distance.
-
-- [ ] **FOOT-006** Bike and rider cross in the same tick -> exactly one racer-level finish event and payout.
-
-- [ ] **FOOT-007** Walk backward through finish or skip a checkpoint -> reject until ordered forward progress is valid.
 
 - [ ] **FOOT-008** Run off a cliff or become trapped between a fence and car -> recover without an invisible-wall/terrain softlock.
 
@@ -719,15 +739,13 @@ relationship-axis/event and random-stream parity gates.
 
 - [ ] **ART-02** Acquire a licensed pilot rider and integrate one shared skinned avatar across riding, fighting, walking and ragdoll. Original authored pilot integration is tracked under ART-03; complete production deformation/animation/LOD acceptance remains open. Reason: researched assets are not yet working models; part: character art/animation; dependencies: ART-01, model selection/acquisition and exact archive license; acceptance: biker outfit/color zones, coherent rig and recovery, unchanged physics/controls, 15-racer performance/LOD acceptance; verification: deformation/animation/ragdoll tests, native visual checks and profiling.
 
-- [ ] **ART-04** Polish the eleven-joint visual retarget and authored animation transitions without changing simulation. Reason: authoring rig has 20 bones and the current fingers/pose drivers are prototypes; part: 11 art/animation; dependencies: ART-03 and static pose library; acceptance: clean grip/fist/deformation and contact-aware transitions at gameplay speeds; verification: pose review, native clips and repeated physics parity tests.
+- [ ] **ART-04** Polish the visual retarget and authored animation transitions without changing simulation. Reason: authoring rig has 20 bones and the current fingers/pose drivers are prototypes; part: 11 art/animation; dependencies: ART-03 and static pose library; acceptance: clean grip/fist/deformation and contact-aware transitions at gameplay speeds; verification: pose review, native clips and repeated physics parity tests.
 
 - [ ] **P05-006** Implement idle/lean/punch/kick/hit/stagger animation states, input buffering/priorities, anti-spam, and gameplay-owned timing.
 
-- [ ] **P06-007** Add immediate camera-relative 360-degree WASD/stick manual walking override, including running away from the bike; resume assist only after 0.25-0.5 s neutral input.
+- [ ] **P06-008** Separate OnFootAutoSeekBike and OnFootManual states; support FinishedOnFoot and BustedOrRecover outcomes. Auto/manual/FinishedOnFoot are implemented; police BustedOrRecover remains deferred to Part 08.
 
-- [ ] **P06-008** Separate OnFootAutoSeekBike and OnFootManual states; support FinishedOnFoot and BustedOrRecover outcomes. **The current runner is automatic only.**
-
-- [ ] **P06-009** Make remount safe: proximity, facing/interaction option, low bike speed, animation/collision checks, and no unwanted snap while deliberately walking away.
+- [ ] **P06-009** Make remount safe: proximity, facing/interaction option, low bike speed, animation/collision checks, and no unwanted snap while deliberately walking away. Partial: proximity, facing, low-speed and explicit interaction gates are tested; final animation/obstruction clearance acceptance remains open.
 
 - [ ] **P06-010** Tune control handoff toward 1-3 s after a crash; add optional delayed stuck recovery with penalties and no automatic finish-line teleport.
 
