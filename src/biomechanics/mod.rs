@@ -6,6 +6,7 @@ use rr_core::biomechanics::CrashControl;
 mod debug;
 pub mod lab;
 mod muscles;
+pub mod reactions;
 #[cfg(test)]
 mod tests;
 pub mod view;
@@ -63,10 +64,14 @@ pub struct Segment {
     pub part: usize,
 }
 #[derive(Component)]
+pub struct PhysicalRig(pub [Entity; 16]);
+#[derive(Component)]
 pub struct Brain {
     pub control: CrashControl,
     pub targets: [Quat; 16],
     pub supported: bool,
+    pub roll_assisted: bool,
+    pub frontal_release: bool,
 }
 #[derive(Component)]
 pub struct Muscle {
@@ -391,15 +396,24 @@ fn initialize(world: &mut World) {
                 );
             }
         }
+        world
+            .entity_mut(owner)
+            .insert(PhysicalRig(entities.clone().try_into().unwrap()));
         let severity = world
             .entity_mut(owner)
             .take::<ImpactSeverity>()
             .map_or((velocity.length() / 65.0).clamp(0.1, 1.0), |s| s.0);
+        let frontal_release = world
+            .entity_mut(owner)
+            .take::<reactions::FrontalRelease>()
+            .is_some();
         world.entity_mut(root).insert((
             Brain {
                 control: CrashControl::impact(severity, &settings.config.activation),
                 targets: targets.try_into().unwrap(),
                 supported: false,
+                roll_assisted: false,
+                frontal_release,
             },
             AdditionalSolverIterations(settings.config.extra_solver_iterations),
         ));
@@ -422,13 +436,15 @@ fn initialize(world: &mut World) {
 pub struct BiomechanicsPlugin;
 impl Plugin for BiomechanicsPlugin {
     fn build(&self, app: &mut App) {
-        app.init_resource::<Settings>().add_systems(
-            FixedUpdate,
-            (initialize, muscles::update)
-                .chain()
-                .after(crate::runtime::SimSet::Gameplay)
-                .before(PhysicsSet::SyncBackend),
-        );
+        app.init_resource::<Settings>()
+            .init_resource::<reactions::Tuning>()
+            .add_systems(
+                FixedUpdate,
+                (initialize, muscles::update, reactions::roll)
+                    .chain()
+                    .after(crate::runtime::SimSet::Gameplay)
+                    .before(PhysicsSet::SyncBackend),
+            );
         // Lab uses MinimalPlugins and does not install rendering resources.
     }
 }

@@ -187,3 +187,88 @@ fn rival_in_chase_boom_does_not_pull_camera_into_player() {
         "rival collapsed chase boom: {after:?}"
     );
 }
+
+#[test]
+fn low_ceiling_and_nearby_detached_bodies_do_not_collapse_or_flip_the_camera() {
+    for fps in [60, 144] {
+        for recovering in [false, true] {
+            let (mut app, camera) = camera_app(fps);
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let t = *app.world().get::<Transform>(owner).unwrap();
+            let focus = if recovering {
+                let runner = app
+                    .world_mut()
+                    .spawn(Transform::from_translation(t.translation + Vec3::Y * 0.95))
+                    .id();
+                let mut rec = app.world_mut().get_mut::<Recovery>(owner).unwrap();
+                rec.stage = RecoveryStage::GettingUp;
+                rec.runner = Some(runner);
+                t.translation + Vec3::Y * 1.25
+            } else {
+                t.translation + Vec3::Y * 1.2
+            };
+            app.world_mut().spawn((
+                RigidBody::Fixed,
+                Collider::cuboid(8.0, 0.2, 10.0),
+                Transform::from_translation(focus + Vec3::Y * 0.65),
+            ));
+            app.world_mut().spawn((
+                RigidBody::Fixed,
+                Collider::ball(0.8),
+                Transform::from_translation(focus - Vec3::Z * 2.0),
+                crate::recovery::OwnedBody {
+                    owner: Entity::PLACEHOLDER,
+                    kind: crate::recovery::BodyKind::Ragdoll,
+                },
+            ));
+            for _ in 0..fps {
+                app.update();
+                let pose = app.world().get::<Transform>(camera).unwrap();
+                assert!(pose.rotation.is_finite() && pose.translation.is_finite());
+                assert!(
+                    (pose.translation - focus).xz().length() > 2.0,
+                    "camera collapsed: {pose:?}"
+                );
+                assert!(
+                    (pose.rotation * Vec3::Y).dot(Vec3::Y) > 0.5,
+                    "camera flipped"
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn on_foot_camera_heading_does_not_snap_when_nearest_road_tangent_changes() {
+    let (mut app, camera) = camera_app(60);
+    let owner = app
+        .world_mut()
+        .query_filtered::<Entity, With<Rider>>()
+        .single(app.world())
+        .unwrap();
+    let origin = app.world().get::<Transform>(owner).unwrap().translation;
+    let runner = app
+        .world_mut()
+        .spawn(Transform::from_translation(origin + Vec3::Y * 0.95))
+        .id();
+    {
+        let mut r = app.world_mut().get_mut::<Recovery>(owner).unwrap();
+        r.stage = RecoveryStage::GettingUp;
+        r.runner = Some(runner);
+    }
+    for _ in 0..60 {
+        app.update();
+    }
+    let before = *app.world().get::<Transform>(camera).unwrap();
+    app.world_mut().get_mut::<Rider>(owner).unwrap().progress = 600.0;
+    for _ in 0..30 {
+        app.update();
+    }
+    let after = *app.world().get::<Transform>(camera).unwrap();
+    assert!(after.translation.distance(before.translation) < 0.1);
+    assert!(after.rotation.angle_between(before.rotation) < 0.02);
+}

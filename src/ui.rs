@@ -316,6 +316,8 @@ pub fn update_ui(
     track: Res<Track>,
     riders: Query<&Rider>,
     recoveries: Query<(&Rider, &crate::recovery::Recovery)>,
+    positions: Query<&Transform>,
+    cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut readouts: Query<(&Readout, &mut Text)>,
     mut nodes: Query<(&mut Node, Option<&Hud>, Option<&Overlay>), Without<MapDot>>,
     mut dots: Query<(&MapDot, &mut Node)>,
@@ -370,6 +372,19 @@ pub fn update_ui(
             2 => format!("{:03}", (player.speed * 3.6) as u32),
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO  {}  {:3.0}%", bar(player.health), player.health.max(0.0), bar(player.nitro), player.nitro),
             4 if !track.definition.closed && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
+            4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
+            4 if recoveries.iter().any(|(r,s)|r.id==0 && s.stage==crate::recovery::RecoveryStage::Running) => {
+                let hint = recoveries.iter().find(|(r,_)|r.id==0).and_then(|(_,s)|s.runner.zip(s.wreck))
+                    .and_then(|(r,b)|positions.get(r).ok().zip(positions.get(b).ok()))
+                    .map(|(r,b)| {
+                        let delta=(b.translation-r.translation).with_y(0.0);
+                        let forward=cameras.iter().next().map_or(Vec3::Z,|c|*c.forward()).with_y(0.0).normalize_or_zero();
+                        let side=delta.dot(forward.cross(Vec3::Y)); let ahead=delta.dot(forward);
+                        let direction=if side.abs()>ahead.abs() {if side>0.0 {"RIGHT >"}else{"< LEFT"}} else if ahead>0.0 {"AHEAD ^"}else{"BEHIND v"};
+                        format!("BIKE {direction} / {:.0} M",delta.length())
+                    }).unwrap_or_else(||"FIND YOUR BIKE".into());
+                format!("{hint} / WASD MOVE / ENTER MOUNT")
+            },
             4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { match recovery { crate::recovery::RecoveryStage::Falling => "WIPED OUT / WAIT FOR THE LANDING", crate::recovery::RecoveryStage::GettingUp => "GETTING BACK UP", crate::recovery::RecoveryStage::Running => "GET BACK TO THE BIKE", crate::recovery::RecoveryStage::Mounting => "BACK IN THE SADDLE", _ => "" }.into() } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
             5 => format!("{:.2} KM / {}",track.length/1000.0,if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
             6 if loading => "PREPARING THE ROAD".into(),

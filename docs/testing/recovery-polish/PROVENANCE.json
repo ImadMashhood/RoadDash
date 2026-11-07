@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-06",
+  "branch": "codex/part-03-animation-recovery",
+  "base_commit": "038d0b1",
+  "media": "Native screenshots of existing independently authored RoadDash models; crops for QA; no imported original sprites or third-party media",
+  "new_configuration": {
+    "path": "content/crash_motion.json",
+    "sha256": "dcfa79f73fe7cc6116d6ae533d462622d2a6733679ad4a535d72ec3750cb756c"
+  },
+  "limitations": "Native Linux NVIDIA RTX3080 Vulkan; no Windows/physical-controller or production performance acceptance"
+}

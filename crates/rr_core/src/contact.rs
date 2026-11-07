@@ -27,6 +27,12 @@ pub const LOW_HEIGHT_M: f32 = 0.8;
 pub fn ride_over_velocity(closing: f32) -> Option<f32> {
     (closing.is_finite() && closing >= 3.0).then(|| (2.8 + closing * 0.035).min(4.0))
 }
+/// User-selected upright rear-hit knockoff threshold (SI units).
+pub const REAR_KNOCKOFF_MPS: f32 = 60.0 / 3.6;
+/// Perfectly inelastic normal-speed exchange: preserves pair momentum, dissipates energy.
+pub fn shared_normal_speed(a: f32, b: f32, mass_a: f32, mass_b: f32) -> f32 {
+    (a * mass_a + b * mass_b) / (mass_a + mass_b)
+}
 pub fn low_geometry(bottom: f32, top: f32, road: f32) -> bool {
     bottom.is_finite()
         && top.is_finite()
@@ -81,5 +87,24 @@ mod tests {
         assert!(!low_geometry(2.0, 2.4, 0.0));
         assert!(!low_geometry(0.0, 1.6, 0.0));
         assert!(!low_geometry(0.0, f32::NAN, 0.0));
+    }
+}
+
+#[cfg(test)]
+mod rear_tests {
+    use super::*;
+    #[test]
+    fn rear_exchange_conserves_momentum_and_dissipates_energy() {
+        for (a, b, ma, mb) in [
+            (30.0, 20.0, 250.0, 300.0),
+            (20.0, 20.0, 280.0, 280.0),
+            (60.0, 5.0, 250.0, 270.0),
+        ] {
+            let v = shared_normal_speed(a, b, ma, mb);
+            assert!(((ma + mb) * v - (ma * a + mb * b)).abs() < 0.002);
+            assert!((ma + mb) * v * v <= ma * a * a + mb * b * b + 0.002);
+            assert!((b..=a).contains(&v));
+        }
+        assert!((REAR_KNOCKOFF_MPS * 3.6 - 60.0).abs() < 1e-4);
     }
 }

@@ -630,3 +630,41 @@ COLLISION-05 adds bounded rear/downed ride-over hops, target knockdown/push and
 cooldown while retaining head-on/car rules. User explicitly authorized merge.
 No dependencies or new source/media research. README/progress and task placement
 reconciled; detailed tests, known limits and files: testing/ragdoll/integration/README.md.
+
+
+## 2026-11-06 — Part 03 animation/recovery and user pose corrections
+
+- Branch codex/part-03-animation-recovery from merged main038d0b1. Corrected
+  resolved punch/kick sides and inward tuck/lean elbows while preserving grips.
+- Added pilot16-joint visual skin, independent distal articulation/weights,
+  distance-driven gait, sole support/stance IK and physical-landing get-up blend.
+  Body masses, joint limits, passive tuning, crash/contact policy unchanged.
+- Added validated recovery tuning/pure foot priority, camera-relative WASD/stick,
+  delayed/optional assist, safe manual interaction and shared once-only foot/bike
+  finish/payout; actual-crash5m finish and reverse/skipped-gate tests pass.
+- Added capped supported player bracing through existing native motors; no direct
+  root impulses. Added native eight-motion/three-view animation review command.
+- Updated current roadmap/evidence together;10 newly verified requirements moved
+  to Part00, broad Part03 art/terrain/performance gates remain open. Added ANIM-10,
+  ANIM-11, RAG-09 verified subset records and ANIM-12 default-stack loader issue.
+- No new dependencies, third-party source/assets or engine migration. ADR050,
+  testing/animation-part03/README.md record checks, limitations and next steps.
+  This session leaves changes local; no push/merge is implied.
+
+## 2026-11-06 — Camera/contact/gait/crash-style follow-up and straight wrists
+
+- Implemented requested static-only camera routing with ceiling fallback and safe
+  look orientation; mounted/on-foot/foreign-ragdoll cases at60/144Hz pass.
+- Superseded upright rear hops with mass-weighted normal momentum sharing and
+  60km/h closing-speed front knockoffs. Retained separate downed/head-on policies.
+- Replaced old gait playback with continuous procedural locomotion, stable knee
+  poles and lower held-arm elbows. Native review exposed distal neutral calibration
+  mismatch; fixed parent-relative frames and removed standing wrist twist. Added
+  neutral standing/seated wrist attachment/axis regression.
+- Added supported energy-paid one-shot rolls and capped frontal hip/knee release;
+  baseline/motor limits preserved. Native --crash-motion-demo supports comparison.
+- Restored Valley default and explicit city alias. Added CAM-02, COLLISION-06,
+  ANIM-13, RAG-10, MAP-01 verified implementation records; production gates remain
+  open.167 checked/223 open,390 IDs. ADR051 and testing/recovery-polish record
+  design, checks, screenshots, provenance and limitations. No new dependencies,
+  imported source/media, push or merge.

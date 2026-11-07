@@ -397,7 +397,7 @@ fn actual_dynamic_wreck_contacts_hop_and_move_the_target_without_ejection() {
 }
 
 #[test]
-fn rear_hops_work_in_both_entity_orders_and_do_not_replace_head_on_crashes() {
+fn rear_knockoffs_work_without_hops_in_both_entity_orders_and_preserve_head_on_crashes() {
     for base_is_attacker in [false, true] {
         for head_on in [false, true] {
             let mut app = game::tests::simulation();
@@ -479,12 +479,79 @@ fn rear_hops_work_in_both_entity_orders_and_do_not_replace_head_on_crashes() {
                     app.world().get::<Recovery>(attacker).unwrap().stage,
                     RecoveryStage::Riding
                 );
-                assert!(app.world().get::<Rider>(attacker).unwrap().hop_velocity > 0.0);
+                assert_eq!(
+                    app.world().get::<Rider>(attacker).unwrap().hop_velocity,
+                    0.0
+                );
                 assert_eq!(
                     app.world().get::<Recovery>(victim).unwrap().stage,
                     RecoveryStage::Falling
                 );
             }
+        }
+    }
+}
+
+#[test]
+fn rear_contact_threshold_and_mass_weighted_push_do_not_add_vertical_speed() {
+    use bevy::ecs::system::RunSystemOnce;
+    for closing in [0.0, 59.9 / 3.6, 60.1 / 3.6] {
+        let mut app = game::tests::simulation();
+        let a = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let ta = *app.world().get::<Transform>(a).unwrap();
+        let f = ta.rotation * Vec3::Z;
+        {
+            let mut r = app.world_mut().get_mut::<Rider>(a).unwrap();
+            r.motion_velocity = f * (10.0 + closing);
+            r.speed = 10.0 + closing;
+        }
+        app.world_mut().entity_mut(a).insert(BikeState {
+            impact_velocity: f * (10.0 + closing),
+            ..default()
+        });
+        let mut r = Rider::new(1);
+        r.speed = 10.0;
+        r.motion_velocity = f * 10.0;
+        r.bike_mass = 300.0;
+        let b = app
+            .world_mut()
+            .spawn((
+                r,
+                ta.with_translation(ta.translation + f * 2.0),
+                Visibility::Visible,
+                BikeState {
+                    impact_velocity: f * 10.0,
+                    ..default()
+                },
+            ))
+            .id();
+        let ma = app.world().get::<Rider>(a).unwrap().bike_mass + 70.0;
+        let common = rr_core::contact::shared_normal_speed(10.0 + closing, 10.0, ma, 370.0);
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut().write_message(recovery::SweptContact(a, b));
+        app.world_mut().run_system_once(recovery::impacts).unwrap();
+        let r = app.world().get::<Rider>(a).unwrap();
+        assert!((r.motion_velocity.dot(f) - common).abs() < 0.001);
+        assert_eq!(r.hop_velocity, 0.0);
+        assert!(r.motion_velocity.y.abs() < 0.01);
+        let rec = app.world().get::<Recovery>(b).unwrap();
+        assert_eq!(
+            rec.stage,
+            if closing >= 60.0 / 3.6 {
+                RecoveryStage::Falling
+            } else {
+                RecoveryStage::Riding
+            }
+        );
+        if rec.stage == RecoveryStage::Riding {
+            assert!(
+                (app.world().get::<Rider>(b).unwrap().motion_velocity.dot(f) - common).abs()
+                    < 0.001
+            );
         }
     }
 }

@@ -14,6 +14,7 @@ pub struct Controls {
     pub mute: bool,
     pub look: Vec2,
     pub foot: Vec2,
+    pub interact: bool,
     pub context: rr_core::comfort::InputContext,
     pub suppress_frame: bool,
 }
@@ -237,9 +238,24 @@ pub fn capture(
     } else {
         rr_core::comfort::InputContext::Riding
     };
-    // Allocate an independent on-foot context; recovery remains assisted until Part 06.
+    // Preserve an interaction edge across render frames without a fixed tick.
+    if controls.context == rr_core::comfort::InputContext::OnFoot {
+        controls.interact |= edge("start");
+    } else {
+        controls.interact = false;
+    }
     controls.foot = if controls.context == rr_core::comfort::InputContext::OnFoot {
-        Vec2::new(steer, throttle - brake)
+        Vec2::new(
+            steer,
+            if bindings.held(&keys, "throttle") || bindings.held(&keys, "brake") {
+                throttle - brake
+            } else {
+                pad.map_or(throttle - brake, |p| {
+                    rr_core::comfort::axis(p.left_stick().y, deadzone)
+                })
+            },
+        )
+        .clamp_length_max(1.0)
     } else {
         Vec2::ZERO
     };
@@ -385,6 +401,28 @@ mod device_tests {
                 .resource::<crate::settings::SettingsPanel>()
                 .open
         );
+    }
+    #[test]
+    fn on_foot_uses_both_stick_axes_without_trigger_throttle() {
+        let (mut app, pad) = fixture();
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<crate::game::Rider>>()
+            .single(app.world())
+            .unwrap();
+        app.world_mut()
+            .get_mut::<crate::recovery::Recovery>(owner)
+            .unwrap()
+            .stage = crate::recovery::RecoveryStage::Running;
+        {
+            let mut p = app.world_mut().get_mut::<Gamepad>(pad).unwrap();
+            p.analog_mut().set(GamepadAxis::LeftStickX, 0.7);
+            p.analog_mut().set(GamepadAxis::LeftStickY, -0.8);
+        }
+        app.update();
+        let c = app.world().resource::<Controls>();
+        assert!(c.foot.x > 0.3 && c.foot.y < -0.3 && c.foot.length() <= 1.0);
+        assert!(!c.buffer.held.throttle);
     }
     #[test]
     fn on_foot_context_does_not_deliver_mounted_attacks() {

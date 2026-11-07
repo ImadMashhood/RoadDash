@@ -1,0 +1,11 @@
+{
+  "date": "2026-11-06",
+  "branch": "codex/part-03-animation-recovery",
+  "base_commit": "038d0b1",
+  "media": "Native screenshots of existing original RoadDash assets; no proprietary sprites or new third-party media",
+  "configuration_sha256": {
+    "content/recovery.json": "c8e9969b2cbca825bad5ea01a87fe9edab66293bd813c09c7aa0d609046419b9"
+  },
+  "scope": "Pilot visual articulation, pose corrections, foot authority/recovery prototypes; no physics tuning or dependency migration",
+  "hardware": "Linux NVIDIA RTX3080 Vulkan; Windows/gamepad hardware acceptance not claimed"
+}

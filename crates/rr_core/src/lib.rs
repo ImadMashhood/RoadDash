@@ -275,3 +275,5 @@ mod kick_input_tests {
 pub mod motion;
 
 pub mod biomechanics;
+
+pub mod recovery;

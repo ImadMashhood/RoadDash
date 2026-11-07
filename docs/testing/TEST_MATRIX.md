@@ -332,3 +332,33 @@ original direction-policy handoff, rear entity ordering and actual dynamic ride-
 contacts included. Native default/baseline City race recovery, Valley NPCs and
 paired lab view pass;18headless cases finite. Full receipts: ragdoll/integration/.
 New per-joint resistance does not close distal-art or broad performance gates.
+
+## V2 Part 03 animation/recovery (2026-11-06)
+
+[Receipt and native review](animation-part03/README.md), ADR050. Corrected mirrored
+punch/kick selection and tuck/lean elbow poles;16-joint pilot visual articulation,
+physical landing blend, distance/velocity gait and support/stance feet; manual
+camera-relative WASD/stick with delayed optional assist, safe interaction, shared
+foot/bike payout and supported capped bracing.217 workspace tests pass (one
+preexisting ignored soak), strict Clippy/fmt/build, audits and roadmap checks pass.
+Native motion viewer, city default/baseline recovery and Valley human/cow smoke
+pass on Linux/NVIDIA using the documented large-stack workaround for city load.
+All18 paired headless lab scenarios finite;240 pileup bodies sleep. Neither this
+nor overlapping scripted smoke constitutes RAG-06 production profiling. Native
+art/Windows/terrain clearance, confined traps, active-work budgets and default
+asset-loader stack diagnosis remain open. Failed launch/actor precondition logs
+are retained, not omitted from acceptance evidence.
+
+## User camera/contact/locomotion follow-up (2026-11-06)
+
+[Receipt and corrected wrist render](recovery-polish/README.md), ADR051. Added
+rear-contact momentum/energy and60km/h threshold checks with no upright hop;
+static wall plus low-ceiling/foreign-ragdoll camera tests in mounted/on-foot
+contexts at60/144Hz; recovery-heading continuity across road tangent changes;
+continuous procedural gait/forward-knee invariants, downward held elbows and
+standing/seated parent-relative distal wrist axes/attachment; supported one-shot
+forward/side roll energy conversion, unsupported/baseline rejection and capped
+motor-only frontal release without direct velocity impulses. Native eleven-motion
+review, optional crash-style comparison, Valley bare/default/baseline recovery and
+NPC actors provide local rendering/physics evidence. Production subjective motion,
+full terrain/clearance, Windows and15-racer profiling gates remain open.

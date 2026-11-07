@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "roll_min_speed": 3.0,
+  "roll_min_age": 0.3,
+  "roll_rate": 2.2,
+  "roll_energy_fraction": 0.08,
+  "release_seconds": 0.38,
+  "release_activation": 0.35,
+  "hip_back": 0.25,
+  "knee_back": 0.65
+}
