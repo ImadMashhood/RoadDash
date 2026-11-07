@@ -447,6 +447,7 @@ pub struct ActorSmoke {
 }
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn actor_smoke(
+    ragdoll: Res<crate::biomechanics::Settings>,
     mut commands: Commands,
     mut state: Local<ActorSmoke>,
     mut race: ResMut<Race>,
@@ -508,6 +509,8 @@ pub fn actor_smoke(
             let (_, npc, _) = actors.get(e).unwrap();
             let expected = if npc.kind == crate::npc::NpcKind::Cow {
                 10
+            } else if ragdoll.enabled {
+                16
             } else {
                 11
             };

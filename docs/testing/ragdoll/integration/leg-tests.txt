@@ -1,0 +1,38 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-ragdoll)
+    Finished `test` profile [optimized + debuginfo] target(s) in 23.93s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 14 tests
+test biomechanics::tests::comparison_launch_needs_no_keyboard_toggle_and_keeps_explicit_baseline ... ok
+test biomechanics::tests::every_joint_keeps_limits_and_passive_motors_at_zero_activation ... ok
+test biomechanics::tests::animation_bind_axes_are_removed_before_physical_pose_following ... ok
+test biomechanics::tests::quaternion_chart_is_hemisphere_invariant ... ok
+test biomechanics::tests::ejection_seed_preserves_com_momentum_and_existing_angular_velocity ... ok
+test biomechanics::tests::repeat_on_foot_knockdown_does_not_reuse_bike_anchor_space_animation ... ok
+test biomechanics::tests::upgrading_a_ragdoll_preserves_original_crash_direction_policy ... ok
+test biomechanics::tests::real_ejection_keeps_preimpact_spin_even_after_the_hidden_chassis_is_stopped ... ok
+KNEE_PASSIVE_LOAD old=0.5999821 new=0.16666597
+test biomechanics::tests::passive_knee_resistance_reduces_deflection_under_the_same_load ... ok
+test biomechanics::tests::pose_motor_holds_a_configurable_elbow_target_and_yields_to_external_torque ... ok
+KNEE_SEPARATION minimum=0.26553792
+test biomechanics::tests::inward_hip_loading_keeps_knees_on_their_own_sides ... ok
+BIOMECH_IMPACT Measurement { scenario: "static_wall", mode: "biomechanical", bodies: 16, simulated_seconds: 15.0, max_anchor_error_m: 0.0022892728, final_anchor_error_m: 6.493231e-6, max_limit_excess_rad: 0.08316094, max_speed_mps: 23.771751, peak_speed_part: 12, peak_angular_part: 13, peak_angular_radps: 291.3338, max_elbow_flex_rad: 2.5372982, max_knee_flex_rad: 1.3233972, physics_substeps: 4, extra_solver_iterations: 6, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 13837.743990846593, initial_mechanical_energy_j: 13837.743990846593, headless_wall_ms: 618.892691 }
+BIOMECH_DROP Measurement { scenario: "drop", mode: "biomechanical", bodies: 16, simulated_seconds: 15.0, max_anchor_error_m: 0.002060065, final_anchor_error_m: 7.17658e-6, max_limit_excess_rad: 0.0056752563, max_speed_mps: 6.780888, peak_speed_part: 12, peak_angular_part: 12, peak_angular_radps: 24.442894, max_elbow_flex_rad: 0.44413307, max_knee_flex_rad: 2.4437242, physics_substeps: 4, extra_solver_iterations: 6, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 2497.743913598973, initial_mechanical_energy_j: 2497.743913598973, headless_wall_ms: 723.386442 }
+BIOMECH_HINGE Measurement { scenario: "hinge_stress", mode: "biomechanical", bodies: 16, simulated_seconds: 10.0, max_anchor_error_m: 0.0010143575, final_anchor_error_m: 4.796623e-6, max_limit_excess_rad: 0.0052421093, max_speed_mps: 6.7516384, peak_speed_part: 5, peak_angular_part: 12, peak_angular_radps: 23.648495, max_elbow_flex_rad: 0.44757876, max_knee_flex_rad: 2.4452422, physics_substeps: 4, extra_solver_iterations: 6, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 2498.634302304899, initial_mechanical_energy_j: 2497.743913598973, headless_wall_ms: 504.010281 }
+test biomechanics::tests::native_drop_settles_and_hinges_resist_torque_without_exploding ... ok
+BIOMECH_IMPACT Measurement { scenario: "ejection_high", mode: "biomechanical", bodies: 16, simulated_seconds: 15.0, max_anchor_error_m: 0.0028439104, final_anchor_error_m: 3.0856674e-5, max_limit_excess_rad: 0.1004532, max_speed_mps: 75.336754, peak_speed_part: 12, peak_angular_part: 12, peak_angular_radps: 129.62842, max_elbow_flex_rad: 1.102841, max_knee_flex_rad: 2.4220662, physics_substeps: 4, extra_solver_iterations: 6, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 199372.74525470348, initial_mechanical_energy_j: 199372.74525470348, headless_wall_ms: 1032.3315710000002 }
+
+thread 'biomechanics::tests::wall_impact_and_high_speed_ejection_remain_bounded' (222030) panicked at src/biomechanics/tests.rs:89:9:
+assertion failed: r.max_limit_excess_rad < 0.10
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test biomechanics::tests::wall_impact_and_high_speed_ejection_remain_bounded ... FAILED
+test biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep ... ok
+
+failures:
+
+failures:
+    biomechanics::tests::wall_impact_and_high_speed_ejection_remain_bounded
+
+test result: FAILED. 13 passed; 1 failed; 0 ignored; 0 measured; 124 filtered out; finished in 6.17s
+
+error: test failed, to rerun pass `--lib`

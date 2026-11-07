@@ -2,6 +2,7 @@
 compile_error!("No online transport is implemented. Enable the offline feature (default).");
 
 pub mod animation;
+pub mod biomechanics;
 pub mod combat;
 pub mod content;
 pub mod controls;
@@ -33,6 +34,11 @@ pub fn build_app(smoke: bool) -> App {
     app.insert_resource(original_crash::OriginalCrashes(
         std::env::args().any(|a| a == "--original-crashes"),
     ));
+
+    app.insert_resource(
+        biomechanics::Settings::selected().expect("valid ragdoll arguments/configuration"),
+    );
+    biomechanics::install_debug(&mut app);
     if !smoke {
         app.insert_resource(settings::Preferences::load(settings::Preferences::path()));
     }

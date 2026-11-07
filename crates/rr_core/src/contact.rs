@@ -22,6 +22,11 @@ pub fn classify(low: bool, contained: bool, tall: bool) -> Class {
 /// Conservative modern low-obstacle calibration. Fallen rider/bike state is
 /// classified separately; only actually low geometry is suspension support.
 pub const LOW_HEIGHT_M: f32 = 0.8;
+/// An arcade ride-over hop, explicitly requested for rear/downed-bike contacts.
+/// No launch for parking-speed touches; cap the unobstructed rise below 0.85 m.
+pub fn ride_over_velocity(closing: f32) -> Option<f32> {
+    (closing.is_finite() && closing >= 3.0).then(|| (2.8 + closing * 0.035).min(4.0))
+}
 pub fn low_geometry(bottom: f32, top: f32, road: f32) -> bool {
     bottom.is_finite()
         && top.is_finite()
@@ -39,6 +44,16 @@ pub fn wipeout(class: Class, closing: f32) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn ride_over_is_bounded_and_requires_closing_motion() {
+        for v in [f32::NAN, -20.0, 0.0, 2.9] {
+            assert!(ride_over_velocity(v).is_none());
+        }
+        for v in [3.0, 15.0, 75.0, 200.0] {
+            let up = ride_over_velocity(v).unwrap();
+            assert!((0.4..0.85).contains(&(up * up / (2.0 * 9.81))));
+        }
+    }
     #[test]
     fn low_precedes_containment_and_cannot_force_a_wipeout() {
         for contained in [false, true] {

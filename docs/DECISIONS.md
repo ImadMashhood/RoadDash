@@ -1205,3 +1205,105 @@ furniture. Source static GLBs and accepted rider/bike presentation remain intact
 No save schema or physics-backend migration. Local development source falls back
 to art/props/mesh_assets; standalone packaging must supply assets/props beside the
 binary and separately satisfy the existing production release gates.
+
+## ADR-036 — Optional native biomechanical articulation with a preserved control (2026-11-01)
+
+Problem: current ragdoll lacks muscle phases and distal/spine articulation; the
+user requests an overhaul for comparison and explicitly forbids merging its PR.
+This is explicit physics tuning authorization, superseding presentation-only scope
+for this optional mode. The eleven-body baseline remains the default/control.
+
+Alternatives: migrate engines/adopt active-ragdoll-rs; port Unity torque/COM tracking;
+or build bounded native constraint motors over existing crash ownership. Selected
+the third: installed Rapier 0.31 already provides forces, caps, limits, predictive
+CCD, sleeping and island solver iterations. The Rust reference uses Rapier 0.36
+and a different glam version; importing it would add a migration and competing
+COM control. Unity targetRotation conventions cannot be copied into Rapier.
+
+The new rig adds a spine body, hands and feet without replacing meshes or spawn/
+collision/ejection APIs. Rest/active targets, stiffness, damping and torque caps
+are validated JSON. Zero activation never disables passive resistance or hard
+limits. Full-source bind offsets are removed before using animation rotations;
+initial release poses preserve coincident anchors. Later targets act through
+native motors only, not transform writes. States/curves belong in rr_core;
+validation in rr_content; native adaptation/debug/lab in src/biomechanics.
+
+Source inspection and experiments identified quaternion chart singularities in
+wide combined shoulder limits and per-body hard CCD clamping as separate causes
+of violent corrections/stretch. Use a safe limited chart and predictive CCD,
+60 Hz gameplay with four physical substeps and six additional articulated
+island iterations. Keep the original solver path in baseline mode. Damping is
+primarily per joint; body damping is a secondary tissue approximation. Activation
+fades from bracing/ejection through low control to zero while passive motors remain.
+No artificial upright torque or COM animation-following force.
+
+Capture spin before the hidden chassis is stopped; seed coherent point velocities
+around the new mass-weighted COM and preserve the established linear response.
+Extend the inherited dissipative crash budget with measured initial rotational
+energy. Avoid new-mode no-op velocity writes/tiny backward corrections that wake
+sleeping bodies. Baseline response and its physical parity fixtures remain intact.
+
+Tradeoffs: sixteen physical proxies feed the current eleven-joint skin; distal
+skin articulation needs future art work. Solver quality costs more during many
+simultaneous crashes; instrumented headless timings do not certify race p95.
+Conservative shoulder bounds trade full reach for stability. Resting/recovery
+retain the arcade timing policy. User/native-art/performance acceptance stays open.
+
+References: all five user-nominated projects pinned in
+[research/RAGDOLL_BIOMECHANICS.md](research/RAGDOLL_BIOMECHANICS.md), reference-only;
+no code/assets incorporated. No dependency or save migration. Rollback: run without
+--ragdoll-biomechanical (or press B/reset in the standalone comparison app). Do not
+merge or make default without the user's comparison. Verification:
+[ragdoll report](testing/RAGDOLL_BIOMECHANICS.md).
+
+
+### 2026-11-02 — Comparison branch defaults to the requested new rig
+
+Problem: the user expected B to enable new physics during racing, but that key
+only belongs to the standalone lab. Alternatives: add live race rig swapping
+(unsafe for existing articulations), or select the new rig on startup. Selected:
+shared game/lab startup selection, biomechanical by default in this unmerged
+branch; explicit --ragdoll-baseline preserves comparison, CLI overrides environment.
+The user explicitly authorized this branch default. Main and all physical tuning
+stay unchanged. Tradeoff: old bare-command baseline instructions change; updated
+docs describe the override. No new repository, dependency, asset or save migration.
+Rollback: explicit baseline flag/environment or revert startup selection alone.
+
+
+## ADR049 — Integrate approved biomechanics with the current race (2026-11-06)
+
+Problem: the reviewed ragdoll branch predates the city, props and original contact
+routing. Alternatives: merge without adaptation (loses either newer behavior or
+original reverse-response policy), or combine physical articulation with current
+owners and visual skins. Selected: the latter, with launch defaults from the
+user's2026-11-02 request and merge approval from2026-11-06. Preserve native original
+crash comparison, including allow-reverse policy when rebuilding energy envelopes.
+Retain props'11-frame human skin drivers over16 physical proxies; cows retain their
+existing10-body articulation. Both old/new body paths remain tested and selectable.
+
+No engine/dependency migration or additional source/media import. Historical
+comparison-only restrictions are superseded by the user's merge instruction.
+Tradeoff: physical wrists/feet/spine still share the existing visual rig; RAG-05/06
+art and broad performance acceptance stay open. Rollback: --ragdoll-baseline;
+no save migration. Preserve city/prop authoring and quotas. No new repository was
+investigated; reuse pinned research in research/RAGDOLL_BIOMECHANICS.md.
+
+
+### ADR049 addendum — Leg resistance and requested ride-over contacts (2026-11-06)
+
+The user additionally reported leg crossing/weak resistance and requested hops
+for rear/downed bike/rider impacts. Mirrored hip medial stops are0.08rad, axial
+hip twist±0.22rad; passive hip k/d/cap=12/3.5/28 and knee=18/4/32, with active
+hip60/8/65 and knee65/8/65. Knee single-X hinge limits remain0–2.44rad. Four substeps
+and eight extra articulation iterations keep the revised high-speed limits bounded.
+Do not substitute global damping for joint resistance. Original eleven-body baseline
+stays an explicit control; the user's screenshot was labelled baseline.
+
+Rear/downed contacts now use an explicit arcade hop at closing>=3m/s: upward
+speed2.8+0.035*closing, capped4m/s (~0.82m ballistic rise). Preserve native horizontal
+momentum transfer, charge scripted target pushes to the attacking bike's momentum,
+apply a0.35s cooldown, and retain solid colliders. Fast rear contacts still knock
+the target off; gentle contacts nudge. Side/head-on/car routing stays separate.
+This requested vertical assist is a deliberate gameplay-energy exception, not a
+claim of original crash arithmetic parity. No arbitrary crash launch was added
+for other classes. Integration tests cover physical contacts and both entity orders.

@@ -1,0 +1,166 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-ragdoll)
+    Finished `test` profile [optimized + debuginfo] target(s) in 11.21s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 139 tests
+test animation::tests::normal_tuck_endpoints_are_distinct_and_shortest_arc_is_finite ... ok
+test biomechanics::tests::animation_bind_axes_are_removed_before_physical_pose_following ... ok
+test animation::tests::interpolation_preserves_every_render_chain_length_and_unit_rotations ... ok
+test animation::tests::held_contacts_and_anatomical_lengths_survive_between_keyframes ... ok
+test biomechanics::tests::comparison_launch_needs_no_keyboard_toggle_and_keeps_explicit_baseline ... ok
+test biomechanics::tests::every_joint_keeps_limits_and_passive_motors_at_zero_activation ... ok
+test animation::tests::pause_freezes_pose_clock_and_crash_interrupts_only_visual_state ... ok
+test biomechanics::tests::quaternion_chart_is_hemisphere_invariant ... ok
+test animation::tests::attacks_enter_from_actual_tuck_and_return_to_the_latest_base_without_retrigger ... ok
+test biomechanics::tests::ejection_seed_preserves_com_momentum_and_existing_angular_velocity ... ok
+test biomechanics::tests::repeat_on_foot_knockdown_does_not_reuse_bike_anchor_space_animation ... ok
+test biomechanics::tests::upgrading_a_ragdoll_preserves_original_crash_direction_policy ... ok
+test biomechanics::tests::real_ejection_keeps_preimpact_spin_even_after_the_hidden_chassis_is_stopped ... ok
+COLLISION_ENTRY id=0 direction=-1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+test collision_tests::crash_envelope_dissipates_solver_energy_and_reverse_com_without_launching ... ok
+COLLISION_ENTRY id=0 direction=1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+COLLISION_ENTRY id=1 direction=-1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+test combat::tests::kick_selects_nearest_side_pushes_without_damage_and_animates_that_leg ... ok
+COLLISION_ENTRY id=1 direction=1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+test collision_tests::player_and_ai_use_80_kmh_entry_for_both_120_40_car_directions ... ok
+test controls::device_tests::gamepad_has_analog_triggers_steering_freelook_and_disconnect_fallback ... ok
+test controls::device_tests::on_foot_context_does_not_deliver_mounted_attacks ... ok
+test controls::device_tests::settings_pause_countdown_and_suppress_driving_until_closed ... ok
+test controls::tests::bindings_are_validated_and_remappable ... ok
+test environment::tests::road_meshes_have_upward_winding_and_collision_uses_fewer_triangles ... ok
+test controls::rebind_tests::panel_rebinding_changes_live_keyboard_and_pad_without_leaking_input ... ok
+test feedback::tests::traction_is_readable_and_speed_cues_stay_bounded_and_respect_comfort ... ok
+test collision_tests::detached_body_contacts_never_script_a_new_mounted_wipeout ... ok
+RIDE_OVER wreck=true: rise=0.4305522, target_displacement=26.580742
+test game::camera_tests::camera_sphere_stays_in_front_of_solid_obstacles_and_comfort_fov_is_clamped ... ok
+test biomechanics::tests::pose_motor_holds_a_configurable_elbow_target_and_yields_to_external_torque ... ok
+test game::camera_tests::retry_style_warp_snaps_camera_to_the_new_interpolated_pose ... ok
+RIDE_OVER wreck=false: rise=0.4305522, target_displacement=26.580742
+test collision_tests::actual_dynamic_wreck_contacts_hop_and_move_the_target_without_ejection ... ok
+test game::tests::a_cow_causes_a_momentum_limited_crash_without_a_launch ... ok
+test collision_tests::neutral_mounted_heading_ignores_repeated_contact_spin_at_each_render_rate ... ok
+test game::camera_tests::rival_in_chase_boom_does_not_pull_camera_into_player ... ok
+test game::tests::attack_press_survives_a_render_frame_without_a_fixed_tick ... ok
+test game::tests::collision_detachment_uses_forward_pre_solver_velocity_not_the_bounce ... ok
+test game::tests::collision_gap_wraps_at_finish ... ok
+test game::tests::corrupt_and_future_profile_files_are_not_overwritten ... ok
+KNEE_PASSIVE_LOAD old=0.5999821 new=0.16666597
+test biomechanics::tests::passive_knee_resistance_reduces_deflection_under_the_same_load ... ok
+test game::tests::biker_can_knock_down_a_recovering_rider_again_without_duplicate_ragdolls ... ok
+KNEE_SEPARATION minimum=0.26554674
+test biomechanics::tests::inward_hip_loading_keeps_knees_on_their_own_sides ... ok
+test game::tests::crash_separates_rider_and_preserves_momentum_without_an_upward_boost ... ok
+test game::tests::crash_camera_tracks_the_moving_torso_instead_of_the_road_position ... ok
+test game::tests::a_crashed_bike_slides_down_a_solid_slope ... ok
+test game::tests::crowded_grid_has_no_immediate_combat_knockout ... ok
+test game::tests::fast_rear_contact_ragdolls_victim_and_hops_the_attacker ... ok
+test game::tests::finish_awards_results_once_and_button_starts_next_race ... ok
+test game::tests::d_moves_right_and_a_moves_left_in_chase_camera_space ... ok
+test game::tests::directional_melee_damages_the_target_and_awards_one_takedown ... ok
+test game::tests::grid_starts_before_timing_line ... ok
+test game::tests::legacy_profile_is_upgraded_without_losing_progress ... ok
+test game::tests::lifecycle_visits_loading_menu_race_and_results ... ok
+test game::tests::matched_speed_contacts_and_small_side_taps_do_not_cause_wipeouts ... ok
+test game::tests::missing_a_gate_stops_at_the_open_finish_without_payout_and_retry_resets_gates ... ok
+test game::tests::countdown_throttle_nitro_and_pause ... ok
+test game::tests::crash_spawns_jointed_bodies_then_recovers ... ok
+test game::tests::fixed_simulation_matches_at_30_60_and_120_render_fps ... ok
+BIOMECH_IMPACT Measurement { scenario: "static_wall", mode: "biomechanical", bodies: 16, simulated_seconds: 15.0, max_anchor_error_m: 0.0040011327, final_anchor_error_m: 4.468243e-6, max_limit_excess_rad: 0.019557923, max_speed_mps: 23.192097, peak_speed_part: 12, peak_angular_part: 13, peak_angular_radps: 80.8035, max_elbow_flex_rad: 2.530024, max_knee_flex_rad: 1.6823128, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 13837.743990846593, initial_mechanical_energy_j: 13837.743990846593, headless_wall_ms: 2615.547152 }
+BIOMECH_DROP Measurement { scenario: "drop", mode: "biomechanical", bodies: 16, simulated_seconds: 15.0, max_anchor_error_m: 0.0019507823, final_anchor_error_m: 4.693771e-6, max_limit_excess_rad: 0.0044654906, max_speed_mps: 6.7627687, peak_speed_part: 12, peak_angular_part: 12, peak_angular_radps: 24.512989, max_elbow_flex_rad: 0.44423103, max_knee_flex_rad: 2.4428139, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 2497.7439137545034, initial_mechanical_energy_j: 2497.743913598973, headless_wall_ms: 2818.2451300000002 }
+test game::camera_tests::interpolated_camera_is_finite_and_continuous_at_120_and_144_hz ... ok
+test game::tests::ragdoll_sized_bodies_collide_with_trees_cars_bikes_and_wrecks ... ok
+test game::tests::releasing_or_exhausting_boost_decelerates_instead_of_clamping_speed ... ok
+test game::tests::one_hundred_pause_resume_crash_reset_cycles_do_not_leak_state ... ok
+BIOMECH_HINGE Measurement { scenario: "hinge_stress", mode: "biomechanical", bodies: 16, simulated_seconds: 10.0, max_anchor_error_m: 0.0008314409, final_anchor_error_m: 3.1916325e-6, max_limit_excess_rad: 0.003226757, max_speed_mps: 6.751556, peak_speed_part: 5, peak_angular_part: 12, peak_angular_radps: 23.873642, max_elbow_flex_rad: 0.4477176, max_knee_flex_rad: 2.4432268, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 2498.6447260251416, initial_mechanical_energy_j: 2497.743913598973, headless_wall_ms: 717.625337 }
+test biomechanics::tests::native_drop_settles_and_hinges_resist_torque_without_exploding ... ok
+test game::tests::slow_sideways_steering_cannot_pass_through_a_solid_car ... ok
+test game::tests::traffic_impact_crashes_and_restart_clears_debris ... ok
+test game::camera_tests::every_chase_view_stays_close_at_rest_and_high_speed_with_slow_smoothing ... ok
+test human::tests::every_human_state_uses_identical_mesh_dimensions_and_outfit ... ok
+test game::tests::remount_reaches_a_fallen_bike_in_sideways_upside_down_and_vertical_poses ... ok
+test human::tests::bike_and_rider_bank_together_without_accumulating_roll ... ok
+REAL_CAR_TRAJECTORY direction=-1 forward_travel_8_ticks_m=2.9241273
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... ok
+test models::tests::visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose ... ok
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+REAL_CAR_TRAJECTORY direction=1 forward_travel_8_ticks_m=2.9239118
+test collision_tests::real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel ... ok
+test npc::tests::actor_ragdolls_are_bounded_and_reset_cleans_every_part ... ok
+test models::tests::visual_intake_rejects_nonfinite_vertices_bad_joint_ids_and_physics_payloads ... ok
+test environment::tests::scenic_collision_supports_the_route_and_populates_each_gameplay_zone ... ok
+BIOMECH_IMPACT Measurement { scenario: "ejection_high", mode: "biomechanical", bodies: 16, simulated_seconds: 15.0, max_anchor_error_m: 0.0066029797, final_anchor_error_m: 3.7488935e-6, max_limit_excess_rad: 0.092819214, max_speed_mps: 75.339066, peak_speed_part: 12, peak_angular_part: 14, peak_angular_radps: 113.26999, max_elbow_flex_rad: 1.1496966, max_knee_flex_rad: 2.4161346, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 16, resting_ragdolls: 1, finite: true, initial_mass_kg: 70.0, initial_momentum_error: 0.0, peak_mechanical_energy_j: 199372.74525470348, initial_mechanical_energy_j: 199372.74525470348, headless_wall_ms: 1576.427836 }
+test biomechanics::tests::wall_impact_and_high_speed_ejection_remain_bounded ... ok
+test original_crash::tests::forward_and_vertical_calibrations_are_separate ... ok
+test original_crash::tests::matched_traffic_has_no_added_speed_and_frame_rotates_consistently ... ok
+test original_crash::tests::opposing_traffic_uses_signed_separation_not_absolute_subtraction ... ok
+test recovery::articulation_tests::hinges_lock_twist_and_passive_tissue_has_finite_limited_torque ... ok
+test settings::tests::rebind_validation_rejects_conflicts_and_unknown_fields ... ok
+test settings::tests::settings_roundtrip_and_invalid_files_are_preserved ... ok
+test sound::tests::generated_audio_is_valid_pcm_and_not_silent ... ok
+test track::tests::arc_length_and_lanes_are_consistent ... ok
+test track::tests::authored_roads_load_with_elevation_banking_and_canonical_distance ... ok
+test track::tests::circuit_is_closed_and_wraps_negative_distance ... ok
+test track::tests::ordered_physical_gates_allow_a_full_race_and_reject_shortcuts_reverse_and_verge_misses ... ok
+test track::tests::point_to_point_endpoints_never_wrap_and_grid_has_a_straight_approach ... ok
+test track::tests::positive_lane_is_camera_right_and_projection_preserves_laps ... ok
+test track::tests::spline_import_rejects_self_intersections ... ok
+test game::tests::grass_allows_forward_driving_without_damage_and_ai_returns_to_the_road ... ok
+test npc::tests::standing_respawn_waits_until_the_original_spot_is_clear ... ok
+test ui::map_tests::every_racer_dot_uses_the_same_palette_as_their_shirt ... ok
+test vehicle::tests::abandoned_bike_keeps_the_selected_presets_dry_mass ... ok
+test game::tests::original_contact_mode_applies_distinct_rider_and_wreck_results_then_recovers ... ok
+test vehicle::tests::a_low_sidewalk_step_is_supported_without_a_wipeout ... ok
+test npc::tests::direct_melee_spawns_human_and_quadruped_topologies_without_bikes ... ok
+test vehicle::tests::abandoned_motorcycle_tips_onto_its_side_after_knockoff ... ok
+MODEL_PHYSICS_PARITY ticks=180 bodies=11 max_position_error_m=0
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+test vehicle::tests::analog_trigger_values_reach_the_chassis_force_model ... ok
+test vehicle::tests::a_held_turn_builds_steering_and_a_parked_bike_cannot_strafe ... ok
+test game::tests::retry_teleports_dynamic_body_and_history_even_on_a_zero_tick_frame ... ok
+test vehicle::tests::dynamic_grid_can_launch_without_ai_sideswipe_or_melee_knockouts ... ok
+test vehicle::tests::dynamic_bike_physically_traverses_a_solid_low_wreck ... ok
+test vehicle::tests::handling_import_rejects_invalid_presets ... ok
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... ok
+preset0 speed 30.56738 grounded [true, true] height -0.00000017881393 rpm 5835.6133
+test vehicle::tests::leaning_chassis_recovers_and_a_moving_bike_climbs_a_sidewalk_edge ... ok
+test vehicle::tests::low_speed_inverted_chassis_self_rights_without_inverted_wheel_lift ... ok
+test npc::tests::new_actor_skins_preserve_physical_specs_and_ejection_momentum ... ok
+test vehicle::tests::dynamic_remount_does_not_reapply_precrash_momentum ... ok
+test vehicle::tests::civilian_contacts_crash_without_an_injected_clearance_jump ... ok
+test vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks ... ignored, 600 simulated seconds; run explicitly for the Part 03 receipt
+test world::tests::scenery_is_solid_and_every_footprint_clears_the_whole_circuit ... ok
+test vehicle::tests::either_full_lean_arrives_within_six_tenths_and_straightens_without_input ... ok
+test world_gen::city::tests::city_gates_cover_the_whole_open_course_and_preserve_last_place_grid ... ok
+test world_gen::city::props::tests::every_furnishing_preserves_the_road_crossings_and_pedestrian_lane ... ok
+test world_gen::city::visuals::tests::mounted_glbs_face_the_street_and_preserve_uniform_scale ... ok
+test world_gen::city::visuals::tests::near_models_keep_geometry_and_far_models_use_coarse_lod ... ok
+test vehicle::tests::neutral_player_heading_is_not_pulled_back_to_the_road ... ok
+test world_gen::city::visuals::tests::static_gltf_components_can_be_cloned_without_automatic_reflection_features ... ok
+test vehicle::tests::cross_traffic_contacts_trigger_a_wipeout_in_both_adapters ... ok
+test world_gen::city::tests::every_building_and_start_grid_has_real_collision_and_recovery_clearance ... ok
+test vehicle::tests::supported_bike_recovers_from_contact_yaw_without_changing_steering_bank ... ok
+test vehicle::tests::neutral_assistance_never_magnets_a_stationary_bike_to_lane_zero ... ok
+test world_gen::construction_tests::construction_rejects_bad_junctions_and_generated_layout_rejects_corruption ... ok
+test world_gen::construction_tests::exceptional_recovery_rescue_clears_motion_and_applies_one_visible_penalty ... ok
+test world_gen::construction_tests::city_grid_has_dense_solid_lots_clear_of_every_street ... ok
+preset1 speed 31.01717 grounded [true, true] height -0.000000834465 rpm 5923.098
+test vehicle::tests::dynamic_physics_matches_at_render_rates ... ok
+test world_gen::frontage::tests::party_walls_touch_both_owners_and_preserve_streets ... ok
+test world_gen::construction_tests::urban_height_override_adds_whole_floors_without_changing_lots ... ok
+test world_gen::tests::world_uses_baked_stations_and_only_snaps_final_rounding_residual ... ok
+LAYOUT 247 structures; 49 relocated candidates; 43 retained pads
+test world_gen::layout::tests::canonical_spatial_layout_is_complete_and_repeatable ... ok
+test vehicle::tests::stronger_full_lean_turns_both_directions_without_increasing_visual_bank ... ok
+preset2 speed 31.201967 grounded [true, true] height 0.00000035762787 rpm 5958.863
+test biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep ... ok
+test vehicle::tests::dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels ... ok
+test game::tests::point_to_point_driving_crosses_every_gate_and_awards_one_result ... ok
+test world_gen::construction_tests::expanded_grid_puts_player_last_with_twelve_metre_gaps_and_solid_road ... ok
+test world_gen::construction_tests::every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid ... ok
+test world_gen::construction_tests::street_trees_leave_walking_space_and_have_solid_trunks ... ok
+test world_gen::construction_tests::physical_capsules_walk_farm_city_alley_and_hill_routes ... ok
+test game::tests::one_hundred_high_speed_drops_keep_joint_anchors_and_hinge_axes_stable ... ok
+test world_gen::report::tests::measured_baseline_and_allocated_target_are_distinct_and_reproducible ... ok
+
+test result: ok. 138 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 14.10s
+

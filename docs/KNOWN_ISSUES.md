@@ -349,3 +349,38 @@ local development use is not a legal-clearance claim or distributable release ga
 No new prop-specific audio or animal species behavior is claimed. Broad performance,
 Windows/macOS and human gameplay acceptance remain open. Static furniture adds solid
 objects only in reserved sockets; collision shapes for replaced objects are preserved.
+
+- RAG-05/06 (2026-11-01): biomechanical physics is an opt-in comparison; the
+  eleven-body baseline remains default. Sixteen physical segments still feed an
+  eleven-joint skin: wrist/foot/intermediate-spine deformation needs authoring.
+  Conservative shoulders avoid a quaternion-chart singularity but do not model
+  scapular motion or every extreme human reach. Distal angular-velocity peaks
+  during high-speed impacts require subjective native review; this is not a
+  clinical injury/ligament simulation. Existing automatic recovery may transition
+  before the standalone body reaches Resting. Full race p95/multi-crash profiling,
+  Windows hardware and user feel approval remain open. Do not merge this
+  comparison PR or replace defaults without the user's comparison. See
+  testing/RAGDOLL_BIOMECHANICS.md and ADR-036.
+
+
+2026-11-02 launch usability follow-up: B only operates in the standalone lab.
+The comparison branch now selects biomechanical physics automatically for both
+game and lab, with --ragdoll-baseline for the old rig. This supersedes its earlier
+opt-in/default instructions. Main remains unchanged; RAG-05/06 remain open.
+
+
+2026-11-06 integration supersedes comparison-only/default restrictions above:
+user approved merging the new rig, which now starts automatically. --ragdoll-baseline
+remains available. Current prop humans still use11 visual frames over16 physical
+segments; independent distal deformation and broad performance/platform checks
+remain RAG-05/06. Cow anatomy is unchanged. Original-crash direction policy is
+preserved across physical upgrades; no new physics backend or asset import.
+
+
+2026-11-06 follow-up: new-mode hip medial/twist stops and stronger passive leg
+motors address knee crossing. Four substeps/eight extra iterations pass the current
+stress/settling scenes; fifteen-racer production performance remains RAG-06.
+Rear/downed contacts now intentionally receive a bounded arcade hop (COLLISION-05),
+superseding the older no-scripted-hop statement for those classes. Baseline-labelled
+comparison screenshots still show the preserved original physical control. Broad
+art and independent visual distal joints remain unfinished under RAG-05.

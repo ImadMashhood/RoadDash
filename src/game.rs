@@ -181,6 +181,7 @@ pub struct Rider {
     pub hop_velocity: f32,
     pub impact_cooldown: f32,
     pub motion_velocity: Vec3,
+    pub motion_angular_velocity: Vec3,
     pub gates: crate::track::GateProgress,
     pub hits: rr_core::HitChain,
     pub side_velocity: f32,
@@ -215,6 +216,7 @@ impl Rider {
             hop_velocity: 0.0,
             impact_cooldown: 0.0,
             motion_velocity: Vec3::ZERO,
+            motion_angular_velocity: Vec3::ZERO,
             gates: default(),
             hits: default(),
             side_velocity: 0.0,
@@ -1676,7 +1678,7 @@ pub(crate) mod tests {
         );
     }
     #[test]
-    fn fast_rear_contact_ragdolls_victim_without_launching_the_attacker() {
+    fn fast_rear_contact_ragdolls_victim_and_hops_the_attacker() {
         let mut app = simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         {
@@ -1704,7 +1706,8 @@ pub(crate) mod tests {
             app.world().get::<Recovery>(victim).unwrap().stage,
             RecoveryStage::Falling
         );
-        assert_eq!(player(&mut app).hop_velocity, 0.0);
+        assert!((2.0..=4.0).contains(&player(&mut app).hop_velocity));
+        assert_eq!(player(&mut app).crashed, 0.0);
     }
 
     #[test]
@@ -1886,10 +1889,8 @@ pub(crate) mod tests {
                 app.world().get::<Recovery>(owner).unwrap().stage,
                 RecoveryStage::Falling
             );
-            assert_eq!(
-                app.world().get::<Rider>(attacker).unwrap().hop_velocity,
-                0.0
-            );
+            assert!(app.world().get::<Rider>(attacker).unwrap().hop_velocity > 0.0);
+            assert_eq!(app.world().get::<Rider>(attacker).unwrap().crashed, 0.0);
             assert!(app.world().get_entity(runner).is_err());
             let torso = app.world().get::<Recovery>(owner).unwrap().torso.unwrap();
             assert!(

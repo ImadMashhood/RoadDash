@@ -1,0 +1,583 @@
+{
+  "version": 1,
+  "activation": {
+    "riding": 1,
+    "bracing": 0.7,
+    "ejection": 0.15,
+    "tumbling": 0.025,
+    "impact_seconds": 0.24,
+    "ejection_seconds": 0.3,
+    "settle_seconds": 0.6,
+    "resting_linear": 0.25,
+    "resting_angular": 0.5,
+    "tumbling_fade_seconds": 2.0
+  },
+  "masses": [
+    17,
+    5,
+    12,
+    2.3,
+    1.4,
+    2.3,
+    1.4,
+    6.8,
+    3.2,
+    6.8,
+    3.2,
+    5,
+    0.6,
+    0.6,
+    1.2,
+    1.2
+  ],
+  "joints": [
+    {
+      "name": "upper torso",
+      "limits": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "neck",
+      "limits": [
+        [
+          -0.55,
+          0.65
+        ],
+        [
+          -0.65,
+          0.65
+        ],
+        [
+          -0.4,
+          0.4
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 2,
+      "passive_d": 0.6,
+      "active_k": 12,
+      "active_d": 1.5,
+      "passive_torque": 3,
+      "active_torque": 8
+    },
+    {
+      "name": "lower spine / pelvis",
+      "limits": [
+        [
+          -0.3,
+          0.4
+        ],
+        [
+          -0.22,
+          0.22
+        ],
+        [
+          -0.22,
+          0.22
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0.08,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "shoulder right",
+      "limits": [
+        [
+          -1.2,
+          1.2
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -1.6,
+          0.35
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "elbow right",
+      "limits": [
+        [
+          -2.53,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "rest": [
+        -0.18,
+        0,
+        0
+      ],
+      "brace": [
+        -0.8,
+        0,
+        0
+      ],
+      "hinge": true,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "shoulder left",
+      "limits": [
+        [
+          -1.2,
+          1.2
+        ],
+        [
+          -0.5,
+          0.5
+        ],
+        [
+          -0.35,
+          1.6
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "elbow left",
+      "limits": [
+        [
+          -2.53,
+          0
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "rest": [
+        -0.18,
+        0,
+        0
+      ],
+      "brace": [
+        -0.8,
+        0,
+        0
+      ],
+      "hinge": true,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "hip right",
+      "limits": [
+        [
+          -1.8,
+          0.45
+        ],
+        [
+          -0.4,
+          0.4
+        ],
+        [
+          -0.65,
+          0.3
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        -0.25,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "knee right",
+      "limits": [
+        [
+          0,
+          2.44
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "rest": [
+        0.18,
+        0,
+        0
+      ],
+      "brace": [
+        0.65,
+        0,
+        0
+      ],
+      "hinge": true,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "hip left",
+      "limits": [
+        [
+          -1.8,
+          0.45
+        ],
+        [
+          -0.4,
+          0.4
+        ],
+        [
+          -0.3,
+          0.65
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        -0.25,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "knee left",
+      "limits": [
+        [
+          0,
+          2.44
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "rest": [
+        0.18,
+        0,
+        0
+      ],
+      "brace": [
+        0.65,
+        0,
+        0
+      ],
+      "hinge": true,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "upper spine",
+      "limits": [
+        [
+          -0.35,
+          0.45
+        ],
+        [
+          -0.2,
+          0.2
+        ],
+        [
+          -0.25,
+          0.25
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0.08,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 5,
+      "passive_d": 2,
+      "active_k": 45,
+      "active_d": 6,
+      "passive_torque": 12,
+      "active_torque": 40
+    },
+    {
+      "name": "wrist right",
+      "limits": [
+        [
+          -0.65,
+          0.65
+        ],
+        [
+          -0.2,
+          0.2
+        ],
+        [
+          -0.35,
+          0.35
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 2,
+      "passive_d": 0.6,
+      "active_k": 12,
+      "active_d": 1.5,
+      "passive_torque": 3,
+      "active_torque": 8
+    },
+    {
+      "name": "wrist left",
+      "limits": [
+        [
+          -0.65,
+          0.65
+        ],
+        [
+          -0.2,
+          0.2
+        ],
+        [
+          -0.35,
+          0.35
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 2,
+      "passive_d": 0.6,
+      "active_k": 12,
+      "active_d": 1.5,
+      "passive_torque": 3,
+      "active_torque": 8
+    },
+    {
+      "name": "ankle right",
+      "limits": [
+        [
+          -0.45,
+          0.65
+        ],
+        [
+          -0.15,
+          0.15
+        ],
+        [
+          -0.25,
+          0.25
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 2,
+      "passive_d": 0.6,
+      "active_k": 12,
+      "active_d": 1.5,
+      "passive_torque": 3,
+      "active_torque": 8
+    },
+    {
+      "name": "ankle left",
+      "limits": [
+        [
+          -0.45,
+          0.65
+        ],
+        [
+          -0.15,
+          0.15
+        ],
+        [
+          -0.25,
+          0.25
+        ]
+      ],
+      "rest": [
+        0,
+        0,
+        0
+      ],
+      "brace": [
+        0,
+        0,
+        0
+      ],
+      "hinge": false,
+      "passive_k": 2,
+      "passive_d": 0.6,
+      "active_k": 12,
+      "active_d": 1.5,
+      "passive_torque": 3,
+      "active_torque": 8
+    }
+  ],
+  "extra_solver_iterations": 8,
+  "linear_damping": 0.12,
+  "angular_damping": 0.8,
+  "physics_substeps": 8
+}

@@ -1,0 +1,23 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-ragdoll)
+    Finished `test` profile [optimized + debuginfo] target(s) in 9.84s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 7 tests
+COLLISION_ENTRY id=0 direction=-1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+test collision_tests::crash_envelope_dissipates_solver_energy_and_reverse_com_without_launching ... ok
+COLLISION_ENTRY id=0 direction=1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+test collision_tests::rear_hops_work_in_both_entity_orders_and_do_not_replace_head_on_crashes ... ok
+REAL_CAR_TRAJECTORY direction=-1 forward_travel_8_ticks_m=2.9241273
+COLLISION_ENTRY id=1 direction=-1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+COLLISION_ENTRY id=1 direction=1 rider_kmh=120 car_kmh=40 retained_kmh=80 bodies=12
+test collision_tests::player_and_ai_use_80_kmh_entry_for_both_120_40_car_directions ... ok
+REAL_CAR_TRAJECTORY direction=1 forward_travel_8_ticks_m=2.9239118
+test collision_tests::real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel ... ok
+RIDE_OVER wreck=true: rise=0.37952188, target_displacement=21.740776
+test collision_tests::detached_body_contacts_never_script_a_new_mounted_wipeout ... ok
+RIDE_OVER wreck=false: rise=0.37952188, target_displacement=21.740776
+test collision_tests::actual_dynamic_wreck_contacts_hop_and_move_the_target_without_ejection ... ok
+test collision_tests::neutral_mounted_heading_ignores_repeated_contact_spin_at_each_render_rate ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 133 filtered out; finished in 0.15s
+

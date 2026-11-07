@@ -220,6 +220,7 @@ pub fn humanoid_with_prop(
                 Restitution::coefficient(0.12),
             ))
             .id();
+        commands.entity(e).insert(crate::biomechanics::Candidate(i));
         // Child geometry keeps the physics transform unscaled.
         let visual = if appearance.is_some() && art.props.is_some() {
             commands
@@ -288,6 +289,16 @@ fn crash_with_response(
         commands.entity(part).despawn();
     }
     let old_runner = recovery.runner.take();
+    commands
+        .entity(owner)
+        .insert(crate::biomechanics::EjectionAngular(
+            if old_runner.is_some() {
+                Vec3::ZERO
+            } else {
+                rider.motion_angular_velocity
+            },
+            old_runner.is_none(),
+        ));
     if let Some(runner) = old_runner {
         commands.entity(runner).despawn();
     }
@@ -760,6 +771,7 @@ pub struct SweptContact(pub Entity, pub Entity);
 enum Impact {
     Crash(Entity, Option<Vec3>),
     Nudge(Entity, Vec3),
+    RideOver(Entity, Vec3, f32, Option<Entity>),
     Original(Entity, rr_core::original_crash::Contact, Quat),
 }
 
@@ -844,6 +856,30 @@ pub fn impacts(
                 let other_velocity = bike_states
                     .get(other)
                     .map_or(other_rider.motion_velocity, |s| s.impact_velocity);
+                let forward_a = (a.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
+                let forward_b = (b.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
+                let closing = (velocity - other_velocity).dot(normal).max(0.0);
+                let along = normal.dot(forward_a);
+                if forward_a.dot(forward_b) > 0.7
+                    && along.abs() > 0.7
+                    && rr_core::contact::ride_over_velocity(closing).is_some()
+                {
+                    let (attacker, victim, momentum) = if along > 0.0 {
+                        (bike, other, velocity)
+                    } else {
+                        (other, bike, other_velocity)
+                    };
+                    actions.push(Impact::RideOver(attacker, momentum, closing, None));
+                    if closing >= 50.0 / 3.6 {
+                        actions.push(Impact::Crash(victim, None));
+                    } else {
+                        actions.push(Impact::Nudge(
+                            victim,
+                            momentum.with_y(0.0).normalize_or_zero() * (closing * 0.2).min(2.0),
+                        ));
+                    }
+                    continue;
+                }
                 if original.as_ref().is_some_and(|p| p.0) {
                     let (response, frame) = crate::original_crash::contact_plan(
                         velocity,
@@ -894,6 +930,19 @@ pub fn impacts(
                 // Original class 0: a detached rider or wreck is not a fresh
                 // mounted-bike crash. Rapier still resolves the solid contact.
                 if matches!(body.kind, BodyKind::Ragdoll | BodyKind::Wreck) {
+                    if let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) {
+                        let direction = (b.translation - a.translation)
+                            .with_y(0.0)
+                            .normalize_or_zero();
+                        let target_velocity =
+                            velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel);
+                        let closing = (velocity - target_velocity).dot(direction).max(0.0);
+                        if rr_core::contact::ride_over_velocity(closing).is_some()
+                            && b.translation.y < a.translation.y + 1.5
+                        {
+                            actions.push(Impact::RideOver(bike, velocity, closing, Some(other)));
+                        }
+                    }
                     continue;
                 }
                 if let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) {
@@ -908,9 +957,8 @@ pub fn impacts(
                     if closing > 0.75 {
                         actions.push(Impact::Crash(body.owner, None));
                     }
-                    let class = contact_class(b, shapes.get(other).ok(), a, false, true);
-                    if rr_core::contact::wipeout(class, closing) {
-                        actions.push(Impact::Crash(bike, Some(velocity)));
+                    if rr_core::contact::ride_over_velocity(closing).is_some() {
+                        actions.push(Impact::RideOver(bike, velocity, closing, None));
                     }
                 }
             } else if cows.contains(other) || npcs.get(other).is_ok_and(|npc| npc.active()) {
@@ -1060,6 +1108,54 @@ pub fn impacts(
                     }
                 }
             }
+            Impact::RideOver(owner, incoming, closing, target) => {
+                if let Ok((mut rider, recovery, _)) = riders.get_mut(owner)
+                    && recovery.stage == RecoveryStage::Riding
+                    && rider.impact_cooldown <= 0.0
+                    && let Some(up) = rr_core::contact::ride_over_velocity(closing)
+                {
+                    let own_mass = rider.bike_mass + 70.0;
+                    rider.hop_velocity = rider.hop_velocity.max(up);
+                    rider.motion_velocity = incoming.with_y(incoming.y.max(up));
+                    rider.impact_cooldown = 0.35;
+                    commands.queue(move |world: &mut World| {
+                        // Keep native horizontal momentum transfer; add only the
+                        // explicitly requested vertical ride-over assist.
+                        let mut launch = if world
+                            .get_resource::<crate::vehicle::VehiclePhysicsAdapter>()
+                            .is_some_and(|a| {
+                                matches!(a, crate::vehicle::VehiclePhysicsAdapter::Dynamic)
+                            }) {
+                            world.get::<Velocity>(owner).map_or(incoming, |v| v.linvel)
+                        } else {
+                            incoming
+                        };
+                        launch.y = launch.y.max(up);
+                        let mut momentum = Vec3::ZERO;
+                        if let Some(target) = target {
+                            let mass = world
+                                .get::<ReadMassProperties>(target)
+                                .map_or(20.0, |m| m.mass.max(0.25));
+                            let delta =
+                                incoming.with_y(0.0).normalize_or_zero() * (closing * 0.2).min(3.0);
+                            if let Some(mut v) = world.get_mut::<Velocity>(target) {
+                                v.linvel += delta;
+                                momentum = delta * mass;
+                            }
+                        }
+                        let mut adjusted = launch - momentum / own_mass;
+                        let forward = incoming.with_y(0.0).normalize_or_zero();
+                        adjusted -= forward * adjusted.dot(forward).min(0.0);
+                        if let Some(mut v) = world.get_mut::<Velocity>(owner) {
+                            v.linvel = adjusted;
+                        }
+                        if let Some(mut r) = world.get_mut::<Rider>(owner) {
+                            r.speed = adjusted.with_y(0.0).length();
+                            r.motion_velocity = adjusted;
+                        }
+                    });
+                }
+            }
             Impact::Nudge(owner, delta) => {
                 if let Ok((mut r, state, _)) = riders.get_mut(owner)
                     && state.stage == RecoveryStage::Riding
@@ -1097,6 +1193,12 @@ pub fn impacts(
                         rider.motion_velocity = state.impact_velocity;
                     }
                     if let Some(response) = response {
+                        let severity = (rider.motion_velocity - response).length() / 25.0;
+                        commands
+                            .entity(owner)
+                            .insert(crate::biomechanics::ImpactSeverity(
+                                severity.clamp(0.0, 1.0),
+                            ));
                         rider.motion_velocity = response;
                         rider.speed = 0.0;
                         rider.hop_velocity = 0.0;
@@ -1192,6 +1294,7 @@ mod articulation_tests {
 #[derive(Component, Clone, Copy)]
 pub(crate) struct CrashEnvelope {
     initial_speed_squared: f32,
+    initial_angular_velocity: Vec3,
     initial_position: Vec3,
     initial_rotation: Quat,
     forward: Vec3,
@@ -1206,24 +1309,34 @@ impl CrashEnvelope {
     ) -> Self {
         Self {
             initial_speed_squared: velocity.length_squared(),
+            initial_angular_velocity: Vec3::ZERO,
             initial_position,
             initial_rotation,
             forward,
             allow_reverse: false,
         }
     }
-    fn with_original_direction(mut self, enabled: bool) -> Self {
+    pub(crate) fn with_angular_velocity(mut self, velocity: Vec3) -> Self {
+        self.initial_angular_velocity = velocity;
+        self
+    }
+    pub(crate) fn allows_reverse(self) -> bool {
+        self.allow_reverse
+    }
+    pub(crate) fn with_original_direction(mut self, enabled: bool) -> Self {
         self.allow_reverse = enabled;
         self
     }
 }
 
+#[allow(clippy::type_complexity)]
 pub(crate) fn constrain_crash_energy(
     mut bodies: Query<(
         &OwnedBody,
         &Transform,
         &ReadMassProperties,
         &CrashEnvelope,
+        Option<&crate::biomechanics::Segment>,
         &mut Velocity,
     )>,
 ) {
@@ -1237,7 +1350,7 @@ pub(crate) fn constrain_crash_energy(
         allow_reverse: bool,
     }
     let mut groups = std::collections::HashMap::<Entity, Budget>::new();
-    for (owner, t, mass, envelope, velocity) in &bodies {
+    for (owner, t, mass, envelope, _, velocity) in &bodies {
         if mass.mass <= 0.0 {
             continue;
         }
@@ -1253,11 +1366,18 @@ pub(crate) fn constrain_crash_energy(
         let initial_height =
             (envelope.initial_position + envelope.initial_rotation * mass.local_center_of_mass).y;
         let current_height = t.transform_point(mass.local_center_of_mass).y;
+        let initial_angular = (envelope.initial_rotation * mass.principal_inertia_local_frame)
+            .inverse()
+            * envelope.initial_angular_velocity;
+        group.available += (mass.principal_inertia.as_dvec3()
+            * initial_angular.as_dvec3()
+            * initial_angular.as_dvec3())
+        .element_sum();
         group.available += mass.mass as f64
             * (envelope.initial_speed_squared as f64
                 + 2.0 * 9.81 * (initial_height as f64 - current_height as f64));
     }
-    for (owner, _, _, _, mut velocity) in &mut bodies {
+    for (owner, _, _, _, biomechanical, mut velocity) in &mut bodies {
         let Some(group) = groups.get(&owner.owner) else {
             continue;
         };
@@ -1270,14 +1390,18 @@ pub(crate) fn constrain_crash_energy(
         };
         // Remove only backwards centre-of-mass motion; individual limbs can still
         // swing backwards relative to their connected body.
-        velocity.linvel -= group.forward * backward as f32;
+        if biomechanical.is_none() || backward < -0.05 {
+            velocity.linvel -= group.forward * backward as f32;
+        }
         let kinetic = (group.kinetic - group.mass * backward * backward).max(0.0);
         let scale = if kinetic > group.available.max(0.0) {
             (group.available.max(0.0) / kinetic).sqrt()
         } else {
             1.0
         };
-        velocity.linvel *= scale as f32;
-        velocity.angvel *= scale as f32;
+        if biomechanical.is_none() || scale < 0.999999 {
+            velocity.linvel *= scale as f32;
+            velocity.angvel *= scale as f32;
+        }
     }
 }

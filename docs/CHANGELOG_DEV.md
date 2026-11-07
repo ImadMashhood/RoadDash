@@ -591,3 +591,42 @@ docs/testing/prop-meshes. No commit, push or merge requested/performed.
   full placement/behavior/audio/performance/release approval remain open. No new
   dependency/repository research or source/media reuse. No push/merge performed.
 - Full files, evidence, metrics and next steps: testing/props-in-game/README.md.
+
+## 2026-11-01 — Optional biomechanical ragdoll comparison
+
+- Merged animation PR #11 at 5fac329fce868e9e8db9fd5caa930624f84b2770;
+  created codex/biomechanical-ragdoll for the explicitly unmerged comparison.
+- Investigated actual code/licenses in all five user-nominated repositories;
+  selected an original native Rapier integration, no package/source/media imports.
+- Added 16-body anatomy, safe angular charts, hinge stops, passive/active capped
+  motors, bind-calibrated pose release, pre-contact spin/COM handoff, muscle
+  curves, collision-dependent decay and natural backend sleep. Original eleven
+  bodies remain selectable with their original settings.
+- Added validated central JSON, F7 diagnostics, nine headless fixtures in both
+  modes and standalone native comparison/reset/impulse controls. Preserved race
+  controls, existing collision/ejection rules, recovery, audio and saved progress.
+- ADR-036 and RAG-01–06 distinguish verified implementation from remaining skin,
+  native realism and production performance/user acceptance. Evidence, exact
+  checks and remaining limitations: testing/RAGDOLL_BIOMECHANICS.md.
+
+
+## 2026-11-02 — Run the comparison rig without B
+
+The user requested automatic new-ragdoll selection. Shared game/lab launch parsing
+now defaults to biomechanical on the isolated comparison branch, preserves explicit
+baseline and CLI precedence, and rejects conflicting flags. B remains lab-only.
+No physics values, assets, dependencies or main changes. Extended RAG-04 launch
+coverage; no new roadmap scope or exit gates closed. Verification receipts:
+testing/ragdoll/default-launch/.
+
+
+## 2026-11-06 — Approved biomechanics integration and contact feedback
+
+RAG-07 combines the reviewed16-body articulation with current city/props and crash
+routing, including preservation of original allow-reverse envelopes. New physics
+starts automatically; explicit baseline remains. RAG-08 adds mirrored hip medial
+stops, stronger persistent hip/knee resistance and8 extra solver iterations.
+COLLISION-05 adds bounded rear/downed ride-over hops, target knockdown/push and
+cooldown while retaining head-on/car rules. User explicitly authorized merge.
+No dependencies or new source/media research. README/progress and task placement
+reconciled; detailed tests, known limits and files: testing/ragdoll/integration/README.md.

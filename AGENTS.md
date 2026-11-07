@@ -54,3 +54,11 @@ in the blueprint are not installed dependencies.
   and evaluation of bounded active recovery. Preserve the accepted player feel
   and passive ragdoll as control fixtures; this is not blanket engine/joint tuning
   approval. Correct visual bind/chain defects in rendering before changing physics.
+
+- The user approved merging biomechanical ragdolls on 2026-11-06. The native
+  game and lab now default to the new anatomy/muscles; preserve the eleven-body
+  control via --ragdoll-baseline. Run paired headless lab and native recovery/NPC
+  regression checks when changing either path. Imported comparison-only/default
+  restrictions in older evidence are historical. Keep crash contact policy,
+  current world/props, controls, saves and recovery integrated. Production distal
+  skinning, broad performance and hardware coverage remain open roadmap gates.

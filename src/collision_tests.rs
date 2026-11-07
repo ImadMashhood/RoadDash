@@ -306,7 +306,12 @@ fn detached_body_contacts_never_script_a_new_mounted_wipeout() {
                         RecoveryStage::Riding,
                         "id={id}, original={original}, own={own}"
                     );
-                    assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, 0.0);
+                    let hop = app.world().get::<Rider>(owner).unwrap().hop_velocity;
+                    if own {
+                        assert_eq!(hop, 0.0);
+                    } else {
+                        assert!((2.0..=4.0).contains(&hop));
+                    }
                     assert_eq!(
                         app.world_mut()
                             .query::<&OwnedBody>()
@@ -319,6 +324,166 @@ fn detached_body_contacts_never_script_a_new_mounted_wipeout() {
                         assert!(app.world().get::<ColliderDisabled>(body).is_none());
                     }
                 }
+            }
+        }
+    }
+}
+
+#[test]
+fn actual_dynamic_wreck_contacts_hop_and_move_the_target_without_ejection() {
+    for kind in [recovery::BodyKind::Wreck, recovery::BodyKind::Ragdoll] {
+        let mut app = game::tests::simulation();
+        app.insert_resource(VehiclePhysicsAdapter::Dynamic);
+        for _ in 0..10 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let t = *app.world().get::<Transform>(owner).unwrap();
+        let forward = t.rotation * Vec3::Z;
+        let foreign = app.world_mut().spawn_empty().id();
+        let target_start = t.translation + forward * 7.0 + Vec3::Y * 0.4;
+        let target = app
+            .world_mut()
+            .spawn((
+                OwnedBody {
+                    owner: foreign,
+                    kind,
+                },
+                RigidBody::Dynamic,
+                Collider::cuboid(0.7, 0.35, 1.0),
+                ColliderMassProperties::Mass(100.0),
+                Transform::from_translation(target_start).with_rotation(t.rotation),
+                Velocity::zero(),
+                ActiveEvents::COLLISION_EVENTS,
+                ActiveCollisionTypes::all(),
+            ))
+            .id();
+        {
+            let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+            r.speed = 25.0;
+            r.motion_velocity = forward * 25.0;
+            r.immunity = 0.0;
+        }
+        app.world_mut().get_mut::<Velocity>(owner).unwrap().linvel = forward * 25.0;
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let mut rise = 0.0_f32;
+        for _ in 0..90 {
+            app.update();
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            let p = app.world().get::<Transform>(owner).unwrap().translation;
+            assert!(p.is_finite());
+            rise = rise.max(p.y - t.translation.y);
+        }
+        let displacement = app
+            .world()
+            .get::<Transform>(target)
+            .unwrap()
+            .translation
+            .distance(target_start);
+        println!(
+            "RIDE_OVER wreck={}: rise={rise}, target_displacement={displacement}",
+            kind == recovery::BodyKind::Wreck
+        );
+        assert!(rise > 0.2 && rise < 2.0);
+        assert!(displacement > 0.1);
+    }
+}
+
+#[test]
+fn rear_hops_work_in_both_entity_orders_and_do_not_replace_head_on_crashes() {
+    for base_is_attacker in [false, true] {
+        for head_on in [false, true] {
+            let mut app = game::tests::simulation();
+            let base = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let (progress, other_progress) = if base_is_attacker {
+                (-8.0, -6.0)
+            } else {
+                (-8.0, -10.0)
+            };
+            let other_progress = if head_on { -6.0 } else { other_progress };
+            let (p, q) = app
+                .world()
+                .resource::<crate::track::Track>()
+                .sample(progress, -2.0);
+            *app.world_mut().get_mut::<Transform>(base).unwrap() =
+                Transform::from_translation(p).with_rotation(q);
+            {
+                let mut r = app.world_mut().get_mut::<Rider>(base).unwrap();
+                r.progress = progress;
+                r.lane = -2.0;
+                r.speed = if base_is_attacker || head_on {
+                    25.0
+                } else {
+                    0.0
+                };
+                r.motion_velocity = q * Vec3::Z * r.speed;
+                r.immunity = 0.0;
+            }
+            let (p, mut q) = app
+                .world()
+                .resource::<crate::track::Track>()
+                .sample(other_progress, -2.0);
+            if head_on {
+                q *= Quat::from_rotation_y(std::f32::consts::PI);
+            }
+            let mut other = Rider::new(1);
+            other.progress = other_progress;
+            other.lane = -2.0;
+            other.speed = if !base_is_attacker || head_on {
+                25.0
+            } else {
+                0.0
+            };
+            other.motion_velocity = q * Vec3::Z * other.speed;
+            other.immunity = 0.0;
+            let other = app
+                .world_mut()
+                .spawn((
+                    other,
+                    Transform::from_translation(p).with_rotation(q),
+                    Visibility::default(),
+                    recovery::bike_body(),
+                ))
+                .id();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut()
+                .write_message(recovery::SweptContact(base, other));
+            app.update();
+            if head_on {
+                assert!(
+                    [base, other]
+                        .iter()
+                        .any(|e| app.world().get::<Recovery>(*e).unwrap().stage
+                            == RecoveryStage::Falling)
+                );
+                assert_eq!(app.world().get::<Rider>(base).unwrap().hop_velocity, 0.0);
+                assert_eq!(app.world().get::<Rider>(other).unwrap().hop_velocity, 0.0);
+            } else {
+                let (attacker, victim) = if base_is_attacker {
+                    (base, other)
+                } else {
+                    (other, base)
+                };
+                assert_eq!(
+                    app.world().get::<Recovery>(attacker).unwrap().stage,
+                    RecoveryStage::Riding
+                );
+                assert!(app.world().get::<Rider>(attacker).unwrap().hop_velocity > 0.0);
+                assert_eq!(
+                    app.world().get::<Recovery>(victim).unwrap().stage,
+                    RecoveryStage::Falling
+                );
             }
         }
     }

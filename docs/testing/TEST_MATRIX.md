@@ -307,3 +307,28 @@ bound180tick simulations. Actual City nine-view survey, Valley actor knockdown
 smoke and City two-crash/recovery/finish smoke pass onVulkan/RTX3080. Scene receipts
 identify selected IDs, not approved art or all catalog entries placed. Performance,
 platform breadth, deformation quality and production release remain open.
+
+## Biomechanical ragdoll comparison — 2026-11-01
+
+RAG-01–04: domain activation/zero-control, anatomical hard limits and passive
+motors; source-bind calibration; pose-hold/external torque; coherent COM/spin
+release; drop/limb-force/torso-push/hinge/8 and75 m/s ejection/road-tumble/wall/
+fifteen-rider scenarios; both baseline and opt-in biomechanical mode. Native
+comparison scene, full race/recovery and actor smoke. Format/workspace locked
+Clippy/tests/build and provenance audit required. Full skin/native realism and
+production p95/Windows/user approval remain RAG-05/06. Exact receipts:
+[ragdoll report](RAGDOLL_BIOMECHANICS.md).
+
+
+2026-11-02 RAG-04 usability: verify a bare launch selects biomechanical, baseline
+CLI/environment remains available, explicit CLI wins, conflicting flags fail,
+and game/lab share mode selection. Run default and explicit-baseline native race
+smoke plus the two-mode standalone view. Evidence: ragdoll/default-launch/.
+
+
+2026-11-06 RAG-07/08 and COLLISION-05: integration suite has200passing Rust tests,
+one preexisting ignored soak; equal-load knee deflection, paired inward hip stress,
+original direction-policy handoff, rear entity ordering and actual dynamic ride-over
+contacts included. Native default/baseline City race recovery, Valley NPCs and
+paired lab view pass;18headless cases finite. Full receipts: ragdoll/integration/.
+New per-joint resistance does not close distal-art or broad performance gates.
