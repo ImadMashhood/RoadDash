@@ -720,3 +720,24 @@ reconciled; detailed tests, known limits and files: testing/ragdoll/integration/
 - User authorizes commit/push/merge followed by a new Part05 branch. Integration
   references are reported after actual success; no new external source/media or
   dependencies. Existing research/provenance and original MIT asset registers updated.
+
+## 2026-11-07 — Part05 dressing/materials and explicit contact/sky follow-ups
+
+PR16 merged to main2a3ea003d59921dc3817251b69c4b894b9e6a17e. Started focused
+codex/part-05-world-dressing from that merge. Added saved-entry soft-actor/wreck
+contact response, runner knockdown without stopping the attacker, energy-paid
+small ride-over, ready-scene temporal dither, typed semantic Valley prop dressing,
+shared original PBR microdetail/tangents/concrete and original cloud/daylight sky.
+Added COLLISION-07, LOD-01, DRESS-01, MAT-01, SKY-01 and open MAT-02; broad prior
+production gates remain open. No new dependency/media or ragdoll articulation
+change. ADR054/055 and testing/part05-world contain rationale and actual receipts.
+
+## 2026-11-07 — Roadside composition variety
+
+Expanded Part05 dressing from15 to35 original-catalog roles and20 authored groups.
+Added near-road farm verges, service/loading clusters, civic/post/transit furniture
+and hill pullouts. Seeded independent sides/model/spacing/heading/size replace the
+mirrored cycle. Weighted per-zone shares preserve whole-route coverage within224
+static owners. Existing clearance/support/solid collision rules retained; no trees,
+new dependencies/media, rider/recovery or structural map changes. ADR056 and
+[test evidence](testing/roadside-variety/README.md) record acceptance and limits.

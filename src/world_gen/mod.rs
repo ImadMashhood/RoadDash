@@ -184,3 +184,5 @@ mod construction_tests;
 
 pub mod architecture;
 pub mod elevation;
+
+pub mod dressing;

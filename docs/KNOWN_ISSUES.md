@@ -476,3 +476,40 @@ art and independent visual distal joints remain unfinished under RAG-05.
 - Latest ADR053 survey meets the local1080p wall-frame target at15.83ms p95 after
   ornament-shadow trimming. The earlier failed snapshots remain historical evidence;
   long-race/streaming-memory and multi-hardware performance gates are still open.
+
+## Part05 world/contact follow-up — 2026-11-07
+
+- Pedestrians/recovering riders no longer stop the mounted attacker; downed-bike
+  lift uses saved entry motion and a bounded pair-linear-energy budget. Cows,
+  cars and upright rear-bike contacts retain their separate policies. This is
+  an arcade contact adapter, not deformable-body impact reconstruction.
+- New shared microdetail covers34 original palette source profiles. It does not
+  repaint every vehicle/prop/rider/building albedo. MAT-02 explicitly tracks that
+  remaining per-family artwork and native approval; broad V2 art gates stay open.
+- Cloud sky is 256px RGBA8 cube data, not HDR photography/volumetric weather.
+  Approximate environment mips and slow rotation do not model cloud shadows or
+  physically convolved specular irradiance. Final art/landscape approval remains.
+- Ready-scene transitions use shader dither over 0.30s; silhouette shifts and
+  temporary dither grain can still be visible. Long streaming/memory/hardware
+  certification remains open. First new native sample missed16.7ms at19.02ms p95;
+  retain the receipt rather than claiming a performance gate passed.
+-131 new Valley props use existing draft geometry and solid proxies. Full model
+  fidelity, category sound/breakables, encounters and all-category placement are
+  still V2-05-002..005 work. No new trees or building lots were added.
+- Hidden prepared-scene fade command trimming improved the second local sample
+  to17.93ms p95, still above16.7ms. An unrelated repository's CPU-heavy test was
+  running during that sample; isolated idle-machine performance remains unverified.
+
+## Roadside variety follow-up — 2026-11-07
+
+- Roadside dressing now offers35 roles/20 small groups from the existing draft
+  catalog, within224 static owners and weighted biome shares. Larger props/groups
+  can lose members to clearance or support checks. Parked vehicles do not drive.
+- No extra trees were added. Final prop fidelity, broader encounter/audio behavior
+  and V2-05 production acceptance remain open; more variety does not finish those.
+- The new pattern is for the default Valley structural layout; explicit City Run
+  retains its separate existing city socket pass. Structural building quotas and
+  accepted rider/ragdoll behavior are unchanged.
+- Roadside-variety native survey retained all224 owners/680 rendered mesh
+  descendants; the final local sample measured17.11ms p95, still above16.7ms.
+  Placement acceptance is separate from the still-open performance gate.

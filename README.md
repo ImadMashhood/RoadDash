@@ -125,13 +125,15 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**174 verified tasks complete; 222 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**180 verified tasks complete; 223 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
 **Status:** `[x]` means implemented and verified; `[ ]` includes partial and unverified work. Moving a task does not change its status or close a gate. Carried-forward requirements retain their full original wording: some subfeatures already work, but their remaining tests, polish or acceptance keep the whole requirement open. The [execution contract](docs/roadmap/EXECUTION_V2.md) defines the new V2 acceptance criteria; the [supporting blueprint contracts](docs/roadmap/SUPPORTING_CONTRACTS.md) retain dependency proposals, environment/audio inventories, budgets and rights context. [Known issues](docs/KNOWN_ISSUES.md), [decisions](docs/DECISIONS.md) and [history](docs/CHANGELOG_DEV.md) retain evidence and limitations.
 
 Upright rear-bike contacts now share normal momentum without a hop; closing speed of 60 km/h or more knocks the front rider down. Downed-object ride-over remains separate. Crash motion uses a bounded, energy-paid grounded roll and brief frontal leg-release motors. [Fixes, screenshots and limits](docs/testing/recovery-polish/README.md).
+
+PR16 is merged. Soft-actor/wreck contacts, temporal facade transitions, shared material microdetail, semantic Valley props and original cloud/daylight sky are integrated on the follow-up branch. [New evidence and open art gates](docs/testing/part05-world/README.md).
 
 High-rise/infill fallback detail, mipmapped asphalt and ready-scene LOD swaps are integrated. Unseen rear NPC crashes now use the requested five-second recovery approximation; visible/player physics remain physical. [Behavior and limits](docs/testing/world-polish/README.md).
 
@@ -141,12 +143,12 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 174 verified complete |
+| [00](#part-00) | Completed and verified foundations | 180 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 28 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 23 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 20 open |
-| [05](#part-05) | World B — props, materials and procedural dressing | 6 open |
+| [05](#part-05) | World B — props, materials and procedural dressing | 7 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 10 open |
 | [07](#part-07) | Weapons and complete riding combat | 11 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
@@ -162,6 +164,18 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **DRESS-02** Vary roadside scenery through biome-specific groups and independent seeded sides. Reason: repeated mirrored single-object placement; part: 05; dependencies: DRESS-01 and PROP-03; acceptance: at least28 actual roles and16 groups in all five zones, broad zone coverage, bounded224 owners, guarded road/access/support and unchanged tree counts; verification: deterministic/group validation tests, native mesh/role/zone census and farm/city/hill captures ([evidence](docs/testing/roadside-variety/README.md)). Finished prop art and broad performance acceptance remain separate.
+
+- [x] **COLLISION-07** Preserve forward motion through pedestrians, recovering riders and downed bikes. Reason: post-solver stopped velocity erased speed; part: 01; dependencies: COLLISION-04 and entry motion snapshots; acceptance: attacker remains mounted, soft target falls, downed-bike lift spends remaining linear kinetic energy, no backward response; verification: three-preset and pre-sync contact regressions plus native recovery smoke ([evidence](docs/testing/part05-world/README.md)).
+
+- [x] **LOD-01** Transition ready authored facade groups through the detailed fallback over 0.30s. Reason: abrupt scene replacement remained visible; part: 04; dependencies: KIT-05; acceptance: native shader dither, no blank replacement, one displayed group/lot, actual display and hidden budgets enforced; verification: opacity tests and native 15-section displayed-mesh census ([evidence](docs/testing/part05-world/README.md)). Full silhouette morphing and long streaming QA stay open.
+
+- [x] **DRESS-01** Place existing prop models in guarded Valley sidewalk, field-edge, rural and hill sockets. Reason: the restored map lacked semantic dressing; part: 05; dependencies: PROP-03 and structural layout; acceptance: deterministic IDs, whole-footprint road/access/building guards, solid supported owners and bounded counts; verification: placement tests and native 131-owner/376-mesh census ([evidence](docs/testing/part05-world/README.md)). Full prop/category art and behavior gates remain open.
+
+- [x] **MAT-01** Add shared original palette micro-normal/roughness maps, missing tangents and repeated concrete paving. Reason: flat surfaces and missing glTF tangents; part: 05; dependencies: KIT-02 and verified original palettes; acceptance:34 exact source profiles, bounded asynchronous derivation, shared maps, original colors/positions/skinning preserved; verification: all 34 source/decode hashes, PBR/tangent tests and native 934-material census ([evidence](docs/testing/part05-world/README.md)). Bespoke albedo painting stays open.
+
+- [x] **SKY-01** Add an original seamless cloud sky, daylight environment, warm sun, exposure and fog. Reason: user explicitly requested sky/cloud/lighting before the full landscape pass; part: 06; dependencies: current native renderer; acceptance: bounded typed settings, cube mips/seams, rendered drifting clouds and native recovery smoke; verification: cube/config tests and native screenshots ([evidence](docs/testing/part05-world/README.md)). Volumetric weather and full landscape art are not included.
 
 Everything checked off lives here, grouped by the original system. These are verified requirements, not a claim that every broader feature or production milestone is finished. Expand a group for the exact IDs and evidence.
 
@@ -704,11 +718,14 @@ Study the original building/facade textures locally, rebuild them as original ar
 
 ### Part 05 — World B — props, materials and procedural dressing
 
+- [ ] **MAT-02** Author bespoke detailed albedo/PBR texture families for remaining buildings, vehicles, props and riders. Reason: shared microdetail does not finish every requested texture; part: 05; dependencies: MAT-01, source provenance and approved art direction; acceptance: per-family approved source art, consistent texel density, mip/normal/roughness review, native close/far views with no missing maps; verification: asset hash/license audit, contact sheets and in-game visual approval.
+
+
 Repeat the reference → original textures/models → procedural placement → collision/audio/QA pipeline for props after buildings are accepted.
 
 - [ ] **V2-05-001** Inventory reference prop categories and gameplay roles. [Scoped source catalog and rebuild queue](docs/research/props/README.md) extracted across all five courses; category/role proposals and eleven visually reviewed unresolved banks remain subject to identity/archetype/source-use review. Includes pedestrians, animals, traffic/parked vehicles, lamps/utilities, trees/plants, signs, furniture, fences, rocks and ground hazards. Source view/color/size banks are not unique finished models.
 - [ ] **V2-05-002** Author original prop meshes and texture families. [Actual draft mesh catalog](art/props/mesh_assets/README.md): 369 source IDs, 1,107 GLBs, 13 editable Blender scenes and exported-mesh proof renders. These are rough shared-archetype geometry drafts, not faithful finished reproductions of the [66 concept sheets](art/props/concept_3d/ALL_CONCEPTS.html). Significant silhouette/material/pictogram/actor refinement, finished deformation rigs, collider refinement, wider placement and final art approval remain open. Selected drafts now run in game through PROP-03. Inspect with `cargo run --locked --bin prop_preview`; accepted race physics remain unchanged.
-- [ ] **V2-05-003** Place props through semantic rules. PROP-03 adds reserved city sockets, existing tree/lamp replacements and traffic/NPC attachment; full category placement, variety and encounter review remain open.
+- [ ] **V2-05-003** Place props through semantic rules. PROP-03 adds reserved city sockets, existing tree/lamp replacements and traffic/NPC attachment; DRESS-01 adds131 guarded Valley props across15 roles. Full category placement, variety and encounter review remain open.
 - [ ] **V2-05-004** Give gameplay props reliable physical/audio behavior. PROP-03 preserves existing moving-owner and ragdoll collisions and adds solid furniture; category-specific audio, breakables and comprehensive behavior QA remain open.
 - [ ] **V2-05-005** Exit gate: dressed world remains playable.
 

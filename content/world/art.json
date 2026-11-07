@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "sky_resolution": 256,
+  "sky_nits": 16000.0,
+  "environment_nits": 1100.0,
+  "sun_lux": 48000.0,
+  "ambient_nits": 2200.0,
+  "exposure_ev100": 13.0,
+  "cloud_coverage": 0.48,
+  "wind_radians_per_second": 0.0008,
+  "fog_start_m": 180.0,
+  "fog_end_m": 1050.0
+}

@@ -555,3 +555,127 @@ fn rear_contact_threshold_and_mass_weighted_push_do_not_add_vertical_speed() {
         }
     }
 }
+
+#[derive(Resource)]
+struct MountedContact(Entity, Vec3, f32, bool);
+fn capture_mounted(mut capture: ResMut<MountedContact>, riders: Query<(&Recovery, &Velocity)>) {
+    if let Ok((recovery, v)) = riders.get(capture.0) {
+        capture.2 = v.linvel.dot(capture.1);
+        capture.3 = recovery.stage == RecoveryStage::Riding;
+    }
+}
+#[test]
+fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
+    for kind in ["pedestrian", "runner", "wreck"] {
+        let mut app = game::tests::simulation();
+        for _ in 0..3 {
+            app.update();
+        }
+        app.insert_resource(VehiclePhysicsAdapter::Dynamic);
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let pose = *app.world().get::<Transform>(owner).unwrap();
+        let forward = pose.rotation * Vec3::Z;
+        {
+            let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+            r.speed = 30.0;
+            r.motion_velocity = forward * 30.0;
+            r.immunity = 0.0;
+        }
+        app.world_mut().entity_mut(owner).insert((
+            BikeState {
+                impact_velocity: forward * 30.0,
+                ..default()
+            },
+            Velocity::zero(),
+        ));
+        let point = pose.translation + forward * 2.5;
+        let mut walking_owner = None;
+        let target = if kind == "pedestrian" {
+            app.world_mut()
+                .spawn((
+                    crate::npc::Npc::new(
+                        crate::npc::NpcKind::Pedestrian,
+                        Transform::from_translation(point),
+                    ),
+                    Transform::from_translation(point),
+                    Visibility::Visible,
+                    RigidBody::KinematicPositionBased,
+                    Collider::capsule_y(0.6, 0.25),
+                ))
+                .id()
+        } else {
+            let victim = app
+                .world_mut()
+                .spawn((
+                    Rider::new(1),
+                    Transform::from_translation(point + forward * 20.0),
+                    Visibility::Hidden,
+                ))
+                .id();
+            let body = app
+                .world_mut()
+                .spawn((
+                    OwnedBody {
+                        owner: victim,
+                        kind: if kind == "runner" {
+                            recovery::BodyKind::Runner
+                        } else {
+                            recovery::BodyKind::Wreck
+                        },
+                    },
+                    Transform::from_translation(
+                        point
+                            + if kind == "runner" {
+                                Vec3::Y * 0.95
+                            } else {
+                                Vec3::ZERO
+                            },
+                    )
+                    .with_rotation(pose.rotation),
+                    RigidBody::Dynamic,
+                    Collider::cuboid(0.3, 0.5, 0.8),
+                    ColliderMassProperties::Mass(45.0),
+                    Velocity::zero(),
+                ))
+                .id();
+            if kind == "runner" {
+                walking_owner = Some(victim);
+                app.world_mut().get_mut::<Recovery>(victim).unwrap().stage = RecoveryStage::Running;
+                app.world_mut().get_mut::<Recovery>(victim).unwrap().runner = Some(body);
+            }
+            body
+        };
+        app.insert_resource(MountedContact(owner, forward, 0.0, false))
+            .add_systems(
+                FixedUpdate,
+                capture_mounted
+                    .after(SimSet::Gameplay)
+                    .before(PhysicsSet::SyncBackend),
+            );
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut()
+            .write_message(recovery::SweptContact(owner, target));
+        app.update();
+        let result = app.world().resource::<MountedContact>();
+        assert!(result.3, "{kind} ejected rider");
+        assert!(result.2 > 20.0, "{kind} stopped bike: {}", result.2);
+        assert!(
+            app.world().get::<Rider>(owner).unwrap().hop_velocity > 0.0,
+            "{kind} missed ride-over lift"
+        );
+        if let Some(victim) = walking_owner {
+            assert_eq!(
+                app.world().get::<Recovery>(victim).unwrap().stage,
+                RecoveryStage::Falling,
+                "walking victim was not knocked down"
+            );
+        }
+        if kind == "pedestrian" {
+            assert!(!app.world().get::<crate::npc::Npc>(target).unwrap().active());
+        }
+    }
+}

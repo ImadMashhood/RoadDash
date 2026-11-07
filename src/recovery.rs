@@ -57,6 +57,7 @@ pub enum BodyKind {
     Runner,
 }
 #[derive(Component, Clone, Copy)]
+#[require(PreviousMotion)]
 pub struct OwnedBody {
     pub owner: Entity,
     pub kind: BodyKind,
@@ -911,11 +912,22 @@ fn contact_class(
 pub struct SweptContact(pub Entity, pub Entity);
 
 #[derive(Clone, Copy)]
+struct SoftHit {
+    owner: Entity,
+    target: Entity,
+    incoming: Vec3,
+    target_before: Vec3,
+    target_after: Vec3,
+    closing: f32,
+    target_mass: f32,
+}
+#[derive(Clone, Copy)]
 enum Impact {
     Crash(Entity, Option<Vec3>),
     Nudge(Entity, Vec3),
     Rear(Entity, Entity, Vec3, Vec3),
-    RideOver(Entity, Vec3, f32, Option<Entity>),
+    RideOver(Entity, Vec3, f32, Option<(Entity, Vec3)>),
+    Pedestrian(SoftHit),
     Original(Entity, rr_core::original_crash::Contact, Quat),
 }
 
@@ -940,13 +952,20 @@ pub fn impacts(
         Query<Option<&crate::environment::Patrol>, With<crate::environment::CrossTraffic>>,
         Query<&crate::npc::Npc>,
     ),
-    (velocities, bike_states): (Query<&Velocity>, Query<&crate::vehicle::BikeState>),
+    (velocities, bike_states, previous): (
+        Query<&Velocity>,
+        Query<&crate::vehicle::BikeState>,
+        Query<&PreviousMotion>,
+    ),
     (obstacles, ground): (
         Query<(), With<Obstacle>>,
         Query<(), With<crate::world::Ground>>,
     ),
     controllers: Query<(Entity, &KinematicCharacterControllerOutput)>,
-    mut audio: MessageWriter<AudioCue>,
+    (mut audio, mut npc_hits): (
+        MessageWriter<AudioCue>,
+        MessageWriter<crate::combat::NpcHit>,
+    ),
     context: ReadRapierContext,
     original: Option<Res<crate::original_crash::OriginalCrashes>>,
 ) {
@@ -1083,7 +1102,12 @@ pub fn impacts(
                         if rr_core::contact::ride_over_velocity(closing).is_some()
                             && b.translation.y < a.translation.y + 1.5
                         {
-                            actions.push(Impact::RideOver(bike, velocity, closing, Some(other)));
+                            actions.push(Impact::RideOver(
+                                bike,
+                                velocity,
+                                closing,
+                                Some((other, previous.get(other).map_or(target_velocity, |v| v.0))),
+                            ));
                         }
                     }
                     continue;
@@ -1097,11 +1121,19 @@ pub fn impacts(
                         |(_, out)| out.effective_translation / time.delta_secs(),
                     );
                     let closing = (velocity - other_velocity).dot(normal).max(0.0);
+                    let shared = rr_core::contact::shared_normal_speed(
+                        velocity.dot(normal),
+                        other_velocity.dot(normal),
+                        rider.bike_mass + 70.0,
+                        70.0,
+                    );
+                    let source = velocity + normal * (shared - velocity.dot(normal));
+                    let target = other_velocity + normal * (shared - other_velocity.dot(normal));
                     if closing > 0.75 {
-                        actions.push(Impact::Crash(body.owner, None));
+                        actions.push(Impact::Crash(body.owner, Some(target)));
                     }
                     if rr_core::contact::ride_over_velocity(closing).is_some() {
-                        actions.push(Impact::RideOver(bike, velocity, closing, None));
+                        actions.push(Impact::RideOver(bike, source, closing, None));
                     }
                 }
             } else if cows.contains(other) || npcs.get(other).is_ok_and(|npc| npc.active()) {
@@ -1115,7 +1147,41 @@ pub fn impacts(
                     });
                     let fraction =
                         rr_core::crash::shared_speed_fraction(rider.bike_mass + 70.0, target_mass);
-                    actions.push(Impact::Crash(bike, Some(velocity * fraction)));
+                    if npcs
+                        .get(other)
+                        .is_ok_and(|npc| npc.kind == crate::npc::NpcKind::Pedestrian)
+                    {
+                        let normal = transforms
+                            .get(bike)
+                            .ok()
+                            .zip(transforms.get(other).ok())
+                            .map_or(velocity.with_y(0.0).normalize_or_zero(), |(a, b)| {
+                                (b.translation - a.translation)
+                                    .with_y(0.0)
+                                    .normalize_or_zero()
+                            });
+                        let target_velocity =
+                            velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel);
+                        let closing = (velocity - target_velocity).dot(normal).max(0.0);
+                        let shared = rr_core::contact::shared_normal_speed(
+                            velocity.dot(normal),
+                            target_velocity.dot(normal),
+                            rider.bike_mass + 70.0,
+                            target_mass,
+                        );
+                        actions.push(Impact::Pedestrian(SoftHit {
+                            owner: bike,
+                            target: other,
+                            incoming: velocity,
+                            target_before: target_velocity,
+                            target_after: target_velocity
+                                + normal * (shared - target_velocity.dot(normal)),
+                            closing,
+                            target_mass,
+                        }));
+                    } else {
+                        actions.push(Impact::Crash(bike, Some(velocity * fraction)));
+                    }
                 }
             } else if cross_cars.contains(other)
                 || (!ground.contains(other) && obstacles.contains(other))
@@ -1257,6 +1323,40 @@ pub fn impacts(
                     }
                 }
             }
+            Impact::Pedestrian(hit) => {
+                if let Ok((mut rider, recovery, _)) = riders.get_mut(hit.owner)
+                    && recovery.stage == RecoveryStage::Riding
+                {
+                    npc_hits.write(crate::combat::NpcHit(hit.target, hit.target_after, false));
+                    let hop = if rider.impact_cooldown <= 0.0 {
+                        rr_core::contact::ride_over_velocity(hit.closing)
+                    } else {
+                        None
+                    };
+                    let resolved = Vec3::from_array(
+                        rr_core::contact::ride_over_response(
+                            hit.incoming.to_array(),
+                            hit.target_before.to_array(),
+                            hit.target_after.to_array(),
+                            rider.bike_mass + 70.0,
+                            hit.target_mass,
+                            hop.unwrap_or(0.0),
+                        )
+                        .unwrap_or(hit.incoming.to_array()),
+                    );
+                    rider.motion_velocity = resolved;
+                    rider.speed = resolved.with_y(0.0).length();
+                    if hop.is_some() {
+                        rider.hop_velocity = rider.hop_velocity.max(resolved.y);
+                        rider.impact_cooldown = 0.35;
+                    }
+                    commands.queue(move |world: &mut World| {
+                        if let Some(mut velocity) = world.get_mut::<Velocity>(hit.owner) {
+                            velocity.linvel = resolved;
+                        }
+                    });
+                }
+            }
             Impact::RideOver(owner, incoming, closing, target) => {
                 if let Ok((mut rider, recovery, _)) = riders.get_mut(owner)
                     && recovery.stage == RecoveryStage::Riding
@@ -1268,39 +1368,39 @@ pub fn impacts(
                     rider.motion_velocity = incoming.with_y(incoming.y.max(up));
                     rider.impact_cooldown = 0.35;
                     commands.queue(move |world: &mut World| {
-                        // Keep native horizontal momentum transfer; add only the
-                        // explicitly requested vertical ride-over assist.
-                        let mut launch = if world
-                            .get_resource::<crate::vehicle::VehiclePhysicsAdapter>()
-                            .is_some_and(|a| {
-                                matches!(a, crate::vehicle::VehiclePhysicsAdapter::Dynamic)
-                            }) {
-                            world.get::<Velocity>(owner).map_or(incoming, |v| v.linvel)
-                        } else {
-                            incoming
-                        };
-                        launch.y = launch.y.max(up);
-                        let mut momentum = Vec3::ZERO;
-                        if let Some(target) = target {
-                            let mass = world
+                        let mut before = Vec3::ZERO;
+                        let mut after = Vec3::ZERO;
+                        let mut mass = 0.0;
+                        if let Some((target, target_before)) = target {
+                            before = target_before;
+                            mass = world
                                 .get::<ReadMassProperties>(target)
                                 .map_or(20.0, |m| m.mass.max(0.25));
                             let delta =
                                 incoming.with_y(0.0).normalize_or_zero() * (closing * 0.2).min(3.0);
-                            if let Some(mut v) = world.get_mut::<Velocity>(target) {
-                                v.linvel += delta;
-                                momentum = delta * mass;
+                            if let Some(mut velocity) = world.get_mut::<Velocity>(target) {
+                                velocity.linvel += delta;
+                                after = velocity.linvel;
                             }
                         }
-                        let mut adjusted = launch - momentum / own_mass;
-                        let forward = incoming.with_y(0.0).normalize_or_zero();
-                        adjusted -= forward * adjusted.dot(forward).min(0.0);
-                        if let Some(mut v) = world.get_mut::<Velocity>(owner) {
-                            v.linvel = adjusted;
+                        let adjusted = Vec3::from_array(
+                            rr_core::contact::ride_over_response(
+                                incoming.to_array(),
+                                before.to_array(),
+                                after.to_array(),
+                                own_mass,
+                                mass,
+                                up,
+                            )
+                            .unwrap_or(incoming.to_array()),
+                        );
+                        if let Some(mut velocity) = world.get_mut::<Velocity>(owner) {
+                            velocity.linvel = adjusted;
                         }
-                        if let Some(mut r) = world.get_mut::<Rider>(owner) {
-                            r.speed = adjusted.with_y(0.0).length();
-                            r.motion_velocity = adjusted;
+                        if let Some(mut rider) = world.get_mut::<Rider>(owner) {
+                            rider.speed = adjusted.with_y(0.0).length();
+                            rider.motion_velocity = adjusted;
+                            rider.hop_velocity = adjusted.y.max(0.0);
                         }
                     });
                 }
@@ -1580,3 +1680,12 @@ pub(crate) fn constrain_crash_energy(
 
 #[cfg(test)]
 mod tests;
+
+/// Snapshot after gameplay response, before the physics step that may stop a bike.
+#[derive(Component, Default)]
+pub struct PreviousMotion(pub Vec3);
+pub fn remember_owned_motion(mut bodies: Query<(&Velocity, &mut PreviousMotion), With<OwnedBody>>) {
+    for (v, mut before) in &mut bodies {
+        before.0 = v.linvel;
+    }
+}

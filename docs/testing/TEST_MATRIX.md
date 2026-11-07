@@ -388,3 +388,26 @@ pass without a stack environment override after configuring asset IO workers.
 World survey checks actual displayed geometry, bounded hidden preparations/cache
 and unchanged657 physical lots; frame target and broader art/hardware gates stay
 separate. Part05 is explicitly requested after commit/push/merge, not auto-advanced.
+
+## 2026-11-07 — Part05 world/contact follow-up
+
+Receipt: [part05-world/README.md](part05-world/README.md). Soft actors and wrecks
+use saved entry motion; test all three handling presets, stopped solver velocity,
+mounted attacker, knocked target and bounded pair energy/lift. Existing complete
+model/physics/recovery/control/reset/save regressions remain in workspace tests.
+New tests validate deterministic footprint-guarded dressing,34 provenance/decode
+profiles, mip/PBR channels, tangent position preservation, cube edges/config and
+dither weights. Native smoke covers two crashes/remounts/audio/finish. Full-route
+survey counts actual loaded prop meshes/maps/tangents and unchanged657 building
+owners, separately from bounded frame-time and broader art/hardware acceptance.
+
+## 2026-11-07 — Roadside variety
+
+DRESS-02 receipt: [roadside-variety/README.md](roadside-variety/README.md).
+Seeded35-role/20-group grammar validated against the original prop catalog;
+compare complete transforms/size/model seeds, change scenery seed, check zone
+start/end coverage, fair weighted budgets, road/access/support clearance and
+malformed/missing references. Native census must show at least28 roles/16 groups,
+all five zones and actual descendant meshes/solid owners. Extended world survey
+adds close views of actual farm pickup, city transit and hill picnic groups after
+the existing benchmark/pose stages, without modifying measured simulation timing.

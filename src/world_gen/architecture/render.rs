@@ -7,6 +7,8 @@ pub struct Slot {
     active: Option<(usize, u8)>,
     children: Vec<Entity>,
     prepared: Option<Prepared>,
+    blend: f32,
+    target: f32,
 }
 struct Prepared {
     key: (usize, u8),
@@ -28,6 +30,8 @@ impl Slot {
             active: None,
             children: vec![],
             prepared: None,
+            blend: 0.0,
+            target: 0.0,
         }
     }
 }
@@ -36,6 +40,7 @@ pub struct Fallback {
     pub index: usize,
     pub wall: bool,
     pub size: Vec3,
+    pub range: bevy::camera::visibility::VisibilityRange,
 }
 struct Cached {
     scenes: [Handle<Scene>; 3],
@@ -118,14 +123,6 @@ pub fn update(
     instances: Query<&bevy::scene::SceneInstance>,
     spawner: Res<bevy::scene::SceneSpawner>,
     mut slots: Query<(Entity, &mut Slot), Without<Fallback>>,
-    mut fallback: Query<
-        (&Fallback, &mut Visibility, &mut Transform),
-        (
-            Without<Slot>,
-            Without<Camera3d>,
-            Without<bevy_rapier3d::prelude::RigidBody>,
-        ),
-    >,
 ) {
     let Ok(camera) = cameras.single() else {
         return;
@@ -278,6 +275,23 @@ pub fn update(
         }
         selected.insert(entity, (index, lod, mask, panels, scenes));
     }
+    let cost = |index: usize, key: Option<(usize, u8)>| {
+        key.map_or(0, |(lod, mask)| {
+            let b = &plan.buildings[index];
+            let d = &plan.catalog.records[b.design];
+            b.panels(d, mask)
+                .iter()
+                .map(|p| d.lods[lod].triangles[p.band])
+                .sum::<usize>()
+        })
+    };
+    let mut usage = slots.iter().fold((0usize, 0usize, 0usize), |sum, (_, s)| {
+        (
+            sum.0 + usize::from(s.active.is_some()),
+            sum.1 + s.children.len(),
+            sum.2 + cost(s.index, s.active),
+        )
+    });
     for (entity, mut slot) in &mut slots {
         let next = selected.remove(&entity);
         let key = next.as_ref().map(|(_, lod, mask, _, _)| (*lod, *mask));
@@ -287,6 +301,7 @@ pub fn update(
             }
         }
         if slot.active == key {
+            slot.target = f32::from(key.is_some());
             continue;
         }
         let ready = slot.prepared.as_ref().is_some_and(|p| {
@@ -297,6 +312,31 @@ pub fn update(
             })
         });
         if key.is_none() || ready {
+            slot.target = 0.0;
+            if slot.blend > 0.001 {
+                continue;
+            }
+            let old = (
+                usize::from(slot.active.is_some()),
+                slot.children.len(),
+                cost(slot.index, slot.active),
+            );
+            let new = (
+                usize::from(key.is_some()),
+                slot.prepared.as_ref().map_or(0, |p| p.children.len()),
+                cost(slot.index, key),
+            );
+            if usage.0 - old.0 + new.0 > plan.rules.max_active_buildings
+                || usage.1 - old.1 + new.1 > plan.rules.max_active_panels
+                || usage.2 - old.2 + new.2 > plan.rules.max_active_triangles
+            {
+                continue;
+            }
+            usage = (
+                usage.0 - old.0 + new.0,
+                usage.1 - old.1 + new.1,
+                usage.2 - old.2 + new.2,
+            );
             for child in slot.children.drain(..) {
                 commands.entity(child).despawn();
             }
@@ -307,6 +347,7 @@ pub fn update(
                 slot.children = prepared.children;
             }
             slot.active = key;
+            slot.target = f32::from(key.is_some());
             stream.switches += 1;
         } else if slot.prepared.is_none()
             && let Some((_, lod, mask, panels, scenes)) = next
@@ -318,11 +359,13 @@ pub fn update(
                         SceneRoot(scenes[panel.band].clone()),
                         panel.transform,
                         Visibility::Hidden,
+                        FacadeRoot {
+                            slot: entity,
+                            coarse: lod == 2,
+                        },
                     ))
+                    .observe(scene_ready)
                     .id();
-                if lod == 2 {
-                    commands.entity(child).observe(coarse_shadows);
-                }
                 commands.entity(entity).add_child(child);
                 children.push(child);
             }
@@ -336,10 +379,8 @@ pub fn update(
     stream.active_buildings = 0;
     stream.active_panels = 0;
     stream.active_triangles = 0;
-    let mut active_indices = BTreeSet::new();
     for (_, slot) in &slots {
         if let Some((lod, mask)) = slot.active {
-            active_indices.insert(slot.index);
             stream.active_buildings += 1;
             stream.active_panels += slot.children.len();
             let b = &plan.buildings[slot.index];
@@ -349,28 +390,6 @@ pub fn update(
                 .iter()
                 .map(|p| design.lods[lod].triangles[p.band])
                 .sum::<usize>();
-        }
-    }
-    for (f, mut visible, mut t) in &mut fallback {
-        let active = active_indices.contains(&f.index);
-        if f.wall {
-            let a = &plan.buildings[f.index];
-            let inset = if active {
-                a.inset(&plan.catalog.records[a.design])
-            } else {
-                0.0
-            };
-            t.scale = Vec3::new(
-                (f.size.x - 2.0 * inset).max(1.0),
-                f.size.y,
-                (f.size.z - 2.0 * inset).max(1.0),
-            );
-        } else {
-            *visible = if active {
-                Visibility::Hidden
-            } else {
-                Visibility::Inherited
-            };
         }
     }
     if stream.cache.len() > 48 {
@@ -388,17 +407,148 @@ pub fn update(
     }
 }
 
-// The structural shell keeps the building shadow. Distant small facade ornaments
-// do not need another shadow draw per primitive; near/mid details retain theirs.
-fn coarse_shadows(
+#[derive(Component)]
+struct FacadeRoot {
+    slot: Entity,
+    coarse: bool,
+}
+#[derive(Component)]
+pub struct FadePart {
+    slot: Entity,
+}
+fn scene_ready(
     event: On<bevy::scene::SceneInstanceReady>,
     children: Query<&Children>,
     meshes: Query<(), With<Mesh3d>>,
+    roots: Query<&FacadeRoot>,
     mut commands: Commands,
 ) {
+    let Ok(root) = roots.get(event.entity) else {
+        return;
+    };
     for entity in children.iter_descendants(event.entity) {
         if meshes.contains(entity) {
-            commands.entity(entity).insert(bevy::light::NotShadowCaster);
+            commands.entity(entity).insert(FadePart { slot: root.slot });
+            if root.coarse {
+                commands.entity(entity).insert(bevy::light::NotShadowCaster);
+            }
+        }
+    }
+}
+/// Encode time opacity in Bevy's existing dithered-LOD shader, without cloning materials.
+fn fade_range(distance: f32, weight: f32) -> bevy::camera::visibility::VisibilityRange {
+    let width = (distance * 0.5).clamp(0.01, 5.0);
+    let alpha = weight.clamp(0.0, 1.0);
+    bevy::camera::visibility::VisibilityRange {
+        start_margin: 0.0..0.0,
+        end_margin: (distance - (1.0 - alpha) * width)..(distance + alpha * width),
+        use_aabb: false,
+    }
+}
+#[allow(clippy::type_complexity)]
+pub fn fade(
+    mut commands: Commands,
+    time: Res<Time>,
+    plan: Res<Architecture>,
+    cameras: Query<&Transform, With<Camera3d>>,
+    mut slots: Query<(Entity, &mut Slot)>,
+    mut fallback: Query<
+        (
+            &Fallback,
+            &GlobalTransform,
+            &mut Transform,
+            &mut Visibility,
+            &mut bevy::camera::visibility::VisibilityRange,
+        ),
+        (
+            Without<Camera3d>,
+            Without<bevy_rapier3d::prelude::RigidBody>,
+        ),
+    >,
+    parts: Query<
+        (
+            Entity,
+            &FadePart,
+            &InheritedVisibility,
+            &GlobalTransform,
+            Option<&bevy::camera::visibility::VisibilityRange>,
+        ),
+        Without<Fallback>,
+    >,
+) {
+    let Ok(camera) = cameras.single() else { return };
+    let camera = camera.translation;
+    for (_, mut slot) in &mut slots {
+        let delta = time.delta_secs() / 0.30;
+        slot.blend += (slot.target - slot.blend).clamp(-delta, delta);
+    }
+    let mut values = vec![0.0; plan.buildings.len()];
+    for (_, slot) in &slots {
+        values[slot.index] = slot.blend;
+    }
+    for (f, global, mut transform, mut visibility, mut range) in &mut fallback {
+        let weight = values[f.index];
+        if f.wall {
+            let b = &plan.buildings[f.index];
+            let inset = b.inset(&plan.catalog.records[b.design]) * weight;
+            let scale = Vec3::new(
+                (f.size.x - 2.0 * inset).max(1.0),
+                f.size.y,
+                (f.size.z - 2.0 * inset).max(1.0),
+            );
+            if transform.scale != scale {
+                transform.scale = scale;
+            }
+        } else {
+            let next_visibility = if weight >= 0.999 {
+                Visibility::Hidden
+            } else {
+                Visibility::Inherited
+            };
+            if *visibility != next_visibility {
+                *visibility = next_visibility;
+            }
+            let next_range = if !(0.001..0.999).contains(&weight) {
+                f.range.clone()
+            } else {
+                fade_range(global.translation().distance(camera), 1.0 - weight)
+            };
+            if *range != next_range {
+                *range = next_range;
+            }
+        }
+    }
+    for (entity, part, inherited, global, range) in &parts {
+        // Prepared scenes are hidden: avoid per-mesh commands and render extraction
+        // until their parent becomes visible.
+        if !inherited.get() {
+            continue;
+        }
+        let weight = slots.get(part.slot).map_or(0.0, |(_, s)| s.blend);
+        if weight >= 0.999 {
+            if range.is_some() {
+                commands
+                    .entity(entity)
+                    .remove::<bevy::camera::visibility::VisibilityRange>();
+            }
+        } else {
+            commands
+                .entity(entity)
+                .insert(fade_range(global.translation().distance(camera), weight));
+        }
+    }
+}
+#[cfg(test)]
+mod fade_tests {
+    use super::*;
+    #[test]
+    fn dither_weights_match_across_different_band_origins() {
+        for d in [0.1, 2.0, 30.0, 180.0, 400.0] {
+            for a in [0.0, 0.25, 0.5, 0.75, 1.0] {
+                let r = fade_range(d, a);
+                let actual = (r.end_margin.end - d) / (r.end_margin.end - r.end_margin.start);
+                assert!((actual - a).abs() < 0.001);
+            }
         }
     }
 }

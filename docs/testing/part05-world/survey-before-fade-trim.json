@@ -1,0 +1,83 @@
+{
+  "architecture": {
+    "active_buildings": 13,
+    "active_panels": 741,
+    "actual_mesh_entities": 4017,
+    "bound_lots": 657,
+    "cached_lods": 22,
+    "catalog_designs": 128,
+    "limits": {
+      "buildings": 20,
+      "panels": 750,
+      "triangles": 1000000
+    },
+    "prepared_panels": 446,
+    "resident_coarse_lods": 108,
+    "scene_roots": 741,
+    "switches": 251,
+    "visible_triangle_instances": 864452
+  },
+  "benchmark": "warmed city view with active fifteen-racer simulation; current default rendering, no production quality preset",
+  "dressing": {
+    "actual_mesh_entities": 376,
+    "placed": 131,
+    "planned": 131,
+    "rejected_existing": 0,
+    "roles": {
+      "bench": 11,
+      "bin": 11,
+      "callbox": 6,
+      "hay": 9,
+      "hydrant": 12,
+      "logs": 8,
+      "meter": 12,
+      "newspaper": 11,
+      "picnic": 6,
+      "planter": 11,
+      "produce": 12,
+      "rocks": 4,
+      "sign": 7,
+      "utility": 3,
+      "wagon": 8
+    }
+  },
+  "fields": 42,
+  "junctions": 9,
+  "limitations": "bounded wall-frame sample, not GPU timing or Windows hardware certification",
+  "logical_buildings": 657,
+  "material_detail": {
+    "materials_enhanced": 934,
+    "settled_at_capture": true,
+    "unique_shared_map_pairs": 32
+  },
+  "metrics": {
+    "active_fixed_ticks": 2230,
+    "colliders": 3045,
+    "entities": 27200,
+    "fixed_ticks": 2574,
+    "last_gameplay_ms": 0.4869309961795807,
+    "last_physics_ms": 4.560361862182617,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 2575,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 15.727560043334961,
+    "wall_frame_p95_ms": 19.018672943115234
+  },
+  "p95_target_met": false,
+  "p95_target_ms": 16.7,
+  "present_mode": "AutoNoVsync",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "sections_captured": 15,
+  "tangents": {
+    "generated_meshes": 1284,
+    "settled_at_capture": true,
+    "unsupported_meshes": 0
+  },
+  "update_mode": "Continuous focused and unfocused (benchmark only)",
+  "visible_far_proxies": 405,
+  "visible_near_parts": 244,
+  "window_focused": true
+}

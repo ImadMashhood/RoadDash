@@ -108,3 +108,74 @@ mod rear_tests {
         assert!((REAR_KNOCKOFF_MPS * 3.6 - 60.0).abs() < 1e-4);
     }
 }
+
+/// Ride-over response after target momentum transfer. Extra lift spends available
+/// pair linear kinetic energy; it cannot act as a free horizontal speed or energy source.
+pub fn ride_over_response(
+    entry: [f32; 3],
+    target_before: [f32; 3],
+    target_after: [f32; 3],
+    own_mass: f32,
+    target_mass: f32,
+    requested_up: f32,
+) -> Option<[f32; 3]> {
+    if entry
+        .into_iter()
+        .chain(target_before)
+        .chain(target_after)
+        .chain([own_mass, target_mass, requested_up])
+        .any(|v| !v.is_finite())
+        || own_mass <= 0.0
+        || target_mass < 0.0
+        || requested_up < 0.0
+    {
+        return None;
+    }
+    let energy = |v: [f32; 3]| v.into_iter().map(|x| x * x).sum::<f32>();
+    let remaining = ((own_mass * energy(entry) + target_mass * energy(target_before)
+        - target_mass * energy(target_after))
+        / own_mass)
+        .max(0.0);
+    let mut out = entry;
+    for axis in [0, 2] {
+        out[axis] -= (target_after[axis] - target_before[axis]) * target_mass / own_mass;
+    }
+    let forward2 = entry[0] * entry[0] + entry[2] * entry[2];
+    if forward2 > 0.0001 {
+        let backwards = (out[0] * entry[0] + out[2] * entry[2]).min(0.0) / forward2;
+        out[0] -= entry[0] * backwards;
+        out[2] -= entry[2] * backwards;
+    }
+    let up = entry[1].max(requested_up.min(forward2.sqrt() * 0.3));
+    out[1] = up.min(remaining.sqrt());
+    let horizontal = out[0] * out[0] + out[2] * out[2];
+    let available = (remaining - out[1] * out[1]).max(0.0);
+    if horizontal > available && horizontal > 0.0 {
+        let factor = (available / horizontal).sqrt();
+        out[0] *= factor;
+        out[2] *= factor;
+    }
+    Some(out)
+}
+#[cfg(test)]
+mod ride_over_energy {
+    use super::*;
+    #[test]
+    fn lift_and_target_push_stay_inside_pair_energy_and_forward_direction() {
+        for speed in [3.0, 10.0, 30.0, 65.0] {
+            for mass in [0.0, 20.0, 70.0, 170.0] {
+                let before = [0.0, 0.0, 0.0];
+                let after = [0.0, 0.0, if mass > 0.0 { speed * 0.35 } else { 0.0 }];
+                let entry = [0.0, 0.0, speed];
+                let out = ride_over_response(entry, before, after, 240.0, mass, 3.8).unwrap();
+                let e = |v: [f32; 3]| v.into_iter().map(|x| x * x).sum::<f32>();
+                assert!(240.0 * e(out) + mass * e(after) <= 240.0 * e(entry) + 0.1);
+                assert!(out[2] >= 0.0 && out[1] >= 0.0);
+            }
+        }
+        assert!(
+            ride_over_response([f32::NAN, 0.0, 0.0], [0.0; 3], [0.0; 3], 240.0, 20.0, 3.0)
+                .is_none()
+        );
+    }
+}
