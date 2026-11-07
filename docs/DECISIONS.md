@@ -1507,3 +1507,66 @@ ADR053 domain boundary: rear/camera interest thresholds and the300-tick delay li
 in rr_core::performance; the Bevy adapter only captures transforms and performs
 entity lifecycle changes. This is an offline NPC approximation. Future server
 authority must own interest/respawn policy rather than trust a client camera.
+
+## ADR054 — Soft actors and downed-bike ride-over preserve entry motion
+
+2026-11-07. Problem: solver-stopped bike velocity was reused for ride-over,
+so pedestrians/recovering riders could remove all forward speed. Selected:
+save entry motion before physics; use mass-weighted normal transfer for soft
+actors, knock the target down and retain the attacking rider. Downed-body/wreck
+push is bounded; rr_core charges lift against remaining pair linear energy and
+prevents reversal. Alternatives: unconditional impulse/speed restoration rejected
+because it creates energy; wiping the attacker rejected by the user's policy.
+Cows, upright rear-bike contact and car crash rules remain separate. Tradeoff:
+arcade soft contact with a bounded clearance hop, not a complete deformable-body
+impact model. Existing body/joint/mass/motor settings remain intact. Native adapter
+owns lifecycle, pure contact rules own arithmetic. No new dependency/reference
+code. Multiplayer will need authoritative entry velocities. Rollback the routing
+and response adapter independently of accepted ragdoll articulation.
+
+## ADR055 — Bounded material detail, temporal facades and semantic dressing
+
+2026-11-07. Problem: abrupt architecture changes, flat materials/sky and sparse
+world props. Alternatives: duplicate every material with alpha and double all
+geometry rejected for memory/draw cost; full custom renderer/weather dependency
+rejected for scope. Selected Bevy0.17.3 native visibility-range dither over 0.30s,
+retaining ready authored scenes and one displayed group per lot. Keep a detailed
+fallback during replacement and enforce actual display budgets during retirement.
+
+Original palette hashes identify34 textures. Shared PBR microdetail and missing
+tangents are prepared asynchronously, at most two jobs per queue; tangents change
+only tangent attributes. Source colors, physical geometry and skin weights remain.
+A typed semantic prop plan protects full lots/access/roads/support and uses existing
+licensed draft models with solid proxies. Sky is original seamless procedural
+RGBA8 cube data with mipmaps, diffuse environment, bounded sunlight/exposure/fog.
+Tradeoffs: additional loading/memory, approximate roughness environment, dither
+noise and no volume/cloud-shadow simulation. Full asset-specific texture painting,
+production art acceptance, sound/category QA and broad performance remain open.
+No new engine/library/repository or copied media. User explicitly authorized this
+sky follow-up before the full NPC/landscape exit. Rollback each cosmetic module
+without changing saved state, physical building quotas or ragdoll systems.
+
+## ADR056 — Biome-specific roadside clusters and independent seeded variation
+
+2026-11-07. Problem: the15-role cycle placed individual objects and mirrored
+left/right furniture, while field-edge objects were too distant to enrich the
+riding view. Alternatives: globally increasing tree/prop density rejected for
+repetition, clearance and performance; new asset packs unnecessary because the
+registered original catalog already contains suitable models. Selected:35 roles
+and20 authored small groups, with a separate near-road farm zone, city transit/
+post/civic/service groups, rural loading/service/scrub and hill pullouts/timber.
+Each member retains full footprint, support, junction, access and existing-object
+checks. Small sidewalk offsets/yaw remain confined to the furniture band.
+
+Use the track scenery seed and stable zone/site/member hashes for independent
+left/right group, model, spacing, size and heading variation. Shuffle site priority
+within each zone and reserve a fair share of the224-prop cap so early farms/city
+cannot starve the hills or only fill the beginning of each district. Groups may
+lose individual members when clearance rejects them; correctness takes priority
+over complete vignettes. Vehicle groups represent solid parked scenery, not new
+traffic/AI. No additional trees or gameplay ragdoll changes. Native counts and
+whole-route samples are required; authoring counts alone are not placement proof.
+Tradeoff: up to64 more static owners than the previous cap, with existing prop
+LOD/distance policy; broad performance and finished prop art remain open. No new
+repository/dependency/media. Rollback only dressing grammar/placement; map quotas,
+collision rules, saves and accepted rider behavior are independent.

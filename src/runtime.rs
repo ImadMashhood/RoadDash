@@ -126,7 +126,11 @@ fn loaded(
     mut next: ResMut<NextState<AppScreen>>,
     art: Option<Res<world::Art>>,
     city: Option<Res<crate::world_gen::city::visuals::ModelCatalog>>,
-    architecture: Option<Res<crate::world_gen::architecture::render::Streaming>>,
+    (architecture, details, tangents): (
+        Option<Res<crate::world_gen::architecture::render::Streaming>>,
+        Option<Res<crate::material_detail::Queue>>,
+        Option<Res<crate::tangent_detail::Queue>>,
+    ),
     server: Option<Res<AssetServer>>,
     props: Query<
         &SceneRoot,
@@ -136,6 +140,12 @@ fn loaded(
         )>,
     >,
 ) {
+    if server.is_some()
+        && (details.as_ref().is_some_and(|d| !d.settled())
+            || tangents.as_ref().is_some_and(|t| !t.settled()))
+    {
+        return;
+    }
     if let (Some(architecture), Some(server)) = (&architecture, &server)
         && !architecture.ready(server)
     {
@@ -231,6 +241,7 @@ impl Plugin for RoadSimulationPlugin {
                     game::debris_cleanup,
                     recovery::slope_friction,
                     crate::vehicle::forces,
+                    recovery::remember_owned_motion,
                 )
                     .chain()
                     .in_set(SimSet::Gameplay),
@@ -273,41 +284,76 @@ impl Plugin for RoadLifecyclePlugin {
                     .chain(),
             )
             .add_systems(OnEnter(AppScreen::Boot), boot)
-            .add_systems(Update, loaded.run_if(in_state(AppScreen::Loading)))
+            .add_systems(
+                Update,
+                loaded
+                    .after(crate::material_detail::update)
+                    .after(crate::tangent_detail::update)
+                    .run_if(in_state(AppScreen::Loading)),
+            )
             .add_systems(Update, screen);
     }
 }
 pub struct RoadWorldPlugin;
 impl Plugin for RoadWorldPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(
-            Startup,
-            (
-                crate::world_gen::setup_plan,
-                world::setup_world,
-                world::validate_scenery,
-                crate::world_gen::report::capture_baseline,
+        app.init_resource::<crate::material_detail::Queue>()
+            .init_resource::<crate::tangent_detail::Queue>()
+            .add_systems(
+                Update,
+                crate::tangent_detail::update
+                    .after(crate::material_detail::update)
+                    .run_if(resource_exists::<AssetServer>),
             )
-                .chain()
-                .in_set(StartupSet::World),
-        )
-        .add_systems(
-            Update,
-            crate::world_gen::city::visuals::update_lod
-                .run_if(resource_exists::<crate::world_gen::city::visuals::ModelCatalog>),
-        )
-        .add_systems(
-            Update,
-            crate::world_gen::architecture::render::update
-                .run_if(resource_exists::<crate::world_gen::architecture::render::Streaming>),
-        )
-        .add_systems(PostStartup, crate::road_detail::install)
-        .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
-        .init_resource::<crate::environment::TrackInspector>()
-        .add_systems(
-            Update,
-            (crate::environment::inspector, crate::world_gen::preview).chain(),
-        );
+            .add_systems(
+                Update,
+                crate::material_detail::update.run_if(resource_exists::<AssetServer>),
+            )
+            .add_systems(
+                Startup,
+                (
+                    crate::world_gen::setup_plan,
+                    world::setup_world,
+                    world::validate_scenery,
+                    crate::world_gen::report::capture_baseline,
+                )
+                    .chain()
+                    .in_set(StartupSet::World),
+            )
+            .add_systems(
+                Update,
+                crate::world_gen::city::visuals::update_lod
+                    .run_if(resource_exists::<crate::world_gen::city::visuals::ModelCatalog>),
+            )
+            .add_systems(
+                Update,
+                (
+                    crate::world_gen::architecture::render::update,
+                    crate::world_gen::architecture::render::fade,
+                )
+                    .chain()
+                    .after(game::camera)
+                    .run_if(resource_exists::<crate::world_gen::architecture::render::Streaming>),
+            )
+            .add_systems(
+                PostStartup,
+                (
+                    crate::road_detail::install,
+                    crate::sky::install,
+                    crate::world_gen::dressing::spawn,
+                    crate::material_detail::paving,
+                ),
+            )
+            .add_systems(
+                Update,
+                crate::sky::drift.run_if(resource_exists::<crate::sky::Settings>),
+            )
+            .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
+            .init_resource::<crate::environment::TrackInspector>()
+            .add_systems(
+                Update,
+                (crate::environment::inspector, crate::world_gen::preview).chain(),
+            );
     }
 }
 pub struct RoadPresentationPlugin;

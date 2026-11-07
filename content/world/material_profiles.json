@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "source": "art/buildings/mesh_assets/materials/black_metal_albedo.png",
+      "source_sha256": "85e05f229e4afac8a430afaafa8a7d37efa4db4544db546f6e9f799a0597c112",
+      "pixel_fnv64": "fa275d800c8cc85b",
+      "kind": "metal",
+      "normal_strength": 0.14,
+      "roughness": 0.42
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/blue_brick_albedo.png",
+      "source_sha256": "e4936e57f5041ca0f3d128694a168fc10a621347039c00d3b8569aa6134145be",
+      "pixel_fnv64": "02a493d22952607b",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/blue_brick_masonry_tile_albedo.png",
+      "source_sha256": "40a04793a0942e71d8600ee7b8d34e71bd4c72c4be24a2fae4e00e0f9236e557",
+      "pixel_fnv64": "b3905084e9fc8c18",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/blue_plaster_albedo.png",
+      "source_sha256": "58cd894e5a531e52b1bc5246649347d6bf6a957770304a29acbcdef8c4400d80",
+      "pixel_fnv64": "c307b624024dee51",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/blue_plastic_albedo.png",
+      "source_sha256": "344c44f21b93c419916930978f591c10626ccf49e6028b827ebe78e7bd38c052",
+      "pixel_fnv64": "1b44296d9a2f00ba",
+      "kind": "plastic",
+      "normal_strength": 0.14,
+      "roughness": 0.42
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/brown_stone_albedo.png",
+      "source_sha256": "4396b621a9e918fffdb7ff92119048796904aca92dc05a80c2f3d7ea84fdae00",
+      "pixel_fnv64": "cf1f7ec39a81591c",
+      "kind": "stone",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/brown_stone_masonry_tile_albedo.png",
+      "source_sha256": "82eacb3df904e2ba8c12d0b996d45556a423eb9a63586c421d1a340778a3ccc4",
+      "pixel_fnv64": "fe0b76e72c05e12c",
+      "kind": "stone",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/concrete_albedo.png",
+      "source_sha256": "d08ef1bb33a2b0879fa25e05bcdfcb11f7930090877f712ce52188fb3bbe5678",
+      "pixel_fnv64": "4af06683586ad372",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/green_metal_albedo.png",
+      "source_sha256": "b70fc072b6f1be1bb8a1020559c28790ce42a5de8ba3b1e81f791908edc259a3",
+      "pixel_fnv64": "39fc802bcfc8255b",
+      "kind": "metal",
+      "normal_strength": 0.14,
+      "roughness": 0.42
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/green_plaster_albedo.png",
+      "source_sha256": "4671fc449ed8bb44a0fa2ea6aec4066e7ce9dfdf911bc93b3a95a5fb0e939992",
+      "pixel_fnv64": "07f81a27cce43114",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/ivory_albedo.png",
+      "source_sha256": "e79471d046d2a86dac473e1c6608877e413f6deed80436b5da45650d8d8670a3",
+      "pixel_fnv64": "387af2451c335cb4",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/moss_brick_albedo.png",
+      "source_sha256": "d1ade69da5f9fd2b7724d6fe9764ee398d99c11a80425976dbd24a582625fade",
+      "pixel_fnv64": "f59c960b7aa4ba07",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/moss_brick_masonry_tile_albedo.png",
+      "source_sha256": "e9ae8c82fcbcbf9baf4a0a52f61fca5116496992b7cbe749914d4b48b81291d3",
+      "pixel_fnv64": "48e9808fb449e079",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/ochre_brick_albedo.png",
+      "source_sha256": "0e14f88c57b034de4b4f96c5de80d19afe770741a5a6dddf0cc01d28acf76440",
+      "pixel_fnv64": "35ceb202e36f1882",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/ochre_brick_masonry_tile_albedo.png",
+      "source_sha256": "662609a971aec725a90b053a1d1c68ee2eab0087eedaee41c837bb21580cd685",
+      "pixel_fnv64": "28a1f60ec83015dc",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/old_timber_albedo.png",
+      "source_sha256": "9725ab00a863741792332d308c8364f6f66e848a12b39c3db35735f84f452ef3",
+      "pixel_fnv64": "3dc97e0e961ec718",
+      "kind": "wood",
+      "normal_strength": 0.14,
+      "roughness": 0.82
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/oxblood_albedo.png",
+      "source_sha256": "7c23227725b33d77883437caa76a723fc08de0dc02d28944fa3e040c6d9f1fb5",
+      "pixel_fnv64": "3c1b6172371c9ecb",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/purple_brick_albedo.png",
+      "source_sha256": "f5f19c7c45ad718acd0337dc23f3ca3309f0dcbc097c12fbac0868ee939302e6",
+      "pixel_fnv64": "b9faacf11128ec9b",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/purple_brick_masonry_tile_albedo.png",
+      "source_sha256": "8400f2c79bc449357d98e49956a5e517c8729c20002a47cf220ad3a4ef8c2d4c",
+      "pixel_fnv64": "6757f0afdb06aec3",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/red_brick_albedo.png",
+      "source_sha256": "181ab19b3a69687b8a47a95538e45cf170511cb8c48392e2273b1285e76c5c3d",
+      "pixel_fnv64": "4fa0e06a149f0751",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/red_brick_masonry_tile_albedo.png",
+      "source_sha256": "426d62707833281a12cbae296ba15130247378b10605e8217b501cc9aed21fde",
+      "pixel_fnv64": "57a2f0bdff759d49",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/red_paint_albedo.png",
+      "source_sha256": "aba3375495b5941ba4f2f401f276231018f255f01310834d943368c876dd5cff",
+      "pixel_fnv64": "624d8e2e43f19da2",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/roof_albedo.png",
+      "source_sha256": "d4d089a01673421451cea6210b7a09c8bd6becb0c488373c5544dff31dd51db5",
+      "pixel_fnv64": "309b27e2074275b1",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/rust_albedo.png",
+      "source_sha256": "a927087ec3f2ea3f079e736561b7a5dbcce35cf952e923f77dd7be9d5378a94d",
+      "pixel_fnv64": "e039c1ac8f6f509b",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/slate_albedo.png",
+      "source_sha256": "365e9ba1a327619635b4eb5c1e2b599ffc407585886b3365128341faeba92784",
+      "pixel_fnv64": "aaac1c9fa9170252",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/stone_albedo.png",
+      "source_sha256": "f2f499585a4e0fe5a7d04c407a39ef14a79999caef48d2ce91a4717def6e7e5b",
+      "pixel_fnv64": "5b5bd7e5ba76a2a8",
+      "kind": "stone",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/stone_masonry_tile_albedo.png",
+      "source_sha256": "a4991ffed7ae7f57d948de83a765c9b11bf0f7c12710752dde479320e47fffcd",
+      "pixel_fnv64": "d6b47fd38482e519",
+      "kind": "stone",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/straw_albedo.png",
+      "source_sha256": "8ab0eb3ca13251234d8d430c755a76de5c2e52f3818acf5da30f12418a718e11",
+      "pixel_fnv64": "5acf6185c921d560",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/terracotta_albedo.png",
+      "source_sha256": "6fb699f0d7ef6032f11baa3d1733efc3aad4dad08cbac82e8a5d1ad93f8790be",
+      "pixel_fnv64": "b788483f9e5a8f69",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/weathered_cream_albedo.png",
+      "source_sha256": "d4cffa5a8f7a31b2f7e00b029716d579ef4bff61285e2256daffca477f33e331",
+      "pixel_fnv64": "24a6507d947e2ce4",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/weathered_cream_masonry_tile_albedo.png",
+      "source_sha256": "45eef83fbe3aa4a775c6fbd6797774276e36ec33ce3eee05c656e754f8826c86",
+      "pixel_fnv64": "84d73e8f0e43ea2f",
+      "kind": "plaster",
+      "normal_strength": 0.14,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/white_siding_albedo.png",
+      "source_sha256": "de91afa538b7035937609b516647ae8580e8a83ef3ebc31342cd1a61c493ffd4",
+      "pixel_fnv64": "6739983cf2816494",
+      "kind": "wood",
+      "normal_strength": 0.14,
+      "roughness": 0.82
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/whitewashed_brick_albedo.png",
+      "source_sha256": "5df9139397c9527840b93fe759c0ad1244019b3dfa0a6f81fb933e0e57400cb5",
+      "pixel_fnv64": "18f062830c107b65",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    },
+    {
+      "source": "art/buildings/mesh_assets/materials/whitewashed_brick_masonry_tile_albedo.png",
+      "source_sha256": "cb8230f294316cf6346efe00e6175886fd730ec1deaab426677e65293c7534a5",
+      "pixel_fnv64": "7e50c775ce99608e",
+      "kind": "brick",
+      "normal_strength": 0.32,
+      "roughness": 0.9
+    }
+  ]
+}

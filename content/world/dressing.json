@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "max_props": 224,
+  "minimum_gap_m": 1.5,
+  "max_support_relief_m": 0.35,
+  "roles": {
+    "bench": {
+      "builder": "bench",
+      "size": [
+        1.85,
+        1.05,
+        0.45
+      ]
+    },
+    "bin": {
+      "builder": "street_bin",
+      "size": [
+        0.55,
+        1.0,
+        0.55
+      ]
+    },
+    "meter": {
+      "builder": "parking_meter",
+      "size": [
+        0.45,
+        1.5,
+        0.45
+      ]
+    },
+    "hydrant": {
+      "builder": "hydrant",
+      "size": [
+        0.55,
+        0.9,
+        0.45
+      ]
+    },
+    "planter": {
+      "builder": "flower_planter",
+      "size": [
+        1.4,
+        0.85,
+        0.45
+      ]
+    },
+    "newspaper": {
+      "builder": "news_boxes",
+      "size": [
+        1.2,
+        1.15,
+        0.45
+      ]
+    },
+    "hay": {
+      "builder": "hay_bales",
+      "size": [
+        2.4,
+        1.5,
+        1.8
+      ]
+    },
+    "produce": {
+      "builder": "produce_stand",
+      "size": [
+        2.8,
+        2.4,
+        1.8
+      ]
+    },
+    "wagon": {
+      "builder": "barrel_wagon",
+      "size": [
+        2.2,
+        1.5,
+        1.5
+      ]
+    },
+    "logs": {
+      "builder": "log_stack",
+      "size": [
+        2.5,
+        1.25,
+        1.6
+      ]
+    },
+    "utility": {
+      "builder": "utility_box",
+      "size": [
+        0.85,
+        1.35,
+        0.55
+      ]
+    },
+    "sign": {
+      "builder": "warning_sign",
+      "size": [
+        0.8,
+        2.2,
+        0.4
+      ]
+    },
+    "callbox": {
+      "builder": "callbox",
+      "size": [
+        0.65,
+        1.8,
+        0.45
+      ]
+    },
+    "picnic": {
+      "builder": "picnic_table",
+      "size": [
+        2.2,
+        1.3,
+        1.5
+      ]
+    },
+    "rocks": {
+      "builder": "rock_cluster",
+      "size": [
+        2.3,
+        1.6,
+        1.8
+      ]
+    },
+    "mailbox": {
+      "builder": "mailbox",
+      "size": [
+        0.65,
+        1.25,
+        0.55
+      ]
+    },
+    "mailboxes": {
+      "builder": "mailboxes",
+      "size": [
+        1.4,
+        1.25,
+        0.5
+      ]
+    },
+    "pallets": {
+      "builder": "pallets",
+      "size": [
+        1.5,
+        1.1,
+        1.2
+      ]
+    },
+    "boxes": {
+      "builder": "box_pile",
+      "size": [
+        1.2,
+        1.2,
+        1.0
+      ]
+    },
+    "barrel": {
+      "builder": "barrel",
+      "size": [
+        0.7,
+        1.0,
+        0.7
+      ]
+    },
+    "produce_sign": {
+      "builder": "produce_sign",
+      "size": [
+        1.1,
+        1.8,
+        0.6
+      ]
+    },
+    "stump": {
+      "builder": "stump",
+      "size": [
+        1.1,
+        0.7,
+        1.0
+      ]
+    },
+    "bus_sign": {
+      "builder": "bus_sign",
+      "size": [
+        0.5,
+        2.3,
+        0.35
+      ]
+    },
+    "payphone": {
+      "builder": "payphone",
+      "size": [
+        0.6,
+        1.65,
+        0.45
+      ]
+    },
+    "recycling": {
+      "builder": "recycling_pair",
+      "size": [
+        1.2,
+        1.1,
+        0.45
+      ]
+    },
+    "parcel": {
+      "builder": "parcel_box",
+      "size": [
+        0.7,
+        1.3,
+        0.45
+      ]
+    },
+    "civic": {
+      "builder": "civic_board",
+      "size": [
+        1.6,
+        1.9,
+        0.45
+      ]
+    },
+    "information": {
+      "builder": "information_board",
+      "size": [
+        1.6,
+        1.9,
+        0.5
+      ]
+    },
+    "barriers": {
+      "builder": "barrier",
+      "size": [
+        2.0,
+        1.0,
+        0.6
+      ]
+    },
+    "reflector": {
+      "builder": "reflector_post",
+      "size": [
+        0.35,
+        1.1,
+        0.35
+      ]
+    },
+    "work_truck": {
+      "builder": "work_truck",
+      "size": [
+        2.3,
+        2.5,
+        5.0
+      ]
+    },
+    "pickup": {
+      "builder": "pickup",
+      "size": [
+        2.0,
+        1.9,
+        4.5
+      ]
+    },
+    "camper": {
+      "builder": "camper",
+      "size": [
+        2.3,
+        2.8,
+        5.0
+      ]
+    },
+    "car_hulk": {
+      "builder": "car_hulk",
+      "size": [
+        2.0,
+        1.3,
+        4.2
+      ]
+    },
+    "shrub": {
+      "builder": "shrub",
+      "size": [
+        1.6,
+        1.0,
+        1.3
+      ]
+    }
+  },
+  "zones": [
+    {
+      "id": "farm_fields",
+      "placement": "field_edge",
+      "from_m": 0,
+      "to_m": 2600,
+      "spacing_m": 150,
+      "offset_m": 2,
+      "groups": [
+        "farm_supplies",
+        "farm_market",
+        "farm_loading"
+      ],
+      "budget_weight": 1
+    },
+    {
+      "id": "farm_verge",
+      "placement": "terrain",
+      "from_m": 100,
+      "to_m": 2450,
+      "spacing_m": 105,
+      "offset_m": 12,
+      "groups": [
+        "farm_mail",
+        "farm_supplies",
+        "farm_pickup",
+        "farm_scrap",
+        "rural_scrub"
+      ],
+      "budget_weight": 2
+    },
+    {
+      "id": "rural_edge",
+      "placement": "terrain",
+      "from_m": 2400,
+      "to_m": 3150,
+      "spacing_m": 120,
+      "offset_m": 16,
+      "groups": [
+        "farm_market",
+        "rural_delivery",
+        "rural_service",
+        "rural_scrub"
+      ],
+      "budget_weight": 1
+    },
+    {
+      "id": "city_walk",
+      "placement": "sidewalk",
+      "from_m": 3150,
+      "to_m": 4900,
+      "spacing_m": 62,
+      "offset_m": 2.55,
+      "groups": [
+        "city_transit",
+        "city_post",
+        "city_pause",
+        "city_service",
+        "city_phone",
+        "city_civic"
+      ],
+      "budget_weight": 4
+    },
+    {
+      "id": "hill_verge",
+      "placement": "terrain",
+      "from_m": 5000,
+      "to_m": 6750,
+      "spacing_m": 125,
+      "offset_m": 17,
+      "groups": [
+        "hill_picnic",
+        "hill_camping",
+        "hill_timber",
+        "hill_service",
+        "hill_rocks"
+      ],
+      "budget_weight": 2
+    }
+  ],
+  "groups": {
+    "farm_mail": [
+      {
+        "role": "mailbox",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "produce_sign",
+        "along_m": 4.5,
+        "outward_m": 0
+      }
+    ],
+    "farm_supplies": [
+      {
+        "role": "hay",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "barrel",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "wagon",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "farm_market": [
+      {
+        "role": "produce",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "produce_sign",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "boxes",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "farm_loading": [
+      {
+        "role": "pallets",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "boxes",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "barrel",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "farm_pickup": [
+      {
+        "role": "pickup",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "mailbox",
+        "along_m": 4.5,
+        "outward_m": 0
+      }
+    ],
+    "farm_scrap": [
+      {
+        "role": "car_hulk",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "barrel",
+        "along_m": 4.5,
+        "outward_m": 0
+      }
+    ],
+    "city_transit": [
+      {
+        "role": "bus_sign",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "bench",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "bin",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "city_post": [
+      {
+        "role": "mailboxes",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "parcel",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "newspaper",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "city_pause": [
+      {
+        "role": "bench",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "planter",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "recycling",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "city_service": [
+      {
+        "role": "hydrant",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "meter",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "utility",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "city_phone": [
+      {
+        "role": "payphone",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "bin",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "newspaper",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "city_civic": [
+      {
+        "role": "civic",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "bench",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "planter",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "rural_service": [
+      {
+        "role": "utility",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "sign",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "reflector",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "rural_delivery": [
+      {
+        "role": "work_truck",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "pallets",
+        "along_m": 4.5,
+        "outward_m": 0
+      }
+    ],
+    "rural_scrub": [
+      {
+        "role": "shrub",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "rocks",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "stump",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "hill_picnic": [
+      {
+        "role": "information",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "picnic",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "bin",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "hill_camping": [
+      {
+        "role": "camper",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "picnic",
+        "along_m": 4.5,
+        "outward_m": 0
+      }
+    ],
+    "hill_timber": [
+      {
+        "role": "logs",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "stump",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "shrub",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "hill_service": [
+      {
+        "role": "callbox",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "sign",
+        "along_m": 4.5,
+        "outward_m": 0
+      },
+      {
+        "role": "reflector",
+        "along_m": 9.0,
+        "outward_m": 0
+      }
+    ],
+    "hill_rocks": [
+      {
+        "role": "rocks",
+        "along_m": 0.0,
+        "outward_m": 0
+      },
+      {
+        "role": "shrub",
+        "along_m": 4.5,
+        "outward_m": 0
+      }
+    ]
+  }
+}

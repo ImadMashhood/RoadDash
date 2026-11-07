@@ -441,7 +441,7 @@ fn analog_trigger_values_reach_the_chassis_force_model() {
 }
 
 #[test]
-fn civilian_contacts_crash_without_an_injected_clearance_jump() {
+fn pedestrians_stay_mounted_while_cows_keep_existing_crash_entry() {
     for preset in 0..3 {
         for kind in [crate::npc::NpcKind::Cow, crate::npc::NpcKind::Pedestrian] {
             let mut app = app(preset, 60);
@@ -484,13 +484,22 @@ fn civilian_contacts_crash_without_an_injected_clearance_jump() {
             let mut crashed = false;
             for _ in 0..60 {
                 app.update();
-                assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, 0.0);
+                if kind == crate::npc::NpcKind::Cow {
+                    assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, 0.0);
+                }
                 if app.world().get::<Recovery>(owner).unwrap().stage == RecoveryStage::Falling {
                     crashed = true;
                     break;
                 }
             }
-            assert!(crashed, "class {preset} {kind:?} did not crash");
+            assert_eq!(
+                crashed,
+                kind == crate::npc::NpcKind::Cow,
+                "class {preset} {kind:?} unexpected crash state"
+            );
+            if kind == crate::npc::NpcKind::Pedestrian {
+                assert!(snapshot(&mut app).0 > 2.0, "pedestrian stopped bike");
+            }
             assert!(!app.world().get::<crate::npc::Npc>(actor).unwrap().active());
         }
     }

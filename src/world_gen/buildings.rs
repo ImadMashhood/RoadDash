@@ -321,6 +321,7 @@ pub fn spawn(
             commands
                 .entity(wall)
                 .insert(super::architecture::render::Fallback {
+                    range: near.clone(),
                     index: building_index,
                     wall: true,
                     size,
@@ -328,6 +329,7 @@ pub fn spawn(
             commands
                 .entity(relief)
                 .insert(super::architecture::render::Fallback {
+                    range: near.clone(),
                     index: building_index,
                     wall: false,
                     size,
@@ -335,6 +337,7 @@ pub fn spawn(
             commands
                 .entity(windows)
                 .insert(super::architecture::render::Fallback {
+                    range: near.clone(),
                     index: building_index,
                     wall: false,
                     size,

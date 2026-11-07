@@ -1,11 +1,17 @@
 {
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "DRESS-02",
+        "COLLISION-07",
+        "LOD-01",
+        "DRESS-01",
+        "MAT-01",
+        "SKY-01",
         "KIT-04",
         "KIT-05",
         "PERF-06",
@@ -290,6 +296,7 @@
     "05": {
       "title": "World B \u2014 props, materials and procedural dressing",
       "task_ids": [
+        "MAT-02",
         "V2-05-001",
         "V2-05-002",
         "V2-05-003",

@@ -54,11 +54,11 @@ fn pixels() -> [Vec<u8>; 3] {
     }
     data
 }
-fn image(base: Vec<u8>, srgb: bool) -> Image {
+pub(crate) fn image(base: Vec<u8>, size: usize, srgb: bool) -> Image {
     let mut result = Image::new(
         Extent3d {
-            width: SIDE as u32,
-            height: SIDE as u32,
+            width: size as u32,
+            height: size as u32,
             depth_or_array_layers: 1,
         },
         TextureDimension::D2,
@@ -72,7 +72,7 @@ fn image(base: Vec<u8>, srgb: bool) -> Image {
     );
     let mut all = base.clone();
     let mut previous = base;
-    let mut side = SIDE;
+    let mut side = size;
     let mut levels = 1;
     while side > 1 {
         let next = side / 2;
@@ -120,9 +120,9 @@ pub fn install(
     let Some(mut images) = images else { return };
     let [albedo, normal, rough] = pixels();
     let material = materials.add(StandardMaterial {
-        base_color_texture: Some(images.add(image(albedo, true))),
-        normal_map_texture: Some(images.add(image(normal, false))),
-        metallic_roughness_texture: Some(images.add(image(rough, false))),
+        base_color_texture: Some(images.add(image(albedo, SIDE, true))),
+        normal_map_texture: Some(images.add(image(normal, SIDE, false))),
+        metallic_roughness_texture: Some(images.add(image(rough, SIDE, false))),
         perceptual_roughness: 1.0,
         reflectance: 0.18,
         ..default()
@@ -161,7 +161,7 @@ mod tests {
         assert!(n.chunks_exact(4).all(|p| p[2] >= 250));
         assert!(r.chunks_exact(4).all(|p| p[1] >= 160 && p[2] == 0));
         assert_eq!(grain(0, 0), grain(SIDE, SIDE));
-        let im = image(a, true);
+        let im = image(a, SIDE, true);
         assert_eq!(im.texture_descriptor.mip_level_count, 10);
         assert_eq!(
             im.data.unwrap().len(),

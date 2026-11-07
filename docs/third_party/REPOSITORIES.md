@@ -694,3 +694,20 @@ bevy_tasks TaskPoolBuilder::stack_size, plus existing scene readiness APIs.
 Existing pinned Bevy repository/license record applies; no new repository/version,
 code copying, dependency or third-party media adoption. Original procedural asphalt,
 elevation meshes, scene staging and user-requested crash approximation implemented.
+
+### 2026-11-07 — Part05 follow-up: existing pinned Bevy APIs
+
+No new repository or dependency adopted. Inspected installed Bevy0.17.3 source:
+visibility-range dither, SceneInstanceReady, image cube views/mip layout,
+EnvironmentMapLight/Skybox, Mesh::generate_tangents and async task polling. Existing
+Bevy MIT/Apache-2.0 dependency/license record applies. Application code is original;
+no upstream code or external media copied. Palette profiles refer only to the34
+already registered original building textures. Existing draft prop asset licenses
+are inherited, with no proprietary reference pixels imported into runtime.
+
+### 2026-11-07 — Roadside variety follow-up
+
+Inspected the existing local369-record original prop catalog and semantic placement
+source. No new GitHub repository, dependency or media researched/adopted. Reused
+registered draft models and existing source/license records; grouped placement and
+seeded variation are original project code. Parked vehicles are scenery only.
