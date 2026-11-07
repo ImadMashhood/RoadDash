@@ -28,11 +28,20 @@ impl Default for Settings {
     }
 }
 impl Settings {
+    fn launch_mode(args: &[String], environment: Option<&str>) -> Result<bool, String> {
+        let baseline = args.iter().any(|a| a == "--ragdoll-baseline");
+        let biomechanical = args.iter().any(|a| a == "--ragdoll-biomechanical");
+        if baseline && biomechanical {
+            return Err("choose either --ragdoll-baseline or --ragdoll-biomechanical".into());
+        }
+        // This comparison branch defaults to the new rig. Explicit CLI choices
+        // override environment configuration; baseline fixtures remain unchanged.
+        Ok(!baseline && (biomechanical || environment != Some("baseline")))
+    }
     pub fn selected() -> Result<Self, String> {
         let args: Vec<_> = std::env::args().collect();
         let mut s = Self {
-            enabled: args.iter().any(|a| a == "--ragdoll-biomechanical")
-                || std::env::var("ROADDASH_RAGDOLL").as_deref() == Ok("biomechanical"),
+            enabled: Self::launch_mode(&args, std::env::var("ROADDASH_RAGDOLL").ok().as_deref())?,
             debug: args.iter().any(|a| a == "--ragdoll-debug"),
             ..default()
         };

@@ -1,13 +1,15 @@
 # Biomechanical ragdoll comparison — 2026-11-01
 
 PR #11 merged at 5fac329fce868e9e8db9fd5caa930624f84b2770. This overhaul is a
-separate opt-in implementation on codex/biomechanical-ragdoll. Do not merge it or
+separate implementation on codex/biomechanical-ragdoll. Since the2026-11-02
+user request, this branch launches the new mode automatically. Do not merge it or
 replace the default before the requested comparison. No dependency migration.
 
 ## Run and compare
 
 ```sh
-cargo run --release                         # original eleven-body baseline
+cargo run --release                         # new biomechanical mode automatically
+cargo run --release -- --ragdoll-baseline    # original eleven-body baseline
 cargo run --release -- --ragdoll-biomechanical
 cargo run --release -- --ragdoll-lab-view    # isolated native comparison scene
 cargo run --release -- --ragdoll-lab --output ragdoll-lab.json
@@ -151,7 +153,7 @@ articulation. No clinical ligament model, injury model, finger skeleton, standin
 balance controller or physical locomotion is claimed. Distal angular-velocity
 peaks during hard impacts are retained in the report for review, not hidden.
 Native silhouette/clearance/impact-peak review and full-race p95 performance/user
-approval remain RAG-05/06; new defaults must not replace the baseline yet.
+approval remain RAG-05/06; main must not replace the baseline yet.
 
 All five requested source repositories were investigated; no code/media/dependency
 was imported. [Pinned research and licenses](../research/RAGDOLL_BIOMECHANICS.md).
@@ -214,3 +216,14 @@ production performance/user approval. Do not merge the comparison PR.
 
 Host builds used `PKG_CONFIG_PATH=/tmp/roaddash-native/lib/pkgconfig` to locate
 installed native runtime libraries; no system packages were installed/elevated.
+
+
+### 2026-11-02 — Automatic comparison-branch launch
+
+B belongs to the standalone lab; it never toggled modes in the race. Launch
+selection now defaults to biomechanical in this branch, with a shared selection
+path for game/lab. Explicit CLI mode overrides ROADDASH_RAGDOLL; baseline remains
+available via --ragdoll-baseline or ROADDASH_RAGDOLL=baseline. Conflicting CLI modes
+fail clearly. No joint, motor, mass, ejection or recovery tuning changed. Unit
+fixtures still default to their original control rig; main remains separate.
+Evidence for this usability follow-up is under ragdoll/default-launch/.

@@ -57,8 +57,9 @@ in the blueprint are not installed dependencies.
 
 - The 2026-11-01 user explicitly authorizes the biomechanical ragdoll overhaul
   in a separate comparison PR, and explicitly forbids merging that new PR.
-  Keep the original eleven-body path selectable; new anatomy/muscles are opt-in
-  via --ragdoll-biomechanical. Run the headless ragdoll lab, comparison view and
+  Keep the original eleven-body path selectable via --ragdoll-baseline. The
+  2026-11-02 user request authorizes automatic biomechanical launches in this
+  separate comparison branch; do not change main. Run the headless ragdoll lab, comparison view and
   native recovery smoke in both relevant modes. Do not replace the baseline or
-  change defaults without user comparison/approval. Current biomechanics scope
+  change defaults outside this comparison branch without user approval. Current biomechanics scope
   permits anatomical masses, joints, motors and solver tuning in the new mode.

@@ -1,5 +1,26 @@
 use super::*;
 #[test]
+fn comparison_launch_needs_no_keyboard_toggle_and_keeps_explicit_baseline() {
+    let args = |values: &[&str]| values.iter().map(|v| (*v).to_owned()).collect::<Vec<_>>();
+    assert!(Settings::launch_mode(&[], None).unwrap());
+    assert!(Settings::launch_mode(&[], Some("biomechanical")).unwrap());
+    assert!(!Settings::launch_mode(&[], Some("baseline")).unwrap());
+    assert!(!Settings::launch_mode(&args(&["--ragdoll-baseline"]), None).unwrap());
+    assert!(!Settings::launch_mode(&args(&["--ragdoll-baseline"]), Some("biomechanical")).unwrap());
+    assert!(Settings::launch_mode(&args(&["--ragdoll-biomechanical"]), Some("baseline")).unwrap());
+    assert!(
+        Settings::launch_mode(
+            &args(&["--ragdoll-baseline", "--ragdoll-biomechanical"]),
+            None
+        )
+        .is_err()
+    );
+    assert!(
+        !Settings::default().enabled,
+        "physics control fixtures keep their baseline"
+    );
+}
+#[test]
 fn every_joint_keeps_limits_and_passive_motors_at_zero_activation() {
     let config = Settings::default().config;
     for i in 1..16 {

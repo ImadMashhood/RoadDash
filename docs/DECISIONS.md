@@ -884,3 +884,16 @@ no code/assets incorporated. No dependency or save migration. Rollback: run with
 --ragdoll-biomechanical (or press B/reset in the standalone comparison app). Do not
 merge or make default without the user's comparison. Verification:
 [ragdoll report](testing/RAGDOLL_BIOMECHANICS.md).
+
+
+### 2026-11-02 — Comparison branch defaults to the requested new rig
+
+Problem: the user expected B to enable new physics during racing, but that key
+only belongs to the standalone lab. Alternatives: add live race rig swapping
+(unsafe for existing articulations), or select the new rig on startup. Selected:
+shared game/lab startup selection, biomechanical by default in this unmerged
+branch; explicit --ragdoll-baseline preserves comparison, CLI overrides environment.
+The user explicitly authorized this branch default. Main and all physical tuning
+stay unchanged. Tradeoff: old bare-command baseline instructions change; updated
+docs describe the override. No new repository, dependency, asset or save migration.
+Rollback: explicit baseline flag/environment or revert startup selection alone.

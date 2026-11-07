@@ -365,3 +365,13 @@ downloaded or integrated. ART-01 research complete; ART-02 pilot integration ope
 - ADR-036 and RAG-01–06 distinguish verified implementation from remaining skin,
   native realism and production performance/user acceptance. Evidence, exact
   checks and remaining limitations: testing/RAGDOLL_BIOMECHANICS.md.
+
+
+## 2026-11-02 — Run the comparison rig without B
+
+The user requested automatic new-ragdoll selection. Shared game/lab launch parsing
+now defaults to biomechanical on the isolated comparison branch, preserves explicit
+baseline and CLI precedence, and rejects conflicting flags. B remains lab-only.
+No physics values, assets, dependencies or main changes. Extended RAG-04 launch
+coverage; no new roadmap scope or exit gates closed. Verification receipts:
+testing/ragdoll/default-launch/.

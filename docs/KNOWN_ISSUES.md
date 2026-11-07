@@ -222,3 +222,9 @@ are authoring proxies. No runtime interpolation or ragdoll change is included.
   Windows hardware and user feel approval remain open. Do not merge this
   comparison PR or replace defaults without the user's comparison. See
   testing/RAGDOLL_BIOMECHANICS.md and ADR-036.
+
+
+2026-11-02 launch usability follow-up: B only operates in the standalone lab.
+The comparison branch now selects biomechanical physics automatically for both
+game and lab, with --ragdoll-baseline for the old rig. This supersedes its earlier
+opt-in/default instructions. Main remains unchanged; RAG-05/06 remain open.

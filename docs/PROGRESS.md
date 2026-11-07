@@ -11,8 +11,9 @@ The complete eleven-family animation coverage and two-stage deliverables are now
 explicit in README's dedicated Animation production section. Existing V2-02/V2-03
 IDs own the expanded coverage. Animation A source investigation and the first draft authoring deliverable are verified; full art approval remains open.
 
-Current user-authorized scope: opt-in biomechanical ragdoll overhaul, preserving
-an unmerged comparison PR and the eleven-body default; future art/performance/user
+Current user-authorized scope: launch the biomechanical mode automatically in the
+unmerged comparison branch (2026-11-02). Baseline remains explicit via
+--ragdoll-baseline, and main stays unchanged; future art/performance/user
 acceptance remains open. Do not advance automatically into later major parts.
 
 All 366 task IDs are in README exactly once: 294 original, 54 V2, three
@@ -554,7 +555,7 @@ relationship-axis/event and random-stream parity gates.
 
 - [x] **RAG-03** Integrate capped muscles and coherent crash release. Reason: crash states lacked smooth loss of strength and animation/spin handoff; originating part: 03; dependencies: RAG-02 and animation bind frames; acceptance: configurable native PD pose tracking, bracing/ejection/tumble/rest curves, bind-calibrated initial pose with coincident anchors, COM/pre-impact spin preservation, unchanged ejection events, no forced upright motion and natural sleep; verification: pose-hold/external-force/state/bind/momentum tests, bounded energy and 15-rider settling results in [report](testing/RAGDOLL_BIOMECHANICS.md).
 
-- [x] **RAG-04** Deliver the reproducible ragdoll comparison and tuning tools. Reason: the overhaul must be reviewable before merging; originating part: 03; dependencies: RAG-02/03; acceptance: central validated JSON, F7 shape/axis/limit/motor diagnostics, nine headless and native scenarios, B/reset baseline comparison, native clips and recovery/actor regressions; verification: 164 Rust tests, 20 tooling tests, native comparison/race/actor smoke, build/Clippy/format/audit [receipts](testing/ragdoll/receipt.json).
+- [x] **RAG-04** Deliver the reproducible ragdoll comparison and tuning tools. Reason: the overhaul must be reviewable before merging; originating part: 03; dependencies: RAG-02/03; acceptance: central validated JSON, F7 shape/axis/limit/motor diagnostics, nine headless and native scenarios, B/reset baseline comparison, native clips and recovery/actor regressions; branch-only [automatic launch selection](testing/ragdoll/default-launch/README.md) with explicit baseline override (2026-11-02); verification: 164 Rust tests, 20 tooling tests, native comparison/race/actor smoke, build/Clippy/format/audit [receipts](testing/ragdoll/receipt.json).
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
@@ -666,7 +667,7 @@ relationship-axis/event and random-stream parity gates.
 
 - [ ] **RAG-05** Approve native biomechanics silhouettes and finish distal skin articulation. Reason: sixteen physical proxies still feed an eleven-joint skin and impact peaks require human review; part: 03; dependencies: RAG-02/03, ART-04 and ANIM-02/09; acceptance: independently visible wrists/feet/spine, reviewed source-pose release and multi-angle drop/car/terrain/knockoff clearance, acceptable distal impact velocities and user comparison approval before replacing defaults; verification: native videos, deformation/contact metrics and explicit user review.
 
-- [ ] **RAG-06** Profile and approve worst-case race ragdoll performance. Reason: additional bodies/solver work cost more than the baseline and instrumented headless timing is not race FPS; part: 03; dependencies: RAG-04 and representative traffic/environment load; acceptance: compare frame/physics p95 and allocations across15 racers plus bounded NPC crashes, sleeping/wakeup, Windows hardware and quality presets without regressions; verification: repeatable native profiling on target hardware and user acceptance, keeping the current mode opt-in until approved.
+- [ ] **RAG-06** Profile and approve worst-case race ragdoll performance. Reason: additional bodies/solver work cost more than the baseline and instrumented headless timing is not race FPS; part: 03; dependencies: RAG-04 and representative traffic/environment load; acceptance: compare frame/physics p95 and allocations across15 racers plus bounded NPC crashes, sleeping/wakeup, Windows hardware and quality presets without regressions; verification: repeatable native profiling on target hardware and user acceptance, keeping main unchanged until approved.
 
 - [ ] **V2-03-008** Exit gate: motion is responsive, coherent and physically readable.
 

@@ -18,8 +18,7 @@ struct Hud;
 struct Wall;
 pub fn build(smoke: bool) -> App {
     let mut app = App::new();
-    let mut settings = Settings::selected().expect("validated ragdoll settings");
-    settings.enabled = !std::env::args().any(|a| a == "--ragdoll-baseline");
+    let settings = Settings::selected().expect("validated ragdoll settings");
     let substeps = if settings.enabled {
         settings.config.physics_substeps
     } else {

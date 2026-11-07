@@ -242,3 +242,9 @@ comparison scene, full race/recovery and actor smoke. Format/workspace locked
 Clippy/tests/build and provenance audit required. Full skin/native realism and
 production p95/Windows/user approval remain RAG-05/06. Exact receipts:
 [ragdoll report](RAGDOLL_BIOMECHANICS.md).
+
+
+2026-11-02 RAG-04 usability: verify a bare launch selects biomechanical, baseline
+CLI/environment remains available, explicit CLI wins, conflicting flags fail,
+and game/lab share mode selection. Run default and explicit-baseline native race
+smoke plus the two-mode standalone view. Evidence: ragdoll/default-launch/.
