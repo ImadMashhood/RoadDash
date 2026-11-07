@@ -668,3 +668,55 @@ reconciled; detailed tests, known limits and files: testing/ragdoll/integration/
   open.167 checked/223 open,390 IDs. ADR051 and testing/recovery-polish record
   design, checks, screenshots, provenance and limitations. No new dependencies,
   imported source/media, push or merge.
+
+## 2026-11-06 — Part 04 authored buildings on the original Valley map
+
+- Branch codex/part-04-world-buildings from main 825a5a1 (merged PR15). Connected
+  existing own-authored architecture to the restored default Valley map; no new
+  gameplay, ragdoll/physics, track, save or dependency changes. Explicit City Run
+  retained. Kept 247 canonical quotas  + 410 neighborhood lots, all 19 roles / 15 sections,
+  stable IDs, geometry fingerprint, rights of way, level supports and colliders.
+- Derived 128 design ground/upper/crown kits: 384 GLBs, 34 shared own-material PNGs.
+  Source-generator floor cuts preserve storefronts/windows; real repeated upper
+  floors fill tall lots. Exact vertex indexing/shared images reduce duplicate
+  storage; original model hashes stay unchanged. Added independent binary intake,
+  source/output manifests/checksums and provenance register entries.
+- Added typed rr_content grammar validation, deterministic block/lot variants,
+  bounded pending/active detail, LOD hysteresis/48-entry cache, coarse ornament
+  shadow reduction and native actual-mesh/collider census. Survey now proves
+  loaded geometry rather than only allocation metadata. Preserved AppExit errors
+  as process status so failed native acceptance cannot silently return success.
+- Mandatory fmt/strict clippy/231 workspace tests/locked build pass ; 1 existing ignored
+  soak. Audit 519 declarations / 37 runtime records / 27 observations and2 audit / 5 roadmap tests
+  pass. Full native route views and smoke preserve two crashes/remounts and finish,
+  four audio sinks and default-stack Valley load. Native frame target remains
+  unmet; see testing/architecture-valley for failed benchmark measurements.
+- KIT-01/02 and V2-04-005 verified, KIT-03 newly open.170 checked / 223 open / 393 IDs.
+  Partial grammar/art bible documented; final fidelity, infill/bespoke roles,
+  broader art/performance/platform gates remain open. ADR052 records alternatives,
+  tradeoffs and rollback. No new external repository/source/media copied. No
+  commit/push/merge performed; Part05 not started.
+
+## 2026-11-06 — User world detail, loading and unseen crash follow-up
+
+- Improved fallback high-rises/party-wall infill with batched actual window relief,
+  mullions/floor bands/roof trim and family masonry. Added original asphalt PBR
+  aggregate/repair/wear/normal/roughness and CPU mipmaps with world-space road UVs.
+  Suppress duplicate small-ornament shadows while retaining structural shadows.
+- Resident coarse facades/masonry, spatial hysteresis and hidden scene preparation
+  keep the old displayed facade until a new instance is ready. Cache, preparation
+  and displayed geometry remain bounded. Existing structural IDs/colliders intact.
+- Reproduced IO worker stack overflow with expanded loading; configured16MiB stacks
+  only for asset IO workers, preserving default1–4 thread assignment. Default Valley
+  and explicit City Run crash/recovery/finish smoke pass without RUST_MIN_STACK.
+- User-requested unseen rear NPC crash path creates no ragdoll/wreck, disables the
+  bike for300 active ticks, then restores lane0 at the recorded impact station.
+  Pause freezes the timer, restart cancels it. Player/nearby/visible and already
+  physical recovery remains unchanged; no mass/joint/motor retune.
+- Mandatory checks:237 tests pass/1existingignored, strict clippy/fmt/build; native
+  route and performance evidence alongside. New KIT-04/05 and PERF-06 verified;
+  ANIM-12 resolved locally.174checked/222open/396IDs. Existing broad art/LOD/memory/
+  performance/platform gates remain open. ADR053 records design and rollback.
+- User authorizes commit/push/merge followed by a new Part05 branch. Integration
+  references are reported after actual success; no new external source/media or
+  dependencies. Existing research/provenance and original MIT asset registers updated.

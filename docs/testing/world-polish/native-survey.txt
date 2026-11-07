@@ -1,0 +1,10 @@
+2026-11-07T05:41:34.862359Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-07T05:41:34.863113Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-07T05:41:34.866585Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-07T05:41:34.866592Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x561e6b1a9630, name: ?)
+2026-11-07T05:41:35.074737Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+2026-11-07T05:41:35.132434Z  WARN bevy_winit::winit_windows: Can't select current monitor on window creation or cannot find current monitor!
+2026-11-07T05:41:38.931969Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+World survey: 15 sections, 657 roots, 1080p city p95 15.83 ms (target <=16.7)

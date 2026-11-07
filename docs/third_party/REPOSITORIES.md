@@ -679,3 +679,18 @@ ADR050 records why no incompatible IK/animation wrapper was introduced.
 or third-party source/media incorporated. Extended existing original FK/IK,
 pre-contact response and Rapier motors; no dependency migration. Normal-speed
 sharing and kinetic roll budgeting are original elementary mechanics code.
+
+2026-11-06 Part04 Valley architecture (ADR052): reused the project's existing
+original mesh/material generators and previously recorded Bevy 0.17.3/glTF
+integration. Consulted installed Bevy scene-ready event source for correct API
+use. No new repository investigated, dependency adopted, third-party algorithm
+source copied or new external media imported. The storey compiler, clipping,
+manifest validation, fixed-width variant selection and renderer are original
+RoadDash code. Existing catalogs retain their own research/license records.
+
+2026-11-06 surface/loading/performance follow-up (ADR053): inspected installed
+Bevy0.17.3 task_pool_plugin.rs (default25%,1–4 IO assignment and get_or_init) and
+bevy_tasks TaskPoolBuilder::stack_size, plus existing scene readiness APIs.
+Existing pinned Bevy repository/license record applies; no new repository/version,
+code copying, dependency or third-party media adoption. Original procedural asphalt,
+elevation meshes, scene staging and user-requested crash approximation implemented.

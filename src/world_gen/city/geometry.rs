@@ -127,11 +127,14 @@ pub fn spawn_dressed(
                 })
             })
             .clone();
-        commands.spawn((
+        let mut entity = commands.spawn((
             Name::new(chunk.name.clone()),
             Mesh3d(meshes.add(chunk_mesh_filtered(chunk, props))),
             MeshMaterial3d(material),
             Transform::default(),
         ));
+        if chunk.name == "roads" {
+            entity.insert(crate::environment::RoadChunk);
+        }
     }
 }

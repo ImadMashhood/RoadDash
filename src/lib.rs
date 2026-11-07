@@ -13,9 +13,11 @@ pub mod game;
 pub mod human;
 pub mod models;
 pub mod npc;
+pub mod offscreen_crash;
 pub mod original_crash;
 pub mod props;
 pub mod recovery;
+pub mod road_detail;
 pub mod runtime;
 pub mod settings;
 pub mod sound;
@@ -30,6 +32,17 @@ use bevy::prelude::*;
 
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
+    // Bevy's default IO workers inherit the OS stack, which overflows in the
+    // debug glTF loader for the larger authored scenes. Configure only this
+    // pool before DefaultPlugins; preserve Bevy's default 25%, 1..4 IO policy.
+    bevy::tasks::IoTaskPool::get_or_init(|| {
+        let threads = (bevy::tasks::available_parallelism() as f32 * 0.25).round() as usize;
+        bevy::tasks::TaskPoolBuilder::new()
+            .num_threads(threads.clamp(1, 4))
+            .stack_size(16 * 1024 * 1024)
+            .thread_name("RoadDash Asset IO".into())
+            .build()
+    });
     let mut app = App::new();
     app.insert_resource(original_crash::OriginalCrashes(
         std::env::args().any(|a| a == "--original-crashes"),

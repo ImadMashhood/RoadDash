@@ -1,0 +1,10 @@
+2026-11-07T05:28:35.892998Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-07T05:28:35.893735Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-07T05:28:35.900871Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-07T05:28:35.900882Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x56278c853630, name: ?)
+2026-11-07T05:28:36.166308Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+
+thread 'IO Task Pool (1)' (501732) has overflowed its stack
+fatal runtime error: stack overflow, aborting

@@ -19,6 +19,8 @@ pub enum RecoveryStage {
 }
 #[derive(Component, Default)]
 pub struct Recovery {
+    pub defer_allowed: bool,
+    pub deferred: Option<crate::offscreen_crash::Deferred>,
     pub stage: RecoveryStage,
     pub elapsed: f32,
     pub torso: Option<Entity>,
@@ -303,6 +305,11 @@ fn crash_with_response(
     context: &ReadRapierContext,
     original: Option<(Vec3, Vec3)>,
 ) {
+    if recovery.deferred.is_some()
+        || crate::offscreen_crash::start(commands, owner, rider, recovery, origin)
+    {
+        return;
+    }
     for part in recovery.parts.drain(..) {
         commands.entity(part).despawn();
     }
@@ -489,6 +496,17 @@ pub fn recover(
         }
         *visibility = Visibility::Hidden;
         recovery.elapsed += dt;
+        if crate::offscreen_crash::finish(
+            &mut commands,
+            owner,
+            &mut rider,
+            &mut recovery,
+            &mut root,
+            &mut visibility,
+            &track,
+        ) {
+            continue;
+        }
         let Some(wreck) = recovery.wreck else {
             continue;
         };

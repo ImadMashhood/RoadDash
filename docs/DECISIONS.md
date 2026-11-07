@@ -1408,3 +1408,102 @@ content/crash_motion.json centralizes style tuning. Set roll_energy_fraction=0 o
 release_activation=0 and rebuild to disable those cues; --ragdoll-baseline remains
 the physical control. Future consequence: art/contact/energy tuning and platform
 acceptance remain explicit gates rather than a claim that Part03 is complete.
+
+## ADR052 — Reusable authored storeys on immutable Valley lots (2026-11-06)
+
+Problem: restoring Valley as the default exposed its old generic building shells,
+while the authored 3D facade drafts were only integrated into City Run. Stretching
+whole facades to tower heights would distort windows; loading the entire catalog
+and every floor at once would create excessive geometry and scene entities.
+
+Selected: derive ground, repeatable upper and crown scenes from our existing
+100 facade/28 structure drafts. Preserve original assets and source hashes;
+share identical own-authored texture bytes and deduplicate exact vertex tuples.
+Use the source generators' semantic floor boundaries. Typed rr_content validation
+owns catalog/rule intake; world_gen owns deterministic lot assembly and rendering.
+All 19 archetype pools use stable section/block/role and lot selection. Original
+canonical and neighborhood layout, rights of way, foundations and Rapier colliders
+remain authoritative. Scene geometry never introduces colliders.
+
+Alternatives: whole-model vertical scaling rejected for floor distortion; global
+unbounded scene spawning rejected for memory/frame cost; new city/layout package
+or engine migration rejected as unnecessary. Reuse existing architecture asset
+source and explicit Bevy glTF reflection support. Original clipping, reassembly
+and streaming code; no third-party implementation copied or dependencies added.
+Previously recorded Bevy and existing building-source investigations are reused.
+
+Tradeoffs: exterior-only solid shells and adapted bay/ground heights remain;
+structure fronts and U04 industrial cladding are not bespoke parking/interiors.
+Limit near detail to camera-facing faces and reserve budgets for pending loads.
+Existing complete near/far shells keep coverage. Coarse ornament shadow draws are
+removed while structural shells retain shadows. Hysteresis and a 48-file-LOD cache
+bound churn, but production pop-in/memory/performance acceptance remains open.
+The initial 1,200-panel survey missed the 16.7 ms wall-frame p95 target (19.36 ms),
+so the default is reduced to 750 panels with separate triangle/building ceilings;
+final evidence records actual results rather than inferring FPS from budgets.
+
+Consequences: native binary mesh census, per-band envelope tests and full route
+survey are required alongside allocation counts. Rendering quality can be tuned
+in architecture_rules.json independently of 60 Hz gameplay. Rollback: remove the
+visual kit hooks and restore generic facade material; no save migration, collider,
+track, player or ragdoll state changes required. Part04 art/exit gates stay open
+until accepted; no automatic progression to Part05.
+
+## ADR053 — Surface detail, stable facade swaps and unseen crash recovery (2026-11-06)
+
+User scope: improve plain high-rises/roads, reduce building texture pop-in, and
+skip physical crashes behind the player in favor of a five-second delay followed
+by a road-centre respawn. Merge the building work, then explicitly start Part05.
+
+Use original batched window reveals/mullions, floor bands and cornices on fallback
+shells and party-wall infill. Infill uses its first owner's masonry family; tiled
+material sampling avoids stretched brick. Keep the physical lots, joins, ground,
+road topology and colliders unchanged. Original CPU-generated asphalt supplies
+aggregate, repair/tar detail, subtle wear, normal/roughness maps and complete mip
+chains; world-scale UVs apply once to main/junction/grid roads. No downloaded or
+AI-edited texture and no additional dependency. These are draft exterior surfaces,
+not a claim of artist approval or new navigable interiors.
+
+Keep the used coarse facade LODs and masonry resident (finite catalog bound), with
+at most48 extra high-LOD cache entries. Hold the old displayed LOD during loading;
+prepare its replacement hidden and swap only after SceneSpawner confirms every
+instance is ready. One hidden group per selected lot is allowed, separately bounded
+by the panel ceiling. Reserve displayed as well as desired triangle budgets.
+Use25m spatial hysteresis to reduce budget churn. Avoid an unbounded global scene
+spawn or a transparency/collision rewrite. A discontinuous LOD remains possible;
+this fixes missing-scene gaps and texture reloads rather than claiming perfect
+morphs/crossfades. Detailed fallback surfaces remain across the skyline.
+
+The expanded eager load reproduced a native IO worker stack overflow. Before
+DefaultPlugins, initialize only IoTaskPool with a16MiB explicit worker stack;
+preserve Bevy0.17.3's default25% cores/min1/max4 thread policy. Compute/physics pools
+are unchanged. Earlier RUST_MIN_STACK workaround affected all threads; configuring
+only the named failing asset IO pool isolates the resource requirement. This is
+an explicit stack budget, not a claim that upstream loader stack use was reduced.
+Record clean native runs without an environment override; the optional city gate
+is separate until it too runs. No whole-engine or task-executor dependency change.
+
+An NPC mounted crash is abstracted only when>25m away,>15m behind the player's
+forward plane and behind the camera plane. Player, nearby, visible and already
+physical/on-foot crashes retain existing accepted physics. At central crash entry,
+allocate no human bodies/joints/wreck; disable the existing bike body/collider and
+hide it. After exactly300 active60Hz ticks, project the recorded impact origin onto
+the road and restore the existing racer at lane0 with zero velocity, full health
+and ordinary short immunity. Preserve checkpoints/progression; no forward teleport.
+Pause freezes the timer; restart cancels it and removes disabled-body state.
+This is an intentional offscreen arcade approximation authorized by the user, not
+momentum simulation. Reversing the camera does not retroactively spawn a deferred
+ragdoll. Existing already-active ragdolls are not removed when they leave view.
+
+Alternatives: full physical NPC crashes rejected for requested cost saving; mere
+sleeping rejected because it still allocates the articulation; timer-only visible
+crashes rejected for obvious popping. No force/motor/mass or player recovery tuning.
+Rollback: remove the classification system/early branch, keep normal recovery;
+revert visual hooks independently. Original mechanics/source code, no new external
+repository, copied code/media or dependency. Part04 broad art/performance gates
+remain open even though the user authorizes moving to Part05 after integration.
+
+ADR053 domain boundary: rear/camera interest thresholds and the300-tick delay live
+in rr_core::performance; the Bevy adapter only captures transforms and performs
+entity lifecycle changes. This is an offline NPC approximation. Future server
+authority must own interest/respawn policy rather than trust a client camera.

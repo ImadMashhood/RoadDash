@@ -1,0 +1,1033 @@
+{
+  "designs": 128,
+  "glbs": 384,
+  "shared_textures": 34,
+  "geometry_bytes": 300063068,
+  "source": "Own authored original models; no retail pixels",
+  "models": [
+    {
+      "id": "BUSS1",
+      "triangles_per_lod": [
+        24584,
+        5516,
+        1092
+      ]
+    },
+    {
+      "id": "BUSS10",
+      "triangles_per_lod": [
+        23440,
+        4372,
+        1128
+      ]
+    },
+    {
+      "id": "BUSS2",
+      "triangles_per_lod": [
+        28340,
+        3904,
+        668
+      ]
+    },
+    {
+      "id": "BUSS4",
+      "triangles_per_lod": [
+        37188,
+        12752,
+        652
+      ]
+    },
+    {
+      "id": "BUSS5",
+      "triangles_per_lod": [
+        36016,
+        14220,
+        628
+      ]
+    },
+    {
+      "id": "BUSS6",
+      "triangles_per_lod": [
+        25320,
+        5680,
+        1352
+      ]
+    },
+    {
+      "id": "BUSS7",
+      "triangles_per_lod": [
+        20138,
+        5096,
+        1269
+      ]
+    },
+    {
+      "id": "BUSS8",
+      "triangles_per_lod": [
+        23073,
+        4347,
+        1003
+      ]
+    },
+    {
+      "id": "BUSS9",
+      "triangles_per_lod": [
+        18710,
+        3946,
+        1092
+      ]
+    },
+    {
+      "id": "CHINA12",
+      "triangles_per_lod": [
+        39790,
+        25146,
+        1422
+      ]
+    },
+    {
+      "id": "CHINA13",
+      "triangles_per_lod": [
+        39510,
+        24954,
+        1350
+      ]
+    },
+    {
+      "id": "CHINA14",
+      "triangles_per_lod": [
+        30068,
+        21488,
+        1614
+      ]
+    },
+    {
+      "id": "CHINA15",
+      "triangles_per_lod": [
+        33510,
+        17692,
+        1506
+      ]
+    },
+    {
+      "id": "CHINA16",
+      "triangles_per_lod": [
+        38672,
+        20488,
+        1390
+      ]
+    },
+    {
+      "id": "CHINA17",
+      "triangles_per_lod": [
+        34734,
+        20240,
+        1382
+      ]
+    },
+    {
+      "id": "CLSTGA11",
+      "triangles_per_lod": [
+        22359,
+        6987,
+        1443
+      ]
+    },
+    {
+      "id": "CLSTGA12",
+      "triangles_per_lod": [
+        24263,
+        4391,
+        1015
+      ]
+    },
+    {
+      "id": "CLSTGA13",
+      "triangles_per_lod": [
+        20251,
+        4899,
+        1211
+      ]
+    },
+    {
+      "id": "CLSTGA14",
+      "triangles_per_lod": [
+        19887,
+        3579,
+        895
+      ]
+    },
+    {
+      "id": "CLSTGA15",
+      "triangles_per_lod": [
+        24223,
+        7419,
+        1547
+      ]
+    },
+    {
+      "id": "CLSTGA16",
+      "triangles_per_lod": [
+        20699,
+        5347,
+        1339
+      ]
+    },
+    {
+      "id": "CLSTGA17",
+      "triangles_per_lod": [
+        23648,
+        7600,
+        1469
+      ]
+    },
+    {
+      "id": "CLSTGA18",
+      "triangles_per_lod": [
+        17896,
+        2390,
+        644
+      ]
+    },
+    {
+      "id": "CLSTGA19",
+      "triangles_per_lod": [
+        23772,
+        7964,
+        2005
+      ]
+    },
+    {
+      "id": "CLSTGA20",
+      "triangles_per_lod": [
+        14839,
+        6659,
+        1003
+      ]
+    },
+    {
+      "id": "CLSTGA21",
+      "triangles_per_lod": [
+        22117,
+        6997,
+        1387
+      ]
+    },
+    {
+      "id": "OFFC1",
+      "triangles_per_lod": [
+        13130,
+        6050,
+        1162
+      ]
+    },
+    {
+      "id": "OFFC10",
+      "triangles_per_lod": [
+        17694,
+        2786,
+        740
+      ]
+    },
+    {
+      "id": "OFFC11",
+      "triangles_per_lod": [
+        18420,
+        3650,
+        836
+      ]
+    },
+    {
+      "id": "OFFC12",
+      "triangles_per_lod": [
+        19030,
+        4706,
+        1140
+      ]
+    },
+    {
+      "id": "OFFC13",
+      "triangles_per_lod": [
+        18974,
+        4626,
+        848
+      ]
+    },
+    {
+      "id": "OFFC14",
+      "triangles_per_lod": [
+        17630,
+        3326,
+        980
+      ]
+    },
+    {
+      "id": "OFFC15",
+      "triangles_per_lod": [
+        19420,
+        5130,
+        1248
+      ]
+    },
+    {
+      "id": "OFFC16",
+      "triangles_per_lod": [
+        18872,
+        4028,
+        640
+      ]
+    },
+    {
+      "id": "OFFC17",
+      "triangles_per_lod": [
+        18522,
+        4350,
+        1040
+      ]
+    },
+    {
+      "id": "OFFC18",
+      "triangles_per_lod": [
+        18830,
+        3998,
+        928
+      ]
+    },
+    {
+      "id": "OFFC19",
+      "triangles_per_lod": [
+        19190,
+        3874,
+        1060
+      ]
+    },
+    {
+      "id": "OFFC2",
+      "triangles_per_lod": [
+        20502,
+        6034,
+        1508
+      ]
+    },
+    {
+      "id": "OFFC20",
+      "triangles_per_lod": [
+        19032,
+        4698,
+        1328
+      ]
+    },
+    {
+      "id": "OFFC21",
+      "triangles_per_lod": [
+        19846,
+        4662,
+        1296
+      ]
+    },
+    {
+      "id": "OFFC22",
+      "triangles_per_lod": [
+        19050,
+        3674,
+        664
+      ]
+    },
+    {
+      "id": "OFFC5",
+      "triangles_per_lod": [
+        19164,
+        3646,
+        832
+      ]
+    },
+    {
+      "id": "RUNDWN11",
+      "triangles_per_lod": [
+        18016,
+        3190,
+        856
+      ]
+    },
+    {
+      "id": "RUNDWN12",
+      "triangles_per_lod": [
+        18142,
+        3858,
+        1126
+      ]
+    },
+    {
+      "id": "RUNDWN13",
+      "triangles_per_lod": [
+        24788,
+        1658,
+        388
+      ]
+    },
+    {
+      "id": "RUNDWN14",
+      "triangles_per_lod": [
+        16636,
+        2426,
+        716
+      ]
+    },
+    {
+      "id": "RUNDWN15",
+      "triangles_per_lod": [
+        21041,
+        5367,
+        931
+      ]
+    },
+    {
+      "id": "RUNDWN16",
+      "triangles_per_lod": [
+        26934,
+        4194,
+        644
+      ]
+    },
+    {
+      "id": "RUNDWN17",
+      "triangles_per_lod": [
+        17864,
+        2346,
+        656
+      ]
+    },
+    {
+      "id": "VICT11",
+      "triangles_per_lod": [
+        11510,
+        4414,
+        852
+      ]
+    },
+    {
+      "id": "VICT12",
+      "triangles_per_lod": [
+        10670,
+        3344,
+        925
+      ]
+    },
+    {
+      "id": "VICT13",
+      "triangles_per_lod": [
+        17934,
+        3686,
+        884
+      ]
+    },
+    {
+      "id": "VICT14",
+      "triangles_per_lod": [
+        22010,
+        7102,
+        1036
+      ]
+    },
+    {
+      "id": "VICT15",
+      "triangles_per_lod": [
+        19523,
+        3303,
+        795
+      ]
+    },
+    {
+      "id": "VICT16",
+      "triangles_per_lod": [
+        18339,
+        4141,
+        1003
+      ]
+    },
+    {
+      "id": "VICT17",
+      "triangles_per_lod": [
+        25826,
+        1826,
+        460
+      ]
+    },
+    {
+      "id": "VICT18",
+      "triangles_per_lod": [
+        27374,
+        2450,
+        388
+      ]
+    },
+    {
+      "id": "VICT19",
+      "triangles_per_lod": [
+        24926,
+        1790,
+        424
+      ]
+    },
+    {
+      "id": "VICT1A",
+      "triangles_per_lod": [
+        17468,
+        2434,
+        680
+      ]
+    },
+    {
+      "id": "VICT1B",
+      "triangles_per_lod": [
+        17556,
+        2522,
+        680
+      ]
+    },
+    {
+      "id": "VICT20",
+      "triangles_per_lod": [
+        19348,
+        4092,
+        977
+      ]
+    },
+    {
+      "id": "VICT21",
+      "triangles_per_lod": [
+        17070,
+        2910,
+        848
+      ]
+    },
+    {
+      "id": "VICT22",
+      "triangles_per_lod": [
+        21966,
+        7102,
+        1036
+      ]
+    },
+    {
+      "id": "VICT23",
+      "triangles_per_lod": [
+        24662,
+        1658,
+        388
+      ]
+    },
+    {
+      "id": "VICT24",
+      "triangles_per_lod": [
+        18592,
+        4208,
+        985
+      ]
+    },
+    {
+      "id": "VICT25",
+      "triangles_per_lod": [
+        17076,
+        2866,
+        836
+      ]
+    },
+    {
+      "id": "VICT26",
+      "triangles_per_lod": [
+        27142,
+        2450,
+        388
+      ]
+    },
+    {
+      "id": "VICT27",
+      "triangles_per_lod": [
+        17820,
+        3226,
+        948
+      ]
+    },
+    {
+      "id": "VICT28",
+      "triangles_per_lod": [
+        9610,
+        2778,
+        656
+      ]
+    },
+    {
+      "id": "VICT29",
+      "triangles_per_lod": [
+        19486,
+        4920,
+        917
+      ]
+    },
+    {
+      "id": "VICT2A",
+      "triangles_per_lod": [
+        17690,
+        3344,
+        925
+      ]
+    },
+    {
+      "id": "VICT2B",
+      "triangles_per_lod": [
+        19216,
+        4092,
+        977
+      ]
+    },
+    {
+      "id": "VICT31",
+      "triangles_per_lod": [
+        17254,
+        3006,
+        852
+      ]
+    },
+    {
+      "id": "VICT32",
+      "triangles_per_lod": [
+        17512,
+        2654,
+        584
+      ]
+    },
+    {
+      "id": "VICT33",
+      "triangles_per_lod": [
+        18210,
+        3756,
+        1050
+      ]
+    },
+    {
+      "id": "VICT34",
+      "triangles_per_lod": [
+        21424,
+        6568,
+        1301
+      ]
+    },
+    {
+      "id": "VICT3A",
+      "triangles_per_lod": [
+        17878,
+        3774,
+        908
+      ]
+    },
+    {
+      "id": "VICT3B",
+      "triangles_per_lod": [
+        16900,
+        2778,
+        656
+      ]
+    },
+    {
+      "id": "VICT6A",
+      "triangles_per_lod": [
+        18263,
+        4141,
+        1003
+      ]
+    },
+    {
+      "id": "VICT6B",
+      "triangles_per_lod": [
+        17778,
+        3344,
+        925
+      ]
+    },
+    {
+      "id": "WHSE11",
+      "triangles_per_lod": [
+        12255,
+        4295,
+        199
+      ]
+    },
+    {
+      "id": "WHSE12",
+      "triangles_per_lod": [
+        19199,
+        3551,
+        795
+      ]
+    },
+    {
+      "id": "WHSE13",
+      "triangles_per_lod": [
+        27227,
+        2351,
+        443
+      ]
+    },
+    {
+      "id": "WHSE14",
+      "triangles_per_lod": [
+        13547,
+        5851,
+        639
+      ]
+    },
+    {
+      "id": "WHSE15",
+      "triangles_per_lod": [
+        19067,
+        3463,
+        691
+      ]
+    },
+    {
+      "id": "WHSE16",
+      "triangles_per_lod": [
+        14419,
+        6855,
+        539
+      ]
+    },
+    {
+      "id": "WHSE17",
+      "triangles_per_lod": [
+        15015,
+        7759,
+        819
+      ]
+    },
+    {
+      "id": "WHSE18",
+      "triangles_per_lod": [
+        21443,
+        5047,
+        819
+      ]
+    },
+    {
+      "id": "WHSE19",
+      "triangles_per_lod": [
+        27321,
+        2351,
+        443
+      ]
+    },
+    {
+      "id": "WHSE20",
+      "triangles_per_lod": [
+        18744,
+        3358,
+        792
+      ]
+    },
+    {
+      "id": "WHSE22",
+      "triangles_per_lod": [
+        18152,
+        2522,
+        656
+      ]
+    },
+    {
+      "id": "WHSE23",
+      "triangles_per_lod": [
+        23245,
+        4479,
+        551
+      ]
+    },
+    {
+      "id": "WRHS1",
+      "triangles_per_lod": [
+        23808,
+        2314,
+        384
+      ]
+    },
+    {
+      "id": "WRHS2",
+      "triangles_per_lod": [
+        18488,
+        4838,
+        776
+      ]
+    },
+    {
+      "id": "WRHS3",
+      "triangles_per_lod": [
+        24196,
+        2098,
+        412
+      ]
+    },
+    {
+      "id": "WRHS4",
+      "triangles_per_lod": [
+        26498,
+        3694,
+        968
+      ]
+    },
+    {
+      "id": "WRHS5",
+      "triangles_per_lod": [
+        14149,
+        5881,
+        539
+      ]
+    },
+    {
+      "id": "WRHS6",
+      "triangles_per_lod": [
+        10757,
+        3551,
+        795
+      ]
+    },
+    {
+      "id": "WRHS7",
+      "triangles_per_lod": [
+        27327,
+        2351,
+        443
+      ]
+    },
+    {
+      "id": "WRHS8",
+      "triangles_per_lod": [
+        12418,
+        4826,
+        596
+      ]
+    },
+    {
+      "id": "BARN12",
+      "triangles_per_lod": [
+        19212,
+        16196,
+        5158
+      ]
+    },
+    {
+      "id": "BARN22",
+      "triangles_per_lod": [
+        18522,
+        15582,
+        4716
+      ]
+    },
+    {
+      "id": "BARN32",
+      "triangles_per_lod": [
+        12264,
+        10456,
+        3374
+      ]
+    },
+    {
+      "id": "BARND2",
+      "triangles_per_lod": [
+        18994,
+        15978,
+        5036
+      ]
+    },
+    {
+      "id": "BUSSTOP2",
+      "triangles_per_lod": [
+        888,
+        888,
+        332
+      ]
+    },
+    {
+      "id": "CARWASH2",
+      "triangles_per_lod": [
+        13184,
+        11276,
+        3262
+      ]
+    },
+    {
+      "id": "CHINGAT2",
+      "triangles_per_lod": [
+        8592,
+        8416,
+        362
+      ]
+    },
+    {
+      "id": "CHURCH2",
+      "triangles_per_lod": [
+        26271,
+        24059,
+        7237
+      ]
+    },
+    {
+      "id": "GASA2",
+      "triangles_per_lod": [
+        39778,
+        6186,
+        1250
+      ]
+    },
+    {
+      "id": "GASB2",
+      "triangles_per_lod": [
+        45178,
+        8154,
+        1178
+      ]
+    },
+    {
+      "id": "GRNTNK2",
+      "triangles_per_lod": [
+        12640,
+        11892,
+        374
+      ]
+    },
+    {
+      "id": "HAYSHED2",
+      "triangles_per_lod": [
+        2698,
+        762,
+        188
+      ]
+    },
+    {
+      "id": "HOUSEB2",
+      "triangles_per_lod": [
+        20484,
+        17784,
+        5360
+      ]
+    },
+    {
+      "id": "OUTHOUS2",
+      "triangles_per_lod": [
+        6359,
+        4559,
+        1410
+      ]
+    },
+    {
+      "id": "PHONSHK2",
+      "triangles_per_lod": [
+        6601,
+        5985,
+        2362
+      ]
+    },
+    {
+      "id": "PORTLET2",
+      "triangles_per_lod": [
+        2400,
+        1256,
+        240
+      ]
+    },
+    {
+      "id": "RUSTICA2",
+      "triangles_per_lod": [
+        26096,
+        23092,
+        7108
+      ]
+    },
+    {
+      "id": "RUSTICB2",
+      "triangles_per_lod": [
+        21076,
+        18072,
+        5160
+      ]
+    },
+    {
+      "id": "SCHOOL2",
+      "triangles_per_lod": [
+        22917,
+        19297,
+        6002
+      ]
+    },
+    {
+      "id": "SHOPD2",
+      "triangles_per_lod": [
+        68406,
+        29798,
+        1830
+      ]
+    },
+    {
+      "id": "SHOPE2",
+      "triangles_per_lod": [
+        53986,
+        19818,
+        1634
+      ]
+    },
+    {
+      "id": "SHOPICE2",
+      "triangles_per_lod": [
+        32825,
+        27773,
+        5208
+      ]
+    },
+    {
+      "id": "SNCKSHP2",
+      "triangles_per_lod": [
+        74814,
+        30486,
+        1638
+      ]
+    },
+    {
+      "id": "TANKSEP2",
+      "triangles_per_lod": [
+        8908,
+        8228,
+        348
+      ]
+    },
+    {
+      "id": "TOWERB2",
+      "triangles_per_lod": [
+        12417,
+        1227,
+        247
+      ]
+    },
+    {
+      "id": "WATRTNK2",
+      "triangles_per_lod": [
+        4158,
+        3870,
+        124
+      ]
+    },
+    {
+      "id": "WHTTANK2",
+      "triangles_per_lod": [
+        1136,
+        608,
+        272
+      ]
+    },
+    {
+      "id": "WINNERY2",
+      "triangles_per_lod": [
+        79608,
+        9468,
+        2860
+      ]
+    }
+  ]
+}

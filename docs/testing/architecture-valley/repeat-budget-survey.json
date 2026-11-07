@@ -1,0 +1,48 @@
+{
+  "architecture": {
+    "active_buildings": 12,
+    "active_panels": 745,
+    "actual_mesh_entities": 3619,
+    "bound_lots": 657,
+    "cached_lods": 48,
+    "catalog_designs": 128,
+    "limits": {
+      "buildings": 20,
+      "panels": 750,
+      "triangles": 1000000
+    },
+    "scene_roots": 745,
+    "switches": 263,
+    "visible_triangle_instances": 683949
+  },
+  "benchmark": "warmed city view with active fifteen-racer simulation; current default rendering, no production quality preset",
+  "fields": 42,
+  "junctions": 9,
+  "limitations": "bounded wall-frame sample, not GPU timing or Windows hardware certification",
+  "logical_buildings": 657,
+  "metrics": {
+    "active_fixed_ticks": 2230,
+    "colliders": 2918,
+    "entities": 24305,
+    "fixed_ticks": 2289,
+    "last_gameplay_ms": 1.2338169813156128,
+    "last_physics_ms": 6.135162830352783,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 2290,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 16.173473358154297,
+    "wall_frame_p95_ms": 18.23613929748535
+  },
+  "p95_target_met": false,
+  "p95_target_ms": 16.7,
+  "present_mode": "AutoNoVsync",
+  "resolution": [
+    1920,
+    1080
+  ],
+  "sections_captured": 15,
+  "update_mode": "Continuous focused and unfocused (benchmark only)",
+  "visible_far_proxies": 170,
+  "visible_near_parts": 208,
+  "window_focused": true
+}

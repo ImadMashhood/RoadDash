@@ -72,26 +72,6 @@ fn roof_mesh(style: Roof, base: f32) -> Mesh {
     crate::environment::mesh(&vertices, &indices)
 }
 
-fn facade(height: f32) -> Mesh {
-    let mut v = Vec::new();
-    let mut ix = Vec::new();
-    let floors = (height / 3.2).floor().max(1.0) as usize;
-    for floor in 0..floors {
-        for column in 0..4 {
-            for face in 0..4 {
-                let q = Quat::from_rotation_y(face as f32 * std::f32::consts::FRAC_PI_2);
-                let x = -0.36 + column as f32 * 0.24;
-                let y = (floor as f32 * 3.2 + 1.5) / height;
-                let n = v.len() as u32;
-                for (dx, dy) in [(-0.07, -0.55), (0.07, -0.55), (0.07, 0.55), (-0.07, 0.55)] {
-                    v.push(q * Vec3::new(x + dx, y + dy / height, 0.503));
-                }
-                ix.extend([[n, n + 1, n + 2], [n, n + 2, n + 3]]);
-            }
-        }
-    }
-    crate::environment::mesh(&v, &ix)
-}
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -99,13 +79,18 @@ pub fn spawn(
     art: &Art,
     plan: &WorldPlan,
     layout: &WorldLayout,
+    server: Option<&AssetServer>,
 ) {
+    let architecture = super::architecture::Architecture::new(plan, layout)
+        .expect("validated Valley architecture grammar");
+    let mut kit_materials = HashMap::new();
     let glass = materials.add(StandardMaterial {
         base_color: Color::srgb(0.16, 0.28, 0.32),
         perceptual_roughness: 0.35,
         ..default()
     });
-    let mut facades = HashMap::<u32, Handle<Mesh>>::new();
+    let mut facades = HashMap::<[u32; 3], (Handle<Mesh>, Handle<Mesh>)>::new();
+    let trim = materials.add(Color::srgb(0.58, 0.56, 0.51));
     let proxy_mesh = meshes.add(cube(1.0, 0.0));
     let mut shapes = HashMap::<(u8, u32), (Handle<Mesh>, Handle<Mesh>)>::new();
     let mut palette = Vec::new();
@@ -124,7 +109,7 @@ pub fn spawn(
             ..default()
         }));
     }
-    for b in layout.all_buildings() {
+    for (building_index, b) in layout.all_buildings().enumerate() {
         let index = plan
             .archetypes
             .archetypes
@@ -132,6 +117,33 @@ pub fn spawn(
             .position(|a| a.id == b.archetype_id)
             .unwrap();
         let a = &plan.archetypes.archetypes[index];
+        let design = &architecture.catalog.records[architecture.buildings[building_index].design];
+        let material = kit_materials
+            .entry(design.masonry.clone())
+            .or_insert_with(|| {
+                materials.add(StandardMaterial {
+                    base_color: Color::WHITE,
+                    base_color_texture: server.map(|s| {
+                        s.load_with_settings(
+                            format!("architecture://materials/{}_albedo.png", design.masonry),
+                            |settings: &mut bevy::image::ImageLoaderSettings| {
+                                settings.sampler = bevy::image::ImageSampler::Descriptor(
+                                    bevy::image::ImageSamplerDescriptor {
+                                        address_mode_u: bevy::image::ImageAddressMode::Repeat,
+                                        address_mode_v: bevy::image::ImageAddressMode::Repeat,
+                                        ..default()
+                                    },
+                                );
+                            },
+                        )
+                    }),
+                    uv_transform: bevy::math::Affine2::from_scale(Vec2::splat(4.0)),
+                    perceptual_roughness: 0.86,
+                    ..default()
+                })
+            })
+            .clone();
+
         let size = Vec3::from_array(b.size);
         let (kind, roof_height) = match a.roof {
             Roof::Flat => (0, 0.3),
@@ -213,7 +225,11 @@ pub fn spawn(
         let wall = commands
             .spawn((
                 Mesh3d(wall_mesh),
-                MeshMaterial3d(palette[index].clone()),
+                MeshMaterial3d(if server.is_some() {
+                    material.clone()
+                } else {
+                    palette[index].clone()
+                }),
                 Transform::from_scale(size),
                 near.clone(),
                 BuildingLod { near: true },
@@ -231,28 +247,113 @@ pub fn spawn(
         let proxy = commands
             .spawn((
                 Mesh3d(proxy_mesh.clone()),
-                MeshMaterial3d(palette[index].clone()),
+                MeshMaterial3d(if server.is_some() {
+                    material.clone()
+                } else {
+                    palette[index].clone()
+                }),
                 Transform::from_scale(size),
-                far,
+                far.clone(),
                 BuildingLod { near: false },
             ))
             .id();
+        let (window_mesh, trim_mesh) = facades
+            .entry(size.to_array().map(f32::to_bits))
+            .or_insert_with(|| {
+                let (glass, frames) = super::elevation::Elevation::building(size).meshes();
+                (meshes.add(glass), meshes.add(frames))
+            })
+            .clone();
         let windows = commands
             .spawn((
-                Mesh3d(
-                    facades
-                        .entry(size.y.to_bits())
-                        .or_insert_with(|| meshes.add(facade(size.y)))
-                        .clone(),
-                ),
+                bevy::light::NotShadowCaster,
+                Mesh3d(window_mesh.clone()),
                 MeshMaterial3d(glass.clone()),
-                Transform::from_scale(size),
-                near,
+                Transform::default(),
+                near.clone(),
                 BuildingLod { near: true },
             ))
             .id();
-        commands
-            .entity(root)
-            .add_children(&[wall, roof, proxy, windows]);
+        let relief = commands
+            .spawn((
+                bevy::light::NotShadowCaster,
+                Mesh3d(trim_mesh.clone()),
+                MeshMaterial3d(trim.clone()),
+                Transform::default(),
+                near.clone(),
+                BuildingLod { near: true },
+            ))
+            .id();
+        // Preserve readable upper floors beyond the expensive GLB radius too.
+        let far_windows = commands
+            .spawn((
+                bevy::light::NotShadowCaster,
+                Mesh3d(window_mesh),
+                MeshMaterial3d(glass.clone()),
+                Transform::default(),
+                far.clone(),
+                BuildingLod { near: false },
+            ))
+            .id();
+        let far_trim = commands
+            .spawn((
+                bevy::light::NotShadowCaster,
+                Mesh3d(trim_mesh),
+                MeshMaterial3d(trim.clone()),
+                Transform::default(),
+                VisibilityRange {
+                    end_margin: 350.0..400.0,
+                    ..far
+                },
+                BuildingLod { near: false },
+            ))
+            .id();
+        commands.entity(root).add_children(&[
+            wall,
+            roof,
+            proxy,
+            windows,
+            relief,
+            far_windows,
+            far_trim,
+        ]);
+        if server.is_some() {
+            commands
+                .entity(wall)
+                .insert(super::architecture::render::Fallback {
+                    index: building_index,
+                    wall: true,
+                    size,
+                });
+            commands
+                .entity(relief)
+                .insert(super::architecture::render::Fallback {
+                    index: building_index,
+                    wall: false,
+                    size,
+                });
+            commands
+                .entity(windows)
+                .insert(super::architecture::render::Fallback {
+                    index: building_index,
+                    wall: false,
+                    size,
+                });
+            let slot = commands
+                .spawn((
+                    super::architecture::render::Slot::new(building_index),
+                    Transform::IDENTITY,
+                    Visibility::Inherited,
+                ))
+                .id();
+            commands.entity(root).add_child(slot);
+        }
     }
+    if let Some(server) = server {
+        commands.insert_resource(super::architecture::render::Streaming::preload(
+            &architecture,
+            server,
+        ));
+    }
+    commands.insert_resource(architecture);
 }
