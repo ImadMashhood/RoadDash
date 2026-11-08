@@ -2,6 +2,7 @@
 use super::{WorldPlan, layout::WorldLayout};
 use bevy::prelude::*;
 use rr_content::architecture::{Catalog, Design, Rules};
+pub mod identity;
 pub mod render;
 #[cfg(test)]
 mod tests;
@@ -77,6 +78,17 @@ impl Architecture {
     }
 }
 impl Assembly {
+    /// Render detail follows distance to the facade, not the lot centre.
+    pub fn distance_to(&self, camera: Vec3) -> f32 {
+        let local = self.rotation.inverse() * (camera - self.position);
+        Vec3::new(
+            (local.x.abs() - self.size.x * 0.5).max(0.0),
+            (-local.y).max(local.y - self.size.y).max(0.0),
+            (local.z.abs() - self.size.z * 0.5).max(0.0),
+        )
+        .length()
+    }
+
     pub fn face_mask(&self, camera: Vec3) -> u8 {
         let d = self.rotation.inverse() * (camera - self.position);
         u8::from(d.x >= 0.0)
@@ -173,13 +185,39 @@ impl Assembly {
         }
         panels
     }
-    pub fn inset(&self, d: &Design) -> f32 {
-        let span = d
-            .lods
-            .iter()
-            .flat_map(|l| l.bounds.iter())
-            .map(|b| b.max[2] - b.min[2])
+    /// Keep the opaque backup body behind the DEEPEST scaled facade, including
+    /// the far body. Scaling source bays can multiply their depth considerably.
+    pub fn core_size(&self, d: &Design) -> Option<Vec3> {
+        let span = (0..d.heights.len())
+            .map(|band| {
+                let near = d
+                    .lods
+                    .iter()
+                    .map(|l| l.bounds[band].min[2])
+                    .fold(f32::INFINITY, f32::min);
+                let far = d
+                    .lods
+                    .iter()
+                    .map(|l| l.bounds[band].max[2])
+                    .fold(f32::NEG_INFINITY, f32::max);
+                far - near
+            })
             .fold(0.0f32, f32::max);
-        (span * 1.3).clamp(0.5, (self.size.x.min(self.size.z) * 0.5 - 0.5).max(0.5))
+        let scale = |width: f32| {
+            let bays = if d.asset_type == "structure" {
+                1.0
+            } else {
+                (width / d.width).round().clamp(1.0, 8.0)
+            };
+            width / (bays * d.width)
+        };
+        let inset_x = span * scale(self.size.z) + 0.08;
+        let inset_z = span * scale(self.size.x) + 0.08;
+        let size = Vec3::new(
+            self.size.x - 2.0 * inset_x,
+            self.size.y,
+            self.size.z - 2.0 * inset_z,
+        );
+        (size.x > 0.1 && size.z > 0.1).then_some(size)
     }
 }

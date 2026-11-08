@@ -19,6 +19,12 @@ impl Profile {
     pub fn cruise_mps(self) -> f32 {
         self.cruise_units * 0.44704
     }
+    /// Adapt original roster pacing to the modern player's bike class.
+    /// Preserve relative rider ranking without making every rival slower than
+    /// the player's ordinary (unboosted) top speed. No positional rubber-band.
+    pub fn race_pace(self, player_top_mps: f32) -> f32 {
+        player_top_mps * (0.94 + (self.cruise_units - 87.0) / 17.0 * 0.12).clamp(0.90, 1.08)
+    }
     pub fn attack_cooldown(self) -> f32 {
         1.2 + (8.0 - self.strength) * 0.12
     }
@@ -192,5 +198,30 @@ mod steering_tests {
                 "{hz}: {lane} {steer}"
             );
         }
+    }
+}
+
+#[cfg(test)]
+mod pace_tests {
+    use super::*;
+    #[test]
+    fn roster_pace_spans_player_speed_without_rubber_banding() {
+        let mut p = Profile {
+            personality: 0,
+            cruise_units: 87.0,
+            minimum_units: 60.0,
+            kick_roll: 0,
+            reach: 1.0,
+            strength: 4.0,
+            stamina: 100.0,
+            weight_lb: 150.0,
+            relationships: [0.0; 10],
+            hit_reaction: 0.0,
+            calm_per_second: 0.0,
+        };
+        assert!((p.race_pace(55.0) - 51.7).abs() < 0.001);
+        p.cruise_units = 104.0;
+        assert!((p.race_pace(55.0) - 58.3).abs() < 0.001);
+        assert_eq!(p.cruise_mps(), 104.0 * 0.44704);
     }
 }

@@ -188,7 +188,11 @@ pub fn setup_ui(
         ))
         .id();
     let mut dots = vec![];
-    for p in track.points.iter().step_by(4) {
+    let mut map_points = track.points.clone();
+    if let Some(m) = &track.metropolis {
+        map_points.extend(m.paths[1].points.iter().map(|p| Vec3::from_array(*p)));
+    }
+    for p in map_points.iter().step_by(4) {
         let (x, y) = map_point(&track, *p);
         dots.push(
             commands
@@ -363,7 +367,8 @@ pub fn update_ui(
                 let mut s = format!("P{position:02} / 15\n\n");
                 for (i, r) in sorted.iter().enumerate() {
                     let marker = if r.id == 0 { ">" } else { " " };
-                    s.push_str(&format!("{marker} {}  {:5}\n", i + 1, content.0.riders[r.id].display_name));
+                    let role=if r.id==0{"YOU"}else if r.combat_mind.role==rr_core::rival_ai::Role::Killer{"K"}else{"R"};
+                    s.push_str(&format!("{marker} {}  {:5} [{role}]\n", i + 1, content.0.riders[r.id].display_name));
                 }
                 s
             },
@@ -394,6 +399,7 @@ pub fn update_ui(
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
                 Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.\nF2 / controller LB: comfort & controls.".into(),
+                _ if track.metropolis.is_some()=>"Fifteen riders. Farms to downtown.\n\nChoose Old Market or Station Avenue.\nPass every gate and finish in the city.\nF2 / controller LB: comfort & controls.".into(),
                 _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.\nF2 / controller LB: comfort & controls.".into(),
             },
             8 => if race.phase == Phase::Paused { "ESC / BACK TO IT".into() } else { "ENTER / RIDE OUT".into() },
@@ -403,7 +409,7 @@ pub fn update_ui(
     }
     for (dot, mut node) in &mut dots {
         if let Some(r) = riders.iter().find(|r| r.id == dot.0) {
-            let (x, y) = map_point(&track, track.sample(r.progress, 0.0).0);
+            let (x, y) = map_point(&track, track.sample_route(r.route, r.progress, 0.0).0);
             node.left = px(x - 2.0);
             node.top = px(y - 2.0);
         }

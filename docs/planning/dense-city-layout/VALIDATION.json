@@ -1,0 +1,24 @@
+{
+  "proposed_parcels": 752,
+  "primary_frontage_parcels": 376,
+  "geometry_checks": {
+    "parcel_ids_unique": true,
+    "within_block_frontage_gaps": 0,
+    "shared_party_boundaries": true,
+    "finite_nonzero_polygons": true,
+    "runtime_files_written": false,
+    "limitations": "Concept geometry only. Full cross-route overlap, swept vehicle, junction, terrain support and lot migration validation precede future runtime implementation."
+  },
+  "proper_self_intersections": 0,
+  "deterministic_outputs": {
+    "LAYOUT.json": true,
+    "masterplan.png": true,
+    "masterplan.svg": true,
+    "block-plan.png": true,
+    "block-plan.svg": true,
+    "street-widths.png": true,
+    "index.html": true
+  },
+  "runtime_differences_from_149e355": [],
+  "limits": "2D proposal, not approval or a playable bake; cross-parcel/corner/access/terrain/vehicle checks remain open"
+}

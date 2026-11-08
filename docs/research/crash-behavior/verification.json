@@ -1,0 +1,29 @@
+{
+  "scope": "research-only; user requires findings before implementation",
+  "merged_pr": "https://github.com/ImadMashhood/RoadDash/pull/17",
+  "merged_main": "6aa3f17383c7773ebb81e09a8706128f873bfc08",
+  "unchanged_runtime_content_and_cargo_diff": true,
+  "checks": {
+    "roadmap_tests": "5 passed",
+    "progress_sync": "passed",
+    "cargo_fmt_all_check": "passed",
+    "declaration_audit": {
+      "dependency_declarations": 519,
+      "runtime_asset_records": 43,
+      "reference_observations": 27,
+      "limitations": "Declaration/hash audit only; not legal clearance, vulnerability scanning, or platform certification."
+    }
+  },
+  "not_run": [
+    "new crash behavior tests (not implemented)",
+    "external ragdoll demos",
+    "fresh retail replay"
+  ],
+  "research_feature_ids": [
+    "RAG-11"
+  ],
+  "implementation_still_open": [
+    "V2-01-006",
+    "V2-03-005"
+  ]
+}

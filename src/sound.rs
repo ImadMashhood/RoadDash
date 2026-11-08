@@ -9,7 +9,10 @@ use std::{f32::consts::TAU, sync::Arc};
 #[derive(Clone, Copy)]
 pub enum Cue {
     Crash,
+    Break,
     Punch,
+    Kick,
+    Honk,
     Land,
     Footstep,
 }
@@ -26,7 +29,10 @@ impl AudioCue {
 #[derive(Resource)]
 pub struct Sounds {
     crash: Handle<AudioSource>,
+    breaking: Handle<AudioSource>,
     punch: Handle<AudioSource>,
+    kick: Handle<AudioSource>,
+    honk: Handle<AudioSource>,
     land: Handle<AudioSource>,
     footstep: Handle<AudioSource>,
     beep: Handle<AudioSource>,
@@ -68,6 +74,7 @@ fn wave(duration: f32, kind: u8) -> AudioSource {
         filtered = filtered * 0.92 + noise * 0.08;
         let decay = (-t * if kind == 4 { 5.0 } else { 15.0 }).exp();
         let value = match kind {
+            12 => (noise * 0.65 + filtered * 0.6) * (-t * 18.).exp(),
             0 => {
                 // Engine firing pulses and harmonics at a loop-safe base RPM.
                 let phase = TAU * 60.0 * t;
@@ -83,6 +90,15 @@ fn wave(duration: f32, kind: u8) -> AudioSource {
             }
             4 => (noise * 0.7 + (TAU * 67.0 * t).sin() * 0.45) * decay,
             5 => (noise * 0.3 + (TAU * 110.0 * t).sin() * 0.6) * decay,
+            11 => {
+                ((TAU * 340.0 * t).sin() + (TAU * 420.0 * t).sin())
+                    * 0.25
+                    * (t * 25.0).min(1.0)
+                    * ((0.5 - t) * 20.0).clamp(0.0, 1.0)
+            }
+            10 => {
+                (noise * 0.32 + (TAU * (82.0 * t - 35.0 * t * t)).sin() * 0.65) * (-t * 18.0).exp()
+            }
             6 => (filtered * 2.0 + (TAU * 75.0 * t).sin() * 0.3) * decay,
             7 => filtered * 3.0 * decay,
             8 => (TAU * 880.0 * t).sin() * 0.35,
@@ -116,7 +132,10 @@ pub fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSource>>) {
     }
     commands.insert_resource(Sounds {
         crash: sources.add(wave(0.7, 4)),
+        breaking: sources.add(wave(0.3, 12)),
         punch: sources.add(wave(0.2, 5)),
+        kick: sources.add(wave(0.24, 10)),
+        honk: sources.add(wave(0.5, 11)),
         land: sources.add(wave(0.3, 6)),
         footstep: sources.add(wave(0.15, 7)),
         beep: sources.add(wave(0.13, 8)),
@@ -192,7 +211,10 @@ pub fn update(
         let gain = (1.0 / (1.0 + distance * 0.09)).clamp(0.0, 1.0);
         let handle = match cue.kind {
             Cue::Crash => &sounds.crash,
+            Cue::Break => &sounds.breaking,
             Cue::Punch => &sounds.punch,
+            Cue::Kick => &sounds.kick,
+            Cue::Honk => &sounds.honk,
             Cue::Land => &sounds.land,
             Cue::Footstep => &sounds.footstep,
         };
@@ -229,7 +251,7 @@ mod tests {
     use super::*;
     #[test]
     fn generated_audio_is_valid_pcm_and_not_silent() {
-        for kind in 0..10 {
+        for kind in 0..12 {
             let source = wave(0.25, kind);
             assert_eq!(&source.bytes[0..4], b"RIFF");
             assert_eq!(&source.bytes[8..12], b"WAVE");

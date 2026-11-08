@@ -4,6 +4,7 @@ pub(super) struct Measure {
     speed: f32,
     angular: f32,
     supported: bool,
+    resting_support: bool,
     severity: f32,
     activation: f32,
     age: f32,
@@ -15,6 +16,7 @@ pub(super) struct Measure {
 pub(super) fn update(
     settings: Res<Settings>,
     reaction: Res<super::reactions::Tuning>,
+    velocity_tuning: Res<super::velocity::Tuning>,
     time: Res<Time<Fixed>>,
     race: Option<Res<crate::game::Race>>,
     context: ReadRapierContext,
@@ -22,7 +24,7 @@ pub(super) fn update(
     recovery_tuning: Option<Res<crate::recovery::RecoveryTuning>>,
     riders: Query<&crate::game::Rider>,
     mut forces: MessageReader<ContactForceEvent>,
-    mut brains: Query<(&OwnedBody, &mut Brain)>,
+    mut brains: Query<(&OwnedBody, &mut Brain, &super::velocity::Pilot)>,
     segments: Query<(Entity, &OwnedBody, &Velocity, &Segment)>,
     mut joints: Query<(&OwnedBody, &Segment, &mut ImpulseJoint, &mut Muscle)>,
     bodies: Query<&RigidBody>,
@@ -33,7 +35,7 @@ pub(super) fn update(
     }
     scratch.clear();
     let context = context.single().ok();
-    for (e, o, v, _) in &segments {
+    for (e, o, v, part) in &segments {
         let stats = scratch.entry(o.owner).or_default();
         stats.speed = stats.speed.max(v.linvel.length());
         stats.angular = stats.angular.max(v.angvel.length());
@@ -45,10 +47,15 @@ pub(super) fn update(
                     pair.collider1()
                 };
                 if pair.has_any_active_contact()
-                    && other
-                        .is_some_and(|e| bodies.get(e).map_or(true, |b| *b != RigidBody::Dynamic))
+                    && other.is_some_and(|e| bodies.get(e).is_ok_and(|b| *b == RigidBody::Fixed))
                 {
-                    stats.supported = true;
+                    let first = pair.collider1() == Some(e);
+                    let upward = pair.manifolds().any(|m| {
+                        let n = if first { -m.normal() } else { m.normal() };
+                        m.num_solver_contacts() > 0 && n.y >= velocity_tuning.0.support_normal_y
+                    });
+                    stats.resting_support |= upward;
+                    stats.supported |= upward && matches!(part.part, 0 | 2 | 11);
                 }
             }
         }
@@ -63,10 +70,14 @@ pub(super) fn update(
             }
         }
     }
-    for (owner, mut brain) in &mut brains {
+    for (owner, mut brain, pilot) in &mut brains {
         let Some(stats) = scratch.get_mut(&owner.owner) else {
             continue;
         };
+        // Reuse the controller's previous fixed-tick verified support proxy.
+        // It requires an actual fixed-body contact and a nearby core surface.
+        stats.supported |=
+            pilot.supported || (stats.resting_support && stats.speed < 0.05 && stats.angular < 0.1);
         brain.control.secondary_impact(stats.severity);
         brain.supported = stats.supported;
         brain.control.step(
@@ -124,7 +135,9 @@ pub(super) fn update(
         if (muscle.activation - activation).abs() > 0.00001
             || muscle.target.dot(target).abs() < 0.99999
         {
-            set_drive(joint.data.as_mut(), c, activation, target);
+            // Method B retains passive native constraints; its active drive is
+            // the reciprocal angular-impulse controller after this system.
+            set_drive(joint.data.as_mut(), c, 0.0, target);
             muscle.activation = activation;
             muscle.target = target;
         }

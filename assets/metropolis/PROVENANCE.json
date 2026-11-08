@@ -1,0 +1,151 @@
+{
+  "source_manifest_sha256": "bdcc755e1fb1e62263687a8479127e6ff42957461fd7e84f3b2394d6c5e4d0a3",
+  "sources": [
+    {
+      "design": "BUSS1",
+      "source_design": "BUSS1",
+      "band": 0,
+      "source_sha256": "c682b30c2513fc2ca01e493a32687f886a9e733e7f695cd8f97e4eae9964374f"
+    },
+    {
+      "design": "BUSS1",
+      "source_design": "BUSS1",
+      "band": 1,
+      "source_sha256": "c682b30c2513fc2ca01e493a32687f886a9e733e7f695cd8f97e4eae9964374f"
+    },
+    {
+      "design": "BUSS4",
+      "source_design": "BUSS4",
+      "band": 0,
+      "source_sha256": "ec82d998d95b42bdfe51df6dccc6a3cd82b00f5aec6b8578bc76acf483fc5f7e"
+    },
+    {
+      "design": "BUSS4",
+      "source_design": "CLSTGA11",
+      "band": 1,
+      "source_sha256": "f71627d6241a5dd0a3aefea83ee13a66fff53db789e3a9be4220cbb517a869a6"
+    },
+    {
+      "design": "CHINA12",
+      "source_design": "CHINA12",
+      "band": 0,
+      "source_sha256": "e5add86c86f1df699839a4b8fc7d3d945a658faba806b90006ec3809175b6019"
+    },
+    {
+      "design": "CHINA12",
+      "source_design": "CHINA12",
+      "band": 1,
+      "source_sha256": "e5add86c86f1df699839a4b8fc7d3d945a658faba806b90006ec3809175b6019"
+    },
+    {
+      "design": "CLSTGA11",
+      "source_design": "CLSTGA11",
+      "band": 0,
+      "source_sha256": "f71627d6241a5dd0a3aefea83ee13a66fff53db789e3a9be4220cbb517a869a6"
+    },
+    {
+      "design": "CLSTGA11",
+      "source_design": "CLSTGA11",
+      "band": 1,
+      "source_sha256": "f71627d6241a5dd0a3aefea83ee13a66fff53db789e3a9be4220cbb517a869a6"
+    },
+    {
+      "design": "OFFC1",
+      "source_design": "OFFC1",
+      "band": 0,
+      "source_sha256": "520a63e308b0eca189c339517c56f01a89830605e9e74d2d2dedad784347dabb"
+    },
+    {
+      "design": "OFFC1",
+      "source_design": "OFFC1",
+      "band": 1,
+      "source_sha256": "520a63e308b0eca189c339517c56f01a89830605e9e74d2d2dedad784347dabb"
+    },
+    {
+      "design": "OFFC2",
+      "source_design": "OFFC2",
+      "band": 0,
+      "source_sha256": "777345e7096b15aafe0fe5cc45b16f26e304fb74dbff9311b9f3b66b9639cfcf"
+    },
+    {
+      "design": "OFFC2",
+      "source_design": "OFFC2",
+      "band": 1,
+      "source_sha256": "777345e7096b15aafe0fe5cc45b16f26e304fb74dbff9311b9f3b66b9639cfcf"
+    },
+    {
+      "design": "OFFC10",
+      "source_design": "OFFC10",
+      "band": 0,
+      "source_sha256": "6fc6f3e9f7d2cff0a74dd96bbf9e0d75af2d9249ca889a9e359fb6500bd8271e"
+    },
+    {
+      "design": "OFFC10",
+      "source_design": "OFFC10",
+      "band": 1,
+      "source_sha256": "6fc6f3e9f7d2cff0a74dd96bbf9e0d75af2d9249ca889a9e359fb6500bd8271e"
+    },
+    {
+      "design": "RUNDWN11",
+      "source_design": "RUNDWN11",
+      "band": 0,
+      "source_sha256": "d7a1f2497a7319b76c0429b2e8c2d15e5efb5e10dd1ab576de1795e547b775e1"
+    },
+    {
+      "design": "RUNDWN11",
+      "source_design": "RUNDWN11",
+      "band": 1,
+      "source_sha256": "d7a1f2497a7319b76c0429b2e8c2d15e5efb5e10dd1ab576de1795e547b775e1"
+    },
+    {
+      "design": "VICT11",
+      "source_design": "VICT11",
+      "band": 0,
+      "source_sha256": "0160d61c4a9f3c65fed8449caab4eef8d54016508b6ff409266e04b2e00d2ef5"
+    },
+    {
+      "design": "VICT11",
+      "source_design": "VICT11",
+      "band": 1,
+      "source_sha256": "0160d61c4a9f3c65fed8449caab4eef8d54016508b6ff409266e04b2e00d2ef5"
+    },
+    {
+      "design": "VICT12",
+      "source_design": "VICT12",
+      "band": 0,
+      "source_sha256": "4f4ca71972cc59f27a2d8e8a0c7debe5b18c4323ea33bab0020a965983259caa"
+    },
+    {
+      "design": "VICT12",
+      "source_design": "VICT12",
+      "band": 1,
+      "source_sha256": "4f4ca71972cc59f27a2d8e8a0c7debe5b18c4323ea33bab0020a965983259caa"
+    },
+    {
+      "design": "WHSE11",
+      "source_design": "WHSE11",
+      "band": 0,
+      "source_sha256": "6042cba1c32b3d5e0b00d96a9eb5dc4108ef049bbab16addff02abc8638ef9e4"
+    },
+    {
+      "design": "WHSE11",
+      "source_design": "WHSE11",
+      "band": 1,
+      "source_sha256": "6042cba1c32b3d5e0b00d96a9eb5dc4108ef049bbab16addff02abc8638ef9e4"
+    },
+    {
+      "design": "WRHS1",
+      "source_design": "WRHS1",
+      "band": 0,
+      "source_sha256": "c18f412b472c295c8ac310235cab1c8199b26e1c90c0a300020ed3aad7206d60"
+    },
+    {
+      "design": "WRHS1",
+      "source_design": "WRHS1",
+      "band": 1,
+      "source_sha256": "c18f412b472c295c8ac310235cab1c8199b26e1c90c0a300020ed3aad7206d60"
+    }
+  ],
+  "modifications": "Crop original model-derived storey albedo/mips; flatten transparent gaps to opaque masonry; no original game media.",
+  "sha256": "a3679b9743815d42a3597cc191fb8e6a037e2b7be5f0f12eda87f8b457da321d"
+}

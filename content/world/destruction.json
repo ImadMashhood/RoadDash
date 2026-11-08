@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "min_speed_mps": 4,
+  "cooldown_s": 0.5,
+  "max_dynamic_bodies": 48,
+  "settle_after_s": 8,
+  "profiles": {
+    "hydrant": {
+      "durability_j": 3000,
+      "mass_kg": 60,
+      "style": "topple",
+      "soft": false
+    },
+    "street_lamp": {
+      "durability_j": 6000,
+      "mass_kg": 35,
+      "style": "topple",
+      "soft": false
+    },
+    "bench": {
+      "durability_j": 1200,
+      "mass_kg": 20,
+      "style": "topple",
+      "soft": false
+    },
+    "street_bin": {
+      "durability_j": 250,
+      "mass_kg": 7,
+      "style": "crush",
+      "soft": true
+    },
+    "flower_planter": {
+      "durability_j": 350,
+      "mass_kg": 12,
+      "style": "crush",
+      "soft": true
+    },
+    "broadleaf": {
+      "durability_j": 16000,
+      "mass_kg": 90,
+      "style": "topple",
+      "soft": false
+    },
+    "parking_meter": {
+      "durability_j": 1800,
+      "mass_kg": 18,
+      "style": "topple",
+      "soft": false
+    },
+    "bus_sign": {
+      "durability_j": 900,
+      "mass_kg": 12,
+      "style": "topple",
+      "soft": false
+    },
+    "callbox": {
+      "durability_j": 1600,
+      "mass_kg": 22,
+      "style": "topple",
+      "soft": false
+    },
+    "mailboxes": {
+      "durability_j": 500,
+      "mass_kg": 10,
+      "style": "crush",
+      "soft": true
+    },
+    "recycling_pair": {
+      "durability_j": 350,
+      "mass_kg": 9,
+      "style": "crush",
+      "soft": true
+    },
+    "utility_box": {
+      "durability_j": 1800,
+      "mass_kg": 28,
+      "style": "crush",
+      "soft": false
+    },
+    "news_boxes": {
+      "durability_j": 500,
+      "mass_kg": 12,
+      "style": "crush",
+      "soft": true
+    }
+  }
+}

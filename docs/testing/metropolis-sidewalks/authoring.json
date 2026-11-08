@@ -1,0 +1,30 @@
+{
+  "curb_shift_m": 1.0,
+  "typical_sidewalk_width_m": 3.4,
+  "minimum_building_side_walk_m": 2.0,
+  "added_sidewalk_area_m2": 350077.718,
+  "props": 995,
+  "by_kind": {
+    "hydrant": 40,
+    "street_lamp": 276,
+    "bench": 104,
+    "street_bin": 144,
+    "flower_planter": 109,
+    "broadleaf": 53,
+    "parking_meter": 39,
+    "bus_sign": 38,
+    "callbox": 40,
+    "mailboxes": 39,
+    "recycling_pair": 36,
+    "utility_box": 37,
+    "news_boxes": 40
+  },
+  "checks": [
+    "no building overlap",
+    "no carriageway overlap",
+    "unchanged street reservation",
+    "all physical footprints on sidewalk",
+    "junction setbacks >=20m",
+    "deterministic curb band placement"
+  ]
+}

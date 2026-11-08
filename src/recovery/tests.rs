@@ -303,7 +303,23 @@ fn actual_crash_five_meters_before_finish_allows_a_manual_foot_finish() {
         assert!(seen.into_iter().all(|v| v), "missing crash stage: {seen:?}");
         assert!(
             app.world().get::<Rider>(owner).unwrap().finished_on_foot,
-            "enabled={enabled}"
+            "enabled={enabled}; progress={}; gate={}; stage={:?}; foot={:?}; wreck={:?}; elapsed={}",
+            app.world().get::<Rider>(owner).unwrap().progress,
+            app.world().get::<Rider>(owner).unwrap().gates.next,
+            app.world().get::<Recovery>(owner).unwrap().stage,
+            app.world()
+                .get::<Recovery>(owner)
+                .unwrap()
+                .runner
+                .and_then(|e| app.world().get::<Transform>(e))
+                .map(|t| t.translation),
+            app.world()
+                .get::<Recovery>(owner)
+                .unwrap()
+                .wreck
+                .and_then(|e| app.world().get::<Transform>(e))
+                .map(|t| t.translation),
+            app.world().get::<Recovery>(owner).unwrap().elapsed
         );
         assert_eq!(
             app.world().resource::<crate::game::Profile>().races,

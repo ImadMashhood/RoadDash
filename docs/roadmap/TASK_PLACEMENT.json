@@ -6,6 +6,27 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "PERF-09",
+        "REPAIR-01",
+        "PERF-07",
+        "AI-10",
+        "DESTRUCTION-01",
+        "STREET-LIFE-01",
+        "AUTHORED-01",
+        "SIDEWALK-01",
+        "METRO-01",
+        "WORLDPLAN-01",
+        "LOD-05",
+        "ANIM-KNEE-01",
+        "COLLISION-08",
+        "AI-09",
+        "COMBAT-09",
+        "ROAD-02",
+        "TRAFFIC-04",
+        "LOD-04",
+        "RAG-12",
+        "LOD-02",
+        "RAG-11",
         "DRESS-02",
         "COLLISION-07",
         "LOD-01",
@@ -191,6 +212,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "AI-11",
         "CRASHREF-004",
         "V2-01-005",
         "V2-01-006",
@@ -243,6 +265,10 @@
     "03": {
       "title": "Animation B \u2014 interpolation, terrain locomotion and active recovery",
       "task_ids": [
+        "COMBAT-FEEL-01",
+        "RAG-B-01",
+        "RAG-B-02",
+        "RAG-B-03",
         "V2-03-001",
         "V2-03-002",
         "V2-03-003",
@@ -271,12 +297,22 @@
     "04": {
       "title": "World A \u2014 facade study, original textures and procedural buildings",
       "task_ids": [
+        "PALETTE-01",
+        "LAYOUT-05",
+        "LAYOUT-04",
+        "LAYOUT-03",
+        "WORLD-EXTEND-01",
+        "LAYOUT-02",
+        "ROUTE-SPLIT-01",
+        "LAYOUT-01",
+        "LOD-03",
         "V2-04-001",
         "V2-04-002",
         "V2-04-003",
         "V2-04-004",
         "V2-04-006",
         "V2-04-007",
+        "KIT-03",
         "MESH-01",
         "MESH-02",
         "P11-002",
@@ -289,13 +325,15 @@
         "ENV-007",
         "ARCH-005",
         "RIGHTS-007",
-        "P02-004",
-        "KIT-03"
+        "P02-004"
       ]
     },
     "05": {
       "title": "World B \u2014 props, materials and procedural dressing",
       "task_ids": [
+        "DESTRUCTION-02",
+        "WORLDART-01",
+        "MAT-03",
         "MAT-02",
         "V2-05-001",
         "V2-05-002",
@@ -308,6 +346,7 @@
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "NPC-SEAMS-01",
         "V2-06-001",
         "V2-06-002",
         "V2-06-003",
@@ -395,6 +434,7 @@
     "11": {
       "title": "Remaining production-art integration and acceptance",
       "task_ids": [
+        "PERF-08",
         "P11-009",
         "P11-010"
       ]

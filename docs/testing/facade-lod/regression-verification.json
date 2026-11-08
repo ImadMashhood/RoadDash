@@ -1,0 +1,8 @@
+{
+  "source_control": "selected velocity candidate Method B",
+  "all18_ragdoll_outcomes_equal_except_timing": true,
+  "allocation_fingerprint": "fnv1a64:f866d824acfb111f",
+  "geometry_fingerprint": "fnv1a64:9e86f98d4552ac15",
+  "structural_fingerprints_equal": true,
+  "cargo_and_lockfile_unchanged": true
+}

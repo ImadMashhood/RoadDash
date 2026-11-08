@@ -1,0 +1,4 @@
+# Offline 2D authoring only; no Cargo/runtime dependency.
+Shapely==2.1.2
+numpy==2.3.4
+Pillow==12.0.0

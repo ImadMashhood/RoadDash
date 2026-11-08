@@ -1,0 +1,5 @@
+{
+  "byte_identical": true,
+  "manifest_sha256": "c3dfc077a1cdafc6d2dfeb428e677a2e016815020e4c817458cf635c21faacd8",
+  "stdout": "{\n  \"buildings\": 19068,\n  \"surface_patches\": 36559,\n  \"manifest_bytes\": 9341033,\n  \"facade_bytes\": 1178496\n}\n"
+}

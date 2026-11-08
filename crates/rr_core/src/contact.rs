@@ -47,9 +47,22 @@ pub fn low_geometry(bottom: f32, top: f32, road: f32) -> bool {
 pub fn wipeout(class: Class, closing: f32) -> bool {
     matches!(class, Class::Bike | Class::Tall) && closing.is_finite() && closing >= 50.0 / 3.6
 }
+/// Low-speed traffic touches remain solid contacts, not scripted rider ejections.
+/// Vehicle impact threshold18km/h; wall and upright-rider thresholds stay separate.
+pub fn vehicle_wipeout(closing: f32) -> bool {
+    closing.is_finite() && closing >= 5.
+}
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn vehicle_touches_require_meaningful_closing_speed() {
+        for v in [0., 0.5 / 3.6, 2., -8., f32::NAN] {
+            assert!(!vehicle_wipeout(v));
+        }
+        assert!(vehicle_wipeout(5.));
+        assert!(vehicle_wipeout(30.));
+    }
     #[test]
     fn ride_over_is_bounded_and_requires_closing_motion() {
         for v in [f32::NAN, -20.0, 0.0, 2.9] {

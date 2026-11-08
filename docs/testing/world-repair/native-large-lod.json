@@ -1,0 +1,13 @@
+{
+  "direct_crossfades": 79,
+  "limits": "captures and source/coverage checks do not imply perfect parallax, zero silhouette change or hardware/performance approval",
+  "map": "valley",
+  "max_cached_lods": 48,
+  "max_city_transition_groups": 0,
+  "max_displayed_panels": 749,
+  "max_displayed_triangles": 999820,
+  "render_frames": 1080,
+  "saves": false,
+  "views": "continuous near/far sweep, reverse review and Valley all-face orbit",
+  "fixture": "ROADDASH_LOD_SURVEY_LARGE=1; selected largest facade envelope below20mheight"
+}

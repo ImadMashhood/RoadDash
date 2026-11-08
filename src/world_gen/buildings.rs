@@ -89,6 +89,8 @@ pub fn spawn(
         perceptual_roughness: 0.35,
         ..default()
     });
+    let mut identity =
+        server.map(|s| super::architecture::identity::Identity::load(&architecture, s, materials));
     let mut facades = HashMap::<[u32; 3], (Handle<Mesh>, Handle<Mesh>)>::new();
     let trim = materials.add(Color::srgb(0.58, 0.56, 0.51));
     let proxy_mesh = meshes.add(cube(1.0, 0.0));
@@ -222,6 +224,12 @@ pub fn spawn(
             end_margin: layout.settings.render_far_m..layout.settings.render_far_m + 50.0,
             use_aabb: false,
         };
+        let core = architecture.buildings[building_index].core_size(design);
+        let core_size = if server.is_some() {
+            core.unwrap_or(Vec3::splat(0.001))
+        } else {
+            size
+        };
         let wall = commands
             .spawn((
                 Mesh3d(wall_mesh),
@@ -230,7 +238,7 @@ pub fn spawn(
                 } else {
                     palette[index].clone()
                 }),
-                Transform::from_scale(size),
+                Transform::from_scale(core_size),
                 near.clone(),
                 BuildingLod { near: true },
             ))
@@ -252,7 +260,7 @@ pub fn spawn(
                 } else {
                     palette[index].clone()
                 }),
-                Transform::from_scale(size),
+                Transform::from_scale(core_size),
                 far.clone(),
                 BuildingLod { near: false },
             ))
@@ -318,30 +326,40 @@ pub fn spawn(
             far_trim,
         ]);
         if server.is_some() {
-            commands
-                .entity(wall)
-                .insert(super::architecture::render::Fallback {
-                    range: near.clone(),
-                    index: building_index,
-                    wall: true,
-                    size,
-                });
-            commands
-                .entity(relief)
-                .insert(super::architecture::render::Fallback {
-                    range: near.clone(),
-                    index: building_index,
-                    wall: false,
-                    size,
-                });
-            commands
-                .entity(windows)
-                .insert(super::architecture::render::Fallback {
-                    range: near.clone(),
-                    index: building_index,
-                    wall: false,
-                    size,
-                });
+            if core.is_none() {
+                commands.entity(wall).insert(Visibility::Hidden);
+                commands.entity(proxy).insert(Visibility::Hidden);
+            }
+            for old in [relief, windows, far_windows, far_trim] {
+                commands.entity(old).despawn();
+            }
+            if let Some(identity) = identity.as_mut() {
+                for face in 0..4 {
+                    let mesh = identity.mesh(&architecture.buildings[building_index], design, face);
+                    let range = VisibilityRange {
+                        end_margin: layout.settings.render_far_m
+                            ..layout.settings.render_far_m + 50.0,
+                        ..default()
+                    };
+                    let child = commands
+                        .spawn((
+                            Mesh3d(meshes.add(mesh)),
+                            MeshMaterial3d(identity.material.clone()),
+                            Transform::IDENTITY,
+                            range.clone(),
+                            bevy::light::NotShadowCaster,
+                            BuildingLod { near: false },
+                            super::architecture::render::Fallback::new(
+                                building_index,
+                                size,
+                                range,
+                                Some(face),
+                            ),
+                        ))
+                        .id();
+                    commands.entity(root).add_child(child);
+                }
+            }
             let slot = commands
                 .spawn((
                     super::architecture::render::Slot::new(building_index),
@@ -357,6 +375,13 @@ pub fn spawn(
             &architecture,
             server,
         ));
+    }
+    if let Some(identity) = identity {
+        assert!(
+            identity.quads * 2 <= 250_000,
+            "far facade triangle budget exceeded"
+        );
+        commands.insert_resource(identity);
     }
     commands.insert_resource(architecture);
 }

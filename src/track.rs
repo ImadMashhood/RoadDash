@@ -2,6 +2,7 @@ use bevy::prelude::*;
 use rr_content::track::{Sector, Surface, TrackDef};
 pub const ROAD_HALF: f32 = 6.5;
 pub const LAPS: u32 = 1;
+pub mod metropolis;
 #[derive(Resource)]
 pub struct Track {
     pub definition: TrackDef,
@@ -14,6 +15,7 @@ pub struct Track {
     pub length: f32,
     pub bounds: (Vec3, Vec3),
     pub city_surface: Option<rr_content::city::CitySettings>,
+    pub metropolis: Option<std::sync::Arc<rr_content::metropolis::Metropolis>>,
     pub earthworks: Option<Box<crate::world_gen::ground::Earthworks>>,
 }
 impl Default for Track {
@@ -25,6 +27,9 @@ impl Default for Track {
 impl Track {
     pub fn selected() -> Self {
         if let Some(path) = std::env::var_os("ROADDASH_TRACK") {
+            if path == "metro" {
+                return Self::metropolis().expect("approved metropolis course");
+            }
             let path = if path == "valley" || path == "city" {
                 std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(if path == "city" {
                     "content/tracks/city5300.json"
@@ -37,8 +42,7 @@ impl Track {
             Self::from_json(&std::fs::read_to_string(path).expect("read ROADDASH_TRACK"))
                 .expect("validate ROADDASH_TRACK")
         } else {
-            Self::from_json(include_str!("../content/tracks/valley.json"))
-                .expect("built-in Valley Run")
+            Self::metropolis().expect("approved metropolis course")
         }
     }
     pub fn from_json(json: &str) -> Result<Self, String> {
@@ -135,6 +139,7 @@ impl Track {
             length,
             bounds: (min, max),
             earthworks: None,
+            metropolis: None,
         };
         for spawn in &track.definition.spawns {
             if spawn.lane.abs() + 0.6 > track.half_width(spawn.distance) {
@@ -272,6 +277,9 @@ impl Track {
     /// Single-valued terrain shared by mesh collision and off-road controller.
     /// A flat safe verge follows each road; distant hills blend smoothly away.
     pub fn terrain_height(&self, x: f32, z: f32) -> f32 {
+        if self.metropolis.is_some() {
+            return metropolis::height(x, z);
+        }
         if let Some(c) = &self.city_surface {
             return crate::world_gen::city::surface_height(c, x, z);
         }
@@ -281,6 +289,9 @@ impl Track {
             .map_or(base, |e| e.height(x, z, base))
     }
     pub fn base_terrain_height(&self, x: f32, z: f32) -> f32 {
+        if self.metropolis.is_some() {
+            return metropolis::height(x, z);
+        }
         if let Some(c) = &self.city_surface {
             return crate::world_gen::city::surface_height(c, x, z);
         }
@@ -394,6 +405,17 @@ impl Default for GateProgress {
 }
 impl GateProgress {
     pub fn observe(&mut self, track: &Track, from: Vec3, to: Vec3, before: f32, after: f32) {
+        self.observe_route(track, 0, from, to, before, after);
+    }
+    pub fn observe_route(
+        &mut self,
+        track: &Track,
+        route: usize,
+        from: Vec3,
+        to: Vec3,
+        before: f32,
+        after: f32,
+    ) {
         if after <= before || after - before > 30.0 {
             return;
         }
@@ -407,7 +429,7 @@ impl GateProgress {
         if before > target || after < target {
             return;
         }
-        let (p, q) = track.sample(target, 0.0);
+        let (p, q) = track.sample_route(route, target, 0.0);
         let forward = q * Vec3::Z;
         let a = (from - p).dot(forward);
         let b = (to - p).dot(forward);

@@ -1,0 +1,82 @@
+{
+  "serial": {
+    "warmup_rule": "simulation elapsed >=8s, native manual60Hz (>=480 ticks)",
+    "samples": 15,
+    "means_of_logged_windows": {
+      "wall_average_ms": 18.5128,
+      "wall_p95_ms": 23.4662,
+      "main_world_ms_per_frame": 17.0948,
+      "physics_ms_per_frame": 9.3249,
+      "last_render_schedule_ms": 7.3221
+    },
+    "physics_ms_frame_weighted": 9.292013877131081,
+    "parallel_feature": null,
+    "available_cpu_threads": null,
+    "requested_rayon_threads": null,
+    "dropped_samples": 0
+  },
+  "parallel-0": {
+    "warmup_rule": "simulation elapsed >=8s, native manual60Hz (>=480 ticks)",
+    "samples": 14,
+    "means_of_logged_windows": {
+      "wall_average_ms": 17.9928,
+      "wall_p95_ms": 21.9388,
+      "main_world_ms_per_frame": 16.2713,
+      "physics_ms_per_frame": 9.3467,
+      "last_render_schedule_ms": 6.1656
+    },
+    "physics_ms_frame_weighted": 9.335413134459293,
+    "parallel_feature": true,
+    "available_cpu_threads": 12,
+    "requested_rayon_threads": null,
+    "dropped_samples": 0
+  },
+  "parallel-1": {
+    "warmup_rule": "simulation elapsed >=8s, native manual60Hz (>=480 ticks)",
+    "samples": 15,
+    "means_of_logged_windows": {
+      "wall_average_ms": 18.0877,
+      "wall_p95_ms": 21.307,
+      "main_world_ms_per_frame": 16.679,
+      "physics_ms_per_frame": 9.6102,
+      "last_render_schedule_ms": 7.127
+    },
+    "physics_ms_frame_weighted": 9.5935336914878,
+    "parallel_feature": true,
+    "available_cpu_threads": 12,
+    "requested_rayon_threads": null,
+    "dropped_samples": 0
+  },
+  "serial-repeat": {
+    "warmup_rule": "simulation elapsed >=8s, native manual60Hz (>=480 ticks)",
+    "samples": 12,
+    "means_of_logged_windows": {
+      "wall_average_ms": 17.8558,
+      "wall_p95_ms": 22.2126,
+      "main_world_ms_per_frame": 17.2886,
+      "physics_ms_per_frame": 9.6457,
+      "last_render_schedule_ms": 7.3815
+    },
+    "physics_ms_frame_weighted": 9.63090467168324,
+    "parallel_feature": null,
+    "available_cpu_threads": null,
+    "requested_rayon_threads": null,
+    "dropped_samples": 0
+  },
+  "parallel-repeat": {
+    "warmup_rule": "simulation elapsed >=8s, native manual60Hz (>=480 ticks)",
+    "samples": 12,
+    "means_of_logged_windows": {
+      "wall_average_ms": 17.4166,
+      "wall_p95_ms": 20.6628,
+      "main_world_ms_per_frame": 16.5513,
+      "physics_ms_per_frame": 9.5111,
+      "last_render_schedule_ms": 6.1654
+    },
+    "physics_ms_frame_weighted": 9.499849578034427,
+    "parallel_feature": true,
+    "available_cpu_threads": 12,
+    "requested_rayon_threads": null,
+    "dropped_samples": 0
+  }
+}

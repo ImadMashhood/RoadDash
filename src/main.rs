@@ -1,9 +1,23 @@
 fn main() {
+    let args: Vec<_> = std::env::args().collect();
+    let default_inspection = args.get(1).is_some_and(|a| a == "--inspect-world")
+        && args.get(2).is_none_or(|a| a.starts_with("--"))
+        && std::env::var("ROADDASH_TRACK").map_or(true, |v| v == "metro");
+    if args.iter().any(|a| a == "--inspect-metropolis") || default_inspection {
+        let t = road_dash::track::Track::metropolis().expect("validated metropolis");
+        let m = t.metropolis.as_ref().unwrap();
+        let report = serde_json::to_string_pretty(&serde_json::json!({"buildings":m.buildings.len(),"surfaces":m.surfaces.len(),"routes":2,"logical_length":t.length,"source_layout_sha256":m.source_layout_sha256})).unwrap();
+        if let Some(i) = args.iter().position(|a| a == "--output") {
+            std::fs::write(args.get(i + 1).expect("output path"), report).expect("write report");
+        } else {
+            println!("{report}");
+        }
+        return;
+    }
     road_dash::diagnostics::install_panic_report();
     if std::env::args().any(|a| a == "--verify-panic-report") {
         panic!("intentional panic-report verification");
     }
-    let args: Vec<_> = std::env::args().collect();
     if args.iter().any(|a| a == "--inspect-city")
         || (args.get(1).is_some_and(|a| a == "--inspect-world")
             && args.get(2).is_none_or(|a| a.starts_with("--")))
@@ -174,10 +188,14 @@ fn main() {
             }
         }
     }
-    let status = road_dash::build_app(
-        std::env::args()
-            .any(|a| a == "--smoke-test" || a == "--actor-smoke-test" || a == "--world-survey"),
-    )
+    let status = road_dash::build_app(std::env::args().any(|a| {
+        a == "--destruction-survey"
+            || a == "--metro-survey"
+            || a == "--smoke-test"
+            || a == "--actor-smoke-test"
+            || a == "--world-survey"
+            || a == "--lod-survey"
+    }))
     .run();
     // Native test fixtures report failed acceptance via AppExit. Preserve that
     // status for scripts rather than returning a misleading successful process.

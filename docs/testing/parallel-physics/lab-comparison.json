@@ -1,0 +1,186 @@
+{
+  "rows": [
+    {
+      "scenario": "drop",
+      "mode": "baseline",
+      "serial_ms": 382.902536,
+      "parallel_ms": 604.147028,
+      "speedup": 0.633790316353257,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "drop",
+      "mode": "biomechanical",
+      "serial_ms": 692.151089,
+      "parallel_ms": 973.274371,
+      "speedup": 0.7111572128307897,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "limb_force",
+      "mode": "baseline",
+      "serial_ms": 279.900506,
+      "parallel_ms": 514.1534290000001,
+      "speedup": 0.544391012901326,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "limb_force",
+      "mode": "biomechanical",
+      "serial_ms": 495.83455,
+      "parallel_ms": 786.759606,
+      "speedup": 0.6302237001221946,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "torso_push",
+      "mode": "baseline",
+      "serial_ms": 244.769552,
+      "parallel_ms": 472.440812,
+      "speedup": 0.5180956974563832,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "torso_push",
+      "mode": "biomechanical",
+      "serial_ms": 516.500246,
+      "parallel_ms": 753.406532,
+      "speedup": 0.685553182859848,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "hinge_stress",
+      "mode": "baseline",
+      "serial_ms": 250.36204299999997,
+      "parallel_ms": 530.98719,
+      "speedup": 0.47150298107944927,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "hinge_stress",
+      "mode": "biomechanical",
+      "serial_ms": 547.2802909999999,
+      "parallel_ms": 774.1478099999999,
+      "speedup": 0.7069454746632946,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "ejection_low",
+      "mode": "baseline",
+      "serial_ms": 380.844186,
+      "parallel_ms": 626.147041,
+      "speedup": 0.608234425881444,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "ejection_low",
+      "mode": "biomechanical",
+      "serial_ms": 552.254295,
+      "parallel_ms": 722.818077,
+      "speedup": 0.7640294460980946,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "ejection_high",
+      "mode": "baseline",
+      "serial_ms": 385.74490299999997,
+      "parallel_ms": 640.770589,
+      "speedup": 0.6020015737644913,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "ejection_high",
+      "mode": "biomechanical",
+      "serial_ms": 893.083741,
+      "parallel_ms": 1052.6884240000002,
+      "speedup": 0.8483837388526274,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "road_tumble",
+      "mode": "baseline",
+      "serial_ms": 386.407512,
+      "parallel_ms": 609.244942,
+      "speedup": 0.6342399999768894,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "road_tumble",
+      "mode": "biomechanical",
+      "serial_ms": 550.181789,
+      "parallel_ms": 881.182418,
+      "speedup": 0.6243676425691008,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "static_wall",
+      "mode": "baseline",
+      "serial_ms": 426.33554000000004,
+      "parallel_ms": 602.366257,
+      "speedup": 0.7077679651634272,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "static_wall",
+      "mode": "biomechanical",
+      "serial_ms": 538.297108,
+      "parallel_ms": 856.018017,
+      "speedup": 0.6288385259535957,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "fifteen_crashes",
+      "mode": "baseline",
+      "serial_ms": 3100.143353,
+      "parallel_ms": 2261.284706,
+      "speedup": 1.3709655156532068,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    },
+    {
+      "scenario": "fifteen_crashes",
+      "mode": "biomechanical",
+      "serial_ms": 8971.033075,
+      "parallel_ms": 5829.728765999999,
+      "speedup": 1.5388422746733326,
+      "anchor_max_delta": 0.0,
+      "initial_mass_delta": 0.0,
+      "initial_momentum_error_delta": 0.0
+    }
+  ],
+  "total_serial_ms": 19594.026315,
+  "total_parallel_ms": 19491.566015
+}

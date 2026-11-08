@@ -1,0 +1,9 @@
+{
+  "identical_rebake": true,
+  "files": {
+    "content/world/metropolis.json": "18d6c78d52106260535648931fb5d0fbd7b15a9985f99ac6f1ed0f6a95ead01c",
+    "assets/metropolis/facades.rgba": "6ff77b38f7d5335eaa9ed514c68fe7534b7ff694fc3b1045becaa2ae05740acc",
+    "assets/metropolis/PROVENANCE.json": "96dbd93ddb1d6c89edc879c235b7f71223768b018c6cf81b96488586f1bb0a27"
+  },
+  "stdout": "{\n  \"buildings\": 19068,\n  \"surface_patches\": 35008,\n  \"manifest_bytes\": 8970026,\n  \"facade_bytes\": 1178496\n}\n"
+}

@@ -1,0 +1,20 @@
+rapier3d v0.31.0
+├── rapier3d feature "default"
+│   └── bevy_rapier3d v0.32.0
+│       ├── bevy_rapier3d feature "dim3"
+│       │   └── road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+│       │       ├── road-dash feature "default" (command-line)
+│       │       ├── road-dash feature "devtools"
+│       │       │   └── road-dash feature "default" (command-line)
+│       │       └── road-dash feature "offline"
+│       │           └── road-dash feature "default" (command-line)
+│       └── bevy_rapier3d feature "simd-stable"
+│           └── road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash) (*)
+├── rapier3d feature "dim3"
+│   └── rapier3d feature "default" (*)
+├── rapier3d feature "f32"
+│   └── rapier3d feature "default" (*)
+├── rapier3d feature "simd-is-enabled"
+│   └── rapier3d feature "simd-stable"
+│       └── bevy_rapier3d feature "simd-stable" (*)
+└── rapier3d feature "simd-stable" (*)

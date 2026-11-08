@@ -1,0 +1,17 @@
+{
+  "unchanged": [
+    "buildings",
+    "paths",
+    "fields",
+    "streets",
+    "junctions",
+    "bounds",
+    "source_layout_sha256",
+    "spawns",
+    "checkpoints",
+    "farm control points and widths"
+  ],
+  "buildings": 19068,
+  "street_props": 730,
+  "manifest_sha256": "c3dfc077a1cdafc6d2dfeb428e677a2e016815020e4c817458cf635c21faacd8"
+}

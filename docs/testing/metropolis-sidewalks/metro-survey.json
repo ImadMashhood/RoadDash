@@ -1,0 +1,10 @@
+{
+  "buildings": 19068,
+  "chunks": 2993,
+  "render_triangles": 2700739,
+  "collision_triangles": 2442857,
+  "physical_routes": 2,
+  "crossing_cars": 30,
+  "street_props": 730,
+  "source_layout_sha256": "bad1cc469404a171315a32906a68275905e4711c2e315430d79980414e357d96"
+}

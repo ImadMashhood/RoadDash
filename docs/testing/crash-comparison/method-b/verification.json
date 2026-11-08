@@ -1,0 +1,16 @@
+{
+  "all_18_finite": true,
+  "baseline_9_exact_excluding_wall_time": true,
+  "biomechanical_max_anchor_error_m": 0.0039207176,
+  "workspace_passed": 257,
+  "workspace_failed": 0,
+  "workspace_ignored": 1,
+  "user_visual_acceptance": false,
+  "native_smoke": {
+    "plain": "pass",
+    "baseline": "pass",
+    "comparison": "pass",
+    "scenario": "farm crash/remount -> city/hills -> hill crash/remount -> finish"
+  },
+  "manual_F8_F9_F10_delivery": "not verified; X11 focus injection blocked under Wayland"
+}

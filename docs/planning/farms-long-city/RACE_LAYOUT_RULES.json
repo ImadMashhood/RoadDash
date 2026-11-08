@@ -1,0 +1,12 @@
+{
+  "parallel_competition_distance_m": 110.0,
+  "parallel_max_angle_degrees": 40.0,
+  "fork_throat_clearance_m": 80.0,
+  "minimum_distinct_race_junction_spacing_m": 65.0,
+  "city_edge_half_width_m": 780.0,
+  "city_growth_width_m": 380.0,
+  "city_middle_width_m": 120.0,
+  "rule": "Preserve race avenue first; select whole straight-grid cells around both race alternatives. Omit competing secondary segments instead of moving the track, bending buildings or adding doglegs.",
+  "parallel_min_run_m": 48.0,
+  "parallel_sample_step_m": 8.0
+}

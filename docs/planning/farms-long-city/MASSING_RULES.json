@@ -1,0 +1,28 @@
+{
+  "seed": 67201,
+  "core_landmark": "courts",
+  "core_label": "DOWNTOWN / MARKET QUARTER",
+  "core_falloff_radii_m": [1100.0, 2350.0],
+  "floor_height_m": 3.2,
+  "zones": [
+    {"id": "outskirts", "minimum_core_score": 0.0, "base_floors": [2, 4], "accent_floors": [6, 9], "tower_floors": [9, 13]},
+    {"id": "inner_city", "minimum_core_score": 0.2, "base_floors": [4, 7], "accent_floors": [10, 13], "tower_floors": [15, 21]},
+    {"id": "downtown", "minimum_core_score": 0.55, "base_floors": [7, 10], "accent_floors": [14, 18], "tower_floors": [23, 32]}
+  ],
+  "frontage_accent_probability": [0.42, 0.85],
+  "interior_tower_probability": [0.16, 0.62],
+  "tower_size_options_m": [[24.0, 34.0], [20.0, 30.0], [18.0, 26.0]],
+  "tower_frontage_clearance_m": 6.0,
+  "service_access_width_m": 6.0,
+  "minimum_footprint_area_m2": 30.0,
+  "detail_distance_edges_m": [70.0, 220.0, 550.0],
+  "detail_tiers": ["hero", "standard", "skyline", "massing"],
+  "detail_policy": {
+    "hero": "Authored frontage, ground-floor depth, trim, roof edges and close materials.",
+    "standard": "Complete building envelope; simpler trim, instanced windows and fewer unique materials.",
+    "skyline": "Complete silhouette, roof form and major facade rhythm; baked window/detail patterns.",
+    "massing": "Closed block/building volumes and stable roof/material identity; no small trim.",
+    "skyline_anchor_floor": "All interior towers retain at least skyline detail, regardless of road distance.",
+    "runtime_lod": "Separate future camera LOD with shared origins, ready transitions and identity-preserving silhouettes. Never roof-only shells; no collider or hazard downgrade."
+  }
+}

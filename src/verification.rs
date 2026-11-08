@@ -128,13 +128,31 @@ pub fn smoke_test(
     ) {
         return;
     }
+    let test_route = usize::from(std::env::var("ROADDASH_SMOKE_ROUTE").as_deref() == Ok("1"));
     state.frame += 1;
+    if state.frame == 1 {
+        let killers = riders
+            .iter()
+            .filter(|(r, _, _, _)| {
+                r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Killer
+            })
+            .count();
+        let racers = riders
+            .iter()
+            .filter(|(r, _, _, _)| {
+                r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Racer
+            })
+            .count();
+        assert_eq!((racers, killers), (7, 7));
+        println!("AI roster verified: seven racers and seven killers");
+    }
     if std::env::var("ROADDASH_VERIFY_REPAIRS").as_deref() == Ok("1") {
         if state.frame == 25 {
             race.phase = Phase::Racing;
             for (mut rider, _, mut t, velocity) in &mut riders {
                 if rider.id == 0 {
-                    let (p, q) = track.sample(3200.0, 1.0);
+                    rider.route = test_route;
+                    let (p, q) = track.sample_route(test_route, 3200.0, 1.0);
                     rider.progress = 3200.0;
                     rider.lane = 1.0;
                     t.translation = p;
@@ -151,7 +169,7 @@ pub fn smoke_test(
         if state.frame == 28 {
             for (r, _, t, _) in &riders {
                 let spawn = &track.definition.spawns[r.id];
-                let (p, _) = track.sample(spawn.distance, spawn.lane);
+                let (p, _) = track.sample_route(test_route, spawn.distance, spawn.lane);
                 assert!(
                     t.translation.distance(p) < 0.2,
                     "native retry did not restore grid for {}: phase={:?} progress={} body={:?} start={:?}",
@@ -180,6 +198,7 @@ pub fn smoke_test(
         if let Some((name, side, kick)) = pose {
             for (mut rider, _, _, _) in &mut riders {
                 if rider.id == 0 {
+                    rider.route = test_route;
                     rider.attack = 0.475;
                     rider.attack_side = side;
                     rider.kicking = kick;
@@ -225,6 +244,7 @@ pub fn smoke_test(
         260 => {
             for (mut rider, _, _, _) in &mut riders {
                 if rider.id == 0 {
+                    rider.route = test_route;
                     rider.health = 0.0;
                 }
             }
@@ -237,6 +257,7 @@ pub fn smoke_test(
         if rider.id != 0 || state.frame <= 280 {
             continue;
         }
+        rider.route = test_route;
         if let Some(recovered_at) = state.recovered_at {
             let elapsed = state.frame - recovered_at;
             if elapsed == 20 || elapsed == 60 {
@@ -245,7 +266,10 @@ pub fn smoke_test(
                 } else {
                     rr_content::track::Sector::Hills
                 };
-                let index = if elapsed == 60 && track.city_surface.is_some() {
+                let index = if track.metropolis.is_some() {
+                    let distance = if elapsed == 60 { 4400.0 } else { 4300.0 };
+                    track.distances.partition_point(|d| *d < distance)
+                } else if elapsed == 60 && track.city_surface.is_some() {
                     track
                         .distances
                         .partition_point(|d| *d < track.length * 0.72)
@@ -281,7 +305,7 @@ pub fn smoke_test(
                 rider.lane = 0.0;
                 rider.speed = 0.0;
                 rider.motion_velocity = Vec3::ZERO;
-                let (p, q) = track.sample(rider.progress, 0.0);
+                let (p, q) = track.sample_route(test_route, rider.progress, 0.0);
                 *transform = Transform::from_translation(p).with_rotation(q);
                 if let Some(v) = velocity.as_mut() {
                     **v = bevy_rapier3d::prelude::Velocity::zero();
@@ -374,7 +398,7 @@ pub fn smoke_test(
                 rider.gates.completed_laps = LAPS;
                 rider.progress = track.length * LAPS as f32 + 1.0;
                 rider.lane = 0.0;
-                let (p, q) = track.sample(rider.progress, rider.lane);
+                let (p, q) = track.sample_route(test_route, rider.progress, rider.lane);
                 *transform = Transform::from_translation(p).with_rotation(q);
                 if let Some(v) = velocity.as_mut() {
                     **v = bevy_rapier3d::prelude::Velocity::zero();
@@ -412,6 +436,7 @@ pub fn smoke_test(
                 .collect::<Vec<_>>()
                 .join("\n");
             std::fs::write("screenshots/vehicle-trace.jsonl", trace).unwrap();
+            report["route"] = serde_json::json!(test_route);
             report["track"] = serde_json::json!({"id":track.definition.id.as_str(),"closed":track.definition.closed,"length_m":track.length,"gates":track.definition.checkpoints.len(),"render_triangles":inspector.render_triangles,"collision_triangles":inspector.collision_triangles});
             report["recovery_at_run_capture"] = serde_json::json!({"farm_distance_and_height_delta_m":state.farm_walk,"hill_distance_and_height_delta_m":state.hill_walk});
             if let Some(adapter) = adapter.as_ref() {
@@ -422,7 +447,11 @@ pub fn smoke_test(
                 serde_json::to_vec_pretty(&report).unwrap(),
             )
             .expect("write smoke evidence");
-            if track.city_surface.is_some() {
+            if track.metropolis.is_some() {
+                println!(
+                    "Render smoke test passed: Metropolis route {test_route} -> farm/city crashes -> both recoveries -> results fixture"
+                );
+            } else if track.city_surface.is_some() {
                 println!(
                     "Render smoke test passed: City Run 5300 m -> two crashes -> both recoveries -> finish"
                 );

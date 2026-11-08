@@ -54,7 +54,8 @@ pub fn build(smoke: bool) -> App {
                 }),
         )
         .add_plugins((
-            RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule(),
+            RapierPhysicsPlugin::<crate::crash_behavior::ReleaseHooks>::default()
+                .in_fixed_schedule(),
             BiomechanicsPlugin,
             crate::models::RoadModelPlugin,
         ))

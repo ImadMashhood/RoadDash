@@ -56,6 +56,8 @@ fn main() {
         })
         .insert_resource(ClearColor(Color::srgb(0.43, 0.53, 0.62)))
         .insert_resource(AmbientLight { color: Color::srgb(0.83,0.88,1.0), brightness: 800.0, ..default() })
+        .init_resource::<road_dash::material_detail::Queue>()
+        .init_resource::<road_dash::tangent_detail::Queue>()
         .init_resource::<CaptureFrame>()
         .add_plugins(DefaultPlugins.set(AssetPlugin { file_path: format!("{}/art/buildings/mesh_assets/models", env!("CARGO_MANIFEST_DIR")), ..default() }).set(WindowPlugin {
             primary_window: Some(Window {
@@ -65,8 +67,10 @@ fn main() {
                 ..default()
             }), ..default()
         }))
+        .add_systems(Update,(road_dash::material_detail::update,road_dash::tangent_detail::update).chain().before(models::update_lod))
         .add_systems(Startup, setup)
-        .add_systems(Update, (controls, models::update_lod, capture).chain())
+        .add_systems(Update, (controls, models::update_lod, models::fade, capture).chain())
+        .add_systems(PostUpdate,road_dash::world_gen::architecture::render::synchronize_fades.after(bevy::transform::TransformSystems::Propagate).before(bevy::camera::visibility::VisibilitySystems::CheckVisibility))
         .run();
 }
 

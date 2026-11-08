@@ -1,0 +1,333 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 37.76s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 194 tests
+test animation::correction_tests::held_elbows_point_down_in_normal_and_fast_tuck ... ok
+test animation::correction_tests::planted_feet_fit_a_sloped_surface_without_stretching_the_leg ... ok
+test animation::correction_tests::tuck_and_steering_draw_both_elbows_in_without_releasing_grips ... ok
+test animation::correction_tests::pickup_and_running_keep_ankles_on_their_own_side_and_knees_in_a_bending_plane ... ok
+test animation::locomotion::tests::gait_is_continuous_mirrored_and_stops_with_neutral_palms ... ok
+test animation::tests::held_contacts_and_anatomical_lengths_survive_between_keyframes ... ok
+test biomechanics::tests::comparison_launch_needs_no_keyboard_toggle_and_keeps_explicit_baseline ... ok
+test biomechanics::tests::every_joint_keeps_limits_and_passive_motors_at_zero_activation ... ok
+test biomechanics::tests::animation_bind_axes_are_removed_before_physical_pose_following ... ok
+test animation::tests::normal_tuck_endpoints_are_distinct_and_shortest_arc_is_finite ... ok
+test animation::tests::interpolation_preserves_every_render_chain_length_and_unit_rotations ... ok
+test animation::tests::pause_freezes_pose_clock_and_crash_interrupts_only_visual_state ... ok
+test biomechanics::tests::frontal_leg_release_uses_limited_motors_without_a_velocity_impulse ... ok
+test biomechanics::tests::ejection_seed_preserves_com_momentum_and_existing_angular_velocity ... ok
+test animation::tests::resolved_gameplay_side_selects_the_matching_punch_and_kick ... ok
+test biomechanics::tests::repeat_on_foot_knockdown_does_not_reuse_bike_anchor_space_animation ... ok
+test biomechanics::tests::upgrading_a_ragdoll_preserves_original_crash_direction_policy ... ok
+test animation::tests::attacks_enter_from_actual_tuck_and_return_to_the_latest_base_without_retrigger ... ok
+test biomechanics::tests::roll_assistance_needs_support_and_does_not_change_the_baseline ... ok
+test biomechanics::tests::quaternion_chart_is_hemisphere_invariant ... ok
+test biomechanics::tests::real_ejection_keeps_preimpact_spin_even_after_the_hidden_chassis_is_stopped ... ok
+test biomechanics::velocity::tests::real_backend_drive_changes_angular_motion_without_authored_linear_motion ... ok
+test biomechanics::velocity::tests::baseline_rig_has_no_velocity_pilot_or_new_work ... ok
+test biomechanics::tests::grounded_roll_converts_existing_energy_once_in_forward_and_side_directions ... ok
+test collision_tests::crash_envelope_dissipates_solver_energy_and_reverse_com_without_launching ... ok
+test biomechanics::velocity::tests::wall_only_contacts_never_enable_supine_support ... ok
+test collision_tests::pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop ... ok
+test collision_tests::detached_body_contacts_never_script_a_new_mounted_wipeout ... ok
+test collision_tests::player_and_ai_use_80_kmh_entry_for_both_120_40_car_directions ... ok
+test collision_tests::rear_contact_threshold_and_mass_weighted_push_do_not_add_vertical_speed ... ok
+test collision_tests::rear_knockoffs_work_without_hops_in_both_entity_orders_and_preserve_head_on_crashes ... ok
+test collision_tests::real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel ... ok
+test collision_tests::static_wall_uses_normal_closing_speed_instead_of_touch_or_total_speed ... ok
+test combat::tests::kick_faces_nearest_out_of_reach_opponent_without_a_remote_hit ... ok
+test combat::tests::kick_selects_nearest_side_pushes_without_damage_and_animates_that_leg ... ok
+test controls::device_tests::gamepad_has_analog_triggers_steering_freelook_and_disconnect_fallback ... ok
+test controls::device_tests::on_foot_context_does_not_deliver_mounted_attacks ... ok
+test controls::device_tests::on_foot_uses_both_stick_axes_without_trigger_throttle ... ok
+test controls::device_tests::settings_pause_countdown_and_suppress_driving_until_closed ... ok
+test controls::rebind_tests::panel_rebinding_changes_live_keyboard_and_pad_without_leaking_input ... ok
+test controls::tests::bindings_are_validated_and_remappable ... ok
+test collision_tests::actual_dynamic_wreck_contacts_hop_and_move_the_target_without_ejection ... ok
+test environment::tests::road_meshes_have_upward_winding_and_collision_uses_fewer_triangles ... ok
+test crash_behavior::tests::continuous_crash_has_no_ghost_chassis_and_reset_restores_exact_shape ... ok
+test feedback::tests::traction_is_readable_and_speed_cues_stay_bounded_and_respect_comfort ... ok
+test biomechanics::tests::passive_knee_resistance_reduces_deflection_under_the_same_load ... ok
+test collision_tests::neutral_mounted_heading_ignores_repeated_contact_spin_at_each_render_rate ... ok
+test biomechanics::tests::pose_motor_holds_a_configurable_elbow_target_and_yields_to_external_torque ... ok
+test combat::tests::decisive_punch_stays_mounted_through_both_swerve_phases_and_counts_once ... ok
+test game::camera_tests::camera_sphere_stays_in_front_of_solid_obstacles_and_comfort_fov_is_clamped ... ok
+test game::camera_tests::retry_style_warp_snaps_camera_to_the_new_interpolated_pose ... ok
+test game::camera_tests::on_foot_camera_heading_does_not_snap_when_nearest_road_tangent_changes ... ok
+test game::camera_tests::rival_in_chase_boom_does_not_pull_camera_into_player ... ok
+test game::tests::a_cow_causes_a_momentum_limited_crash_without_a_launch ... ok
+test game::tests::attack_press_survives_a_render_frame_without_a_fixed_tick ... ok
+test biomechanics::velocity::tests::supported_prone_slide_runs_a_bounded_recovery_attempt ... ok
+test game::tests::biker_can_knock_down_a_recovering_rider_again_without_duplicate_ragdolls ... ok
+test game::tests::collision_gap_wraps_at_finish ... ok
+test game::tests::collision_detachment_uses_forward_pre_solver_velocity_not_the_bounce ... ok
+test game::tests::corrupt_and_future_profile_files_are_not_overwritten ... ok
+test biomechanics::tests::inward_hip_loading_keeps_knees_on_their_own_sides ... ok
+test game::tests::crash_separates_rider_and_preserves_momentum_without_an_upward_boost ... ok
+test game::tests::crash_camera_tracks_the_moving_torso_instead_of_the_road_position ... ok
+test game::camera_tests::low_ceiling_and_nearby_detached_bodies_do_not_collapse_or_flip_the_camera ... ok
+test game::tests::a_crashed_bike_slides_down_a_solid_slope ... ok
+test game::tests::d_moves_right_and_a_moves_left_in_chase_camera_space ... ok
+test game::tests::fast_rear_contact_ragdolls_victim_without_hopping_the_attacker ... ok
+test game::tests::crowded_grid_has_no_immediate_combat_knockout ... ok
+test game::tests::finish_awards_results_once_and_button_starts_next_race ... ok
+test game::tests::directional_melee_damages_the_target_and_awards_one_takedown ... ok
+test game::tests::grid_starts_before_timing_line ... ok
+test game::tests::legacy_profile_is_upgraded_without_losing_progress ... ok
+test game::tests::lifecycle_visits_loading_menu_race_and_results ... ok
+test game::tests::matched_speed_contacts_and_small_side_taps_do_not_cause_wipeouts ... ok
+test game::tests::countdown_throttle_nitro_and_pause ... ok
+test game::tests::missing_a_gate_stops_at_the_open_finish_without_payout_and_retry_resets_gates ... ok
+test game::tests::fixed_simulation_matches_at_30_60_and_120_render_fps ... ok
+test game::tests::crash_spawns_jointed_bodies_then_recovers ... ok
+test biomechanics::tests::player_bracing_is_supported_bounded_and_released_without_changing_limits ... ok
+test game::tests::ragdoll_sized_bodies_collide_with_trees_cars_bikes_and_wrecks ... ok
+test game::tests::releasing_or_exhausting_boost_decelerates_instead_of_clamping_speed ... ok
+test game::camera_tests::interpolated_camera_is_finite_and_continuous_at_120_and_144_hz ... ok
+test game::tests::one_hundred_pause_resume_crash_reset_cycles_do_not_leak_state ... ok
+test game::tests::slow_sideways_steering_cannot_pass_through_a_solid_car ... ok
+test biomechanics::tests::native_drop_settles_and_hinges_resist_torque_without_exploding ... ok
+test game::tests::traffic_impact_crashes_and_restart_clears_debris ... ok
+test game::tests::remount_reaches_a_fallen_bike_in_sideways_upside_down_and_vertical_poses ... ok
+test human::tests::bike_and_rider_bank_together_without_accumulating_roll ... ok
+test human::tests::every_human_state_uses_identical_mesh_dimensions_and_outfit ... ok
+test game::tests::unseen_rear_crash_skips_bodies_waits_five_seconds_and_reset_cancels_it ... ok
+test material_detail::tests::provenance_profiles_are_bounded_and_maps_preserve_metallic ... ok
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... ok
+test game::camera_tests::every_chase_view_stays_close_at_rest_and_high_speed_with_slow_smoothing ... ok
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+test models::tests::distal_skin_weights_are_normalized_and_all_five_joints_are_used ... ok
+test models::tests::neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms ... ok
+test models::tests::visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose ... ok
+test material_detail::tests::native_png_decoder_matches_every_original_palette_profile ... ok
+test biomechanics::tests::wall_impact_and_high_speed_ejection_remain_bounded ... ok
+test models::tests::visual_intake_rejects_nonfinite_vertices_bad_joint_ids_and_physics_payloads ... ok
+test npc::tests::actor_ragdolls_are_bounded_and_reset_cleans_every_part ... ok
+test game::tests::traffic_brakes_and_rate_limits_horns_then_resumes_when_rider_clears ... ok
+test npc::tests::standing_respawn_waits_until_the_original_spot_is_clear ... ok
+test offscreen_crash::tests::delay_is_five_simulated_seconds ... ok
+test offscreen_crash::tests::only_distant_unseen_rear_riders_are_eligible ... ok
+test original_crash::tests::forward_and_vertical_calibrations_are_separate ... ok
+test original_crash::tests::matched_traffic_has_no_added_speed_and_frame_rotates_consistently ... ok
+test original_crash::tests::opposing_traffic_uses_signed_separation_not_absolute_subtraction ... ok
+test recovery::articulation_tests::hinges_lock_twist_and_passive_tissue_has_finite_limited_torque ... ok
+test game::tests::retry_teleports_dynamic_body_and_history_even_on_a_zero_tick_frame ... ok
+test recovery::tests::bike_and_foot_finish_attempts_share_exactly_one_award ... ok
+test recovery::tests::manual_below_terrain_rescue_does_not_cross_the_finish_or_teleport_the_bike ... ok
+test game::tests::original_contact_mode_applies_distinct_rider_and_wreck_results_then_recovers ... ok
+test game::tests::grass_allows_forward_driving_without_damage_and_ai_returns_to_the_road ... ok
+test recovery::tests::manual_movement_is_camera_relative_and_blocks_unwanted_nearby_mounts ... ok
+test recovery::tests::slow_facing_interaction_mounts_but_a_moving_bike_is_rejected ... ok
+test npc::tests::direct_melee_spawns_human_and_quadruped_topologies_without_bikes ... ok
+test recovery::tests::walking_away_beside_the_bike_does_not_snap_or_force_a_mount ... ok
+test road_detail::tests::asphalt_has_repeat_sampling_full_mips_and_bounded_pbr_channels ... ok
+test settings::tests::rebind_validation_rejects_conflicts_and_unknown_fields ... ok
+test settings::tests::settings_roundtrip_and_invalid_files_are_preserved ... ok
+test sky::tests::sky_faces_share_edge_directions_and_mips_are_complete ... ok
+test sound::tests::generated_audio_is_valid_pcm_and_not_silent ... ok
+test tangent_detail::tests::tangent_preparation_keeps_mesh_positions_unchanged ... ok
+test track::tests::arc_length_and_lanes_are_consistent ... ok
+test track::tests::authored_roads_load_with_elevation_banking_and_canonical_distance ... ok
+test track::tests::circuit_is_closed_and_wraps_negative_distance ... ok
+test track::tests::ordered_physical_gates_allow_a_full_race_and_reject_shortcuts_reverse_and_verge_misses ... ok
+test track::tests::point_to_point_endpoints_never_wrap_and_grid_has_a_straight_approach ... ok
+test track::tests::positive_lane_is_camera_right_and_projection_preserves_laps ... ok
+test track::tests::spline_import_rejects_self_intersections ... ok
+test ui::map_tests::every_racer_dot_uses_the_same_palette_as_their_shirt ... ok
+test recovery::tests::neutral_delay_and_disabled_assist_do_not_force_mounts ... ok
+test recovery::tests::walking_backward_across_finish_is_rejected_even_with_prior_gates ... ok
+test vehicle::tests::abandoned_bike_keeps_the_selected_presets_dry_mass ... ok
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... ok
+test vehicle::tests::a_low_sidewalk_step_is_supported_without_a_wipeout ... ok
+test recovery::tests::running_away_from_the_bike_can_finish_once_with_valid_prior_gates ... ok
+test vehicle::tests::abandoned_motorcycle_tips_onto_its_side_after_knockoff ... ok
+test vehicle::tests::a_held_turn_builds_steering_and_a_parked_bike_cannot_strafe ... ok
+test vehicle::tests::analog_trigger_values_reach_the_chassis_force_model ... ok
+test recovery::tests::actual_crash_five_meters_before_finish_allows_a_manual_foot_finish ... ok
+test vehicle::tests::dynamic_grid_can_launch_without_ai_sideswipe_or_melee_knockouts ... ok
+test vehicle::tests::dynamic_bike_physically_traverses_a_solid_low_wreck ... ok
+test vehicle::tests::handling_import_rejects_invalid_presets ... ok
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+test npc::tests::new_actor_skins_preserve_physical_specs_and_ejection_momentum ... ok
+test environment::tests::scenic_collision_supports_the_route_and_populates_each_gameplay_zone ... ok
+test vehicle::tests::leaning_chassis_recovers_and_a_moving_bike_climbs_a_sidewalk_edge ... ok
+test vehicle::tests::low_speed_inverted_chassis_self_rights_without_inverted_wheel_lift ... ok
+test vehicle::tests::dynamic_remount_does_not_reapply_precrash_momentum ... ok
+test vehicle::tests::neutral_player_heading_is_not_pulled_back_to_the_road ... ok
+test vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks ... ignored, 600 simulated seconds; run explicitly for the Part 03 receipt
+test vehicle::tests::neutral_assistance_never_magnets_a_stationary_bike_to_lane_zero ... ok
+test world_gen::architecture::render::fade_tests::identity_proxy_covers_faces_missing_from_either_ready_group ... ok
+test world_gen::architecture::render::fade_tests::incoming_and_outgoing_cover_every_dither_pixel_at_different_origins ... ok
+test world_gen::architecture::render::fade_tests::temporal_ranges_follow_the_propagated_render_camera ... ok
+test vehicle::tests::either_full_lean_arrives_within_six_tenths_and_straightens_without_input ... ok
+test world::tests::scenery_is_solid_and_every_footprint_clears_the_whole_circuit ... ok
+test world_gen::architecture::tests::catalog_rejects_unsafe_paths_bad_hashes_and_inverted_bounds ... ok
+test world_gen::architecture::tests::detail_distance_uses_the_actual_facade_instead_of_the_lot_centre ... ok
+test world_gen::architecture::tests::grammar_rejects_unknown_models_and_unbounded_streaming ... ok
+test vehicle::tests::cross_traffic_contacts_trigger_a_wipeout_in_both_adapters ... ok
+test world_gen::architecture::tests::both_backup_shells_fit_behind_every_scaled_facade_band ... ok
+test world_gen::city::tests::city_gates_cover_the_whole_open_course_and_preserve_last_place_grid ... ok
+test vehicle::tests::supported_bike_recovers_from_contact_yaw_without_changing_steering_bank ... ok
+test world_gen::city::visuals::tests::mounted_glbs_face_the_street_and_preserve_uniform_scale ... ok
+test world_gen::city::visuals::tests::near_models_keep_geometry_and_far_models_use_coarse_lod ... ok
+test world_gen::city::visuals::tests::static_gltf_components_can_be_cloned_without_automatic_reflection_features ... ok
+test world_gen::city::props::tests::every_furnishing_preserves_the_road_crossings_and_pedestrian_lane ... ok
+test world_gen::architecture::tests::identity_proxies_match_the_authored_panels_and_keep_lot_footprints ... ok
+test world_gen::city::tests::every_building_and_start_grid_has_real_collision_and_recovery_clearance ... ok
+test world_gen::architecture::tests::architecture_preserves_every_lot_identity_and_geometry_stays_in_its_envelope ... ok
+test world_gen::construction_tests::construction_rejects_bad_junctions_and_generated_layout_rejects_corruption ... ok
+test world_gen::construction_tests::city_grid_has_dense_solid_lots_clear_of_every_street ... ok
+test world_gen::construction_tests::exceptional_recovery_rescue_clears_motion_and_applies_one_visible_penalty ... ok
+test world_gen::construction_tests::urban_height_override_adds_whole_floors_without_changing_lots ... ok
+test vehicle::tests::pedestrians_stay_mounted_while_cows_keep_existing_crash_entry ... ok
+test world_gen::elevation::tests::tall_shell_relief_has_correct_scale_winding_and_stays_close_to_walls ... ok
+test world_gen::frontage::tests::party_walls_touch_both_owners_and_preserve_streets ... ok
+test world_gen::dressing::tests::semantic_dressing_is_seeded_bounded_and_preserves_roads_and_access ... ok
+test world_gen::layout::tests::canonical_spatial_layout_is_complete_and_repeatable ... ok
+test world_gen::tests::world_uses_baked_stations_and_only_snaps_final_rounding_residual ... ok
+test vehicle::tests::dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels ... ok
+test biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep ... ok
+test world_gen::construction_tests::expanded_grid_puts_player_last_with_twelve_metre_gaps_and_solid_road ... ok
+test world_gen::construction_tests::every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid ... ok
+test vehicle::tests::dynamic_physics_matches_at_render_rates ... ok
+test vehicle::tests::stronger_full_lean_turns_both_directions_without_increasing_visual_bank ... ok
+test game::tests::point_to_point_driving_crosses_every_gate_and_awards_one_result ... ok
+test world_gen::construction_tests::street_trees_leave_walking_space_and_have_solid_trunks ... ok
+test world_gen::construction_tests::physical_capsules_walk_farm_city_alley_and_hill_routes ... ok
+test game::tests::one_hundred_high_speed_drops_keep_joint_anchors_and_hinge_axes_stable ... ok
+test world_gen::report::tests::measured_baseline_and_allocated_target_are_distinct_and_reproducible ... ok
+
+test result: ok. 193 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 13.88s
+
+     Running unittests src/bin/city_preview.rs (target/debug/deps/city_preview-4380a57ccdf4883c)
+
+running 1 test
+test tests::box_faces_have_outward_winding_and_exact_bounds ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (target/debug/deps/prop_preview-29fb06a20e2d7d3a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (target/debug/deps/visibility_probe-68205947c73c4ef9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (target/debug/deps/rr_content-5c98050e5b90df00)
+
+running 29 tests
+test biomechanics::tests::shipped_configuration_and_rejection ... ok
+test handling::tests::version_mass_and_nonfinite_presets_are_rejected ... ok
+test handling::tests::steering_response_defaults_remain_compatible_and_invalid_tuning_is_rejected ... ok
+test motion::tests::malformed_hierarchy_durations_and_quaternions_are_rejected ... ok
+test motion::tests::shipped_clips_are_valid_and_unknown_payloads_are_rejected ... ok
+test animation::tests::detached_stretched_nonfinite_and_cyclic_skeletons_are_rejected ... ok
+test construction::tests::construction_rejects_bad_binding_grid_dimensions_junctions_and_unknown_fields ... ok
+test rivals::tests::observed_riders_have_distinct_stats_and_relationships ... ok
+test tests::earlier_schema_one_catalogs_gain_default_steering_without_losing_tuning ... ok
+test tests::invalid_tuning_and_schema_are_rejected ... ok
+test tests::missing_references_and_duplicate_ids_are_rejected ... ok
+test tests::shipped_catalog_and_references_validate ... ok
+test animation::tests::authoring_schema_cannot_carry_physics_or_executable_fields ... ok
+test track::tests::all_surface_metadata_is_finite_and_grass_is_driveable ... ok
+test crash_motion::tests::bounded_energy_and_joint_targets ... ok
+test recovery::tests::validated_tuning_rejects_teleport_and_immediate_assist_settings ... ok
+test velocity_muscles::tests::configured_work_and_rates_are_bounded ... ok
+test track::tests::authoring_rejects_invalid_geometry_gates_and_spawns ... ok
+test track::tests::narrow_back_road_verges_are_valid_but_zero_or_nonfinite_are_not ... ok
+test world::tests::station_ownership_and_blending_are_continuous_at_all_borders ... ok
+test world::tests::rejects_invalid_topology_quotas_ids_heights_versions_and_unknown_fields ... ok
+test world::tests::canonical_quotas_and_seeded_assignments_match_every_section_and_archetype ... ok
+test animation::tests::invalid_references_duplicate_ids_paths_and_guessed_timing_are_rejected ... ok
+test facade_atlas::tests::every_authored_band_has_an_identity_preserving_tile ... ok
+test props::tests::complete_catalog_rejects_path_escapes_bad_bounds_and_unexpected_physics ... ok
+test facade_atlas::tests::incompatible_bounds_sources_mips_and_missing_tiles_are_rejected ... ok
+test animation::tests::editable_library_is_connected_finite_and_complete ... ok
+test city::tests::generated_city_has_complete_reserved_blocks_and_whole_buildings ... ok
+test city::tests::malformed_sites_district_gaps_and_missing_frontage_are_rejected ... ok
+
+test result: ok. 29 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.26s
+
+     Running unittests src/lib.rs (target/debug/deps/rr_core-a1a57a764823b808)
+
+running 48 tests
+test biomechanics::tests::airborne_body_never_rests_and_external_impacts_wake_state ... ok
+test biomechanics::tests::activation_curve_is_equivalent_at_render_rates ... ok
+test biomechanics::tests::severe_impacts_decay_faster_and_limits_are_not_part_of_activation ... ok
+test combat_rule_tests::direct_strikes_require_side_by_side_reach ... ok
+test combat_rule_tests::successive_hits_expire_by_gap_not_total_duration ... ok
+test comfort::tests::comfort_limits_and_anti_nausea_are_explicit ... ok
+test combat_rule_tests::impact_classification_uses_relative_normal_speed ... ok
+test comfort::tests::deadzone_is_continuous_and_finite ... ok
+test contact::ride_over_energy::lift_and_target_push_stay_inside_pair_energy_and_forward_direction ... ok
+test contact::tests::airborne_or_tall_shapes_are_not_low_support ... ok
+test contact::tests::glances_push_and_direct_hits_use_closing_speed ... ok
+test contact::tests::low_precedes_containment_and_cannot_force_a_wipeout ... ok
+test contact::tests::ride_over_is_bounded_and_requires_closing_motion ... ok
+test contact::rear_tests::rear_exchange_conserves_momentum_and_dissipates_energy ... ok
+test crash::tests::requested_120_40_cases_retain_80_without_reversing ... ok
+test crash::tests::civilian_transfer_dissipates_instead_of_duplicating_energy ... ok
+test crash_behavior::tests::stagger_countersteers_then_releases_equally_at_fixed_rates ... ok
+test kick_input_tests::kick_edge_is_consumed_once_and_cleared_on_context_change ... ok
+test motion::tests::phase_order_repeats_and_end_are_preserved ... ok
+test motion::tests::source_selector_boundaries_and_boost_gate ... ok
+test motion::tests::smoothing_is_frame_rate_independent ... ok
+test original_crash::tests::all_entry_paths_and_contact_clamps_are_explicit ... ok
+test original_crash::tests::bike_contact_damages_condition_not_stamina_and_class_one_keeps_speed ... ok
+test original_crash::tests::damage_is_unscaled_and_can_copy_rider_before_bike_reverses ... ok
+test original_crash::tests::drag_dissipates_stops_and_uses_quarter_base_while_airborne ... ok
+test original_crash::tests::glance_bleeds_speed_and_pushes_away_without_automatic_knockoff ... ok
+test original_crash::tests::moving_and_static_rounding_are_distinct_and_partner_is_opposite ... ok
+test original_crash::tests::original_is_not_absolute_speed_subtraction ... ok
+test original_crash::tests::reason_scaling_and_stamina_floor ... ok
+test original_crash::tests::speed_gap_boundary_and_intact_vs_damage_entry ... ok
+test performance::tests::rear_crash_interest_has_strict_near_and_camera_guards ... ok
+test pursuit::pace_tests::roster_pace_spans_player_speed_without_rubber_banding ... ok
+test pursuit::steering_tests::routine_corrections_stay_shallow_and_reversals_unwind_gradually ... ok
+test pursuit::steering_tests::lane_feedback_settles_without_repeated_full_bank ... ok
+test pursuit::tests::relationships_distinguish_racing_following_and_hostile_downed_hunts ... ok
+test recovery::tests::manual_wins_and_assist_waits_for_continuous_neutral_input ... ok
+test steering::pose_tests::seven_poses_are_symmetric_and_input_only ... ok
+test steering::tests::holding_builds_force_and_release_or_reversal_unwinds_it ... ok
+test steering::tests::requested_double_response_is_symmetric_and_keeps_the_same_limit ... ok
+test steering::tests::response_matches_across_fixed_step_sizes_and_remains_speed_dependent ... ok
+test tests::edges_survive_render_frames_and_are_consumed_once ... ok
+test tests::ids_reject_unstable_or_path_like_values ... ok
+test tests::rewards_are_bounded_and_match_the_offline_rules ... ok
+test velocity_muscles::tests::damping_needs_no_positive_work_and_invalid_inputs_are_rejected ... ok
+test traffic::tests::cars_slow_queue_and_resume_without_driving_over_the_person ... ok
+test velocity_muscles::tests::fixed_support_guide_caps_torque_and_exact_work ... ok
+test velocity_muscles::tests::recovery_yields_to_airborne_speed_and_spin_and_has_finite_retries ... ok
+test velocity_muscles::tests::tensor_impulse_preserves_pair_momentum_and_caps_actual_work ... ok
+
+test result: ok. 48 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests road_dash
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rr_content
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests rr_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

@@ -1,0 +1,13 @@
+{
+  "unchanged": [
+    "content/world/metropolis.json",
+    "Cargo.toml",
+    "Cargo.lock",
+    "art/buildings/mesh_assets/storey_kit/MANIFEST.json"
+  ],
+  "mapped_family_count": 12,
+  "coarse_upper_remap": {
+    "BUSS4": "CLSTGA11"
+  },
+  "note": "Original model source files and canonical far atlas hashes independently verified by existing kit/atlas tools."
+}

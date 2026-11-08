@@ -1570,3 +1570,636 @@ Tradeoff: up to64 more static owners than the previous cap, with existing prop
 LOD/distance policy; broad performance and finished prop art remain open. No new
 repository/dependency/media. Rollback only dressing grammar/placement; map quotas,
 collision rules, saves and accepted rider behavior are independent.
+
+## ADR057 — Crash behavior research and deferred implementation
+
+2026-11-07. Problem: requested swerve/release, protective arms and roll-to-back
+crashes need an evidence-based approach. User explicitly requires findings before
+implementation. Selected action: research/document only on a separate branch after
+merging PR17; preserve all runtime/tuning/assets/dependencies unchanged.
+Alternatives evaluated: adopting active-ragdoll-rs directly (version/policy mismatch),
+copying Godot/Unity controllers (engine and motion-policy mismatch), replacing
+Rapier (unnecessary), or adding behavior around the current native motors.
+Recommendation, not an approved migration: continuous seated release, real support
+sensing and bounded target-pose behavior over current constraints. Tradeoff: a
+custom small behavior layer needs fixtures/work accounting, while a wrapper adds
+translation tracking/type boundaries and threatens the accepted physical baseline.
+Sources/licenses/actual techniques: research/crash-behavior/README.md. No code or
+media incorporated. Future consequences: preserve baseline comparisons, explicit
+state transitions and authoritative fixed-tick inputs; no lane/body teleport or
+unbounded energy. No runtime rollback is needed because nothing was implemented;
+any later prototype should remain independently reviewable before default merge.
+
+## ADR058-B — Reciprocal angular-impulse muscle comparison
+
+2026-11-07. User authorized two isolated implementations for A/B review after
+research, with no automatic merge. Method B retains Rapier0.31 through existing
+bevy_rapier3d0.32/Bevy0.17.3 and all accepted anatomical stops/masses/passive drives.
+Its active controller is an original equivalent of reference velocity-muscle
+ideas, not copied source or a new incompatible dependency. The alternative is
+Method A's native constraint-motor targeting on the same shared crash lifecycle.
+
+Solve desired relative angular-velocity changes through full world inverse
+inertia tensors; apply equal/opposite angular impulses to connected child/parent.
+Clamp torque*fixed_dt, desired rate, correction rate, positive work per step180W
+and total180J per ragdoll. Exact work is J dot relativeOmega plus one-half J dot
+combinedInverseInertia J; exhausted/tiny budgets handle linear/quadratic cases.
+Never author linear COM velocities or body transforms. Existing CrashEnvelope
+remains the final mechanical-energy ceiling and may attenuate motor work.
+
+Genuine fixed-surface upward contact normals on torso/pelvis/spine govern support.
+A finite policy chooses brace, yield, attempt, supine slide and quiet rest. Failed
+attempts yield after0.85s without measurable progress, reverse once after cooldown
+and stop after two attempts. Airborne/high-speed/high-spin motion yields to
+physics. Arms/head/leg targets stay within existing anatomical joint limits.
+Native active drives are zeroed so the two active controllers do not compete;
+passive resistance stays. Settled/resting states stop velocity writes and preserve
+sleeping. Standalone16-body labs also exercise this method; baseline11-body does
+not acquire the new pilot. Shared swerve/release/hooks/debug controls match A.
+
+Tradeoffs: explicit positive work is bounded but not a production biomechanical
+muscle model; the old global energy guard can overpower intended active movement.
+Angular impulses are sensitive to contact geometry and may fail to roll a trapped
+body; no position pin or forced landing hides that failure. No claim of arbitrary
+frame-rate stability or high-speed recovery. Reference licenses/source pins:
+research/crash-behavior. No source/media imported; root source is original MIT.
+Rollback/select the other comparison branch; neither branch auto-merges to main.
+
+Method B now includes an explicit fixed-support reaction guide (120Nm aggregate torque cap,
+3.5rad/s target rate) for the roll attempt. Its positive work shares the same180J/180W
+ledger and existing energy ceiling. It never writes linear motion/body poses.
+The guide approximates reaction against the fixed supporting world; unlike the
+internal joint impulse pairs it does not conserve closed-ragdoll angular momentum.
+Upward core support, speed/spin eligibility, next-rotation obstruction checks,
+timeouts and failed-progress yield govern it. HUD labels this support guide and
+reports guide count/obstruction. This deliberate reference-style assistance is
+the meaningful alternative to Method A strict native motors, not a hidden claim
+of perfect anatomical actuation.
+
+Final calibration uses response coefficient12/s, torque40Nm (and existing
+per-joint caps), desired rate6rad/s, feedback delta5rad/s, exact positive-work
+cap180J/180W and aggregate support guide120Nm/3.5rad/s. All active corrections
+expire at4.95s by default, so zero-positive-work damping cannot keep limbs awake
+indefinitely. Native logical resting accepts genuinely motionless distal ground
+support; active roll eligibility remains the stricter core-support proxy. The
+prone fixture achieved onlyabout7degrees, so full roll-to-back remains open.
+
+## ADR060 — Selected velocity muscles and direct, render-aligned facade handoff
+
+2026-11-07. Problem: user selected velocity after two isolated candidates and
+reports severe texture pop-in. Selected: build on Method B, with bounded reciprocal
+angular corrections and supported guide; exclude Method A. Keep native anatomical
+constraints/passive springs because removing these disconnects the body. No engine,
+dependency, mass, anatomy, contact or save migration. Historical eleven-body
+control and comparison triggers remain diagnostic-only options.
+
+Facade investigation found authored LOD changes faded out to the generic fallback
+then faded in the new facade, both groups used the same positive dither branch,
+and Update-time ranges lagged the final PostUpdate camera. Selected: keep old
+ready geometry while hidden new scenes/materials/tangents finish, crossfade them
+directly using opposing start/end dither branches, recenter ranges after transform
+propagation before visibility, and prefetch detail inside130m instead of18/55m.
+Native Bevy0.17.3 installed range/render shader sources confirm branch quantization
+and origin semantics. Source is studied, not copied; existing Bevy MIT/Apache
+dependency/license applies. No new repository or media imported.
+
+Reserve25% of the existing display panel/triangle budget for overlapping groups;
+count both and defer upgrades if they do not fit. Keep the48-entry high-LOD cache
+strictly bounded with referenced groups pinned. Tradeoffs: modestly fewer steady
+detail panels, earlier asynchronous IO, finite hidden preparation, and dither grain.
+This is not silhouette morphing or a new distant facade art pass. Physical lots,
+colliders, support, navigation and structural IDs are unchanged. Multiplayer remains
+independent of cosmetic LOD; rollback renderer independently of velocity physics.
+
+## ADR061 — Model-derived distant identity and bounded City Run scene lifecycle
+
+2026-11-07. Problem: generic far windows/trim did not match authored facades;
+City Run still replaced live SceneRoot directly. Alternatives: raising detail
+budgets/global scene residency creates excessive entities; freezing coarse LOD
+loses close geometry; longer fades alone cannot repair facade identity. Selected:
+project the existing source triangles/UV/PBR materials into383storey-band tiles
+for128designs, batch four face proxies per657lots, keep authored close geometry.
+Projection uses original source data and a depth buffer, not retail media.
+Albedo filtering is alpha-weighted in linear light; normals renormalize; packed
+PBR stays linear.16pixel guards and a mip4clamp prevent neighboring atlas bleed.
+The composed map budget is128MiB; static proxies are separately capped250ktriangles.
+Keep source and output hashes and verify every source band.
+
+Fade proxies per face according to old/new authored masks, so an uncovered face
+remains visible until its replacement is actually ready. Use physical building
+extent only to select visual detail; authoritative transforms/colliders do not
+change. Cache settled fallback coverage. City separates logical instance roots
+from active/pending/retiring scene groups, waits for actual scene/material/tangent
+readiness, then reuses final-camera complementary dither. Cap transitions at8
+and high-detail caches at48; pin referenced groups and keep old geometry if full.
+The city design viewer shares the lifecycle. No engine/library/physics migration.
+
+Tradeoffs: about128MiB additional resident PBR images and flat projected distant
+surfaces; grazing-angle parallax/silhouette differences and dither grain remain.
+Technical coverage is not user art approval or a60FPS certificate. Existing
+production performance and longer streaming gates stay open. Bevy0.17.3 is the
+existing dependency; Blender4.5.9 is an external build tool only. No third-party
+code/media incorporated. Roll back proxy assembly and city stream independently;
+all physical layout/ID/navigation and selected velocity-ragdoll contracts remain.
+
+## ADR062 — Scaled facade cores and measured world-repair planning (2026-11-07)
+
+Problem: the solid fallback body could hide authored facade geometry. The old
+near-body inset assumed a 1.3 scale; the far body stayed full width. Wide bays
+and deep facade bands violated that assumption. A GPU probe did not reproduce
+zero-width visibility ranges as the cause; do not present that hypothesis as fact.
+
+Selected: calculate the deepest cross-LOD band envelope after actual bay scaling,
+add an 8 cm clearance and inset BOTH static backup cores at spawn. Hide a visual
+core if no positive interior remains. Keep detailed geometry, proxy atlas and
+colliders unchanged. Alternatives: deeper arbitrary fixed inset, removing physical
+buildings, replacing the renderer. Those either miss large cases or damage gameplay.
+Tradeoff: the decorative core may become very small on shallow lots; exterior
+surfaces still use the existing authored faces. Rollback is isolated to visual
+core assembly. All-lot depth tests and large-facade native sweep cover this defect;
+long-streaming/art approval remains separate.
+
+The user's 3D Come Bye reference guides original art, not asset reuse. Generate
+measured street/property/height plans before city rearrangement; ownership/fences
+are proposed and require whole-lot/access validation. Narrow rural road profiles
+are intentional geometry changes; preserve all lot quotas/IDs and the route.
+
+Static-obstacle wipeout now uses normal closing speed, preserving parking touches
+and glances. Existing car crash policy stays intact. Animated leg chains use one
+stable forward bend pole and same-side ankle targets; no physical rig replacement.
+Rival race pace scales the roster ranking to the current player's unboosted bike
+class (94–106% for the shipped roster), without positional rubber-banding. Original
+reference-unit helpers remain available. Traffic retains signed actual speed for
+contacts, stores cruise separately, yields to downed riders and limits horn rate.
+No physics backend, library or dependency migration; no new external code/media.
+
+## ADR063 — Dense city layout study without runtime changes (2026-11-07)
+
+Problem: the user rejected the dispersed property plan and wants a very close,
+dense city along the race road. The latest instruction explicitly limits work
+to layout and excludes 3D changes.
+
+Selected: a separate 2D planning generator and concept parcel set, following the
+existing city centerline. Continuous party-wall frontages sit 6 m from the center,
+with an 8 m road, 1.8 m sidewalks and 0.2 m setbacks; courtyards/service wings sit behind.
+A second block band and parallel streets add depth. Cross streets interrupt the
+frontage, with 92.53 percent station coverage overall and no within-block gaps.
+Do not change game content, structural generation, models, heights, textures,
+rendering, collision or physics. Proposal IDs are independent of canonical lots.
+
+Alternatives: move existing game lots immediately; add more distant scattered
+buildings; modify art to mask layout. The first violates scope, and the others
+do not resolve the requested close street enclosure. Tradeoff: this concept is
+not a runnable new city. Corner/overlap/access/terrain/quota/performance validation
+and user layout acceptance precede future runtime implementation. No library,
+upstream code or external asset adoption. Rollback is planning documents/tool
+only; retain the earlier measured survey as historical evidence, not approval.
+
+## ADR064 — City-centered graph with two choice sections, layout only (2026-11-07)
+
+Problem: the close-frontage draft still read as a road lined with buildings, not
+an actual city. User requested a center and confirmed two split-and-rejoin sections.
+The preceding no 3D change restriction remains active.
+
+Selected: a broad connected street/block footprint around a civic square, city
+hall, market and neighborhood districts. The race graph has two two-edge choice
+sections: Market/Station streets meet at the center, followed by a 300 m common avenue,
+then Old Town/Civic alternatives meet before exit. Four complete paths, balanced
+nominal lengths and shared split-to-merge progress intervals are documented in
+proposal data. This is local-coordinate 2D planning, not a terrain/runtime bake.
+
+Alternatives: add more parallel strips; a single fork; immediately implement a
+branching TrackDef. The first misses the city's center, the second conflicts with
+the confirmed answer, and the third exceeds the layout-only scope. Keep current
+models, content, simulation, assets and lot IDs untouched. No new library or
+upstream source/media reuse. Tradeoffs: some diagonal corner parcels are held out;
+merge radii, access/traffic closures, terrain, checkpoint/AI/recovery integration
+and actual racing-time balance remain future gates. Preserve the prior proposal
+as history. Rollback is planning tool/artifacts/documents only.
+
+## ADR065 — Farm start, extended urban finish, one fork, rigid footprints (2026-11-07)
+
+The user superseded the two-split city-only proposal: preserve the farm approach,
+remove the separate hills district, make the city substantially longer, finish
+inside it, and rejoin a single split near the first city quarter. Curves and street
+elevation are part of the drawing; the layout-only restriction remains active.
+
+Selected: a ~12 km spine proposal, with 3.15 km farm/transition approach and 8.85 km city.
+Retain the current farm trace shape via a rigid projection. Use one smoothly
+separating pair of roads near city hall, common quarter rejoin, then continuous
+city through the finish. Report actual branch distances separately from chainage.
+A continuous height study supplies urban crests/dips and 5 m contours.
+
+The first draft wrongly warped the block/footprint grid when curving the roads.
+User rejected that. Corrected: use rigid rectangular individual building plots
+and independent curved road traces; hold out corner sites rather than deforming
+buildings. Explicit right-angle and negative bent-building checks enforce this.
+Alternatives: retain two forks/hills; bend the entire city grid; apply runtime
+changes now. These contradict the revised brief or the no 3D scope.
+
+Tradeoffs:~12 km is a draft scale, not approved exact race length. The two drawn
+paths differ in distance/time potential. Corner geometry, full access/terrain
+support, ID/quota migration, route schema/progress/AI/recovery, merge controls and
+performance remain future gates. No engine/dependency migration or third-party
+source/media adoption. Rollback affects this planning tool/artifacts/docs only;
+keep previous proposals as historical records, not active instructions.
+
+## ADR066 — Streets define polygonal blocks and parcels (2026-11-07)
+
+Problem: the user rejected the rectangular-only interpretation of ADR065 and the
+uncommitted forced-right-angle junction draft. NYC/Flatiron is the explicit
+reference: roads retain their course; intervening land defines shaped blocks and
+straight-edged buildings. A triangle is not a bent building.
+
+Selected: original offline Python street-first geometry using pinned Shapely2.1.2
+(GEOS3.13.1 in the installed wheel). Union carriageways/2.4m sidewalks, subtract
+these reservations from the city envelope, and partition the residual blocks.
+Regular centerline grid pitch is180m east–west by360m north–south. Curved race roads
+are approximated by straight road segments with2m centerline simplification
+ tolerance; there are no dogleg approaches to impose90degree intersections.
+Small usable corner sites become whole polygonal buildings; unbuildable slivers
+become explicit landscape islands. Boundary-seeded Voronoi parcels cover larger
+blocks; their23m street-side bands form touching frontage building footprints.
+Courts and clipped civic reservations remain separate from building cover.
+All centerline crossings are noded into an offline street graph. Race eligibility
+is separately the existing one-split/two-path proposal, not every background street.
+
+Alternatives: force rectangles and discard corner land; warp building meshes;
+handwrite unreliable polygon subtraction; change game generation now. These
+miss the corrected geometry or exceed layout-only scope. Shapely's robust GEOS
+operations are justified for authoring; no Cargo/physics dependency changes.
+Source/license records are in third_party/REPOSITORIES.md. Library APIs are used;
+no upstream implementation or NYC source map/media copied into the game/repo.
+
+Tradeoffs: frontage seeds are a planning partition, not an architectural or legal
+cadastral survey. Junction signals/turn radii, fire/service access, final property
+heights/terraces, exact race length and runtime integration still require review.
+GEOS/Python version pins are needed for reproducible exports. No user approval or
+runtime performance claim. Supersedes ADR065's rectangle-only/90degree tests,
+not its farm/one-fork/long-city/elevation constraints. Rollback is authoring tool,
+requirements and planning artifacts/docs only; original game remains untouched.
+
+## ADR067 — Height zoning and route-distance detail before 3D (2026-11-07)
+
+Problem: the accepted street-first proposal still has no building massing or
+quality hierarchy. User requests taller central buildings, scattered taller
+neighbors/interior buildings, and less detail farther from the playable road,
+finalized as a plan before rendering3D.
+
+Selected: add an offline, seed-stable height/detail layer to the existing block
+and parcel plan. Use the existing central Market Quarter as the downtown height
+core; taper both along the city and laterally to its outskirts. Normal street
+walls share neighborhood height bands; occasional frontage accents and dispersed
+interior tower sites create taller exceptions. Reserve a six-metre service access
+easement for each interior site, cut its opening in frontage footprints and record
+all affected proposed parcels. Keep parks, public land and existing streets clear.
+
+Distance means minimum footprint distance to either legal race alternative/common
+route, not distance to any background street. Assign authored hero/standard/
+skyline/massing tiers, while tall skyline anchors retain their silhouette tier.
+All tiers require complete walls/roofs and consistent height/material identity;
+this does not implement or change camera LOD/fades, physics or runtime geometry.
+
+Alternatives: uniform random heights; towers in every courtyard; downgrade all
+distant buildings to roof-only shells; build3D before reviewing massing. These
+lose district structure, access/open-space or silhouette continuity. Keep the
+existing Shapely authoring backend; no new dependency or source/media adoption.
+Tradeoffs: ranges/distances are proposed production budgets, not measured GPU
+performance. Property assembly/easements, service/vertical clearance and final
+architecture need later implementation validation. Preserve the one-fork farm-to-
+urban-finish route and180×360m regular grid. Rollback is this offline layer and its
+maps/configuration/docs only. Runtime3D integration remains separately scoped.
+
+## ADR068 — Center city fabric on a primary race avenue (2026-11-07)
+
+Problem: the latest user reference shows a city built around its race avenue,
+with track-first intersections. The existing fixed-origin envelope leaves the
+route offset within the city; treating all background crossings equally can
+create competing parallel streets and crowded junction throats.
+
+Selected: keep the full race graph/curve/elevation/farm trace fixed. Select whole
+180×360m grid cells around the midpoint of the actual race paths in each city
+row, including both alternatives. Build the primary avenue before secondary
+streets. Omit complete secondary street segments which compete closely in
+parallel, crowd split/rejoin throats or add redundant nearby race intersections.
+Retain straight grid segments and natural angled crossings; never warp buildings,
+move the race to fit the grid, or add doglegs to force right-angle intersections.
+Derive all block/parcel polygons from the final reserved road network afterward.
+
+Record centering sections, primary junction locations/angles, omitted secondary
+segments/reasons and street connectivity. Reapply seeded height/detail/access
+rules to the regenerated proposal sites. This changes planning IDs/sites, not
+canonical runtime IDs/quotas or game assets. New reference is user-supplied visual
+guidance only; no media imported into the game or new dependency adopted.
+
+Alternatives: shift only the drawing/camera; bend the grid around the road; retain
+all secondary streets and hide conflicts with art; rewrite the race. These miss
+the design or contradict prior instructions. Tradeoff: whole-cell boundaries
+step along the city edge, and some avenue-adjacent blocks merge where secondary
+segments are omitted. Junction traffic controls/radii, final plot support,
+architecture/LOD/performance and runtime route integration remain later gates.
+Rollback is offline authoring/maps/docs only. Layout-only scope remains active.
+
+ADR068 follow-up, latest user steering: the screenshot circles secondary streets
+still close beside the main avenue. The initial35m/60%-of-segment check was too
+permissive. Replace it with local direction/distance samples (at most8m spacing):
+remove a whole secondary segment if a run of48m stays within110m of either race
+path and within40degrees of its tangent. Preserve perpendicular cross streets,
+well-spaced avenues and both legal race branches. Audit all kept secondaries and
+add four focused regression fixtures, including a partial run missed by the old
+fraction rule. On concave merged blocks use native1e-9m fixed-precision frontage
+overlay and preserve footprint holes; keep strict overlap/coverage validation.
+
+## ADR069 — Build the approved farm-to-city course (2026-11-07)
+
+User approval now authorizes3D/runtime implementation, superseding the preceding
+layout-only restriction. Preserve legacy Valley/City assets, quotas and IDs as
+separate maps. Bake the approved LAYOUT.json into a validated new metropolis
+content manifest with its exact polygon footprints, heights, primary/secondary
+roads and two complete route alternatives. No engine/physics migration.
+
+Use existing Shapely/GEOS constrained triangulation offline, not a new runtime
+triangulation dependency. Batch closed building volumes and pavement by spatial
+chunk; reuse original model-derived facade atlas/mips and authored model library.
+Keep stable full envelopes resident; additive close details never replace bodies
+with roof-only shells. Collision remains independent of rendering.
+
+Normalize both routes to common0–12000m progress with branch-local physical
+sampling/projection, explicit rider route choice, ordered physical gates and
+branch-aware recovery/camera/AI. The two actual path lengths remain distinct.
+Validate content in rr_content and pure route-choice rules in rr_core. Shared
+analytic terrain height underlies pavement, scenery and off-road support.
+
+Alternatives: alter the immutable Valley lots; force one branch; rebuild the
+physics engine; triangulate malformed polygons at runtime. These lose accepted
+content/gameplay or make authoring failures unpredictable. Tradeoffs: authored
+facade detail/materials and terrain/site support need actual native review;
+performance must be measured rather than inferred from batch counts. Retain
+legacy map selectors and rollback by selecting them; current new course becomes
+the default after verification. No upstream source/media copying or new dependency.
+
+ADR069 verification follow-up: retain closed full building envelopes permanently
+and fade only additive cornices. Use a single ExtendedMaterial atlas with tile ID
+in vertex color, unwrapped UV derivatives, wrapped gutters and five authored mip
+levels. Original source bands/pixels are pinned; no per-building material loads.
+Native chunks fell11,020→2,991 with unchanged geometry. The measured dev-build p95
+20.38ms still misses16.7ms; no production performance gate is closed. Recovery
+navigation indexes actual polygon boundaries rather than rectangular lot proxies.
+Both physical routes share logical progress/gates, trading equal metre ranking
+for fair common completion stations; preserve distinct physical lengths.
+
+## ADR070 — Wider Metropolis sidewalks and curated curb furniture (2026-11-07)
+
+User requests a small sidewalk expansion and street population. Existing2.4m
+walks already meet the approved buildings, so preserve every building/lot and
+widen walks to3.4m by reallocating1m from each city carriageway edge. Typical
+primary road12→10m; secondary8→6m. Farm geometry below the city boundary remains
+unchanged. Both race paths, source elevations, split, gates and physical rider
+configuration stay intact. Match city half-width metadata and cross-traffic lane
+centres to the resulting carriageway. Alternative: move/trim thousands of lots;
+rejected as unnecessary for this change.
+
+Bake deterministic curb furniture from existing original licensed prop roles.
+Require the whole buffered footprint on sidewalk,20m priority-junction setbacks,
+separation from other furniture and a2m paved building-side walking strip. Sparse
+tree trunks use conservative well footprints; crowns can overhang the street.
+Reuse existing visible GLBs, independent static colliders and original deterministic
+concrete paving with metre-scale slab joints. No added dynamic lights or per-frame
+placement queries. Replace old regular tree/lamp placement rather than layering
+both. Fallback legacy-prop comparison may omit the new model furniture.
+
+Tradeoffs: streets are narrower, not buildings further apart; corner widths vary
+with the existing network. Width/clearance checks are authoring constraints, not
+accessibility/building-code certification. Existing navigation does not become a
+full city pedestrian AI. Native visual, recovery and performance checks remain
+required; broader art/performance acceptance stays open. Rollback: previous bake
+and streetscape spawn; no save/dependency/physics migration or new external code.
+
+ADR070 recovery follow-up: register furniture footprints in the existing bounded
+visibility-navigation index, with distinct ownership and the same authored yaw/
+dimensions (conservative tree wells). Avoid introducing a separate pathfinder or
+changing physical recovery. Verify every furniture centre blocks a direct path
+and both race corridors remain clear. General pedestrian behavior remains deferred.
+
+## ADR071 — Restore authored3D facade models on Metropolis (2026-11-07)
+
+User clarified that the new city should use the earlier detailed3D facade models,
+not just their flattened albedo proxies. Keep the accepted polygonal layout,
+sidewalks, furniture and independent physical envelopes. Reuse the twelve existing
+source-matched style families as actual ground/upper/crown GLB meshes, repeated
+per polygon edge and floor. No new models/textures or dependency migration.
+
+Preload fixed authored LOD1/LOD2 prototypes and prepare materials/tangents while
+hidden. Share the actual mesh/material handles; no SceneRoot replacement while
+racing. Use finer street-level rows and authored coarse upper rows, with one
+consistent composition per face rather than distance-driven file swaps. Bound
+nearby faces, primitive instances and actual triangle counts, including retiring
+fade groups. Preserve full opaque envelopes behind additive relief. Smooth whole
+face entry/exit using the final propagated render camera and shared fade origin.
+
+Alternatives: instantiate all19,068 buildings' detailed scenes; reuse rectangular
+Valley assemblies on irregular footprints; hide the base wall before readiness.
+These respectively exceed budgets, misfit the accepted street plan or reproduce
+roof-shell pop-in. Tradeoff: distant/over-budget faces retain source-matched
+proxies, and relief depth is fitted to the narrow sidewalk clearance. Native mesh
+source/census, visual/recovery and performance checks are required; no60FPS or
+final art approval is assumed. Rollback is cosmetic only; save/physics unchanged.
+
+ADR071 native-review follow-up: the BUSS4 upper source includes a unique RADIO
+sign. Repeat its same-masonry CLSTGA11 authored window module on ordinary upper
+bays; retain the original sign at one first-upper-floor central bay per frontage.
+Use the same neutral source in Metropolis's distant upper tile and record its
+actual source ID/hash. Canonical source GLBs/materials and the global facade atlas
+remain unchanged. Bound outward relief to0.22m plus0.025m cosmetic offset so it
+fits the recently widened street margin. These are visual fitting transforms,
+not new physical surfaces. Survey dwell is longer to capture completed fades,
+not partially prepared views immediately after a camera teleport.
+
+## ADR072 — Main-street life, lane variety and varied rooflines (2026-11-07)
+
+User requests more street activity, main-road traffic,2/3/4 lanes and visible
+building-height variety. Retain existing race geometry, street reservations,
+sidewalks, whole building footprints and the earlier authored facade assets.
+
+Use marked lane layouts inside the existing10m city carriageway: two3m lanes
+plus parking edges; three2.8m lanes with an extra direction-specific lane; four
+2.4m arcade lanes. This changes active lane allocation/markings, not asphalt/curb
+width. Wider real-world lane dimensions would require a separate parcel/road
+redesign; do not silently narrow sidewalks or cut building lots. Publish editable
+section/direction/width settings. Interpolate lane positions/dividers over100m.
+Use double-yellow opposing-flow dividers and dashed white same-direction lines.
+
+Increase main fleet24→96, initialized on its actual road positions before Racing.
+Right-hand American direction/centres apply to Metropolis. Keep legacy behavior.
+Use native existing car models/physics contact policy, measured following speed,
+occupied-lane slowing/honks and seeded fleet restart. Riders normally target the
+marked carriageway, not the parking edges. Car traffic and paint follow the actual
+reserved street centre; preserve exact race paths/progress/gates. Simplify each
+original edge independently so fork/rejoin/common streets agree. Validate whole
+vehicle footprints, including tapers, against real paved polygons.
+
+Bake more original catalog furniture and fully road-supported curb parking,
+keeping junction/walking-strip setbacks. Add static parked cars to recovery
+navigation. Mix2–4-floor shops, medium and taller frontages per building seed,
+with downtown-dependent upper ranges and preserved interior towers. Height edits
+update both render and collision roofs; all footprint/lot IDs remain fixed.
+The old±1-floor block variation was too uniform from behind the racer.
+
+Alternatives: more uniformly spaced24-car traffic; paint four unrealistic lines
+without lane-aware traffic; rebuild city rights-of-way; retain±1-floor variation.
+These miss visible density/flow or expand scope. No engine/dependency, handling,
+ragdoll muscle/mass or save migration. Tradeoffs: narrow arcade four-lane roads,
+more scene owners/contact work and new roof heights require measured native
+performance/traffic/recovery checks. Broad art/full-course/performance gates remain
+open. Rollback is the prior manifest/config and traffic adapters; legacy maps stay.
+
+ADR072 performance follow-up: the first denser dev survey missed the frame budget
+(p9532.58ms). Keep all96 cars' logical motion, queues and rendering, but admit car
+colliders by nearest-racer gameplay interest (170m enter/220m retain), independent
+of the render camera. Include all riders' projected physical recovery targets.
+At highway speeds this leaves many fixed ticks before contact. Do not delete the
+car, change its trajectory, or cull solid terrain/building/furniture collision.
+Unobserved car/pedestrian interactions outside every racer radius are not simulated;
+future spectator/network observers must extend this interest contract. Existing
+cross cars yield to main-road traffic before committing at intersections.
+
+Avoid per-car full nearest-route scans when authoritative progress is already
+known: compute its lateral coordinate in that progress frame. Preserve general
+nearest-route projection for bikes/recovery. Record both native development and
+release samples; proximity bounds and allocation counts alone do not certify60FPS.
+
+## ADR073 — Persistent sidewalk-prop destruction only (2026-11-07)
+
+User clarified scope: props only; no car damage, building collapse or road craters.
+Register all13 placed sidewalk types as stable damage owners linking original
+models and physical shapes. Collision/melee energy accumulates without healing;
+low-speed nudges do not break props. Damage persists through camera/LOD changes
+and through the race, resetting only on explicit start/retry.
+
+Reuse original models: crush fragile objects, topple larger ones; the damaged original model remains solid. Physics supplies motion/gravity; do not inject launch velocities or
+retune rider/accepted ragdoll masses, joints or recovery. Predict genuine imminent
+prop contacts before the physics step so fragile objects can yield to the impact.
+Hard poles/trees retain normal crash risk. Deduplicate swept/contact damage with
+pair cooldowns. Bound dynamic debris; settle supported low-energy bodies and use
+supported static ruins when the budget is full. Persistent ruins never disappear
+on a lifetime timer. Reset restores poses, shapes, models and navigation.
+
+Alternatives: generic disappearance/replacement cubes, indefinite dynamic debris,
+full Voronoi fracture/engine migration, or damaging vehicles/buildings. These lose
+original art/persistence, destabilize performance or contradict clarified scope.
+No new dependency/assets. Analytic strength profiles and compressed models are an arcade
+approximation, not material fracture or fluid simulation. Record native visual,
+collision/recovery/reset and budget evidence; full art/performance gates stay open.
+
+## ADR074 — Racers and killers with identity-specific retaliation (2026-11-07)
+
+User requests half the fourteen rivals to race/pass peacefully unless attacked,
+and half to actively hunt/fight. Alternate stable rival IDs: odd IDs are racers,
+even IDs are killers (seven each); player controls remain unrestricted. Retain
+names/colors, authored per-rider pace/strength/stamina and shared60Hz vehicle,
+combat geometry, hit-chain and crash/recovery simulation.
+
+Old pursuit interpreted ten personality relationship columns; several actual
+riders shared column0. This cannot safely represent retaliation against one
+specific opponent. Use a race-local exact-ID aggressor set in rr_core::rival_ai,
+recorded only after a landed direct punch/kick. Racers never start fights, cannot
+auto-kick an innocent bystander, do not hunt downed opponents and remember their
+actual aggressors until restart. Multiple real attackers can each earn retaliation.
+Incidental wheel/traffic contact does not create a combat grudge. Reset through
+Rider::new clears memory. Existing relationship observations remain historical
+roster data, not authority for the new combat permission.
+
+Killers may attack any rival/player, seek nearby opponents regardless of historical
+hostility, use at least64m forward pursuit and60% of the old attack cooldown with
+a0.75s minimum. Keep rear range10m, lane separation9m, initial8s grace, stamina,
+actual strike reach/occlusion and same-corridor checks. Existing forward28m downed
+hunting remains for killers only. Both use shared passing-space selection when
+not pursuing a fight; retain traffic avoidance, curvature speed limits and smooth
+steering. UI shows R/K on standings.
+
+Alternatives: max hostility for everyone, shared-personality revenge or new physics/
+engine controllers. These violate the requested roles/identity or change accepted
+handling. No new dependency/media or external code copied. This is the user's new
+RoadDash behavior specification, not a claim of exact original-game AI parity.
+Tradeoff: stable assignment and race-long grudges are predictable; subjective
+full-race balance remains AI-11. Rollback restores prior pursuit/attack policy;
+no save migration is required because AI memory is race-local.
+
+## ADR075 — Opening-road repairs and local performance evidence (2026-11-07)
+
+User reports inward seated knees, uncapped fence bays, a crowded narrow race start,
+abrupt farm/city skyline, parking-speed vehicle ejections and low FPS despite low
+aggregate CPU/GPU utilization. Preserve accepted racer/killer roles, passive anatomy,
+velocity muscles, momentum/recovery and source race paths/parcels/IDs.
+
+Presentation: bias only held seated leg IK poles slightly outward (0.28 lateral
+relative to forward), retain peg targets/anatomical lengths and unheld knee planes.
+Fence rails gain both end posts with shared-coordinate deduplication; intentional
+field entrances remain. No ragdoll joint or physical body tuning.
+
+Authoring: farm asphalt and starting apron become10m, matching5m handling half-width,
+with two3.6m lanes and1.4m paved shoulders each side; verge2m. Correct the former
+4/6m handling half-width versus4m rendered pavement mismatch. Reduce moving main
+traffic96→64 and seed it from700m, keeping city lanes/cross traffic/parked cars,
+seeded restart, race gates/branches/lot footprints. City-edge building heights,
+including towers, receive a smooth2→32-storey cap over1.8km north from the approved
+boundary. Rebuild from the unchanged layout; physical and rendered roofs agree.
+This is a height transition, not completed suburb/property-art approval.
+
+Contacts: vehicles must pass a finite closing-speed gate (5m/s /18km/h); parked
+obstacles retain the wall gate. Normalize/orient horizontal contact normals, use
+mid-body shape projection for swept contacts, retain pre-solver velocity and
+re-evaluate persistent rider/vehicle contacts so a gentle touch can become a hard
+impact without another Started event. Known cars are not low ground geometry.
+Normal collision response stays solid; no added crash impulse or ragdoll retune.
+Historical test fixtures that expected a low-speed scrape to eject are corrected.
+
+Performance: add default-on1Hz local JSONL via bounded nonblocking queue/background
+writer,16MiB rotation. Record wall average/P95, all fixed-step gameplay/physics
+spans per frame, main-world duration, renderer extraction and renderer CPU/wait
+spans, visible meshes/assets, active bodies, route/camera and Linux process/system
+memory/paging. Renderer counters are atomic and may overlap main; never label them
+GPU timestamps or sum parallel spans as serial GPU cost. Full swap alone does not
+prove active paging. Disable with ROADDASH_PERF_LOG=0; directory override uses
+ROADDASH_LOG_DIR. No network telemetry or new dependency.
+
+Alternatives: hide low FPS behind lower detail, guess from aggregate utilization,
+remove car solidity, widen city parcels or retune ragdolls. These lose evidence,
+change gameplay or violate scope. Existing Bevy0.17.3 SubApp extraction wrapper and
+RenderSystems ordering are used without replacing extraction. No imported source
+or art. Native views, contact/recovery regressions and recorded timing establish
+technical integration; user art/balance, true GPU profiling and60FPS remain open.
+
+## ADR076 — Opt-in dependency feature, default parallel island solving (2026-11-07)
+
+User authorizes enabling multicore physics after measured race slowdown. Current
+Bevy0.17.3 already uses its multi_threaded scheduler; bevy_rapier3d0.32.0 wraps
+rapier3d0.31.0, with SIMD enabled but parallel disabled. Enable the existing
+bevy_rapier3d/parallel feature through a RoadDash parallel_physics feature, on by
+default. Retain an explicit serial build for regression/benchmark comparison.
+Keep exact engine pins, fixed60Hz/substeps, anatomy/muscle/solver parameters,
+collision policy, momentum and recovery. This is no physics-engine migration.
+
+Inspected installed rapier3d0.31.0 physics_pipeline.rs: supported parallel solver
+uses Rayon par_iter_mut across independent islands. Intra-island parallelism is
+explicitly not ported to this solver version; one connected ragdoll/contact pile
+cannot be assumed to scale across every core. Broad/narrow phase, synchronization,
+writeback, game systems and render waits are not automatically parallelized by
+this feature. Do not claim linear core scaling or a guaranteed60FPS fix.
+
+Use existing pool behavior initially and measure; RAYON_NUM_THREADS permits a
+controlled worker-count comparison without changing physical tuning. Lock newly
+activated Rayon transitives, inspect declared licenses and keep dependency audits.
+Record compiled parallel flag/CPU availability/requested thread environment in
+local logs. Compare the preserved serial release binary and parallel release
+using paired headless crash labs and identical native route fixtures; retain
+broad performance/user-hardware acceptance separately from feature integration.
+
+Alternatives: hand-thread the Bevy world or connected body chains, replace the
+physics engine, lower substeps, or disable accepted constraints. These are larger
+and riskier changes than the backend's native scheduling feature. Parallel order
+can affect floating-point trajectories; regression checks use established physical
+bounds rather than promise bitwise network determinism. Future server authority
+must explicitly revisit reproducibility. Rollback builds omit parallel_physics;
+no save/content/asset migration is required. If defaults regress, retain an
+explicit feature and choose worker policy only from measured comparisons.

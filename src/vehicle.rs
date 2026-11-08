@@ -187,7 +187,7 @@ pub fn forces(
             *v = Velocity::linear(r.motion_velocity.clamp_length_max(80.0));
             state.was_riding = true;
         }
-        let (_, road) = track.sample(r.progress, 0.0);
+        let (_, road) = track.sample_route(r.route, r.progress, 0.0);
         let forward = if r.id == 0 {
             (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero()
         } else {
@@ -232,7 +232,7 @@ pub fn forces(
                         rr_core::contact::low_geometry(
                             lo.y,
                             hi.y,
-                            track.sample(r.progress, r.lane).0.y,
+                            track.sample_route(r.route, r.progress, r.lane).0.y,
                         )
                     })
             };
@@ -288,7 +288,7 @@ pub fn forces(
         } else {
             limit
                 .min(r.ai_profile.cruise_mps())
-                .min((12.0 / track.curvature(r.progress).abs().max(0.0001)).sqrt())
+                .min((12.0 / track.curvature_route(r.route, r.progress).abs().max(0.0001)).sqrt())
         };
         let surface = track.surface(r.progress, r.lane);
         let limit = if surface == rr_content::track::Surface::Grass {
@@ -329,7 +329,7 @@ pub fn forces(
             - if player {
                 0.0
             } else {
-                track.curvature(r.progress) * speed * speed
+                track.curvature_route(r.route, r.progress) * speed * speed
             })
             * (p.dry_mass + rider_mass);
         let grip = load * p.grip * surface.traction();
@@ -406,14 +406,16 @@ pub fn readback(
         }
         if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing {
             let previous = r.progress;
-            let (d, lane, _) = track.project(t.translation, previous);
+            r.route = track.choose_route(r.route, previous, t.translation, r.id == 0);
+            let (d, lane, _) = track.project_route(r.route, t.translation, previous);
             let d = if track.definition.closed {
                 d
             } else {
                 d.min(track.length)
             };
+            let route = r.route;
             r.gates
-                .observe(&track, state.position, t.translation, previous, d);
+                .observe_route(&track, route, state.position, t.translation, previous, d);
             r.progress = d;
             r.lane = lane;
             r.speed = v.linvel.with_y(0.0).length();

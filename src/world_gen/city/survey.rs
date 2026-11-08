@@ -88,7 +88,7 @@ pub fn run(
     }
     if survey.frame == 9 * 90 {
         let mut report = metrics.evidence(&clock);
-        report["city"] = serde_json::json!({"length_m":city.plan.length_m,"buildings":city.plan.lots.len(),"district_zones":city.plan.district_zones,"facade_designs_used":city.plan.model_design_ids.len(),"geometric_facade_instances":catalog.instances,"requested_lods":catalog.requested_lods(),"captures":9,"scope":"actual playable world; survey viewpoints are developer camera overrides; no steady-state racing performance approval"});
+        report["city"] = serde_json::json!({"length_m":city.plan.length_m,"buildings":city.plan.lots.len(),"district_zones":city.plan.district_zones,"facade_designs_used":city.plan.model_design_ids.len(),"geometric_facade_instances":catalog.instances,"requested_lods":catalog.requested_lods(),"direct_crossfades":catalog.direct_crossfades,"high_lod_cache":catalog.cached_high_lods(),"transition_groups":catalog.transition_groups,"captures":9,"scope":"actual playable world; survey viewpoints are developer camera overrides; no steady-state racing performance approval"});
         survey.samples.sort_by(f64::total_cmp);
         let samples = &survey.samples;
         report["survey_wall_frames_ms"] = serde_json::json!({"samples":samples.len(),"median":samples[samples.len()/2],"p95":samples[samples.len()*95/100]});

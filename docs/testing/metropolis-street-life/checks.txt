@@ -1,0 +1,17 @@
+STREET-LIFE-01 — 2026-11-07 local verification
+cargo fmt --all --check: PASS
+cargo clippy --workspace --locked --all-targets -- -D warnings: PASS
+cargo test --workspace --locked: PASS (288 passed / 1 existing ignored / 0 failed)
+cargo build --locked: PASS
+cargo build --release --locked: PASS
+Authoring venv: test_metropolis_streetscape.py PASS2 / test_metropolis_street_life.py PASS3
+Independent lane/preservation audit: PASS3480 complete1.9x3.9m body samples / zero pavement failures (5cm tolerance)
+Footprints/IDs/styles, both race paths, fields, streets, sidewalks, spawns and gates preserved vs8f83245
+Native release survey: PASS96 main cars /48 each flow /65 parked /995 furniture /2,3,4 lanes /2–32 floors
+Actual original GLB detail handles/triangle budgets and persistent base geometry: PASS
+Native release west/east smoke: PASS15-racer grid restart / active audio / farm+city crash->get-up/run/mount->results fixture
+Audit: PASS519 dependency declarations /83 runtime records
+Roadmap: PASS5 tests / progress sync
+Whitespace: git diff --check / staged --check PASS
+Release bounded1440x900 RTX3080 Vulkan sample: average19.91ms / p9524.93ms FAIL16.7ms target
+Full manual traffic/merge/city/hardware/art and production performance gates remain open

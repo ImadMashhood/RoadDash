@@ -1,0 +1,131 @@
+{
+  "preserved_race_and_farms_from_de20a70": true,
+  "route": {
+    "legal_paths": [
+      [
+        "farm_approach",
+        "old_market",
+        "long_city"
+      ],
+      [
+        "farm_approach",
+        "station_avenue",
+        "long_city"
+      ]
+    ],
+    "measured_route_lengths_m": [
+      12012.235082968911,
+      12195.35508388309
+    ],
+    "merge_fraction_of_actual_city_paths": [
+      0.25098631948314354,
+      0.26614983540805937
+    ],
+    "exactly_one_split": true,
+    "exactly_one_rejoin": true,
+    "finish_surrounded_by_city": true,
+    "city_spine_length_m": 8850.0,
+    "city_share_of_spine": 0.7375,
+    "proposed_elevation_range_m": [
+      8.755547650074295,
+      53.75921247730591
+    ],
+    "max_sampled_grade_percent": 3.3418382434281737,
+    "city_blocks": 330,
+    "source_farm_fields": 42,
+    "fabric": {
+      "blocks": 330,
+      "footprints": 19068,
+      "nonrectangular_footprints": 4779,
+      "street_junctions": 366,
+      "noded_street_segments": 761,
+      "road_land_overlap_m2": 0.0,
+      "land_coverage_error_m2": 0.0,
+      "max_parcel_coverage_error_m2": 3.584976759896108e-11,
+      "corner_example_id": "LC-S0042",
+      "corner_example_area_m2": 3250.744756835411,
+      "nominal_grid_pitch_m": [
+        180.0,
+        360.0
+      ]
+    },
+    "massing": {
+      "buildings": 19068,
+      "interior_towers": 132,
+      "frontage_accents": 199,
+      "detail_tiers": {
+        "massing": 9657,
+        "skyline": 5681,
+        "standard": 2089,
+        "hero": 1641
+      },
+      "downtown_mean_streetwall_height_m": 27.082317979197622,
+      "outskirts_mean_streetwall_height_m": 9.630505988755806,
+      "height_range_m": [
+        6.4,
+        102.4
+      ],
+      "service_access_width_m": 6.0,
+      "core_point": [
+        198.975457863067,
+        3176.6281394919292
+      ],
+      "note": "Authored detail allocation, not measured runtime LOD/performance."
+    },
+    "race_first": {
+      "centered_rows": 26,
+      "max_center_error_m": 83.89282482225542,
+      "grid_quantization_limit_m": 90.0,
+      "primary_junctions": 29,
+      "minimum_primary_junction_spacing_m": 131.6745300001337,
+      "omitted_segments_by_reason": {
+        "parallel_competition": 45,
+        "fork_throat": 2
+      },
+      "street_network_connected": true,
+      "remaining_competing_parallel_segments": 0,
+      "parallel_clearance_m": 110.0,
+      "parallel_minimum_run_m": 48.0
+    },
+    "all_building_edges_straight": true
+  },
+  "rejected_invalid_plans": [
+    "second_split",
+    "hills_phase",
+    "grade_jump",
+    "outside_city_finish",
+    "road_intrusion",
+    "overlapping_parcels",
+    "short_block",
+    "unnoded_crossing",
+    "invalid_height",
+    "wrong_detail",
+    "missing_tower_access",
+    "blocked_service_access",
+    "false_centering",
+    "off_track_junction",
+    "omitted_street_restored",
+    "disconnected_city_fragment"
+  ],
+  "deterministic_outputs": {
+    "LAYOUT.json": "bad1cc469404a171315a32906a68275905e4711c2e315430d79980414e357d96",
+    "whole-route.png": "a9f93ba713616e058783541e64b0619614529db977440146522dfbbd0f403518",
+    "whole-route.svg": "46295fb0e3c65bb87db431c47d083efecaa4cdc8f8834b13a85053146f7ec5a4",
+    "city-quarter-detail.png": "bf2c5e019c72cd9296bad0ef9a0906d6a9f43a7a620caff209184a080c552639",
+    "city-quarter-detail.svg": "b67786eaac781882030f17f4fa8b43b5b0d7f6921e2dc06ffdad88bab4ee7953",
+    "elevation-profile.png": "d6268d8a0c0e6f2a6f16e7ee733b5a20123fb0cbd0e0368b604ef5f2acc00922",
+    "corner-block-detail.png": "7e3bdfd070a2bd5cbbad84868471b47bf81eeff679c5aac4f05209c608355cca",
+    "corner-block-detail.svg": "7f5c8d03d787e563afa56f81cdb6c28a279624c5b8a0e95b8979da48f6b7bb26",
+    "height-plan.png": "f4a7bafad7639f965c8dbb103c8e530b7b81725e3f80dadb1130aea7f3c27804",
+    "height-plan.svg": "5db51f37236998cc107bc515e2e438a07b7b9bca7b850d778ffe3b461de5dd21",
+    "detail-plan.png": "92506524c053ea9f0dba67f66a95630ecb548fa5211f144ccc4705160cd767b2",
+    "detail-plan.svg": "9ac079bf66da3df9baa88cf929e424e3eb5c5460b0191099864e8b5d577620d4",
+    "downtown-plan.png": "5ca74189d3f330452fcfc9c35ddd9b4770cfd160351461caed40db5b8161bde8",
+    "downtown-plan.svg": "ced71f27e9531ec7c4164e1ae14608e02e9711247e07a5a44fe5eae0a1ef0b1f",
+    "race-junction-detail.png": "fb8dbea256011dc58a0f78c7603d0a9d02764e45aa2a78e79ab8fc676e1d640a",
+    "race-junction-detail.svg": "5ac1dd11070e1b81b55de64f08800c98a5d902a0b6a99e15df23a6bd6a1a9d6f",
+    "index.html": "b43b39a5cd059cc5950e590205c261ba5ad74682ed44b73779c16c5057939690"
+  },
+  "runtime_differences_from_fb46a0a": [],
+  "limits": "2D concept/height study only. Not a playable route bake, full lot/traffic/terrain validation or measured performance."
+}

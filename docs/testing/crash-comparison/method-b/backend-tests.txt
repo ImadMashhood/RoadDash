@@ -1,0 +1,32 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.39s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-c5c486bd010567ca)
+
+running 4 tests
+test biomechanics::velocity::tests::real_backend_drive_changes_angular_motion_without_authored_linear_motion ... ok
+test biomechanics::velocity::tests::baseline_rig_has_no_velocity_pilot_or_new_work ... ok
+test biomechanics::velocity::tests::wall_only_contacts_never_enable_supine_support ... ok
+METHOD_B_PRONE observed_support=true attempts_started=true best_supine=-0.9932229 guide_active=true guide_count=352 work=180 phases={"Brace": 31, "Rest": 30, "Roll": 32, "Yield": 147}
+test biomechanics::velocity::tests::supported_prone_slide_runs_a_bounded_recovery_attempt ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 181 filtered out; finished in 0.45s
+
+     Running unittests src/bin/city_preview.rs (target/debug/deps/city_preview-4380a57ccdf4883c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (target/debug/deps/prop_preview-29fb06a20e2d7d3a)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-0255d9b1b141862b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

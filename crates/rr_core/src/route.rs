@@ -1,0 +1,28 @@
+//! Branch choice is local to each racer and locks after leaving the fork throat.
+pub fn choice(current: usize, progress: f32, distances: [f32; 2], player: bool) -> usize {
+    if !player || !(3320. ..=3500.).contains(&progress) {
+        return current.min(1);
+    }
+    let other = 1 - current.min(1);
+    if distances[other] + 1.5 < distances[current.min(1)] {
+        other
+    } else {
+        current.min(1)
+    }
+}
+/// Split branches are independent lanes; outside the fork the routes are shared.
+pub fn same_corridor(a: usize, sa: f32, b: usize, sb: f32) -> bool {
+    a == b || !(3350. ..5362.5).contains(&sa) || !(3350. ..5362.5).contains(&sb)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn choice_has_hysteresis_and_locks_out_shortcuts() {
+        assert_eq!(choice(0, 3400., [2., 1.], true), 0);
+        assert_eq!(choice(0, 3400., [4., 1.], true), 1);
+        assert_eq!(choice(0, 4000., [100., 0.], true), 0);
+        assert_eq!(choice(1, 3400., [0., 5.], false), 1);
+    }
+}
