@@ -1,0 +1,2344 @@
+{
+  "schema_version": 1,
+  "source_sha256": {
+    "art/animation/context/manifest.json": "e64fdcc5c97d13fdf9bef58b5537a5d3ec28e1ff636bef4ed5162d761f12d992",
+    "assets/models/motion.json": "d4fd772c89b835bf8b23e13f89ca303bde225e8a7c009a2fbf3139f97c3e4fa3"
+  },
+  "scope": "Part 02 source-to-runtime coverage audit; no pose or timing approval",
+  "context_pose_count": 138,
+  "runtime_clip_count": 13,
+  "runtime_clips": [
+    {
+      "name": "normal",
+      "pose_ids": [
+        2020
+      ],
+      "authored_clip_duration_s": 1.0,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "RIDE_NORMAL"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "tuck",
+      "pose_ids": [
+        2030
+      ],
+      "authored_clip_duration_s": 1.0,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "RIDE_FAST_TUCK"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "accelerate",
+      "pose_ids": [
+        2040
+      ],
+      "authored_clip_duration_s": 1.0,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "RIDE_ACCELERATE"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "turn_left",
+      "pose_ids": [
+        2900
+      ],
+      "authored_clip_duration_s": 1.0,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [],
+      "runtime_only_pose_ids": [
+        2900
+      ]
+    },
+    {
+      "name": "turn_right",
+      "pose_ids": [
+        2901
+      ],
+      "authored_clip_duration_s": 1.0,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [],
+      "runtime_only_pose_ids": [
+        2901
+      ]
+    },
+    {
+      "name": "punch_left",
+      "pose_ids": [
+        2220,
+        2221,
+        2222
+      ],
+      "authored_clip_duration_s": 0.4,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "PUNCH_LEFT_FOREHAND"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "punch_right",
+      "pose_ids": [
+        2230,
+        2231,
+        2232
+      ],
+      "authored_clip_duration_s": 0.4,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "PUNCH_RIGHT_FOREHAND"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "kick_left",
+      "pose_ids": [
+        2260,
+        2261
+      ],
+      "authored_clip_duration_s": 0.48,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "KICK_LEFT"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "kick_right",
+      "pose_ids": [
+        2270,
+        2271
+      ],
+      "authored_clip_duration_s": 0.48,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "KICK_RIGHT"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "pickup",
+      "pose_ids": [
+        2410,
+        2411,
+        2412,
+        2413,
+        2414
+      ],
+      "authored_clip_duration_s": 1.6,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "REMOUNT"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "pickup_mirrored",
+      "pose_ids": [
+        2420,
+        2421,
+        2422,
+        2423,
+        2424
+      ],
+      "authored_clip_duration_s": 1.6,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "MOUNT_ALIAS_MIRRORED_42"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "getup",
+      "pose_ids": [
+        2360,
+        2361,
+        2362,
+        2363,
+        2364
+      ],
+      "authored_clip_duration_s": 1.7999999999999998,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "GET_UP"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "run",
+      "pose_ids": [
+        2380,
+        2381,
+        2382,
+        2383,
+        2384,
+        2385
+      ],
+      "authored_clip_duration_s": 0.72,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "RUN_TO_BIKE"
+      ],
+      "runtime_only_pose_ids": []
+    }
+  ],
+  "context_sequences": [
+    {
+      "id": "RIDE_FAR",
+      "actor": "human",
+      "state": "RIDE_FAR",
+      "pose_ids": [
+        2000
+      ],
+      "phase_labels": [
+        "RIDE_FAR_01"
+      ],
+      "entry_pose": 2000,
+      "exit_pose": 2000,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "NPC camera distance below second cutoff; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2000": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2000": [
+          22
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "RIDE_VERY_FAR",
+      "actor": "human",
+      "state": "RIDE_VERY_FAR",
+      "pose_ids": [
+        2010
+      ],
+      "phase_labels": [
+        "RIDE_VERY_FAR_01"
+      ],
+      "entry_pose": 2010,
+      "exit_pose": 2010,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "NPC distant camera selector; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2010": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2010": [
+          23
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "RIDE_NORMAL",
+      "actor": "human",
+      "state": "RIDE_NORMAL",
+      "pose_ids": [
+        2020
+      ],
+      "phase_labels": [
+        "RIDE_NORMAL_01"
+      ],
+      "entry_pose": 2020,
+      "exit_pose": 2020,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Normal mounted ride; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2020": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2020": [
+          3
+        ]
+      },
+      "runtime_clips": [
+        "normal"
+      ]
+    },
+    {
+      "id": "RIDE_FAST_TUCK",
+      "actor": "human",
+      "state": "RIDE_FAST_TUCK",
+      "pose_ids": [
+        2030
+      ],
+      "phase_labels": [
+        "RIDE_FAST_TUCK_01"
+      ],
+      "entry_pose": 2030,
+      "exit_pose": 2030,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "High speed / lateral-speed condition; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2030": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2030": [
+          252
+        ]
+      },
+      "runtime_clips": [
+        "tuck"
+      ]
+    },
+    {
+      "id": "RIDE_ACCELERATE",
+      "actor": "human",
+      "state": "RIDE_ACCELERATE",
+      "pose_ids": [
+        2040
+      ],
+      "phase_labels": [
+        "RIDE_ACCELERATE_01"
+      ],
+      "entry_pose": 2040,
+      "exit_pose": 2040,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Low speed plus throttle >30; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2040": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2040": [
+          41
+        ]
+      },
+      "runtime_clips": [
+        "accelerate"
+      ]
+    },
+    {
+      "id": "RIDE_WRECK_WARNING",
+      "actor": "human",
+      "state": "RIDE_WRECK_WARNING",
+      "pose_ids": [
+        2050,
+        2051
+      ],
+      "phase_labels": [
+        "RIDE_WRECK_WARNING_01",
+        "RIDE_WRECK_WARNING_02"
+      ],
+      "entry_pose": 2050,
+      "exit_pose": 2051,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Player wrecked flag and wreck_count <4; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2050": [
+          "seat",
+          "peg.L",
+          "peg.R"
+        ],
+        "2051": [
+          "seat",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2050": [
+          42
+        ],
+        "2051": [
+          43
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "AI_POST_HIT_GESTURE",
+      "actor": "human",
+      "state": "AI_POST_HIT_GESTURE",
+      "pose_ids": [
+        2060,
+        2061
+      ],
+      "phase_labels": [
+        "AI_POST_HIT_GESTURE_01",
+        "AI_POST_HIT_GESTURE_02"
+      ],
+      "entry_pose": 2060,
+      "exit_pose": 2061,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "NPC probabilistic queued animation after hit; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2060": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2061": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2060": [
+          44
+        ],
+        "2061": [
+          45
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "UNRESOLVED_RIDE_CODE_07",
+      "actor": "human",
+      "state": "UNRESOLVED_RIDE_CODE_07",
+      "pose_ids": [
+        2070
+      ],
+      "phase_labels": [
+        "UNRESOLVED_RIDE_CODE_07_01"
+      ],
+      "entry_pose": 2070,
+      "exit_pose": 2070,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Present descriptor; no confirmed call site; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2070": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2070": [
+          46
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "RIDE_LOW_SPEED",
+      "actor": "human",
+      "state": "RIDE_LOW_SPEED",
+      "pose_ids": [
+        2080
+      ],
+      "phase_labels": [
+        "RIDE_LOW_SPEED_01"
+      ],
+      "entry_pose": 2080,
+      "exit_pose": 2080,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Speed <300; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2080": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2080": [
+          47
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "MOUNTED_HIT_REACTION",
+      "actor": "human",
+      "state": "MOUNTED_HIT_REACTION",
+      "pose_ids": [
+        2090,
+        2091
+      ],
+      "phase_labels": [
+        "MOUNTED_HIT_REACTION_01",
+        "MOUNTED_HIT_REACTION_02"
+      ],
+      "entry_pose": 2090,
+      "exit_pose": 2091,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Nonfatal reason-4 hit selects code9; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2090": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2091": [
+          "seat",
+          "grip.L",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2090": [
+          63
+        ],
+        "2091": [
+          63
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CHAIN_LEFT_FOREHAND",
+      "actor": "human",
+      "state": "CHAIN_LEFT_FOREHAND",
+      "pose_ids": [
+        2100,
+        2101,
+        2102,
+        2103,
+        2104
+      ],
+      "phase_labels": [
+        "CHAIN_LEFT_FOREHAND_01",
+        "CHAIN_LEFT_FOREHAND_02",
+        "CHAIN_LEFT_FOREHAND_03",
+        "CHAIN_LEFT_FOREHAND_04",
+        "CHAIN_LEFT_FOREHAND_05"
+      ],
+      "entry_pose": 2100,
+      "exit_pose": 2104,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2100": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2101": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2102": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2103": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2104": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2100": [
+          81
+        ],
+        "2101": [
+          82
+        ],
+        "2102": [
+          83
+        ],
+        "2103": [
+          84
+        ],
+        "2104": [
+          85
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CHAIN_RIGHT_FOREHAND",
+      "actor": "human",
+      "state": "CHAIN_RIGHT_FOREHAND",
+      "pose_ids": [
+        2110,
+        2111,
+        2112,
+        2113,
+        2114
+      ],
+      "phase_labels": [
+        "CHAIN_RIGHT_FOREHAND_01",
+        "CHAIN_RIGHT_FOREHAND_02",
+        "CHAIN_RIGHT_FOREHAND_03",
+        "CHAIN_RIGHT_FOREHAND_04",
+        "CHAIN_RIGHT_FOREHAND_05"
+      ],
+      "entry_pose": 2110,
+      "exit_pose": 2114,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2110": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2111": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2112": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2113": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2114": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2110": [
+          81
+        ],
+        "2111": [
+          82
+        ],
+        "2112": [
+          83
+        ],
+        "2113": [
+          84
+        ],
+        "2114": [
+          85
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CHAIN_LEFT_BACKHAND",
+      "actor": "human",
+      "state": "CHAIN_LEFT_BACKHAND",
+      "pose_ids": [
+        2120,
+        2121,
+        2122,
+        2123,
+        2124
+      ],
+      "phase_labels": [
+        "CHAIN_LEFT_BACKHAND_01",
+        "CHAIN_LEFT_BACKHAND_02",
+        "CHAIN_LEFT_BACKHAND_03",
+        "CHAIN_LEFT_BACKHAND_04",
+        "CHAIN_LEFT_BACKHAND_05"
+      ],
+      "entry_pose": 2120,
+      "exit_pose": 2124,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2120": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2121": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2122": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2123": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2124": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2120": [
+          85
+        ],
+        "2121": [
+          86
+        ],
+        "2122": [
+          87
+        ],
+        "2123": [
+          88
+        ],
+        "2124": [
+          89
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CHAIN_RIGHT_BACKHAND",
+      "actor": "human",
+      "state": "CHAIN_RIGHT_BACKHAND",
+      "pose_ids": [
+        2130,
+        2131,
+        2132,
+        2133,
+        2134
+      ],
+      "phase_labels": [
+        "CHAIN_RIGHT_BACKHAND_01",
+        "CHAIN_RIGHT_BACKHAND_02",
+        "CHAIN_RIGHT_BACKHAND_03",
+        "CHAIN_RIGHT_BACKHAND_04",
+        "CHAIN_RIGHT_BACKHAND_05"
+      ],
+      "entry_pose": 2130,
+      "exit_pose": 2134,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2130": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2131": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2132": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2133": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2134": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2130": [
+          85
+        ],
+        "2131": [
+          86
+        ],
+        "2132": [
+          87
+        ],
+        "2133": [
+          88
+        ],
+        "2134": [
+          89
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CHAIN_STEAL_TABLE_INDEX_2",
+      "actor": "human",
+      "state": "CHAIN_STEAL_TABLE_INDEX_2",
+      "pose_ids": [
+        2140,
+        2141
+      ],
+      "phase_labels": [
+        "CHAIN_STEAL_TABLE_INDEX_2_01",
+        "CHAIN_STEAL_TABLE_INDEX_2_02"
+      ],
+      "entry_pose": 2140,
+      "exit_pose": 2141,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Steal table index2, acquired chain; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2140": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2141": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2140": [
+          83
+        ],
+        "2141": [
+          81
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CHAIN_STEAL_TABLE_INDEX_6",
+      "actor": "human",
+      "state": "CHAIN_STEAL_TABLE_INDEX_6",
+      "pose_ids": [
+        2150,
+        2151
+      ],
+      "phase_labels": [
+        "CHAIN_STEAL_TABLE_INDEX_6_01",
+        "CHAIN_STEAL_TABLE_INDEX_6_02"
+      ],
+      "entry_pose": 2150,
+      "exit_pose": 2151,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Steal table index6, acquired chain; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2150": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2151": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2150": [
+          83
+        ],
+        "2151": [
+          85
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CLUB_LEFT_FOREHAND",
+      "actor": "human",
+      "state": "CLUB_LEFT_FOREHAND",
+      "pose_ids": [
+        2160,
+        2161,
+        2162
+      ],
+      "phase_labels": [
+        "CLUB_LEFT_FOREHAND_01",
+        "CLUB_LEFT_FOREHAND_02",
+        "CLUB_LEFT_FOREHAND_03"
+      ],
+      "entry_pose": 2160,
+      "exit_pose": 2162,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2160": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2161": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2162": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2160": [
+          140
+        ],
+        "2161": [
+          141
+        ],
+        "2162": [
+          142
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CLUB_RIGHT_FOREHAND",
+      "actor": "human",
+      "state": "CLUB_RIGHT_FOREHAND",
+      "pose_ids": [
+        2170,
+        2171,
+        2172
+      ],
+      "phase_labels": [
+        "CLUB_RIGHT_FOREHAND_01",
+        "CLUB_RIGHT_FOREHAND_02",
+        "CLUB_RIGHT_FOREHAND_03"
+      ],
+      "entry_pose": 2170,
+      "exit_pose": 2172,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2170": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2171": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2172": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2170": [
+          140
+        ],
+        "2171": [
+          141
+        ],
+        "2172": [
+          142
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CLUB_LEFT_BACKHAND",
+      "actor": "human",
+      "state": "CLUB_LEFT_BACKHAND",
+      "pose_ids": [
+        2180,
+        2181,
+        2182
+      ],
+      "phase_labels": [
+        "CLUB_LEFT_BACKHAND_01",
+        "CLUB_LEFT_BACKHAND_02",
+        "CLUB_LEFT_BACKHAND_03"
+      ],
+      "entry_pose": 2180,
+      "exit_pose": 2182,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2180": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2181": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2182": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2180": [
+          143
+        ],
+        "2181": [
+          142
+        ],
+        "2182": [
+          142
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CLUB_RIGHT_BACKHAND",
+      "actor": "human",
+      "state": "CLUB_RIGHT_BACKHAND",
+      "pose_ids": [
+        2190,
+        2191,
+        2192
+      ],
+      "phase_labels": [
+        "CLUB_RIGHT_BACKHAND_01",
+        "CLUB_RIGHT_BACKHAND_02",
+        "CLUB_RIGHT_BACKHAND_03"
+      ],
+      "entry_pose": 2190,
+      "exit_pose": 2192,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2190": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2191": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2192": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2190": [
+          143
+        ],
+        "2191": [
+          142
+        ],
+        "2192": [
+          142
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "PUNCH_LEFT_FOREHAND",
+      "actor": "human",
+      "state": "PUNCH_LEFT_FOREHAND",
+      "pose_ids": [
+        2220,
+        2221,
+        2222
+      ],
+      "phase_labels": [
+        "PUNCH_LEFT_FOREHAND_01",
+        "PUNCH_LEFT_FOREHAND_02",
+        "PUNCH_LEFT_FOREHAND_03"
+      ],
+      "entry_pose": 2220,
+      "exit_pose": 2222,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2220": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2221": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2222": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2220": [
+          176
+        ],
+        "2221": [
+          177
+        ],
+        "2222": [
+          178
+        ]
+      },
+      "runtime_clips": [
+        "punch_left"
+      ]
+    },
+    {
+      "id": "PUNCH_RIGHT_FOREHAND",
+      "actor": "human",
+      "state": "PUNCH_RIGHT_FOREHAND",
+      "pose_ids": [
+        2230,
+        2231,
+        2232
+      ],
+      "phase_labels": [
+        "PUNCH_RIGHT_FOREHAND_01",
+        "PUNCH_RIGHT_FOREHAND_02",
+        "PUNCH_RIGHT_FOREHAND_03"
+      ],
+      "entry_pose": 2230,
+      "exit_pose": 2232,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2230": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2231": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2232": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2230": [
+          176
+        ],
+        "2231": [
+          177
+        ],
+        "2232": [
+          178
+        ]
+      },
+      "runtime_clips": [
+        "punch_right"
+      ]
+    },
+    {
+      "id": "PUNCH_LEFT_BACKHAND",
+      "actor": "human",
+      "state": "PUNCH_LEFT_BACKHAND",
+      "pose_ids": [
+        2240,
+        2241,
+        2242
+      ],
+      "phase_labels": [
+        "PUNCH_LEFT_BACKHAND_01",
+        "PUNCH_LEFT_BACKHAND_02",
+        "PUNCH_LEFT_BACKHAND_03"
+      ],
+      "entry_pose": 2240,
+      "exit_pose": 2242,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2240": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2241": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ],
+        "2242": [
+          "seat",
+          "grip.R",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2240": [
+          179
+        ],
+        "2241": [
+          178
+        ],
+        "2242": [
+          178
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "PUNCH_RIGHT_BACKHAND",
+      "actor": "human",
+      "state": "PUNCH_RIGHT_BACKHAND",
+      "pose_ids": [
+        2250,
+        2251,
+        2252
+      ],
+      "phase_labels": [
+        "PUNCH_RIGHT_BACKHAND_01",
+        "PUNCH_RIGHT_BACKHAND_02",
+        "PUNCH_RIGHT_BACKHAND_03"
+      ],
+      "entry_pose": 2250,
+      "exit_pose": 2252,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2250": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2251": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ],
+        "2252": [
+          "seat",
+          "grip.L",
+          "peg.L",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2250": [
+          179
+        ],
+        "2251": [
+          178
+        ],
+        "2252": [
+          178
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "KICK_LEFT",
+      "actor": "human",
+      "state": "KICK_LEFT",
+      "pose_ids": [
+        2260,
+        2261
+      ],
+      "phase_labels": [
+        "KICK_LEFT_01",
+        "KICK_LEFT_02"
+      ],
+      "entry_pose": 2260,
+      "exit_pose": 2261,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2260": [
+          "grip.L",
+          "grip.R",
+          "peg.R"
+        ],
+        "2261": [
+          "grip.L",
+          "grip.R",
+          "peg.R"
+        ]
+      },
+      "source_sprite_slots": {
+        "2260": [
+          225
+        ],
+        "2261": [
+          226
+        ]
+      },
+      "runtime_clips": [
+        "kick_left"
+      ]
+    },
+    {
+      "id": "KICK_RIGHT",
+      "actor": "human",
+      "state": "KICK_RIGHT",
+      "pose_ids": [
+        2270,
+        2271
+      ],
+      "phase_labels": [
+        "KICK_RIGHT_01",
+        "KICK_RIGHT_02"
+      ],
+      "entry_pose": 2270,
+      "exit_pose": 2271,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Attack table [side][forehand/backhand][weapon]; weapon0 fist,1 club,2 chain,3 kick; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2270": [
+          "grip.L",
+          "grip.R",
+          "peg.L"
+        ],
+        "2271": [
+          "grip.L",
+          "grip.R",
+          "peg.L"
+        ]
+      },
+      "source_sprite_slots": {
+        "2270": [
+          225
+        ],
+        "2271": [
+          226
+        ]
+      },
+      "runtime_clips": [
+        "kick_right"
+      ]
+    },
+    {
+      "id": "CRASH_GROUND_CYCLE",
+      "actor": "human",
+      "state": "CRASH_GROUND_CYCLE",
+      "pose_ids": [
+        2280,
+        2281,
+        2282,
+        2283,
+        2284,
+        2285,
+        2286
+      ],
+      "phase_labels": [
+        "CRASH_GROUND_CYCLE_01",
+        "CRASH_GROUND_CYCLE_02",
+        "CRASH_GROUND_CYCLE_03",
+        "CRASH_GROUND_CYCLE_04",
+        "CRASH_GROUND_CYCLE_05",
+        "CRASH_GROUND_CYCLE_06",
+        "CRASH_GROUND_CYCLE_07"
+      ],
+      "entry_pose": 2280,
+      "exit_pose": 2286,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Moving crashed rider ground cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2280": [],
+        "2281": [],
+        "2282": [],
+        "2283": [],
+        "2284": [],
+        "2285": [],
+        "2286": []
+      },
+      "source_sprite_slots": {
+        "2280": [
+          241
+        ],
+        "2281": [
+          242
+        ],
+        "2282": [
+          243
+        ],
+        "2283": [
+          244
+        ],
+        "2284": [
+          245
+        ],
+        "2285": [
+          246
+        ],
+        "2286": [
+          247
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_FAST_GROUND_CYCLE",
+      "actor": "human",
+      "state": "CRASH_FAST_GROUND_CYCLE",
+      "pose_ids": [
+        2290,
+        2291,
+        2292,
+        2293,
+        2294,
+        2295,
+        2296,
+        2297
+      ],
+      "phase_labels": [
+        "CRASH_FAST_GROUND_CYCLE_01",
+        "CRASH_FAST_GROUND_CYCLE_02",
+        "CRASH_FAST_GROUND_CYCLE_03",
+        "CRASH_FAST_GROUND_CYCLE_04",
+        "CRASH_FAST_GROUND_CYCLE_05",
+        "CRASH_FAST_GROUND_CYCLE_06",
+        "CRASH_FAST_GROUND_CYCLE_07",
+        "CRASH_FAST_GROUND_CYCLE_08"
+      ],
+      "entry_pose": 2290,
+      "exit_pose": 2297,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Faster ground cycle; repeats first image as phase8; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2290": [],
+        "2291": [],
+        "2292": [],
+        "2293": [],
+        "2294": [],
+        "2295": [],
+        "2296": [],
+        "2297": []
+      },
+      "source_sprite_slots": {
+        "2290": [
+          241
+        ],
+        "2291": [
+          242
+        ],
+        "2292": [
+          243
+        ],
+        "2293": [
+          244
+        ],
+        "2294": [
+          245
+        ],
+        "2295": [
+          246
+        ],
+        "2296": [
+          247
+        ],
+        "2297": [
+          241
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_TUMBLE_A",
+      "actor": "human",
+      "state": "CRASH_TUMBLE_A",
+      "pose_ids": [
+        2300,
+        2301,
+        2302,
+        2303
+      ],
+      "phase_labels": [
+        "CRASH_TUMBLE_A_01",
+        "CRASH_TUMBLE_A_02",
+        "CRASH_TUMBLE_A_03",
+        "CRASH_TUMBLE_A_04"
+      ],
+      "entry_pose": 2300,
+      "exit_pose": 2303,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Random low-speed crash cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2300": [],
+        "2301": [],
+        "2302": [],
+        "2303": []
+      },
+      "source_sprite_slots": {
+        "2300": [
+          256
+        ],
+        "2301": [
+          257
+        ],
+        "2302": [
+          258
+        ],
+        "2303": [
+          259
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_TUMBLE_B",
+      "actor": "human",
+      "state": "CRASH_TUMBLE_B",
+      "pose_ids": [
+        2310,
+        2311,
+        2312,
+        2313
+      ],
+      "phase_labels": [
+        "CRASH_TUMBLE_B_01",
+        "CRASH_TUMBLE_B_02",
+        "CRASH_TUMBLE_B_03",
+        "CRASH_TUMBLE_B_04"
+      ],
+      "entry_pose": 2310,
+      "exit_pose": 2313,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Random low-speed crash cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2310": [],
+        "2311": [],
+        "2312": [],
+        "2313": []
+      },
+      "source_sprite_slots": {
+        "2310": [
+          260
+        ],
+        "2311": [
+          261
+        ],
+        "2312": [
+          262
+        ],
+        "2313": [
+          263
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_TUMBLE_C",
+      "actor": "human",
+      "state": "CRASH_TUMBLE_C",
+      "pose_ids": [
+        2320,
+        2321,
+        2322,
+        2323
+      ],
+      "phase_labels": [
+        "CRASH_TUMBLE_C_01",
+        "CRASH_TUMBLE_C_02",
+        "CRASH_TUMBLE_C_03",
+        "CRASH_TUMBLE_C_04"
+      ],
+      "entry_pose": 2320,
+      "exit_pose": 2323,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Random low-speed crash cycle; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2320": [],
+        "2321": [],
+        "2322": [],
+        "2323": []
+      },
+      "source_sprite_slots": {
+        "2320": [
+          264
+        ],
+        "2321": [
+          265
+        ],
+        "2322": [
+          266
+        ],
+        "2323": [
+          267
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_AIRBORNE_ENTRY",
+      "actor": "human",
+      "state": "CRASH_AIRBORNE_ENTRY",
+      "pose_ids": [
+        2330,
+        2331,
+        2332,
+        2333,
+        2334
+      ],
+      "phase_labels": [
+        "CRASH_AIRBORNE_ENTRY_01",
+        "CRASH_AIRBORNE_ENTRY_02",
+        "CRASH_AIRBORNE_ENTRY_03",
+        "CRASH_AIRBORNE_ENTRY_04",
+        "CRASH_AIRBORNE_ENTRY_05"
+      ],
+      "entry_pose": 2330,
+      "exit_pose": 2334,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Default begin_crash entry; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2330": [],
+        "2331": [],
+        "2332": [],
+        "2333": [],
+        "2334": []
+      },
+      "source_sprite_slots": {
+        "2330": [
+          268
+        ],
+        "2331": [
+          269
+        ],
+        "2332": [
+          270
+        ],
+        "2333": [
+          271
+        ],
+        "2334": [
+          272
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_GROUND_TRANSITION",
+      "actor": "human",
+      "state": "CRASH_GROUND_TRANSITION",
+      "pose_ids": [
+        2340,
+        2341,
+        2342,
+        2343
+      ],
+      "phase_labels": [
+        "CRASH_GROUND_TRANSITION_01",
+        "CRASH_GROUND_TRANSITION_02",
+        "CRASH_GROUND_TRANSITION_03",
+        "CRASH_GROUND_TRANSITION_04"
+      ],
+      "entry_pose": 2340,
+      "exit_pose": 2343,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Airborne entry reaches low height; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2340": [],
+        "2341": [],
+        "2342": [],
+        "2343": []
+      },
+      "source_sprite_slots": {
+        "2340": [
+          273
+        ],
+        "2341": [
+          274
+        ],
+        "2342": [
+          275
+        ],
+        "2343": [
+          276
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "CRASH_COMBAT_ENTRY",
+      "actor": "human",
+      "state": "CRASH_COMBAT_ENTRY",
+      "pose_ids": [
+        2350,
+        2351
+      ],
+      "phase_labels": [
+        "CRASH_COMBAT_ENTRY_01",
+        "CRASH_COMBAT_ENTRY_02"
+      ],
+      "entry_pose": 2350,
+      "exit_pose": 2351,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Begin crash reason4 or5; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2350": [],
+        "2351": []
+      },
+      "source_sprite_slots": {
+        "2350": [
+          276
+        ],
+        "2351": [
+          274
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "GET_UP",
+      "actor": "human",
+      "state": "GET_UP",
+      "pose_ids": [
+        2360,
+        2361,
+        2362,
+        2363,
+        2364
+      ],
+      "phase_labels": [
+        "GET_UP_01",
+        "GET_UP_02",
+        "GET_UP_03",
+        "GET_UP_04",
+        "GET_UP_05"
+      ],
+      "entry_pose": 2360,
+      "exit_pose": 2364,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Stopped crash selects36 then queues37; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2360": [],
+        "2361": [],
+        "2362": [],
+        "2363": [],
+        "2364": []
+      },
+      "source_sprite_slots": {
+        "2360": [
+          282
+        ],
+        "2361": [
+          283
+        ],
+        "2362": [
+          284
+        ],
+        "2363": [
+          285
+        ],
+        "2364": [
+          286
+        ]
+      },
+      "runtime_clips": [
+        "getup"
+      ]
+    },
+    {
+      "id": "RECOVERY_WAIT",
+      "actor": "human",
+      "state": "RECOVERY_WAIT",
+      "pose_ids": [
+        2370,
+        2371,
+        2372,
+        2373
+      ],
+      "phase_labels": [
+        "RECOVERY_WAIT_01",
+        "RECOVERY_WAIT_02",
+        "RECOVERY_WAIT_03",
+        "RECOVERY_WAIT_04"
+      ],
+      "entry_pose": 2370,
+      "exit_pose": 2373,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Wait/loops before running; also damaged bike context; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2370": [],
+        "2371": [],
+        "2372": [],
+        "2373": []
+      },
+      "source_sprite_slots": {
+        "2370": [
+          289
+        ],
+        "2371": [
+          289
+        ],
+        "2372": [
+          289
+        ],
+        "2373": [
+          289
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "RUN_TO_BIKE",
+      "actor": "human",
+      "state": "RUN_TO_BIKE",
+      "pose_ids": [
+        2380,
+        2381,
+        2382,
+        2383,
+        2384,
+        2385
+      ],
+      "phase_labels": [
+        "RUN_TO_BIKE_01",
+        "RUN_TO_BIKE_02",
+        "RUN_TO_BIKE_03",
+        "RUN_TO_BIKE_04",
+        "RUN_TO_BIKE_05",
+        "RUN_TO_BIKE_06"
+      ],
+      "entry_pose": 2380,
+      "exit_pose": 2385,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Recovery state38 moves rider toward bike / on-foot input; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2380": [],
+        "2381": [],
+        "2382": [],
+        "2383": [],
+        "2384": [],
+        "2385": []
+      },
+      "source_sprite_slots": {
+        "2380": [
+          297
+        ],
+        "2381": [
+          298
+        ],
+        "2382": [
+          299
+        ],
+        "2383": [
+          300
+        ],
+        "2384": [
+          301
+        ],
+        "2385": [
+          302
+        ]
+      },
+      "runtime_clips": [
+        "run"
+      ]
+    },
+    {
+      "id": "MOUNT_ALIAS_39",
+      "actor": "human",
+      "state": "MOUNT_ALIAS_39",
+      "pose_ids": [
+        2390,
+        2391,
+        2392,
+        2393,
+        2394
+      ],
+      "phase_labels": [
+        "MOUNT_ALIAS_39_01",
+        "MOUNT_ALIAS_39_02",
+        "MOUNT_ALIAS_39_03",
+        "MOUNT_ALIAS_39_04",
+        "MOUNT_ALIAS_39_05"
+      ],
+      "entry_pose": 2390,
+      "exit_pose": 2394,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Mount-like descriptor alias; specific caller unresolved; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2390": [],
+        "2391": [],
+        "2392": [],
+        "2393": [],
+        "2394": []
+      },
+      "source_sprite_slots": {
+        "2390": [
+          309
+        ],
+        "2391": [
+          310
+        ],
+        "2392": [
+          311
+        ],
+        "2393": [
+          312
+        ],
+        "2394": [
+          313
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "MOUNT_ALIAS_MIRRORED_40",
+      "actor": "human",
+      "state": "MOUNT_ALIAS_MIRRORED_40",
+      "pose_ids": [
+        2400,
+        2401,
+        2402,
+        2403,
+        2404
+      ],
+      "phase_labels": [
+        "MOUNT_ALIAS_MIRRORED_40_01",
+        "MOUNT_ALIAS_MIRRORED_40_02",
+        "MOUNT_ALIAS_MIRRORED_40_03",
+        "MOUNT_ALIAS_MIRRORED_40_04",
+        "MOUNT_ALIAS_MIRRORED_40_05"
+      ],
+      "entry_pose": 2400,
+      "exit_pose": 2404,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Mirrored descriptor alias; specific caller unresolved; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2400": [],
+        "2401": [],
+        "2402": [],
+        "2403": [],
+        "2404": []
+      },
+      "source_sprite_slots": {
+        "2400": [
+          309
+        ],
+        "2401": [
+          310
+        ],
+        "2402": [
+          311
+        ],
+        "2403": [
+          312
+        ],
+        "2404": [
+          313
+        ]
+      },
+      "runtime_clips": []
+    },
+    {
+      "id": "REMOUNT",
+      "actor": "human",
+      "state": "REMOUNT",
+      "pose_ids": [
+        2410,
+        2411,
+        2412,
+        2413,
+        2414
+      ],
+      "phase_labels": [
+        "REMOUNT_01",
+        "REMOUNT_02",
+        "REMOUNT_03",
+        "REMOUNT_04",
+        "REMOUNT_05"
+      ],
+      "entry_pose": 2410,
+      "exit_pose": 2414,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Recovery arrival selects41, queues ride2; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2410": [],
+        "2411": [],
+        "2412": [],
+        "2413": [],
+        "2414": []
+      },
+      "source_sprite_slots": {
+        "2410": [
+          309
+        ],
+        "2411": [
+          310
+        ],
+        "2412": [
+          311
+        ],
+        "2413": [
+          312
+        ],
+        "2414": [
+          313
+        ]
+      },
+      "runtime_clips": [
+        "pickup"
+      ]
+    },
+    {
+      "id": "MOUNT_ALIAS_MIRRORED_42",
+      "actor": "human",
+      "state": "MOUNT_ALIAS_MIRRORED_42",
+      "pose_ids": [
+        2420,
+        2421,
+        2422,
+        2423,
+        2424
+      ],
+      "phase_labels": [
+        "MOUNT_ALIAS_MIRRORED_42_01",
+        "MOUNT_ALIAS_MIRRORED_42_02",
+        "MOUNT_ALIAS_MIRRORED_42_03",
+        "MOUNT_ALIAS_MIRRORED_42_04",
+        "MOUNT_ALIAS_MIRRORED_42_05"
+      ],
+      "entry_pose": 2420,
+      "exit_pose": 2424,
+      "interrupts": [
+        "physics-impact"
+      ],
+      "review": "draft",
+      "notes": "Mirrored descriptor alias; specific caller unresolved; native logical timing/control in assembly.json, no Bevy clip timing assigned",
+      "held_contacts": {
+        "2420": [],
+        "2421": [],
+        "2422": [],
+        "2423": [],
+        "2424": []
+      },
+      "source_sprite_slots": {
+        "2420": [
+          309
+        ],
+        "2421": [
+          310
+        ],
+        "2422": [
+          311
+        ],
+        "2423": [
+          312
+        ],
+        "2424": [
+          313
+        ]
+      },
+      "runtime_clips": [
+        "pickup_mirrored"
+      ]
+    }
+  ],
+  "unplayed_context_pose_ids": [
+    2000,
+    2010,
+    2050,
+    2051,
+    2060,
+    2061,
+    2070,
+    2080,
+    2090,
+    2091,
+    2100,
+    2101,
+    2102,
+    2103,
+    2104,
+    2110,
+    2111,
+    2112,
+    2113,
+    2114,
+    2120,
+    2121,
+    2122,
+    2123,
+    2124,
+    2130,
+    2131,
+    2132,
+    2133,
+    2134,
+    2140,
+    2141,
+    2150,
+    2151,
+    2160,
+    2161,
+    2162,
+    2170,
+    2171,
+    2172,
+    2180,
+    2181,
+    2182,
+    2190,
+    2191,
+    2192,
+    2240,
+    2241,
+    2242,
+    2250,
+    2251,
+    2252,
+    2280,
+    2281,
+    2282,
+    2283,
+    2284,
+    2285,
+    2286,
+    2290,
+    2291,
+    2292,
+    2293,
+    2294,
+    2295,
+    2296,
+    2297,
+    2300,
+    2301,
+    2302,
+    2303,
+    2310,
+    2311,
+    2312,
+    2313,
+    2320,
+    2321,
+    2322,
+    2323,
+    2330,
+    2331,
+    2332,
+    2333,
+    2334,
+    2340,
+    2341,
+    2342,
+    2343,
+    2350,
+    2351,
+    2370,
+    2371,
+    2372,
+    2373,
+    2390,
+    2391,
+    2392,
+    2393,
+    2394,
+    2400,
+    2401,
+    2402,
+    2403,
+    2404
+  ],
+  "limitations": [
+    "Key membership proves coverage only, not reachability, correct action side or approved silhouettes.",
+    "Runtime playback can retime/blend clips; authored duration is not observed action latency.",
+    "Procedural walk/idle/terrain/lean blends and physics-driven crashes are not standalone clips.",
+    "Weapon/police context sequences are drafts; absence from shipped clips is explicit.",
+    "Source slots can be view variants; this report never converts them into temporal phases.",
+    "Full catalog acceptance still requires unresolved caller, support, hand and visual review."
+  ]
+}

@@ -585,3 +585,14 @@ parallel, compare18 paired headless900-tick lab cases against preserved serial
 binary, verify native both-route roster/crash/getup/run/remount/restart and backend
 log metadata. Compare measured timings without promising linear scaling, true
 GPU timing or bitwise parallel determinism. PERF-08/platform gates remain open.
+
+## Live pickup and reverse — 2026-11-08
+
+RECOVERY-01, REVERSE-01, ANIM-14, ADR077: [evidence](remount-reverse/README.md).
+Test a displaced elevated wreck against stale owner/backend poses in both
+adapters, then retain the dynamic pose across later ticks. Test brake-before-
+reverse at30/60/120 Hz, a solid wall backout, throttle return and assisted reverse
+without false finish. Run full workspace/physics/model/recovery regression,
+required audit/build/clippy/fmt, native Metropolis retry/audio/farm/city recovery,
+reverse and exact pickup-error assertions. Animation coverage report must be
+current and six context tests pass; this does not close pose/animation approval.

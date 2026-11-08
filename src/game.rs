@@ -766,27 +766,41 @@ pub fn drive(
                 > track.half_width(r.progress);
             let target = if on_grass { target.min(32.0) } else { target };
             if !dynamic {
-                if throttle && r.speed < target {
-                    let acceleration = if boost {
-                        tuning.nitro_acceleration_mps2
-                    } else {
-                        tuning.acceleration_mps2
-                    };
-                    r.speed = (r.speed
-                        + dt * acceleration
-                            * player_intent.throttle_strength().max(if is_player {
-                                0.0
-                            } else {
-                                1.0
-                            })
-                            * track.surface(r.progress, r.lane).traction())
-                    .min(target);
-                } else if r.speed > target || !throttle {
-                    r.speed = (r.speed - dt * tuning.coast_drag_mps2).max(0.0);
-                }
-                if brake {
-                    r.speed = (r.speed - dt * tuning.brake_mps2 * player_intent.brake_strength())
+                if is_player
+                    && let Some(acceleration) = rr_core::reverse::acceleration(
+                        r.speed,
+                        throttle,
+                        brake,
+                        player_intent.brake_strength(),
+                        dt,
+                    )
+                {
+                    r.speed += acceleration * dt;
+                } else {
+                    if throttle && r.speed < target {
+                        let acceleration = if boost {
+                            tuning.nitro_acceleration_mps2
+                        } else {
+                            tuning.acceleration_mps2
+                        };
+                        r.speed = (r.speed
+                            + dt * acceleration
+                                * player_intent.throttle_strength().max(if is_player {
+                                    0.0
+                                } else {
+                                    1.0
+                                })
+                                * track.surface(r.progress, r.lane).traction())
+                        .min(target);
+                    } else if r.speed > target || !throttle {
+                        r.speed = r.speed.signum()
+                            * (r.speed.abs() - dt * tuning.coast_drag_mps2).max(0.0);
+                    }
+                    if brake {
+                        r.speed = (r.speed
+                            - dt * tuning.brake_mps2 * player_intent.brake_strength())
                         .max(0.0);
+                    }
                 }
             }
             if boost {
@@ -893,7 +907,7 @@ pub fn drive(
                 1.0 - (-dt * 16.0).exp(),
             );
             if on_grass && !dynamic {
-                r.speed = (r.speed - dt * 1.8).max(0.0);
+                r.speed = r.speed.signum() * (r.speed.abs() - dt * 1.8).max(0.0);
             }
             if !dynamic {
                 r.progress += r.speed * dt;

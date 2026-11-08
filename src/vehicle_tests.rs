@@ -46,7 +46,7 @@ fn dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels() {
         for _ in 0..360 {
             app.update();
         }
-        assert!(snapshot(&mut app).0 < 1.0);
+        assert!(snapshot(&mut app).0 <= rr_core::reverse::MAX_SPEED + 0.5);
     }
 }
 #[test]
@@ -70,7 +70,7 @@ fn dynamic_physics_matches_at_render_rates() {
             app.update();
         }
         let stopped = snapshot(&mut app);
-        assert!(stopped.0 < 0.5);
+        assert!(stopped.0 <= rr_core::reverse::MAX_SPEED + 0.5);
         poses.push((accelerated, stopped));
     }
     for other in &poses[1..] {
@@ -838,4 +838,166 @@ fn dynamic_bike_physically_traverses_a_solid_low_wreck() {
     );
     assert!(touched, "solid wreck received no physical contact response");
     assert!(app.world().get::<ColliderDisabled>(wreck).is_none());
+}
+
+#[test]
+fn remount_hands_off_at_live_wreck_not_old_chassis_or_road_height() {
+    for support_body in [RigidBody::Fixed, RigidBody::KinematicPositionBased] {
+        for dynamic in [false, true] {
+            let mut app = app(1, 60);
+            if !dynamic {
+                app.insert_resource(VehiclePhysicsAdapter::Assisted);
+            }
+            for _ in 0..4 {
+                app.update();
+            }
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let (p, q) = app.world().resource::<Track>().sample(200.0, 2.0);
+            let pickup = p.with_y(6.13);
+            app.world_mut().spawn((
+                support_body,
+                Ground,
+                Collider::cuboid(8.0, 3.0, 8.0),
+                Transform::from_translation(p.with_y(3.0)),
+            ));
+            let wreck = app
+                .world_mut()
+                .spawn((
+                    RigidBody::KinematicPositionBased,
+                    Transform::from_translation(pickup).with_rotation(q),
+                    Velocity::zero(),
+                    crate::recovery::OwnedBody {
+                        owner,
+                        kind: crate::recovery::BodyKind::Wreck,
+                    },
+                ))
+                .id();
+            app.world_mut().entity_mut(owner).insert(ColliderDisabled);
+            {
+                let mut recovery = app.world_mut().get_mut::<Recovery>(owner).unwrap();
+                recovery.stage = RecoveryStage::Mounting;
+                recovery.elapsed = 0.75;
+                recovery.wreck = Some(wreck);
+            }
+            app.update();
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            let actual = app.world().get::<Transform>(owner).unwrap().translation;
+            assert!(
+                actual.distance(pickup) < 0.25,
+                "dynamic={dynamic}: {actual:?} vs {pickup:?}"
+            );
+            if dynamic {
+                assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_height, 0.0);
+                for _ in 0..8 {
+                    app.update();
+                }
+                let actual = app.world().get::<Transform>(owner).unwrap().translation;
+                assert!(
+                    actual.distance(pickup) < 0.5,
+                    "backend restored stale crash: {actual:?}"
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn brake_backs_dynamic_bike_away_from_a_solid_wall_and_throttle_returns_forward() {
+    let mut app = app(1, 60);
+    for _ in 0..6 {
+        app.update();
+    }
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    let owner = app
+        .world_mut()
+        .query_filtered::<Entity, With<Rider>>()
+        .single(app.world())
+        .unwrap();
+    let pose = *app.world().get::<Transform>(owner).unwrap();
+    let forward = pose.rotation * Vec3::Z;
+    app.world_mut().spawn((
+        RigidBody::Fixed,
+        crate::world::Obstacle,
+        Collider::cuboid(4.0, 2.0, 0.3),
+        Transform::from_translation(pose.translation + forward * 1.6 + Vec3::Y)
+            .with_rotation(pose.rotation),
+    ));
+    // Drive into the wall first, so backing out tests an actual blocked chassis.
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyW);
+    for _ in 0..30 {
+        app.update();
+    }
+    let against_wall = snapshot(&mut app);
+    let advance = (against_wall.1 - pose.translation).dot(forward);
+    assert!(
+        advance > 0.05 && advance < 0.8,
+        "wall did not stop forward drive: {advance}"
+    );
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .release(KeyCode::KeyW);
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyS);
+    for _ in 0..180 {
+        app.update();
+    }
+    let (_, position, state) = snapshot(&mut app);
+    assert!(
+        (position - pose.translation).dot(forward) < -2.0,
+        "did not back out: {position:?}"
+    );
+    assert!(state.velocity.dot(forward) < -0.5 && state.velocity.length() < 3.5);
+    assert_eq!(
+        app.world().get::<Recovery>(owner).unwrap().stage,
+        RecoveryStage::Riding
+    );
+    {
+        let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+        keys.release(KeyCode::KeyS);
+        keys.press(KeyCode::KeyW);
+    }
+    for _ in 0..40 {
+        app.update();
+    }
+    assert!(snapshot(&mut app).2.velocity.dot(forward) > 0.0);
+}
+
+#[test]
+fn assisted_adapter_can_back_up_without_nitro_or_finishing_the_race() {
+    let mut app = crate::game::tests::simulation();
+    for _ in 0..3 {
+        app.update();
+    }
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    let owner = app
+        .world_mut()
+        .query_filtered::<Entity, With<Rider>>()
+        .single(app.world())
+        .unwrap();
+    let start = app.world().get::<Rider>(owner).unwrap().progress;
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyS);
+    for _ in 0..180 {
+        app.update();
+    }
+    let rider = app.world().get::<Rider>(owner).unwrap();
+    assert!(rider.progress < start - 2.0);
+    assert!(rider.speed < -0.5 && rider.speed >= -rr_core::reverse::MAX_SPEED);
+    assert!(rider.finished.is_none());
+    assert_eq!(
+        app.world().get::<Recovery>(owner).unwrap().stage,
+        RecoveryStage::Riding
+    );
 }

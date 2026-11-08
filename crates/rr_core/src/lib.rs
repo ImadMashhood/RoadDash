@@ -5,6 +5,7 @@ pub mod contact;
 pub mod crash;
 pub mod original_crash;
 pub mod pursuit;
+pub mod reverse;
 pub mod steering;
 pub mod traffic;
 use serde::{Deserialize, Serialize};

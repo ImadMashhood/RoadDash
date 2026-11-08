@@ -1007,3 +1007,16 @@ or 3D content changed; no push/merge claimed.
   logs. Preserve serial executable for identical paired lab/native comparisons;
   benchmark gains and limits belong to testing/parallel-physics, not assumptions
   from enabled features. PERF-08 retains overall slow-race/60FPS optimization.
+
+## 2026-11-08 — Pickup location, reverse and Animation A audit
+
+- RECOVERY-01/ADR077: transfer the live wreck pose/support into the riding
+  chassis and synchronize backend current/next state and interpolation history.
+  Preserve accepted ragdoll construction and collision rules.
+- REVERSE-01: S/Down brakes forward then requests low-speed reverse; throttle
+  returns forward. Both chassis adapters use one pure parking rule.
+- ANIM-14: resume Part02 with a hash-bound context-to-runtime audit:41 sequences,
+  138 draft poses,13 clips,104 unplayed context poses and two authored lean keys.
+  No new pose approval or native timing is inferred. Broad gates stay open.
+- Evidence and limitations: testing/remount-reverse/README.md and
+  animation/NEXT_REVIEW.md. No new dependencies, media or external source reuse.

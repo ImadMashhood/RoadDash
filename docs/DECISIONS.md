@@ -2203,3 +2203,33 @@ bounds rather than promise bitwise network determinism. Future server authority
 must explicitly revisit reproducibility. Rollback builds omit parallel_physics;
 no save/content/asset migration is required. If defaults regress, retain an
 explicit feature and choose worker policy only from measured comparisons.
+
+## ADR077 — Live pickup ownership and signed parking reverse (2026-11-08)
+
+Problem: remount projected the wreck onto the track, discarding its actual
+support height, while the old hidden riding chassis could retain a stale backend
+pose/history. The handoff now takes the live wreck position and upright heading;
+projection updates race progress/lane only. Reset Rapier current/next pose,
+linear/angular velocity, forces, BikeState and interpolation history together
+before forces/writeback. Lift queries solid support excluding the recovering bodies instead of pulling elevated
+bikes to terrain. The assisted adapter receives the corresponding height offset.
+
+Alternatives: teleport the wreck/rider back to the crash origin, resample the
+centerline, or overwrite visual transforms after simulation. Rejected because
+these move the pickup, lose elevation or desynchronize authority. No ragdoll
+mass, anatomy, motor, damping, ejection or solver parameters change. Explicit
+exceptional rescue and the existing five-second unseen NPC approximation remain
+separate policies, not ordinary remount behavior.
+
+Brake input below0.15m/s forward speed enters parking reverse only without
+throttle. Pure rr_core rules target2.5m/s backwards with2m/s² acceleration;
+dynamic mode requests bounded tire force, assisted mode integrates signed speed.
+Normal forward braking remains unchanged; release coasts and throttle returns
+forward. These are centralized tuning constants, not a gearbox/engine migration.
+World forces can exceed the parking target; no teleport or hard velocity clamp
+is used. Existing collision, grip, checkpoints, boost and input buffering remain.
+
+New input action/key or automatic escape teleport were considered unnecessary.
+Reverse is player-controlled with existing S/Down/brake input; ordinary AI does
+not reverse. Rollback is isolated to the helper/adapters and pickup handoff; no
+content/save/dependency/asset migration. No external code/assets incorporated.
