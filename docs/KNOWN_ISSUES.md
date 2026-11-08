@@ -1,6 +1,6 @@
 # Known issues and remaining acceptance
 
-Updated 2026-11-06. This is not a list of fabricated failures; distinguish known
+Updated 2026-11-08. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
 - P01-WIN: Windows GPU/audio/input launch and clean install have not been run on
@@ -734,3 +734,14 @@ in the runtime manifest/native census. Footprints/race paths remain unchanged.
   cases slow from dispatch overhead. Native warm-window gains are modest and
   physics-span time remains roughly9–10ms/frame; PERF-08 remains open. All18
   non-timing lab observations matched on this host; this is not network determinism.
+
+
+- RECOVERY-01 / REVERSE-01: live pickup placement and parking reverse are verified
+  on this Linux host. P06-009 retains confined remount clearance/art approval;
+  explicit exceptional rescue and unseen rear NPC approximation remain intentional
+  separate policies. No claim that every possible trap is eliminated. Reverse
+  uses the ordinary tire force/grip limits, not an absolute downhill speed clamp.
+- ANIM-14: source-to-runtime audit starts the next Part02 review;104 context poses
+  have no standalone clip and two runtime lean keys are authored extras. Missing
+  playback is not evidence of missing source frames. Finger/support/silhouette,
+  unresolved caller/native timing and human approval gates remain open.

@@ -1,11 +1,14 @@
 {
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RECOVERY-01",
+        "REVERSE-01",
+        "ANIM-14",
         "PERF-09",
         "REPAIR-01",
         "PERF-07",

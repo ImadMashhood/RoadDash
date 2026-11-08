@@ -195,7 +195,8 @@ pub fn forces(
         };
         let up = road * Vec3::Y;
         let right = forward.cross(up).normalize();
-        let speed = v.linvel.dot(forward).max(0.0);
+        let signed_speed = v.linvel.dot(forward);
+        let speed = signed_speed.abs();
         let input = r.drive_intent;
         let player = r.id == 0;
         let at_end = !track.definition.closed && r.progress >= track.length - 0.1;
@@ -322,6 +323,18 @@ pub fn forces(
             } else {
                 0.0
             };
+        let longitudinal = if player && !at_end {
+            rr_core::reverse::acceleration(
+                signed_speed,
+                throttle,
+                brake,
+                input.brake_strength(),
+                dt,
+            )
+            .map_or(longitudinal, |a| a * (p.dry_mass + rider_mass))
+        } else {
+            longitudinal
+        };
         let steering_side =
             (steer * (1.8 + speed * 0.085) * p.turn_response).clamp(-speed * 0.675, speed * 0.675);
         let desired_side = steering_side + r.side_velocity;
@@ -428,6 +441,56 @@ pub fn readback(
         state.damage = 100.0 - r.health;
     }
 }
+/// A remount changes ownership from the wreck to the riding chassis. Reset
+/// backend and render history together, before the next force/readback pass.
+pub(crate) fn remount_at(commands: &mut Commands, owner: Entity, pose: Transform) {
+    commands.queue(move |world: &mut World| {
+        for mut set in world.query::<&mut RapierRigidBodySet>().iter_mut(world) {
+            if let Some(handle) = set.entity2body().get(&owner).copied()
+                && let Some(body) = set.bodies.get_mut(handle)
+            {
+                let location = bevy_rapier3d::na::Isometry3::from_parts(
+                    pose.translation.into(),
+                    pose.rotation.into(),
+                );
+                body.set_body_type(
+                    bevy_rapier3d::rapier::dynamics::RigidBodyType::KinematicPositionBased,
+                    true,
+                );
+                body.set_position(location, true);
+                body.set_next_kinematic_position(location);
+                body.set_linvel(Vec3::ZERO.into(), true);
+                body.set_angvel(Vec3::ZERO.into(), true);
+                body.reset_forces(true);
+                body.reset_torques(true);
+            }
+        }
+        let mut entity = world.entity_mut(owner);
+        if let Some(mut state) = entity.get_mut::<BikeState>() {
+            let preset = state.preset;
+            *state = BikeState {
+                position: pose.translation,
+                yaw: (pose.rotation * Vec3::Z)
+                    .x
+                    .atan2((pose.rotation * Vec3::Z).z),
+                preset,
+                ..default()
+            };
+        }
+        entity.insert((
+            pose,
+            GlobalTransform::from(pose),
+            Velocity::zero(),
+            ExternalForce::default(),
+            RigidBody::KinematicPositionBased,
+            crate::runtime::PoseHistory {
+                previous: pose,
+                current: pose,
+            },
+        ));
+    });
+}
+
 pub fn live_tuning(keys: Res<ButtonInput<KeyCode>>, mut tuning: ResMut<Tuning>) {
     if keys.just_pressed(KeyCode::F5) {
         tuning.selected = (tuning.selected + 1) % tuning.presets.len();

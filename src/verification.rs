@@ -24,15 +24,18 @@ pub struct SmokeProgress {
     farm_walk: Option<(f32, f32)>,
     hill_walk: Option<(f32, f32)>,
     results: bool,
+    last_pickup: Option<Vec3>,
+    remounts: u32,
+    max_remount_error: f32,
 }
 // A running stage can last one physics tick when the rider lands near the bike.
 // Observe fixed transitions independently of render-frame screenshot timing.
 pub fn observe_smoke_recovery(
     mut state: ResMut<SmokeProgress>,
-    riders: Query<(&Rider, &Recovery)>,
+    riders: Query<(&Rider, &Recovery, &Transform)>,
     bodies: Query<&Transform, Without<Rider>>,
 ) {
-    for (rider, recovery) in &riders {
+    for (rider, recovery, root) in &riders {
         if rider.id != 0 {
             continue;
         }
@@ -57,7 +60,28 @@ pub fn observe_smoke_recovery(
                     state.farm_walk = state.farm_walk.or(walk);
                 }
             }
-            RecoveryStage::Mounting => state.fixed_stages[2] = true,
+            RecoveryStage::Mounting => {
+                state.fixed_stages[2] = true;
+                state.last_pickup = recovery
+                    .wreck
+                    .and_then(|w| bodies.get(w).ok())
+                    .map(|t| t.translation);
+            }
+            RecoveryStage::Riding => {
+                if let Some(pickup) = state.last_pickup.take() {
+                    let error = root.translation.distance(pickup);
+                    assert!(
+                        error < 0.5,
+                        "native remount snapped {error} m away from pickup"
+                    );
+                    state.max_remount_error = state.max_remount_error.max(error);
+                    state.remounts += 1;
+                    println!(
+                        "Native remount {}: pickup error {error:.4} m",
+                        state.remounts
+                    );
+                }
+            }
             _ => {}
         }
     }
@@ -207,6 +231,37 @@ pub fn smoke_test(
             if [83, 113, 143, 163].contains(&state.frame) {
                 capture(&mut commands, name);
             }
+        }
+    }
+    if std::env::var("ROADDASH_VERIFY_REVERSE").as_deref() == Ok("1") {
+        match state.frame {
+            65 => {
+                keys.release(KeyCode::KeyW);
+                keys.press(KeyCode::KeyS);
+            }
+            125 => {
+                for (r, recovery, t, velocity) in &riders {
+                    if r.id == 0 {
+                        let speed = velocity
+                            .as_ref()
+                            .expect("dynamic chassis")
+                            .linvel
+                            .dot(t.rotation * Vec3::Z);
+                        assert!(
+                            speed < -0.3 && speed > -3.5,
+                            "native reverse failed: {speed}"
+                        );
+                        assert_eq!(recovery.stage, RecoveryStage::Riding);
+                        println!("Native reverse verified: {speed:.3} m/s");
+                    }
+                }
+                capture(&mut commands, "18-reversing");
+            }
+            140 => {
+                keys.release(KeyCode::KeyS);
+                keys.press(KeyCode::KeyW);
+            }
+            _ => {}
         }
     }
     match state.frame {

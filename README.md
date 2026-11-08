@@ -56,7 +56,7 @@ This changes scheduling, not body/joint/substep tuning. [Benchmarks and limits](
 | --- | --- |
 | Enter / menu button | Start / race again; interact to remount while walking manually |
 | W / Up | Throttle; move forward on foot |
-| S / Down | Brake; move backward on foot |
+| S / Down | Brake, then hold to reverse slowly; move backward on foot |
 | A, D / Left, Right | Steer; move sideways on foot |
 | Left or Right Shift | Nitro while accelerating |
 | J / K or left / right mouse | Punch left / right |
@@ -139,7 +139,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**201 verified tasks complete; 242 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**204 verified tasks complete; 242 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -157,7 +157,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 201 verified complete |
+| [00](#part-00) | Completed and verified foundations | 204 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 29 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
@@ -178,6 +178,10 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RECOVERY-01** Remount at the live wreck pickup position and support height. Reason: the riding chassis snapped away after pickup; originating part: 01; dependencies: existing recovery/physics adapters; acceptance: live wreck coordinates, backend current/next pose, velocity/state/history synchronized without stale crash restoration; verification: displaced/elevated-wreck tests in both adapters, repeated dynamic ticks and two native zero-error remounts in [receipt](docs/testing/remount-reverse/README.md). Full obstruction/art acceptance remains P06-009.
+- [x] **REVERSE-01** Back out with the existing brake input after stopping. Reason: a solid obstacle could trap a mounted player; originating part: 01; dependencies: existing drive intent/tire force; acceptance: forward braking before bounded parking reverse, no throttle/reverse conflict, throttle returns forward, solid-wall backout and both adapters retain recovery/checkpoints; verification: 30/60/120 Hz domain tests, dynamic wall and assisted integration, native reverse in [receipt](docs/testing/remount-reverse/README.md).
+- [x] **ANIM-14** Reconcile context-first draft sequences with shipped runtime clips. Reason: next animation work needs an explicit source-to-runtime gap inventory; originating part: 02; dependencies: ANIM-05/08 and existing catalogs; acceptance: hash-bound sequence/pose/contact/entry/exit/interrupt mapping, unmatched keys and absent clips explicit, no invented native timing or pose approval; verification: reproducible [coverage report](docs/animation/RUNTIME_COVERAGE.md), --check and six context tests; [next review](docs/animation/NEXT_REVIEW.md). V2-02 and ANIM-02/03/04/06 approval gates remain open.
 
 - [x] **PERF-09** Enable supported multicore physics with a serial fallback and measured comparisons. Reason: user requests parallel physics after logged simulation slowdown; part: 11; dependencies: PERF-07 and pinned Rapier feature/license review; acceptance: default parallel_physics forwards native island parallelism, logs identify compiled backend, unchanged physical tuning passes regressions, exact serial/parallel lab/native comparisons are recorded and new transitives audited; verification: [feature graphs,307 physical tests, paired crash labs and native logs](docs/testing/parallel-physics/README.md). This does not close PERF-08's full-race frame budget.
 
@@ -683,7 +687,7 @@ First study every original rider animation category, use sprites as reference ke
 
 **Current correction:** V1's slot-based action labels are superseded. Use the [context-first source catalog](docs/animation/context/README.md) and [new action-grouped gallery](art/animation/context/gallery/index.html): 104 action slots / 194 temporal descriptors, with 138 new draft human poses and 16 bike-only layouts. Ordered phases, actual mirror/view flags and native logical counters are recorded separately. The earlier 247 candidates remain historical drafts. Pose fidelity/approval, unknown callers and native execution validation stay open; Part 03 has not started.
 
-- [ ] **V2-02-001** Build a complete animation/use-case catalog.
+- [ ] **V2-02-001** Build a complete animation/use-case catalog. ANIM-14 resumes source-to-runtime coverage review; unresolved caller/timing and full pose approval remain open. See [next review](docs/animation/NEXT_REVIEW.md).
 - [ ] **V2-02-002** Inspect all original rider animation categories.
 - [ ] **V2-02-003** Research Synty/POLYGON-style games and authentic locomotion.
 - [ ] **V2-02-005** Author and label the full original 3D keyframe set.

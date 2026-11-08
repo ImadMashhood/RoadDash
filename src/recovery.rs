@@ -481,7 +481,10 @@ pub fn recover(
     time: Res<Time<Fixed>>,
     mut race: ResMut<Race>,
     mut controls: ResMut<crate::controls::Controls>,
-    tuning: Res<RecoveryTuning>,
+    (tuning, adapter): (
+        Res<RecoveryTuning>,
+        Res<crate::vehicle::VehiclePhysicsAdapter>,
+    ),
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut profile: ResMut<crate::game::Profile>,
     persistence: Res<crate::game::Persistence>,
@@ -868,10 +871,30 @@ pub fn recover(
                 if let Ok((mut t, _, _, _)) = bodies.get_mut(wreck) {
                     let (_, rotation) = track.sample_route(rider.route, rider.progress, 0.0);
                     t.rotation = t.rotation.slerp(rotation, (dt * 8.0).min(1.0));
-                    t.translation.y += (track.terrain_height(t.translation.x, t.translation.z)
-                        + 0.13
-                        - t.translation.y)
-                        * (dt * 8.0).min(1.0);
+                    // Keep the pickup's horizontal position and existing support
+                    // height. Do not pull a bike on a roof/curb down to terrain.
+                    let support = |e| {
+                        e != owner && Some(e) != recovery.runner && !recovery.parts.contains(&e)
+                    };
+                    let floor = context
+                        .single()
+                        .ok()
+                        .and_then(|c| {
+                            c.cast_ray(
+                                t.translation + Vec3::Y * 2.0,
+                                -Vec3::Y,
+                                5.0,
+                                true,
+                                QueryFilter::default()
+                                    .exclude_rigid_body(wreck)
+                                    .exclude_sensors()
+                                    .predicate(&support),
+                            )
+                        })
+                        .map(|(_, distance)| t.translation.y + 2.0 - distance);
+                    if let Some(floor) = floor {
+                        t.translation.y += (floor + 0.13 - t.translation.y) * (dt * 8.0).min(1.0);
+                    }
                 }
                 if let Some(pose) = recovery.pose
                     && let Ok((mut t, _, _, _)) = bodies.get_mut(pose)
@@ -896,8 +919,21 @@ pub fn recover(
                     rider.crashed = 0.0;
                     rider.immunity = 1.0;
                     rider.impact_cooldown = 0.6;
-                    let (p, q) = track.sample_route(rider.route, progress, lane);
-                    *root = Transform::from_translation(p).with_rotation(q);
+                    // Projection updates race bookkeeping only. The live wreck is
+                    // the authoritative pickup location, including elevated supports.
+                    let q = crate::animation::bike_anchor(wreck_pose).rotation;
+                    *root = Transform::from_translation(wreck_pos).with_rotation(q);
+                    rider.speed = 0.0;
+                    let (road_point, _) = track.sample_route(rider.route, progress, lane);
+                    rider.hop_height =
+                        if *adapter == crate::vehicle::VehiclePhysicsAdapter::Assisted {
+                            (wreck_pos.y - road_point.y).max(0.0)
+                        } else {
+                            0.0
+                        };
+                    rider.hop_velocity = 0.0;
+                    rider.motion_angular_velocity = Vec3::ZERO;
+                    crate::vehicle::remount_at(&mut commands, owner, *root);
                     *visibility = Visibility::Visible;
                     commands.entity(owner).remove::<ColliderDisabled>();
                     crate::crash_behavior::restore_chassis(&mut commands, owner);

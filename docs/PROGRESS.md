@@ -1,5 +1,7 @@
 # Development progress
 
+Current scope: RECOVERY-01 / REVERSE-01 — live pickup physics handoff and low-speed brake-to-reverse. ANIM-14 resumes Part02 with a hash-bound source-to-runtime coverage audit; no pose approval or new interpolation is implied. See testing/remount-reverse/README.md and animation/NEXT_REVIEW.md.
+
 Current scope: PERF-09 — default Rapier parallel-island feature, audited runtime dependencies, serial fallback and controlled paired crash/native measurements. 307 tests,18 matched lab cases, both native routes and repeat comparisons verified; broad low-FPS optimization remains PERF-08.
 
 Current scope: REPAIR-01 and PERF-07 — seated stance, fence/start/height/contact fixes and local performance evidence. Technical tests/native integration verified; full art/balance and60FPS remain open; see testing/startup-world-diagnostics/README.md. PERF-08 retains measured optimization.
@@ -10,7 +12,7 @@ Current scope: DESTRUCTION-01 — persistent Metropolis props only; no car damag
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 201 verified tasks;
+README is the single live task source. Part 00 contains all 204 verified tasks;
 Parts 01–16 contain all 242 unfinished/partial/unverified requirements. The reorganization preserved status; four later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
@@ -24,7 +26,7 @@ interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 443 task IDs are in README exactly once. This includes four new CRASHREF IDs;
+All 446 task IDs are in README exactly once. This includes four new CRASHREF IDs;
 the inherited 357-ID header was stale after the preceding animation additions. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
@@ -288,6 +290,12 @@ relationship-axis/event and random-stream parity gates.
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RECOVERY-01** Remount at the live wreck pickup position and support height. Reason: the riding chassis snapped away after pickup; originating part: 01; dependencies: existing recovery/physics adapters; acceptance: live wreck coordinates, backend current/next pose, velocity/state/history synchronized without stale crash restoration; verification: displaced/elevated-wreck tests in both adapters, repeated dynamic ticks and two native zero-error remounts in [receipt](testing/remount-reverse/README.md). Full obstruction/art acceptance remains P06-009.
+
+- [x] **REVERSE-01** Back out with the existing brake input after stopping. Reason: a solid obstacle could trap a mounted player; originating part: 01; dependencies: existing drive intent/tire force; acceptance: forward braking before bounded parking reverse, no throttle/reverse conflict, throttle returns forward, solid-wall backout and both adapters retain recovery/checkpoints; verification: 30/60/120 Hz domain tests, dynamic wall and assisted integration, native reverse in [receipt](testing/remount-reverse/README.md).
+
+- [x] **ANIM-14** Reconcile context-first draft sequences with shipped runtime clips. Reason: next animation work needs an explicit source-to-runtime gap inventory; originating part: 02; dependencies: ANIM-05/08 and existing catalogs; acceptance: hash-bound sequence/pose/contact/entry/exit/interrupt mapping, unmatched keys and absent clips explicit, no invented native timing or pose approval; verification: reproducible [coverage report](animation/RUNTIME_COVERAGE.md), --check and six context tests; [next review](animation/NEXT_REVIEW.md). V2-02 and ANIM-02/03/04/06 approval gates remain open.
 
 - [x] **PERF-09** Enable supported multicore physics with a serial fallback and measured comparisons. Reason: user requests parallel physics after logged simulation slowdown; part: 11; dependencies: PERF-07 and pinned Rapier feature/license review; acceptance: default parallel_physics forwards native island parallelism, logs identify compiled backend, unchanged physical tuning passes regressions, exact serial/parallel lab/native comparisons are recorded and new transitives audited; verification: [feature graphs,307 physical tests, paired crash labs and native logs](testing/parallel-physics/README.md). This does not close PERF-08's full-race frame budget.
 
@@ -757,7 +765,7 @@ relationship-axis/event and random-stream parity gates.
 
 ### Part 02 — Animation A — reference study, labeled keyframes and pose approval
 
-- [ ] **V2-02-001** Build a complete animation/use-case catalog.
+- [ ] **V2-02-001** Build a complete animation/use-case catalog. ANIM-14 resumes source-to-runtime coverage review; unresolved caller/timing and full pose approval remain open. See [next review](animation/NEXT_REVIEW.md).
 
 - [ ] **V2-02-002** Inspect all original rider animation categories.
 
