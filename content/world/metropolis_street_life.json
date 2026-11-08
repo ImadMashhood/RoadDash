@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "main_traffic": 64,
+  "lane_sections": [
+    {
+      "route": 0,
+      "start": 0,
+      "end": 3150,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3.6
+    },
+    {
+      "route": 0,
+      "start": 3150,
+      "end": 3950,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3
+    },
+    {
+      "route": 0,
+      "start": 3950,
+      "end": 4550,
+      "outbound": 2,
+      "inbound": 1,
+      "lane_width": 2.8
+    },
+    {
+      "route": 0,
+      "start": 4550,
+      "end": 5400,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3
+    },
+    {
+      "route": 0,
+      "start": 5400,
+      "end": 7200,
+      "outbound": 2,
+      "inbound": 2,
+      "lane_width": 2.4
+    },
+    {
+      "route": 0,
+      "start": 7200,
+      "end": 8800,
+      "outbound": 1,
+      "inbound": 2,
+      "lane_width": 2.8
+    },
+    {
+      "route": 0,
+      "start": 8800,
+      "end": 10500,
+      "outbound": 2,
+      "inbound": 2,
+      "lane_width": 2.4
+    },
+    {
+      "route": 0,
+      "start": 10500,
+      "end": 12000,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3
+    },
+    {
+      "route": 1,
+      "start": 0,
+      "end": 3150,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3.6
+    },
+    {
+      "route": 1,
+      "start": 3150,
+      "end": 3350,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3
+    },
+    {
+      "route": 1,
+      "start": 3350,
+      "end": 4450,
+      "outbound": 2,
+      "inbound": 1,
+      "lane_width": 2.8
+    },
+    {
+      "route": 1,
+      "start": 4450,
+      "end": 5400,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3
+    },
+    {
+      "route": 1,
+      "start": 5400,
+      "end": 7200,
+      "outbound": 2,
+      "inbound": 2,
+      "lane_width": 2.4
+    },
+    {
+      "route": 1,
+      "start": 7200,
+      "end": 8800,
+      "outbound": 1,
+      "inbound": 2,
+      "lane_width": 2.8
+    },
+    {
+      "route": 1,
+      "start": 8800,
+      "end": 10500,
+      "outbound": 2,
+      "inbound": 2,
+      "lane_width": 2.4
+    },
+    {
+      "route": 1,
+      "start": 10500,
+      "end": 12000,
+      "outbound": 1,
+      "inbound": 1,
+      "lane_width": 3
+    }
+  ],
+  "height_bands": [
+    {
+      "weight": 28,
+      "min": 2,
+      "max": 4,
+      "downtown_extra": 0
+    },
+    {
+      "weight": 32,
+      "min": 5,
+      "max": 7,
+      "downtown_extra": 2
+    },
+    {
+      "weight": 28,
+      "min": 9,
+      "max": 12,
+      "downtown_extra": 5
+    },
+    {
+      "weight": 12,
+      "min": 14,
+      "max": 18,
+      "downtown_extra": 10
+    }
+  ],
+  "floor_height": 3.2
+}

@@ -115,8 +115,8 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
     }
     for i in 0..150 {
         let d = track.length * i as f32 / 150.0;
-        for lane in [-5.0, 0.0, 5.0] {
-            let p = track.sample(d, lane).0;
+        for fraction in [-0.8, 0.0, 0.8] {
+            let p = track.sample(d, fraction * track.half_width(d)).0;
             assert!(
                 (ray(p) - p.y).abs() < 0.1,
                 "road support/terrain intrusion at {d}"

@@ -120,18 +120,20 @@ fn tick(mut clock: ResMut<SimulationClock>, race: Res<Race>) {
 fn boot(mut next: ResMut<NextState<AppScreen>>) {
     next.set(AppScreen::Loading);
 }
-#[allow(clippy::type_complexity)]
+#[allow(clippy::type_complexity, clippy::too_many_arguments)]
 fn loaded(
     content: Res<crate::content::GameContent>,
     mut next: ResMut<NextState<AppScreen>>,
     art: Option<Res<world::Art>>,
     city: Option<Res<crate::world_gen::city::visuals::ModelCatalog>>,
-    (architecture, details, tangents): (
+    (architecture, details, tangents, identity): (
         Option<Res<crate::world_gen::architecture::render::Streaming>>,
         Option<Res<crate::material_detail::Queue>>,
         Option<Res<crate::tangent_detail::Queue>>,
+        Option<Res<crate::world_gen::architecture::identity::Identity>>,
     ),
     server: Option<Res<AssetServer>>,
+    metro: Option<Res<crate::world_gen::metropolis::facades::Kit>>,
     props: Query<
         &SceneRoot,
         Or<(
@@ -140,6 +142,12 @@ fn loaded(
         )>,
     >,
 ) {
+    if metro.as_ref().is_some_and(|k| !k.ready()) {
+        return;
+    }
+    if identity.as_ref().is_some_and(|i| !i.ready()) {
+        return;
+    }
     if server.is_some()
         && (details.as_ref().is_some_and(|d| !d.settled())
             || tangents.as_ref().is_some_and(|t| !t.settled()))
@@ -215,7 +223,10 @@ impl Plugin for RoadSimulationPlugin {
                 dt: 1.0 / rr_core::SIMULATION_HZ as f32,
                 substeps,
             })
-            .add_plugins(RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule())
+            .add_plugins(
+                RapierPhysicsPlugin::<crate::crash_behavior::ReleaseHooks>::default()
+                    .in_fixed_schedule(),
+            )
             .configure_sets(
                 FixedUpdate,
                 SimSet::Gameplay.before(PhysicsSet::SyncBackend),
@@ -226,7 +237,12 @@ impl Plugin for RoadSimulationPlugin {
             )
             .add_systems(
                 FixedPreUpdate,
-                (crate::vehicle::attach, remember_previous).chain(),
+                (
+                    crate::vehicle::attach,
+                    remember_previous,
+                    crate::crash_behavior::prepare,
+                )
+                    .chain(),
             )
             .add_systems(
                 FixedUpdate,
@@ -238,8 +254,10 @@ impl Plugin for RoadSimulationPlugin {
                     crate::combat::melee,
                     crate::npc::knockdowns,
                     crate::environment::patrol,
+                    crate::world_gen::metropolis::crossing_traffic,
                     game::debris_cleanup,
                     recovery::slope_friction,
+                    crate::crash_behavior::stagger,
                     crate::vehicle::forces,
                     recovery::remember_owned_motion,
                 )
@@ -322,7 +340,33 @@ impl Plugin for RoadWorldPlugin {
             )
             .add_systems(
                 Update,
-                crate::world_gen::city::visuals::update_lod
+                (
+                    crate::world_gen::metropolis::facades::prepare,
+                    crate::world_gen::metropolis::facades::update,
+                )
+                    .chain()
+                    .after(game::camera)
+                    .run_if(resource_exists::<crate::world_gen::metropolis::facades::Kit>),
+            )
+            .add_systems(
+                PostUpdate,
+                crate::world_gen::metropolis::facades::synchronize
+                    .after(bevy::transform::TransformSystems::Propagate)
+                    .before(bevy::camera::visibility::VisibilitySystems::CheckVisibility)
+                    .run_if(resource_exists::<crate::world_gen::metropolis::facades::Kit>),
+            )
+            .add_systems(
+                Update,
+                crate::world_gen::architecture::identity::prepare
+                    .run_if(resource_exists::<AssetServer>),
+            )
+            .add_systems(
+                Update,
+                (
+                    crate::world_gen::city::visuals::update_lod,
+                    crate::world_gen::city::visuals::fade,
+                )
+                    .chain()
                     .run_if(resource_exists::<crate::world_gen::city::visuals::ModelCatalog>),
             )
             .add_systems(
@@ -334,6 +378,12 @@ impl Plugin for RoadWorldPlugin {
                     .chain()
                     .after(game::camera)
                     .run_if(resource_exists::<crate::world_gen::architecture::render::Streaming>),
+            )
+            .add_systems(
+                PostUpdate,
+                crate::world_gen::architecture::render::synchronize_fades
+                    .after(bevy::transform::TransformSystems::Propagate)
+                    .before(bevy::camera::visibility::VisibilitySystems::CheckVisibility),
             )
             .add_systems(
                 PostStartup,

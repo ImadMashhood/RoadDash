@@ -714,7 +714,7 @@ pub fn build(
         collision_triangles,
     });
 }
-fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
+pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
     let root = commands
         .spawn((
             Transform::from_translation(p).with_rotation(q),
@@ -856,10 +856,17 @@ pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Q
     }
     crate::runtime::attach_visuals(commands, root, &parts);
 }
+#[allow(clippy::type_complexity)]
 pub fn patrol(
     race: Res<Race>,
     track: Res<Track>,
-    mut actors: Query<(&Patrol, &mut Transform, Option<&CrossTraffic>), Without<ColliderDisabled>>,
+    mut actors: Query<
+        (&Patrol, &mut Transform, Option<&CrossTraffic>),
+        (
+            Without<ColliderDisabled>,
+            Without<crate::world_gen::metropolis::Crossing>,
+        ),
+    >,
 ) {
     if race.phase != Phase::Racing {
         return;
@@ -1120,8 +1127,11 @@ mod tests {
         };
         let track = world.resource::<Track>();
         for i in 0..80 {
-            for lane in [-5.0, 0.0, 5.0] {
-                let p = track.sample(i as f32 * track.length / 80.0, lane).0;
+            let station = i as f32 * track.length / 80.0;
+            for fraction in [-0.8, 0.0, 0.8] {
+                let p = track
+                    .sample(station, fraction * track.half_width(station))
+                    .0;
                 let hit = context.cast_ray(
                     p + Vec3::Y * 3.0,
                     -Vec3::Y,

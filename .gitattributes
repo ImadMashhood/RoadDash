@@ -14,3 +14,6 @@ docs/world/source/RoadDash_Base_World_Sections_v1.csv -text
 *.glb binary
 *.blend binary
 art/**/*.csv binary
+
+# Packed original facade mip pixels must remain byte-exact on every platform.
+*.rgba binary

@@ -221,7 +221,7 @@ impl Library {
             } else {
                 None
             };
-            if pose.held & (1 << limb.bit) == 0 && planted.is_none() {
+            if limb.bit < 2 && pose.held & (1 << limb.bit) == 0 && planted.is_none() {
                 continue;
             }
             let a = world[limb.upper];
@@ -237,8 +237,22 @@ impl Library {
             }
             let l1 = a.translation.distance(b.translation);
             let l2 = b.translation.distance(end.translation);
-            let target = planted.unwrap_or(Vec3::from_array(limb.target))
-                - end.rotation * Vec3::from_array(limb.offset);
+            let held = pose.held & (1 << limb.bit) != 0;
+            let mut target = if planted.is_some() || held {
+                planted.unwrap_or(Vec3::from_array(limb.target))
+                    - end.rotation * Vec3::from_array(limb.offset)
+            } else {
+                end.translation
+            };
+            if limb.bit >= 2 && !held {
+                // Keep the ankle on its own side of the pelvis during pickup
+                // and locomotion. The knee is solved as one chain below.
+                let pelvis = world[1];
+                let mut local = pelvis.rotation.inverse() * (target - pelvis.translation);
+                let side = Vec3::from_array(self.data.offsets[limb.upper]).x.signum();
+                local.x = side * (side * local.x).max(0.08);
+                target = pelvis.translation + pelvis.rotation * local;
+            }
             let delta = target - a.translation;
             let axis = delta.normalize_or_zero();
             if axis.length_squared() < 0.5 {
@@ -253,8 +267,15 @@ impl Library {
             } else {
                 0.0
             };
-            let mut pole = if planted.is_some() {
-                Vec3::Z
+            let mut pole = if limb.bit >= 2 {
+                let side = Vec3::from_array(self.data.offsets[limb.upper]).x.signum();
+                world[1].rotation
+                    * (Vec3::Z
+                        + if held && planted.is_none() {
+                            Vec3::X * side * 0.28
+                        } else {
+                            Vec3::ZERO
+                        })
             } else {
                 b.translation - a.translation + Vec3::X * inward
             };
@@ -495,18 +516,23 @@ fn update(
                 let mut pose = base;
                 if let Some(attack) = a.attack.as_mut() {
                     attack.age += dt;
-                    let duration = lib.duration(attack.name);
-                    let enter = 0.10;
-                    let exit = 0.12;
+                    let playback = 1.8;
+                    let source_duration = lib.duration(attack.name);
+                    let duration = source_duration / playback;
+                    let enter = 0.055;
+                    let exit = 0.08;
                     pose = if attack.age < enter {
                         attack.from.blend(
                             lib.turn(lib.sample(attack.name, 0.0), r.lean / 0.65),
                             motion::smoothstep(attack.age / enter),
                         )
                     } else if attack.age < enter + duration {
-                        lib.turn(lib.sample(attack.name, attack.age - enter), r.lean / 0.65)
+                        lib.turn(
+                            lib.sample(attack.name, (attack.age - enter) * playback),
+                            r.lean / 0.65,
+                        )
                     } else {
-                        lib.turn(lib.sample(attack.name, duration), r.lean / 0.65)
+                        lib.turn(lib.sample(attack.name, source_duration), r.lean / 0.65)
                             .blend(
                                 base,
                                 motion::smoothstep((attack.age - enter - duration) / exit),
@@ -777,7 +803,7 @@ mod tests {
         tick(&mut app);
         let a = app.world().get::<Animator>(e).unwrap();
         let target = app.world().resource::<Library>().sample("punch_right", 0.0);
-        let expected = from.blend(target, motion::smoothstep((1.0 / 60.0) / 0.10));
+        let expected = from.blend(target, motion::smoothstep((1.0 / 60.0) / 0.055));
         assert!(a.current.root.distance(expected.root) < 1e-6);
         for (a, b) in a.current.rotations.iter().zip(expected.rotations) {
             assert!(a.dot(b).abs() > 0.99999);
@@ -867,6 +893,55 @@ mod tests {
 #[cfg(test)]
 mod correction_tests {
     use super::*;
+    #[test]
+    fn seated_knee_bend_plane_points_slightly_outward_and_feet_stay_on_pegs() {
+        let lib = Library::default();
+        for key in [2020, 2030, 2040, 2900, 2901] {
+            let p = lib.key(key);
+            let w = lib.world_pose(p);
+            let pelvis = w[1];
+            for l in lib.data.limbs.iter().filter(|l| l.bit >= 2) {
+                let side = Vec3::from_array(lib.data.offsets[l.upper]).x.signum();
+                let axis = (w[l.end].translation - w[l.upper].translation).normalize();
+                let knee = w[l.lower].translation - w[l.upper].translation;
+                let bend = knee - axis * knee.dot(axis);
+                let out = pelvis.rotation * (Vec3::Z + Vec3::X * side * 0.28);
+                assert!(
+                    bend.normalize()
+                        .dot((out - axis * out.dot(axis)).normalize())
+                        > 0.999
+                );
+                let tip = w[l.end].translation + w[l.end].rotation * Vec3::from_array(l.offset);
+                assert!(tip.distance(Vec3::from_array(l.target)) < 0.006);
+            }
+        }
+    }
+    #[test]
+    fn pickup_and_running_keep_ankles_on_their_own_side_and_knees_in_a_bending_plane() {
+        let lib = Library::default();
+        for clip in ["pickup", "pickup_mirrored", "run", "getup"] {
+            for step in 0..100 {
+                let p = lib.sample(clip, lib.duration(clip) * step as f32 / 99.0);
+                let w = lib.world_pose(p);
+                let pelvis = w[1];
+                for limb in lib.data.limbs.iter().filter(|l| l.bit >= 2) {
+                    let side = Vec3::from_array(lib.data.offsets[limb.upper]).x.signum();
+                    let ankle =
+                        pelvis.rotation.inverse() * (w[limb.end].translation - pelvis.translation);
+                    assert!(ankle.x * side > 0.04, "{clip} crossed ankle {ankle:?}");
+                    let axis = (w[limb.end].translation - w[limb.upper].translation).normalize();
+                    let knee = w[limb.lower].translation - w[limb.upper].translation;
+                    let perpendicular = knee - axis * knee.dot(axis);
+                    let forward = pelvis.rotation * Vec3::Z;
+                    let pole = (forward - axis * forward.dot(axis)).normalize();
+                    assert!(
+                        perpendicular.normalize().dot(pole) > 0.999,
+                        "{clip} sideways knee"
+                    );
+                }
+            }
+        }
+    }
     #[test]
     fn tuck_and_steering_draw_both_elbows_in_without_releasing_grips() {
         let lib = Library::default();

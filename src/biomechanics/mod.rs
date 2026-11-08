@@ -9,6 +9,7 @@ mod muscles;
 pub mod reactions;
 #[cfg(test)]
 mod tests;
+pub mod velocity;
 pub mod view;
 #[derive(Resource, Clone)]
 pub struct Settings {
@@ -66,6 +67,7 @@ pub struct Segment {
 #[derive(Component)]
 pub struct PhysicalRig(pub [Entity; 16]);
 #[derive(Component)]
+#[require(velocity::Pilot)]
 pub struct Brain {
     pub control: CrashControl,
     pub targets: [Quat; 16],
@@ -438,9 +440,10 @@ impl Plugin for BiomechanicsPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<Settings>()
             .init_resource::<reactions::Tuning>()
+            .init_resource::<velocity::Tuning>()
             .add_systems(
                 FixedUpdate,
-                (initialize, muscles::update, reactions::roll)
+                (initialize, muscles::update, velocity::update)
                     .chain()
                     .after(crate::runtime::SimSet::Gameplay)
                     .before(PhysicsSet::SyncBackend),
@@ -449,5 +452,5 @@ impl Plugin for BiomechanicsPlugin {
     }
 }
 pub fn install_debug(app: &mut App) {
-    app.add_systems(Update, debug::draw);
+    app.add_systems(Update, (debug::draw, velocity::hud));
 }

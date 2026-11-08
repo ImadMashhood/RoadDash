@@ -1,0 +1,18 @@
+2026-11-07 local verification — codex/build-approved-metropolis
+cargo fmt --all --check: PASS
+cargo clippy --workspace --locked --all-targets -- -D warnings: PASS
+cargo test --workspace --locked: PASS (279 passed / 1 existing ignored / 0 failed)
+cargo build --locked: PASS
+python3 tools/audit.py: PASS (519 dependency declarations / 74 runtime records)
+python3 tools/test_roadmap.py: PASS (5 tests)
+python3 tools/sync_progress.py --check: PASS
+git diff --check: PASS
+Offline compiler rebake: byte-identical manifest/atlas/provenance (bake-determinism.json)
+--inspect-world / --inspect-metropolis: validated 19068 buildings, 35008 surfaces, 2 routes, 12000 logical metres
+--metro-survey: PASS native7 views and constant resident mesh census
+ROADDASH_TRACK=metro ROADDASH_VERIFY_REPAIRS=1 --smoke-test: PASS west branch
+ROADDASH_TRACK=metro ROADDASH_SMOKE_ROUTE=1 ROADDASH_VERIFY_REPAIRS=1 --smoke-test: PASS east branch
+ROADDASH_TRACK=valley --smoke-test: PASS legacy recovery regression
+Native window1440x900 / NVIDIA RTX3080 / Vulkan / dev build.
+Measured bounded survey frame time: average17.8548ms / p9520.3823ms. FAIL16.7ms target.
+No complete manual race, release benchmark, Windows hardware or final art approval claimed.

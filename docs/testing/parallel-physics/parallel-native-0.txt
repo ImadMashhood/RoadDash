@@ -1,0 +1,9 @@
+2026-11-08T05:16:24.455512Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-08T05:16:24.755773Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-parallel-perf/parallel-0/performance-1700396.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-08T05:16:27.739508Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+AI roster verified: seven racers and seven killers
+Native retry passed: all fifteen racers restored from mid-course to authored grid
+Audio output initialized: 5 playback sinks
+Render smoke test passed: Metropolis route 0 -> farm/city crashes -> both recoveries -> results fixture

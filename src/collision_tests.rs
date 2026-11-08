@@ -47,6 +47,7 @@ fn player_and_ai_use_80_kmh_entry_for_both_120_40_car_directions() {
                 .world_mut()
                 .spawn((
                     Traffic {
+                        route: 0,
                         progress: 500.0,
                         lane: 0.0,
                         speed: direction * 40.0 / 3.6,
@@ -192,6 +193,17 @@ fn crash_envelope_dissipates_solver_energy_and_reverse_com_without_launching() {
 fn real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel() {
     for direction in [-1.0, 1.0] {
         let mut app = game::tests::simulation();
+        for _ in 0..3 {
+            app.update();
+        }
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyR);
+        app.update();
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .release(KeyCode::KeyR);
         app.insert_resource(VehiclePhysicsAdapter::Dynamic);
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         app.world_mut()
@@ -217,6 +229,7 @@ fn real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel() {
             .sample(progress, lane);
         app.world_mut().spawn((
             Traffic {
+                route: 0,
                 progress,
                 lane,
                 speed: direction * 40.0 / 3.6,
@@ -677,5 +690,121 @@ fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
         if kind == "pedestrian" {
             assert!(!app.world().get::<crate::npc::Npc>(target).unwrap().active());
         }
+    }
+}
+
+#[test]
+fn static_wall_uses_normal_closing_speed_instead_of_touch_or_total_speed() {
+    for (along, across, crashes) in [
+        (1.0 / 3.6, 0.0, false),
+        (0.2, 30.0, false),
+        (20.0, 0.0, true),
+    ] {
+        let mut app = game::tests::simulation();
+        for _ in 0..3 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let t = *app.world().get::<Transform>(owner).unwrap();
+        let forward = t.rotation * Vec3::Z;
+        let right = t.rotation * Vec3::X;
+        let before = forward * along + right * across;
+        {
+            let mut rider = app.world_mut().get_mut::<Rider>(owner).unwrap();
+            rider.immunity = 0.0;
+            rider.speed = before.length();
+            rider.motion_velocity = before;
+        }
+        app.world_mut().entity_mut(owner).insert(BikeState {
+            impact_velocity: before,
+            ..default()
+        });
+        let wall = app
+            .world_mut()
+            .spawn((
+                crate::world::Obstacle,
+                Collider::cuboid(100.0, 2.0, 0.2),
+                Transform::from_translation(t.translation + forward * 3.0 + Vec3::Y)
+                    .with_rotation(t.rotation),
+            ))
+            .id();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut()
+            .write_message(recovery::SweptContact(owner, wall));
+        app.update();
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().stage == RecoveryStage::Falling,
+            crashes,
+            "along={along} across={across}"
+        );
+    }
+}
+
+#[test]
+fn parking_speed_vehicle_contacts_never_trigger_scripted_wipeouts() {
+    use bevy::ecs::system::RunSystemOnce;
+    for kind in 0..3 {
+        let mut app = game::tests::simulation();
+        for _ in 0..3 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let pose = *app.world().get::<Transform>(owner).unwrap();
+        let v = pose.rotation * Vec3::Z * (0.5 / 3.6);
+        {
+            let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+            r.immunity = 0.;
+            r.motion_velocity = v;
+            r.speed = v.length();
+        }
+        app.world_mut().entity_mut(owner).insert(BikeState {
+            impact_velocity: v,
+            ..default()
+        });
+        let e = app
+            .world_mut()
+            .spawn((
+                RigidBody::Fixed,
+                crate::world::Obstacle,
+                Transform::from_translation(pose.translation + pose.rotation * Vec3::Z * 2.)
+                    .with_rotation(pose.rotation),
+                Collider::compound(vec![(
+                    Vec3::Y * 0.95,
+                    Quat::IDENTITY,
+                    Collider::cuboid(0.95, 0.9, 1.95),
+                )]),
+            ))
+            .id();
+        if kind == 0 {
+            app.world_mut().entity_mut(e).insert(Traffic {
+                route: 0,
+                progress: 0.,
+                lane: 0.,
+                speed: 0.,
+            });
+        }
+        if kind == 1 {
+            app.world_mut()
+                .entity_mut(e)
+                .insert(crate::environment::CrossTraffic);
+        }
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut()
+            .write_message(recovery::SweptContact(owner, e));
+        app.world_mut().run_system_once(recovery::impacts).unwrap();
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().stage,
+            RecoveryStage::Riding,
+            "vehicle kind {kind}"
+        );
+        assert_eq!(app.world().get::<Rider>(owner).unwrap().health, 100.);
     }
 }

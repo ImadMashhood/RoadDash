@@ -84,8 +84,8 @@ pub fn finish(
     };
     pending.ticks = pending.ticks.saturating_sub(1);
     if pending.ticks == 0 {
-        let (station, _, _) = track.project(pending.origin, rider.progress);
-        let (p, q) = track.sample(station, 0.0);
+        let (station, _, _) = track.project_route(rider.route, pending.origin, rider.progress);
+        let (p, q) = track.sample_route(rider.route, station, 0.0);
         *root = Transform::from_translation(p).with_rotation(q);
         rider.progress = station;
         rider.lane = 0.0;

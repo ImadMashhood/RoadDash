@@ -6,6 +6,8 @@ pub mod biomechanics;
 pub mod combat;
 pub mod content;
 pub mod controls;
+pub mod crash_behavior;
+pub mod destruction;
 pub mod diagnostics;
 pub mod environment;
 pub mod feedback;
@@ -103,6 +105,9 @@ pub fn build_app(smoke: bool) -> App {
                 ..default()
             }),
     )
+    .add_plugins(MaterialPlugin::<
+        world_gen::metropolis::material::FacadeMaterial,
+    >::default())
     .add_plugins(world_gen::city::visuals::BuildingSceneTypesPlugin)
     .add_plugins((
         content::RoadContentPlugin,
@@ -111,11 +116,13 @@ pub fn build_app(smoke: bool) -> App {
         controls::RoadInputPlugin,
         models::RoadModelPlugin,
         props::PropPlugin,
+        destruction::PropDestructionPlugin,
         runtime::RoadWorldPlugin,
         runtime::RoadPresentationPlugin,
         runtime::RoadAudioPlugin,
         diagnostics::RoadDiagnosticsPlugin,
     ));
+    crash_behavior::install_comparison(&mut app);
     #[cfg(feature = "debug_physics")]
     app.add_plugins(bevy_rapier3d::render::RapierDebugRenderPlugin::default());
     if smoke {
@@ -124,7 +131,42 @@ pub fn build_app(smoke: bool) -> App {
             .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
                 std::time::Duration::from_secs_f64(1.0 / 60.0),
             ));
-        if std::env::args().any(|a| a == "--world-survey") {
+        if std::env::args().any(|a| a == "--destruction-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<destruction::survey::Survey>()
+                .add_systems(Update, destruction::survey::step)
+                .add_systems(
+                    PostUpdate,
+                    destruction::survey::camera
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if app.world().resource::<track::Track>().metropolis.is_some()
+            && std::env::args().any(|a| {
+                matches!(
+                    a.as_str(),
+                    "--metro-survey" | "--world-survey" | "--lod-survey"
+                )
+            })
+        {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<world_gen::metropolis::survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    world_gen::metropolis::survey::run
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--lod-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<world_gen::lod_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    world_gen::lod_survey::run
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--world-survey") {
             app.insert_resource(bevy::winit::WinitSettings::continuous());
             if app
                 .world()

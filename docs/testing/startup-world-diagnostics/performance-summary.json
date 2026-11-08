@@ -1,0 +1,95 @@
+{
+  "survey": {
+    "samples": 18,
+    "excluded_initial_samples": 4,
+    "means_of_logged_windows": {
+      "wall_average_ms": 13.704,
+      "wall_p95_ms": 17.982,
+      "main_world_ms_per_frame": 13.885,
+      "fixed_gameplay_ms_per_frame": 0.873,
+      "physics_ms_per_frame": 6.789,
+      "last_render_extract_ms": 0.795,
+      "last_render_schedule_ms": 7.225,
+      "visible_mesh_entities": 4886.214
+    },
+    "last_process_memory": {
+      "RssAnon": "1944504 kB",
+      "RssFile": "749700 kB",
+      "VmRSS": "3257228 kB",
+      "VmSwap": "0 kB"
+    },
+    "paging_first": {
+      "pgmajfault": "1231647",
+      "pswpin": "204458",
+      "pswpout": "2434193"
+    },
+    "paging_last": {
+      "pgmajfault": "1231652",
+      "pswpin": "204458",
+      "pswpout": "2434193"
+    },
+    "dropped_samples": 0
+  },
+  "native-1": {
+    "samples": 21,
+    "excluded_initial_samples": 4,
+    "means_of_logged_windows": {
+      "wall_average_ms": 16.662,
+      "wall_p95_ms": 22.182,
+      "main_world_ms_per_frame": 17.701,
+      "fixed_gameplay_ms_per_frame": 1.12,
+      "physics_ms_per_frame": 10.251,
+      "last_render_extract_ms": 0.594,
+      "last_render_schedule_ms": 7.239,
+      "visible_mesh_entities": 6248.529
+    },
+    "last_process_memory": {
+      "RssAnon": "1936496 kB",
+      "RssFile": "749400 kB",
+      "VmRSS": "3248920 kB",
+      "VmSwap": "0 kB"
+    },
+    "paging_first": {
+      "pgmajfault": "1231607",
+      "pswpin": "204458",
+      "pswpout": "2434193"
+    },
+    "paging_last": {
+      "pgmajfault": "1231618",
+      "pswpin": "204458",
+      "pswpout": "2434193"
+    },
+    "dropped_samples": 0
+  },
+  "native-0": {
+    "samples": 19,
+    "excluded_initial_samples": 4,
+    "means_of_logged_windows": {
+      "wall_average_ms": 16.215,
+      "wall_p95_ms": 21.688,
+      "main_world_ms_per_frame": 16.861,
+      "fixed_gameplay_ms_per_frame": 1.135,
+      "physics_ms_per_frame": 9.372,
+      "last_render_extract_ms": 0.523,
+      "last_render_schedule_ms": 6.348,
+      "visible_mesh_entities": 5642.533
+    },
+    "last_process_memory": {
+      "RssAnon": "1893052 kB",
+      "RssFile": "748980 kB",
+      "VmRSS": "3205056 kB",
+      "VmSwap": "0 kB"
+    },
+    "paging_first": {
+      "pgmajfault": "1231264",
+      "pswpin": "204458",
+      "pswpout": "2434193"
+    },
+    "paging_last": {
+      "pgmajfault": "1231376",
+      "pswpin": "204458",
+      "pswpout": "2434193"
+    },
+    "dropped_samples": 0
+  }
+}

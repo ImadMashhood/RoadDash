@@ -6,6 +6,7 @@ pub mod crash;
 pub mod original_crash;
 pub mod pursuit;
 pub mod steering;
+pub mod traffic;
 use serde::{Deserialize, Serialize};
 
 pub const SIMULATION_HZ: f64 = 60.0;
@@ -279,3 +280,14 @@ pub mod biomechanics;
 pub mod recovery;
 
 pub mod performance;
+
+pub mod crash_behavior;
+
+pub mod route;
+pub mod velocity_muscles;
+
+pub mod streets;
+
+pub mod destruction;
+
+pub mod rival_ai;

@@ -513,3 +513,224 @@ art and independent visual distal joints remain unfinished under RAG-05.
 - Roadside-variety native survey retained all224 owners/680 rendered mesh
   descendants; the final local sample measured17.11ms p95, still above16.7ms.
   Placement acceptance is separate from the still-open performance gate.
+
+## Crash research findings — 2026-11-07; fixes NOT implemented
+
+- Decisive punches call immediate crash; detached_origin searches metre-scale
+  lateral offsets (first1.25m), causing visible separation. No mounted swerve/
+  countersteer release stage exists. Changing only animation would not fix this.
+- Current one-shot grounded roll follows slide direction, not a supine goal;
+  support accepts any non-dynamic contact, including walls/kinematic vehicles.
+  Directional hand protection, high-speed yield and progress-aware roll attempts
+  remain proposed V2-01-006/V2-03-005 work pending user direction.
+- Original reference confirms animation speed/height gating, not autonomous3D
+  biomechanical recovery. Rust candidate uses incompatible Rapier0.36/glam0.33;
+  Godot/Unity examples cannot be imported as native Bevy plugins. Their direct
+  velocity/pin techniques would need momentum/work safeguards. No dependency added.
+
+## Method B comparison branch — 2026-11-07
+
+- Experimental reciprocal angular-impulse muscles preserve native anatomy/passive
+  drives and avoid linear velocity/position pursuit.180J total/180W positive-work
+  cap may lose against contacts or the existing energy guard; roll success is not
+  guaranteed. Native/user feel/performance/hardware gates remain open.
+- RAG-B-01..03 remain unchecked until their full acceptance, including native and
+  user comparison. This is not a default/main merge. Existing world/art gates stay.
+
+Method B now includes an explicit fixed-support reaction guide (120Nm aggregate torque cap,
+3.5rad/s target rate) for the roll attempt. Its positive work shares the same180J/180W
+ledger and existing energy ceiling. It never writes linear motion/body poses.
+The guide approximates reaction against the fixed supporting world; unlike the
+internal joint impulse pairs it does not conserve closed-ragdoll angular momentum.
+Upward core support, speed/spin eligibility, next-rotation obstruction checks,
+timeouts and failed-progress yield govern it. HUD labels this support guide and
+reports guide count/obstruction. This deliberate reference-style assistance is
+the meaningful alternative to Method A strict native motors, not a hidden claim
+of perfect anatomical actuation.
+
+Active corrections expire after the configured brace plus both attempt/retry
+windows and1s (4.95s with defaults), including cheap slide damping. This returns
+control to native passive tissue/sleep rather than repeatedly waking limbs.
+Native recovery/bracing consumes the previous fixed tick's verified ground
+support proxy; support clears on the next sample after contact loss.
+
+The final worst-case fully-prone8m/s fixture starts attempts but reaches only
+supine score-0.9932 (about7degrees torso roll), not a completed roll-to-back.
+This remains an explicitly partial comparison prototype; no full active
+recovery/animation gate has been checked.
+
+## Velocity selection / facade handoff — 2026-11-07
+
+Velocity is user-selected; the native-motor comparison candidate is excluded.
+The existing worst prone fixture still does not complete a rollover. RAG-B gates
+remain open beyond selecting the controller. Anatomical constraints are retained.
+Facade replacements now crossfade directly; old fallback detours and same-sign
+dither are corrected, but genuine geometry/silhouette differences at initial
+activation, optional City Run's independent LOD renderer and long streaming/
+production performance require further review. No universal zero-pop-in claim.
+
+Final survey sample: p95=16.94174ms (16.7ms target missed), average14.05263ms.
+Actual displayed731panels/731523triangles and48cachedLODs fit unchanged bounds.
+LOD-03 tracks distant identity and optional City Run; full zero-pop-in and broad
+production/hardware/performance acceptance are not claimed.
+
+## Facade identity and City Run lifecycle — 2026-11-07
+
+LOD-04 supplies model-derived far identity and direct ready scene transitions on
+both maps. LOD-03 now awaits user visual/extended-streaming acceptance. Projected
+far surfaces can flatten depth/parallax; close real geometry can still change a
+silhouette, and dither grain is visible during transitions.128MiB texture and
+250kstatic-proxy triangle caps are distinct from near detail budgets. Native
+City cache/transition maxima are48/8. The initial isolated full-world sample
+p95=18.45385ms misses16.7ms; a later49.09ms sample overlapped test compilation
+and is not a controlled performance result. Keep broad performance/art gates open.
+
+Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance gate remains open (exit1); geometry/source/coverage assertions and all15sections pass. Final native Valley sweep54direct crossfades, City389; both recovery smokes and preview pass. Longer streaming/user approval remain open.
+
+## 2026-11-07 world repair follow-up
+
+- LOD-05: near/far opaque cores are now inset using actual scaled cross-LOD depth;
+  all 657lot depth checks and the large-facade native fixture cover this defect.
+  LOD-03 remains open: these captures do not prove every user-reported transition
+  is gone. The isolated visibility-range probe did NOT reproduce the initial
+  zero-range hypothesis on this GPU.
+- WORLDART-01/MAT-02: complete city-wide texture rebuilding, coherent property-led
+  city rearrangement, new terrain/sky art and final 3D Come Bye-inspired approval
+  are not delivered by this repair batch. Plans are reviewable; proposed fences,
+  owners and 3/4-lane hierarchy are not placed gameplay content.
+- NPC-SEAMS-01: civilian skins still use rigid segment bindings; floating/separated
+  pieces under demanding poses need a source-bind/weight/seam correction and
+  close-up native approval. Actor lifecycle smoke is not visual seam acceptance.
+- COMBAT-FEEL-01: attacks play faster and kicks have a distinct transient/confirmed
+  hit feedback, but gameplay currently resolves contact on the input tick rather
+  than the visible contact keyframe. Contact-timed strikes and subjective feel/
+  audible quality review remain open.
+- TRAFFIC-04: basic downed-rider lane yielding/horns do not implement general
+  intersection priorities, signal phases or complete traffic-to-traffic queues.
+- Performance: the isolated world repair run measured 22.38 ms p95 at 1080p versus
+  the 16.7 ms target. It failed that gate. More traffic is now simulated; no claim
+  is made that this explains the whole difference or that performance improved.
+- Animation knee correction concerns visual chains. It does not certify every
+  extreme physical hip/knee collision posture or change accepted ragdoll anatomy.
+
+- LAYOUT-01 (2026-11-07): the dense replacement is a 2D proposal only. The previous
+  dispersed plan was rejected; runtime placement has not been altered. Exact
+  corner geometry, secondary street widths on inside curves, overlap/access,
+  terrain support and canonical lot migration need validation before later 3D work.
+  User layout acceptance remains open; no new performance or visual-art approval.
+
+- LAYOUT-02 / ROUTE-SPLIT-01 (2026-11-07): the wider city-center/two-fork design is
+  a 2D local-coordinate proposal only. Four paths/nominal lengths and plot clearance
+  are verified, but the current game does not yet support these route choices.
+  Diagonal corner frontage, merge radii/traffic/visibility, closure/signage/access,
+  terrain/collision, checkpoint progress, AI and branch-aware recovery need future
+  implementation. No 3D changes or city-layout approval implied.
+
+- LAYOUT-03 (2026-11-07): latest proposal is farms → long city → urban finish,
+  with one split/rejoin and proposed urban elevation. It supersedes the earlier
+  two-fork layout. The first new drawing incorrectly bent the building grid;
+  the corrected export uses only straight rectangular plots and rejects bent ones.
+  Current playable content still includes its existing hills until a future
+  approved map bake; the new plan is not live gameplay. Exact length, full corner/
+  access/terrain checks, migration, branch balance, traffic and performance remain
+  open under WORLD-EXTEND-01/ROUTE-SPLIT-01. No 3D changes in this layout session.
+
+- LAYOUT-03 correction (2026-11-07, ADR066): the prior four-right-angle building
+  constraint and attempted forced-right-angle street junctions were incorrect.
+  Current 2D proposal derives actual land blocks from streets and sidewalks,
+  including fitted triangular corner sites and polygonal frontage parcels.
+  Geometry coverage/overlap checks are not full architectural/transport planning:
+  intersection controls/radii, courtyard servicing/access, final elevation pads,
+  exact extension length, user approval and later playable integration remain open.
+  No 3D/runtime changes in this revision.
+
+- LAYOUT-04 (2026-11-07): offline height/detail/access plan now exists, with
+  downtown height hierarchy, scattered frontage accents/interior towers and
+  route-distance authored tiers. These are not placed game meshes or runtime LOD.
+  User review, final architecture/property assembly, service turning/vertical
+  clearance, pads/support, native silhouette transitions and performance remain
+  open. Six-metre access and endpoint grades are planning checks, not building
+  code/fire-access certification. No game/physics change in this session.
+
+- LAYOUT-05 (2026-11-07): race-centered city and primary-avenue junction plan is
+  offline only. Whole-cell edges step around the development envelope; some
+  blocks merge where competing secondary segments are omitted. No bent buildings
+  or imposed90degree doglegs. Proposed priority/traffic control is not implemented
+  in the game. Junction turn radii/markings/signals, exact architecture/access/pads,
+  visual approval and native LOD/performance remain open. Regenerated proposal
+  IDs/counts do not migrate canonical runtime lots or change the race/farm trace.
+
+## 2026-11-07 — Metropolis runtime gates
+
+Approved12km farm-to-city plan is now integrated as the default separate map;
+legacy selectors/quotas remain. See testing/metropolis/README.md. Native wall-frame
+p9520.38ms misses16.7ms in the bounded dev-build sample. Full-course traffic/merge,
+all-lot slope/support, extended streaming/multi-crash performance, final bespoke
+architecture/street art and platform acceptance remain open. Facade repetition,
+paved rear courts and distant fog remain visible. Survey proves resident full
+envelopes, not final user art approval. No interiors or additional finish runout.
+
+## SIDEWALK-01 — 2026-11-07
+
+Metropolis walks are now typically3.4m with730 checked curb-furniture owners;
+primary city roads10m / typical secondaries6m, farms/building records unchanged.
+Native survey retains all envelopes; measured dev p9518.36ms still misses16.7ms.
+Walking-strip/junction authoring checks are per placement, not a complete pedestrian
+AI/accessibility certificate. Full traffic/art/platform/performance acceptance
+remains open. Original generation report is retained as historical evidence;
+current pavement/owner counts live in testing/metropolis-sidewalks.
+
+## AUTHORED-01 — 2026-11-07
+
+Actual earlier GLB facade meshes now supply nearby Metropolis detail, with stable
+opaque backups and bounded resident source handles. Twelve currently mapped
+families are integrated; PALETTE-01 keeps broader district/catalog selection open.
+Detailed relief is cosmetic/fitted rather than a new physical collision surface.
+Final draft fidelity, source signage/palette/infill, graded frontage art and corner
+review remain open. Native bounded dev p9519.81ms misses16.7ms; no production or
+full-course certification. Existing sidewalks/furniture/accepted physics remain.
+
+## STREET-LIFE-01 — 2026-11-07
+
+Metropolis now has96 main-street cars,65 parked vehicles,995 curb objects and
+2/3/4 marked travel lanes with per-building2–32-floor contrast. Existing10m asphalt
+and3.4m typical sidewalks stay; four-lane2.4m widths are an arcade allocation,
+not a new real-world street widening. Sampled vehicle/pavement checks pass.
+Main-car collision uses all-racer170/220m gameplay interest, independent of camera;
+unobserved remote car/pedestrian contacts are omitted. Spectator/network observer
+interest must be extended later. Full merge/intersection/long-race/art/platform
+acceptance remains open. Release bounded p9524.93ms misses16.7ms; increased activity
+still needs performance profiling/instancing/streaming work. Existing gates remain
+unchecked. Earlier source height maps are historical; current roof heights live
+in the runtime manifest/native census. Footprints/race paths remain unchanged.
+
+- DESTRUCTION-02 (2026-11-07): all995 Metropolis sidewalk props now persistently
+  crush/topple and reset. These are coarse original-model damage states, not
+  authored snapped/fractured variants, glass/splinters or tree-crown physics.
+  No cars/buildings/roads are damage targets per the user's explicit scope.
+  Legacy-map destructibility is not included. The48-body cap and supported settling
+  are tested; a worst-case fully damaged-course performance benchmark and Windows
+  hardware test are still outstanding. See testing/prop-destruction/README.md.
+
+- AI-11 (2026-11-07): seven racers/seven killers and exact-ID retaliation are
+  implemented. Human full-race fairness/aggression review remains open; roles
+  alternate by stable ID and grudges persist until restart. Direct combat hits
+  provoke racers; incidental vehicle contact does not. No exact original-game
+  AI parity or subjective difficulty approval is claimed. See testing/racer-killer-ai.
+
+- PERF-08 (2026-11-07): new performance logs measure wall/main/fixed/render CPU-wait
+  spans and memory/paging; they do not measure actual GPU timestamps. Low aggregate
+  CPU/GPU utilization and a full swap device do not identify the bottleneck. Native
+  worst-case profiling/optimization and user-hardware60FPS approval remain open.
+  Farm/city work adds a skyline-height gradient; full suburb/property art and
+  aesthetic acceptance remain WORLDART-01. See testing/startup-world-diagnostics.
+
+- PERF-09 (2026-11-07): parallel_physics activates existing independent-island
+  solving, not within-island parallelism, automatic ECS synchronization/writeback
+  parallelization or bitwise deterministic replay. Physics tuning is unchanged.
+  Controlled serial/parallel results live in testing/parallel-physics. Actual slow
+  race reproduction, broad60FPS and Windows hardware acceptance remain PERF-08.
+  The paired15-rider active lab improves8.971s→5.830s/900 ticks, while small isolated
+  cases slow from dispatch overhead. Native warm-window gains are modest and
+  physics-span time remains roughly9–10ms/frame; PERF-08 remains open. All18
+  non-timing lab observations matched on this host; this is not network determinism.

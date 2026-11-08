@@ -1,0 +1,10 @@
+{
+  "command": "--inspect-world content/world/valley_world_v1.json content/world/building_archetypes_v1.json content/tracks/valley.json",
+  "exit_code": 0,
+  "full_report_sha256": "fb8edb576096c11bb5e9932326f901c42471aa0f1f0020ea0eae19ef3105833d",
+  "allocation_fingerprint": "fnv1a64:f866d824acfb111f",
+  "geometry_fingerprint": "fnv1a64:9e86f98d4552ac15",
+  "same_as": "docs/testing/architecture-valley/world-inspection.json",
+  "structural_fingerprints_equal": true,
+  "ragdoll_control_comparison": "all 18 selected-candidate outcomes equal, excluding headless_wall_ms"
+}

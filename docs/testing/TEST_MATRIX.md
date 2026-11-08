@@ -411,3 +411,177 @@ malformed/missing references. Native census must show at least28 roles/16 groups
 all five zones and actual descendant meshes/solid owners. Extended world survey
 adds close views of actual farm pickup, city transit and hill picnic groups after
 the existing benchmark/pose stages, without modifying measured simulation timing.
+
+## 2026-11-07 — Crash behavior research only
+
+[RAG-11 source audit](../research/crash-behavior/README.md): five exact upstream
+commits/file hashes and licenses inspected; current Bevy/Rapier/GLAM versions read
+from manifest/lockfile. Original animation selector/catalog and current combat,
+detached origin, support detection, muscle targets, roll and energy guard inspected.
+No external demos, retail replay or new crash feature was run; gameplay/native
+checks from PR17 remain historical baseline evidence. This change alters docs
+only. Verify roadmap synchronization/tests, formatting, declaration audit and a
+zero runtime/content/Cargo diff from merged main; proposed behavior acceptance
+remains unchecked. User receives findings before any implementation.
+
+## Method B — velocity muscle comparison
+
+Focused pure/backend cases prove real active angular changes, reciprocal tensor
+momentum, exact unchanged linear velocities, bounded measured work/power/impulses,
+invalid/zero budget handling, actual wall contacts rejected as support, finite
+retries/high-motion yield/rest and eleven-body baseline exclusion. Full workspace,
+headless lab, native smoke and common swerve/release/recovery regressions are
+recorded in crash-comparison/method-b after execution; no visual/user gate inferred.
+
+## 2026-11-07 — Velocity selection and facade pop-in
+
+RAG-12/LOD-02 verified on codex/velocity-popin; detailed commands/logs/screenshots
+in velocity-popin/README.md.258workspace tests pass,1ignored; strict Clippy/fmt/
+build/audit/roadmap pass. Paired18finite ragdoll cases preserve9baseline rows.
+Native crash/recovery/remount/route/finish/audio smoke passes. Native world survey
+validates15sections657roots,9actualdirectcrossfades and bounded displayed/cache
+counts, but deliberately exits1: p95=16.94174ms exceeds16.7ms. Productionperf,
+LOD-03 distant/alternate-map art and full roll recovery remain open.
+
+## 2026-11-07 — Model-derived facade identity / City Run ready handoff
+
+LOD-04 technical integration:263workspace tests pass/1ignored; fmt/strictClippy/
+locked build pass.128designs383bands and15mips have source/output hash, guard,
+coverage and bounds verification. All old/new face masks have complementary pixel
+coverage. Native Valley/City continuous near/far/reverse/orbit fixtures pass, with
+53/389initialdirectcrossfades and48cache/8transition maxima forCity. Native Valley
+andCity crash/recovery/finish smokes and standalone preview pass. Actualworld
+15section/657root census validates2628proxy meshes/226956triangles/134086656bytes.
+Initialworld p95=18.45385ms fails16.7ms; repeat performance receipts and exclusions
+are recorded in facade-lod/README.md. LOD-03 user visual/long-streaming and broad
+production/hardware performance gates remain open. No physics tuning or Part05.
+
+Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance gate remains open (exit1); geometry/source/coverage assertions and all15sections pass. Final native Valley sweep54direct crossfades, City389; both recovery smokes and preview pass. Longer streaming/user approval remain open.
+
+## World repair (2026-11-07)
+
+| ID | Scenario | Evidence |
+| --- | --- | --- |
+| T-CORE-DEPTH | Every lot/face/LOD band stays outside both inset backup cores | architecture::tests::both_backup_shells_fit_behind_every_scaled_facade_band |
+| T-WALL-TOUCH | 1km/h wall touch, fast parallel scrape and hard direct entry | collision_tests::static_wall_uses_normal_closing_speed_instead_of_touch_or_total_speed |
+| T-KNEE-PLANE |100samples each of pickup/mirrored/run/getup | animation::correction_tests::pickup_and_running_keep_ankles_on_their_own_side_and_knees_in_a_bending_plane |
+| T-KICK-SIDE | Closest rider outside reach selects leg but receives no remote hit | combat::tests::kick_faces_nearest_out_of_reach_opponent_without_a_remote_hit |
+| T-TRAFFIC-QUEUE | Brake/stop/horn cooldown/resume | game::tests::traffic_brakes_and_rate_limits_horns_then_resumes_when_rider_clears |
+| T-WORLD-REPAIR | Large facade sweep, route, recovery, actors and performance | world-repair/README.md; performance gate explicitly unmet |
+
+| T-DENSE-LAYOUT |2Donly: touching frontages, finite non-self-crossing outlines, deterministic exports, unchanged runtime | tools/plan_dense_city.py + tools/verify_dense_city_layout.py; planning/dense-city-layout/VALIDATION.json and CHECKS.txt; user layout approval and future construction gates remain open |
+
+| T-CITY-CENTER | Two split/rejoin graph, four legal paths, equal nominal branch lengths, plot/race clearance, invalid graph rejection and unchanged runtime scope | tools/plan_city_center.py --verify; planning/city-center/VALIDATION.json and CHECKS.txt. Layout review and playable integration remain open. |
+
+| T-FARM-LONG-CITY | Whole route, exactly one split/two paths, first-quarter rejoin, urban finish, elevation/grades and rigid rectangular building plots | tools/plan_farms_long_city.py REPORT --verify; planning/farms-long-city/VALIDATION.json and CHECKS.txt. Deliberately bent plots, a second split, hills phase, grade jump and out-of-city finish are rejected. No playable-map or performance acceptance implied. |
+
+| T-STREET-FIRST | Real road/sidewalk reservations define valid nonoverlapping blocks; ownership partitions cover land; angled corner site permitted; buildings stay within sites; graph crossings noded; regular pitch180×360m; one race split/two paths | tools/street_first_layout.py + plan_farms_long_city.py --verify; planning/farms-long-city/VALIDATION.json and CHECKS.txt. Supersedes T-FARM-LONG-CITY's rectangle-only constraint. User/construction/playable gates remain open. |
+
+| T-CITY-MASSING | Downtown height exceeds outskirts; seeded taller frontage/interior sites; valid per-building height/detail association; actual distance to either race route; protected distant skyline; clear connected6m tower access and no building overlap; invalid height/tier/missing/blocked access rejected | tools/city_massing.py + plan_farms_long_city.py --verify; planning/farms-long-city/MASSING.md, VALIDATION.json and CHECKS.txt. Static planning only; native3D/performance acceptance deferred. |
+
+| T-RACE-FIRST-CITY | City sections centered on actual race paths within half a grid cell; both-sided development; primary-junction spacing/angle/incidence and protected fork throats; omitted competing secondaries; connected street graph; race/farms identical to de20a70; concave footprint overlay/inner rings; retained massing/geometry checks | tools/race_first_layout.py + plan_farms_long_city.py --verify; planning/farms-long-city/RACE_FIRST.md, VALIDATION.json and CHECKS.txt. False centering/off-track junction/restored omitted street/disconnected fragment rejected. No3D/runtime traffic/performance claim. |
+
+| T-NO-CLOSE-PARALLEL | Within110m,48m sustained parallel run at less than40degrees removes the whole secondary segment; partial run missed by old60percent rule is caught; perpendicular crossings and180m-spaced avenues remain; both race branches protected | tools/test_race_first_layout.py (4 fixtures), race_first_layout.audit_race_first checks all retained segments; planning/farms-long-city/VALIDATION.json. Authoring only. |
+
+## Metropolis — 2026-11-07
+
+| ID | Scenario | Evidence |
+| --- | --- | --- |
+| T-METRO-CONTENT | strict schema/finite geometry/style/path rejection and deterministic bake | rr_content::metropolis tests; testing/metropolis/bake-determinism.json |
+| T-METRO-ROUTE | both paths projection, choice hysteresis/lock, ordered physical gates; wrong branch/large jump rejection | rr_core::route and track::metropolis tests |
+| T-METRO-NAV | exact diagonal polygon boundaries preserve primary corridors | world_gen::metropolis::navigation tests |
+| T-METRO-NATIVE | both branch recovery fixtures, restart grid, audio, results; no full driven race claim | testing/metropolis native logs/receipts |
+| T-METRO-RENDER | farm/both branches/downtown/north/finish and constant resident meshes | testing/metropolis/metro-00..06.png and metro-survey.json |
+| T-METRO-PERF | bounded1440×900 RTX3080 Vulkan dev sample | metro-performance.json; p9520.38ms FAIL16.7ms target; full-course/platform certification open |
+
+## SIDEWALK-01 — 2026-11-07
+
+- Authoring fixtures: width increases2.4→3.4m, street reservation unchanged,
+  farm pavement unchanged; deterministic props, conservative complete footprints,
+ 2m building-side paved walk and20m junction setbacks.
+- Content fixtures: unknown roles, duplicate IDs and nonfinite furniture sizes
+  rejected. Preservation receipt compares every building, path, field, street,
+  junction, bounds, spawn and gate with the previous committed runtime manifest.
+- Native survey/smoke evidence: testing/metropolis-sidewalks; original ragdoll,
+  recovery and legacy content regression suite remains required. Full traffic,
+  subjective art/platform and production performance gates stay open.
+
+## AUTHORED-01 — 2026-11-07
+
+- Repeat original kit bands/bays on straight/diagonal polygon edges at6/32/110m;
+  finite positive transforms, width/height fit, restrained relief and once-only
+  unique signage. Preserve source GLBs and physical map records.
+- Verify existing kit and far atlas hashes; record the neutral BUSS4 upper remap
+  in the Metropolis derivative source ledger. No runtime-only identity override.
+- Native survey queries actual Mesh3d handles against original loaded GLB
+  primitives, counts actual triangle indices, rejects decorative colliders and
+  enforces displayed+retiring budgets. Resident base chunks remain unchanged.
+- Native both-branch crash/recovery/restart/audio results fixtures and bounded
+  performance evidence: testing/metropolis-authored. Art/palette/full-course and
+  platform/performance exit gates remain open.
+
+## STREET-LIFE-01 — 2026-11-07
+
+- rr_core street profiles: American centres, continuous merges, body clearance,
+  stopped-leader queue/brake/resume. rr_content rejects profile gaps/invalid counts/
+  over-wide layouts and retains existing strict geometry/route checks.
+- Authoring: deterministic per-building contrast/interior towers, parked body
+  support/junction setbacks, reserved street centres without race edits; updated
+  furniture fixtures protect walking strips and all role coverage.
+- Audit3,480 complete vehicle rectangles against actual pavement through tapers;
+  compare preserved footprints/IDs/paths/gates/streets/sidewalks with8f83245.
+- Native survey queries main fleet/directions/lane counts/parked/furniture and
+  actual height histogram, plus original facade draw/collision budgets. Native
+  both-branch crash/recovery/restart/audio and performance evidence alongside
+  testing/metropolis-street-life; full manual traffic/platform/art gates remain open.
+
+## Metropolis prop destruction — 2026-11-07
+
+DESTRUCTION-01, ADR073, detailed evidence: [prop-destruction/README.md](prop-destruction/README.md).
+
+| Check | Evidence |
+| --- | --- |
+| All13 placed kinds registered | Production factory995 owners +13 native fixture models |
+| Genuine collision and no artificial prop launch | `real_contact_breaks_releases_and_reset_restores_backend_pose`, native real-sphere rams |
+| Restart clears persistent damage | headless backend reset and native before/damaged/reset poses |
+| No slow/paused damage | `slow_contacts_and_paused_damage_are_ignored` |
+| Direct melee and obstruction | `two_direct_punches_break_a_bin_but_a_wall_blocks_the_same_strike` |
+| Bounded persistent debris | `budget_keeps_additional_damage_as_persistent_static_wreckage` |
+| Supported settling | `supported_slow_debris_settles_and_stays_present` |
+| Recovery paths move/reset | `moved_wreckage_updates_only_its_spatial_cells_and_reset_restores_footprints` |
+| Config/domain bounds | rr_content13-role/finite/budget coverage; rr_core durability/energy/reset |
+| Runtime regressions | both native branch recovery smoke fixtures; receipt limitations apply |
+
+Coarse damage art is not complete fracture-art approval. Worst-case damaged-course
+performance, broader legacy-map scope and Windows hardware verification are not claimed.
+
+## Racer/killer roles — 2026-11-07
+
+AI-10/ADR074, evidence: [racer-killer-ai/README.md](racer-killer-ai/README.md).
+Seven/seven role assignment, unprovoked racer suppression, exact-ID retaliation
+including shared personality slots, reset, launch grace, bounded killer pursuit,
+cooldowns, passing and downed exclusions have domain scenarios. Integrated melee
+checks actual provocation and refusal to kick a nearer innocent bystander. Native
+smoke asserts real roster counts and both-route crash/recovery/grid restart.
+AI-11 retains human full-race aggression balance; physics and art gates stay open.
+
+## Opening-world and local performance logging — 2026-11-07
+
+REPAIR-01/PERF-07, ADR075, [evidence](startup-world-diagnostics/README.md).
+Check held seated outward knee bend/peg contact and unchanged unheld chains;
+both fence posts; matching widened farm support; seeded reduced traffic;
+monotonic city-edge tower/frontage cap;0.5km/h main/cross/parked vehicle touches,
+solid gentle scrapes, persistent-contact high-speed ejection and recovery.
+Native release survey covers farm/entry/skyline; both routes retain roster/restart/
+recovery. Verify actual parseable background JSONL including render counters and
+memory/paging; true GPU attribution and target hardware budget remain PERF-08.
+
+## Parallel physics — 2026-11-07
+
+PERF-09, ADR076, [evidence](parallel-physics/README.md). Confirm actual Cargo
+feature graph activates rapier3d/parallel plus SIMD under defaults and omits it in
+serial fallback. Run full physical/momentum/anatomy/model/recovery tests under
+parallel, compare18 paired headless900-tick lab cases against preserved serial
+binary, verify native both-route roster/crash/getup/run/remount/restart and backend
+log metadata. Compare measured timings without promising linear scaling, true
+GPU timing or bitwise parallel determinism. PERF-08/platform gates remain open.

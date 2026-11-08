@@ -65,10 +65,15 @@ pub struct SceneryFootprint {
     pub radius: f32,
 }
 
+#[allow(clippy::too_many_arguments)]
 pub fn setup_world(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut images: Option<ResMut<Assets<Image>>>,
+    mut facade_materials: Option<
+        ResMut<Assets<crate::world_gen::metropolis::material::FacadeMaterial>>,
+    >,
     mut track: ResMut<Track>,
     plan: Option<Res<crate::world_gen::WorldPlan>>,
     server: Option<Res<AssetServer>>,
@@ -162,6 +167,22 @@ pub fn setup_world(
     } else {
         None
     };
+    if track.metropolis.is_some() {
+        crate::world_gen::metropolis::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            images.as_deref_mut().expect("metropolis image assets"),
+            facade_materials
+                .as_deref_mut()
+                .expect("metropolis facade assets"),
+            server.as_deref(),
+            &art,
+            &track,
+        );
+        commands.insert_resource(art);
+        return;
+    }
     if track.definition.id.as_str() == rr_content::city::TRACK_ID {
         crate::world_gen::city::spawn(
             &mut commands,

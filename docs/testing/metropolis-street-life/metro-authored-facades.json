@@ -1,0 +1,38 @@
+{
+  "kit": {
+    "active_faces": 21,
+    "actual_mesh_instances": 4775,
+    "actual_triangles": 1489608,
+    "mapped_polygon_faces": 78783,
+    "mesh_cap": 6000,
+    "method": "shared original GLB primitive handles, no scene/LOD file replacement",
+    "peak_meshes": 5984,
+    "peak_triangles": 1491761,
+    "physical_envelopes": "unchanged; always resident",
+    "ready": true,
+    "source_families": [
+      "BUSS1",
+      "BUSS4",
+      "CHINA12",
+      "CLSTGA11",
+      "OFFC1",
+      "OFFC2",
+      "OFFC10",
+      "RUNDWN11",
+      "VICT11",
+      "VICT12",
+      "WHSE11",
+      "WRHS1"
+    ],
+    "source_lods": [
+      1,
+      2
+    ],
+    "triangle_cap": 1500000
+  },
+  "native_draw_audit": {
+    "colliders_in_cosmetic_geometry": 0,
+    "queried_actual_triangles": 1489608,
+    "queried_original_mesh_instances": 4775
+  }
+}

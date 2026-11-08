@@ -741,3 +741,269 @@ mirrored cycle. Weighted per-zone shares preserve whole-route coverage within224
 static owners. Existing clearance/support/solid collision rules retained; no trees,
 new dependencies/media, rider/recovery or structural map changes. ADR056 and
 [test evidence](testing/roadside-variety/README.md) record acceptance and limits.
+
+## 2026-11-07 — Publish world changes; crash behavior research only
+
+Committed the verified Part05/world/contacts/variety tree locally as3d3194f,
+published identical tree b5c7c0a70a6ab5aed923f83d9c8563372250c27a through the connected
+GitHub API at d74d82799056d0e7b28fab60ab456d2c826331c1, and merged PR17 to main
+6aa3f17383c7773ebb81e09a8706128f873bfc08. Original local commit remains retained.
+Started codex/crash-behavior-research from merged main. User then explicitly asked
+for findings before implementation. No gameplay/physics/assets/dependencies changed.
+RAG-11 verifies source-level investigation of current ejection/support/muscle/roll
+behavior and five pinned repositories. Expanded the existing unfinished combat
+sequence and active-recovery tasks; no implementation gate closed. Source hashes,
+licenses, compatibility, recommendations and unverified runtime claims are in
+research/crash-behavior. Research notes remain separate from the merged world PR.
+
+## 2026-11-07 — Method B crash comparison implementation
+
+Created codex/crash-velocity-muscles worktree from the common research baseline;
+cherry-picked shared swerve/continuous-release/pair-grace/comparison controls and
+pending-KO fixes from Method A. Added original full-tensor reciprocal angular
+impulses, work/rate/torque caps, actual core ground-normal support, directional
+bracing and finite supine recovery attempts, with no authored linear velocity or
+body position. Native passive rig/constraints and baseline remain. No dependency
+or media import. New RAG-B-01..03 retain native/user acceptance gates. ADR058-B and
+docs/testing/crash-comparison/method-b record tuning/provenance/actual checks.
+
+Final B verification:257workspace tests passed/1preexisting ignored, strict
+Clippy/locked build/fmt/audit/5roadmap tests passed. Paired18-case lab finite;
+nine baseline rows exactly equal excluding timing. Native passive-rest support
+recognizes genuinely quiet distal ground support; active corrections expire
+after4.95s to preserve240-body pileup sleep. Worst fully-prone8m/s attempt
+rotated torso onlyabout7degrees; full roll-to-back and user acceptance stay open.
+
+## 2026-11-07 — Select velocity and correct facade transitions
+
+User chose Method B; based focused codex/velocity-popin on its clean candidate.
+Retain passive anatomical joints, baseline, shared swerve/release/recovery and
+unchanged map; no native-motor candidate integration. Correct facade handoff,
+dither coverage, camera timing, readiness, prefetch and finite overlap/cache.
+RAG-12/LOD-02 track verification; ADR060 records tradeoffs. No new media/dependency.
+
+Final verification:258tests pass/1ignored; fmt/strictClippy/build/audit/5roadmap
+pass; native recovery smoke pass;18finitepairedlab withbaselinepreserved. World
+survey15sections657roots,9directcrossfades, boundsvalid; p95=16.94174ms misses
+16.7ms (surveyexit1). RAG-12/LOD-02 completed; LOD-03 remains open.
+
+## 2026-11-07 — Complete technical facade LOD follow-up
+
+User chose facade LOD before Part05. Added128design/383band model-derived PBR
+proxy atlas with original hashes/mips/guards, face-aware coverage and closest-face
+distance. City Run/preview now prepare then crossfade ready scenes under48cache/
+8transition limits. Source physics, world quotas, saves and selected velocity
+remain untouched.263tests pass/1ignored; formatting/strictClippy/build and both
+native moving-camera fixtures pass; city recovery and preview pass. World geometry
+assertions pass but60FPS remains open. ADR061/LOD-04 capture implementation;
+LOD-03 retains user visual/long-streaming signoff. Full receipts in facade-lod.
+
+Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance gate remains open (exit1); geometry/source/coverage assertions and all15sections pass. Final native Valley sweep54direct crossfades, City389; both recovery smokes and preview pass. Longer streaming/user approval remain open.
+
+## 2026-11-07 — World repair planning and targeted regressions
+
+Started `codex/world-repair-plan` from 894ed7a. User confirmed the 3D Come Bye art
+reference. Generated street/property/current-height plans for 657 measured parcels,
+with proposed owner groups/fences/access edges before city rearrangement. Corrected
+scaled near/far backup-core occlusion, normal-speed static-wall crash entry,
+visual pickup/running knee planes, out-of-reach kick-facing direction and faster
+attack playback with separate kick sound/confirmed-hit feedback. Adapted roster
+pace, doubled route traffic with downed-rider yielding/horns, narrowed rural roads
+and allowed validated 0.8 m verges. Existing car-crash regressions remain covered.
+Complete city texture/terrain/sky/NPC skin rebuilding and final visual/performance
+acceptance remain open. ADR062 and testing/world-repair/README.md own evidence.
+
+## 2026-11-07 — Dense city, layout only
+
+User rejected the sparse plan and then explicitly limited work to layout, with
+no 3D changes. Created `codex/dense-city-layout` from 149e355. Added a 2D proposal
+with touching street walls, 12 m facade-to-facade width, rear courts/service wings,
+parallel streets and two block bands per side: 752 concept parcels, 376 primary,
+92.53 percent station frontage including cross-street breaks. LAYOUT-01 remains
+open for user acceptance and later construction validation. No game source,
+content, models, textures, rendering or physics changed. ADR063 and the planning
+README record evidence and limitations.
+
+## 2026-11-07 — City center with two split/rejoin sections
+
+User rejected the road-shaped city and confirmed two choice sections. Created
+`codex/city-center-layout` from 58eeabb. Produced a 2D city/route proposal around a
+central square/city hall, market, neighborhoods and 108 blocks. Market/Station
+branches rejoin downtown; after 300 m of shared avenue, Old Town/Civic branches
+rejoin before exit. Four legal route combinations, equal nominal 2.464 km lengths,
+2,992 clearance-filtered concept plots. Graph endpoints, DAG/paths, invalid-case
+rejection, deterministic exports and layout-only scope verified. No game or 3D
+changes. LAYOUT-02/ROUTE-SPLIT-01 remain open; ADR064 and planning/city-center own
+acceptance, implementation and construction limits.
+
+## 2026-11-07 — Full farm-to-long-city redraw and straight-footprint correction
+
+User replaced the two-choice scheme with one early-city split, rejoining around
+one quarter into a city that continues to the end. Draft ~12 km spine includes the
+existing 3.15 km farm/transition approach and 8.85 km city; no hills district. Added the
+entire-route map, split close-up, elevation profile/contours, fields, yards, parks,
+city properties and two-path graph. Corrected an initial erroneous grid warp after
+the user rejected curved building shapes: all retained plots now have straight
+rectangular footprints. Tests reject bent plots and other brief violations.
+LAYOUT-03, WORLD-EXTEND-01 and updated ROUTE-SPLIT-01 retain acceptance/future
+integration gates. ADR065 and planning/farms-long-city own the proposal. No runtime
+or 3D content changed; no push/merge claimed.
+
+## 2026-11-07 — Street-first city layout correction (ADR066)
+
+- User clarified the NYC/Flatiron approach after rejecting imposed rectangular
+  blocks and dogleg junctions. Replaced those rules with road/sidewalk subtraction,
+  actual polygon blocks, fitted frontage parcels and whole angled corner buildings.
+- Regular grid pitch180×360m, farm approach, long city to finish, one first-quarter
+  split/rejoin and elevation study retained. All outputs are offline planning.
+- Added pinned Shapely authoring geometry helper/requirements and inspected its
+  actual node/Voronoi APIs; recorded licenses and NYC primary reference. No copied
+  upstream source/media, Cargo changes, runtime assets or physics edits.
+- LAYOUT-03 remains open for user/layout/construction acceptance. No new task IDs;
+  existing task requirements were corrected explicitly rather than falsely closed.
+- Local branch codex/street-first-city. See planning/farms-long-city/README.md,
+  VALIDATION.json and CHECKS.txt for actual verification/results and limits.
+
+## 2026-11-07 — City height/detail plan before3D (ADR067 / LAYOUT-04)
+
+- Added seeded downtown-to-outskirts height zoning, taller frontage accents,
+  scattered interior towers, per-building floor/ground/roof data and road-distance
+  authored detail tiers. Skyline towers retain at least skyline detail.
+- Interior tower pads use unbuilt courts; explicit6m access easements cut clear
+  openings through frontage and record affected proposed parcels/site assembly.
+- Exported whole-city height/detail plans and downtown tower/access PNG/SVG views.
+  No game source, runtime assets, models, physics, Cargo or playable map changes.
+- Added LAYOUT-04 with reason/dependencies/acceptance/verification and synchronized
+  README/progress/placement/counts. Gate stays open for review and later3D/LOD work.
+- Existing licensed offline geometry stack retained; no new external repository,
+  library or media adopted. Actual tests/validation in planning/farms-long-city/
+  CHECKS.txt, VALIDATION.json and MASSING.md. Local codex/city-height-detail-plan.
+
+## 2026-11-07 — Race-centered primary avenue plan (ADR068 / LAYOUT-05)
+
+- Applied the user's supplied NYC-inspired reference to the2D plan: city rows are
+  centered around the actual race paths, including the two alternatives, instead
+  of a fixed world-origin footprint. Race/farm alignment and graph stay fixed.
+- Primary avenue junctions take priority; omit complete competing parallel,
+  fork-throat and redundant-close secondary segments without forced doglegs or
+  warped buildings. Regenerate street-defined blocks/parcels and seeded massing.
+- Added centering/junction/connectivity audits, four additional negative cases,
+  explicit primary-junction data and whole-map/junction-detail exports.
+- Concave merged blocks exposed a frontage clipping artifact: use native fixed-
+  precision overlay and retain footprint inner rings throughout authoring/audits.
+  No runtime geometry, engine, physics, assets, controls or saves were modified.
+- New LAYOUT-05 remains open for review/later construction and traffic/native
+  gates. README/progress/placement/counts synchronized; no historical tasks removed.
+  Actual checks in planning/farms-long-city/CHECKS.txt and VALIDATION.json.
+
+- LAYOUT-05 user screenshot follow-up: widened parallel-road exclusion to a local
+ 110m/48m-run/40degree rule, sampled every8m. The initial35m/60percent rule missed
+ narrow strips and is superseded. Added four regression fixtures and an audit
+ of all remaining secondary roads. Whole segments are omitted; cross streets
+ and both legal race alternatives stay connected.
+
+## 2026-11-07 — Approved Metropolis runtime construction
+
+- Branch codex/build-approved-metropolis from64f3c82. Bake exact approved layout
+  into separate12km course with19,068 closed buildings, both legal alternatives,
+  graded roads/terrain/courts,42 fields, authored scenery and30 crossing cars.
+- Branch-aware gameplay adapters preserve accepted physics/art/save formats;
+  legacy Valley/City remain. New rr_core route rules and rr_content validation.
+- Original facade atlas consolidated11,020→2,991 batches; full geometry/collision
+  persists across camera moves. Actual native captures and limits recorded in
+  testing/metropolis. Dev-build p9520.38ms misses target; broader gates stay open.
+- New scoped METRO-01; source approval supersedes earlier layout-only restriction.
+  No proprietary media/code imported and no dependency/physics migration.
+
+## 2026-11-07 — Wider Metropolis sidewalks and curb furniture
+
+- codex/metropolis-sidewalks: typical sidewalks2.4→3.4m by shifting city curbs1m
+  inward; farm pavement, all19,068 buildings and both exact routes remain intact.
+- Bake730 deterministic existing-model furniture owners, including205 lamps,
+ 70 benches and50 trees, with clear walking strips and priority-junction setbacks.
+  Replace the earlier regular lamp/tree placement; add original slab paving.
+- Authoring fixtures, strict content validation, preservation/native evidence and
+  acceptance tracked as SIDEWALK-01; ADR070 records width/placement tradeoffs.
+  No new dependency, proprietary media or accepted ragdoll/force tuning changes.
+
+## 2026-11-07 — Original authored3D facade kit restored on Metropolis
+
+- codex/metropolis-authored-facades: actual earlier ground/upper/crown GLB primitive
+  handles repeated along accepted polygon edges and storeys. Twelve existing mapped
+  families, resident prepared prototypes, finer street rows/coarser upper geometry,
+  bounded smooth additive detail; retained solid buildings/sidewalks/furniture.
+- Native review caught repeated RADIO signage; keep it once per frontage and use
+  the matching original white-brick window module above. Rebuild the Metropolis
+  coarse upper tile with explicit source identity; do not modify source models.
+- AUTHORED-01 records scoped integration. New future PALETTE-01 records broader
+  district/catalog adoption; no claim of all128 designs or completed art/performance.
+  ADR071/source/mesh/cap/visual/recovery receipts accompany this change.
+
+## 2026-11-07 — Lane-aware main streets and varied skyline
+
+- codex/metropolis-street-life:96 initialized main-street cars, American direction
+  centres,2/3/4 marked lane sections and100m tapers, following/yielding and fleet
+  reset. Keep street widths/sidewalks/lot footprints and both exact race routes.
+- Pavement audit caught full-path simplification disagreement; use original-edge
+  street centres shared after merge.3,480 full-body samples now fit real pavement.
+-995 original street furniture owners,65 checked parked cars and recovery obstacles;
+  strong per-building2–32-floor height mix with existing interior towers retained.
+- New STREET-LIFE-01, core lane/following rules, strict content config, authoring/
+  footprint audits and native evidence. ADR072 records scope/arcade-width tradeoffs.
+  No new dependency/source media or accepted ragdoll/control tuning changes.
+
+## 2026-11-07 — Persistent Metropolis prop destruction
+
+- User clarified destruction to props only, no cars. New focused branch
+  codex/persistent-world-destruction from2cf3892; DESTRUCTION-01/ADR073.
+- Register995 original sidewalk models/physical owners across13 types with validated
+  per-role strength/mass and persistent collision/direct-melee durability.
+- Keep original models solid while crushing/toppling; pin broken LOD, synthesize
+  break audio, bound live prop debris to48, settle supported low-energy bodies and
+  retain static ruins instead of timed disappearance. Navigation follows wreckage.
+- Explicit start/retry restores health, model scale, collider, fixed-body/backend
+  pose, LOD eligibility and navigation. Native testing caught and fixed backend
+  writeback overwriting component-only restoration.
+- Added domain/content/contact/melee/budget/settling/navigation/reset tests and a
+  real-model native destruction fixture. Evidence: testing/prop-destruction/README.md.
+- Added DESTRUCTION-02 for dedicated broken meshes/art; broad prop/category art,
+  worst-case performance, legacy-map retrofit and platform gates remain open.
+  No imported media/dependencies, car damage, building/road damage or ragdoll retune.
+
+## 2026-11-07 — Racer/killer AI split
+
+- AI-10/ADR074: seven racing/overtaking rivals and seven aggressive hunters,
+  exact landed-hit attacker memory, identity-filtered auto-kicks/hit resolution,
+  shorter killer cooldowns and bounded pursuit. Restore clean memory on restart.
+- Preserve authored roster stats, eight-second launch grace, traffic avoidance,
+  strike geometry/stamina, accepted riding/ragdoll/crash/recovery and prop damage.
+- Add R/K standings labels, deterministic domain/combat regressions and native
+  roster census. AI-11 keeps full-race user balance feedback open. Evidence:
+  testing/racer-killer-ai/README.md. No dependency/media import or engine migration.
+
+## 2026-11-07 — Opening-world repairs and FPS logging
+
+- REPAIR-01/ADR075: slight outward seated knee IK with retained pegs, paired fence
+  posts with endpoint deduplication,10m farm pavement/handling and paved shoulders,
+ 64 main cars seeded700m ahead, gradual city-edge height caps from source layout.
+- Share finite vehicle closing-speed gates, preserve solidity/high-speed ejection,
+  orient horizontal normals and re-evaluate ongoing vehicle contacts. Correct old
+  scrape/placement test assumptions rather than restore touch-triggered crashes.
+- PERF-07: bounded asynchronous1Hz rotating local JSONL, all fixed-step costs,
+  main/render extraction/render CPU-wait spans, scene counts and memory/paging;
+  summary CLI and printed log path. PERF-08 retains actual bottleneck optimization.
+- Existing anatomy/physics, racer/killer roles, city branches/parcels/IDs and legacy
+  Valley content stay integrated. Evidence: testing/startup-world-diagnostics.
+
+## 2026-11-07 — Default parallel physics
+
+- PERF-09/ADR076: enable existing Rapier parallel feature via default project
+  parallel_physics, retain explicit serial build. Keep engine versions, SIMD,
+  fixed/substeps, masses/anatomy/muscles, constraints, crash/recovery and content.
+- Lock four newly activated Rayon/Crossbeam packages; inspect actual package/VCS
+  metadata, API source and dual licenses, archive notices and record repository
+  decisions. No new media or copied implementation.
+- Record compiled backend/CPU availability/requested thread environment in local
+  logs. Preserve serial executable for identical paired lab/native comparisons;
+  benchmark gains and limits belong to testing/parallel-physics, not assumptions
+  from enabled features. PERF-08 retains overall slow-race/60FPS optimization.

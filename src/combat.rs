@@ -44,12 +44,13 @@ pub fn melee(
         let Ok((_, rider, state, t, _)) = riders.get(attacker) else {
             continue;
         };
-        if state.stage != RecoveryStage::Riding {
+        if state.stage != RecoveryStage::Riding || state.stagger.is_some() {
             continue;
         }
         let kicking = matches!(action, rr_core::AttackSide::Kick);
         let player = rider.id == 0;
         let attacker_id = rider.id;
+        let mind = rider.combat_mind.clone();
         let kick_strength = if player {
             8.0
         } else {
@@ -59,6 +60,28 @@ pub fn melee(
         let forward = t.rotation * Vec3::Z;
         let right = forward.cross(Vec3::Y).normalize_or_zero();
         let attacker_velocity = rider.motion_velocity;
+        if kicking {
+            let direction = riders
+                .iter()
+                .filter(|(e, r, state, t, _)| {
+                    (player || mind.can_fight(r.id))
+                        && *e != attacker
+                        && state.stage == RecoveryStage::Riding
+                        && t.translation.distance_squared(origin) < 144.0
+                })
+                .min_by(|a, b| {
+                    a.3.translation
+                        .distance_squared(origin)
+                        .total_cmp(&b.3.translation.distance_squared(origin))
+                })
+                .map(|(_, _, _, t, _)| (t.translation - origin).dot(right))
+                .filter(|side| side.abs() > 0.05);
+            if let Some(direction) = direction
+                && let Ok((_, mut rider, _, _, _)) = riders.get_mut(attacker)
+            {
+                rider.attack_side = direction.signum();
+            }
+        }
         let mut nearest: Option<(Entity, f32, Vec3, bool)> = None;
         let mut consider = |entity: Entity, p: Vec3, is_npc: bool| {
             let delta = p - origin;
@@ -93,7 +116,9 @@ pub fn melee(
         };
         for (e, r, s, t, _) in &riders {
             if e != attacker
+                && (player || mind.can_fight(r.id))
                 && s.stage == RecoveryStage::Riding
+                && s.stagger.is_none()
                 && r.immunity <= 0.0
                 && (t.rotation * Vec3::Z).dot(forward) > 0.7
             {
@@ -101,7 +126,7 @@ pub fn melee(
             }
         }
         for (e, n, t) in &npcs {
-            if n.active() {
+            if n.active() && (player || mind.role == rr_core::rival_ai::Role::Killer) {
                 consider(
                     e,
                     t.translation
@@ -121,12 +146,19 @@ pub fn melee(
         if kicking && let Ok((_, mut rider, _, _, _)) = riders.get_mut(attacker) {
             rider.attack_side = (p - origin).dot(right).signum();
         }
-        audio.write(AudioCue::new(Cue::Punch, p));
+        audio.write(AudioCue::new(
+            if kicking { Cue::Kick } else { Cue::Punch },
+            p,
+        ));
+        if player || riders.get(target).is_ok_and(|(_, r, _, _, _)| r.id == 0) {
+            race.shake = race.shake.max(if kicking { 0.16 } else { 0.10 });
+        }
         if is_npc {
             npc_hits.write(NpcHit(target, attacker_velocity, true));
             continue;
         }
         if let Ok((_, mut r, mut state, t, mut visible)) = riders.get_mut(target) {
+            r.combat_mind.struck_by(attacker_id);
             let column = rr_core::pursuit::personality(attacker_id);
             r.relationships[column] =
                 (r.relationships[column] + r.ai_profile.hit_reaction).clamp(-1024.0, 1024.0);
@@ -150,18 +182,26 @@ pub fn melee(
                 race.message_time = 1.0;
             }
             if knocked_out {
-                recovery::crash(
-                    &mut commands,
-                    &art,
-                    target,
-                    &mut r,
-                    &mut state,
-                    t.translation,
-                    t.rotation,
-                    Vec3::ZERO,
-                    &context,
-                );
-                *visible = Visibility::Hidden;
+                if state.active_crash_behavior {
+                    if state.stagger.is_none() {
+                        state.stagger = Some(rr_core::crash_behavior::Stagger::new(
+                            (p - origin).dot(right),
+                        ));
+                    }
+                } else {
+                    recovery::crash(
+                        &mut commands,
+                        &art,
+                        target,
+                        &mut r,
+                        &mut state,
+                        t.translation,
+                        t.rotation,
+                        Vec3::ZERO,
+                        &context,
+                    );
+                    *visible = Visibility::Hidden;
+                }
                 audio.write(AudioCue::new(Cue::Crash, t.translation));
                 if player {
                     race.takedowns += 1;
@@ -177,6 +217,98 @@ pub fn melee(
 mod tests {
     use super::*;
     use bevy::ecs::system::RunSystemOnce;
+    #[test]
+    fn racer_refuses_first_strike_then_only_retaliates_against_actual_attacker() {
+        let mut app = crate::game::tests::simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        for _ in 0..3 {
+            app.update();
+        }
+        let player = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let pose = *app.world().get::<Transform>(player).unwrap();
+        let right = (pose.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+        app.world_mut().get_mut::<Rider>(player).unwrap().immunity = 0.;
+        let mut r = Rider::new(1);
+        r.immunity = 0.;
+        let racer = app
+            .world_mut()
+            .spawn((
+                r,
+                Transform::from_translation(pose.translation - right * 1.4)
+                    .with_rotation(pose.rotation),
+                Visibility::Visible,
+            ))
+            .id();
+        app.world_mut()
+            .write_message(AttackAttempt(racer, rr_core::AttackSide::Right));
+        app.world_mut().run_system_once(melee).unwrap();
+        assert_eq!(app.world().get::<Rider>(player).unwrap().health, 100.);
+        app.world_mut()
+            .write_message(AttackAttempt(player, rr_core::AttackSide::Left));
+        app.world_mut().run_system_once(melee).unwrap();
+        assert!(
+            app.world()
+                .get::<Rider>(racer)
+                .unwrap()
+                .combat_mind
+                .can_fight(0)
+        );
+        let mut innocent = Rider::new(10);
+        innocent.immunity = 0.;
+        let innocent = app
+            .world_mut()
+            .spawn((
+                innocent,
+                Transform::from_translation(
+                    pose.translation - right * 0.2 + pose.rotation * Vec3::Z * 0.5,
+                )
+                .with_rotation(pose.rotation),
+                Visibility::Visible,
+            ))
+            .id();
+        app.world_mut()
+            .write_message(AttackAttempt(racer, rr_core::AttackSide::Kick));
+        app.world_mut().run_system_once(melee).unwrap();
+        assert!(app.world().get::<Rider>(player).unwrap().health < 100.);
+        assert_eq!(app.world().get::<Rider>(innocent).unwrap().health, 100.);
+    }
+    #[test]
+    fn kick_faces_nearest_out_of_reach_opponent_without_a_remote_hit() {
+        for side in [-1.0, 1.0] {
+            let mut app = crate::game::tests::simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let t = *app.world().get::<Transform>(owner).unwrap();
+            let right = (t.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+            let target = app
+                .world_mut()
+                .spawn((
+                    Rider::new(1),
+                    Transform::from_translation(t.translation + right * side * 6.0)
+                        .with_rotation(t.rotation),
+                    Visibility::Visible,
+                    Velocity::zero(),
+                ))
+                .id();
+            app.world_mut()
+                .write_message(AttackAttempt(owner, rr_core::AttackSide::Kick));
+            app.world_mut().run_system_once(melee).unwrap();
+            assert_eq!(app.world().get::<Rider>(owner).unwrap().attack_side, side);
+            assert_eq!(
+                app.world().get::<Velocity>(target).unwrap().linvel,
+                Vec3::ZERO
+            );
+            assert_eq!(app.world().get::<Rider>(target).unwrap().health, 100.0);
+        }
+    }
     #[test]
     fn kick_selects_nearest_side_pushes_without_damage_and_animates_that_leg() {
         for side in [-1.0, 1.0] {
@@ -227,5 +359,78 @@ mod tests {
             assert_eq!(app.world().get::<Rider>(targets[0]).unwrap().health, 100.0);
             assert_eq!(app.world().get::<Rider>(owner).unwrap().attack_side, side);
         }
+    }
+    #[test]
+    fn decisive_punch_stays_mounted_through_both_swerve_phases_and_counts_once() {
+        let mut app = crate::game::tests::simulation();
+        app.world_mut()
+            .resource_mut::<crate::biomechanics::Settings>()
+            .enabled = true;
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        for _ in 0..3 {
+            app.update();
+        }
+        let target = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let pose = *app.world().get::<Transform>(target).unwrap();
+        let right = (pose.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+        app.world_mut().get_mut::<Rider>(target).unwrap().immunity = 0.0;
+        let attacker = app
+            .world_mut()
+            .spawn((
+                Rider::new(2),
+                Transform::from_translation(pose.translation - right * 1.4)
+                    .with_rotation(pose.rotation),
+                Visibility::Visible,
+                Velocity::zero(),
+            ))
+            .id();
+        for _ in 0..3 {
+            app.world_mut().resource_mut::<Race>().elapsed += 0.30;
+            app.world_mut()
+                .write_message(AttackAttempt(attacker, rr_core::AttackSide::Right));
+            app.world_mut().run_system_once(melee).unwrap();
+        }
+        assert_eq!(app.world().get::<Rider>(target).unwrap().health, 0.0);
+        assert!(
+            app.world()
+                .get::<Recovery>(target)
+                .unwrap()
+                .stagger
+                .is_some()
+        );
+        app.world_mut().resource_mut::<Race>().elapsed += 0.30;
+        app.world_mut()
+            .write_message(AttackAttempt(attacker, rr_core::AttackSide::Right));
+        app.world_mut().run_system_once(melee).unwrap();
+        assert_eq!(
+            app.world().get::<Recovery>(target).unwrap().stage,
+            RecoveryStage::Riding
+        );
+        app.world_mut().despawn(attacker);
+        let mut away = false;
+        let mut counter = false;
+        for tick in 0..85 {
+            app.update();
+            let rec = app.world().get::<Recovery>(target).unwrap();
+            let r = app.world().get::<Rider>(target).unwrap();
+            if tick < 30 {
+                assert_eq!(
+                    rec.stage,
+                    RecoveryStage::Riding,
+                    "early release tick={tick}"
+                );
+            }
+            away |= r.drive_intent.steer > 0.2;
+            counter |= r.drive_intent.steer < -0.2;
+        }
+        assert!(away && counter);
+        assert_eq!(
+            app.world().get::<Recovery>(target).unwrap().stage,
+            RecoveryStage::Falling
+        );
     }
 }

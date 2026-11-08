@@ -109,7 +109,7 @@ impl TrackDef {
         {
             return Err("unsupported track version / control point count".into());
         }
-        if !self.verge_width.is_finite() || !(2.0..=20.0).contains(&self.verge_width) {
+        if !self.verge_width.is_finite() || !(0.5..=20.0).contains(&self.verge_width) {
             return Err("invalid safe verge width".into());
         }
         for (i, p) in self.control_points.iter().enumerate() {
@@ -195,6 +195,19 @@ mod tests {
     use super::*;
     fn fixture() -> TrackDef {
         TrackDef::from_json(include_str!("../../../content/tracks/handling.json")).unwrap()
+    }
+    #[test]
+    fn narrow_back_road_verges_are_valid_but_zero_or_nonfinite_are_not() {
+        let mut t = fixture();
+        t.verge_width = 0.8;
+        for point in &mut t.control_points {
+            point.half_width = 3.6;
+        }
+        assert!(t.validate().is_ok());
+        for invalid in [0.0, -1.0, f32::NAN] {
+            t.verge_width = invalid;
+            assert!(t.validate().is_err());
+        }
     }
     #[test]
     fn authoring_rejects_invalid_geometry_gates_and_spawns() {

@@ -711,3 +711,235 @@ Inspected the existing local369-record original prop catalog and semantic placem
 source. No new GitHub repository, dependency or media researched/adopted. Reused
 registered draft models and existing source/license records; grouped placement and
 seeded variation are original project code. Parked vehicles are scenery only.
+
+## Crash behavior source audit — 2026-11-07 (research only)
+
+The user requested findings before any implementation. Full comparison, exact
+source hashes and no-adoption evidence: [crash-behavior](../research/crash-behavior/README.md)
+and [sources.json](../research/crash-behavior/sources.json). Nothing copied into
+runtime, no new dependencies, no third-party assets imported or external demos run.
+
+| Repository / author | Inspected commit / last commit date | License and reuse | Findings / compatibility / decision |
+| --- | --- | --- | --- |
+| [arkits/road-rash](https://github.com/arkits/road-rash), arkits |40829dbb2d30c5961cfd46c4fcf6373247126125 /2026-11-05 | Root code grant not found; upstream third_party notices do not license the main source. UNVERIFIED permission; behavioral research only, no copying. Retail media has separate restrictions. | C++/SDL3 reverse-engineered port. actor_animation.cpp, crash.cpp, race.cpp and bike.cpp: speed/height-selected crash cycles, motion integration, immediate decisive knock-off versus surviving steering reactions. REFERENCE ONLY; no Bevy dependency. No fresh retail parity replay; do not treat simplified paths or rendered sprites as a biomechanical simulation. |
+| [bhubbard/active-ragdoll-rs](https://github.com/bhubbard/active-ragdoll-rs), Brandon Hubbard |f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5 /2026-11-01 | [MIT](https://github.com/bhubbard/active-ragdoll-rs/blob/f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5/LICENSE-MIT) OR [Apache-2.0](https://github.com/bhubbard/active-ragdoll-rs/blob/f9fb31c4c1d705bbd6b48ed9447ed6563066c2b5/LICENSE-APACHE), grants read; licensed source reuse possible with notice, none adopted. No media imported. |0.1.1, Rapier0.36/glam0.33.10 versus RoadDash Rapier0.31/Bevy glam0.30.10. Recent development, not production certification. Follower/PD/adapter inspected; linear animation pursuit, direct torque and zero limp drives conflict with current policies. REFERENCE ONLY; defer dependency, retain native constraint motors. |
+| [DanilKhmyrov/godot-active-ragdoll](https://github.com/DanilKhmyrov/godot-active-ragdoll), Danil Khmyrov |bd212867145484aafb9393a0ccc2bfc3ec0befae /2026-11-05 | [MIT](https://github.com/DanilKhmyrov/godot-active-ragdoll/blob/bd212867145484aafb9393a0ccc2bfc3ec0befae/LICENSE), root/addon grants read; source reuse possible with notice, none adopted. Demo mannequin separately declares Quaternius CC0; other bundled media not comprehensively cleared, no assets imported. | Godot4/GDScript/Jolt-or-Godot, no native Bevy integration. Strongest behavioral reference: roll_over, orientation tests, directional braces, per-group tone and get-up alignment. Direct velocity/pin/transform corrections and friction changes require redesign for our momentum/work policy. Recent repo, unbenchmarked here. REFERENCE ONLY, study behavior rather than copy the solver adapter. |
+| [sergioabreu-g/active-ragdolls](https://github.com/sergioabreu-g/active-ragdolls), Sergio Abreu García; joint helper credits Michael Stevenson |459cbab9489c7481e65bf16ac93fcfff98e6a594 /2021-02-02 | [Apache-2.0](https://github.com/sergioabreu-g/active-ragdolls/blob/459cbab9489c7481e65bf16ac93fcfff98e6a594/LICENSE), verified; source reuse possible subject to notices, none adopted. Sample assets require separate review, excluded. | Unity C#, no Bevy compatibility; older example. AnimationModule/PhysicsModule/ConfigurableJointExtensions studied. Useful target/physics separation and joint frames; stabilizer/frozen-rotation modes are unsuitable for uncontrolled crashes. REFERENCE ONLY, no engine substitution. |
+| [ashleve/ActiveRagdoll](https://github.com/ashleve/ActiveRagdoll), ashleve; source license Lucas Z. |749cd80dbccd73dffb7bb1d3827ad0e719b84f1c /2023-03-05 | [MIT](https://github.com/ashleve/ActiveRagdoll/blob/749cd80dbccd73dffb7bb1d3827ad0e719b84f1c/LICENSE), verified; source reuse possible with notice, none adopted. No asset clearance inferred, none imported. | Unity C#, older example; SlaveController and AnimationFollowing inspected. Reuse strength transition concepts; reject world-position velocity chasing and disabling passive resistance for our crashes. REFERENCE ONLY. |
+
+Maintenance descriptions above are dated source observations, not assurances of
+upstream support. No license permission is inferred from GitHub visibility.
+
+2026-11-07 Method B comparison: original tensor-aware reciprocal angular-impulse
+controller and pose/state rules inspired by the five pinned source observations
+above. No external source/media copied and no package adopted. Godot/Rust
+repositories remain REFERENCE ONLY; native Rapier anatomy/passive drives retained.
+Full world inverse inertia and exact per-pair positive work replace scalar/directed
+velocity heuristics; no animation-position follower. See ADR058-B and Method B QA.
+
+2026-11-07 facade follow-up: inspected installed bevy_camera/bevy_pbr0.17.3
+visibility/range.rs, render/mesh_functions.wgsl and pbr_functions.wgsl (Cargo.lock
+pinned crates, bevyengine/bevy, MIT OR Apache-2.0; existing DEPENDENCY). Confirmed
+start/end complementary dither and origin semantics; no source copied or new
+dependency/media. ADR060 and velocity-popin evidence record actual use.
+
+### 2026-11-07 facade LOD authoring/runtime follow-up
+
+Existing external Blender build tool:4.5.9 LTS, build8bf95cbd38d1 (2026-04-21),
+from the previously acquired local blender-4.5.9-linux-x64 archive. Verified runtime
+version and bundled license files. Official source/tag:
+https://projects.blender.org/blender/blender/src/tag/v4.5.9 ; license:
+https://www.blender.org/about/license/ (GPL; external tool, not shipped). Used
+bundled Python/numpy and image IO for our original triangle/UV/depth projection
+script. No Blender source/add-on/media imported; existing original model provenance
+continues through the atlas manifest. No new game dependency.
+
+Existing Bevy0.17.3 DEPENDENCY: SceneSpawner readiness, Assets/Images mip data,
+SceneRoot observers and VisibilityRange temporal masks. Installed pinned source
+informed API use; no source copied. Scene/material/tangent readiness and actual
+native captures verified. Optional city rendering is bounded independently of
+physics. No new GitHub project adopted; ADR061 records alternatives/tradeoffs.
+
+### 2026-11-07 installed-source follow-up (existing dependencies)
+
+- **DEPENDENCY**, Bevy / bevyengine, https://github.com/bevyengine/bevy,
+  exact installed0.17.3. Inspected PBR mesh visibility/dither shader and visibility
+  origin handling for the disappearance investigation. MIT OR Apache-2.0 as declared
+  by the installed crate; [license](https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT).
+  Existing dependency retained, no source copied or new media incorporated. GPU
+  cube probe did not reproduce the degenerate-range disappearance hypothesis.
+- **DEPENDENCY**, bevy_rapier / Dimforge, https://github.com/dimforge/bevy_rapier,
+  exact installed0.32.0. Inspected ContactPairView/ContactManifoldView normal order
+  and Collider::project_point for the normal-closing-speed static-wall adapter.
+  Installed manifest declares Apache-2.0; [license](https://github.com/dimforge/bevy_rapier/blob/v0.32.0/LICENSE).
+  Existing compatible engine integration retained, no copied upstream implementation
+  or assets. Contact APIs are used directly; no new dependency/migration. This is
+  a pinned-source investigation, not a claim about latest upstream maintenance.
+
+## 2026-11-07 — Street-first offline layout geometry (ADR066)
+
+- **DEPENDENCY (authoring only)** — Shapely / Shapely contributors,
+  https://github.com/shapely/shapely, tag2.1.2, commit
+  `5fb639d1056888d135fe56bfaf750c9648addeec` (resolved annotated tag).
+  Installed2.1.2 actual Python source inspected: constructive.py buffer/node/
+  voronoi_polygons and set_operations.py union_all. These wrap native GEOS
+  operations: noded crossings, buffered rights of way, union/difference and
+  frontage-seeded partitions. Pin in tools/requirements-layout.txt; decision:
+  adopt its APIs for offline2D authoring rather than fragile custom polygon math.
+  BSD-3-Clause verified at https://github.com/shapely/shapely/blob/2.1.2/LICENSE.txt .
+  Reuse permitted subject to notices; no source adapted/copied, assets none.
+  Python3.14.8/Linux wheel tested; no Bevy/Rapier integration or runtime shipment.
+  Risk: native GEOS and version-sensitive geometric output; pin versions and
+  validate topology/coverage, not just record counts. Maintained2.1 release line
+  inspected; not a claim that this is the newest release.
+- **DEPENDENCY (indirect authoring only)** — GEOS / OSGeo contributors,
+  https://github.com/libgeos/geos, installed bundled3.13.1, tag3.13.1 at
+  `431568d6e311e0bbfb057b4ec3d44d0d3ba3335f`.
+  Geometry engine used through Shapely, no direct C++ code incorporation.
+  LGPL2.1 license inspected at https://github.com/libgeos/geos/blob/3.13.1/COPYING .
+  Local wheel dependency only; source/build redistribution duties apply if later
+  redistributing this toolchain. No GEOS binary/assets committed or game dependency.
+  Compatibility verified through actual authoring tests; no Rust API dependency.
+  Risk: numeric robustness/reproducibility across native versions; exact wheel
+  version recorded in exported JSON. Decision: use through pinned Shapely.
+- **DEPENDENCY (indirect authoring only)** — NumPy / NumPy developers,
+  https://github.com/numpy/numpy, version2.3.4. Installed to satisfy Shapely's
+  array API; no direct algorithm/source/media imported. BSD-3-Clause core license
+  verified https://github.com/numpy/numpy/blob/v2.3.4/LICENSE.txt . Wheel carries
+  its own bundled-component notices; wheel not redistributed. Python3.14 Linux
+  compatibility verified. Decision: pinned indirect authoring dependency; no
+  Bevy compatibility concern. Version pin limits numeric/tool drift, not a latest
+  maintenance claim.
+- **DEPENDENCY (existing image-authoring tool, now pinned for this generator)** —
+  Pillow / python-pillow contributors, https://github.com/python-pillow/Pillow,
+  version12.0.0, MIT-CMU verified at
+  https://github.com/python-pillow/Pillow/blob/12.0.0/LICENSE . Used existing
+  Image/ImageDraw APIs to render original map art, no copied source/third-party
+  image assets. Local Python3.14 Linux tested; no game dependency. Decision:
+  retain authoring renderer. Risk: font/renderer versions affect bitmap hashes;
+  exact Python/package environment and font helper documented.
+
+**REFERENCE ONLY — primary NYC design evidence, no repository/assets adopted:**
+NYC Landmarks Preservation Commission Flatiron designation LP-0219 (1966),
+https://s-media.nyc.gov/agencies/lpc/lp/0219.pdf . Actual document read and rendered
+for inspection: triangular site at Broadway/Fifth/23rd determines building form.
+Principle studied, architecture/map/media not copied. Separate NYC Plaza Map
+https://www.nyc.gov/assets/cecm/downloads/plaza-maps/MN-Flatiron-Plazas.pdf exceeded
+web viewer limits and returned403 to direct download; it is not claimed as
+visually inspected. The rendered designation report, not that unavailable map,
+is the inspected primary evidence. NYC media rights not investigated because
+none are redistributed. Full RoadDash geometry and drawings are original work.
+
+### 2026-11-07 — Existing Shapely authoring follow-up, ADR068
+
+Same pinned Shapely2.1.2 / GEOS3.13.1 and previously verified licenses retained.
+Inspected installed set_operations.py `intersection` implementation and its
+`grid_size`/native intersection_prec path to resolve near-coincident frontage
+clipping on a concave regenerated block. Adopted the public API with a1e-9m
+snap-rounding overlay; exported footprints retain inner rings and strict overlap/
+containment checks. No upstream source copied, no dependency/version change or
+new external repository adopted. User-supplied race-first illustration is visual
+planning guidance only; no image media was imported into the repo/game.
+
+## 2026-11-07 — Metropolis API/source follow-up (existing dependencies)
+
+- Bevy, https://github.com/bevyengine/bevy/tree/v0.17.3, bevyengine;
+  **DEPENDENCY**, exact installed0.17.3. Read local bevy_pbr ExtendedMaterial,
+  pbr.wgsl, extended_material example and ImageSampler/VisibilityRange APIs.
+  MIT OR Apache-2.0: https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT
+  and LICENSE-APACHE in that tag. API-based original shader, no example/media
+  imported; compatible with locked0.17.3; no upgrade. Study/adopt existing API;
+  engine API churn and shader/render-backend testing remain risks.
+- Shapely, https://github.com/shapely/shapely/tree/2.1.2, shapely contributors;
+  **DEPENDENCY** (offline authoring only), installed2.1.2 with GEOS3.13.1.
+  Read installed constrained_delaunay_triangles/make_valid/set_precision APIs.
+  BSD-3-Clause: https://github.com/shapely/shapely/blob/2.1.2/LICENSE.txt;
+  GEOS LGPL-2.1-or-later remains authoring tool, not redistributed with game.
+  No source/assets copied; own compiler calls the public APIs. No Rust/Bevy
+  runtime dependency. Existing maintained toolchain retained/pinned in evidence;
+  precision/topology changes require rebake/coverage validation before upgrades.
+
+2026-11-07 SIDEWALK-01: reused the existing original RoadDash prop catalog roles
+and installed Bevy0.17.3/Shapely2.1.2 APIs already investigated above. No additional
+repository investigated, dependency introduced, upstream code copied or media
+imported. Street furniture uses the same original project-MIT model files;
+physics owns independent conservative colliders. Paving pixels are original
+procedural output. Existing asset and model source hashes remain unchanged.
+
+2026-11-07 AUTHORED-01: existing Bevy0.17.3 dependency source follow-up. Inspected
+installed bevy_gltf Gltf/GltfMesh/GltfPrimitive APIs, asset dependency readiness,
+Mesh indices/tangents and standard PBR VisibilityRange. Same upstream Bevy version
+and MIT OR Apache-2.0 license already recorded above; no new dependency or upstream
+implementation copied. Actual project-original storey GLBs and shared materials
+are reused by handle; no original-game media or new downloaded assets. The local
+project's existing fade-range principle is reused with final propagated camera
+origins. Palette expansion and final art/performance remain separate.
+
+2026-11-07 STREET-LIFE-01: existing project-original car/furniture/facade catalog
+and previously investigated Bevy0.17.3/Shapely2.1.2 APIs reused. No additional
+repository investigated, upstream source copied, downloaded media or dependency
+adopted. Domain lane/following formulas, authoring seed rules and layout audits are
+original RoadDash code. Existing project MIT asset notices/provenance still apply.
+
+2026-11-07 DESTRUCTION-01: inspected the installed existing bevy_rapier3d0.32.0
+context shape-cast/contact-pair APIs, backend rigid-body reset and existing Bevy0.17.3
+scene hierarchy/LOD interfaces. These are the already adopted dependencies above;
+no additional repository/library investigated or imported. Actual backend is
+rapier3d0.31.0 per Cargo.lock. Own durability/controller/render integration calls
+public APIs; no external fracture implementation copied. Existing project-MIT
+prop GLBs/materials are reused; break PCM is original synthesis. Native joint,
+velocity-muscle and accepted rider physics remain unchanged. Full fracture would
+need dedicated broken art and budget review, so no new engine/dependency is justified.
+
+2026-11-07 AI-10: reused this project's existing normalized roster observations
+and installed Bevy0.17.3 ECS APIs. No new repository investigated, dependency
+adopted, external implementation copied or media imported. Exact-ID grudge and
+racer/killer logic are original RoadDash code for the user's requested behavior;
+this supersedes historical personality-hostility decisions without claiming
+new original-game behavior research or exact parity. Physics pins are unchanged.
+
+2026-11-07 REPAIR-01/PERF-07: existing installed Bevy0.17.3 SubApp take_extract/
+set_extract and RenderSystems schedule source inspected for an additive timing
+wrapper; existing bevy_rapier3d0.32.0 contact-pair/manifold/shape projection APIs
+inspected for gated persistent contacts. Previously recorded dependency licenses
+and versions apply; no upstream implementation copied or new dependency/media.
+Shapely2.1.2 offline authoring rebakes the approved original layout/height changes;
+source footprints/paths stay unchanged. No new original-game research/parity claim.
+
+## PERF-09 — Parallel physics dependency follow-up (2026-11-07)
+
+- **DEPENDENCY**, existing bevy_rapier3d0.32.0 / rapier3d0.31.0: inspected installed
+  Cargo feature forwarding and rapier3d `src/pipeline/physics_pipeline.rs`253–327.
+  Native `parallel` activates independent-island Rayon solving; intra-island
+  parallelism is explicitly unavailable in this version. Original engine pins and
+  previously recorded Apache-2.0/MIT license evidence remain. No copied upstream
+  implementation or media; actual use is the existing public Cargo feature.
+  Limits: scheduling overhead, connected-island scaling and future determinism.
+- **DEPENDENCY**, rayon-rs/rayon, https://github.com/rayon-rs/rayon (Rayon project).
+  Locked rayon1.12.0, registry VCS commitc9ced185ae3508246a9eb70c8407a1199bb1b77f;
+  rayon-core1.13.0, commit7af20d7692d5decbcb4adcaa079cd607e3e50814.
+  Installed manifests, `.cargo_vcs_info.json`, dual license files and rayon-core
+  thread-count selection source inspected. Work-stealing parallel iterator/runtime
+  supports Rapier's existing island loop. MIT OR Apache-2.0; exact license links:
+  https://github.com/rayon-rs/rayon/blob/c9ced185ae3508246a9eb70c8407a1199bb1b77f/LICENSE-MIT
+  and https://github.com/rayon-rs/rayon/blob/c9ced185ae3508246a9eb70c8407a1199bb1b77f/LICENSE-APACHE.
+  Source reuse permitted with notices; no source copied or assets supplied. Minimum
+  Rust1.80 is compatible with project1.94; no direct Bevy API coupling. Adopted
+  transitively by pinned Rapier. Installed published snapshots verified; no claim
+  of a fresh upstream maintenance-health audit. Risks: extra worker-pool contention
+  and small-island overhead; RAYON_NUM_THREADS permits controlled comparisons.
+- **DEPENDENCY**, crossbeam-rs/crossbeam, https://github.com/crossbeam-rs/crossbeam
+  (Crossbeam project). Locked crossbeam-deque0.8.8 and crossbeam-epoch0.9.21,
+  both registry VCS commit2920c984290229ab4e0ca0452ef09e48a82063f3. Installed manifests,
+  VCS metadata and MIT/Apache license copies inspected. Rayon-core uses these
+  work-stealing deque/epoch synchronization libraries. MIT OR Apache-2.0:
+  https://github.com/crossbeam-rs/crossbeam/blob/2920c984290229ab4e0ca0452ef09e48a82063f3/LICENSE-MIT
+  and https://github.com/crossbeam-rs/crossbeam/blob/2920c984290229ab4e0ca0452ef09e48a82063f3/LICENSE-APACHE.
+  Source reuse permitted with notices; no assets/implementation copied. Rust1.61
+  minimum fits1.94; no direct Bevy coupling. Adopt transitive package versions
+  through lockfile; existing crossbeam-utils version remains unchanged. Published
+  local source snapshot reviewed, not a maintenance SLA. Risks follow the worker
+  runtime; audit/test under the actual dependency graph before upgrades.
+
+Actual incorporation is linked library code via Rapier's feature, not adapted
+source or downloaded media. ADR076 records rollback and unchanged physical tuning.

@@ -69,3 +69,22 @@ in the blueprint are not installed dependencies.
   energy once; frontal leg-release uses existing motor limits. Preserve baseline.
   Neutral distal skin frames must inherit animated parents; do not add standing
   wrist twist to hide a bind mismatch. Valley is default; explicit city remains.
+
+- 2026-11-07: user selected velocity muscles after A/B comparison. Do not integrate
+  the native-motor candidate. Anatomical constraints/passive resistance are still
+  required. Facade LOD changes must crossfade ready groups directly, use opposing
+  dither branches and final propagated render-camera origins; overlap counts
+  against displayed geometry budgets and cannot remove collision.
+
+- Facade LOD identity uses model-derived band proxies with per-face coverage.
+  Preserve source-band hashes, mip gutters, near geometry and separate static/
+  near budgets. City Run and city_preview share ready scene lifecycle: no direct
+  live SceneRoot replacement, max8transitions and48pinned high-LOD cache entries.
+  Verify both --lod-survey modes; keep user art/long-streaming/performance gates
+  separate from technical source/geometry coverage.
+
+- Any facade material/geometry change must update the model-derived far atlas and
+  its hashes/mips. Runtime-only material overrides cannot leave distant proxies
+  on the old appearance (MAT-03).
+
+- 2026-11-07: approved farm-to-city Metropolis is the default (ADR069), superseding the earlier Valley-default note. Preserve both legacy maps and immutable Valley quotas. Rebuild new content with tools/bake_metropolis.py from the approved planning source; verify branch gates/recovery and --metro-survey. Resident closed envelopes and collision must not disappear with detail visibility.

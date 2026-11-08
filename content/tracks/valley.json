@@ -2,7 +2,7 @@
   "schema_version": 1,
   "id": "valley-run-01",
   "name": "Valley Run \u2014 Farms / City / Hills",
-  "verge_width": 4.5,
+  "verge_width": 0.8,
   "control_points": [
     {
       "position": [
@@ -10,7 +10,7 @@
         0.1,
         -2940.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.6,
       "bank_degrees": 0,
       "sector": "farms",
       "surface": "asphalt"
@@ -21,7 +21,7 @@
         0.1,
         -2436.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.6,
       "bank_degrees": 0,
       "sector": "farms",
       "surface": "asphalt"
@@ -32,7 +32,7 @@
         0.1,
         -1932.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.6,
       "bank_degrees": 0,
       "sector": "farms",
       "surface": "asphalt"
@@ -43,7 +43,7 @@
         0.1,
         -1470.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.6,
       "bank_degrees": 0,
       "sector": "farms",
       "surface": "asphalt"
@@ -54,7 +54,7 @@
         0.1,
         -882.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.6,
       "bank_degrees": 0,
       "sector": "farms",
       "surface": "asphalt"
@@ -109,7 +109,7 @@
         35,
         1365.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.4,
       "bank_degrees": -3,
       "sector": "hills",
       "surface": "asphalt"
@@ -120,7 +120,7 @@
         85,
         1806.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.4,
       "bank_degrees": 3,
       "sector": "hills",
       "surface": "asphalt"
@@ -131,7 +131,7 @@
         45,
         2184.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.4,
       "bank_degrees": -3,
       "sector": "hills",
       "surface": "asphalt"
@@ -142,7 +142,7 @@
         110,
         2583.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.4,
       "bank_degrees": 3,
       "sector": "hills",
       "surface": "asphalt"
@@ -153,7 +153,7 @@
         60,
         3003.0
       ],
-      "half_width": 6.5,
+      "half_width": 3.4,
       "bank_degrees": -3,
       "sector": "hills",
       "surface": "asphalt"

@@ -4,6 +4,7 @@ pub mod city;
 pub mod frontage;
 pub mod ground;
 pub mod layout;
+pub mod lod_survey;
 pub mod navigation;
 pub mod neighborhood;
 pub mod report;
@@ -186,3 +187,5 @@ pub mod architecture;
 pub mod elevation;
 
 pub mod dressing;
+
+pub mod metropolis;

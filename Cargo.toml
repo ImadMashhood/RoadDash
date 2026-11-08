@@ -12,9 +12,10 @@ default-run = "road-dash"
 description = "A modern 3D motorcycle combat racer built with Bevy and Rapier"
 
 [features]
-default = ["offline", "devtools"]
+default = ["offline", "devtools", "parallel_physics"]
 offline = []
 devtools = []
+parallel_physics = ["bevy_rapier3d/parallel"]
 debug_physics = ["bevy_rapier3d/debug-render-3d"]
 
 [dependencies]

@@ -1,0 +1,68 @@
+{
+  "graph": {
+    "legal_paths": [
+      [
+        "approach",
+        "market_street",
+        "central_avenue",
+        "old_town",
+        "departure"
+      ],
+      [
+        "approach",
+        "market_street",
+        "central_avenue",
+        "civic_avenue",
+        "departure"
+      ],
+      [
+        "approach",
+        "station_street",
+        "central_avenue",
+        "old_town",
+        "departure"
+      ],
+      [
+        "approach",
+        "station_street",
+        "central_avenue",
+        "civic_avenue",
+        "departure"
+      ]
+    ],
+    "branch_length_difference_fraction": [
+      0.0,
+      0.0
+    ],
+    "path_lengths_m": [
+      2464.395726869467,
+      2464.395726869467,
+      2464.395726869467,
+      2464.395726869467
+    ],
+    "connected_entry_exit": true,
+    "connected_city_street_network": true,
+    "cycles": false,
+    "plot_race_clearance_m": 6.2,
+    "blocks": 108,
+    "proposed_plots": 2992
+  },
+  "rejected_invalid_graphs": [
+    "dead_end",
+    "cycle",
+    "endpoint",
+    "plot_in_road"
+  ],
+  "deterministic_output_sha256": {
+    "LAYOUT.json": "2b613a4b75c191043f7bd1e47bdb66a6944a38ba2d1e238973d528ac97fadbee",
+    "city-masterplan.png": "27450e70cd9198ebe18bb02e447a6039be574ada46b15352f3a5fb4492c62833",
+    "city-masterplan.svg": "9a4c2bf701ad6f8cb5516d6675b0cb0c86fce71a334a7c930cded3fdf609760a",
+    "race-routes.png": "68b09340a534594ede9af8700ca4fe52ae276e02fe8a0e5007269421031d82df",
+    "race-routes.svg": "9bb6eeb2da57f400d798effe2d18097f4422336ccc9aa3b360802db6cea93dd7",
+    "center-detail.png": "42bc0b2c99ed8fb91f52a648af2badee7bceef653a34dfc7a94cf053a8ab4499",
+    "center-detail.svg": "e9ca6e915eea41245123ce60f7f8d3453f2e09d69eb7875c951cb7cbb066267b",
+    "index.html": "05b484c8024b1d6f6a5e201c9a75107b4ce2f6589d447e95206366fae8f9577a"
+  },
+  "runtime_differences_from_58eeabb": [],
+  "limits": "Plan-only graph and plot checks. Not a playable map, complete junction/terrain audit or measured racing-time balance."
+}

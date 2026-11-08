@@ -19,6 +19,8 @@ pub enum RecoveryStage {
 }
 #[derive(Component, Default)]
 pub struct Recovery {
+    pub active_crash_behavior: bool,
+    pub stagger: Option<rr_core::crash_behavior::Stagger>,
     pub defer_allowed: bool,
     pub deferred: Option<crate::offscreen_crash::Deferred>,
     pub stage: RecoveryStage,
@@ -352,7 +354,13 @@ fn crash_with_response(
     rider.steering = default();
     rider.raw_steer = 0.0;
     let velocity = original.map_or(momentum + kick, |(rider, _)| rider);
-    let rider_origin = detached_origin(context, origin, rotation, owner, old_runner);
+    let continuous = recovery.active_crash_behavior && old_runner.is_none();
+    recovery.stagger = None;
+    let rider_origin = if continuous {
+        origin
+    } else {
+        detached_origin(context, origin, rotation, owner, old_runner)
+    };
     let separation_side = if (rider_origin - origin).dot(rotation * Vec3::X) < 0.0 {
         -1.0
     } else {
@@ -408,6 +416,26 @@ fn crash_with_response(
         ));
         wreck
     };
+    if continuous {
+        // ColliderDisabled does not exclude the hidden chassis from KCC casts.
+        // The new solid wreck replaces this mounted-only collision proxy.
+        commands.queue(move |world: &mut World| {
+            if let Some(collider) = world.entity_mut(owner).take::<Collider>() {
+                world
+                    .entity_mut(owner)
+                    .insert(crate::crash_behavior::DormantChassis(collider));
+            }
+        });
+        commands
+            .entity(owner)
+            .insert(crate::crash_behavior::ReleaseGrace {
+                wreck,
+                remaining: 0.65,
+            });
+        commands
+            .entity(wreck)
+            .insert(ActiveHooks::FILTER_CONTACT_PAIRS);
+    }
     // Collision entry has no artificial angular kick. Physical contacts may
     // subsequently tumble the bodies within their original joint constraints.
     for (i, body) in bodies.iter().enumerate() {
@@ -478,7 +506,10 @@ pub fn recover(
     context: ReadRapierContext,
     mut audio: MessageWriter<AudioCue>,
     layout: Option<Res<crate::world_gen::layout::WorldLayout>>,
-    city: Option<Res<crate::world_gen::city::GeneratedCity>>,
+    (city, metro_navigation): (
+        Option<Res<crate::world_gen::city::GeneratedCity>>,
+        Option<Res<crate::world_gen::metropolis::navigation::Navigation>>,
+    ),
 ) {
     if race.phase != Phase::Racing {
         return;
@@ -517,7 +548,7 @@ pub fn recover(
         let wreck_pose = *wreck_transform;
         let wreck_pos = wreck_pose.translation;
         let wreck_speed = wreck_velocity.map_or(0.0, |v| v.linvel.length());
-        let (_, road_rotation) = track.sample(rider.progress, rider.lane);
+        let (_, road_rotation) = track.sample_route(rider.route, rider.progress, rider.lane);
         match recovery.stage {
             RecoveryStage::Falling => {
                 let Some(torso) = recovery.torso else {
@@ -628,10 +659,19 @@ pub fn recover(
                 let previous_step = (recovery.walk_distance / (config.stride_length * 0.5)) as u32;
                 recovery.walk_distance += traveled;
                 recovery.previous_foot = Some(transform.translation);
-                let (before, _, _) = track.project(previous, rider.progress);
-                let (progress, lane, _) = track.project(transform.translation, rider.progress);
-                rider.gates.observe(
+                rider.route = track.choose_route(
+                    rider.route,
+                    rider.progress,
+                    transform.translation,
+                    rider.id == 0,
+                );
+                let (before, _, _) = track.project_route(rider.route, previous, rider.progress);
+                let (progress, lane, _) =
+                    track.project_route(rider.route, transform.translation, rider.progress);
+                let route = rider.route;
+                rider.gates.observe_route(
                     &track,
+                    route,
                     previous - Vec3::Y * 0.95,
                     transform.translation - Vec3::Y * 0.95,
                     before,
@@ -667,7 +707,7 @@ pub fn recover(
                             - 8.0
                 {
                     let distance = rider.progress.clamp(0.0, (track.length - 6.0).max(0.0));
-                    let (safe, rotation) = track.sample(distance, 0.0);
+                    let (safe, rotation) = track.sample_route(rider.route, distance, 0.0);
                     transform.translation = safe + Vec3::Y * 0.98;
                     transform.rotation = rotation;
                     recovery.previous_foot = Some(transform.translation);
@@ -683,13 +723,15 @@ pub fn recover(
                 let center = wreck_pose.translation + wreck_pose.rotation * Vec3::Y * 0.85;
                 let delta = (center - transform.translation).with_y(0.0);
                 let mut direction = delta.normalize_or_zero();
-                if !manual && (layout.is_some() || city.is_some()) {
+                if !manual && (layout.is_some() || city.is_some() || metro_navigation.is_some()) {
                     recovery.path_refresh -= dt;
                     if recovery.path_refresh <= 0.0
                         && (recovery.walk_goal.is_none_or(|p| p.distance(center) > 2.0)
                             || recovery.walk_path.is_empty())
                     {
-                        recovery.walk_path = if let Some(ref layout) = layout {
+                        recovery.walk_path = if let Some(ref metro) = metro_navigation {
+                            metro.route(&track, transform.translation, center)
+                        } else if let Some(ref layout) = layout {
                             crate::world_gen::navigation::route(
                                 layout,
                                 &track,
@@ -722,9 +764,9 @@ pub fn recover(
                         < track.terrain_height(transform.translation.x, transform.translation.z)
                             - 8.0;
                     if recovery.elapsed > config.rescue_after || below {
-                        let (d, _, _) = track.project(wreck_pos, rider.progress);
+                        let (d, _, _) = track.project_route(rider.route, wreck_pos, rider.progress);
                         let d = d.min(track.length - 6.0);
-                        let (p, q) = track.sample(d, 0.0);
+                        let (p, q) = track.sample_route(rider.route, d, 0.0);
                         transform.translation = p + Vec3::Y * 0.98 - q * Vec3::X * 2.0;
                         if let Some(ref mut c) = controller {
                             c.translation = Some(Vec3::ZERO);
@@ -824,7 +866,7 @@ pub fn recover(
             RecoveryStage::Mounting => {
                 let fraction = (recovery.elapsed / 0.75).min(1.0);
                 if let Ok((mut t, _, _, _)) = bodies.get_mut(wreck) {
-                    let (_, rotation) = track.sample(rider.progress, 0.0);
+                    let (_, rotation) = track.sample_route(rider.route, rider.progress, 0.0);
                     t.rotation = t.rotation.slerp(rotation, (dt * 8.0).min(1.0));
                     t.translation.y += (track.terrain_height(t.translation.x, t.translation.z)
                         + 0.13
@@ -843,7 +885,8 @@ pub fn recover(
                     }
                 }
                 if fraction >= 1.0 {
-                    let (progress, lane, _) = track.project(wreck_pos, rider.progress);
+                    let (progress, lane, _) =
+                        track.project_route(rider.route, wreck_pos, rider.progress);
                     rider.progress = progress;
                     rider.lane = lane;
                     rider.health = 100.0;
@@ -853,10 +896,11 @@ pub fn recover(
                     rider.crashed = 0.0;
                     rider.immunity = 1.0;
                     rider.impact_cooldown = 0.6;
-                    let (p, q) = track.sample(progress, lane);
+                    let (p, q) = track.sample_route(rider.route, progress, lane);
                     *root = Transform::from_translation(p).with_rotation(q);
                     *visibility = Visibility::Visible;
                     commands.entity(owner).remove::<ColliderDisabled>();
+                    crate::crash_behavior::restore_chassis(&mut commands, owner);
                     if let Some(runner) = recovery.runner {
                         commands.entity(runner).despawn();
                     }
@@ -957,9 +1001,10 @@ pub fn impacts(
         Query<&crate::vehicle::BikeState>,
         Query<&PreviousMotion>,
     ),
-    (obstacles, ground): (
+    (obstacles, ground, breakable): (
         Query<(), With<Obstacle>>,
         Query<(), With<crate::world::Ground>>,
+        Query<&crate::destruction::Breakable>,
     ),
     controllers: Query<(Entity, &KinematicCharacterControllerOutput)>,
     (mut audio, mut npc_hits): (
@@ -977,6 +1022,24 @@ pub fn impacts(
         })
         .collect();
     pairs.extend(swept.read().map(|c| (c.0, c.1)));
+    // A gentle initial touch can become a hard impact without a second Started
+    // event. Re-evaluate active rider/vehicle contacts using current pre-solver motion.
+    if let Ok(ctx) = context.single() {
+        for pair in ctx
+            .simulation
+            .contact_pairs(ctx.colliders, ctx.rigidbody_set)
+        {
+            if pair.has_any_active_contact()
+                && let (Some(a), Some(b)) = (pair.collider1(), pair.collider2())
+            {
+                let vehicle = |e| cars.contains(e) || cross_cars.contains(e);
+                if (riders.contains(a) && vehicle(b)) || (riders.contains(b) && vehicle(a)) {
+                    pairs.push((a, b));
+                }
+            }
+        }
+    }
+
     if race.phase != Phase::Racing {
         return;
     }
@@ -995,6 +1058,12 @@ pub fn impacts(
     let mut actions = Vec::new();
     for (a, b) in pairs {
         for (bike, other) in [(a, b), (b, a)] {
+            if breakable
+                .get(other)
+                .is_ok_and(|p| p.state.broken && p.profile.soft)
+            {
+                continue;
+            }
             let Ok((rider, recovery, _)) = riders.get(bike) else {
                 continue;
             };
@@ -1206,10 +1275,72 @@ pub fn impacts(
                     rr_core::contact::low_geometry(
                         lo.y,
                         hi.y,
-                        track.sample(rider.progress, rider.lane).0.y,
+                        track
+                            .sample_route(rider.route, rider.progress, rider.lane)
+                            .0
+                            .y,
                     )
                 });
-                if low {
+                if low && !cars.contains(other) && !cross_cars.contains(other) {
+                    continue;
+                }
+                // Use closing motion into the contacted surface, not total bike
+                // speed. A parking-speed touch or fast parallel scrape must not
+                // enter the crash path. Swept contacts may precede a manifold.
+                let mut normal = context
+                    .single()
+                    .ok()
+                    .and_then(|ctx| {
+                        let pair = ctx.contact_pair(bike, other)?;
+                        pair.manifolds().next().map(|m| {
+                            m.normal()
+                                * if pair.collider1() == Some(bike) {
+                                    1.0
+                                } else {
+                                    -1.0
+                                }
+                        })
+                    })
+                    .or_else(|| {
+                        let a = transforms.get(bike).ok()?;
+                        let sample = a.translation + Vec3::Y;
+                        let point = shapes.get(other).map_or(b.translation, |shape| {
+                            shape
+                                .project_point(b.translation, b.rotation, sample, false)
+                                .point
+                        });
+                        (point - sample).with_y(0.).try_normalize()
+                    })
+                    .unwrap_or(Vec3::ZERO);
+                let vehicle = cars.contains(other) || cross_cars.contains(other);
+                if vehicle && let Ok(a) = transforms.get(bike) {
+                    let direction = (b.translation - a.translation)
+                        .with_y(0.)
+                        .normalize_or_zero();
+                    normal = normal.with_y(0.).normalize_or_zero();
+                    if normal == Vec3::ZERO {
+                        normal = direction;
+                    }
+                    if normal == Vec3::ZERO {
+                        normal = (velocity - object_velocity).with_y(0.).normalize_or_zero();
+                    }
+                    if normal.dot(direction) < 0. {
+                        normal = -normal;
+                    }
+                }
+                let closing = (velocity - object_velocity).dot(normal).max(0.0);
+                if std::env::var_os("ROADDASH_TRACE_CONTACTS").is_some() {
+                    eprintln!(
+                        "vehicle-contact vehicle={vehicle} normal={normal:?} incoming={velocity:?} object={object_velocity:?} closing_mps={closing:.3} at={:?}",
+                        b.translation
+                    );
+                }
+
+                if !(if vehicle {
+                    rr_core::contact::vehicle_wipeout(closing)
+                } else {
+                    rr_core::contact::wipeout(rr_core::contact::Class::Tall, closing)
+                }) {
                     continue;
                 }
                 if original.as_ref().is_some_and(|p| p.0)

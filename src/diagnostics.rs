@@ -1,4 +1,5 @@
 //! Bounded local diagnostics. No telemetry is transmitted.
+mod perf;
 use crate::runtime::{SimSet, SimulationClock};
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
@@ -6,6 +7,10 @@ use std::{collections::VecDeque, time::Instant};
 #[derive(Resource)]
 pub struct Metrics {
     last_frame: Instant,
+    frame_start: Instant,
+    frame_gameplay_ms: f32,
+    frame_physics_ms: f32,
+    frame_fixed_steps: u64,
     fixed_start: Instant,
     physics_start: Instant,
     samples: VecDeque<f32>,
@@ -23,6 +28,10 @@ impl Default for Metrics {
     fn default() -> Self {
         Self {
             last_frame: Instant::now(),
+            frame_start: Instant::now(),
+            frame_gameplay_ms: 0.,
+            frame_physics_ms: 0.,
+            frame_fixed_steps: 0,
             fixed_start: Instant::now(),
             physics_start: Instant::now(),
             samples: VecDeque::with_capacity(240),
@@ -45,13 +54,16 @@ impl Metrics {
 }
 fn begin(mut metrics: ResMut<Metrics>) {
     metrics.fixed_start = Instant::now();
+    metrics.frame_fixed_steps += 1;
 }
 fn physics_begin(mut metrics: ResMut<Metrics>) {
     metrics.gameplay_ms = metrics.fixed_start.elapsed().as_secs_f32() * 1000.0;
+    metrics.frame_gameplay_ms += metrics.gameplay_ms;
     metrics.physics_start = Instant::now();
 }
 fn physics_end(mut metrics: ResMut<Metrics>) {
     metrics.physics_ms = metrics.physics_start.elapsed().as_secs_f32() * 1000.0;
+    metrics.frame_physics_ms += metrics.physics_ms;
 }
 #[derive(Component)]
 struct DebugOverlay;
@@ -142,10 +154,20 @@ fn frame(
     }
 }
 pub struct RoadDiagnosticsPlugin;
+fn frame_begin(mut metrics: ResMut<Metrics>) {
+    metrics.frame_start = Instant::now();
+    metrics.frame_gameplay_ms = 0.;
+    metrics.frame_physics_ms = 0.;
+    metrics.frame_fixed_steps = 0;
+}
 impl Plugin for RoadDiagnosticsPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<Metrics>()
-            .add_systems(FixedPreUpdate, begin)
+            .init_resource::<perf::PerfLog>()
+            .init_resource::<perf::RenderTimes>()
+            .add_systems(First, frame_begin)
+            .add_systems(Last, perf::sample)
+            .add_systems(FixedFirst, begin)
             .add_systems(
                 FixedUpdate,
                 physics_begin
@@ -159,6 +181,7 @@ impl Plugin for RoadDiagnosticsPlugin {
                     .before(SimSet::AfterPhysics),
             )
             .add_systems(Update, frame);
+        perf::install_render(app);
         #[cfg(feature = "devtools")]
         app.add_systems(Startup, setup);
     }

@@ -167,6 +167,7 @@ fn lods(
         &mut PropVisual,
         &mut SceneRoot,
         &mut Visibility,
+        Option<&crate::destruction::FrozenVisual>,
     )>,
     mut stats: ResMut<PropStats>,
     bindings: Query<(), With<ActorBinding>>,
@@ -176,13 +177,16 @@ fn lods(
     };
     stats.rendered = props.iter().count();
     stats.skins = bindings.iter().count();
-    for (transform, mut prop, mut scene, mut visible) in &mut props {
+    for (transform, mut prop, mut scene, mut visible, frozen) in &mut props {
         let distance = transform.translation().distance(camera.translation());
         *visible = if distance > 500.0 {
             Visibility::Hidden
         } else {
             Visibility::Inherited
         };
+        if frozen.is_some() {
+            continue;
+        }
         let next = if distance < 32.0 {
             0
         } else if distance < 95.0 {

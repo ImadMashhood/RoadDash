@@ -1,0 +1,15 @@
+SIDEWALK-01 local verification — 2026-11-07
+cargo fmt --all --check: PASS
+cargo clippy --workspace --locked --all-targets -- -D warnings: PASS
+cargo test --workspace --locked: PASS (281 passed / 1 existing ignored / 0 failed)
+cargo build --locked: PASS
+Existing authoring venv: python tools/test_metropolis_streetscape.py: PASS (2 tests)
+Full compiler rebake: byte-identical (rebake.json)
+Previous manifest comparison: buildings, routes, fields, streets, junctions, bounds, source hash, spawns, checkpoints and farm approach widths unchanged
+Native --metro-survey: PASS, 730 furniture owners and2993 resident chunks
+Native west/east --smoke-test with retry fixture: PASS farm/city crash, get-up/run/mount, authored15-racer grid restart, audio, results fixture
+Provenance audit: PASS 519 dependency declarations / 77 runtime records
+Roadmap: PASS5 tests / synchronized progress
+Whitespace: git diff --check and staged --check PASS
+Bounded survey dev sample1440x900 RTX3080 Vulkan: average17.91ms / p9518.36ms; FAIL16.7ms target
+No full-course/manual/hardware/art or production performance acceptance claimed
