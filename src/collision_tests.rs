@@ -808,3 +808,259 @@ fn parking_speed_vehicle_contacts_never_trigger_scripted_wipeouts() {
         assert_eq!(app.world().get::<Rider>(owner).unwrap().health, 100.);
     }
 }
+
+#[test]
+fn vehicle_observations_preserve_both_world_velocities_and_collider_heights() {
+    for (direction, kind, closing_kmh) in [
+        (1., rr_core::contact::VehicleApproach::Rear, 40.),
+        (-1., rr_core::contact::VehicleApproach::Oncoming, 160.),
+    ] {
+        for height in [1.2, 2.5] {
+            let mut app = game::tests::simulation();
+            for _ in 0..3 {
+                app.update();
+            }
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let t = *app.world().get::<Transform>(owner).unwrap();
+            let forward = t.rotation * Vec3::Z;
+            let incoming = forward * (100. / 3.6);
+            {
+                let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                r.immunity = 0.;
+                r.motion_velocity = incoming;
+                r.speed = incoming.length();
+            }
+            app.world_mut().entity_mut(owner).insert(BikeState {
+                impact_velocity: incoming,
+                ..default()
+            });
+            let object = app
+                .world_mut()
+                .spawn((
+                    Traffic {
+                        route: 0,
+                        progress: 500.,
+                        lane: 0.,
+                        speed: direction * 60. / 3.6,
+                    },
+                    Transform::from_translation(t.translation + forward * 10.).with_rotation(
+                        t.rotation
+                            * Quat::from_rotation_y(if direction < 0. {
+                                std::f32::consts::PI
+                            } else {
+                                0.
+                            }),
+                    ),
+                    Collider::cuboid(1., height / 2., 2.),
+                ))
+                .id();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut()
+                .write_message(recovery::SweptContact(owner, object));
+            app.update();
+            let observations = app
+                .world()
+                .resource::<crate::contact_telemetry::VehicleContacts>();
+            let sample = observations.0.back().unwrap();
+            assert_eq!(sample.rider, owner);
+            assert_eq!(sample.object, object);
+            assert!(sample.incoming.distance(incoming) < 0.001);
+            assert!(
+                sample
+                    .object_velocity
+                    .distance(forward * (direction * 60. / 3.6))
+                    < 0.001
+            );
+            assert_eq!(sample.approach, kind);
+            assert!(
+                (sample.closing_mps * 3.6 - closing_kmh).abs() < 0.01,
+                "{sample:?}"
+            );
+            assert!((sample.object_height_m.unwrap() - height).abs() < 0.001);
+            assert!(sample.crash);
+        }
+    }
+}
+
+#[test]
+fn solid_contacts_interrupt_both_stagger_phases_without_launch_or_baseline_change() {
+    for active in [false, true] {
+        for side in [-1., 1.] {
+            for age in [0.1, 0.4] {
+                let mut app = game::tests::simulation();
+                app.world_mut()
+                    .resource_mut::<crate::biomechanics::Settings>()
+                    .enabled = active;
+                for _ in 0..3 {
+                    app.update();
+                }
+                let owner = app
+                    .world_mut()
+                    .query_filtered::<Entity, With<Rider>>()
+                    .single(app.world())
+                    .unwrap();
+                let t = *app.world().get::<Transform>(owner).unwrap();
+                let incoming = t.rotation * Vec3::Z * 3.;
+                {
+                    let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                    r.immunity = 0.;
+                    r.speed = 3.;
+                    r.motion_velocity = incoming;
+                }
+                app.world_mut().entity_mut(owner).insert(BikeState {
+                    impact_velocity: incoming,
+                    ..default()
+                });
+                if active {
+                    let mut stagger = rr_core::crash_behavior::Stagger::new(side);
+                    stagger.age = age;
+                    app.world_mut().get_mut::<Recovery>(owner).unwrap().stagger = Some(stagger);
+                }
+                let wall = app
+                    .world_mut()
+                    .spawn((
+                        crate::world::Obstacle,
+                        Collider::cuboid(10., 2., 0.1),
+                        Transform::from_translation(
+                            t.translation + t.rotation * Vec3::Z * 4. + Vec3::Y,
+                        )
+                        .with_rotation(t.rotation),
+                    ))
+                    .id();
+                app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+                app.init_resource::<Entry>().add_systems(
+                    FixedUpdate,
+                    capture_entry
+                        .after(SimSet::Gameplay)
+                        .before(PhysicsSet::SyncBackend),
+                );
+                app.world_mut()
+                    .write_message(recovery::SweptContact(owner, wall));
+                app.update();
+                let rec = app.world().get::<Recovery>(owner).unwrap();
+                assert_eq!(
+                    rec.stage,
+                    if active {
+                        RecoveryStage::Falling
+                    } else {
+                        RecoveryStage::Riding
+                    }
+                );
+                if active {
+                    assert!(rec.stagger.is_none());
+                    let entry = &app.world().resource::<Entry>().0;
+                    assert!(!entry.is_empty());
+                    for v in entry {
+                        assert!(v.linvel.distance(incoming) < 0.001, "{v:?}");
+                    }
+                }
+            }
+        }
+    }
+}
+
+/// Reproducible comparison evidence, not a guarantee of vault clearance. The
+/// production traffic proxy is a solid box: test it rather than a ramp that
+/// would silently make the experiment easier than the game.
+#[test]
+fn measured_solid_car_height_trajectories_keep_passive_control_and_finite_recovery() {
+    for active in [false, true] {
+        for height in [1.2, 2.5] {
+            for car_kmh in [0., 60., -60.] {
+                let mut app = game::tests::simulation();
+                app.world_mut()
+                    .resource_mut::<crate::biomechanics::Settings>()
+                    .enabled = active;
+                for _ in 0..3 {
+                    app.update();
+                }
+                app.insert_resource(VehiclePhysicsAdapter::Dynamic);
+                app.update();
+                app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+                let owner = app
+                    .world_mut()
+                    .query_filtered::<Entity, With<Rider>>()
+                    .single(app.world())
+                    .unwrap();
+                let t = *app.world().get::<Transform>(owner).unwrap();
+                let forward = (t.rotation * Vec3::Z).with_y(0.).normalize();
+                {
+                    let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                    r.immunity = 0.;
+                    r.speed = 100. / 3.6;
+                    r.motion_velocity = forward * (100. / 3.6);
+                }
+                app.world_mut().get_mut::<Velocity>(owner).unwrap().linvel = forward * (100. / 3.6);
+                let r = app.world().get::<Rider>(owner).unwrap();
+                let (progress, lane) = (r.progress + 5., r.lane);
+                let (p, q) = app
+                    .world()
+                    .resource::<crate::track::Track>()
+                    .sample(progress, lane);
+                let object = app
+                    .world_mut()
+                    .spawn((
+                        Traffic {
+                            route: 0,
+                            progress,
+                            lane,
+                            speed: car_kmh / 3.6,
+                        },
+                        Transform::from_translation(p).with_rotation(q),
+                        RigidBody::KinematicPositionBased,
+                        Collider::compound(vec![(
+                            Vec3::Y * (height / 2.),
+                            Quat::IDENTITY,
+                            Collider::cuboid(0.95, height / 2., 1.95),
+                        )]),
+                        ActiveEvents::COLLISION_EVENTS,
+                        ActiveCollisionTypes::all(),
+                    ))
+                    .id();
+                let mut detached = false;
+                let mut max_height = f32::NEG_INFINITY;
+                let mut max_pitch = 0.0_f32;
+                let mut cleared_front_above_roof = false;
+                let mut previous_longitudinal = f32::NEG_INFINITY;
+                for _ in 0..180 {
+                    app.update();
+                    let rec = app.world().get::<Recovery>(owner).unwrap();
+                    if let Some(torso) = rec.torso {
+                        detached = true;
+                        let pose = app.world().get::<Transform>(torso).unwrap();
+                        let velocity = app.world().get::<Velocity>(torso).unwrap();
+                        assert!(pose.translation.is_finite() && pose.rotation.is_finite());
+                        assert!(velocity.linvel.is_finite() && velocity.angvel.is_finite());
+                        let car = app.world().get::<Transform>(object).unwrap();
+                        let relative = pose.translation - car.translation;
+                        max_height = max_height.max(relative.y);
+                        let up = pose.rotation * Vec3::Y;
+                        max_pitch = max_pitch.max(up.dot(forward).abs().clamp(0., 1.).asin());
+                        let longitudinal = relative.dot(forward);
+                        // Count only crossing the forward face above the solid
+                        // roof while still inside its lateral footprint.
+                        if previous_longitudinal <= 1.95
+                            && longitudinal > 1.95
+                            && relative.dot(q * Vec3::X).abs() < 0.95
+                            && relative.y > height + 0.2
+                        {
+                            cleared_front_above_roof = true;
+                        }
+                        previous_longitudinal = longitudinal;
+                    }
+                }
+                assert!(
+                    detached,
+                    "no actual contact active={active} height={height} car={car_kmh}"
+                );
+                println!(
+                    "CAR_HEIGHT_TRAJECTORY active={active} rider_kmh=100 car_kmh={car_kmh} solid_height_m={height} max_torso_height_m={max_height:.4} max_torso_pitch_rad={max_pitch:.4} cleared_front_above_roof={cleared_front_above_roof} duration_ticks=180"
+                );
+            }
+        }
+    }
+}

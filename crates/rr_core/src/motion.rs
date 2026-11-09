@@ -100,3 +100,42 @@ mod tests {
         assert!((reference_velocity(42.51) - 9501).abs() < 5);
     }
 }
+
+/// Shared visual/gameplay attack clock. Contact occurs at an explicitly identified authored key.
+/// Advancing this clock is an authoritative fixed-tick operation; rendering only samples it.
+pub const ATTACK_ENTER: f32 = 0.055;
+pub const ATTACK_PLAYBACK: f32 = 1.8;
+#[derive(Clone, Copy, Debug)]
+pub struct StrikeClock {
+    pub age: f32,
+    pub contact: f32,
+    pub side: f32,
+    pub action: crate::AttackSide,
+    pub weapon: Option<crate::weapons::Ability>,
+    fired: bool,
+}
+impl StrikeClock {
+    pub fn new(action: crate::AttackSide, side: f32, source_contact: f32) -> Self {
+        Self {
+            age: 0.0,
+            contact: ATTACK_ENTER + source_contact / ATTACK_PLAYBACK,
+            side,
+            action,
+            weapon: None,
+            fired: false,
+        }
+    }
+    pub fn pending(self) -> bool {
+        !self.fired
+    }
+    /// Returns true exactly once, including when a coarse tick crosses contact.
+    pub fn advance(&mut self, dt: f32) -> bool {
+        self.age += dt.max(0.0);
+        if !self.fired && self.age >= self.contact {
+            self.fired = true;
+            true
+        } else {
+            false
+        }
+    }
+}

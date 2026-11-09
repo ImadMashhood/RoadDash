@@ -160,9 +160,9 @@ impl TrackDef {
             if !ids.insert(spawn.id.as_str())
                 || !spawn.distance.is_finite()
                 || !spawn.lane.is_finite()
-                || spawn.lane.abs() > 4.0
+                || spawn.lane.abs() + 0.6 > self.control_points[0].half_width
                 || spawn.distance > 0.0
-                || spawn.distance < -250.0
+                || spawn.distance < -340.0
             {
                 return Err("invalid grid spawn".into());
             }

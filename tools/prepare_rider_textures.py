@@ -18,7 +18,7 @@ for descriptor in model['images']:
     if name == 'Rider_BaseColor':
         im = Image.open(io.BytesIO(data)).convert('RGB')
         pixels = im.get_flattened_data() if hasattr(im, 'get_flattened_data') else im.getdata()
-        im.putdata([(min(255, int(r*1.4)),)*3 if r > g*1.6 and r > b*1.15 else (r,g,b) for r,g,b in pixels])
+        im.putdata([(min(255, int(r*2.6)),)*3 if r > g*1.6 and r > b*1.15 else (r,g,b) for r,g,b in pixels])
         im.save(ROOT/'assets/textures/rider-base.png')
     elif name in ['Rider_Normal', 'Rider_Roughness']:
         suffix = 'normal' if name == 'Rider_Normal' else 'roughness'

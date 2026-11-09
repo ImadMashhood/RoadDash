@@ -1,0 +1,58 @@
+[
+  {
+    "id": "splash",
+    "path": "assets/ui/splash.png",
+    "source": "docs/ui/generated/candidates/splash-gritty-v1.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2d297ecb1acfcd9eca6a34b908818ee120a8a0a0401975ac6d797902ae9d4dbd"
+  },
+  {
+    "id": "main",
+    "path": "assets/ui/main.png",
+    "source": "docs/ui/generated/candidates/main-gritty-v1.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "3bdc24b9a53167c95a7a47c9533e0a3327fe4f745836f3740d476e2f29f897fc"
+  },
+  {
+    "id": "street",
+    "path": "assets/ui/street.png",
+    "source": "docs/ui/generated/candidates/hub-gritty-v1.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "aff88f075970ab981cdbd1be886d8a4581a59d11f87da5f80525a90b26996012"
+  },
+  {
+    "id": "garage",
+    "path": "assets/ui/garage.png",
+    "source": "docs/ui/generated/candidates/garage-gritty-v1.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ff653a50d9d764df9bb762a69934641bbb7d1976333c8fbc51b589d8feda415b"
+  },
+  {
+    "id": "bar",
+    "path": "assets/ui/bar.png",
+    "source": "docs/ui/generated/candidates/hangout-gritty-v1.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "17966d6f59a4f4f61b81ad463e706b03a37d497be1570aa784f581d4825961ae"
+  },
+  {
+    "id": "course",
+    "path": "assets/ui/course.png",
+    "source": "/home/imad/.codex/generated_images/01a18e51-30d0-7601-80be-e825c9f7e673/exec-67f9ed2c-7756-40b2-80d2-4e46036aac91.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "88d2d938facf53bd49b0736d986e4a95232b2628cda82ddbadc5cdba36852420"
+  },
+  {
+    "id": "rider",
+    "path": "assets/ui/rider.png",
+    "source": "/home/imad/.codex/generated_images/01a18e51-30d0-7601-80be-e825c9f7e673/exec-a8feb9e1-6a81-4620-8ff6-ba8ba86b7a08.png",
+    "width": 1672,
+    "height": 941,
+    "sha256": "e94f5ed99fcc9b3fcb2761f3a144a877c3c10e70d3bdeaeeb94a756201ba1dfe"
+  }
+]

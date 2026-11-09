@@ -6,6 +6,8 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RACE-SETUP-01",
+        "ANIM-15",
         "RECOVERY-01",
         "REVERSE-01",
         "ANIM-14",
@@ -209,7 +211,13 @@
         "RAG-08",
         "COLLISION-05",
         "DISTRICT-01",
-        "CITYGEN-01"
+        "CITYGEN-01",
+        "P05-003",
+        "P08-006",
+        "UI-01",
+        "UI-03",
+        "UI-04",
+        "RIVAL-WEAPONS-01"
       ]
     },
     "01": {
@@ -262,7 +270,8 @@
         "ANIM-06",
         "P11-003",
         "P11-006",
-        "ARCH-006"
+        "ARCH-006",
+        "ANIM-16"
       ]
     },
     "03": {
@@ -371,7 +380,6 @@
         "V2-07-004",
         "ARCH-004",
         "RIGHTS-011",
-        "P05-003",
         "P05-004",
         "P05-005",
         "P05-007",
@@ -389,7 +397,6 @@
         "V2-08-006",
         "RIGHTS-014",
         "P08-004",
-        "P08-006",
         "P08-009"
       ]
     },
@@ -416,7 +423,8 @@
         "P07-008",
         "P07-009",
         "P08-003",
-        "P08-008"
+        "P08-008",
+        "P09-AUTO-01"
       ]
     },
     "10": {
@@ -486,6 +494,7 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "UI-02",
         "P15-003",
         "P15-004",
         "P15-005",
@@ -505,7 +514,8 @@
         "AUDIO-010",
         "AUDIO-011",
         "AUDIO-012",
-        "AUDIO-013"
+        "AUDIO-013",
+        "UI-05"
       ]
     },
     "16": {

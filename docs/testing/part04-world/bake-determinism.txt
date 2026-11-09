@@ -1,0 +1,7 @@
+{
+  "buildings": 19068,
+  "surface_patches": 36568,
+  "manifest_bytes": 9646343,
+  "facade_bytes": 3535488
+}
+BYTE-IDENTICAL REBAKE: {'content/world/metropolis.json': '78f14cf2edd7c29e6a31d39e8dd6d766df8c63d347c235db077315ceb84e7cd6', 'assets/metropolis/facades.rgba': 'd0ac1be7634c82a5662cffc39e4378069f878073727a7df9b72747028e28f118', 'assets/metropolis/PROVENANCE.json': '47d7e7b890a72031ac22e0eebd16ba139d7b8bf1c6d55460ba12029e821f564b'}

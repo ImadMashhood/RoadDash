@@ -1,0 +1,29 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 5.87s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 7 tests
+test police::tests::police_cannot_finish_or_enter_fifteen_racer_payout ... ok
+
+thread 'police::tests::same_tick_third_contact_interrupts_officer_arrest_authority' (2161626) panicked at src/police.rs:735:9:
+assertion failed: rec.stage == RecoveryStage::Falling || rec.stagger.is_some()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test police::tests::opposite_motion_and_one_tick_wall_or_support_break_reset_arrest ... ok
+test police::tests::same_tick_third_contact_interrupts_officer_arrest_authority ... FAILED
+test police::fairness_tests::confirmed_assault_must_be_witnessed_at_contact_not_after_arrival ... ok
+test police::tests::real_pause_restart_and_valid_finish_take_priority_over_threshold_arrest ... ok
+test police::tests::integrated_los_and_falling_prevent_arrest_and_loss_allows_escape ... ok
+
+thread 'police::tests::integrated_arrest_has_no_payout_or_best_time_and_retry_preserves_noncompetitor' (2161621) panicked at src/police.rs:568:9:
+mind=Mind { state: Pursue, warning: 0.0, unseen: 0.0, search: 0.0, arrest: 0.0 }, cop=Riding, intentional=false, position=Vec3(153.6081, 5.9604645e-8, 285.2306)
+test police::tests::integrated_arrest_has_no_payout_or_best_time_and_retry_preserves_noncompetitor ... FAILED
+
+failures:
+
+failures:
+    police::tests::integrated_arrest_has_no_payout_or_best_time_and_retry_preserves_noncompetitor
+    police::tests::same_tick_third_contact_interrupts_officer_arrest_authority
+
+test result: FAILED. 5 passed; 2 failed; 0 ignored; 0 measured; 243 filtered out; finished in 1.51s
+
+error: test failed, to rerun pass `--lib`

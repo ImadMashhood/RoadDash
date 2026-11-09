@@ -22,12 +22,14 @@ pub struct Tuning {
     pub presets: Vec<Handling>,
     pub selected: usize,
     pub assist: f32,
+    pub player_nitro_enabled: bool,
 }
 impl Tuning {
     pub fn from_json(json: &str) -> Result<Self, String> {
         let data = rr_content::handling::HandlingCatalog::from_json(json)?;
         let assist = data.presets[1].road_assist;
         Ok(Self {
+            player_nitro_enabled: data.player_nitro_enabled,
             presets: data.presets,
             selected: 1,
             assist,
@@ -202,7 +204,8 @@ pub fn forces(
         let at_end = !track.definition.closed && r.progress >= track.length - 0.1;
         let throttle = input.throttle && !at_end;
         let brake = input.brake || at_end;
-        let nitro = input.nitro && throttle && r.nitro > 0.5;
+        let nitro =
+            (!player || tuning.player_nitro_enabled) && input.nitro && throttle && r.nitro > 0.5;
         let steer = input.steer;
         state.raw_steer = if r.id == 0 { r.raw_steer } else { steer };
         let mut normal = Vec3::ZERO;

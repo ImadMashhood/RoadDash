@@ -943,3 +943,161 @@ source footprints/paths stay unchanged. No new original-game research/parity cla
 
 Actual incorporation is linked library code via Rapier's feature, not adapted
 source or downloaded media. ADR076 records rollback and unchanged physical tuning.
+
+### R08 follow-up — glove morph/skinning API (2026-11-08)
+
+Inspected the installed v0.17.3 /706fdd9800c4bf335d67f127ff6e5a93deadabb9
+bevy_mesh/src/morph.rs, bevy_gltf loader and bevy_pbr/render/morph.wgsl. Native
+MorphTargetImage/MeshMorphWeights support simultaneous GPU morphs and skinning,
+including position/normal/tangent differences. Retain DEPENDENCY classification,
+existing MIT OR Apache-2.0 notices and exact version; no examples/source/media
+copied. Use four shared glove targets, isolate their surface and keep render
+transforms independent from physics. Known costs: an extra surface per actor,
+morph textures and shader work; this is not an unmeasured performance win.
+The upstream license/source URLs and reuse boundaries remain R08 above. No new
+repository or dependency adopted; ADR078 documents the decision and rollback.
+
+### 2026-11-08 Part02 static hand authoring follow-up
+
+Reused the existing external Blender4.5.9 LTS build8bf95cbd38d1 documented above.
+Actual .blend load, original glove edge subdivision, four morph targets and typed
+socket export/import were exercised. Original Python/mathutils adapters are local
+project work; no Blender/add-on source or bundled artwork copied. This is a GPL
+external authoring tool, not a new shipped game dependency. Existing rider/bike
+MIT source provenance is unchanged; local retail references remain outside the
+repository. No new external repository/character/animation adopted. See ADR080
+and testing/part02-authoring/README.md for exact limits and source hashes.
+
+### Part04 district palette follow-up — 2026-11-08
+
+No additional external repositories or media investigated/adopted. Reviewed local
+original storey_kit/MANIFEST.json, far_facades/MANIFEST.json and approved planning
+LAYOUT.json for facade types/source-band identities and district roles. Retain
+installed Bevy0.17.3/Rapier0.32.0 and existing projectMIT source/assets; new palette
+and derivative atlas provenance appear in ASSETS.csv and assets/metropolis/
+PROVENANCE.json. This is declaration/hash evidence, not independent rights clearance.
+
+## 2026-11-08 Part05 furniture pass
+
+No external repository or media was investigated or imported. Reused only the
+existing local original prop draft GLBs and their semantic component names.
+Twelve small damage derivatives and their recipe/manifest have explicit MIT
+provenance rows in ASSETS.csv; source/output hashes are in the manifest.
+Permission to ship extracted historical references is not implied. See
+../testing/part05-props/README.md for verification and remaining art gates.
+
+## R01 Part07 follow-up — 2026-11-08
+
+Parent and fresh Part07 worker inspected the clean local pinned snapshot
+`7aecf6044f2dd773b925b325823f30d648d61c89` (commit date 2026-10-31) of
+https://github.com/arkits/road-rash, `/tmp/roadrash-reference-review`.
+Classification: **REFERENCE ONLY**; root project license/reuse permission
+**UNKNOWN / UNVERIFIED**. No root LICENSE/COPYING or README license was found;
+third-party notices do not license the game implementation or retail media.
+This is an inspected version, not a claim about latest upstream maintenance.
+
+Actual files: `src/actor_animation.cpp/.hpp`, `src/race.cpp` (`ai_start_attack`
+~2917, `fight_hit_frame` ~4026, `fight_reach` ~4039, `resolve_hit` ~4051),
+`src/race.hpp` (`weapon_reach`). Observations: side/forehand/backhand/weapon
+selection is distinct; a per-attacker fired latch prevents repeated contact;
+descriptor combat flags or logical frame2 permit contact; lateral side,
+longitudinal/height proximity and weapon-dependent reach constrain it. Relative
+entries fists5/club7/chain8/kick5 are original fixed-point units, **not metres**.
+Exact descriptor/EXE timing and numerical parity are uncalibrated. Existing
+project-authored club poses2160–2162/2170–2172 have source-context links; those
+links are documentary and are not runtime retail images.
+
+Decision: independently authored Rust rules, original three-part procedural
+training club and the existing original 3D pose authoring; no C++ source, retail
+sprite/texture, asset, dependency or executable imported. SDL/C++ architecture is
+not a compatible Bevy dependency. No upstream adoption, compatibility migration,
+license clearance or provenance inference from a public repository. Full chain,
+steal/backhand/arsenal behavior remains deferred in Part07.
+
+## R01 Part08 police follow-up — 2026-11-08
+
+Inspected clean local `arkits/road-rash` checkout, pinned
+`7aecf6044f2dd773b925b325823f30d648d61c89` (commit timestamp
+2026-10-31T14:36:14-07:00), especially `src/police.cpp`, police constructor /
+think/find-cop paths in `src/race.cpp`, noncompetitor flags in `src/race.hpp`
+and busted career outcomes in `src/career.cpp`. Research covers one-cop budget,
+periodic spawn, configurable chase relationships, moving/walking target identity
+and proximity/speed-dependent bust. Its snap/ring-window behavior is excluded.
+RoadDash independently implements resident patrol, authored warning/LOS/loss and
+safe dwell; no thresholds/formulas/source/media are copied. The local source is
+reconstruction evidence; no retail native police playthrough or parity claim.
+Root implementation reuse permission remains UNVERIFIED; third-party dependency
+notices do not license the game. REFERENCE ONLY. See
+[Part08 research](../testing/part08-police/RESEARCH.md) for exact inspected scope,
+authored differences and original draft art/audio provenance. No new repository,
+third-party dependency or proprietary media is adopted.
+
+### R01 rider palette follow-up — 2026-11-08
+
+REFERENCE ONLY: arkits/road-rash, author arkits, pinned local commit
+7aecf6044f2dd773b925b325823f30d648d61c89. Inspected src/bob.cpp,
+src/rider_sprites.cpp and src/race.cpp set_player_bike to distinguish fifteen
+remaps from player-selection-dependent slot swaps. Compared all fifteen local
+upright rider schemes from the user's previously supplied install; reference
+pixels/remap tables remain outside Git/runtime. Independently adjusted existing
+project-original RGB swatches/neutral leather gain; no source, retail texture,
+executable, palette table or third-party dependency incorporated.
+Source: https://github.com/arkits/road-rash/tree/7aecf6044f2dd773b925b325823f30d648d61c89 .
+Root reuse license remains UNVERIFIED (no verified root license; not licensed by
+third-party notices). C++/SDL is not a Bevy/Rapier dependency; no compatibility
+migration. Local snapshot is not a current maintenance assessment. Exact retail
+PBR appearance and all career/character slot-swapping remain unclaimed. Decision:
+study the color schemes only; preserve the existing stable fifteen-slot roster.
+
+### R01 UI and frontend catalog follow-up — 2026-11-08
+
+REFERENCE ONLY: arkits/road-rash, author arkits, pinned local commit
+7aecf6044f2dd773b925b325823f30d648d61c89.
+https://github.com/arkits/road-rash/tree/7aecf6044f2dd773b925b325823f30d648d61c89 .
+Inspected frontend.cpp/.hpp, career.hpp, rri.cpp/.hpp, hud.cpp, bob/viewer,
+pe_strings, native_screens and original-course naming in course.hpp. Studied
+stored screen/item/popups, dynamic handler boundaries, source-image composition,
+15bike/8character names, dashboard strides, font roles and separation from later
+native/online additions. Independently read supplied local PE/image/media files.
+No C++ implementation or retail media is incorporated into RoadDash. Format
+facts inform project-original Python readers and a separate HTML authoring desk.
+
+Root reuse license remains UNVERIFIED: no verified project-wide license at this
+snapshot; third-party notices do not grant game-source rights. No claim of asset
+permission, current maintenance, complete retail execution or behavioral parity.
+C++/SDL UI is not a compatible Bevy0.17.3/Rapier0.32.0 dependency; direct adoption
+rejected in favor of independent metadata/skeleton. No library migration. Local
+reference images/captions/video frames remain external; font/media/executable
+binaries are not bundled. Actual reuse:0source/0production media. Research,
+source fingerprints, counts and limits:ui/README.md and ADR088.
+
+Supporting primary format documentation (not a GitHub dependency): Microsoft
+DLGTEMPLATE / DLGITEMTEMPLATE and their extended variants, inspected2026-11-08.
+https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-dlgtemplate
+https://learn.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-dlgitemtemplate
+https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgtemplateex
+https://learn.microsoft.com/en-us/windows/win32/dlgbox/dlgitemtemplateex
+Used only as file-format documentation; no implementation source or assets copied.
+
+### R05 / R10 installed-source performance review — 2026-11-08 (ADR089)
+
+Inspected the already pinned Bevy0.17.3 visibility range extraction and
+bevy_rapier3d0.32.0 / its locked Rapier0.31.0 sync/writeback, query-filter and
+narrow-phase APIs from the local Cargo registry. Existing DEPENDENCY status,
+license entries and upstream URLs above remain unchanged; no new repository or
+library adopted and no source copied. Bevy rebuilds extracted visibility-range
+metadata when ranges change; avoid redundant static inputs and share the settled
+range. Rapier query filters explicitly classify unattached colliders as fixed;
+use them for immutable geometry, retain dynamic/kinematic/breakable bodies and
+verify real contact/support parity. Batch building collision by semantic role,
+not its render material, with exact triangle-soup checks. A contact-graph pair is
+not necessarily an active collision: report manifolds/awake bodies separately.
+No default substep, solver, rig, engine or dependency-version changes. Thread-count
+experiments did not establish a general improvement, so retain the existing
+parallel feature and default pool selection. Native evidence and broad limits:
+`docs/testing/performance-ui-prompts/`.
+
+## R01/R08 frontend follow-up — 2026-11-08
+
+- R01: https://github.com/arkits/road-rash (arkits), exact local commit 7aecf6044f2dd773b925b325823f30d648d61c89. Inspected src/frontend.cpp enter(), screen table relationships, character return, and original source-bound UI catalog. Thrash course page and Big Game character/street/shop/bar relationships informed independent navigation. Root reuse license remains unverified; REFERENCE ONLY, no C++ copied, no original media bundled. Original media retains separate restrictions. C++/SDL is not a Bevy-compatible dependency; reconstruction parity is not proof of every original runtime handler. Maintenance only assessed at this pinned snapshot; no new remote freshness claim.
+- R08: https://github.com/bevyengine/bevy at installed 0.17.3, examples/ui/button.rs, ui_scaling.rs and bevy_ui ImageNode/IsDefaultUiCamera APIs. Existing DEPENDENCY retained, MIT OR Apache-2.0 (https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT). No source copied or media adopted. APIs used for original image/button/text/camera systems; no version migration.

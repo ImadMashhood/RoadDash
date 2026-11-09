@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "suite": "entry",
+  "seed": 1234,
+  "binary_sha256": "dd9fd716c94005b346628038f8b69d3760dac5adfffcca528d482fade62a315e",
+  "scenarios": [
+    {
+      "name": "entry",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+        "--frontend-smoke"
+      ],
+      "passed": true,
+      "exit_code": 0,
+      "native_report": "entry/screenshots/frontend-report.json",
+      "wall_seconds": 23.643
+    }
+  ],
+  "limits": "Scripted fixture checks only. No human play sessions, full race completion, fun targets or 60 FPS certification.",
+  "passed": true
+}

@@ -1,0 +1,120 @@
+{
+  "profile": {
+    "samples": 17,
+    "window_medians_ms": {
+      "wall_average_ms": 17.795,
+      "wall_p95_ms": 21.993,
+      "main_world_ms_per_frame": 16.994,
+      "last_render_extract_ms": 0.796,
+      "last_render_schedule_ms": 7.547,
+      "fixed_gameplay_ms_per_frame": 1.175,
+      "physics_ms_per_frame": 9.288,
+      "physics_sync_ms_per_frame": 1.498,
+      "physics_step_ms_per_frame": 7.102,
+      "physics_writeback_ms_per_frame": 0.793
+    },
+    "weighted_fixed_step_ms": {
+      "fixed_gameplay_ms_per_fixed_step": 1.1493613352594167,
+      "physics_ms_per_fixed_step": 10.112718600812165,
+      "physics_sync_ms_per_fixed_step": 1.4552187812069188,
+      "physics_step_ms_per_fixed_step": 7.896192153640415,
+      "physics_writeback_ms_per_fixed_step": 0.7611529992974323
+    },
+    "catchup": 1.0
+  },
+  "two-workers": {
+    "samples": 16,
+    "window_medians_ms": {
+      "wall_average_ms": 17.557,
+      "wall_p95_ms": 21.199,
+      "main_world_ms_per_frame": 16.801,
+      "last_render_extract_ms": 0.65,
+      "last_render_schedule_ms": 6.979,
+      "fixed_gameplay_ms_per_frame": 1.221,
+      "physics_ms_per_frame": 9.014,
+      "physics_sync_ms_per_frame": 1.549,
+      "physics_step_ms_per_frame": 6.669,
+      "physics_writeback_ms_per_frame": 0.804
+    },
+    "weighted_fixed_step_ms": {
+      "fixed_gameplay_ms_per_fixed_step": 1.1715647428240996,
+      "physics_ms_per_fixed_step": 9.200081863150691,
+      "physics_sync_ms_per_fixed_step": 1.4962904692748789,
+      "physics_step_ms_per_fixed_step": 6.940183094268866,
+      "physics_writeback_ms_per_fixed_step": 0.763472140361668
+    },
+    "catchup": 1.0
+  },
+  "paired-before": {
+    "samples": 16,
+    "window_medians_ms": {
+      "window_wall_ms_per_frame": 16.826,
+      "wall_average_ms": 16.727,
+      "wall_p95_ms": 20.266,
+      "main_world_ms_per_frame": 16.019,
+      "last_render_extract_ms": 0.528,
+      "last_render_schedule_ms": 6.717,
+      "fixed_gameplay_ms_per_frame": 1.185,
+      "physics_ms_per_frame": 9.077,
+      "physics_sync_ms_per_frame": 1.588,
+      "physics_step_ms_per_frame": 6.715,
+      "physics_writeback_ms_per_frame": 0.803
+    },
+    "weighted_fixed_step_ms": {
+      "fixed_gameplay_ms_per_fixed_step": 1.0951823719070213,
+      "physics_ms_per_fixed_step": 9.19648295869956,
+      "physics_sync_ms_per_fixed_step": 1.482331587951379,
+      "physics_step_ms_per_fixed_step": 6.989681865319779,
+      "physics_writeback_ms_per_fixed_step": 0.7243319084076743
+    },
+    "catchup": 1.0
+  },
+  "paired-after": {
+    "samples": 15,
+    "window_medians_ms": {
+      "window_wall_ms_per_frame": 16.161,
+      "wall_average_ms": 15.81,
+      "wall_p95_ms": 20.408,
+      "main_world_ms_per_frame": 15.426,
+      "last_render_extract_ms": 0.517,
+      "last_render_schedule_ms": 6.56,
+      "fixed_gameplay_ms_per_frame": 1.124,
+      "physics_ms_per_frame": 8.38,
+      "physics_sync_ms_per_frame": 1.477,
+      "physics_step_ms_per_frame": 6.658,
+      "physics_writeback_ms_per_frame": 0.225
+    },
+    "weighted_fixed_step_ms": {
+      "fixed_gameplay_ms_per_fixed_step": 1.0869126601983572,
+      "physics_ms_per_fixed_step": 8.876369046800919,
+      "physics_sync_ms_per_fixed_step": 1.440810152072553,
+      "physics_step_ms_per_fixed_step": 7.218693141458859,
+      "physics_writeback_ms_per_fixed_step": 0.2167433593401862
+    },
+    "catchup": 1.0
+  },
+  "final": {
+    "samples": 13,
+    "window_medians_ms": {
+      "window_wall_ms_per_frame": 14.67,
+      "wall_average_ms": 14.574,
+      "wall_p95_ms": 17.936,
+      "main_world_ms_per_frame": 13.98,
+      "last_render_extract_ms": 0.541,
+      "last_render_schedule_ms": 6.542,
+      "fixed_gameplay_ms_per_frame": 1.058,
+      "physics_ms_per_frame": 7.217,
+      "physics_sync_ms_per_frame": 1.415,
+      "physics_step_ms_per_frame": 5.568,
+      "physics_writeback_ms_per_frame": 0.214
+    },
+    "weighted_fixed_step_ms": {
+      "fixed_gameplay_ms_per_fixed_step": 1.0263402247455713,
+      "physics_ms_per_fixed_step": 7.355841536355635,
+      "physics_sync_ms_per_fixed_step": 1.3885061248751405,
+      "physics_step_ms_per_fixed_step": 5.757529596644123,
+      "physics_writeback_ms_per_fixed_step": 0.2096917761324227
+    },
+    "catchup": 1.0
+  }
+}

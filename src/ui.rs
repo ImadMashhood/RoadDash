@@ -139,7 +139,7 @@ pub fn setup_ui(
     kids.push(status);
     let help = commands
         .spawn((
-            Text::new("WASD  RIDE     SHIFT  NITRO     MOUSE  PUNCH   SPACE  KICK     C  CAMERA     ESC  PAUSE     M  MUTE"),
+            Text::new("WASD  RIDE     NITRO  DISABLED     MOUSE  PUNCH   SPACE  KICK   E PICKUP / Q DROP     C  CAMERA     ESC  PAUSE     M  MUTE"),
             TextFont {
                 font_size: 12.0,
                 ..default()
@@ -304,7 +304,7 @@ pub fn setup_ui(
         .id();
     commands.entity(button).add_child(text);
     menu.push(button);
-    menu.push(label(&mut commands, "W / S   THROTTLE & BRAKE     A / D   STEER\nSHIFT   NITRO     MOUSE / J / K   PUNCH    SPACE   KICK\nC   CAMERA     R   RESTART     ESC   PAUSE     M   MUTE", 14.0, MUTED, 70.0, 661.0));
+    menu.push(label(&mut commands, "W / S   THROTTLE & BRAKE     A / D   STEER\nNITRO DISABLED     MOUSE / J / K   PUNCH    SPACE   KICK    E PICKUP / Q DROP\nC   CAMERA     R   RESTART     ESC   PAUSE     M   MUTE", 14.0, MUTED, 70.0, 661.0));
     let profile = label(&mut commands, "", 13.0, MINT, 70.0, 752.0);
     commands.entity(profile).insert(Readout(9));
     menu.push(profile);
@@ -326,6 +326,8 @@ pub fn update_ui(
     mut nodes: Query<(&mut Node, Option<&Hud>, Option<&Overlay>), Without<MapDot>>,
     mut dots: Query<(&MapDot, &mut Node)>,
     panel: Res<crate::settings::SettingsPanel>,
+    police: Res<crate::police::Police>,
+    frontend: Option<Res<crate::frontend::Frontend>>,
 ) {
     let Some(player) = riders.iter().find(|r| r.id == 0) else {
         return;
@@ -351,18 +353,19 @@ pub fn update_ui(
             };
         }
         if overlay.is_some() {
-            node.display = if menu && !panel.open {
-                Display::Flex
-            } else {
-                Display::None
-            };
+            node.display =
+                if menu && !panel.open && !frontend.as_ref().is_some_and(|f| f.owns(race.phase)) {
+                    Display::Flex
+                } else {
+                    Display::None
+                };
         }
     }
-    let mut sorted: Vec<_> = riders.iter().collect();
+    let mut sorted: Vec<_> = riders.iter().filter(|r| !r.police).collect();
     sorted.sort_by(|a, b| b.progress.total_cmp(&a.progress));
     let position = sorted.iter().position(|r| r.id == 0).unwrap_or(7) + 1;
     for (field, mut text) in &mut readouts {
-        **text = match field.0 {
+        let next = match field.0 {
             0 => {
                 let mut s = format!("P{position:02} / 15\n\n");
                 for (i, r) in sorted.iter().enumerate() {
@@ -375,7 +378,7 @@ pub fn update_ui(
             1 if !track.definition.closed => format!("ROUTE {:03}%  GATE {}/{}  {:02}:{:05.2}",(player.progress/track.length*100.0).clamp(0.0,100.0) as u32,player.gates.next,track.definition.checkpoints.len()-1,(race.elapsed/60.0) as u32,race.elapsed%60.0),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => format!("{:03}", (player.speed * 3.6) as u32),
-            3 => format!("ARMOR  {}  {:3.0}%\nNITRO  {}  {:3.0}%", bar(player.health), player.health.max(0.0), bar(player.nitro), player.nitro),
+            3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + if player.weapon.is_some() {"\nCLUB EQUIPPED"} else {"\nUNARMED"} + &format!("\n{}", police.hud()),
             4 if !track.definition.closed && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
             4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
             4 if recoveries.iter().any(|(r,s)|r.id==0 && s.stage==crate::recovery::RecoveryStage::Running) => {
@@ -395,6 +398,8 @@ pub fn update_ui(
             6 if loading => "PREPARING THE ROAD".into(),
             7 if loading => "Getting your bike ready...".into(),
             8 if loading => "LOADING...".into(),
+            6 if race.arrested => "BUSTED / R TO RETRY".into(),
+            7 if race.arrested => "You were caught after a sustained police pursuit.\n\nNo payout. Press Enter for a fresh grid.".into(),
             6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 15", race.place), _ => track.definition.name.clone() },
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
@@ -406,6 +411,7 @@ pub fn update_ui(
             9 => format!("GARAGE   /   {} CREDITS   /   {} WINS IN {} RACES", profile.credits, profile.wins, profile.races),
             _ => String::new(),
         };
+        text.set_if_neq(Text::new(next));
     }
     for (dot, mut node) in &mut dots {
         if let Some(r) = riders.iter().find(|r| r.id == dot.0) {

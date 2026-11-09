@@ -1,0 +1,15 @@
+{
+  "counts": {
+    "image_files": 146,
+    "images": 154,
+    "ui_images": 142,
+    "context_images": 12,
+    "retail_screen_slots": 36,
+    "popups": 13,
+    "videos": 59,
+    "windows_dialog_resources": 14,
+    "unique_windows_dialogs": 7
+  },
+  "failures": [],
+  "output": "/tmp/roaddash-ui-reproduction"
+}

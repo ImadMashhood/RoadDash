@@ -29,3 +29,27 @@ front/rear/side views before approving each family. Weapon/police bindings remai
 future gameplay work. Existing V2-02 catalog/keyframe/approval gates remain open;
 ANIM-14 verifies this audit only. No character, animation, physics or external
 asset is replaced in this restart.
+
+
+## Glove/contact implementation follow-up
+
+ANIM-15 adds runtime grip/fist shapes and typed visual sockets, with
+[native close-ups](../testing/hand-contacts/gallery/index.html). Existing body
+poses/clips remain unchanged; this is technical hand integration, not approval
+of the full pose catalog. ANIM-02 retains final hand silhouettes/clearance;
+ANIM-16 tracks aligning the static Blender recipe with the runtime profiles.
+
+## Part02 authoring pass — 2026-11-08
+
+ANIM-16 now uses the runtime hinge/curl/socket JSON in Blender, with four
+independent keys and complete154-layout assembly hand states. Original weapon
+proxies attach at the authored typed socket. See [export/reload and18 original
+hand views](../testing/part02-authoring/README.md). Source1.2 scale and wrist-frame
+conversion are explicit; the seated basis is not applied twice. Authoring IK now fits the calibrated socket, correcting the measured10.467mm legacy offset gap without stretching limbs. Exact runtime
+tessellation/hard-normal parity, angular thumb/finger contours, clearance and
+human approval remain open. This is a development pass with unmet gates, not
+Animation A acceptance or permission to begin Part03.
+
+Part07 append-only update (2026-11-08): the report now contains15 clips, including
+club_left/right. All original36 keys/13 clips retain deep equality; this is first-
+club runtime integration, not full catalog/art approval. See ../testing/part07-weapons/.

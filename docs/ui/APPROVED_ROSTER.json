@@ -1,0 +1,215 @@
+{
+  "date": "2026-11-08",
+  "method": "Built-in imagegen; ten user-selected attachments and six approved remakes",
+  "scope": "Biker Bar concept browser; not simulation identities or playable selection",
+  "portraits": [
+    {
+      "character": "naveen",
+      "file": "naveen.png",
+      "source": "/tmp/codex-clipboard-b46796cf-9915-4fae-b533-8281637ea1f3.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/naveen.png",
+      "sha256": "96d3a20f9ca8c009e76dbc106c440c222d1ca5d797e1643b974ed2e75dec1ea6",
+      "source_sha256": "9b936305abcaa39717a0dfc7e16d2511b6a0d87342778148c015a72efd665c7c",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "shaqueesha",
+      "file": "shaqueesha.png",
+      "source": "/tmp/codex-clipboard-e6ccffa0-d467-4867-ad26-e6834298f0c2.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/shaqueesha.png",
+      "sha256": "cd4e20302629cc08564c24ce4cb616cbfb716c3e460bdd2a54912a03074e45e5",
+      "source_sha256": "013ca52758145c965c4f966d9bd9884254aaf18e67ecb40fa7264bf14eea2e66",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "anastasia",
+      "file": "anastasia.png",
+      "source": "/tmp/codex-clipboard-428a1ba2-63c1-42ef-9a5a-ca146ddbc84f.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/anastasia.png",
+      "sha256": "af3f6428d4f2d5f25e7778e0c0913d9b9cd3a7efe6b8fa8cd63b119c7f54206f",
+      "source_sha256": "e90c5181afdc04065c25a3b741e6d0655e88eef36c92c313ab776e97c26eab36",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "abeyomi",
+      "file": "abeyomi.png",
+      "source": "/tmp/codex-clipboard-3090bc98-79f9-4d31-90b7-450f9f23fa75.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/abeyomi.png",
+      "sha256": "b960dd5c939afae31c3465ee3b0a2b47ed00780831be22911d6f9778e7ac77cb",
+      "source_sha256": "934f8b7d83dc383b6c4337ae4ed63925c206564c9af875fdcb4328a141c7a2c3",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "dolph",
+      "file": "dolph.png",
+      "source": "/tmp/codex-clipboard-7ac0a44d-12cb-42d5-a0f7-1435cc6cb3b8.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/dolph.png",
+      "sha256": "00a69a9f915d3be5c0e35dcc822fd40a17b4298382c3198a407cfc85cb65acea",
+      "source_sha256": "af83da66bcc82556de7e14494be019d7d6544376638ba6ed767a690af7623a82",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "cleetus",
+      "file": "cleetus.png",
+      "source": "/tmp/codex-clipboard-269c25d9-f5a8-4b05-910f-3e100e4c3f19.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/cleetus.png",
+      "sha256": "75c1d5e3e24975a802b7fe4cb721ae151635455c9752d4c72c474c43cb6e3d99",
+      "source_sha256": "191d8ac39270f9232d47f2999ed6e306aa831a1320c64889abeee22def46a9b5",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "luigi",
+      "file": "luigi.png",
+      "source": "/tmp/codex-clipboard-e3d27cf1-2ba4-446a-9c9a-826948007727.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/luigi.png",
+      "sha256": "14ef499f6713b3a8e1a6880e81eafd455f6ca475f9b944530c0c04063e00b360",
+      "source_sha256": "bb0ce13f9e67c6bc1c0657fb31934cc92cdfa5b766b281f94eafc2a89d5cb10d",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "osama",
+      "file": "osama.png",
+      "source": "/tmp/codex-clipboard-00c90d2d-3f39-4185-9195-8369239a0d4f.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/osama.png",
+      "sha256": "985b1555f0a1d7cd3f32ab6cb17dd73e02acec13ff7d0ce7e0eb353f1db76022",
+      "source_sha256": "476d416e90dac5a21f427feac6596a72cd64c24714716c266da6a32bcbe4de50",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "yamakha",
+      "file": "yamakha.png",
+      "source": "/tmp/codex-clipboard-0fa1576f-5e47-405d-a942-a6270dda356f.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/yamakha.png",
+      "sha256": "b8ee9e5e2638f41da69bdb231b50482fdaa0a0004bff92578d05e006a20bd2cb",
+      "source_sha256": "0e4e491881f7e1ba94ae76a3b1aa0b4acff8f45ecd5bf41889218cb6b12170ec",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "tyrone",
+      "file": "tyrone.png",
+      "source": "/tmp/codex-clipboard-bc9c8dfe-de66-4b51-8217-b532d23a819b.png",
+      "approval": "User-selected attachment",
+      "runtime": "assets/ui/portraits/tyrone.png",
+      "sha256": "5986f69928933abb2b6a8200a57f2267296cba674252a9bf89b63bab0960b9b4",
+      "source_sha256": "654c4cc6a4416a431b1453ea3a7b93a8eedc868d1ab21e8df4865e289c84ae9d",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "esteban",
+      "file": "esteban.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/esteban.png",
+      "approval": "User approved: Love these lets go with these",
+      "runtime": "assets/ui/portraits/esteban.png",
+      "sha256": "c9e5659b6c823bd4cfd4cb20a27a1bbdea7cfa86bfb121052e6822cbebe69af8",
+      "source_sha256": "c1f7d80d9bb46fe2e0f3a5f48231960adc523c2f3d73a6dfd759fcf715937d00",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "ellen",
+      "file": "ellen.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/ellen.png",
+      "approval": "User approved: Love these lets go with these",
+      "runtime": "assets/ui/portraits/ellen.png",
+      "sha256": "67b211e5adb06b2677786c61b06d8764e2cd1e60c2d57cc1aa570fefe5b6e415",
+      "source_sha256": "8fb24eb55783b10e8698b416f2da04185344636e94d774e8dd61189fe8958ff4",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "chinese-racer",
+      "file": "chinese-racer.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/chinese-racer.png",
+      "approval": "User approved: Love these lets go with these",
+      "runtime": "assets/ui/portraits/chinese-racer.png",
+      "sha256": "deffd6737932b3528c16a51b01bbaef7ebe8e7db50105436bb84705206177808",
+      "source_sha256": "144b308f762d6f4990eb1f24af8edfb4be14403e68f45518caaecddb16713c79",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "hog",
+      "file": "hog.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/hog.png",
+      "approval": "User approved: Love these lets go with these",
+      "runtime": "assets/ui/portraits/hog.png",
+      "sha256": "cd5c992831db44f7e68b07b35671926b4a1aeb438caf6eddddc5d4324b030ba5",
+      "source_sha256": "f14bb4c5d8ecb95c22e368e925c08226175241c099b683ef59f325b59c709bad",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "george",
+      "file": "george.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/george.png",
+      "approval": "User approved: Love these lets go with these",
+      "runtime": "assets/ui/portraits/george.png",
+      "sha256": "330428ba92a6c35e59799dbe84a12343872a4c43403ada301ed622a78b06480d",
+      "source_sha256": "97ca70b368aaa4f283dd7e19451b72719ebc11ed8d7ae9248eb13f8de0aad4f2",
+      "size": [
+        768,
+        576
+      ]
+    },
+    {
+      "character": "elif",
+      "file": "elif.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/elif.png",
+      "approval": "User approved: Love these lets go with these",
+      "runtime": "assets/ui/portraits/elif.png",
+      "sha256": "be84e2be35cfbd6666863f55c9d27c7173be8dd11780c446fc0045990013503e",
+      "source_sha256": "ed504db860145b7277b08257beb91da3e1eb2c80d1bd1bcefc4c0a0d8b82084e",
+      "size": [
+        768,
+        576
+      ]
+    }
+  ]
+}

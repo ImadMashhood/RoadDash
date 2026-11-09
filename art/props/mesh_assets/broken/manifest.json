@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "recipe_sha256": "14fb7557e44c71f0b275b7f22d54d4572f6887f589b57fc81c83b7cd3573a02a",
+  "records": [
+    {
+      "id": "PROP-595EFDBBC346",
+      "role": "flower_planter",
+      "source": "models/PROP-595EFDBBC346_lod2.glb",
+      "source_sha256": "0c1677a05a03b25ea317ac892ffbe68a5b5b5b38d76fc659761767da4d750b78",
+      "file": "broken/PROP-595EFDBBC346.glb",
+      "sha256": "ea273139549a88302e80fbaf2e68e97504913a465c9567a0f821395014491204",
+      "bounds": [
+        [
+          -0.5840961933135986,
+          0.0,
+          -0.3614279630425447
+        ],
+        [
+          0.5759038448333741,
+          0.43537992527997954,
+          0.3076320471095986
+        ]
+      ],
+      "parts": [
+        "planter.001",
+        "foliage.014"
+      ]
+    },
+    {
+      "id": "PROP-BD48A707CE80",
+      "role": "street_bin",
+      "source": "models/PROP-BD48A707CE80_lod2.glb",
+      "source_sha256": "012901f9232824f2be9d9e5832cce542eb8d3ef04b72d9887eadcb63ae17b05c",
+      "file": "broken/PROP-BD48A707CE80.glb",
+      "sha256": "307b550d3d8847922b4f519afcb5bafe69a6936fdb1897017c972f82945d9b74",
+      "bounds": [
+        [
+          -0.2640000104904175,
+          0.009500002264976501,
+          -0.22275000482797624
+        ],
+        [
+          0.2640000104904175,
+          0.3867349875718355,
+          0.29585000693798064
+        ]
+      ],
+      "parts": [
+        "waste_container.001",
+        "bin_lid.001"
+      ]
+    },
+    {
+      "id": "PROP-1B4657A9BD58",
+      "role": "mailboxes",
+      "source": "models/PROP-1B4657A9BD58_lod2.glb",
+      "source_sha256": "2e5c5576677af6d1164930db084782bad5458112a4ed97929e9ec4db044e67e9",
+      "file": "broken/PROP-1B4657A9BD58.glb",
+      "sha256": "996adb56549d39ad9662964b2cb2c734d7f6d9d0405537ba28ddd5e8e71d6824",
+      "bounds": [
+        [
+          -0.5984019417090715,
+          0.0,
+          -0.1924576990829599
+        ],
+        [
+          0.6037822245233706,
+          0.5150124555140446,
+          0.20244152382691438
+        ]
+      ],
+      "parts": [
+        "mail_post.002",
+        "mailbox_lower.002",
+        "mailbox_round_roof.002",
+        "mailbox_door.002"
+      ]
+    },
+    {
+      "id": "PROP-96DD200946B3",
+      "role": "mailboxes",
+      "source": "models/PROP-96DD200946B3_lod2.glb",
+      "source_sha256": "83d7453a3506c8069dd095b38f80f071b38648492585c2c6e0d99f02f847578d",
+      "file": "broken/PROP-96DD200946B3.glb",
+      "sha256": "a2a7e682af60b5e2830c970f6921ce833a70e876c88ebc496d9814a255887501",
+      "bounds": [
+        [
+          -0.5984019417090715,
+          0.0,
+          -0.1924576990829599
+        ],
+        [
+          0.6037822245233706,
+          0.5150124555140446,
+          0.20244152382691438
+        ]
+      ],
+      "parts": [
+        "mail_post.003",
+        "mailbox_lower.003",
+        "mailbox_round_roof.003",
+        "mailbox_door.003"
+      ]
+    },
+    {
+      "id": "PROP-62F6C9794B12",
+      "role": "news_boxes",
+      "source": "models/PROP-62F6C9794B12_lod2.glb",
+      "source_sha256": "a8ddf56294a8a5138fc41c690207aecc1d00b8534a332663df5bbfbdfdd08193",
+      "file": "broken/PROP-62F6C9794B12.glb",
+      "sha256": "27803b5abd9bd2a3c3761d57ffc09b1fb3ebf68753513778fc1852e89c51d6a7",
+      "bounds": [
+        [
+          -0.9199999809265137,
+          0.038000009059906005,
+          -0.13652499690651895
+        ],
+        [
+          0.9199999809265137,
+          0.475,
+          0.14697499826550486
+        ]
+      ],
+      "parts": [
+        "cabinet.004",
+        "recessed_front.004"
+      ]
+    },
+    {
+      "id": "PROP-C33DE3A76E7C",
+      "role": "news_boxes",
+      "source": "models/PROP-C33DE3A76E7C_lod2.glb",
+      "source_sha256": "218e54b02f3cbdab0aafb2ffd9c77a1df112c45dd52c7aca0f6fbe80f5a27f50",
+      "file": "broken/PROP-C33DE3A76E7C.glb",
+      "sha256": "eba8521f54430086ad09d0bb23d7bfad4ebc3056cdbc8e5b5f75983f5dda738d",
+      "bounds": [
+        [
+          -0.9199999809265137,
+          0.038000009059906005,
+          -0.13652499690651895
+        ],
+        [
+          0.9199999809265137,
+          0.475,
+          0.14697499826550486
+        ]
+      ],
+      "parts": [
+        "cabinet.005",
+        "recessed_front.005"
+      ]
+    },
+    {
+      "id": "PROP-398C09779703",
+      "role": "news_boxes",
+      "source": "models/PROP-398C09779703_lod2.glb",
+      "source_sha256": "dee724cd73693979f6f2d2a8bf1aaee6bc364e0313fbae77f0cc634387591ef6",
+      "file": "broken/PROP-398C09779703.glb",
+      "sha256": "7fa4d532701bbb9a2e17a462e4083d442fc1e8eb5eb88ca72c6b315d14bb477d",
+      "bounds": [
+        [
+          -0.9199999809265137,
+          0.038000009059906005,
+          -0.13652499690651895
+        ],
+        [
+          0.9199999809265137,
+          0.475,
+          0.14697499826550486
+        ]
+      ],
+      "parts": [
+        "cabinet.006",
+        "recessed_front.006"
+      ]
+    },
+    {
+      "id": "PROP-E8800E0F7319",
+      "role": "utility_box",
+      "source": "models/PROP-E8800E0F7319_lod2.glb",
+      "source_sha256": "024f0ee49102e47cb12840d2b7a942eed21a60780f1ea698a82e38141cb01ffd",
+      "file": "broken/PROP-E8800E0F7319.glb",
+      "sha256": "cbc479b58c2ec883e7822c691f41492f01d0b6fade0bdd79d68f164dd091862a",
+      "bounds": [
+        [
+          -0.27999999523162844,
+          0.038000009059906005,
+          -0.13652499690651895
+        ],
+        [
+          0.27999999523162844,
+          0.475,
+          0.14697499826550486
+        ]
+      ],
+      "parts": [
+        "cabinet.007",
+        "recessed_front.007"
+      ]
+    },
+    {
+      "id": "PROP-8BC64D3E0481",
+      "role": "recycling_pair",
+      "source": "models/PROP-8BC64D3E0481_lod2.glb",
+      "source_sha256": "3d8715a73e40479685605e0511b5d352cfc3b309a990d2ae78888b34a4326104",
+      "file": "broken/PROP-8BC64D3E0481.glb",
+      "sha256": "cac4de19dd56487991aa239c8d1de0195da703fa4d5eb26f18c3e7202dae8c4c",
+      "bounds": [
+        [
+          -0.19200000464916234,
+          0.009500002264976501,
+          -0.22275000482797624
+        ],
+        [
+          0.9120000630617142,
+          0.3867349875718355,
+          0.29585000693798064
+        ]
+      ],
+      "parts": [
+        "waste_container.002",
+        "bin_lid.002"
+      ]
+    },
+    {
+      "id": "PROP-D9B4A3B9AFC2",
+      "role": "flower_planter",
+      "source": "models/PROP-D9B4A3B9AFC2_lod2.glb",
+      "source_sha256": "d5685ba2061b3b809e288c6e24c569e3e6570c9d51cc00ff6556ca938f9b54f4",
+      "file": "broken/PROP-D9B4A3B9AFC2.glb",
+      "sha256": "17f0e174c3f1b9643a916e66a81bad8767a080c3a54b656c65bb338b2967291f",
+      "bounds": [
+        [
+          -0.5824699461460113,
+          0.0,
+          -0.3412150479212341
+        ],
+        [
+          0.5977286380271487,
+          0.45467390002583064,
+          0.30254916401317283
+        ]
+      ],
+      "parts": [
+        "planter.001",
+        "foliage.001"
+      ]
+    },
+    {
+      "id": "PROP-193FC185D553",
+      "role": "street_bin",
+      "source": "models/PROP-193FC185D553_lod2.glb",
+      "source_sha256": "6099815f4ea88ca3b083dbf22dca10c280bbcf08648bd89a3dd1f239264f591c",
+      "file": "broken/PROP-193FC185D553.glb",
+      "sha256": "09968a044707983bb1c4b9052c802386e9248defafdd87f2bfdb5b99754c2b5a",
+      "bounds": [
+        [
+          -0.2640000104904175,
+          0.009500002264976501,
+          -0.22275000482797624
+        ],
+        [
+          0.2640000104904175,
+          0.3867349875718355,
+          0.29585000693798064
+        ]
+      ],
+      "parts": [
+        "waste_container.004",
+        "bin_lid.004"
+      ]
+    },
+    {
+      "id": "PROP-35FB9A42BCE6",
+      "role": "recycling_pair",
+      "source": "models/PROP-35FB9A42BCE6_lod2.glb",
+      "source_sha256": "3d8715a73e40479685605e0511b5d352cfc3b309a990d2ae78888b34a4326104",
+      "file": "broken/PROP-35FB9A42BCE6.glb",
+      "sha256": "cac4de19dd56487991aa239c8d1de0195da703fa4d5eb26f18c3e7202dae8c4c",
+      "bounds": [
+        [
+          -0.19200000464916234,
+          0.009500002264976501,
+          -0.22275000482797624
+        ],
+        [
+          0.9120000630617142,
+          0.3867349875718355,
+          0.29585000693798064
+        ]
+      ],
+      "parts": [
+        "waste_container.002",
+        "bin_lid.002"
+      ]
+    }
+  ]
+}

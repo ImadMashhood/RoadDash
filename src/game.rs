@@ -23,6 +23,7 @@ pub use rr_core::Phase;
 
 #[derive(Resource)]
 pub struct Race {
+    pub arrested: bool,
     pub phase: Phase,
     pub countdown: f32,
     pub elapsed: f32,
@@ -37,6 +38,7 @@ pub struct Race {
 impl Default for Race {
     fn default() -> Self {
         Self {
+            arrested: false,
             phase: Phase::Garage,
             countdown: 3.0,
             elapsed: 0.0,
@@ -163,6 +165,7 @@ fn save_path() -> std::path::PathBuf {
 #[derive(Component)]
 #[require(Recovery, crate::animation::Animator)]
 pub struct Rider {
+    pub police: bool,
     pub id: usize,
     pub route: usize,
     pub progress: f32,
@@ -197,10 +200,14 @@ pub struct Rider {
     pub combat_mind: rr_core::rival_ai::Mind,
     pub fight_stamina: f32,
     pub attack_serial: u32,
+    pub(crate) weapon_hand: usize,
+    pub(crate) weapon: Option<rr_core::weapons::Weapon>,
+    pub(crate) strike: Option<rr_core::motion::StrikeClock>,
 }
 impl Rider {
     pub(crate) fn new(id: usize) -> Self {
         Self {
+            police: id == crate::police::OFFICER_ID,
             id,
             route: id % 2,
             progress: -8.0 - (id / 2) as f32 * 4.0,
@@ -234,6 +241,9 @@ impl Rider {
             relationships: rr_content::rivals::profile(id).relationships,
             fight_stamina: rr_content::rivals::profile(id).stamina,
             attack_serial: 0,
+            weapon_hand: 1,
+            weapon: None,
+            strike: None,
             combat_mind: rr_core::rival_ai::Mind::new(id),
         }
     }
@@ -440,6 +450,8 @@ pub fn input(
     track: Res<Track>,
     panel: Res<crate::settings::SettingsPanel>,
     mut body_sets: Query<&mut RapierRigidBodySet>,
+    frontend: Option<Res<crate::frontend::Frontend>>,
+    mut grid_weapons: ResMut<crate::weapons::GridWeapons>,
 ) {
     if panel.open {
         menu_action.0 = false;
@@ -458,6 +470,10 @@ pub fn input(
     if std::mem::take(&mut controls.mute) {
         muted.0 = !muted.0;
     }
+    if frontend.as_ref().is_some_and(|f| f.owns(race.phase)) {
+        menu_action.0 = false;
+        return;
+    }
     if std::mem::take(&mut controls.camera) {
         race.camera_mode = (race.camera_mode + 1) % 3;
     }
@@ -473,6 +489,12 @@ pub fn input(
     let restart = std::mem::take(&mut controls.restart)
         && matches!(race.phase, Phase::Racing | Phase::Paused | Phase::Finished);
     if start || restart {
+        grid_weapons.roll(
+            riders
+                .iter()
+                .filter(|(_, r, _, _)| r.id != 0 && !r.police)
+                .map(|(_, r, _, _)| r.id),
+        );
         commands.queue(crate::destruction::request_reset);
         let mode = race.camera_mode;
         *race = Race::default();
@@ -482,12 +504,24 @@ pub fn input(
         controls.look = Vec2::ZERO;
         controls.foot = Vec2::ZERO;
         for (entity, mut rider, mut recovery, state) in &mut riders {
+            crate::crash_behavior::restore_chassis(&mut commands, entity);
             let palette = rider.palette_index;
             *rider = Rider::new(rider.id);
+            if !rider.police && grid_weapons.armed.binary_search(&rider.id).is_ok() {
+                rider.weapon = Some(rr_core::weapons::Weapon::Club);
+            }
+            if rider.police {
+                rider.combat_mind.struck_by(0);
+            }
             rider.palette_index = palette;
             if let Some(spawn) = track.definition.spawns.get(rider.id) {
                 rider.progress = spawn.distance;
                 rider.lane = spawn.lane;
+            }
+            if rider.police {
+                rider.progress = track.length * rr_content::police::builtin().patrol_fraction;
+                rider.route = 0;
+                rider.lane = 2.0;
             }
             *recovery = Recovery::default();
             let (position, rotation) = track.sample_route(rider.route, rider.progress, rider.lane);
@@ -574,12 +608,14 @@ pub fn drive(
     >,
     mut commands: Commands,
     mut profile: ResMut<Profile>,
-    (content, persistence, adapter, handling): (
+    (content, persistence, adapter, handling, weapons): (
         Res<GameContent>,
         Res<Persistence>,
         Res<crate::vehicle::VehiclePhysicsAdapter>,
         Res<crate::vehicle::Tuning>,
+        Res<crate::weapons::WeaponRules>,
     ),
+    police: Res<crate::police::Police>,
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
@@ -591,7 +627,7 @@ pub fn drive(
     ),
     (mut swept, mut attacks): (
         MessageWriter<recovery::SweptContact>,
-        MessageWriter<crate::combat::AttackAttempt>,
+        MessageWriter<crate::combat::AttackIntent>,
     ),
 ) {
     // Physics has its own clock: pause debris together with the race.
@@ -694,6 +730,9 @@ pub fn drive(
             }
             r.attack = (r.attack - dt).max(0.0);
             let is_player = r.id == 0;
+            let police_goal = r
+                .police
+                .then(|| police.drive_goal(&r, &track, tuning.top_speed_mps));
             let profile = r.ai_profile;
             rr_core::pursuit::calm(&mut r.relationships, profile, dt);
             r.fight_stamina = (r.fight_stamina + 120.0 * dt).min(profile.stamina);
@@ -704,7 +743,7 @@ pub fn drive(
                 speed: r.speed,
                 downed: false,
             };
-            let mut eligible = [me; NAMES.len()];
+            let mut eligible = [me; NAMES.len() + 1];
             let mut eligible_count = 0;
             for t in &targets {
                 if track.same_corridor(
@@ -718,35 +757,50 @@ pub fn drive(
                     eligible_count += 1;
                 }
             }
-            let chase = if is_player {
+            let chase = if r.police {
+                police
+                    .target
+                    .filter(|_| police.mind.state.wanted())
+                    .map(|t| t.0)
+            } else if is_player {
                 None
             } else {
                 r.combat_mind
                     .choose(race.elapsed, me, &eligible[..eligible_count], profile.reach)
             };
-            let chase_goal = chase.map(|t| {
-                let (lane, speed) =
-                    rr_core::pursuit::approach(me, t, profile.race_pace(tuning.top_speed_mps));
-                (
-                    lane,
-                    if t.downed {
-                        speed
-                    } else {
-                        speed.max(profile.minimum_units * 0.44704)
-                    },
-                )
+            let chase_goal = police_goal.or_else(|| {
+                chase.map(|t| {
+                    let (lane, speed) =
+                        rr_core::pursuit::approach(me, t, profile.race_pace(tuning.top_speed_mps));
+                    (
+                        lane,
+                        if t.downed {
+                            speed
+                        } else {
+                            speed.max(profile.minimum_units * 0.44704)
+                        },
+                    )
+                })
             });
-            let throttle = if is_player {
+            let throttle = if let Some((_, speed)) = police_goal {
+                r.speed < speed - 0.05
+            } else if is_player {
                 player_intent.throttle
             } else {
                 true
             };
-            let brake = if is_player {
+            let brake = if let Some((_, speed)) = police_goal {
+                r.speed > speed + 0.1
+            } else if is_player {
                 player_intent.brake
             } else {
                 chase_goal.is_some_and(|(_, speed)| r.speed > speed + 3.0)
             };
-            let boost = is_player && player_intent.nitro && throttle && r.nitro > 0.5;
+            let boost = is_player
+                && handling.player_nitro_enabled
+                && player_intent.nitro
+                && throttle
+                && r.nitro > 0.5;
             let top = if is_player {
                 if boost {
                     tuning.nitro_speed_mps
@@ -798,7 +852,12 @@ pub fn drive(
                     }
                     if brake {
                         r.speed = (r.speed
-                            - dt * tuning.brake_mps2 * player_intent.brake_strength())
+                            - dt * tuning.brake_mps2
+                                * if r.police {
+                                    1.0
+                                } else {
+                                    player_intent.brake_strength()
+                                })
                         .max(0.0);
                     }
                 }
@@ -884,13 +943,18 @@ pub fn drive(
                 } else {
                     {
                         let speed = chase_goal.map_or(target, |(_, speed)| speed);
-                        ((speed - r.speed) * 0.25 + 0.35).clamp(0.0, 1.0)
+                        ((speed - r.speed) * 0.25 + if r.police { 0.0 } else { 0.35 })
+                            .clamp(0.0, 1.0)
                     }
                 },
                 brake_amount: if is_player {
                     player_intent.brake_strength()
                 } else {
-                    if brake { 0.25 } else { 0.0 }
+                    if brake {
+                        if r.police { 1.0 } else { 0.25 }
+                    } else {
+                        0.0
+                    }
                 },
             };
             if !dynamic {
@@ -919,7 +983,15 @@ pub fn drive(
             // Human and AI share damage and cooldown rules. Attack only one side at once.
             let attack_side = if is_player {
                 player_attack
-            } else if race.elapsed > 8.0 && r.speed > 6.0 && r.fight_stamina >= 250.0 {
+            } else if race.elapsed > 8.0
+                && r.speed > 6.0
+                && r.fight_stamina
+                    >= if r.weapon.is_some() {
+                        weapons.0.stamina
+                    } else {
+                        250.0
+                    }
+            {
                 chase
                     .filter(|t| {
                         r.combat_mind.can_fight(t.id)
@@ -928,7 +1000,7 @@ pub fn drive(
                             && (t.lane - r.lane).abs() < 2.5
                     })
                     .map(|t| {
-                        if r.attack_serial.is_multiple_of(profile.kick_roll) {
+                        if r.weapon.is_none() && r.attack_serial.is_multiple_of(profile.kick_roll) {
                             rr_core::AttackSide::Kick
                         } else if t.lane > r.lane {
                             rr_core::AttackSide::Right
@@ -941,19 +1013,26 @@ pub fn drive(
             };
             if let Some(attack_side) = attack_side
                 && r.attack <= 0.0
+                && (r.weapon.is_none()
+                    || matches!(attack_side, rr_core::AttackSide::Kick)
+                    || weapons.0.can_start(r.fight_stamina))
             {
-                r.attack = if is_player {
+                r.attack = if r.weapon.is_some() && attack_side != rr_core::AttackSide::Kick {
+                    weapons.0.cooldown
+                } else if is_player {
                     0.65
                 } else {
                     r.combat_mind.cooldown(profile.attack_cooldown())
                 };
                 r.attack_serial = r.attack_serial.wrapping_add(1);
-                if !is_player {
+                if r.weapon.is_some() && attack_side != rr_core::AttackSide::Kick {
+                    r.fight_stamina -= weapons.0.stamina;
+                } else if !is_player {
                     r.fight_stamina -= 250.0;
                 }
                 r.kicking = matches!(attack_side, rr_core::AttackSide::Kick);
                 r.attack_side = attack_side.sign();
-                attacks.write(crate::combat::AttackAttempt(entity, attack_side));
+                attacks.write(crate::combat::AttackIntent(entity, attack_side));
             }
             if r.health <= 0.0 && recovery.stagger.is_none() {
                 let (origin, rotation) = if dynamic {
@@ -1079,7 +1158,7 @@ pub fn drive(
                 previous_progress,
                 progress,
             );
-            if r.gates.completed_laps >= LAPS && r.finished.is_none() {
+            if !r.police && r.gates.completed_laps >= LAPS && r.finished.is_none() {
                 finish_rider(
                     &mut r,
                     &mut race,
@@ -1118,7 +1197,7 @@ pub fn drive(
     if active && race.phase != Phase::Finished {
         race.place = 1 + riders
             .iter()
-            .filter(|(_, r, _, _, _)| r.id != 0 && r.progress > player_progress)
+            .filter(|(_, r, _, _, _)| !r.police && r.id != 0 && r.progress > player_progress)
             .count();
     }
     let cars: Vec<_> = traffic
@@ -1257,7 +1336,11 @@ pub(crate) fn finish_rider(
     place: usize,
     on_foot: bool,
 ) -> bool {
-    if rider.finished.is_some() || rider.gates.completed_laps < LAPS {
+    if rider.police
+        || race.arrested
+        || rider.finished.is_some()
+        || rider.gates.completed_laps < LAPS
+    {
         return false;
     }
     rider.finished = Some(race.elapsed);
@@ -1929,7 +2012,8 @@ pub(crate) mod tests {
             .resource_mut::<ButtonInput<KeyCode>>()
             .press(KeyCode::ShiftLeft);
         step(&mut app, 60);
-        assert!(player(&mut app).nitro < 80.0);
+        assert_eq!(player(&mut app).nitro, 100.0);
+        assert!(!player(&mut app).drive_intent.nitro);
         let progress = player(&mut app).progress;
         let elapsed = app.world().resource::<Race>().elapsed;
         app.world_mut().resource_mut::<Race>().phase = Phase::Paused;
@@ -2024,7 +2108,7 @@ pub(crate) mod tests {
             let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
             keys.release(KeyCode::KeyJ);
             keys.press(KeyCode::KeyJ);
-            step(&mut app, 1);
+            step(&mut app, 12);
             assert!((app.world().get::<Rider>(rival_id).unwrap().health - expected).abs() < 0.001);
             step(&mut app, 20);
         }

@@ -209,14 +209,21 @@ impl Plugin for RoadSimulationPlugin {
             .init_resource::<crate::vehicle::Tuning>()
             .init_resource::<crate::vehicle::VehicleTelemetry>()
             .init_resource::<Race>()
+            .init_resource::<crate::police::Police>()
+            .init_resource::<crate::combat::StrikeTimings>()
+            .init_resource::<crate::weapons::WeaponRules>()
+            .init_resource::<crate::weapons::GridWeapons>()
             .init_resource::<game::Profile>()
             .init_resource::<game::Persistence>()
             .init_resource::<SimulationClock>()
+            .init_resource::<crate::contact_telemetry::VehicleContacts>()
             .init_resource::<recovery::RecoveryTuning>()
             .init_resource::<crate::track::Track>()
             .add_message::<crate::sound::AudioCue>()
             .add_message::<recovery::SweptContact>()
             .add_message::<crate::combat::AttackAttempt>()
+            .add_message::<crate::combat::AttackIntent>()
+            .add_message::<crate::combat::StrikeContact>()
             .add_message::<crate::combat::NpcHit>()
             .insert_resource(Time::<Fixed>::from_hz(rr_core::SIMULATION_HZ))
             .insert_resource(TimestepMode::Fixed {
@@ -250,9 +257,13 @@ impl Plugin for RoadSimulationPlugin {
                     crate::offscreen_crash::classify,
                     recovery::impacts,
                     recovery::recover,
+                    crate::weapons::inventory,
                     game::drive,
+                    crate::combat::schedule,
                     crate::combat::melee,
                     crate::npc::knockdowns,
+                    crate::police::think,
+                    crate::police::dismount,
                     crate::environment::patrol,
                     crate::world_gen::metropolis::crossing_traffic,
                     game::debris_cleanup,
@@ -398,7 +409,10 @@ impl Plugin for RoadWorldPlugin {
                 Update,
                 crate::sky::drift.run_if(resource_exists::<crate::sky::Settings>),
             )
-            .add_systems(Startup, game::setup_race.in_set(StartupSet::Race))
+            .add_systems(
+                Startup,
+                (game::setup_race, crate::police::setup).in_set(StartupSet::Race),
+            )
             .init_resource::<crate::environment::TrackInspector>()
             .add_systems(
                 Update,

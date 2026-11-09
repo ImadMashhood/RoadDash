@@ -1,0 +1,199 @@
+{
+  "binary_sha256": "1da2a2cf08eeed5562f8fc10397a9d47488cb4950f1bdbbe5208bb84de775626",
+  "source_files": {
+    "src/destruction/mod.rs": "f5052167df9ae23726ae69b2ef2f2ee6fe4f1719d1d7e2355a756d8f2b54000d",
+    "src/destruction/visuals.rs": "b53a1bbf3a1ea2c953b28e90b2c59663351f82dca9230ac3227f5877a72b9909",
+    "src/destruction/survey.rs": "1b3812eb9259a8c8f2fafe39027936ea499047c80896f67ce7be3adc669700a7",
+    "src/combat.rs": "e1ccdf65da0f2ed65ef3a6099deb5f74b9be8547b8050fca8ed9469073d6dcff",
+    "src/props.rs": "e01caa3246783a8ed95483d9d34f937a01c7c54628b3fde9cda7eabdd22eb456",
+    "src/lib.rs": "b29904bf4e1cee04a8d12b4bb7cf21fc991dca7b596ea974cabe03d2ae69fb3d",
+    "tools/bake_broken_props.py": "14fb7557e44c71f0b275b7f22d54d4572f6887f589b57fc81c83b7cd3573a02a",
+    "tools/verify_broken_props.py": "00bc6a5f5e29e07f68bf539ca32fd507bdd55c7c11a99dc1b831b59145708dde"
+  },
+  "raw_native_captures": [
+    {
+      "file": "screenshots/destruction-before-flower_planter.png",
+      "sha256": "6e2790d68d4b2dd446b09f08ef1b73e03710ac171076f0b1873cd98ec5e40315",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-damaged-flower_planter.png",
+      "sha256": "2bf3313ba78efb2a5af3484a51b726bb978668ef955e7fcbfcef25a28a5cfde4",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-reset-flower_planter.png",
+      "sha256": "c8400e2f46db2bb7400c7cda6a0b4ce6e7110d79bdae55ba7bcb3e864d9c871a",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-before-mailboxes.png",
+      "sha256": "c380d36e6fa96bcba4d303aa2a71f743a0e27ece01f3d3e45a800ecc3349c71f",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-damaged-mailboxes.png",
+      "sha256": "205b439b9f26065ba51aba948e0ab77213edcd9a99f08e863a87c2b9b2273234",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-reset-mailboxes.png",
+      "sha256": "c3e8971544df4fec9e2c7e289899b4ec0ab102323730f1cf119bf814760d27f2",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-before-news_boxes.png",
+      "sha256": "0969fdcaa02e5d0f2c2933ed6b061554a70feb8423921ada92ab2c2119b48389",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-damaged-news_boxes.png",
+      "sha256": "0f2b94a042361b7da4be9994afa043499f4b113d8dba8fce2d8ab8ea88b537f2",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-reset-news_boxes.png",
+      "sha256": "3caa714ccfc2fe64ccd18a6a143313341edc4330a4073609356ed6b7702e9b86",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-before-recycling_pair.png",
+      "sha256": "15bb0dda8c67cd332baad68147b931a63e79626dc410e41f93dd4c5adfc6f5db",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-damaged-recycling_pair.png",
+      "sha256": "427ab2608033e022d190bf604100963a30ca9cb93c32396a2484b2b06aee8893",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-reset-recycling_pair.png",
+      "sha256": "5ace7e34c852a32661dce8ff6d0b48ffed13602e24f9c1ca166078f0aa6559a1",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-before-street_bin.png",
+      "sha256": "dd4e5fd6798714e1d9ecfd3b0484647b43c932243d728b7eabf4dc3f47a3665d",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-damaged-street_bin.png",
+      "sha256": "49263ca1b4ff4e9ef9543285e7c02d48b1048843afc43dd189cf43d27f96f69d",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-reset-street_bin.png",
+      "sha256": "51b0d7b8845fedc72e5efde5188ab0a7e46fdbb04bea9f31b17d189aef51dbaf",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-before-utility_box.png",
+      "sha256": "72f934718dfd2e24ad0708b4e4f8b1f84bb49d2bb2fc3e2c43e7a9dbfdef6fb6",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-damaged-utility_box.png",
+      "sha256": "cbde9924df5e4f5d9bc8101b57c6c28b6c320a5f5bfb58a4a891013d6eae4808",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    },
+    {
+      "file": "screenshots/destruction-reset-utility_box.png",
+      "sha256": "a60f1d1e48d4e91f50bba67abe55e080c901f7cc85ce490216a0cfc7100154e4",
+      "crop": [
+        520,
+        300,
+        920,
+        600
+      ]
+    }
+  ],
+  "sheet": "native-furniture-sheet.png",
+  "sheet_sha256": "55b557d7902adde1821ed62a84151c4d033f27e73fcdd569f72f5491dcf6c809",
+  "composition": "Unmodified center400x300 crops from1440x900 medium-distance native screenshots; no rescale, labels only. Insufficient detailed art/fidelity approval.",
+  "art_approval": false
+}

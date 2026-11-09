@@ -1,0 +1,10 @@
+[
+  {
+    "bodies": 10,
+    "kind": "Cow"
+  },
+  {
+    "bodies": 11,
+    "kind": "Pedestrian"
+  }
+]

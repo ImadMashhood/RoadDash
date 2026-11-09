@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-08",
+  "branch": "codex/part08-police-loop",
+  "parent_commit": "5dcc79193a56018edd788e48804156c12ff48341",
+  "source_sha256": {
+    "content/police.json": "dc2643d0d2baa2f38ca38d5d32c6488f83d10bf3088a6f9255c25d13256ed1ca",
+    "crates/rr_content/src/lib.rs": "5adb26054e6e5888c1a8093ebe2715c84eb530da17b899185b767d24c5970dce",
+    "crates/rr_content/src/police.rs": "b17d498fe1c6d11b3a21c758b861ccbcd18e246a64d89d0f0d5e3f3646cb24f3",
+    "crates/rr_core/src/lib.rs": "81ac14f13b7234e80afa58dc7005d5bd4df734247f858c9aebd275cd3a8e411c",
+    "crates/rr_core/src/police.rs": "c602a7442af9e952ebd4a8d56e3f0e16296115649a926180da8dc58ae0b5d130",
+    "docs/roadmap/TASK_PLACEMENT.json": "cc7abc2efe5fe79070b3be75ec95238a3c38e7acf6b557ed21cfe8c65243851b",
+    "src/combat.rs": "6792edb29924e8abe756af35c9b2892c97c43a8e1029eea7217af7e177e6bb38",
+    "src/game.rs": "6e8d43052b70c7bb53a98e8d69aac3bdf177390b4ed1febd4f2d965b526aa302",
+    "src/lib.rs": "f2c0ca5182b5ef9a2168f1b1a89f6848b41a0c6069dce1472f9fcdb1d7a2d0a9",
+    "src/main.rs": "5831d15e820abd0c3a254d9942d5f3af7539e6553f8f9aafccdabbfef8c3d3ce",
+    "src/offscreen_crash.rs": "d8cb68659dc2585dbd30fb850951efad2416f35b8517d7f0c4823694ed6b35a9",
+    "src/police.rs": "440f15b38ae78b97f23f6a3fa0b8a26d6bb05398bc96dd3a15b2495fe0890395",
+    "src/police/survey.rs": "2d32f51787249a7298a6fe71e92d2009859841e1392bf7f3da6e91d0696749ef",
+    "src/recovery.rs": "0b0df6b96fe983d372fc7fad9814cf477cc956a54b2be35562a77ac01ceef4b6",
+    "src/runtime.rs": "248694ca8af12aa2d5a8b025680d3d5f21665e70cd965c00cc564d88c034b4ed",
+    "src/sound.rs": "b02a058a4aa89fbf5da2b05cd415b0eab1935a0aef8844b4e74980a2db03167f",
+    "src/ui.rs": "1ead744d18fa8c7d3b05041ac445c377bf44ee76fae8db70bed09331398e98ea",
+    "src/verification.rs": "657288fe56d8a7f54b636ac3ec19a27f4343ac76b122967283635fa37b39f799",
+    "src/weapons.rs": "600957c1840fc691a0ba1561e6ae8740eb008db15a1875405c7f4a7853150ced"
+  },
+  "cargo_lock_sha256": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+  "release_binary_sha256": "b15a41a7fa776854d48e4bad490435d4648e17ef218fd0ea45b918ba36c41902",
+  "physical_driver_source_sha256": {
+    "src/human.rs": "a75f32cc88d7fd5ef2fdf78ac3052e2fae7148cac940a313a0e55877bee0179b",
+    "src/models.rs": "663c40b6ee683009335b30ef4f4432e19a3d1e90a19ac343dd2abb35b8524660",
+    "src/models/tests.rs": "26904aaa2f4c9239f6c8e57bc377da05183ef0856f02b5fbbe7fd9441f11f055",
+    "content/biomechanics.json": "66840dfb9ab8d6400a1f74aed12912552118e50eea082e2c3cd2ed098a1e0066",
+    "content/velocity_muscles.json": "2294b1cdb327d835dd457954eab612f5163513bb10dda1a0eda27987fc501ce0"
+  },
+  "native_evidence_sha256": {
+    "native/actors/performance.jsonl": "6495e282314536815dbdd2a60442e4f33cc79da571eebbedf507ab6652a502a3",
+    "native/actors/receipt.txt": "c7b3fd09de3d7bcc571fe360523cbf0e3f4716100300a0a8b13ffae4a026eb3e",
+    "native/baseline/performance.jsonl": "021bc02e4ae69f83c0d17e263e3975bd83dea237cfe204227c52253f8b368de7",
+    "native/baseline/receipt.txt": "07ffacee8e89f7ec43b36fe9fbb3890a831a4e4d630643e2b3ebcf06610ea2bb",
+    "native/baseline/smoke-metrics.json": "7f3bab0769224469d5218318dc3e6c7008afdb3be4a34ff6e43172f28f10e02c",
+    "native/busted.png": "a56cfb8456775017d8f75a57117dabca5229da9c11f5e000eeffdd3d95acac37",
+    "native/game/performance.jsonl": "d6ad52f234496da1d0ebc8c4f56b55401ae512d852ab936dc8d6ad991293228f",
+    "native/game/receipt.txt": "b9f2f8f817556fd21f39f770ccef5968cbee40b6f6417b150a748d6257fe80f9",
+    "native/game/weapon-census.json": "63f748a6356f827e1bf2e108f95ff67397e7311963f01a7a61aec1ed29a901ca",
+    "native/metro/census.json": "3f050973f4d9b29771a0224de85a11da41204cf90c5227608a26af773962f4e9",
+    "native/metro/facades.json": "482f1ab97319c6473b514056432f7aa95ed59ed028003591ddd8fe2ced003e3b",
+    "native/metro/performance.json": "28bfdb60cf6b6e3f538f43cb342881bd27c534beafbb62193277f2770fa11f72",
+    "native/metro/performance.jsonl": "92ba255d7160703f1b9185d360d0a95f797b8a0883769b782afba51a4acf842a",
+    "native/metro/receipt.txt": "7570d04bfbb794e7debf68b0fe61cf8c46b628e0672bda4f0a07bf1f0b61198e",
+    "native/metro/street-life.json": "bd2b5bed169c242f5ac2e3c881822fbff59363db20a390928e51fdba29184ff0",
+    "native/native-assets.json": "e2079973059c0b2142fcf33a63909c1c1add25fdf52461a4f09b532ab486095c",
+    "native/police-performance.jsonl": "296bb96961da887457fe13124efd56da16635f625e95a347897ccc08f6a7f053",
+    "native/police.json": "5d9b5964577f06a179bc0b25d5a57bad024aab288a0d643ce51784ef757c35f4",
+    "native/receipt.txt": "a52ee0824acca83a75c072bb9bfbde20cba3fd8f5fdf84f9d60d6f005f21b921"
+  },
+  "limitations": [
+    "No source/media reuse from R01; root permission unverified",
+    "No push/merge/Part09",
+    "No full art/human fairness/moving-foot tackle/performance/hardware acceptance",
+    "No controlled total-police overhead A/B or GPU timestamps"
+  ]
+}

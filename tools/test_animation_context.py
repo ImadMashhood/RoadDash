@@ -45,6 +45,32 @@ class ContextTests(unittest.TestCase):
             pose=json.loads((base/f'poses/{d["id"]:04d}.json').read_text());native=labels[d['name']];self.assertEqual(pose['source_slots'],[native['rear']['slot']]);self.assertEqual(assembly[str(d['id'])]['source'],native['rear']);self.assertEqual(d['review'],'draft')
             self.assertLessEqual(max(pose['contact_errors_m'].values(),default=0),.005)
         self.assertEqual(len(json.loads((base/'bike-poses.json').read_text())),16)
+    def test_authoring_hand_states_share_runtime_profile_and_do_not_leak(self):
+        import hashlib
+        base=ROOT/'art/animation/context'
+        source=json.loads((base/'hand-authoring.json').read_text())
+        expected=hashlib.sha256((ROOT/'content/hand-contacts.json').read_bytes()).hexdigest()
+        self.assertEqual(source['profile_sha256'],expected)
+        self.assertEqual(source['source_scale'],1.2)
+        assembly=json.loads((base/'assembly.json').read_text())
+        self.assertEqual(len(assembly),154)
+        for item in assembly.values():
+            for side in ['L','R']:
+                state=item['hand_values'][side]
+                self.assertEqual(set(state),{'grip','fist'})
+                self.assertTrue(all(0<=x<=1 for x in state.values()))
+                self.assertLessEqual(sum(state.values()),1)
+        for d in json.loads((base/'manifest.json').read_text())['poses']:
+            for side in ['L','R']:
+                if 'grip.'+side in d['held_contacts']:
+                    self.assertEqual(assembly[str(d['id'])]['hand_values'][side],{'grip':1.,'fist':0.})
+        for key,side in [(2222,'L'),(2232,'R')]:
+            self.assertEqual(assembly[str(key)]['hand_values'][side],{'grip':0.,'fist':1.})
+        for key,side in [(2100,'L'),(2110,'R'),(2160,'L'),(2170,'R')]:
+            self.assertEqual(assembly[str(key)]['hand_values'][side],{'grip':1.,'fist':0.})
+        fixture=json.loads((ROOT/'docs/testing/part02-authoring/fold-fixtures.json').read_text())
+        self.assertEqual(fixture['profile_sha256'],expected)
+
     def test_whole_body_kicks_tuck_and_punches_keep_their_supports(self):
         import math
         base=ROOT/'art/animation/context/poses'

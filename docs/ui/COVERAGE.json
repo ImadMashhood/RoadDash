@@ -1,0 +1,35 @@
+{
+  "counts": {
+    "image_files": 146,
+    "images": 154,
+    "ui_images": 142,
+    "context_images": 12,
+    "retail_screen_slots": 36,
+    "popups": 13,
+    "videos": 59,
+    "populated_screen_entries": 29,
+    "unique_ui_source_hashes": 137,
+    "stored_menu_items": 175,
+    "windows_dialog_resources": 14,
+    "unique_windows_dialogs": 7
+  },
+  "categories": {
+    "world-context": 12,
+    "hud": 15,
+    "bike-detail": 15,
+    "characters": 25,
+    "menu-backgrounds": 8,
+    "courses": 15,
+    "options-backgrounds": 6,
+    "results": 29,
+    "showroom": 18,
+    "hub-insets": 3,
+    "application-icons": 8
+  },
+  "wireframes": 63,
+  "draft_screens": 28,
+  "components": 15,
+  "reference_output": "/home/imad/Documents/ChatGPT/RoadDash-UI-References",
+  "original_pixels_in_repo": false,
+  "failures": []
+}

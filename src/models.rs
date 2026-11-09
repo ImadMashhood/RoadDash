@@ -1,6 +1,7 @@
 //! Authored meshes driven by existing visual joints. No physics systems or components.
 use crate::{human, world};
 mod articulation;
+pub mod hands;
 use bevy::{
     asset::RenderAssetUsages,
     camera::visibility::NoFrustumCulling,
@@ -37,9 +38,11 @@ struct Part {
     materials: Vec<Handle<StandardMaterial>>,
     group: String,
     rest: Transform,
+    glove: bool,
 }
 pub struct AuthoredModels {
     parts: Vec<Part>,
+    hand_contacts: rr_content::hand_contacts::HandContacts,
     standing_bind: Handle<SkinnedMeshInverseBindposes>,
     seated_bind: Handle<SkinnedMeshInverseBindposes>,
     textures: Vec<Handle<Image>>,
@@ -61,6 +64,7 @@ impl AuthoredModels {
         meshes: &mut Assets<Mesh>,
         materials: &mut Assets<StandardMaterial>,
         binds: &mut Assets<SkinnedMeshInverseBindposes>,
+        images: &mut Assets<Image>,
         server: Option<&AssetServer>,
     ) -> Self {
         let bindings = rr_content::riding_model::Bindings::from_json(include_str!(
@@ -90,8 +94,9 @@ impl AuthoredModels {
                 |settings: &mut bevy::image::ImageLoaderSettings| settings.is_srgb = false,
             )
         });
+        let hand_contacts = hands::config();
         let mut parts = Vec::new();
-        for mut data in decoded {
+        let decoded = decoded.into_iter().flat_map(|mut data| {
             if matches!(data.group.as_str(), "standing" | "seated") {
                 let standing = data.group == "standing";
                 articulation::weights(
@@ -102,6 +107,18 @@ impl AuthoredModels {
                         &seated_frames
                     },
                 );
+            }
+            if matches!(data.group.as_str(), "standing" | "seated")
+                && data.material.region == "body"
+            {
+                hands::split(data)
+            } else {
+                vec![data]
+            }
+        });
+        for mut data in decoded {
+            if data.name.ends_with("-gloves") {
+                hands::refine(&mut data);
             }
             let wheel = matches!(data.group.as_str(), "front-wheel" | "rear-wheel");
             let rest = if wheel {
@@ -139,6 +156,26 @@ impl AuthoredModels {
                 mesh.insert_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT, data.weights);
                 mesh.generate_tangents()
                     .expect("authored rider UVs support tangent normals");
+            }
+            let glove = if skinned && data.name.ends_with("-gloves") {
+                let frames = if data.group == "seated" {
+                    &seated_frames
+                } else {
+                    &standing_frames
+                };
+                hands::targets(
+                    &mesh,
+                    frames,
+                    data.group == "seated",
+                    &hand_contacts,
+                    images,
+                )
+            } else {
+                None
+            };
+            let has_glove = glove.is_some();
+            if let Some(targets) = glove {
+                mesh.set_morph_targets(targets);
             }
             let region = &data.material.region;
             let variants = if matches!(region.as_str(), "shirt" | "helmet" | "paint") {
@@ -189,10 +226,12 @@ impl AuthoredModels {
                 materials: palette,
                 group: data.group,
                 rest,
+                glove: has_glove,
             });
         }
         Self {
             parts,
+            hand_contacts,
             textures: [base, normal, roughness].into_iter().flatten().collect(),
             standing_bind: binds.add(SkinnedMeshInverseBindposes::from(
                 standing_frames
@@ -277,6 +316,7 @@ impl AuthoredModels {
                 bind,
                 seated,
             });
+        hands::sockets(commands, &skin_joints, seated, &self.hand_contacts);
         for p in self
             .parts
             .iter()
@@ -301,6 +341,9 @@ impl AuthoredModels {
                     },
                 ))
                 .id();
+            if p.glove {
+                hands::attach(commands, mesh, root);
+            }
             commands.entity(root).add_child(mesh);
         }
         vec![root]
@@ -513,7 +556,12 @@ pub struct RoadModelPlugin;
 impl Plugin for RoadModelPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins(crate::animation::MotionPlugin)
+            .add_plugins(crate::weapons::WeaponVisualPlugin)
             .add_systems(Update, wheels.after(crate::vehicle::visuals))
+            .add_systems(
+                PostUpdate,
+                hands::animate.before(bevy::transform::TransformSystems::Propagate),
+            )
             .add_systems(
                 PostUpdate,
                 retarget.before(bevy::transform::TransformSystems::Propagate),

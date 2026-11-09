@@ -189,10 +189,13 @@ fn main() {
         }
     }
     let status = road_dash::build_app(std::env::args().any(|a| {
-        a == "--destruction-survey"
+        a == "--police-smoke"
+            || a == "--frontend-smoke"
+            || a == "--destruction-survey"
             || a == "--metro-survey"
             || a == "--smoke-test"
             || a == "--actor-smoke-test"
+            || a == "--actor-skin-survey"
             || a == "--world-survey"
             || a == "--lod-survey"
     }))

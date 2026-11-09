@@ -150,6 +150,11 @@ pub(crate) struct ActorBinding {
     files: Vec<String>,
     lod: usize,
 }
+impl ActorBinding {
+    pub(crate) fn snapshot(&self) -> (&[Entity], &str) {
+        (&self.drivers, &self.files[self.lod])
+    }
+}
 #[derive(Resource, Default)]
 struct SceneCache(HashMap<String, Handle<Scene>>);
 #[derive(Resource, Default)]
@@ -179,11 +184,11 @@ fn lods(
     stats.skins = bindings.iter().count();
     for (transform, mut prop, mut scene, mut visible, frozen) in &mut props {
         let distance = transform.translation().distance(camera.translation());
-        *visible = if distance > 500.0 {
+        visible.set_if_neq(if distance > 500.0 {
             Visibility::Hidden
         } else {
             Visibility::Inherited
-        };
+        });
         if frozen.is_some() {
             continue;
         }
@@ -303,11 +308,11 @@ fn actor_lods(
     };
     for (transform, mut binding, mut scene, mut visible) in &mut actors {
         let distance = transform.translation().distance(camera.translation());
-        *visible = if distance > 250.0 {
+        visible.set_if_neq(if distance > 250.0 {
             Visibility::Hidden
         } else {
             Visibility::Inherited
-        };
+        });
         let next = if distance > 90.0 {
             1
         } else if distance < 70.0 {
@@ -330,6 +335,8 @@ fn actor_lods(
     }
 }
 
+#[derive(SystemSet, Debug, Clone, PartialEq, Eq, Hash)]
+pub(crate) struct PropLods;
 pub struct PropPlugin;
 
 #[allow(clippy::too_many_arguments)]
@@ -375,7 +382,7 @@ impl Plugin for PropPlugin {
         app.register_type::<SkinnedMesh>()
             .init_resource::<SceneCache>()
             .init_resource::<PropStats>()
-            .add_systems(Update, (lods, actor_lods).chain())
+            .add_systems(Update, (lods, actor_lods).chain().in_set(PropLods))
             .add_systems(Last, record_native_intake)
             .add_systems(
                 PostUpdate,

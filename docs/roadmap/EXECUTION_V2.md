@@ -2,7 +2,7 @@
 
 The user-directed Parts 01–08 below define acceptance criteria for the revised execution order. README is the single live checklist: all verified requirements now live in Part 00; unfinished tasks, including carried-forward original requirements, live in Parts 01–16. Original P01–P08/BW requirements are also preserved in the frozen BLUEPRINT_PARTS_01_08.md snapshot. Stable IDs retain their original numbers; current README placement determines execution order. TASK_PLACEMENT.json maps every task. Parts 09/10 retain their existing gates. Parts 11–16 remain cross-cutting/future requirements.
 
-Restart, AI steering, pre-contact momentum and visual-limb fixes were verified previously and now appear in README Part 00. Their acceptance rows below remain for evidence; the unfinished Part 01 starts at V2-01-005. The over-car and combat-swerve choreography, active ragdoll, new clips and new world art are planned work, not silently completed.
+Restart, AI steering, pre-contact momentum and visual-limb fixes were verified previously and now appear in README Part 00. Their acceptance rows below remain for evidence; the unfinished Part 01 starts at V2-01-005. Measured vehicle-contact observations and the default combat swerve/countersteer are integrated partially; over-car trajectory/vault and gameplay acceptance remain open. Active recovery, animation and world acceptance retain their separate gates. See testing/part01-runtime/README.md for the current29-task audit.
 
 For each new checkbox, the per-part reason/dependencies below apply along with its row-specific acceptance and verification. Research entries are candidates, not adopted code/dependencies.
 

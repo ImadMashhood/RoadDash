@@ -1,0 +1,198 @@
+[
+  {
+    "title": "Start / splash",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/splash.png",
+    "width": 1672
+  },
+  {
+    "title": "Main menu",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/main.png",
+    "width": 1671
+  },
+  {
+    "title": "Course selection",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/courses.png",
+    "width": 1672
+  },
+  {
+    "title": "Rider selection",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/riders.png",
+    "width": 1672
+  },
+  {
+    "title": "Career street hub",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/hub.png",
+    "width": 1672
+  },
+  {
+    "title": "Rider hangout",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/hangout.png",
+    "width": 1672
+  },
+  {
+    "title": "Rider conversation",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/dialogue.png",
+    "width": 1672
+  },
+  {
+    "title": "Garage / bike classes",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/garage.png",
+    "width": 1672
+  },
+  {
+    "title": "Bike detail / purchase preview",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/bike.png",
+    "width": 1672
+  },
+  {
+    "title": "Options hub",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/settings.png",
+    "width": 1672
+  },
+  {
+    "title": "Controls / rebinding preview",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/controls.png",
+    "width": 1672
+  },
+  {
+    "title": "Display / comfort preview",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/display.png",
+    "width": 1672
+  },
+  {
+    "title": "Audio settings preview",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/audio.png",
+    "width": 1672
+  },
+  {
+    "title": "Jukebox / music",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/jukebox.png",
+    "width": 1672
+  },
+  {
+    "title": "Save / load preview",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/saves.png",
+    "width": 1672
+  },
+  {
+    "title": "Race loading",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/loading.png",
+    "width": 1672
+  },
+  {
+    "title": "Race HUD",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/hud.png",
+    "width": 1672
+  },
+  {
+    "title": "Pause preview",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/pause.png",
+    "width": 1672
+  },
+  {
+    "title": "Race standings",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/results.png",
+    "width": 1672
+  },
+  {
+    "title": "Won / qualified",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/won.png",
+    "width": 1672
+  },
+  {
+    "title": "Lost race",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/lost.png",
+    "width": 1672
+  },
+  {
+    "title": "Wrecked",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/wrecked.png",
+    "width": 1672
+  },
+  {
+    "title": "Busted",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/busted.png",
+    "width": 1672
+  },
+  {
+    "title": "Level advancement",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/level.png",
+    "width": 1672
+  },
+  {
+    "title": "Penalty / game over",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/penalty.png",
+    "width": 1672
+  },
+  {
+    "title": "Credits",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/credits.png",
+    "width": 1672
+  },
+  {
+    "title": "Network lobby — future",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/network.png",
+    "width": 1672
+  },
+  {
+    "title": "Confirmation / warning dialog",
+    "complete": true,
+    "height": 941,
+    "src": "generated/screens/confirm.png",
+    "width": 1672
+  }
+]

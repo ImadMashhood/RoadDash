@@ -88,3 +88,15 @@ GLBs do not replace static authoring originals or contain physics data. Original
 ragdoll bodies, masses, limits and motors remain authoritative. Rough part weights,
 visible seams and final art/release review remain open. A standalone package must
 provide this folder as `assets/props` alongside the executable.
+
+## Original damaged furniture drafts (2026-11-08)
+
+`broken/` adds twelve derived low-LOD GLBs for the six Metropolis crush roles,
+built from the corresponding original source GLBs by
+`python3 tools/bake_broken_props.py`; `--check` verifies exact source/output/recipe
+hashes. `python3 tools/verify_broken_props.py` independently validates geometry,
+normals, source material/UV/image identity and fitted solid bounds. These are
+additional damage derivatives, not changes to the369-ID/1107-GLB draft catalog.
+No downloaded art or source texture changes. See
+[Part05 evidence](../../../docs/testing/part05-props/README.md); finished damage
+art and seven remaining topple roles stay open under DESTRUCTION-02.

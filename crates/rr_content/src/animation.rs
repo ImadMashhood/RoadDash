@@ -211,6 +211,11 @@ impl Catalog {
                 return Err(format!("descriptor/pose mismatch {}", d.id));
             }
         }
+        if folder.join("hand-authoring.json").is_file() {
+            let assembly =
+                std::fs::read_to_string(folder.join("assembly.json")).map_err(|e| e.to_string())?;
+            crate::hand_contacts::validate_authoring_assembly(&assembly, &catalog)?;
+        }
         Ok(catalog)
     }
 }

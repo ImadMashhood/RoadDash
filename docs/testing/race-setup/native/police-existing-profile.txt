@@ -1,0 +1,16 @@
+2026-11-08T19:59:16.511148Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-08T19:59:16.750234Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/race-setup/native/police-logs/performance-2220521.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+Police native: normal input speeding / warning / pursuit / escape scenario
+Police native: temporary solid LOS barrier behind moving player; wait for real loss/search/escape
+Police native: stopped crash; preserve falling/getup before foot arrest
+Crash report: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/race-setup/native/police-logs/panic-1794167988-2220521.log
+
+thread 'Compute Task Pool (1)' (2220529) panicked at src/police/survey.rs:206:13:
+assertion `left == right` failed
+  left: 9
+ right: 0
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Encountered a panic in system `Enable the debug feature to see the name`!
+Encountered a panic in system `Enable the debug feature to see the name`!

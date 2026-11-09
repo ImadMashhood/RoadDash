@@ -55,7 +55,7 @@ Bevy animation frame rate.
 
 `art/animation/context` contains **138 context-labeled human poses / 41 sequences**
 and **16 bike-only layouts**, with original rider/bike models, fixed-length IK and
-measured held grips. There are authoring-only fist shape keys and original
+measured held grips. There are shared-profile open/grip/fist authoring keys, typed wrist sockets and original
 club/chain proxies. No geometry is fabricated for code43's five empty source
 images. Police sequence metadata is complete for the decoded bank; an approved
 police model/reconstruction is not claimed.
@@ -65,9 +65,8 @@ order, not recovered native joint matrices or approved motion. Source silhouette
 were reviewed action by action before drafting. Full body/cloth clearance,
 weapon-hand fidelity, get-up/mount support, crash silhouette polish, secondary
 views and human approval remain open under ANIM-06 and existing Part02 gates.
-The glove keys are an authoring blockout, not finished finger rigging. Code7 and
-some mount/wreck aliases still lack confirmed callers. Part03 has not started.
-Runtime assets, models, physics, collisions and the accepted ragdoll are unchanged.
+The glove keys now share the runtime profile (ADR080); exact tessellation/normal parity and final finger art remain open. See [Part02 round-trip](../../testing/part02-authoring/README.md). Code7 and
+some mount/wreck aliases still lack confirmed callers. ANIM-08 subsequently integrated the documented13-clip subset; this Part02 authoring pass adds no new clips. Runtime assets, models, physics, collisions and the accepted ragdoll are unchanged by this pass.
 
 ## Reproduce
 

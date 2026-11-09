@@ -52,6 +52,54 @@ pub fn wipeout(class: Class, closing: f32) -> bool {
 pub fn vehicle_wipeout(closing: f32) -> bool {
     closing.is_finite() && closing >= 5.
 }
+/// Measured approach, independent of crash policy and retained ground speed.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum VehicleApproach {
+    Rear,
+    Oncoming,
+    Side,
+    Grazing,
+    Stopped,
+}
+
+/// The normal points from the rider into the contacted surface. SI world
+/// velocities must be sampled before solver response, never from scalar speed.
+pub fn vehicle_approach(
+    incoming: [f32; 3],
+    object: [f32; 3],
+    normal: [f32; 3],
+) -> (VehicleApproach, f32) {
+    let dot = |a: [f32; 3], b: [f32; 3]| a[0] * b[0] + a[2] * b[2];
+    let relative = [incoming[0] - object[0], 0., incoming[2] - object[2]];
+    let closing = dot(relative, normal).max(0.);
+    let relative_speed = dot(relative, relative).sqrt();
+    let own_speed = dot(incoming, incoming).sqrt();
+    let other_speed = dot(object, object).sqrt();
+    let kind = if closing < relative_speed * 0.25 || closing <= 0. {
+        VehicleApproach::Grazing
+    } else if dot(incoming, normal).abs() < own_speed * 0.7 {
+        VehicleApproach::Side
+    } else if other_speed < 0.25 {
+        VehicleApproach::Stopped
+    } else {
+        let alignment = dot(incoming, object) / (own_speed * other_speed).max(0.001);
+        if alignment > 0.7 {
+            VehicleApproach::Rear
+        } else if alignment < -0.7 {
+            VehicleApproach::Oncoming
+        } else {
+            VehicleApproach::Side
+        }
+    };
+    (kind, closing)
+}
+
+/// Once balance has been lost, a substantial solid contact interrupts the
+/// mounted sequence. This is not a new crash threshold for ordinary riding.
+pub fn interrupts_stagger(closing: f32) -> bool {
+    closing.is_finite() && closing >= 1.0
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -190,5 +238,49 @@ mod ride_over_energy {
             ride_over_response([f32::NAN, 0.0, 0.0], [0.0; 3], [0.0; 3], 240.0, 20.0, 3.0)
                 .is_none()
         );
+    }
+}
+
+#[cfg(test)]
+mod measured_vehicle_tests {
+    use super::*;
+    #[test]
+    fn world_velocity_closing_and_approach_are_distinct() {
+        for (other, normal, expected, closing_kmh) in [
+            (
+                [0., 0., 60. / 3.6],
+                [0., 0., 1.],
+                VehicleApproach::Rear,
+                40.,
+            ),
+            (
+                [0., 0., -60. / 3.6],
+                [0., 0., 1.],
+                VehicleApproach::Oncoming,
+                160.,
+            ),
+            ([0.; 3], [0., 0., 1.], VehicleApproach::Stopped, 100.),
+            ([-10., 0., 0.], [1., 0., 0.], VehicleApproach::Side, 36.),
+            ([0.; 3], [1., 0., 0.], VehicleApproach::Grazing, 0.),
+        ] {
+            let (kind, closing) = vehicle_approach([0., 0., 100. / 3.6], other, normal);
+            assert_eq!(kind, expected);
+            assert!((closing * 3.6 - closing_kmh).abs() < 0.001);
+        }
+    }
+    #[test]
+    fn parallel_side_door_contact_is_side_even_with_aligned_world_velocities() {
+        let (kind, closing) = vehicle_approach([5., 0., 30.], [0., 0., 30.], [1., 0., 0.]);
+        assert_eq!(kind, VehicleApproach::Side);
+        assert_eq!(closing, 5.);
+    }
+    #[test]
+    fn loss_of_balance_contact_gate_rejects_rest_and_invalid_samples() {
+        for closing in [0., 0.99, -2., f32::NAN, f32::INFINITY] {
+            assert!(!interrupts_stagger(closing));
+        }
+        assert!(interrupts_stagger(1.));
+        assert!(!vehicle_wipeout(1.));
+        assert!(!wipeout(Class::Tall, 1.));
     }
 }

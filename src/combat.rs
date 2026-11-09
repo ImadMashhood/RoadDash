@@ -7,13 +7,172 @@ use crate::{
 };
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
+/// Only intentional police foot chase extends the existing mounted target set.
+fn target_pose(
+    r: &Rider,
+    rec: &Recovery,
+    t: &Transform,
+    poses: &Query<&Transform, Without<Rider>>,
+    police_foot: bool,
+) -> Option<Transform> {
+    if rec.stage == RecoveryStage::Riding {
+        Some(*t)
+    } else if r.police && police_foot && rec.stage == RecoveryStage::Running {
+        rec.runner
+            .and_then(|e| poses.get(e).ok())
+            .map(|p| Transform {
+                translation: p.translation - Vec3::Y * 0.95,
+                ..*p
+            })
+    } else {
+        None
+    }
+}
 #[derive(Message)]
 pub struct AttackAttempt(pub Entity, pub rr_core::AttackSide);
+/// Input/AI intent. Only the fixed scheduler turns this into a contact attempt.
+#[derive(Message)]
+pub struct AttackIntent(pub Entity, pub rr_core::AttackSide);
+#[derive(Message)]
+pub struct StrikeContact(
+    pub(crate) Entity,
+    pub(crate) rr_core::AttackSide,
+    pub(crate) f32,
+);
+
+#[derive(Resource)]
+pub struct StrikeTimings([f32; 2]);
+impl Default for StrikeTimings {
+    fn default() -> Self {
+        let lib =
+            rr_content::motion::Library::from_json(include_str!("../assets/models/motion.json"))
+                .expect("validated strike clips");
+        Self([
+            lib.strike_contact(false).unwrap(),
+            lib.strike_contact(true).unwrap(),
+        ])
+    }
+}
+
+/// Resolve the side once at windup, then emit one contact at the visible key.
+/// Rider-owned clocks reset with the rider; interrupted/recovered riders cannot retain hits.
+#[allow(clippy::too_many_arguments)]
+pub fn schedule(
+    time: Res<Time<Fixed>>,
+    race: Res<Race>,
+    timings: Res<StrikeTimings>,
+    weapons: Res<crate::weapons::WeaponRules>,
+    mut intents: MessageReader<AttackIntent>,
+    mut riders: Query<(Entity, &mut Rider, &Recovery, &Transform)>,
+    npcs: Query<(Entity, &crate::npc::Npc, &Transform)>,
+    mut contacts: MessageWriter<StrikeContact>,
+    positions: Query<&Transform, Without<Rider>>,
+    police: Option<Res<crate::police::Police>>,
+) {
+    if race.phase == Phase::Paused {
+        intents.clear();
+        return;
+    }
+    if race.phase != Phase::Racing {
+        intents.clear();
+        for (_, mut r, _, _) in &mut riders {
+            r.strike = None;
+        }
+        return;
+    }
+    let police_foot = police.is_some_and(|p| p.intentional_foot);
+    for &AttackIntent(owner, action) in intents.read() {
+        let Ok((_, r, rec, t)) = riders.get(owner) else {
+            continue;
+        };
+        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
+            continue;
+        }
+        if r.strike.is_some_and(|clock| clock.pending()) {
+            continue;
+        }
+        let mut side = action.sign();
+        if action == rr_core::AttackSide::Kick {
+            let origin = t.translation;
+            let right = (t.rotation * Vec3::Z).cross(Vec3::Y).normalize_or_zero();
+            let eligible = riders
+                .iter()
+                .filter(|(e, other, state, pose)| {
+                    *e != owner
+                        && (r.id == 0 || r.combat_mind.can_fight(other.id))
+                        && target_pose(other, state, pose, &positions, police_foot).is_some()
+                        && state.stagger.is_none()
+                        && other.immunity <= 0.0
+                        && other.finished.is_none()
+                })
+                .map(|(e, r, rec, t)| {
+                    (
+                        e,
+                        target_pose(r, rec, t, &positions, police_foot)
+                            .unwrap()
+                            .translation,
+                    )
+                })
+                .chain(
+                    npcs.iter()
+                        .filter(|(_, n, _)| {
+                            n.active()
+                                && (r.id == 0
+                                    || r.combat_mind.role == rr_core::rival_ai::Role::Killer)
+                        })
+                        .map(|(e, _, t)| (e, t.translation)),
+                )
+                .filter_map(|(e, p)| {
+                    let delta = p - origin;
+                    let lateral = delta.dot(right);
+                    (delta.length_squared() < 144.0 && lateral.abs() > 0.05).then_some((
+                        delta.length_squared(),
+                        e,
+                        lateral.signum(),
+                    ))
+                })
+                .min_by(|a, b| a.0.total_cmp(&b.0).then_with(|| a.1.cmp(&b.1)));
+            if let Some((_, _, chosen)) = eligible {
+                side = chosen;
+            }
+        }
+        let weapon =
+            (r.weapon.is_some() && action != rr_core::AttackSide::Kick).then_some(weapons.0);
+        let source_contact = weapon.map_or(
+            timings.0[usize::from(action == rr_core::AttackSide::Kick)],
+            |a| a.source_contact,
+        );
+        if let Ok((_, mut r, _, _)) = riders.get_mut(owner) {
+            r.attack_side = side;
+            r.strike = Some(rr_core::motion::StrikeClock::new(
+                action,
+                side,
+                source_contact,
+            ));
+            r.strike.as_mut().unwrap().weapon = weapon;
+            if weapon.is_some() {
+                r.weapon_hand = usize::from(side > 0.0);
+            }
+        }
+    }
+    for (e, mut r, rec, _) in &mut riders {
+        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
+            r.strike = None;
+            continue;
+        }
+        if let Some(clock) = r.strike.as_mut()
+            && clock.advance(time.delta_secs())
+        {
+            contacts.write(StrikeContact(e, clock.action, clock.side));
+        }
+    }
+}
 #[derive(Message)]
 pub struct NpcHit(pub Entity, pub Vec3, pub bool);
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub fn melee(
     mut attempts: MessageReader<AttackAttempt>,
+    mut contacts: MessageReader<StrikeContact>,
     mut commands: Commands,
     art: Res<Art>,
     mut race: ResMut<Race>,
@@ -28,25 +187,45 @@ pub fn melee(
     mut velocities: Query<&mut Velocity>,
     context: ReadRapierContext,
     mut npc_hits: MessageWriter<NpcHit>,
+    mut police: Option<ResMut<crate::police::Police>>,
+    positions: Query<&Transform, Without<Rider>>,
+    owned: Query<&crate::recovery::OwnedBody>,
     mut audio: MessageWriter<AudioCue>,
 ) {
     if race.phase != Phase::Racing {
         attempts.clear();
+        contacts.clear();
         return;
     }
+    let police_foot = police.as_ref().is_some_and(|p| p.intentional_foot);
     for (_, mut rider, recovery, _, _) in &mut riders {
-        if recovery.stage == RecoveryStage::Riding && rider.hits.expire(race.elapsed) {
+        if (recovery.stage == RecoveryStage::Riding
+            || (rider.police && police_foot && recovery.stage == RecoveryStage::Running))
+            && rider.hits.expire(race.elapsed)
+        {
             rider.health = 100.0;
         }
     }
-    for &AttackAttempt(attacker, action) in attempts.read() {
-        let side = action.sign();
+    let attempts = attempts
+        .read()
+        .map(|&AttackAttempt(e, a)| (e, a, None))
+        .chain(
+            contacts
+                .read()
+                .map(|&StrikeContact(e, a, side)| (e, a, Some(side))),
+        );
+    for (attacker, action, chosen_side) in attempts {
+        let side = chosen_side.unwrap_or(action.sign());
         let Ok((_, rider, state, t, _)) = riders.get(attacker) else {
             continue;
         };
-        if state.stage != RecoveryStage::Riding || state.stagger.is_some() {
+        if state.stage != RecoveryStage::Riding
+            || state.stagger.is_some()
+            || rider.finished.is_some()
+        {
             continue;
         }
+        let weapon = chosen_side.and_then(|_| rider.strike.and_then(|s| s.weapon));
         let kicking = matches!(action, rr_core::AttackSide::Kick);
         let player = rider.id == 0;
         let attacker_id = rider.id;
@@ -60,14 +239,14 @@ pub fn melee(
         let forward = t.rotation * Vec3::Z;
         let right = forward.cross(Vec3::Y).normalize_or_zero();
         let attacker_velocity = rider.motion_velocity;
-        if kicking {
+        if kicking && chosen_side.is_none() {
             let direction = riders
                 .iter()
                 .filter(|(e, r, state, t, _)| {
                     (player || mind.can_fight(r.id))
                         && *e != attacker
-                        && state.stage == RecoveryStage::Riding
-                        && t.translation.distance_squared(origin) < 144.0
+                        && target_pose(r, state, t, &positions, police_foot)
+                            .is_some_and(|p| p.translation.distance_squared(origin) < 144.)
                 })
                 .min_by(|a, b| {
                     a.3.translation
@@ -87,16 +266,30 @@ pub fn melee(
             let delta = p - origin;
             let lateral = delta.dot(right);
             let longitudinal = delta.dot(forward);
-            if !rr_core::direct_strike_geometry(
-                lateral,
-                longitudinal,
-                delta.y,
-                if kicking { lateral.signum() } else { side },
+            if !weapon.map_or_else(
+                || {
+                    rr_core::direct_strike_geometry(
+                        lateral,
+                        longitudinal,
+                        delta.y,
+                        if kicking && chosen_side.is_none() {
+                            lateral.signum()
+                        } else {
+                            side
+                        },
+                    )
+                },
+                |a| a.reaches(lateral, longitudinal, delta.y, side),
             ) {
                 return;
             }
             let clear = context.single().is_ok_and(|ctx| {
-                let predicate = |e| e != entity;
+                let predicate = |e| {
+                    e != entity
+                        && !owned.get(e).is_ok_and(|b| {
+                            b.owner == entity && b.kind == recovery::BodyKind::Runner
+                        })
+                };
                 ctx.cast_ray(
                     origin,
                     delta.normalize_or_zero(),
@@ -117,12 +310,21 @@ pub fn melee(
         for (e, r, s, t, _) in &riders {
             if e != attacker
                 && (player || mind.can_fight(r.id))
-                && s.stage == RecoveryStage::Riding
+                && target_pose(r, s, t, &positions, police_foot).is_some()
                 && s.stagger.is_none()
                 && r.immunity <= 0.0
-                && (t.rotation * Vec3::Z).dot(forward) > 0.7
+                && r.finished.is_none()
+                && ((r.police && police_foot && s.stage == RecoveryStage::Running)
+                    || (t.rotation * Vec3::Z).dot(forward) > 0.7)
             {
-                consider(e, t.translation + Vec3::Y * 1.45, false);
+                consider(
+                    e,
+                    target_pose(r, s, t, &positions, police_foot)
+                        .unwrap()
+                        .translation
+                        + Vec3::Y * 1.45,
+                    false,
+                );
             }
         }
         for (e, n, t) in &npcs {
@@ -143,7 +345,45 @@ pub fn melee(
         let Some((target, _, p, is_npc)) = nearest else {
             continue;
         };
-        if kicking && let Ok((_, mut rider, _, _, _)) = riders.get_mut(attacker) {
+        if player
+            && let Some(ref mut police) = police
+            && race.elapsed >= police.rules.launch_grace
+            && let Some((observer, _, rec, t, _)) = riders.iter().find(|(_, r, _, _, _)| r.police)
+        {
+            let eye = rec
+                .runner
+                .and_then(|e| positions.get(e).ok())
+                .map_or(t.translation + Vec3::Y * 1.2, |p| {
+                    p.translation + Vec3::Y * 0.25
+                });
+            let delta = p - eye;
+            let predicate = |e| {
+                e != observer
+                    && e != attacker
+                    && e != target
+                    && !owned.get(e).is_ok_and(|b| b.owner == observer)
+            };
+            let witnessed = delta.length() <= police.rules.detection_radius
+                && context.single().ok().is_some_and(|ctx| {
+                    ctx.cast_ray(
+                        eye,
+                        delta.normalize_or_zero(),
+                        delta.length(),
+                        true,
+                        QueryFilter::default()
+                            .exclude_sensors()
+                            .predicate(&predicate),
+                    )
+                    .is_none()
+                });
+            if witnessed {
+                police.assault = Some(race.elapsed);
+            }
+        }
+        if kicking
+            && chosen_side.is_none()
+            && let Ok((_, mut rider, _, _, _)) = riders.get_mut(attacker)
+        {
             rider.attack_side = (p - origin).dot(right).signum();
         }
         audio.write(AudioCue::new(
@@ -158,10 +398,21 @@ pub fn melee(
             continue;
         }
         if let Ok((_, mut r, mut state, t, mut visible)) = riders.get_mut(target) {
+            let foot = r.police && police_foot && state.stage == RecoveryStage::Running;
+            let hit_pose = target_pose(&r, &state, t, &positions, police_foot).unwrap_or(*t);
+            if r.police
+                && let Some(ref mut police) = police
+            {
+                police.mind.interrupt_arrest();
+                police.contact_block_until = race.elapsed + 0.25;
+            }
             r.combat_mind.struck_by(attacker_id);
             let column = rr_core::pursuit::personality(attacker_id);
             r.relationships[column] =
                 (r.relationships[column] + r.ai_profile.hit_reaction).clamp(-1024.0, 1024.0);
+            if kicking && foot {
+                continue;
+            }
             if kicking {
                 let push = right * (p - origin).dot(right).signum() * kick_strength;
                 if let Ok(mut velocity) = velocities.get_mut(target) {
@@ -182,21 +433,25 @@ pub fn melee(
                 race.message_time = 1.0;
             }
             if knocked_out {
-                if state.active_crash_behavior {
+                if state.active_crash_behavior && !foot {
                     if state.stagger.is_none() {
                         state.stagger = Some(rr_core::crash_behavior::Stagger::new(
                             (p - origin).dot(right),
                         ));
                     }
                 } else {
+                    if foot {
+                        r.motion_velocity = state.walk_velocity;
+                        r.motion_angular_velocity = Vec3::ZERO;
+                    }
                     recovery::crash(
                         &mut commands,
                         &art,
                         target,
                         &mut r,
                         &mut state,
-                        t.translation,
-                        t.rotation,
+                        hit_pose.translation,
+                        hit_pose.rotation,
                         Vec3::ZERO,
                         &context,
                     );
@@ -217,6 +472,187 @@ pub fn melee(
 mod tests {
     use super::*;
     use bevy::ecs::system::RunSystemOnce;
+    /// Real buffered input -> drive -> scheduler -> LOS/contact -> hit chain.
+    /// Render frequency includes zero-tick frames; no resolved contact is injected.
+    #[test]
+    fn buffered_strikes_wait_for_contact_and_resolve_once_at_all_render_rates() {
+        for hz in [30, 60, 120, 144] {
+            for (key, name, side, source_contact) in [
+                (KeyCode::KeyJ, "punch_left", -1.0, 0.26),
+                (KeyCode::KeyK, "punch_right", 1.0, 0.26),
+                (KeyCode::Space, "kick_left", -1.0, 0.24),
+                (KeyCode::Space, "kick_right", 1.0, 0.24),
+            ] {
+                let mut app = crate::game::tests::simulation();
+                app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+                for _ in 0..3 {
+                    app.update();
+                }
+                app.add_plugins(crate::animation::MotionPlugin);
+                app.insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+                    std::time::Duration::from_secs_f64(1.0 / hz as f64),
+                ));
+                let (owner, pose) = app
+                    .world_mut()
+                    .query::<(Entity, &Rider, &Transform)>()
+                    .iter(app.world())
+                    .find(|(_, r, _)| r.id == 0)
+                    .map(|(e, _, t)| (e, *t))
+                    .unwrap();
+                let right = (pose.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+                let target_pose =
+                    Transform::from_translation(pose.translation + right * side * 1.7);
+                let target = app
+                    .world_mut()
+                    .spawn((
+                        crate::npc::Npc::new(crate::npc::NpcKind::Pedestrian, target_pose),
+                        target_pose,
+                        Visibility::default(),
+                    ))
+                    .id();
+                app.world_mut()
+                    .resource_mut::<ButtonInput<KeyCode>>()
+                    .press(key);
+                let mut observed_contact = false;
+                let mut samples = Vec::new();
+                for _ in 0..hz {
+                    app.update();
+                    let clock = app
+                        .world_mut()
+                        .query::<&Rider>()
+                        .iter(app.world())
+                        .find(|r| r.id == 0)
+                        .unwrap()
+                        .strike;
+                    let hits = app
+                        .world()
+                        .get::<crate::npc::Npc>(target)
+                        .unwrap()
+                        .hits
+                        .count;
+                    if let Some(clock) = clock {
+                        if clock.age < clock.contact {
+                            assert_eq!(hits, 0, "early hit at {hz}Hz");
+                        } else {
+                            if !observed_contact {
+                                let pose = app
+                                    .world()
+                                    .get::<crate::animation::Animator>(owner)
+                                    .unwrap()
+                                    .current;
+                                let expected = app
+                                    .world()
+                                    .resource::<crate::animation::Library>()
+                                    .sample(name, source_contact);
+                                for (actual, expected) in
+                                    pose.rotations.into_iter().zip(expected.rotations)
+                                {
+                                    assert!(
+                                        actual.dot(expected).abs() > 0.99999,
+                                        "contact pose differs at {hz}Hz"
+                                    );
+                                }
+                            }
+                            observed_contact = true;
+                            assert_eq!(
+                                hits, 1,
+                                "duplicate/missing hit at {hz}Hz age {} contact {}",
+                                clock.age, clock.contact
+                            );
+                        }
+                        samples.push((clock.age, hits));
+                    } else {
+                        assert_eq!(hits, 0);
+                    }
+                }
+                assert!(observed_contact);
+                let first = samples.iter().find(|(_, h)| *h == 1).unwrap().0;
+                assert!((0.188..0.234).contains(&first), "{hz}Hz: {first}");
+                println!(
+                    "render_hz={hz}, clip={name}, source_contact={source_contact}s, first_observed_contact_age={first:.6}s, hits=1"
+                );
+            }
+        }
+    }
+    #[test]
+    fn windup_pauses_then_cancels_on_recovery_and_kick_side_stays_chosen() {
+        let mut app = crate::game::tests::simulation();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        for _ in 0..3 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query::<(Entity, &Rider)>()
+            .iter(app.world())
+            .find(|(_, r)| r.id == 0)
+            .unwrap()
+            .0;
+        let mut rival = Rider::new(1);
+        rival.lane = -3.7;
+        rival.progress = -8.0;
+        rival.immunity = 0.0;
+        let target = app
+            .world_mut()
+            .spawn((rival, Transform::default(), Visibility::default()))
+            .id();
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::Space);
+        for _ in 0..3 {
+            app.update();
+        }
+        let clock = app
+            .world()
+            .get::<Rider>(owner)
+            .unwrap()
+            .strike
+            .expect("kick input starts windup");
+        app.world_mut()
+            .write_message(AttackIntent(owner, rr_core::AttackSide::Left));
+        app.world_mut().run_system_once(schedule).unwrap();
+        let unchanged = app.world().get::<Rider>(owner).unwrap().strike.unwrap();
+        assert_eq!(unchanged.action, rr_core::AttackSide::Kick);
+        assert_eq!(unchanged.side, clock.side);
+        assert!(
+            unchanged.age > clock.age,
+            "duplicate intent must not restart windup"
+        );
+        let clock = unchanged;
+        app.world_mut().resource_mut::<Race>().phase = Phase::Paused;
+        for _ in 0..30 {
+            app.update();
+        }
+        assert_eq!(
+            app.world().get::<Rider>(owner).unwrap().strike.unwrap().age,
+            clock.age
+        );
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        // Move the opponent through the attacker during windup. The chosen leg
+        // cannot switch or hit a newly occupied opposite-side contact volume.
+        app.world_mut().get_mut::<Rider>(target).unwrap().lane = 0.0;
+        for _ in 0..20 {
+            app.update();
+        }
+        let r = app.world().get::<Rider>(owner).unwrap();
+        assert_eq!(r.attack_side, clock.side);
+        assert_eq!(r.strike.unwrap().side, clock.side);
+        app.world_mut().get_mut::<Rider>(owner).unwrap().strike = Some(
+            rr_core::motion::StrikeClock::new(rr_core::AttackSide::Right, 1.0, 0.26),
+        );
+        app.world_mut().get_mut::<Recovery>(owner).unwrap().stagger =
+            Some(rr_core::crash_behavior::Stagger::new(1.0));
+        app.world_mut().run_system_once(schedule).unwrap();
+        assert!(app.world().get::<Rider>(owner).unwrap().strike.is_none());
+        app.world_mut().get_mut::<Recovery>(owner).unwrap().stagger = None;
+        // Recovery entry must discard even an unconsumed contact clock.
+        app.world_mut().get_mut::<Rider>(owner).unwrap().strike = Some(
+            rr_core::motion::StrikeClock::new(rr_core::AttackSide::Right, 1.0, 0.26),
+        );
+        app.world_mut().get_mut::<Recovery>(owner).unwrap().stage = RecoveryStage::Falling;
+        app.update();
+        assert!(app.world().get::<Rider>(owner).unwrap().strike.is_none());
+    }
     #[test]
     fn racer_refuses_first_strike_then_only_retaliates_against_actual_attacker() {
         let mut app = crate::game::tests::simulation();

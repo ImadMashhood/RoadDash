@@ -1,0 +1,879 @@
+{
+  "schema_version": 1,
+  "stage": "artist-handoff / independent UI planning skeleton; no game integration",
+  "canvas": [
+    1920,
+    1080
+  ],
+  "safe_area": [
+    96,
+    54,
+    1728,
+    972
+  ],
+  "art_policy": "Original replacement art only. Keep text, numbers, focus/disabled states and bars separate from background pictures. Retail references remain outside Git/assets.",
+  "screens": [
+    {
+      "id": "splash",
+      "title": "Start / splash",
+      "legacy": [
+        9
+      ],
+      "categories": [
+        "menu-backgrounds"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Continue",
+          "main"
+        ]
+      ],
+      "notes": "New RoadDash brand. Original splash is a separate source image; source screen0 is not a menu.",
+      "preferred_source": "IMAGES/SPLASH.RRI",
+      "source_pattern": "^IMAGES/SPLASH\\."
+    },
+    {
+      "id": "main",
+      "title": "Main menu",
+      "legacy": [
+        9
+      ],
+      "categories": [
+        "menu-backgrounds"
+      ],
+      "layout": "menu",
+      "actions": [
+        [
+          "Quick race",
+          "courses"
+        ],
+        [
+          "Career preview",
+          "hub"
+        ],
+        [
+          "Rider",
+          "riders"
+        ],
+        [
+          "Options",
+          "settings"
+        ]
+      ],
+      "notes": "Editable draft navigation, not original coordinates or implemented career.",
+      "preferred_source": "IMAGES/MAIN.RRI",
+      "source_pattern": "^IMAGES/MAIN\\."
+    },
+    {
+      "id": "courses",
+      "title": "Course selection",
+      "legacy": [
+        10,
+        12,
+        27
+      ],
+      "categories": [
+        "courses",
+        "menu-backgrounds"
+      ],
+      "layout": "cards",
+      "actions": [
+        [
+          "Choose / loading preview",
+          "loading"
+        ],
+        [
+          "Rider",
+          "riders"
+        ]
+      ],
+      "notes": "Course postcards, selected/qualified variants and overlay text. No production track switching.",
+      "preferred_source": "IMAGES/POSTCARD/CITY.RRI",
+      "source_pattern": "^IMAGES/POSTCARD[/.]"
+    },
+    {
+      "id": "riders",
+      "title": "Rider selection",
+      "legacy": [
+        14
+      ],
+      "categories": [
+        "characters"
+      ],
+      "layout": "cards",
+      "actions": [
+        [
+          "Confirm rider preview",
+          "courses"
+        ]
+      ],
+      "notes": "Eight original character families \u00d7 F/N/H reference variants. RoadDash roster/art approval is separate.",
+      "preferred_source": "IMAGES/CHARS/AXLE-N.RRI",
+      "source_pattern": "^IMAGES/CHARS/(?!MANOMANO)"
+    },
+    {
+      "id": "hub",
+      "title": "Career street hub",
+      "legacy": [
+        15
+      ],
+      "categories": [
+        "hub-insets",
+        "menu-backgrounds"
+      ],
+      "layout": "hub",
+      "actions": [
+        [
+          "Bike shop",
+          "garage"
+        ],
+        [
+          "Rider hangout",
+          "hangout"
+        ],
+        [
+          "Race",
+          "courses"
+        ],
+        [
+          "Options",
+          "settings"
+        ]
+      ],
+      "notes": "Scene-like hub navigation with distinct destinations; no economy changes.",
+      "preferred_source": "IMAGES/STREET.RRI",
+      "source_pattern": "^IMAGES/STREET[/.]"
+    },
+    {
+      "id": "hangout",
+      "title": "Rider hangout",
+      "legacy": [
+        25
+      ],
+      "categories": [
+        "menu-backgrounds",
+        "characters"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Talk to rider",
+          "dialogue"
+        ],
+        [
+          "Street",
+          "hub"
+        ]
+      ],
+      "notes": "Original clubhouse context; create original RoadDash location art.",
+      "preferred_source": "IMAGES/PANZER.RRI",
+      "source_pattern": "^IMAGES/PANZER\\."
+    },
+    {
+      "id": "dialogue",
+      "title": "Rider conversation",
+      "legacy": [
+        26
+      ],
+      "categories": [
+        "characters"
+      ],
+      "layout": "dialogue",
+      "actions": [
+        [
+          "Next rider preview",
+          "dialogue"
+        ],
+        [
+          "Leave",
+          "hangout"
+        ]
+      ],
+      "notes": "Three portrait/relationship variants; localized dialogue remains live text.",
+      "preferred_source": "IMAGES/CHARS/AXLE-F.RRI",
+      "source_pattern": "^IMAGES/CHARS/(?!MANOMANO)"
+    },
+    {
+      "id": "garage",
+      "title": "Garage / bike classes",
+      "legacy": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "categories": [
+        "showroom",
+        "menu-backgrounds"
+      ],
+      "layout": "cards",
+      "actions": [
+        [
+          "Inspect bike",
+          "bike"
+        ],
+        [
+          "Street",
+          "hub"
+        ]
+      ],
+      "notes": "Three overview images and fifteen bike/class showcase pictures in the original. Replacement family reuse is encouraged.",
+      "preferred_source": "IMAGES/OLLEYS.RRI",
+      "source_pattern": "^IMAGES/(SHOWROOM/|OLLEYS\\.)"
+    },
+    {
+      "id": "bike",
+      "title": "Bike detail / purchase preview",
+      "legacy": [
+        24
+      ],
+      "categories": [
+        "bike-detail"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Purchase confirmation preview",
+          "confirm"
+        ],
+        [
+          "Back to garage",
+          "garage"
+        ]
+      ],
+      "notes": "Price/stats/owned/affordability are overlays, not painted into art. No real purchases.",
+      "preferred_source": "IMAGES/BIKES/RAT/BANZAI.RRI",
+      "source_pattern": "^IMAGES/BIKES/.+\\.RRI$"
+    },
+    {
+      "id": "settings",
+      "title": "Options hub",
+      "legacy": [
+        16
+      ],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "menu",
+      "actions": [
+        [
+          "Controls",
+          "controls"
+        ],
+        [
+          "Display",
+          "display"
+        ],
+        [
+          "Audio",
+          "audio"
+        ],
+        [
+          "Jukebox",
+          "jukebox"
+        ],
+        [
+          "Save / load preview",
+          "saves"
+        ]
+      ],
+      "notes": "Original Restroom has six illustration variants and contextual disabled rows. Modern layout is a proposal.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "controls",
+      "title": "Controls / rebinding preview",
+      "legacy": [
+        18
+      ],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "settings",
+      "actions": [
+        [
+          "Binding conflict preview",
+          "confirm"
+        ],
+        [
+          "Back",
+          "settings"
+        ]
+      ],
+      "notes": "Keyboard/controller labels and waiting/conflict/reset states are reusable components. No game bindings changed.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "display",
+      "title": "Display / comfort preview",
+      "legacy": [
+        19
+      ],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "settings",
+      "actions": [
+        [
+          "Apply confirmation preview",
+          "confirm"
+        ],
+        [
+          "Back",
+          "settings"
+        ]
+      ],
+      "notes": "Original graphics page distinguished from later reconstruction-specific display/enhancement screens. Proposed RoadDash safe-area/FOV/accessibility controls.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "audio",
+      "title": "Audio settings preview",
+      "legacy": [
+        16
+      ],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "settings",
+      "actions": [
+        [
+          "Back",
+          "settings"
+        ]
+      ],
+      "notes": "Original Sound Mix uses native Windows dialog300, separately cataloged, rather than a JPEG background. The fullscreen RoadDash slider layout is a new proposal.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "jukebox",
+      "title": "Jukebox / music",
+      "legacy": [
+        17
+      ],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "settings",
+      "actions": [
+        [
+          "Back",
+          "settings"
+        ]
+      ],
+      "notes": "Six track-list popup families plus video chooser; replace music/media independently.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "saves",
+      "title": "Save / load preview",
+      "legacy": [
+        16
+      ],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "settings",
+      "actions": [
+        [
+          "Confirm preview",
+          "confirm"
+        ],
+        [
+          "Back",
+          "settings"
+        ]
+      ],
+      "notes": "Dynamic filename rows and save/overwrite/error dialogs; not a fixed standalone retail background.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "loading",
+      "title": "Race loading",
+      "legacy": [
+        8
+      ],
+      "categories": [
+        "characters"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Show HUD preview",
+          "hud"
+        ]
+      ],
+      "notes": "Character portrait, progress and hints. Advance is manual; does not start the game.",
+      "preferred_source": "IMAGES/CHARS/AXLE-F.RRI",
+      "source_pattern": "^IMAGES/CHARS/.+-F\\."
+    },
+    {
+      "id": "hud",
+      "title": "Race HUD",
+      "legacy": [],
+      "categories": [
+        "hud"
+      ],
+      "layout": "hud",
+      "actions": [
+        [
+          "Pause preview",
+          "pause"
+        ],
+        [
+          "Results preview",
+          "results"
+        ],
+        [
+          "Busted preview",
+          "busted"
+        ]
+      ],
+      "notes": "Dashboard families, mph/kmh labels, needle, condition/stamina, position, opponents, countdown and announcements. Add RoadDash map/bike-recovery/weapon prompts. Nitrous stays disabled.",
+      "preferred_source": "IMAGES/BIKES/RAT/KHIDASH.BOB",
+      "source_pattern": "^IMAGES/.+\\.BOB$"
+    },
+    {
+      "id": "pause",
+      "title": "Pause preview",
+      "legacy": [],
+      "categories": [
+        "options-backgrounds"
+      ],
+      "layout": "menu",
+      "actions": [
+        [
+          "Resume preview",
+          "hud"
+        ],
+        [
+          "Settings",
+          "settings"
+        ],
+        [
+          "Quit confirmation",
+          "confirm"
+        ]
+      ],
+      "notes": "Pause overlay is a RoadDash proposal. Reconstruction native_pause0x26 is not an original retail table.",
+      "preferred_source": "IMAGES/RESTROOM/REST1.RRI",
+      "source_pattern": "^IMAGES/RESTROOM/"
+    },
+    {
+      "id": "results",
+      "title": "Race standings",
+      "legacy": [
+        34
+      ],
+      "categories": [
+        "results"
+      ],
+      "layout": "results",
+      "actions": [
+        [
+          "Win card",
+          "won"
+        ],
+        [
+          "Loss card",
+          "lost"
+        ],
+        [
+          "Wrecked card",
+          "wrecked"
+        ],
+        [
+          "Busted card",
+          "busted"
+        ],
+        [
+          "Main menu",
+          "main"
+        ]
+      ],
+      "notes": "Fifteen data rows, times/rewards/retry. Prototype values are illustrative only.",
+      "preferred_source": "IMAGES/RESULTS/WIN1.RRI",
+      "source_pattern": "^IMAGES/RESULTS/"
+    },
+    {
+      "id": "won",
+      "title": "Won / qualified",
+      "legacy": [
+        30
+      ],
+      "categories": [
+        "results"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Standings",
+          "results"
+        ],
+        [
+          "Level-up preview",
+          "level"
+        ]
+      ],
+      "notes": "Six Win illustrations; Finale is a separate source, not a random seventh variant.",
+      "preferred_source": "IMAGES/RESULTS/WIN1.RRI",
+      "source_pattern": "^IMAGES/RESULTS/(WIN|FINALE)"
+    },
+    {
+      "id": "lost",
+      "title": "Lost race",
+      "legacy": [
+        31
+      ],
+      "categories": [
+        "results"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Standings",
+          "results"
+        ],
+        [
+          "Retry preview",
+          "loading"
+        ]
+      ],
+      "notes": "Six Lose illustrations; ten Lose video clips are separately inventoried.",
+      "preferred_source": "IMAGES/RESULTS/LOSE1.RRI",
+      "source_pattern": "^IMAGES/RESULTS/LOSE"
+    },
+    {
+      "id": "wrecked",
+      "title": "Wrecked",
+      "legacy": [
+        28
+      ],
+      "categories": [
+        "results"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Penalty preview",
+          "penalty"
+        ],
+        [
+          "Retry preview",
+          "loading"
+        ]
+      ],
+      "notes": "Six Wreck illustrations / six video variants. Physical crashes remain the existing game system.",
+      "preferred_source": "IMAGES/RESULTS/WRECK1.RRI",
+      "source_pattern": "^IMAGES/RESULTS/WRECK"
+    },
+    {
+      "id": "busted",
+      "title": "Busted",
+      "legacy": [
+        29
+      ],
+      "categories": [
+        "results"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Retry preview",
+          "loading"
+        ],
+        [
+          "Standings",
+          "results"
+        ]
+      ],
+      "notes": "Six Bust illustrations; six Busted clips. Game's current no-payout arrest policy remains unchanged.",
+      "preferred_source": "IMAGES/RESULTS/BUST1.RRI",
+      "source_pattern": "^IMAGES/RESULTS/BUST"
+    },
+    {
+      "id": "level",
+      "title": "Level advancement",
+      "legacy": [
+        32
+      ],
+      "categories": [
+        "results"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Continue",
+          "courses"
+        ]
+      ],
+      "notes": "Four stored Level images, not a guessed six. This is artwork planning, not implemented progression.",
+      "preferred_source": "IMAGES/RESULTS/LEVEL1.RRI",
+      "source_pattern": "^IMAGES/RESULTS/LEVEL"
+    },
+    {
+      "id": "penalty",
+      "title": "Penalty / game over",
+      "legacy": [
+        33
+      ],
+      "categories": [],
+      "layout": "dialogue",
+      "actions": [
+        [
+          "Continue",
+          "hub"
+        ]
+      ],
+      "notes": "Dynamic fine/cost/game-over message uses runtime text; can reuse result art."
+    },
+    {
+      "id": "credits",
+      "title": "Credits",
+      "legacy": [
+        7,
+        35
+      ],
+      "categories": [
+        "menu-backgrounds"
+      ],
+      "layout": "hero",
+      "actions": [
+        [
+          "Main menu",
+          "main"
+        ]
+      ],
+      "notes": "Opening/final credits share Credits art; use original project credits as live text.",
+      "preferred_source": "IMAGES/CREDITS.RRI",
+      "source_pattern": "^IMAGES/CREDITS\\."
+    },
+    {
+      "id": "network",
+      "title": "Network lobby \u2014 future",
+      "legacy": [
+        11,
+        12,
+        13
+      ],
+      "categories": [
+        "characters",
+        "courses",
+        "menu-backgrounds"
+      ],
+      "layout": "settings",
+      "actions": [
+        [
+          "Main menu",
+          "main"
+        ]
+      ],
+      "notes": "Original LAN/Mano setup and chat tables. New room-code/browser-lobby screens are reconstruction additions. RoadDash networking is deferred; no online claims.",
+      "preferred_source": "IMAGES/CHARS/MANOMANO.RRI",
+      "source_pattern": "^IMAGES/(CHARS/MANOMANO|POSTCARD[/.])"
+    },
+    {
+      "id": "confirm",
+      "title": "Confirmation / warning dialog",
+      "legacy": [],
+      "categories": [],
+      "layout": "modal",
+      "actions": [
+        [
+          "Confirm preview",
+          "hub"
+        ],
+        [
+          "Cancel",
+          "main"
+        ]
+      ],
+      "notes": "One shared vector dialog with confirm/cancel/error/overwrite/unsaved/conflict states. No original image file is required."
+    }
+  ],
+  "components": [
+    {
+      "id": "UI-COMP-01",
+      "name": "RoadDash brand and application icon",
+      "kind": "original-art",
+      "states": [
+        "full lockup",
+        "monogram",
+        "small icon"
+      ]
+    },
+    {
+      "id": "UI-COMP-02",
+      "name": "Typography roles",
+      "kind": "licensed-font-choice",
+      "states": [
+        "display",
+        "regular",
+        "bold",
+        "demibold"
+      ]
+    },
+    {
+      "id": "UI-COMP-03",
+      "name": "Menu row / button",
+      "kind": "vector-or-nine-slice",
+      "states": [
+        "idle",
+        "hover",
+        "focus",
+        "pressed",
+        "disabled"
+      ]
+    },
+    {
+      "id": "UI-COMP-04",
+      "name": "Focus marker / cursor",
+      "kind": "vector",
+      "states": [
+        "keyboard focus",
+        "pointer",
+        "controller focus"
+      ]
+    },
+    {
+      "id": "UI-COMP-05",
+      "name": "Panel / tooltip / dialog",
+      "kind": "vector-or-nine-slice",
+      "states": [
+        "light",
+        "dark",
+        "warning",
+        "error"
+      ]
+    },
+    {
+      "id": "UI-COMP-06",
+      "name": "Sliders / toggles / dropdowns",
+      "kind": "vector",
+      "states": [
+        "normal",
+        "focused",
+        "disabled",
+        "dragging"
+      ]
+    },
+    {
+      "id": "UI-COMP-07",
+      "name": "Rider / bike / course cards",
+      "kind": "layered-art-and-live-text",
+      "states": [
+        "selected",
+        "locked",
+        "owned",
+        "qualified",
+        "unaffordable"
+      ]
+    },
+    {
+      "id": "UI-COMP-08",
+      "name": "Input prompts",
+      "kind": "original-glyph-set",
+      "states": [
+        "keyboard",
+        "mouse",
+        "controller",
+        "unbound",
+        "listening",
+        "conflict"
+      ]
+    },
+    {
+      "id": "UI-COMP-09",
+      "name": "Dashboard / meters",
+      "kind": "layered-art-and-vector",
+      "states": [
+        "three bike families",
+        "mph",
+        "kmh",
+        "full",
+        "compact",
+        "hidden",
+        "nitrous disabled"
+      ]
+    },
+    {
+      "id": "UI-COMP-10",
+      "name": "Race announcements",
+      "kind": "live-text-overlay",
+      "states": [
+        "3",
+        "2",
+        "1",
+        "go",
+        "wrong route",
+        "police warning",
+        "search",
+        "busted",
+        "finished"
+      ]
+    },
+    {
+      "id": "UI-COMP-11",
+      "name": "RoadDash course/minimap",
+      "kind": "runtime-vector",
+      "states": [
+        "shirt-colored racers",
+        "split/rejoin",
+        "checkpoints",
+        "finish"
+      ]
+    },
+    {
+      "id": "UI-COMP-12",
+      "name": "Recovery / equipment prompts",
+      "kind": "original-icons-and-live-text",
+      "states": [
+        "bike direction/distance",
+        "on foot",
+        "pick up",
+        "mount",
+        "club equipped"
+      ]
+    },
+    {
+      "id": "UI-COMP-13",
+      "name": "Standings / reward table",
+      "kind": "live-data-table",
+      "states": [
+        "15 riders",
+        "finished on foot",
+        "DNF",
+        "busted / no payout"
+      ]
+    },
+    {
+      "id": "UI-COMP-14",
+      "name": "Loading / screen transition",
+      "kind": "runtime-animation",
+      "states": [
+        "progress",
+        "fade",
+        "reduced motion"
+      ]
+    },
+    {
+      "id": "UI-COMP-15",
+      "name": "Accessibility variants",
+      "kind": "layout-and-vector",
+      "states": [
+        "large text",
+        "high contrast",
+        "non-color cues",
+        "safe area",
+        "ultrawide"
+      ]
+    }
+  ]
+}

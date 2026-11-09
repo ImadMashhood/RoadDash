@@ -1,0 +1,13 @@
+{
+  "speed_limit": 30.0,
+  "detection_radius": 90.0,
+  "launch_grace": 8.0,
+  "warning_seconds": 1.5,
+  "lose_seconds": 3.0,
+  "search_seconds": 5.0,
+  "arrest_seconds": 2.0,
+  "arrest_radius": 1.8,
+  "arrest_speed": 1.2,
+  "patrol_speed": 14.0,
+  "patrol_fraction": 0.025
+}

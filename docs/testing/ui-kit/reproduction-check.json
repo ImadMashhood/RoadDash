@@ -1,0 +1,10 @@
+{
+  "result": "passed",
+  "reproduced_image_records_and_png_bytes": 154,
+  "windows_dialog_resources": 14,
+  "contact_sheets": 26,
+  "unique_sheet_image_ids": 154,
+  "video_thumbnails": 59,
+  "source_fingerprints_match": true,
+  "failures": []
+}

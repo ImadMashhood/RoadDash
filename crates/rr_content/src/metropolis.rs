@@ -1,5 +1,11 @@
 //! Approved race-first map: triangulated authoring data, independent of rendering.
 use serde::Deserialize;
+/// Ordered atlas/detail identity. Authoring palette parity is checked below.
+pub const FACADE_FAMILIES: [&str; 24] = [
+    "BUSS1", "BUSS4", "CHINA12", "CLSTGA11", "OFFC1", "OFFC2", "OFFC10", "RUNDWN11", "VICT11",
+    "VICT12", "WHSE11", "WRHS1", "CHINA13", "CHINA14", "CLSTGA12", "CLSTGA13", "CLSTGA14",
+    "OFFC11", "OFFC12", "OFFC13", "RUNDWN12", "VICT13", "VICT14", "WHSE12",
+];
 use std::collections::HashSet;
 #[derive(Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -132,7 +138,7 @@ impl StreetLife {
                     || !(1..=2).contains(&p.inbound)
                     || !(2..=4).contains(&p.lanes())
                     || p.lane_width < 2.4
-                    || p.half_width() > 5.
+                    || p.half_width() > 6.
                 {
                     return Err("invalid lane coverage or clearance".into());
                 }
@@ -246,7 +252,7 @@ impl Metropolis {
                 || !(6. ..=110.).contains(&b.height)
                 || b.floors < 2
                 || b.tier > 3
-                || b.style >= 12
+                || b.style >= FACADE_FAMILIES.len()
             {
                 return Err("invalid metropolis building".into());
             }
@@ -304,12 +310,37 @@ impl Metropolis {
 mod tests {
     use super::*;
     #[test]
+    fn authored_palette_order_matches_runtime_identity() {
+        let palette: serde_json::Value = serde_json::from_str(include_str!(
+            "../../../content/world/metropolis_facades.json"
+        ))
+        .unwrap();
+        let families: Vec<_> = palette["families"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .map(|v| v.as_str().unwrap())
+            .collect();
+        assert_eq!(families, FACADE_FAMILIES);
+        let provenance: serde_json::Value =
+            serde_json::from_str(include_str!("../../../assets/metropolis/PROVENANCE.json"))
+                .unwrap();
+        assert_eq!(
+            provenance["sources"].as_array().unwrap().len(),
+            FACADE_FAMILIES.len() * 3
+        );
+        for (i, source) in provenance["sources"].as_array().unwrap().iter().enumerate() {
+            assert_eq!(source["design"].as_str().unwrap(), FACADE_FAMILIES[i / 3]);
+            assert_eq!(source["band"].as_u64().unwrap() as usize, i % 3);
+        }
+    }
+    #[test]
     fn approved_world_loads_and_rejects_broken_geometry_routes_and_styles() {
         let mut m =
             Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
         assert_eq!(m.buildings.len(), 19068);
         assert_eq!(m.paths.len(), 2);
-        m.buildings[0].style = 12;
+        m.buildings[0].style = FACADE_FAMILIES.len();
         assert!(m.validate().is_err());
         m.buildings[0].style = 0;
         let old = m.paths[1].points[10];
@@ -344,7 +375,7 @@ mod tests {
         m.street_life.lane_sections[0].outbound = 3;
         assert!(m.validate().is_err());
         m.street_life.lane_sections[0].outbound = 1;
-        m.street_life.lane_sections[0].lane_width = 6.;
+        m.street_life.lane_sections[0].lane_width = 7.;
         assert!(m.validate().is_err());
     }
     #[test]

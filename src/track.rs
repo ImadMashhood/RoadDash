@@ -13,6 +13,7 @@ pub struct Track {
     sectors: Vec<Sector>,
     surfaces: Vec<Surface>,
     pub length: f32,
+    start_apron: f32,
     pub bounds: (Vec3, Vec3),
     pub city_surface: Option<rr_content::city::CitySettings>,
     pub metropolis: Option<std::sync::Arc<rr_content::metropolis::Metropolis>>,
@@ -127,7 +128,13 @@ impl Track {
         } else {
             None
         };
+        let start_apron = definition
+            .spawns
+            .iter()
+            .map(|s| -s.distance + 40.)
+            .fold(250., f32::max);
         let track = Self {
+            start_apron,
             city_surface,
             definition,
             points,
@@ -252,7 +259,7 @@ impl Track {
             let edge = (pair[1] - pair[0]).with_y(0.0);
             let t = ((point - pair[0]).with_y(0.0).dot(edge) / edge.length_squared()).clamp(
                 if i == 0 && !self.definition.closed {
-                    -250.0 / edge.length()
+                    -self.start_apron / edge.length()
                 } else {
                     0.0
                 },
@@ -312,7 +319,7 @@ impl Track {
             let edge = (self.points[i + 1] - self.points[i]).with_y(0.0);
             let t = ((point - self.points[i]).dot(edge) / edge.length_squared()).clamp(
                 if i == 0 && !self.definition.closed {
-                    -250.0 / edge.length()
+                    -self.start_apron / edge.length()
                 } else {
                     0.0
                 },

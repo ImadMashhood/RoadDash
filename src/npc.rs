@@ -473,7 +473,9 @@ mod tests {
                     let mut q = app.world_mut().query::<&mut Rider>();
                     q.single_mut(app.world_mut()).unwrap().attack = 0.0;
                 }
-                app.update();
+                for _ in 0..12 {
+                    app.update();
+                }
                 if count < 3 {
                     assert_eq!(app.world().get::<Npc>(e).unwrap().hits.count, count);
                     for _ in 0..20 {

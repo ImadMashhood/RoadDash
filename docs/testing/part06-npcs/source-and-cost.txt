@@ -1,0 +1,13 @@
+{
+  "bytes_before": 68108624,
+  "bytes_after": 101278208,
+  "vertices_before": 658292,
+  "vertices_after": 1062972,
+  "triangles_before": 305828,
+  "triangles_after": 777932,
+  "human_files": 110,
+  "cow_files_byte_identical": 8,
+  "max_actor_triangles": 15712,
+  "max_actor_vertices": 20424,
+  "max_triangle_growth": 2.9104
+}

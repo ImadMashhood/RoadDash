@@ -1,0 +1,173 @@
+{
+  "source_sha256": {
+    "src/weapons.rs": "3dcf10ab93cabf81228471152f052a956fa3b099de8bbcabdd429cca7a0b9fb3",
+    "src/combat.rs": "385a70380fa9aba5c126bd20b58baa8b7c336c3e3d7ba82c1c835e1305cfed33",
+    "src/controls.rs": "6bfb0bb3e1bce2c1929308991e74a6823b553ca4555e4d62a42ada700a108cd2",
+    "src/game.rs": "db2eb0bde099d9e5258c1072cd64fc3dd6f22b6769f163bb208553266f608931",
+    "src/animation.rs": "0cc44178ae2329afd993397b641e57b9a8ba6c2b06cf58325664c0e9df2902c0",
+    "src/animation/preview.rs": "5c8444d036ea5eb66d3d9c57b08d49698f90c867a7761db2424a9edd99f4219b",
+    "src/models.rs": "663c40b6ee683009335b30ef4f4432e19a3d1e90a19ac343dd2abb35b8524660",
+    "src/models/hands.rs": "6c4add8293329a90989da46e1182380c137bce91ae13c72201d25a5bc437e664",
+    "src/verification.rs": "ee358d6c643ddb4b5c19c2e40e595a2b366e76690d77aee0e1462cc31d60f8e8",
+    "src/destruction/mod.rs": "8a7882c6676b57922932f73a9c65743243366d5c8d41ab3c8115239cf4732e7d",
+    "src/runtime.rs": "a38157639d7a0fbdedda33eacba29e593114df445337ccc3cc78d927f5b8ade4",
+    "src/settings.rs": "f3e36337bcd4eb48540d7c07c0a3e7583ea4ad4e4898cb3f4f961751cc83e9ba",
+    "content/weapons.json": "c631616b83d6feb9451a9c2eb122279d98f7bfcb28ab65ce1fb907c370236044",
+    "content/hand-contacts.json": "fa5cecd69f0cf7f54168fc973f12dbb3f254a38cf93dd27f341a8e2fde6b6be7",
+    "assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36",
+    "assets/models/riding.rdmesh": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "Cargo.toml": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+    "Cargo.lock": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "crates/rr_core/src/weapons.rs": "ccca717cd3ac8aecd68a05875aefc2026ce664d0fe34814c5b9f77786f1b0fbd",
+    "crates/rr_core/src/motion.rs": "7e1cf62633da0a0cf4f805321cf0fd3e8ab98268055892a9563c959c29cc718a",
+    "crates/rr_content/src/weapons.rs": "f0e6cd8ab734fa2973e9fda206805fa456010fa6b61136058b72fad6e4f127f8",
+    "tools/append_club_motion.py": "d0694877e71f2e2e14e621fa4e883218d4d377c69fe4d18866ba4ecd0731b2fb",
+    "tools/package_weapon_review.py": "81400d5a675e93a8c2fe94274b55ffaf5ec8d29e6ce49e214a256cca4195c72b",
+    "art/animation/context/poses/2160.json": "1926604024770aefb2f3b0b38a8dd115978acac5c44602aee500a99f849dabb7",
+    "art/animation/context/poses/2161.json": "6e4ad07a149d7361706411c95d1f0895905a95b389173eb465dc3b9e1e1d7694",
+    "art/animation/context/poses/2162.json": "17c624adeb64e00a4421032aa5942bbe461cf4af5e017248cfccab70c641fe7a",
+    "art/animation/context/poses/2170.json": "b62ebb53ae7e37f466f0c0134cb4936fd7dabad94d0db50b09f75161d8e81bde",
+    "art/animation/context/poses/2171.json": "7f3272394b7cdb955d5dbdfb684ec5690052a9a1ee1ea153d1db197a1c5e5748",
+    "art/animation/context/poses/2172.json": "15e47dc495b23d0f147b8922b753ea064b82958b134aeee20b9b221609859e15"
+  },
+  "binary_sha256": "7e15a228568c5cf824bacf98661c9a71aa850d80f50c90c73c656d479ff3a5cd",
+  "captures": [
+    {
+      "file": "gallery/body-CLUB-LEFT-0.png",
+      "sha256": "660d309469cdc18de0adbc401d5c21d158c627d2833883cd53acb24f15572844",
+      "kind": "body",
+      "side": "CLUB-LEFT",
+      "view": "Rear",
+      "held_contact_key": null,
+      "phase": "live clip snapshot; not an exact contact certificate"
+    },
+    {
+      "file": "gallery/body-CLUB-LEFT-1.png",
+      "sha256": "1df221486337d776aed153787431f4718647c06da42cff8ab4917ee5e8d22d6f",
+      "kind": "body",
+      "side": "CLUB-LEFT",
+      "view": "Front",
+      "held_contact_key": null,
+      "phase": "live clip snapshot; not an exact contact certificate"
+    },
+    {
+      "file": "gallery/body-CLUB-LEFT-2.png",
+      "sha256": "2e11a383d40795dbe0aef75cf675cd9bd244e5dd6f1c052d0f0ef65b70d52b90",
+      "kind": "body",
+      "side": "CLUB-LEFT",
+      "view": "Side",
+      "held_contact_key": null,
+      "phase": "live clip snapshot; not an exact contact certificate"
+    },
+    {
+      "file": "gallery/body-CLUB-RIGHT-0.png",
+      "sha256": "4b464d09f723db5f77e828cca0b8b7113ffea9d5dbab77769dcd06aa01f5e4a4",
+      "kind": "body",
+      "side": "CLUB-RIGHT",
+      "view": "Rear",
+      "held_contact_key": null,
+      "phase": "live clip snapshot; not an exact contact certificate"
+    },
+    {
+      "file": "gallery/body-CLUB-RIGHT-1.png",
+      "sha256": "b8a00ca3b98a167b64f6173696fc5f3134513827af45255bdb157e36973c0c19",
+      "kind": "body",
+      "side": "CLUB-RIGHT",
+      "view": "Front",
+      "held_contact_key": null,
+      "phase": "live clip snapshot; not an exact contact certificate"
+    },
+    {
+      "file": "gallery/body-CLUB-RIGHT-2.png",
+      "sha256": "516ac5527e7c0d7e653a2d1f45318c29c696745849058ddcfb62e97b4e947174",
+      "kind": "body",
+      "side": "CLUB-RIGHT",
+      "view": "Side",
+      "held_contact_key": null,
+      "phase": "live clip snapshot; not an exact contact certificate"
+    },
+    {
+      "file": "gallery/hand-CLUB-LEFT-0.png",
+      "sha256": "217dc2aa5b8df54b449688ed905703440cc2bcd1ced0ca2da0db1be3bb6de2b9",
+      "kind": "hand",
+      "side": "CLUB-LEFT",
+      "view": "Rear",
+      "held_contact_key": 2162,
+      "phase": "held authored contact"
+    },
+    {
+      "file": "gallery/hand-CLUB-LEFT-1.png",
+      "sha256": "47389e3bdcbdfade9665668298f4d80d6f0daac2dc8e879f2c444a270b63d6e6",
+      "kind": "hand",
+      "side": "CLUB-LEFT",
+      "view": "Front",
+      "held_contact_key": 2162,
+      "phase": "held authored contact"
+    },
+    {
+      "file": "gallery/hand-CLUB-LEFT-2.png",
+      "sha256": "38560067d82632c234bd0a028c0b6cf58b9b7dab41519e24f861579baae4d64c",
+      "kind": "hand",
+      "side": "CLUB-LEFT",
+      "view": "Side",
+      "held_contact_key": 2162,
+      "phase": "held authored contact"
+    },
+    {
+      "file": "gallery/hand-CLUB-RIGHT-0.png",
+      "sha256": "0db70ae6b5b5ee6a9356d2f740365da67dd46ba66021073105366c3b039acb7e",
+      "kind": "hand",
+      "side": "CLUB-RIGHT",
+      "view": "Rear",
+      "held_contact_key": 2172,
+      "phase": "held authored contact"
+    },
+    {
+      "file": "gallery/hand-CLUB-RIGHT-1.png",
+      "sha256": "0aee59837f0311df1ec4745ac4527a2c6b320407951d437c65d9f73e07dfe3bb",
+      "kind": "hand",
+      "side": "CLUB-RIGHT",
+      "view": "Front",
+      "held_contact_key": 2172,
+      "phase": "held authored contact"
+    },
+    {
+      "file": "gallery/hand-CLUB-RIGHT-2.png",
+      "sha256": "3a48d54abd7627ad6b4d41e1de773dc938ffdcb8166c9becd470f1c9e607b93d",
+      "kind": "hand",
+      "side": "CLUB-RIGHT",
+      "view": "Side",
+      "held_contact_key": 2172,
+      "phase": "held authored contact"
+    },
+    {
+      "file": "native/03-crash.png",
+      "sha256": "9346dda46f700b7afc504d455087c423cf396a251942bf6716d7d233541bf953",
+      "kind": "native Metro keyboard/recovery fixture"
+    },
+    {
+      "file": "native/07-results.png",
+      "sha256": "097af09e393b9fc693a4e2e9e99cc020a258a6e44fbfd8ae6e19cdabfbf120e0",
+      "kind": "native Metro keyboard/recovery fixture"
+    },
+    {
+      "file": "native/18-reversing.png",
+      "sha256": "c1c8525856b82042e0495b08fbd33c32555509a8f05bba3b3ab5d5937f9b2dd6",
+      "kind": "native Metro keyboard/recovery fixture"
+    },
+    {
+      "file": "native/30-strike-windup.png",
+      "sha256": "403c67b59705beb2166760b709b17bcda80a59f15ddb9c10c3f0c3b6097842fa",
+      "kind": "native Metro keyboard/recovery fixture"
+    },
+    {
+      "file": "native/31-strike-contact.png",
+      "sha256": "77af62619864fb9ee5386e8a9bf5eba6b759608ebfe22940491bfc59a8efb4ae",
+      "kind": "native Metro keyboard/recovery fixture"
+    }
+  ],
+  "physics_changed": false,
+  "contains_retail_media": false,
+  "approval": "functional draft; grip anatomy / clearance / modeled fidelity / human feel unapproved",
+  "laboratory_note": "39 captures per lab run / 13 modes; inherited console summary still says eleven motions"
+}

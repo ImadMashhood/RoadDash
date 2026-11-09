@@ -1,0 +1,2 @@
+CONTEXT_VERIFIED {"human_poses_reloaded": 138, "bike_only_poses": 16, "actions": 138, "single_constant_frame": true, "curves": 27600, "max_matrix_error": 6.556510925292969e-07, "rigid_bodies": 0, "native_playback_integrated": false}
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)

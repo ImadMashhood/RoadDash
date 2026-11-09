@@ -1,0 +1,1119 @@
+{
+  "summary": {
+    "bytes_before": 68108624,
+    "bytes_after": 101278208,
+    "vertices_before": 658292,
+    "vertices_after": 1062972,
+    "triangles_before": 305828,
+    "triangles_after": 777932,
+    "human_files": 110,
+    "cow_files_byte_identical": 8,
+    "max_actor_triangles": 15712,
+    "max_actor_vertices": 20424,
+    "max_triangle_growth": 2.9104
+  },
+  "records": [
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-016720A1701E_skin_lod1.glb",
+      "bytes_before": 980968,
+      "bytes_after": 1517872,
+      "vertices_before": 10748,
+      "vertices_after": 17320,
+      "triangles_before": 5000,
+      "triangles_after": 12656,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-016720A1701E_skin_lod2.glb",
+      "bytes_before": 205596,
+      "bytes_after": 273972,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-032FAAB95574_skin_lod1.glb",
+      "bytes_before": 926160,
+      "bytes_after": 1498172,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-032FAAB95574_skin_lod2.glb",
+      "bytes_before": 235852,
+      "bytes_after": 320024,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-0DAC2E802A51_skin_lod1.glb",
+      "bytes_before": 985112,
+      "bytes_after": 1522016,
+      "vertices_before": 10748,
+      "vertices_after": 17320,
+      "triangles_before": 5000,
+      "triangles_after": 12656,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-0DAC2E802A51_skin_lod2.glb",
+      "bytes_before": 209740,
+      "bytes_after": 278116,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-0E30B36C2427_skin_lod1.glb",
+      "bytes_before": 926160,
+      "bytes_after": 1498172,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-0E30B36C2427_skin_lod2.glb",
+      "bytes_before": 235852,
+      "bytes_after": 320024,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-1112B1E6E76B_skin_lod1.glb",
+      "bytes_before": 995552,
+      "bytes_after": 1434684,
+      "vertices_before": 10336,
+      "vertices_after": 15708,
+      "triangles_before": 4820,
+      "triangles_after": 11084,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-1112B1E6E76B_skin_lod2.glb",
+      "bytes_before": 256628,
+      "bytes_after": 325004,
+      "vertices_before": 1524,
+      "vertices_after": 2340,
+      "triangles_before": 696,
+      "triangles_after": 1656,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-18651CC63CD8_skin_lod1.glb",
+      "bytes_before": 904776,
+      "bytes_after": 1476788,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-18651CC63CD8_skin_lod2.glb",
+      "bytes_before": 214464,
+      "bytes_after": 298632,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-1FAB968E3F60_skin_lod1.glb",
+      "bytes_before": 931176,
+      "bytes_after": 1503188,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-1FAB968E3F60_skin_lod2.glb",
+      "bytes_before": 240868,
+      "bytes_after": 325040,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-20E648B16FBA_skin_lod1.glb",
+      "bytes_before": 1124532,
+      "bytes_after": 1563668,
+      "vertices_before": 11780,
+      "vertices_after": 17152,
+      "triangles_before": 5464,
+      "triangles_after": 11728,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-20E648B16FBA_skin_lod2.glb",
+      "bytes_before": 270508,
+      "bytes_after": 338888,
+      "vertices_before": 1584,
+      "vertices_after": 2400,
+      "triangles_before": 720,
+      "triangles_after": 1680,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-2A02835D05DC_skin_lod1.glb",
+      "bytes_before": 995552,
+      "bytes_after": 1434684,
+      "vertices_before": 10336,
+      "vertices_after": 15708,
+      "triangles_before": 4820,
+      "triangles_after": 11084,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-2A02835D05DC_skin_lod2.glb",
+      "bytes_before": 256628,
+      "bytes_after": 325004,
+      "vertices_before": 1524,
+      "vertices_after": 2340,
+      "triangles_before": 696,
+      "triangles_after": 1656,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-2C3D4D3ACEE4_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-2C3D4D3ACEE4_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-2FF6F916AA1C_skin_lod1.glb",
+      "bytes_before": 985112,
+      "bytes_after": 1522016,
+      "vertices_before": 10748,
+      "vertices_after": 17320,
+      "triangles_before": 5000,
+      "triangles_after": 12656,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-2FF6F916AA1C_skin_lod2.glb",
+      "bytes_before": 209740,
+      "bytes_after": 278116,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-36E34792A832_skin_lod1.glb",
+      "bytes_before": 931176,
+      "bytes_after": 1503188,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-36E34792A832_skin_lod2.glb",
+      "bytes_before": 240868,
+      "bytes_after": 325040,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-397D1FC5C817_skin_lod1.glb",
+      "bytes_before": 1032800,
+      "bytes_after": 1623596,
+      "vertices_before": 10612,
+      "vertices_after": 17840,
+      "triangles_before": 4940,
+      "triangles_after": 13364,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-397D1FC5C817_skin_lod2.glb",
+      "bytes_before": 280236,
+      "bytes_after": 364404,
+      "vertices_before": 1620,
+      "vertices_after": 2628,
+      "triangles_before": 740,
+      "triangles_after": 1916,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-3BB82CCD4F67_skin_lod1.glb",
+      "bytes_before": 1019392,
+      "bytes_after": 1458528,
+      "vertices_before": 10480,
+      "vertices_after": 15852,
+      "triangles_before": 4892,
+      "triangles_after": 11156,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-3BB82CCD4F67_skin_lod2.glb",
+      "bytes_before": 278744,
+      "bytes_after": 347124,
+      "vertices_before": 1632,
+      "vertices_after": 2448,
+      "triangles_before": 752,
+      "triangles_after": 1712,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-44C55BAB860E_skin_lod1.glb",
+      "bytes_before": 978312,
+      "bytes_after": 1417440,
+      "vertices_before": 10336,
+      "vertices_after": 15708,
+      "triangles_before": 4820,
+      "triangles_after": 11084,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-44C55BAB860E_skin_lod2.glb",
+      "bytes_before": 239384,
+      "bytes_after": 307764,
+      "vertices_before": 1524,
+      "vertices_after": 2340,
+      "triangles_before": 696,
+      "triangles_after": 1656,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-47C70E6EBCE4_skin_lod1.glb",
+      "bytes_before": 904776,
+      "bytes_after": 1476788,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-47C70E6EBCE4_skin_lod2.glb",
+      "bytes_before": 214464,
+      "bytes_after": 298632,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-48E4A4110F9E_skin_lod1.glb",
+      "bytes_before": 1003512,
+      "bytes_after": 1673312,
+      "vertices_before": 10748,
+      "vertices_after": 18948,
+      "triangles_before": 5000,
+      "triangles_after": 14552,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-48E4A4110F9E_skin_lod2.glb",
+      "bytes_before": 228152,
+      "bytes_after": 312324,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-4BAFAB2A8AC8_skin_lod1.glb",
+      "bytes_before": 1101184,
+      "bytes_after": 1673204,
+      "vertices_before": 11516,
+      "vertices_after": 18516,
+      "triangles_before": 5356,
+      "triangles_after": 13516,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-4BAFAB2A8AC8_skin_lod2.glb",
+      "bytes_before": 240180,
+      "bytes_after": 324352,
+      "vertices_before": 1536,
+      "vertices_after": 2544,
+      "triangles_before": 704,
+      "triangles_after": 1880,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-4E3B7983E298_skin_lod1.glb",
+      "bytes_before": 1003512,
+      "bytes_after": 1673312,
+      "vertices_before": 10748,
+      "vertices_after": 18948,
+      "triangles_before": 5000,
+      "triangles_after": 14552,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-4E3B7983E298_skin_lod2.glb",
+      "bytes_before": 228152,
+      "bytes_after": 312324,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-4EF066700816_skin_lod1.glb",
+      "bytes_before": 1003512,
+      "bytes_after": 1673312,
+      "vertices_before": 10748,
+      "vertices_after": 18948,
+      "triangles_before": 5000,
+      "triangles_after": 14552,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-4EF066700816_skin_lod2.glb",
+      "bytes_before": 228152,
+      "bytes_after": 312324,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-551DA44848C9_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-551DA44848C9_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-5BB9D09990BE_skin_lod1.glb",
+      "bytes_before": 1003512,
+      "bytes_after": 1673312,
+      "vertices_before": 10748,
+      "vertices_after": 18948,
+      "triangles_before": 5000,
+      "triangles_after": 14552,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-5BB9D09990BE_skin_lod2.glb",
+      "bytes_before": 228152,
+      "bytes_after": 312324,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-60AE32F2B9FA_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-60AE32F2B9FA_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-6259F2823CFF_skin_lod1.glb",
+      "bytes_before": 931168,
+      "bytes_after": 1370292,
+      "vertices_before": 9740,
+      "vertices_after": 15112,
+      "triangles_before": 4536,
+      "triangles_after": 10800,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-6259F2823CFF_skin_lod2.glb",
+      "bytes_before": 240856,
+      "bytes_after": 309236,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-635D1FA232D0_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-635D1FA232D0_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-64B1D8C0B5C9_skin_lod1.glb",
+      "bytes_before": 926160,
+      "bytes_after": 1498172,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-64B1D8C0B5C9_skin_lod2.glb",
+      "bytes_before": 235852,
+      "bytes_after": 320024,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-6F42EC224460_skin_lod1.glb",
+      "bytes_before": 904772,
+      "bytes_after": 1343892,
+      "vertices_before": 9740,
+      "vertices_after": 15112,
+      "triangles_before": 4536,
+      "triangles_after": 10800,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-6F42EC224460_skin_lod2.glb",
+      "bytes_before": 214452,
+      "bytes_after": 282832,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-7697DF451B7E_skin_lod1.glb",
+      "bytes_before": 926160,
+      "bytes_after": 1498172,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-7697DF451B7E_skin_lod2.glb",
+      "bytes_before": 235852,
+      "bytes_after": 320024,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-89576C1C949B_skin_lod1.glb",
+      "bytes_before": 1019392,
+      "bytes_after": 1458528,
+      "vertices_before": 10480,
+      "vertices_after": 15852,
+      "triangles_before": 4892,
+      "triangles_after": 11156,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-89576C1C949B_skin_lod2.glb",
+      "bytes_before": 278744,
+      "bytes_after": 347124,
+      "vertices_before": 1632,
+      "vertices_after": 2448,
+      "triangles_before": 752,
+      "triangles_after": 1712,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-978D357C5F72_skin_lod1.glb",
+      "bytes_before": 978312,
+      "bytes_after": 1417440,
+      "vertices_before": 10336,
+      "vertices_after": 15708,
+      "triangles_before": 4820,
+      "triangles_after": 11084,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-978D357C5F72_skin_lod2.glb",
+      "bytes_before": 239384,
+      "bytes_after": 307764,
+      "vertices_before": 1524,
+      "vertices_after": 2340,
+      "triangles_before": 696,
+      "triangles_after": 1656,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-97D77E55EDE4_skin_lod1.glb",
+      "bytes_before": 904776,
+      "bytes_after": 1476788,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-97D77E55EDE4_skin_lod2.glb",
+      "bytes_before": 214464,
+      "bytes_after": 298632,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-9807569BB162_skin_lod1.glb",
+      "bytes_before": 1003512,
+      "bytes_after": 1673312,
+      "vertices_before": 10748,
+      "vertices_after": 18948,
+      "triangles_before": 5000,
+      "triangles_after": 14552,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-9807569BB162_skin_lod2.glb",
+      "bytes_before": 228152,
+      "bytes_after": 312324,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-A5F252D0A464_skin_lod1.glb",
+      "bytes_before": 904776,
+      "bytes_after": 1476788,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-A5F252D0A464_skin_lod2.glb",
+      "bytes_before": 214464,
+      "bytes_after": 298632,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-AA52C09B2FFC_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-AA52C09B2FFC_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-AD62F66BA933_skin_lod1.glb",
+      "bytes_before": 904772,
+      "bytes_after": 1343892,
+      "vertices_before": 9740,
+      "vertices_after": 15112,
+      "triangles_before": 4536,
+      "triangles_after": 10800,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-AD62F66BA933_skin_lod2.glb",
+      "bytes_before": 214452,
+      "bytes_after": 282832,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-ADDD154FBF37_skin_lod1.glb",
+      "bytes_before": 985112,
+      "bytes_after": 1522016,
+      "vertices_before": 10748,
+      "vertices_after": 17320,
+      "triangles_before": 5000,
+      "triangles_after": 12656,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-ADDD154FBF37_skin_lod2.glb",
+      "bytes_before": 209740,
+      "bytes_after": 278116,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-B3EF80680AE8_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-B3EF80680AE8_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-B530645DC3EC_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-B530645DC3EC_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-C251166071E9_skin_lod1.glb",
+      "bytes_before": 904772,
+      "bytes_after": 1343892,
+      "vertices_before": 9740,
+      "vertices_after": 15112,
+      "triangles_before": 4536,
+      "triangles_after": 10800,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-C251166071E9_skin_lod2.glb",
+      "bytes_before": 214452,
+      "bytes_after": 282832,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-C54FF15880B2_skin_lod1.glb",
+      "bytes_before": 980280,
+      "bytes_after": 1419408,
+      "vertices_before": 10008,
+      "vertices_after": 15380,
+      "triangles_before": 4660,
+      "triangles_after": 10924,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-C54FF15880B2_skin_lod2.glb",
+      "bytes_before": 274388,
+      "bytes_after": 342764,
+      "vertices_before": 1584,
+      "vertices_after": 2400,
+      "triangles_before": 720,
+      "triangles_after": 1680,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-CDB4FEE9DBAA_skin_lod1.glb",
+      "bytes_before": 926160,
+      "bytes_after": 1498172,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-CDB4FEE9DBAA_skin_lod2.glb",
+      "bytes_before": 235852,
+      "bytes_after": 320024,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-CFF62B98E0B2_skin_lod1.glb",
+      "bytes_before": 926160,
+      "bytes_after": 1498172,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-CFF62B98E0B2_skin_lod2.glb",
+      "bytes_before": 235852,
+      "bytes_after": 320024,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-D066826A6C7F_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-D066826A6C7F_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-D6813A330876_skin_lod1.glb",
+      "bytes_before": 1124532,
+      "bytes_after": 1563668,
+      "vertices_before": 11780,
+      "vertices_after": 17152,
+      "triangles_before": 5464,
+      "triangles_after": 11728,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-D6813A330876_skin_lod2.glb",
+      "bytes_before": 270508,
+      "bytes_after": 338888,
+      "vertices_before": 1584,
+      "vertices_after": 2400,
+      "triangles_before": 720,
+      "triangles_after": 1680,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-D9542803DE23_skin_lod1.glb",
+      "bytes_before": 1032800,
+      "bytes_after": 1623596,
+      "vertices_before": 10612,
+      "vertices_after": 17840,
+      "triangles_before": 4940,
+      "triangles_after": 13364,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-D9542803DE23_skin_lod2.glb",
+      "bytes_before": 280236,
+      "bytes_after": 364404,
+      "vertices_before": 1620,
+      "vertices_after": 2628,
+      "triangles_before": 740,
+      "triangles_after": 1916,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-E296DF5CA9A6_skin_lod1.glb",
+      "bytes_before": 1101176,
+      "bytes_after": 1540308,
+      "vertices_before": 11516,
+      "vertices_after": 16888,
+      "triangles_before": 5356,
+      "triangles_after": 11620,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-E296DF5CA9A6_skin_lod2.glb",
+      "bytes_before": 240168,
+      "bytes_after": 308548,
+      "vertices_before": 1536,
+      "vertices_after": 2352,
+      "triangles_before": 704,
+      "triangles_after": 1664,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-E46F27058B0F_skin_lod1.glb",
+      "bytes_before": 1032800,
+      "bytes_after": 1623596,
+      "vertices_before": 10612,
+      "vertices_after": 17840,
+      "triangles_before": 4940,
+      "triangles_after": 13364,
+      "refined_primitives": 12
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-E46F27058B0F_skin_lod2.glb",
+      "bytes_before": 280236,
+      "bytes_after": 364404,
+      "vertices_before": 1620,
+      "vertices_after": 2628,
+      "triangles_before": 740,
+      "triangles_after": 1916,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-E9FDE33E57FF_skin_lod1.glb",
+      "bytes_before": 931168,
+      "bytes_after": 1370292,
+      "vertices_before": 9740,
+      "vertices_after": 15112,
+      "triangles_before": 4536,
+      "triangles_after": 10800,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-E9FDE33E57FF_skin_lod2.glb",
+      "bytes_before": 240856,
+      "bytes_after": 309236,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-EBA4EF231506_skin_lod1.glb",
+      "bytes_before": 999692,
+      "bytes_after": 1438828,
+      "vertices_before": 10336,
+      "vertices_after": 15708,
+      "triangles_before": 4820,
+      "triangles_after": 11084,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-EBA4EF231506_skin_lod2.glb",
+      "bytes_before": 260776,
+      "bytes_after": 329152,
+      "vertices_before": 1524,
+      "vertices_after": 2340,
+      "triangles_before": 696,
+      "triangles_after": 1656,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-EE7B1BE6B145_skin_lod1.glb",
+      "bytes_before": 985112,
+      "bytes_after": 1522016,
+      "vertices_before": 10748,
+      "vertices_after": 17320,
+      "triangles_before": 5000,
+      "triangles_after": 12656,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-EE7B1BE6B145_skin_lod2.glb",
+      "bytes_before": 209740,
+      "bytes_after": 278116,
+      "vertices_before": 1500,
+      "vertices_after": 2316,
+      "triangles_before": 684,
+      "triangles_after": 1644,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F3A0B2D5D4CD_skin_lod1.glb",
+      "bytes_before": 1050672,
+      "bytes_after": 1508576,
+      "vertices_before": 10612,
+      "vertices_after": 16212,
+      "triangles_before": 4940,
+      "triangles_after": 11468,
+      "refined_primitives": 10
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F3A0B2D5D4CD_skin_lod2.glb",
+      "bytes_before": 271696,
+      "bytes_after": 340076,
+      "vertices_before": 1620,
+      "vertices_after": 2436,
+      "triangles_before": 740,
+      "triangles_after": 1700,
+      "refined_primitives": 8
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F3C6F593DB8B_skin_lod1.glb",
+      "bytes_before": 904776,
+      "bytes_after": 1476788,
+      "vertices_before": 9740,
+      "vertices_after": 16740,
+      "triangles_before": 4536,
+      "triangles_after": 12696,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F3C6F593DB8B_skin_lod2.glb",
+      "bytes_before": 214464,
+      "bytes_after": 298632,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F42FE027C62A_skin_lod1.glb",
+      "bytes_before": 1115720,
+      "bytes_after": 1831948,
+      "vertices_before": 11660,
+      "vertices_after": 20424,
+      "triangles_before": 5464,
+      "triangles_after": 15712,
+      "refined_primitives": 13
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F42FE027C62A_skin_lod2.glb",
+      "bytes_before": 290280,
+      "bytes_after": 398548,
+      "vertices_before": 1788,
+      "vertices_after": 3084,
+      "triangles_before": 844,
+      "triangles_after": 2380,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F4F320430EFE_skin_lod1.glb",
+      "bytes_before": 1115720,
+      "bytes_after": 1831948,
+      "vertices_before": 11660,
+      "vertices_after": 20424,
+      "triangles_before": 5464,
+      "triangles_after": 15712,
+      "refined_primitives": 13
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F4F320430EFE_skin_lod2.glb",
+      "bytes_before": 290280,
+      "bytes_after": 398548,
+      "vertices_before": 1788,
+      "vertices_after": 3084,
+      "triangles_before": 844,
+      "triangles_after": 2380,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F5195071E480_skin_lod1.glb",
+      "bytes_before": 979420,
+      "bytes_after": 1551440,
+      "vertices_before": 10364,
+      "vertices_after": 17364,
+      "triangles_before": 4832,
+      "triangles_after": 12992,
+      "refined_primitives": 11
+    },
+    {
+      "file": "art/props/mesh_assets/runtime/PROP-F5195071E480_skin_lod2.glb",
+      "bytes_before": 214464,
+      "bytes_after": 298632,
+      "vertices_before": 1500,
+      "vertices_after": 2508,
+      "triangles_before": 684,
+      "triangles_after": 1860,
+      "refined_primitives": 9
+    }
+  ],
+  "neutral_geometry": "Original vertices and shared-edge midpoints only; exact source-triangle subdivision, winding and UV interpolation verified; all original embedded bytes/material definitions retained.",
+  "baseline": "96be522"
+}

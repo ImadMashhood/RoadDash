@@ -4,6 +4,7 @@ use bevy::render::view::screenshot::{Screenshot, save_to_disk};
 pub struct Survey {
     frame: u32,
     ready: bool,
+    views: Vec<serde_json::Value>,
 }
 #[allow(clippy::too_many_arguments)]
 pub fn run(
@@ -48,6 +49,7 @@ pub fn run(
         "resident building/ground geometry changed with camera"
     );
     let scenes = [
+        (0, -280., false),
         (0, 900., false),
         (0, 3100., false),
         (0, 3500., false),
@@ -55,7 +57,10 @@ pub fn run(
         (1, 4300., false),
         (0, 6800., false),
         (0, 6800., true),
+        (0, 8500., false),
+        (0, 8500., true),
         (0, 10400., false),
+        (0, 10400., true),
         (0, 11900., false),
     ];
     let period = if kit.is_some() { 100 } else { 55 };
@@ -76,11 +81,14 @@ pub fn run(
         *camera = Transform::from_translation(eye).looking_at(target, Vec3::Y);
     }
     if state.frame % period == period - 5 {
+        if let Some(ref kit) = kit {
+            state.views.push(serde_json::json!({"view":index,"route":route,"chainage":s,"aerial":aerial,"kit":kit.evidence(),"native_draw_audit":if kit.mesh_instances > 0 { kit.audit(authored.iter(), &meshes) } else { serde_json::Value::Null }}));
+        }
         commands
             .spawn(Screenshot::primary_window())
             .observe(save_to_disk(format!("screenshots/metro-{index:02}.png")));
     }
-    if state.frame > if kit.is_some() { 1020 } else { 680 } {
+    if state.frame > period * scenes.len() as u32 + 20 {
         let m = track.metropolis.as_ref().unwrap();
         assert_eq!(cars.iter().count(), m.street_life.main_traffic);
         let out = cars.iter().filter(|(c, _)| c.speed > 0.).count();
@@ -95,7 +103,7 @@ pub fn run(
             assert!(kit.ready() && kit.mesh_instances > 0 && kit.triangles > 0);
             std::fs::write(
                 "screenshots/metro-authored-facades.json",
-                serde_json::to_string_pretty(&serde_json::json!({"kit":kit.evidence(),"native_draw_audit":kit.audit(authored.iter(), &meshes)})).unwrap(),
+                serde_json::to_string_pretty(&serde_json::json!({"kit":kit.evidence(),"views":state.views,"native_draw_audit":kit.audit(authored.iter(), &meshes)})).unwrap(),
             )
             .unwrap();
         }

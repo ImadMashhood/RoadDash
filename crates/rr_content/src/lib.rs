@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 pub mod animation;
 pub mod city;
+pub mod hand_contacts;
+pub mod police;
 pub mod props;
 pub mod riding_model;
 pub mod rivals;
@@ -180,3 +182,5 @@ pub mod facade_atlas;
 pub mod metropolis;
 
 pub mod destruction;
+
+pub mod weapons;

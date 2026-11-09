@@ -1,0 +1,1 @@
+Validated world; wrote docs/testing/part08-police/valley-inspect.json

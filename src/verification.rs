@@ -27,6 +27,8 @@ pub struct SmokeProgress {
     last_pickup: Option<Vec3>,
     remounts: u32,
     max_remount_error: f32,
+    strike_windup: bool,
+    strike_contact: bool,
 }
 // A running stage can last one physics tick when the rider lands near the bike.
 // Observe fixed transitions independently of render-frame screenshot timing.
@@ -86,6 +88,43 @@ pub fn observe_smoke_recovery(
         }
     }
 }
+/// Native evidence for the real keyboard -> fixed windup -> contact path.
+/// Captures the next rendered/interpolated pose; it is not a human hit-feel test.
+pub fn observe_smoke_strike(
+    mut commands: Commands,
+    mut state: ResMut<SmokeProgress>,
+    riders: Query<&Rider>,
+) {
+    if std::env::var("ROADDASH_VERIFY_STRIKES").as_deref() != Ok("1") {
+        return;
+    }
+    for r in &riders {
+        if r.id != 0 {
+            continue;
+        }
+        let Some(clock) = r.strike else { continue };
+        if std::env::var("ROADDASH_VERIFY_CLUB").as_deref() == Ok("1") {
+            assert!(clock.weapon.is_some(), "native club strike lost snapshot");
+        }
+        if !state.strike_windup && clock.pending() {
+            state.strike_windup = true;
+            println!(
+                "Native buffered strike windup: age={:.6} contact={:.6} side={}",
+                clock.age, clock.contact, clock.side
+            );
+            capture(&mut commands, "30-strike-windup");
+        }
+        if !state.strike_contact && !clock.pending() {
+            assert!(clock.age >= clock.contact && clock.age < clock.contact + 1.0 / 60.0 + 1e-5);
+            state.strike_contact = true;
+            println!(
+                "Native buffered strike contact: age={:.6} contact={:.6} side={}",
+                clock.age, clock.contact, clock.side
+            );
+            capture(&mut commands, "31-strike-contact");
+        }
+    }
+}
 fn capture(commands: &mut Commands, name: &str) {
     commands
         .spawn(Screenshot::primary_window())
@@ -93,15 +132,20 @@ fn capture(commands: &mut Commands, name: &str) {
 }
 /// Exercise the real keyboard event path; ButtonInput::press in Update loses
 /// its just-pressed edge when the native InputPlugin clears edges next frame.
-fn retry_key(commands: &mut Commands, pressed: bool) {
+pub(crate) fn retry_key(commands: &mut Commands, pressed: bool) {
+    smoke_key(commands, KeyCode::KeyR, pressed);
+}
+fn smoke_key(commands: &mut Commands, key_code: KeyCode, pressed: bool) {
     commands.queue(move |world: &mut World| {
         let window = world
             .query_filtered::<Entity, With<bevy::window::PrimaryWindow>>()
             .single(world)
             .expect("native primary window");
         world.write_message(bevy::input::keyboard::KeyboardInput {
-            key_code: KeyCode::KeyR,
-            logical_key: bevy::input::keyboard::Key::Character("r".into()),
+            key_code,
+            logical_key: bevy::input::keyboard::Key::Character(
+                if key_code == KeyCode::KeyJ { "j" } else { "r" }.into(),
+            ),
             state: if pressed {
                 bevy::input::ButtonState::Pressed
             } else {
@@ -114,7 +158,7 @@ fn retry_key(commands: &mut Commands, pressed: bool) {
     });
 }
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
-pub fn smoke_test(
+pub(crate) fn smoke_test(
     mut commands: Commands,
     mut state: ResMut<SmokeProgress>,
     mut race: ResMut<Race>,
@@ -138,12 +182,18 @@ pub fn smoke_test(
     mut contacts: ResMut<Messages<bevy_rapier3d::prelude::CollisionEvent>>,
     mut sweeps: ResMut<Messages<crate::recovery::SweptContact>>,
     bodies: Query<&Transform, Without<Rider>>,
-    (telemetry, mut panel, pads, prefs, screen): (
+    (telemetry, mut panel, pads, prefs, screen, art, clubs): (
         Res<crate::vehicle::VehicleTelemetry>,
         ResMut<crate::settings::SettingsPanel>,
         Query<&Gamepad>,
         Res<crate::settings::Preferences>,
         Res<State<crate::runtime::AppScreen>>,
+        Res<crate::world::Art>,
+        (
+            Query<(), With<crate::weapons::Held>>,
+            Query<(), With<crate::weapons::Pickup>>,
+            Query<&InheritedVisibility, With<crate::weapons::ClubPart>>,
+        ),
     ),
 ) {
     if matches!(
@@ -154,17 +204,81 @@ pub fn smoke_test(
     }
     let test_route = usize::from(std::env::var("ROADDASH_SMOKE_ROUTE").as_deref() == Ok("1"));
     state.frame += 1;
+    if std::env::var("ROADDASH_VERIFY_STRIKES").as_deref() == Ok("1") {
+        if state.frame == 60 && std::env::var("ROADDASH_VERIFY_CLUB").as_deref() != Ok("1") {
+            smoke_key(&mut commands, KeyCode::KeyJ, true);
+        }
+        if state.frame == 64 {
+            smoke_key(&mut commands, KeyCode::KeyJ, false);
+        }
+    }
+
+    if std::env::var("ROADDASH_VERIFY_CLUB").as_deref() == Ok("1") {
+        if state.frame == 61
+            && let Some((_, _, t, _)) = riders.iter().find(|(r, _, _, _)| r.id == 0)
+        {
+            crate::weapons::pickup(&mut commands, &art, t.translation + Vec3::Y * 0.12);
+        }
+        for (frame, key, down) in [
+            (62, KeyCode::KeyE, true),
+            (64, KeyCode::KeyE, false),
+            (66, KeyCode::KeyJ, true),
+            (68, KeyCode::KeyJ, false),
+            (110, KeyCode::KeyQ, true),
+            (112, KeyCode::KeyQ, false),
+        ] {
+            if state.frame == frame {
+                smoke_key(&mut commands, key, down);
+            }
+        }
+        if state.frame == 65 {
+            assert!(
+                riders
+                    .iter()
+                    .find(|(r, _, _, _)| r.id == 0)
+                    .unwrap()
+                    .0
+                    .weapon
+                    .is_some(),
+                "native keyboard pickup missing"
+            );
+        }
+        if state.frame == 114 {
+            assert!(
+                riders
+                    .iter()
+                    .find(|(r, _, _, _)| r.id == 0)
+                    .unwrap()
+                    .0
+                    .weapon
+                    .is_none(),
+                "native drop missing"
+            );
+            println!("Native original club pickup / timed attack / drop verified");
+            let census = serde_json::json!({"held_roots":clubs.0.iter().count(),"pickup_roots":clubs.1.iter().count(),"resident_part_instances":clubs.2.iter().count(),"visible_part_instances":clubs.2.iter().filter(|v|v.get()).count(),"new_mesh_assets":0,"new_material_assets":0,"new_physical_bodies":0,"max_held_roots":30,"max_pickup_roots":12});
+            std::fs::write(
+                "screenshots/weapon-census.json",
+                serde_json::to_vec_pretty(&census).unwrap(),
+            )
+            .unwrap();
+            assert_eq!(
+                clubs.0.iter().count(),
+                30,
+                "weapon sockets did not attach to all riders"
+            );
+        }
+    }
     if state.frame == 1 {
         let killers = riders
             .iter()
             .filter(|(r, _, _, _)| {
-                r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Killer
+                !r.police && r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Killer
             })
             .count();
         let racers = riders
             .iter()
             .filter(|(r, _, _, _)| {
-                r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Racer
+                !r.police && r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Racer
             })
             .count();
         assert_eq!((racers, killers), (7, 7));
@@ -192,6 +306,9 @@ pub fn smoke_test(
         }
         if state.frame == 28 {
             for (r, _, t, _) in &riders {
+                if r.police {
+                    continue;
+                }
                 let spawn = &track.definition.spawns[r.id];
                 let (p, _) = track.sample_route(test_route, spawn.distance, spawn.lane);
                 assert!(
@@ -474,6 +591,12 @@ pub fn smoke_test(
             capture(&mut commands, "07-results");
         }
         if state.frame > finished_at + 40 {
+            if std::env::var("ROADDASH_VERIFY_STRIKES").as_deref() == Ok("1") {
+                assert!(
+                    state.strike_windup && state.strike_contact,
+                    "native buffered strike lifecycle missing"
+                );
+            }
             let mut report = metrics.evidence(&clock);
             report["gamepads_connected"] = serde_json::json!(pads.iter().count());
             report["comfort"] = serde_json::json!(prefs.file.comfort);
@@ -619,4 +742,194 @@ pub fn actor_smoke(
         );
         exit.write(AppExit::Success);
     }
+}
+
+/// Close native source-family views, using the real walking and knockdown paths.
+/// This fixture never runs without --actor-skin-survey.
+#[derive(Resource, Default)]
+pub struct ActorSkinSurvey {
+    frame: u32,
+    origin: Vec3,
+    rotation: Quat,
+    actors: Vec<Entity>,
+}
+
+#[allow(clippy::too_many_arguments)]
+pub fn actor_skin_survey(
+    mut commands: Commands,
+    mut state: ResMut<ActorSkinSurvey>,
+    mut race: ResMut<Race>,
+    track: Res<Track>,
+    art: Res<crate::world::Art>,
+    mut actors: Query<(
+        Entity,
+        &mut crate::environment::Patrol,
+        &crate::props::ActorAppearance,
+    )>,
+    mut hits: MessageWriter<crate::combat::NpcHit>,
+    mut exit: MessageWriter<AppExit>,
+) {
+    state.frame += 1;
+    if state.frame == 30 {
+        race.phase = Phase::Racing;
+        let (p, q) = track.sample(1200.0, 0.0);
+        state.origin = p + q * Vec3::Z * 20.0 + q * Vec3::X * 8.0;
+        state.rotation = q;
+        for (i, seed) in [0.0, 154.0, 294.0].into_iter().enumerate() {
+            crate::environment::spawn_pedestrian(
+                &mut commands,
+                &art,
+                state.origin + q * Vec3::X * (i as f32 - 1.0) * 2.0,
+                q,
+                seed,
+            );
+        }
+    }
+    if state.frame == 32 {
+        let origin = state.origin;
+        let mut selected: Vec<_> = actors
+            .iter_mut()
+            .filter(|(_, p, _)| p.center.distance(origin) < 5.0)
+            .collect();
+        selected.sort_by(|a, b| a.1.center.x.total_cmp(&b.1.center.x));
+        for (e, mut patrol, appearance) in selected {
+            patrol.extent = 0.15;
+            patrol.speed = 0.08;
+            println!("Actor skin survey source: {}", appearance.0);
+            state.actors.push(e);
+        }
+        assert_eq!(state.actors.len(), 3);
+    }
+    if (160..700).contains(&state.frame) && (state.frame - 160) % 60 == 30 {
+        let index = (state.frame - 160) / 60;
+        capture(&mut commands, &format!("actor-skin-walk-{index:02}"));
+    }
+    if state.frame == 720 {
+        for &actor in &state.actors {
+            hits.write(crate::combat::NpcHit(
+                actor,
+                state.rotation * Vec3::Z * 4.0,
+                false,
+            ));
+        }
+    }
+    for (frame, name) in [
+        (730, "actor-skin-impact"),
+        (780, "actor-skin-ragdoll-front"),
+        (840, "actor-skin-ragdoll-rear"),
+    ] {
+        if state.frame == frame {
+            capture(&mut commands, name);
+        }
+    }
+    if state.frame == 900 {
+        println!("Actor skin native close survey completed; visual acceptance remains open");
+        exit.write(AppExit::Success);
+    }
+}
+
+pub fn actor_skin_camera(
+    state: Res<ActorSkinSurvey>,
+    actors: Query<(&crate::npc::Npc, &Transform), Without<crate::game::ChaseCamera>>,
+    bodies: Query<
+        &Transform,
+        (
+            With<crate::recovery::OwnedBody>,
+            Without<crate::game::ChaseCamera>,
+        ),
+    >,
+    mut cameras: Query<(&mut Transform, &mut Projection), With<crate::game::ChaseCamera>>,
+) {
+    if state.frame < 100 || state.actors.is_empty() {
+        return;
+    }
+    let index = ((state.frame.saturating_sub(160)) / 60).min(8) as usize;
+    let family = index / 3;
+    let Ok((npc, root)) = actors.get(state.actors[family]) else {
+        return;
+    };
+    let ragdoll = state.frame >= 720;
+    let target = if ragdoll {
+        npc.parts
+            .first()
+            .and_then(|e| bodies.get(*e).ok())
+            .map_or(root.translation, |t| t.translation)
+            + Vec3::Y * 0.2
+    } else {
+        root.translation + Vec3::Y * 1.15
+    };
+    let view = if state.frame >= 840 {
+        1
+    } else if ragdoll {
+        0
+    } else {
+        index % 3
+    };
+    let offset = match view {
+        0 => Vec3::new(1.8, 0.5, 3.2),
+        1 => Vec3::new(-1.8, 0.5, -3.2),
+        _ => Vec3::new(3.5, 0.4, 0.2),
+    };
+    for (mut camera, mut projection) in &mut cameras {
+        *camera = Transform::from_translation(target + state.rotation * offset)
+            .looking_at(target, Vec3::Y);
+        if let Projection::Perspective(p) = &mut *projection {
+            p.fov = 45_f32.to_radians();
+        }
+    }
+}
+
+/// Read final propagated driver frames; never changes a physical or visual pose.
+pub(crate) fn actor_skin_snapshot(
+    state: Res<ActorSkinSurvey>,
+    bindings: Query<(
+        &crate::props::ActorBinding,
+        &crate::props::ActorAppearance,
+        &InheritedVisibility,
+    )>,
+    transforms: Query<&GlobalTransform>,
+) {
+    use std::io::Write;
+    let path = "screenshots/actor-skin-poses.jsonl";
+    if state.frame == 1 {
+        std::fs::write(path, "").expect("skin pose receipt");
+    }
+    if !((190..700).contains(&state.frame) && (state.frame - 190).is_multiple_of(60)
+        || [730, 780, 840].contains(&state.frame))
+    {
+        return;
+    }
+    let mut rows = vec![];
+    for (binding, appearance, visible) in &bindings {
+        if !visible.get() {
+            continue;
+        }
+        let (drivers, file) = binding.snapshot();
+        if drivers.len() != 11 {
+            continue;
+        }
+        let matrices: Option<Vec<_>> = drivers
+            .iter()
+            .enumerate()
+            .map(|(i, e)| {
+                transforms.get(*e).ok().map(|t| {
+                    (t.to_matrix() * Mat4::from_translation(-crate::human::SPECS[i].0))
+                        .to_cols_array()
+                })
+            })
+            .collect();
+        let Some(matrices) = matrices else {
+            continue;
+        };
+        let origin = Mat4::from_cols_array(&matrices[0]).transform_point3(crate::human::SPECS[0].0);
+        if origin.distance(state.origin) > 25.0 {
+            continue;
+        }
+        rows.push(serde_json::json!({"family":appearance.0,"file":file,"driver_skin_matrices_column_major":matrices}));
+    }
+    let mut file = std::fs::OpenOptions::new()
+        .append(true)
+        .open(path)
+        .expect("skin pose receipt");
+    writeln!(file, "{}", serde_json::json!({"frame":state.frame,"phase":if state.frame<720 {"walk"}else if state.frame==730 {"impact"}else {"ragdoll"},"actors":rows})).expect("skin pose receipt");
 }

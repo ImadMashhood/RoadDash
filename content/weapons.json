@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "starting_armed_fraction": 0.5,
+  "club": {
+    "source_contact": 0.32,
+    "cooldown": 0.85,
+    "stamina": 300.0,
+    "lateral_reach": 2.55,
+    "longitudinal_reach": 0.9,
+    "pickup_radius": 2.5,
+    "direct_hits": 1
+  }
+}

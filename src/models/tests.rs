@@ -34,12 +34,14 @@ fn authored(app: &mut App) {
     let mut meshes = Assets::<Mesh>::default();
     let mut materials = Assets::<StandardMaterial>::default();
     let mut binds = Assets::<SkinnedMeshInverseBindposes>::default();
-    let models = AuthoredModels::load(&mut meshes, &mut materials, &mut binds, None);
+    let mut images = Assets::<Image>::default();
+    let models = AuthoredModels::load(&mut meshes, &mut materials, &mut binds, &mut images, None);
     app.world_mut().resource_mut::<world::Art>().models = Some(models);
     app.add_plugins(RoadModelPlugin);
     app.insert_resource(meshes)
         .insert_resource(materials)
-        .insert_resource(binds);
+        .insert_resource(binds)
+        .insert_resource(images);
 }
 #[test]
 fn all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics() {
@@ -75,8 +77,8 @@ fn all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics()
     let skins:Vec<_>=w.query_filtered::<(Entity,&SkinnedMesh,&MeshMaterial3d<StandardMaterial>),With<AuthoredHuman>>().iter(w).map(|(e,s,m)|(e,s.joints.clone(),m.0.clone())).collect();
     assert_eq!(
         skins.len(),
-        16,
-        "four material regions in each of four human states"
+        20,
+        "four material regions plus isolated gloves in each of four human states"
     );
     assert_eq!(w.query::<&human::HumanSegment>().iter(w).count(), 44);
     for (e, joints, _) in &skins {
@@ -102,7 +104,7 @@ fn all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics()
         *skin_material_counts.entry(m.id()).or_insert(0) += 1;
     }
     // Region handles may differ per bind mesh, but standing appearances must be shared.
-    assert!(skin_material_counts.values().filter(|c| **c == 3).count() == 4);
+    assert!(skin_material_counts.values().filter(|c| **c == 3).count() == 5);
 }
 #[test]
 fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory() {
@@ -455,4 +457,67 @@ fn neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms() {
             );
         }
     }
+}
+
+#[test]
+fn glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices() {
+    let mut meshes = Assets::<Mesh>::default();
+    let mut mats = Assets::<StandardMaterial>::default();
+    let mut binds = Assets::<SkinnedMeshInverseBindposes>::default();
+    let mut images = Assets::<Image>::default();
+    let models = AuthoredModels::load(&mut meshes, &mut mats, &mut binds, &mut images, None);
+    let mut count = 0;
+    let mut bytes = 0;
+    for part in &models.parts {
+        let mesh = meshes.get(&part.mesh).unwrap();
+        let Some(handle) = mesh.morph_targets() else {
+            continue;
+        };
+        count += 1;
+        let image = images.get(handle).unwrap();
+        let data = image.data.as_ref().unwrap();
+        bytes += data.len();
+        assert_eq!(image.texture_descriptor.size.depth_or_array_layers, 4);
+        let VertexAttributeValues::Uint16x4(joints) =
+            mesh.attribute(Mesh::ATTRIBUTE_JOINT_INDEX).unwrap()
+        else {
+            panic!()
+        };
+        let VertexAttributeValues::Float32x4(weights) =
+            mesh.attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT).unwrap()
+        else {
+            panic!()
+        };
+        let layer = data.len() / 4;
+        let mut moved = [0; 4];
+        for (target, moved) in moved.iter_mut().enumerate() {
+            let hand = if target < 2 { 13 } else { 12 };
+            for (i, joints) in joints.iter().enumerate() {
+                let start = layer * target + i * 36;
+                let values: Vec<f32> = data[start..start + 36]
+                    .chunks_exact(4)
+                    .map(|b| f32::from_le_bytes(b.try_into().unwrap()))
+                    .collect();
+                assert!(values.iter().all(|v| v.is_finite()));
+                let displacement = Vec3::new(values[0], values[1], values[2]);
+                assert!(displacement.length() < 0.25);
+                if displacement.length() > 0.00001 {
+                    *moved += 1;
+                    assert!(
+                        joints
+                            .iter()
+                            .zip(weights[i])
+                            .any(|(j, w)| *j == hand && w > 0.001)
+                    );
+                }
+            }
+            assert!(*moved > 100, "missing hand geometry in {target}");
+        }
+    }
+    assert_eq!(count, 2, "one shared glove-morph surface per authored bind");
+    assert!(
+        bytes < 16 * 1024 * 1024,
+        "unexpected morph texture growth: {bytes}"
+    );
+    println!("shared glove targets: {count} surfaces, {bytes} bytes");
 }

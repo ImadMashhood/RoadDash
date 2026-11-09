@@ -33,11 +33,74 @@ def bone(name,p,cow):
  if any(a in name for a in ['racket','surfboard','briefcase','flag','diving']):return 4 if x<0 else 6
  return 0
 
-def skin(source,dest,cow):
+def smooth(a, b, value):
+ t=max(0.,min(1.,(value-a)/(b-a)))
+ return t*t*(3.-2.*t)
+
+def human_weights(position, female=False):
+ """One continuous source-space field shared by all intersecting body volumes.
+
+ The source generator scales female height before export. Undo that for the
+ field only; preserve every delivered position, normal, UV and material.
+ Physical body centres are inverse-bind frames, not clothing seam locations.
+ """
+ x,y,z=position;x/=1.23;y/=1.23*(1.69/1.82 if female else 1.)
+ side=0 if x<0 else 1
+ head=smooth(1.48,1.63,y)
+ pelvis=1.-smooth(.98,1.16,y)
+ weights={0:(1.-head)*(1.-pelvis),1:head,2:(1.-head)*pelvis}
+ # Torso and arm surfaces sample exactly the same field in their overlap.
+ shoulder=smooth(1.26,1.38,y)
+ arm=smooth(.205-.125*shoulder,.23-.105*shoulder,abs(x))*(1.-smooth(1.60,1.66,y))
+ lower=1.-smooth(1.17,1.27,y)
+ weights={j:w*(1.-arm)for j,w in weights.items()}
+ weights[3+2*side]=arm*(1.-lower);weights[4+2*side]=arm*lower
+ leg=(1.-smooth(.88,1.045,y))*(1.-arm)*(1.-smooth(.65,.72,y)*(1.-smooth(.025,.10,abs(x))))
+ weights={j:w*(1.-leg)for j,w in weights.items()}
+ calf=1.-smooth(.63,.72,y)
+ weights[7+2*side]=leg*(1.-calf);weights[8+2*side]=leg*calf
+ # Four influences are the actual glTF runtime budget. Tiny discarded terms
+ # are normalized, with a deterministic index tie-break for reproducibility.
+ selected=sorted(weights.items(),key=lambda item:(-item[1],item[0]))[:4]
+ total=sum(w for _,w in selected)
+ return tuple(j for j,_ in selected),tuple(w/total for _,w in selected)
+
+def vertex_weights(name, position, cow, female=False):
+ if cow:return (bone(name,position,True),0,0,0),(1.,0.,0.,0.)
+ # Held equipment stays rigid with its hand; it is not body tissue. Hands
+ # and fingers sample the body field so wrists have no rigid-weight boundary.
+ if any(a in name for a in ['racket','surfboard','briefcase','flag','diving']):
+  return (4 if position[0]<0 else 6,0,0,0),(1.,0.,0.,0.)
+ if name in {'skateboard_deck','skate_wheels'}:
+  return (2,0,0,0),(1.,0.,0.,0.)
+ return human_weights(position,female)
+
+def refine(pos, normal, uv, indices):
+ """One conforming midpoint split per primitive. Neutral surface is unchanged.
+
+ Do not split individual triangles independently: an unsplit neighbour would
+ form a skinning T-junction after deformation. Every shared edge gets one vertex.
+ """
+ edges={};triangles=[]
+ def midpoint(a,b):
+  edge=tuple(sorted((a,b)))
+  if edge not in edges:
+   edges[edge]=len(pos)
+   pos.append(tuple((x+y)*.5 for x,y in zip(pos[a],pos[b])))
+   n=tuple((x+y)*.5 for x,y in zip(normal[a],normal[b]));length=math.sqrt(sum(c*c for c in n))
+   normal.append(tuple(c/length for c in n)if length>1e-12 else normal[a])
+   uv.append(tuple((x+y)*.5 for x,y in zip(uv[a],uv[b])))
+  return edges[edge]
+ for a,b,c in indices:
+  ab=midpoint(a,b);bc=midpoint(b,c);ca=midpoint(c,a)
+  triangles.extend([(a,ab,ca),(ab,b,bc),(ca,bc,c),(ab,bc,ca)])
+ return triangles
+
+def skin(source,dest,cow,female=False):
  d,raw=read_glb(source);data=bytearray(raw);frames=COW if cow else HUMAN
  def add(values,kind,component=5126):
   while len(data)%4:data.append(0)
-  start=len(data);code='f'if component==5126 else 'H';width={'VEC3':3,'VEC4':4,'MAT4':16}[kind]
+  start=len(data);code={5126:'f',5123:'H',5125:'I'}[component];width={'SCALAR':1,'VEC2':2,'VEC3':3,'VEC4':4,'MAT4':16}[kind]
   for v in values:data.extend(struct.pack('<'+code*width,*v))
   view=len(d['bufferViews']);d['bufferViews'].append(dict(buffer=0,byteOffset=start,byteLength=len(data)-start));idx=len(d['accessors'])
   rec=dict(bufferView=view,componentType=component,count=len(values),type=kind)
@@ -53,9 +116,18 @@ def skin(source,dest,cow):
     pos.append((q[2]*1.05,q[1]*1.15,-q[0]*1.05)if cow else tuple(c*1.23 for c in q))
    for v in accessor(d,raw,a['NORMAL']):
     q=transformed(v,node,True);normal.append((q[2],q[1],-q[0])if cow else q)
+   if not cow:
+    field=[vertex_weights(name,v,False,female)for v in pos]
+    if any(sum(w>1e-5 for w in weights)>1 for _,weights in field):
+     uv=list(accessor(d,raw,a['TEXCOORD_0']))
+     indices=[v[0]for v in accessor(d,raw,p['indices'])]
+     triangles=refine(pos,normal,uv,[indices[i:i+3]for i in range(0,len(indices),3)])
+     p['indices']=add([(i,)for tri in triangles for i in tri],'SCALAR',5125)
+     a['TEXCOORD_0']=add(uv,'VEC2')
    a['POSITION']=add(pos,'VEC3');a['NORMAL']=add(normal,'VEC3')
-   a['JOINTS_0']=add([(bone(name,v,cow),0,0,0)for v in pos],'VEC4',5123)
-   a['WEIGHTS_0']=add([(1.,0.,0.,0.)for _ in pos],'VEC4')
+   influences=[vertex_weights(name,v,cow,female)for v in pos]
+   a['JOINTS_0']=add([j for j,_ in influences],'VEC4',5123)
+   a['WEIGHTS_0']=add([w for _,w in influences],'VEC4')
   for key in ['matrix','rotation','translation','scale']:node.pop(key,None)
   node['skin']=0
  start=len(d['nodes']);joints=[]
@@ -70,7 +142,7 @@ def skin(source,dest,cow):
  dest.write_bytes(struct.pack('<4sII',b'glTF',2,total)+struct.pack('<II',len(header),0x4e4f534a)+header+struct.pack('<II',len(data),0x004e4942)+data)
 
 def main():
- manifest=json.loads((OUT/'MANIFEST.json').read_text());runtime=OUT/'runtime';runtime.mkdir(exist_ok=True);records=[]
+ manifest=json.loads((OUT/'MANIFEST.json').read_text());runtime=OUT/'runtime';runtime.mkdir(exist_ok=True);records=[];sources={}
  for r in manifest['records']:
   row=dict(id=r['id'],name=r['name'],group=r['group'],builder=r['builder'],files=[l['file']for l in r['lods']],size=r['collider']['size_y_up'],center=r['collider']['center_y_up'])
   cow=r['builder']=='cow';human=r['builder']=='human'
@@ -78,12 +150,14 @@ def main():
    # Every pedestrian variant is available; source groups and signs never become actors.
    files=[]
    for lod in [1,2]:
-    path=runtime/f"{r['id']}_skin_lod{lod}.glb";skin(OUT/r['lods'][lod]['file'],path,cow);files.append(path.relative_to(OUT).as_posix())
+    path=runtime/f"{r['id']}_skin_lod{lod}.glb";female=any(s in r['name']for s in ['AVGW','BCHW','BKW','BUSW','CTW','DVRW','FEM','FLGRL','HHW','JGW','OLDW','TRSTW']);skin(OUT/r['lods'][lod]['file'],path,cow,female);files.append(path.relative_to(OUT).as_posix())
    row['skin_files']=files;row['bones']=len(COW if cow else HUMAN)
+   for lod,file in zip([1,2],files):
+    source=OUT/r['lods'][lod]['file'];sources[(OUT/file).relative_to(ROOT).as_posix()]=dict(source_file=source.relative_to(ROOT).as_posix(),source_sha256=hashlib.sha256(source.read_bytes()).hexdigest())
   records.append(row)
  result=dict(schema_version=1,records=records)
  (ROOT/'content/props.json').write_text(json.dumps(result,separators=(',',':'))+'\n')
- receipt=dict(files=[dict(file=p.relative_to(ROOT).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest())for p in sorted(runtime.glob('*.glb'))],human_rest=HUMAN,cow_rest=COW,physics_data=False,source_manifest_sha256=hashlib.sha256((OUT/'MANIFEST.json').read_bytes()).hexdigest())
+ receipt=dict(files=[dict(file=p.relative_to(ROOT).as_posix(),sha256=hashlib.sha256(p.read_bytes()).hexdigest(),**sources[p.relative_to(ROOT).as_posix()])for p in sorted(runtime.glob('*.glb'))],generator_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),weight_recipe='continuous-human-field-v1; conforming-midpoint-blend-primitives; rigid-cow-unchanged',human_rest=HUMAN,cow_rest=COW,physics_data=False,source_manifest_sha256=hashlib.sha256((OUT/'MANIFEST.json').read_bytes()).hexdigest())
  (ROOT/'docs/testing/props-in-game/runtime-intake.json').write_text(json.dumps(receipt,indent=2)+'\n')
  print('Prepared',len(records),'catalog entries;',len(receipt['files']),'visual-only actor skin GLBs')
 if __name__=='__main__':main()

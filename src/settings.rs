@@ -53,15 +53,24 @@ impl PreferencesFile {
         self.comfort.validate()?;
         Bindings::parse(&serde_json::to_string(&self.keyboard).map_err(|e| e.to_string())?)?;
         let mut used = std::collections::HashSet::new();
-        if self.controller.len() != self.keyboard.actions.len() {
-            return Err("controller action count mismatch".into());
+        for action in self
+            .keyboard
+            .actions
+            .keys()
+            .filter(|a| !matches!(a.as_str(), "pickup" | "drop"))
+        {
+            if !self.controller.contains_key(action) {
+                return Err(format!("missing controller action {action}"));
+            }
         }
-        for action in self.keyboard.actions.keys() {
-            let b = self
-                .controller
-                .get(action)
-                .and_then(|s| pad_button(s))
-                .ok_or_else(|| format!("missing/unknown controller action {action}"))?;
+        for (action, button) in &self.controller {
+            if !self.keyboard.actions.contains_key(action)
+                && !matches!(action.as_str(), "pickup" | "drop")
+            {
+                return Err("unknown controller action".into());
+            }
+            let b = pad_button(button)
+                .ok_or_else(|| format!("unknown controller button for {action}"))?;
             if matches!(b, GamepadButton::Mode | GamepadButton::LeftTrigger) {
                 return Err("Guide and left bumper are reserved for settings".into());
             }

@@ -10,6 +10,8 @@ pub struct Metrics {
     frame_start: Instant,
     frame_gameplay_ms: f32,
     frame_physics_ms: f32,
+    frame_physics_phases_ms: [f32; 3],
+    physics_phase_start: Instant,
     frame_fixed_steps: u64,
     fixed_start: Instant,
     physics_start: Instant,
@@ -31,6 +33,8 @@ impl Default for Metrics {
             frame_start: Instant::now(),
             frame_gameplay_ms: 0.,
             frame_physics_ms: 0.,
+            frame_physics_phases_ms: [0.; 3],
+            physics_phase_start: Instant::now(),
             frame_fixed_steps: 0,
             fixed_start: Instant::now(),
             physics_start: Instant::now(),
@@ -60,8 +64,24 @@ fn physics_begin(mut metrics: ResMut<Metrics>) {
     metrics.gameplay_ms = metrics.fixed_start.elapsed().as_secs_f32() * 1000.0;
     metrics.frame_gameplay_ms += metrics.gameplay_ms;
     metrics.physics_start = Instant::now();
+    metrics.physics_phase_start = metrics.physics_start;
+}
+fn physics_synced(mut metrics: ResMut<Metrics>) {
+    physics_phase(&mut metrics, 0);
+}
+fn physics_stepped(mut metrics: ResMut<Metrics>) {
+    physics_phase(&mut metrics, 1);
+}
+fn physics_phase(metrics: &mut Metrics, phase: usize) {
+    let now = Instant::now();
+    metrics.frame_physics_phases_ms[phase] += now
+        .duration_since(metrics.physics_phase_start)
+        .as_secs_f32()
+        * 1000.;
+    metrics.physics_phase_start = now;
 }
 fn physics_end(mut metrics: ResMut<Metrics>) {
+    physics_phase(&mut metrics, 2);
     metrics.physics_ms = metrics.physics_start.elapsed().as_secs_f32() * 1000.0;
     metrics.frame_physics_ms += metrics.physics_ms;
 }
@@ -158,6 +178,7 @@ fn frame_begin(mut metrics: ResMut<Metrics>) {
     metrics.frame_start = Instant::now();
     metrics.frame_gameplay_ms = 0.;
     metrics.frame_physics_ms = 0.;
+    metrics.frame_physics_phases_ms = [0.; 3];
     metrics.frame_fixed_steps = 0;
 }
 impl Plugin for RoadDiagnosticsPlugin {
@@ -173,6 +194,18 @@ impl Plugin for RoadDiagnosticsPlugin {
                 physics_begin
                     .after(SimSet::Gameplay)
                     .before(PhysicsSet::SyncBackend),
+            )
+            .add_systems(
+                FixedUpdate,
+                physics_synced
+                    .after(PhysicsSet::SyncBackend)
+                    .before(PhysicsSet::StepSimulation),
+            )
+            .add_systems(
+                FixedUpdate,
+                physics_stepped
+                    .after(PhysicsSet::StepSimulation)
+                    .before(PhysicsSet::Writeback),
             )
             .add_systems(
                 FixedUpdate,

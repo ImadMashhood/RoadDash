@@ -3,6 +3,10 @@
 Updated 2026-11-08. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
+- UI-02: source UI/media catalog and artist skeleton are available in docs/ui, with original references in the separate local kit. A first art-led offline native entry flow is integrated (ADR091); full production UI/art acceptance remains open. Dynamic retail handlers/fonts/disabled states, inherited backgrounds and runtime Windows-dialog labels are not reproduced; unused clouds are context-only/inferred. Source-file coverage is not a retail playthrough or full UI parity. See ui/README.md and testing/ui-kit/README.md.
+
+- RACE-SETUP: user-requested four/three/four lanes, wider single-file staggered grid and disabled player nitrous supersede historical lane/nitro descriptions. Rider palettes are reference-informed original swatches; shared armored costume geometry and PBR appearance still need user art review. Primary sidewalks return to2.4m with1.5m authored clear strip; larger furniture and30 parked cars move to side streets (formerly65 curb-parked cars). Human race balance and full-course/performance/hardware approval remain open. See testing/race-setup/README.md.
+
 - P01-WIN: Windows GPU/audio/input launch and clean install have not been run on
   this host. Part 02 Ubuntu/Windows CI run 41141131978 passed, including the corrected
   UTF-8 metadata audit. Part 03 remote CI is recorded separately in its PR. No Windows hardware certificate is claimed.
@@ -35,15 +39,16 @@ missing features, architectural debt and unverified platforms.
 - P03-TRACE: telemetry is authoritative 60 Hz, bounded to 3,600 samples; no
   fabricated 100 Hz trace or full-session persistence. Slip reports tire-demand
   saturation and lateral slip angle, not a detailed tire deformation model.
-- P05/P06/P07: kicks are implemented; weapons/stamina remain open. Part03 now implements manual foot override and checkpoint-valid foot finishes; production trap/clearance acceptance remains open.
+- P05/P06/P07: kicks and one first-club candidate are implemented; complete weapon families/ability schemas and balance remain open. Part03 now implements manual foot override and checkpoint-valid foot finishes; production trap/clearance acceptance remains open.
   Ordered bike gates are verified in P02. Recovery auto-seeks the actual bike.
 - P06-CONFINED: assisted recovery is verified in representative fallen poses,
   not arbitrary fully enclosed geometry or moving traffic traps. Collision-clear
   crash separation falls back in confined spaces; manual override is implemented; arbitrary confined/stuck recovery
   remains open. Ordinary crashes no longer inject upward momentum.
-- P08/P12/P13: police, real garage/economy, career and multiplayer absent.
+- P08: one resident player-targeting police motorcycle is integrated; full uniforms/vehicle/dismount/gesture art, moving-foot capture/tackles (safe arrest requires slowing to<=1.2m/s), rival violation selection, road-block/stuck traffic policies, human fairness, repeated full-race soak and broad performance/hardware acceptance remain open. No reinforcement spawns or hidden acceleration/grip boosts. The return state resumes a forward patrol along the open course, rather than teleporting to a home station. See testing/part08-police/README.md.
+- P12/P13: real garage/economy, career and multiplayer absent.
 - P02-END: missing an ordered gate requires R-to-retry; unfinished riders stop at
-  the finish. There is no reverse driving/manual return-to-gate feature yet.
+  the finish. Parking reverse is now available; manual return-to-gate and missed-gate race recovery acceptance remain open.
 - P02-ACTORS: cows stand until hit; pedestrians/cross traffic use bounded patrols,
   not grazing/navigation/traffic-light AI. Both actor kinds ragdoll on hard impact
   or three direct strikes, with an eight-active budget and safe 18-second respawn.
@@ -601,10 +606,21 @@ Final isolated facade LOD survey: p95=16.80066 ms against16.7 ms, so performance
 - NPC-SEAMS-01: civilian skins still use rigid segment bindings; floating/separated
   pieces under demanding poses need a source-bind/weight/seam correction and
   close-up native approval. Actor lifecycle smoke is not visual seam acceptance.
-- COMBAT-FEEL-01: attacks play faster and kicks have a distinct transient/confirmed
-  hit feedback, but gameplay currently resolves contact on the input tick rather
-  than the visible contact keyframe. Contact-timed strikes and subjective feel/
-  audible quality review remain open.
+- COMBAT-FEEL-01: fixed-clock strikes now resolve once at the authored extended
+  runtime contact keys; kick side is selected at windup and cannot follow a target
+  across the rider. Range/LOS are evaluated at contact, so moving out of reach can
+  cause an intentional miss. Subjective impact/audio quality and full combat
+  playtest acceptance remain open; see testing/part03-runtime/README.md.
+- V2-03-003: renderer foot plants now use physics-local support frames, finite
+  swing release and fresh stance capture. Synthetic support/phase tests are not
+  full production foot-slide/pop acceptance across stairs/curbs/turns. Visual
+  pelvis reach, terrain coverage and final motion approval remain open.
+- Part03 provenance: changing src/animation.rs initially invalidated the old
+  hand-review source hashes. A fresh current-release33-view native hand run and
+  package/check restored current provenance. Those held-pose images validate
+  glove/socket integration, not live strike timing; separate keyboard/contact
+  screenshots and headless pose/hit tests cover that path. Final hand art and
+  source/runtime normal/tessellation parity remain open.
 - TRAFFIC-04: basic downed-rider lane yielding/horns do not implement general
   intersection priorities, signal phases or complete traffic-to-traffic queues.
 - Performance: the isolated world repair run measured 22.38 ms p95 at 1080p versus
@@ -745,3 +761,85 @@ in the runtime manifest/native census. Footprints/race paths remain unchanged.
   have no standalone clip and two runtime lean keys are authored extras. Missing
   playback is not evidence of missing source frames. Finger/support/silhouette,
   unresolved caller/native timing and human approval gates remain open.
+
+
+- ANIM-15/16: runtime glove shapes/sockets are a visual prototype on the existing
+  source geometry. Finger/thumb silhouettes and grip clearance need user art
+  review; individual finger bones/tendons are not simulated. The static Blender recipe now reads the runtime profile and has a real
+  GLB export/reload (ADR080); exact native/source tessellation and hard-normal
+  parity, angular thumb/finger contours and human clearance/art approval remain
+  ANIM-16 gates. See testing/part02-authoring/README.md. Weapon sockets are attachment metadata only;
+  Part07 weapon gameplay is not implemented here. Morphs add a draw surface and
+  bounded shared textures; no broad performance or Windows certificate is claimed.
+
+
+2026-11-08 Part01 runtime review (ADR079): default velocity-muscle combat already
+has swerve/countersteer and continuous release. Tall-solid/vehicle normal contacts
+at1m/s now interrupt that sequence; ordinary riding/baseline gates are unchanged.
+Vehicle-contact measurements are bounded diagnostic observations, not over-car
+trajectory/vault acceptance. All29 Part01 boxes remain open; see
+[the audit](testing/part01-runtime/README.md). Verified local-disc calibration
+files exist; missing complete numerical calibration and unresolved reconstruction
+source reuse permission remain distinct. No Windows/controller/human-feel claims.
+
+- PART04-PALETTE: Metropolis now instantiates24 curated facade designs, with
+  district/tower rules and model-derived crowns; it still does not integrate all
+  eligible128storey-kit designs. BUSS4 upper intentionally uses neutral CLSTGA11
+  aside from one detailed sign; other unique frontage/signage and final corner/
+  foundation art require user review. Resident source inputs roughly double;
+  hot streaming budgets remain unchanged. Measured native evidence and limits:
+  testing/part04-world/README.md. Native release p95 is21.08ms (16.7ms target unmet);
+  no controlled prepass comparison. Plain courts/mid-block ground, atmospheric
+  wash and simple tower sides remain unfinished art. Production frame budget, long reverse/high-speed
+  streaming, broad hardware and final visual approval remain open.
+
+- PART05-DAMAGE: six crush roles now have twelve buckled original-source draft
+  variants; seven topple roles still use intact whole-object art. These folds
+  are draft deformation, not approved final severed/shattered art. There are no
+  extra fragments, leaks or per-piece colliders. Ready hidden siblings add
+  resident hierarchy/mesh/material cost, recorded in testing/part05-props. The
+  existing48-body cap and solid crush envelope are retained. Full worst-case
+  damaged-route60FPS, legacy-map destructibility, Windows/hardware and user art
+  approval remain open under DESTRUCTION-02/V2-05.
+
+2026-11-08 Part06 NPC-SEAMS-01: continuous civilian weights reduce measured mean
+posed attachments but do not finish the disconnected draft volume topology. Some
+coarse torso/shoulder/pelvis samples worsen; per-case worst/regression receipts
+are in testing/part06-npcs/. One-level neutral-surface subdivision increases actor
+triangles/vertex buffers and resident asset bytes. No full-crowd60FPS, production
+art, all-motion or hardware certificate. Cow activity/navigation and landscape
+remain deferred; accepted human/quadruped physics and cow skin bytes unchanged.
+
+- Part07 club: one original three-piece training baton only. E/Q are remappable
+  keyboard actions; pickup/drop settings-panel/controller workflow is incomplete.
+  Pending-contact pickup edges are rejected; press again after contact. Q queues
+  one drop after contact; crash/reset clears that queue. Side-to-side club handoff is immediate; holster/equip/drop art,
+  finished grips/silhouette/clearance, bespoke impact audio, steal/chain/backhand,
+  swept contact/result schema, exhaustive balance and human race enjoyment remain
+  open. Static nonphysical pickups use bounded downward support with clamped
+  terrain fallback when fixed support is unavailable. Thirty prepared held roots
+  and up to12 pickups add resident hierarchy/render cost despite shared assets.
+  Native evidence is scoped, not Windows/controller/60FPS or broad acceptance.
+
+- Part07 raw hand captures show attached shafts and active grip profiles, but
+  angular/protruding glove fingers do not establish convincing anatomical wrap
+  or clearance. One right-side closeup is body-occluded. Preserve these images
+  as draft evidence; do not infer approved grip anatomy or modeled-club fidelity.
+
+
+- PERF-08 / ADR089: the latest user race capture confirms substantial CPU physics/catch-up cost as the player approaches the city. The current pass retains 60Hz, substeps, accepted rig and every static triangle while removing fixed-body bookkeeping and material-based obstacle collider duplication. This is a scoped optimization, not a60FPS/user-hardware certificate. New phase/window/backend counters distinguish inactive contact-graph pairs from active contacts. GPU timing, full route/crash stress and human confirmation remain open. UI prompts are briefs only; all original art / native integration gates remain open. See testing/performance-ui-prompts/README.md.
+
+
+- UI-04/05: all28 screen-level generated PNG drafts are previewable, but they are not approved142source-resource replacements or layered production art. Actual outputs are1672×941 (main1671×941), below the requested4K master brief. Model fidelity, anatomy, alpha edge halos, component/variant mapping and typography need artist review. UI-05 tracks those masters; UI-02 retains native Bevy integration, settings/controller flows and viewport acceptance. No native UI/gameplay/performance changes in this pass. See testing/generated-ui/README.md.
+
+- UI-05: all 28 initial screen compositions have rejected art direction. Only one corrected grotesque painted main-menu candidate exists; remaining screens, layered masters, exact retro coarseness and user approval are outstanding. UI-02 native integration remains deferred.
+
+- UI-05 update: user approved the shared grotesque painted direction; four new scene variations now accompany the main sample. Individual composition approval, layered masters and native placement remain open. Earlier single-candidate limitation is historical.
+
+- Native frontend first pass (ADR091): current-course entry, street visits and real settings/results are integrated. UI-02 remains partial: no runtime course swapping, campaign, purchases, selectable player profiles, rival conversations or network mode. Final art/typography, human controller/accessibility review and prolonged hardware/performance testing remain open. New frontend rider art is illustrative, not a new gameplay mesh.
+
+- Random grid weapons: only the existing Club is distributed, by default to seven of fourteen rivals. Human weapon balance/grip art and complete arsenal acceptance remain open; player/police are excluded. Part09 now has an isolated entry receipt runner, not ten external playtests or a passed slice gate. Full current-course recovery/police suite and session metrics remain P09-AUTO-01/P09-001..007. The old on-foot-finish-not-implemented sentence in P07-004 was corrected against existing FOOT tests, without closing that broader gate.
+
+- Approved portrait browser (ADR094): sixteen concept portraits are available in the Biker Bar, not selectable player profiles or simulation identity replacements. Names/bios describe concepts and do not promise implemented character-specific abilities. Decoded portrait residency adds 27 MiB RGBA plus existing seven screen images; GPU/backend and user hardware costs remain unmeasured. Human layout/accessibility and broad UI-02/UI-05 acceptance remain open.
+
+- ADR095 rider dossiers preserve 4:3 with letterboxing on wide displays; portrait UI derivatives remain 768×576. Detailed bios are editorial adaptations under the user's later non-racist direction, not promises of unique simulated abilities. The Open Sans 1.10 substitute is not the original game's font. Full UI/art/profile/hardware acceptance remains open.
