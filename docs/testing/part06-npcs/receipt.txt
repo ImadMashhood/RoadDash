@@ -1,0 +1,33 @@
+Part06 development candidate — 2026-11-08 — parent96be522
+
+PASS cargo fmt --all --check
+PASS cargo clippy --workspace --locked --all-targets -- -D warnings
+PASS cargo test --workspace --locked:336 passed,1 inherited ignored soak
+PASS cargo build --locked
+PASS cargo build --release --locked
+PASS python3 tools/test_actor_weights.py:6 focused authoring regressions
+PASS python3 tools/verify_runtime_props.py:118 exact derivatives/binds/weights/hashes
+PASS python3 tools/verify_actor_source.py:110 neutral surface/UV/topology/budget checks;8 cow files byte-identical
+PASS decoded synthetic attachment audit:55families/twoLODs/5pose classes; individual regressions retained
+PASS decoded actual propagated native driver audit:3families,walk/impact/ragdoll; individual regressions retained
+PASS python3 tools/audit.py:declarations/hash checks,not legal clearance
+PASS python3 tools/test_roadmap.py
+PASS python3 tools/sync_progress.py --check
+PASS paired headless lab:18 finite cases,baseline/anatomy in each invocation
+PASS native --actor-smoke-test:16-body default human +10-body cow
+PASS native --actor-smoke-test --ragdoll-baseline:11-body human +10-body cow
+PASS native --smoke-test:Metropolis route0 farm/city crashes/recovery/results,two zero-error remounts
+PASS native --smoke-test --ragdoll-baseline:same route/recovery path,two zero-error remounts
+PASS native --actor-skin-survey:3source families,9walking views,impact/front/rearfalls,final driver matrices
+
+Investigative corrections: first synthetic audit mistakenly selected whole merged
+semantic limbs by node meanX; replaced with actual per-triangle half-body selection.
+Early field had wrist/crotch/cap/tessellation regressions; corrected and final
+regressions retained (830/10752dynamiccase means worsen>1mm). Initial copied-binary
+baseline lacked default asset subdirectories; linked unchanged existing assetroot
+and reran successfully. Final baseline is actual96be522 rigid actorGLBs under same
+release binary/camera/gameplay,not ROADDASH_LEGACY_PROPS or baseline physics.
+
+All11 Part06 checklist IDs stay open; no new IDs or task moves. No landscape/Part07,
+new dependencies, physics tuning, external media/code, push/merge, Windows/hardware,
+production art/60FPS certificate. Native automated output archived and cleaned.

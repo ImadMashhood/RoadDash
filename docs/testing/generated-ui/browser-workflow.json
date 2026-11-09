@@ -1,0 +1,19 @@
+{
+  "pages_with_decoded_art": 28,
+  "gallery_cards": 28,
+  "guides_toggle": true,
+  "wireframe_toggle": true,
+  "png_download_hash_matches_selected_master": true,
+  "exported_generated_art_entry": {
+    "status": "review",
+    "note": "Generated UI QA: persisted screen draft."
+  },
+  "restored_pre_test_progress": true,
+  "flow": [
+    "main",
+    "courses",
+    "loading",
+    "hud"
+  ],
+  "native_runtime_changed": false
+}

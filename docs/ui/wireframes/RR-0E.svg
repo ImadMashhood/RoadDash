@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="960" viewBox="0 0 640 480"><rect width="640" height="480" fill="#20252b"/><text x="16" y="24" fill="#eaeaea" font-family="sans-serif" font-size="16">RR-0E · Character selection</text><text x="16" y="44" fill="#a2b0ba" font-family="sans-serif" font-size="10">Original source geometry; independent labels; no source artwork</text>
+<rect x="0" y="402" width="213" height="24" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="4" y="417" font-family="sans-serif" font-size="10" fill="white">1: text 32</text>
+<rect x="0" y="426" width="213" height="24" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="4" y="441" font-family="sans-serif" font-size="10" fill="white">2: text 33</text>
+<rect x="0" y="450" width="213" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="4" y="465" font-family="sans-serif" font-size="10" fill="white">3: text 34</text>
+<rect x="213" y="402" width="213" height="24" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="217" y="417" font-family="sans-serif" font-size="10" fill="white">4: text 35</text>
+<rect x="213" y="426" width="213" height="24" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="217" y="441" font-family="sans-serif" font-size="10" fill="white">5: text 36</text>
+<rect x="213" y="450" width="213" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="217" y="465" font-family="sans-serif" font-size="10" fill="white">6: text 37</text>
+<rect x="426" y="402" width="214" height="24" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="430" y="417" font-family="sans-serif" font-size="10" fill="white">7: text 38</text>
+<rect x="426" y="426" width="214" height="24" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="430" y="441" font-family="sans-serif" font-size="10" fill="white">8: text 39</text>
+<rect x="426" y="450" width="214" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="430" y="465" font-family="sans-serif" font-size="10" fill="white">9: text 0</text>
+</svg>

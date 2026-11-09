@@ -55,6 +55,8 @@ pub struct Stats {
     pub breaks: usize,
     pub peak_dynamic: usize,
 }
+#[derive(SystemSet, Debug, Clone, PartialEq, Eq, Hash)]
+pub(crate) struct PropDamageVisuals;
 pub struct PropDestructionPlugin;
 impl Plugin for PropDestructionPlugin {
     fn build(&self, app: &mut App) {
@@ -68,6 +70,7 @@ impl Plugin for PropDestructionPlugin {
                 (reset, impacts)
                     .chain()
                     .after(crate::game::drive)
+                    .after(crate::combat::schedule)
                     .before(crate::combat::melee)
                     .in_set(SimSet::Gameplay),
             )
@@ -77,7 +80,12 @@ impl Plugin for PropDestructionPlugin {
                     .chain()
                     .in_set(SimSet::AfterPhysics),
             )
-            .add_systems(Update, visuals::update);
+            .add_systems(
+                Update,
+                visuals::update
+                    .after(crate::props::PropLods)
+                    .in_set(PropDamageVisuals),
+            );
     }
 }
 /// Optional queue hook keeps existing minimal race tests independent of this plugin.
@@ -113,6 +121,32 @@ pub fn register(
         size,
         "metropolis furniture",
     );
+    // Each source has a matching offline variant; share the same physical owner.
+    // Authoring bakes height to 38%, so only the fitted base offset is compressed.
+    let source = props.choose(kind, seed);
+    let damaged = (profile.style == Style::Crush).then(|| {
+        let scale = size / Vec3::from_array(source.size);
+        let offset = Vec3::new(
+            -source.center[0],
+            (source.size[1] * 0.5 - source.center[1]) * 0.38,
+            -source.center[2],
+        ) * scale;
+        let scene = props
+            .server
+            .as_ref()
+            .map(|server| server.load(format!("props://broken/{}.glb#Scene0", source.id)))
+            .unwrap_or_default();
+        commands
+            .spawn((
+                Name::new(format!("broken prop {}", source.id)),
+                SceneRoot(scene),
+                Transform::from_translation(offset).with_scale(scale),
+                Visibility::Hidden,
+                visuals::Damaged,
+            ))
+            .observe(visuals::ready)
+            .id()
+    });
     let e = commands
         .spawn((
             Name::new(id.to_owned()),
@@ -133,10 +167,14 @@ pub fn register(
         ))
         .id();
     commands.entity(e).add_child(visual);
+    if let Some(damaged) = damaged {
+        commands.entity(e).add_child(damaged);
+    }
     commands.entity(visual).insert(visuals::Visual {
         owner: e,
         original: None,
-        broken: false,
+        damaged,
+        prepared: false,
     });
     e
 }
@@ -183,8 +221,13 @@ fn impacts(
     loose: Query<(), With<Loose>>,
     mut audio: MessageWriter<AudioCue>,
     masses: Query<&AdditionalMassProperties>,
-    mut attacks: MessageReader<crate::combat::AttackAttempt>,
+    strikes: (
+        MessageReader<crate::combat::AttackAttempt>,
+        MessageReader<crate::combat::StrikeContact>,
+        Query<&crate::recovery::Recovery>,
+    ),
 ) {
+    let (mut attacks, mut contacts_at_key, recoveries) = strikes;
     let mut pairs: Vec<_> = events
         .read()
         .filter_map(|e| {
@@ -198,6 +241,7 @@ fn impacts(
     pairs.extend(swept.read().map(|c| (c.0, c.1)));
     if race.phase != Phase::Racing {
         attacks.clear();
+        contacts_at_key.clear();
         return;
     }
     contacts.time += time.delta_secs();
@@ -265,13 +309,30 @@ fn impacts(
         }
     }
     let mut strikes = HashMap::new();
-    for crate::combat::AttackAttempt(attacker, action) in attacks.read() {
-        let Ok((_, t, _, _, _, _, Some(_), _, _)) = sources.get(*attacker) else {
+    let attacks = attacks
+        .read()
+        .map(|&crate::combat::AttackAttempt(e, action)| (e, action, None))
+        .chain(
+            contacts_at_key
+                .read()
+                .map(|&crate::combat::StrikeContact(e, action, side)| (e, action, Some(side))),
+        );
+    for (attacker, action, chosen_side) in attacks {
+        if recoveries.get(attacker).is_ok_and(|state| {
+            state.stage != crate::recovery::RecoveryStage::Riding || state.stagger.is_some()
+        }) {
+            continue;
+        }
+        let Ok((_, t, _, _, _, _, Some(rider), _, _)) = sources.get(attacker) else {
             continue;
         };
+        if rider.finished.is_some() {
+            continue;
+        }
         let origin = t.translation + Vec3::Y * 1.45;
         let forward = t.rotation * Vec3::Z;
         let right = forward.cross(Vec3::Y).normalize_or_zero();
+        let weapon = chosen_side.and_then(|_| rider.strike.and_then(|s| s.weapon));
         let kicking = matches!(action, rr_core::AttackSide::Kick);
         let target = props
             .iter()
@@ -279,14 +340,26 @@ fn impacts(
             .filter_map(|(e, t, p)| {
                 let point = t.translation + Vec3::Y * (p.size.y * 0.5).min(1.1);
                 let delta = point - origin;
-                if !rr_core::direct_strike_geometry(
-                    delta.dot(right),
-                    delta.dot(forward),
-                    delta.y,
-                    if kicking {
-                        delta.dot(right).signum()
-                    } else {
-                        action.sign()
+                if !weapon.map_or_else(
+                    || {
+                        rr_core::direct_strike_geometry(
+                            delta.dot(right),
+                            delta.dot(forward),
+                            delta.y,
+                            if kicking {
+                                chosen_side.unwrap_or_else(|| delta.dot(right).signum())
+                            } else {
+                                action.sign()
+                            },
+                        )
+                    },
+                    |a| {
+                        a.reaches(
+                            delta.dot(right),
+                            delta.dot(forward),
+                            delta.y,
+                            chosen_side.unwrap_or(action.sign()),
+                        )
                     },
                 ) {
                     return None;
@@ -298,7 +371,7 @@ fn impacts(
                         delta.length() + 0.05,
                         true,
                         QueryFilter::default()
-                            .exclude_rigid_body(*attacker)
+                            .exclude_rigid_body(attacker)
                             .exclude_sensors(),
                     )
                     .is_some_and(|(hit, _)| hit == e)
@@ -307,8 +380,8 @@ fn impacts(
             })
             .min_by(|a, b| a.1.total_cmp(&b.1));
         if let Some((target, _)) = target {
-            strikes.insert((*attacker, target), if kicking { 350. } else { 140. });
-            pairs.push((*attacker, target));
+            strikes.insert((attacker, target), if kicking { 350. } else { 140. });
+            pairs.push((attacker, target));
         }
     }
     pairs.sort_unstable_by_key(|(a, b)| (a.to_bits(), b.to_bits()));

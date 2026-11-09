@@ -2233,3 +2233,552 @@ New input action/key or automatic escape teleport were considered unnecessary.
 Reverse is player-controlled with existing S/Down/brake input; ordinary AI does
 not reverse. Rollback is isolated to the helper/adapters and pickup handoff; no
 content/save/dependency/asset migration. No external code/assets incorporated.
+
+## ADR078 — Visual glove morphs and explicit attachment frames (2026-11-08)
+
+Problem: the accepted visual skin has rigid digits. Authoring-only fist shapes
+were not shipped to the runtime. A stiff open glove survived punches and riding;
+future held objects had no typed, side-specific attachment points.
+
+Use the installed Bevy0.17.3 native morph/skinning pipeline. Split only the
+original glove surfaces from the body; add at most three rounds of long-edge
+refinement to give the original rigid digits phalanx samples. Keep source UVs,
+material regions, skin weights and silhouettes. Four shared targets represent
+left/right grip/fist. Hinge curls change position, normal and tangent together;
+wrist vertices stay fixed. Meshes/images are generated once, shared by all
+actors; each frame updates four weights only. Do not deform every body vertex
+or allocate unique meshes for racers. The extra glove surface adds one draw
+surface per human; native evidence is integration, not a performance certificate.
+
+HandContacts authoring lives in validated typed rr_content metadata: curl angles,
+hinge locations, bind-space basis, punch keys and grip/weapon socket frames.
+Pose weights follow existing fixed-clock keys and interpolate with the body.
+Holding grips and punching the other side therefore use independent shapes;
+relaxed walking/crash fallbacks do not inherit fists. Sockets are children of
+visual skin joints, never physical bones, hitboxes or gameplay weapon authority.
+Seated socket offsets compensate for the existing reference contact/retarget
+basis and are checked against universal grip targets.
+
+Alternatives: replace the physical skeleton, CPU-deform per-actor vertex buffers,
+or import a new character/animation dependency. Rejected: they risk accepted
+physics, increase hot-path work, or require unrelated licensing/retarget work.
+No physical body, joint, mass, impulse, muscle, recovery, control or save changes.
+No external implementation/assets copied. Bevy's existing MIT/Apache-2.0 API is
+used without a dependency/version migration (R08).
+
+The hand review holds exact extended-punch keys and shows native close-ups; the
+ordinary animation lab still plays full animations. These are original gloved
+shape prototypes, not individual tendon simulation or approved final finger art.
+Context/Blender round-trip and user silhouette approval remain open. Rollback
+removes visual morphs/sockets and extra surface partitioning; original .rdmesh,
+GLB sources, authored clips and physics assets are unchanged.
+
+
+## ADR079 — Measured contact observations and bounded stagger interruption (2026-11-08)
+
+Part01 audit found that the accepted velocity-muscle path already integrates
+three-hit swerve/countersteer and continuous seated release. A solid wall contact
+below the ordinary50km/h gate, however, could leave a rider continuing a mounted
+loss-of-balance sequence against an obstacle. Interrupt an existing stagger at
+1m/s normal closing speed against the tall-solid/vehicle path. Resting touches,
+low suspension support, downed-body ride-over, ordinary riding thresholds and
+the explicit baseline retain their existing paths. This threshold is new bounded
+arcade policy, not recovered original calibration. No extra impulse, translation,
+solver, anatomy/mass/joint/muscle or retained-speed tuning is introduced.
+
+Pure measurement/classification and the interruption predicate live in rr_core.
+The adapter retains128 vehicle-contact observations with simulation tick, both
+entities/world velocities, surface normal/closing speed, approach, solid height
+and crash decision; ROADDASH_TRACE_CONTACTS prints each observation. The ring is
+read-only diagnostic evidence, not authority for hits, animations or outcomes.
+Do not confuse100/60 same-direction40km/h closing or oncoming160km/h closing with
+the existing entry ground-speed rule. No vault impulse is added to manufacture
+clearance; full contact-driven trajectories over car heights remain V2-01-005.
+
+Alternatives: lower every wall crash threshold, add launch/spin, replace passive
+physics or implement a server/network boundary now. Rejected as outside the
+narrow Part01 correction and accepted feel. No dependencies/assets/source imports
+or save migrations. Rollback removes the stagger-specific predicate and telemetry.
+Tests/evidence and all29 open requirements are in testing/part01-runtime/README.md.
+
+## ADR080 — Static hand authoring shares runtime profiles (2026-11-08)
+
+ANIM-16 replaces the historical Blender Context_Fist compression with the
+validated content/hand-contacts.json hinge/curl/socket profile used by native
+rendering. tools/authoring_hands.py converts source units through the existing1.2
+visual scale and uses the forearm-inherited .27m distal origin. Blender hand
+bones already carry the seated basis; do not multiply seated_basis again.
+Independent grip/fist keys per side and complete assembly hand states prevent
+loading a pose from retaining the previous pose's attack. Grip and Weapon empties
+parent to visual authoring wrists; original club/chain proxies originate at the
+weapon socket and orient its +Y handle axis to the authored silhouette direction.
+This is an original authoring interpretation, not recovered native joint data.
+
+Use the locally available Blender4.5.9 LTS (8bf95cbd38d1), verified by actual
+export/import; no Cargo dependency/version or runtime asset migration. Keep source
+GLBs and physical rig untouched. Blender conforming long-edge subdivision samples
+only distal hand-weighted edges; native triangle refinement remains independent.
+Export rederives morph normals. Exact source/runtime tessellation, hard-normal
+identity, thumb contours, grip/weapon clearance and user approval remain ANIM-16 /
+ANIM-02 gates. Matching numeric curl recipes is necessary, not art approval.
+
+Alternatives: import another character/rig, replace physical hands, overwrite
+motion.json or add Part03 interpolation. Rejected as outside this Part02 pass.
+The external editable .blend / round-trip .glb are reproducible original outputs;
+repo review captures, geometry-error measurements and source hashes record this
+technical subset. No retail media, external code or new repository adoption.
+Rollback restores authoring scripts/assembly/gallery; runtime physics, gameplay,
+controls, saves and timing are unchanged. See testing/part02-authoring/README.md.
+
+ADR080 contact follow-up: measured source neutral socket-to-bike error was
+10.467mm despite sub-micrometre recipe/export errors. Replace the legacy raw
+wrist-offset fitting with the installed socket's bone-local offset and desired
+hand rotation. Use the same fixed-length bounded IK; validate declared held
+contacts at5mm and reject unreachable layouts. All138 poses fit within4.82e-7
+authoring metres in this pass; neutral/tuck/opposite-hand checks additionally
+measure renderer-scaled world errors. Source forearm/hand poses and83 images
+change, while torso/seat/peg/action semantics, runtime clips and physics remain
+untouched. Source fitting is not proof of final native silhouette/clearance.
+
+## ADR081 — Fixed contact clocks and support-local visual stance locks (2026-11-08)
+
+Context: drive emitted immediate melee attempts while the visible attack entered
+for55ms and played at1.8x. Punch runtime keys2220/2230 draw back,2221/2231
+chamber,2222/2232 extend/contact; kicks2261/2271 extend/contact. Generic
+"second-key" timing would hit at the punch chamber. Grounding also retained
+world-space plants until exponentially smoothed weight reached exact zero,
+which never occurs, and could reuse a prior-stride lock.
+
+Decision: drive emits AttackIntent after existing cooldown/stamina admission.
+A Rider-owned rr_core StrikeClock advances only at fixed60Hz; rr_content checks
+explicit contact IDs and matching mirrored duration sums. It derives source
+contact at.26s for punches/.24s for kicks, plus the same.055s entry and1.8x
+playback used by the visual sampler (.199444/.188333s). Both cross at tick12
+(.200000s). The visual pose samples this clock without physical writes.
+Pause freezes clocks; other inactive phases, rider reset, stagger, recovery and
+finish discard pending contacts. An unfired clock rejects replacement/duplicate
+intents. One StrikeContact is emitted even when a tick crosses the threshold.
+The existing AttackAttempt remains an explicitly already-resolved contact fixture
+for geometry/three-hit/retaliation tests; live drive never writes it.
+
+Kick side is chosen once at windup from the nearest eligible rival/NPC within12m
+(with deterministic entity tie-break); it cannot flip at contact. Existing player,
+exact-attacker racer retaliation, killer/NPC and immunity rules remain. Contact
+still evaluates current range/LOS and eligible targets; a target moving to the
+other side or out of reach misses. No new targeting magnetism or weapon tuning.
+
+Visual plants retain collider-local point/normal and follow the current Rapier
+collider frame, including parented/kinematic supports. Each new stance captures
+its current sole. Swing weight clears below.02 (not unreachable exact zero).
+Removed, steep, lost or unreachable supports clear immediately; support must
+still ray-test as the same solid collider. Physics frames avoid stale render
+GlobalTransform propagation. No runner/pelvis/body teleport, root-motion write,
+physical rig/contact/mass/joint/motor/energy/recovery tuning or source clip export.
+Full pelvis/stair/turn/clearance and subjective motion gates remain open.
+
+Alternatives rejected: resolving damage at input, moving visual timing separately,
+choosing the kick leg again at impact, retaining world-space locks or replacing
+accepted anatomy with the source authoring skeleton. No dependency migration,
+external repository/code/media import or new requirement IDs. Existing animation
+source studies remain research only. Native and automated evidence and precise
+remaining limitations are in testing/part03-runtime/README.md. Rollback restores
+the prior input-tick contact and world-space foot-lock adapter; existing assets,
+saves, controls, legacy maps and accepted physical paths are untouched.
+
+## ADR082 — District facade pools and shared full/coarse fitting (2026-11-08)
+
+PALETTE-01 replaces global modulo12 building assignment with the approved source
+block's district and existing computed floor/role information. The original24
+selected storey-kit designs are facades, never structures/surface samples. Five
+frontage pools retain local identity; >=13floors and interior towers use the
+office pool. Stable BLAKE2b over existing IDs selects within each pool; no platform
+process hash or new placement randomness. Unknown pools/types fail authoring.
+
+Keep the original first12 atlas indices stable; append12 additional draft models.
+Validate the content palette ordering against rr_content's runtime IDs. Rebuild
+with tools/bake_metropolis.py from the unchanged approved source. No topology,
+parcel, height, ground, route, props, collider, rig, input or dependency migration.
+The source/detail renderer and coarse renderer share bay/ground/upper/crown
+fitting; coarse identity uses all three actual source-derived model bands and
+five mip levels. BUSS4's upper intentionally aliases CLSTGA11 except its once-only
+detailed RADIO sign; provenance records this exception. It is not24unique upper
+source identities. No source model/material or global far atlas is edited.
+
+The expanded coarse atlas is1024x1152 with128pixel cells,16pixel wrapped gutters
+and a1pixel final-mip guard. Source GLBs atLOD1/2 and materials remain ready
+before Loading exits. Keep28selected faces/8retiring slots,6000instances and1.5M
+actual triangles including retiring groups. Expanded resident source cost is
+explicitly measured; unchanged hot caps do not imply unchanged cold-load/memory.
+
+Alternatives: load every128design, randomize global facades, make non-office
+towers, replace source geometry/materials, alter world topology or tune physical
+rigs. Rejected as outside the bounded Part04 pass. No external code/media or
+repository investigation was needed; local original source catalogs suffice.
+Rollback restores palette/compiler and matching derivative atlas/runtime source
+indices together. Final art/signage, broad transition/performance/platform and
+user acceptance remain open under PALETTE-01/LOD-03/V2-04. See evidence in
+testing/part04-world/README.md.
+
+## ADR083 — Prepared original buckled furniture and shared melee contact (2026-11-08)
+
+Part05 bounded DESTRUCTION-02 pass bakes twelve GLB variants for six existing
+crush roles from their exact original low-LOD source meshes. The offline recipe
+folds side walls, dents inset panels, tilts lids and sags roof/foliage components;
+indices, UVs, material definitions and embedded image bytes remain unchanged.
+Positions, unit normals and accessor bounds are regenerated. The existing asynchronous
+runtime tangent queue derives tangent frames from the changed positions/UVs. No facade/material
+source changes, atlas rebake, imported media, repository investigation or new
+dependency. Existing source generators/catalog remain editable and unchanged;
+the small deterministic derivative recipe is the damage authoring source.
+
+Prepare a hidden fixed-LOD damaged scene sibling for every affected furniture
+owner. Switch visibility only after hierarchy instantiation and every descendant
+material is marked ready by the existing detail queue and every normal-mapped mesh has tangents. Before readiness, retain
+the old root-crush fallback; reset immediately shows the original source. The
+baked Y height and fitted base offset are each compressed once; damage scene
+scale is unchanged. Separate solid collision retains its existing38% envelope.
+PropLods runs before damage visibility, which preserves the500m visibility cap.
+Unchanged transforms are not rewritten; readiness checks latch after completion.
+The native survey observes the PropDamageVisuals set after PropLods; it waits
+for fixture variants with a30s real-wall timeout and explicit missing source IDs.
+No per-frame vertex generation, extra physical debris, lifetime expiry or
+collision/navigation/racer tuning. Added resident hierarchies are explicitly
+counted; this is a cost and not free merely because they are hidden.
+
+The earlier Part03 move from AttackAttempt to scheduled StrikeContact revealed
+a prop-contact integration gap. Destruction now reads the same resolved message
+with the chosen leg, after combat::schedule and before melee. Legacy already-
+resolved fixture messages remain supported. Pause clears messages; recovered,
+staggered and finished attackers are rejected. No input-time or duplicate hit.
+
+Rejected: runtime CPU deformations, unrelated generic cubes, extra fragment
+bodies, cars as damage targets, loading replacement scenes only at impact, or
+changing accepted physical rigs. Seven topple roles, artist-approved severed
+variants and broad damaged-street/performance/hardware acceptance remain open.
+Rollback removes prepared derivatives/visibility adapters and restores the old
+crush presentation; keep the contact-event regression correction independently.
+Evidence: testing/part05-props/README.md. No new requirement IDs.
+
+## ADR084 — Continuous original civilian weights and bounded neutral refinement (2026-11-08)
+
+Part06 NPC-SEAMS-01 remains partial. Retain the original55 human draft sources,
+physical11-frame driver interface,16-body default anatomy,11-body control and10-body
+cow rig. Rebuild110 human runtime derivatives with a source-space continuous
+four-influence field, normalized for the source author's female-height scaling.
+Body/clothing/hand vertices at the same location sample the same field. Keep
+held equipment rigid with its hand. Central pelvic tissue has zero leg influence
+near x=0 throughout the actual source pelvic extent; distal thigh/arm transitions
+avoid splitting complete joint caps. Cows retain byte-identical derivatives.
+
+Skin interpolation across large original cylinder/low-LOD faces exposes finite
+mesh sampling error. Apply exactly one conforming shared-edge midpoint subdivision
+to each human primitive containing blended weights. This preserves the complete
+neutral triangle surface, winding, original vertices, UV interpolation, materials
+and embedded source bytes; interpolate unit normals and recalculate weights at
+new vertices. Every primitive is bounded to4x triangles and <= original vertices
+plus original index count. No runtime mesh generation or added entities, meshes,
+materials, bodies or simulation work. Total actor geometry/residency increases;
+source-and-cost.json records actual file/vertex/triangle totals. It is not free.
+
+The broad mean improves, but individual coarse torso/shoulder/pelvis attachment
+samples can worsen. These are explicit regressions/remaining art work, not hidden
+by an average or a completed checkbox. Preserve per-case receipts, native source-
+family captures and actual propagated driver-matrix measurements. Worst synthetic
+and native measurements are distinct from full production motion acceptance.
+The original disconnected volume topology, finished silhouette/materials and full
+pose/hardware/performance acceptance remain open. Stop this bounded pass rather
+than increasing refinement depth or replacing physical rigs.
+
+Rejected: replacing the accepted rig with the authoring skeleton, physics tuning,
+adding cosmetic standing wrist twist, hiding components, rigid fallback blocks,
+scene/entity spawning during PostUpdate, unbounded subdivision and unrelated sky
+work before NPC acceptance. No external source/media/repository investigation or
+dependency migration; local project-original generators/catalogs suffice. Source
+and output hashes bind the recipe and derivatives; refresh only changed human
+asset intake records. Rollback restores converter and110 matching derivatives
+with their hashes together. No new requirement IDs.
+
+## ADR085 — First held club on the shared fixed combat clock (2026-11-08)
+
+Implement a bounded Part07 development pass without changing accepted handling,
+physical riders, velocity muscles, motors/joints/masses or crash/recovery policy.
+One original training club uses three resident shared cuboid parts, a typed
+ability validated in rr_content, and pure side/reach/stamina rules in rr_core.
+Six pickups seed per race; at most12 ground clubs survive drops. Clubs have no
+colliders/rigid bodies and no async asset readiness advantage. Players use
+buffered remappable E pickup/Q drop; rivals use the same distance/occlusion
+availability and same ability/tell/contact clock. Restrained racers still only
+retaliate against their exact landed-hit attacker. Kicks remain independent.
+
+Capture the complete ability in StrikeClock at windup. Pickup during pending contact is rejected without changing loadout. Drop is
+queued once in the buffered control until contact completes; crash/reset cancels
+the queue without duplicating drops. Crash/stagger/finish cancels the clock and drops equipment. The existing
+three-direct-hits/three-second gap rule owns knockoffs; no weapon launch impulse
+or arbitrary damage multiplier. Prop and rider/NPC consumers read the same
+scheduled contact and captured reach. Default club source contact .32s maps
+through the existing .055s entry/1.8 playback to .232778s; 60Hz contact is the
+first crossing, normally .233333s. Cooldown .85s, stamina300, lateral reach2.55m,
+longitudinal .9m, pickup2.5m are new authored tuning, not original-game numbers.
+
+Append only six existing original authored club keys and two clips; preserve all
+36 released keys/13 clips and hierarchy/offsets/IK calibration deeply unchanged.
+Never run the wholesale exporter after hand calibration. Layer only the selected
+weapon-ready arm over the current riding/tuck/turn base; play full authored club
+attack then return to the current layered base. Grip morphs replace fists. A
+separate weapon hand prevents ordinary kicks transferring the club; side changes
+between club attacks remain a prototype instant handoff, pending art review.
+Attachments spawn in Update before transform propagation, inherit owner visibility
+and never write body transforms. Drops preserve live X/Z, raycast below the live
+point and use clamped terrain height if no fixed support is available; overhead
+roofs cannot attract them. Pickups require unobstructed contact-side access.
+
+R01 pinned follow-up is reference-only with unknown root license. No imported
+source/media, engine migration, new dependency, police or new map work. Reject
+replacing the accepted physical rig, animation-time damage, source regeneration,
+unbounded dropped bodies and invisible unloaded combat advantages. Roll back
+club inventory/rules/append-only keys/attachments together; preserve inherited
+Parts01–06 and the fixed contact correction. Broad arsenal, balance, transient
+swept sensors/results schema, bespoke audio/holster/steal and human fun/art /
+performance/hardware acceptance remain open. Evidence: testing/part07-weapons/.
+
+## ADR086 — One resident police rider and safe pursuit/arrest policy (2026-11-08)
+
+Part08 gets a bounded offline implementation using the existing Rider path rather
+than an invulnerable kinematic traffic car. One explicit police noncompetitor
+(id15, independently named; palette6) lives beside the unchanged15-racer roster.
+The officer shares handling, top speed, forces, collision/knockoff, physical rig,
+combat clocks and recovery. Domain state/policy lives in rr_core::police;
+rr_content validates authored content/police.json; native adapters own LOS,
+world support, input-independent decisions and presentation. No dependency or
+physical-rig migration, no arbitrary launch energy, and no car/prop-cap changes.
+
+States: Patrol, Warning, Pursue, Intercept, Search, Return and Arrested. One
+resident patrol begins at authored2.5% route distance; no reinforcements, live
+spawning/despawning or catch-up teleports. Detection is fixed10Hz (every6ticks); conditional near-arrest LOS/support checks run every60Hz fixed tick for at most one candidate,
+not frame-rate dependent; last-seen snapshots are retained through lost sight,
+without tracking unseen transforms. Normal controls drive bounded pursuit speed
+and lateral interception; patrol resumes forward along the open route after loss
+rather than magically returning to an original station. Cop offscreen/rescue
+teleports are excluded. The officer remains solid and can be knocked down by existing
+combat/contact rules; it must recover before renewed arrest authority.
+
+Continuous warning and authored8s grace give the player a chance to comply.
+Speeding and confirmed melee contact are current offenses; whiffs/windups are not.
+One player target is deliberate first-pass scope, not complete police discretion.
+LOS includes solid geometry; actual live runner/torso supplies the target point.
+Safe arrest requires continuous2s dwell, target/closing speeds<=1.2m/s,
+range<=1.8m, near-level support and unobscured perception. Falling/getup/mounting,
+stagger/immunity and crashed officers cannot arrest. Unsafe fixed frames clear
+dwell, and pause/finish/reset interrupt it. Mounted officers can deliberately
+stop and park before approaching a stopped or running target; an intentional-foot flag keeps
+post-crash Running distinct from police foot chase. Foot pursuit uses the existing
+navigation/KCC and walk speed, returns to the officer's actual parked bike after
+loss, and never writes physical driver poses from animation. Retry restores a
+stored dormant chassis through the existing restoration helper before rebuilding
+race authority/presentation, including intentional police dismounts.
+
+Busted ends the race without finish award, profile races/wins/best-time writes or
+credits. Drive/gate finish and combat/knockoff resolve before police arrest; a committed finish has priority because police only think in
+Racing; a committed arrest cannot later call ordinary finish. Retry retains
+noncompetitor identity, clears pursuit and restores the original resident start.
+UI explicitly excludes police from all15 standings/content indexes and preserves
+the seven/seven rival role census. Weapons retain15-racer prepared attachments;
+police uses current unarmed attacks, not unapproved arsenal advantages.
+
+Original draft marker cuboids and generated sweep cue use resident resources.
+Full police uniforms/vehicles/dismount/gesture animation, discretionary rival
+targeting, human fairness/art, broad performance/hardware and exit gates remain
+open. No Part09/networking begins. R01 pinned research remains reference-only
+with root permission UNVERIFIED; no source/media reuse. Rollback removes police
+state/content/adapter/HUD/cue together; keep the safe dormant-chassis retry fix
+independently. Verification and exact limits: testing/part08-police/README.md.
+
+ADR086 verification disposition: P08-006 alone verifies the requested police states/transitions. The other9 Part08 requirements retain broad art, discretionary targeting, moving-foot capture/tackles, human fairness, offline soak and frame/hardware gates. Nearby moving-foot targets request normal braking/parking and shared-speed foot pursuit; safe capture still requires slowing below1.2m/s. Confirmed hits on the intentional-foot officer interrupt contact for.25s and retain the three-hit repeat-runner crash path. This is not full general foot combat or a tackle system.
+
+## ADR087 — Reference-informed rider palette and wider race setup (2026-11-08)
+
+User requests original rider color schemes, temporarily disabled player nitrous,
+more grid spacing and four lanes before/after the city fork with three on each
+alternative. Keep the actual 12km race paths, grade, gates, building/lot geometry,
+accepted rigs and contact policy. Alternatives: squeeze more stripes into the
+old10m road; regenerate city parcels; or restore the full existing12m primary
+carriageway inside its original right of way. Select the last: four3m lanes
+(2outbound/2oncoming), fork3350–5362.5m has2outbound/1oncoming;100m lane-centre
+tapers remain. Farm asphalt expands to13.6m with0.8m paved shoulders; handling
+half-width6m matches marked12m. The starting apron extends340m to support the
+20m staggered single-rider intervals, player last at−288m, using both outbound
+lanes at−4.5/−1.5m. Legacy track definitions remain untouched.
+
+Restore primary asphalt by protecting it from the older1m sidewalk curb overlay;
+secondary streets retain that overlay. Primary sidewalks return to the original
+2.4m reservation; fine curb placement reserves a1.5m walking strip. Move parking
+and larger original furniture to nearby secondary streets; no lane-blocking curb
+parking is retained on the live avenue. The original road/sidewalk union and
+all building footprints remain intact. Physics/collision and visuals are rebaked
+together, avoiding a render-only width change. Full human traffic/art/performance
+acceptance remains open.
+
+Keep boost formulas/inputs for later use, but author player_nitro_enabled=false
+in handling.json. Both authoritative adapters enforce it, including injected
+drive intents; HUD/help clearly mark disabled. This avoids altering save format
+or bindings. Independently adjust existing project-original shirt/bike swatches
+and neutral leather gain so albedo does not obscure their hues. Shared material
+identity continues across seated/walk/ragdoll and shirt-colored minimap dots.
+R01 at7aecf6044f2dd773b925b325823f30d648d61c89 plus local fifteen-scheme visual
+inspection are reference-only. No retail pixels, tables or source are shipped;
+root license/reuse remains unverified. These are visual approximations, not exact
+retail RGB/PBR or all character-selection remap parity.
+
+Rollback world config/compiler/runtime width together; retain original authored
+mesh, rig, shaders and normal/roughness maps. Restore player boost only through
+the explicit flag and matching help text. Evidence: testing/race-setup/.
+
+## ADR088 — Separate UI research media from the artist skeleton (2026-11-08)
+
+User wants to create UI art themselves and requests all original UI/menu/image
+references plus a skeleton first. Alternatives: immediately replace Bevy UI;
+provide only a filename list; or build an isolated, traceable authoring kit.
+Choose the isolated kit. No game frontend, economy, saves, input or physics changes.
+
+Independent Python readers catalog all supplied IMAGES files, embedded icons,
+original frontend tables/popups and native Windows dialog templates. Freeze IDs
+against source paths/resource IDs and bind EXE/English strings/palette hashes.
+Keep original PNG/video-thumbnail/caption references outside Git/runtime; commit
+only sanitized metadata, source paths/hashes, original SVG geometry and a static
+HTML/CSS/JS artist desk. No source copied from unverified-license R01. Font/AVI /
+EXE/DLL binaries are not copied into the reference kit. Standard-library/Pillow /
+existing FFmpeg authoring tools avoid a game dependency migration.
+
+Original29populated frontend entries differ from36raw slots,13popup tables and
+7unique native Windows dialogs repeated in two EXEs. Do not count transitions or
+reconstruction-native display/pause/network pages as original menus. The new
+28page RoadDash flow is a proposal with working preview navigation, source IDs,
+replacement art-box previews and export/import of status/notes only. Keep live
+text/metrics/widget states separate from backgrounds; source4:3 geometry is not
+a mandated new16:9 layout. Original images remain reference-only in their own tab.
+
+Keep all142resource/15component art boxes open, grouped into66master families;
+code/placeholder success is not artwork or native UI approval. UI-02/P15-006/007
+retain artist approval, real lifecycle/settings/controller/accessibility hooks,
+resolution testing and native rendering. Cloud context, inherited backgrounds,
+runtime-populated labels and unexecuted retail states remain explicitly limited.
+Rollback removes the authoring kit/tracker entries without touching runtime;
+retain stable asset IDs if the artwork workflow advances. Evidence:testing/ui-kit/.
+
+## ADR089 — Remove redundant static-world and render synchronization work (2026-11-08)
+
+Problem: the latest local race capture (performance-2247031.jsonl) degrades from
+farmland into the city while multiple fixed steps accumulate per rendered frame.
+Physics dominates its CPU/wall samples; GPU utilization is not attribution.
+Alternatives: reduce solver quality, hide hazards, broadly rewrite the rig, or
+remove repeated synchronization work while retaining authored geometry and rules.
+Choose the last. Keep 60 Hz, substeps, masses, constraints, CCD, contacts and saves.
+
+Use Rapier's native standalone static colliders for immutable Metropolis chunk
+geometry instead of explicit Fixed rigid bodies. Both represent immovable solids;
+retain every collider triangle, transform, friction, semantic tag and render mesh.
+Leave breakable props, parked cars and every dynamic/kinematic actor unchanged.
+This removes unnecessary body bookkeeping/writeback for immutable chunks, not
+collision. Independently combine immutable obstacle triangles per256m chunk by
+gameplay role, rather than by visual material. Preserve exact triangle order /
+winding/positions, render batching, road/sidewalk/ground tags, separate farm-fence bounds and friction; never
+merge breakables or actors. Record source/combined collider counts in the native
+census and require exact triangle-soup equality. This reduces redundant overlapping
+static pairs without deleting geometry. Installed bevy_rapier3d 0.32.0 / Rapier 0.31.0 APIs/source are the primary
+reference; no new dependency, engine migration or copied implementation.
+Verify paired drop/contact/ray trajectories, full native census and recovery.
+Rollback is restoring Fixed on chunk entities, independent of art/source atlases.
+
+Only update prop Visibility, HUD Text and settled facade range data on actual
+value changes. Fading detail retains camera-relative margins after final camera
+propagation; fully visible detail uses a stable unbounded range. Resident closed
+shells and independent collision remain intact. Measure matched native runs and
+keep broad PERF-08 hardware/frame-budget acceptance open.
+
+Split diagnostics into backend sync, simulation step and writeback; include an
+instantaneous backend contact/body census and independent logging-window mean.
+Report per-fixed-step work separately from work per render frame so catch-up is
+visible. These spans include CPU scheduling/wait and are not GPU timestamps or
+an internal solver-only profile. No timers/counters alter authoritative state.
+
+The separate UI handoff adds complete prompts for 28 proposed pages and 142 UI
+image IDs / 66 master families. Original source sizes, variants and filenames
+remain traceable; prompts do not imply final art, new features or approval.
+
+
+## ADR090 — Persistent generated screen drafts in the artist preview (2026-11-08)
+
+Problem: user requests ChatGPT image generation from the screen prompts and
+placement into the existing UI handoff. Alternatives: generate only examples;
+replace the native game UI before art review; reuse one reference-resource ID
+across multiple distinct pages; or save one selected draft per proposed page.
+Choose the last. Use the imagegen skill's built-in tool, one call per asset;
+no API-key/CLI fallback or new library. No game, physics, save or performance
+settings change.
+
+Twenty-eight screen IDs map to selected full-canvas PNGs:25 background scenes
+and3 real-alpha overlays. Retain native tool pixels/dimensions rather than fake
+4K upscaling. Existing project rider/bike views plus the selected generated main
+scene provide identity/style references. An initial open-helmet main variant was
+rejected; no original-game UI pixels were passed to the generator. Record exact
+prompts, tool output names, dimensions, alpha and hashes; keep all drafts outside
+native runtime assets with production review pending.
+
+Keep generated screen identities separate from142 retail-source replacement IDs
+and15 component IDs. Embed a small generated manifest for offline/file access,
+load the active page's full image, lazy-load gallery images and keep HTML text /
+buttons separate. Generated overlays preview over a hash-matched project native
+city screenshot. Wireframes/source-resource uploads remain accessible. Extend
+progress validation for generated asset IDs, preserving existing notes/statuses.
+
+Repackaging preserves reviewed checklist rows/notes and refuses to overwrite an
+externally edited generated PNG. Originals remain in Codex's generated-images
+directory; selected outputs are also saved in the repository and local kit.
+UI-04 verifies generation/placement only. UI-05 owns human-approved layered /
+high-resolution masters; UI-02 retains native integration. Undo by removing the
+optional manifest/art layer and returning to wireframe mode; retain stable IDs
+and human review history. Evidence: testing/generated-ui/README.md.
+
+## 2026-11-08 — UI direction correction (ADR090 follow-up)
+
+Problem: using the gameplay world/model direction produced polished frontend art the user rejected. Alternatives: continue refining those renders, or inspect original frontend screens and establish a distinct UI language. Selected: reference grotesque painted splash/shop/bar/street art, acknowledge the photographic main-menu exception, and generate one separate original direction sample. Preserve rejected images and exact prompts, disable their default display, and keep art approval/native integration open. No dependency, physics or runtime migration. Rollback: candidate preview override can be removed without touching gameplay or historical files. Reference observations and tradeoffs: docs/ui/UI_ART_DIRECTION.md.
+
+## ADR091 — Native art-led offline frontend (2026-11-08)
+
+Problem: approved gritty screen artwork existed only in an artist preview; the game still had a one-button garage. User requests the original game's entry structure using the new images. Alternatives: continue HTML-only mockups, port the unlicensed C++ frontend, or independently implement the screen relationships over the current game lifecycle. Choose independent implementation. Pure navigation lives in rr_core::frontend; Bevy input, art and widgets live in src/frontend.rs. Original R01 source is behavioral reference only, with no C++ or retail media copied.
+
+Thrash opens the current course; Big Game opens a rider introduction and street hub with course, shop, bar and existing settings. Only the already-loaded course and current player/bike are active; campaign progression, purchases, other playable profiles and multiplayer remain deferred and visibly identified. Existing Profile credits/payouts, SettingsPanel, countdown/reset and physical simulation are retained. Results can retry or return to the main menu without another award.
+
+Input is captured first, then the frontend consumes menu edges before game::input. A short Starting page hands one explicit MenuAction to the existing reset path; held confirmation cannot skip pages. Asset/world readiness prevents early launch; failed menu art produces an explicit error. Seven retained image handles avoid per-frame disk work. A letterboxed 16:9 stage preserves art proportions; live text scales separately. A dedicated default UI camera keeps the HUD/settings usable while the 3D camera is inactive in garage/results. Restoring the old entry requires removing FrontendPlugin plus the optional game/input overlay guards; saves and physics have no migration.
+
+Art: five existing original generated scenes plus two new imagegen outputs (course postcard and rider introduction). Project MIT declarations apply to independently generated compositions; they do not assert exclusive copyright, legal review or rights to original Road Rash media. Preserve exact prompts, tool origin and source-reference IDs. Final art/layers/accessibility/hardware acceptance remains UI-02/UI-05/P15-006/007. Evidence: testing/native-frontend/README.md.
+
+ADR091 resize follow-up: native programmatic window changes exposed Bevy 0.17's UI camera target cache retaining an earlier size until a native resize message/projection change. Refresh the dedicated UI camera Projection only when its physical target differs from the Window. Retain automatic viewport sizing; an evaluated explicit viewport alternative caused a transient oversized scissor validation error and was removed. The native fixture records computed canvas/button bounds and actual window sizes, not requested sizes. The first 2560×1440 request was constrained by the desktop compositor; this cannot count as that exact viewport acceptance.
+
+## ADR092 — Seeded random rival starting clubs (2026-11-08)
+
+Problem: user requests weapons on random riders; existing rivals only armed themselves by finding route pickups. Alternatives: randomize every frame, assign fixed identities, add a new RNG dependency, or select a seeded subset at the authoritative grid reset. Choose the last. GridWeapons owns a session seed and race counter; rr_core ranks distinct rival IDs by a stable seeded integer mixer. Default is half of eligible non-player/non-police rivals, controlled by validated content/weapons.json starting_armed_fraction (0..1; older files default to 0.5). A process-random std RandomState seed requires no dependency; ROADDASH_RACE_SEED allows reproduction of the sequence. The race counter changes only on start/retry.
+
+Apply loadouts after Rider reset using existing Club inventory, sockets, visuals, windup/contact, stamina, direct-hit, pickup/drop and interruption paths. Never re-equip on pause/resume, recovery or per-tick selection. Players start unchanged, police are excluded, racer retaliation/killer policy and launch grace remain intact. No geometry, rigid bodies, hit damage or crash-energy tuning. Tradeoff: exactly half is a random subset, not an independent chance for each racer; retries reroll, so the same identity is not always armed. Existing route/drop caps remain. Rollback: set fraction to zero to disable starting clubs; remove reset hook to restore pickup-only behavior. Evidence: testing/random-rival-weapons/README.md.
+
+## ADR093 — Begin Part09 with isolated scripted slice receipts (2026-11-08)
+
+The user requested the next part. A clarification was offered while weapons were implemented; absent a response after useful independent work, interpret the next numbered milestone as Part09, following the previous Part08 pass. Earlier art/physics/hardware gates are not closed by advancing a development pass.
+
+Build a standard-library CLI that runs existing native fixtures in new per-run/per-scenario directories, isolates profile/preferences, pins the race seed, strips unrelated RoadDash overrides, captures native output/exit/timeout/wall duration, and fingerprints the binary. Entry receipt validation requires real native navigation, seed/loadout, camera/root/window and return-to-menu evidence. Full mode additionally exposes existing police/recovery fixtures, whose current combined results remain an open gate until actually run. Do not implement transport, replace the approved 12km route, or present scripted checks as external play sessions/fun targets/FPS benchmarks. Alternatives: ad-hoc commands or prematurely claim a full slice; a reusable failure-reporting runner is safer and useful for later external playtest preparation. No new dependencies/assets. Rollback is removal of the independent CLI/fixture observations.
+
+## ADR094 — Approved portrait browser (2026-11-08)
+
+Problem: the user approved ten exact attachments plus six remakes, but runtime still displayed a generic bar background. Choose a named sixteen-card 4×4 Biker Bar picker with mouse/keyboard/controller focus, portrait details and return-to-card controls over the existing input/flow contract. Alternatives: immediately replace simulation identities or make portraits playable profiles; defer those because approved artwork is not a physics/AI/profile specification. Pure catalog/selection and wrap rules live in rr_core::frontend; Bevy presents fixed handles and live text. Existing racer identities, save formats and physics remain intact.
+
+Store original approved files and a source/hash manifest; derive contained 768×576 UI cards without cropping or stretching square sources. Sixteen retained RGBA cards cost 27 MiB decoded (in addition to existing screen art; backend overhead unmeasured). Preload through existing readiness/failure handling; never reload disk assets every frame. New paintings were generated with the built-in image tool from user-selected style references; no original retail media or new library/source imported. Project artwork declarations do not assert exclusive rights or legal clearance. Rollback by restoring the old Bar entries/view, retaining original approved artwork and manifest. Tradeoffs: concept names/bios are UI only, not selectable profiles or conversations. Prompt source: output/portraits/selected-style-remakes/PROMPTS.md.
+
+## ADR095 — Full-page character biographies and retro menu proportions (2026-11-08)
+
+The user requests full-screen portraits with their earlier descriptions and a frontend closer to the original menus. Inspect the private RR-0E/RR-1A source-composition previews and catalog entries: both center portrait art; RR-1A declares a lower 640×70 interaction rectangle at y=410 on a 640×480 page. These are extracted table/default-composition observations, not captured retail dynamic text/fonts. Independently implement a 4:3 portrait/picker canvas, painting across the complete detail page, a lower live biography strip and compact Back control. Preserve the approved 4×4 choice and return-to-card focus. Other frontend pages keep their existing 16:9 geometry.
+
+Alternatives: stretch the paintings across widescreen, crop faces, or regenerate the approved art. Choose aspect preservation and letterboxing with retained contained derivatives. User-approved originals remain unchanged; 768×576 UI derivatives still limit texel density. User character descriptions are expanded into personal quirks/race behavior following their later instruction to remove racist material; these are editorial paraphrases, not verbatim source descriptions or implemented ability specifications.
+
+Replace the generic monospaced frontend text with Open Sans Regular/ExtraBold 1.10, unmodified from the installed Fedora open-sans-fonts-1.10-25.fc44.noarch package. Font metadata and supplied LICENSE.txt identify Apache 2.0; preserve the license/copyright metadata and register hashes. This is an era-appropriate independently licensed substitute, not a claim to the original proprietary typeface. Fonts use explicit load/failure gates and retained handles. No new crate, original game media or reference code imported.
+
+Rollback: restore prior gallery/detail rendering, 16:9 selection canvas and default fonts; retain approved art and source approval manifests. No gameplay/save/physics migration. UI-02/UI-05 retain human art/layout, full production fonts/widgets/profile integration and hardware gates. Native testing includes all sixteen full bios at 720p and the existing entry/race/results flow.

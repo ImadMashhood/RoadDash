@@ -21,6 +21,8 @@ pub struct Handling {
 #[serde(deny_unknown_fields)]
 pub struct HandlingCatalog {
     pub schema_version: u32,
+    #[serde(default)]
+    pub player_nitro_enabled: bool,
     pub presets: Vec<Handling>,
 }
 impl HandlingCatalog {

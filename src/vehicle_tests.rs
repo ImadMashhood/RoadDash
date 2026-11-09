@@ -1001,3 +1001,35 @@ fn assisted_adapter_can_back_up_without_nitro_or_finishing_the_race() {
         RecoveryStage::Riding
     );
 }
+
+#[test]
+fn disabled_player_nitro_matches_normal_throttle_on_both_adapters() {
+    for adapter in [
+        VehiclePhysicsAdapter::Assisted,
+        VehiclePhysicsAdapter::Dynamic,
+    ] {
+        let mut results = Vec::new();
+        for shift in [false, true] {
+            let mut a = app(1, 60);
+            a.insert_resource(adapter);
+            assert!(!a.world().resource::<Tuning>().player_nitro_enabled);
+            {
+                let mut keys = a.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+                keys.press(KeyCode::KeyW);
+                if shift {
+                    keys.press(KeyCode::ShiftLeft);
+                }
+            }
+            for _ in 0..120 {
+                a.update();
+            }
+            let world = a.world_mut();
+            let (r, t) = world.query::<(&Rider, &Transform)>().single(world).unwrap();
+            assert_eq!(r.nitro, 100.);
+            assert!(!r.drive_intent.nitro);
+            results.push((r.speed, t.translation));
+        }
+        assert!((results[0].0 - results[1].0).abs() < 0.0001, "{adapter:?}");
+        assert!(results[0].1.distance(results[1].1) < 0.0001, "{adapter:?}");
+    }
+}

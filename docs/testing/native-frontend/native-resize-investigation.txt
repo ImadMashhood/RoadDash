@@ -1,0 +1,60 @@
+2026-11-08T23:30:15.977728Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-08T23:30:16.212549Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-2345691.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-08T23:30:30.556506Z ERROR wgpu::backend::wgpu_core: Handling wgpu errors as fatal by default
+Crash report: /tmp/roaddash-crashes/panic-1794180630-2345691.log
+
+thread '<unnamed>' (2345731) panicked at /home/imad/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-26.0.1/src/backend/wgpu_core.rs:2391:18:
+wgpu error: Validation Error
+
+Caused by:
+  In a CommandEncoder
+    In a set_scissor_rect command
+      Scissor Rect { x: 0, y: 0, w: 1440, h: 900 } is not contained in the render target (1280, 720, 1)
+
+
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Encountered a panic in system `Enable the debug feature to see the name`!
+Crash report: /tmp/roaddash-crashes/panic-1794180630-2345691.log
+
+thread '<unnamed>' (2345731) panicked at /home/imad/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wgpu-hal-26.0.6/src/vulkan/instance.rs:194:58:
+Trying to destroy a SurfaceAcquireSemaphores that is still in use by a SurfaceTexture
+stack backtrace:
+   0:     0x55bce70a45b2 - <std::sys::backtrace::BacktraceLock::print::DisplayBacktrace as core::fmt::Display>::fmt::h93773fc827e3113d
+   1:     0x55bce70b874a - core::fmt::write::hed7b5c73d82ecb7c
+   2:     0x55bce70778a6 - std::io::Write::write_fmt::h6f0185aecf0ed75f
+   3:     0x55bce70870c9 - std::panicking::default_hook::{{closure}}::h2be84df4f189ae36
+   4:     0x55bce7086f29 - std::panicking::default_hook::hf0ea8939246f43a9
+   5:     0x55bce42c8975 - road_dash::diagnostics::install_panic_report::{{closure}}::h332f96cf118adac7
+   6:     0x55bce70873f2 - std::panicking::panic_with_hook::hb4bd9ac1123582a0
+   7:     0x55bce7087188 - std::panicking::panic_handler::{{closure}}::hde00dd15f5637fe2
+   8:     0x55bce7081499 - std::sys::backtrace::__rust_end_short_backtrace::hb72197fa777c1785
+   9:     0x55bce706af3d - __rustc[4425a7e20b4c8619]::rust_begin_unwind
+  10:     0x55bce70c3c0c - core::panicking::panic_fmt::ha59b517dd231f4da
+  11:     0x55bce70c2e84 - core::option::expect_failed::h4104d968f11511b3
+  12:     0x55bce619943c - wgpu_hal::vulkan::instance::<impl wgpu_hal::vulkan::Swapchain>::release_resources::h04b26607c5c4536a
+  13:     0x55bce6199509 - wgpu_hal::vulkan::instance::<impl wgpu_hal::Surface for wgpu_hal::vulkan::Surface>::unconfigure::h9e1b01c54cd0af2e
+  14:     0x55bce61504e9 - <wgpu_core::instance::Surface as core::ops::drop::Drop>::drop::h8c1c39d967499ab0
+  15:     0x55bce60d96d5 - alloc::sync::Arc<T,A>::drop_slow::h35d53ce7ff8a8eb0
+  16:     0x55bce6127adc - wgpu_core::instance::<impl wgpu_core::global::Global>::surface_drop::h39ff0a5a90edffdc
+  17:     0x55bce6051cde - alloc::sync::Arc<T,A>::drop_slow::hafcccf95ad9550b8
+  18:     0x55bce5d681af - core::ptr::drop_in_place<(bevy_ecs::entity::Entity,bevy_render::view::window::SurfaceData)>::h775d66d7a9f6f6aa
+  19:     0x55bce5ddb70c - bevy_ecs::component::info::ComponentDescriptor::drop_ptr::hf0dec04bb208e2e7
+  20:     0x55bce6f228d6 - <bevy_ecs::storage::blob_vec::BlobVec as core::ops::drop::Drop>::drop::h0d388aaf6714d6ab
+  21:     0x55bce5dc722f - core::ptr::drop_in_place<bevy_ecs::storage::resource::Resources<_>>::hdecf6961837a625f
+  22:     0x55bce5dc5585 - core::ptr::drop_in_place<bevy_ecs::storage::Storages>::h643f8fc565d0e16d
+  23:     0x55bce5dc4fe9 - core::ptr::drop_in_place<bevy_ecs::world::World>::he417975b8a98a0fa
+  24:     0x55bce5dc51c3 - core::ptr::drop_in_place<bevy_app::sub_app::SubApp>::hba12c45453042b97
+  25:     0x55bce5dc2f5e - std::sys::backtrace::__rust_begin_short_backtrace::hda78fb19db08f2c7
+  26:     0x55bce5ce9df3 - core::ops::function::FnOnce::call_once{{vtable.shim}}::heffc85fa5fdff472
+  27:     0x55bce707f89f - std::sys::thread::unix::Thread::new::thread_start::h982f9ea829d1b5fb
+  28:     0x7f0cdab65c42 - start_thread
+  29:     0x7f0cdabe95ac - __clone3
+  30:                0x0 - <unknown>
+Crash report: /tmp/roaddash-crashes/panic-1794180630-2345691.log
+
+thread '<unnamed>' (2345731) panicked at /rustc/4a4ef493e3a1488c6e321570238084b38948f6db/library/core/src/panicking.rs:233:5:
+panic in a destructor during cleanup
+thread caused non-unwinding panic. aborting.
+timeout: the monitored command dumped core

@@ -115,3 +115,10 @@ scenery and human/cow body frames. `content/props.json` remains a 369-ID address
 catalog, not a count of placed objects. Native selected-ID receipts, source skin
 hashes and integration evidence live in `docs/testing/props-in-game/`. No new
 reference repository or copied source/media was used for this integration.
+
+2026-11-08 Part06 follow-up: investigated only local build_prop_meshes.py,
+original human/cow GLBs, current physical-driver interfaces and runtime intake.
+No new external repository, downloaded media or copied code. Human derivative
+weights/refinement now have source/output/recipe hashes and independent neutral-
+surface/posed-triangle evidence in docs/testing/part06-npcs/. Original draft art
+and redistribution/user acceptance remain unapproved;8 cow derivatives unchanged.

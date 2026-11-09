@@ -18,7 +18,7 @@ impl Track {
             .map(|p| Vec3::from_array(*p))
             .collect();
         track.distances = data.paths[0].progress.clone();
-        track.widths = track.distances.iter().map(|_| 5.).collect();
+        track.widths = track.distances.iter().map(|_| 6.).collect();
         track.banks = vec![0.; track.points.len()];
         track.sectors = track
             .distances
@@ -115,8 +115,14 @@ impl Track {
             let a = Vec3::from_array(pair[0]);
             let b = Vec3::from_array(pair[1]);
             let edge = (b - a).with_y(0.);
-            let t = ((point - a).with_y(0.).dot(edge) / edge.length_squared())
-                .clamp(if i == 0 { -250. / edge.length() } else { 0. }, 1.);
+            let t = ((point - a).with_y(0.).dot(edge) / edge.length_squared()).clamp(
+                if i == 0 {
+                    -self.start_apron / edge.length()
+                } else {
+                    0.
+                },
+                1.,
+            );
             let delta = (point - a.lerp(b, t)).with_y(0.);
             let distance = delta.length();
             if distance < best.2 {
@@ -170,6 +176,23 @@ pub fn height(x: f32, z: f32) -> f32 {
 mod tests {
     use super::*;
     #[test]
+    fn extended_start_grid_keeps_full_station_and_lane_on_both_routes() {
+        let t = Track::metropolis().unwrap();
+        for route in 0..2 {
+            for spawn in &t.definition.spawns {
+                let p = t.sample_route(route, spawn.distance, spawn.lane).0;
+                let (d, l, _) = t.project_route(route, p, spawn.distance);
+                assert!(
+                    (d - spawn.distance).abs() < 0.05,
+                    "{route}: {d} vs {}",
+                    spawn.distance
+                );
+                assert!((l - spawn.lane).abs() < 0.05);
+                assert!(spawn.lane.abs() + 0.6 < t.half_width(spawn.distance));
+            }
+        }
+    }
+    #[test]
     fn both_approved_routes_project_and_share_common_stations() {
         let t = Track::metropolis().unwrap();
         for route in 0..2 {
@@ -221,7 +244,7 @@ mod tests {
                         );
                         let p = t.street_sample(route, d, lane).0;
                         assert!(((q.inverse() * (p - c)).x + lane).abs() < 0.01);
-                        assert!(lane.abs() + 0.95 < 5.);
+                        assert!(lane.abs() + 0.95 < t.half_width(d));
                     }
                 }
             }

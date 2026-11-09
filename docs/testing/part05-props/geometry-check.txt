@@ -1,0 +1,1 @@
+12 variants, 3576 vertices, 1632 finite nondegenerate triangles; original UV/material/image identity and crush collider envelopes verified

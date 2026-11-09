@@ -1,3 +1,5 @@
+pub mod contact_telemetry;
+mod police;
 #[cfg(not(feature = "offline"))]
 compile_error!("No online transport is implemented. Enable the offline feature (default).");
 
@@ -11,6 +13,7 @@ pub mod destruction;
 pub mod diagnostics;
 pub mod environment;
 pub mod feedback;
+pub mod frontend;
 pub mod game;
 pub mod human;
 pub mod material_detail;
@@ -119,6 +122,7 @@ pub fn build_app(smoke: bool) -> App {
         destruction::PropDestructionPlugin,
         runtime::RoadWorldPlugin,
         runtime::RoadPresentationPlugin,
+        frontend::FrontendPlugin,
         runtime::RoadAudioPlugin,
         diagnostics::RoadDiagnosticsPlugin,
     ));
@@ -131,10 +135,22 @@ pub fn build_app(smoke: bool) -> App {
             .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
                 std::time::Duration::from_secs_f64(1.0 / 60.0),
             ));
-        if std::env::args().any(|a| a == "--destruction-survey") {
+        if std::env::args().any(|a| a == "--frontend-smoke") {
+            frontend::install_smoke(&mut app);
+        } else if std::env::args().any(|a| a == "--police-smoke") {
+            app.init_resource::<police::survey::Survey>()
+                .add_systems(
+                    FixedUpdate,
+                    police::survey::observe.after(runtime::SimSet::AfterPhysics),
+                )
+                .add_systems(Update, police::survey::run.after(ui::update_ui));
+        } else if std::env::args().any(|a| a == "--destruction-survey") {
             app.insert_resource(bevy::winit::WinitSettings::continuous())
                 .init_resource::<destruction::survey::Survey>()
-                .add_systems(Update, destruction::survey::step)
+                .add_systems(
+                    Update,
+                    destruction::survey::step.after(destruction::PropDamageVisuals),
+                )
                 .add_systems(
                     PostUpdate,
                     destruction::survey::camera
@@ -190,13 +206,26 @@ pub fn build_app(smoke: bool) -> App {
                             .before(bevy::transform::TransformSystems::Propagate),
                     );
             }
+        } else if std::env::args().any(|a| a == "--actor-skin-survey") {
+            app.init_resource::<verification::ActorSkinSurvey>()
+                .add_systems(Update, verification::actor_skin_survey.after(ui::update_ui))
+                .add_systems(Last, verification::actor_skin_snapshot)
+                .add_systems(
+                    PostUpdate,
+                    verification::actor_skin_camera
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
         } else if std::env::args().any(|a| a == "--actor-smoke-test") {
             app.add_systems(Update, verification::actor_smoke.after(ui::update_ui));
         } else {
             app.init_resource::<verification::SmokeProgress>()
                 .add_systems(
                     FixedUpdate,
-                    verification::observe_smoke_recovery.after(recovery::recover),
+                    (
+                        verification::observe_smoke_recovery.after(recovery::recover),
+                        verification::observe_smoke_strike.after(combat::melee),
+                    ),
                 )
                 .add_systems(Update, verification::smoke_test.after(ui::update_ui));
         }
@@ -206,3 +235,5 @@ pub fn build_app(smoke: bool) -> App {
 
 #[cfg(test)]
 mod collision_tests;
+
+pub mod weapons;

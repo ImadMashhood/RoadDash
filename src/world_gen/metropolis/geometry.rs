@@ -110,6 +110,25 @@ impl Batch {
         m
     }
 }
+/// Collision batches are keyed by gameplay semantics, independently of render
+/// materials. Keep every triangle and its winding; do not weld or simplify.
+#[derive(Default)]
+struct CollisionBatch {
+    points: Vec<Vec3>,
+    triangles: Vec<[u32; 3]>,
+}
+impl CollisionBatch {
+    fn append(&mut self, batch: &Batch, origin: Vec3) {
+        let offset = self.points.len() as u32;
+        self.points
+            .extend(batch.p.iter().map(|p| Vec3::from_array(*p) - origin));
+        self.triangles
+            .extend(batch.ix.iter().map(|t| t.map(|i| i + offset)));
+    }
+}
+fn collision_role(material: usize) -> usize {
+    if material < 25 { 0 } else { material }
+}
 fn key(p: Vec2, material: usize) -> (i32, i32, usize) {
     (
         (p.x / 256.).floor() as i32,
@@ -127,11 +146,14 @@ fn textures(
 ) {
     let raw = include_bytes!("../../../assets/metropolis/facades.rgba");
     let per: usize = (0..5).map(|l| ((96 >> l) * (96 >> l) * 4) as usize).sum();
-    assert_eq!(raw.len(), per * 24);
+    assert_eq!(
+        raw.len(),
+        per * rr_content::metropolis::FACADE_FAMILIES.len() * 3
+    );
     let mut pixels = vec![];
     for level in 0..5 {
-        let width = 768 >> level;
-        let height = 512 >> level;
+        let width = 1024 >> level;
+        let height = 1152 >> level;
         let cell = 128 >> level;
         let gutter = 16 >> level;
         let side = 96 >> level;
@@ -139,13 +161,13 @@ fn textures(
             .map(|l| ((96 >> l) * (96 >> l) * 4) as usize)
             .sum();
         let mut layer = vec![0; width * height * 4];
-        for tile in 0..24 {
+        for tile in 0..rr_content::metropolis::FACADE_FAMILIES.len() * 3 {
             for y in 0..cell {
                 for x in 0..cell {
                     let sx = (x as i32 - gutter).rem_euclid(side as i32) as usize;
                     let sy = (y as i32 - gutter).rem_euclid(side as i32) as usize;
                     let src = tile * per + offset + (sy * side + sx) * 4;
-                    let dest = ((tile / 6 * cell + y) * width + tile % 6 * cell + x) * 4;
+                    let dest = ((tile / 8 * cell + y) * width + tile % 8 * cell + x) * 4;
                     layer[dest..dest + 4].copy_from_slice(&raw[src..src + 4]);
                 }
             }
@@ -154,12 +176,12 @@ fn textures(
     }
     let mut image = Image::new(
         Extent3d {
-            width: 768,
-            height: 512,
+            width: 1024,
+            height: 1152,
             depth_or_array_layers: 1,
         },
         TextureDimension::D2,
-        pixels[..768 * 512 * 4].to_vec(),
+        pixels[..1024 * 1152 * 4].to_vec(),
         TextureFormat::Rgba8UnormSrgb,
         RenderAssetUsages::default(),
     );
@@ -205,6 +227,9 @@ pub fn spawn(
     mats.push(materials.add(Color::srgb(0.88, 0.87, 0.82)));
     let mut batches: BTreeMap<(i32, i32, usize), Batch> = BTreeMap::new();
     let mut details: BTreeMap<(i32, i32, usize), Batch> = BTreeMap::new();
+    let catalog =
+        rr_content::architecture::Catalog::from_json(crate::world_gen::architecture::CATALOG)
+            .unwrap();
     for b in &m.buildings {
         let vv: Vec<_> = b.shape.vertices().collect();
         let center = vv.iter().map(|p| Vec2::from_array(*p)).sum::<Vec2>() / vv.len() as f32;
@@ -214,6 +239,11 @@ pub fn spawn(
             .fold(f32::NEG_INFINITY, f32::max)
             + 0.12;
         let top = base + b.height;
+        let design = catalog
+            .records
+            .iter()
+            .find(|d| d.id == rr_content::metropolis::FACADE_FAMILIES[b.style])
+            .unwrap();
         for ring in &b.shape.rings {
             for (a, z) in ring
                 .iter()
@@ -223,21 +253,29 @@ pub fn spawn(
                 let a = Vec3::new(a[0], track.terrain_height(a[0], a[1]) - 0.8, a[1]);
                 let z = Vec3::new(z[0], track.terrain_height(z[0], z[1]) - 0.8, z[1]);
                 let width = a.xz().distance(z.xz());
-                let mid = base + 3.2;
-                for (band, lo, hi) in [(0, a.y.min(z.y), mid), (1, mid, top)] {
+                let (bays, ground, cap, upper_count) =
+                    super::facades::dimensions(width, b.height, design);
+                let bays = bays as f32;
+                let upper_count = upper_count as f32;
+                let mid = base + ground;
+                for (band, lo, hi, repeats) in [
+                    (0, a.y.min(z.y), mid, (mid - a.y.min(z.y)) / ground),
+                    (1, mid, top - cap, upper_count),
+                    (2, top - cap, top, 1.),
+                ] {
                     let batch = batches.entry(key(center, 0)).or_default();
                     batch.quad(
                         [a.with_y(lo), a.with_y(hi), z.with_y(hi), z.with_y(lo)],
                         [
                             [0., 1.],
-                            [0., 1. - (hi - lo) / 3.2],
-                            [width / 4., 1. - (hi - lo) / 3.2],
-                            [width / 4., 1.],
+                            [0., 1. - repeats],
+                            [bays, 1. - repeats],
+                            [bays, 1.],
                         ],
                     );
                     let end = batch.colors.len();
                     for c in &mut batch.colors[end - 4..] {
-                        *c = [(b.style * 2 + band) as f32, 0., 0., 1.];
+                        *c = [(b.style * 3 + band) as f32, 0., 0., 1.];
                     }
                 }
                 if b.tier <= 1 {
@@ -385,7 +423,7 @@ pub fn spawn(
     }
     // Road paint follows both actual alternatives; it never draws a third spine between them.
     for (route, path) in m.paths.iter().enumerate() {
-        for s in (0..12000).step_by(4) {
+        for s in (-340..12000).step_by(4) {
             let s = s as f32;
             if route == 1 && !(3350. ..5362.5).contains(&s) {
                 continue;
@@ -400,15 +438,7 @@ pub fn spawn(
                 (-half, 33),
                 (half, 33),
             ];
-            if s < 3150. {
-                stripes = vec![
-                    (-0.13, 28),
-                    (0.13, 28),
-                    (-track.half_width(s) + 0.3, 33),
-                    (track.half_width(s) - 0.3, 33),
-                ];
-            }
-            if (s as i32) % 12 < 6 {
+            if (s as i32).rem_euclid(12) < 6 {
                 for i in 1..profile.outbound {
                     stripes.push((divider - i as f32 * width, 33));
                 }
@@ -440,6 +470,7 @@ pub fn spawn(
         source_layout_sha256: m.source_layout_sha256.clone(),
         ..default()
     };
+    let mut collision_batches: BTreeMap<(i32, i32, usize), CollisionBatch> = BTreeMap::new();
     for ((x, z, mat), batch) in batches {
         if batch.ix.is_empty() {
             continue;
@@ -459,29 +490,35 @@ pub fn spawn(
             entity.insert(MeshMaterial3d(mats[mat].clone()));
         }
         if mat != 28 && mat != 33 {
-            let points = batch
-                .p
-                .iter()
-                .map(|p| Vec3::from_array(*p) - origin)
-                .collect();
-            entity.insert((
-                RigidBody::Fixed,
-                Collider::trimesh(points, batch.ix.clone())
-                    .expect("validated metropolis triangles"),
-                Friction::coefficient(0.8),
-            ));
-            if mat < 25 || mat == 29 {
-                entity.insert(Obstacle);
-            } else {
-                entity.insert(Ground);
-            }
-            if mat == 25 {
-                entity.insert(crate::environment::RoadChunk);
-            }
-            if mat == 26 {
-                entity.insert(crate::vehicle::RideableStep);
-            }
+            collision_batches
+                .entry((x, z, collision_role(mat)))
+                .or_default()
+                .append(&batch, origin);
+            census.source_collision_batches += 1;
             census.collision_triangles += batch.ix.len();
+        }
+    }
+    census.static_collision_batches = collision_batches.len();
+    for ((x, z, role), batch) in collision_batches {
+        let origin = Vec3::new(x as f32 * 256., 0., z as f32 * 256.);
+        let mut entity = commands.spawn((
+            Name::new(format!("Metro solid {x} {z} / role {role}")),
+            // No body/writeback state for immutable world geometry.
+            Collider::trimesh(batch.points, batch.triangles)
+                .expect("validated metropolis triangles"),
+            Transform::from_translation(origin),
+            Friction::coefficient(0.8),
+        ));
+        if role == 0 || role == 29 {
+            entity.insert(Obstacle);
+        } else {
+            entity.insert(Ground);
+        }
+        if role == 25 {
+            entity.insert(crate::environment::RoadChunk);
+        }
+        if role == 26 {
+            entity.insert(crate::vehicle::RideableStep);
         }
     }
     for ((x, z, mat), batch) in details {
@@ -500,4 +537,195 @@ pub fn spawn(
         ));
     }
     census
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn semantic_collision_batching_preserves_exact_triangle_soup_and_support_roles() {
+        let origin = Vec3::new(-256., 0., 512.);
+        let mut a = Batch::default();
+        a.cuboid(
+            Vec3::new(-230., 4., 540.),
+            Vec3::new(10., 8., 12.),
+            Quat::IDENTITY,
+        );
+        let mut b = Batch::default();
+        b.cuboid(
+            Vec3::new(-210., 14., 580.),
+            Vec3::new(8., 28., 10.),
+            Quat::from_rotation_y(0.3),
+        );
+        let mut merged = CollisionBatch::default();
+        merged.append(&a, origin);
+        merged.append(&b, origin);
+        let expected: Vec<_> = [&a, &b]
+            .into_iter()
+            .flat_map(|batch| {
+                batch
+                    .ix
+                    .iter()
+                    .map(|tri| tri.map(|i| Vec3::from_array(batch.p[i as usize]) - origin))
+            })
+            .collect();
+        let actual: Vec<_> = merged
+            .triangles
+            .iter()
+            .map(|tri| tri.map(|i| merged.points[i as usize]))
+            .collect();
+        assert_eq!(
+            actual, expected,
+            "world positions, winding and duplicate edges must survive batching"
+        );
+        assert_eq!(collision_role(0), collision_role(24));
+        assert_eq!(
+            collision_role(29),
+            29,
+            "farm fences keep their separate bounds"
+        );
+        for material in [25, 26, 27, 30, 31, 32] {
+            assert_eq!(
+                collision_role(material),
+                material,
+                "road/step/ground roles cannot merge"
+            );
+        }
+    }
+    fn static_contact_trace(explicit_bodies: bool) -> (Vec<(Transform, Velocity)>, usize) {
+        let mut app = App::new();
+        app.add_plugins((
+            MinimalPlugins,
+            TransformPlugin,
+            RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule(),
+        ))
+        .insert_resource(Time::<Fixed>::from_hz(60.))
+        .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+            std::time::Duration::from_secs_f64(1. / 60.),
+        ))
+        .insert_resource(TimestepMode::Fixed {
+            dt: 1. / 60.,
+            substeps: 3,
+        });
+        let floor = Collider::trimesh(
+            vec![
+                Vec3::new(-20., 0., -20.),
+                Vec3::new(20., 0., -20.),
+                Vec3::new(20., 0., 20.),
+                Vec3::new(-20., 0., 20.),
+            ],
+            vec![[0, 2, 1], [0, 3, 2]],
+        )
+        .unwrap();
+        let wall = Collider::trimesh(
+            vec![
+                Vec3::new(3., 0., -10.),
+                Vec3::new(3., 5., -10.),
+                Vec3::new(3., 5., 10.),
+                Vec3::new(3., 0., 10.),
+            ],
+            vec![[0, 1, 2], [0, 2, 3]],
+        )
+        .unwrap();
+        let ground = app
+            .world_mut()
+            .spawn((
+                floor,
+                Transform::IDENTITY,
+                Friction::coefficient(0.8),
+                Ground,
+            ))
+            .id();
+        let barrier = app
+            .world_mut()
+            .spawn((
+                wall,
+                Transform::IDENTITY,
+                Friction::coefficient(0.8),
+                Obstacle,
+            ))
+            .id();
+        if explicit_bodies {
+            for e in [ground, barrier] {
+                app.world_mut().entity_mut(e).insert(RigidBody::Fixed);
+            }
+        }
+        let rider = app
+            .world_mut()
+            .spawn((
+                RigidBody::Dynamic,
+                Collider::capsule_y(0.45, 0.2),
+                Transform::from_xyz(0., 3., 0.),
+                Velocity::linear(Vec3::new(7., 0., 1.)),
+                Ccd::enabled(),
+                ActiveEvents::COLLISION_EVENTS,
+            ))
+            .id();
+        let mut trace = vec![];
+        let mut contact = false;
+        for _ in 0..240 {
+            app.update();
+            trace.push((
+                *app.world().get::<Transform>(rider).unwrap(),
+                *app.world().get::<Velocity>(rider).unwrap(),
+            ));
+            let mut events = app.world_mut().resource_mut::<Messages<CollisionEvent>>();
+            contact |= events
+                .drain()
+                .any(|e| matches!(e, CollisionEvent::Started(_, _, _)));
+        }
+        assert!(contact, "the actor must still hit immutable geometry");
+        assert!(trace.last().unwrap().0.translation.y < 1.);
+        let world = app.world_mut();
+        let mut contexts = world.query::<(
+            &RapierContextSimulation,
+            &RapierContextColliders,
+            &RapierContextJoints,
+            &RapierRigidBodySet,
+        )>();
+        let (simulation, colliders, joints, rigidbody_set) = contexts.single(world).unwrap();
+        let ctx = RapierContext {
+            simulation,
+            colliders,
+            joints,
+            rigidbody_set,
+        };
+        let (entity, toi) = ctx
+            .cast_ray(
+                Vec3::new(0., 5., 0.),
+                Vec3::NEG_Y,
+                10.,
+                true,
+                QueryFilter::exclude_dynamic(),
+            )
+            .expect("ground ray remains supported");
+        assert_eq!(entity, ground);
+        assert!((toi - 5.).abs() < 0.001);
+        assert!(
+            ctx.cast_ray(
+                Vec3::new(0., 5., 0.),
+                Vec3::NEG_Y,
+                10.,
+                true,
+                QueryFilter {
+                    flags: QueryFilterFlags::EXCLUDE_FIXED | QueryFilterFlags::EXCLUDE_DYNAMIC,
+                    ..default()
+                }
+            )
+            .is_none()
+        );
+        (trace, rigidbody_set.bodies.len())
+    }
+    #[test]
+    fn standalone_static_chunks_keep_contact_ccd_and_support_trajectories() {
+        let (control, with_fixed) = static_contact_trace(true);
+        let (optimized, without_fixed) = static_contact_trace(false);
+        assert_eq!((with_fixed, without_fixed), (3, 1));
+        for ((a, av), (b, bv)) in control.iter().zip(optimized) {
+            assert!(a.translation.abs_diff_eq(b.translation, 0.001));
+            assert!(a.rotation.abs_diff_eq(b.rotation, 0.001));
+            assert!(av.linvel.abs_diff_eq(bv.linvel, 0.001));
+            assert!(av.angvel.abs_diff_eq(bv.angvel, 0.001));
+        }
+    }
 }

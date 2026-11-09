@@ -2,11 +2,8 @@
 use super::*;
 use bevy::gltf::{Gltf, GltfMesh};
 use rr_content::architecture::{Catalog, Design};
+use rr_content::metropolis::FACADE_FAMILIES as FAMILIES;
 use std::collections::{BTreeMap, BTreeSet, HashMap};
-const FAMILIES: [&str; 12] = [
-    "BUSS1", "BUSS4", "CHINA12", "CLSTGA11", "OFFC1", "OFFC2", "OFFC10", "RUNDWN11", "VICT11",
-    "VICT12", "WHSE11", "WRHS1",
-];
 const RADIUS: f32 = 175.;
 const MAX_FACES: usize = 28;
 const MAX_MESHES: usize = 6000;
@@ -51,10 +48,7 @@ impl Face {
     fn panels(&self, designs: &[Design]) -> Vec<(usize, usize, usize, Transform)> {
         let d = &designs[self.style];
         let width = self.width();
-        let bays = (width / d.width).round().max(1.) as usize;
-        let ground = 3.2f32.min(self.height * 0.6);
-        let cap = d.heights[2].min(1.2);
-        let count = ((self.height - ground - cap) / 3.2).round().max(1.) as usize;
+        let (bays, ground, cap, count) = dimensions(width, self.height, d);
         let h = (self.height - ground - cap) / count as f32;
         let mut rows = vec![(0, 0., ground)];
         rows.extend((0..count).map(|i| (1, ground + i as f32 * h, h)));
@@ -96,6 +90,14 @@ impl Face {
         result
     }
 }
+/// Shared full/coarse bay/storey fitting keeps source identity aligned at distance.
+pub(super) fn dimensions(width: f32, height: f32, design: &Design) -> (usize, f32, f32, usize) {
+    let bays = (width / design.width).round().max(1.) as usize;
+    let ground = 3.2f32.min(height * 0.6);
+    let cap = design.heights[2].min(1.2);
+    let count = ((height - ground - cap) / 3.2).round().max(1.) as usize;
+    (bays, ground, cap, count)
+}
 struct Group {
     entities: Vec<Entity>,
     weight: f32,
@@ -114,6 +116,8 @@ pub struct Kit {
     cells: HashMap<(i32, i32), Vec<usize>>,
     warm: Vec<Entity>,
     ready: bool,
+    loaded_at: std::time::Instant,
+    ready_seconds: f64,
     elapsed: f32,
     active: BTreeMap<usize, Group>,
     pub triangles: usize,
@@ -189,6 +193,8 @@ impl Kit {
             cells,
             warm: vec![],
             ready: false,
+            loaded_at: std::time::Instant::now(),
+            ready_seconds: 0.,
             elapsed: 0.,
             active: default(),
             triangles: 0,
@@ -218,6 +224,24 @@ impl Kit {
                     .map(|p| p.mesh.id())
             })
             .collect();
+        let resident_source_triangles: usize = allowed
+            .iter()
+            .map(|id| {
+                let m = meshes.get(*id).expect("resident source primitive");
+                m.indices().map_or(m.count_vertices() / 3, |i| i.len() / 3)
+            })
+            .sum();
+        let resident_vertex_bytes: usize = allowed
+            .iter()
+            .map(|id| {
+                meshes
+                    .get(*id)
+                    .unwrap()
+                    .attributes()
+                    .map(|(_, v)| v.get_bytes().len())
+                    .sum::<usize>()
+            })
+            .sum();
         let mut count = 0;
         let mut triangles = 0;
         for (mesh, collider) in draws {
@@ -231,10 +255,16 @@ impl Kit {
             triangles += m.indices().map_or(m.count_vertices() / 3, |i| i.len() / 3);
         }
         assert!(count > 0 && count <= MAX_MESHES && triangles <= MAX_TRIANGLES);
-        serde_json::json!({"queried_original_mesh_instances":count,"queried_actual_triangles":triangles,"colliders_in_cosmetic_geometry":0})
+        serde_json::json!({"resident_source_primitive_meshes":allowed.len(),"resident_source_triangles":resident_source_triangles,"resident_source_vertex_attribute_bytes":resident_vertex_bytes,"queried_original_mesh_instances":count,"queried_actual_triangles":triangles,"colliders_in_cosmetic_geometry":0})
     }
     pub fn evidence(&self) -> serde_json::Value {
-        serde_json::json!({"source_families":FAMILIES,"source_lods":[1,2],"ready":self.ready,"mapped_polygon_faces":self.faces.len(),"active_faces":self.active.len(),"actual_mesh_instances":self.mesh_instances,"actual_triangles":self.triangles,"peak_meshes":self.peak_meshes,"peak_triangles":self.peak_triangles,"mesh_cap":MAX_MESHES,"triangle_cap":MAX_TRIANGLES,"physical_envelopes":"unchanged; always resident","method":"shared original GLB primitive handles, no scene/LOD file replacement"})
+        let mut active_families = BTreeMap::<&str, usize>::new();
+        for i in self.active.keys() {
+            *active_families
+                .entry(FAMILIES[self.faces[*i].style])
+                .or_default() += 1;
+        }
+        serde_json::json!({"load_to_material_ready_seconds":self.ready_seconds,"active_family_faces":active_families,"source_families":FAMILIES,"source_lods":[1,2],"ready":self.ready,"mapped_polygon_faces":self.faces.len(),"active_faces":self.active.len(),"actual_mesh_instances":self.mesh_instances,"actual_triangles":self.triangles,"peak_meshes":self.peak_meshes,"peak_triangles":self.peak_triangles,"mesh_cap":MAX_MESHES,"triangle_cap":MAX_TRIANGLES,"physical_envelopes":"unchanged; always resident","method":"shared original GLB primitive handles, no scene/LOD file replacement"})
     }
 }
 #[allow(clippy::too_many_arguments)]
@@ -321,6 +351,7 @@ pub fn prepare(
     for e in kit.warm.drain(..) {
         commands.entity(e).despawn();
     }
+    kit.ready_seconds = kit.loaded_at.elapsed().as_secs_f64();
     kit.ready = true;
 }
 #[allow(clippy::too_many_arguments)]
@@ -462,19 +493,29 @@ pub fn synchronize(
     let p = camera.translation();
     for (entity, mesh, transform, mut visibility, range) in &mut draws {
         let w = kit.active.get(&mesh.face).map_or(0., |g| g.weight);
-        *visibility = if w == 0. {
+        visibility.set_if_neq(if w == 0. {
             Visibility::Hidden
         } else {
             Visibility::Inherited
+        });
+        if w == 0. {
+            continue;
+        }
+        // Settled detail is fully visible independent of camera distance. Keep a
+        // stable range so thousands of static draws do not become changed render
+        // inputs every frame; only an active fade needs camera-relative margins.
+        let d = if w >= 1. {
+            f32::MAX
+        } else {
+            transform.translation().distance(p)
         };
-        let d = transform.translation().distance(p);
         let r = bevy::camera::visibility::VisibilityRange {
             start_margin: f32::MIN..f32::MIN,
             end_margin: (d - (1. - w) * 8.)..(d + w * 8.),
             use_aabb: false,
         };
         if let Some(mut old) = range {
-            *old = r;
+            old.set_if_neq(r);
         } else {
             commands.entity(entity).insert(r);
         }
@@ -483,6 +524,105 @@ pub fn synchronize(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[derive(Resource, Default)]
+    struct Changes(Vec<(usize, usize)>);
+    fn record_changes(
+        visibility: Query<(), (With<AuthoredMesh>, Changed<Visibility>)>,
+        ranges: Query<
+            (),
+            (
+                With<AuthoredMesh>,
+                Changed<bevy::camera::visibility::VisibilityRange>,
+            ),
+        >,
+        mut changes: ResMut<Changes>,
+    ) {
+        changes
+            .0
+            .push((visibility.iter().count(), ranges.iter().count()));
+    }
+    #[test]
+    fn settled_facades_do_not_dirty_static_render_data_when_camera_moves() {
+        let mut app = App::new();
+        app.init_resource::<Changes>();
+        app.insert_resource(Kit {
+            designs: vec![],
+            sources: vec![],
+            faces: vec![],
+            cells: default(),
+            warm: vec![],
+            ready: true,
+            loaded_at: std::time::Instant::now(),
+            ready_seconds: 0.,
+            elapsed: 0.,
+            triangles: 1,
+            mesh_instances: 1,
+            peak_meshes: 1,
+            peak_triangles: 1,
+            active: BTreeMap::from([(
+                0,
+                Group {
+                    entities: vec![],
+                    weight: 1.,
+                    wanted: true,
+                    triangles: 1,
+                },
+            )]),
+        });
+        let camera = app
+            .world_mut()
+            .spawn((Camera3d::default(), GlobalTransform::IDENTITY))
+            .id();
+        let face = app
+            .world_mut()
+            .spawn((
+                AuthoredMesh { face: 0 },
+                GlobalTransform::IDENTITY,
+                Visibility::Hidden,
+            ))
+            .id();
+        app.add_systems(Update, (synchronize, record_changes).chain());
+        app.update();
+        app.world_mut()
+            .entity_mut(camera)
+            .insert(GlobalTransform::from_translation(Vec3::X * 20.));
+        app.update();
+        assert_eq!(app.world().resource::<Changes>().0[1], (0, 0));
+        let range = app
+            .world()
+            .get::<bevy::camera::visibility::VisibilityRange>(face)
+            .unwrap();
+        assert_eq!(range.end_margin, f32::MAX..f32::MAX);
+        app.world_mut()
+            .resource_mut::<Kit>()
+            .active
+            .get_mut(&0)
+            .unwrap()
+            .weight = 0.5;
+        app.update();
+        let range = app
+            .world()
+            .get::<bevy::camera::visibility::VisibilityRange>(face)
+            .unwrap();
+        assert_eq!(range.end_margin, 16.0..24.0);
+        assert_eq!(app.world().resource::<Changes>().0[2], (0, 1));
+        app.world_mut()
+            .resource_mut::<Kit>()
+            .active
+            .get_mut(&0)
+            .unwrap()
+            .weight = 0.;
+        app.update();
+        assert_eq!(
+            *app.world().get::<Visibility>(face).unwrap(),
+            Visibility::Hidden
+        );
+        app.world_mut()
+            .entity_mut(camera)
+            .insert(GlobalTransform::from_translation(Vec3::X * 40.));
+        app.update();
+        assert_eq!(app.world().resource::<Changes>().0[4], (0, 0));
+    }
     #[test]
     fn source_storeys_cover_height_and_fit_straight_polygon_edges() {
         let c = Catalog::from_json(crate::world_gen::architecture::CATALOG).unwrap();

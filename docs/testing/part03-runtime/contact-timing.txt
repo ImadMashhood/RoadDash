@@ -1,0 +1,51 @@
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on package cache
+    Blocking waiting for file lock on artifact directory
+    Finished `test` profile [optimized + debuginfo] target(s) in 2.64s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+render_hz=30, clip=punch_left, source_contact=0.26s, first_observed_contact_age=0.216667s, hits=1
+render_hz=30, clip=punch_right, source_contact=0.26s, first_observed_contact_age=0.216667s, hits=1
+render_hz=30, clip=kick_left, source_contact=0.24s, first_observed_contact_age=0.216667s, hits=1
+render_hz=30, clip=kick_right, source_contact=0.24s, first_observed_contact_age=0.216667s, hits=1
+render_hz=60, clip=punch_left, source_contact=0.26s, first_observed_contact_age=0.200000s, hits=1
+render_hz=60, clip=punch_right, source_contact=0.26s, first_observed_contact_age=0.200000s, hits=1
+render_hz=60, clip=kick_left, source_contact=0.24s, first_observed_contact_age=0.200000s, hits=1
+render_hz=60, clip=kick_right, source_contact=0.24s, first_observed_contact_age=0.200000s, hits=1
+render_hz=120, clip=punch_left, source_contact=0.26s, first_observed_contact_age=0.200000s, hits=1
+render_hz=120, clip=punch_right, source_contact=0.26s, first_observed_contact_age=0.200000s, hits=1
+render_hz=120, clip=kick_left, source_contact=0.24s, first_observed_contact_age=0.200000s, hits=1
+render_hz=120, clip=kick_right, source_contact=0.24s, first_observed_contact_age=0.200000s, hits=1
+render_hz=144, clip=punch_left, source_contact=0.26s, first_observed_contact_age=0.200000s, hits=1
+render_hz=144, clip=punch_right, source_contact=0.26s, first_observed_contact_age=0.200000s, hits=1
+render_hz=144, clip=kick_left, source_contact=0.24s, first_observed_contact_age=0.200000s, hits=1
+render_hz=144, clip=kick_right, source_contact=0.24s, first_observed_contact_age=0.200000s, hits=1
+test combat::tests::buffered_strikes_wait_for_contact_and_resolve_once_at_all_render_rates ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 228 filtered out; finished in 0.71s
+
+     Running unittests src/bin/city_preview.rs (target/debug/deps/city_preview-819433f16b2abd47)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (target/debug/deps/prop_preview-5ec74f20892fc13c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-68dab0f347b409a4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (target/debug/deps/visibility_probe-b4a0c0a257349862)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

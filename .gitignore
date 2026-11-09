@@ -9,3 +9,6 @@
 
 # Optional local performance captures.
 /performance-logs/
+
+# Local test temporary files and performance captures
+/output/testing/

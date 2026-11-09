@@ -19,6 +19,8 @@ pub struct Census {
     pub chunks: usize,
     pub render_triangles: usize,
     pub collision_triangles: usize,
+    pub source_collision_batches: usize,
+    pub static_collision_batches: usize,
     pub physical_routes: usize,
     pub crossing_cars: usize,
     pub street_props: usize,

@@ -1,0 +1,102 @@
+{
+  "approved_date": "2026-11-08",
+  "status": "Approved portrait artwork; game integration pending",
+  "portraits": [
+    {
+      "character": "naveen",
+      "file": "naveen.png",
+      "source": "/tmp/codex-clipboard-b46796cf-9915-4fae-b533-8281637ea1f3.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "shaqueesha",
+      "file": "shaqueesha.png",
+      "source": "/tmp/codex-clipboard-e6ccffa0-d467-4867-ad26-e6834298f0c2.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "anastasia",
+      "file": "anastasia.png",
+      "source": "/tmp/codex-clipboard-428a1ba2-63c1-42ef-9a5a-ca146ddbc84f.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "abeyomi",
+      "file": "abeyomi.png",
+      "source": "/tmp/codex-clipboard-3090bc98-79f9-4d31-90b7-450f9f23fa75.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "dolph",
+      "file": "dolph.png",
+      "source": "/tmp/codex-clipboard-7ac0a44d-12cb-42d5-a0f7-1435cc6cb3b8.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "cleetus",
+      "file": "cleetus.png",
+      "source": "/tmp/codex-clipboard-269c25d9-f5a8-4b05-910f-3e100e4c3f19.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "luigi",
+      "file": "luigi.png",
+      "source": "/tmp/codex-clipboard-e3d27cf1-2ba4-446a-9c9a-826948007727.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "osama",
+      "file": "osama.png",
+      "source": "/tmp/codex-clipboard-00c90d2d-3f39-4185-9195-8369239a0d4f.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "yamakha",
+      "file": "yamakha.png",
+      "source": "/tmp/codex-clipboard-0fa1576f-5e47-405d-a942-a6270dda356f.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "tyrone",
+      "file": "tyrone.png",
+      "source": "/tmp/codex-clipboard-bc9c8dfe-de66-4b51-8217-b532d23a819b.png",
+      "approval": "User-selected attachment"
+    },
+    {
+      "character": "esteban",
+      "file": "esteban.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/esteban.png",
+      "approval": "User approved: Love these lets go with these"
+    },
+    {
+      "character": "ellen",
+      "file": "ellen.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/ellen.png",
+      "approval": "User approved: Love these lets go with these"
+    },
+    {
+      "character": "chinese-racer",
+      "file": "chinese-racer.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/chinese-racer.png",
+      "approval": "User approved: Love these lets go with these"
+    },
+    {
+      "character": "hog",
+      "file": "hog.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/hog.png",
+      "approval": "User approved: Love these lets go with these"
+    },
+    {
+      "character": "george",
+      "file": "george.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/george.png",
+      "approval": "User approved: Love these lets go with these"
+    },
+    {
+      "character": "elif",
+      "file": "elif.png",
+      "source": "/home/imad/Documents/ChatGPT/RoadRash/output/portraits/selected-style-remakes/elif.png",
+      "approval": "User approved: Love these lets go with these"
+    }
+  ]
+}

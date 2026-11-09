@@ -1,0 +1,10 @@
+{
+  "designs": 128,
+  "bands": 383,
+  "source_hashes_verified": true,
+  "nonoverlapping_tiles": true,
+  "mip_images": 15,
+  "resident_rgba_bytes": 134086656,
+  "minimum_last_mip_guard_pixels": 1,
+  "tool": "Blender4.5.9 bundled Python/numpy; original software triangle/UV/depth projection; no retail media"
+}

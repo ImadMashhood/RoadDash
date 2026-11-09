@@ -1,0 +1,19 @@
+$ target/release/road-dash --ragdoll-lab --output docs/testing/part07-weapons/ragdoll-lab.json
+RAGDOLL_LAB drop baseline finite=true anchor_max=0.0018 final_speed=0.008 asleep=0
+RAGDOLL_LAB drop biomechanical finite=true anchor_max=0.0012 final_speed=0.000 asleep=16
+RAGDOLL_LAB limb_force baseline finite=true anchor_max=0.0015 final_speed=0.000 asleep=11
+RAGDOLL_LAB limb_force biomechanical finite=true anchor_max=0.0018 final_speed=0.000 asleep=16
+RAGDOLL_LAB torso_push baseline finite=true anchor_max=0.0076 final_speed=0.000 asleep=11
+RAGDOLL_LAB torso_push biomechanical finite=true anchor_max=0.0016 final_speed=0.000 asleep=16
+RAGDOLL_LAB hinge_stress baseline finite=true anchor_max=0.0045 final_speed=0.000 asleep=11
+RAGDOLL_LAB hinge_stress biomechanical finite=true anchor_max=0.0018 final_speed=0.000 asleep=16
+RAGDOLL_LAB ejection_low baseline finite=true anchor_max=0.0059 final_speed=0.005 asleep=0
+RAGDOLL_LAB ejection_low biomechanical finite=true anchor_max=0.0017 final_speed=0.000 asleep=16
+RAGDOLL_LAB ejection_high baseline finite=true anchor_max=0.0461 final_speed=0.002 asleep=0
+RAGDOLL_LAB ejection_high biomechanical finite=true anchor_max=0.0039 final_speed=0.000 asleep=16
+RAGDOLL_LAB road_tumble baseline finite=true anchor_max=0.0088 final_speed=0.014 asleep=0
+RAGDOLL_LAB road_tumble biomechanical finite=true anchor_max=0.0018 final_speed=0.000 asleep=16
+RAGDOLL_LAB static_wall baseline finite=true anchor_max=0.0088 final_speed=0.014 asleep=0
+RAGDOLL_LAB static_wall biomechanical finite=true anchor_max=0.0017 final_speed=0.000 asleep=16
+RAGDOLL_LAB fifteen_crashes baseline finite=true anchor_max=0.0021 final_speed=0.277 asleep=0
+RAGDOLL_LAB fifteen_crashes biomechanical finite=true anchor_max=0.0021 final_speed=0.000 asleep=240

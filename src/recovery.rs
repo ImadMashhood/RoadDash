@@ -481,9 +481,10 @@ pub fn recover(
     time: Res<Time<Fixed>>,
     mut race: ResMut<Race>,
     mut controls: ResMut<crate::controls::Controls>,
-    (tuning, adapter): (
+    (tuning, adapter, police): (
         Res<RecoveryTuning>,
         Res<crate::vehicle::VehiclePhysicsAdapter>,
+        Res<crate::police::Police>,
     ),
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut profile: ResMut<crate::game::Profile>,
@@ -523,8 +524,12 @@ pub fn recover(
     let interact = std::mem::take(&mut controls.interact);
     let finishers = riders
         .iter()
-        .filter(|(_, r, _, _, _)| r.id != 0 && r.finished.is_some())
+        .filter(|(_, r, _, _, _)| !r.police && r.id != 0 && r.finished.is_some())
         .count();
+    let pursuit_body = riders
+        .iter()
+        .find(|(_, r, _, _, _)| r.id == 0)
+        .map(|(e, _, rec, _, _)| rec.runner.unwrap_or(e));
     for (owner, mut rider, mut recovery, mut root, mut visibility) in &mut riders {
         if recovery.stage == RecoveryStage::Riding || rider.finished.is_some() {
             continue;
@@ -723,7 +728,17 @@ pub fn recover(
                     continue;
                 }
                 let contact = bike_contact_point(&wreck_pose, transform.translation);
-                let center = wreck_pose.translation + wreck_pose.rotation * Vec3::Y * 0.85;
+                let pursuit = rider.police
+                    && police.intentional_foot
+                    && police
+                        .target
+                        .is_some_and(|(t, _)| t.downed || t.speed <= police.rules.arrest_speed)
+                    && police.foot_goal.is_some();
+                let center = if pursuit {
+                    police.foot_goal.unwrap() + Vec3::Y * 0.95
+                } else {
+                    wreck_pose.translation + wreck_pose.rotation * Vec3::Y * 0.85
+                };
                 let delta = (center - transform.translation).with_y(0.0);
                 let mut direction = delta.normalize_or_zero();
                 if !manual && (layout.is_some() || city.is_some() || metro_navigation.is_some()) {
@@ -766,7 +781,7 @@ pub fn recover(
                     let below = transform.translation.y
                         < track.terrain_height(transform.translation.x, transform.translation.z)
                             - 8.0;
-                    if recovery.elapsed > config.rescue_after || below {
+                    if !rider.police && (recovery.elapsed > config.rescue_after || below) {
                         let (d, _, _) = track.project_route(rider.route, wreck_pos, rider.progress);
                         let d = d.min(track.length - 6.0);
                         let (p, q) = track.sample_route(rider.route, d, 0.0);
@@ -794,7 +809,8 @@ pub fn recover(
                 let reach = contact - transform.translation;
                 let facing = reach.with_y(0.0).length() < 0.1
                     || (transform.rotation * Vec3::Z).dot(direction) >= config.mount_facing;
-                if (!manual || interact)
+                if !pursuit
+                    && (!manual || interact)
                     && facing
                     && reach.with_y(0.0).length() <= config.mount_radius
                     && reach.y.abs() <= config.mount_height
@@ -815,9 +831,19 @@ pub fn recover(
                         }
                     }
                 } else {
-                    let mut movement = direction;
-                    if !manual && let Ok(context) = context.single() {
-                        let predicate = |e| e != wreck;
+                    let mut movement = if pursuit
+                        && delta.length() <= (police.rules.arrest_radius - 0.1).max(0.5)
+                    {
+                        Vec3::ZERO
+                    } else {
+                        direction
+                    };
+                    if !manual
+                        && movement.length_squared() > 0.001
+                        && let Ok(context) = context.single()
+                    {
+                        let predicate =
+                            |e| (!pursuit || Some(e) != pursuit_body) && (pursuit || e != wreck);
                         let filter = QueryFilter::default()
                             .exclude_collider(runner)
                             .predicate(&predicate);
@@ -936,6 +962,9 @@ pub fn recover(
                     crate::vehicle::remount_at(&mut commands, owner, *root);
                     *visibility = Visibility::Visible;
                     commands.entity(owner).remove::<ColliderDisabled>();
+                    if rider.police {
+                        commands.entity(owner).remove::<RigidBodyDisabled>();
+                    }
                     crate::crash_behavior::restore_chassis(&mut commands, owner);
                     if let Some(runner) = recovery.runner {
                         commands.entity(runner).despawn();
@@ -1020,10 +1049,12 @@ pub fn impacts(
     art: Res<Art>,
     mut race: ResMut<Race>,
     mut riders: Query<(&mut Rider, &mut Recovery, &mut Visibility)>,
-    (transforms, shapes, track): (
+    (transforms, shapes, track, clock, mut observations): (
         Query<&Transform>,
         Query<&Collider>,
         Res<crate::track::Track>,
+        Res<crate::runtime::SimulationClock>,
+        ResMut<crate::contact_telemetry::VehicleContacts>,
     ),
     owned: Query<&OwnedBody>,
     (cars, cows, cross_cars, npcs): (
@@ -1364,19 +1395,49 @@ pub fn impacts(
                         normal = -normal;
                     }
                 }
-                let closing = (velocity - object_velocity).dot(normal).max(0.0);
-                if std::env::var_os("ROADDASH_TRACE_CONTACTS").is_some() {
-                    eprintln!(
-                        "vehicle-contact vehicle={vehicle} normal={normal:?} incoming={velocity:?} object={object_velocity:?} closing_mps={closing:.3} at={:?}",
-                        b.translation
-                    );
-                }
-
-                if !(if vehicle {
-                    rr_core::contact::vehicle_wipeout(closing)
+                let (approach, measured_closing) = rr_core::contact::vehicle_approach(
+                    velocity.to_array(),
+                    object_velocity.to_array(),
+                    normal.to_array(),
+                );
+                // Keep wall normals (including vertical components) authoritative;
+                // vehicle normals above are horizontal and measured in rr_core.
+                let closing = if vehicle {
+                    measured_closing
                 } else {
-                    rr_core::contact::wipeout(rr_core::contact::Class::Tall, closing)
-                }) {
+                    (velocity - object_velocity).dot(normal).max(0.0)
+                };
+                let interrupted_stagger =
+                    recovery.stagger.is_some() && rr_core::contact::interrupts_stagger(closing);
+                let crash = interrupted_stagger
+                    || if vehicle {
+                        rr_core::contact::vehicle_wipeout(closing)
+                    } else {
+                        rr_core::contact::wipeout(rr_core::contact::Class::Tall, closing)
+                    };
+                if vehicle {
+                    let sample = crate::contact_telemetry::VehicleContact {
+                        tick: clock.ticks,
+                        rider: bike,
+                        object: other,
+                        incoming: velocity,
+                        object_velocity,
+                        normal,
+                        closing_mps: closing,
+                        approach,
+                        object_height_m: shapes.get(other).ok().map(|shape| {
+                            let (lo, hi) = collider_bounds(b, shape);
+                            hi.y - lo.y
+                        }),
+                        interrupted_stagger,
+                        crash,
+                    };
+                    if std::env::var_os("ROADDASH_TRACE_CONTACTS").is_some() {
+                        eprintln!("vehicle-contact {sample:?}");
+                    }
+                    observations.record(sample);
+                }
+                if !crash {
                     continue;
                 }
                 if original.as_ref().is_some_and(|p| p.0)

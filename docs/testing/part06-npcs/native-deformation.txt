@@ -1,0 +1,23 @@
+{
+  "walk": {
+    "cases": 666,
+    "rigid_mean_m": 0.008080876352595924,
+    "weighted_mean_m": 0.006984187329921985,
+    "max_m": 0.029379658266344682,
+    "worsened_mean_over_1mm": 8
+  },
+  "impact": {
+    "cases": 74,
+    "rigid_mean_m": 0.0093959068840046,
+    "weighted_mean_m": 0.006939109280577977,
+    "max_m": 0.029684566978342902,
+    "worsened_mean_over_1mm": 6
+  },
+  "ragdoll": {
+    "cases": 148,
+    "rigid_mean_m": 0.010158112811288422,
+    "weighted_mean_m": 0.006909489244156626,
+    "max_m": 0.03029538574024093,
+    "worsened_mean_over_1mm": 10
+  }
+}

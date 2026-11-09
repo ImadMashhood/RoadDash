@@ -1,0 +1,3 @@
+$ cargo build --release --locked
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `release` profile [optimized] target(s) in 40.36s

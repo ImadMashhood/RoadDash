@@ -1,5 +1,43 @@
 # Development history
 
+## 2026-11-08 — Random rival clubs and Part09 starter receipts
+
+RIVAL-WEAPONS-01: seeded seven-of-fourteen starting rival clubs, validated configurable fraction, new-grid/retry-only assignment and player/police exclusion. Existing combat policy, launch grace, drop, visual sockets and physical rig retained. Native held/equipped checks and375 workspace tests passed. No new assets/dependencies; existing source/ability provenance hashes updated.
+
+Started Part09 with an isolated CLI runner, binary/seed/status/timeout receipts and three failure/isolation tests. Real entry mode passed22 stages; full police/recovery suite, external sessions, fun metrics and frame-budget acceptance remain P09-AUTO-01/P09-001..007. Corrected obsolete P07-004 foot-finish status against existing foundations without closing the task. ADR092/093 and testing/random-rival-weapons / testing/part09-start retain details. Branch codex/random-rival-weapons; earlier frontend/art changes carried forward; uncommitted, no push/merge.
+
+## 2026-11-08 — Native gritty entry UI (ADR091)
+
+Integrated seven original generated scenes into Bevy: approved-style splash, main, street, shop and bar, plus new course-postcard and rider-introduction art. Independent original-inspired Thrash/course and Big Game/rider/street navigation now hand off to the existing race reset/countdown. Mouse/keyboard/controller edges are owned by the menu, settings stay connected, results retry or return without changing payouts. Existing physical rider/bike/crash/recovery remains unchanged. Pure rr_core flow and native regressions protect held-confirm, disabled navigation, profile continuity, launch/results and controller back. Native 22-stage flow passed after correcting result handoff and UI projection resize cache; saved actual viewport/bounds receipts and screenshots, including ultrawide/4K. Full campaign/shop/player-choice/art/accessibility/hardware acceptance remains UI-02/UI-05/P15-006/007; no new task IDs or broad checkboxes closed. No commit/push/merge.
+
+## 2026-11-08 — Approved gritty UI style variations
+
+User approved the corrected main-menu style. Generated four additional original scenes with built-in imagegen: biker bar, shady dealer, rival gang and crooked street, using the approved sample and private original screens as references. Saved unchanged PNGs, exact prompts, source IDs, hashes and a standalone gallery. No runtime changes or new task IDs; UI-05/UI-02 and individual art acceptance remain open. No commit/push/merge.
+
+## 2026-11-08 — UI screen drafts and direction correction
+
+Generated and placed 28 initial screen drafts with actual dimension/alpha/hash provenance, gallery and persistent review metadata. User rejected their polished 3D style. Studied private original splash/main/street/shop/bar/restroom screens, documented separate frontend direction, generated one original grotesque painted main-menu candidate, archived the first pass and disabled it by default. No runtime/physics changes, no art approval, no push/merge. UI-04 records technical historical draft availability; UI-05/UI-02 remain open. Evidence: docs/testing/generated-ui/README.md.
+
+
+## 2026-11-08 — PERF-08 synchronization pass and UI-03 generation prompts
+
+- Diagnose latest200-window local race capture;191 selected race windows show
+  substantial physics/catch-up cost. Add separate backend sync/step/writeback,
+  independent window mean and contact/body census with filtered/normalized CLI.
+- Preserve exact static surfaces while removing immutable Fixed bodies and
+  combining building collision by semantics rather than render material.
+  2,920 source batches become2,529;2,606,411 collision triangles unchanged.
+  Stable settled facade ranges/prop visibility/HUD text avoid redundant writes.
+- Native survey median independent window mean16.83→14.67ms in the paired
+  fixture; final rolling p9536.11ms remains over budget. Broad PERF-08 stays open.
+  Default/control recoveries and18-case lab retain accepted gameplay/rigs.
+- Add28 screen and142image prompts across66master families, deterministic
+  generator/coverage tests, artist desk links and refreshed local ZIPs. No new
+  art generated or integrated. UI-03 verified; UI-02/art remain open.
+- ADR089; no dependency or external media changes.210verified/242open/452IDs.
+  Full receipts/remaining gates: docs/testing/performance-ui-prompts/README.md.
+
+
 ## 2026-10-30 - Before Parts 00-01 (preserved baseline)
 
 - 81485f6: initial procedural Bevy/Rapier racing prototype and nine tests.
@@ -1020,3 +1058,185 @@ or 3D content changed; no push/merge claimed.
   No new pose approval or native timing is inferred. Broad gates stay open.
 - Evidence and limitations: testing/remount-reverse/README.md and
   animation/NEXT_REVIEW.md. No new dependencies, media or external source reuse.
+
+## 2026-11-08 — Animation A glove/contact refinement
+
+- ANIM-15/ADR078: implement shared visual glove morphs, bounded finger-edge
+  refinement, independent left/right grip/fist blending, relaxed hands and typed
+  grip/weapon sockets on existing visual wrists. Preserve the physical rider.
+- Add hand metadata validation and source-to-universal-grip checks, morphology,
+  GPU data/geometry budgets and animation blend regressions. Keep original model
+  bundle, GLBs and accepted ragdoll/control/recovery assets unchanged.
+- Add exact-key native hand close-up review and numbered screenshots; ordinary
+  animation review remains dynamic. Update Part02's partial hand acceptance and
+  track ANIM-16 authoring round-trip, without closing art/user/production gates.
+
+## 2026-11-08 — Part01 runtime development pass
+
+- Audited all29 remaining Part01 requirements against actual code/CI/research;
+  retained their unchecked acceptance gates and corrected stale proposed-only
+  combat wording and missing-local-calibration claim.
+- Added pure measured vehicle approach classification plus bounded adapter contact
+  observations (tick/entities/world velocities/normal/closing/height/outcome).
+- Existing combat stagger now releases on1m/s tall-solid/vehicle normal contact;
+  ordinary riding and passive baseline thresholds/physics remain unchanged.
+- Added both-side/phase interruption/no-launch regressions,100/60 directional and
+  solid-height observations, and real solid-car height trajectory comparisons.
+  ADR079 and testing/part01-runtime/README.md record exact receipts/limitations.
+- No dependencies/assets/source imports, server/network migration, new task IDs,
+  task moves, push or merge; Part02 is not started by this development pass.
+
+## 2026-11-08 — Part02 shared-profile hand authoring development pass
+
+- Replaced static Blender compression with runtime-profile grip/fist hinges,
+  source-scale conversion, independent hand states and typed visual sockets.
+- Corrected a measured10.467mm raw-landmark/source socket mismatch by fitting
+  wrists from the calibrated socket with the unchanged fixed-length solver;
+  declared held contacts reject errors over5mm.
+- Attached original club/chain proxies to weapon sockets and authored handle axes;
+  retained source phase/mirror/view/counter semantics and138human/16bike IDs.
+- Rebuilt the complete numbered context gallery and editable one-frame Actions;
+  added18source hand views and actual GLB target/skin/UV/socket export/reload checks.
+- Authoring-state/contact validation belongs to rr_content; Python checks recorded
+  artifacts and the actual pose loader. Rust compares Blender numeric fold/normal
+  fixtures against the runtime recipe without modifying runtime behavior.
+- ADR080 and testing/part02-authoring/README.md retain normal/tessellation parity,
+  angular thumb/finger silhouettes, clearance, specialist/support and user approval
+  gates. All15Part02 requirements remain unchecked; no new IDs or Part03 advance.
+- No physical ragdoll, gameplay timing, controls, saves, model source GLBs, accepted
+  velocity-muscle settings, map defaults, dependency migration, push or merge.
+
+## 2026-11-08 — Part03 fixed contact timing and visual support lifecycle
+
+- Separated input/AI attack intent from already-resolved contact; authored
+  extension IDs/duration sums drive a single fixed clock shared by melee and
+  visuals. Retained cooldown/stamina, three-direct-hit/3s, exact-attacker AI,
+  range/LOS, kick push and existing knockoff outcomes.
+- Froze kick leg selection at windup across eligible rivals/NPCs; duplicate
+  windup intent cannot restart the clock. Pause freezes, interruption/recovery/
+  reset/finish cancel. Added real buffered-input multi-rate contact regressions
+  alongside the deliberately resolved-contact fixtures.
+- Repaired never-zero visual plant release, old-stride reuse and world-fixed
+  support locks; physics-local contacts follow kinematic movement and reject
+  support loss. No authoritative physical transforms or rig settings changed.
+- ADR081 and testing/part03-runtime retain quantitative synthetic/native receipts,
+  all27 still-open Part03 requirements and separate held-pose/timing limits.
+  Recaptured all33 native hand views with the current release and refreshed
+  their actual source/image provenance after detecting stale source hashes.
+  No task moves/new IDs, source assets, dependency changes, push, merge or Part04.
+
+## 2026-11-08 — Part04 bounded district facade pass
+
+- PALETTE-01 expands Metropolis12→24 original existing facade families, assigning
+  district frontage pools and office-only tall/interior towers deterministically.
+- Share full/coarse bay/storey fitting; derive matching crown/ground/upper tiles
+  from original model atlas and retain BUSS4 once-only upper-sign exception.
+- Preserve approved whole-map geometry, routes/heights, collision, Valley/City
+  originals and accepted physical/gameplay systems. No dependencies/imports.
+- Record actual placed source-mesh/triangle and residency evidence, native paired
+  distance views, structural equality and source-band/mip checks in
+  testing/part04-world/. All29 Part04 requirements stay unchecked; no newtaskIDs.
+
+## 2026-11-08 — Part05 bounded furniture damage pass
+
+- Added twelve deterministic offline GLB derivatives of original furniture: wall
+  folds, dented panels, tilted lids and sagged roof/foliage. Preserved embedded
+  material/UV/image identity, recomputed geometry/normals/bounds, and independently
+  decoded finite triangle/collider-envelope checks. No external source/media.
+- Prepared hidden damage scenes with hierarchy/material readiness and explicitly
+  ordered distance/damage visibility; preserve fallback and immediate reset.
+- Fixed Part03 contact-timing regression in prop melee by sharing resolved
+  StrikeContact/frozen kick side; retained already-resolved test fixtures.
+- Extended loading/reset/distance, keyboard windup/pause/cancel/single-contact
+  and opposite-side kick tests plus native per-role capture and resident census.
+  Detailed execution evidence and unmet gates: testing/part05-props/README.md.
+  All ten Part05 boxes remain open; no Part06 work or pushed/merged commit.
+
+## 2026-11-08 — Part06 bounded civilian skin continuity pass
+
+- Replace rigid semantic-body weighting with a shared source-space four-bone field,
+  continuous central pelvis ownership and normalized female-source sampling.
+- Retain original neutral geometry/materials/UVs; one conforming shared-edge split
+  per blended primitive samples the field without changing the neutral surface.
+  Preserve8 cow GLBs byte-for-byte and all human/quadruped physical definitions.
+- Add source/triangle/UV/budget checks, focused authoring regressions, complete
+  synthetic paired stress measurements, real native driver receipts and family
+  front/rear/side/impact views. Record individual regressions and increased cost.
+- All11 Part06 requirements remain open. No new requirements, landscape work,
+  dependencies, external repositories/media, push or merge. ADR084/evidence:
+  testing/part06-npcs/README.md.
+
+## 2026-11-08 — Part07 first held club development pass
+
+- Independently authored first club/rules/ability content, buffered keyboard
+  pickup/drop and bounded static pickups; shared rival timing/retaliation and
+  captured fixed-contact reach for racers/NPCs/props. No physical rig/energy change.
+- Appended six original authored keys/two clips with old calibrated data deeply
+  preserved; original socket attachment/grip and selected-arm riding layering.
+  Native recaptures and verification outcomes are in testing/part07-weapons/.
+- R01 pinned reference-only investigation recorded; root license unknown, no
+  imported source/media/dependency. No Part08, push, merge or broad gate closure.
+
+- Final first-club verification:349Rust tests passed/1existing soak ignored;
+  mandatory fmt/clippy/debug/release and source/asset/roadmap checks passed.
+  All18paired lab cases finite; actual keyboard native club and Metro recovery/
+  results passed; current-release hand/body recaptures packaged. Rolling wall
+  frame19.811ms/p9522.633ms still misses16.7ms; no paired cost claim.
+- P05-003 alone moved to Part00:206verified/242open of448stable requirements.
+  Ten Part07 tasks remain open; raw grip/clearance/fidelity limitations retained.
+
+
+## 2026-11-08 — Part08 resident police development pass (ADR086)
+
+On codex/part08-police-loop from5dcc791, add one non-racing shared motorcycle
+patrol, pure police states, validated original authored tuning, confirmed witnessed
+violations,10Hz LOS/loss/search decisions and conditional60Hz safe arrest contact.
+The officer shares handling/contact/three-hit physical recovery and can deliberately
+park into the existing solid runner/navigation path. Busted has no finish/profile
+award, and retry restores police identity/chassis. Existing15 racers, club input,
+worlds/props, rigs, saves and controls remain integrated. Root R01 permission stays
+UNVERIFIED; source inspection is reference-only and no media/code is imported.
+P08-006 is verified in Part00 after state/integration/native evidence; the other9 Part08 requirements retain remaining broad art/human/performance/exit gates;
+no Part09 or network work. Exact tests, failures/corrections and native receipts:
+testing/part08-police/README.md. No new task IDs or automatic push/merge.
+
+## 2026-11-08 — Rider schemes and wide race setup (ADR087)
+
+On codex/rider-colors-wide-grid from432ab33, adjust original swatches/neutral
+leather after local fifteen-scheme reference review, disable player nitrous
+through authored handling configuration and both adapter guards, and update HUD.
+Metropolis has four3m lanes before/after its fork, three on each branch,20m
+successive grid gaps, player last at−288m and340m painted asphalt apron. Fix
+spawn-width/depth validation and cached rear projection extent. Restore primary
+road within the existing reservation, keep995props/13types, move larger furniture
+and30parked cars to secondary streets. Paths/elevations/gates/all19,068buildings
+are unchanged. RACE-SETUP-01 alone is verified intoPart00;208complete/241open,
+449IDs. Native/test receipts and exact limitations: testing/race-setup/README.md.
+Human art/race balance, performance/hardware gates remain open. No reference code
+or media imported, no physical-rig change, no Part09/push/merge.
+
+## 2026-11-08 — UI reference library and artist desk (ADR088)
+
+On codex/ui-reference-kit from1a96667, independently catalog the user-local UI
+images/PEicons, frontend table/popups, native dialog templates, font roles and
+video clips after pinned R01/primary Win32 format research.142 UI records include
+137 unique source hashes;12world-context images are separate.29 populated screen
+entries/36slots,13 popups and7 unique native dialogs repeated in2EXEs are covered.
+Deliver63editable geometry SVGs,28proposed RoadDash pages,66master family briefs,
+142image/15component unchecked art tasks, dimensions/source/replacement CSVs,
+external-only original reference gallery, video thumbnails and26contact sheets.
+Preview own replacement art and import/export notes/statuses; refresh edited
+plans without the game installation. Fix note saving to input events so export
+retains the last edit. No code/media reused from R01; no raw media/font/EXE/AVI
+bundles in Git/runtime. Original references remain in the user's separate folder.
+UI-01 alone is checked; UI-02 added open;209complete/242open/451IDs.
+17 Python tests, full Rust regressions and actual browser verification are recorded
+in testing/ui-kit/README.md. No gameplay/UI/physics migration, push or merge.
+
+## 2026-11-08 — Approved portrait UI pass
+
+Added the exact ten selected portraits and six approved remakes to a sixteen-card native Biker Bar browser, with a 4×4 picker, live names/bios, individual detail views and restored grid focus. Packaged bounded UI derivatives with source hashes and provenance; retained all original approvals. Existing UI-02/UI-05 remain partial; game roster replacement, playable profiles, conversations, final typography and human/hardware review remain open. Verification receipts: docs/testing/approved-portrait-ui/README.md.
+
+## 2026-11-08 — Full-screen rider dossiers
+
+Retained the sixteen approved portraits and 4×4 selection. Character clicks now open a 4:3 full-page painting with a bottom biography strip and compact Back control. Restored detailed personality/food/work/racing descriptions as paraphrases under the user's later non-racist direction. Compact portrait-first grid and licensed Open Sans typography bring menus closer to the original composition language. No generated replacement art, race roster/profile or physics changes. UI-02/UI-05 remain partial. Evidence: docs/testing/portrait-dossier/README.md; decision ADR095.

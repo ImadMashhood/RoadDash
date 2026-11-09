@@ -14,6 +14,7 @@ pub(crate) struct Pose {
     pub held: u8,
     pub lean: f32,
     pub tuck: f32,
+    pub hands: [[f32; 2]; 2],
     planted: [Option<Vec3>; 2],
     normals: [Vec3; 2],
     pub rotations: [Quat; 20],
@@ -25,6 +26,7 @@ impl Default for Pose {
             held: 0,
             lean: 0.0,
             tuck: 0.0,
+            hands: [[0.0; 2]; 2],
             planted: [None; 2],
             normals: [Vec3::Y; 2],
             rotations: [Quat::IDENTITY; 20],
@@ -38,6 +40,9 @@ impl Pose {
             root: self.root.lerp(b.root, t),
             lean: self.lean.lerp(b.lean, t),
             tuck: self.tuck.lerp(b.tuck, t),
+            hands: std::array::from_fn(|i| {
+                std::array::from_fn(|j| self.hands[i][j].lerp(b.hands[i][j], t))
+            }),
             planted: std::array::from_fn(|i| match (self.planted[i], b.planted[i]) {
                 (Some(a), Some(b)) => Some(a.lerp(b, t)),
                 (a, b) => {
@@ -75,6 +80,16 @@ impl Default for Library {
         let data =
             rr_content::motion::Library::from_json(include_str!("../assets/models/motion.json"))
                 .expect("validated motion library");
+        let hands = rr_content::hand_contacts::HandContacts::from_json(include_str!(
+            "../content/hand-contacts.json"
+        ))
+        .expect("validated visual hand contacts");
+        rr_content::weapons::Weapons::builtin()
+            .validate_motion(&data)
+            .expect("club contact keys");
+        hands
+            .validate_motion(&data)
+            .expect("hand shapes reference released runtime keys");
         let keys = data
             .keys
             .iter()
@@ -84,6 +99,11 @@ impl Default for Library {
                     Pose {
                         root: Vec3::from_array(k.root),
                         held: k.held,
+                        hands: if (2160..=2162).contains(&k.id) || (2170..=2172).contains(&k.id) {
+                            [[1.0, 0.0]; 2]
+                        } else {
+                            hands.shapes(k.id, k.held)
+                        },
                         lean: 0.0,
                         tuck: if k.id == 2030 { 1.0 } else { 0.0 },
                         planted: [None; 2],
@@ -111,6 +131,22 @@ impl Default for Library {
 impl Library {
     pub(crate) fn key(&self, id: u16) -> Pose {
         self.keys[&id]
+    }
+    fn weapon_ready(&self, mut base: Pose, hand: usize) -> Pose {
+        let ready = self.key(if hand == 1 { 2170 } else { 2160 });
+        let suffix = if hand == 1 { ".R" } else { ".L" };
+        for (i, name) in self.data.names.iter().enumerate() {
+            if name.ends_with(suffix)
+                && ["upper_arm", "forearm", "hand"]
+                    .iter()
+                    .any(|prefix| name.starts_with(prefix))
+            {
+                base.rotations[i] = ready.rotations[i];
+            }
+        }
+        base.held &= !(1 << hand);
+        base.hands[hand] = [1.0, 0.0];
+        base
     }
     fn clip(&self, name: &str) -> &rr_content::motion::Clip {
         self.data
@@ -340,7 +376,8 @@ pub struct Animator {
     bank_from: f32,
     anchor: Transform,
     landed: Option<Pose>,
-    plants: [Option<(Vec3, Vec3)>; 2],
+    plants: [Option<grounding::Plant>; 2],
+    plant_stance: [bool; 2],
     plant_weight: [f32; 2],
 }
 impl Default for Animator {
@@ -364,6 +401,7 @@ impl Default for Animator {
             anchor: Transform::IDENTITY,
             landed: None,
             plants: [None; 2],
+            plant_stance: [false; 2],
             plant_weight: [0.0; 2],
         }
     }
@@ -406,6 +444,7 @@ fn update(
         let entered = rec.stage != a.stage;
         if entered {
             a.plants = [None; 2];
+            a.plant_stance = [false; 2];
             a.plant_weight = [0.0; 2];
             if rec.stage == RecoveryStage::GettingUp {
                 a.landed = rec
@@ -494,17 +533,27 @@ fn update(
                         .blend(lib.key(2040), a.accel),
                     r.lean / 0.65,
                 );
+                let base = if r.weapon.is_some() {
+                    lib.weapon_ready(base, r.weapon_hand)
+                } else {
+                    base
+                };
                 if r.attack_serial != a.serial {
                     a.serial = r.attack_serial;
                     if r.attack > 0.0 {
                         // Gameplay right is forward cross up (-X); authored left is +X.
                         // Both punching and kicking use the resolved gameplay side.
                         let positive = r.attack_side > 0.0;
-                        let name = match (r.kicking, positive) {
-                            (false, true) => "punch_right",
-                            (false, false) => "punch_left",
-                            (true, true) => "kick_right",
-                            (true, false) => "kick_left",
+                        let armed = r.strike.is_some_and(|s| s.weapon.is_some());
+                        let name = if armed {
+                            if positive { "club_right" } else { "club_left" }
+                        } else {
+                            match (r.kicking, positive) {
+                                (false, true) => "punch_right",
+                                (false, false) => "punch_left",
+                                (true, true) => "kick_right",
+                                (true, false) => "kick_left",
+                            }
                         };
                         a.attack = Some(Attack {
                             name,
@@ -514,12 +563,15 @@ fn update(
                     }
                 }
                 let mut pose = base;
+                if rec.stagger.is_some() {
+                    a.attack = None;
+                }
                 if let Some(attack) = a.attack.as_mut() {
-                    attack.age += dt;
-                    let playback = 1.8;
+                    attack.age = r.strike.as_ref().map_or(attack.age + dt, |s| s.age);
+                    let playback = motion::ATTACK_PLAYBACK;
                     let source_duration = lib.duration(attack.name);
                     let duration = source_duration / playback;
-                    let enter = 0.055;
+                    let enter = motion::ATTACK_ENTER;
                     let exit = 0.08;
                     pose = if attack.age < enter {
                         attack.from.blend(
@@ -734,7 +786,7 @@ mod tests {
         assert_eq!(n.blend(t, 0.0).root, n.root);
         assert_eq!(n.blend(t, 1.0).root, t.root);
     }
-    fn state_app() -> (App, Entity) {
+    pub(super) fn state_app() -> (App, Entity) {
         let mut app = App::new();
         app.add_plugins(MinimalPlugins)
             .init_resource::<Library>()
@@ -749,7 +801,7 @@ mod tests {
         let e = app.world_mut().spawn((rider, Transform::IDENTITY)).id();
         (app, e)
     }
-    fn tick(app: &mut App) {
+    pub(super) fn tick(app: &mut App) {
         app.world_mut()
             .resource_mut::<Time<Fixed>>()
             .advance_by(std::time::Duration::from_secs_f64(1.0 / 60.0));
@@ -1021,6 +1073,104 @@ mod correction_tests {
                         .dot(pose.normals[(limb.bit - 2) as usize])
                         > 0.999
                 );
+            }
+        }
+    }
+}
+
+#[cfg(test)]
+mod hand_tests {
+    use super::tests::{state_app, tick};
+    use super::*;
+    #[test]
+    fn fist_grip_and_relaxed_weights_blend_without_side_swaps_or_overshoot() {
+        let lib = Library::default();
+        let neutral = lib.key(2020);
+        let left = lib.key(2221);
+        let right = lib.key(2231);
+        assert_eq!(neutral.hands, [[1., 0.], [1., 0.]]);
+        assert_eq!(left.hands, [[0., 1.], [1., 0.]]);
+        assert_eq!(right.hands, [[1., 0.], [0., 1.]]);
+        for target in [left, right, lib.key(2364)] {
+            for sample in 0..=100 {
+                let p = neutral.blend(target, sample as f32 / 100.);
+                for weights in p.hands {
+                    assert!(weights.iter().all(|v| (0.0..=1.0).contains(v)));
+                    assert!(weights.iter().sum::<f32>() <= 1.00001);
+                }
+            }
+        }
+    }
+    #[test]
+    fn club_ready_layer_preserves_lean_tuck_and_returns_after_both_attacks() {
+        for speed in [30., 65.] {
+            for side in [-1., 1.] {
+                let (mut app, e) = state_app();
+                {
+                    let mut r = app.world_mut().get_mut::<Rider>(e).unwrap();
+                    r.speed = speed;
+                    r.lean = side * 0.65;
+                }
+                for _ in 0..120 {
+                    tick(&mut app);
+                }
+                let unarmed = app.world().get::<Animator>(e).unwrap().current;
+                let hand = usize::from(side > 0.);
+                {
+                    let mut r = app.world_mut().get_mut::<Rider>(e).unwrap();
+                    r.weapon = Some(rr_core::weapons::Weapon::Club);
+                    r.weapon_hand = hand;
+                }
+                tick(&mut app);
+                let ready = app.world().get::<Animator>(e).unwrap().current;
+                let lib = app.world().resource::<Library>();
+                assert!(ready.root.distance(unarmed.root) < 1e-6);
+                assert_eq!(ready.lean, unarmed.lean);
+                assert!((ready.tuck - unarmed.tuck).abs() < 1e-5);
+                for (i, name) in lib.data.names.iter().enumerate() {
+                    let arm = name.ends_with(if hand == 1 { ".R" } else { ".L" })
+                        && ["upper_arm", "forearm", "hand"]
+                            .iter()
+                            .any(|p| name.starts_with(p));
+                    if !arm {
+                        assert!(
+                            ready.rotations[i].dot(unarmed.rotations[i]).abs() > 0.999999,
+                            "{name}"
+                        );
+                    }
+                }
+                {
+                    let mut r = app.world_mut().get_mut::<Rider>(e).unwrap();
+                    r.attack_serial += 1;
+                    r.attack = 0.85;
+                    r.attack_side = side;
+                    let mut clock = motion::StrikeClock::new(
+                        if side < 0. {
+                            rr_core::AttackSide::Left
+                        } else {
+                            rr_core::AttackSide::Right
+                        },
+                        side,
+                        crate::weapons::ability().source_contact,
+                    );
+                    clock.weapon = Some(crate::weapons::ability());
+                    r.strike = Some(clock);
+                }
+                for _ in 0..80 {
+                    app.world_mut()
+                        .get_mut::<Rider>(e)
+                        .unwrap()
+                        .strike
+                        .as_mut()
+                        .unwrap()
+                        .advance(1. / 60.);
+                    tick(&mut app);
+                }
+                let returned = app.world().get::<Animator>(e).unwrap();
+                assert!(returned.attack.is_none());
+                for (a, b) in returned.current.rotations.into_iter().zip(ready.rotations) {
+                    assert!(a.dot(b).abs() > 0.99999);
+                }
             }
         }
     }

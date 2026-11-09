@@ -26,10 +26,32 @@ def triangulate(poly):
     assert abs(sum(Polygon([vertices[i] for i in t]).area for t in triangles)-clean.area)<1e-5
     return dict(rings=rings,triangles=triangles)
 
+def validate_palette(palette):
+    families = palette['families']
+    assert len(families) == 24 and len(set(families)) == len(families)
+    catalog = json.loads((ROOT/'art/buildings/mesh_assets/storey_kit/MANIFEST.json').read_text())
+    records = {r['id']: r for r in catalog['records']}
+    assert all(x in records and records[x]['asset_type'] == 'facade' for x in families)
+    assert set(palette['pools']) == {'old_city', 'market', 'mixed', 'terraces', 'north_city', 'tower'}
+    assert set(x for pool in palette['pools'].values() for x in pool) == set(families)
+    assert all(pool and len(set(pool)) == len(pool) for pool in palette['pools'].values())
+    assert all(x.startswith('OFFC') for x in palette['pools']['tower'])
+    assert palette['tower_min_floors'] == 13
+
+
+def facade_style(building, block, floors, palette):
+    """Stable district frontages; tall/accent towers use office-capable storeys."""
+    role = "tower" if floors >= palette["tower_min_floors"] or building["role"] == "interior_tower" else block["district"]
+    pool = palette["pools"][role]
+    seed = int.from_bytes(hashlib.blake2b(building["id"].encode(), digest_size=4).digest(), "little")
+    return palette["families"].index(pool[seed % len(pool)])
+
 def run():
     source=ROOT/'docs/planning/farms-long-city/LAYOUT.json';d=json.loads(source.read_text())
     from metropolis_street_life import varied_floors, parked_cars, traffic_paths
     life=json.loads((ROOT/'content/world/metropolis_street_life.json').read_text())
+    palette=json.loads((ROOT/'content/world/metropolis_facades.json').read_text())
+    validate_palette(palette)
     records=[]
     for b in d['blocks']:
         for building in b['buildings']:
@@ -37,7 +59,7 @@ def run():
             floors=varied_floors(building,b,life)
             records.append(dict(id=building['id'],shape=triangulate(p),height=round(floors*life['floor_height'],2),
                                 floors=floors,tier=['hero','standard','skyline','massing'].index(building['detail_tier']),
-                                style=int.from_bytes(hashlib.blake2b(building['id'].encode(),digest_size=4).digest(),'little')%12))
+                                style=facade_style(building,b,floors,palette)))
     edges={e['id']:e for e in d['edges']};paths=[]
     for choice in ['old_market','station_avenue']:
         points=[];progress=[]
@@ -53,13 +75,13 @@ def run():
     for i in range(0,len(paths[0]['points']),max(1,len(paths[0]['points'])//125)):
         p=paths[0]['points'][i];s=paths[0]['progress'][i]
         if cp and math.dist(p,cp[-1]['position'])<20:continue
-        cp.append(dict(position=p,half_width=5,bank_degrees=0,sector='farms' if s<3150 else 'city',surface='asphalt'))
+        cp.append(dict(position=p,half_width=6,bank_degrees=0,sector='farms' if s<3150 else 'city',surface='asphalt'))
     if math.dist(cp[-1]['position'],paths[0]['points'][-1])<20:cp.pop()
-    cp.append(dict(position=paths[0]['points'][-1],half_width=5,bank_degrees=0,sector='city',surface='asphalt'))
+    cp.append(dict(position=paths[0]['points'][-1],half_width=6,bank_degrees=0,sector='city',surface='asphalt'))
     gates=sorted(set([0,1000,2200,3150,3350,3900,4500,5000,5362.5,6500,8000,9500,11000,12000]))
     track=dict(schema_version=1,id='metro-run-01',name='Metropolis — Farms to Downtown / two routes',closed=False,scenery_seed=67201,
                control_points=cp,checkpoints=[dict(id=f'metro-gate-{i:02}',fraction=s/12000) for i,s in enumerate(gates)],
-               spawns=[dict(id=f'metro-grid-{i:02}',distance=-8-(14-i)//2*20,lane=-2 if i%2 else 2) for i in range(15)],props=[],verge_width=2.0)
+               spawns=[dict(id=f'metro-grid-{i:02}',distance=-8-(14-i)*20,lane=-1.5 if i%2 else -4.5) for i in range(15)],props=[],verge_width=2.0)
     ground_bounds=decode(d['city_envelope']).bounds
     field_bounds=[Polygon(f['polygon']).bounds for f in d['fields']]
     bounds=[min(x[0] for x in [ground_bounds]+field_bounds)-100,min(x[1] for x in [ground_bounds]+field_bounds)-180,
@@ -92,7 +114,7 @@ def run():
     # Exact farm pavement includes the complete starting grid, not a city-only preview.
     farm=edges['farm_approach']['points']
     from shapely import LineString
-    farm_road=LineString([(p[0],p[2]) for p in farm]).buffer(5,cap_style='square',join_style='mitre')
+    farm_road=LineString([(p[0],p[2]) for p in farm]).buffer(6.8,cap_style='square',join_style='mitre')
     farm_road=farm_road.difference(decode(d['road_surface']))
     xmin,zmin,xmax,zmax=farm_road.bounds
     for x in range(math.floor(xmin/32)*32,math.ceil(xmax/32)*32,32):
@@ -101,7 +123,7 @@ def run():
                 if p.area>.001:surfaces.append(dict(kind=0,shape=triangulate(p)))
     # Grid apron continues the first source segment backwards.
     a,b=paths[0]['points'][:2];dx,dz=b[0]-a[0],b[2]-a[2];n=math.hypot(dx,dz)
-    apron=LineString([(a[0]-dx/n*180,a[2]-dz/n*180),(a[0],a[2])]).buffer(5,cap_style='square')
+    apron=LineString([(a[0]-dx/n*340,a[2]-dz/n*340),(a[0],a[2])]).buffer(6.8,cap_style='square')
     for p in polygons(apron):surfaces.append(dict(kind=0,shape=triangulate(p)))
     manifest=dict(schema_version=1,source_layout_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),track=track,paths=paths,
                   bounds=bounds,buildings=records,surfaces=surfaces,streets=d['streets'],
@@ -111,10 +133,10 @@ def run():
     (ROOT/'docs/testing/metropolis-sidewalks/authoring.json').write_text(json.dumps(sidewalk_report,indent=2)+'\n')
     OUT.write_text(json.dumps(manifest,separators=(',',':'))+'\n')
     atlas_root=ROOT/'art/buildings/mesh_assets/far_facades';atlas=json.loads((atlas_root/'MANIFEST.json').read_text())
-    designs=['BUSS1','BUSS4','CHINA12','CLSTGA11','OFFC1','OFFC2','OFFC10','RUNDWN11','VICT11','VICT12','WHSE11','WRHS1']
+    designs=palette['families']
     data=bytearray();sources=[]
     for design in designs:
-        for band in [0,1]:
+        for band in [0,1,2]:
             source_design='CLSTGA11' if design=='BUSS4' and band==1 else design
             tile=next(t for t in atlas['records'] if t['design']==source_design and t['band']==band)
             for level in range(5):
@@ -126,6 +148,6 @@ def run():
             sources.append(dict(design=design,source_design=source_design,band=band,source_sha256=tile['source_sha256']))
     dest=ROOT/'assets/metropolis';dest.mkdir(exist_ok=True);(dest/'facades.rgba').write_bytes(data)
     (dest/'PROVENANCE.json').write_text(json.dumps(dict(source_manifest_sha256=hashlib.sha256((atlas_root/'MANIFEST.json').read_bytes()).hexdigest(),
-       sources=sources,modifications='Crop original model-derived storey albedo/mips; flatten transparent gaps to opaque masonry; no original game media.',sha256=hashlib.sha256(data).hexdigest()),indent=2)+'\n')
+       palette_sha256=hashlib.sha256((ROOT/'content/world/metropolis_facades.json').read_bytes()).hexdigest(),atlas_columns=8,atlas_rows=9,bands_per_family=3,mip_levels=5,sources=sources,modifications='Crop original model-derived storey albedo/mips; flatten transparent gaps to opaque masonry; no original game media.',sha256=hashlib.sha256(data).hexdigest()),indent=2)+'\n')
     print(json.dumps(dict(buildings=len(records),surface_patches=len(surfaces),manifest_bytes=OUT.stat().st_size,facade_bytes=len(data)),indent=2))
 if __name__=='__main__':run()

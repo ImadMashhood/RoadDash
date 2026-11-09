@@ -39,6 +39,23 @@ def parked_cars(data,paths,road,cfg):
                 shape=footprint(p,yaw,1.8,3.8).buffer(.1)
                 if not road.covers(shape) or any(shape.distance(j)<25 for j in junctions):continue
                 result.append(dict(id=f'metro-parked-{len(result):03}',position=p,heading=yaw))
+    # No curb parking in the new live 4/3-lane avenue. Keep original parked
+    # vehicles on wide secondary streets with a full two-lane centre remaining.
+    from shapely import LineString
+    primary=shapely.union_all([LineString([(p[0],p[2]) for p in path['points']]) for path in paths])
+    for street in data['streets']:
+        if street['width_m']<12:continue
+        line=LineString(street['points']);a,b=street['points'][0],street['points'][-1]
+        dx,dz=b[0]-a[0],b[1]-a[1];n=math.hypot(dx,dz);dx,dz=dx/n,dz/n
+        for along in range(32,int(n)-31,42):
+            q=line.interpolate(along)
+            if q.distance(primary)<22 or q.distance(primary)>140:continue
+            for side in [-1,1]:
+                if len(result)>=65:return result
+                p=[q.x+dz*side*3.95,q.y-dx*side*3.95];yaw=math.atan2(dx,dz)+(math.pi if side<0 else 0)
+                shape=footprint(p,yaw,1.8,3.8).buffer(.1)
+                if not road.covers(shape) or any(shape.distance(j)<25 for j in junctions):continue
+                result.append(dict(id=f'metro-parked-{len(result):03}',position=p,heading=yaw))
     return result
 
 def traffic_paths(paths,data=None):

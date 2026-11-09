@@ -15,6 +15,7 @@ pub enum Cue {
     Honk,
     Land,
     Footstep,
+    Siren,
 }
 #[derive(Message, Clone, Copy)]
 pub struct AudioCue {
@@ -28,6 +29,7 @@ impl AudioCue {
 }
 #[derive(Resource)]
 pub struct Sounds {
+    siren: Handle<AudioSource>,
     crash: Handle<AudioSource>,
     breaking: Handle<AudioSource>,
     punch: Handle<AudioSource>,
@@ -74,6 +76,7 @@ fn wave(duration: f32, kind: u8) -> AudioSource {
         filtered = filtered * 0.92 + noise * 0.08;
         let decay = (-t * if kind == 4 { 5.0 } else { 15.0 }).exp();
         let value = match kind {
+            13 => (TAU * (600.0 * t + 25.0 * (TAU * 3.0 * t).sin())).sin() * 0.28,
             12 => (noise * 0.65 + filtered * 0.6) * (-t * 18.).exp(),
             0 => {
                 // Engine firing pulses and harmonics at a loop-safe base RPM.
@@ -131,6 +134,7 @@ pub fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSource>>) {
         ));
     }
     commands.insert_resource(Sounds {
+        siren: sources.add(wave(0.8, 13)),
         crash: sources.add(wave(0.7, 4)),
         breaking: sources.add(wave(0.3, 12)),
         punch: sources.add(wave(0.2, 5)),
@@ -210,6 +214,7 @@ pub fn update(
         let distance = cue.position.distance(player_transform.translation);
         let gain = (1.0 / (1.0 + distance * 0.09)).clamp(0.0, 1.0);
         let handle = match cue.kind {
+            Cue::Siren => &sounds.siren,
             Cue::Crash => &sounds.crash,
             Cue::Break => &sounds.breaking,
             Cue::Punch => &sounds.punch,
@@ -238,7 +243,11 @@ pub fn update(
     }
     if race.phase == Phase::Finished && *last_phase != Some(Phase::Finished) && !muted.0 {
         commands.spawn((
-            AudioPlayer::new(sounds.finish.clone()),
+            AudioPlayer::new(if race.arrested {
+                sounds.siren.clone()
+            } else {
+                sounds.finish.clone()
+            }),
             PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.5)),
         ));
     }
@@ -251,7 +260,7 @@ mod tests {
     use super::*;
     #[test]
     fn generated_audio_is_valid_pcm_and_not_silent() {
-        for kind in 0..12 {
+        for kind in 0..=13 {
             let source = wave(0.25, kind);
             assert_eq!(&source.bytes[0..4], b"RIFF");
             assert_eq!(&source.bytes[8..12], b"WAVE");

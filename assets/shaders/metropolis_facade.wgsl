@@ -5,8 +5,8 @@
 @fragment
 fn fragment(input: VertexOutput, @builtin(front_facing) front: bool) -> FragmentOutput {
     let tile = u32(round(input.color.r));
-    let cell = vec2<f32>(f32(tile % 6u), f32(tile / 6u));
-    let atlas_size = vec2<f32>(768.0, 512.0);
+    let cell = vec2<f32>(f32(tile % 8u), f32(tile / 8u));
+    let atlas_size = vec2<f32>(1024.0, 1152.0);
     let uv = (cell * 128.0 + 16.0 + fract(input.uv) * 96.0) / atlas_size;
     // Differentiate unwrapped facade coordinates: repeating bays must not force
     // an unrelated mip level at each window seam. Wrapped gutters protect tiles.

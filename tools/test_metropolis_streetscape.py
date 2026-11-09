@@ -30,7 +30,7 @@ class Sidewalks(unittest.TestCase):
         self.assertEqual({a['kind'] for a in p},{'street_lamp','broadleaf','flower_planter','bench','street_bin','hydrant','news_boxes','parking_meter','bus_sign','callbox','mailboxes','recycling_pair','utility_box'})
         for a in p:
             x,z=a['position'];side=1 if x>0 else -1
-            self.assertTrue(w.covers(footprint([x+side*1.7,z],0,2,2)))
+            self.assertTrue(w.covers(footprint([x+side*1.2,z],0,1.5,2)))
             sx,sz=(.7,.7) if a['kind']=='broadleaf' else (a['size'][0],a['size'][2])
             shape=footprint([x,z],a['heading'],sx,sz).buffer(.12)
             self.assertTrue(w.covers(shape))

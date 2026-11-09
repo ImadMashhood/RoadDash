@@ -1,0 +1,45 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 9.42s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+CAR_HEIGHT_TRAJECTORY active=false rider_kmh=100 car_kmh=0 solid_height_m=1.2 max_torso_height_m=1.4924 max_torso_pitch_rad=1.4723 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=false rider_kmh=100 car_kmh=60 solid_height_m=1.2 max_torso_height_m=1.4873 max_torso_pitch_rad=1.5370 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=false rider_kmh=100 car_kmh=-60 solid_height_m=1.2 max_torso_height_m=1.5126 max_torso_pitch_rad=1.3519 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=false rider_kmh=100 car_kmh=0 solid_height_m=2.5 max_torso_height_m=1.6226 max_torso_pitch_rad=1.5445 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=false rider_kmh=100 car_kmh=60 solid_height_m=2.5 max_torso_height_m=1.4873 max_torso_pitch_rad=1.5370 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=false rider_kmh=100 car_kmh=-60 solid_height_m=2.5 max_torso_height_m=1.5126 max_torso_pitch_rad=1.1055 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=true rider_kmh=100 car_kmh=0 solid_height_m=1.2 max_torso_height_m=3.0785 max_torso_pitch_rad=1.5547 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=true rider_kmh=100 car_kmh=60 solid_height_m=1.2 max_torso_height_m=1.4389 max_torso_pitch_rad=1.5400 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=true rider_kmh=100 car_kmh=-60 solid_height_m=1.2 max_torso_height_m=1.9988 max_torso_pitch_rad=1.4383 cleared_front_above_roof=true duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=true rider_kmh=100 car_kmh=0 solid_height_m=2.5 max_torso_height_m=1.4925 max_torso_pitch_rad=0.4421 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=true rider_kmh=100 car_kmh=60 solid_height_m=2.5 max_torso_height_m=1.4389 max_torso_pitch_rad=1.5400 cleared_front_above_roof=false duration_ticks=180
+CAR_HEIGHT_TRAJECTORY active=true rider_kmh=100 car_kmh=-60 solid_height_m=2.5 max_torso_height_m=1.5473 max_torso_pitch_rad=1.4986 cleared_front_above_roof=false duration_ticks=180
+test collision_tests::measured_solid_car_height_trajectories_keep_passive_control_and_finite_recovery ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 223 filtered out; finished in 8.29s
+
+     Running unittests src/bin/city_preview.rs (target/debug/deps/city_preview-819433f16b2abd47)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (target/debug/deps/prop_preview-5ec74f20892fc13c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-68dab0f347b409a4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (target/debug/deps/visibility_probe-b4a0c0a257349862)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

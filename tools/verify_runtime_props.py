@@ -16,6 +16,9 @@ def verify():
     folder = ROOT / 'art/props/mesh_assets'
     assert hashlib.sha256((folder / 'MANIFEST.json').read_bytes()).hexdigest() == receipt['source_manifest_sha256']
     assert receipt['physics_data'] is False
+    assert receipt['generator_sha256'] == hashlib.sha256((ROOT/'tools/prepare_runtime_props.py').read_bytes()).hexdigest()
+    for record in receipt['files']:
+        assert record['source_sha256'] == hashlib.sha256((ROOT/record['source_file']).read_bytes()).hexdigest()
     expected = {f['file']: f['sha256'] for f in receipt['files']}
     checked = set()
     for prop in catalog['records']:

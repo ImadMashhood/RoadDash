@@ -45,6 +45,35 @@ impl Library {
         lib.validate()?;
         Ok(lib)
     }
+    /// Explicit authored contact keys, not recovered original logical frame timings.
+    pub fn strike_contact(&self, kicking: bool) -> Result<f32, String> {
+        let (names, keys, index) = if kicking {
+            (["kick_left", "kick_right"], [2261, 2271], 1)
+        } else {
+            (["punch_left", "punch_right"], [2222, 2232], 2)
+        };
+        let mut times = [0.0; 2];
+        for side in 0..2 {
+            let clip = self
+                .clips
+                .iter()
+                .find(|c| c.name == names[side])
+                .ok_or("missing strike clip")?;
+            if clip.keys.get(index) != Some(&keys[side]) {
+                return Err("strike contact key differs from runtime contract".into());
+            }
+            times[side] = clip
+                .durations
+                .get(..index)
+                .ok_or("missing contact phase durations")?
+                .iter()
+                .sum();
+        }
+        if (times[0] - times[1]).abs() > 1e-6 {
+            return Err("mirrored strike contact timing differs".into());
+        }
+        Ok(times[0])
+    }
     pub fn validate(&self) -> Result<(), String> {
         if self.limbs.len() != 4
             || self.limbs.iter().any(|l| {
@@ -142,12 +171,28 @@ impl Library {
         if bits.len() != 4 {
             return Err("duplicate contact bit".into());
         }
+        self.strike_contact(false)?;
+        self.strike_contact(true)?;
         Ok(())
     }
 }
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn explicit_extended_contacts_and_mirrored_timing_are_validated() {
+        let mut lib =
+            Library::from_json(include_str!("../../../assets/models/motion.json")).unwrap();
+        assert!((lib.strike_contact(false).unwrap() - 0.26).abs() < 1e-6);
+        assert!((lib.strike_contact(true).unwrap() - 0.24).abs() < 1e-6);
+        let clip = lib
+            .clips
+            .iter_mut()
+            .find(|c| c.name == "punch_left")
+            .unwrap();
+        clip.keys.swap(1, 2);
+        assert!(lib.validate().is_err());
+    }
     #[test]
     fn shipped_clips_are_valid_and_unknown_payloads_are_rejected() {
         let text = include_str!("../../../assets/models/motion.json");

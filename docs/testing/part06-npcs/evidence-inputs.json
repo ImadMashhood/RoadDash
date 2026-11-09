@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "file": "tools/prepare_runtime_props.py",
+      "sha256": "3a3e2988ab5090ffe104e7e5fe70e0207c7555d6235f48bc9919b5392851d035"
+    },
+    {
+      "file": "tools/verify_runtime_props.py",
+      "sha256": "7460df960581b67d45b264a4976db42d52023bfa6fdfe0caf6009bf81cd459c5"
+    },
+    {
+      "file": "tools/test_actor_weights.py",
+      "sha256": "5660060292b390bf9b1412eeb948678423c64d5858496b58f136c4c40d46db52"
+    },
+    {
+      "file": "tools/verify_actor_deformation.py",
+      "sha256": "00e361b964cb51719e3ca80637a6e76c6a3cd11718261a7d1cbbb72e5687c99b"
+    },
+    {
+      "file": "tools/verify_actor_source.py",
+      "sha256": "c3603c6c189739b52931c4127fd6d5c378fd1af74c6866a9fb9044f0fdbe6f76"
+    },
+    {
+      "file": "docs/testing/props-in-game/runtime-intake.json",
+      "sha256": "43762fcecb8de6d7fd54ab57eb05527058ee0b4fc89cbf31acba3a7951a7f0cd"
+    },
+    {
+      "file": "docs/testing/part06-npcs/deformation.json",
+      "sha256": "80688f30a8afea4258011cc6ac2be5fbdc63d4e9c2a9f0aa9080bcf9d65fef55"
+    },
+    {
+      "file": "docs/testing/part06-npcs/native-deformation.json",
+      "sha256": "45059d560576d3b63d28a10146fc99593678d9cf33c673e2cdc8c15548dfb87a"
+    },
+    {
+      "file": "docs/testing/part06-npcs/native-poses.jsonl",
+      "sha256": "045a664ab2cc426d5d13ec8259199fe3be7e79facdbaeb87878db8dc1d1ffb37"
+    },
+    {
+      "file": "docs/testing/part06-npcs/source-and-cost.json",
+      "sha256": "0412aee8072be164e2ccbd61ca5364b2982178752813ac4e2c0cfcc36db16fee"
+    },
+    {
+      "file": "docs/testing/part06-npcs/regressions.json",
+      "sha256": "bebc8ea8e42ab53fda9bbd23a636a1d310b1f539185e41642168831daba1f229"
+    },
+    {
+      "file": "docs/testing/part06-npcs/performance-comparison.json",
+      "sha256": "ffa5b2a59ef7958b161a0176cceec5a5a1a4d3dae70878eee744e3c8a0824a25"
+    }
+  ]
+}

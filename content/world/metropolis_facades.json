@@ -1,0 +1,85 @@
+{
+  "families": [
+    "BUSS1",
+    "BUSS4",
+    "CHINA12",
+    "CLSTGA11",
+    "OFFC1",
+    "OFFC2",
+    "OFFC10",
+    "RUNDWN11",
+    "VICT11",
+    "VICT12",
+    "WHSE11",
+    "WRHS1",
+    "CHINA13",
+    "CHINA14",
+    "CLSTGA12",
+    "CLSTGA13",
+    "CLSTGA14",
+    "OFFC11",
+    "OFFC12",
+    "OFFC13",
+    "RUNDWN12",
+    "VICT13",
+    "VICT14",
+    "WHSE12"
+  ],
+  "pools": {
+    "old_city": [
+      "CHINA12",
+      "CHINA13",
+      "CHINA14",
+      "VICT11",
+      "VICT13",
+      "RUNDWN11",
+      "RUNDWN12"
+    ],
+    "terraces": [
+      "VICT11",
+      "VICT12",
+      "VICT13",
+      "VICT14",
+      "CLSTGA11",
+      "CLSTGA12",
+      "CLSTGA13",
+      "CLSTGA14"
+    ],
+    "mixed": [
+      "BUSS1",
+      "BUSS4",
+      "CLSTGA12",
+      "CLSTGA14",
+      "WHSE11",
+      "WHSE12",
+      "WRHS1"
+    ],
+    "north_city": [
+      "OFFC1",
+      "OFFC2",
+      "OFFC10",
+      "OFFC11",
+      "OFFC12",
+      "OFFC13",
+      "WHSE11",
+      "WHSE12"
+    ],
+    "market": [
+      "BUSS1",
+      "BUSS4",
+      "CHINA12",
+      "CHINA13",
+      "CHINA14",
+      "CLSTGA11"
+    ],
+    "tower": [
+      "OFFC1",
+      "OFFC2",
+      "OFFC10",
+      "OFFC11",
+      "OFFC12",
+      "OFFC13"
+    ]
+  },
+  "tower_min_floors": 13
+}

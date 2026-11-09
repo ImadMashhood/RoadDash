@@ -12,6 +12,7 @@ pub(super) struct PerfLog {
     frames: u64,
     game_ms: f32,
     physics_ms: f32,
+    physics_phases_ms: [f32; 3],
     main_ms: f32,
     steps: u64,
     dropped: u64,
@@ -75,6 +76,7 @@ impl Default for PerfLog {
             frames: 0,
             game_ms: 0.,
             physics_ms: 0.,
+            physics_phases_ms: [0.; 3],
             main_ms: 0.,
             steps: 0,
             dropped: 0,
@@ -110,6 +112,7 @@ pub(super) fn sample(
     views: Query<&ViewVisibility, With<Mesh3d>>,
     bodies: Query<(&RigidBody, Option<&RigidBodyDisabled>)>,
     cameras: Query<&GlobalTransform, With<Camera3d>>,
+    context: ReadRapierContext,
 ) {
     if log.sender.is_none() {
         return;
@@ -117,15 +120,34 @@ pub(super) fn sample(
     log.frames += 1;
     log.game_ms += metrics.frame_gameplay_ms;
     log.physics_ms += metrics.frame_physics_ms;
+    for (sum, phase) in log
+        .physics_phases_ms
+        .iter_mut()
+        .zip(metrics.frame_physics_phases_ms)
+    {
+        *sum += phase;
+    }
     log.steps += metrics.frame_fixed_steps;
     log.main_ms += metrics.frame_start.elapsed().as_secs_f32() * 1000.;
     if log.last.elapsed().as_secs_f32() < 1. {
         return;
     }
     let frames = log.frames.max(1) as f32;
+    let window_wall_ms = log.last.elapsed().as_secs_f64() * 1000. / f64::from(frames);
+    let backend = context.single().ok().map(|ctx| {
+        serde_json::json!({
+            "rigid_bodies": ctx.rigidbody_set.bodies.len(),
+            "backend_colliders": ctx.colliders.colliders.len(),
+            "contact_pairs": ctx.simulation.narrow_phase.contact_pairs().count(),
+            "contact_manifolds": ctx.simulation.narrow_phase.contact_pairs().map(|p| p.manifolds.len()).sum::<usize>(),
+            "awake_dynamic_bodies": ctx.rigidbody_set.bodies.iter().filter(|(_, b)| b.is_dynamic() && !b.is_sleeping() && b.is_enabled()).count(),
+            "impulse_joints": ctx.joints.impulse_joints.len(),
+            "note": "instantaneous graph census, not per-substep timing or GPU profiling"
+        })
+    });
     let player = riders.iter().find(|r| r.id == 0);
-    let value = serde_json::json!({"schema_version":1,"parallel_physics":cfg!(feature="parallel_physics"),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
- "fixed_steps":log.steps,"fixed_gameplay_ms_per_frame":log.game_ms/frames,"physics_ms_per_frame":log.physics_ms/frames,"main_world_ms_per_frame":log.main_ms/frames,
+    let value = serde_json::json!({"schema_version":1,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
+ "fixed_steps":log.steps,"fixed_gameplay_ms_per_frame":log.game_ms/frames,"physics_ms_per_frame":log.physics_ms/frames,"physics_sync_ms_per_frame":log.physics_phases_ms[0]/frames,"physics_step_ms_per_frame":log.physics_phases_ms[1]/frames,"physics_writeback_ms_per_frame":log.physics_phases_ms[2]/frames,"main_world_ms_per_frame":log.main_ms/frames,
  "entities":metrics.entities,"colliders":metrics.colliders,"dynamic_bodies":bodies.iter().filter(|(b,d)|**b==RigidBody::Dynamic&&d.is_none()).count(),
  "mesh_entities":views.iter().count(),"visible_mesh_entities":views.iter().filter(|v|v.get()).count(),"mesh_assets":meshes.map_or(0,|a|a.len()),"material_assets":materials.map_or(0,|a|a.len()),
  "camera_xyz":cameras.iter().next().map(|t|t.translation().to_array()),"player_progress_m":player.map(|r|r.progress),"player_route":player.map(|r|r.route),"racing":race.is_some_and(|r|r.phase==crate::game::Phase::Racing),"dropped_log_samples":log.dropped,
@@ -144,6 +166,7 @@ pub(super) fn sample(
     log.frames = 0;
     log.game_ms = 0.;
     log.physics_ms = 0.;
+    log.physics_phases_ms = [0.; 3];
     log.main_ms = 0.;
     log.steps = 0;
 }

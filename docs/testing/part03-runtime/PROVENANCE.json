@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-08T08:01:39.213150+00:00",
+  "base_commit": "163735f",
+  "branch": "codex/part03-contact-grounding",
+  "license": "Original RoadDash test captures and independently authored implementation, project MIT; no retail media/code imported.",
+  "source_sha256": {
+    "Cargo.toml": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+    "Cargo.lock": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "src/game.rs": "d82eeaecee49005c83c5412cbe80a8fee3a433d18635939e0f10309ed054ac6a",
+    "src/runtime.rs": "e8abc33555b4337687bdacc6a3aa65fea63f4f00f9e92697040b983e74b806b1",
+    "src/combat.rs": "ba36d668c532b9e6556663db2cd631818a5f9436b73fb3d8b2a7b7909d9d1101",
+    "src/animation.rs": "54966e2f43224d4c2b87946a440a4040e77d92edcf6a757a98e8c8607268a091",
+    "src/animation/grounding.rs": "2534b1b68efa8a6f9756bbe5d340c14c781171f2db65000d0bedd762026921e8",
+    "src/animation/locomotion.rs": "4f142f7ffa27e6b21fc4f33b83f5b487f53551412b92563261604d0969321900",
+    "src/animation/preview.rs": "7efc775f428f0ca7eed4463639e2f054c1b802708e53de2c21ec7be7d0f4a2d0",
+    "src/verification.rs": "fa345777061f094da6399fa9660249044799e03f5a11f81b24bebf16c788ef78",
+    "src/lib.rs": "0de3edb1a30276fa38a27a5e1fa2af9583163890576642476d10d41f52803525",
+    "src/npc.rs": "03557912c40382f1a3051092d4829c1c5326aaef05a8a2cc5341c5e105452a1a",
+    "crates/rr_core/src/motion.rs": "10e3d10f6123b050395a63cdb3d03b78e26617669c511024803b9d78a0ddcefc",
+    "crates/rr_content/src/motion.rs": "e4b2e23f2e3a484e3c4ee790203b9c648fa9fddcc7f6bf63201c9941d3a852e2",
+    "assets/models/motion.json": "d4fd772c89b835bf8b23e13f89ca303bde225e8a7c009a2fbf3139f97c3e4fa3",
+    "content/hand-contacts.json": "fa5cecd69f0cf7f54168fc973f12dbb3f254a38cf93dd27f341a8e2fde6b6be7"
+  },
+  "release_binary_sha256": "0e3530ed34fe565dd16b3e254b0368e18409897dc83bc9b5cd3bb9276620fd65",
+  "images": {
+    "lab-kick-left-side.png": "cb5253e5285b37e95ea55b7b6783c5e67da8febb2c60168239766b7bb62f3e33",
+    "lab-punch-left-rear.png": "86cb087048a286b278999a2bf6ab16dd7469192e095eabb2fe7ed7a557c62cb9",
+    "lab-running-side.png": "c879fbb6041161d7344e9caaf341d11b974923729a6e687c8880b3cd8e6799da",
+    "strike-contact.png": "504241edd0564a9637d04720cc5fea84a4b1d8e244db868548275aeca46b5415",
+    "strike-windup.png": "5c41695415c8f94c1b26d7d01fd0b40149fbbe4ada14234b7147d09b63e3f013"
+  },
+  "limitations": [
+    "Native contact capture is a real queued keyboard strike with no guaranteed nearby hit target;16 headless cases test actual hit and sampled contact pose.",
+    "Native lab uses visual fallback clock; held hand review does not validate contact scheduler.",
+    "No user art/feel, Windows/controller hardware or production performance certification."
+  ]
+}

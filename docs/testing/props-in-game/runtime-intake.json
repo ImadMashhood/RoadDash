@@ -2,477 +2,715 @@
   "files": [
     {
       "file": "art/props/mesh_assets/runtime/PROP-016720A1701E_skin_lod1.glb",
-      "sha256": "a93cd10fef703156be628e2aad54d2c7dca8e5f5c76f1c45b060a2fce15695bf"
+      "sha256": "3042b3a0a63ccae3663707ab103cf83bb235e5f8969a010963a1dccb0d820ee6",
+      "source_file": "art/props/mesh_assets/models/PROP-016720A1701E_lod1.glb",
+      "source_sha256": "ebd55aa71987382193e2e208921fbf9c58d7ca17ec1970a4cb1e3a4c7be95d91"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-016720A1701E_skin_lod2.glb",
-      "sha256": "56502e92faf23b0bb4b8f0b29aa0ba420188b1912a13002228a8eb4909eebc62"
+      "sha256": "25ea06ee408e80aac72b8f5c02691700e1172943e9b81a4dc71476d8c56f3e15",
+      "source_file": "art/props/mesh_assets/models/PROP-016720A1701E_lod2.glb",
+      "source_sha256": "4206429d9bd3fcd95b9e612f9909accab9ecca79bac30da041299e6252694d61"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-032FAAB95574_skin_lod1.glb",
-      "sha256": "07d1500d01bbfa8112e19fd68bcef418b9f6281d08a0e47dc7f70d53b88df92f"
+      "sha256": "989b9b3a28806b739e6f5df9d2fce03803ed09e932f2d5793138ac74c173a169",
+      "source_file": "art/props/mesh_assets/models/PROP-032FAAB95574_lod1.glb",
+      "source_sha256": "5dd3bcb80d4252a89a636a1fcdf574459974391232024bcd4f0be74332fdd15e"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-032FAAB95574_skin_lod2.glb",
-      "sha256": "3ac91a64f692580ec61b7d8f2cc3c054251f9d3802a80c4babc1765f176b4b85"
+      "sha256": "05c8270233760d3bc07b860bb7d06597331f5a6713529581d9cb2c56e2601e73",
+      "source_file": "art/props/mesh_assets/models/PROP-032FAAB95574_lod2.glb",
+      "source_sha256": "6eb511915964590aa08874c152a765528e71d044c5e39641455dba2e2c471aa9"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-06B4CC358501_skin_lod1.glb",
-      "sha256": "47f4867c2c2f9be59efb21210e074f14d96760c0c8cc5c9afd4d8999eb36ccae"
+      "sha256": "47f4867c2c2f9be59efb21210e074f14d96760c0c8cc5c9afd4d8999eb36ccae",
+      "source_file": "art/props/mesh_assets/models/PROP-06B4CC358501_lod1.glb",
+      "source_sha256": "e2f67beda4491bc9d8fb86d6079229b1979df674a7aaea11036e38320a378415"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-06B4CC358501_skin_lod2.glb",
-      "sha256": "057ed978847cd38302c6606a5806eefc10b4ac3c0181d52b2527afb24ef19023"
+      "sha256": "057ed978847cd38302c6606a5806eefc10b4ac3c0181d52b2527afb24ef19023",
+      "source_file": "art/props/mesh_assets/models/PROP-06B4CC358501_lod2.glb",
+      "source_sha256": "629bd453ba46340054becb7081f5edd61af530ca9b436130e11e1853df5672e4"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-0DAC2E802A51_skin_lod1.glb",
-      "sha256": "43d1bb13726f9b1b3d538b6fe8dab17f01a6026682bff2272ead4570f44eb714"
+      "sha256": "707978117ccd359f1d348b008fa6c18dd1ec9150bcb07609188d4601bab40f01",
+      "source_file": "art/props/mesh_assets/models/PROP-0DAC2E802A51_lod1.glb",
+      "source_sha256": "1dd19c6f43ac8cbdab34003443784246a44e27f2cea274b240bc8a39da400118"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-0DAC2E802A51_skin_lod2.glb",
-      "sha256": "45c8119e8191c1b0c33a753913a97319138b4f7b9b4a31a100cfec5a08ff05da"
+      "sha256": "927656ff5568810fb7f44eb89cee74ea5ab3db472363e55625099d1db3cd4e51",
+      "source_file": "art/props/mesh_assets/models/PROP-0DAC2E802A51_lod2.glb",
+      "source_sha256": "d06905259ff30afcdf6b446536cb5dda380fae3ed910f30e857f073526011c31"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-0E30B36C2427_skin_lod1.glb",
-      "sha256": "5274920b965fdbe91c3feef2acabedc104edf4d6ec3cc5226e69d5b1c6a1fc8d"
+      "sha256": "335a821f383c6054c0abd16c56a901a34dc96af7e854fca4fd9cd8e5159e3e79",
+      "source_file": "art/props/mesh_assets/models/PROP-0E30B36C2427_lod1.glb",
+      "source_sha256": "7e7f95ed2e7ef7b67fb7fc76ad0b3b5add750f4d7398754ad4434a6a5d49e4fa"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-0E30B36C2427_skin_lod2.glb",
-      "sha256": "bed76d59971f733314a5fb9688c5a6b036f7ee3efc68c4cf8e028f01f529cceb"
+      "sha256": "1aa6d81d8b389f576eff569e961677491a7da2e60cb23babe4631a6fec9b78b1",
+      "source_file": "art/props/mesh_assets/models/PROP-0E30B36C2427_lod2.glb",
+      "source_sha256": "4b4ba2c0c5d44b7fff07da55ce31fc221dc8c6f9838118bee35f678641136bd5"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-1112B1E6E76B_skin_lod1.glb",
-      "sha256": "77c69a29c574d5920e4deb806fa4806847ee828adc9ceb98c8c3844456b3b4a3"
+      "sha256": "685d3ab66222141c1121068370a49c8b39e131c20306726f8114e9f9fceb1a64",
+      "source_file": "art/props/mesh_assets/models/PROP-1112B1E6E76B_lod1.glb",
+      "source_sha256": "c331f406e7e9d7a8ffac894af5b23b8a3e08eaf60e5266bfc4b1147c27d10000"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-1112B1E6E76B_skin_lod2.glb",
-      "sha256": "c7849ed213dce544e452494dd1976d91afa103eaf38bd5601a5b7b04ba9801db"
+      "sha256": "a0561fbc15b10a8e320d02f29536c5347a0f053b7def03e7e10cfe0c6d78d99a",
+      "source_file": "art/props/mesh_assets/models/PROP-1112B1E6E76B_lod2.glb",
+      "source_sha256": "11616ae361c3a0d70bbc6aa58521362d11db90c4618d9bcfe6fed39d88b862a0"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-18651CC63CD8_skin_lod1.glb",
-      "sha256": "60c85ff4bca995b58aa9d54ce640f0fa78ebc219c758a244c734c77652cd3ffd"
+      "sha256": "93d5a8a9836aaa1450458d10a5969abac29716f2f9ad4c6608c6a548e06969b7",
+      "source_file": "art/props/mesh_assets/models/PROP-18651CC63CD8_lod1.glb",
+      "source_sha256": "55197cc0000484c7b15d8dc854c79a95790d6e7d8f88946af9534c74e1f1ca4d"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-18651CC63CD8_skin_lod2.glb",
-      "sha256": "02e9c23ef7cc5ee98f86d00115d732680e088b9b0ec6dfdf12f20b2bd6a29179"
+      "sha256": "7a1789300a4e83296c6f94d3e90f71def0e44cb7924469e4ca9ba4a26650ade0",
+      "source_file": "art/props/mesh_assets/models/PROP-18651CC63CD8_lod2.glb",
+      "source_sha256": "102b40c5ebe5b2e43f866d8db3b7dbb196fec9611feb7d69d16c8ab0675af4f3"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-1FAB968E3F60_skin_lod1.glb",
-      "sha256": "380e38597ae98358252d7fd8f2fe5b8690af1f7976de755221c5dffec0a97f14"
+      "sha256": "2043a976ba7080e17bf0aa5207b2b177d3bd1eb6effcf434431bc34b43dca312",
+      "source_file": "art/props/mesh_assets/models/PROP-1FAB968E3F60_lod1.glb",
+      "source_sha256": "8a165f5872cacfaeaa7ce8d6b96a0c1143fa3206d61fed7b6dec5e697a919a53"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-1FAB968E3F60_skin_lod2.glb",
-      "sha256": "a3f0e285c9070fd2cf668c93c3f0eac2e8103e33d0748cbd4aa2e7cb11a958fa"
+      "sha256": "d6284465b7efba4cc6b5b52f5f9398436303c05a2a1148f3bd02a88dba6d8e26",
+      "source_file": "art/props/mesh_assets/models/PROP-1FAB968E3F60_lod2.glb",
+      "source_sha256": "d73f2549ba71cf3902efb25b4da3a8c2b39fc4329c61a1253a13f6bf028e90ed"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-20E648B16FBA_skin_lod1.glb",
-      "sha256": "b9f5c9f7532520ff46c74cf44cbf310989dd750ddbc58a92980275d428adf748"
+      "sha256": "29aa8ab48246792e2c0a52ffe3a249cd0a58c9d9f51aeaed1eecf3a5452b1f73",
+      "source_file": "art/props/mesh_assets/models/PROP-20E648B16FBA_lod1.glb",
+      "source_sha256": "6b8160de04463643f19aeb544486dda476b84fedafbf6343c1e8dc6d42c9c0d6"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-20E648B16FBA_skin_lod2.glb",
-      "sha256": "b16424250aa6ff4baed172745a99fd7c5a29dc11151a83ca3f1c615630499def"
+      "sha256": "7f0fdfae6d0f1e78dfa4a80a0c985e20aa1e3fc6034ee21d34feb93d9eb61219",
+      "source_file": "art/props/mesh_assets/models/PROP-20E648B16FBA_lod2.glb",
+      "source_sha256": "2c5bc89aaf39df98e830c240d87af0c384c7af76c74e154b8f67fcff66263d2d"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-2A02835D05DC_skin_lod1.glb",
-      "sha256": "ad7eb35349aac7eb6c8f374add1da964e69a053a490ef5beeebe745fd2fbf211"
+      "sha256": "42a7014876702f04b580b9e7c8aeb2938d07ee6b11e2339e7263af2567509bb1",
+      "source_file": "art/props/mesh_assets/models/PROP-2A02835D05DC_lod1.glb",
+      "source_sha256": "769108a27d2140683a37cc039e0a13751568881f7b8532379e8318508e40b532"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-2A02835D05DC_skin_lod2.glb",
-      "sha256": "ebd3284b07d9bfb95793c43bf377e87439a80cc41484bf2c65657223a0b4d665"
+      "sha256": "e844d290f8803b0651512a99b7e0d9f4c0c90f23684c7fc71d2b6c573c49d2f6",
+      "source_file": "art/props/mesh_assets/models/PROP-2A02835D05DC_lod2.glb",
+      "source_sha256": "27561f32ab295d0893b6e8b0529d5eef57a0a8aaf769434454cc6acabc4f6984"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-2C3D4D3ACEE4_skin_lod1.glb",
-      "sha256": "03db35c2f1a9abfb045022427411ff6b7dc67ac2833da6d0a482e792bc5d8146"
+      "sha256": "30c0a1b16c9ad13d7e44e725c0dabd7bf55d296a84b0aa08a1accf9036815e24",
+      "source_file": "art/props/mesh_assets/models/PROP-2C3D4D3ACEE4_lod1.glb",
+      "source_sha256": "631acb71c93239ebc301b2355758879843efd1809c849b36fbbedf66e9951128"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-2C3D4D3ACEE4_skin_lod2.glb",
-      "sha256": "a3240e6ed62b879a54e98ac35363526a8f15f128c6576f216cb944c4255148e9"
+      "sha256": "2ac020f9e8c96122751c409c57d4512fffe12f42ddc6bdb056e1fdda109cc8a2",
+      "source_file": "art/props/mesh_assets/models/PROP-2C3D4D3ACEE4_lod2.glb",
+      "source_sha256": "61bab3a9ebbf079aa09726f820300b2706e4be66bb46308822cfbebdd8b29ca7"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-2FF6F916AA1C_skin_lod1.glb",
-      "sha256": "1e366b7b4423bfa52ae27863521e4ea7f1a893b05e40c01f0b3802282533ef6e"
+      "sha256": "b9e2d2b72ee612fec77b463d64ed1187ef17d0c9cfc18f038c45b6655b1b2f29",
+      "source_file": "art/props/mesh_assets/models/PROP-2FF6F916AA1C_lod1.glb",
+      "source_sha256": "1cd6c8026e58f0393ca758f0ae4becd2d23354e6e804ab9cf8ed834ed69c0256"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-2FF6F916AA1C_skin_lod2.glb",
-      "sha256": "5c1a4c49e7b782bb2d7e05ad7cf7f5e3847d2ee8425cb799d9cae84561048172"
+      "sha256": "dd3c2b07c9a047d63fe9a6de738225e85edadab039f1eb81e9948172e8a6f45b",
+      "source_file": "art/props/mesh_assets/models/PROP-2FF6F916AA1C_lod2.glb",
+      "source_sha256": "77d6abda240b9824f7bf4efb8ae796ee08c315cb5059cf9e0a6f7373724e2df0"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-349A323395D9_skin_lod1.glb",
-      "sha256": "5b43b9da3cde39e272a0f63ad1f4035531d85ef97fc410ed0212af99268bc871"
+      "sha256": "5b43b9da3cde39e272a0f63ad1f4035531d85ef97fc410ed0212af99268bc871",
+      "source_file": "art/props/mesh_assets/models/PROP-349A323395D9_lod1.glb",
+      "source_sha256": "37710cc7ea1180029f59eab45f364d72cec8e9931cdb91bbb8b877594c283c19"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-349A323395D9_skin_lod2.glb",
-      "sha256": "8282d30c02e6cff9fbf8c0de6c48ad7688dacdad3684ef48d4691335a50c0d5f"
+      "sha256": "8282d30c02e6cff9fbf8c0de6c48ad7688dacdad3684ef48d4691335a50c0d5f",
+      "source_file": "art/props/mesh_assets/models/PROP-349A323395D9_lod2.glb",
+      "source_sha256": "7e1e0d1f42657bfd405f38f29e3683b664da5c75e4e31e0a647eb34ffb2a35f1"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-36E34792A832_skin_lod1.glb",
-      "sha256": "ef196686661b9d70b8965d76a0eb9dd3a615cedeab4ad71cac458f82d00b3dd1"
+      "sha256": "a807785a69d3bde8ec915ef25640f0d9b6862f68831881086664c2dc00e24a7e",
+      "source_file": "art/props/mesh_assets/models/PROP-36E34792A832_lod1.glb",
+      "source_sha256": "a75d53c62b68333bdea28de9c6ca2f1f78374ad18401c47a04ab0dca0d7e094f"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-36E34792A832_skin_lod2.glb",
-      "sha256": "c558a3c9b24b0c944d4d59eba56153ae590cac3a1e6087dc7fa9a576b0ea0932"
+      "sha256": "82a6a66aaa75663fc9b602c1b6b4d72205e248e04904249877b96812304498c2",
+      "source_file": "art/props/mesh_assets/models/PROP-36E34792A832_lod2.glb",
+      "source_sha256": "5317d631bdf3a14faf845785b7a46682a1e8c37cbaf87d8381940d7de87e92db"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-397D1FC5C817_skin_lod1.glb",
-      "sha256": "8cbe3b5ac4ab727921c970e2e28df031a803c12e1ecdca81f050d0c665f868e0"
+      "sha256": "dc27d22bfdb6168a725d7d1eef50fac3bb91508fad39c0801b9f47ac528b2f55",
+      "source_file": "art/props/mesh_assets/models/PROP-397D1FC5C817_lod1.glb",
+      "source_sha256": "9abb6e5a3373ea31022e82e11b18d5b3a50d1278896b73140d2a3c017e11d8b9"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-397D1FC5C817_skin_lod2.glb",
-      "sha256": "b2c60a8e7f916e3cd33963096ea7d6a7b01363079fb2919c8485d5dc273cb70c"
+      "sha256": "76a1b6afa1536c0728bd57f8728bce0d7bed18aab955cb52dedd106a4581ff38",
+      "source_file": "art/props/mesh_assets/models/PROP-397D1FC5C817_lod2.glb",
+      "source_sha256": "f27b424b463f2df484945483dea755eec9e732441116d0676d2fafbf4455bd19"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-39DEE01F00B0_skin_lod1.glb",
-      "sha256": "c2aadb31e3ec2b50316b8d0b9aa229e4d81d99c1528f430af13adba97a1e993f"
+      "sha256": "c2aadb31e3ec2b50316b8d0b9aa229e4d81d99c1528f430af13adba97a1e993f",
+      "source_file": "art/props/mesh_assets/models/PROP-39DEE01F00B0_lod1.glb",
+      "source_sha256": "81d42c54b499616266d79877ef56f82713679500c43ebdf3ebe800f0dc080c2f"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-39DEE01F00B0_skin_lod2.glb",
-      "sha256": "c7a51364ecfcb1d76202c43eedd15c1d2b371c93b64fefcb2d73030ced367d65"
+      "sha256": "c7a51364ecfcb1d76202c43eedd15c1d2b371c93b64fefcb2d73030ced367d65",
+      "source_file": "art/props/mesh_assets/models/PROP-39DEE01F00B0_lod2.glb",
+      "source_sha256": "927341bcef77d7bcb83067aaec0aa2dc1ff27fad56d06b24b46aefb3ce5d9c2d"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-3BB82CCD4F67_skin_lod1.glb",
-      "sha256": "1e67208693a3ae830d59aa95f05417278eae2f4339dc4e196cfb1af84568e524"
+      "sha256": "b2d2064da4f25225a25e0254182c7bfa9298115e271a13d5def2606fbab246d6",
+      "source_file": "art/props/mesh_assets/models/PROP-3BB82CCD4F67_lod1.glb",
+      "source_sha256": "56ba1a91525ecbc8a9a54041080535fc33ac9aed123b56b7ecae54937201b92e"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-3BB82CCD4F67_skin_lod2.glb",
-      "sha256": "b01715949d819f0cfd8db98ee7bbc6e0ca5d3ec33601b3c44dd46ec77f9cff3d"
+      "sha256": "6b8807a00a1ef299a2a698c898c37d03e5891a27944769600404c34f36d0081d",
+      "source_file": "art/props/mesh_assets/models/PROP-3BB82CCD4F67_lod2.glb",
+      "source_sha256": "3a02bbacf14dd8fa4839a7393432f506f20ee4795564d355d3aa77cc83d385ad"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-44C55BAB860E_skin_lod1.glb",
-      "sha256": "697ae54dd417b7f15185d9cb8adda0e049f6ccc30a0b8e6378a9abb6808b9fff"
+      "sha256": "1f5dd6dabb139faeb1087ca497bc73741d377f9ad4d84ead789ea5fbe4a73077",
+      "source_file": "art/props/mesh_assets/models/PROP-44C55BAB860E_lod1.glb",
+      "source_sha256": "e5a8a61130eb6708e885f24dd6cd515daeb6ae5332d26b60a3b75b09acd2c4f5"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-44C55BAB860E_skin_lod2.glb",
-      "sha256": "b34c52e69d9e2f454fa446c7417056322d659ec5133ec2ff7aa3acf353854637"
+      "sha256": "41d5de6eb90d41bc994c435f794d62e4a0e4ff25231216399872dcdebc248919",
+      "source_file": "art/props/mesh_assets/models/PROP-44C55BAB860E_lod2.glb",
+      "source_sha256": "de49d7d1d490aeac77fd75edeaaf6bb900732fd813310fc48ef218f13e183542"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-47C70E6EBCE4_skin_lod1.glb",
-      "sha256": "b512c8a6068223041978f7c2aa161bb13d237f781bc5ceac4a65356de6872a4e"
+      "sha256": "c0393c8500e94ee88588caf7b8b4a68320c96ce45ed27431a6b31183da12b36c",
+      "source_file": "art/props/mesh_assets/models/PROP-47C70E6EBCE4_lod1.glb",
+      "source_sha256": "6952bda485128fac8c7e2ae722032dd655258ce39a7b7a282e866f2743373ede"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-47C70E6EBCE4_skin_lod2.glb",
-      "sha256": "8009c32d20fb68fbc905c4817fd0f2f2af6c714c6f657d05411f8dcb70928362"
+      "sha256": "b3bdfb27f014bfba93d908746758a52e5038d76c09330281c2b9e1cc22b35d01",
+      "source_file": "art/props/mesh_assets/models/PROP-47C70E6EBCE4_lod2.glb",
+      "source_sha256": "a41442d65a721e200ef9d8f7fc5930e69fac4fca2822f342e2d4f797fa4def83"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-48E4A4110F9E_skin_lod1.glb",
-      "sha256": "899d66ef92cc0836b8fcb3983c915825cc5950c56e76c00c56cec95905cd3dc0"
+      "sha256": "7d0d70dfac9ee802744e025620913d408d667951bff311654409a552b27df2c9",
+      "source_file": "art/props/mesh_assets/models/PROP-48E4A4110F9E_lod1.glb",
+      "source_sha256": "8a6396e337b46ee73452b8d048e09d8740a3b4fd8809430824f602d757e3ddd9"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-48E4A4110F9E_skin_lod2.glb",
-      "sha256": "aeaa14ac272a0d9ee10a996839e51321e4e50defd18df7f4035de0e8380c7965"
+      "sha256": "a52e8227c642b14b5dd143b500000cca7fcae65f1cd1d9fc62e552b20b2cae7c",
+      "source_file": "art/props/mesh_assets/models/PROP-48E4A4110F9E_lod2.glb",
+      "source_sha256": "1a3dfbe79e5555d8a9f05f790499492386d1457b115bb40811f7e1454807874b"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-4BAFAB2A8AC8_skin_lod1.glb",
-      "sha256": "0d4cb53d0aee6add20eca42ee032e5733db3def33de0e679818c6008763d1641"
+      "sha256": "dc0f6210fcfc7a3c3869358d9323bfc5abe88df9c23a6e76fb25415d29957758",
+      "source_file": "art/props/mesh_assets/models/PROP-4BAFAB2A8AC8_lod1.glb",
+      "source_sha256": "fa7245cfca6e98176bb1bee9079622d5b34f0efe996dc867a7b5318910bbf97b"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-4BAFAB2A8AC8_skin_lod2.glb",
-      "sha256": "50e294edec81ebed94bb02d61c19354c56b26b2a28580750528a9a6e52890bff"
+      "sha256": "a0cc7ae98142c452eb48d8cb53398d58dee3649b8459ee5927247944d05a029b",
+      "source_file": "art/props/mesh_assets/models/PROP-4BAFAB2A8AC8_lod2.glb",
+      "source_sha256": "d44bc8acbcb123da86737bfd763c294155512afec6e15221d38a6df96fc896ef"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-4E3B7983E298_skin_lod1.glb",
-      "sha256": "339145fa15f11ae9ccc2cab2e59d19d1f09e6ba375302ed746deac901e326836"
+      "sha256": "43345ceabf0cf4953ba8aa449389342886104d47f62db923985c76d4441e6123",
+      "source_file": "art/props/mesh_assets/models/PROP-4E3B7983E298_lod1.glb",
+      "source_sha256": "05fc2ad89bb7a2075577024c465389a0762fbdb2b78540ff14d1c72ccdf7bd3e"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-4E3B7983E298_skin_lod2.glb",
-      "sha256": "9741df044d2bc3da3e633e29d21a045f2f0650cef6b81a9076cc183860648808"
+      "sha256": "82373eea4f0db9cd7f5531a044bb667cb5840c0f592602b2d2b1a0796497102d",
+      "source_file": "art/props/mesh_assets/models/PROP-4E3B7983E298_lod2.glb",
+      "source_sha256": "c278bd8b08b077982bfcbbd21506ababaf748409015db964eef1cc9bb771c41f"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-4EF066700816_skin_lod1.glb",
-      "sha256": "ea71e3676f417981c1059a63b3d06c6bf0236e2be2e76fd08d978e1f759aed8d"
+      "sha256": "9539caec0a6ca130d9180f1c25c1b4cffcf54135e5a4f866e8496959bba56350",
+      "source_file": "art/props/mesh_assets/models/PROP-4EF066700816_lod1.glb",
+      "source_sha256": "889c6f1d64e679da5863425316b9903df2d1ff329a171603b8fe75b524efac95"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-4EF066700816_skin_lod2.glb",
-      "sha256": "17220bf79d8dfea2ce16321d79b416d76e61f346c40dc77dd8ea86048b3e60bb"
+      "sha256": "85975464c3951a4933a8ff375f4873a9676495914d12db5c2ff09a9f8cd26250",
+      "source_file": "art/props/mesh_assets/models/PROP-4EF066700816_lod2.glb",
+      "source_sha256": "900082cb18a8f086e85531172fa567c02dd41c89f7bf628f948a409d6dd72e03"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-551DA44848C9_skin_lod1.glb",
-      "sha256": "fe258f782b4eefac1f156c20c9e6cf9f1208d5a5bae5a37bb0a0de9e583792f9"
+      "sha256": "c023e60d54e4b962dd32e9b18f5ef823ee6a64f89cf833985c08b64b790579c2",
+      "source_file": "art/props/mesh_assets/models/PROP-551DA44848C9_lod1.glb",
+      "source_sha256": "01c7e14a323bd4dc9872c06405b7a024d5a12b044307d161da60cf49d42e20f1"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-551DA44848C9_skin_lod2.glb",
-      "sha256": "c7f384754cbf256ea4ed9e4785c817da5e885dec90c1a88fdd091f1400d56876"
+      "sha256": "7fa92a14729a19a1cb85cb3dcb60a670a64e651bc64deba6ddd0e930b7cafcae",
+      "source_file": "art/props/mesh_assets/models/PROP-551DA44848C9_lod2.glb",
+      "source_sha256": "0771cd67c1fab27a574a1b50a94caaa5a0f7dd6df2ae71b8f4fc8ab94b9b9698"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-5BB9D09990BE_skin_lod1.glb",
-      "sha256": "90567436c34850c3c4dd60499bacdca4815974e5470739305b547f82841f50e3"
+      "sha256": "299c8d4e628bd9fb5f8e1406660720d6fd541b8f97d6dd46e6f687cad828af51",
+      "source_file": "art/props/mesh_assets/models/PROP-5BB9D09990BE_lod1.glb",
+      "source_sha256": "bf3f76fbd56497e78c463189a19043e7d4662d7c1cb61bcc749f72d6f2345278"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-5BB9D09990BE_skin_lod2.glb",
-      "sha256": "262bc5a3bab15bdd5b533e5c572d0efa841f5a559381d630ca20354eca8586f4"
+      "sha256": "1db5788ed177690d7da351635f6c704e5c92c71ed133ba3e0d38aaaab928fc1f",
+      "source_file": "art/props/mesh_assets/models/PROP-5BB9D09990BE_lod2.glb",
+      "source_sha256": "6f114e3bc4724cc95c2dab15f3e2bc4d468660badda91441c1c1377c60e78568"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-60AE32F2B9FA_skin_lod1.glb",
-      "sha256": "d401358600ef98120397aa3f5006206240bcc75d78d42a2bdb00a7fb6ca8f215"
+      "sha256": "1132e47831adac3731bd3bfffc23204c7b10e80906e91a28deece71646b06fa4",
+      "source_file": "art/props/mesh_assets/models/PROP-60AE32F2B9FA_lod1.glb",
+      "source_sha256": "9cec4ee10603c7b9cb498734e153268a53163c980b9024dbd29ffc08b2b6ca9b"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-60AE32F2B9FA_skin_lod2.glb",
-      "sha256": "0c71d1a4d55fd3f3632ad5cf7c89e7583c8a6397119401c35e1ac79e6e6b812f"
+      "sha256": "70843f166a8f2ead4697b3c4f7040414ba7af73fce4429846baa84c7b0a3847a",
+      "source_file": "art/props/mesh_assets/models/PROP-60AE32F2B9FA_lod2.glb",
+      "source_sha256": "a313b75852a10da79217980ecab8eabde33ce0f201e978a0587590f860947624"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-6259F2823CFF_skin_lod1.glb",
-      "sha256": "bdd5119c2c78268923d724cc028bb5886ca884828cb3439aa50dccb14b42c464"
+      "sha256": "77b3f733dcbbabec278785a89adf531a09ef4a69410899df6099e33a30be5a18",
+      "source_file": "art/props/mesh_assets/models/PROP-6259F2823CFF_lod1.glb",
+      "source_sha256": "78ceb64399e8d35a34ff6180c1f5eac8ef2b807873ea2b795f1ada987486679f"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-6259F2823CFF_skin_lod2.glb",
-      "sha256": "ed272cd0dc82fa12869e2d804f488eedb66b85e2f689b85d603d151226c3e907"
+      "sha256": "ef619c572a2438469e9ffbbf38c330be71ec2e0d4773222f83c82f67ffb4fd1f",
+      "source_file": "art/props/mesh_assets/models/PROP-6259F2823CFF_lod2.glb",
+      "source_sha256": "e27bbfc635ee97723f1a62ee806d620e09895173a70402497624aa85879c0e79"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-635D1FA232D0_skin_lod1.glb",
-      "sha256": "b4d9a309ad734914a19243f35336061af2e3c9722b1fe031412d827fa9d5cc8c"
+      "sha256": "a813b39a3096edf2ffb4808f046b6193c4a7f618a4da2c2a48c7125511a9339f",
+      "source_file": "art/props/mesh_assets/models/PROP-635D1FA232D0_lod1.glb",
+      "source_sha256": "3be90ba3afb3bc7d913f93d64e7a71b5c29f7ff864d36ee137ca667395b9c6a0"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-635D1FA232D0_skin_lod2.glb",
-      "sha256": "6283c4814d01a2a29d60b58d50865867019de0b36043211b8e52ba25dbed47c8"
+      "sha256": "d98a86c0f045c8f366f9781f893407e1bc9ac90ff1aac29eb04d7adf26375f3b",
+      "source_file": "art/props/mesh_assets/models/PROP-635D1FA232D0_lod2.glb",
+      "source_sha256": "6eb6a678b0818c4320449e7890d901b3bb7230ff5ae3f57e9d07624ee424021b"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-64B1D8C0B5C9_skin_lod1.glb",
-      "sha256": "65b00860b1ca72d5d54d7ac7a035f2faba298909f1c6f7852a3b57173e8f0776"
+      "sha256": "df166cc37c1e3a84862fe461db2529c9062b44119f72459ea120e5ed74e2c8c4",
+      "source_file": "art/props/mesh_assets/models/PROP-64B1D8C0B5C9_lod1.glb",
+      "source_sha256": "8a5632accd8c253ea3517366dc9a7eeeb564379036e87d9c5f10958e68b60520"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-64B1D8C0B5C9_skin_lod2.glb",
-      "sha256": "5373b4976aee186f653d6f6db23365641134cc92e13aefefdd5440e33abf8999"
+      "sha256": "a9e8251f1bc79afa661e92dfd134e959595c63d6a9e9f5f8a8de7288cb77125c",
+      "source_file": "art/props/mesh_assets/models/PROP-64B1D8C0B5C9_lod2.glb",
+      "source_sha256": "1c5effe9b5a5cdfed2d38b65ca85b437f6f9ec91615fbac399c471f96487d4eb"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-6F42EC224460_skin_lod1.glb",
-      "sha256": "88f20521caa0745ea03d776618061838014f6087605f7bd83b2a958f484f7b32"
+      "sha256": "0e423272d8265045fe0da6d83cb387fc3bf5d9f9dd44256e91a377b19df757f6",
+      "source_file": "art/props/mesh_assets/models/PROP-6F42EC224460_lod1.glb",
+      "source_sha256": "3a798e23a5fcb933273ae623914c831608fccd7c683644cb81fbfa5021df1307"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-6F42EC224460_skin_lod2.glb",
-      "sha256": "48a10a286656dffaf2f0ed1a267e7307d154b719acd80dd49e451dea36e3b169"
+      "sha256": "78065579044bb2c9b5c5ea5d719d7cced44b371278161a18d67690258c08f477",
+      "source_file": "art/props/mesh_assets/models/PROP-6F42EC224460_lod2.glb",
+      "source_sha256": "9eb3af790548779ef0ed9b15a34c9943f0f895867e1b6fadadfd468db704d925"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-7697DF451B7E_skin_lod1.glb",
-      "sha256": "7d07b7eed808052ef0ac51b00892d5380a1e4564a84b2cea923c628a825056de"
+      "sha256": "c1caf6056dc1992d11aba01511c52654af38678a43ca18df9c4f0ccd89881be5",
+      "source_file": "art/props/mesh_assets/models/PROP-7697DF451B7E_lod1.glb",
+      "source_sha256": "d7b39d55a09f0ed110234fbc6c1b2ad4ebd29bda464df3826b8c459bc1cc1c2e"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-7697DF451B7E_skin_lod2.glb",
-      "sha256": "cf220ed643437c78241782b6afd9d12fb3a5ef51cd9a723c206cd9e7a16f2f45"
+      "sha256": "9f530c6d5bd166cbcf24798a88b402097709e2027e71174d47bb1e14afc61e97",
+      "source_file": "art/props/mesh_assets/models/PROP-7697DF451B7E_lod2.glb",
+      "source_sha256": "08fe802ab60099f6c94ee1e8c19f7644acec17abfb7190aa452004e024756c12"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-89576C1C949B_skin_lod1.glb",
-      "sha256": "c612a7a2723e996c73266ec6acee524e7fe519e6021ddb5db681924383471b5b"
+      "sha256": "b33b211bf2f89025c990720a7f5724e56e51085d6258e929a744b295c868822c",
+      "source_file": "art/props/mesh_assets/models/PROP-89576C1C949B_lod1.glb",
+      "source_sha256": "cd0880fdf600e9dd07ed58bd7b6d826a01ce09b91ed9a1c906acccde3f998bc7"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-89576C1C949B_skin_lod2.glb",
-      "sha256": "9f522e7f13dff4aef0f5444afa1bf5146ab3030f3be37978e22904918c529395"
+      "sha256": "a8d9381bd1eb024b736c626b3acd65f50e882c31df1b2c0cde85e1ee875adaeb",
+      "source_file": "art/props/mesh_assets/models/PROP-89576C1C949B_lod2.glb",
+      "source_sha256": "9be1daf9bd364004a48338ff56c2bbd4e6c153991e089e20124e023e164248e0"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-978D357C5F72_skin_lod1.glb",
-      "sha256": "5a000e1cd8e73ae34cbe629ea51d0f515bdf068f704619b538233b340f69ba36"
+      "sha256": "232022a67b78b035672e100c9c41c2f82a023c1710adb129c0c79f046043a077",
+      "source_file": "art/props/mesh_assets/models/PROP-978D357C5F72_lod1.glb",
+      "source_sha256": "945a8285825f32486cf5cdde2be81e0746bd29a1a0044b5df6a0fe714ac6379c"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-978D357C5F72_skin_lod2.glb",
-      "sha256": "003db67304eb3dfde93475ea2f1879b87ca9084a359d0489c81ff61208cf0833"
+      "sha256": "b7f1e03e7e279bbf730c31081c811cbc3707165714c503fe822c9d8d8dcbb602",
+      "source_file": "art/props/mesh_assets/models/PROP-978D357C5F72_lod2.glb",
+      "source_sha256": "0455b2f1b0e644e4776b133d959bd9e74bd0679a644032cc9949e14183eb061a"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-97D77E55EDE4_skin_lod1.glb",
-      "sha256": "98b301482fe7bf47cb20b3896bb8dc85107e93196d0f89ff94d755523994ec1b"
+      "sha256": "53f2016c1b5a67891dfc5385c9a3230b13fd1c252a705a432f669aaf22e3959e",
+      "source_file": "art/props/mesh_assets/models/PROP-97D77E55EDE4_lod1.glb",
+      "source_sha256": "2778f1251d0eeb2ad7d3cc7fc87c9190684ddc5c9a34fd2597e8f0eb1e2694ad"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-97D77E55EDE4_skin_lod2.glb",
-      "sha256": "e85c1dde7c04a370fb4cee63aa94325d5e2f57fe1636d3641afafa17fe0b61a5"
+      "sha256": "7ec494c490d571a75e3be9fbdaa66702b1066bb271a9f59c0ed34fcc7ecf5d85",
+      "source_file": "art/props/mesh_assets/models/PROP-97D77E55EDE4_lod2.glb",
+      "source_sha256": "60347b46b0ca014bbfaf2eed1d33878e0d081687764c81277c4daf50e18ee9cc"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-9807569BB162_skin_lod1.glb",
-      "sha256": "f559260921c2c436900dfa622a73775fa4d4f166d40730e606b86be933e8d770"
+      "sha256": "1deff585450e47f443e58811651f4b5888b10c18938629dd7d7327f56e73e90c",
+      "source_file": "art/props/mesh_assets/models/PROP-9807569BB162_lod1.glb",
+      "source_sha256": "d98b521f6822bb8483ff280b1d1612d5b3fd490823188f4222bb11d792b4ce93"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-9807569BB162_skin_lod2.glb",
-      "sha256": "14a2a768c91c3e7c1ddc66cd3d68c81187c492304b3a2678d4de638d66d825eb"
+      "sha256": "fad93238304dc5b7624d5b754ee8f40c62af2b8ca75e4958edb31ace111d8601",
+      "source_file": "art/props/mesh_assets/models/PROP-9807569BB162_lod2.glb",
+      "source_sha256": "0a8207ae4738031428bf107cabd5d5acbaeedf8c29c2d82d755b9767eec55498"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-A5F252D0A464_skin_lod1.glb",
-      "sha256": "da25a91e66acd178fdd64ee29d96bd60ca2d954c19aaca8cba4090c273f97dd2"
+      "sha256": "c858a3f63c900dcfae31d74f9cb6c94c6ae4dc8f81bb964ea7a0eda991aaee63",
+      "source_file": "art/props/mesh_assets/models/PROP-A5F252D0A464_lod1.glb",
+      "source_sha256": "df8332fffccf90e07440d6edee2eb9bd887f2cce5307c82f17f33e2316d0b05c"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-A5F252D0A464_skin_lod2.glb",
-      "sha256": "a4a13f34d59f09420c48da017a4963e55a9ed939d2ce74557d0a2a1c6f3b2bc1"
+      "sha256": "d21bdc4ce6601580aaeab7a7b5a9e9329ae52adb12555cdecfad4bbadcde3759",
+      "source_file": "art/props/mesh_assets/models/PROP-A5F252D0A464_lod2.glb",
+      "source_sha256": "98e6e9943f3c4294c9a3abc4054f56b6d0854ce500adc7a524a0712c7dd896b9"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-AA52C09B2FFC_skin_lod1.glb",
-      "sha256": "825b2f223917d61106cedbb5642f45efc5eb9d5933b240a3223346c862e11218"
+      "sha256": "56887ea62098d0145d8f7bc0c6e7fbdda905cb1685181ee227ab4576f4ddd995",
+      "source_file": "art/props/mesh_assets/models/PROP-AA52C09B2FFC_lod1.glb",
+      "source_sha256": "91b70de1139117073f7eea16f87a247aeb5f57e40d5b16e11817875f39ff169c"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-AA52C09B2FFC_skin_lod2.glb",
-      "sha256": "5305bd5de11d19d123dc32d1bb340678a67a8588872470fa0b5766d2b9cac869"
+      "sha256": "6c842d98af74f45cc69e903eef3bdddfed700331efaa080994425ed0a3309a44",
+      "source_file": "art/props/mesh_assets/models/PROP-AA52C09B2FFC_lod2.glb",
+      "source_sha256": "7b8e7d08eb06792b49dc40851316d5fb2b60e5cd66db21326a5da56500305395"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-AD62F66BA933_skin_lod1.glb",
-      "sha256": "06a894185741b1d6013d6902c499a667099d5b5aa069c11aa47ff7c526ea84c1"
+      "sha256": "a99ba55fd25b7e3f0d66a83cc5f35f58a3287a31be677a9832bdfdf46d74de9b",
+      "source_file": "art/props/mesh_assets/models/PROP-AD62F66BA933_lod1.glb",
+      "source_sha256": "1a5de3030236635ba41e94fc399c390ce15f75f44110aa0e255a5482b56b595a"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-AD62F66BA933_skin_lod2.glb",
-      "sha256": "9105112189c16b4f6477e0c3b9caabdb223414c52d9e4344f2cb1a22ee6abd81"
+      "sha256": "61e06e234523df02f8407b472091a0e76b4dc046f305302bc94de4175774090e",
+      "source_file": "art/props/mesh_assets/models/PROP-AD62F66BA933_lod2.glb",
+      "source_sha256": "d5f02178bdc5f69c5bde35b24ecc24caa2efcb079741d495fab302e2631a5eab"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-ADDD154FBF37_skin_lod1.glb",
-      "sha256": "4d450af9ca431962f1bcd15d373882a8c5258f69aa7456518d8b20494450d273"
+      "sha256": "83e8417c7be19299ea80df0d60266cef71c9d102c1d6fe03499e62bdc5a99e38",
+      "source_file": "art/props/mesh_assets/models/PROP-ADDD154FBF37_lod1.glb",
+      "source_sha256": "07b0ebac292f16b6f5693094328d6d8bae8bc04bd82ef53d4618045ab0f1d3cf"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-ADDD154FBF37_skin_lod2.glb",
-      "sha256": "f8697be1a443fd390a05644cec55d879eddc960c4142a48e6cee82a80672716f"
+      "sha256": "51c2a935d9553d4732f20e1153560f23a12a29504ca363bfbebd2bff28299732",
+      "source_file": "art/props/mesh_assets/models/PROP-ADDD154FBF37_lod2.glb",
+      "source_sha256": "de1925b0c382e4cef65197117535fdf8b1b67702e176ff074c56e4e5213ba870"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-B3EF80680AE8_skin_lod1.glb",
-      "sha256": "8cd5194c98b96050d5bc91cd1364194d29b19d66864f931ac6ab4de222e5cccc"
+      "sha256": "ebdc19171a6f40131f2a9cdca7d00b54f596fb8e243c4da7eff1db78469da339",
+      "source_file": "art/props/mesh_assets/models/PROP-B3EF80680AE8_lod1.glb",
+      "source_sha256": "b16cf1383fd5be4e74f7b95edc7b9bd5c34d54b8b9ed828175e3cb27caed3baf"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-B3EF80680AE8_skin_lod2.glb",
-      "sha256": "365e4eb39b1500017532d81035af35ba7511ffbd593a4520dbedb7b9f5c5c040"
+      "sha256": "0722675036a070ddec822681f03ab0231e25ce333ae4344126da622e9f0e9bac",
+      "source_file": "art/props/mesh_assets/models/PROP-B3EF80680AE8_lod2.glb",
+      "source_sha256": "08d9413db702a81d447f89c43856194a66ebdda0e00d3e8d179842f088ad412d"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-B530645DC3EC_skin_lod1.glb",
-      "sha256": "1d69af066c843404e615f0d6795c2933c9b4dd4dedc449242c33a6e85d34db55"
+      "sha256": "20ff04e4597e898c6eabfcd93cb53ce82b88a65f5a75e11c7258f14181a03452",
+      "source_file": "art/props/mesh_assets/models/PROP-B530645DC3EC_lod1.glb",
+      "source_sha256": "aed1841191636f371ee009246f18839b62c88f98020d3981acff9d3555d32f59"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-B530645DC3EC_skin_lod2.glb",
-      "sha256": "f92cfa7b3d8441e081d23f7159f6ad24bdf0a0cfa33c14d0ee5e557f6af614db"
+      "sha256": "aacc8f01c7ccf7b23342a2a6f74e01117030135fea01fe10e67f946b9ea7527b",
+      "source_file": "art/props/mesh_assets/models/PROP-B530645DC3EC_lod2.glb",
+      "source_sha256": "3e7bca0e7e3d1bf7f4be69e6db517c8d8aeff12fa7aae98b323bc591cd245bc5"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-C251166071E9_skin_lod1.glb",
-      "sha256": "dc554d50067581bc07f71a136aa5b37d89bb90e93d995636ecbce8e149d00d62"
+      "sha256": "cc244b71d71f9ead596bf928354af0ba5c54932b43b7924c8512e452d30d4c60",
+      "source_file": "art/props/mesh_assets/models/PROP-C251166071E9_lod1.glb",
+      "source_sha256": "fe33ab3a867c0d875a0168fbde0322d35b3cdc5d658674ec70f9b9c516094db3"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-C251166071E9_skin_lod2.glb",
-      "sha256": "e0d79531adfbb11a3127a33f16ec9675661e175270ac05349529c076b4794bae"
+      "sha256": "728d9811d7eef0ba11c151dd8f7cba8d6c62e0ced58214c259e4119db1aabcd0",
+      "source_file": "art/props/mesh_assets/models/PROP-C251166071E9_lod2.glb",
+      "source_sha256": "8e3df03b59bc8ea6a3119780f18e71cef92d7e780cd5038774b3e7bb489bda40"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-C54FF15880B2_skin_lod1.glb",
-      "sha256": "94745dc4263a429b48bd1b1944ee7fa21aaa49747c5e5e7182f993893083c360"
+      "sha256": "1f09c7919c1669b8a2ccc5f397094d52392e19ace4cb2771b39ce4bac27c9913",
+      "source_file": "art/props/mesh_assets/models/PROP-C54FF15880B2_lod1.glb",
+      "source_sha256": "d2a566c69295ab44822077acff3bcf2218919b1fa5e6b80376594eec49757875"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-C54FF15880B2_skin_lod2.glb",
-      "sha256": "3b5c4450d97fdd7fe87eb7ddab15987a98066f037db3efa8cdbfb0b5812aa9c4"
+      "sha256": "992ef8c21e08d3f7b864f219724ee25576e30a1d828cebb61db22ab302ff6b39",
+      "source_file": "art/props/mesh_assets/models/PROP-C54FF15880B2_lod2.glb",
+      "source_sha256": "fa4f1c735f1faf36d1b00e69498caf939017e84cff9a60647e6fe776cb50d555"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-CDB4FEE9DBAA_skin_lod1.glb",
-      "sha256": "181cc8d04da6eed9427136ad218d8d6ae1313d8f61767cf0434d22d543888304"
+      "sha256": "f61bb882c0531e5ab1d06073af6e9cabf391fc7bce3e05e082627d70ed154a69",
+      "source_file": "art/props/mesh_assets/models/PROP-CDB4FEE9DBAA_lod1.glb",
+      "source_sha256": "d4ad3d69e34e8863512b09c6d0edfd3d1fbe7bf2d5de1a90130bb124ce20956a"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-CDB4FEE9DBAA_skin_lod2.glb",
-      "sha256": "4ef358afdebf2d086bf75f5aebc60ee16dfb54dfca2bf8b1a916da52c401ca3e"
+      "sha256": "2387a631386523c2b871fe7c95b2d92a5ac0cd2cead7e9d6a65be8000053e290",
+      "source_file": "art/props/mesh_assets/models/PROP-CDB4FEE9DBAA_lod2.glb",
+      "source_sha256": "44d176b6c92b2fea2ebe1ad674e00ddb3e81c9c5b094086abd2a68e3a9e95db6"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-CFF62B98E0B2_skin_lod1.glb",
-      "sha256": "553a05dd4207da64d895b3fdad064e1254dd37b8c9e71020fd1063be6047dbee"
+      "sha256": "723d2375e6d58ce83b31e9f364a50ab29557752f9caa72779012dcf3f74d1c0d",
+      "source_file": "art/props/mesh_assets/models/PROP-CFF62B98E0B2_lod1.glb",
+      "source_sha256": "b0479f683568d399636a4bcfb68a0ebb653923162ce3856decce1757118dd060"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-CFF62B98E0B2_skin_lod2.glb",
-      "sha256": "0b6099d416447c44fcfd4342f17f0d692a34d7423f0dab3cb9ce20b2d481647c"
+      "sha256": "fc9fd63d478b89716bc4ad549c0ac8b3c23b539a28ac69da98534f8a73cfbd40",
+      "source_file": "art/props/mesh_assets/models/PROP-CFF62B98E0B2_lod2.glb",
+      "source_sha256": "79f81f279dbefdd4a5ea9c152295f65783ace573c973e2d9d92525b7c1f6aa44"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-D066826A6C7F_skin_lod1.glb",
-      "sha256": "a43846cf4679201d69b8c8386c3ce0df5bbc324c47df4fa8d6da7d72cadda865"
+      "sha256": "8e62f9964e196a28a359dcb99e14e1df7f72f20aa0bdc05fa211f776b628e460",
+      "source_file": "art/props/mesh_assets/models/PROP-D066826A6C7F_lod1.glb",
+      "source_sha256": "ebf1e07ab267b932277fa83ed89970ecacbeebfbfb97a1a5e5031cd6fd455094"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-D066826A6C7F_skin_lod2.glb",
-      "sha256": "6bdd859e6fcf77780cb83e958cd5e70fd81f3f9de3c1818cc2f18cf4c37748c3"
+      "sha256": "1a298aa5ab37952347be54ef9e073a6d4ebee329a17b97988a695ed3e053ac7e",
+      "source_file": "art/props/mesh_assets/models/PROP-D066826A6C7F_lod2.glb",
+      "source_sha256": "1f82f8e3065f7f0e910da521bd76f029933f871f4af48b587af31dc56fe4776a"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-D6813A330876_skin_lod1.glb",
-      "sha256": "117f380f7a1a3b027af65a19b24b51a6336eb4bc6d623072b88c85811f9d367c"
+      "sha256": "4cedea20889aaad5ff853e9d8f1f8d3c03ac1c70f8882050a321dc74e7ac5d9f",
+      "source_file": "art/props/mesh_assets/models/PROP-D6813A330876_lod1.glb",
+      "source_sha256": "897e783d8b1761cfdb229e3313ece308c769728fd407cbdbc54e88c2e6e71991"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-D6813A330876_skin_lod2.glb",
-      "sha256": "661c79312d926d780ff82b24c545409e2816edb82a3b40a9b6f96d1016bcb12e"
+      "sha256": "25b1892f0ed78e12aefda05acf09394f991f2076b6dd27da60c7133516a52be8",
+      "source_file": "art/props/mesh_assets/models/PROP-D6813A330876_lod2.glb",
+      "source_sha256": "b82a1e74ff34fb7fe013805118c1fa252ebc3eb2c23f7d26372c3c354807fb1a"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-D9542803DE23_skin_lod1.glb",
-      "sha256": "0dbd1f423977ee96463dd663705113c03a81ff8b6f188c8af42f0df36af31760"
+      "sha256": "d84358e9117275e64b91b0a6b1e68ad47b9cc55cd0c4c64c05ad0c4167fef015",
+      "source_file": "art/props/mesh_assets/models/PROP-D9542803DE23_lod1.glb",
+      "source_sha256": "e85542590234779a061ff936089a49a45445713dcdf0cd12adc28408307ef30a"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-D9542803DE23_skin_lod2.glb",
-      "sha256": "e9136e7dbceaf256b6aef7e6288d093bc65f7777732fde92b57f4024034054da"
+      "sha256": "5c06dedf3716db8fdcfea2432cac44dd28b7ef2ebc37a408ee49c7cdfd7bd687",
+      "source_file": "art/props/mesh_assets/models/PROP-D9542803DE23_lod2.glb",
+      "source_sha256": "c6cb41df77267266ae1f47f80496e633f4353c4cedf68715a1e64e60a7c8b2ea"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-E296DF5CA9A6_skin_lod1.glb",
-      "sha256": "44e926be7a67f169dd7bc51c6d73dbaf8dae43aa8bcbd839960d6e6b3a65579e"
+      "sha256": "35293702d81796df336a0bf5a24e4e9d14373e9b2ec93b30d8ce7cd27954454b",
+      "source_file": "art/props/mesh_assets/models/PROP-E296DF5CA9A6_lod1.glb",
+      "source_sha256": "a049bcd77d3463b637ee69e247430bb77af04fb93bb5c17c3ca4b3903496b23c"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-E296DF5CA9A6_skin_lod2.glb",
-      "sha256": "cf9e538dccb54b73916bca5a22b300e6cd4f5c018c9878f6739a6a6a8370fdf2"
+      "sha256": "5120783a8f587427254d574a3d96747fc854f3fcfed8ec22876ffedf7802b21e",
+      "source_file": "art/props/mesh_assets/models/PROP-E296DF5CA9A6_lod2.glb",
+      "source_sha256": "23b2db4a25c0ea4008a642a89c2769f2e59a0d92c4ee53c370506f04b022e928"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-E46F27058B0F_skin_lod1.glb",
-      "sha256": "6ad5608067556cc70af7636199b0abb28b2faf2db875d4b2d121bf9b010d3f97"
+      "sha256": "e8d66449a78d47ded84753b56c5749a5bdc402c8fe4af2d1ff9dffd80bd0dc3d",
+      "source_file": "art/props/mesh_assets/models/PROP-E46F27058B0F_lod1.glb",
+      "source_sha256": "a51fb69a1e97d466faa273607886b8ad162d1ceb7bcf763d6c060a6df3d290ac"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-E46F27058B0F_skin_lod2.glb",
-      "sha256": "f1e3e4932838a9e31fa5a392c81583a928c45e2d6936607845d7615d284873b0"
+      "sha256": "827a11fd523b5e9752bf17b4ee9ac175f09794b9e7aa6df23701593583e90b57",
+      "source_file": "art/props/mesh_assets/models/PROP-E46F27058B0F_lod2.glb",
+      "source_sha256": "680dc56c62a12db1d3b792a01d6bd67926e08eb4a8b9278ee879af39c4d03c88"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-E9FDE33E57FF_skin_lod1.glb",
-      "sha256": "a83ef2cd3e6b0082fdc9839201bb44bf5e78248b3bb83fcc4751d6be096cff66"
+      "sha256": "93e43d8b4d74aabc23238835301761da38063303b67b02af3f0e9dd503ec0c69",
+      "source_file": "art/props/mesh_assets/models/PROP-E9FDE33E57FF_lod1.glb",
+      "source_sha256": "ae437f59b8a8670719a7aa0c792efcece1d29fde58647225b4b594a5ee1ff12c"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-E9FDE33E57FF_skin_lod2.glb",
-      "sha256": "d40e7bcee4f4e2d2cdf382809adb6e8f91155369dc6f3349abc627169551e8e6"
+      "sha256": "c6dd5f95cbcd3328f6cfbbbf06067f2e1502753bbdc7a8928dddf54fd558393b",
+      "source_file": "art/props/mesh_assets/models/PROP-E9FDE33E57FF_lod2.glb",
+      "source_sha256": "68c8470bc465dc4f8884d4dd87d03c0274fed674ee97b2223bb7a43342744c07"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-EBA4EF231506_skin_lod1.glb",
-      "sha256": "b7baae78e8eff32821cd77a11d5a2d14b543e7828b859781dea78db783678176"
+      "sha256": "91ec30a5694d2be4f50e25b98f7166e2233de7c8a7c51a413dfad6d1b7fb42d2",
+      "source_file": "art/props/mesh_assets/models/PROP-EBA4EF231506_lod1.glb",
+      "source_sha256": "62fe21ae819f9f689842cb76f252c88845248ea060bbde7ff27f7153651ffee0"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-EBA4EF231506_skin_lod2.glb",
-      "sha256": "771b35a297a027744ccae6162c0fd4b8a8d8b61e30b2088568cb4ab428bc3eeb"
+      "sha256": "d714f703356f403f3a55118697ced1f2b56bcd401f9e974dd51302d3a0e9899a",
+      "source_file": "art/props/mesh_assets/models/PROP-EBA4EF231506_lod2.glb",
+      "source_sha256": "7baeb94370e844e02967e7452349c89e2ebc7561f9738b2227ab662beb1828a5"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-ECF0E30EE86E_skin_lod1.glb",
-      "sha256": "b7d135aa836bfdf44f43e1c0f564f297679a5ac163d4b35792c77a2ac94ad0a6"
+      "sha256": "b7d135aa836bfdf44f43e1c0f564f297679a5ac163d4b35792c77a2ac94ad0a6",
+      "source_file": "art/props/mesh_assets/models/PROP-ECF0E30EE86E_lod1.glb",
+      "source_sha256": "f7b323866ce142e9f738da6827bc49fd47f254604b9bea7435c106eb51784110"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-ECF0E30EE86E_skin_lod2.glb",
-      "sha256": "6d573572f754c30f8c84aaee776988032dd7454c7a2ce40a776615450d3b790d"
+      "sha256": "6d573572f754c30f8c84aaee776988032dd7454c7a2ce40a776615450d3b790d",
+      "source_file": "art/props/mesh_assets/models/PROP-ECF0E30EE86E_lod2.glb",
+      "source_sha256": "d2b79bae46872d50b39bfba0258ea103ca23d211ba0215200e0ff2cae87d9dfe"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-EE7B1BE6B145_skin_lod1.glb",
-      "sha256": "7858ebebcb011789be3ae04aaa27b787c31b829528dbdde5868e86483a88ea2d"
+      "sha256": "2add02b4486dd8b4b6a71135ee9941325864cd159ba033cf3fc72fef4cf945e9",
+      "source_file": "art/props/mesh_assets/models/PROP-EE7B1BE6B145_lod1.glb",
+      "source_sha256": "35407529759982cf528b3c3510351a72e371214cd17cb8b374e78ba3912a0615"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-EE7B1BE6B145_skin_lod2.glb",
-      "sha256": "e64f0cf92b03014e62d5e2623a30021785e28a693fe305054415fafcf678f3a2"
+      "sha256": "9662522a306480c61552b5991362bae0080f2b0459ded455ffc4ff9944bfb878",
+      "source_file": "art/props/mesh_assets/models/PROP-EE7B1BE6B145_lod2.glb",
+      "source_sha256": "e0706bc29a3597e8fbef5c22ea58263e5a6955dc87d9d0cc1257c6553d1992a8"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F3A0B2D5D4CD_skin_lod1.glb",
-      "sha256": "0235f7c3e106356b04908571c1c6c5eb5d375f9f0c62d0deecd861b515faf82c"
+      "sha256": "77b7a764a37c630f4e3f1e94168778e53556d3c306edc1a3aab2dae6fc1f7829",
+      "source_file": "art/props/mesh_assets/models/PROP-F3A0B2D5D4CD_lod1.glb",
+      "source_sha256": "1dd20de25aa295fe6c5a338d323be96db04d5dd5165bcb6968af654ed30aa301"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F3A0B2D5D4CD_skin_lod2.glb",
-      "sha256": "3d2695fa42b8dcacb16ec766816518d6cf52dee9fe8cb6e587dc0eb2c646c97a"
+      "sha256": "c60c85df7f8752f889275af68a6bd5246c789d4ec8d1bd6151665ca39c6dafe8",
+      "source_file": "art/props/mesh_assets/models/PROP-F3A0B2D5D4CD_lod2.glb",
+      "source_sha256": "8360119233f8091f49d4402a3f83d1fffb595657b9e7794e8690bc6c1f916dbb"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F3C6F593DB8B_skin_lod1.glb",
-      "sha256": "9d5289e608afd125e55112064a5c6fde1093f6ce162ed83b4facf3274c3bdc5e"
+      "sha256": "4a8af31db81aebf93c0f52e6d3a6455f2cd9016b9fa77bee0fd50a03343ae5ba",
+      "source_file": "art/props/mesh_assets/models/PROP-F3C6F593DB8B_lod1.glb",
+      "source_sha256": "88e662f9d6a49bc1376fb4ef93d8eef770151a0d1280eb1eb82ae7166c898b26"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F3C6F593DB8B_skin_lod2.glb",
-      "sha256": "3b29e9549e0e169dfe99da2f7ca0356dc054c64f2998612dc6c12dfe6b82c40f"
+      "sha256": "031cd6e8272b37125c313c840ba5cf18d2e5b17912569fcb8c7a37125d94049b",
+      "source_file": "art/props/mesh_assets/models/PROP-F3C6F593DB8B_lod2.glb",
+      "source_sha256": "7db6f7bfda35301889532da798956589e1ae21a8eb5fed2f856f7ecc7cd076b1"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F42FE027C62A_skin_lod1.glb",
-      "sha256": "98a11fdaa415539433aaf2c9f99a00c5282aad0aa556918c406e979c26444a0a"
+      "sha256": "fc5124413087cb205c3a26bcbfaa22c95eec3c2f57ef1ad2cd3584c6a72c4c41",
+      "source_file": "art/props/mesh_assets/models/PROP-F42FE027C62A_lod1.glb",
+      "source_sha256": "4f4a28d700bd258f6ac32919b611b8d874464ad62f60450849dc2df90ba99f46"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F42FE027C62A_skin_lod2.glb",
-      "sha256": "ab6d09869c81756c8b5f11c0afb07a69b713b0400394446cb641f95b1c35ced2"
+      "sha256": "b2efc5c804bc81f81d7aab783bc094094bff84485a5e7159cbd13a28c7ab6a12",
+      "source_file": "art/props/mesh_assets/models/PROP-F42FE027C62A_lod2.glb",
+      "source_sha256": "46d5ecfdd61d289fbc2e6304fd1cb562f5d39bd65de82d900a8e7910fdccc84e"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F4F320430EFE_skin_lod1.glb",
-      "sha256": "126c7a71d539343123380508ef36850383f4f612cd647794bd279bb9ca8d885f"
+      "sha256": "48efd49a9c3fd9270b3fd74a7dd9dd12d93530d93bc3b44ca2f95d2d44d80271",
+      "source_file": "art/props/mesh_assets/models/PROP-F4F320430EFE_lod1.glb",
+      "source_sha256": "1b2313448962344afa2e63c9a8eb18e21209197de25ff2c2bcb33e4f9370f807"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F4F320430EFE_skin_lod2.glb",
-      "sha256": "ddb41a06e0123ce1fca177efb2a7f4cf0adacf6e5766e7d1c9da8bda133a1abc"
+      "sha256": "d041c1e4d91446b9d0af6fea1fd09a05e5c63fa9a401e272fe077bf0b92db1e5",
+      "source_file": "art/props/mesh_assets/models/PROP-F4F320430EFE_lod2.glb",
+      "source_sha256": "bede795a170436d8a8fc3c10b495affa27a0f82a185dfbbac206a8269253c461"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F5195071E480_skin_lod1.glb",
-      "sha256": "1c297e9521a1d548f878cddb14799dc7060592f0f22ef4cd36ccb07f4437b4c0"
+      "sha256": "daaca9f6cc30c775357e0b72c26475a6a4c56225d6cc2917b1e1f5d6e6c4187c",
+      "source_file": "art/props/mesh_assets/models/PROP-F5195071E480_lod1.glb",
+      "source_sha256": "7c59ce6e2fc93bce3b752da69a2723fb97946a06a6370c13cd699ee9f1684997"
     },
     {
       "file": "art/props/mesh_assets/runtime/PROP-F5195071E480_skin_lod2.glb",
-      "sha256": "35dffbaf335cde3fffae42be6aa670241f47531ea87e48ef1ce016c22b15cded"
+      "sha256": "bbfd66aaa60eae43b728b7622ada23b15543e15445acf9d7ab63b92c92d0006a",
+      "source_file": "art/props/mesh_assets/models/PROP-F5195071E480_lod2.glb",
+      "source_sha256": "00577d140eeff2042a121343eb995b4ddeaa3fc16b41b5f06f43dde847c961d9"
     }
   ],
+  "generator_sha256": "3a3e2988ab5090ffe104e7e5fe70e0207c7555d6235f48bc9919b5392851d035",
+  "weight_recipe": "continuous-human-field-v1; conforming-midpoint-blend-primitives; rigid-cow-unchanged",
   "human_rest": [
     [
       0,

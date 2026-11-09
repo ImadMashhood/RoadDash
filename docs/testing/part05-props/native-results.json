@@ -1,0 +1,33 @@
+{
+  "cars_damaged": 0,
+  "frame": 470,
+  "peak_dynamic_props": 13,
+  "preparation_wait_frames": 0,
+  "production_props": 995,
+  "real_collision_breaks": 13,
+  "restart_restored": true,
+  "tested_kinds": 13,
+  "variant_entities": 2626,
+  "variant_meshes": 902,
+  "variant_roots": 411,
+  "wall_frame_metrics_intact_damaged_reset": [
+    {
+      "frames": 60,
+      "max_ms": 18.637484,
+      "p50_ms": 17.215845,
+      "p95_ms": 18.412503
+    },
+    {
+      "frames": 215,
+      "max_ms": 27.368001,
+      "p50_ms": 17.584384,
+      "p95_ms": 19.377307
+    },
+    {
+      "frames": 40,
+      "max_ms": 21.147979,
+      "p50_ms": 17.857966,
+      "p95_ms": 20.882801999999998
+    }
+  ]
+}

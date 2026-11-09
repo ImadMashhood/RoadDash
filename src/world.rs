@@ -4,16 +4,16 @@ use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
 pub const RIDER_COLORS: [u32; 15] = [
-    0xe7e4dd, 0xd5b43f, 0xd2b64c, 0x2957bb, 0xa44195, 0x379b47, 0xe2e2dd, 0xaabbd4, 0x743927,
-    0x34373b, 0xc9b5d9, 0xe1bd34, 0x328e9f, 0xbe2927, 0xddbf32,
+    0xf0eee6, 0xe5c13e, 0xd9bd54, 0x323bc4, 0xb12b8d, 0x3ab94e, 0xf1f0e9, 0xc5d1dc, 0x9296b5,
+    0x303338, 0xd5c4ea, 0xe5c144, 0x3e9cd5, 0xd52c27, 0xe4c348,
 ];
 pub const HELMET_COLORS: [u32; 15] = [
     0x2436b4, 0xd2b437, 0xd3b23b, 0xd7d9da, 0xb32b28, 0x278a40, 0x285dc1, 0x222427, 0xb53b24,
     0xb7b43b, 0xd33b24, 0x2e8e43, 0x7aa441, 0xbbc4c7, 0xa5b33e,
 ];
 pub const BIKE_COLORS: [u32; 15] = [
-    0xb52322, 0x70378e, 0x343638, 0x2c973c, 0x743278, 0x21963b, 0xd6d6d1, 0x32449d, 0x773729,
-    0x303236, 0x74379c, 0x39843b, 0x2587a2, 0xb12624, 0x6137a2,
+    0xc52c25, 0xa13db1, 0x292b2f, 0x37ad46, 0x85357f, 0x32a347, 0xe3e3dc, 0x354bb9, 0x773c32,
+    0x27292e, 0x8d46b9, 0x438c3c, 0x329c4a, 0xc32725, 0x8743b8,
 ];
 pub fn shirt_color(index: usize) -> Color {
     let hex = RIDER_COLORS[index % RIDER_COLORS.len()];
@@ -81,14 +81,19 @@ pub fn setup_world(
 ) {
     let swatch = |hex: u32| Color::srgb_u8((hex >> 16) as u8, (hex >> 8) as u8, hex as u8);
     // Unrendered world/physics fixtures have no asset server or GPU skin assets.
-    let models = match (server.as_deref(), binds.as_deref_mut()) {
-        (Some(server), Some(binds))
+    let models = match (
+        server.as_deref(),
+        binds.as_deref_mut(),
+        images.as_deref_mut(),
+    ) {
+        (Some(server), Some(binds), Some(images))
             if std::env::var("ROADDASH_LEGACY_MODELS").as_deref() != Ok("1") =>
         {
             Some(crate::models::AuthoredModels::load(
                 &mut meshes,
                 &mut materials,
                 binds,
+                images,
                 Some(server),
             ))
         }

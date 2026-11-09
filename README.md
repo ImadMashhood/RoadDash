@@ -1,6 +1,6 @@
 # ROAD / DASH
 
-A native Rust + Bevy motorcycle combat racer. Race the approved 12 km farm-to-city Metropolis course, with one split and rejoin against fourteen rivals, dodge two-way traffic, throw punches and kicks, and use nitro to make a pass. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, using measured approach velocity and gravity.
+A native Rust + Bevy motorcycle combat racer. Race the approved 12 km farm-to-city Metropolis course, with one split and rejoin against fourteen rivals, dodge two-way traffic, throw punches and kicks, and fight for a clean pass. Player nitrous is temporarily disabled. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, using measured approach velocity and gravity.
 
 This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data. Metropolis is now the default. The legacy maps remain available with `ROADDASH_TRACK=valley cargo run --release` and `ROADDASH_TRACK=city cargo run --release`. [Implementation, native views and remaining gates](docs/testing/metropolis/README.md).
 
@@ -58,9 +58,10 @@ This changes scheduling, not body/joint/substep tuning. [Benchmarks and limits](
 | W / Up | Throttle; move forward on foot |
 | S / Down | Brake, then hold to reverse slowly; move backward on foot |
 | A, D / Left, Right | Steer; move sideways on foot |
-| Left or Right Shift | Nitro while accelerating |
-| J / K or left / right mouse | Punch left / right |
+| Left or Right Shift | Nitrous temporarily disabled |
+| J / K or left / right mouse | Punch left / right; swing when holding a club |
 | Space | Kick nearest reachable target to either side |
+| E / Q | Pick up nearby unobstructed club / drop (queues until contact completes) |
 | C | Cycle three camera distances |
 | Esc | Pause / resume |
 | M | Mute / unmute audio |
@@ -71,10 +72,10 @@ This changes scheduling, not body/joint/substep tuning. [Benchmarks and limits](
 | F7 | Toggle optional biomechanical ragdoll diagnostics |
 | R | Restart from the grid |
 
-The dynamic bike has assisted road-relative steering and independent physical momentum. Holding a direction builds steering force; release and countersteering unwind it. Bike and rider lean together only from that steering input. The camera stays within compact chase distances at speed. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Nitro regenerates when released. Grass reduces traction and speed while remaining driveable; it does not drain armor or cause a crash by itself. Traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up and seeks the actual fallen bike. WASD or the left stick immediately takes over movement; after 0.35 seconds of neutral input the assist resumes. Walk away to finish on foot with valid checkpoints, or approach a slow bike and press Enter/menu-start to remount manually. Disable automatic seeking with `--manual-recovery`. The rider lifts the bike upright and remounts. Moving traffic and other racers can knock a rider down again during recovery.
+The dynamic bike has assisted road-relative steering and independent physical momentum. Holding a direction builds steering force; release and countersteering unwind it. Bike and rider lean together only from that steering input. The camera stays within compact chase distances at speed. Steering chooses a line across the road; tight bends push the bike toward the shoulder at high speed. Brake before sharp corners. Player nitrous is disabled in both physics adapters; the input binding is retained for later re-enabling. Grass reduces traction and speed while remaining driveable; it does not drain armor or cause a crash by itself. Traffic collisions, hard bike collisions, and melee damage can knock you off. After a crash, the camera follows your physical ragdoll until it lands. Your rider gets up and seeks the actual fallen bike. WASD or the left stick immediately takes over movement; after 0.35 seconds of neutral input the assist resumes. Walk away to finish on foot with valid checkpoints, or approach a slow bike and press Enter/menu-start to remount manually. Disable automatic seeking with `--manual-recovery`. The rider lifts the bike upright and remounts. Moving traffic and other racers can knock a rider down again during recovery.
 
 Controller: left stick steers (both axes move on foot), RT throttles, LT brakes, X/B punch left/right,
-Y boosts, A starts, Start pauses, Select restarts and right-stick click changes
+Y boost is temporarily disabled, A starts, Start pauses, Select restarts and right-stick click changes
 camera. Right stick freelooks and returns to chase when released. LB opens settings;
 Guide is an alternate. Remap buttons/keys in the F2 panel; its up/down selects,
 left/right adjusts, Enter/A activates, Tab/Y changes binding device, and Esc/Start
@@ -135,11 +136,13 @@ For a mounted animation review, run `cargo run -- --animation-lab-view`: keys 1�
 
 ## Current scope
 
-This is an arcade prototype, not a finished commercial remake. Native riding now uses an assisted dynamic chassis with two raycast wheels, suspension, combined grip limits, torque/gears and upright feedback. A retained kinematic adapter is available for regression comparison. Ragdolls and wrecks are physically simulated. The environment remains procedural; authored rider/bike meshes now replace the primitives, with connected anatomical visual bindings and the accepted physical ragdolls. There is one playable point-to-point course and three handling presets. Police pursuits, career events, purchasable upgrades, polished animation clips, multiplayer, and the wider production art pass remain future work. Credits are saved but cannot yet be spent.
+The native frontend now uses the approved grotesque painted artwork: splash → main → Thrash/current course, or Big Game/current rider → street hub → race. Shop/bar visits and existing options/results are connected; campaign, purchases and online modes remain deferred. [Controls, artwork and limits](docs/ui/NATIVE_FRONTEND.md).
+
+This is an arcade prototype, not a finished commercial remake. Native riding now uses an assisted dynamic chassis with two raycast wheels, suspension, combined grip limits, torque/gears and upright feedback. A retained kinematic adapter is available for regression comparison. Ragdolls and wrecks are physically simulated. The environment remains procedural; authored rider/bike meshes now replace the primitives, with connected anatomical visual bindings and the accepted physical ragdolls. There is one playable point-to-point course and three handling presets. One resident police motorcycle now uses warning, pursuit/interception, lost-target search, on-foot arrest and escape; bespoke police art and human balance remain open. Career events, purchasable upgrades, polished animation clips, multiplayer, and the wider production art pass remain future work. Credits are saved but cannot yet be spent.
 
 ## Development roadmap — completed first, remaining work in order
 
-**204 verified tasks complete; 242 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**212 verified tasks complete; 244 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -157,33 +160,37 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 204 verified complete |
+| [00](#part-00) | Completed and verified foundations | 212 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 29 open |
-| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 14 open |
+| [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 29 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 10 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 11 open |
-| [07](#part-07) | Weapons and complete riding combat | 11 open |
-| [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
-| [09](#part-09) | Vertical-slice playtest gate | 21 open |
+| [07](#part-07) | Weapons and complete riding combat | 10 open |
+| [08](#part-08) | Police, pursuit and arrest/escape loop | 9 open |
+| [09](#part-09) | Vertical-slice playtest gate | 22 open |
 | [10](#part-10) | Networking feasibility spike | 10 open |
 | [11](#part-11) | Remaining production-art integration and acceptance | 3 open |
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 10 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 20 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 22 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 21 open |
 
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **ANIM-15** Integrate visual glove grip/fist profiles and typed hand sockets. Reason: rigid open fingers ignored punch/grip contexts; originating part: 02; dependencies: ANIM-14, existing model/contact rig; acceptance: independent side-specific shapes, interpolated weights, relaxed fallback, shared bounded glove-only GPU targets, validated grip/weapon frames and unchanged physical rig; verification: socket/mesh/shape/blend/content tests, physics differential checks and [native review](docs/testing/hand-contacts/README.md). This completes technical integration only; final art and authoring round-trip stay open under ANIM-02/16.
+
 - [x] **RECOVERY-01** Remount at the live wreck pickup position and support height. Reason: the riding chassis snapped away after pickup; originating part: 01; dependencies: existing recovery/physics adapters; acceptance: live wreck coordinates, backend current/next pose, velocity/state/history synchronized without stale crash restoration; verification: displaced/elevated-wreck tests in both adapters, repeated dynamic ticks and two native zero-error remounts in [receipt](docs/testing/remount-reverse/README.md). Full obstruction/art acceptance remains P06-009.
 - [x] **REVERSE-01** Back out with the existing brake input after stopping. Reason: a solid obstacle could trap a mounted player; originating part: 01; dependencies: existing drive intent/tire force; acceptance: forward braking before bounded parking reverse, no throttle/reverse conflict, throttle returns forward, solid-wall backout and both adapters retain recovery/checkpoints; verification: 30/60/120 Hz domain tests, dynamic wall and assisted integration, native reverse in [receipt](docs/testing/remount-reverse/README.md).
 - [x] **ANIM-14** Reconcile context-first draft sequences with shipped runtime clips. Reason: next animation work needs an explicit source-to-runtime gap inventory; originating part: 02; dependencies: ANIM-05/08 and existing catalogs; acceptance: hash-bound sequence/pose/contact/entry/exit/interrupt mapping, unmatched keys and absent clips explicit, no invented native timing or pose approval; verification: reproducible [coverage report](docs/animation/RUNTIME_COVERAGE.md), --check and six context tests; [next review](docs/animation/NEXT_REVIEW.md). V2-02 and ANIM-02/03/04/06 approval gates remain open.
 
 - [x] **PERF-09** Enable supported multicore physics with a serial fallback and measured comparisons. Reason: user requests parallel physics after logged simulation slowdown; part: 11; dependencies: PERF-07 and pinned Rapier feature/license review; acceptance: default parallel_physics forwards native island parallelism, logs identify compiled backend, unchanged physical tuning passes regressions, exact serial/parallel lab/native comparisons are recorded and new transitives audited; verification: [feature graphs,307 physical tests, paired crash labs and native logs](docs/testing/parallel-physics/README.md). This does not close PERF-08's full-race frame budget.
+
+- [x] **RACE-SETUP-01** Align default rider color schemes, disable player nitrous and widen the starting route/grid. Reason: user requests original-style colors, no player boost, more starting clearance and four/three/four lanes; originating part: 01 (world support04/05); dependencies: REPAIR-01, STREET-LIFE-01 and shared authored rider materials; acceptance: reference-informed fifteen-slot swatches and readable neutral leather, boost disabled in both adapters,20m station gaps/player last, supported extended grid, four3m lanes before/after the fork and three on each branch with matched pavement/traffic/paint, preserved paths/buildings/rigs; verification: [364tests, clearance audit, native road views and recovery](docs/testing/race-setup/README.md). Technical integration verified; full race balance and color/art/performance approval remain open.
 
 - [x] **REPAIR-01** Correct seated knee stance, fence ends, opening road/traffic, skyline transition and low-speed car wipeouts. Reason: user reports inward knees, missing posts, start pileups, abrupt city and touch-triggered ejection; part: 01 (world support04/05); dependencies: mounted IK, approved Metropolis compiler and contact policy; acceptance: outward seated bend with held pegs and unchanged unheld anatomy, both fence ends, matching10m farm pavement/handling with shoulders,64 delayed-start cars, gradual city-edge heights preserving paths/footprints, gentle solid contacts without ejection and preserved high-speed crash/recovery; verification: anatomy/contact regressions, authoring/clearance audits and native both-route/survey views in [evidence](docs/testing/startup-world-diagnostics/README.md). Full art/balance remains open.
 
@@ -346,8 +353,11 @@ Everything checked off lives here, grouped by the original system. These are ver
 </details>
 
 <details>
-<summary>Presentation, audio, UI, and accessibility — 2 verified tasks</summary>
+<summary>Presentation, audio, UI, and accessibility — 5 verified tasks</summary>
 
+- [x] **UI-01** Catalog original UI/media and deliver an editable artist skeleton. Reason: user will create replacement art and needs all source references, IDs and screen context first; originating part: 15; dependencies: P00-006 and the user-supplied local game/reference R01; acceptance: complete supplied IMAGES/embedded-icon inventory, original screen/popup/native-dialog geometry, external-only reference gallery, frozen IDs/dimensions/replacement briefs and functioning standalone preview/progress workflow; verification: [142 UI resources,29 populated screen entries,13 popups,7 unique Windows dialogs,28 draft pages,63 SVGs,17 Python tests and browser checks](docs/ui/README.md). No original media shipped and no game UI replaced; artwork/Bevy integration remain UI-02/P15-006.
+- [x] **UI-03** Provide original-art generation prompts for every UI screen and source-image replacement. Reason: user will generate the art independently; originating part: 15; dependencies: UI-01 catalog and current rider/bike references; acceptance: all 28 proposed screens and 142 UI image IDs / 66 master families have specific subject, composition, quiet UI areas, aspect/export and identity/variant guidance without baked text or premature approval; verification: [screen and per-image prompts](docs/ui/SCREEN_GENERATION_PROMPTS.md), machine-readable coverage and deterministic rebuild tests in [performance/UI evidence](docs/testing/performance-ui-prompts/README.md). All production art and UI-02 integration gates remain open.
+- [x] **UI-04** Generate and place all 28 proposed screen drafts in the artist preview. Reason: user requests ChatGPT image generation and usable screen placement; originating part: 15; dependencies: UI-03 prompts and existing project model views; acceptance: one saved traceable PNG per screen, real alpha for HUD/pause/confirmation, persistent matching-page art, live separate labels/buttons, gallery/download/review metadata and retained wireframe/source-resource workflows; verification: [28 decoded browser pages, PNG/alpha/hash checks and review/download workflow](docs/testing/generated-ui/README.md). The first batch’s art direction was subsequently rejected; the user approved the grotesque painted style and four additional original scene variations are saved for individual review (docs/ui/UI_ART_DIRECTION.md). This verifies historical draft availability only; user art approval, layered/high-resolution masters and native Bevy integration remain UI-05/UI-02.
 - [x] **P15-001** Provide baseline PBR lighting, shadows/fog, menus/HUD/results, engine/wind/nitro/braking loops, impacts/footsteps/countdown/finish cues, and mute. Evidence: [world](src/world.rs), [UI](src/ui.rs), [audio](src/sound.rs).
 - [x] **P15-002** Generate original PCM sounds in memory; verify valid non-silent WAV data and initialized/playing audio sinks in the native smoke check. Evidence: [sound test](src/sound.rs), [render/audio check](src/verification.rs).
 
@@ -487,10 +497,13 @@ Everything checked off lives here, grouped by the original system. These are ver
 </details>
 
 <details>
-<summary>Riding melee and weapons — 3 verified tasks</summary>
+<summary>Riding melee and weapons — 5 verified tasks</summary>
+
+- [x] **RIVAL-WEAPONS-01** Equip a seeded random subset of rivals at race start/retry. Reason: user requests starting weapons on random riders; originating part: 07; dependencies: P05-003, validated weapon content and existing reset/held-socket paths; acceptance: default seven of fourteen rivals armed, player/police excluded, reproducible seed/order-independent selection, reroll only on new grids, retained AI grace/retaliation, drop/recovery and bounded resident visuals; verification: [375 workspace tests, seeded native equipped/held census and isolated entry receipt](docs/testing/random-rival-weapons/README.md). Full arsenal and human balance gates remain open.
 
 - [x] **P05-001** Implement left/right punches, directional range checks, damage, cooldown, simple arm animation, hit sound, and HUD feedback. Evidence: [combat](src/combat.rs), [animation](src/world.rs), [sound](src/sound.rs).
 - [x] **P05-002** Test directional damage and a single takedown reward. Evidence: `directional_melee_damages_the_target_and_awards_one_takedown` in [game tests](src/game.rs).
+- [x] **P05-003** Add left/right kicks, then one simple held weapon and pickup rules. Evidence: [first-club implementation and actual native keyboard pickup/contact/drop](docs/testing/part07-weapons/README.md), fixed moving contact/LOS/range/AI/drop/crash/reset tests; broad arsenal, grip art, balance and exit gates remain open.
 - [x] **P05-009** Require three direct side-by-side hits with no more than three seconds between hits, with reach/side/height/heading/occlusion checks, one target per attack and duplicate-hit protection. Evidence: [core rules](crates/rr_core/src/lib.rs), [melee](src/combat.rs), [regressions](src/game.rs).
 
 </details>
@@ -530,6 +543,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 - [x] **P08-001** Populate seven rival racers with curve-speed planning, lane changes, traffic avoidance, attacks, and recovery through the shared recovery system. Evidence: [AI controller](src/game.rs), [recovery](src/recovery.rs).
 - [x] **P08-002** Populate two-way civilian traffic with solid vehicle colliders. Evidence: [traffic setup/update](src/game.rs).
+- [x] **P08-006** Add police patrol, violation assessment, chase/intercept/bust, loss of target, and return-to-patrol states with testable transitions. Evidence: [resident police implementation, deterministic transitions, safe contact/priority and native all-state bust/escape/retry](docs/testing/part08-police/README.md). This verifies the narrow police-state requirement; bespoke art, moving-foot capture, discretionary encounters, human fairness and full offline/performance exit gates remain open.
 - [x] **P08-011** Treat crossing traffic as an explicit wipeout hazard with continuous/all-type contacts, including a moving car striking a stopped bike. Evidence: [four physical collision cases](src/vehicle_tests.rs).
 - [x] **P08-010** Use American right-hand traffic lanes and separate one-way cross-traffic lanes; stop automatic AI fights/weaving during grid launch. Evidence: [traffic](src/game.rs), [cross streets](src/environment.rs), [grid tests](src/vehicle_tests.rs).
 
@@ -598,20 +612,20 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
-
-
-
+<!-- DEVELOPMENT_PASS_01 -->
+<details>
+<summary>Reviewed development pass — 29 open requirements retained (expand)</summary>
 
 - [ ] **AI-11** Review full-race racer/killer balance with human playtests. Reason: deterministic roles and combat tests do not establish fun/fair aggression; part: 01; dependencies: AI-10; acceptance: completed races on both branches with visible overtaking racers, readable killer threats and practical escapes/recovery, no unavoidable spawn pileup, user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
 - [ ] **CRASHREF-004** Extend original-crash coverage and establish trajectory parity before changing the default. Reason: native 2.5D geometry, other callers and post-entry laws exceed the first 3D comparison; part: 01; dependencies: CRASHREF-001–003, retail trajectory fixtures and explicit gameplay review; acceptance: low/static object, combat, downed-body/traction/wall caller routing, original condition/regeneration tables, pair ordering/reciprocal traffic response, and justified native-vs-Rapier bounce/drag trajectories documented and tested; verification: reproducible original-vs-modern traces, multi-rider contact/energy/recovery scenes and user comparison. Current comparison boundaries remain explicit in [research](docs/research/ORIGINAL_CRASH_CALCULATIONS.md).
 
 
-Next implementation work: measured vehicle crashes, over-car nose-down/vault behavior, combat knockoff swerve/countersteer and acceptance. Preserve the accepted player handling and passive ragdoll. The gradual AI steering, pre-contact velocity handoff, anatomical visual chains and grid retry fixes are already completed in Part 00. Older control/platform/architecture requirements below remain open where their full acceptance has not passed.
+Part01 runtime review: measured vehicle contact observations and low-speed solid-obstacle interruption during combat loss of balance are integrated. Over-car nose-down/vault trajectories, full reference calibration and gameplay acceptance remain open. See the [29-task audit and evidence](docs/testing/part01-runtime/README.md). Preserve the accepted player handling and passive ragdoll. The gradual AI steering, pre-contact velocity handoff, anatomical visual chains and grid retry fixes are already completed in Part 00. Older control/platform/architecture requirements below remain open where their full acceptance has not passed.
 
 
-- [ ] **V2-01-005** Design and implement measured vehicle-impact and over-car crash responses.
-- [ ] **V2-01-006** Add a combat knockoff loss-of-balance sequence. Research RAG-11 identifies immediate knockout plus metre-scale detached-origin offsets. Proposed work awaits user direction: mounted away-from-hit swerve, physical countersteer toward the previous line, obstacle-interruptible release during countersteer and continuous seated-pose/velocity handoff with protective arms. Preserve the three-hit rule, repeat foot knockdowns, ordinary input-owned heading and collision/momentum; test both hit sides, obstacles at each phase, pause/reset and no position snap. [Findings, not implementation](docs/research/crash-behavior/README.md).
+- [ ] **V2-01-005** Design and implement measured vehicle-impact and over-car crash responses. Partial: bounded tick/entity contact observations record both pre-solver world velocities, normal closing speed, rear/oncoming/side/grazing/stopped approach and solid collider height. Existing dissipative entry/CCD remain; measured over-car trajectories, bounded nose-down/vault response and user acceptance remain open.
+- [ ] **V2-01-006** Add a combat knockoff loss-of-balance sequence. Partial: the default velocity-muscle path already performs mounted away-from-hit swerve/countersteer, three-hit release, seated-pose continuity and protective arms. Solid wall/vehicle contacts at ≥1m/s normal closing now interrupt either mounted phase without added launch or a new ordinary-riding threshold; both sides/phases and baseline are regression-tested. Full obstacle/terrain/multi-rider matrix, release velocity/pose trajectory measurements and recorded user gameplay approval remain open. [Audit and evidence](docs/testing/part01-runtime/README.md).
 - [ ] **V2-01-007** Compare the reference crash/control code and evaluate bounded physics changes.
 - [ ] **V2-01-008** Exit gate: accept corrections before authoring motion.
 
@@ -634,12 +648,14 @@ Next implementation work: measured vehicle crashes, over-car nose-down/vault beh
 - [ ] **P01-018** Obtain actual Windows and Fedora/NVIDIA native launch/input/audio receipts in addition to the CI build matrix; record the measured adapter and keep unmet hardware gates open.
 - [ ] **P03-010** Run a ten-minute aggressive-turning soak without NaNs/tunneling/unexplained flips; record at least ten test rides and controller feedback.
 - [ ] **P03-011** **Exit gate:** three presets feel distinct, a beginner can finish, and handling is fun and stable with placeholder art.
-- [ ] **P03-020** Reproduce and numerically verify the entire reference handling, including original bike specs, drive/brake ramps, gear thresholds, nitro charges, surface tables and fixed-point effects. Original calibration files are unavailable and the user has none; source reuse permission is unresolved. See [precise remaining work](docs/research/ROAD_RASH_HANDLING.md).
+- [ ] **P03-020** Reproduce and numerically verify the entire reference handling, including original bike specs, drive/brake ramps, gear thresholds, nitro charges, surface tables and fixed-point effects. Verified local-disc calibration tables are available; complete numerical calibration and source reuse permission remain unresolved. See [precise remaining work](docs/research/ROAD_RASH_HANDLING.md).
 - [ ] **P04-004** Drive camera motion from interpolated fixed-step poses; verify no jitter at 120-144 Hz and readability through tight turns, impacts, and jumps.
 - [ ] **P04-008** Validate camera clipping, both input devices, comfort-setting persistence, and responsive handling with an external tester.
 - [ ] **P04-009** **Exit gate:** riding is fast, comfortable, responsive, and finishable with keyboard and gamepad without unintended auto steering.
 - [ ] **P04-014** Verify the default mapping for the OS-discovered controller that Gilrs reports as unmapped; exercise real buttons/axes and add a licensed mapping only if needed. Evidence: [native receipt](docs/testing/PART_04.md); physical mapping acceptance remains open.
 - [ ] **P06-006** Add independent stamina, bike durability, balance/wobble, police-hit and bad-landing crash thresholds, and one authoritative `CrashStarted` event.
+
+</details>
 
 <a id="animation-production"></a>
 
@@ -683,9 +699,13 @@ Part 02 delivers the complete use-case catalog, original numbered pose files, co
 
 ### Part 02 — Animation A — reference study, labeled keyframes and pose approval
 
+<!-- DEVELOPMENT_PASS_02 -->
+<details>
+<summary>Reviewed development pass — 15 open requirements retained (expand)</summary>
+
 First study every original rider animation category, use sprites as reference keyframes, label every pose and use case, and publish a numbered gallery. Compare verified Synty/POLYGON-style games and animation/IK/ragdoll repositories; record licenses and compatibility. Initial research and static poses are starting points, not completion of this animation library.
 
-**Current correction:** V1's slot-based action labels are superseded. Use the [context-first source catalog](docs/animation/context/README.md) and [new action-grouped gallery](art/animation/context/gallery/index.html): 104 action slots / 194 temporal descriptors, with 138 new draft human poses and 16 bike-only layouts. Ordered phases, actual mirror/view flags and native logical counters are recorded separately. The earlier 247 candidates remain historical drafts. Pose fidelity/approval, unknown callers and native execution validation stay open; Part 03 has not started.
+**Current correction:** V1's slot-based action labels are superseded. Use the [context-first source catalog](docs/animation/context/README.md) and [new action-grouped gallery](art/animation/context/gallery/index.html): 104 action slots / 194 temporal descriptors, with 138 new draft human poses and 16 bike-only layouts. Ordered phases, actual mirror/view flags and native logical counters are recorded separately. The earlier 247 candidates remain historical drafts. Pose fidelity/approval, unknown callers and native execution validation stay open; the initial Part 03 runtime subset is already integrated under ANIM-08.
 
 - [ ] **V2-02-001** Build a complete animation/use-case catalog. ANIM-14 resumes source-to-runtime coverage review; unresolved caller/timing and full pose approval remain open. See [next review](docs/animation/NEXT_REVIEW.md).
 - [ ] **V2-02-002** Inspect all original rider animation categories.
@@ -695,10 +715,12 @@ First study every original rider animation category, use sprites as reference ke
 - [ ] **V2-02-007** Publish a numbered pose gallery with anatomical review.
 - [ ] **V2-02-008** Exit gate: keyframes and catalog approved.
 
-- [ ] **ANIM-02** Refine fingers, grips, fists and weapon sockets. Reason: the current twenty-bone rig has rigid hands; part: 02; dependencies: rider mesh/rig and contact catalog; acceptance: believable closed fists, wrapped grips and compatible held-weapon points without changing passive physics; verification: front/rear/side hand close-ups and rig/contact validation.
+- [ ] **ANIM-02** Refine fingers, grips, fists and weapon sockets. Runtime glove shapes and visual sockets are integrated under ANIM-15; shared authoring profiles and GLB reload are implemented in the [Part02 pass](docs/testing/part02-authoring/README.md); final thumb/finger silhouettes, reviewed clearance and exact source/runtime normal/tessellation parity remain open. Reason: the current twenty-bone rig has rigid hands; part: 02; dependencies: rider mesh/rig and contact catalog; acceptance: believable closed fists, wrapped grips and compatible held-weapon points without changing passive physics; verification: front/rear/side hand close-ups and rig/contact validation.
 - [ ] **ANIM-03** Resolve reference sequence linkage, timing and ambiguous labels. Reason: sprite slots include view/depth variants and do not establish timing; part: 02; dependencies: local reference metadata and CANS/RRAN/EXE research; acceptance: evidence-backed phase/side/weapon labels and timing or explicit unknowns for every reference family; verification: source-linked sequence audit, no guessed native durations.
 - [ ] **ANIM-04** Complete and review recovery/support and specialist poses. Reason: get-up kneel/sit candidates are preliminary crouches and arrest/equip/drop coverage is missing; part: 02; dependencies: catalog and hand refinement; acceptance: supported get-ups/lifts/mounts, reviewed vault/knockoff proposals, weapon equip/drop, police restraint and refined quadruped anatomy with clothing/body/bike clearance; verification: multi-angle art review, endpoint/chain checks and user pose approval before Part 03.
 - [ ] **ANIM-06** Review context-first pose fidelity and finish unresolved action bindings. Reason: correct sequence metadata alone does not prove faithful 3D silhouettes; part: 02; dependencies: ANIM-05 and new source-linked draft poses; acceptance: review every action/phase, source mirroring, fixed grip/fist/weapon placement, grounded get-up/mount support, crash/bike silhouettes, additional camera views and unknown caller aliases; verification: labeled source/recreation strips, joint/contact tests, multi-angle art review and explicit approval before interpolation.
+
+- [ ] **ANIM-16** Round-trip the glove profiles and sockets through the static authoring library. Shared profile/assembly/socket authoring and actual Blender export/reload are implemented; exact source/runtime silhouettes/normals and user approval remain open (ADR080). Reason: existing Blender Context_Fist drafts use a different compression recipe from the new runtime hinge shapes; part: 02; dependencies: ANIM-15, original source rig and context poses; acceptance: one profile source for open/grip/fist and sockets, preserved UVs/normals/contacts, matching source/runtime silhouettes and user review; verification: Blender export/reload, source/hash audits, per-hand multi-angle comparisons and unchanged physical trajectories.
 
 #### Carried-forward requirements — still unfinished
 
@@ -706,11 +728,17 @@ First study every original rider animation category, use sprites as reference ke
 - [ ] **P11-006** Introduce asset validation for triangles, skeleton paths, textures/material references, ownership metadata, release clearance, and content hashes.
 - [ ] **ARCH-006** Define evidence/classic-reference/new-design/rights/QA catalog fields; keep original-source observations distinct from new stats/unlocks/visuals.
 
+</details>
+
 <a id="part-03"></a>
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
 
-- [ ] **COMBAT-FEEL-01** Synchronize strikes to visible contact keyframes and review impact feel/audio. Reason: faster playback alone does not align input-tick hit resolution; part: 03; dependencies: COMBAT-09 and fixed input buffering; acceptance: one strike at contact, interruption/pause safe, strong readable left/right impacts and approved sound/feel; verification: timed contact/miss/recovery tests, native recording and user playtest.
+<!-- DEVELOPMENT_PASS_03 -->
+<details>
+<summary>Reviewed development pass — 27 open requirements retained (expand)</summary>
+
+- [ ] **COMBAT-FEEL-01** Synchronize strikes to visible contact keyframes and review impact feel/audio. Partial: fixed-clock windup/contact, explicit extended-contact keys, frozen eligible kick side and interruption/pause/reset handling are integrated in the [Part03 pass](docs/testing/part03-runtime/README.md); subjective impact/audio and user playtest approval remain open. Reason: faster playback alone does not align input-tick hit resolution; part: 03; dependencies: COMBAT-09 and fixed input buffering; acceptance: one strike at contact, interruption/pause safe, strong readable left/right impacts and approved sound/feel; verification: timed contact/miss/recovery tests, native recording and user playtest.
 
 
 - [ ] **RAG-B-01** Implement and verify reciprocal angular-impulse muscle control on the existing constrained rig. Reason: user requested a second method for comparison; part: 03; dependencies: RAG-11 and shared crash lifecycle; acceptance: tensor reciprocal momentum, no authored linear/position correction, torque/rate/work caps, real support, finite attempts and baseline/sleep preservation; verification: focused/backend/full regression and native evidence in [Method B](docs/testing/crash-comparison/method-b/README.md). Automated subset implemented; native/user gates remain open.
@@ -721,9 +749,9 @@ First study every original rider animation category, use sprites as reference ke
 
 The user authorized the initial clip integration after correcting torso motion; ANIM-08 records that verified subset. Full keyframe approval and the production gates below remain open. Animate and interpolate the full set. Make walking/running feel grounded through terrain-aware stride, foot planting, starts/stops and turns. Preserve universal seat/grip/peg contacts, improve get-up/remount, and prototype bounded attempts to regain control during ragdoll. Include manual on-foot control and valid foot finishes; keep the accepted passive ragdoll as the comparison fixture.
 
-- [ ] **V2-03-001** Implement a data-driven animation state/blend graph. Initial riding/attack/recovery graph verified under ANIM-08; full weapon/police/locomotion coverage and approval remain open.
+- [ ] **V2-03-001** Implement a data-driven animation state/blend graph. Initial riding/attack/recovery graph verified under ANIM-08; fixed contact scheduling now shares the authored clip clock and validates explicit contact keys (ADR081); full weapon/police/locomotion coverage and approval remain open.
 - [ ] **V2-03-002** Interpolate approved keyframes and combat/recovery transitions.
-- [ ] **V2-03-003** Make walking/running match velocity and terrain. Partial: distance-driven stride, velocity blend, support-ray sole alignment and stance locking are integrated; pelvis/stair/turn-in-place and measured terrain slip acceptance remain open.
+- [ ] **V2-03-003** Make walking/running match velocity and terrain. Partial: distance-driven stride, velocity blend, support-ray sole alignment, finite swing release, fresh stance capture and physics-local moving-support locks are integrated; pelvis/stair/turn-in-place and measured terrain slip acceptance remain open.
 - [ ] **V2-03-004** Keep hands and feet on bike contacts when required. Initial four-contact render solver passes fixed-length/endpoint tests; full runtime hand/foot deformation and clearance approval remain open.
 - [ ] **V2-03-005** Prototype bounded active ragdoll and player attempts to recover. Partial: supported player input raises only existing capped joint motors to 0.12 activation; neutral restores the passive crash curve. Controlled work/energy, conscious/unconscious policy and user feel approval remain open. RAG-11 proposes true ground-normal support checks, posture-aware directional bracing, bounded attempts to roll supine, physical back sliding, timeout/yield under speed/spin/obstruction and work-budget integration with the existing energy guard. No such changes are implemented; retain passive fallback and verify high-speed/airborne/wall contacts, failed attempts, momentum, joint integrity and recovery.
 - [ ] **V2-03-006** Blend physical landings into terrain-aware get-up and remount. Partial: capture the settled physical pose and blend into get-up, followed by terrain-aware feet and existing mirrored remount. Confined clearance, recovery direction selection and full terrain approval remain open.
@@ -741,12 +769,15 @@ The user authorized the initial clip integration after correcting torso motion; 
 - [ ] **RIGHTS-012** Sessions 16-18: manual foot movement, optional assist, foot finish, remount, no softlocks.
 - [ ] **ART-02** Acquire a licensed pilot rider and integrate one shared skinned avatar across riding, fighting, walking and ragdoll. Original authored pilot integration is tracked under ART-03; complete production deformation/animation/LOD acceptance remains open. Reason: researched assets are not yet working models; part: character art/animation; dependencies: ART-01, model selection/acquisition and exact archive license; acceptance: biker outfit/color zones, coherent rig and recovery, unchanged physics/controls, 15-racer performance/LOD acceptance; verification: deformation/animation/ragdoll tests, native visual checks and profiling.
 - [ ] **ART-04** Polish the visual retarget and authored animation transitions without changing simulation. Reason: authoring rig has 20 bones and the current fingers/pose drivers are prototypes; part: 11 art/animation; dependencies: ART-03 and static pose library; acceptance: clean grip/fist/deformation and contact-aware transitions at gameplay speeds; verification: pose review, native clips and repeated physics parity tests.
-- [ ] **P05-006** Implement idle/lean/punch/kick/hit/stagger animation states, input buffering/priorities, anti-spam, and gameplay-owned timing.
-- [ ] **P06-008** Separate OnFootAutoSeekBike and OnFootManual states; support FinishedOnFoot and BustedOrRecover outcomes. Auto/manual/FinishedOnFoot are implemented; police BustedOrRecover remains deferred to Part 08.
+- [ ] **P05-006** Implement idle/lean/punch/kick/hit/stagger animation states, input buffering/priorities, anti-spam, and gameplay-owned timing. Partial: buffered intent and one fixed contact per attack now share the visible clip clock; complete priority/state coverage and user acceptance remain open.
+- [ ] **P06-008** Separate OnFootAutoSeekBike and OnFootManual states; support FinishedOnFoot and BustedOrRecover outcomes. Auto/manual/FinishedOnFoot and the Part08 busted/no-payout/retry outcome are implemented; explicit production outcome/state separation and broader manual/human acceptance remain open.
 - [ ] **P06-009** Make remount safe: proximity, facing/interaction option, low bike speed, animation/collision checks, and no unwanted snap while deliberately walking away. Partial: proximity, facing, low-speed and explicit interaction gates are tested; final animation/obstruction clearance acceptance remains open.
 - [ ] **P06-010** Tune control handoff toward 1-3 s after a crash; add optional delayed stuck recovery with penalties and no automatic finish-line teleport.
 - [ ] **P06-012** Run 100 high-speed crashes without frozen physics/terrain clipping; audit trapping around fences, buildings, curbs, cliffs, and traffic, and tune repeated-hit protection/time loss.
 - [ ] **P06-013** **Exit gate:** knockoff, manual foot movement, optional assist, valid foot finish, and safe remount all work smoothly.
+
+
+</details>
 
 ## World production and subsequent gameplay
 
@@ -756,7 +787,11 @@ Continue here after the animation gates: buildings → props → NPCs → sky/la
 
 ### Part 04 — World A — facade study, original textures and procedural buildings
 
-- [ ] **PALETTE-01** Extend Metropolis beyond its twelve source-mapped facade families with curated city-district pools. Reason: reusing the currently mapped3D assets does not integrate every eligible earlier facade draft; part: 04; dependencies: AUTHORED-01, MESH-01 and MAT-03; acceptance: type-appropriate expanded catalog coverage, deterministic district/role assignment, matching full/coarse source identity, unique signage rules and retained ready/collision/performance budgets; verification: catalog/role/atlas hashes and coverage tests, close/far native district views and measured budgets. Deferred palette/art work; no claim that all128 designs are instantiated in Metropolis.
+<!-- DEVELOPMENT_PASS_04 -->
+<details>
+<summary>Reviewed development pass — 29 open requirements retained (expand)</summary>
+
+- [ ] **PALETTE-01** Extend Metropolis beyond its twelve source-mapped facade families with curated city-district pools. Reason: reusing the currently mapped3D assets does not integrate every eligible earlier facade draft; part: 04; dependencies: AUTHORED-01, MESH-01 and MAT-03; acceptance: type-appropriate expanded catalog coverage, deterministic district/role assignment, matching full/coarse source identity, unique signage rules and retained ready/collision/performance budgets; verification: catalog/role/atlas hashes and coverage tests, close/far native district views and measured budgets. Partial: [Part04 district pass](docs/testing/part04-world/README.md) expands12→24 source families with deterministic district/tower pools and matching three-band coarse/detail fitting. Final palette/signage/art, extended streaming and performance acceptance remain open; no claim that all128 designs are instantiated in Metropolis.
 
 
 - [ ] **LAYOUT-05** Review the race-centered city and primary-avenue intersection plan. Reason: user reference requires the whole city to be built around the race line, with intersections track first; part: 04; dependencies: LAYOUT-03 street-first parcels and LAYOUT-04 height/detail/access rules; acceptance: balanced whole-block development around both legal race alternatives, unchanged race/farm alignment, primary-avenue junction priority and protected fork throats, no competing secondary runs within110m for48m at under40degrees, connected secondary grid, fitted straight-edged buildings and retained height/detail hierarchy; verification: [centered whole map, junction close-up, centering/connectivity/junction/geometry/negative-case and deterministic checks](docs/planning/farms-long-city/RACE_FIRST.md), user review and later construction/traffic/native verification. User approved construction; runtime implementation and current limitations: [Metropolis evidence](docs/testing/metropolis/README.md). Full construction/traffic/performance acceptance remains open.
@@ -798,13 +833,20 @@ Study the original building/facade textures locally, rebuild them as original ar
 - [ ] **RIGHTS-007** Sessions 03-04: spline mesh/collision road and valid start/finish/checkpoint gates.
 - [ ] **P02-004** Replace the generated flat polyline with an authorable Catmull-Rom/Bezier centerline supporting widths, banking, elevation, sectors, and optional route splits/merges.
 
+
+</details>
+
 <a id="part-05"></a>
 
 ### Part 05 — World B — props, materials and procedural dressing
 
+<!-- DEVELOPMENT_PASS_05 -->
+<details>
+<summary>Reviewed development pass — 10 open requirements retained (expand)</summary>
 
 
-- [ ] **DESTRUCTION-02** Author dedicated broken prop variants and review damage readability. Reason: runtime crush/topple retains original meshes but is coarse damage art; part: 05; dependencies: DESTRUCTION-01, V2-05-002 and approved prop art; acceptance: original severed/broken/deformed variants for all13 Metropolis types with matching solid colliders, clear before/after silhouettes and budgeted debris, preserving racer physics and restart; verification: per-role native contact sheets, collider/reset tests and measured damaged-street performance.
+
+- [ ] **DESTRUCTION-02** Author dedicated broken prop variants and review damage readability. Reason: runtime crush/topple retains original meshes but is coarse damage art; part: 05; dependencies: DESTRUCTION-01, V2-05-002 and approved prop art; acceptance: original severed/broken/deformed variants for all13 Metropolis types with matching solid colliders, clear before/after silhouettes and budgeted debris, preserving racer physics and restart; verification: per-role native contact sheets, collider/reset tests and measured damaged-street performance. Partial: [Part05 furniture pass](docs/testing/part05-props/README.md) adds12 original-source buckled variants for the six crush roles with ready/material-gated presentation, preserved solid bounds and contact-timed melee. Seven topple roles, finished art approval and full damaged-street performance remain open.
 
 - [ ] **WORLDART-01** Rebuild the world art around the confirmed 3D Come Bye direction and measured property plan. Reason: current city/terrain/sky assets and placement remain inconsistent; part: 05/06; dependencies: WORLDPLAN-01, LAYOUT-01, LAYOUT-02, LAYOUT-03, MAT-02/MAT-03, stable LOD and performance budget; acceptance: coherent properties/field borders/access/fences, intentional building height groups,2/3/4lane transitions, consistent building textures, improved terrain/clouds/sky and readable RoadDash identity; verification: plan-to-geometry/access audits, close/far and rural/city native views, measured performance and user visual acceptance. [Direction and plans](docs/planning/world-redesign/README.md).
 
@@ -825,11 +867,18 @@ Repeat the reference → original textures/models → procedural placement → c
 
 - [ ] **ENV-004** E3: place memorable landmarks plus interactive fences, cows, cars, rocks, and tractors; make encounters readable rather than unavoidable surprise spawns.
 
+
+</details>
+
 <a id="part-06"></a>
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
-- [ ] **NPC-SEAMS-01** Repair civilian source binds/weights and visible segment seams. Reason: user reports floating NPC pieces; part: 06; dependencies: current actor skin catalog and preserved physical drivers; acceptance: connected-looking torso/limbs throughout walking, impact and ragdoll poses without replacing physics; verification: per-family bind/weight/attachment tests and close-up native visual review. Actor lifecycle smoke alone is insufficient.
+<!-- DEVELOPMENT_PASS_06 -->
+<details>
+<summary>Reviewed development pass — 11 open requirements retained (expand)</summary>
+
+- [ ] **NPC-SEAMS-01** Repair civilian source binds/weights and visible segment seams. Reason: user reports floating NPC pieces; part: 06; dependencies: current actor skin catalog and preserved physical drivers; acceptance: connected-looking torso/limbs throughout walking, impact and ragdoll poses without replacing physics; verification: per-family bind/weight/attachment tests and close-up native visual review. Actor lifecycle smoke alone is insufficient. Partial: [Part06 civilian weight pass](docs/testing/part06-npcs/README.md) adds shared source-space multi-bone fields, a continuous pelvic midline and bounded conforming neutral-surface refinement across55 families/two LODs; exact physics/cow assets remain unchanged. Mean posed attachments improve, but some coarse torso/shoulder samples worsen, original volume seams/art approval and full performance remain open.
 
 Repeat the same pipeline for pedestrians, riders, animals and believable NPC activity first. Then study and rebuild skyboxes, atmosphere, landscape textures and terrain materials; integrate them into the first map.
 
@@ -847,32 +896,43 @@ Repeat the same pipeline for pedestrians, riders, animals and believable NPC act
 - [ ] **ENV-008** Implement cow grazing/startled/turn/cross/react states with simple critical collision proxies; animal ragdolls remain optional cosmetics.
 - [ ] **P08-005** Add traffic gap keeping, braking, lane changes/intersections, and obstacle rerouting.
 
+
+</details>
+
 <a id="part-07"></a>
 
 ### Part 07 — Weapons and complete riding combat
 
-Add weapons after motion and world foundations: reference behavior, original assets, pickups, timing, contacts, animations and fair rival use. Existing punches/kicks remain working foundations.
+<!-- DEVELOPMENT_PASS_07 -->
+<details>
+<summary>Reviewed development pass — 10 open requirements retained (expand)</summary>
 
-- [ ] **V2-07-001** Research weapon behavior and define original data/assets.
-- [ ] **V2-07-002** Integrate weapon animations, contacts and outcomes.
-- [ ] **V2-07-003** Teach rivals fair weapon use and tune combat.
+Add weapons after motion and world foundations: reference behavior, original assets, pickups, timing, contacts, animations and fair rival use. Existing punches/kicks remain working foundations. A [first-club development pass](docs/testing/part07-weapons/README.md) integrates pickup/drop, authored side attacks and shared rival contact rules; broad art/arsenal/balance/exit gates remain open.
+
+- [ ] **V2-07-001** Research weapon behavior and define original data/assets. Partial: pinned R01 study, original training club and validated ability; full weapon families remain open (ADR085).
+- [ ] **V2-07-002** Integrate weapon animations, contacts and outcomes. Partial: first-club side clips, frozen ability/contact and pickup/drop/recovery integration; holster/equip art, full families and acceptance remain open.
+- [ ] **V2-07-003** Teach rivals fair weapon use and tune combat. Partial: shared pickup/LOS/tells/reach/cost and exact attacker retaliation; defense/personality tuning and human balance remain open.
 - [ ] **V2-07-004** Exit gate: weapons improve the race loop.
 
 #### Carried-forward requirements — still unfinished
 
 - [ ] **ARCH-004** Define weapon timing/range/stamina/damage/stagger/knockback/pickup data and bike class/mass/top speed/torque/grip/lean/durability/visual-asset data as authored files.
 - [ ] **RIGHTS-011** Sessions 13-15: punches/kicks, timing/range/stagger validation.
-- [ ] **P05-003** Add left/right kicks, then one simple held weapon and pickup rules.
 - [ ] **P05-004** Define typed ability data for startup/active/recovery, range, stamina cost, impulse, damage, stagger, and cooldown; initial punch timing 0.15/0.12/0.30 s and kick timing 0.24/0.16/0.50 s are tuning proposals.
 - [ ] **P05-005** Use stable side/front cones and transient swept sensor volumes; resolve each attack once with attacker/target/attack ID/contact point/relative speed/tick/result fields.
-- [ ] **P05-007** Build a matched-speed side-by-side combat harness; test no double-hit, misses 0.5 m beyond range, and cooldown/stamina/immunity boundaries.
+- [ ] **P05-007** Build a matched-speed side-by-side combat harness; test no double-hit, misses 0.5 m beyond range, and cooldown/stamina/immunity boundaries. Partial: first-club real-input moving fixtures at30/60/120/144Hz cover contact poses, misses/LOS/side/immunity, data changes and interruption; full harness presentation and exhaustive boundary matrix remain open.
 - [ ] **P05-008** **Exit gate:** three minutes of enjoyable punch/kick combat without weapons, with timing and hit validation evidence.
+
+
+</details>
 
 <a id="part-08"></a>
 
 ### Part 08 — Police, pursuit and arrest/escape loop
 
 Add police after weapons: patrol, violations, pursuit/interception, knockoffs, on-foot chase, arrest/escape and fair feedback. Finish the offline loop before Part 09.
+
+Partial: [Part08 resident police pass](docs/testing/part08-police/README.md) integrates one non-racing motorcycle through shared handling/combat/recovery, validated authored rules, witnessed violations, bounded LOS pursuit/search, safe arrest and retry. Bespoke police art, broader target discretion, human fairness, full performance/hardware and exit acceptance remain open; P08-006 alone is verified in Part00; the other9 requirements retain unmet gates.
 
 - [ ] **V2-08-001** Research original police behavior and author police content.
 - [ ] **V2-08-002** Implement bounded police pursuit and interceptions.
@@ -885,7 +945,6 @@ Add police after weapons: patrol, violations, pursuit/interception, knockoffs, o
 
 - [ ] **RIGHTS-014** Sessions 23-24: police, town/farm/cliff audio zones, placeholder soundscape.
 - [ ] **P08-004** Implement Cruise/SeekOvertake/Defend/Attack/Recover/Pursued/Arrested states with a blackboard and aggressive/cautious/opportunistic/reckless weights.
-- [ ] **P08-006** Add police patrol, violation assessment, chase/intercept/bust, loss of target, and return-to-patrol states with testable transitions.
 - [ ] **P08-009** **Exit gate:** fair, repeatable four-racer race with traffic, police, and melee, including opponent overtakes, hits, and recovery.
 
 <a id="part-09"></a>
@@ -893,6 +952,10 @@ Add police after weapons: patrol, violations, pursuit/interception, knockoffs, o
 ### Part 09 — Vertical-slice playtest gate
 
 Then resume the original Part 09: full offline-slice validation, ten external play sessions, fun metrics, tuning and measured performance. Keep the original acceptance criteria.
+
+First development pass: [isolated scripted entry/race/results receipts](docs/testing/part09-start/README.md). The approved 12km Metropolis default is retained; no human sessions or three-minute/four-racer gate is claimed.
+
+- [ ] **P09-AUTO-01** Verify an isolated current-course scripted slice suite. Reason: reproducible failure-reporting is needed before external playtests; part: 09; dependencies: native frontend, club grid, police and recovery fixtures; acceptance: protected new receipt directories, isolated saves/preferences, pinned seeds, process failure/timeout reporting and actual native entry/police/recovery passes on the approved map; verification: CLI tests plus per-case native logs/reports. Partial: entry mode is implemented; the combined full suite remains unverified.
 
 - [ ] **P09-001** Consolidate the three-minute town/farm/cliff route with player plus three AI, traffic/police, punch/kick, manual foot control, foot finish, checkpoints, results, and retry.
 - [ ] **P09-002** Run at least ten external play sessions with recordings, handling A/B comparisons, perceived-speed/crash feedback, and failure/input notes.
@@ -908,7 +971,7 @@ Then resume the original Part 09: full offline-slice validation, ten external pl
 - [ ] **P02-010** Build a short approximately 2 km handling road, then a roughly 6-9 km town -> farm -> cliff corridor tuned for a three-minute race, with straight, turns, hairpin, and hazards.
 - [ ] **P02-011** **Exit gate:** an authored graybox supports a complete race with valid gates, stable collision, clear progress, and no terrain fall-through.
 - [ ] **P07-003** Add seeded starts, ordered forward-crossed checkpoints, route segments, canonical racer-level progress, and out-of-bounds recovery.
-- [ ] **P07-004** Accept a valid forward finish from either rider or bike with shared racer identity; record source OnFoot/Bike and a single finish tick/event/payout. **Finishing while on foot is not implemented.**
+- [ ] **P07-004** Accept a valid forward finish from either rider or bike with shared racer identity; record source OnFoot/Bike and a single finish tick/event/payout. **Correction:** bike/foot finish foundations already exist (FOOT-001/002/006); full Part09 race/edge-case acceptance remains open.
 - [ ] **P07-005** Reject backward crossings, skipped gates, shortcuts, and finish teleports; handle same-tick rider/bike crossing exactly once.
 - [ ] **P07-006** Add distance/progress, bike damage, weapon state, and on-foot bike-direction/distance HUD; retain stable placement on split routes and off-road movement.
 - [ ] **P07-008** Verify retry retains settings while resetting all live race state, including traffic and recovery actors.
@@ -939,7 +1002,7 @@ Then resume the original Part 10: a measured server-authoritative two-client net
 
 
 
-- [ ] **PERF-08** Profile and optimize the measured low-FPS bottleneck on the user's hardware. Reason: instrumentation and aggregate utilization alone do not establish root cause or60FPS; part: 11; dependencies: PERF-07, reproducible farm/edge/downtown and damaged-course logs; acceptance: identify dominant main/render/simulation/paging spans, capture GPU timestamps when needed, make justified focused optimizations and demonstrate target P95 frame budget without removing authoritative hazards; verification: before/after native logs, GPU profiler receipts when applicable and user hardware confirmation.
+- [ ] **PERF-08** Profile and optimize the measured low-FPS bottleneck on the user's hardware. Reason: instrumentation and aggregate utilization alone do not establish root cause or60FPS; part: 11; dependencies: PERF-07, reproducible farm/edge/downtown and damaged-course logs; acceptance: identify dominant main/render/simulation/paging spans, capture GPU timestamps when needed, make justified focused optimizations and demonstrate target P95 frame budget without removing authoritative hazards; verification: before/after native logs, GPU profiler receipts when applicable and user hardware confirmation. Partial: [ADR089 performance pass](docs/testing/performance-ui-prompts/README.md) adds separate sync/step/writeback and catch-up diagnostics, stable render updates and exact semantic static-collider batching; full target-hardware city/crash frame-budget acceptance remains open.
 
 Cross-cutting production-art acceptance left from the original blueprint. Carry its criteria into Parts 02–06 where they apply; this section is the final integration gate, not a second world-build pass.
 
@@ -999,6 +1062,8 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 
 Retain these unfinished original blueprint requirements and acceptance gates. Schedule prerequisite work alongside the relevant earlier part; final acceptance remains here.
 
+- [ ] **UI-02** Create/approve the replacement UI art and integrate the approved skeleton into Bevy. Partial: native entry flow, current-course launch, street visits and settings/results hooks now exist (ADR091); the approved sixteen-portrait Biker Bar browser has a 4×4 picker and full-page 4:3 biographies with retro typography (ADR094/095; docs/ui/APPROVED_PORTRAITS.md), with native visual acceptance pending; broader required art and acceptance remain open. Reason: UI-01 is a reference/authoring kit, not production UI; part: 15; dependencies: UI-01, artist-approved required master families/components and existing lifecycle/settings/profile contracts; acceptance: original cleared art with correct slot identity, scalable typography/widgets, real garage/HUD/pause/busted/results and setting/input hooks, inactive career/network features clearly deferred, retained gameplay/saves/recovery, readable focus/accessibility and viewport behavior; verification: art review against the asset checklist, native keyboard/controller flows, saved-setting/error/retry cases and 1080p/1440p/4K/wide screenshots.
+- [ ] **UI-05** Review/refine generated screen art into production masters and reusable layers. Reason: UI-04 outputs native ~1672×941 full-screen drafts rather than requested 3840×2160 layered masters or every source-resource variant; part: 15; dependencies: UI-04 and user art feedback; acceptance: approved model/outfit/bike identity, anatomy/composition, clean alpha edges, adequate 1080p/1440p/4K texel density, separate required portraits/bikes/frames and deliberate mapping to needed source variants/components without claiming a resize adds detail; verification: [28 screen review rows](docs/ui/SCREEN_ART_REVIEW.md), master dimensions/layers/edges, small/large viewport comparisons and human art signoff before UI-02 native integration.
 - [ ] **P15-003** Implement the licensed free-audio catalog, actual RPM/load-driven engine-band crossfades, spatial emitters/listener, surface sounds, location ambience, music buses, and audio QA below.
 - [ ] **P15-004** Add scalable lighting/shadows, sensible optional SSAO/SSR/reflections, decals, anti-aliasing controls, and optional motion blur; do not require grain/blur/heavy shake.
 - [ ] **P15-005** Evaluate optional Hanabi particles for dust/exhaust/skids/sparks and cosmetic debris; cap emitters, GPU cost, and overdraw per quality setting.

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="960" viewBox="0 0 640 480"><rect width="640" height="480" fill="#20252b"/><text x="16" y="24" fill="#eaeaea" font-family="sans-serif" font-size="16">RR-18 · Bike detail / purchase</text><text x="16" y="44" fill="#a2b0ba" font-family="sans-serif" font-size="10">Original source geometry; independent labels; no source artwork</text>
+<rect x="80" y="450" width="200" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="84" y="465" font-family="sans-serif" font-size="10" fill="white">1: text 217</text>
+<rect x="360" y="450" width="200" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="364" y="465" font-family="sans-serif" font-size="10" fill="white">2: text 218</text>
+<rect x="80" y="420" width="200" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="84" y="435" font-family="sans-serif" font-size="10" fill="white">3: text 0</text>
+<rect x="360" y="420" width="200" height="30" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="364" y="435" font-family="sans-serif" font-size="10" fill="white">4: text 0</text>
+<rect x="0" y="420" width="80" height="60" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="4" y="435" font-family="sans-serif" font-size="10" fill="white">5: text 0</text>
+<rect x="280" y="420" width="80" height="60" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="284" y="435" font-family="sans-serif" font-size="10" fill="white">6: text 0</text>
+<rect x="560" y="420" width="80" height="60" fill="#35424e" fill-opacity=".65" stroke="#819bad" stroke-width="1"/><text x="564" y="435" font-family="sans-serif" font-size="10" fill="white">7: text 0</text>
+</svg>

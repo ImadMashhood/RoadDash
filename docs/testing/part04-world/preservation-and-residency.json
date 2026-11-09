@@ -1,0 +1,28 @@
+{
+  "baseline_commit": "7465f9842407385c5d69eddd74b76f5383be4635",
+  "structural_manifest_sha256": "a14557636286aae090a75b155ee2985c9469581c01cd22485f073232da1b657c",
+  "before_after_structural_equal": true,
+  "changed_building_styles": 17329,
+  "buildings": 19068,
+  "preserved": "Every manifest field except building style: shapes/triangles/heights/IDs, ground, routes, gates, grids, fields, street props, traffic/lane configuration. Source models/maps/physics/lockfile untouched.",
+  "resident_inputs": {
+    "before": {
+      "families": 12,
+      "lod1_2_glb_bytes": 7156672,
+      "lod1_2_triangles": 94063
+    },
+    "after": {
+      "families": 24,
+      "lod1_2_glb_bytes": 15467928,
+      "lod1_2_triangles": 197303
+    },
+    "limits": "File/triangle counts are verified resident input costs, not VRAM/GPU allocator measurements; native audit separately measures decoded source attributes. All34 shared kit textures retained; no new texture files.",
+    "facade_atlas_before_rgba_mips_bytes": 2095104,
+    "facade_atlas_after_rgba_mips_bytes": 6285312,
+    "facade_atlas_size": [
+      1024,
+      1152
+    ],
+    "last_mip_gutter_pixels": 1
+  }
+}

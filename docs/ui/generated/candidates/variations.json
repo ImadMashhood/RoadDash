@@ -1,0 +1,50 @@
+[
+  {
+    "id": "hangout-gritty-v1",
+    "title": "Biker bar",
+    "src": "generated/candidates/hangout-gritty-v1.png",
+    "prompt": "generated/candidates/hangout-gritty-v1.txt",
+    "width": 1672,
+    "height": 941,
+    "sha256": "17966d6f59a4f4f61b81ad463e706b03a37d497be1570aa784f581d4825961ae",
+    "source_reference": "UI-IMG-0072",
+    "tool_output": "exec-f431e91f-ecc6-4335-a0b3-252f3dc7589b.png",
+    "status": "draft; user approved shared style, individual composition review pending"
+  },
+  {
+    "id": "garage-gritty-v1",
+    "title": "Shady motorcycle dealer",
+    "src": "generated/candidates/garage-gritty-v1.png",
+    "prompt": "generated/candidates/garage-gritty-v1.txt",
+    "width": 1672,
+    "height": 941,
+    "sha256": "ff653a50d9d764df9bb762a69934641bbb7d1976333c8fbc51b589d8feda415b",
+    "source_reference": "UI-IMG-0071",
+    "tool_output": "exec-a00d721f-2c98-4350-8215-2255349f42a2.png",
+    "status": "draft; user approved shared style, individual composition review pending"
+  },
+  {
+    "id": "splash-gritty-v1",
+    "title": "Rival gang splash",
+    "src": "generated/candidates/splash-gritty-v1.png",
+    "prompt": "generated/candidates/splash-gritty-v1.txt",
+    "width": 1672,
+    "height": 941,
+    "sha256": "2d297ecb1acfcd9eca6a34b908818ee120a8a0a0401975ac6d797902ae9d4dbd",
+    "source_reference": "UI-IMG-0142",
+    "tool_output": "exec-501ce37d-e144-4beb-9fb6-25d1300a803a.png",
+    "status": "draft; user approved shared style, individual composition review pending"
+  },
+  {
+    "id": "hub-gritty-v1",
+    "title": "Crooked night street",
+    "src": "generated/candidates/hub-gritty-v1.png",
+    "prompt": "generated/candidates/hub-gritty-v1.txt",
+    "width": 1672,
+    "height": 941,
+    "sha256": "aff88f075970ab981cdbd1be886d8a4581a59d11f87da5f80525a90b26996012",
+    "source_reference": "UI-IMG-0146",
+    "tool_output": "exec-8dd7bdcf-3afa-4790-9afd-59e4c61bdb0f.png",
+    "status": "draft; user approved shared style, individual composition review pending"
+  }
+]

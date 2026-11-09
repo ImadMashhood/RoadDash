@@ -1,0 +1,26 @@
+{
+  "parent": "d825305",
+  "before_keys": 36,
+  "before_clips": 13,
+  "after_keys": 42,
+  "after_clips": 15,
+  "deep_equality": {
+    "version": true,
+    "limbs": true,
+    "names": true,
+    "parents": true,
+    "offsets": true,
+    "render_joints": true,
+    "keys": true,
+    "clips": true
+  },
+  "new_key_ids": [
+    2160,
+    2161,
+    2162,
+    2170,
+    2171,
+    2172
+  ],
+  "motion_sha256": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+}

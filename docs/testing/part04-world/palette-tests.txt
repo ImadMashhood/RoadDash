@@ -1,0 +1,6 @@
+...
+----------------------------------------------------------------------
+Ran 3 tests in 1.593s
+
+OK
+{"market": {"BUSS1": 379, "BUSS4": 372, "CHINA12": 380, "CHINA13": 406, "CHINA14": 414, "CLSTGA11": 413}, "mixed": {"BUSS1": 421, "BUSS4": 397, "CLSTGA12": 405, "CLSTGA14": 421, "WHSE11": 392, "WHSE12": 446, "WRHS1": 398}, "north_city": {"OFFC1": 447, "OFFC10": 471, "OFFC11": 457, "OFFC12": 449, "OFFC13": 440, "OFFC2": 468, "WHSE11": 450, "WHSE12": 438}, "old_city": {"CHINA12": 519, "CHINA13": 482, "CHINA14": 487, "RUNDWN11": 479, "RUNDWN12": 529, "VICT11": 480, "VICT13": 508}, "terraces": {"CLSTGA11": 392, "CLSTGA12": 346, "CLSTGA13": 382, "CLSTGA14": 344, "VICT11": 394, "VICT12": 393, "VICT13": 385, "VICT14": 394}, "tower": {"OFFC1": 648, "OFFC10": 607, "OFFC11": 568, "OFFC12": 654, "OFFC13": 598, "OFFC2": 615}}

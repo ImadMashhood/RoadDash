@@ -47,7 +47,7 @@ def report():
             'Key membership proves coverage only, not reachability, correct action side or approved silhouettes.',
             'Runtime playback can retime/blend clips; authored duration is not observed action latency.',
             'Procedural walk/idle/terrain/lean blends and physics-driven crashes are not standalone clips.',
-            'Weapon/police context sequences are drafts; absence from shipped clips is explicit.',
+            'Club forehand clips are first-weapon runtime candidates; remaining weapon/police sequences stay explicit drafts.',
             'Source slots can be view variants; this report never converts them into temporal phases.',
             'Full catalog acceptance still requires unresolved caller, support, hand and visual review.',
         ],

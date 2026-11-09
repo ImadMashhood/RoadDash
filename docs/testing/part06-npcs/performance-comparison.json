@@ -1,0 +1,166 @@
+{
+  "baseline": {
+    "samples": 19,
+    "steady_samples": 11,
+    "wall_p95_window_median_ms": 19.550291061401367,
+    "wall_average_window_median_ms": 17.462793350219727,
+    "max_mesh_entities": 12331,
+    "max_mesh_assets": 5368,
+    "max_material_assets": 1269,
+    "max_dynamic_bodies": 63,
+    "memory_samples": [
+      {
+        "RssAnon": "2039608 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3350500 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2042768 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3353660 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2045936 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3356828 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2045952 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3356844 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2045952 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3356844 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2046224 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3357116 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2046228 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3357120 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2047276 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3358168 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2047284 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3358176 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2047596 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3358488 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2047760 kB",
+        "RssFile": "662892 kB",
+        "VmRSS": "3358652 kB",
+        "VmSwap": "0 kB"
+      }
+    ],
+    "binary_sha256": "52b382b1a7209ac5a7e2ce7d151397abc0b090f2366e52047fa37a5a21e35212",
+    "max_rss_mib": 3279.93359375,
+    "max_rss_anon_mib": 1999.765625
+  },
+  "refined": {
+    "samples": 18,
+    "steady_samples": 11,
+    "wall_p95_window_median_ms": 18.93613052368164,
+    "wall_average_window_median_ms": 17.254375457763672,
+    "max_mesh_entities": 14361,
+    "max_mesh_assets": 5994,
+    "max_material_assets": 1453,
+    "max_dynamic_bodies": 63,
+    "memory_samples": [
+      {
+        "RssAnon": "2163556 kB",
+        "RssFile": "749996 kB",
+        "VmRSS": "3474528 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2163568 kB",
+        "RssFile": "749996 kB",
+        "VmRSS": "3474540 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2163608 kB",
+        "RssFile": "749996 kB",
+        "VmRSS": "3474580 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2165020 kB",
+        "RssFile": "749996 kB",
+        "VmRSS": "3475992 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2167364 kB",
+        "RssFile": "749996 kB",
+        "VmRSS": "3478336 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2167444 kB",
+        "RssFile": "750060 kB",
+        "VmRSS": "3478480 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2167744 kB",
+        "RssFile": "750060 kB",
+        "VmRSS": "3478780 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2167764 kB",
+        "RssFile": "750060 kB",
+        "VmRSS": "3478800 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2167772 kB",
+        "RssFile": "750060 kB",
+        "VmRSS": "3478808 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2168740 kB",
+        "RssFile": "750060 kB",
+        "VmRSS": "3479776 kB",
+        "VmSwap": "0 kB"
+      },
+      {
+        "RssAnon": "2168960 kB",
+        "RssFile": "750060 kB",
+        "VmRSS": "3479996 kB",
+        "VmSwap": "0 kB"
+      }
+    ],
+    "binary_sha256": "52b382b1a7209ac5a7e2ce7d151397abc0b090f2366e52047fa37a5a21e35212",
+    "max_rss_mib": 3398.43359375,
+    "max_rss_anon_mib": 2118.125
+  },
+  "method": "Same release binary,3-family native close-survey,unchanged gameplay and remainingprops. Baseline extracts exact96be522 runtimeGLBs,not legacy primitives/not baseline physics. Sequential local warm-cache fixture samples3..14s;not representative racing/60FPS/GPU timing/platform certification.",
+  "limitations": "Global scene/asset/entity counts differ between async warm-load runs despite the same fixed-frame camera fixture; these short windows do not isolate actor GPU cost. Timing difference is not an improvement or unchanged-cost claim. Both p95-window medians exceed16.7ms. Exact per-family/catalog geometry growth is independently measured."
+}

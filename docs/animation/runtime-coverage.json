@@ -2,11 +2,11 @@
   "schema_version": 1,
   "source_sha256": {
     "art/animation/context/manifest.json": "e64fdcc5c97d13fdf9bef58b5537a5d3ec28e1ff636bef4ed5162d761f12d992",
-    "assets/models/motion.json": "d4fd772c89b835bf8b23e13f89ca303bde225e8a7c009a2fbf3139f97c3e4fa3"
+    "assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
   },
   "scope": "Part 02 source-to-runtime coverage audit; no pose or timing approval",
   "context_pose_count": 138,
-  "runtime_clip_count": 13,
+  "runtime_clip_count": 15,
   "runtime_clips": [
     {
       "name": "normal",
@@ -184,6 +184,34 @@
       "timing_basis": "RoadDash authored tuning; not recovered native durations",
       "context_sequences": [
         "RUN_TO_BIKE"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "club_left",
+      "pose_ids": [
+        2160,
+        2161,
+        2162
+      ],
+      "authored_clip_duration_s": 0.48,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "CLUB_LEFT_FOREHAND"
+      ],
+      "runtime_only_pose_ids": []
+    },
+    {
+      "name": "club_right",
+      "pose_ids": [
+        2170,
+        2171,
+        2172
+      ],
+      "authored_clip_duration_s": 0.48,
+      "timing_basis": "RoadDash authored tuning; not recovered native durations",
+      "context_sequences": [
+        "CLUB_RIGHT_FOREHAND"
       ],
       "runtime_only_pose_ids": []
     }
@@ -995,7 +1023,9 @@
           142
         ]
       },
-      "runtime_clips": []
+      "runtime_clips": [
+        "club_left"
+      ]
     },
     {
       "id": "CLUB_RIGHT_FOREHAND",
@@ -1049,7 +1079,9 @@
           142
         ]
       },
-      "runtime_clips": []
+      "runtime_clips": [
+        "club_right"
+      ]
     },
     {
       "id": "CLUB_LEFT_BACKHAND",
@@ -2262,12 +2294,6 @@
     2141,
     2150,
     2151,
-    2160,
-    2161,
-    2162,
-    2170,
-    2171,
-    2172,
     2180,
     2181,
     2182,
@@ -2337,7 +2363,7 @@
     "Key membership proves coverage only, not reachability, correct action side or approved silhouettes.",
     "Runtime playback can retime/blend clips; authored duration is not observed action latency.",
     "Procedural walk/idle/terrain/lean blends and physics-driven crashes are not standalone clips.",
-    "Weapon/police context sequences are drafts; absence from shipped clips is explicit.",
+    "Club forehand clips are first-weapon runtime candidates; remaining weapon/police sequences stay explicit drafts.",
     "Source slots can be view variants; this report never converts them into temporal phases.",
     "Full catalog acceptance still requires unresolved caller, support, hand and visual review."
   ]

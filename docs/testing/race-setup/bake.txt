@@ -1,0 +1,6 @@
+{
+  "buildings": 19068,
+  "surface_patches": 36570,
+  "manifest_bytes": 9629962,
+  "facade_bytes": 3535488
+}

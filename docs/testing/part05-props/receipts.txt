@@ -1,0 +1,72 @@
+Part05 bounded props pass — 2026-11-08
+Parent: ac91327. Branch: codex/part05-prop-breakage. No push/merge.
+Host: Linux7.2.11-200.fc44.x86_64; NVIDIA RTX3080 driver615.78.08; DISPLAY=:0.
+Pins inspected: Bevy=0.17.3, bevy_rapier3d=0.32.0, locked. No dependency changes.
+
+Successful checks (saved exact outputs alongside):
+cargo fmt --all --check — exit0.
+cargo clippy --workspace --locked --all-targets -- -D warnings — exit0.
+cargo test --workspace --locked — 336passed,1pre-existingignored;
+  232mainlib+1city_preview+40rr_content+63rr_core. Includes all four new
+  destruction lifecycle/contact/readiness tests and model differential physics/
+  recovery checks. No ignored test was represented as passed.
+cargo build --locked — exit0.
+cargo build --release --locked — exit0.
+python3 tools/audit.py — exit0; current declaration/hash counts in audit.txt.
+python3 tools/test_roadmap.py —5passed.
+python3 tools/sync_progress.py --check — canonical README/progress states match.
+python3 tools/bake_broken_props.py --check —12exact source/recipe/output derivatives.
+python3 tools/verify_broken_props.py —12variants,3576vertices,1632finite/nondegenerate
+  triangles, unitnormals, original UV/material/embeddedimage/topology identity,
+  nonuniform deformations and fitted38% solid-envelope containment.
+git diff --check — exit0 before commit.
+
+DISPLAY=:0 ROADDASH_TRACK=metro ROADDASH_LOG_DIR=/tmp/part05-delivery-native-perf
+  timeout120 target/release/road-dash --destruction-survey — exit0, final
+  uninstrumented binary with explicit fixture visibility ordering and30s
+  readiness timeout (missing IDs reported if blocked). Waitframes=0.
+13/13 realproduction-kind contactbreaks;995production+13fixtureprops;
+peak13dynamic props<=48; carsdamaged0; original body/backend pose/fixedmode
+and intact/damaged visibility restored on reset. Sixroles show actual prepared
+variants (not fallback) before reset. All18 per-role screenshot files completed.
+Native entity cost including six affected fixtureprops:411hiddenvariant roots,
+2626total extra hierarchy entities,902meshinstances. Count is resident entities,
+not simultaneousdisplayed mesh count.12GLB derivatives638616bytes; manifest8268bytes.
+Peak sampled whole-process VmRSS=3997780kB; this is NOT attributable delta memory,
+GPU allocation or a controlled prepass comparison.
+
+Actual wall frame windows using std::Instant (manual simulation clock would
+misrepresent wallcost):
+  intact: 60frames; p50=17.216ms; p95=18.413ms; max=18.637ms.
+  damaged: 215frames; p50=17.584ms; p95=19.377ms; max=27.368ms.
+  reset: 40frames; p50=17.858ms; p95=20.883ms; max=21.148ms.
+16.7ms target UNMET. Medium-distance native role views/crops are not closeup
+art/fidelity approval, GPUtimestamps, worst-case damaged-route benchmark,
+longstreaming, broad performance or Windows/hardware approval.
+
+DISPLAY=:0 ROADDASH_TRACK=metro ROADDASH_SMOKE_ROUTE=0
+  ROADDASH_LOG_DIR=/tmp/part05-final-smoke-perf timeout120
+  target/release/road-dash --smoke-test — exit0.
+  Sevenracers/sevenkillers;4audio playback sinks; two pickup errors0.0000m;
+  farm/city crashes, bothrecoveries, resultsfixture and restart assertions pass.
+  This smoke binary hash is in smoke-binary-sha.txt; the subsequent binary
+  differs only by moving survey-only reset captures to440–445 outside its
+  reset timing window, allowing async image saves beforeexit470.
+Generated native-metro-run-01.json archived as native-prop-intake.json and
+removed from the old evidence directory. No new save writes (smoke persistence off).
+
+Investigated failures retained:
+1.native-first-failed.txt: overstrict all-mesh tangent guard rejected legitimate
+  plain-material meshes; corrected normal-map-only tangent requirement, new test.
+2.native-second-failed.txt: fixture assertion could read transient visibility
+  between PropLods and damage update; explicit PropDamageVisuals ordering fixes
+  observation. A diagnosticrun passed but was not treated as proof against race.
+3.Final utilitybox reset screenshot initially missing because frame469 request
+  exited470 before async save; earlier capture interval fixed and all18 verified.
+No unresolved failure was suppressed or relabeled as a passing run.
+
+No external repositories/code/media researched or imported; existing project
+original source GLBs only. ADR083; no newtaskIDs, no moved/closed/deleted tasks.
+All10 Part05 boxes remain open. Seven topple-role broken variants, finished art,
+detailed closeup/userreview, fullcategory placement/audio, damaged-route worstcase
+performance, release/hardware and rights gates stay open. No Part06 work.

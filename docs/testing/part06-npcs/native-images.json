@@ -1,0 +1,105 @@
+{
+  "raw_native_images": [
+    {
+      "file": "baseline/actor-skin-impact.png",
+      "sha256": "2d36fead039ad473505d5a66d27a3f92975c3184e10144dfec00b131363c6d79"
+    },
+    {
+      "file": "baseline/actor-skin-ragdoll-front.png",
+      "sha256": "e71b5af5472f7a9945c65b5c870ccbba221016a150411bd9ba623d3ce1313355"
+    },
+    {
+      "file": "baseline/actor-skin-ragdoll-rear.png",
+      "sha256": "c24acbf2b92458c58fcdcbb23bd36249ea1bd504fec13d310184701042ee3a42"
+    },
+    {
+      "file": "baseline/actor-skin-walk-00.png",
+      "sha256": "137fd869bb22e0ba38a4f7bc930f13243a6ef5d4f427c28519523ae648e36248"
+    },
+    {
+      "file": "baseline/actor-skin-walk-01.png",
+      "sha256": "ff4ec7538c69d9c7d58156a902a0e7abb6d499b6bdbbeb30b2caa35a291047e2"
+    },
+    {
+      "file": "baseline/actor-skin-walk-02.png",
+      "sha256": "fe9aa40c7b6ffe49f9f37cbb8d6597e6975f3158ebffcca1f4e4f3ae90fa7aed"
+    },
+    {
+      "file": "baseline/actor-skin-walk-03.png",
+      "sha256": "d83a54d6abc2da058d03d8f56d3698f5d02220edd1dc9cc7519c74f2b376e47a"
+    },
+    {
+      "file": "baseline/actor-skin-walk-04.png",
+      "sha256": "5958f503a4d322f89cc13a53a06b5168f6d0f75e52f916f72d44041343ac21ef"
+    },
+    {
+      "file": "baseline/actor-skin-walk-05.png",
+      "sha256": "0192195a2c7be22324b6950471acf460e840b212a81851da2a3433126606c1ca"
+    },
+    {
+      "file": "baseline/actor-skin-walk-06.png",
+      "sha256": "846d154352d81ff81031cb375ffb8efae8e6c9774bc65a7b498bebd48fb0f75b"
+    },
+    {
+      "file": "baseline/actor-skin-walk-07.png",
+      "sha256": "9097fe7c195d86e86aa0520c45f0687f7c73fc92398b269e6dd4b26fc041a1a3"
+    },
+    {
+      "file": "baseline/actor-skin-walk-08.png",
+      "sha256": "41637818358744f7b0211abc406f2b77c11c59abaa0ee611faced1e6f70bfa70"
+    },
+    {
+      "file": "refined/actor-skin-impact.png",
+      "sha256": "8ac938c7df9e41b4c69e4c120d3563d30c968a9f005d11fe2fe2fce37677be7a"
+    },
+    {
+      "file": "refined/actor-skin-ragdoll-front.png",
+      "sha256": "89b97b870960acd814303bc187347f25cfd690ab21ff616f4dd4f2f04b83005c"
+    },
+    {
+      "file": "refined/actor-skin-ragdoll-rear.png",
+      "sha256": "8a0f6ea074b146f872f3c66fb6181f0e6341d50b764440d8d2809e5ecb852604"
+    },
+    {
+      "file": "refined/actor-skin-walk-00.png",
+      "sha256": "e3a785179670f62296890beced6618227442a0d56669471474d510d3c7b7f2c5"
+    },
+    {
+      "file": "refined/actor-skin-walk-01.png",
+      "sha256": "d2eae0255d1e94ca8d06616cf9a533755b38fbeb689fa04949041b3156974748"
+    },
+    {
+      "file": "refined/actor-skin-walk-02.png",
+      "sha256": "4a92d0093717987886a7c71438ceaa6e5e32dad04abb157c0a76cd81322bc89f"
+    },
+    {
+      "file": "refined/actor-skin-walk-03.png",
+      "sha256": "e89aaa8ca6aa8e088ae17d3c38373aa84e9696f7da6942e4a35587361b1532ef"
+    },
+    {
+      "file": "refined/actor-skin-walk-04.png",
+      "sha256": "5bc194dca46673695fbdfc8aacf9cad648c3b2424841be1d4a172f148e47f950"
+    },
+    {
+      "file": "refined/actor-skin-walk-05.png",
+      "sha256": "0f0ab36b04ae2153bafb769a967a46bd4e4bcd4742f7b4e41b72a318317d9289"
+    },
+    {
+      "file": "refined/actor-skin-walk-06.png",
+      "sha256": "4e36207fa55f1ae1f6f6cf994f46e6f022c7a7805fa42048cbb8952d401b2bd8"
+    },
+    {
+      "file": "refined/actor-skin-walk-07.png",
+      "sha256": "7dbcffc3547223abe23e16ff46f3237d550284672e9bffa26a16e8c053673afe"
+    },
+    {
+      "file": "refined/actor-skin-walk-08.png",
+      "sha256": "ddda9a192b8a107a23543613ef0358d10ac74946f65d4a77543a624c0f80d7be"
+    }
+  ],
+  "source_families": [
+    "AVGMSM06",
+    "CTM1A00",
+    "JGW100"
+  ]
+}

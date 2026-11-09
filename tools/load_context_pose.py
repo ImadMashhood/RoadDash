@@ -2,6 +2,8 @@
 Run in Blender Text Editor (set POSE_ID) or append -- 2222 to Blender CLI.
 """
 import bpy,json,pathlib,sys
+sys.path.insert(0,str(pathlib.Path(__file__).resolve().parent))
+from authoring_hands import apply_values
 from mathutils import Matrix
 ROOT=pathlib.Path(__file__).resolve().parents[1];BASE=ROOT/'art/animation/context';POSE_ID=2222
 if '--' in sys.argv:POSE_ID=int(sys.argv[sys.argv.index('--')+1])
@@ -19,7 +21,7 @@ rider=next(o for o in bpy.data.objects if o.type=='MESH' and any(m.type=='ARMATU
 for o in bpy.data.objects:
  if o.type!='MESH' or o.name=='Authoring stage':continue
  cow=o.name.startswith(('ReviewCow','Cow '));human=any(m.type=='ARMATURE' and m.object==rig for m in o.modifiers);hidden=True if cow else code>=44 if human else not mounted;o.hide_render=hidden;o.hide_set(hidden)
-for side,value in assembly['fist_values'].items():rider.data.shape_keys.key_blocks['Context_Fist.'+side].value=value
+apply_values(rider,assembly['hand_values'])
 for p in assembly['props']:
  recipe=p['recipe']
  if recipe['kind']=='cylinder':bpy.ops.mesh.primitive_cylinder_add(vertices=12,radius=recipe['radius'],depth=recipe['depth'])

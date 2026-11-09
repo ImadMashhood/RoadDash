@@ -30,7 +30,8 @@ pub fn classify(
         .map(|(_, t, _)| *t);
     let camera = cameras.single().ok().copied();
     for (r, t, mut rec) in &mut riders {
-        rec.defer_allowed = r.id != 0
+        rec.defer_allowed = !r.police
+            && r.id != 0
             && rec.stage == RecoveryStage::Riding
             && player
                 .zip(camera)

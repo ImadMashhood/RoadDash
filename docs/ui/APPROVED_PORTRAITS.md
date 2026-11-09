@@ -1,0 +1,11 @@
+# Approved rider portraits in native UI
+
+2026-11-08. Run `cargo run --release`, then Big Game / Street → Ride as You → Biker Bar. All sixteen approved portraits appear in a 4×4 picker within a classic 4:3 canvas. Click a card, or use arrows/D-pad then Enter/South, to open a full-page portrait with its detailed character biography along the bottom. Up/down moves four cards; down from the final row reaches Back. Escape/East returns to the grid with the selected card focused; Back to the Street leaves the browser.
+
+The exact ten user-selected attachments and six approved remakes remain in output/portraits/approved-roster. The native cards are 768×576 contained derivatives: square paintings retain their full composition with side bars. tools/package_roster_portraits.py regenerates these and their source/runtime hash manifest (APPROVED_ROSTER.json). Sixteen RGBA cards add 27 MiB decoded image data; existing seven backgrounds add approximately 44 MiB. GPU/backend overhead and user hardware performance have not been measured.
+
+This selects a portrait to inspect. It does not replace current race identities, rider meshes, gameplay abilities, player saves or available playable profiles. Names/bios describe the approved character concepts. Full profile selection/identity mapping, conversations, typography/accessibility and hardware acceptance remain on UI-02/UI-05/P15-006. Artwork approval does not close those gates.
+
+The six remakes used the built-in image generation tool; prompts: ../../output/portraits/selected-style-remakes/PROMPTS.md. The ten initial files are exact user selections. ASSETS.csv declares original project artwork under the project MIT terms without asserting legal clearance or exclusive rights. No new external repositories/dependencies investigated or adopted.
+
+ADR095 follow-up: original RR-0E/RR-1A private composition previews/catalog supplied layout guidance only. The UI now uses portrait-led cards, compact labels, full-page detail art and a lower biography strip, with Open Sans Regular/ExtraBold 1.10 (Apache 2.0; bundled license in docs/third_party/licenses). Bios paraphrase the earlier character quirks and behavior under the later request to remove racist material. No new images generated in this UI pass.

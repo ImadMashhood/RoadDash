@@ -90,6 +90,7 @@ fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut images: ResMut<Assets<Image>>,
     mut binds: ResMut<Assets<bevy::mesh::skinning::SkinnedMeshInverseBindposes>>,
     server: Res<AssetServer>,
 ) {
@@ -106,6 +107,7 @@ fn setup(
         &mut meshes,
         &mut materials,
         &mut binds,
+        &mut images,
         Some(&server),
     ));
     let floor = crate::world::part(

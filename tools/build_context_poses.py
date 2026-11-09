@@ -30,16 +30,10 @@ def material(name,color):
 steel=material('Context original weapon steel',(.18,.20,.22));gripmat=material('Context original weapon grip',(.025,.022,.02));steel.use_fake_user=True;gripmat.use_fake_user=True
 def rod(name,a,b,radius,mat):
  bpy.ops.mesh.primitive_cylinder_add(vertices=12,radius=radius,depth=(b-a).length,location=(a+b)*.5);o=bpy.context.object;o.name=name;o.rotation_euler=(b-a).to_track_quat('Z','Y').to_euler();o.data.materials.append(mat);o['context_recipe']=json.dumps({'kind':'cylinder','radius':radius,'depth':(b-a).length});props.append(o);return o
-# Shape keys fold the rigid glove digits into a fist in authoring only.
-if not rider.data.shape_keys:rider.shape_key_add(name='Basis')
-for side in ['L','R']:
- key=rider.shape_key_add(name='Context_Fist.'+side);group=rider.vertex_groups.get('hand.'+side)
- if group:
-  inv=rig.data.bones['hand.'+side].matrix_local.inverted()
-  for v in rider.data.vertices:
-   if any(g.group==group.index and g.weight>.65 for g in v.groups):
-    p=inv@v.co
-    if p.y>.055:p.z+=.024*min(1,(p.y-.055)/.06);p.y=.055+(p.y-.055)*.18;key.data[v.index].co=rig.data.bones['hand.'+side].matrix_local@p
+# Shared metre-based runtime profile, with original authoring mesh edge samples.
+from authoring_hands import install, values
+hand_authoring=install(rider,rig)
+(BASE/'hand-authoring.json').write_text(json.dumps(hand_authoring,indent=2)+'\n')
 
 def update():bpy.context.view_layer.update()
 def head(n):return rig.matrix_world@rig.pose.bones[n].head
@@ -56,22 +50,24 @@ def reset(mounted=True):
  root.matrix_basis=Matrix.Identity(4);bikepivot.matrix_basis=Matrix.Identity(4);rig.matrix_basis=Matrix(seat['rig_matrix']) if mounted else Matrix.Identity(4)
  for b in rig.pose.bones:b.matrix_basis=Matrix(seat['bone_basis'][b.name]) if mounted else Matrix.Identity(4)
  for key in rider.data.shape_keys.key_blocks:
-  if key.name.startswith('Context_Fist'):key.value=0
+  if key.name.startswith(('Context_Fist','Context_Grip')):key.value=0
  for o in props:bpy.data.objects.remove(o,do_unlink=True)
  props.clear();rider.hide_render=False;rider.hide_set(False)
  for o in bike_meshes:o.hide_render=not mounted;o.hide_set(not mounted)
  update()
 def landmark(n):
+ if n.startswith('grip.'):return bpy.data.objects['Context_GripSocket.'+n[-1]].matrix_world.translation.copy()
  d=profile['landmarks'][n];return rig.matrix_world@rig.pose.bones[d['bone']].matrix@rig.data.bones[d['bone']].matrix_local.inverted()@Vector(d['rest_position'])
 def hold_grip(side):
- sign=1 if side=='L' else -1;desired=bikepivot.matrix_world@Vector(profile['anchors']['grip.'+side]['neutral_bike_position']);q=bikepivot.matrix_world.to_quaternion()@Matrix(((0,0,-sign),(-sign,0,0),(0,1,0))).to_quaternion();wrist=desired-q@Vector((sign*.052,-.031,0))
+ sign=1 if side=='L' else -1;desired=bikepivot.matrix_world@Vector(profile['anchors']['grip.'+side]['neutral_bike_position']);q=bikepivot.matrix_world.to_quaternion()@Matrix(((0,0,-sign),(-sign,0,0),(0,1,0))).to_quaternion();hand_rotation=q@rig.data.bones['hand.'+side].matrix_local.to_quaternion();socket_offset=Vector([hand_authoring['sockets'][side]['grip'][i][3] for i in range(3)]);wrist=desired-hand_rotation@socket_offset
  clavicle=rig.pose.bones['clavicle.'+side];initial=clavicle.matrix_basis.copy();rest=rig.data.bones[clavicle.name].matrix_local.to_quaternion();best=None
  length=sum(rig.data.bones[n+side].length for n in ['upper_arm.','forearm.'])-.002
  for angle in [-45,-30,-15,0,15,30,45]:
   clavicle.matrix_basis=initial;clavicle.rotation_mode='QUATERNION';clavicle.rotation_quaternion=initial.to_quaternion()@rest.inverted()@Quaternion((0,0,1),math.radians(angle))@rest;update();error=max(0,(wrist-head('upper_arm.'+side)).length-length)+abs(angle)*1e-6
   if best is None or error<best[0]:best=(error,clavicle.matrix_basis.copy())
  clavicle.matrix_basis=best[1];update()
- wrist=solve('upper_arm.'+side,'forearm.'+side,wrist,(sign*.6,0,1.1),2.35);orient('hand.'+side,q@rig.data.bones['hand.'+side].matrix_local.to_quaternion(),wrist)
+ rider.data.shape_keys.key_blocks['Context_Grip.'+side].value=1
+ wrist=solve('upper_arm.'+side,'forearm.'+side,wrist,(sign*.6,0,1.1),2.35);orient('hand.'+side,hand_rotation,wrist)
 def hold_peg(side):
  name='peg.'+side;desired=bikepivot.matrix_world@Vector(profile['anchors'][name]['neutral_bike_position']);bone='foot.'+side
  q=neutral_feet[side];offset=rig.data.bones[bone].matrix_local.inverted()@Vector(profile['landmarks'][name]['rest_position'])
@@ -86,14 +82,21 @@ def body_pose(a,p):
   rotate(bone,axis,data.get(key,0)*mult)
  return shift[2]>.005
 def weapon(kind,side,slot):
- p=head('hand.'+side);sgn=1 if side=='L' else -1
- # Directions are authored from the verified rear reference silhouettes.
+ sgn=1 if side=='L' else -1
+ # Proxy directions are authored rear-silhouette interpretations, not native
+ # joint matrices. Match the reserved socket +Y before placing the handle.
  if kind=='club':
   direction=Vector((sgn*.95,-.05,.25)) if slot==142 else Vector((-sgn*.65,0,.9)) if slot in [140,141] else Vector((-sgn*.25,-.1,1))
-  direction.normalize();rod('Context club grip',p-direction*.04,p+direction*.1,.023,gripmat);rod('Context club shaft',p+direction*.1,p+direction*.55,.019,steel)
  else:
   direction=Vector((sgn,0,.05)) if slot in [83,87] else Vector((-sgn*.6,-.05,.2)) if slot in [81,85,89] else Vector((sgn*.45,-.2,.45))
-  end=p+direction.normalized()*.65
+ direction.normalize();update();socket=bpy.data.objects['Context_WeaponSocket.'+side]
+ delta=(socket.matrix_world.to_quaternion()@Vector((0,1,0))).rotation_difference(direction)
+ orient('hand.'+side,delta@(rig.matrix_world@rig.pose.bones['hand.'+side].matrix).to_quaternion(),head('hand.'+side))
+ p=socket.matrix_world.translation.copy()
+ if kind=='club':
+  rod('Context club grip',p-direction*.04,p+direction*.1,.023,gripmat);rod('Context club shaft',p+direction*.1,p+direction*.55,.019,steel)
+ else:
+  end=p+direction*.65
   for j in range(17):
    t=j/16;pos=p.lerp(end,t)+Vector((0,.05*math.sin(t*math.pi),-.10*math.sin(t*math.pi)))
    bpy.ops.mesh.primitive_torus_add(major_segments=8,minor_segments=4,major_radius=.026,minor_radius=.006,location=pos);o=bpy.context.object;o.name='Context chain link';o.rotation_euler=(math.pi/2,0,j%2*math.pi/2);o.data.materials.append(steel);o['context_recipe']=json.dumps({'kind':'torus'});props.append(o)
@@ -110,9 +113,9 @@ def mounted_pose(a,p):
    # 176 draw fist back,177 carry across chest,178 extend,179 backhand windup.
    targets={176:(sgn*.25,-.16,1.20),177:(-sgn*.13,-.12,1.32),178:(sgn*.78,-.04,1.20),179:(-sgn*.15,-.05,1.23)};t=targets[slot];rider.data.shape_keys.key_blocks['Context_Fist.'+side].value=1
   elif kind=='club':
-   t={140:(sgn*.18,-.08,1.61),141:(sgn*.28,-.02,1.59),142:(sgn*.75,-.04,1.13),143:(-sgn*.14,-.10,1.34)}[slot];rider.data.shape_keys.key_blocks['Context_Fist.'+side].value=1
+   t={140:(sgn*.18,-.08,1.61),141:(sgn*.28,-.02,1.59),142:(sgn*.75,-.04,1.13),143:(-sgn*.14,-.10,1.34)}[slot];rider.data.shape_keys.key_blocks['Context_Grip.'+side].value=1
   else:
-   t={81:(-.18,-.12,1.48),82:(sgn*.32,-.04,1.47),83:(sgn*.79,-.03,1.23),84:(sgn*.35,-.02,1.56),85:(-sgn*.12,-.08,1.57),86:(sgn*.29,.02,1.38),87:(sgn*.34,-.02,1.53),88:(-sgn*.10,-.12,1.42),89:(-sgn*.12,-.08,1.57)}[slot];rider.data.shape_keys.key_blocks['Context_Fist.'+side].value=1
+   t={81:(-.18,-.12,1.48),82:(sgn*.32,-.04,1.47),83:(sgn*.79,-.03,1.23),84:(sgn*.35,-.02,1.56),85:(-sgn*.12,-.08,1.57),86:(sgn*.29,.02,1.38),87:(sgn*.34,-.02,1.53),88:(-sgn*.10,-.12,1.42),89:(-sgn*.12,-.08,1.57)}[slot];rider.data.shape_keys.key_blocks['Context_Grip.'+side].value=1
   limb(side,t,(sgn*.48,.18,1.2));other='R' if side=='L' else 'L';hold_grip(other);held.remove('grip.'+side)
   if kind in ['club','chain']:weapon(kind,side,slot)
  elif code in [26,27]:
@@ -181,6 +184,7 @@ def capture(id,a,p,held):
  errors={n:(landmark(n)-bikepivot.matrix_world@Vector(profile['anchors'][n]['neutral_bike_position'])).length for n in held if n in profile['anchors']}
  if 'seat' in errors:
   delta=bikepivot.matrix_world.inverted()@landmark('seat')-Vector(profile['anchors']['seat']['neutral_bike_position']);half=profile['seat_patch_half_extents'];errors['seat']=Vector((max(0,abs(delta.x)-half[0]),max(0,abs(delta.y)-half[1]),delta.z)).length
+ assert max(errors.values(),default=0)<=.005,f'Unreachable held contact {id}: {errors}'
  record=dict(schema_version=1,id=id,frame_id=id,name=p['label'],actor='human',family='mounted' if a['code']<28 else 'locomotion' if a['code']==38 else 'recovery' if a['code']>=36 else 'ragdoll',source_slots=[p['rear']['slot']],interpretation=f"Context-first {a['id']} phase{p['phase']}; source code{a['code']}; source mirror={p['rear']['mirror_x']}; independent authored 3D, not native joint recovery",review='draft',held_contacts=held,released_contacts=[c for c in ['seat','grip.L','grip.R','peg.L','peg.R'] if c not in held] if a['code']<28 else [],contact_errors_m=errors,reference_confidence='executable-descriptor-and-source-selector',root_matrix=[list(r) for r in root.matrix_basis],rig_matrix=[list(r) for r in rig.matrix_basis],bone_basis=basis,bone_world=world,bind=bind,max_attachment_error_m=attachment,max_bone_length_error_m=length,screenshot=f'gallery/{id:04d}.jpg')
  (BASE/f'poses/{id:04d}.json').write_text(json.dumps(record,separators=(',',':'))+'\n');return record
 manifest=[];cases=[];assembly={};bike_records=[];render=set(int(x) for x in args.render.split(',')) if args.render not in ['all','none'] else None
@@ -200,6 +204,8 @@ for a in catalog['actions']:
     for o in bike_meshes:o.hide_render=False;o.hide_set(False)
     held=mount(a,p)
    else:held=standing(a,p)
+   for side in ['L','R']:
+    if 'grip.'+side in held:hold_grip(side)
    record=capture(id,a,p,held);manifest.append({k:record[k] for k in ['id','name','actor','family','source_slots','review','held_contacts','screenshot']});ids.append(id)
    action=bpy.data.actions.new(p['label']);action.use_fake_user=True;rig.animation_data_create();rig.animation_data.action=action
    for bone in rig.pose.bones:
@@ -211,7 +217,7 @@ for a in catalog['actions']:
       for curve in bag.fcurves:
        for point in curve.keyframe_points:point.interpolation='CONSTANT'
    action.asset_mark();rig.animation_data_clear()
-  assembly[str(id)]={'action':a['id'],'code':code,'phase':p['phase'],'label':p['label'],'source':p['rear'],'duration_ticks':p['duration_ticks'],'control':p['control'],'bike_matrix':[list(r) for r in bikepivot.matrix_basis],'props':[{'name':o.name,'matrix':[list(r) for r in o.matrix_world],'recipe':json.loads(o['context_recipe']),'material':o.data.materials[0].name} for o in props],'body_profile':body_profiles['ride_codes'].get(str(code),body_profiles['slots'].get(str(p['rear']['slot']),{})),'fist_values':{side:rider.data.shape_keys.key_blocks['Context_Fist.'+side].value for side in ['L','R']}}
+  assembly[str(id)]={'action':a['id'],'code':code,'phase':p['phase'],'label':p['label'],'source':p['rear'],'duration_ticks':p['duration_ticks'],'control':p['control'],'bike_matrix':[list(r) for r in bikepivot.matrix_basis],'props':[{'name':o.name,'matrix':[list(r) for r in o.matrix_world],'recipe':json.loads(o['context_recipe']),'material':o.data.materials[0].name} for o in props],'body_profile':body_profiles['ride_codes'].get(str(code),body_profiles['slots'].get(str(p['rear']['slot']),{})),'hand_values':values(rider),'fist_values':{side:rider.data.shape_keys.key_blocks['Context_Fist.'+side].value for side in ['L','R']}}
   if args.render!='none' and (render is None or id in render):
    camera=scene.camera;camera.location=(0,6,2.1);camera.rotation_euler=(Vector((0,0,.9))-camera.location).to_track_quat('-Z','Y').to_euler();camera.data.ortho_scale=3.2
    scene.render.filepath=str(BASE/f'gallery/{id:04d}.jpg');bpy.ops.render.render(write_still=True)

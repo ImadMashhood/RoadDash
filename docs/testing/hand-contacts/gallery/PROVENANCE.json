@@ -1,0 +1,411 @@
+{
+  "source_sha256": {
+    "content/hand-contacts.json": "fa5cecd69f0cf7f54168fc973f12dbb3f254a38cf93dd27f341a8e2fde6b6be7",
+    "src/models/hands.rs": "6c4add8293329a90989da46e1182380c137bce91ae13c72201d25a5bc437e664",
+    "src/animation.rs": "0cc44178ae2329afd993397b641e57b9a8ba6c2b06cf58325664c0e9df2902c0",
+    "src/animation/preview.rs": "5c8444d036ea5eb66d3d9c57b08d49698f90c867a7761db2424a9edd99f4219b",
+    "assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36",
+    "src/models.rs": "663c40b6ee683009335b30ef4f4432e19a3d1e90a19ac343dd2abb35b8524660",
+    "assets/models/riding.rdmesh": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+    "art/animation/context/manifest.json": "e64fdcc5c97d13fdf9bef58b5537a5d3ec28e1ff636bef4ed5162d761f12d992"
+  },
+  "captures": [
+    {
+      "id": "H00-0",
+      "mode": "NORMAL",
+      "view": "Rear",
+      "file": "00-NORMAL-0.png",
+      "sha256": "342529e00944683fc26658536ddabbe3e968717a77ccf268a0b0f57c59a009b7",
+      "exact_held_key": null,
+      "related_pose": 2020,
+      "source_slots": [
+        3
+      ],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H00-1",
+      "mode": "NORMAL",
+      "view": "Front",
+      "file": "00-NORMAL-1.png",
+      "sha256": "5e3694ddc496a91be2c246d05fba8a41604a0bc2aa85ba674b7d9fca48d4fd37",
+      "exact_held_key": null,
+      "related_pose": 2020,
+      "source_slots": [
+        3
+      ],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H00-2",
+      "mode": "NORMAL",
+      "view": "Side",
+      "file": "00-NORMAL-2.png",
+      "sha256": "2f7236d0dce6d0296952eafa92b7614f06da0d56b56885dc295320d759f87d03",
+      "exact_held_key": null,
+      "related_pose": 2020,
+      "source_slots": [
+        3
+      ],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H01-0",
+      "mode": "FAST-TUCK",
+      "view": "Rear",
+      "file": "01-FAST-TUCK-0.png",
+      "sha256": "c6009f5c0c8ae111deb1cbb2c19434d7032943f53f9a96743612c59040755d96",
+      "exact_held_key": 2030,
+      "related_pose": 2030,
+      "source_slots": [
+        252
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H01-1",
+      "mode": "FAST-TUCK",
+      "view": "Front",
+      "file": "01-FAST-TUCK-1.png",
+      "sha256": "7f8162fa4c8bafb497cff0b5ffa9533ceea629172a98e150dac363fd6bc9c874",
+      "exact_held_key": 2030,
+      "related_pose": 2030,
+      "source_slots": [
+        252
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H01-2",
+      "mode": "FAST-TUCK",
+      "view": "Side",
+      "file": "01-FAST-TUCK-2.png",
+      "sha256": "00d65e631299dfdd08d95cb48cb0ec3259d5f6e9995d24f00a30105f4ca25152",
+      "exact_held_key": 2030,
+      "related_pose": 2030,
+      "source_slots": [
+        252
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H02-0",
+      "mode": "LEAN-LEFT",
+      "view": "Rear",
+      "file": "02-LEAN-LEFT-0.png",
+      "sha256": "2564c34ed1af8833b307e4b7507e1822343357ab04fa331e882a0cf290cb632b",
+      "exact_held_key": null,
+      "related_pose": 2900,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H02-1",
+      "mode": "LEAN-LEFT",
+      "view": "Front",
+      "file": "02-LEAN-LEFT-1.png",
+      "sha256": "c69a7cda34d4fdad62799f9c9fe5b8f92acae72c9eec3c19b856acaaa3abb20c",
+      "exact_held_key": null,
+      "related_pose": 2900,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H02-2",
+      "mode": "LEAN-LEFT",
+      "view": "Side",
+      "file": "02-LEAN-LEFT-2.png",
+      "sha256": "a55f6ec657613f287bee25f2d613a34d1bd878ddaaa51d98d07e08b8633ec87d",
+      "exact_held_key": null,
+      "related_pose": 2900,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H03-0",
+      "mode": "LEAN-RIGHT",
+      "view": "Rear",
+      "file": "03-LEAN-RIGHT-0.png",
+      "sha256": "8043a3dd6fb9ab5de3d3adf78b1f610b1093da64bbfebe5d96dcecc872f25b04",
+      "exact_held_key": null,
+      "related_pose": 2901,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H03-1",
+      "mode": "LEAN-RIGHT",
+      "view": "Front",
+      "file": "03-LEAN-RIGHT-1.png",
+      "sha256": "331bbe4ce2b2be517134d87d0b9df1c055fcc73aa0816f726bc59c2c3c011a03",
+      "exact_held_key": null,
+      "related_pose": 2901,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H03-2",
+      "mode": "LEAN-RIGHT",
+      "view": "Side",
+      "file": "03-LEAN-RIGHT-2.png",
+      "sha256": "a9f01f67857174a47e3d43ee73876b139cc25868ecc646f532c1272ccc4ded3c",
+      "exact_held_key": null,
+      "related_pose": 2901,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H04-0",
+      "mode": "PUNCH-LEFT",
+      "view": "Rear",
+      "file": "04-PUNCH-LEFT-0.png",
+      "sha256": "ad48f73b7cf21fd3d58575adec21d52556723fac06f89a209a8fa73d8453ce50",
+      "exact_held_key": 2222,
+      "related_pose": 2222,
+      "source_slots": [
+        178
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H04-1",
+      "mode": "PUNCH-LEFT",
+      "view": "Front",
+      "file": "04-PUNCH-LEFT-1.png",
+      "sha256": "939705826e72e5ff13cb8e590115d078236d7e724195135b24ab94a874db83e5",
+      "exact_held_key": 2222,
+      "related_pose": 2222,
+      "source_slots": [
+        178
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H04-2",
+      "mode": "PUNCH-LEFT",
+      "view": "Side",
+      "file": "04-PUNCH-LEFT-2.png",
+      "sha256": "becf4c0a38abd0bd1b4188e11738e9cdf5cec25b9078815aac01ce841d141c1e",
+      "exact_held_key": 2222,
+      "related_pose": 2222,
+      "source_slots": [
+        178
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H05-0",
+      "mode": "PUNCH-RIGHT",
+      "view": "Rear",
+      "file": "05-PUNCH-RIGHT-0.png",
+      "sha256": "ddce44e4e8fe21ee0f2fd4fc102397690239b4995ad37dfed0c89553b92faf80",
+      "exact_held_key": 2232,
+      "related_pose": 2232,
+      "source_slots": [
+        178
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H05-1",
+      "mode": "PUNCH-RIGHT",
+      "view": "Front",
+      "file": "05-PUNCH-RIGHT-1.png",
+      "sha256": "aa9f153d893f9a8e71aa831ec3499fb107d15c14ae10d486500ed9f3151bc5de",
+      "exact_held_key": 2232,
+      "related_pose": 2232,
+      "source_slots": [
+        178
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H05-2",
+      "mode": "PUNCH-RIGHT",
+      "view": "Side",
+      "file": "05-PUNCH-RIGHT-2.png",
+      "sha256": "df44b3e0bc9716f9440411c8c0436e3f25e479776f095f324938613ee5a4467a",
+      "exact_held_key": 2232,
+      "related_pose": 2232,
+      "source_slots": [
+        178
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H06-0",
+      "mode": "KICK-LEFT",
+      "view": "Rear",
+      "file": "06-KICK-LEFT-0.png",
+      "sha256": "c710575d94f53479b9a0187d369ccc5eb6128ac5f4f0f673433a27d1cc3b9273",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H06-1",
+      "mode": "KICK-LEFT",
+      "view": "Front",
+      "file": "06-KICK-LEFT-1.png",
+      "sha256": "327d74f12d2525df568da8c064490cc839d8a46fa2d9ce5763f71a24923e6a7c",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H06-2",
+      "mode": "KICK-LEFT",
+      "view": "Side",
+      "file": "06-KICK-LEFT-2.png",
+      "sha256": "e6dfc7b09a9b6099c1410e57887f0cae3964a4e7c93808c3bbfcb1764f6bcb0e",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H07-0",
+      "mode": "KICK-RIGHT",
+      "view": "Rear",
+      "file": "07-KICK-RIGHT-0.png",
+      "sha256": "a538ae6cb29545890848e9b93af7d9945ecf691ce0ad84f99b0605978eedcb3e",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H07-1",
+      "mode": "KICK-RIGHT",
+      "view": "Front",
+      "file": "07-KICK-RIGHT-1.png",
+      "sha256": "19f6c7d444ed646c8bf2f400fb12f30bfa3d3c11967b6c49f7440b5b7f00bc62",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H07-2",
+      "mode": "KICK-RIGHT",
+      "view": "Side",
+      "file": "07-KICK-RIGHT-2.png",
+      "sha256": "60d4dfc16eca7f65919479fc03635e1257f4df2a55d38857cc3c80e209fc7b70",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H08-0",
+      "mode": "STANDING",
+      "view": "Rear",
+      "file": "08-STANDING-0.png",
+      "sha256": "b55535d0e4646574c6cd5b43456ba5eb91b66d0aac7c3e649c0c260501a936ab",
+      "exact_held_key": 2364,
+      "related_pose": 2364,
+      "source_slots": [
+        286
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H08-1",
+      "mode": "STANDING",
+      "view": "Front",
+      "file": "08-STANDING-1.png",
+      "sha256": "5fb726d33afeb02bdc01a552c566f1263696222ce9cc53951464a56e86f7402e",
+      "exact_held_key": 2364,
+      "related_pose": 2364,
+      "source_slots": [
+        286
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H08-2",
+      "mode": "STANDING",
+      "view": "Side",
+      "file": "08-STANDING-2.png",
+      "sha256": "c1256d164f27a725003f8d84ba72bd2df142d884e73c4d6fcd88b32671f51289",
+      "exact_held_key": 2364,
+      "related_pose": 2364,
+      "source_slots": [
+        286
+      ],
+      "kind": "held authored key"
+    },
+    {
+      "id": "H09-0",
+      "mode": "WALKING",
+      "view": "Rear",
+      "file": "09-WALKING-0.png",
+      "sha256": "56f758cafb886eec87653f9e96caa68f1fe4fb4b22d4cd217e23cdf13b27437a",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H09-1",
+      "mode": "WALKING",
+      "view": "Front",
+      "file": "09-WALKING-1.png",
+      "sha256": "690eef80de3c70477386cbb6746e6d720db1ab599150930f4fd0f4b3bffcd978",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H09-2",
+      "mode": "WALKING",
+      "view": "Side",
+      "file": "09-WALKING-2.png",
+      "sha256": "459342cd702bd07902a404abb77f4dd76faca0b0d4cba57f926b49107ac20707",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H10-0",
+      "mode": "RUNNING",
+      "view": "Rear",
+      "file": "10-RUNNING-0.png",
+      "sha256": "05e1dd812578ae892f946bafa7b0cc12d17c6b66fb05b9df4c596bc58c74ad6f",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H10-1",
+      "mode": "RUNNING",
+      "view": "Front",
+      "file": "10-RUNNING-1.png",
+      "sha256": "8958a0cb53eaab3fdfd10b19d778606b0913ebf9495dbfe404f1d93f3ed9160e",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    },
+    {
+      "id": "H10-2",
+      "mode": "RUNNING",
+      "view": "Side",
+      "file": "10-RUNNING-2.png",
+      "sha256": "851840bbee85c3369f23f8404388460a014bea9390f47143b2287a8dbc14e1ed",
+      "exact_held_key": null,
+      "related_pose": null,
+      "source_slots": [],
+      "kind": "runtime snapshot"
+    }
+  ],
+  "approval": "draft; technical review only",
+  "physics_changed": false,
+  "contains_retail_media": false
+}

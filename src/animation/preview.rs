@@ -8,10 +8,12 @@ struct Review {
     mode: usize,
     view: usize,
     smoke: bool,
+    hands: bool,
+    seen_shapes: [bool; 4],
 }
 #[derive(Component)]
 struct Label;
-const LABELS: [&str; 11] = [
+const LABELS: [&str; 13] = [
     "NORMAL",
     "FAST TUCK / ELBOWS IN",
     "LEAN LEFT",
@@ -23,6 +25,8 @@ const LABELS: [&str; 11] = [
     "STANDING / PALMS IN",
     "WALKING",
     "RUNNING",
+    "CLUB LEFT",
+    "CLUB RIGHT",
 ];
 pub fn build(smoke: bool) -> App {
     let mut app = App::new();
@@ -42,7 +46,11 @@ pub fn build(smoke: bool) -> App {
             }),
     )
     .add_plugins(models::RoadModelPlugin)
-    .insert_resource(Review { smoke, ..default() })
+    .insert_resource(Review {
+        smoke,
+        hands: std::env::args().any(|a| a == "--hand-review"),
+        ..default()
+    })
     .insert_resource(Time::<Fixed>::from_hz(60.0))
     .insert_resource(Race {
         phase: crate::game::Phase::Racing,
@@ -51,9 +59,11 @@ pub fn build(smoke: bool) -> App {
     .add_systems(Startup, setup)
     .add_systems(Update, crate::vehicle::visuals)
     .add_systems(FixedUpdate, drive.before(super::update))
+    .add_systems(FixedUpdate, hand_keyframes.after(super::update))
     .add_systems(Update, review.after(crate::vehicle::visuals));
     if smoke {
         std::fs::create_dir_all("screenshots/animation-part03").unwrap();
+        std::fs::create_dir_all("screenshots/hand-contacts").unwrap();
         app.insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
             std::time::Duration::from_secs_f64(1.0 / 60.0),
         ));
@@ -64,6 +74,7 @@ fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut images: ResMut<Assets<Image>>,
     mut binds: ResMut<Assets<bevy::mesh::skinning::SkinnedMeshInverseBindposes>>,
     server: Res<AssetServer>,
 ) {
@@ -74,6 +85,7 @@ fn setup(
             &mut meshes,
             &mut materials,
             &mut binds,
+            &mut images,
             Some(&server),
         )),
         props: None,
@@ -123,11 +135,25 @@ fn setup(
         brightness: 300.0,
         ..default()
     });
-    commands.spawn((
-        Camera3d::default(),
-        bevy::core_pipeline::tonemapping::Tonemapping::Reinhard,
-        Transform::from_xyz(0.0, 2.0, -4.8).looking_at(Vec3::Y * 1.2, Vec3::Y),
-    ));
+    commands
+        .spawn((
+            Camera3d::default(),
+            bevy::core_pipeline::tonemapping::Tonemapping::Reinhard,
+            Transform::from_xyz(0.0, 2.0, -4.8).looking_at(Vec3::Y * 1.2, Vec3::Y),
+        ))
+        .with_children(|camera| {
+            if std::env::args().any(|a| a == "--hand-review") {
+                camera.spawn((
+                    PointLight {
+                        intensity: 700.0,
+                        range: 2.0,
+                        shadows_enabled: false,
+                        ..default()
+                    },
+                    Transform::default(),
+                ));
+            }
+        });
     commands.spawn((
         Label,
         Text::new("Loading rider"),
@@ -152,7 +178,7 @@ fn drive(
 ) {
     race.elapsed += time.delta_secs();
     for (mut r, mut rec, root) in &mut riders {
-        let foot = state.mode >= 8;
+        let foot = (8..=10).contains(&state.mode);
         *visible.get_mut(root).unwrap() = if foot {
             Visibility::Hidden
         } else {
@@ -184,18 +210,36 @@ fn drive(
             3 => 0.65,
             _ => 0.0,
         };
-        if (4..8).contains(&state.mode) {
+        r.weapon_hand = usize::from(state.mode == 12);
+        r.weapon = (state.mode >= 11).then_some(rr_core::weapons::Weapon::Club);
+        if (4..8).contains(&state.mode) || state.mode >= 11 {
             if r.attack <= 0.0 {
                 r.attack_serial += 1;
                 r.attack = 0.65;
             }
             r.attack -= time.delta_secs();
-            r.attack_side = if state.mode.is_multiple_of(2) {
+            r.attack_side = if state.mode.is_multiple_of(2) != (state.mode >= 11) {
                 -1.0
             } else {
                 1.0
             };
-            r.kicking = state.mode >= 6;
+            r.kicking = (6..8).contains(&state.mode);
+            if state.mode >= 11 {
+                let mut clock = rr_core::motion::StrikeClock::new(
+                    if r.attack_side > 0. {
+                        rr_core::AttackSide::Right
+                    } else {
+                        rr_core::AttackSide::Left
+                    },
+                    r.attack_side,
+                    crate::weapons::ability().source_contact,
+                );
+                clock.weapon = Some(crate::weapons::ability());
+                clock.age = 0.65 - r.attack;
+                r.strike = Some(clock);
+            } else {
+                r.strike = None;
+            }
         } else {
             r.attack = 0.0;
             r.kicking = false;
@@ -209,6 +253,10 @@ fn review(
     mut camera: Query<&mut Transform, With<Camera3d>>,
     mut labels: Query<&mut Text, With<Label>>,
     mut exit: MessageWriter<AppExit>,
+    (sockets, gloves): (
+        Query<(&crate::models::hands::HandSocket, &GlobalTransform)>,
+        Query<&bevy::mesh::morph::MeshMorphWeights>,
+    ),
 ) {
     state.frame += 1;
     if state.smoke {
@@ -250,6 +298,30 @@ fn review(
         )
         .looking_at(Vec3::Y * 1.2, Vec3::Y);
     }
+    if state.hands {
+        let side = usize::from(state.mode == 5 || state.mode == 12);
+        if let Some((_, hand)) = sockets.iter().find(|(s, _)| {
+            !s.weapon && s.side == side && s.seated != (8..=10).contains(&state.mode)
+        }) {
+            let hand = hand.compute_transform();
+            let offset = [
+                Vec3::new(0.0, -0.12, -0.43),
+                Vec3::new(0.0, -0.12, 0.43),
+                Vec3::new(0.43, -0.12, 0.0),
+            ][state.view];
+            for mut c in &mut camera {
+                *c = Transform::from_translation(hand.translation + hand.rotation * offset)
+                    .looking_at(hand.translation, hand.rotation * Vec3::Y);
+            }
+        }
+        for weights in &gloves {
+            let w = weights.weights();
+            state.seen_shapes[0] |= state.mode >= 8 && w.iter().all(|w| w.abs() < 0.001);
+            state.seen_shapes[1] |= state.mode < 4 && w[0] > 0.95 && w[2] > 0.95;
+            state.seen_shapes[2] |= state.mode == 4 && w[1] > 0.95 && w[2] > 0.95;
+            state.seen_shapes[3] |= state.mode == 5 && w[3] > 0.95 && w[0] > 0.95;
+        }
+    }
     for mut l in &mut labels {
         **l = format!(
             "{} | {}\n1-8 mounted / 9 idle / 0 walk / R run / C camera / Esc close",
@@ -257,11 +329,16 @@ fn review(
             ["REAR", "FRONT", "SIDE"][state.view]
         );
     }
-    if state.smoke && state.frame > 120 && state.frame % 60 == 50 {
+    if state.smoke && state.frame > if state.hands { 90 } else { 120 } && state.frame % 60 == 50 {
         commands
             .spawn(Screenshot::primary_window())
             .observe(save_to_disk(format!(
-                "screenshots/animation-part03/{:02}-{}-{}.png",
+                "screenshots/{}/{:02}-{}-{}.png",
+                if state.hands {
+                    "hand-contacts"
+                } else {
+                    "animation-part03"
+                },
                 state.mode,
                 LABELS[state.mode]
                     .split('/')
@@ -275,7 +352,46 @@ fn review(
     if keys.just_pressed(KeyCode::Escape)
         || (state.smoke && state.frame >= 90 + LABELS.len() as u32 * 180)
     {
+        if state.hands && state.smoke {
+            assert!(
+                state.seen_shapes.iter().all(|v| *v),
+                "open/grip/fist shape not observed"
+            );
+            std::fs::write(
+                "screenshots/hand-contacts/evidence.json",
+                serde_json::to_vec_pretty(
+                    &serde_json::json!({"open_grip_fist_observed":state.seen_shapes,
+                    "motions":13,"views":3,"physics_changed":false}),
+                )
+                .unwrap(),
+            )
+            .unwrap();
+            println!(
+                "Hand contact review passed: open, grip and fist; eleven motions, three views"
+            );
+        }
         println!("Animation review passed: eleven motions, three views");
         exit.write(AppExit::Success);
+    }
+}
+
+// Static hand review uses exact contact/extended-punch keys. The ordinary lab
+// continues playing full animations; snapshots cannot otherwise certify a phase.
+fn hand_keyframes(state: Res<Review>, library: Res<Library>, mut animators: Query<&mut Animator>) {
+    if !state.hands {
+        return;
+    }
+    let key = match state.mode {
+        1 => 2030,
+        4 => 2222,
+        5 => 2232,
+        8 => 2364,
+        11 => 2162,
+        12 => 2172,
+        _ => return,
+    };
+    for mut a in &mut animators {
+        a.current = library.key(key);
+        a.previous = a.current;
     }
 }

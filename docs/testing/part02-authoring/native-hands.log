@@ -1,0 +1,6 @@
+2026-11-08T07:23:13.791741Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-08T07:23:14.216290Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+2026-11-08T07:23:15.015600Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+Hand contact review passed: open, grip and fist; eleven motions, three views
+Animation review passed: eleven motions, three views

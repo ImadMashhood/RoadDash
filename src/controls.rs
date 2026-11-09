@@ -15,6 +15,8 @@ pub struct Controls {
     pub look: Vec2,
     pub foot: Vec2,
     pub interact: bool,
+    pub pickup: bool,
+    pub drop: bool,
     pub context: rr_core::comfort::InputContext,
     pub suppress_frame: bool,
 }
@@ -65,7 +67,41 @@ impl Bindings {
             }
             bindings.insert(action.into(), codes);
         }
-        if file.actions.len() != bindings.len() {
+        for (action, default) in [("pickup", KeyCode::KeyE), ("drop", KeyCode::KeyQ)] {
+            let keys = file
+                .actions
+                .get(action)
+                .map(|v| {
+                    v.iter()
+                        .map(|s| key_code(s).ok_or("unknown weapon key"))
+                        .collect::<Result<Vec<_>, _>>()
+                })
+                .transpose()?;
+            let codes = keys.unwrap_or_else(|| {
+                vec![if used.contains(&default) {
+                    [KeyCode::KeyF, KeyCode::KeyG, KeyCode::KeyH, KeyCode::KeyB]
+                        .into_iter()
+                        .find(|k| !used.contains(k))
+                        .unwrap_or(default)
+                } else {
+                    default
+                }]
+            });
+            if codes.is_empty() {
+                return Err("empty weapon binding".into());
+            }
+            for code in &codes {
+                if !used.insert(*code) {
+                    return Err("duplicate weapon key binding".into());
+                }
+            }
+            bindings.insert(action.into(), codes);
+        }
+        if file
+            .actions
+            .keys()
+            .any(|action| !bindings.contains_key(action))
+        {
             return Err("unknown input action".into());
         }
         Ok(Self(bindings))
@@ -175,6 +211,8 @@ pub fn capture(
     if suppressed {
         controls.buffer.held = default();
         controls.buffer.clear_edges();
+        controls.pickup = false;
+        controls.drop = false;
         controls.look = Vec2::ZERO;
         controls.start = false;
         controls.pause = false;
@@ -272,6 +310,8 @@ pub fn capture(
         }
     };
     if race.phase == Phase::Racing && controls.context == rr_core::comfort::InputContext::Riding {
+        controls.pickup |= edge("pickup");
+        controls.drop |= edge("drop");
         if keys.just_pressed(KeyCode::Space) {
             controls.buffer.push_attack(AttackSide::Kick);
         }
@@ -291,6 +331,8 @@ pub fn capture(
         }
     } else {
         controls.buffer.clear_edges();
+        controls.pickup = false;
+        controls.drop = false;
     }
     controls.start |= edge("start");
     controls.pause |= edge("pause");
@@ -333,7 +375,7 @@ mod tests {
     fn bindings_are_validated_and_remappable() {
         let original = include_str!("../content/input.json");
         Bindings::parse(original).unwrap();
-        Bindings::parse(&original.replace("KeyW", "KeyE")).unwrap();
+        Bindings::parse(&original.replace("KeyW", "KeyB")).unwrap();
         assert!(Bindings::parse(&original.replace("KeyW", "KeyS")).is_err());
         assert!(Bindings::parse(&original.replace("KeyW", "bad-key")).is_err());
     }
@@ -467,13 +509,13 @@ mod rebind_tests {
         app.update();
         app.world_mut()
             .resource_mut::<ButtonInput<KeyCode>>()
-            .press(KeyCode::KeyE);
+            .press(KeyCode::KeyB);
         app.update();
         app.world_mut()
             .resource_mut::<ButtonInput<KeyCode>>()
             .release(KeyCode::Enter);
         let prefs = app.world().resource::<crate::settings::Preferences>();
-        assert_eq!(prefs.file.keyboard.actions["nitro"], vec!["KeyE"]);
+        assert_eq!(prefs.file.keyboard.actions["nitro"], vec!["KeyB"]);
         app.world_mut()
             .resource_mut::<crate::settings::SettingsPanel>()
             .controller = true;

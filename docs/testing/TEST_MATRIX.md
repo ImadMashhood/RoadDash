@@ -596,3 +596,52 @@ without false finish. Run full workspace/physics/model/recovery regression,
 required audit/build/clippy/fmt, native Metropolis retry/audio/farm/city recovery,
 reverse and exact pickup-error assertions. Animation coverage report must be
 current and six context tests pass; this does not close pose/animation approval.
+
+## Animation A glove contacts — 2026-11-08
+
+ANIM-15/16, ADR078, testing/hand-contacts/README.md. Verify four independent
+hand shapes blend without overshoot, invalid socket/quaternion/hinge/key metadata
+is rejected, seated sockets match universal grips, wrists/non-hand vertices stay
+unchanged, finite GPU deltas and shared image budgets. Run original model/body/
+180-tick physics and full crash/recovery differential regressions, workspace
+fmt/clippy/test/build, native hand close-ups and game/restart/reverse/recovery.
+Native hand review must observe relaxed, both-grip, left-fist/right-grip and
+right-fist/left-grip states and package all33 labeled views. Exact held poses
+must not be confused with dynamic clip snapshots. User art approval, Blender
+round-trip, weapon gameplay, Windows and production performance remain open.
+
+2026-11-08 Part02 authoring development: [evidence](part02-authoring/README.md).
+Blender4.5.9 full138-action/16-bike FK reload, independent grip/fist GLB surface
+reload, typed sockets and actual pose-loader resets;18source hand views and33native
+hand views. rr_content validates complete per-pose hand weights/held contacts;
+Rust checks Blender fold position/normal fixtures. Full catalog/art/normal parity,
+clearance and user approval remain open; no Part03 interpolation or physical tuning.
+
+## ADR089 — performance synchronization / UI prompt pass (2026-11-08)
+
+- Exact immutable triangle-soup and gameplay-role preservation; explicit versus
+  standalone static drop/wall/CCD/ray trajectories; stable settled/fading facade
+  render inputs: workspace Rust tests.
+- Actual13-view metro survey, default route0 and baseline route1 crash/recovery /
+  audio/results plus an explicit reverse/club flag fixture; paired18-case lab; native census/logs/screenshots:
+  [performance/UI evidence](performance-ui-prompts/README.md).
+- Nine summary/prompt tests and17 existing UI-kit tests cover all28 draft screen
+  /142image IDs, exact source aspects, deterministic regeneration and catch-up /
+  malformed/paused/zero-tick log interpretation.
+- Full driven-route60FPS, streaming spikes, GPU timestamps and hardware coverage
+  remain open under PERF-08. Prompts do not close artwork or native UI approval.
+
+| T-UI-DIRECTION | Original-screen study, preserve rejected batch, separate corrected sample | docs/ui/UI_ART_DIRECTION.md; generated-ui/README.md. Candidate inspected as an image; revised browser visual approval remains open. |
+
+| T-NATIVE-FRONTEND | Offline original-inspired navigation, no held-confirm skip, controller/mouse/keyboard, launch/reset/results/settings, image readiness and viewport bounds | native-frontend/README.md, Rust domain/integration tests, --frontend-smoke actual window/layout receipts. Human controller/accessibility/production art acceptance stays open. |
+
+| T-RIVAL-GRID | Seeded half-grid clubs; skip player/police; new-start/retry only; retain policy/drop | random-rival-weapons/README.md;375 Rust tests and part09-start/run-01 native held census. |
+| T-P09-RUNNER | Isolated receipt directories/saves/settings, pinned seed, failed/timeout process and entry report validation | part09-start/README.md; three Python tests and actual entry run. Full suite/human gates remain open. |
+
+## 2026-11-08 — Approved portrait picker (ADR094)
+
+UI-02/UI-05 remain partial. Verify sixteen approved source/runtime hashes, four-column up/down navigation, selection bounds, return-to-card focus, unchanged profile/phase, every native card/detail and retained street/race/pause/results/quit. Evidence and environment limitations: [approved portrait UI](approved-portrait-ui/README.md).
+
+## 2026-11-08 — Full-page portrait biographies (ADR095)
+
+All sixteen live bios at 1280×720, lower-strip bounds clear of controls, 4×4 card navigation/focus, retained native menu/race/results flow, font readiness/provenance and workspace checks: [dossier evidence](portrait-dossier/README.md). Human art/profile/hardware gates remain open under UI-02/UI-05.

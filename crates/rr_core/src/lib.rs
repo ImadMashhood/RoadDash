@@ -3,7 +3,9 @@
 pub mod comfort;
 pub mod contact;
 pub mod crash;
+pub mod frontend;
 pub mod original_crash;
+pub mod police;
 pub mod pursuit;
 pub mod reverse;
 pub mod steering;
@@ -292,3 +294,5 @@ pub mod streets;
 pub mod destruction;
 
 pub mod rival_ai;
+
+pub mod weapons;
