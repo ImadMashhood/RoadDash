@@ -3792,3 +3792,21 @@ queries and accepted physics. AI-QUEUE-02 covers the runtime regression. Close
 the 8 cm exposed terrain seam with a soil render-edge underlap, retaining road,
 sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
+
+## ADR141 — Forward combat dependencies and bounded opposite-road passing (2026-11-10)
+
+Issue26/RFU-AI-01–08 supersedes rear-chasing/downed-hunting behavior for ordinary
+rivals. Choose closest eligible forward mounted racer; exact-station ID ordering,
+0.75m target tolerance and10/12m road-distance hysteresis prevent tie chatter.
+Rear engagement never dictates braking; slow targets are passed instead of matched.
+Separate race-pace queue detection from combat speed. Keep collision/curve safety
+above passing above combat, through existing60Hz controls and physical forces.
+Police pursuit stays separate. Preserve selected velocity muscles and baseline.
+
+Opposite road is only a fallback after blocked outbound planning. Predict complete
+outward and return paths against traffic, recheck each fixed tick, retain original
+home lane and require return within12s. Expand static lookahead and bounded proxy
+range only as needed; no obstacle exemptions, teleport or sidewalk escape. Keep
+full-race fairness/performance gates open until measured. Native decision receipts
+expose intent versus avoidance. No dependency migration or external code/media
+intake. See testing/issue26-racer-ai/REPORT.md for tests and remaining limits.

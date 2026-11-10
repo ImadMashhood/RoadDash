@@ -1188,3 +1188,9 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   594tests and both-rig native recovery pass; complete human race/passing balance,
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
+
+- RFU-AI-01–08/ADR141: targeted racer/killer decision and oncoming-pass corrections
+  have604-test/code/build verification for RFU-AI-03/04/05/07. Other gameplay/native gates remain open. Forecasts do not reserve lanes; an opening can close
+  after entry. Sealed roads legitimately wait. Full native race, human aggression
+  balance and broad performance/hardware acceptance are separate gates. See
+  testing/issue26-racer-ai/REPORT.md; no physical rig tuning is part of issue26.

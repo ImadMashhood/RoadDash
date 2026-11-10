@@ -62,6 +62,40 @@ fn clear(from: f32, to: f32, speed: f32, car: Car, horizon: f32) -> bool {
     }
     low > clearance || high < -clearance
 }
+/// Require enough relative speed to clear the whole nearby queue and return
+/// within twelve seconds. This is a forecast, never a collision exemption.
+/// Inbound candidates must remain clear through both outward and return legs.
+pub fn oncoming_pass_clear(lane: f32, goal: f32, home: f32, pace: f32, cars: &[Car]) -> bool {
+    if pace < 1.
+        || cars
+            .iter()
+            .any(|c| c.lateral_speed.abs() > 0.25 && (-5.0..120.0).contains(&c.gap))
+    {
+        // Crossing junction traffic has priority; do not borrow opposing road
+        // to defeat its yield, even if one constant-velocity forecast looks open.
+        return false;
+    }
+    let mut return_at = 0.0_f32;
+    for c in cars.iter().filter(|c| {
+        c.gap > -15. && c.gap < 120. && (c.lane - home).abs() < c.half_width + 1.3 && c.speed < pace
+    }) {
+        return_at = return_at.max((c.gap + c.half_length + 15.) / (pace - c.speed));
+    }
+    if return_at > 8. {
+        return false;
+    }
+    let return_at = return_at.max(0.5);
+    cars.iter().all(|c| {
+        clear(lane, goal, pace, *c, return_at + 4.) && {
+            let shifted = Car {
+                gap: c.gap + (c.speed - pace) * return_at,
+                lane: c.lane + c.lateral_speed * return_at,
+                ..*c
+            };
+            clear(goal, home, pace, shifted, 4.)
+        }
+    })
+}
 /// Slow upright riders are traffic leaders even when no car triggered avoidance.
 /// Keep ordinary race-speed combat spacing separate from a crawling queue.
 pub fn slow_queue_ahead(lane: f32, cruise: f32, rider: Car) -> bool {
@@ -109,6 +143,64 @@ pub struct Request {
     pub bounds: (f32, f32),
 }
 impl Memory {
+    /// Outbound passing has priority. Opposite road is considered only when the
+    /// outbound plan cannot progress, and must admit a complete return forecast.
+    /// The adapter supplies lazy road geometry and resident static-body sweeps.
+    pub fn plan_with_oncoming(
+        &mut self,
+        input: Request,
+        cars: &[Car],
+        road_bounds: impl FnOnce() -> (f32, f32),
+        drivable: impl Fn(f32, f32) -> bool,
+    ) -> Plan {
+        let inbound = |x: f32| x < input.bounds.0 || x > input.bounds.1;
+        if input.bounds.0 > input.bounds.1 {
+            return self.plan(input, cars, drivable);
+        }
+        let held_inbound = self.committed_lane().is_some_and(inbound);
+        let original = *self;
+        let outbound = if held_inbound {
+            None
+        } else {
+            Some(self.plan(input, cars, &drivable))
+        };
+        if held_inbound || outbound.is_some_and(|p| p.speed < input.cruise && !self.active()) {
+            let mut candidate = original;
+            let home = original
+                .home_lane()
+                .unwrap_or(input.desired)
+                .clamp(input.bounds.0, input.bounds.1);
+            let pass = candidate.plan(
+                Request {
+                    bounds: road_bounds(),
+                    desired: home,
+                    ..input
+                },
+                cars,
+                |goal, pace| {
+                    (!inbound(goal) || oncoming_pass_clear(input.lane, goal, home, pace, cars))
+                        && drivable(goal, pace)
+                },
+            );
+            if held_inbound
+                || (inbound(pass.lane) && outbound.is_some_and(|p| pass.speed > p.speed))
+            {
+                *self = candidate;
+                return pass;
+            }
+        }
+        outbound.unwrap_or(Plan {
+            lane: input.lane,
+            speed: 0.,
+            avoiding: true,
+        })
+    }
+    pub fn home_lane(&self) -> Option<f32> {
+        self.pass.map(|(_, home)| home)
+    }
+    pub fn committed_lane(&self) -> Option<f32> {
+        self.pass.map(|(lane, _)| lane)
+    }
     pub fn active(&self) -> bool {
         self.pass.is_some()
     }
@@ -511,5 +603,69 @@ mod tests {
         let b = plan(-2., 40., -2., 45., (-5., -0.7), &cars);
         assert_eq!(a.lane, b.lane);
         assert_eq!(a.speed, b.speed);
+    }
+}
+
+#[cfg(test)]
+mod inbound_tests {
+    use super::*;
+    fn car(gap: f32, lane: f32, speed: f32) -> Car {
+        Car {
+            gap,
+            lane,
+            speed,
+            lateral_speed: 0.,
+            half_width: 0.95,
+            half_length: 1.95,
+        }
+    }
+    #[test]
+    fn opposite_lane_pass_requires_a_complete_clear_return() {
+        let front = car(60., 2., 10.);
+        assert!(oncoming_pass_clear(2., -2., 2., 25., &[front]));
+        assert!(!oncoming_pass_clear(
+            2.,
+            -2.,
+            2.,
+            25.,
+            &[front, car(200., -2., -25.)]
+        ));
+        assert!(!oncoming_pass_clear(2., -2., 2., 11., &[front]));
+        assert!(!oncoming_pass_clear(
+            2.,
+            -2.,
+            2.,
+            25.,
+            &[front, car(0., 2., 25.)]
+        ));
+    }
+    #[test]
+    fn clear_oncoming_corridor_can_pass_a_blocked_outbound_lane() {
+        let cars = [car(60., 2., 10.)];
+        let input = Request {
+            lane: 2.,
+            speed: 20.,
+            desired: 2.,
+            cruise: 35.,
+            bounds: (0.65, 2.35),
+        };
+        let mut memory = Memory::default();
+        let p = memory.plan_with_oncoming(input, &cars, || (-2.35, 2.35), |_, _| true);
+        assert!(p.lane < 0. && p.speed >= 20., "{p:?}");
+        let blocked = [cars[0], car(100., -2., -25.)];
+        let returned = memory.plan_with_oncoming(
+            Request {
+                lane: p.lane,
+                desired: -2.,
+                ..input
+            },
+            &[car(-30., 2., 10.)],
+            || (-2.35, 2.35),
+            |_, _| true,
+        );
+        assert!(returned.lane >= 0.65, "{returned:?}");
+        let p =
+            Memory::default().plan_with_oncoming(input, &blocked, || (-2.35, 2.35), |_, _| true);
+        assert!(p.lane > 0. && p.speed < 35., "{p:?}");
     }
 }

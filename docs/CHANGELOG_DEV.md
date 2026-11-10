@@ -1828,3 +1828,12 @@ All594workspace tests, strict lint/build/audit and five roadmap checks pass.
 Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
+
+### 2026-11-10 — Racer/killer follow-up issue26 (ADR141)
+
+Traced rear-target speed subtraction, combat-capped queue detection and outbound-only
+passing bounds. Implement forward-priority/hysteretic moving combat, race-progress
+fallback for stopped targets, and bounded opposite-road/return checks. Added
+RFU-AI-01–08 and diagnostic native race fixture;604workspace tests and strict
+code/build/audit gates pass. RFU-AI-03/04/05/07 verified; four gameplay/native
+gates remain open, with no hardware/frame-budget claim. See testing/issue26-racer-ai/REPORT.md.
