@@ -1,0 +1,54 @@
+
+running 1 test
+Crossing profile route=0 station=3000 side=-1 start=8 wall=false: advance=18.036m reached_frame=Some(315) longest_stall=3ticks
+Physical foot crossing route=0 station=3000 side=-1 start_offset=8 wall=false: distance=18.036m
+Crossing profile route=0 station=3000 side=-1 start=10 wall=false: advance=18.043m reached_frame=Some(315) longest_stall=1ticks
+Physical foot crossing route=0 station=3000 side=-1 start_offset=10 wall=false: distance=18.043m
+Crossing profile route=0 station=3000 side=1 start=8 wall=false: advance=18.055m reached_frame=Some(312) longest_stall=1ticks
+Physical foot crossing route=0 station=3000 side=1 start_offset=8 wall=false: distance=18.055m
+Crossing profile route=0 station=3000 side=1 start=10 wall=false: advance=18.049m reached_frame=Some(312) longest_stall=1ticks
+Physical foot crossing route=0 station=3000 side=1 start_offset=10 wall=false: distance=18.049m
+Crossing profile route=0 station=3250 side=-1 start=8 wall=false: advance=18.043m reached_frame=Some(312) longest_stall=1ticks
+Physical foot crossing route=0 station=3250 side=-1 start_offset=8 wall=false: distance=18.043m
+Crossing profile route=0 station=3250 side=-1 start=10 wall=false: advance=18.033m reached_frame=Some(312) longest_stall=1ticks
+Physical foot crossing route=0 station=3250 side=-1 start_offset=10 wall=false: distance=18.033m
+Crossing profile route=0 station=3250 side=1 start=8 wall=false: advance=18.026m reached_frame=Some(321) longest_stall=12ticks
+Physical foot crossing route=0 station=3250 side=1 start_offset=8 wall=false: distance=18.026m
+Crossing profile route=0 station=3250 side=1 start=10 wall=false: advance=18.038m reached_frame=Some(315) longest_stall=3ticks
+Physical foot crossing route=0 station=3250 side=1 start_offset=10 wall=false: distance=18.038m
+Crossing profile route=0 station=4100 side=-1 start=8 wall=false: advance=18.007m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=0 station=4100 side=-1 start_offset=8 wall=false: distance=18.007m
+Crossing profile route=0 station=4100 side=-1 start=10 wall=false: advance=18.060m reached_frame=Some(320) longest_stall=10ticks
+Physical foot crossing route=0 station=4100 side=-1 start_offset=10 wall=false: distance=18.060m
+Crossing profile route=0 station=4100 side=1 start=8 wall=false: advance=18.017m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=0 station=4100 side=1 start_offset=8 wall=false: distance=18.017m
+Crossing profile route=0 station=4100 side=1 start=10 wall=false: advance=18.059m reached_frame=Some(314) longest_stall=3ticks
+Physical foot crossing route=0 station=4100 side=1 start_offset=10 wall=false: distance=18.059m
+Crossing profile route=1 station=4100 side=-1 start=8 wall=false: advance=18.026m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=1 station=4100 side=-1 start_offset=8 wall=false: distance=18.026m
+Crossing profile route=1 station=4100 side=-1 start=10 wall=false: advance=18.044m reached_frame=Some(316) longest_stall=4ticks
+Physical foot crossing route=1 station=4100 side=-1 start_offset=10 wall=false: distance=18.044m
+Crossing profile route=1 station=4100 side=1 start=8 wall=false: advance=18.012m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=1 station=4100 side=1 start_offset=8 wall=false: distance=18.012m
+Crossing profile route=1 station=4100 side=1 start=10 wall=false: advance=18.010m reached_frame=Some(316) longest_stall=5ticks
+Physical foot crossing route=1 station=4100 side=1 start_offset=10 wall=false: distance=18.010m
+Crossing profile route=0 station=6500 side=-1 start=8 wall=false: advance=18.036m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=0 station=6500 side=-1 start_offset=8 wall=false: distance=18.036m
+Crossing profile route=0 station=6500 side=-1 start=10 wall=false: advance=18.000m reached_frame=Some(318) longest_stall=9ticks
+Physical foot crossing route=0 station=6500 side=-1 start_offset=10 wall=false: distance=18.000m
+Crossing profile route=0 station=6500 side=1 start=8 wall=false: advance=18.007m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=0 station=6500 side=1 start_offset=8 wall=false: distance=18.007m
+Crossing profile route=0 station=6500 side=1 start=10 wall=false: advance=18.011m reached_frame=Some(317) longest_stall=7ticks
+Physical foot crossing route=0 station=6500 side=1 start_offset=10 wall=false: distance=18.011m
+Crossing profile route=0 station=10000 side=-1 start=8 wall=false: advance=18.011m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=0 station=10000 side=-1 start_offset=8 wall=false: distance=18.011m
+Crossing profile route=0 station=10000 side=-1 start=10 wall=false: advance=18.002m reached_frame=Some(309) longest_stall=1ticks
+Physical foot crossing route=0 station=10000 side=-1 start_offset=10 wall=false: distance=18.002m
+Crossing profile route=0 station=10000 side=1 start=8 wall=false: advance=18.026m reached_frame=Some(308) longest_stall=1ticks
+Physical foot crossing route=0 station=10000 side=1 start_offset=8 wall=false: distance=18.026m
+Crossing profile route=0 station=10000 side=1 start=10 wall=false: advance=18.010m reached_frame=Some(318) longest_stall=8ticks
+Physical foot crossing route=0 station=10000 side=1 start_offset=10 wall=false: distance=18.010m
+test world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 265 filtered out; finished in 6.99s
+

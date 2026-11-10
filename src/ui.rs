@@ -378,7 +378,7 @@ pub fn update_ui(
             1 if !track.definition.closed => format!("ROUTE {:03}%  GATE {}/{}  {:02}:{:05.2}",(player.progress/track.length*100.0).clamp(0.0,100.0) as u32,player.gates.next,track.definition.checkpoints.len()-1,(race.elapsed/60.0) as u32,race.elapsed%60.0),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => format!("{:03}", (player.speed * 3.6) as u32),
-            3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + if player.weapon.is_some() {"\nCLUB EQUIPPED"} else {"\nUNARMED"} + &format!("\n{}", police.hud()),
+            3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + &player.weapon.map_or_else(|| "\nUNARMED".to_owned(), |w| format!("\n{} EQUIPPED", w.label())) + &format!("\n{}", police.hud()),
             4 if !track.definition.closed && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
             4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
             4 if recoveries.iter().any(|(r,s)|r.id==0 && s.stage==crate::recovery::RecoveryStage::Running) => {

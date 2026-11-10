@@ -1,0 +1,25 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 04s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 5 tests
+test world_gen::metropolis::geometry::tests::paint_follows_paved_crossfall_instead_of_burying_outer_lanes ... ok
+test world_gen::metropolis::geometry::tests::semantic_collision_batching_preserves_exact_triangle_soup_and_support_roles ... ok
+test world_gen::metropolis::geometry::tests::standalone_static_chunks_keep_contact_ccd_and_support_trajectories ... ok
+test world_gen::metropolis::geometry::tests::on_foot_steps_do_not_climb_solid_walls_above_the_cap ... ok
+
+thread 'world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions' (2564737) panicked at src/world_gen/metropolis/geometry.rs:751:13:
+blocked route 0 station 3000 side -1: Vec3(1.349834, 11.562675, -150.29465) -> Vec3(1.7029527, 12.322531, -149.85364); output Some(KinematicCharacterControllerOutput { grounded: true, desired_translation: Vec3(0.0647416, -0.083333336, 0.005790072), effective_translation: Vec3(-0.01853849, 0.05033143, 0.0004013353), collisions: [CharacterCollision { entity: 31v0, character_translation: Vec3(1.7216098, 12.272047, -149.85402), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(0.00011856614, -0.00015261458, 1.0603792e-5), translation_remaining: Vec3(0.06462303, -0.08318072, 0.0057794685), hit: ShapeCastHit { time_of_impact: 0.00019354995, details: Some(ShapeCastHitDetails { witness1: Vec3(1.7218255, 11.322066, -149.85544), witness2: Vec3(0.00016725063, -0.92998123, -0.0013427734), normal1: Vec3(-0.002421848, 0.99998945, 0.0038993277), normal2: Vec3(0.002421848, -0.99998945, -0.0038993277) }), status: Converged } }, CharacterCollision { entity: 11v0, character_translation: Vec3(1.7489109, 12.272145, -149.85144), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(0.027419632, -5.4206197e-5, 0.0025977343), translation_remaining: Vec3(0.03711994, 0.0001338011, 0.0035175963), hit: ShapeCastHit { time_of_impact: 0.027423551, details: Some(ShapeCastHitDetails { witness1: Vec3(2.048604, 11.663083, -149.82887), witness2: Vec3(0.2769755, -0.60899925, 0.020950317), normal1: Vec3(-0.9975208, 0.0027532836, -0.07031982), normal2: Vec3(0.9975208, -0.0027532836, 0.07031982) }), status: Converged } }, CharacterCollision { entity: 11v0, character_translation: Vec3(1.7860308, 12.460335, -149.84792), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(0.06453958, 0.18813519, 0.006115331), translation_remaining: Vec3(-4.4612496e-9, -0.18805559, -4.1824214e-10), hit: ShapeCastHit { time_of_impact: 0.12600963, details: Some(ShapeCastHitDetails { witness1: Vec3(2.0482674, 11.660666, -149.83026), witness2: Vec3(0.24301553, -0.7881079, 0.016311646), normal1: Vec3(-0.8541693, 0.5166655, -0.058748588), normal2: Vec3(0.8541693, -0.5166655, 0.058748588) }), status: Converged } }], is_sliding_down_slope: true })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions ... FAILED
+
+failures:
+
+failures:
+    world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 261 filtered out; finished in 0.26s
+
+error: test failed, to rerun pass `--lib`

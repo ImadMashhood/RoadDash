@@ -1,0 +1,37 @@
+    Checking cpal v0.15.3 (/home/imad/Documents/ChatGPT/RoadRash/vendor/cpal)
+    Checking rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core)
+    Checking rodio v0.20.1
+    Checking bevy_audio v0.17.3
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+    Checking bevy_internal v0.17.3
+    Checking bevy v0.17.3
+    Checking bevy_rapier3d v0.32.0
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+error[E0599]: no method named `after` found for fn item `fn(..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...) {run}` in the current scope
+   --> src/lib.rs:173:26
+    |
+172 | /                     world_gen::metropolis::survey::run
+173 | |                         .after(game::camera)
+    | |                         -^^^^^ method not found in `fn(..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...) {run}`
+    | |_________________________|
+    |
+    |
+    = note: the full name for the type has been written to '/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-d4d940b169484ba6.long-type-15996637927444263784.txt'
+    = note: consider using `--verbose` to print the full type name to the console
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `road-dash` (lib) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error[E0599]: no method named `after` found for fn item `fn(..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...) {run}` in the current scope
+   --> src/lib.rs:173:26
+    |
+172 | /                     world_gen::metropolis::survey::run
+173 | |                         .after(game::camera)
+    | |                         -^^^^^ method not found in `fn(..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ..., ...) {run}`
+    | |_________________________|
+    |
+    |
+    = note: the full name for the type has been written to '/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-4e201ab1ce398357.long-type-15998578232420582725.txt'
+    = note: consider using `--verbose` to print the full type name to the console
+
+error: could not compile `road-dash` (lib test) due to 1 previous error

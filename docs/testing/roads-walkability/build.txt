@@ -1,0 +1,4 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 45.32s

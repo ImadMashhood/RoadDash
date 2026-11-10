@@ -1,0 +1,8 @@
+{
+  "samples": 3066,
+  "old_buried_samples": 0,
+  "worst_old_burial_m": 0,
+  "missing_pavement": [],
+  "lane_counts": "four before split / three per branch / four after rejoin",
+  "source_layout_sha256": "bad1cc469404a171315a32906a68275905e4711c2e315430d79980414e357d96"
+}

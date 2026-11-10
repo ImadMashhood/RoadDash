@@ -16,9 +16,10 @@ class Life(unittest.TestCase):
   heights=[varied_floors(tower,dict(core_score=.5,center=[0,z]),CFG) for z in range(-200,1801,100)]
   self.assertEqual(heights[0],2);self.assertEqual(heights[-1],31);self.assertEqual(heights,sorted(heights));self.assertLessEqual(max(b-a for a,b in zip(heights,heights[1:])),3)
  def test_parked_vehicles_are_fully_on_asphalt_and_outside_junctions(self):
-  p=dict(points=[[0,12,0],[0,12,8850]],progress=[3150,12000]);d=dict(race_first=dict(primary_junctions=[dict(point=[0,500])]))
-  cars=parked_cars(d,[p],box(-5,0,5,8850),CFG)
-  self.assertGreater(len(cars),20);self.assertEqual(cars,parked_cars(d,[p],box(-5,0,5,8850),CFG))
+  p=dict(points=[[0,12,0],[0,12,8850]],progress=[3150,12000]);d=dict(streets=[],race_first=dict(primary_junctions=[dict(point=[0,500])]))
+  cfg=dict(CFG,lane_sections=[dict(route=0,start=0,end=12000,outbound=1,inbound=1,lane_width=3)])
+  cars=parked_cars(d,[p],box(-5,0,5,8850),cfg)
+  self.assertGreater(len(cars),20);self.assertEqual(cars,parked_cars(d,[p],box(-5,0,5,8850),cfg))
   from metropolis_streetscape import footprint
   for c in cars:
    shape=footprint(c['position'],c['heading'],1.8,3.8).buffer(.1);self.assertTrue(box(-5,0,5,8850).covers(shape));self.assertGreaterEqual(shape.distance(Point(0,500)),25)

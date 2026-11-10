@@ -1,0 +1,53 @@
+[
+  {
+    "check": "clean",
+    "command": [
+      "cargo",
+      "clean",
+      "-p",
+      "rr_core",
+      "-p",
+      "rr_content",
+      "-p",
+      "road-dash"
+    ],
+    "exit": 0,
+    "seconds": 3.87
+  },
+  {
+    "check": "fmt-write",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all"
+    ],
+    "exit": 0,
+    "seconds": 1.58
+  },
+  {
+    "check": "fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit": 0,
+    "seconds": 1.55
+  },
+  {
+    "check": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 101,
+    "seconds": 15.27
+  }
+]

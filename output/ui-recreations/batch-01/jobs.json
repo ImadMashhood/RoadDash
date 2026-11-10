@@ -1,0 +1,958 @@
+[
+  {
+    "id": "UI-IMG-0055",
+    "source": "IMAGES/CREDITS.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0055.png",
+    "sha256": "83fb283f5fc473052293a50688d72ec6234f01fca12fdd4d73871d24b3a21038",
+    "scene": "All16 project riders gathered around a battered bar table for a cheerful chaotic end-credits group photograph, distorted overhead perspective. New expressions and relationships; no words.",
+    "characters": [
+      "tyrone",
+      "cleetus",
+      "anastasia",
+      "ellen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: All16 project riders gathered around a battered bar table for a cheerful chaotic end-credits group photograph, distorted overhead perspective. New expressions and relationships; no words.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0055.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/tyrone.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/anastasia.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/ellen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0068",
+    "source": "IMAGES/MAIN.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0068.png",
+    "sha256": "dbf105a5c697681fe355a186fbb26604884ff1ae6c99e3a742fcbb917729ff7c",
+    "scene": "Rainy violet-lit city street main menu under a bridge, couple of project riders Elif and Hog by the right wall with scuffed bike partially behind. Strong tilted street perspective and original night-street atmosphere, character rendering from project portraits. No photoreal normal faces.",
+    "characters": [
+      "elif",
+      "hog"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Rainy violet-lit city street main menu under a bridge, couple of project riders Elif and Hog by the right wall with scuffed bike partially behind. Strong tilted street perspective and original night-street atmosphere, character rendering from project portraits. No photoreal normal faces.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0068.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0070",
+    "source": "IMAGES/MATTE.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0070.png",
+    "sha256": "c50198d03c270cbc8f92b6092d9113ba7559a95c0b87ea58cfdd4f019c0e4fe1",
+    "scene": "A blue-violet pinboard collage of newspaper fragments, paper scraps and motorcycle photographs with a central empty dark photograph aperture. Rebuild original matte/frame location and arrangement in painted project art. No readable newspaper text or names.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: A blue-violet pinboard collage of newspaper fragments, paper scraps and motorcycle photographs with a central empty dark photograph aperture. Rebuild original matte/frame location and arrangement in painted project art. No readable newspaper text or names.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0070.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0071",
+    "source": "IMAGES/OLLEYS.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0071.png",
+    "sha256": "53279d2e0888bf8947e23de70ba94dd938afa1c3e2ea515f50b4cb2a82554198",
+    "scene": "Crooked motorcycle dealer showroom, smarmy proprietor Luigi wearing a stained apron, posing with enormous gesturing hands and a tiny body in a new welcoming sales pitch. Customer Abeyomi examines a purchase with skepticism behind the counter. Checkerboard floor, parts shelf and motorcycles as environmental props only; not motorcycle showcase images.",
+    "characters": [
+      "luigi",
+      "abeyomi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Crooked motorcycle dealer showroom, smarmy proprietor Luigi wearing a stained apron, posing with enormous gesturing hands and a tiny body in a new welcoming sales pitch. Customer Abeyomi examines a purchase with skepticism behind the counter. Checkerboard floor, parts shelf and motorcycles as environmental props only; not motorcycle showcase images.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0071.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/luigi.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/abeyomi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0072",
+    "source": "IMAGES/PANZER.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0072.png",
+    "sha256": "95e56a273a6e8b857a02e83cc65d8a9d65d6522679124f8552022c92c63de97f",
+    "scene": "Cramped smoky pool-room bar, green felt pool table looms in foreground, stool/bar counter in middle distance, cluttered shelves, purple walls and jaundiced lamps. Cleetus argues over a shot with Tyrone, Anastasia watches from a stool. New body poses and expressions fitting the original room staging, not recycled portraits.",
+    "characters": [
+      "cleetus",
+      "tyrone",
+      "anastasia"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Cramped smoky pool-room bar, green felt pool table looms in foreground, stool/bar counter in middle distance, cluttered shelves, purple walls and jaundiced lamps. Cleetus argues over a shot with Tyrone, Anastasia watches from a stool. New body poses and expressions fitting the original room staging, not recycled portraits.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0072.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/tyrone.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/anastasia.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0088",
+    "source": "IMAGES/POSTCARD.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0088.png",
+    "sha256": "faefe589ca4fe8ecb8bde9317e8abf84bf72a2e40703bd6fa1a88dc90a533fc5",
+    "scene": "Tall narrow blue-violet postcard noticeboard side strip like original POSTCARD.RRI: crooked papers, thumbtacks, small faded riding snapshots, no foreground people and no readable type. Keep tall narrow aspect matching original rather than stretch to widescreen.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Tall narrow blue-violet postcard noticeboard side strip like original POSTCARD.RRI: crooked papers, thumbtacks, small faded riding snapshots, no foreground people and no readable type. Keep tall narrow aspect matching original rather than stretch to widescreen.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0088.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0142",
+    "source": "IMAGES/SPLASH.RRI",
+    "category": "menu-backgrounds",
+    "file": "images/UI-IMG-0142.png",
+    "sha256": "0695681d217a28c60606cd1e2a382ecc9ea75c57b1892b8cfd5e26538efb3e8a",
+    "scene": "Splash ensemble inside a distorted overhead biker bar room: all16 project characters crowd around table, low absurd perspective, exaggerated funny faces and gestures, coherent group interaction. Space near center for a future live title, but do not draw title or original logo. Prioritize foreground Yamakha, Tyrone, Ellen, Luigi; other riders background supporting.",
+    "characters": [
+      "yamakha",
+      "tyrone",
+      "ellen",
+      "luigi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Splash ensemble inside a distorted overhead biker bar room: all16 project characters crowd around table, low absurd perspective, exaggerated funny faces and gestures, coherent group interaction. Space near center for a future live title, but do not draw title or original logo. Prioritize foreground Yamakha, Tyrone, Ellen, Luigi; other riders background supporting.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0142.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/yamakha.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/tyrone.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/ellen.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/luigi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0089",
+    "source": "IMAGES/RESTROOM/REST1.RRI",
+    "category": "options-backgrounds",
+    "file": "images/UI-IMG-0089.png",
+    "sha256": "9d78dd25d4d00f93c1e3828246dad03a12bba55ef317b33441144bd66d1fa0af",
+    "scene": "Dingy bathroom, fisheye overhead close perspective, Cleetus bending over a stained toilet and glaring suspiciously up at viewer. Show posture and tiny cramped body naturally, no portrait pointing gesture. Checker tile, toilet-paper roll, scuffed walls. Gross comic atmosphere, non-graphic.",
+    "characters": [
+      "cleetus"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Dingy bathroom, fisheye overhead close perspective, Cleetus bending over a stained toilet and glaring suspiciously up at viewer. Show posture and tiny cramped body naturally, no portrait pointing gesture. Checker tile, toilet-paper roll, scuffed walls. Gross comic atmosphere, non-graphic.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0089.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0090",
+    "source": "IMAGES/RESTROOM/REST2.RRI",
+    "category": "options-backgrounds",
+    "file": "images/UI-IMG-0090.png",
+    "sha256": "bc09edec202ea62e02690a6f53bbc91cbe2da4f8d8889e79bafe0083024cfc8e",
+    "scene": "Bathroom vending-machine gag: Hog furiously shakes a coin-operated machine beside the toilet after it ate his money. Huge open-mouthed frustrated head and foreshortened fist, warped overhead perspective. Machine generic without product words, no original logo.",
+    "characters": [
+      "hog"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Bathroom vending-machine gag: Hog furiously shakes a coin-operated machine beside the toilet after it ate his money. Huge open-mouthed frustrated head and foreshortened fist, warped overhead perspective. Machine generic without product words, no original logo.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0090.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0091",
+    "source": "IMAGES/RESTROOM/REST3.RRI",
+    "category": "options-backgrounds",
+    "file": "images/UI-IMG-0091.png",
+    "sha256": "8f3b92d56b2e84ae9dd925796c6682abb0c25216b19c0813e06ece0d0637c57b",
+    "scene": "Cramped restroom with mirror and washbasin, Dolph as a ridiculous overconfident traffic cop with generic unmarked helmet and dark glasses, admiring himself while Naveen side-eyes him holding a toothbrush. No political symbols or insignia. New poses matching shared setting, no violence.",
+    "characters": [
+      "dolph",
+      "naveen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Cramped restroom with mirror and washbasin, Dolph as a ridiculous overconfident traffic cop with generic unmarked helmet and dark glasses, admiring himself while Naveen side-eyes him holding a toothbrush. No political symbols or insignia. New poses matching shared setting, no violence.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0091.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/dolph.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0092",
+    "source": "IMAGES/RESTROOM/REST4.RRI",
+    "category": "options-backgrounds",
+    "file": "images/UI-IMG-0092.png",
+    "sha256": "4723e553b0d74237f45a4c9ed3baf14c4629a44384f95d5293d2920319d98293",
+    "scene": "Bathroom comic gag: George in chef apron throws his head back laughing beside a crooked urinal while holding an absurdly tiny empty paper cup. Wide distorted room perspective, yellow lamp, peeling purple tiles, puddle on checker floor; fully clothed, non-graphic.",
+    "characters": [
+      "george"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Bathroom comic gag: George in chef apron throws his head back laughing beside a crooked urinal while holding an absurdly tiny empty paper cup. Wide distorted room perspective, yellow lamp, peeling purple tiles, puddle on checker floor; fully clothed, non-graphic.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0092.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/george.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0093",
+    "source": "IMAGES/RESTROOM/REST5.RRI",
+    "category": "options-backgrounds",
+    "file": "images/UI-IMG-0093.png",
+    "sha256": "c8d8202fdc3a05f3c87dfa94fad42c7ad81fe6f2fab7abc6cf1ff8826d6315bb",
+    "scene": "Bathroom slapstick: Esteban grips a loose toilet lid in alarm and grimaces upward as a harmless plume of steam emerges from bad plumbing, immense distorted overhead face and foreshortened hands. Fully clothed construction outfit. No graphic content.",
+    "characters": [
+      "esteban"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Bathroom slapstick: Esteban grips a loose toilet lid in alarm and grimaces upward as a harmless plume of steam emerges from bad plumbing, immense distorted overhead face and foreshortened hands. Fully clothed construction outfit. No graphic content.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0093.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0094",
+    "source": "IMAGES/RESTROOM/REST6.RRI",
+    "category": "options-backgrounds",
+    "file": "images/UI-IMG-0094.png",
+    "sha256": "63bb2b8eba374fda0095ea6bd9d60f8f9de5bf91637cb5baa986166632cb1b16",
+    "scene": "Restroom door encounter: Ellen strides confidently through the doorway while a startled Hog jumps out of the way of a fallen washbasin and a wet-floor cone. Both fully clothed, exaggerated naturally different reactions, checker floor and grimy purple walls, playful slapstick.",
+    "characters": [
+      "ellen",
+      "hog"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Restroom door encounter: Ellen strides confidently through the doorway while a startled Hog jumps out of the way of a fallen washbasin and a wet-floor cone. Both fully clothed, exaggerated naturally different reactions, checker floor and grimy purple walls, playful slapstick.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0094.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/ellen.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0073",
+    "source": "IMAGES/POSTCARD/CITY.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0073.png",
+    "sha256": "a47dc213bdcbe4c5accaecefa674f021e096c3280c9bf3b1547b1c59c353c77b",
+    "scene": "Course postcard with tilted pinned painting of a sportbike and rider speeding through dense violet dusk city canyon. Rider Abeyomi recognizable outfit and face partly visible. Surrounding layered newspaper scraps, thumbtacks and a little smile badge; no readable text.",
+    "characters": [
+      "abeyomi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Course postcard with tilted pinned painting of a sportbike and rider speeding through dense violet dusk city canyon. Rider Abeyomi recognizable outfit and face partly visible. Surrounding layered newspaper scraps, thumbtacks and a little smile badge; no readable text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0073.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/abeyomi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0074",
+    "source": "IMAGES/POSTCARD/KLUB.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0074.png",
+    "sha256": "b019f2f92dcc25ae14af53957a04849d68f92c1bd4b2111e50f127acac9532e2",
+    "scene": "Pinned club postcard: three project riders Shaqueesha, Elif and Luigi at pool table laughing after race, each new pose. Original postcard collage location/paper frame arrangement, no text.",
+    "characters": [
+      "shaqueesha",
+      "elif",
+      "luigi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Pinned club postcard: three project riders Shaqueesha, Elif and Luigi at pool table laughing after race, each new pose. Original postcard collage location/paper frame arrangement, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0074.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/shaqueesha.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/luigi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0075",
+    "source": "IMAGES/POSTCARD/NAPA.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0075.png",
+    "sha256": "2dc6f66a4f980f415502927902aa3c9f83070328d8cc1818660e1c43a81c53aa",
+    "scene": "Pinned course postcard of a motorcycle carving through green vineyard-country road, rolling hills and a windblown Naveen racing. Keep original postcard-paper collage arrangement, landscape painting and humorous project rider style; no text.",
+    "characters": [
+      "naveen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Pinned course postcard of a motorcycle carving through green vineyard-country road, rolling hills and a windblown Naveen racing. Keep original postcard-paper collage arrangement, landscape painting and humorous project rider style; no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0075.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0076",
+    "source": "IMAGES/POSTCARD/PCH.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0076.png",
+    "sha256": "cd4a82acff98d958ba6386f277b41ed9a5ff7c19073912fb7a942bf6249ea40a",
+    "scene": "Pinned course postcard of sunny coastal clifftop road, ocean, absurdly curious deer close to lens and roadside camper, biker Esteban distant. Original collage arrangement, hand-painted environment with project rendering.",
+    "characters": [
+      "esteban"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Pinned course postcard of sunny coastal clifftop road, ocean, absurdly curious deer close to lens and roadside camper, biker Esteban distant. Original collage arrangement, hand-painted environment with project rendering.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0076.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0077",
+    "source": "IMAGES/POSTCARD/PENIN.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0077.png",
+    "sha256": "33674758f2e6be8c49f1c3a77c35712bd946bb6ff7ef228f9b26572993307216",
+    "scene": "Pinned course postcard of winding urban freeway with delivery truck and motorcycle rider Pee Pi Long leaning into turn. Colorful warped landscape and paper collage surround, no lettering or logos.",
+    "characters": [
+      "chinese-racer"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Pinned course postcard of winding urban freeway with delivery truck and motorcycle rider Pee Pi Long leaning into turn. Colorful warped landscape and paper collage surround, no lettering or logos.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0077.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/chinese-racer.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0078",
+    "source": "IMAGES/POSTCARD/QCITY.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0078.png",
+    "sha256": "9c3aa2eebc648bffc3af6486d48fccfc63e5ebf4c3c67b6730fcc281acd231bf",
+    "scene": "Completed-city course postcard: angled city-racing painting of Abeyomi plus prominent small checkered finish flag overlay near lower right. Same family as CITY postcard, frame edges/newspaper/pins rebuilt, no text.",
+    "characters": [
+      "abeyomi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Completed-city course postcard: angled city-racing painting of Abeyomi plus prominent small checkered finish flag overlay near lower right. Same family as CITY postcard, frame edges/newspaper/pins rebuilt, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0078.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/abeyomi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0079",
+    "source": "IMAGES/POSTCARD/QNAPA.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0079.png",
+    "sha256": "4f145f821124a5e500d9c76955f3d33c7f473050859628c4be4b4b644cb88c3d",
+    "scene": "Completed-vineyard course postcard: green country motorcycle scene with Naveen, checked finish flag at lower right of photo. Match source postcard staging and rich painted project finish, no text.",
+    "characters": [
+      "naveen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Completed-vineyard course postcard: green country motorcycle scene with Naveen, checked finish flag at lower right of photo. Match source postcard staging and rich painted project finish, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0079.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0080",
+    "source": "IMAGES/POSTCARD/QPCH.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0080.png",
+    "sha256": "849abed86d7d527f58828dc0943fcd91435ae3a6b867054afd6c729fd824409a",
+    "scene": "Completed-coast course postcard: cliff road, deer, camper and Esteban riding distant, checkered finish flag in foreground; recreate source collage composition with new painting, no text.",
+    "characters": [
+      "esteban"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Completed-coast course postcard: cliff road, deer, camper and Esteban riding distant, checkered finish flag in foreground; recreate source collage composition with new painting, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0080.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0081",
+    "source": "IMAGES/POSTCARD/QPENIN.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0081.png",
+    "sha256": "61db15277de60e999527beb9d828d2e21f90f07bfc57cabb8ecea701840a14ef",
+    "scene": "Completed-peninsula course postcard: winding freeway, truck and Pee Pi Long racing, checkered flag at lower right; painted paper collage and thumbtacks. No text.",
+    "characters": [
+      "chinese-racer"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Completed-peninsula course postcard: winding freeway, truck and Pee Pi Long racing, checkered flag at lower right; painted paper collage and thumbtacks. No text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0081.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/chinese-racer.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0082",
+    "source": "IMAGES/POSTCARD/QSIERRA.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0082.png",
+    "sha256": "72cf528ebab135bb7d94a7515bf1e3ec7e0c5cd6eeca0f002f77229623ce3a5d",
+    "scene": "Completed mountain-course postcard: enormous redwood, mountain road, cheeky bear leaning over roadside sign, motorcycle distant and finish flag. Cartoon bear with project sculptural painting style. All signs without text.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Completed mountain-course postcard: enormous redwood, mountain road, cheeky bear leaning over roadside sign, motorcycle distant and finish flag. Cartoon bear with project sculptural painting style. All signs without text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0082.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0083",
+    "source": "IMAGES/POSTCARD/QSIERRAR.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0083.png",
+    "sha256": "e704452ec4fdfc7a98323c1fed2fe02467ad931da12b54235a161073e22daed0",
+    "scene": "Alternate completed mountain postcard: same forest/redwood/bear location but bear holding a half-eaten sandwich and showing smug grin, checkered flag and paper collage. No text.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Alternate completed mountain postcard: same forest/redwood/bear location but bear holding a half-eaten sandwich and showing smug grin, checkered flag and paper collage. No text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0083.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0084",
+    "source": "IMAGES/POSTCARD/RESTA.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0084.png",
+    "sha256": "03e7043245ae0fbea775979147db1a50a7dfbc9d9c33336572b69a98858de877",
+    "scene": "Pinned bathroom postcard: Esteban in construction outfit grapples with loose toilet lid in a wildly distorted restroom picture, within source postcard collage border. Harmless plumbing gag, no text.",
+    "characters": [
+      "esteban"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Pinned bathroom postcard: Esteban in construction outfit grapples with loose toilet lid in a wildly distorted restroom picture, within source postcard collage border. Harmless plumbing gag, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0084.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0085",
+    "source": "IMAGES/POSTCARD/RESTB.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0085.png",
+    "sha256": "a0f7f62ddb1dc9e7522d8bef4aac71075c08e91bc5dfa9004280d4edeaed849f",
+    "scene": "Pinned bathroom postcard: Cleetus hunches over toilet glaring upward in fisheye room, within source postcard paper border. Fully clothed non-graphic slapstick, no text.",
+    "characters": [
+      "cleetus"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Pinned bathroom postcard: Cleetus hunches over toilet glaring upward in fisheye room, within source postcard paper border. Fully clothed non-graphic slapstick, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0085.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0086",
+    "source": "IMAGES/POSTCARD/SIERRA.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0086.png",
+    "sha256": "f30e7859d48016787a90536311848e2dd08a5336cd91353b8970a28d84be8dd4",
+    "scene": "Mountain course postcard: towering redwood, winding blue-purple mountain road, funny expressive bear next to blank roadside sign, thumbtacked photograph and papers. No finish flag, no text.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Mountain course postcard: towering redwood, winding blue-purple mountain road, funny expressive bear next to blank roadside sign, thumbtacked photograph and papers. No finish flag, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0086.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0087",
+    "source": "IMAGES/POSTCARD/SIERRAR.RRI",
+    "category": "courses",
+    "file": "images/UI-IMG-0087.png",
+    "sha256": "2ca5d831e4b55ee60f0583ab1ec5713d35c6142c215fbe1663404aa5da723c54",
+    "scene": "Alternate mountain course postcard: bear smirks and holds a snack by giant redwood and winding road, source photo-pin-paper composition. No finish flag, no text.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Alternate mountain course postcard: bear smirks and holds a snack by giant redwood and winding road, source photo-pin-paper composition. No finish flag, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0087.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0095",
+    "source": "IMAGES/RESULTS/BUST1.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0095.png",
+    "sha256": "e102309a8548b0fdb5d0ae6e2d49d3a5bee9d26b2b4b0d8546ab544d50457441",
+    "scene": "Busted result: grinning generic police officer Dolph at right towering over a stunned helmeted Yamakha at left beside flashing red-blue lights. Funny exaggerated power imbalance and extreme perspective, no political insignia, no weapons aimed, no readable text.",
+    "characters": [
+      "dolph",
+      "yamakha"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Busted result: grinning generic police officer Dolph at right towering over a stunned helmeted Yamakha at left beside flashing red-blue lights. Funny exaggerated power imbalance and extreme perspective, no political insignia, no weapons aimed, no readable text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0095.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/dolph.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/yamakha.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0096",
+    "source": "IMAGES/RESULTS/BUST2.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0096.png",
+    "sha256": "bf0e3ea5536d74be98acb504e870a8b08b776572b1cbff664e15ba608f20d563",
+    "scene": "Busted result: generic unmarked traffic cop Abeyomi gives a ludicrously long ticket to Elif sprawled safely across a stationary motorcycle tank. Violet roadside at night, guardrail, light beams, no injury, no text.",
+    "characters": [
+      "abeyomi",
+      "elif"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Busted result: generic unmarked traffic cop Abeyomi gives a ludicrously long ticket to Elif sprawled safely across a stationary motorcycle tank. Violet roadside at night, guardrail, light beams, no injury, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0096.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/abeyomi.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0097",
+    "source": "IMAGES/RESULTS/BUST3.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0097.png",
+    "sha256": "41060c9f2a5354e175c4bbb47e7dd85b74aaa8925427159b0961e8c4f555971d",
+    "scene": "Busted result: Dolph and George in generic traffic-cop jackets fuss over a frustrated Cleetus in a scuffed helmet between them, hands gesturing at absurd ticket. New expressions, police lights, no political or hateful imagery, no text.",
+    "characters": [
+      "dolph",
+      "george",
+      "cleetus"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Busted result: Dolph and George in generic traffic-cop jackets fuss over a frustrated Cleetus in a scuffed helmet between them, hands gesturing at absurd ticket. New expressions, police lights, no political or hateful imagery, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0097.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/dolph.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/george.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0098",
+    "source": "IMAGES/RESULTS/BUST4.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0098.png",
+    "sha256": "f1547f2bf288ed6593342fd76b2914fa673945f07189e5fe1682d59c44061755",
+    "scene": "Busted result: burly generic cop Tyrone proudly dangles handcuffs while an arrested Hog theatrically howls with embarrassment beside him. Funny non-graphic scene, purple road, red-blue light, no aggression or political symbols, no text.",
+    "characters": [
+      "tyrone",
+      "hog"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Busted result: burly generic cop Tyrone proudly dangles handcuffs while an arrested Hog theatrically howls with embarrassment beside him. Funny non-graphic scene, purple road, red-blue light, no aggression or political symbols, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0098.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/tyrone.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0099",
+    "source": "IMAGES/RESULTS/BUST5.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0099.png",
+    "sha256": "e3a22757da0f2eda9990795b504e4a8bbaf9f456d57141e1af642e9e4ad207b9",
+    "scene": "Busted result: smiling generic officer Abeyomi displays a small radar gun to a furious Esteban beside a parked patrol car, dramatic fisheye view and violet lights, no text or political symbols.",
+    "characters": [
+      "abeyomi",
+      "esteban"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Busted result: smiling generic officer Abeyomi displays a small radar gun to a furious Esteban beside a parked patrol car, dramatic fisheye view and violet lights, no text or political symbols.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0099.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/abeyomi.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0100",
+    "source": "IMAGES/RESULTS/BUST6.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0100.png",
+    "sha256": "782de3eac6c8cb3b2406147176a9aed2cd6fa359eae6d2c6b3d0526e75879563",
+    "scene": "Busted result: enormous goofy police dog sticks its curious muzzle into frame while Naveen in helmet looks comically alarmed, a traffic officer in background. Friendly slapstick, no biting or injury, violet roadside. No text.",
+    "characters": [
+      "naveen",
+      "abeyomi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Busted result: enormous goofy police dog sticks its curious muzzle into frame while Naveen in helmet looks comically alarmed, a traffic officer in background. Friendly slapstick, no biting or injury, violet roadside. No text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0100.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/abeyomi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0101",
+    "source": "IMAGES/RESULTS/FINALE.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0101.png",
+    "sha256": "69edfb93ab032d1be939225a8b8ca334045526e85159de9dedbff96f2b430ce5",
+    "scene": "Finale: all16 project riders celebrate in the original crowded biker dive, finish flag and trophies, group photo with warped overhead perspective. Foreground Shaqueesha, Elif, George and Tyrone with animated unique expressions; richly painted caricatures not cutouts, no text.",
+    "characters": [
+      "shaqueesha",
+      "elif",
+      "george",
+      "tyrone"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Finale: all16 project riders celebrate in the original crowded biker dive, finish flag and trophies, group photo with warped overhead perspective. Foreground Shaqueesha, Elif, George and Tyrone with animated unique expressions; richly painted caricatures not cutouts, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0101.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/shaqueesha.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/george.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/tyrone.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0102",
+    "source": "IMAGES/RESULTS/LEVEL1.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0102.png",
+    "sha256": "16b93abc642d8b2be46918e3a876246bed23d370e65ad20c08a5a0e47985c838",
+    "scene": "Level1 celebration background: two rider hands hoist a battered large gold racing trophy and uncorked green sparkling-drink bottle before a violet brick-wall crowd. Large enamel numeral2 on trophy, no other words. Reference original arrangement; hands anatomically coherent.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Level1 celebration background: two rider hands hoist a battered large gold racing trophy and uncorked green sparkling-drink bottle before a violet brick-wall crowd. Large enamel numeral2 on trophy, no other words. Reference original arrangement; hands anatomically coherent.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0102.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0103",
+    "source": "IMAGES/RESULTS/LEVEL2.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0103.png",
+    "sha256": "24459d8a3e8d0e7da6821ccc012dbd120df4ee5c83c5562bb2e8b5a979835f6c",
+    "scene": "Level2 celebration background: rider hands hoist large gold racing trophy marked with enamel numeral3, green sparkling-drink bottle sprays beside it. Purple brick city night, new painting of source composition. No other words.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Level2 celebration background: rider hands hoist large gold racing trophy marked with enamel numeral3, green sparkling-drink bottle sprays beside it. Purple brick city night, new painting of source composition. No other words.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0103.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0104",
+    "source": "IMAGES/RESULTS/LEVEL3.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0104.png",
+    "sha256": "93681bc9356885b9a97f9aa9906c349af4b8fc9a95dd95c2b94ab0eb6df4a1b5",
+    "scene": "Level3 celebration background: rider hands hoist gold racing trophy with enamel numeral4 and green sparkling-drink bottle, violet city brick backdrop, warm specular highlights. No other words.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Level3 celebration background: rider hands hoist gold racing trophy with enamel numeral4 and green sparkling-drink bottle, violet city brick backdrop, warm specular highlights. No other words.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0104.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0105",
+    "source": "IMAGES/RESULTS/LEVEL4.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0105.png",
+    "sha256": "5754fbda6e5bfa779ddabb7256f2a08fd48877e1f17ceb1c73e326f21d72dade",
+    "scene": "Level4 celebration background: rider hands hoist gold racing trophy with enamel numeral5 and sparkling-drink bottle before purple brick backdrop, new painted source composition. No other words.",
+    "characters": [],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Level4 celebration background: rider hands hoist gold racing trophy with enamel numeral5 and sparkling-drink bottle before purple brick backdrop, new painted source composition. No other words.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0105.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0106",
+    "source": "IMAGES/RESULTS/LOSE1.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0106.png",
+    "sha256": "1ec5dcb19940562ed68fc1e92187a389554c3a7a6fb9ed93416482565cccf2fa",
+    "scene": "Lose result: huge curious street dog's head surprises Elif riding slowly, she pulls one boot protectively aside and looks back with comic disbelief. Original dramatic near-camera dog/handlebar composition, no biting or injury, no text.",
+    "characters": [
+      "elif"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Lose result: huge curious street dog's head surprises Elif riding slowly, she pulls one boot protectively aside and looks back with comic disbelief. Original dramatic near-camera dog/handlebar composition, no biting or injury, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0106.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0107",
+    "source": "IMAGES/RESULTS/LOSE2.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0107.png",
+    "sha256": "75be09063896e906fecaf1e058cd39737ac9d29e612e03e8b37ef83df98c2465",
+    "scene": "Lose result: stubborn little scruffy dog seizes a loose boot lace beside Cleetus's motorcycle, making him look down in angry embarrassment. Dog not attacking flesh, slapstick scene, detailed original-like curb and boot composition, no text.",
+    "characters": [
+      "cleetus"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Lose result: stubborn little scruffy dog seizes a loose boot lace beside Cleetus's motorcycle, making him look down in angry embarrassment. Dog not attacking flesh, slapstick scene, detailed original-like curb and boot composition, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0107.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0108",
+    "source": "IMAGES/RESULTS/LOSE3.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0108.png",
+    "sha256": "fae54e4c44be8caa54c06e5e9bc8d1068a4f127f6208c848e4de165111ed0f2a",
+    "scene": "Lose result: Luigi as exhausted mechanic holds two useless little wrenches and shrugs upward from below camera, his enormous resigned face and tiny body in a purple roadside garage. Different pose than approved rolling-pin portrait, no text.",
+    "characters": [
+      "luigi"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Lose result: Luigi as exhausted mechanic holds two useless little wrenches and shrugs upward from below camera, his enormous resigned face and tiny body in a purple roadside garage. Different pose than approved rolling-pin portrait, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0108.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/luigi.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0109",
+    "source": "IMAGES/RESULTS/LOSE4.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0109.png",
+    "sha256": "d5ce7b9c24dcb3d4b9af0683f866c503a057d862623d3feac2e4849fdbdaaffd",
+    "scene": "Lose result: Ellen, Shaqueesha and Hog laugh around a pool table at a biker bar, one oversized drink and crooked expressions. Foreground shared interaction rather than posed portraits, original seedy room staging, no text.",
+    "characters": [
+      "ellen",
+      "shaqueesha",
+      "hog"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Lose result: Ellen, Shaqueesha and Hog laugh around a pool table at a biker bar, one oversized drink and crooked expressions. Foreground shared interaction rather than posed portraits, original seedy room staging, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0109.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/ellen.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/shaqueesha.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0110",
+    "source": "IMAGES/RESULTS/LOSE5.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0110.png",
+    "sha256": "ab2104535b701ca545db84b4555661eec564dc66fac2a585719a546bb70fc6da",
+    "scene": "Lose result: George and Esteban laugh in disbelief as a humiliated Naveen pedals an absurdly tiny tricycle down a violet street. Coherent funny full-body caricature staging, no text.",
+    "characters": [
+      "george",
+      "esteban",
+      "naveen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Lose result: George and Esteban laugh in disbelief as a humiliated Naveen pedals an absurdly tiny tricycle down a violet street. Coherent funny full-body caricature staging, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0110.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/george.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0111",
+    "source": "IMAGES/RESULTS/LOSE6.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0111.png",
+    "sha256": "2f2587297d8bffabe156643f6f178745da3728efd357c6ca08dac58241844efc",
+    "scene": "Lose result: Pee Pi Long on parked sportbike looks back at camera with offended scrunched face and a helpless hand gesture while Yamakha rides away in background. Cartoon biker satire, no text.",
+    "characters": [
+      "chinese-racer",
+      "yamakha"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Lose result: Pee Pi Long on parked sportbike looks back at camera with offended scrunched face and a helpless hand gesture while Yamakha rides away in background. Cartoon biker satire, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0111.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/chinese-racer.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/yamakha.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0112",
+    "source": "IMAGES/RESULTS/WIN1.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0112.png",
+    "sha256": "9569a42fbc78a08b67ab421a922c961528a19a0d22c6a97d3d2f492e0ce46e1c",
+    "scene": "Win result: Cleetus, Osama and Tyrone jubilantly clink bottles beside motorcycles, different tilts/expressions and tangled celebratory body language, purple roadside sunset. No text, no flags or insults.",
+    "characters": [
+      "cleetus",
+      "osama",
+      "tyrone"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Win result: Cleetus, Osama and Tyrone jubilantly clink bottles beside motorcycles, different tilts/expressions and tangled celebratory body language, purple roadside sunset. No text, no flags or insults.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0112.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/osama.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/tyrone.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0113",
+    "source": "IMAGES/RESULTS/WIN2.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0113.png",
+    "sha256": "5e7ee437570a798ff16ef7efa1999455c8788cb3a912826b9c283a79c7de1520",
+    "scene": "Win result: triumphant Shaqueesha holds a massive trophy and bottle while grinning Yamakha leans in from side, hair/clothes blown by wind, warm sunset and indigo street. Both new poses, no text.",
+    "characters": [
+      "shaqueesha",
+      "yamakha"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Win result: triumphant Shaqueesha holds a massive trophy and bottle while grinning Yamakha leans in from side, hair/clothes blown by wind, warm sunset and indigo street. Both new poses, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0113.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/shaqueesha.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/yamakha.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0114",
+    "source": "IMAGES/RESULTS/WIN3.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0114.png",
+    "sha256": "7d4d483247d708e544f78cba21c154fd8101983a51da015f4764e2c918cfe864",
+    "scene": "Win result: Anastasia joyfully whips her head toward laughing Luigi and Elif as they celebrate beside a coastal road, windblown hair and one sparkling drink bottle. New expression, no reused eye roll, no text.",
+    "characters": [
+      "anastasia",
+      "luigi",
+      "elif"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Win result: Anastasia joyfully whips her head toward laughing Luigi and Elif as they celebrate beside a coastal road, windblown hair and one sparkling drink bottle. New expression, no reused eye roll, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0114.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/anastasia.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/luigi.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0115",
+    "source": "IMAGES/RESULTS/WIN4.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0115.png",
+    "sha256": "1364304a1cd7e9d0ff14ff98ac85a86cbcb471b04f6ba22a2571d84494e1b238",
+    "scene": "Win result: Hog turns over shoulder mischievously and raises one index finger for first place, two surprised project riders Ellen and Naveen behind him. Original diagonal roadside celebration staging, no text.",
+    "characters": [
+      "hog",
+      "ellen",
+      "naveen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Win result: Hog turns over shoulder mischievously and raises one index finger for first place, two surprised project riders Ellen and Naveen behind him. Original diagonal roadside celebration staging, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0115.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/ellen.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0116",
+    "source": "IMAGES/RESULTS/WIN5.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0116.png",
+    "sha256": "8c8e109f753025a2742505008fc0e5c4b251b991daf5c58b90db862b4da6f7e7",
+    "scene": "Win result: Osama riding stationary red sportbike thrusts an open congratulatory gloved hand toward camera with broad delighted grin. Different expression/pose from portrait, purple winding road, no whip in hand, no text.",
+    "characters": [
+      "osama"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Win result: Osama riding stationary red sportbike thrusts an open congratulatory gloved hand toward camera with broad delighted grin. Different expression/pose from portrait, purple winding road, no whip in hand, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0116.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/osama.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0117",
+    "source": "IMAGES/RESULTS/WIN6.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0117.png",
+    "sha256": "cb57c566847649e860d7aec152084f3c44979d7b68a51e05cb9119ea19362f65",
+    "scene": "Win result: Yamakha throws one fist triumphantly upward while motorcycle leans through finish on a violet city road, handlebars and road perspective dynamic, new full-body pose, no text.",
+    "characters": [
+      "yamakha"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Win result: Yamakha throws one fist triumphantly upward while motorcycle leans through finish on a violet city road, handlebars and road perspective dynamic, new full-body pose, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0117.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/yamakha.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0118",
+    "source": "IMAGES/RESULTS/WRECK1.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0118.png",
+    "sha256": "59fa07ff40cf5a1da95b85a7bb8c328e506df53deb5f832ed59870b01e6e545b",
+    "scene": "Wreck result: foreground oversized boot and scuffed helmet on pavement, Cleetus sits safely beside fallen bike with dazed embarrassed face. Purple road, comic non-graphic crash aftermath; no blood or injury, no text.",
+    "characters": [
+      "cleetus"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Wreck result: foreground oversized boot and scuffed helmet on pavement, Cleetus sits safely beside fallen bike with dazed embarrassed face. Purple road, comic non-graphic crash aftermath; no blood or injury, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0118.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0119",
+    "source": "IMAGES/RESULTS/WRECK2.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0119.png",
+    "sha256": "f23e41fbdbfe0217c21824d196671f6399cf4f612f4945330a509ae880b7bf9a",
+    "scene": "Wreck result: Elif as passenger and a startled George are tossed into comically awkward harmless midair poses above a leaning bike, blurred violet city, coherent limbs and faces reacting to each other. No gore/injury/text.",
+    "characters": [
+      "elif",
+      "george"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Wreck result: Elif as passenger and a startled George are tossed into comically awkward harmless midair poses above a leaning bike, blurred violet city, coherent limbs and faces reacting to each other. No gore/injury/text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0119.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/elif.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/george.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0120",
+    "source": "IMAGES/RESULTS/WRECK3.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0120.png",
+    "sha256": "29261854f35a514cf73cadddbf16cfda15c1a6bf5d07d6bca4471d4565d96f75",
+    "scene": "Wreck result: Hog flies safely face-first through frame with bulging eyes, arms stretched forward, helmet strap fluttering and blue-purple street motion behind. Extreme source-inspired fisheye perspective, non-graphic slapstick, no text.",
+    "characters": [
+      "hog"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Wreck result: Hog flies safely face-first through frame with bulging eyes, arms stretched forward, helmet strap fluttering and blue-purple street motion behind. Extreme source-inspired fisheye perspective, non-graphic slapstick, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0120.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/hog.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0121",
+    "source": "IMAGES/RESULTS/WRECK4.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0121.png",
+    "sha256": "3a12c79c724fac6a4aaa197f759c00545e4d01600b9aebb372f1b87b01e06444",
+    "scene": "Wreck result: Esteban in mechanic/work clothes shrugs beside open broken motorcycle engine with a ridiculously small wrench and a broad apologetic grin, smoking parts on garage bench. New body pose, no text.",
+    "characters": [
+      "esteban"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Wreck result: Esteban in mechanic/work clothes shrugs beside open broken motorcycle engine with a ridiculously small wrench and a broad apologetic grin, smoking parts on garage bench. New body pose, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0121.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/esteban.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0122",
+    "source": "IMAGES/RESULTS/WRECK5.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0122.png",
+    "sha256": "c846200ab613a893177783e002bc2a8d1cca90a09af35f216f5e660c253ac570",
+    "scene": "Wreck result: Naveen tumbles harmlessly upside down, limbs correctly connected, above a scattered motorcycle helmet and flipped bike, violet motion trail and city behind. Funny startled face and source-inspired perspective, no injury or text.",
+    "characters": [
+      "naveen"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Wreck result: Naveen tumbles harmlessly upside down, limbs correctly connected, above a scattered motorcycle helmet and flipped bike, violet motion trail and city behind. Funny startled face and source-inspired perspective, no injury or text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0122.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/naveen.png"
+    ]
+  },
+  {
+    "id": "UI-IMG-0123",
+    "source": "IMAGES/RESULTS/WRECK6.RRI",
+    "category": "results",
+    "file": "images/UI-IMG-0123.png",
+    "sha256": "baf977db90479feb98ec3a12411dd01cdcc3e1091607b831a5ba750a60d80464",
+    "scene": "Wreck result: Cleetus falls backward into an overflowing roadside trash bin as scruffy dog stares proudly from foreground, cap askew and a shocked wide mouth. Original-like comic crash aftermath, no gore or injury, no text.",
+    "characters": [
+      "cleetus"
+    ],
+    "prompt": "Original project art recreation, not a source-pixel upscale. INPUT1 is the original game's LOCATION / PROP / SCENE-STAGING reference only; preserve its purpose, broad arrangement, perspective and visual joke, but repaint independently. Remaining inputs are our approved project portrait CHARACTER DESIGN / FACE-AND-BODY RENDERING references; their rich painted sculptural caricature finish governs ALL people. Do not copy their portrait pose/expression/camera angle or turn this into pasted headshots. Preserve recognizable identity/outfit, invent poses and expressions naturally interacting in the source location. Match approved portraits' saturated purple/indigo shadows, amber light, textured oily paint and exaggerated funny adult anatomy. No flat cartoon, no realistic normal faces, no generic modern cinematic art. Keep source aspect ratio and meaningful background elements. No original logos, source character likenesses or copied readable signage; leave live UI words out. No menu controls. Coherent connected bodies and plausible hands; no duplicate people or racial-feature stereotypes. Specific scene: Wreck result: Cleetus falls backward into an overflowing roadside trash bin as scruffy dog stares proudly from foreground, cap askew and a shocked wide mouth. Original-like comic crash aftermath, no gore or injury, no text.",
+    "refs": [
+      "/home/imad/Documents/ChatGPT/RoadDash-Original-Backgrounds/images/UI-IMG-0123.png",
+      "/home/imad/Documents/ChatGPT/RoadRash/assets/ui/portraits/cleetus.png"
+    ]
+  }
+]

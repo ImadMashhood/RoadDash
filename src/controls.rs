@@ -357,6 +357,7 @@ impl Plugin for RoadInputPlugin {
             .add_systems(
                 PreUpdate,
                 (
+                    crate::settings::apply_preferences,
                     crate::settings::panel_input,
                     crate::ui::buttons,
                     capture,

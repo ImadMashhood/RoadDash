@@ -65,6 +65,23 @@ pub struct OwnedBody {
     pub kind: BodyKind,
 }
 
+/// Share the unchanged capsule step/slope settings with physical regressions.
+pub(crate) fn runner_controller() -> KinematicCharacterController {
+    KinematicCharacterController {
+        translation: Some(Vec3::ZERO),
+        custom_mass: Some(70.0),
+        apply_impulse_to_dynamic_bodies: false,
+        offset: CharacterLength::Absolute(0.02),
+        snap_to_ground: Some(CharacterLength::Absolute(0.3)),
+        autostep: Some(CharacterAutostep {
+            max_height: CharacterLength::Absolute(0.3),
+            min_width: CharacterLength::Absolute(0.15),
+            include_dynamic_bodies: false,
+        }),
+        ..default()
+    }
+}
+
 pub fn bike_body() -> impl Bundle {
     (
         RigidBody::KinematicPositionBased,
@@ -507,7 +524,10 @@ pub fn recover(
         ),
         Without<Rider>,
     >,
-    context: ReadRapierContext,
+    (context, controller_outputs): (
+        ReadRapierContext,
+        Query<&KinematicCharacterControllerOutput>,
+    ),
     mut audio: MessageWriter<AudioCue>,
     layout: Option<Res<crate::world_gen::layout::WorldLayout>>,
     (city, metro_navigation): (
@@ -599,19 +619,7 @@ pub fn recover(
                     Transform::from_translation(foot + Vec3::Y * 0.95).with_rotation(road_rotation),
                     RigidBody::KinematicPositionBased,
                     Collider::capsule_y(0.65, 0.28),
-                    KinematicCharacterController {
-                        translation: Some(Vec3::ZERO),
-                        custom_mass: Some(70.0),
-                        apply_impulse_to_dynamic_bodies: false,
-                        offset: CharacterLength::Absolute(0.02),
-                        snap_to_ground: Some(CharacterLength::Absolute(0.3)),
-                        autostep: Some(CharacterAutostep {
-                            max_height: CharacterLength::Absolute(0.3),
-                            min_width: CharacterLength::Absolute(0.15),
-                            include_dynamic_bodies: false,
-                        }),
-                        ..default()
-                    },
+                    runner_controller(),
                     OwnedBody {
                         owner,
                         kind: BodyKind::Runner,
@@ -881,8 +889,12 @@ pub fn recover(
                         );
                     }
                     if let Some(mut controller) = controller {
+                        let grounded = controller_outputs
+                            .get(runner)
+                            .is_ok_and(|output| output.grounded);
+                        let down = rr_core::recovery::foot_downward_speed(grounded);
                         controller.translation =
-                            Some((movement * config.walk_speed - Vec3::Y * 5.0) * dt);
+                            Some((movement * config.walk_speed - Vec3::Y * down) * dt);
                     }
                     if rider.id == 0
                         && (recovery.walk_distance / (config.stride_length * 0.5)) as u32

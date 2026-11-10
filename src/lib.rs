@@ -237,3 +237,5 @@ pub fn build_app(smoke: bool) -> App {
 mod collision_tests;
 
 pub mod weapons;
+
+pub mod weapon_models;

@@ -1,0 +1,116 @@
+{
+  "active_fixed_ticks": 1237,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 3828,
+  "comfort": {
+    "anti_nausea": false,
+    "deadzone": 0.15000000596046448,
+    "fov_degrees": 75.0,
+    "shake": 0.5,
+    "smoothing": 10.0,
+    "speed_fov": true,
+    "speed_lines": false
+  },
+  "entities": 42956,
+  "fixed_recovery_stages": [
+    true,
+    true,
+    true
+  ],
+  "fixed_ticks": 1758,
+  "gamepads_connected": 1,
+  "last_gameplay_ms": 0.6638009548187256,
+  "last_physics_ms": 0.9994480013847351,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "recovery_at_run_capture": {
+    "farm_distance_and_height_delta_m": [
+      7.856392860412598,
+      0.5217342376708984
+    ],
+    "hill_distance_and_height_delta_m": [
+      38.047428131103516,
+      1.0035839080810547
+    ]
+  },
+  "render_frames": 1759,
+  "render_running_captured": true,
+  "route": 1,
+  "target_hz": 60.0,
+  "track": {
+    "closed": false,
+    "collision_triangles": 2606411,
+    "gates": 14,
+    "id": "metro-run-01",
+    "length_m": 12000.0,
+    "render_triangles": 2902405
+  },
+  "vehicle": {
+    "bike_id": "prototype-bike-01",
+    "crash_state": "Riding",
+    "dt": 0.01666666753590107,
+    "gear": 1,
+    "grip_force_n": 0.0,
+    "grounded": [
+      true,
+      true
+    ],
+    "health": 100.0,
+    "intent": {
+      "brake": false,
+      "brake_amount": 0.0,
+      "nitro": false,
+      "steer": 0.0,
+      "throttle": false,
+      "throttle_amount": 0.0
+    },
+    "lane": -1.0371825695037842,
+    "lean": 0.0,
+    "position": [
+      763.22998046875,
+      31.288345336914062,
+      1100.468505859375
+    ],
+    "preset": "balanced",
+    "raw_steer": 0.0,
+    "rider_id": 0,
+    "rpm": 1200.0,
+    "slip": 0.0,
+    "slip_angle": 0.0,
+    "speed_mps": 0.0,
+    "spring_force_n": [
+      0.0,
+      0.0
+    ],
+    "steering_force": 0.0,
+    "surface_mu": 1.5,
+    "suspension_m": [
+      -0.12716591358184814,
+      -0.13311779499053955
+    ],
+    "tick": 1237,
+    "tire_force_n": [
+      0.0,
+      0.0
+    ],
+    "velocity": [
+      0.0,
+      -0.16346599161624908,
+      0.0
+    ],
+    "yaw_rate": 0.0
+  },
+  "walk_crossing_distances_m": [
+    5.328341007232666,
+    35.893531799316406
+  ],
+  "walk_crossing_setups": [
+    true,
+    true
+  ],
+  "wall_frame_average_ms": 19.461933135986328,
+  "wall_frame_p95_ms": 22.80188751220703
+}

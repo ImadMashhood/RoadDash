@@ -1,0 +1,45 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models)
+    Finished `test` profile [optimized + debuginfo] target(s) in 57.02s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 9 tests
+test models::tests::visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose ... ok
+test models::tests::neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms ... ok
+test models::tests::visual_intake_rejects_nonfinite_vertices_bad_joint_ids_and_physics_payloads ... ok
+test models::tests::distal_skin_weights_are_normalized_and_all_five_joints_are_used ... ok
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+shared glove targets: 2 surfaces, 894240 bytes
+test models::tests::glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices ... ok
+
+thread 'models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics' (2558983) panicked at /home/imad/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs-0.17.3/src/error/handler.rs:125:1:
+Encountered an error in system `Enable the debug feature to see the name`: Parameter `Enable the debug feature to see the name` failed validation: Resource does not exist
+If this is an expected state, wrap the parameter in `Option<T>` and handle `None` when it happens, or wrap the parameter in `If<T>` to skip the system when it happens.
+
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Encountered a panic in system `Enable the debug feature to see the name`!
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... FAILED
+
+thread 'models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory' (2558984) panicked at /home/imad/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs-0.17.3/src/error/handler.rs:125:1:
+Encountered an error in system `Enable the debug feature to see the name`: Parameter `Enable the debug feature to see the name` failed validation: Resource does not exist
+If this is an expected state, wrap the parameter in `Option<T>` and handle `None` when it happens, or wrap the parameter in `If<T>` to skip the system when it happens.
+
+Encountered a panic in system `Enable the debug feature to see the name`!
+
+thread 'models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin' (2558991) panicked at /home/imad/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bevy_ecs-0.17.3/src/error/handler.rs:125:1:
+Encountered an error in system `Enable the debug feature to see the name`: Parameter `Enable the debug feature to see the name` failed validation: Resource does not exist
+If this is an expected state, wrap the parameter in `Option<T>` and handle `None` when it happens, or wrap the parameter in `If<T>` to skip the system when it happens.
+
+Encountered a panic in system `Enable the debug feature to see the name`!
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... FAILED
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... FAILED
+
+failures:
+
+failures:
+    models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics
+    models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory
+    models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin
+
+test result: FAILED. 6 passed; 3 failed; 0 ignored; 0 measured; 254 filtered out; finished in 0.13s
+
+error: test failed, to rerun pass `--lib`

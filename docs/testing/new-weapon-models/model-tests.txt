@@ -1,0 +1,20 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models)
+    Finished `test` profile [optimized + debuginfo] target(s) in 28.23s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 9 tests
+test models::tests::neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms ... ok
+test models::tests::visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose ... ok
+test models::tests::visual_intake_rejects_nonfinite_vertices_bad_joint_ids_and_physics_payloads ... ok
+test models::tests::distal_skin_weights_are_normalized_and_all_five_joints_are_used ... ok
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+shared glove targets: 2 surfaces, 894240 bytes
+test models::tests::glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices ... ok
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... ok
+MODEL_PHYSICS_PARITY enabled=false ticks=180 source_bodies=11 max_position_error_m=0
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... ok
+MODEL_PHYSICS_PARITY enabled=true ticks=180 source_bodies=11 max_position_error_m=0
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 254 filtered out; finished in 0.60s
+

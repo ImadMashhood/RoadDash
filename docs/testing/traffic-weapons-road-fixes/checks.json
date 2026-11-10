@@ -1,0 +1,108 @@
+[
+  {
+    "check": "package-clean",
+    "command": [
+      "cargo",
+      "clean",
+      "-p",
+      "rr_core",
+      "-p",
+      "rr_content",
+      "-p",
+      "road-dash"
+    ],
+    "exit": 0,
+    "seconds": 7.505
+  },
+  {
+    "check": "fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit": 0,
+    "seconds": 1.576
+  },
+  {
+    "check": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "seconds": 14.359
+  },
+  {
+    "check": "tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit": 0,
+    "seconds": 269.276
+  },
+  {
+    "check": "build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit": 0,
+    "seconds": 20.71
+  },
+  {
+    "check": "release",
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit": 0,
+    "seconds": 100.12
+  },
+  {
+    "check": "audit",
+    "command": [
+      "python3",
+      "tools/audit.py"
+    ],
+    "exit": 0,
+    "seconds": 0.717
+  },
+  {
+    "check": "weapon-validation",
+    "command": [
+      "python3",
+      "tools/validate_weapon_models.py"
+    ],
+    "exit": 0,
+    "seconds": 0.119
+  },
+  {
+    "check": "roadmap-tests",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_roadmap.py"
+    ],
+    "exit": 0,
+    "seconds": 0.09
+  }
+]

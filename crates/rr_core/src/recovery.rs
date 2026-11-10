@@ -1,4 +1,10 @@
 //! On-foot authority and neutral-delay policy; independent of presentation/physics.
+/// Gentle supported adhesion allows capsule edges to climb curbs; retain the
+/// existing full downward speed while airborne. Units are metres per second.
+pub fn foot_downward_speed(grounded: bool) -> f32 {
+    if grounded { 0.5 } else { 5.0 }
+}
+
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum FootMode {
     #[default]

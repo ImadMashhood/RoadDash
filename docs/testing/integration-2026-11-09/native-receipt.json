@@ -1,0 +1,10 @@
+{
+  "exit": 0,
+  "seconds": 20.98,
+  "command": [
+    "/home/imad/Documents/ChatGPT/RoadRash/target/debug/road-dash",
+    "--frontend-smoke"
+  ],
+  "verify_settings": true,
+  "binary_sha256": "d4641622cd5a5e295a9c5aed2721d1b852b7c61bb2fb9d27b421b11d6c3639c9"
+}

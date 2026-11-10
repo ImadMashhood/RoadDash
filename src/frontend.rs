@@ -9,6 +9,7 @@ use crate::{
 use bevy::{asset::LoadState, prelude::*};
 use rr_core::frontend::{Action, Effect, Flow, Page, ROSTER};
 mod gallery;
+mod layout;
 mod smoke;
 pub(crate) use smoke::install as install_smoke;
 
@@ -46,6 +47,8 @@ struct Root;
 #[derive(Component)]
 struct Canvas;
 #[derive(Component)]
+struct Backdrop;
+#[derive(Component)]
 struct UiCamera;
 #[derive(Component)]
 struct MenuButton {
@@ -75,21 +78,18 @@ fn entries(page: Page) -> Vec<Entry> {
         Page::Splash => vec![entry("HIT THE ROAD", A::Continue)],
         Page::Main => vec![
             entry("THRASH", A::Thrash),
-            entry("BIG GAME / STREET", A::Street),
+            entry("BIG GAME", A::Street),
             Entry {
-                text: "MANO A MANO\nOFFLINE ONLY".into(),
+                text: "MANO A MANO  /  UNAVAILABLE".into(),
                 action: None,
             },
-            entry("OPTIONS", A::Settings),
-            entry("QUIT", A::Quit),
+            entry("SETTINGS", A::Settings),
         ],
         Page::Rider => vec![entry("RIDE AS YOU", A::Continue), entry("BACK", A::Back)],
         Page::Street => vec![
-            entry("RACE", A::Courses),
-            entry("BIKE SHOP", A::Garage),
             entry("BIKER BAR", A::Bar),
-            entry("OPTIONS", A::Settings),
-            entry("MAIN MENU", A::Back),
+            entry("BIKE SHOP", A::Garage),
+            entry("RACE", A::Courses),
         ],
         Page::Courses => vec![entry("RIDE THIS COURSE", A::Ride), entry("BACK", A::Back)],
         Page::Garage => vec![entry("BACK TO THE STREET", A::Back)],
@@ -156,7 +156,7 @@ fn input(
     }
     let start = std::mem::take(&mut controls.start);
     let back = std::mem::take(&mut controls.pause);
-    controls.restart = false;
+    let retry = std::mem::take(&mut controls.restart) && race.phase == Phase::Finished;
     controls.camera = false;
     controls.buffer.clear_edges();
     controls.pickup = false;
@@ -231,6 +231,8 @@ fn input(
     let action = front.pending.take().or(click).or_else(|| {
         if back || edge(GamepadButton::East) {
             Some(Action::Back)
+        } else if retry {
+            Some(Action::Ride)
         } else if start {
             rows.get(front.selected).and_then(|e| e.action)
         } else {
@@ -272,8 +274,8 @@ fn setup(mut commands: Commands, server: Res<AssetServer>) {
         },
     ));
     commands.insert_resource(Art {
-        heading_font: server.load("ui/fonts/OpenSans-ExtraBold.ttf"),
-        body_font: server.load("ui/fonts/OpenSans-Regular.ttf"),
+        heading_font: server.load("ui/fonts/Jost-700-Bold.ttf"),
+        body_font: server.load("ui/fonts/Jost-400-Book.ttf"),
         images: ART
             .iter()
             .map(|p| server.load(*p))
@@ -326,10 +328,6 @@ fn text(
             },
             TextColor(color),
             FontSize(size),
-            TextShadow {
-                offset: Vec2::splat(2.0),
-                color: Color::BLACK,
-            },
             node,
         ))
         .id()
@@ -363,16 +361,16 @@ fn body(page: Page, profile: &Profile, track: &Track, race: &Race) -> String {
     let course_name = track.definition.name.replace('—', "/").replace('–', "-");
     match page {
         Page::Splash => "Fifteen riders. One road.\nNo polite company.".into(),
-        Page::Main => format!("THRASH: straight into a race.\nBIG GAME: visit the street first.\n\n{} CREDITS  /  {} WINS\nOffline single races. Campaign coming later.", profile.credits, profile.wins),
-        Page::Rider => "YOU\nBlue helmet. Bad intentions.\n\nYour current rider and motorcycle.\nOther playable profiles coming later.".into(),
-        Page::Street => format!("{}\n{} CREDITS\nChoose your road, or look around.", course_name, profile.credits),
-        Page::Courses => format!("{}\n\n{:.2} KM  /  {}\n15 RIDERS\n\nFarm roads. City traffic. Rival racers.\nRide the current course.", course_name, track.length/1000.0, if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
-        Page::Garage => "YOUR ROAD BIKE\nReady for another beating.\n\nBike purchases and upgrades coming later.\nYour credits and bike are unchanged.".into(),
+        Page::Main => format!("{} CREDITS  /  {} WINS", profile.credits, profile.wins),
+        Page::Rider => "YOU / BLUE HELMET\nYOUR CURRENT RIDER AND MOTORCYCLE".into(),
+        Page::Street => format!("{}\n{} CREDITS", course_name, profile.credits),
+        Page::Courses => format!("{}\n{:.2} KM / {}\n15 RIDERS", course_name, track.length/1000.0, if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
+        Page::Garage => "YOUR ROAD BIKE / READY TO RIDE\nBIKE PURCHASES UNAVAILABLE".into(),
         Page::Portrait => "RIDER PORTRAITS".into(),
         Page::Bar => "THE LOCALS DON'T LIKE YOU.\n\nWatch the aggressive riders.\nA clean pass is safer than a fight.\n\nConversations coming later.".into(),
-        Page::Starting => format!("{}\n\nW / S  THROTTLE / BRAKE\nA / D  STEER\nMOUSE  PUNCH  /  SPACE  KICK\nESC  PAUSE\n\nRIDE OUT...",course_name),
+        Page::Starting => format!("{}\nW / S: THROTTLE / BRAKE    A / D: STEER\nMOUSE: PUNCH    SPACE: KICK\nRIDE OUT...",course_name),
         Page::Results if race.arrested => "BUSTED\n\nNo payout.\nTry your luck again.".into(),
-        Page::Results => format!("P{} / 15\nTIME {:02}:{:05.2}\nTAKEDOWNS {}\n\n+{} CREDITS\nBALANCE {}",race.place,(race.elapsed/60.0) as u32,race.elapsed%60.0,race.takedowns,race.earned,profile.credits),
+        Page::Results => format!("P{} / 15    TIME {:02}:{:05.2}\nTAKEDOWNS {}\n+{} CREDITS    BALANCE {}",race.place,(race.elapsed/60.0) as u32,race.elapsed%60.0,race.takedowns,race.earned,profile.credits),
         Page::Quit => "Quit RoadDash?\nCompleted race progress is saved automatically.".into(),
     }
 }
@@ -449,6 +447,7 @@ fn view(
             },
         ))
         .id();
+    commands.entity(image).insert(Backdrop);
     commands.entity(canvas).add_child(image);
     if !loading && !failed {
         if page == Page::Portrait {
@@ -460,149 +459,17 @@ fn view(
             return;
         }
     }
-    let heading = commands
-        .spawn((
-            Node {
-                position_type: PositionType::Absolute,
-                left: percent(3),
-                top: percent(3),
-                padding: UiRect::all(px(10)),
-                ..default()
-            },
-            BackgroundColor(Color::srgba(0.06, 0.015, 0.025, 0.88)),
-        ))
-        .id();
-    let label = text(
-        &mut commands,
-        title(page),
-        47.0,
-        Node::default(),
-        Color::srgb(0.96, 0.85, 0.65),
-    );
-    commands.entity(heading).add_child(label);
-    commands.entity(canvas).add_child(heading);
-    if page == Page::Bar && !loading && !failed {
-        gallery::render(&mut commands, canvas, &art.images[ART.len()..]);
-        return;
-    }
-    let wide = matches!(page, Page::Street | Page::Garage | Page::Splash);
-    let panel = commands
-        .spawn((
-            Node {
-                position_type: PositionType::Absolute,
-                left: percent(if wide {
-                    3.0
-                } else if page == Page::Portrait {
-                    56.0
-                } else {
-                    66.0
-                }),
-                top: percent(if wide { 56.0 } else { 18.0 }),
-                width: percent(if wide {
-                    61.0
-                } else if page == Page::Portrait {
-                    41.0
-                } else {
-                    31.0
-                }),
-                max_height: percent(if wide { 24.0 } else { 59.0 }),
-                padding: UiRect::all(px(14)),
-                overflow: Overflow::clip(),
-                ..default()
-            },
-            BackgroundColor(Color::srgba(0.035, 0.018, 0.055, 0.9)),
-        ))
-        .id();
     let value = if failed {
-        "ARTWORK COULD NOT LOAD.\nCheck assets/ui in your installation.\nClose and relaunch after restoring it.".into()
+        "ARTWORK COULD NOT LOAD. Restore assets/ui and relaunch.".into()
     } else if loading {
-        "PREPARING THE ROAD...\nPlease wait. Your race has not started.".into()
-    } else if page == Page::Portrait {
-        let rider = &ROSTER[front.flow.portrait];
-        format!(
-            "{:02} / {}\n\n{}\n\n{}",
-            front.flow.portrait + 1,
-            ROSTER.len(),
-            rider.name,
-            rider.bio
-        )
+        "PREPARING THE ROAD...".into()
     } else {
         body(page, &profile, &track, &race)
     };
-    let label = text(
-        &mut commands,
-        value,
-        if wide { 20.0 } else { 22.0 },
-        Node::default(),
-        Color::srgb(0.96, 0.90, 0.77),
-    );
-    commands.entity(panel).add_child(label);
-    commands.entity(canvas).add_child(panel);
-    let strip = commands
-        .spawn((
-            Node {
-                position_type: PositionType::Absolute,
-                bottom: percent(3),
-                left: percent(3),
-                width: percent(94),
-                height: percent(12),
-                column_gap: px(4),
-                ..default()
-            },
-            BackgroundColor(Color::srgba(0.05, 0.018, 0.04, 0.95)),
-        ))
-        .id();
-    for (index, entry) in entries(page).into_iter().enumerate() {
-        let button = commands
-            .spawn((
-                Node {
-                    flex_grow: 1.0,
-                    flex_basis: px(0),
-                    height: percent(100),
-                    justify_content: JustifyContent::Center,
-                    align_items: AlignItems::Center,
-                    border: UiRect::all(px(2)),
-                    padding: UiRect::all(px(7)),
-                    ..default()
-                },
-                BackgroundColor(Color::srgb(0.12, 0.04, 0.07)),
-                BorderColor::all(Color::srgb(0.33, 0.18, 0.15)),
-            ))
-            .id();
-        if let Some(action) = entry.action.filter(|_| !loading) {
-            commands
-                .entity(button)
-                .insert((Button, MenuButton { index, action }));
-        }
-        let label = text(
-            &mut commands,
-            entry.text,
-            22.0,
-            Node::default(),
-            if entry.action.is_some() && !loading {
-                Color::srgb(0.96, 0.88, 0.7)
-            } else {
-                Color::srgb(0.47, 0.42, 0.44)
-            },
-        );
-        commands.entity(button).add_child(label);
-        commands.entity(strip).add_child(button);
-    }
-    commands.entity(canvas).add_child(strip);
-    let hint = text(
-        &mut commands,
-        "ARROWS / D-PAD: CHOOSE     ENTER / SOUTH: SELECT     ESC / EAST: BACK     F2: OPTIONS",
-        14.0,
-        Node {
-            position_type: PositionType::Absolute,
-            left: percent(3),
-            bottom: percent(0.5),
-            ..default()
-        },
-        Color::srgb(0.87, 0.77, 0.67),
-    );
-    commands.entity(canvas).add_child(hint);
+    layout::render(&mut commands, canvas, page, title(page), &value, loading);
 }
+
+#[allow(clippy::type_complexity)]
 fn focus(
     front: Res<Frontend>,
     mut buttons: Query<(
@@ -610,26 +477,51 @@ fn focus(
         &Interaction,
         &mut BackgroundColor,
         &mut BorderColor,
+        Option<&layout::MenuChoice>,
+        &Children,
     )>,
+    mut labels: Query<&mut TextColor>,
 ) {
-    for (b, i, mut bg, mut border) in &mut buttons {
+    for (b, i, mut bg, mut border, classic, children) in &mut buttons {
         let selected = b.index == front.selected || *i == Interaction::Hovered;
+        if classic.is_some() {
+            let selected = b.index == front.selected;
+            bg.set_if_neq(BackgroundColor(if *i == Interaction::Hovered {
+                Color::srgba(0.96, 0.40, 0.22, 0.025)
+            } else {
+                Color::NONE
+            }));
+            border.set_if_neq(BorderColor::all(if selected {
+                layout::ACCENT
+            } else {
+                Color::NONE
+            }));
+            for child in children {
+                if let Ok(mut color) = labels.get_mut(*child) {
+                    color.set_if_neq(TextColor(layout::PAPER));
+                }
+            }
+            continue;
+        }
         bg.set_if_neq(BackgroundColor(if selected {
-            Color::srgb(0.46, 0.035, 0.065)
+            Color::srgba(0.04, 0.035, 0.04, 0.96)
         } else {
-            Color::srgb(0.12, 0.04, 0.07)
+            Color::srgba(0.015, 0.012, 0.02, 0.94)
         }));
         border.set_if_neq(BorderColor::all(if selected {
-            Color::srgb(0.96, 0.66, 0.24)
+            layout::ACCENT
         } else {
-            Color::srgb(0.33, 0.18, 0.15)
+            Color::srgba(1., 1., 1., 0.12)
         }));
     }
 }
+#[allow(clippy::type_complexity)]
 fn resize(
     windows: Query<&Window>,
     front: Res<Frontend>,
-    mut canvas: Query<&mut Node, With<Canvas>>,
+    images: Res<Assets<Image>>,
+    mut backdrops: Query<(&ImageNode, &mut Node), (With<Backdrop>, Without<Canvas>)>,
+    mut canvas: Query<&mut Node, (With<Canvas>, Without<Backdrop>)>,
     mut fonts: Query<(&FontSize, &mut TextFont)>,
     mut cameras: Query<(&Camera, &mut Projection), With<UiCamera>>,
 ) {
@@ -643,25 +535,59 @@ fn resize(
             projection.set_changed();
         }
     }
-    let aspect = if matches!(front.flow.page, Page::Bar | Page::Portrait) {
-        4.0 / 3.0
+    let gallery = matches!(front.flow.page, Page::Bar | Page::Portrait);
+    let width = if gallery {
+        window.width().min(window.height() * 4. / 3.)
     } else {
-        16.0 / 9.0
+        window.width()
     };
-    let width = window.width().min(window.height() * aspect);
-    let height = width / aspect;
+    let height = if gallery {
+        width * 3. / 4.
+    } else {
+        window.height()
+    };
+    for (image, mut node) in &mut backdrops {
+        if let Some(asset) = images.get(&image.image) {
+            let size = asset.size_f32();
+            let scale = (width / size.x).max(height / size.y);
+            let w = size.x * scale / width * 100.;
+            let h = size.y * scale / height * 100.;
+            let left = percent((100. - w) * 0.5);
+            let top = percent((100. - h) * 0.5);
+            if node.width != percent(w)
+                || node.height != percent(h)
+                || node.left != left
+                || node.top != top
+            {
+                node.width = percent(w);
+                node.height = percent(h);
+                node.left = left;
+                node.top = top;
+            }
+        }
+    }
     let Ok(mut node) = canvas.single_mut() else {
         return;
     };
-    node.width = px(width);
-    node.height = px(height);
+    if node.width != px(width) || node.height != px(height) {
+        node.width = px(width);
+        node.height = px(height);
+    }
     for (base, mut font) in &mut fonts {
-        font.font_size = base.0 * (width / 1440.0);
+        let size = base.0
+            * if gallery {
+                width / 1440.
+            } else {
+                (width / 1440.).min(height / 810.)
+            };
+        if font.font_size != size {
+            font.font_size = size;
+        }
     }
 }
 fn typography(art: Res<Art>, mut labels: Query<(&FontSize, &mut TextFont)>) {
     for (base, mut font) in &mut labels {
-        let face = if base.0 >= 30.0 {
+        let face = if base.0 >= 40.0 {
             &art.heading_font
         } else {
             &art.body_font
@@ -692,9 +618,16 @@ impl Plugin for FrontendPlugin {
     }
 }
 
-fn scene_camera(race: Res<Race>, mut cameras: Query<&mut Camera, With<Camera3d>>) {
+fn scene_camera(
+    race: Res<Race>,
+    panel: Res<SettingsPanel>,
+    mut cameras: Query<&mut Camera, With<Camera3d>>,
+) {
     for mut camera in &mut cameras {
-        camera.is_active = !matches!(race.phase, Phase::Garage | Phase::Finished);
+        let active = !panel.open && !matches!(race.phase, Phase::Garage | Phase::Finished);
+        if camera.is_active != active {
+            camera.is_active = active;
+        }
     }
 }
 
@@ -795,6 +728,100 @@ mod tests {
             app.update();
         }
         assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
+    }
+    #[test]
+    fn results_restart_edge_retries_finish_and_bust_once_through_starting() {
+        for busted in [false, true] {
+            let mut app = app();
+            let officer = app
+                .world_mut()
+                .spawn((
+                    crate::game::Rider::new(crate::police::OFFICER_ID),
+                    Transform::default(),
+                    Visibility::Visible,
+                    crate::recovery::bike_body(),
+                ))
+                .id();
+            let credits = app.world().resource::<Profile>().credits;
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.update();
+            {
+                let mut race = app.world_mut().resource_mut::<Race>();
+                race.phase = Phase::Finished;
+                race.arrested = busted;
+            }
+            if busted {
+                app.world_mut()
+                    .resource_mut::<crate::police::Police>()
+                    .mind
+                    .state = rr_core::police::State::Arrested;
+            }
+            app.update();
+            // R is a retry shortcut even when MAIN MENU has keyboard selection.
+            app.world_mut().resource_mut::<Frontend>().selected = 1;
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyR);
+            app.update();
+            assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Starting);
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Finished);
+            assert!(!app.world().resource::<Controls>().restart);
+            for _ in 0..25 {
+                app.update();
+            }
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
+            assert!(!app.world().resource::<Race>().arrested);
+            assert_eq!(
+                app.world().resource::<crate::police::Police>().mind.state,
+                rr_core::police::State::Patrol
+            );
+            assert!(
+                app.world()
+                    .get::<crate::game::Rider>(officer)
+                    .unwrap()
+                    .police
+            );
+            let countdown = app.world().resource::<Race>().countdown;
+            for _ in 0..10 {
+                app.update();
+            }
+            assert!(
+                app.world().resource::<Race>().countdown < countdown,
+                "held R restarted the countdown more than once"
+            );
+            assert_eq!(app.world().resource::<Profile>().credits, credits);
+            assert_eq!(app.world().resource::<Profile>().races, 0);
+            assert!(!app.world().resource::<Controls>().restart);
+        }
+    }
+    #[test]
+    fn restart_shortcut_cannot_launch_garage_or_bypass_results_settings() {
+        let mut app = app();
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyR);
+        for _ in 0..25 {
+            app.update();
+        }
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Garage);
+        assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Splash);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .release(KeyCode::KeyR);
+        app.update();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Finished;
+        app.world_mut().resource_mut::<SettingsPanel>().open = true;
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyR);
+        app.update();
+        assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Results);
+        app.world_mut().resource_mut::<SettingsPanel>().open = false;
+        for _ in 0..25 {
+            app.update();
+        }
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Finished);
+        assert!(!app.world().resource::<Controls>().restart);
     }
     #[test]
     fn mouse_action_uses_the_same_flow_and_settings_returns_to_hub() {

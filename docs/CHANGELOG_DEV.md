@@ -1240,3 +1240,35 @@ Added the exact ten selected portraits and six approved remakes to a sixteen-car
 ## 2026-11-08 — Full-screen rider dossiers
 
 Retained the sixteen approved portraits and 4×4 selection. Character clicks now open a 4:3 full-page painting with a bottom biography strip and compact Back control. Restored detailed personality/food/work/racing descriptions as paraphrases under the user's later non-racist direction. Compact portrait-first grid and licensed Open Sans typography bring menus closer to the original composition language. No generated replacement art, race roster/profile or physics changes. UI-02/UI-05 remain partial. Evidence: docs/testing/portrait-dossier/README.md; decision ADR095.
+
+## 2026-11-09 — Fresh-agent traffic, weapon-model and walking repairs
+
+Three brand-new agents started with no inherited conversation context in isolated branches/worktrees. Integrated predictive main/cross-traffic and queue-safe AI intent, independently authored chain/whip/rolling-pin/bat source/LOD assets with native preview/equipped proof, and actual-road paint plus authoritative-grounded foot adhesion. Root reviews caught hazard-free police-goal regression, unoccupied-pass assumptions, headless renderer requirements and an invalid native building-interior test setup; final scoped fixes preserve player handling, physical crash consequences and accepted rigs.
+
+New technical tasks AI-12, ROAD-WALK-01 and WEAPON-MODELS-01 track verification; FOOT-SPAWN-01 records the deferred inspected get-up-clearance issue. Root combined validation/evidence: testing/traffic-weapons-road-fixes/README.md. Human art/race/performance/platform and broader weapon-family gates remain open. No external source/assets/crates adopted and no next major part started.
+
+## 2026-11-09 — Fresh Part07/08 agents and downtown street life
+
+User requested two brand-new fresh-context subagents and downtown trees/parked cars/walking pedestrians. Created isolated codex/part07-arsenal-fresh and codex/part08-police-fresh worktrees from d5db26f; integrated on codex/combat-police-downtown. Original five-family gameplay/inventory/model skins and bounded police last-seen search/readable feedback accompany deterministic all-city curb/tree/patrol authoring and local side-road parking bays. Shared accepted rig/physical tuning and approved4/3/4 race geometry preserved. Final verification and open acceptance details live in testing/combat-police-downtown/README.md; no next Part09, push or merge is implied.
+
+Final integration:407 Rust tests passed,1existing soak ignored; strict Clippy/fmt/locked build/audit and authoring/model/roadmap checks passed. Native14-view survey and two weapon/recovery route/rig modes passed; police native exposed Results swallowing R, now fixed and verified through real Starting/Countdown with no payout. DOWNTOWN-01/UI-RETRY-01 checked narrowly;217verified/245open across462IDs. Native city wall p95target missed; no hardware/performance or broad Part07/08 exit closure. Source/binary/failed-attempt evidence retained.
+
+## 2026-11-09 — Original-format native frontend
+
+User requested original game UI formatting. codex/original-ui-format replaces wide floating cards with4:3 letterboxing, full-width stored-proportion main/street choice bands, compact art-led copy and gold focus; retains approved paintings,4×4 portraits and real controls/results retry. Adopted unmodified OFL1.1 Jost Book/Bold from pinned upstream commit; no retail font/media import. Verification and exact limits: testing/original-ui-format/README.md. Broad UI-02/UI-05 gates remain open.
+
+## 2026-11-09 — Modern menu presentation after user rejection
+
+User rejected the literal original-format pass as ugly/dated. codex/modern-ui-polish replaces hard red/shadowed headings, bars, stretched aspect assumptions and yellow rail with full-window proportional art, warm-white hierarchy,right-side main choices,native soft gradients and rust-orange accents. Preserves approved artwork bytes,portrait4×4/dossiers,menus/guarded input/retry/profile and gameplay. Exact source-table layout retained as historical evidence, explicitly superseded by ADR103; no new major part started. Verification/limitations: testing/modern-ui-polish/README.md.
+
+Final ADR103 verification:408Rust tests passed,1existing soak ignored; fmt/strict Clippy/locked build/audit and final native22-stage/all16portrait/five-viewport flow passed. Proportional full-window layout verified against actual reported window sizes. UI-POLISH-01 narrowly checked;219verified/245open across464IDs; broader user acceptance remains open.
+
+## 2026-11-09 — Functional grouped settings editor
+
+User requested settings setup after menu polish. codex/settings-menu replaces the flat comfort/binding list with Camera/Controls/Audio/Display tabs,keyboard/mouse/controller navigation,optional pickup/drop bindings,live absolute master gain/mute,borderless fullscreen with windowed-size restoration,and VSync. Optional preference fields load old files without rewriting; invalid/future files remain preserved. Save errors remain visible; explicit session-only close is available. Settings pause/resume/suppress input and stop hidden3D rendering; accepted rigs/gameplay unchanged. New native opt-in settings traversal uses real keyboard category/adjust/save and temp-file reload; scoped results/evidence in testing/settings-menu/README.md. Broad quality/audio-bus/human/hardware gates remain open.
+
+2026-11-09: UI art review on codex/reference-led-ui. User rejected three samples and selected originals as visual references. Reviewed all26reference sheets and generated one reference-fed options caricature draft; no runtime installation/code changes or completed checklist gates. Exact prompt/input IDs/hash recorded in docs/ui/generated/candidates/settings-reference-v3.json.
+
+2026-11-09: user clarified approved attachment faces/bodies plus original-game locations. Generated one new pool-room bar draft using separate identity/rendering and location references; prompt/hash recorded, no runtime code/assets replaced.
+
+2026-11-09 integration: preserve exact selected bar style reference, mark rejected drafts/stopped batch accurately, retain local reference-only original galleries outside repository. Commit/merge encompasses existing17 implementation commits plus art-review records; twelve new gameplay/graphics agent passes have not started. Final validation recorded under testing/integration-2026-11-09/.

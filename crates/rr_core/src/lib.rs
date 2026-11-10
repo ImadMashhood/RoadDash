@@ -10,6 +10,7 @@ pub mod pursuit;
 pub mod reverse;
 pub mod steering;
 pub mod traffic;
+pub mod traffic_avoidance;
 use serde::{Deserialize, Serialize};
 
 pub const SIMULATION_HZ: f64 = 60.0;

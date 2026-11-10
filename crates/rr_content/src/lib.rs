@@ -183,4 +183,5 @@ pub mod metropolis;
 
 pub mod destruction;
 
+pub mod weapon_models;
 pub mod weapons;

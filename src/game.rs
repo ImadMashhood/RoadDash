@@ -508,7 +508,11 @@ pub fn input(
             let palette = rider.palette_index;
             *rider = Rider::new(rider.id);
             if !rider.police && grid_weapons.armed.binary_search(&rider.id).is_ok() {
-                rider.weapon = Some(rr_core::weapons::Weapon::Club);
+                rider.weapon = Some(rr_core::weapons::Weapon::for_grid(
+                    grid_weapons.seed,
+                    grid_weapons.race_number,
+                    rider.id,
+                ));
             }
             if rider.police {
                 rider.combat_mind.struck_by(0);
@@ -619,11 +623,25 @@ pub fn drive(
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
-    (ground, owned, poses, shapes): (
+    (ground, owned, poses, shapes, crossing_cars): (
         Query<(), With<world::Ground>>,
         Query<&recovery::OwnedBody>,
         Query<&GlobalTransform>,
         Query<&Collider>,
+        Query<
+            (
+                &Transform,
+                Option<&crate::environment::Patrol>,
+                Option<&Velocity>,
+                Option<&crate::world_gen::metropolis::Crossing>,
+                Option<&ColliderDisabled>,
+            ),
+            (
+                With<crate::environment::CrossTraffic>,
+                Without<Traffic>,
+                Without<Rider>,
+            ),
+        >,
     ),
     (mut swept, mut attacks): (
         MessageWriter<recovery::SweptContact>,
@@ -671,9 +689,12 @@ pub fn drive(
             )
         })
         .collect();
-    let route_ids: std::collections::BTreeMap<_, _> = riders
+    let rider_frames: std::collections::BTreeMap<_, _> = riders
         .iter()
-        .map(|(_, r, _, _, _)| (r.id, r.route))
+        .map(|(_, r, _, _, _)| {
+            let (_, road) = track.sample_route(r.route, r.progress, r.lane);
+            (r.id, (r.route, r.motion_velocity.dot(road * Vec3::NEG_X)))
+        })
         .collect();
     let targets: Vec<_> = riders
         .iter()
@@ -749,7 +770,7 @@ pub fn drive(
                 if track.same_corridor(
                     r.route,
                     r.progress,
-                    *route_ids.get(&t.id).unwrap_or(&0),
+                    rider_frames.get(&t.id).map_or(0, |frame| frame.0),
                     t.progress,
                 ) && eligible_count < eligible.len()
                 {
@@ -782,14 +803,14 @@ pub fn drive(
                     )
                 })
             });
-            let throttle = if let Some((_, speed)) = police_goal {
+            let mut throttle = if let Some((_, speed)) = police_goal {
                 r.speed < speed - 0.05
             } else if is_player {
                 player_intent.throttle
             } else {
                 true
             };
-            let brake = if let Some((_, speed)) = police_goal {
+            let mut brake = if let Some((_, speed)) = police_goal {
                 r.speed > speed + 0.1
             } else if is_player {
                 player_intent.brake
@@ -818,7 +839,133 @@ pub fn drive(
             };
             let on_grass = (r.lane - track.street_offset(r.route, r.progress)).abs()
                 > track.half_width(r.progress);
-            let target = if on_grass { target.min(32.0) } else { target };
+            let mut target = if on_grass { target.min(32.0) } else { target };
+            let traffic_plan = (!is_player).then(|| {
+                let offset = track.street_offset(r.route, r.progress);
+                let (width, divider) =
+                    track
+                        .metropolis
+                        .as_ref()
+                        .map_or((track.half_width(r.progress), 0.0), |m| {
+                            let (divider, _, width) = rr_core::streets::markings(
+                                &m.street_life.lane_sections,
+                                r.route,
+                                r.progress,
+                            );
+                            (width, divider)
+                        });
+                // Respect each map's traffic convention: legacy outbound is positive,
+                // Metropolis outbound is negative. Never pass into inbound lanes.
+                let bounds = if track.metropolis.is_some() {
+                    (offset - width + 0.65, offset + divider - 0.65)
+                } else {
+                    (offset + 0.65, offset + width - 0.65)
+                };
+                let roam = (width - 0.9).clamp(0.0, 3.4);
+                let desired = chase_goal
+                    .map(|(lane, _)| lane)
+                    .or_else(|| rr_core::rival_ai::passing_lane(me, &eligible[..eligible_count]))
+                    .unwrap_or(offset + (race.elapsed * 0.28 + r.id as f32 * 2.4).sin() * roam);
+                let desired = if track.metropolis.is_some() {
+                    desired.clamp(offset - width + 0.65, offset + width - 0.65)
+                } else {
+                    desired
+                };
+                let mut cars: Vec<_> = traffic
+                    .iter()
+                    .filter_map(|(_, car, body, _, _)| {
+                        if !track.same_corridor(r.route, r.progress, car.route, car.progress) {
+                            return None;
+                        }
+                        let mut gap = car.progress - r.progress;
+                        if track.definition.closed {
+                            gap = (gap + track.length * 0.5).rem_euclid(track.length)
+                                - track.length * 0.5;
+                        }
+                        (gap.abs() < 500.0).then(|| rr_core::traffic_avoidance::Car {
+                            gap,
+                            // Read placed geometry, including street reservation offsets.
+                            lane: track.lane_at(car.route, car.progress, body.translation),
+                            speed: car.speed,
+                            lateral_speed: 0.0,
+                            half_width: 0.95,
+                            half_length: 1.95,
+                        })
+                    })
+                    .collect();
+                let (_, road) = track.sample_route(r.route, r.progress, r.lane);
+                let forward = (road * Vec3::Z).with_y(0.0).normalize();
+                let lateral = (road * Vec3::NEG_X).with_y(0.0).normalize();
+                for (pose, path, velocity, crossing, disabled) in &crossing_cars {
+                    let delta = pose.translation - transform.translation;
+                    if delta.xz().length_squared() > 350.0_f32.powi(2) || delta.y.abs() > 4.0 {
+                        continue;
+                    }
+                    let world_velocity = if crossing.is_some() {
+                        // Crossing's fixed mover measures actual displacement, including
+                        // junction yielding; intended path speed would predict a held car moving.
+                        velocity.map_or(Vec3::ZERO, |v| v.linvel)
+                    } else if disabled.is_some() {
+                        Vec3::ZERO
+                    } else if let Some(path) = path {
+                        let phase =
+                            (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.0);
+                        path.axis
+                            * path.speed
+                            * if path.one_way || phase < 2.0 {
+                                1.0
+                            } else {
+                                -1.0
+                            }
+                    } else {
+                        velocity.map_or(Vec3::ZERO, |v| v.linvel)
+                    };
+                    let x = pose.rotation * Vec3::X;
+                    let z = pose.rotation * Vec3::Z;
+                    cars.push(rr_core::traffic_avoidance::Car {
+                        gap: delta.dot(forward),
+                        lane: r.lane + delta.dot(lateral),
+                        speed: world_velocity.dot(forward),
+                        lateral_speed: world_velocity.dot(lateral),
+                        half_width: x.dot(lateral).abs() * 0.95 + z.dot(lateral).abs() * 1.95,
+                        half_length: x.dot(forward).abs() * 0.95 + z.dot(forward).abs() * 1.95,
+                    });
+                }
+                let preliminary = rr_core::traffic_avoidance::plan(
+                    r.lane, r.speed, desired, target, bounds, &cars,
+                );
+                if !preliminary.avoiding {
+                    return preliminary;
+                }
+                // A traffic escape must not take an occupied bike lane or rear-end
+                // another rider yielding to the same car. Restrict this clearance
+                // layer to actual car hazards; ordinary combat spacing is unchanged.
+                cars.extend(eligible[..eligible_count].iter().filter_map(|other| {
+                    let gap = if track.definition.closed {
+                        wrapped_gap(other.progress - r.progress, track.length)
+                    } else {
+                        other.progress - r.progress
+                    };
+                    (other.id != r.id && !other.downed && gap.abs() < 200.0).then_some(
+                        rr_core::traffic_avoidance::Car {
+                            gap,
+                            lane: other.lane,
+                            speed: other.speed,
+                            lateral_speed: rider_frames.get(&other.id).map_or(0.0, |frame| frame.1),
+                            half_width: 0.36,
+                            half_length: 1.05,
+                        },
+                    )
+                }));
+                rr_core::traffic_avoidance::plan(r.lane, r.speed, desired, target, bounds, &cars)
+            });
+            let traffic_braking =
+                traffic_plan.is_some_and(|p| p.avoiding && r.speed > p.speed + 0.25);
+            if let Some(plan) = traffic_plan.filter(|p| p.avoiding) {
+                target = target.min(plan.speed);
+                throttle &= r.speed < target - 0.05;
+                brake |= traffic_braking;
+            }
             if !dynamic {
                 if is_player
                     && let Some(acceleration) = rr_core::reverse::acceleration(
@@ -853,7 +1000,7 @@ pub fn drive(
                     if brake {
                         r.speed = (r.speed
                             - dt * tuning.brake_mps2
-                                * if r.police {
+                                * if r.police || traffic_braking {
                                     1.0
                                 } else {
                                     player_intent.brake_strength()
@@ -879,44 +1026,8 @@ pub fn drive(
                         track.curvature_route(r.route, r.progress) * r.speed * r.speed * dt * 0.025;
                 }
             } else {
-                let drive_width = track.metropolis.as_ref().map_or_else(
-                    || track.half_width(r.progress),
-                    |m| {
-                        rr_core::streets::markings(
-                            &m.street_life.lane_sections,
-                            r.route,
-                            r.progress,
-                        )
-                        .2
-                    },
-                );
-                let drive_offset = track.street_offset(r.route, r.progress);
-                let roaming_width = (drive_width - 0.9).clamp(0.0, 3.4);
-                let mut desired =
-                    drive_offset + (race.elapsed * 0.28 + r.id as f32 * 2.4).sin() * roaming_width;
-                if let Some((lane, _)) = chase_goal {
-                    desired = lane;
-                } else if let Some(lane) =
-                    rr_core::rival_ai::passing_lane(me, &eligible[..eligible_count])
-                {
-                    desired = lane;
-                }
-                for (_, car, _, _, _) in &traffic {
-                    let ahead = (car.progress - r.progress).rem_euclid(track.length);
-                    if track.same_corridor(r.route, r.progress, car.route, car.progress)
-                        && ahead < 35.0
-                        && (r.lane - car.lane).abs() < 2.0
-                    {
-                        desired = 2. * drive_offset - car.lane;
-                    }
-                }
-                if track.metropolis.is_some() {
-                    desired = desired.clamp(
-                        drive_offset - drive_width + 0.65,
-                        drive_offset + drive_width - 0.65,
-                    );
-                }
-                steer = if race.elapsed < 3.0 {
+                let desired = traffic_plan.expect("AI traffic plan").lane;
+                steer = if race.elapsed < 3.0 && traffic_plan.is_none_or(|p| !p.avoiding) {
                     0.0
                 } else {
                     let (_, road) = track.sample_route(r.route, r.progress, r.lane);
@@ -942,7 +1053,11 @@ pub fn drive(
                     player_intent.throttle_strength()
                 } else {
                     {
-                        let speed = chase_goal.map_or(target, |(_, speed)| speed);
+                        let speed = if traffic_plan.is_some_and(|p| p.avoiding) {
+                            target
+                        } else {
+                            chase_goal.map_or(target, |(_, speed)| speed)
+                        };
                         ((speed - r.speed) * 0.25 + if r.police { 0.0 } else { 0.35 })
                             .clamp(0.0, 1.0)
                     }
@@ -951,7 +1066,11 @@ pub fn drive(
                     player_intent.brake_strength()
                 } else {
                     if brake {
-                        if r.police { 1.0 } else { 0.25 }
+                        if r.police || traffic_braking {
+                            1.0
+                        } else {
+                            0.25
+                        }
                     } else {
                         0.0
                     }
@@ -987,7 +1106,9 @@ pub fn drive(
                 && r.speed > 6.0
                 && r.fight_stamina
                     >= if r.weapon.is_some() {
-                        weapons.0.stamina
+                        weapons
+                            .get(r.weapon.unwrap_or(rr_core::weapons::Weapon::Club))
+                            .stamina
                     } else {
                         250.0
                     }
@@ -996,8 +1117,17 @@ pub fn drive(
                     .filter(|t| {
                         r.combat_mind.can_fight(t.id)
                             && !t.downed
-                            && (t.progress - r.progress).abs() < 1.6
-                            && (t.lane - r.lane).abs() < 2.5
+                            && r.weapon.map_or_else(
+                                || {
+                                    (t.progress - r.progress).abs() < 1.6
+                                        && (t.lane - r.lane).abs() < 2.5
+                                },
+                                |w| {
+                                    let ability = weapons.get(w);
+                                    (t.progress - r.progress).abs() <= ability.longitudinal_reach
+                                        && (t.lane - r.lane).abs() <= ability.lateral_reach
+                                },
+                            )
                     })
                     .map(|t| {
                         if r.weapon.is_none() && r.attack_serial.is_multiple_of(profile.kick_roll) {
@@ -1015,10 +1145,14 @@ pub fn drive(
                 && r.attack <= 0.0
                 && (r.weapon.is_none()
                     || matches!(attack_side, rr_core::AttackSide::Kick)
-                    || weapons.0.can_start(r.fight_stamina))
+                    || weapons
+                        .get(r.weapon.unwrap_or(rr_core::weapons::Weapon::Club))
+                        .can_start(r.fight_stamina))
             {
                 r.attack = if r.weapon.is_some() && attack_side != rr_core::AttackSide::Kick {
-                    weapons.0.cooldown
+                    weapons
+                        .get(r.weapon.unwrap_or(rr_core::weapons::Weapon::Club))
+                        .cooldown
                 } else if is_player {
                     0.65
                 } else {
@@ -1026,7 +1160,9 @@ pub fn drive(
                 };
                 r.attack_serial = r.attack_serial.wrapping_add(1);
                 if r.weapon.is_some() && attack_side != rr_core::AttackSide::Kick {
-                    r.fight_stamina -= weapons.0.stamina;
+                    r.fight_stamina -= weapons
+                        .get(r.weapon.unwrap_or(rr_core::weapons::Weapon::Club))
+                        .stamina;
                 } else if !is_player {
                     r.fight_stamina -= 250.0;
                 }
@@ -1217,7 +1353,11 @@ pub fn drive(
             .iter()
             .map(|t| {
                 track
-                    .sample_route(*route_ids.get(&t.id).unwrap_or(&0), t.progress, t.lane)
+                    .sample_route(
+                        rider_frames.get(&t.id).map_or(0, |frame| frame.0),
+                        t.progress,
+                        t.lane,
+                    )
                     .0
                     .xz()
             })
@@ -1243,7 +1383,7 @@ pub fn drive(
                     track.same_corridor(
                         car.route,
                         car.progress,
-                        *route_ids.get(&t.id).unwrap_or(&0),
+                        rider_frames.get(&t.id).map_or(0, |frame| frame.0),
                         t.progress,
                     )
                 })
@@ -1936,6 +2076,301 @@ pub(crate) mod tests {
             let r = Rider::new(id);
             assert!(r.progress < 0.0);
             assert!(r.lane.abs() < ROAD_HALF);
+        }
+    }
+    #[test]
+    fn predictive_ai_field_queues_without_car_or_rear_end_impacts() {
+        let mut outcomes = Vec::new();
+        for straight_control in [true, false] {
+            let mut app = simulation();
+            let mut definition = app.world().resource::<Track>().definition.clone();
+            for point in &mut definition.control_points {
+                point.half_width = 3.0;
+            }
+            app.insert_resource(Track::from_definition(definition).unwrap());
+            app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+            let mut owners = Vec::new();
+            for id in 1..=4 {
+                let mut rider = Rider::new(id);
+                rider.progress = 35.0 - id as f32 * 15.0;
+                rider.lane = 2.0;
+                rider.speed = 35.0;
+                let (p, q) = app
+                    .world()
+                    .resource::<Track>()
+                    .sample(rider.progress, rider.lane);
+                rider.motion_velocity = q * Vec3::Z * rider.speed;
+                owners.push(
+                    app.world_mut()
+                        .spawn((
+                            rider,
+                            Transform::from_translation(p).with_rotation(q),
+                            Visibility::Visible,
+                            recovery::bike_body(),
+                        ))
+                        .id(),
+                );
+            }
+            let (p, q) = app.world().resource::<Track>().sample(110.0, 2.0);
+            app.world_mut().spawn((
+                Traffic {
+                    route: 0,
+                    progress: 110.,
+                    lane: 2.,
+                    speed: 0.,
+                },
+                Transform::from_translation(p).with_rotation(q),
+                RigidBody::KinematicPositionBased,
+                Collider::compound(vec![(
+                    Vec3::Y * 0.95,
+                    Quat::IDENTITY,
+                    Collider::cuboid(0.95, 0.9, 1.95),
+                )]),
+            ));
+            if straight_control {
+                // Counterfactual traffic-unaware intent only: the same solid contact,
+                // chassis, crash and recovery systems remain enabled.
+                app.add_systems(
+                    FixedUpdate,
+                    (|mut riders: Query<&mut Rider>| {
+                        for mut rider in &mut riders {
+                            if rider.id != 0 {
+                                rider.drive_intent = rr_core::VehicleIntent {
+                                    throttle: true,
+                                    throttle_amount: 1.0,
+                                    ..default()
+                                };
+                            }
+                        }
+                    })
+                    .after(drive)
+                    .before(crate::vehicle::forces),
+                );
+            }
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut().resource_mut::<Race>().elapsed = 10.0;
+            let mut struck = [false; 4];
+            let mut nearest_pair = f32::MAX;
+            for _ in 0..600 {
+                app.update();
+                for (i, owner) in owners.iter().enumerate() {
+                    let r = app.world().get::<Rider>(*owner).unwrap();
+                    struck[i] |= r.health < 100.0
+                        || app.world().get::<Recovery>(*owner).unwrap().stage
+                            != RecoveryStage::Riding;
+                    for other in &owners[i + 1..] {
+                        let a = app.world().get::<Transform>(*owner).unwrap().translation;
+                        let b = app.world().get::<Transform>(*other).unwrap().translation;
+                        nearest_pair = nearest_pair.min(a.xz().distance(b.xz()));
+                    }
+                }
+            }
+            let impacts = struck.iter().filter(|hit| **hit).count();
+            println!(
+                "AI field straight_control={straight_control} impacted_riders={impacts} minimum_pair_distance={nearest_pair}"
+            );
+            if !straight_control {
+                assert_eq!(impacts, 0);
+                assert!(nearest_pair > 2.2);
+                for owner in owners {
+                    let r = app.world().get::<Rider>(owner).unwrap();
+                    assert!(r.progress < 106.0 && r.speed < 1.0);
+                }
+            }
+            outcomes.push(impacts);
+        }
+        assert!(
+            outcomes[0] > outcomes[1],
+            "traffic-unaware control must demonstrate the obstruction"
+        );
+    }
+    #[test]
+    fn predictive_ai_yields_to_moving_crossing_cars_and_resumes() {
+        for metropolis_mover in [false, true] {
+            let mut app = simulation();
+            if metropolis_mover {
+                app.insert_resource(Track::metropolis().unwrap());
+            } else {
+                let mut definition = app.world().resource::<Track>().definition.clone();
+                for point in &mut definition.control_points {
+                    point.half_width = 3.0;
+                }
+                app.insert_resource(Track::from_definition(definition).unwrap());
+            }
+            let lane = if metropolis_mover { -2.0 } else { 2.0 };
+            app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+            let (p, q) = app.world().resource::<Track>().sample(20.0, lane);
+            if metropolis_mover {
+                // Local flat physical support isolates the drive adapter; use the real
+                // Metropolis path, offsets, markings and crossing mover above it.
+                app.world_mut().spawn((
+                    RigidBody::Fixed,
+                    world::Ground,
+                    Collider::cuboid(650., 0.5, 650.),
+                    Transform::from_translation(p - Vec3::Y * 0.6),
+                ));
+            }
+            let mut rider = Rider::new(1);
+            rider.progress = 20.0;
+            rider.lane = lane;
+            rider.speed = 20.0;
+            rider.motion_velocity = q * Vec3::Z * 20.0;
+            let owner = app
+                .world_mut()
+                .spawn((
+                    rider,
+                    Transform::from_translation(p).with_rotation(q),
+                    Visibility::Visible,
+                    recovery::bike_body(),
+                ))
+                .id();
+            let (junction, q) = app.world().resource::<Track>().sample(65.0, 0.0);
+            let axis = q * Vec3::NEG_X;
+            let rotation = Quat::from_rotation_y(axis.x.atan2(axis.z));
+            let center = junction + axis * (lane - 2.1);
+            let car = app
+                .world_mut()
+                .spawn((
+                    crate::environment::CrossTraffic,
+                    crate::environment::Patrol {
+                        center,
+                        axis,
+                        extent: 70.,
+                        speed: 6.,
+                        phase: 1.0 - 11.9 / 70.0 - 10.0 * 6.0 / 70.0,
+                        one_way: true,
+                    },
+                    Transform::from_translation(center - axis * 11.9).with_rotation(rotation),
+                    Velocity::linear(axis * 6.0),
+                    RigidBody::KinematicPositionBased,
+                    Collider::compound(vec![(
+                        Vec3::Y * 0.95,
+                        Quat::IDENTITY,
+                        Collider::cuboid(0.95, 0.9, 1.95),
+                    )]),
+                    crate::world::Obstacle,
+                    ActiveEvents::COLLISION_EVENTS,
+                    Ccd::enabled(),
+                ))
+                .id();
+            if metropolis_mover {
+                app.world_mut()
+                    .entity_mut(car)
+                    .insert(crate::world_gen::metropolis::Crossing {
+                        distance: -11.9,
+                        junction,
+                    });
+            }
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut().resource_mut::<Race>().elapsed = 10.0;
+            let mut braking = false;
+            let mut resumed = false;
+            let mut minimum = f32::MAX;
+            let mut lowest_speed = 20.0_f32;
+            for _ in 0..420 {
+                app.update();
+                let r = app.world().get::<Rider>(owner).unwrap();
+                braking |= r.drive_intent.brake_amount > 0.9;
+                lowest_speed = lowest_speed.min(r.speed);
+                let a = app.world().get::<Transform>(owner).unwrap().translation;
+                let b = app.world().get::<Transform>(car).unwrap().translation;
+                minimum = minimum.min(a.xz().distance(b.xz()));
+                let cleared = (b - junction).dot(axis) > lane + 3.5;
+                resumed |=
+                    braking && cleared && r.drive_intent.throttle && r.speed > lowest_speed + 3.0;
+                assert_eq!(
+                    app.world().get::<Recovery>(owner).unwrap().stage,
+                    RecoveryStage::Riding,
+                    "crossing mover={metropolis_mover} impact at {}",
+                    r.progress
+                );
+                assert_eq!(r.health, 100.0);
+            }
+            let r = app.world().get::<Rider>(owner).unwrap();
+            println!(
+                "crossing mover={metropolis_mover} braking={braking} resumed={resumed} lowest_speed={lowest_speed} min_distance={minimum} progress={}",
+                r.progress
+            );
+            assert!(braking && resumed && minimum > 2.0 && r.progress > 90.0);
+        }
+    }
+    #[test]
+    fn predictive_ai_traffic_uses_real_dynamic_braking_and_passing() {
+        for (width, car_speed) in [(3.0, 0.0), (3.0, 12.0), (6.5, 0.0)] {
+            let mut app = simulation();
+            let mut definition = app.world().resource::<Track>().definition.clone();
+            for point in &mut definition.control_points {
+                point.half_width = width;
+            }
+            app.insert_resource(Track::from_definition(definition).unwrap());
+            app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+            let (p, q) = app.world().resource::<Track>().sample(20.0, 2.0);
+            let mut rider = Rider::new(1);
+            rider.progress = 20.0;
+            rider.lane = 2.0;
+            rider.speed = 35.0;
+            rider.motion_velocity = q * Vec3::Z * 35.0;
+            let owner = app
+                .world_mut()
+                .spawn((
+                    rider,
+                    Transform::from_translation(p).with_rotation(q),
+                    Visibility::Visible,
+                    recovery::bike_body(),
+                ))
+                .id();
+            let (p, q) = app.world().resource::<Track>().sample(110.0, 2.0);
+            let car = app
+                .world_mut()
+                .spawn((
+                    Traffic {
+                        route: 0,
+                        progress: 110.0,
+                        lane: 2.0,
+                        speed: car_speed,
+                    },
+                    Transform::from_translation(p).with_rotation(q),
+                    RigidBody::KinematicPositionBased,
+                    Collider::compound(vec![(
+                        Vec3::Y * 0.95,
+                        Quat::IDENTITY,
+                        Collider::cuboid(0.95, 0.9, 1.95),
+                    )]),
+                ))
+                .id();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut().resource_mut::<Race>().elapsed = 10.0;
+            let mut braking = false;
+            let mut minimum = f32::MAX;
+            for _ in 0..600 {
+                app.update();
+                let r = app.world().get::<Rider>(owner).unwrap();
+                braking |= r.drive_intent.brake_amount > 0.9;
+                let a = app.world().get::<Transform>(owner).unwrap().translation;
+                let b = app.world().get::<Transform>(car).unwrap().translation;
+                minimum = minimum.min(a.xz().distance(b.xz()));
+                assert_eq!(
+                    app.world().get::<Recovery>(owner).unwrap().stage,
+                    RecoveryStage::Riding,
+                    "width {width}, speed {car_speed}: crashed at {}",
+                    r.progress
+                );
+                assert_eq!(r.health, 100.0);
+            }
+            let r = app.world().get::<Rider>(owner).unwrap();
+            let c = app.world().get::<Traffic>(car).unwrap();
+            println!(
+                "AI traffic width={width} car_speed={car_speed} rider_s={} car_s={} rider_speed={} min_distance={minimum} braking={braking}",
+                r.progress, c.progress, r.speed
+            );
+            assert!(minimum > 2.0);
+            if width < 4.0 {
+                assert!(braking);
+                assert!(r.progress < c.progress - 4.0);
+                assert!(r.speed < car_speed + 2.0);
+            } else {
+                assert!(r.progress > c.progress + 10.0, "failed to pass");
+            }
         }
     }
     pub(crate) fn simulation() -> App {

@@ -25,6 +25,9 @@ def varied_floors(building,block,cfg):
 
 def parked_cars(data,paths,road,cfg):
     import shapely
+    # Parking bays may reclaim the curb overlay inside the original road ROW.
+    from street_first_layout import decode
+    if "road_surface" in data: road=decode(data["road_surface"])
     shapely.prepare(road)
     junctions=[Point(j['point']) for j in data['race_first']['primary_junctions']]
     result=[]
@@ -43,19 +46,30 @@ def parked_cars(data,paths,road,cfg):
     # vehicles on wide secondary streets with a full two-lane centre remaining.
     from shapely import LineString
     primary=shapely.union_all([LineString([(p[0],p[2]) for p in path['points']]) for path in paths])
+    candidates=[]
     for street in data['streets']:
-        if street['width_m']<12:continue
+        if street['width_m']<8:continue
         line=LineString(street['points']);a,b=street['points'][0],street['points'][-1]
         dx,dz=b[0]-a[0],b[1]-a[1];n=math.hypot(dx,dz);dx,dz=dx/n,dz/n
         for along in range(32,int(n)-31,42):
             q=line.interpolate(along)
             if q.distance(primary)<22 or q.distance(primary)>140:continue
-            for side in [-1,1]:
-                if len(result)>=65:return result
-                p=[q.x+dz*side*3.95,q.y-dx*side*3.95];yaw=math.atan2(dx,dz)+(math.pi if side<0 else 0)
+            # Eight-metre side streets retain one five-metre clear channel;
+            # never park inside a live cross-traffic sweep near the race junction.
+            narrow=street['width_m']<12
+            if narrow and any(q.distance(j)<82 for j in junctions):continue
+            for side in ([1] if narrow else [-1,1]):
+                offset=min(street['width_m']/2-1.05,3.95)
+                p=[q.x+dz*side*offset,q.y-dx*side*offset];yaw=math.atan2(dx,dz)+(math.pi if side<0 else 0)
                 shape=footprint(p,yaw,1.8,3.8).buffer(.1)
                 if not road.covers(shape) or any(shape.distance(j)<25 for j in junctions):continue
-                result.append(dict(id=f'metro-parked-{len(result):03}',position=p,heading=yaw))
+                candidates.append(dict(position=p,heading=yaw))
+    from metropolis_population import balanced
+    for c in balanced(candidates,paths,lambda c:c['position']):
+        if len(result)>=128:break
+        shape=footprint(c['position'],c['heading'],1.8,3.8).buffer(.1)
+        if any(shape.distance(footprint(v['position'],v['heading'],1.8,3.8))<1 for v in result):continue
+        result.append(dict(id=f'metro-parked-{len(result):03}',**c))
     return result
 
 def traffic_paths(paths,data=None):

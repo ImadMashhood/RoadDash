@@ -1,0 +1,10 @@
+{
+  "src/world_gen/metropolis/geometry.rs": "78bb03ada3907b42f0d3c1298fcf483ab16ce1d3fdd85dcea9d7b20c204924d4",
+  "src/world_gen/metropolis/survey.rs": "7bd831e248609abcbf9665f33557c7224aed53b50330edffbbe866844a08826d",
+  "tools/test_metropolis_street_life.py": "e522630f4ded654dfb2b5b70b3c9fd70673d383abe0e1975545290a12d4de3d2",
+  "tools/audit_road_paint.py": "5e4a41f3423e738fb5a78d7d0f885cd39cc05c0144d145a7bb97730cc407b647",
+  "tools/verify_road_walkability.py": "184d170f5ef68ff7b6d8edacedaca89f3c81d824823d773a557b645ac1d7e9d0",
+  "src/recovery.rs": "c32fa8001c9cad54284e7bc4d5971579fdb7c1a6f8655a122a6a13a57120b02a",
+  "crates/rr_core/src/recovery.rs": "d1fa042b0fb64b40874408c52fc3372bedbd9961cb8c28ca1680a30f4154618f",
+  "src/verification.rs": "eb12c9937f06c3eda6138ea85b1b3c6b13654b7d0340d5a65acad43d47c857bf"
+}

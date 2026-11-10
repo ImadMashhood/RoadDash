@@ -25,7 +25,12 @@ pub struct Census {
     pub crossing_cars: usize,
     pub street_props: usize,
     pub parked_cars: usize,
+    pub walking_pedestrians: usize,
     pub source_layout_sha256: String,
+}
+#[derive(Component)]
+pub struct MetroWalker {
+    pub station: f32,
 }
 #[derive(Component)]
 pub struct Crossing {
@@ -131,33 +136,40 @@ pub fn spawn(
                     continue;
                 }
                 let (p, q) = track.sample_route(route, d, 0.);
-                if d < 2700. {
-                    if i % 36 == 0 {
-                        let p = p + q * Vec3::X * 16.;
-                        crate::environment::spawn_cow(
-                            commands,
-                            art,
-                            p.with_y(track.terrain_height(p.x, p.z)),
-                            q,
-                        );
-                    }
-                } else {
-                    for side in [-1., 1.] {
-                        let pos = p + q * Vec3::X * (track.half_width(d) + 2.6) * side;
-                        let pos = pos.with_y(track.terrain_height(pos.x, pos.z) + 0.15);
-                        if m.junctions
-                            .iter()
-                            .any(|j| Vec2::from_array(j.point).distance(pos.xz()) < 16.)
-                        {
-                            continue;
-                        }
-                        if i % 24 == 0 {
-                            let walker = pos - q * Vec3::X * side * 0.65;
-                            crate::environment::spawn_pedestrian(commands, art, walker, q, d);
-                        }
-                    }
+                if d < 2700. && i % 36 == 0 {
+                    let p = p + q * Vec3::X * 16.;
+                    crate::environment::spawn_cow(
+                        commands,
+                        art,
+                        p.with_y(track.terrain_height(p.x, p.z)),
+                        q,
+                    );
                 }
             }
+        }
+    }
+    if art.props.is_some() {
+        for walker in &m.pedestrians {
+            let p = Vec3::new(
+                walker.position[0],
+                track.terrain_height(walker.position[0], walker.position[1]) + 0.15,
+                walker.position[1],
+            );
+            let entity = crate::environment::spawn_pedestrian_patrol(
+                commands,
+                art,
+                p,
+                Quat::from_rotation_y(walker.heading),
+                walker.station,
+                walker.extent,
+            );
+            commands.entity(entity).insert((
+                Name::new(walker.id.clone()),
+                MetroWalker {
+                    station: walker.station,
+                },
+            ));
+            census.walking_pedestrians += 1;
         }
     }
     census.street_props = streetscape::spawn(commands, art, track);

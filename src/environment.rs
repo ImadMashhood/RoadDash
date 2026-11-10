@@ -796,6 +796,17 @@ pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
     crate::runtime::attach_visuals(commands, root, &parts);
 }
 pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: f32) {
+    spawn_pedestrian_patrol(commands, art, p, q, seed, 12.);
+}
+
+pub(crate) fn spawn_pedestrian_patrol(
+    commands: &mut Commands,
+    art: &Art,
+    p: Vec3,
+    q: Quat,
+    seed: f32,
+    extent: f32,
+) -> Entity {
     let root = commands
         .spawn((
             Transform::from_translation(p),
@@ -811,7 +822,7 @@ pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Q
             Patrol {
                 center: p,
                 axis: q * Vec3::Z,
-                extent: 12.0,
+                extent,
                 speed: 1.2,
                 phase: seed.sin(),
                 one_way: false,
@@ -855,6 +866,7 @@ pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Q
         parts.extend(models.human(commands, 4, &parts, false));
     }
     crate::runtime::attach_visuals(commands, root, &parts);
+    root
 }
 #[allow(clippy::type_complexity)]
 pub fn patrol(

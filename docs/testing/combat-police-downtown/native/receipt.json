@@ -1,0 +1,61 @@
+{
+  "cases": [
+    {
+      "case": "metro-survey",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/road-dash",
+        "--metro-survey"
+      ],
+      "environment": {},
+      "exit": 0,
+      "seconds": 41.6,
+      "binary_sha256": "93ae0213d9fb47539af080ff2e772941994c476992ec999356dc4d696c40f483"
+    },
+    {
+      "case": "chain-route0",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/road-dash",
+        "--smoke-test"
+      ],
+      "environment": {
+        "ROADDASH_VERIFY_CLUB": "1",
+        "ROADDASH_VERIFY_WEAPON_FAMILY": "chain",
+        "ROADDASH_VERIFY_STRIKES": "1",
+        "ROADDASH_VERIFY_WALK_CROSSINGS": "1"
+      },
+      "exit": 0,
+      "seconds": 39.99,
+      "binary_sha256": "93ae0213d9fb47539af080ff2e772941994c476992ec999356dc4d696c40f483"
+    },
+    {
+      "case": "whip-route1-baseline",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/road-dash",
+        "--smoke-test",
+        "--ragdoll-baseline"
+      ],
+      "environment": {
+        "ROADDASH_SMOKE_ROUTE": "1",
+        "ROADDASH_VERIFY_CLUB": "1",
+        "ROADDASH_VERIFY_WEAPON_FAMILY": "whip",
+        "ROADDASH_VERIFY_STRIKES": "1",
+        "ROADDASH_VERIFY_WALK_CROSSINGS": "1"
+      },
+      "exit": 0,
+      "seconds": 37.84,
+      "binary_sha256": "93ae0213d9fb47539af080ff2e772941994c476992ec999356dc4d696c40f483"
+    },
+    {
+      "case": "police-final",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/road-dash",
+        "--police-smoke"
+      ],
+      "environment": {},
+      "exit": 0,
+      "seconds": 36.44,
+      "binary_sha256": "48a62a16d53e8bee27317b09f0c7493916924353b957daaac4b371da0a64dfd1"
+    }
+  ],
+  "scope": "Survey and chain/whip runs precede frontend-only retry patch; their world/weapons/rig source is identical. Final police run includes that retry patch; final full Rust suite covers all integrated source. Failed earlier fixture/retry attempts retained separately."
+}

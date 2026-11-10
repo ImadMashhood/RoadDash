@@ -27,6 +27,9 @@ pub struct SmokeProgress {
     last_pickup: Option<Vec3>,
     remounts: u32,
     max_remount_error: f32,
+    walk_crossing_setup: [bool; 2],
+    walk_crossing_distance: [f32; 2],
+    walk_crossing_diagnostic_tick: [u32; 2],
     strike_windup: bool,
     strike_contact: bool,
 }
@@ -34,17 +37,143 @@ pub struct SmokeProgress {
 // Observe fixed transitions independently of render-frame screenshot timing.
 pub fn observe_smoke_recovery(
     mut state: ResMut<SmokeProgress>,
-    riders: Query<(&Rider, &Recovery, &Transform)>,
-    bodies: Query<&Transform, Without<Rider>>,
+    riders: Query<(Entity, &Rider, &Recovery, &Transform)>,
+    (bodies, controller_outputs): (
+        Query<&Transform, Without<Rider>>,
+        Query<&bevy_rapier3d::prelude::KinematicCharacterControllerOutput>,
+    ),
+    (track, navigation): (
+        Res<Track>,
+        Option<Res<crate::world_gen::metropolis::navigation::Navigation>>,
+    ),
+    ground: Query<
+        (
+            Has<crate::environment::RoadChunk>,
+            Has<crate::vehicle::RideableStep>,
+        ),
+        With<crate::world::Ground>,
+    >,
+    context: bevy_rapier3d::prelude::ReadRapierContext,
+    mut commands: Commands,
 ) {
-    for (rider, recovery, root) in &riders {
+    for (owner, rider, recovery, root) in &riders {
         if rider.id != 0 {
             continue;
+        }
+        let index = usize::from(state.hill_started);
+        if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1")
+            && recovery.stage == RecoveryStage::GettingUp
+            && !state.walk_crossing_setup[index]
+        {
+            use bevy_rapier3d::prelude::*;
+            let runner = recovery.runner.expect("getting-up runner");
+            let ctx = context.single().expect("native physics context");
+            let (centre, rotation) = track.street_sample(rider.route, rider.progress, 0.);
+            let shape = Collider::capsule_y(0.65, 0.28);
+            let supports = |entity| ground.contains(entity);
+            let mut placement = None;
+            for side in [-1., 1.] {
+                for along in [0., -3., 3., -6., 6.] {
+                    let p = centre
+                        + rotation * Vec3::X * side * if index == 0 { 8. } else { 7.2 }
+                        + rotation * Vec3::Z * along;
+                    if navigation
+                        .as_ref()
+                        .is_some_and(|nav| !nav.clear(p.xz(), p.xz()))
+                    {
+                        continue;
+                    }
+                    let Some((support, distance)) = ctx.cast_ray(
+                        p + Vec3::Y * 3.,
+                        Vec3::NEG_Y,
+                        6.,
+                        true,
+                        QueryFilter::default().predicate(&supports),
+                    ) else {
+                        continue;
+                    };
+                    let (road, sidewalk) = ground.get(support).expect("support role");
+                    if (index == 0 && (road || sidewalk)) || (index == 1 && !sidewalk) {
+                        continue;
+                    }
+                    let p = p.with_y(p.y + 3. - distance + 0.98);
+                    let mut blocked = false;
+                    ctx.intersect_shape(
+                        p,
+                        Quat::IDENTITY,
+                        shape.raw.as_ref(),
+                        QueryFilter::default()
+                            .exclude_collider(runner)
+                            .exclude_rigid_body(owner),
+                        |_| {
+                            blocked = true;
+                            false
+                        },
+                    );
+                    if !blocked {
+                        placement = Some(p);
+                        break;
+                    }
+                }
+                if placement.is_some() {
+                    break;
+                }
+            }
+            let p = placement.expect("clear native foot crossing start");
+            commands
+                .entity(runner)
+                .insert(Transform::from_translation(p).with_rotation(rotation));
+            commands.queue(move |world: &mut World| {
+                let mut recovery = world.get_mut::<Recovery>(owner).expect("recovering rider");
+                recovery.previous_foot = Some(p);
+                recovery.walk_path.clear();
+                recovery.walk_goal = None;
+                recovery.path_refresh = 0.;
+            });
+            state.walk_crossing_setup[index] = true;
+            println!(
+                "Native foot crossing setup {index}: station={:.3} start={p:?} (farm terrain / city sidewalk)",
+                rider.progress
+            );
         }
         match recovery.stage {
             RecoveryStage::GettingUp => state.fixed_stages[0] = true,
             RecoveryStage::Running => {
                 state.fixed_stages[1] = true;
+                if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1") {
+                    let tick = recovery.elapsed.floor() as u32;
+                    if tick > state.walk_crossing_diagnostic_tick[index] {
+                        state.walk_crossing_diagnostic_tick[index] = tick;
+                        println!(
+                            "Native walk profile {index}: elapsed={:.2}s distance={:.3}m runner={:?} wreck={:?} next={:?} controller={:?}",
+                            recovery.elapsed,
+                            recovery.walk_distance,
+                            recovery
+                                .runner
+                                .and_then(|e| bodies.get(e).ok())
+                                .map(|t| t.translation),
+                            recovery
+                                .wreck
+                                .and_then(|e| bodies.get(e).ok())
+                                .map(|t| t.translation),
+                            recovery.walk_path.first(),
+                            recovery
+                                .runner
+                                .and_then(|e| controller_outputs.get(e).ok())
+                                .map(|o| (
+                                    o.grounded,
+                                    o.desired_translation,
+                                    o.effective_translation
+                                ))
+                        );
+                    }
+                    assert!(
+                        recovery.elapsed < 30.,
+                        "native foot crossing stuck; rescue must not mask it"
+                    );
+                    state.walk_crossing_distance[index] =
+                        state.walk_crossing_distance[index].max(recovery.walk_distance);
+                }
                 let walk = recovery
                     .runner
                     .zip(recovery.wreck)
@@ -88,6 +217,13 @@ pub fn observe_smoke_recovery(
         }
     }
 }
+fn smoke_weapon_family() -> rr_core::weapons::Weapon {
+    let id = std::env::var("ROADDASH_VERIFY_WEAPON_FAMILY").unwrap_or_else(|_| "club".into());
+    rr_core::weapons::Weapon::ALL
+        .into_iter()
+        .find(|w| w.id() == id)
+        .expect("unknown ROADDASH_VERIFY_WEAPON_FAMILY")
+}
 /// Native evidence for the real keyboard -> fixed windup -> contact path.
 /// Captures the next rendered/interpolated pose; it is not a human hit-feel test.
 pub fn observe_smoke_strike(
@@ -104,7 +240,19 @@ pub fn observe_smoke_strike(
         }
         let Some(clock) = r.strike else { continue };
         if std::env::var("ROADDASH_VERIFY_CLUB").as_deref() == Ok("1") {
-            assert!(clock.weapon.is_some(), "native club strike lost snapshot");
+            if clock.pending() {
+                assert_eq!(
+                    r.weapon,
+                    Some(smoke_weapon_family()),
+                    "native family identity lost before contact"
+                );
+            }
+            let expected = rr_content::weapons::Weapons::builtin().ability(smoke_weapon_family());
+            assert_eq!(
+                clock.weapon.unwrap().lateral_reach,
+                expected.lateral_reach,
+                "native family ability lost"
+            );
         }
         if !state.strike_windup && clock.pending() {
             state.strike_windup = true;
@@ -135,7 +283,7 @@ fn capture(commands: &mut Commands, name: &str) {
 pub(crate) fn retry_key(commands: &mut Commands, pressed: bool) {
     smoke_key(commands, KeyCode::KeyR, pressed);
 }
-fn smoke_key(commands: &mut Commands, key_code: KeyCode, pressed: bool) {
+pub(crate) fn smoke_key(commands: &mut Commands, key_code: KeyCode, pressed: bool) {
     commands.queue(move |world: &mut World| {
         let window = world
             .query_filtered::<Entity, With<bevy::window::PrimaryWindow>>()
@@ -217,7 +365,17 @@ pub(crate) fn smoke_test(
         if state.frame == 61
             && let Some((_, _, t, _)) = riders.iter().find(|(r, _, _, _)| r.id == 0)
         {
-            crate::weapons::pickup(&mut commands, &art, t.translation + Vec3::Y * 0.12);
+            let family = smoke_weapon_family();
+            if family == rr_core::weapons::Weapon::Club {
+                crate::weapons::pickup(&mut commands, &art, t.translation + Vec3::Y * 0.12);
+            } else {
+                crate::weapons::pickup_kind(
+                    &mut commands,
+                    &art,
+                    t.translation + Vec3::Y * 0.12,
+                    family,
+                );
+            }
         }
         for (frame, key, down) in [
             (62, KeyCode::KeyE, true),
@@ -254,8 +412,11 @@ pub(crate) fn smoke_test(
                     .is_none(),
                 "native drop missing"
             );
-            println!("Native original club pickup / timed attack / drop verified");
-            let census = serde_json::json!({"held_roots":clubs.0.iter().count(),"pickup_roots":clubs.1.iter().count(),"resident_part_instances":clubs.2.iter().count(),"visible_part_instances":clubs.2.iter().filter(|v|v.get()).count(),"new_mesh_assets":0,"new_material_assets":0,"new_physical_bodies":0,"max_held_roots":30,"max_pickup_roots":12});
+            println!(
+                "Native original {} pickup / timed attack / drop verified",
+                smoke_weapon_family().id()
+            );
+            let census = serde_json::json!({"held_roots":clubs.0.iter().count(),"pickup_roots":clubs.1.iter().count(),"resident_part_instances":clubs.2.iter().count(),"visible_fallback_part_instances":clubs.2.iter().filter(|v|v.get()).count(),"family":smoke_weapon_family().id(),"additional_asset_counts":"not_measured","new_physical_bodies":0,"max_held_roots":30,"max_pickup_roots":12});
             std::fs::write(
                 "screenshots/weapon-census.json",
                 serde_json::to_vec_pretty(&census).unwrap(),
@@ -414,9 +575,22 @@ pub(crate) fn smoke_test(
             capture(&mut commands, "02-racing");
         }
         260 => {
-            for (mut rider, _, _, _) in &mut riders {
+            for (mut rider, _, mut transform, mut velocity) in &mut riders {
                 if rider.id == 0 {
                     rider.route = test_route;
+                    if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1") {
+                        rider.progress = 2800.;
+                        rider.lane = 0.;
+                        rider.speed = 0.;
+                        rider.motion_velocity = Vec3::ZERO;
+                        let (p, q) = track.sample_route(test_route, 2800., 0.);
+                        *transform = Transform::from_translation(p).with_rotation(q);
+                        if let Some(v) = velocity.as_mut() {
+                            **v = bevy_rapier3d::prelude::Velocity::zero();
+                        }
+                        contacts.clear();
+                        sweeps.clear();
+                    }
                     rider.health = 0.0;
                 }
             }
@@ -601,6 +775,23 @@ pub(crate) fn smoke_test(
             report["gamepads_connected"] = serde_json::json!(pads.iter().count());
             report["comfort"] = serde_json::json!(prefs.file.comfort);
             report["fixed_recovery_stages"] = serde_json::json!(state.fixed_stages);
+            if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1") {
+                assert!(
+                    state.walk_crossing_setup.iter().all(|v| *v),
+                    "missing native surface crossings"
+                );
+                assert_eq!(
+                    state.remounts, 2,
+                    "native foot crossings must reach both bikes"
+                );
+                report["walk_crossing_setups"] = serde_json::json!(state.walk_crossing_setup);
+                assert!(
+                    state.walk_crossing_distance.iter().all(|v| *v > 5.),
+                    "native fixture must physically walk back to both bikes"
+                );
+                report["walk_crossing_distances_m"] =
+                    serde_json::json!(state.walk_crossing_distance);
+            }
             report["render_running_captured"] = serde_json::json!(state.running);
             report["vehicle"] = telemetry
                 .samples

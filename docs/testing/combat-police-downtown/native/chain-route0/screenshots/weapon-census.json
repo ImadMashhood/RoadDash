@@ -1,0 +1,11 @@
+{
+  "additional_asset_counts": "not_measured",
+  "family": "chain",
+  "held_roots": 30,
+  "max_held_roots": 30,
+  "max_pickup_roots": 12,
+  "new_physical_bodies": 0,
+  "pickup_roots": 7,
+  "resident_part_instances": 111,
+  "visible_fallback_part_instances": 6
+}

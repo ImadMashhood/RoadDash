@@ -1,0 +1,32 @@
+{
+  "vehicle_samples": 4792,
+  "vehicle_clearance_failures": 0,
+  "grid_bikes": 15,
+  "minimum_station_gap_m": 20,
+  "player_start_m": -288,
+  "grid_lanes_m": [
+    -4.5,
+    -1.5
+  ],
+  "lane_width_m": 3,
+  "route_lane_counts": [
+    4,
+    3,
+    4
+  ],
+  "split_m": 3350,
+  "rejoin_m": 5362.5,
+  "parked_cars": 30,
+  "street_props": 995,
+  "prop_types": 13,
+  "buildings_unchanged": 19068,
+  "preserved": [
+    "race paths",
+    "elevations",
+    "checkpoints",
+    "building IDs, footprints, heights and styles",
+    "field polygons",
+    "secondary street network"
+  ],
+  "limits": "Geometry audit, not a full race balance or performance certificate"
+}

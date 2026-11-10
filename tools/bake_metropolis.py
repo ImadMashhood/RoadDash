@@ -88,9 +88,19 @@ def run():
             max(x[2] for x in [ground_bounds]+field_bounds)+100,max(x[3] for x in [ground_bounds]+field_bounds)+100]
     from metropolis_streetscape import sidewalks, furniture, audit
     road, walk, gained = sidewalks(d)
+    parked=parked_cars(d,paths,road,life)
+    # Small side-street curb bays reuse original pavement reservation. Preserve
+    # the main race carriageway and retain >=1.5m of outer sidewalk per bay.
+    from metropolis_streetscape import footprint
+    from shapely.ops import unary_union
+    parked=[c for c in parked if walk.covers(footprint([c['position'][0]+math.cos(c['heading'])*1.9,c['position'][1]-math.sin(c['heading'])*1.9],c['heading'],1.5,6.4))]
+    bays=unary_union([footprint(c['position'],c['heading'],2.2,4.4) for c in parked]).intersection(walk)
+    road=road.union(bays);walk=walk.difference(bays)
     street_props = furniture(d, paths, walk)
     sidewalk_report = audit(d, road, walk, gained, street_props)
-    parked=parked_cars(d,paths,road,life)
+    sidewalk_report['parking_bay_area_m2']=round(bays.area,3)
+    from metropolis_population import pedestrians
+    walkers=pedestrians(d,paths,walk,street_props)
     surfaces=[]
     # Clip to short tiles before triangulation: pavement follows the graded height field.
     courts=[]
@@ -128,9 +138,9 @@ def run():
     manifest=dict(schema_version=1,source_layout_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),track=track,paths=paths,
                   bounds=bounds,buildings=records,surfaces=surfaces,streets=d['streets'],
                   junctions=[dict(point=j['point'],street_id=j['secondary_street_ids'][0]) for j in d['race_first']['primary_junctions']],
-                  traffic_paths=traffic_paths(paths,d),street_life=life,parked_cars=parked,street_props=street_props,fields=[dict(id=f['id'],shape=triangulate(Polygon(f['polygon'])),crop=f['crop']) for f in d['fields']])
-    (ROOT/'docs/testing/metropolis-sidewalks').mkdir(exist_ok=True)
-    (ROOT/'docs/testing/metropolis-sidewalks/authoring.json').write_text(json.dumps(sidewalk_report,indent=2)+'\n')
+                  traffic_paths=traffic_paths(paths,d),street_life=life,parked_cars=parked,pedestrians=walkers,street_props=street_props,fields=[dict(id=f['id'],shape=triangulate(Polygon(f['polygon'])),crop=f['crop']) for f in d['fields']])
+    (ROOT/'docs/testing/downtown-street-life').mkdir(exist_ok=True)
+    (ROOT/'docs/testing/downtown-street-life/authoring.json').write_text(json.dumps(sidewalk_report,indent=2)+'\n')
     OUT.write_text(json.dumps(manifest,separators=(',',':'))+'\n')
     atlas_root=ROOT/'art/buildings/mesh_assets/far_facades';atlas=json.loads((atlas_root/'MANIFEST.json').read_text())
     designs=palette['families']

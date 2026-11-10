@@ -1,8 +1,8 @@
 //! Art-led 4:3 portrait pages with live text and the shared menu edge owner.
 use super::*;
 const INK: Color = Color::srgb(0.02, 0.012, 0.025);
-const PAPER: Color = Color::srgb(1.0, 0.92, 0.69);
-const GOLD: Color = Color::srgb(1.0, 0.74, 0.12);
+const PAPER: Color = layout::PAPER;
+const GOLD: Color = layout::ACCENT;
 
 fn back_button(commands: &mut Commands, canvas: Entity, index: usize, caption: &str) {
     let button = commands
@@ -55,7 +55,7 @@ pub(super) fn render(commands: &mut Commands, canvas: Entity, portraits: &[Handl
             top: percent(1),
             ..default()
         },
-        GOLD,
+        PAPER,
     );
     commands.entity(canvas).add_child(title);
     let grid = commands
@@ -156,7 +156,7 @@ pub(super) fn detail(commands: &mut Commands, canvas: Entity, selected: usize) {
                 ..default()
             },
             BackgroundColor(Color::srgba(0.015, 0.0, 0.025, 0.94)),
-            BorderColor::all(Color::srgb(0.45, 0.07, 0.04)),
+            BorderColor::all(Color::srgba(1., 1., 1., 0.12)),
         ))
         .id();
     let name = text(
@@ -164,7 +164,7 @@ pub(super) fn detail(commands: &mut Commands, canvas: Entity, selected: usize) {
         rider.name.to_uppercase(),
         42.0,
         Node::default(),
-        GOLD,
+        PAPER,
     );
     let bio = text(
         commands,

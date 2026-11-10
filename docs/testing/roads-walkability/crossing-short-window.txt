@@ -1,0 +1,23 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability)
+    Finished `test` profile [optimized + debuginfo] target(s) in 26.58s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 5 tests
+test world_gen::metropolis::geometry::tests::paint_follows_paved_crossfall_instead_of_burying_outer_lanes ... ok
+test world_gen::metropolis::geometry::tests::semantic_collision_batching_preserves_exact_triangle_soup_and_support_roles ... ok
+test world_gen::metropolis::geometry::tests::standalone_static_chunks_keep_contact_ccd_and_support_trajectories ... ok
+
+thread 'world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions' (2565981) panicked at src/world_gen/metropolis/geometry.rs:751:13:
+blocked route 0 station 3000 side -1: Vec3(1.349834, 11.562675, -150.29465) -> Vec3(11.37133, 12.514278, -149.18547); output Some(KinematicCharacterControllerOutput { grounded: true, desired_translation: Vec3(0.0647416, -0.083333336, 0.005790072), effective_translation: Vec3(0.06452689, -3.8711947e-5, 0.008366507), collisions: [CharacterCollision { entity: 3v0, character_translation: Vec3(11.30684, 12.514271, -149.19383), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(3.596962e-5, -4.629896e-5, 3.2168916e-6), translation_remaining: Vec3(0.064705625, -0.08328704, 0.0057868552), hit: ShapeCastHit { time_of_impact: 5.8717593e-5, details: Some(ShapeCastHitDetails { witness1: Vec3(11.304272, 11.564335, -149.19492), witness2: Vec3(-0.002620697, -0.92994595, -0.00047302246), normal1: Vec3(-0.0025763903, 0.99951863, 0.030916683), normal2: Vec3(0.0025763903, -0.99951863, -0.030916683) }), status: Converged } }], is_sliding_down_slope: true })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions ... FAILED
+test world_gen::metropolis::geometry::tests::on_foot_steps_do_not_climb_solid_walls_above_the_cap ... ok
+
+failures:
+
+failures:
+    world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions
+
+test result: FAILED. 4 passed; 1 failed; 0 ignored; 0 measured; 261 filtered out; finished in 0.25s
+
+error: test failed, to rerun pass `--lib`

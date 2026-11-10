@@ -1,0 +1,77 @@
+[
+  {
+    "check": "fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit": 0,
+    "seconds": 2.46
+  },
+  {
+    "check": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "seconds": 0.5
+  },
+  {
+    "check": "tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit": 0,
+    "seconds": 39.26
+  },
+  {
+    "check": "build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit": 0,
+    "seconds": 0.31
+  },
+  {
+    "check": "audit",
+    "command": [
+      "python3",
+      "tools/audit.py"
+    ],
+    "exit": 0,
+    "seconds": 0.68
+  },
+  {
+    "check": "roadmap",
+    "command": [
+      "python3",
+      "tools/test_roadmap.py"
+    ],
+    "exit": 0,
+    "seconds": 0.27
+  },
+  {
+    "check": "progress",
+    "command": [
+      "python3",
+      "tools/sync_progress.py",
+      "--check"
+    ],
+    "exit": 0,
+    "seconds": 0.13
+  }
+]

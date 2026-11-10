@@ -45,8 +45,8 @@ for spawn in spawns:
     assert road.covers(footprint(p,yaw,.72,2.1)),spawn
 for p in m['parked_cars']:
     assert road.covers(footprint(p['position'],p['heading'],1.8,3.8).buffer(.1)),p['id']
-assert 0<len(m['parked_cars'])<=65
+assert 0<len(m['parked_cars'])<=128 # DOWNTOWN-01 bounded distributed curb bays
 assert len({p['kind'] for p in m['street_props']})==13
 report=dict(vehicle_samples=samples,vehicle_clearance_failures=0,grid_bikes=15,minimum_station_gap_m=20,player_start_m=spawns[0]['distance'],grid_lanes_m=[-4.5,-1.5],lane_width_m=3,route_lane_counts=[4,3,4],split_m=3350,rejoin_m=5362.5,parked_cars=len(m['parked_cars']),street_props=len(m['street_props']),prop_types=13,buildings_unchanged=len(m['buildings']),preserved=['race paths','elevations','checkpoints','building IDs, footprints, heights and styles','field polygons','secondary street network'],limits='Geometry audit, not a full race balance or performance certificate')
-(ROOT/'docs/testing/race-setup/geometry.json').write_text(json.dumps(report,indent=2)+'\n')
+(ROOT/'docs/testing/combat-police-downtown/race-clearance.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps(report,indent=2))

@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "master_volume": 0.95,
+  "audio_muted": false,
+  "fullscreen": false,
+  "vsync": true,
+  "comfort": {
+    "fov_degrees": 75.0,
+    "smoothing": 10.0,
+    "shake": 0.5,
+    "speed_fov": true,
+    "anti_nausea": false,
+    "speed_lines": false,
+    "deadzone": 0.15
+  },
+  "keyboard": {
+    "schema_version": 1,
+    "actions": {
+      "brake": [
+        "KeyS",
+        "ArrowDown"
+      ],
+      "camera": [
+        "KeyC"
+      ],
+      "drop": [
+        "KeyQ"
+      ],
+      "left": [
+        "KeyA",
+        "ArrowLeft"
+      ],
+      "mute": [
+        "KeyM"
+      ],
+      "nitro": [
+        "ShiftLeft",
+        "ShiftRight"
+      ],
+      "pause": [
+        "Escape"
+      ],
+      "pickup": [
+        "KeyE"
+      ],
+      "punch_left": [
+        "KeyJ"
+      ],
+      "punch_right": [
+        "KeyK"
+      ],
+      "restart": [
+        "KeyR"
+      ],
+      "right": [
+        "KeyD",
+        "ArrowRight"
+      ],
+      "start": [
+        "Enter"
+      ],
+      "throttle": [
+        "KeyW",
+        "ArrowUp"
+      ]
+    }
+  },
+  "controller": {
+    "brake": "LeftTrigger2",
+    "camera": "RightThumb",
+    "left": "DPadLeft",
+    "mute": "LeftThumb",
+    "nitro": "North",
+    "pause": "Start",
+    "punch_left": "West",
+    "punch_right": "East",
+    "restart": "Select",
+    "right": "DPadRight",
+    "start": "South",
+    "throttle": "RightTrigger2"
+  }
+}

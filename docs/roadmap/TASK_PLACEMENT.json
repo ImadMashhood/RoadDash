@@ -1,11 +1,19 @@
 {
-  "date": "2026-11-08",
+  "date": "2026-11-09",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "SETTINGS-01",
+        "UI-POLISH-01",
+        "UI-FORMAT-01",
+        "UI-RETRY-01",
+        "DOWNTOWN-01",
+        "WEAPON-MODELS-01",
+        "ROAD-WALK-01",
+        "AI-12",
         "RACE-SETUP-01",
         "ANIM-15",
         "RECOVERY-01",
@@ -223,6 +231,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "FOOT-SPAWN-01",
         "AI-11",
         "CRASHREF-004",
         "V2-01-005",

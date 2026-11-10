@@ -24,7 +24,7 @@ def footprint(p, yaw, width, depth):
 
 def furniture(data, paths, walk):
     result=[];occupied=[]
-    clear_shift=1.2
+    clear_shift=1.1
     junctions=[Point(j['point']) for j in data['race_first']['primary_junctions']]
     import shapely
     shapely.prepare(walk)
@@ -51,8 +51,8 @@ def furniture(data, paths, walk):
                 def pos(along=0):return (x+dz*side*6.5+dx*along,z-dx*side*6.5+dz*along)
                 seed=index+(1 if side>0 else 0)
                 if seed%2==0:add('street_lamp',pos(-9),yaw,(.5,5.2,.5))
-                if seed%12==0:
-                    add('broadleaf',pos(),yaw,(2.8,6.5,2.8),.7,.7)
+                if seed%4==0:
+                    add('broadleaf',pos(),yaw,(2.8,6.5,2.8),.36,.36)
                     add('flower_planter',pos(5),yaw,(.7,.7,1.1))
                 elif seed%5==0:
                     add('bench',pos(),yaw+side*math.pi/2,(1.8,.95,.65))
@@ -66,7 +66,8 @@ def furniture(data, paths, walk):
     primary=unary_union([LineString([(p[0],p[2]) for p in path['points']]) for path in paths])
     kinds=[('broadleaf',(2.8,6.5,2.8)),('bench',(1.8,.95,.65)),('flower_planter',(.7,.7,1.1)),('news_boxes',(.65,1.1,.65)),('mailboxes',(.65,1.0,.6)),('utility_box',(.65,1.1,.5)),('recycling_pair',(.65,.9,.65))]
     before=len(result)
-    for street in sorted(data.get('streets',[]),key=lambda st:LineString(st['points']).distance(primary)):
+    candidates=[]
+    for street in sorted(data.get('streets',[]),key=lambda st:st.get('id','')):
         line=LineString(street['points'])
         if line.distance(primary)>140:continue
         a,b=street['points'][0],street['points'][-1];dx,dz=b[0]-a[0],b[1]-a[1];n=math.hypot(dx,dz);dx,dz=dx/n,dz/n
@@ -75,10 +76,15 @@ def furniture(data, paths, walk):
             q=line.interpolate(along)
             if q.distance(primary)<22:continue
             for side in [-1,1]:
-                if len(result)-before>=450:break
-                kind,size=kinds[(len(result)-before)%len(kinds)]
                 p=(q.x+dz*side*(street['width_m']/2-.4),q.y-dx*side*(street['width_m']/2-.4))
-                add(kind,p,yaw+side*math.pi/2 if kind=='bench' else yaw,size,.7 if kind=='broadleaf' else None,.7 if kind=='broadleaf' else None)
+                candidates.append((p,yaw,dx,dz,side))
+    # Spend the bounded secondary-street budget across the full city, rather
+    # than exhausting it in source street order near the first neighborhoods.
+    from metropolis_population import balanced
+    for p,yaw,dx,dz,side in balanced(candidates,paths,lambda c:c[0]):
+        if len(result)-before>=450:break
+        kind,size=kinds[(len(result)-before)%len(kinds)]
+        add(kind,p,yaw+side*math.pi/2 if kind=='bench' else yaw,size,.36 if kind=='broadleaf' else None,.36 if kind=='broadleaf' else None)
     return result
 
 def audit(data, road, walk, gained, props):
@@ -90,7 +96,7 @@ def audit(data, road, walk, gained, props):
     assert gained.area>1000 and len(props)>200
     # Every physical footprint is on paved sidewalk; all buildings/route points untouched.
     for p in props:
-        w,z=(.7,.7) if p['kind']=='broadleaf' else (p['size'][0],p['size'][2])
+        w,z=(.36,.36) if p['kind']=='broadleaf' else (p['size'][0],p['size'][2])
         assert walk.covers(footprint(p['position'],p['heading'],w,z).buffer(.12))
     return dict(curb_shift_m=CURB_SHIFT,typical_primary_sidewalk_width_m=2.4,minimum_building_side_walk_m=CLEAR_WALK_M,
                 added_sidewalk_area_m2=round(gained.area,3),props=len(props),by_kind=dict(Counter(p['kind'] for p in props)),
