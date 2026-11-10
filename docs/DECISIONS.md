@@ -3792,3 +3792,29 @@ queries and accepted physics. AI-QUEUE-02 covers the runtime regression. Close
 the 8 cm exposed terrain seam with a soil render-edge underlap, retaining road,
 sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
+
+## ADR142 — Civilian opposing-lane overtaking (2026-11-10)
+
+Issue27 requests sustained slow-leader passing: tractors6m/s, semis12m/s,
+ordinary cars13–19m/s retain their authored cruises. Add an engine-neutral
+Follow/Pass/Abort/Merge memory in rr_core; evaluate in the existing60Hz traffic
+adapter, with continuous3s lane transitions and sampler-owned ground support.
+Normalize per-station road lanes into a shared divider frame. Compare signed
+travel progress, actual vehicle bounds, relative passing duration and projected
+merge room. Deterministic entity ordering publishes local reservations before
+subsequent decisions; retain them until the merge finishes. Revalidate moving
+hazards, brake/drop behind before merging if room closes, and cool down retries.
+Upright bikers are intentionally absent from the civilian oncoming-car veto:
+this creates the requested riding hazard, with all existing solid contacts and
+crash/recovery intact. Downed-person yielding remains a higher-priority stop.
+No new dependency, assets or source-code intake; Bevy0.17.3/Rapier0.32.0 retained
+pending the separately coordinated engine migration. Human traffic balance,
+long-race/hardware and broad frame-time acceptance remain separate gates.
+
+ADR142 validation refinement: preserve compressed equal-class launch ordering by
+requiring nonoverlapping departure envelopes and resetting impediment memory
+while the leader accelerates. A genuine same-class stalled motor remains eligible
+after six stable seconds; its stored cruise is not an unconditional veto. Use the
+native2m/s² acceleration and both3s lateral transitions in the passing horizon
+and projected merge station. Separate departure/return geometry checks and
+opt-in CPU timing preserve the normal fixed-step adapter and publication gates.

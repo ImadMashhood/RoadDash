@@ -1828,3 +1828,26 @@ All594workspace tests, strict lint/build/audit and five roadmap checks pass.
 Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
+
+
+## 2026-11-10 — Civilian overtaking (issue27 / ADR142)
+
+- Read the current checklist/decisions/issues, installed0.17.3/0.32.0 lockfile,
+  AI-QUEUE-02 evidence and traffic/racer adapters before implementing.
+- Added RFU-TRAF-01–04 as open requirements in Part06, retaining prior tasks.
+- Implemented a pure civilian pass/abort/merge FSM, deterministic local claims,
+  continuous sampler-grounded lane changes, live large-vehicle/merge checks,
+  width-derived lateral clearance and a bounded static collider sweep.
+- Upright oncoming bikers intentionally do not veto passes; solid contacts,
+  downed-person yielding, accepted rigs and speed hierarchy remain integrated.
+- Added core motion/obstruction tests, production-course support/biker/static
+  fixtures and opt-in native --civilian-survey. Full verification receipts and
+  limitations are recorded in testing/civilian-overtaking/REPORT.md.
+
+Issue27 validation follow-up: the first full suite exposed transient same-class
+launch queues initiating passes from compressed envelopes. Preserve strict queue
+order, reset impediment memory while a leader accelerates, require clear initial
+body spacing, and still allow a genuinely stalled same-class motor after six
+stable seconds. Integrate acceleration into the passing horizon and projected
+merge point. Final609 workspace tests, strict lint/format, debug/release builds, audit and
+roadmap checks pass; native timing/motion/recovery remain scheduled separately.

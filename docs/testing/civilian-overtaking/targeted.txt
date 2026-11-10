@@ -1,0 +1,15 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 59s
+     Running unittests src/lib.rs (target/shared-snapshot/debug/deps/road_dash-6169320fe37c13bf)
+
+running 5 tests
+test game::civilian_tests::civilian_lane_transition_stays_on_hills_bridge_deck ... ok
+test game::civilian_tests::asymmetric_metropolis_pavement_is_centered_on_sampler_not_lane_divider ... ok
+test game::civilian_tests::upright_oncoming_biker_does_not_veto_civilian_pass_or_remove_collision ... ok
+test game::civilian_tests::civilian_refuses_static_departure_obstruction_then_resumes_after_clearance ... ok
+test game::civilian_tests::civilian_passes_slow_vehicle_in_both_course_directions_with_ground_support ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 422 filtered out; finished in 21.74s
+

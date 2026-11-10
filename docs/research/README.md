@@ -1,6 +1,7 @@
 # Research ledger
 
-OBSERVATIONS.csv records 23 documentary observations at immutable revisions/tags.
+OBSERVATIONS.csv records documentary observations with declared revisions/tags
+or an explicit access date for unversioned documentation.
 These describe what sources say, not independently measured original-game facts.
 No commercial executable/disc or reference game was run or imported. The Bevy
 scheduling observations informed our own implementation; source algorithms in
@@ -10,3 +11,7 @@ fabricated. Later behavioral testing should add evidence, not rewrite confidence
 
 See ../third_party/REPOSITORIES.md for investigation decisions and ../GDD.md for
 new game requirements. Classic reference and new design statistics stay separate.
+
+Civilian overtaking: OBS-TRAF-001 records conceptual MOBIL research only;
+[implementation and validation](../testing/civilian-overtaking/REPORT.md) distinguish
+the original RoadDash FSM from the referenced model. No source/media intake.

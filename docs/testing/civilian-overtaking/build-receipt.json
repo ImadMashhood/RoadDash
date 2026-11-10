@@ -1,0 +1,30 @@
+{
+  "binary_path": "/tmp/road-dash-issue27",
+  "binary_sha256": "4b7758c5edf711746fba08ea8b9253a7663b208ea4f644152131353aad62288e",
+  "binary_bytes": 177095336,
+  "base_commit": "754f9ddb14553ca6bf20c4d44287768bacbae5e7",
+  "source_sha256": {
+    "crates/rr_core/src/civilian.rs": "4f74759b9f61f75850f0f2c784bbbdc8f1e866c076da284319bc24d63e7b70fa",
+    "crates/rr_core/src/lib.rs": "edde3b46ab6dde1493abf8a2d8c9092bb84e59766a1d669a767768f983bee36f",
+    "src/game.rs": "0604fd4d5cb461d664eb40be6c97d29626a70ff165aec1d31fc5e599bdc202a4",
+    "src/civilian_tests.rs": "2ce5cdb53506fa3360b2653fabf34a9f3927c2513a25a9d63dc161e917a9f039",
+    "src/civilian_survey.rs": "4df2e878eda6f9ce06fe250d2644186383c9a64bd1a7af306da299b704d5aaa2",
+    "src/lib.rs": "e500b395a63181676c6bbf5d04a9aca87d000849078d98bf82cb5881835ee5ca",
+    "src/main.rs": "951f4c9b7c3906d8251a371b164bf30e2303cdd9233d16afa92fa9cfb083184e",
+    "tools/run_civilian_checks.py": "993429d4cfa8d4ae6c12cb588314c634d33f74a73cd6a8be42e3c1cb1f261019"
+  },
+  "checks": {
+    "workspace_tests_passed": 609,
+    "explicitly_ignored_tests": 2,
+    "strict_clippy": "pass",
+    "fmt_check": "pass",
+    "locked_debug_build": "pass",
+    "fresh_locked_release_build": "pass",
+    "audit": "pass",
+    "roadmap_tests_passed": 5,
+    "native_motion_recovery": "pending",
+    "native_fleet_cpu": "pending",
+    "isolated_core_cpu": "pending"
+  },
+  "limits": "Release workspace package artifacts explicitly cleaned after COW dependency cache snapshot. No native motion/timing/hardware result inferred from compilation or unit tests."
+}

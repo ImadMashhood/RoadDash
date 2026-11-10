@@ -375,6 +375,10 @@
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "RFU-TRAF-01",
+        "RFU-TRAF-02",
+        "RFU-TRAF-03",
+        "RFU-TRAF-04",
         "HILLS-11",
         "SKY-SUN-01",
         "CROP-TRAIL-01",

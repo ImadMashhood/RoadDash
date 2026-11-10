@@ -220,6 +220,7 @@ fn main() {
             || a == "--frontend-smoke"
             || a == "--destruction-survey"
             || a == "--traffic-stall-survey"
+            || a == "--civilian-survey"
             || a == "--metro-survey"
             || a == "--hills-survey"
             || a == "--hills-polish-survey"

@@ -1188,3 +1188,10 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   594tests and both-rig native recovery pass; complete human race/passing balance,
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
+
+- RFU-TRAF-01–04 / issue27: civilian overtaking work adds deterministic
+  reservations and live merge/abort checks. Human traffic balance, full-race
+  unforeseen queues and broad hardware/frame-time acceptance remain open;
+  regression evidence and pending native gates are recorded in testing/civilian-overtaking.
+  Upright oncoming bikers intentionally do not veto a pass; their solid
+  contact/recovery behavior is retained.
