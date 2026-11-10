@@ -4,6 +4,7 @@ use bevy::render::view::screenshot::{Screenshot, save_to_disk};
 #[derive(Resource, Default)]
 struct Smoke {
     stage: usize,
+    settings_frame: u32,
     portraits_checked: usize,
     frames: u32,
     wait: u32,
@@ -20,7 +21,7 @@ fn run(
     mut s: ResMut<Smoke>,
     mut front: ResMut<Frontend>,
     mut race: ResMut<Race>,
-    mut panel: ResMut<SettingsPanel>,
+    settings: (ResMut<SettingsPanel>, ResMut<crate::settings::Preferences>),
     mut controls: ResMut<Controls>,
     server: Res<AssetServer>,
     art: Res<Art>,
@@ -38,6 +39,7 @@ fn run(
         Query<(&Text, &ComputedNode, &UiGlobalTransform)>,
     ),
 ) {
+    let (mut panel, mut prefs) = settings;
     let (held, cards, labels) = actors;
     s.frames += 1;
     assert!(s.frames < 20000, "frontend smoke timed out");
@@ -67,6 +69,72 @@ fn run(
         assert!(matches!(front.flow.page, Page::Bar | Page::Portrait));
     } else {
         assert_eq!(front.flow.page, expected, "stage {}", s.stage);
+    }
+    if s.stage == 8 && std::env::var("ROADDASH_VERIFY_SETTINGS").as_deref() == Ok("1") {
+        s.settings_frame += 1;
+        let t = s.settings_frame;
+        if t == 1 {
+            prefs.path = Some(std::path::PathBuf::from("settings-native.json"));
+        }
+        for (frame, key, down) in [
+            (10, KeyCode::PageDown, true),
+            (12, KeyCode::PageDown, false),
+            (32, KeyCode::PageDown, true),
+            (34, KeyCode::PageDown, false),
+            (44, KeyCode::ArrowLeft, true),
+            (46, KeyCode::ArrowLeft, false),
+            (54, KeyCode::PageDown, true),
+            (56, KeyCode::PageDown, false),
+            (66, KeyCode::ArrowRight, true),
+            (68, KeyCode::ArrowRight, false),
+            (76, KeyCode::ArrowRight, true),
+            (78, KeyCode::ArrowRight, false),
+            (90, KeyCode::F2, true),
+            (92, KeyCode::F2, false),
+        ] {
+            if t == frame {
+                crate::verification::smoke_key(&mut commands, key, down);
+            }
+        }
+        if t == 20 {
+            windows.single_mut().unwrap().resolution.set(1280., 720.);
+        }
+        if t == 50 {
+            assert!((prefs.file.master_volume - 0.95).abs() < 0.001);
+        }
+        if t == 72 {
+            assert!(!prefs.file.vsync);
+            assert_eq!(
+                windows.single().unwrap().present_mode,
+                bevy::window::PresentMode::AutoNoVsync
+            );
+        }
+        let capture = match t {
+            8 => Some("camera"),
+            18 => Some("controls"),
+            28 => Some("controls-720p"),
+            42 => Some("audio"),
+            50 => Some("audio-adjusted"),
+            64 => Some("display"),
+            _ => None,
+        };
+        if let Some(name) = capture {
+            commands
+                .spawn(Screenshot::primary_window())
+                .observe(save_to_disk(format!("screenshots/settings-{name}.png")));
+        }
+        if t == 100 {
+            assert!(!panel.open);
+            let saved = crate::settings::Preferences::load("settings-native.json".into());
+            assert!((saved.file.master_volume - 0.95).abs() < 0.001);
+            assert!(saved.file.vsync);
+            assert!(!saved.read_only);
+            std::fs::write("screenshots/settings-report.json",serde_json::to_string_pretty(&serde_json::json!({"categories":4,"master_volume":saved.file.master_volume,"vsync_reloaded":saved.file.vsync,"real_keyboard_category_adjust_save":true,"profile_credits":profile.credits,"limits":"Native keyboard/screenshot/persist proof; no human audible,driverlatency or physicalcontroller approval"})).unwrap()).unwrap();
+            windows.single_mut().unwrap().resolution.set(1440., 900.);
+            s.stage = 9;
+            s.wait = 0;
+        }
+        return;
     }
     let name = match s.stage {
         0 => Some("01-splash"),

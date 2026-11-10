@@ -28,6 +28,11 @@ pub fn approach_speed(target_speed: f32, gap: f32, on_foot: bool, top: f32, rule
     };
     (target_speed + (gap - stand_off) * 0.75).clamp(0., top)
 }
+/// Search approaches a stationary last-seen point, without retaining the unseen
+/// rider's velocity feedforward or driving indefinitely beyond that point.
+pub fn search_speed(gap: f32, top: f32) -> f32 {
+    ((gap - 2.0) * 0.75).clamp(0.0, top)
+}
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum State {
     #[default]
@@ -40,6 +45,12 @@ pub enum State {
     Arrested,
 }
 impl State {
+    /// Direction changes inside an existing chase do not restart its siren/HUD.
+    pub fn announces(self, previous: Self) -> bool {
+        self != previous
+            && !(matches!(self, Self::Pursue | Self::Intercept)
+                && matches!(previous, Self::Pursue | Self::Intercept))
+    }
     pub fn wanted(self) -> bool {
         matches!(self, Self::Pursue | Self::Intercept | Self::Search)
     }
@@ -99,7 +110,7 @@ impl Mind {
                 if self.unseen >= rules.lose_seconds {
                     self.state = State::Search;
                     self.search = 0.0;
-                } else {
+                } else if o.visible {
                     self.state = if o.target_ahead < 0.0 {
                         State::Intercept
                     } else {
@@ -177,6 +188,38 @@ mod tests {
             relative_speed: 10.,
             ..Default::default()
         }
+    }
+    #[test]
+    fn unseen_target_cannot_change_interception_direction() {
+        let mut m = Mind {
+            state: State::Pursue,
+            ..Default::default()
+        };
+        let mut o = seen();
+        o.visible = false;
+        o.target_ahead = -50.;
+        m.step(o, 0.1, rules());
+        assert_eq!(m.state, State::Pursue);
+        o.visible = true;
+        m.step(o, 0.1, rules());
+        assert_eq!(m.state, State::Intercept);
+        o.visible = false;
+        o.target_ahead = 50.;
+        m.step(o, 0.1, rules());
+        assert_eq!(m.state, State::Intercept);
+    }
+    #[test]
+    fn search_brakes_at_last_seen_point_and_direction_flips_do_not_reannounce() {
+        assert_eq!(search_speed(1000., 55.), 55.);
+        assert!(search_speed(10., 55.) < search_speed(20., 55.));
+        for gap in [-100., 0., 2.] {
+            assert_eq!(search_speed(gap, 55.), 0.);
+        }
+        assert!(!State::Intercept.announces(State::Pursue));
+        assert!(!State::Pursue.announces(State::Intercept));
+        assert!(State::Pursue.announces(State::Search));
+        assert!(State::Search.announces(State::Pursue));
+        assert!(State::Return.announces(State::Search));
     }
     #[test]
     fn nearby_moving_foot_target_requests_ordinary_stop_not_endless_bike_tail() {

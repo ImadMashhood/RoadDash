@@ -1,0 +1,23 @@
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 04s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 4 tests
+test world_gen::metropolis::geometry::tests::paint_follows_paved_crossfall_instead_of_burying_outer_lanes ... ok
+test world_gen::metropolis::geometry::tests::semantic_collision_batching_preserves_exact_triangle_soup_and_support_roles ... ok
+test world_gen::metropolis::geometry::tests::standalone_static_chunks_keep_contact_ccd_and_support_trajectories ... ok
+
+thread 'world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions' (2549742) panicked at src/world_gen/metropolis/geometry.rs:742:9:
+blocked route 0 station 3000 side -1: Vec3(1.349834, 11.562675, -150.29465) -> Vec3(1.7096659, 12.312318, -149.85799)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions ... FAILED
+
+failures:
+
+failures:
+    world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 261 filtered out; finished in 0.25s
+
+error: test failed, to rerun pass `--lib`

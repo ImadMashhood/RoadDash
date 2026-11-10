@@ -1,0 +1,102 @@
+{
+  "validated": 12,
+  "source_and_four_blends_validated": true,
+  "records": [
+    {
+      "file": "weapons/chain_lod0.glb",
+      "sha256": "e5a3a2b4d6a10a6dc249f914499e5a21b2bf3cbdfa6a018a29519e506f410f12",
+      "triangles": 6216,
+      "materials": 4,
+      "bytes": 134180,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/chain_lod1.glb",
+      "sha256": "88b1aab6542928f8379555851fee05a139ca3cc62546a6fbc553c19aad32508f",
+      "triangles": 3088,
+      "materials": 4,
+      "bytes": 69752,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/chain_lod2.glb",
+      "sha256": "990da29abeef5b8add1d51d74077a423eca452238b63434c63c4089d4a681fe7",
+      "triangles": 1556,
+      "materials": 4,
+      "bytes": 35644,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/whip_lod0.glb",
+      "sha256": "6b3ace4244996ea856a5cd162a75d3825d421e3262d865c17916a9820079925b",
+      "triangles": 3804,
+      "materials": 3,
+      "bytes": 114276,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/whip_lod1.glb",
+      "sha256": "e59187dfb31c7e0e3329b79690518e4c2e709c305339167748e4f7b9de582640",
+      "triangles": 1804,
+      "materials": 3,
+      "bytes": 61376,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/whip_lod2.glb",
+      "sha256": "556a7c74e38042eee481aab3e73c102572b4452c227513a5f07664ffd90b1fa4",
+      "triangles": 984,
+      "materials": 3,
+      "bytes": 27556,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/rolling_pin_lod0.glb",
+      "sha256": "50f91da0c748966229d29bc8225967537a1fd8afd0f57045151b3da759e81408",
+      "triangles": 1108,
+      "materials": 3,
+      "bytes": 28016,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/rolling_pin_lod1.glb",
+      "sha256": "77ff899617e709a3f9b85d9fcf0f17b97f9fc6317d2275c3c89595450142a32b",
+      "triangles": 724,
+      "materials": 3,
+      "bytes": 19184,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/rolling_pin_lod2.glb",
+      "sha256": "cce018a71e92fff590e38b915da0250de326d3a65bb330d5dc7e48d4786a6cd5",
+      "triangles": 364,
+      "materials": 3,
+      "bytes": 10980,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/baseball_bat_lod0.glb",
+      "sha256": "d58a86d4cb54100b4b7ed0e8a19124a0952d39a73c9ed89fd70833603331d500",
+      "triangles": 1628,
+      "materials": 4,
+      "bytes": 62056,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/baseball_bat_lod1.glb",
+      "sha256": "8ee5324eab5bda3b7d73daf027d19cefbe8e0c131bfc8e0e3efed828bc7d94bd",
+      "triangles": 736,
+      "materials": 4,
+      "bytes": 30072,
+      "degenerate_triangles": 0
+    },
+    {
+      "file": "weapons/baseball_bat_lod2.glb",
+      "sha256": "3c9f19965c38ba07bfe9b2027885e3ebbdb7c1ef4fbf7029d2ceeb458c50a60a",
+      "triangles": 396,
+      "materials": 4,
+      "bytes": 18044,
+      "degenerate_triangles": 0
+    }
+  ]
+}

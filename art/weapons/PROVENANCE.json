@@ -1,0 +1,13 @@
+{
+  "source": "tools/build_weapon_models.py",
+  "source_sha256": "8a3b173c2334164ac8b69c0a2f7fd04ce0cbfc51dde682002734990f8ee445dc",
+  "blender": "4.5.1 LTS",
+  "authoring_sha256": {
+    "chain.blend": "d03117e424f6d83492113b214b7e56aaed57d818300437734dad726ded850c7e",
+    "whip.blend": "11360118d57341304d5030f2790e4d40010eac3b4c34241c55ec40977f5343f0",
+    "rolling_pin.blend": "20ab7aaf87bbf30e04e5d9509a0ba3df1f848e5cbf08caf2ffbee4fe90c8fe72",
+    "baseball_bat.blend": "117fe931e00f206aaba993c389225c90af325633af4ee0131beae5d29a603558"
+  },
+  "imports": [],
+  "catalog_sha256": "3eedf039c1ff36005fef5acb7b761ce73172b3a74549d39388465e92742b3425"
+}

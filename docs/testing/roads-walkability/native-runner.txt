@@ -1,0 +1,5 @@
+{"name": "route-0-anatomy", "args": ["--smoke-test"], "passed": true, "exit_code": 0, "walk_crossing_distances_m": [5.328341007232666, 34.58651351928711], "wall_seconds": 37.19}
+{"name": "route-1-anatomy", "args": ["--smoke-test"], "passed": true, "exit_code": 0, "walk_crossing_distances_m": [5.328341007232666, 35.893531799316406], "wall_seconds": 37.594}
+{"name": "route-0-baseline", "args": ["--smoke-test", "--ragdoll-baseline"], "passed": true, "exit_code": 0, "walk_crossing_distances_m": [5.427940368652344, 35.10457229614258], "wall_seconds": 36.539}
+{"name": "route-1-baseline", "args": ["--smoke-test", "--ragdoll-baseline"], "passed": true, "exit_code": 0, "walk_crossing_distances_m": [5.427940368652344, 30.297813415527344], "wall_seconds": 35.336}
+{"name": "metro-survey", "args": ["--metro-survey"], "passed": true, "exit_code": 0, "wall_seconds": 38.542}

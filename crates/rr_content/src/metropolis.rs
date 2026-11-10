@@ -164,6 +164,16 @@ pub struct ParkedCar {
 }
 #[derive(Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct Pedestrian {
+    pub id: String,
+    pub position: [f32; 2],
+    pub heading: f32,
+    pub extent: f32,
+    pub route: usize,
+    pub station: f32,
+}
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Metropolis {
     pub schema_version: u32,
     pub source_layout_sha256: String,
@@ -179,6 +189,8 @@ pub struct Metropolis {
     pub street_props: Vec<StreetProp>,
     pub street_life: StreetLife,
     pub parked_cars: Vec<ParkedCar>,
+    #[serde(default)]
+    pub pedestrians: Vec<Pedestrian>,
 }
 impl Metropolis {
     pub fn from_json(json: &str) -> Result<Self, String> {
@@ -187,6 +199,24 @@ impl Metropolis {
         Ok(m)
     }
     pub fn validate(&self) -> Result<(), String> {
+        let mut walker_ids = HashSet::new();
+        if self.pedestrians.len() > 96
+            || self.pedestrians.iter().any(|p| {
+                !walker_ids.insert(&p.id)
+                    || p.id.is_empty()
+                    || p.route > 1
+                    || !p.station.is_finite()
+                    || !(3150. ..12000.).contains(&p.station)
+                    || !p.heading.is_finite()
+                    || !p.extent.is_finite()
+                    || !(4. ..=9.).contains(&p.extent)
+                    || p.position
+                        .iter()
+                        .any(|v| !v.is_finite() || v.abs() > 20000.)
+            })
+        {
+            return Err("invalid pedestrian patrol".into());
+        }
         self.track.validate()?;
         self.street_life.validate()?;
         if self.parked_cars.len() > 300
@@ -376,6 +406,20 @@ mod tests {
         assert!(m.validate().is_err());
         m.street_life.lane_sections[0].outbound = 1;
         m.street_life.lane_sections[0].lane_width = 7.;
+        assert!(m.validate().is_err());
+    }
+    #[test]
+    fn pedestrian_patrols_are_bounded_unique_and_finite() {
+        let mut m =
+            Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
+        assert_eq!(m.pedestrians.len(), 96);
+        m.pedestrians[0].extent = 40.;
+        assert!(m.validate().is_err());
+        m.pedestrians[0].extent = 6.;
+        m.pedestrians[1].id = m.pedestrians[0].id.clone();
+        assert!(m.validate().is_err());
+        m.pedestrians[1].id = "unique-pedestrian".into();
+        m.pedestrians[1].position[0] = f32::NAN;
         assert!(m.validate().is_err());
     }
     #[test]

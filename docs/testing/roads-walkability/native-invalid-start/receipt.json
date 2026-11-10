@@ -1,0 +1,16 @@
+{
+  "binary_sha256": "43afcc24833afa2ea45a1c8168a8721af1cbacc544778661c97766d783a1b834",
+  "cases": [
+    {
+      "name": "route-0-anatomy",
+      "args": [
+        "--smoke-test"
+      ],
+      "passed": false,
+      "exit_code": 101,
+      "error": "native fixture exited 101",
+      "wall_seconds": 49.734
+    }
+  ],
+  "limits": "Scripted Linux native fixtures; no human feel, Windows or performance certificate."
+}

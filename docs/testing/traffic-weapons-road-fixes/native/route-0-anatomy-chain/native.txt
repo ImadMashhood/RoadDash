@@ -1,0 +1,56 @@
+2026-11-09T07:26:43.766450Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T07:26:43.767181Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-09T07:26:43.771002Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-09T07:26:43.771017Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x55f2038c3b10, name: ?)
+2026-11-09T07:26:44.031014Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/traffic-weapons-road-fixes/native/route-0-anatomy-chain/performance/performance-2597357.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-09T07:26:45.774968Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775028Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775038Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775046Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775053Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775061Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775069Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775076Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775083Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775091Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775098Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775106Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775113Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775120Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775128Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775136Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775145Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775153Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775165Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775175Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775185Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775194Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775207Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775216Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775225Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775235Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775248Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775275Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775298Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:45.775308Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:46.391089Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:46.391157Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:46.391166Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:46.391174Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:46.391181Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+2026-11-09T07:26:46.391188Z  INFO road_dash::weapon_models: Original weapon model scene ready; hiding 3 fallback parts
+AI roster verified: seven racers and seven killers
+Audio output initialized: 4 playback sinks
+Native foot crossing setup 0: station=2800.000 start=Vec3(7.6774683, 12.078054, -348.48337) (farm terrain / city sidewalk)
+Native remount 1: pickup error 0.0000 m
+Native foot crossing setup 1: station=4401.221 start=Vec3(87.09384, 31.473074, 1249.819) (farm terrain / city sidewalk)
+Native walk profile 1: elapsed=1.02s distance=6.001m runner=Some(Vec3(89.9857, 31.430752, 1255.0769)) wreck=Some(Vec3(105.96125, 30.502693, 1282.3499)) next=Some(Vec3(105.16948, 31.20648, 1282.659)) controller=Some((true, Vec3(0.048224706, -0.008333334, 0.087603524), Vec3(0.048185434, 0.0011719503, 0.08774165)))
+Native walk profile 1: elapsed=2.02s distance=11.969m runner=Some(Vec3(92.87024, 31.30004, 1260.301)) wreck=Some(Vec3(105.96125, 30.502693, 1282.3499)) next=Some(Vec3(105.16948, 31.20648, 1282.659)) controller=Some((true, Vec3(0.04819876, -0.008333334, 0.08761781), Vec3(0.048180003, -0.0012769036, 0.08764955)))
+Native walk profile 1: elapsed=3.02s distance=17.968m runner=Some(Vec3(95.75926, 31.284266, 1265.5586)) wreck=Some(Vec3(105.96125, 30.502693, 1282.3499)) next=Some(Vec3(105.16948, 31.20648, 1282.659)) controller=Some((true, Vec3(0.04821131, -0.008333334, 0.0876109), Vec3(0.048210293, -0.00026552984, 0.087677605)))
+Native walk profile 1: elapsed=4.02s distance=23.964m runner=Some(Vec3(98.648766, 31.26935, 1270.8123)) wreck=Some(Vec3(105.96125, 30.502693, 1282.3499)) next=Some(Vec3(105.16948, 31.20648, 1282.659)) controller=Some((true, Vec3(0.04821993, -0.008333334, 0.08760616), Vec3(0.048207425, -0.00063373055, 0.087639)))
+Native walk profile 1: elapsed=5.00s distance=29.864m runner=Some(Vec3(101.493774, 31.253101, 1275.9813)) wreck=Some(Vec3(105.96125, 30.502693, 1282.3499)) next=Some(Vec3(105.16948, 31.20648, 1282.659)) controller=Some((true, Vec3(0.048221264, -0.008333334, 0.08760544), Vec3(0.0482066, -0.00027702114, 0.0876201)))
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Metropolis route 0 -> farm/city crashes -> both recoveries -> results fixture

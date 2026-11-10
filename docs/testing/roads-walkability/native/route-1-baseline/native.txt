@@ -1,0 +1,20 @@
+2026-11-09T07:17:22.397357Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T07:17:22.398053Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-09T07:17:22.402606Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-09T07:17:22.402620Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x5647e45ed110, name: ?)
+2026-11-09T07:17:22.606701Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability/output/testing/roads-native-public/route-1-baseline/logs/performance-2590332.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+AI roster verified: seven racers and seven killers
+Audio output initialized: 4 playback sinks
+Native foot crossing setup 0: station=2800.000 start=Vec3(7.6774683, 12.078054, -348.48337) (farm terrain / city sidewalk)
+Native remount 1: pickup error 0.0000 m
+Native foot crossing setup 1: station=4401.225 start=Vec3(743.773, 32.38185, 1067.7878) (farm terrain / city sidewalk)
+Native walk profile 1: elapsed=1.02s distance=5.998m runner=Some(Vec3(747.1989, 32.211033, 1072.7109)) wreck=Some(Vec3(762.84644, 31.398552, 1094.5624)) next=Some(Vec3(762.1027, 32.108803, 1094.1508)) controller=Some((true, Vec3(0.05707835, -0.008333334, 0.08211007), Vec3(0.057092626, -0.00020967922, 0.082130775)))
+Native walk profile 1: elapsed=2.02s distance=12.000m runner=Some(Vec3(750.62366, 32.19888, 1077.6401)) wreck=Some(Vec3(762.84644, 31.398552, 1094.5624)) next=Some(Vec3(762.1027, 32.108803, 1094.1508)) controller=Some((true, Vec3(0.057084218, -0.008333334, 0.082105994), Vec3(0.05709832, -0.00019974475, 0.08212587)))
+Native walk profile 1: elapsed=3.02s distance=17.994m runner=Some(Vec3(754.04785, 32.18085, 1082.5592)) wreck=Some(Vec3(762.84644, 31.398552, 1094.5624)) next=Some(Vec3(762.1027, 32.108803, 1094.1508)) controller=Some((true, Vec3(0.057064258, -0.008333334, 0.082119875), Vec3(0.0570801, -0.00021785159, 0.08214027)))
+Native walk profile 1: elapsed=4.02s distance=23.995m runner=Some(Vec3(757.4721, 32.162212, 1087.488)) wreck=Some(Vec3(762.84644, 31.398552, 1094.5624)) next=Some(Vec3(762.1027, 32.108803, 1094.1508)) controller=Some((true, Vec3(0.05707033, -0.008333334, 0.08211565), Vec3(0.057085935, -0.00021416633, 0.082135856)))
+Native walk profile 1: elapsed=5.00s distance=29.898m runner=Some(Vec3(760.8403, 32.14067, 1092.3351)) wreck=Some(Vec3(762.84644, 31.398552, 1094.5624)) next=Some(Vec3(762.1027, 32.108803, 1094.1508)) controller=Some((true, Vec3(0.057087578, -0.008333334, 0.082103655), Vec3(0.05710325, -0.0004921174, 0.08212955)))
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Metropolis route 1 -> farm/city crashes -> both recoveries -> results fixture

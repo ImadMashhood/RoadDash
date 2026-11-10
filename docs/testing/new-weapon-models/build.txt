@@ -1,0 +1,2 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 37.81s

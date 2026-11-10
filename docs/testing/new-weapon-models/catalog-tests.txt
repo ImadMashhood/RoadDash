@@ -1,0 +1,11 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/crates/rr_content)
+    Finished `test` profile [optimized + debuginfo] target(s) in 13.03s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/rr_content-c04f0416208cd0eb)
+
+running 2 tests
+test weapon_models::tests::arsenal_has_reducing_bounded_lods_and_exact_grips ... ok
+test weapon_models::tests::rejects_wrong_axis_unsafe_paths_and_missing_family ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 44 filtered out; finished in 0.00s
+

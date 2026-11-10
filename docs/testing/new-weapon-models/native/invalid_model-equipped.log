@@ -1,0 +1,9 @@
+2026-11-09T06:44:42.178807Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T06:44:42.179521Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-09T06:44:42.183065Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-09T06:44:42.183084Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x56129b2dd860, name: ?)
+2026-11-09T06:44:42.413857Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+2026-11-09T06:44:42.468601Z  WARN road_dash::weapon_models: Unknown ROADDASH_WEAPON_MODEL=invalid_model; retaining original club
+2026-11-09T06:44:42.962309Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1

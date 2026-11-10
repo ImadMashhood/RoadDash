@@ -136,8 +136,10 @@ pub fn schedule(
                 side = chosen;
             }
         }
-        let weapon =
-            (r.weapon.is_some() && action != rr_core::AttackSide::Kick).then_some(weapons.0);
+        let weapon = r
+            .weapon
+            .filter(|_| action != rr_core::AttackSide::Kick)
+            .map(|w| weapons.get(w));
         let source_contact = weapon.map_or(
             timings.0[usize::from(action == rr_core::AttackSide::Kick)],
             |a| a.source_contact,

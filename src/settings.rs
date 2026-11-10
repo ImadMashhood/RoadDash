@@ -1,4 +1,12 @@
 //! Versioned local preferences. Invalid files are preserved, never silently replaced.
+mod view;
+pub use view::{display, setup};
+fn full_volume() -> f32 {
+    1.
+}
+fn yes() -> bool {
+    true
+}
 use crate::controls::{BindingFile, Bindings, pad_button};
 use bevy::prelude::*;
 use serde::{Deserialize, Serialize};
@@ -10,6 +18,14 @@ use std::{
 #[serde(deny_unknown_fields)]
 pub struct PreferencesFile {
     pub schema_version: u32,
+    #[serde(default = "full_volume")]
+    pub master_volume: f32,
+    #[serde(default)]
+    pub audio_muted: bool,
+    #[serde(default)]
+    pub fullscreen: bool,
+    #[serde(default = "yes")]
+    pub vsync: bool,
     pub comfort: rr_core::comfort::Comfort,
     pub keyboard: BindingFile,
     pub controller: BTreeMap<String, String>,
@@ -18,6 +34,10 @@ impl Default for PreferencesFile {
     fn default() -> Self {
         Self {
             schema_version: 1,
+            master_volume: 1.,
+            audio_muted: false,
+            fullscreen: false,
+            vsync: true,
             comfort: default(),
             keyboard: serde_json::from_str(include_str!("../content/input.json")).unwrap(),
             controller: [
@@ -49,6 +69,9 @@ impl PreferencesFile {
     pub fn validate(&self) -> Result<(), String> {
         if self.schema_version != 1 {
             return Err("unsupported preferences schema".into());
+        }
+        if !self.master_volume.is_finite() || !(0. ..=1.).contains(&self.master_volume) {
+            return Err("invalid master volume".into());
         }
         self.comfort.validate()?;
         Bindings::parse(&serde_json::to_string(&self.keyboard).map_err(|e| e.to_string())?)?;
@@ -176,15 +199,58 @@ fn write_file(path: &Path, file: &PreferencesFile) -> Result<(), String> {
     }
     Ok(())
 }
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+pub enum Section {
+    #[default]
+    Camera,
+    Controls,
+    Audio,
+    Display,
+}
+impl Section {
+    pub const ALL: [Self; 4] = [Self::Camera, Self::Controls, Self::Audio, Self::Display];
+    pub fn name(self) -> &'static str {
+        match self {
+            Self::Camera => "Camera",
+            Self::Controls => "Controls",
+            Self::Audio => "Audio",
+            Self::Display => "Display",
+        }
+    }
+    pub fn rows(self) -> &'static [usize] {
+        match self {
+            Self::Camera => &[0, 1, 2, 3, 4, 5, 8],
+            Self::Controls => &[6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 27],
+            Self::Audio => &[22, 25],
+            Self::Display => &[23, 24],
+        }
+    }
+}
+#[derive(Component, Clone, Copy)]
+pub enum SettingsAction {
+    Tab(Section),
+    Adjust(usize, i32),
+    Close,
+    Dismiss,
+}
+fn binding_action(row: usize) -> Option<&'static str> {
+    match row {
+        10..=21 => Some(ACTIONS[row - 10]),
+        26 => Some("pickup"),
+        27 => Some("drop"),
+        _ => None,
+    }
+}
 #[derive(Resource, Default)]
 pub struct SettingsPanel {
     pub open: bool,
+    pub section: Section,
     pub selected: usize,
     pub rebinding: bool,
     pub controller: bool,
     resume: Option<crate::game::Phase>,
 }
-pub const ROWS: usize = 22;
+pub const ROWS: usize = 28;
 pub const ACTIONS: [&str; 12] = [
     "throttle",
     "brake",
@@ -205,94 +271,55 @@ pub struct SettingsRoot;
 pub struct SettingsText;
 #[derive(Component)]
 pub struct SettingsRow(pub usize);
-pub fn setup(mut commands: Commands) {
-    let root = commands
-        .spawn((
-            SettingsRoot,
-            Node {
-                position_type: PositionType::Absolute,
-                left: percent(15),
-                top: px(20),
-                width: percent(70),
-                height: percent(95),
-                padding: UiRect::all(px(16)),
-                flex_direction: FlexDirection::Column,
-                display: Display::None,
-                ..default()
-            },
-            BackgroundColor(Color::srgba(0.015, 0.03, 0.045, 0.98)),
-            GlobalZIndex(100),
-        ))
-        .id();
-    let header=commands.spawn((Text::new("COMFORT & CONTROLS   /   F2 or Esc to save & close\nUp/down: select | Left/right: adjust | Enter: rebind | Tab: device"),TextFont{font_size:16.0,..default()},TextColor(Color::WHITE))).id();
-    commands.entity(root).add_child(header);
-    for row in 0..ROWS {
-        let e = commands
-            .spawn((
-                Button,
-                SettingsRow(row),
-                Node {
-                    min_height: px(25),
-                    ..default()
-                },
-                BackgroundColor(Color::NONE),
-            ))
-            .id();
-        let text = commands
-            .spawn((
-                SettingsRow(row),
-                Text::new(""),
-                TextFont {
-                    font_size: 15.0,
-                    ..default()
-                },
-                TextColor(Color::WHITE),
-            ))
-            .id();
-        commands.entity(e).add_child(text);
-        commands.entity(root).add_child(e);
-    }
-    let footer = commands
-        .spawn((
-            SettingsText,
-            Text::new(""),
-            TextFont {
-                font_size: 14.0,
-                ..default()
-            },
-            TextColor(Color::srgb(0.2, 0.9, 0.75)),
-        ))
-        .id();
-    commands.entity(root).add_child(footer);
-}
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn panel_input(
     keys: Res<ButtonInput<KeyCode>>,
-    pads: Query<&Gamepad>,
+    pads: Query<(Entity, &Gamepad)>,
     clicks: Query<(&Interaction, &SettingsRow), (With<Button>, Changed<Interaction>)>,
     mut panel: ResMut<SettingsPanel>,
     mut prefs: ResMut<Preferences>,
     mut bindings: ResMut<Bindings>,
     mut race: ResMut<crate::game::Race>,
     mut controls: ResMut<crate::controls::Controls>,
+    actions: Query<(&Interaction, &SettingsAction), (With<Button>, Changed<Interaction>)>,
+    mut muted: Option<ResMut<crate::sound::Muted>>,
 ) {
-    let pad = pads.iter().next();
+    let pad = pads.iter().min_by_key(|(e, _)| e.to_bits()).map(|(_, p)| p);
     let edge = |button| pad.is_some_and(|p| p.just_pressed(button));
     let toggle = keys.just_pressed(KeyCode::F2)
         || edge(GamepadButton::Mode)
         || (!panel.rebinding && edge(GamepadButton::LeftTrigger));
+    let clicked = if panel.open {
+        actions
+            .iter()
+            .find_map(|(i, a)| (*i == Interaction::Pressed).then_some(*a))
+    } else {
+        None
+    };
+    let dismiss = matches!(clicked, Some(SettingsAction::Dismiss))
+        || (!panel.rebinding
+            && (keys.just_pressed(KeyCode::Backspace) || edge(GamepadButton::Select)));
     let close = panel.open
         && !panel.rebinding
-        && (keys.just_pressed(KeyCode::Escape) || edge(GamepadButton::Start));
+        && (keys.just_pressed(KeyCode::Escape)
+            || edge(GamepadButton::Start)
+            || matches!(clicked, Some(SettingsAction::Close))
+            || dismiss);
     if toggle || close {
         if panel.open {
-            prefs.status = match prefs.save() {
-                Ok(()) => "Settings saved".into(),
-                Err(e) => {
-                    warn!("Settings save: {e}");
-                    e
+            if !dismiss {
+                match prefs.save() {
+                    Ok(()) => prefs.status = "Settings saved".into(),
+                    Err(e) => {
+                        warn!("Settings save: {e}");
+                        prefs.status = format!("Could not save: {e}");
+                        controls.suppress_frame = true;
+                        return;
+                    }
                 }
-            };
+            } else {
+                prefs.status = "Session changes kept; file unchanged".into();
+            }
             if let Some(previous) = panel.resume.take() {
                 race.phase = previous;
             }
@@ -324,7 +351,10 @@ pub fn panel_input(
             panel.rebinding = false;
             return;
         }
-        let action = ACTIONS[panel.selected - 10];
+        let Some(action) = binding_action(panel.selected) else {
+            panel.rebinding = false;
+            return;
+        };
         let mut candidate = prefs.file.clone();
         let changed = if panel.controller {
             pad.and_then(|p| p.get_just_pressed().next().copied())
@@ -358,14 +388,36 @@ pub fn panel_input(
         }
         return;
     }
+    let next_tab = keys.just_pressed(KeyCode::PageDown) || edge(GamepadButton::RightTrigger);
+    let previous_tab = keys.just_pressed(KeyCode::PageUp);
+    let tab = match clicked {
+        Some(SettingsAction::Tab(section)) => Some(section),
+        _ if next_tab || previous_tab => {
+            let i = Section::ALL
+                .iter()
+                .position(|s| *s == panel.section)
+                .unwrap();
+            Some(Section::ALL[(i + if previous_tab { 3 } else { 1 }) % 4])
+        }
+        _ => None,
+    };
+    if let Some(section) = tab {
+        panel.section = section;
+        panel.selected = section.rows()[0];
+        return;
+    }
     if keys.just_pressed(KeyCode::Tab) || edge(GamepadButton::North) {
         panel.controller = !panel.controller;
     }
     if keys.just_pressed(KeyCode::ArrowDown) || edge(GamepadButton::DPadDown) {
-        panel.selected = (panel.selected + 1) % ROWS;
+        let rows = panel.section.rows();
+        let i = rows.iter().position(|r| *r == panel.selected).unwrap_or(0);
+        panel.selected = rows[(i + 1) % rows.len()];
     }
     if keys.just_pressed(KeyCode::ArrowUp) || edge(GamepadButton::DPadUp) {
-        panel.selected = (panel.selected + ROWS - 1) % ROWS;
+        let rows = panel.section.rows();
+        let i = rows.iter().position(|r| *r == panel.selected).unwrap_or(0);
+        panel.selected = rows[(i + rows.len() - 1) % rows.len()];
     }
     let mut delta = 0;
     if keys.just_pressed(KeyCode::ArrowLeft) || edge(GamepadButton::DPadLeft) {
@@ -376,12 +428,16 @@ pub fn panel_input(
     }
     let mut activate = keys.just_pressed(KeyCode::Enter) || edge(GamepadButton::South);
     for (i, row) in &clicks {
-        if *i == Interaction::Pressed {
+        if *i == Interaction::Pressed && clicked.is_none() {
             panel.selected = row.0;
             activate = true;
         }
     }
-    if panel.selected >= 10 {
+    if let Some(SettingsAction::Adjust(row, d)) = clicked {
+        panel.selected = row;
+        delta = d;
+    }
+    if binding_action(panel.selected).is_some() {
         if activate {
             panel.rebinding = true;
             prefs.status =
@@ -402,6 +458,15 @@ pub fn panel_input(
             8 => {
                 prefs.file.comfort = default();
             }
+            22 => prefs.file.master_volume = (prefs.file.master_volume + d * 0.05).clamp(0., 1.),
+            23 => prefs.file.vsync = !prefs.file.vsync,
+            24 => prefs.file.fullscreen = !prefs.file.fullscreen,
+            25 => {
+                prefs.file.audio_muted = !prefs.file.audio_muted;
+                if let Some(ref mut m) = muted {
+                    m.0 = prefs.file.audio_muted;
+                }
+            }
             9 => {
                 prefs.status = match prefs.save() {
                     Ok(()) => "Settings saved".into(),
@@ -412,7 +477,7 @@ pub fn panel_input(
         }
     }
 }
-fn pretty_binding(value: &str) -> String {
+pub(super) fn pretty_binding(value: &str) -> String {
     value
         .split(" / ")
         .map(|v| match v {
@@ -438,71 +503,47 @@ fn pretty_binding(value: &str) -> String {
         .collect::<Vec<_>>()
         .join(" / ")
 }
-#[allow(clippy::type_complexity)]
-pub fn display(
-    panel: Res<SettingsPanel>,
-    prefs: Res<Preferences>,
-    mut root: Query<&mut Node, With<SettingsRoot>>,
-    mut rows: Query<(&SettingsRow, &mut Text)>,
-    mut footer: Query<&mut Text, (With<SettingsText>, Without<SettingsRow>)>,
+/// Apply only supported window options; preserve the explicit legacy survey mode.
+pub fn apply_preferences(
+    mut prefs: ResMut<Preferences>,
+    mut windows: Query<&mut Window>,
+    mut muted: Option<ResMut<crate::sound::Muted>>,
+    mut initialized: Local<bool>,
+    mut windowed_size: Local<Option<Vec2>>,
 ) {
-    for mut node in &mut root {
-        node.display = if panel.open {
-            Display::Flex
-        } else {
-            Display::None
-        };
+    if let Some(ref mut m) = muted {
+        if !*initialized {
+            m.0 = prefs.file.audio_muted;
+        } else if prefs.file.audio_muted != m.0 {
+            prefs.file.audio_muted = m.0;
+        }
     }
-    if !panel.open {
+    *initialized = true;
+    if !prefs.is_changed() || std::env::args().any(|a| a == "--world-survey") {
         return;
     }
-    let c = &prefs.file.comfort;
-    let labels = [
-        format!("Field of view: {:.0} deg", c.fov_degrees),
-        format!("Camera response: {:.0}", c.smoothing),
-        format!("Shake: {:.0}%", c.shake * 100.0),
-        format!("Anti-nausea: {}", if c.anti_nausea { "On" } else { "Off" }),
-        format!("Speed FOV: {}", if c.speed_fov { "On" } else { "Off" }),
-        format!("Speed lines: {}", if c.speed_lines { "On" } else { "Off" }),
-        format!("Stick/trigger deadzone: {:.0}%", c.deadzone * 100.0),
-        format!(
-            "Rebind device: {}",
-            if panel.controller {
-                "Controller"
-            } else {
-                "Keyboard"
-            }
-        ),
-        "Restore comfort defaults".into(),
-        "Save settings".into(),
-    ];
-    for (row, mut text) in &mut rows {
-        let label = if row.0 < 10 {
-            labels[row.0].clone()
+    for mut w in &mut windows {
+        let mode = if prefs.file.fullscreen {
+            bevy::window::WindowMode::BorderlessFullscreen(bevy::window::MonitorSelection::Current)
         } else {
-            let action = ACTIONS[row.0 - 10];
-            let value = if panel.controller {
-                prefs.file.controller[action].clone()
-            } else {
-                prefs.file.keyboard.actions[action].join(" / ")
-            };
-            format!("{}: {}", action.replace('_', " "), pretty_binding(&value))
+            bevy::window::WindowMode::Windowed
         };
-        **text = format!(
-            "{} {}",
-            if panel.selected == row.0 {
-                if panel.rebinding { "?" } else { ">" }
-            } else {
-                " "
-            },
-            label
-        );
-    }
-    for mut text in &mut footer {
-        **text = format!(
-            "{}\nLeft stick steers | Right stick looks | F2 / left bumper opens settings",
-            prefs.status
-        );
+        let present = if prefs.file.vsync {
+            bevy::window::PresentMode::AutoVsync
+        } else {
+            bevy::window::PresentMode::AutoNoVsync
+        };
+        if w.mode != mode {
+            if prefs.file.fullscreen {
+                *windowed_size = Some(Vec2::new(w.width(), w.height()));
+            } else if let Some(size) = windowed_size.take() {
+                w.resolution.set(size.x, size.y);
+            }
+            w.mode = mode;
+        }
+        if w.present_mode != present {
+            w.present_mode = present;
+        }
     }
 }
 #[cfg(test)]
@@ -515,6 +556,10 @@ mod tests {
         std::fs::create_dir_all(&root).unwrap();
         let path = root.join("settings.json");
         let mut prefs = Preferences::load(path.clone());
+        prefs.file.master_volume = 0.4;
+        prefs.file.audio_muted = true;
+        prefs.file.fullscreen = true;
+        prefs.file.vsync = false;
         prefs.file.comfort.fov_degrees = 88.0;
         prefs.file.comfort.anti_nausea = true;
         prefs
@@ -523,6 +568,15 @@ mod tests {
             .insert("nitro".into(), "RightTrigger".into());
         prefs.save().unwrap();
         let loaded = Preferences::load(path.clone());
+        assert_eq!(
+            (
+                loaded.file.master_volume,
+                loaded.file.audio_muted,
+                loaded.file.fullscreen,
+                loaded.file.vsync
+            ),
+            (0.4, true, true, false)
+        );
         assert_eq!(loaded.file.comfort, prefs.file.comfort);
         assert_eq!(loaded.file.controller["nitro"], "RightTrigger");
         let original = "{\"schema_version\":99}";
@@ -540,5 +594,134 @@ mod tests {
         p.controller.insert("nitro".into(), "South".into());
         assert!(p.validate().is_err());
         assert!(PreferencesFile::parse("{}").is_err());
+    }
+}
+
+#[cfg(test)]
+mod menu_tests {
+    use super::*;
+    fn press(app: &mut App, key: KeyCode) {
+        {
+            let mut k = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+            k.release_all();
+            k.press(key);
+        }
+        app.update();
+    }
+    fn click(app: &mut App, action: SettingsAction) {
+        let e = app
+            .world_mut()
+            .spawn((Button, Interaction::Pressed, action))
+            .id();
+        app.update();
+        app.world_mut().despawn(e);
+        app.update();
+    }
+    #[test]
+    fn old_schema_defaults_new_fields_and_rejects_invalid_volume() {
+        let mut v = serde_json::to_value(PreferencesFile::default()).unwrap();
+        for k in ["master_volume", "audio_muted", "fullscreen", "vsync"] {
+            v.as_object_mut().unwrap().remove(k);
+        }
+        let p = PreferencesFile::parse(&v.to_string()).unwrap();
+        assert_eq!(p.master_volume, 1.);
+        assert!(!p.audio_muted && p.vsync && !p.fullscreen);
+        let mut p = p;
+        p.master_volume = f32::NAN;
+        assert!(p.validate().is_err());
+        p.master_volume = 1.1;
+        assert!(p.validate().is_err());
+    }
+    #[test]
+    fn categories_audio_display_and_close_use_real_panel_input() {
+        let mut app = crate::game::tests::simulation();
+        app.world_mut().resource_mut::<crate::game::Race>().phase = crate::game::Phase::Racing;
+        let w = app.world_mut().spawn(Window::default()).id();
+        press(&mut app, KeyCode::F2);
+        assert_eq!(
+            app.world().resource::<crate::game::Race>().phase,
+            crate::game::Phase::Paused
+        );
+        click(&mut app, SettingsAction::Tab(Section::Audio));
+        assert_eq!(app.world().resource::<SettingsPanel>().selected, 22);
+        click(&mut app, SettingsAction::Adjust(22, -1));
+        assert!((app.world().resource::<Preferences>().file.master_volume - 0.95).abs() < 0.001);
+        click(&mut app, SettingsAction::Adjust(25, 1));
+        assert!(app.world().resource::<crate::sound::Muted>().0);
+        click(&mut app, SettingsAction::Tab(Section::Display));
+        click(&mut app, SettingsAction::Adjust(23, 1));
+        click(&mut app, SettingsAction::Adjust(24, 1));
+        let window = app.world().get::<Window>(w).unwrap();
+        assert_eq!(window.present_mode, bevy::window::PresentMode::AutoNoVsync);
+        assert!(matches!(
+            window.mode,
+            bevy::window::WindowMode::BorderlessFullscreen(_)
+        ));
+        app.world_mut()
+            .get_mut::<Window>(w)
+            .unwrap()
+            .resolution
+            .set(1920., 1080.);
+        click(&mut app, SettingsAction::Adjust(24, 1));
+        let window = app.world().get::<Window>(w).unwrap();
+        assert_eq!(window.mode, bevy::window::WindowMode::Windowed);
+        assert_eq!((window.width(), window.height()), (1280., 720.));
+        click(&mut app, SettingsAction::Close);
+        assert!(!app.world().resource::<SettingsPanel>().open);
+        assert_eq!(
+            app.world().resource::<crate::game::Race>().phase,
+            crate::game::Phase::Racing
+        );
+    }
+    #[test]
+    fn failed_save_stays_visible_and_dismiss_preserves_bad_file() {
+        let dir =
+            std::env::temp_dir().join(format!("roaddash-menu-preserve-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let path = dir.join("bad.json");
+        let original = "{\"schema_version\":99}";
+        std::fs::write(&path, original).unwrap();
+        let mut app = crate::game::tests::simulation();
+        app.world_mut().resource_mut::<crate::game::Race>().phase = crate::game::Phase::Countdown;
+        app.insert_resource(Preferences::load(path.clone()));
+        press(&mut app, KeyCode::F2);
+        click(&mut app, SettingsAction::Close);
+        assert!(app.world().resource::<SettingsPanel>().open);
+        assert!(
+            app.world()
+                .resource::<Preferences>()
+                .status
+                .contains("Could not save")
+        );
+        assert_eq!(
+            app.world().resource::<crate::game::Race>().phase,
+            crate::game::Phase::Paused
+        );
+        press(&mut app, KeyCode::Backspace);
+        assert!(!app.world().resource::<SettingsPanel>().open);
+        assert_eq!(std::fs::read_to_string(path).unwrap(), original);
+        std::fs::remove_dir_all(dir).unwrap();
+    }
+    #[test]
+    fn pickup_binding_and_rebind_cancel_are_supported() {
+        let mut app = crate::game::tests::simulation();
+        press(&mut app, KeyCode::F2);
+        click(&mut app, SettingsAction::Tab(Section::Controls));
+        app.world_mut().resource_mut::<SettingsPanel>().selected = 26;
+        press(&mut app, KeyCode::Enter);
+        assert!(app.world().resource::<SettingsPanel>().rebinding);
+        press(&mut app, KeyCode::KeyU);
+        assert_eq!(
+            app.world().resource::<Preferences>().file.keyboard.actions["pickup"],
+            vec!["KeyU"]
+        );
+        press(&mut app, KeyCode::Enter);
+        press(&mut app, KeyCode::Escape);
+        assert!(app.world().resource::<SettingsPanel>().open);
+        assert!(!app.world().resource::<SettingsPanel>().rebinding);
+        assert_eq!(
+            app.world().resource::<Preferences>().file.keyboard.actions["pickup"],
+            vec!["KeyU"]
+        );
     }
 }

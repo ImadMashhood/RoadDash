@@ -110,6 +110,47 @@ impl Batch {
         m
     }
 }
+/// Project paint onto the very same triangles used by pavement rendering and
+/// collision. Sampling the analytic height at the road centre loses crossfall
+/// and the tile triangulation, and can bury stripes on cross-sloped streets.
+#[derive(Default)]
+struct PavementHeights {
+    cells: BTreeMap<(i32, i32), Vec<[Vec3; 3]>>,
+}
+impl PavementHeights {
+    fn add(&mut self, triangle: [Vec3; 3]) {
+        let lo = triangle
+            .iter()
+            .fold(Vec2::splat(f32::INFINITY), |a, p| a.min(p.xz()));
+        let hi = triangle
+            .iter()
+            .fold(Vec2::splat(f32::NEG_INFINITY), |a, p| a.max(p.xz()));
+        for x in (lo.x / 32.).floor() as i32..=(hi.x / 32.).floor() as i32 {
+            for z in (lo.y / 32.).floor() as i32..=(hi.y / 32.).floor() as i32 {
+                self.cells.entry((x, z)).or_default().push(triangle);
+            }
+        }
+    }
+    fn height(&self, p: Vec2) -> Option<f32> {
+        self.cells
+            .get(&((p.x / 32.).floor() as i32, (p.y / 32.).floor() as i32))?
+            .iter()
+            .filter_map(|[a, b, c]| {
+                let ab = b.xz() - a.xz();
+                let ac = c.xz() - a.xz();
+                let ap = p - a.xz();
+                let det = ab.perp_dot(ac);
+                if det.abs() < 1e-8 {
+                    return None;
+                }
+                let u = ap.perp_dot(ac) / det;
+                let v = ab.perp_dot(ap) / det;
+                (u >= -1e-4 && v >= -1e-4 && u + v <= 1.0001)
+                    .then_some(a.y + u * (b.y - a.y) + v * (c.y - a.y))
+            })
+            .max_by(f32::total_cmp)
+    }
+}
 /// Collision batches are keyed by gameplay semantics, independently of render
 /// materials. Keep every triangle and its winding; do not weld or simplify.
 #[derive(Default)]
@@ -421,6 +462,14 @@ pub fn spawn(
             }
         }
     }
+    let mut pavement = PavementHeights::default();
+    for ((_, _, material), batch) in &batches {
+        if *material == 25 {
+            for triangle in &batch.ix {
+                pavement.add(triangle.map(|i| Vec3::from_array(batch.p[i as usize])));
+            }
+        }
+    }
     // Road paint follows both actual alternatives; it never draws a third spine between them.
     for (route, path) in m.paths.iter().enumerate() {
         for s in (-340..12000).step_by(4) {
@@ -433,22 +482,30 @@ pub fn spawn(
             let profile = rr_core::streets::section(sections, route, s);
             let (divider, width, half) = rr_core::streets::markings(sections, route, s);
             let mut stripes = vec![
-                (divider - 0.11, 28),
-                (divider + 0.11, 28),
-                (-half, 33),
-                (half, 33),
+                (divider - 0.11, 28, 4.),
+                (divider + 0.11, 28, 4.),
+                (-half, 33, 4.),
+                (half, 33, 4.),
             ];
             if (s as i32).rem_euclid(12) < 6 {
                 for i in 1..profile.outbound {
-                    stripes.push((divider - i as f32 * width, 33));
+                    stripes.push((
+                        divider - i as f32 * width,
+                        33,
+                        (6 - (s as i32).rem_euclid(12)).min(4) as f32,
+                    ));
                 }
                 for i in 1..profile.inbound {
-                    stripes.push((divider + i as f32 * width, 33));
+                    stripes.push((
+                        divider + i as f32 * width,
+                        33,
+                        (6 - (s as i32).rem_euclid(12)).min(4) as f32,
+                    ));
                 }
             }
-            for (lane, material) in stripes {
+            for (lane, material, length) in stripes {
                 let (p, q) = track.street_sample(route, s, 0.);
-                let (a, _) = track.street_sample(route, (s + 2.).min(12000.), 0.);
+                let (a, _) = track.street_sample(route, (s + length).min(12000.), 0.);
                 let side = q * Vec3::X;
                 let p = p - side * lane + Vec3::Y * 0.05;
                 let a = a - side * lane + Vec3::Y * 0.05;
@@ -458,7 +515,14 @@ pub fn spawn(
                         a - side * 0.04,
                         a + side * 0.04,
                         p + side * 0.04,
-                    ],
+                    ]
+                    .map(|vertex| {
+                        vertex.with_y(
+                            pavement.height(vertex.xz()).unwrap_or_else(|| {
+                                track.terrain_height(vertex.x, vertex.z) + 0.025
+                            }) + 0.018,
+                        )
+                    }),
                     [[0., 0.], [0., 1.], [1., 1.], [1., 0.]],
                 );
             }
@@ -542,6 +606,230 @@ pub fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn paint_follows_paved_crossfall_instead_of_burying_outer_lanes() {
+        let mut heights = PavementHeights::default();
+        heights.add([
+            Vec3::new(-8., 0., 0.),
+            Vec3::new(8., 0.32, 0.),
+            Vec3::new(-8., 0., 32.),
+        ]);
+        heights.add([
+            Vec3::new(8., 0.32, 0.),
+            Vec3::new(8., 0.32, 32.),
+            Vec3::new(-8., 0., 32.),
+        ]);
+        let centre = heights.height(Vec2::new(0., 10.)).unwrap();
+        let outer = heights.height(Vec2::new(6., 10.)).unwrap();
+        assert!(
+            outer > centre + 0.05,
+            "old centre-height paint was occluded"
+        );
+        assert!((outer - 0.28).abs() < 1e-6);
+        assert!(heights.height(Vec2::new(9., 10.)).is_none());
+    }
+    fn crossing_trace(
+        route: usize,
+        station: f32,
+        side: f32,
+        start_offset: f32,
+        wall: bool,
+        legacy_down: bool,
+    ) -> Vec3 {
+        let track = Track::metropolis().unwrap();
+        let m = track.metropolis.as_ref().unwrap();
+        let (centre, rotation) = track.street_sample(route, station, 0.);
+        let lateral = rotation * Vec3::X * side;
+        let start = centre + lateral * start_offset;
+        let mut app = App::new();
+        app.add_plugins((
+            MinimalPlugins,
+            TransformPlugin,
+            RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule(),
+        ))
+        .insert_resource(Time::<Fixed>::from_hz(60.))
+        .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+            std::time::Duration::from_secs_f64(1. / 60.),
+        ))
+        .insert_resource(TimestepMode::Fixed {
+            dt: 1. / 60.,
+            substeps: 3,
+        });
+        // Use actual source pavement/sidewalk triangles, at their production heights.
+        for surface in &m.surfaces {
+            if !surface
+                .shape
+                .vertices()
+                .any(|[x, z]| Vec2::new(x, z).distance(centre.xz()) < 50.)
+            {
+                continue;
+            }
+            let mut batch = Batch::default();
+            batch.shape(
+                &surface.shape,
+                |x, z| track.terrain_height(x, z) + if surface.kind == 1 { 0.14 } else { 0.025 },
+                true,
+            );
+            app.world_mut().spawn((
+                Collider::trimesh(
+                    batch.p.iter().map(|p| Vec3::from_array(*p)).collect(),
+                    batch.ix,
+                )
+                .unwrap(),
+                Transform::IDENTITY,
+            ));
+        }
+        // Identical underlying terrain grid in the local crossing window.
+        let mut terrain = Batch::default();
+        let cx = (centre.x / 8.).floor() as i32;
+        let cz = (centre.z / 8.).floor() as i32;
+        for x in cx - 6..=cx + 6 {
+            for z in cz - 6..=cz + 6 {
+                let point = |x: i32, z: i32| {
+                    Vec3::new(
+                        x as f32 * 8.,
+                        track.terrain_height(x as f32 * 8., z as f32 * 8.) - 0.2,
+                        z as f32 * 8.,
+                    )
+                };
+                terrain.quad(
+                    [
+                        point(x, z),
+                        point(x, z + 1),
+                        point(x + 1, z + 1),
+                        point(x + 1, z),
+                    ],
+                    [[0.; 2]; 4],
+                );
+            }
+        }
+        app.world_mut().spawn((
+            Collider::trimesh(
+                terrain.p.iter().map(|p| Vec3::from_array(*p)).collect(),
+                terrain.ix,
+            )
+            .unwrap(),
+            Transform::IDENTITY,
+        ));
+        if wall {
+            app.world_mut().spawn((
+                Collider::cuboid(0.2, 0.5, 20.),
+                Transform::from_translation(centre + Vec3::Y * 0.5).with_rotation(rotation),
+            ));
+        }
+        let controller = crate::recovery::runner_controller();
+        let runner = app
+            .world_mut()
+            .spawn((
+                RigidBody::KinematicPositionBased,
+                Collider::capsule_y(0.65, 0.28),
+                Transform::from_xyz(
+                    start.x,
+                    track.terrain_height(start.x, start.z) + 1.1,
+                    start.z,
+                ),
+                controller,
+            ))
+            .id();
+        let mut best = 0f32;
+        let mut stalled = 0u32;
+        let mut worst_stall = 0u32;
+        let mut reached_frame = None;
+        for frame in 0..600 {
+            let progress =
+                (app.world().get::<Transform>(runner).unwrap().translation - start).dot(-lateral);
+            if progress > best + 0.01 {
+                best = progress;
+                stalled = 0;
+            } else if frame >= 30 && reached_frame.is_none() {
+                stalled += 1;
+                worst_stall = worst_stall.max(stalled);
+            }
+            if progress > 18. && reached_frame.is_none() {
+                reached_frame = Some(frame);
+            }
+            let reached = (app.world().get::<Transform>(runner).unwrap().translation - start)
+                .dot(-lateral)
+                > 18.;
+            let movement = if frame < 30 || reached {
+                Vec3::ZERO
+            } else {
+                -lateral * 0.065
+            };
+            let down = if legacy_down {
+                5.
+            } else {
+                rr_core::recovery::foot_downward_speed(
+                    app.world()
+                        .get::<KinematicCharacterControllerOutput>(runner)
+                        .is_some_and(|output| output.grounded),
+                )
+            };
+            app.world_mut()
+                .get_mut::<KinematicCharacterController>(runner)
+                .unwrap()
+                .translation = Some(movement - Vec3::Y * (down / 60.));
+            app.update();
+        }
+        let end = app.world().get::<Transform>(runner).unwrap().translation;
+        println!(
+            "Crossing profile route={route} station={station} side={side} start={start_offset} wall={wall}: advance={:.3}m reached_frame={reached_frame:?} longest_stall={worst_stall}ticks",
+            (end - start).dot(-lateral)
+        );
+        if legacy_down {
+            assert!(
+                (end - start).dot(-lateral) < 10. && worst_stall > 120,
+                "old unconditional down-drive control must reproduce the rim trap"
+            );
+        } else if wall {
+            assert!(
+                (end - start).dot(-lateral) < start_offset - 0.2,
+                "solid metre-high wall must remain blocking: {start:?} -> {end:?}"
+            );
+        } else {
+            assert!(
+                worst_stall < 30,
+                "residual rim sticking: {worst_stall}ticks"
+            );
+            assert!(
+                (end - start).dot(-lateral) > 17.5,
+                "blocked route {route} station {station} side {side}: {start:?} -> {end:?}; output {:?}",
+                app.world()
+                    .get::<KinematicCharacterControllerOutput>(runner)
+            );
+        }
+        println!(
+            "Physical foot crossing route={route} station={station} side={side} start_offset={start_offset} wall={wall}: distance={:.3}m",
+            (end - start).dot(-lateral)
+        );
+        assert!(end.y > track.terrain_height(end.x, end.z) + 0.65);
+        end
+    }
+    #[test]
+    fn real_metropolis_support_allows_foot_crossings_in_both_directions() {
+        for (route, station) in [
+            (0, 3000.),
+            (0, 3250.),
+            (0, 4100.),
+            (1, 4100.),
+            (0, 6500.),
+            (0, 10000.),
+        ] {
+            for side in [-1., 1.] {
+                for start in [8., 10.] {
+                    crossing_trace(route, station, side, start, false, false);
+                }
+            }
+        }
+    }
+    #[test]
+    fn old_grounded_down_drive_reproduces_the_real_farm_rim_trap() {
+        crossing_trace(0, 3000., -1., 8., false, true);
+    }
+    #[test]
+    fn on_foot_steps_do_not_climb_solid_walls_above_the_cap() {
+        crossing_trace(0, 6500., 1., 8., true, false);
+    }
     #[test]
     fn semantic_collision_batching_preserves_exact_triangle_soup_and_support_roles() {
         let origin = Vec3::new(-256., 0., 512.);

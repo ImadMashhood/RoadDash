@@ -645,3 +645,23 @@ UI-02/UI-05 remain partial. Verify sixteen approved source/runtime hashes, four-
 ## 2026-11-08 — Full-page portrait biographies (ADR095)
 
 All sixteen live bios at 1280×720, lower-strip bounds clear of controls, 4×4 card navigation/focus, retained native menu/race/results flow, font readiness/provenance and workspace checks: [dossier evidence](portrait-dossier/README.md). Human art/profile/hardware gates remain open under UI-02/UI-05.
+
+## 2026-11-09 — Combined traffic / weapon models / road walking
+
+AI-12: pure motion/occupancy bounds and real dynamic stop/follow/pass/crossing/4-rider queue with car collisions retained, plus police/role regressions. ROAD-WALK-01: old-input stall control vs24 authored support traversals, solid-wall rejection, actual public-ground/sidewalk native walk/remount on both routes and rig modes, and four/three/four native lane views. WEAPON-MODELS-01: source/12GLB hashes/geometry/materials/origins,18 native LOD/equipped/fallback cases, optional headless path and exact model/rig/recovery differential checks. Root clean rebuild, full workspace checks and combined native skin+walking modes: [integration evidence](traffic-weapons-road-fixes/README.md). FOOT-SPAWN-01 remains unverified/deferred.
+
+## Fresh arsenal/police/downtown pass (2026-11-09)
+
+See [combined evidence](combat-police-downtown/README.md), [downtown geometry](downtown-street-life/coverage.json) and per-agent Part07/08 evidence. Require full locked workspace/fmt/Clippy/build/audit, all-family real buffered input/contact/drop tests across render rates, police memory/search/HUD regressions, source-preserved4/3/4 and whole sidewalk patrol/bay checks. Native survey must count actual96 walkers, observe movement and show downtown props/parking; normal and baseline recovery plus real arsenal pickup/attack/drop and police smoke must remain functional. Human art/fun/fairness, flexible weapons, moving capture and hardware60FPS stay open.
+
+## Original-format entry frontend (2026-11-09)
+
+[Evidence](original-ui-format/README.md): exact stored main/street control proportions,4:3 stage and aspect-preserved background crop;22-stage native flow,all16 dossier biographies and five viewport sizes; disabled choices/keyboard/Esc/F2 and retained Results/Busted R tests. Strict workspace/fmt/build/audit and font OFL/hash intake mandatory. User readability/art/crop,HUD/pause/settings parity,hardware/controller/performance remain open.
+
+## Modern entry menu polish (2026-11-09)
+
+[ADR103 evidence](modern-ui-polish/README.md): full-window proportional cover,smaller-dimension typography scaling,native gradients and nonoverlapping action safe areas. Existing22-stage/five-viewport/all16portrait native flow and whole-workspace rig/input/retry regression required. Retain asset hashes and licensed fonts; human art/crop/contrast,HUD/pause/settings,physical controller/Windows/accessibility/performance remain open. No automatic next part.
+
+## Grouped settings editor (2026-11-09)
+
+[ADR104 settings evidence](settings-menu/README.md): legacy-file defaults/nondefault persistence and invalid-file preservation; real panel category/audio/window actions,windowed-size restoration,modal pause/input suppression,failed-save/dismiss and pickup rebind/cancel; absolute master mix/default invariance. Native opt-in frontend run traverses all4settings categories with720p controls,real keyboard master/VSync/save and temp-file reload,then completes existing22-stage/16portrait/race/results flow. Human audible/fullscreen-monitor/controller/Windows,per-bus audio/quality/accessibility/smaller viewports remain open. Rig/controls/save/profile regression and strict workspace checks mandatory.

@@ -1,0 +1,18 @@
+[
+  {
+    "check": "street-life-authoring",
+    "exit": 0
+  },
+  {
+    "check": "streetscape-authoring",
+    "exit": 0
+  },
+  {
+    "check": "road-paint-audit",
+    "exit": 0
+  },
+  {
+    "check": "lane-clearance-audit",
+    "exit": 0
+  }
+]

@@ -1,0 +1,19 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/roads-walkability)
+    Finished `test` profile [optimized + debuginfo] target(s) in 18.98s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+
+thread 'world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions' (2551464) panicked at src/world_gen/metropolis/geometry.rs:742:9:
+blocked route 0 station 3000 side -1: Vec3(1.349834, 11.562675, -150.29465) -> Vec3(1.7655513, 12.272841, -150.07594); output Some(KinematicCharacterControllerOutput { grounded: true, desired_translation: Vec3(0.0647416, -0.083333336, 0.005790072), effective_translation: Vec3(-0.00011826417, -3.1423058e-6, 0.00025530814), collisions: [CharacterCollision { entity: 11v0, character_translation: Vec3(1.7656696, 12.272844, -150.0762), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(0.0, 0.0, 0.0), translation_remaining: Vec3(0.0647416, -0.083333336, 0.005790072), hit: ShapeCastHit { time_of_impact: 0.0, details: Some(ShapeCastHitDetails { witness1: Vec3(2.0643966, 11.661881, -150.05511), witness2: Vec3(0.27930403, -0.6109619, 0.019714355), normal1: Vec3(-0.99752355, -2.8698204e-7, -0.070332795), normal2: Vec3(0.99752355, 2.8698204e-7, 0.070332795) }), status: PenetratingOrWithinTargetDist } }, CharacterCollision { entity: 31v0, character_translation: Vec3(1.7656696, 12.272841, -150.0762), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(-7.0025e-9, -3.142478e-6, 4.5712387e-8), translation_remaining: Vec3(-0.00018568781, -0.083330214, 0.0012121717), hit: ShapeCastHit { time_of_impact: 3.142818e-6, details: Some(ShapeCastHitDetails { witness1: Vec3(1.7663773, 11.322884, -150.07722), witness2: Vec3(0.00066399574, -0.9299965, -0.0009613037), normal1: Vec3(-0.0021912612, 0.9999924, 0.003242111), normal2: Vec3(0.0021912612, -0.9999924, -0.003242111) }), status: PenetratingOrWithinTargetDist } }, CharacterCollision { entity: 11v0, character_translation: Vec3(1.7656696, 12.272841, -150.0762), character_rotation: Quat(0.0, 0.0, 0.0, 1.0), translation_applied: Vec3(-7.0025e-9, -3.142478e-6, 4.5712387e-8), translation_remaining: Vec3(0.00043469688, 9.999923e-5, 0.00029427296), hit: ShapeCastHit { time_of_impact: 0.0, details: Some(ShapeCastHitDetails { witness1: Vec3(2.0644145, 11.661882, -150.05536), witness2: Vec3(0.27932072, -0.61096, 0.019470215), normal1: Vec3(-0.9975206, 1.7217894e-6, -0.07037451), normal2: Vec3(0.9975206, -1.7217894e-6, 0.07037451) }), status: PenetratingOrWithinTargetDist } }], is_sliding_down_slope: true })
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions ... FAILED
+
+failures:
+
+failures:
+    world_gen::metropolis::geometry::tests::real_metropolis_support_allows_foot_crossings_in_both_directions
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 264 filtered out; finished in 0.23s
+
+error: test failed, to rerun pass `--lib`

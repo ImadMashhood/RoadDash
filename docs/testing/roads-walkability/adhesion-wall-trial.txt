@@ -1,0 +1,8 @@
+
+running 1 test
+Crossing profile route=0 station=6500 side=1 start=8 wall=true: advance=7.500m reached_frame=None longest_stall=453ticks
+Physical foot crossing route=0 station=6500 side=1 start_offset=8 wall=true: distance=7.500m
+test world_gen::metropolis::geometry::tests::on_foot_steps_do_not_climb_solid_walls_above_the_cap ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 265 filtered out; finished in 0.35s
+

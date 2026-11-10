@@ -10,6 +10,7 @@ struct Review {
     smoke: bool,
     hands: bool,
     seen_shapes: [bool; 4],
+    weapon_review: Option<String>,
 }
 #[derive(Component)]
 struct Label;
@@ -70,6 +71,35 @@ pub fn build(smoke: bool) -> App {
     }
     app
 }
+/// Reuse the real rider/hand/club presentation for opt-in model socket review.
+/// This fixture installs no physics simulation and does not change gameplay state.
+pub fn build_weapon_review(capture: Option<std::path::PathBuf>) -> App {
+    let mut app = build(false);
+    app.add_plugins(crate::world_gen::city::visuals::BuildingSceneTypesPlugin);
+    {
+        let mut review = app.world_mut().resource_mut::<Review>();
+        review.mode = 11;
+        review.weapon_review =
+            Some(std::env::var("ROADDASH_WEAPON_MODEL").unwrap_or_else(|_| "original club".into()));
+    }
+    if let Some(path) = capture {
+        app.add_systems(
+            Update,
+            move |mut commands: Commands, state: Res<Review>, mut exit: MessageWriter<AppExit>| {
+                if state.frame == 180 {
+                    commands
+                        .spawn(Screenshot::primary_window())
+                        .observe(save_to_disk(path.clone()));
+                }
+                if state.frame == 210 {
+                    exit.write(AppExit::Success);
+                }
+            },
+        );
+    }
+    app
+}
+
 fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -328,6 +358,11 @@ fn review(
             LABELS[state.mode],
             ["REAR", "FRONT", "SIDE"][state.view]
         );
+        if let Some(model) = &state.weapon_review {
+            l.0.push_str(&format!(
+                "\nModel: {model} | presentation only / existing club ability"
+            ));
+        }
     }
     if state.smoke && state.frame > if state.hands { 90 } else { 120 } && state.frame % 60 == 50 {
         commands

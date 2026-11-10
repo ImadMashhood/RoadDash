@@ -1,0 +1,36 @@
+{
+  "binary_sha256": "dbbb8334cd36a8b18b68acb6be0b014bb140d661cfe0873eb18d85538a16e313",
+  "cases": [
+    {
+      "case": "route-0-anatomy-chain",
+      "exit": 0,
+      "seconds": 37.71,
+      "walk_setups": [
+        true,
+        true
+      ],
+      "walk_distances": [
+        5.328413009643555,
+        35.463523864746094
+      ],
+      "model_scene_ready": true,
+      "passed": true
+    },
+    {
+      "case": "route-1-baseline-whip",
+      "exit": 0,
+      "seconds": 35.89,
+      "walk_setups": [
+        true,
+        true
+      ],
+      "walk_distances": [
+        5.427940368652344,
+        30.297813415527344
+      ],
+      "model_scene_ready": true,
+      "passed": true
+    }
+  ],
+  "scope": "Combined AI/model/road Linux native recovery; not full-race human or hardware acceptance"
+}

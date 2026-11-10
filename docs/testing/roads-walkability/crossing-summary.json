@@ -1,0 +1,25 @@
+{
+  "actual_surface_crossings": 24,
+  "distance_goal_m": 18,
+  "manual_speed_mps": 3.9,
+  "settle_ticks": 30,
+  "reached_tick_range": [
+    308,
+    321
+  ],
+  "max_stall_ticks": 12,
+  "rejected_stall_ticks": 30,
+  "original_step_cap_m": 0.3,
+  "original_landing_probe_m": 0.15,
+  "supported_downward_mps": 0.5,
+  "unsupported_downward_mps": 5,
+  "wall_height_m": 1,
+  "old_grounded_drive_control": {
+    "requested_traversal_m": 18,
+    "elapsed_ticks": 600,
+    "settle_ticks": 30,
+    "advance_m": 6.141,
+    "longest_stall_ticks": 370,
+    "downward_mps": 5
+  }
+}

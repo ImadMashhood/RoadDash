@@ -1,5 +1,15 @@
 # Development progress
 
+2026-11-09 integration: commit settings and completed traffic/arsenal/police/downtown/UI passes with accurate art-review archive. The stopped five-image recreation batch is not57 completed assets. New twelve-pass gameplay/graphics work is proposed only; no new completion boxes.
+
+Current scope: SETTINGS-01 grouped native editor (ADR104), persisted camera/controls/audio/display with safe save failure/session close. Broader quality, audio buses and hardware/art gates remain open. Evidence: testing/settings-menu/README.md.
+
+Current scope: UI-POLISH-01 modern full-window entry menus (ADR103) supersedes the user-rejected literal-retro ADR102. Native22-stage/all16portrait/five-viewport and408-test verification complete; broader UI art/readability/HUD/settings/hardware/performance gates remain open. Branch codex/modern-ui-polish; testing/modern-ui-polish/README.md.
+
+Current scope: UI-FORMAT-01 source-table4:3 entry layout, compact controls and licensed Jost font substitute (ADR102), verified native22-stage/five-viewport/16portrait pass; UI-02/UI-05 keep full HUD/pause/settings, font/art/crop/human/hardware acceptance open. Branch codex/original-ui-format; testing/original-ui-format/README.md.
+
+Current scope: fresh-context Part07 arsenal and Part08 police agents plus downtown street population on codex/combat-police-downtown. Five-family gameplay and police last-seen/search/feedback pass are integrated; broad Part07/08 art/fairness/exit gates remain open. DOWNTOWN-01 and UI-RETRY-01 are technically verified; evidence is recorded in testing/combat-police-downtown/README.md. No Part09 advance.
+
 Current UI follow-up (2026-11-08): approved sixteen-portrait 4×4 picker and full-page 4:3 biographies (ADR094/095), preserving current race identities and physics; UI-02/UI-05 remain partial. Evidence: testing/approved-portrait-ui/README.md.
 
 Current scope: random starting rival clubs (ADR092), then Part09 isolated scripted slice receipt infrastructure (ADR093). Earlier native frontend/art work remains on this branch. Broad Part07/09 and external/hardware/performance gates remain open. See testing/random-rival-weapons/README.md and testing/part09-start/README.md.
@@ -42,8 +52,8 @@ Current scope: DESTRUCTION-01 — persistent Metropolis props only; no car damag
 
 ## Current live roadmap — completed first
 
-README is the single live task source. Part 00 contains all 211 verified tasks;
-Parts 01–16 contain all 243 unfinished/partial/unverified requirements. The reorganization preserved status; four later collision corrections were
+README is the single live task source. Part 00 contains all 220 verified tasks;
+Parts 01–16 contain all 245 unfinished/partial/unverified requirements. The reorganization preserved status; four later collision corrections were
 verified and moved to Part 00 in the subsequent implementation session. Historical numbering in task IDs is stable;
 current README section determines execution order, not the ID prefix.
 
@@ -56,7 +66,7 @@ interpolation/terrain gait/active recovery, buildings, props, NPCs followed
 by landscape/sky, weapons, police, original Part 09 playtests and Part 10 network
 spike. Later production/economy/online/QA requirements remain tracked.
 
-All 454 task IDs are in README exactly once. This includes four new CRASHREF IDs;
+All 465 task IDs are in README exactly once. This includes four new CRASHREF IDs;
 the inherited 357-ID header was stale after the preceding animation additions. roadmap/BLUEPRINT_PARTS_01_08.md is frozen historical evidence;
 sync_progress.py now reads README only. roadmap/TASK_PLACEMENT.json records the
 current section for every ID; roadmap/README_REORGANIZATION_STATUS.json protects
@@ -324,6 +334,22 @@ Measured vehicle-contact observations and bounded combat obstacle interruption a
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **SETTINGS-01** Integrate grouped Camera, Controls, Audio and Display settings. Reason: replace the flat editor with usable persisted settings; originating part: 15; dependencies: UI-POLISH-01 and existing input/preferences; acceptance: four categories, live master volume/mute/window controls, safe legacy loading, rebinding, save failure handling and session-only close, pause/input preservation; verification: [automated checks and native keyboard/save/reload walkthrough](testing/settings-menu/README.md). Independent audio buses, quality presets and human/controller/display acceptance remain open under UI-02/P15-006/P15-007/AUDIO-013.
+
+- [x] **UI-POLISH-01** Replace the rejected literal-retro entry UI with modern art-led presentation. Reason: user rejected hard red/shadowed headings,black strips,letterboxing and yellow rails as dated; originating part: 15; dependencies: UI-RETRY-01 and existing approved art/font intake; acceptance: full-window proportional image cover/height-aware type,right-side main choices/inset secondary actions,native soft gradients/quiet focus,preserved4×4/dossiers and navigation/retry/physics; verification: [408tests,strict checks and native22-stage/all16portrait/five-viewport review](testing/modern-ui-polish/README.md). UI-FORMAT-01 is retained as superseded history; human styling/crop approval and broad UI-02/UI-05/HUD/settings/hardware/performance gates stay open.
+
+- [x] **UI-FORMAT-01** Apply original-table proportions to the native entry frontend. Historical verified pass; the user rejected its dated styling and ADR103/UI-POLISH-01 supersedes its presentation. Reason: wide cards and an inset action strip did not match the original UI formatting; originating part: 15; dependencies: UI-01/UI-RETRY-01 and existing approved entry/portrait art; acceptance: all-entry4:3 stage, source RR09/RR0F bottom-cell proportions, compact live copy/focus and licensed geometric typography, preserved16-card picker/dossiers/actions/retry and no retail media/font import; verification: [408 tests, native22-stage/all16portrait/five-viewport review and font intake](testing/original-ui-format/README.md). User art/font/crop approval and full HUD/pause/settings/dynamic-screen parity remain UI-02/UI-05 gates.
+
+- [x] **UI-RETRY-01** Preserve captured R retry from Finished/Busted through the real frontend. Reason: native police integration exposed the results menu clearing restart before game authority could consume it; originating part: 15 (police integration08); dependencies: UI-02/P08-006 and buffered input; acceptance: one edge dispatches normal Ride/Starting with readiness guards, no repeated held-key/garage/settings launch, cleared arrest with retained roster/profile/no payout; verification: two actual-frontend input/context regressions, [407-test suite and final native police arrest/R retry](testing/combat-police-downtown/README.md). Broader UI art/controller/viewport and police fairness gates remain open.
+
+- [x] **DOWNTOWN-01** Populate the complete urban race corridor with trees, parked side-street cars and physically supported walking pedestrians. Reason: no avenue trees, sparse parking coverage and unchecked walker patrols left downtown empty; originating part: 05 (NPC support06); dependencies: STREET-LIFE-01/SIDEWALK-01/DESTRUCTION-01; acceptance: deterministic bounded district allocation, retained main4/3/4 race lanes/all building footprints, original-road curb bays with1.5m clear outer walks, whole capsule/furniture-clear authored patrols and native movement/residency evidence; verification: [coverage, authoring tests and native survey](testing/downtown-street-life/README.md), [combined407-test/native pass](testing/combat-police-downtown/README.md). Final density/art, crowd animation and user-hardware performance remain open.
+
+- [x] **AI-12** Predict car approaches, swept crossing conflicts and occupied passes before braking or steering. Reason: rivals repeatedly drive into vehicles; part: 01; dependencies: AI-09/AI-10 and shared traffic/vehicle adapters; acceptance: actual car motion and map-correct outbound bounds, speed-aware yielding/following/passing and hazard-only rider occupancy, unchanged player/crash/contact/role rules; verification: deterministic pure and real dynamic stop/follow/crossing/field scenarios plus integrated native/recovery regressions in [AI repair evidence](testing/ai-traffic-repair/README.md). Broad race balance/human review remains AI-11.
+
+- [x] **ROAD-WALK-01** Make the approved four/three/four roads legible and restore physical road/sidewalk access on foot. Reason: city entry appears two-lane and grounded walkers stick at support edges; part: 04 (recovery support 01); dependencies: RACE-SETUP-01/METRO-01 and shared foot recovery; acceptance: continuous divider/edge paint, regular lane dashes with real pavement support, explicit four-lane entry proof, grounded adhesion fix with original capsule/step/rig/collisions retained, actual two-way terrain/sidewalk crossings and solid-wall rejection; verification: authoring audit, real-source Rapier crossing fixtures and both-route native walk/remount evidence in [road/walkability evidence](testing/roads-walkability/README.md). Full map art/hardware gates remain open.
+
+- [x] **WEAPON-MODELS-01** Author original chain, whip, pizza rolling pin and baseball bat models for the existing hand sockets. Reason: user requests actual 3D assets for the new weapon concepts; part: 07; dependencies: P05-003/ANIM-15; acceptance: four editable sources, twelve meter-scale GLBs across three bounded LODs, validated source/binary geometry and grip frames, native viewer/equipped proof and safe optional held/pickup skin lifecycle with working club/physics retained; verification: [model catalog, native renders, hashes and regression evidence](testing/new-weapon-models/README.md). Flexible chain/whip mechanics, distinct family attacks, character loadouts, automatic runtime LOD and final art/performance approval remain V2-07 gates.
 
 - [x] **ANIM-15** Integrate visual glove grip/fist profiles and typed hand sockets. Reason: rigid open fingers ignored punch/grip contexts; originating part: 02; dependencies: ANIM-14, existing model/contact rig; acceptance: independent side-specific shapes, interpolated weights, relaxed fallback, shared bounded glove-only GPU targets, validated grip/weapon frames and unchanged physical rig; verification: socket/mesh/shape/blend/content tests, physics differential checks and [native review](testing/hand-contacts/README.md). This completes technical integration only; final art and authoring round-trip stay open under ANIM-02/16.
 
@@ -751,6 +777,8 @@ Measured vehicle-contact observations and bounded combat obstacle interruption a
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **FOOT-SPAWN-01** Validate collision-clear get-up origins without moving legitimate rooftop/car-supported riders. Reason: production GettingUp uses a centre support ray without building-interior/capsule-volume validation; an invalid native setup demonstrated a fully enclosed start, but ordinary-crash incidence is unverified; part: 01; dependencies: shared recovery, world navigation and FOOT-004; acceptance: reproduce actual invalid production placement, retain safe original origins, bound any nearby stand-up search, preserve roof/car support and solid walls, and explicitly handle deep invalid states without silent wreck teleport or indefinite recovery; verification: real-world closed-envelope/near-wall/roof/car and crash/run/remount tests. Deferred inspection finding from [road/walkability evidence](testing/roads-walkability/README.md); no placement/rescue policy changed in this pass.
+
 - [ ] **AI-11** Review full-race racer/killer balance with human playtests. Reason: deterministic roles and combat tests do not establish fun/fair aggression; part: 01; dependencies: AI-10; acceptance: completed races on both branches with visible overtaking racers, readable killer threats and practical escapes/recovery, no unavoidable spawn pileup, user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
 - [ ] **CRASHREF-004** Extend original-crash coverage and establish trajectory parity before changing the default. Reason: native 2.5D geometry, other callers and post-entry laws exceed the first 3D comparison; part: 01; dependencies: CRASHREF-001–003, retail trajectory fixtures and explicit gameplay review; acceptance: low/static object, combat, downed-body/traction/wall caller routing, original condition/regeneration tables, pair ordering/reciprocal traffic response, and justified native-vs-Rapier bounce/drag trajectories documented and tested; verification: reproducible original-vs-modern traces, multi-rider contact/energy/recovery scenes and user comparison. Current comparison boundaries remain explicit in [research](research/ORIGINAL_CRASH_CALCULATIONS.md).
@@ -1009,11 +1037,11 @@ Measured vehicle-contact observations and bounded combat obstacle interruption a
 
 ### Part 07 — Weapons and complete riding combat
 
-- [ ] **V2-07-001** Research weapon behavior and define original data/assets. Partial: pinned R01 study, original training club and validated ability; full weapon families remain open (ADR085).
+- [ ] **V2-07-001** Research weapon behavior and define original data/assets. Partial: pinned R01 study, original Club/Chain/Whip/RollingPin/BaseballBat sources/GLBs and validated schema2 family reach/stamina/cooldown, with schema1 compatibility (ADR085/100); full specialist behavior/art and acceptance remain open.
 
-- [ ] **V2-07-002** Integrate weapon animations, contacts and outcomes. Partial: first-club side clips, frozen ability/contact and pickup/drop/recovery integration; holster/equip art, full families and acceptance remain open.
+- [ ] **V2-07-002** Integrate weapon animations, contacts and outcomes. Partial: five typed inventory/pickup/drop families, frozen family contact rules and ready model fallback now integrate with existing side clips/recovery (ADR100); distinct/flexible attack motion, holster/equip art and acceptance remain open.
 
-- [ ] **V2-07-003** Teach rivals fair weapon use and tune combat. Partial: shared pickup/LOS/tells/reach/cost and exact attacker retaliation; defense/personality tuning and human balance remain open.
+- [ ] **V2-07-003** Teach rivals fair weapon use and tune combat. Partial: stable seeded family loadouts, per-family reach/cost/cooldown, shared pickup/LOS/tells and exact attacker retaliation; defense/personality tuning and human balance remain open. See [fresh arsenal evidence](testing/part07-arsenal-fresh/README.md).
 
 - [ ] **V2-07-004** Exit gate: weapons improve the race loop.
 
@@ -1185,7 +1213,7 @@ Measured vehicle-contact observations and bounded combat obstacle interruption a
 
 ### Part 15 — Presentation, audio, UI and accessibility
 
-- [ ] **UI-02** Create/approve the replacement UI art and integrate the approved skeleton into Bevy. Partial: native entry flow, current-course launch, street visits and settings/results hooks now exist (ADR091); the approved sixteen-portrait Biker Bar browser has a 4×4 picker and full-page 4:3 biographies with retro typography (ADR094/095; docs/ui/APPROVED_PORTRAITS.md), with native visual acceptance pending; broader required art and acceptance remain open. Reason: UI-01 is a reference/authoring kit, not production UI; part: 15; dependencies: UI-01, artist-approved required master families/components and existing lifecycle/settings/profile contracts; acceptance: original cleared art with correct slot identity, scalable typography/widgets, real garage/HUD/pause/busted/results and setting/input hooks, inactive career/network features clearly deferred, retained gameplay/saves/recovery, readable focus/accessibility and viewport behavior; verification: art review against the asset checklist, native keyboard/controller flows, saved-setting/error/retry cases and 1080p/1440p/4K/wide screenshots.
+- [ ] **UI-02** Create/approve the replacement UI art and integrate the approved skeleton into Bevy. Partial: native entry flow, current-course launch, street visits and settings/results hooks now exist (ADR091); the approved sixteen-portrait Biker Bar browser has a 4×4 picker and full-page 4:3 biographies with retro typography (ADR094/095; docs/ui/APPROVED_PORTRAITS.md), with native visual acceptance pending; ADR102 source-table styling was rejected; ADR103 now uses full-window art/clean typography/soft gradients ([polish evidence](testing/modern-ui-polish/README.md)); grouped functional settings now integrate via ADR104 ([settings evidence](testing/settings-menu/README.md)); latest [art review/style lock](ui/UI_ART_DIRECTION.md) preserves the selected bar scene and rejected drafts without runtime replacement; broader required art/HUD/pause/accessibility and hardware acceptance remain open. Reason: UI-01 is a reference/authoring kit, not production UI; part: 15; dependencies: UI-01, artist-approved required master families/components and existing lifecycle/settings/profile contracts; acceptance: original cleared art with correct slot identity, scalable typography/widgets, real garage/HUD/pause/busted/results and setting/input hooks, inactive career/network features clearly deferred, retained gameplay/saves/recovery, readable focus/accessibility and viewport behavior; verification: art review against the asset checklist, native keyboard/controller flows, saved-setting/error/retry cases and 1080p/1440p/4K/wide screenshots.
 
 - [ ] **UI-05** Review/refine generated screen art into production masters and reusable layers. Reason: UI-04 outputs native ~1672×941 full-screen drafts rather than requested 3840×2160 layered masters or every source-resource variant; part: 15; dependencies: UI-04 and user art feedback; acceptance: approved model/outfit/bike identity, anatomy/composition, clean alpha edges, adequate 1080p/1440p/4K texel density, separate required portraits/bikes/frames and deliberate mapping to needed source variants/components without claiming a resize adds detail; verification: [28 screen review rows](ui/SCREEN_ART_REVIEW.md), master dimensions/layers/edges, small/large viewport comparisons and human art signoff before UI-02 native integration.
 
@@ -1227,7 +1255,7 @@ Measured vehicle-contact observations and bounded combat obstacle interruption a
 
 - [ ] **AUDIO-012** Validate no loop clicks/gaps/clipping from idle to redline, distinguishable location ambiences, and no doubled combat/crash sound after prediction correction.
 
-- [ ] **AUDIO-013** Persist master/engine/SFX/ambience/music sliders and input/audio options; caption critical non-speech cues and validate source release permissions.
+- [ ] **AUDIO-013** Persist master/engine/SFX/ambience/music sliders and input/audio options; caption critical non-speech cues and validate source release permissions. Partial: ADR104 persists master volume/mute with absolute live loop/one-shot gain and existing bindings/comfort; independent buses, captions and full audible/hardware acceptance remain open.
 
 ### Part 16 — QA, performance, platform, dependency and release gates
 

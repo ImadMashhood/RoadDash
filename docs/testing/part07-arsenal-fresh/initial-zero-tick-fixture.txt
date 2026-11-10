@@ -1,0 +1,67 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/part07-fresh/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/part07-fresh/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/part07-fresh)
+warning: type `weapons::Kind` is more private than the item `inventory`
+   --> src/weapons.rs:169:1
+    |
+169 | / pub fn inventory(
+170 | |     mut commands: Commands,
+171 | |     art: Res<Art>,
+172 | |     rules: Res<WeaponRules>,
+...   |
+179 | |     context: bevy_rapier3d::prelude::ReadRapierContext,
+180 | | ) {
+    | |_^ function `inventory` is reachable at visibility `pub`
+    |
+note: but type `weapons::Kind` is only usable at visibility `pub(crate)`
+   --> src/weapons.rs:124:1
+    |
+124 | pub(crate) struct Kind(pub rr_core::weapons::Weapon);
+    | ^^^^^^^^^^^^^^^^^^^^^^
+    = note: `#[warn(private_interfaces)]` on by default
+
+warning: `road-dash` (lib) generated 1 warning
+    Finished `test` profile [optimized + debuginfo] target(s) in 4m 12s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 11 tests
+test weapons::tests::held_club_inherits_hidden_owner_and_kicks_keep_weapon_hand ... ok
+test weapons::tests::fresh_grid_and_retry_randomize_only_rivals_and_pause_does_not_rearm ... ok
+test weapons::tests::drops_use_support_below_live_position_under_roofs_and_on_platforms ... ok
+test weapons::tests::pickup_is_blocked_by_solid_wall_for_player_and_rival ... ok
+club input/pickup side=-1 target=2.4 render_hz=30 hits=1
+test weapons::tests::queued_drop_occurs_once_after_visible_contact_without_changing_hit ... ok
+test weapons::tests::authored_rule_changes_control_live_start_contact_reach_and_snapshot ... ok
+test weapons::tests::pending_drop_is_deferred_crash_cancels_and_retry_cleans_inventory ... ok
+test weapons::tests::rival_obtains_same_club_and_uses_same_tell_only_after_retaliation ... ok
+club input/pickup side=-1 target=3.05 render_hz=30 hits=0
+club input/pickup side=1 target=2.4 render_hz=30 hits=1
+test weapons::tests::club_contact_respects_los_immunity_and_side ... ok
+club input/pickup side=1 target=3.05 render_hz=30 hits=0
+club input/pickup side=-1 target=2.4 render_hz=60 hits=1
+
+thread 'weapons::tests::every_family_keeps_identity_through_pickup_strike_and_drop' (2621394) panicked at src/weapons.rs:464:21:
+assertion failed: app.world().get::<Rider>(owner).unwrap().weapon.is_none()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test weapons::tests::every_family_keeps_identity_through_pickup_strike_and_drop ... FAILED
+club input/pickup side=-1 target=3.05 render_hz=60 hits=0
+club input/pickup side=1 target=2.4 render_hz=60 hits=1
+club input/pickup side=1 target=3.05 render_hz=60 hits=0
+club input/pickup side=-1 target=2.4 render_hz=120 hits=1
+club input/pickup side=-1 target=3.05 render_hz=120 hits=0
+club input/pickup side=1 target=2.4 render_hz=120 hits=1
+club input/pickup side=1 target=3.05 render_hz=120 hits=0
+club input/pickup side=-1 target=2.4 render_hz=144 hits=1
+club input/pickup side=-1 target=3.05 render_hz=144 hits=0
+club input/pickup side=1 target=2.4 render_hz=144 hits=1
+club input/pickup side=1 target=3.05 render_hz=144 hits=0
+test weapons::tests::real_buffered_pickup_club_pose_contact_and_matched_speed_whiffs ... ok
+
+failures:
+
+failures:
+    weapons::tests::every_family_keeps_identity_through_pickup_strike_and_drop
+
+test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 260 filtered out; finished in 0.66s
+
+error: test failed, to rerun pass `-p road-dash --lib`

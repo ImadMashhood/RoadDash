@@ -1,0 +1,15 @@
+2026-11-09T17:06:54.550825Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T17:06:54.551563Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-09T17:06:54.559846Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-09T17:06:54.559872Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x55c3cf1b1d70, name: ?)
+2026-11-09T17:06:54.868171Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/output/testing/parallel-fixes/tmp/roaddash-performance/performance-2804081.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-09T17:06:56.609959Z  INFO road_dash::world_gen::metropolis: Approved metropolis: 19068 buildings / 3065 chunks / 2903477 triangles / two routes
+2026-11-09T17:06:56.635502Z  INFO road_dash::world_gen::report: World census: 0 building masses, 3210 mesh entities, 4328 collider entities
+2026-11-09T17:06:58.235325Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+2026-11-09T17:06:58.245974Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 0
+2026-11-09T17:07:07.938844Z  INFO road_dash::frontend::smoke: Approved portrait picker: all 16 cards opened and returned to grid
+2026-11-09T17:07:10.549465Z  INFO road_dash::weapons: Rival starting weapons: seed=14385366666416896297 race=1 riders=[1, 3, 6, 9, 11, 13, 14]
+2026-11-09T17:07:12.144097Z  INFO road_dash::frontend::smoke: Frontend smoke passed: 22 stages, native race, pause, results and five viewports

@@ -1,4 +1,4 @@
-//! Bounded original club inventory and presentation. No weapon rigid bodies.
+//! Bounded original weapon inventory and presentation. No weapon rigid bodies.
 use crate::{
     controls::Controls,
     game::{Phase, Race, Rider},
@@ -46,7 +46,7 @@ impl GridWeapons {
         self.armed = rr_core::weapons::armed_rivals(race_seed, ids, count);
         self.race_number = self.race_number.wrapping_add(1);
         info!(
-            "Rival starting clubs: seed={} race={} riders={:?}",
+            "Rival starting weapons: seed={} race={} riders={:?}",
             self.seed, self.race_number, self.armed
         );
     }
@@ -56,10 +56,22 @@ pub fn ability() -> rr_core::weapons::Ability {
     *DATA.get_or_init(|| rr_content::weapons::Weapons::builtin().club)
 }
 #[derive(Resource)]
-pub struct WeaponRules(pub rr_core::weapons::Ability);
+pub struct WeaponRules(
+    pub rr_core::weapons::Ability,
+    pub rr_content::weapons::Weapons,
+);
+impl WeaponRules {
+    pub fn get(&self, weapon: rr_core::weapons::Weapon) -> rr_core::weapons::Ability {
+        if weapon == rr_core::weapons::Weapon::Club {
+            self.0
+        } else {
+            self.1.ability(weapon)
+        }
+    }
+}
 impl Default for WeaponRules {
     fn default() -> Self {
-        Self(ability())
+        Self(ability(), rr_content::weapons::Weapons::builtin())
     }
 }
 #[derive(Component)]
@@ -73,6 +85,9 @@ pub(crate) struct Held {
 #[derive(Component)]
 pub(crate) struct ClubPart;
 fn club(commands: &mut Commands, art: &Art, parent: Entity) {
+    commands
+        .entity(parent)
+        .insert(crate::weapon_models::ModelRoot);
     for (position, scale, metal) in [
         (
             Vec3::new(0., 0.10, 0.),
@@ -103,10 +118,21 @@ fn club(commands: &mut Commands, art: &Art, parent: Entity) {
     }
 }
 pub(crate) fn pickup(commands: &mut Commands, art: &Art, position: Vec3) {
+    pickup_kind(commands, art, position, rr_core::weapons::Weapon::Club);
+}
+#[derive(Component, Clone, Copy)]
+pub struct Kind(pub rr_core::weapons::Weapon);
+pub(crate) fn pickup_kind(
+    commands: &mut Commands,
+    art: &Art,
+    position: Vec3,
+    weapon: rr_core::weapons::Weapon,
+) {
     let root = commands
         .spawn((
             Name::new("Original club pickup"),
             Pickup,
+            Kind(weapon),
             Transform::from_translation(position)
                 .with_rotation(Quat::from_rotation_z(std::f32::consts::FRAC_PI_2)),
             Visibility::Visible,
@@ -148,28 +174,32 @@ pub fn inventory(
     track: Res<crate::track::Track>,
     mut controls: ResMut<Controls>,
     mut riders: Query<(Entity, &mut Rider, &Recovery, &Transform)>,
-    pickups: Query<(Entity, &Transform), With<Pickup>>,
+    pickups: Query<(Entity, &Transform, Option<&Kind>), With<Pickup>>,
     mut seeded: Local<bool>,
     context: bevy_rapier3d::prelude::ReadRapierContext,
 ) {
     if race.phase == Phase::Garage || race.phase == Phase::Countdown {
         if !*seeded {
-            for (e, _) in &pickups {
+            for (e, _, _) in &pickups {
                 commands.entity(e).despawn();
             }
-            for (distance, lane) in [
+            for (index, (distance, lane)) in [
                 (25., -1.7),
                 (25., 1.7),
                 (160., -2.8),
                 (160., 2.8),
                 (420., -2.8),
                 (420., 2.8),
-            ] {
+            ]
+            .into_iter()
+            .enumerate()
+            {
                 let (p, _) = track.sample_route(0, distance, lane);
-                pickup(
+                pickup_kind(
                     &mut commands,
                     &art,
                     supported(p, track.terrain_height(p.x, p.z), &context),
+                    rr_core::weapons::Weapon::ALL[index % 5],
                 );
             }
             *seeded = true;
@@ -202,12 +232,12 @@ pub fn inventory(
                 }
                 continue;
             }
-            rider.weapon = None;
+            let dropped = rider.weapon.take().unwrap();
             if interrupted {
                 rider.strike = None;
             }
             if count < 12 {
-                pickup(
+                pickup_kind(
                     &mut commands,
                     &art,
                     supported(
@@ -215,6 +245,7 @@ pub fn inventory(
                         track.terrain_height(t.translation.x, t.translation.z),
                         &context,
                     ),
+                    dropped,
                 );
                 count += 1;
             }
@@ -228,10 +259,10 @@ pub fn inventory(
         {
             continue;
         }
-        if let Some((item, _)) = pickups
+        if let Some((item, _, weapon)) = pickups
             .iter()
-            .filter(|(item, _)| !claimed.contains(item))
-            .filter_map(|(item, p)| {
+            .filter(|(item, _, _)| !claimed.contains(item))
+            .filter_map(|(item, p, kind)| {
                 let d = t.translation.distance_squared(p.translation);
                 let origin = t.translation + Vec3::Y * 0.5;
                 let delta = p.translation + Vec3::Y * 0.15 - origin;
@@ -247,13 +278,22 @@ pub fn inventory(
                     )
                     .is_none()
                 });
-                (d <= rules.0.pickup_radius.powi(2) && clear).then_some((item, d))
+                (d <= rules
+                    .get(kind.map_or(rr_core::weapons::Weapon::Club, |k| k.0))
+                    .pickup_radius
+                    .powi(2)
+                    && clear)
+                    .then_some((
+                        item,
+                        d,
+                        kind.map_or(rr_core::weapons::Weapon::Club, |k| k.0),
+                    ))
             })
             .min_by(|a, b| a.1.total_cmp(&b.1).then(a.0.cmp(&b.0)))
         {
             claimed.insert(item);
             commands.entity(item).despawn();
-            rider.weapon = Some(rr_core::weapons::Weapon::Club);
+            rider.weapon = Some(weapon);
         }
     }
 }
@@ -283,6 +323,7 @@ pub fn attach(
                             owner: ancestor,
                             side: s.side,
                         },
+                        Kind(rr_core::weapons::Weapon::Club),
                         Transform::default(),
                         Visibility::Hidden,
                     ))
@@ -296,8 +337,16 @@ pub fn attach(
         }
     }
 }
-fn visuals(riders: Query<(&Rider, &Recovery)>, mut held: Query<(&Held, &mut Visibility)>) {
-    for (h, mut visible) in &mut held {
+fn visuals(
+    riders: Query<(&Rider, &Recovery)>,
+    mut held: Query<(&Held, &mut Visibility, Option<&mut Kind>)>,
+) {
+    for (h, mut visible, kind) in &mut held {
+        if let Some(mut kind) = kind
+            && let Ok((r, _)) = riders.get(h.owner)
+        {
+            kind.0 = r.weapon.unwrap_or(rr_core::weapons::Weapon::Club);
+        }
         *visible = if riders.get(h.owner).is_ok_and(|(r, rec)| {
             r.weapon.is_some()
                 && rec.stage == RecoveryStage::Riding
@@ -313,7 +362,12 @@ fn visuals(riders: Query<(&Rider, &Recovery)>, mut held: Query<(&Held, &mut Visi
 pub struct WeaponVisualPlugin;
 impl Plugin for WeaponVisualPlugin {
     fn build(&self, app: &mut App) {
-        app.add_systems(Update, (attach, visuals).chain());
+        app.init_resource::<crate::weapon_models::Selection>()
+            .add_systems(Startup, crate::weapon_models::load)
+            .add_systems(
+                Update,
+                (attach, visuals, crate::weapon_models::apply).chain(),
+            );
     }
 }
 
@@ -365,6 +419,78 @@ mod tests {
         assert_eq!(next.len(), 7);
         assert_ne!(&first, next);
         assert_eq!(app.world().resource::<GridWeapons>().race_number, 2);
+    }
+    #[test]
+    fn every_family_keeps_identity_through_pickup_strike_and_drop() {
+        for weapon in rr_core::weapons::Weapon::ALL {
+            for hz in [30, 60, 120, 144] {
+                for distance in [
+                    2.0,
+                    rr_content::weapons::Weapons::builtin()
+                        .ability(weapon)
+                        .lateral_reach
+                        + 0.5,
+                ] {
+                    let (mut app, owner, target) = fixture(hz, 1., distance);
+                    let items: Vec<_> = app
+                        .world_mut()
+                        .query_filtered::<Entity, With<Pickup>>()
+                        .iter(app.world())
+                        .collect();
+                    for item in items {
+                        app.world_mut().entity_mut(item).insert(Kind(weapon));
+                    }
+                    press(&mut app, KeyCode::KeyE);
+                    run(&mut app, 5);
+                    assert_eq!(
+                        app.world().get::<Rider>(owner).unwrap().weapon,
+                        Some(weapon)
+                    );
+                    press(&mut app, KeyCode::KeyK);
+                    for _ in 0..5 {
+                        app.update();
+                        if app.world().get::<Rider>(owner).unwrap().strike.is_some() {
+                            break;
+                        }
+                    }
+                    let clock = app
+                        .world()
+                        .get::<Rider>(owner)
+                        .unwrap()
+                        .strike
+                        .expect("buffered family attack must start within five render frames");
+                    let expected = app.world().resource::<WeaponRules>().get(weapon);
+                    assert_eq!(clock.weapon.unwrap().lateral_reach, expected.lateral_reach);
+                    assert!(
+                        app.world().get::<Rider>(owner).unwrap().attack > expected.cooldown - 0.1
+                    );
+                    run(&mut app, hz / 2);
+                    assert_eq!(
+                        app.world().get::<Rider>(target).unwrap().hits.count,
+                        u8::from(expected.lateral_reach >= distance)
+                    );
+                    // Separate the rival before drop so a coarse render frame
+                    // cannot also give it the newly dropped pickup on a second tick.
+                    app.world_mut().resource_mut::<Match>().distance = 6.;
+                    run(&mut app, 3);
+                    press(&mut app, KeyCode::KeyQ);
+                    for _ in 0..5 {
+                        app.update();
+                        if app.world().get::<Rider>(owner).unwrap().weapon.is_none() {
+                            break;
+                        }
+                    }
+                    assert!(app.world().get::<Rider>(owner).unwrap().weapon.is_none());
+                    let dropped: Vec<_> = app
+                        .world_mut()
+                        .query_filtered::<&Kind, With<Pickup>>()
+                        .iter(app.world())
+                        .map(|k| k.0)
+                        .collect();
+                    assert_eq!(dropped, vec![weapon]);
+                }
+            }
+        }
     }
     #[derive(Resource)]
     struct Match {
@@ -555,6 +681,17 @@ mod tests {
                 .iter(app.world())
                 .count(),
             6
+        );
+        let families: std::collections::BTreeSet<_> = app
+            .world_mut()
+            .query_filtered::<&Kind, With<Pickup>>()
+            .iter(app.world())
+            .map(|k| k.0.id())
+            .collect();
+        assert_eq!(
+            families.len(),
+            5,
+            "retry must restore the entire route arsenal"
         );
     }
     #[test]

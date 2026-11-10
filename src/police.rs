@@ -58,7 +58,10 @@ impl Police {
             State::Patrol | State::Return => {
                 format!("POLICE / LIMIT {:.0} KM/H", self.rules.speed_limit * 3.6)
             }
-            State::Warning => "POLICE WARNING / SLOW DOWN & STOP FIGHTING".into(),
+            State::Warning => format!(
+                "POLICE WARNING / COMPLY IN {:.1}s / SLOW DOWN & STOP FIGHTING",
+                (self.rules.warning_seconds - self.mind.warning).max(0.)
+            ),
             State::Search => format!(
                 "POLICE SEARCH / STAY OUT OF SIGHT {:.1}s",
                 (self.rules.search_seconds - self.mind.search).max(0.)
@@ -69,6 +72,11 @@ impl Police {
                     format!(
                         "ARREST {:.0}% / MOVE TO ESCAPE",
                         100. * self.mind.arrest / self.rules.arrest_seconds
+                    )
+                } else if self.mind.unseen > 0. {
+                    format!(
+                        "POLICE LOSING SIGHT / SEARCH IN {:.1}s",
+                        (self.rules.lose_seconds - self.mind.unseen).max(0.)
                     )
                 } else {
                     "POLICE PURSUIT / BREAK LINE OF SIGHT".into()
@@ -81,7 +89,11 @@ impl Police {
             && let Some((t, _)) = self.target
         {
             let gap = t.progress - rider.progress;
-            let speed = rr_core::police::approach_speed(t.speed, gap, t.downed, top, self.rules);
+            let speed = if self.mind.state == State::Search && !t.downed {
+                rr_core::police::search_speed(gap, top)
+            } else {
+                rr_core::police::approach_speed(t.speed, gap, t.downed, top, self.rules)
+            };
             return (
                 if (t.downed && gap.abs() <= rr_core::police::FOOT_APPROACH_RANGE)
                     || (t.speed <= self.rules.arrest_speed && gap.abs() < 12.)
@@ -300,7 +312,7 @@ pub fn think(
     } else {
         None
     };
-    if old != police.mind.state {
+    if police.mind.state.announces(old) {
         race.message = match police.mind.state {
             State::Warning => "POLICE / SLOW DOWN",
             State::Pursue | State::Intercept => "POLICE PURSUIT",
@@ -555,6 +567,57 @@ mod tests {
         app.world_mut().resource_mut::<Race>().elapsed = 10.;
         app.world_mut().get_mut::<Rider>(player).unwrap().immunity = 0.;
         (app, player, officer)
+    }
+    #[test]
+    fn hud_explains_continuous_warning_and_loss_windows_without_negative_timers() {
+        let mut police = Police::default();
+        police.mind.state = State::Warning;
+        police.mind.warning = police.rules.warning_seconds - 0.5;
+        assert!(police.hud().contains("COMPLY IN 0.5s"));
+        police.mind.warning = 100.;
+        assert!(police.hud().contains("COMPLY IN 0.0s"));
+        police.mind.state = State::Intercept;
+        police.mind.unseen = police.rules.lose_seconds - 0.5;
+        assert!(police.hud().contains("SEARCH IN 0.5s"));
+        police.mind.arrest = police.rules.arrest_seconds * 0.5;
+        assert!(police.hud().contains("ARREST 50%"));
+    }
+    #[test]
+    fn search_drive_goal_stops_at_memory_without_mutating_target_or_vehicle() {
+        let app = crate::game::tests::simulation();
+        let track = app.world().resource::<Track>();
+        let mut police = Police::default();
+        police.mind.state = State::Search;
+        police.target = Some((
+            Target {
+                id: 0,
+                progress: 100.,
+                lane: -2.,
+                speed: 50.,
+                downed: false,
+            },
+            Vec3::ZERO,
+        ));
+        let mut rider = Rider::new(OFFICER_ID);
+        rider.progress = 70.;
+        assert!(police.drive_goal(&rider, track, 55.).1 > 0.);
+        rider.progress = 100.;
+        rider.speed = 30.;
+        assert_eq!(police.drive_goal(&rider, track, 55.), (-2., 0.));
+        rider.progress = 120.;
+        assert_eq!(police.drive_goal(&rider, track, 55.).1, 0.);
+        assert_eq!(
+            rider.speed, 30.,
+            "planning must not overwrite physical speed"
+        );
+        assert_eq!(police.target.unwrap().0.speed, 50.);
+        police.target.as_mut().unwrap().0.downed = true;
+        rider.progress = 80.;
+        assert_eq!(
+            police.drive_goal(&rider, track, 55.).1,
+            0.,
+            "search preserves ordinary safe foot-approach parking"
+        );
     }
     #[test]
     fn integrated_arrest_has_no_payout_or_best_time_and_retry_preserves_noncompetitor() {

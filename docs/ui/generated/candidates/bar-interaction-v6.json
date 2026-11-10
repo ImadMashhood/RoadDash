@@ -1,0 +1,15 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-11-09",
+  "status": "rejected-by-user",
+  "runtime_installed": false,
+  "path": "docs/ui/generated/candidates/bar-interaction-v6.png",
+  "prompt": "docs/ui/generated/candidates/bar-interaction-v6.txt",
+  "sha256": "02c68f3637fb6887157768f713e19f67a2203f174a8f991f1293aa4c725bf96e",
+  "references": [
+    "user d7a3facb: bald rider identity/style",
+    "user 9c5287a4: Cleetus identity/style",
+    "user 83d65301: Anastasia identity/style"
+  ],
+  "direction": "New full-body pool interaction and expressions; originals guide pool-room location from previous study. v5 style liked but poses rejected as copy-pasted."
+}

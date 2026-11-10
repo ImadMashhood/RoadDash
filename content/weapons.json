@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "starting_armed_fraction": 0.5,
   "club": {
     "source_contact": 0.32,
@@ -7,6 +7,42 @@
     "stamina": 300.0,
     "lateral_reach": 2.55,
     "longitudinal_reach": 0.9,
+    "pickup_radius": 2.5,
+    "direct_hits": 1
+  },
+  "chain": {
+    "source_contact": 0.32,
+    "cooldown": 1.0,
+    "stamina": 340.0,
+    "lateral_reach": 2.85,
+    "longitudinal_reach": 1.0,
+    "pickup_radius": 2.5,
+    "direct_hits": 1
+  },
+  "whip": {
+    "source_contact": 0.32,
+    "cooldown": 1.1,
+    "stamina": 260.0,
+    "lateral_reach": 3.0,
+    "longitudinal_reach": 1.1,
+    "pickup_radius": 2.5,
+    "direct_hits": 1
+  },
+  "rolling_pin": {
+    "source_contact": 0.32,
+    "cooldown": 0.7,
+    "stamina": 220.0,
+    "lateral_reach": 2.1,
+    "longitudinal_reach": 0.75,
+    "pickup_radius": 2.5,
+    "direct_hits": 1
+  },
+  "baseball_bat": {
+    "source_contact": 0.32,
+    "cooldown": 1.15,
+    "stamina": 380.0,
+    "lateral_reach": 2.75,
+    "longitudinal_reach": 1.0,
     "pickup_radius": 2.5,
     "direct_hits": 1
   }

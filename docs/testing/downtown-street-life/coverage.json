@@ -1,0 +1,66 @@
+{
+  "groups": {
+    "trees": {
+      "count": 211,
+      "per_kilometre": {
+        "3": 20,
+        "4": 35,
+        "5": 25,
+        "6": 22,
+        "7": 20,
+        "8": 23,
+        "9": 23,
+        "10": 20,
+        "11": 20,
+        "12": 3
+      }
+    },
+    "parked_cars": {
+      "count": 122,
+      "per_kilometre": {
+        "3": 21,
+        "4": 39,
+        "5": 6,
+        "6": 8,
+        "7": 19,
+        "8": 5,
+        "9": 7,
+        "10": 8,
+        "11": 4,
+        "12": 5
+      }
+    },
+    "pedestrians": {
+      "count": 96,
+      "per_kilometre": {
+        "3": 9,
+        "4": 12,
+        "5": 12,
+        "6": 12,
+        "7": 11,
+        "8": 10,
+        "9": 10,
+        "10": 10,
+        "11": 10
+      }
+    }
+  },
+  "props": 1494,
+  "bay_area_m2": 431.64000000002807,
+  "preserved": [
+    "layout source",
+    "all19068building footprints/heights/styles",
+    "race/traffic paths",
+    "4/3/4lanes",
+    "checkpoints/grid",
+    "farms/terrain"
+  ],
+  "checks": [
+    "allnineurban kilometre bands populated",
+    "all96fullpatrolcorridors capsule/furniture clear",
+    "carfootprints paved",
+    "1.5m outerwalk at everybay",
+    "bounded populations"
+  ],
+  "limits": "Coverage and geometry are not native visibility, human art approval or performance certification."
+}

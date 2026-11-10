@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-09",
+  "tool": "built-in image_gen",
+  "status": "superseded-style-study",
+  "runtime_installed": false,
+  "path": "docs/ui/generated/candidates/bar-portrait-style-v5.png",
+  "prompt": "docs/ui/generated/candidates/bar-portrait-style-v5.txt",
+  "sha256": "e67ca340f103e6628f11c72ac4c2fade8a07c3ee7b2acca05d5d83b43ffe6e0a",
+  "reference_roles": {
+    "characters": [
+      "User attachment d7a3facb bald rider",
+      "User attachment 9c5287a4 Cleetus",
+      "User attachment 83d65301 Anastasia"
+    ],
+    "location_only": "Private original UI-IMG-0072 PANZER.RRI"
+  },
+  "inspection": "Three distinct approved-style characters, green pool-table foreground, enclosed bar and full-scene composition. Human style acceptance pending; no runtime install."
+}

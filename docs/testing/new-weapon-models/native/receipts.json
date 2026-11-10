@@ -1,0 +1,305 @@
+{
+  "binary_sha256": "f52f06c75903cd74a2a9ba300eb4c6d865c8c0fc46c5e598fd6b0ac10e49f69b",
+  "results": [
+    {
+      "model": "chain",
+      "mode": "lod0",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "chain",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/chain-lod0.png",
+        "--lod",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 1.919490752974525,
+      "image_sha256": "9bc2f25de55ed103ac881d6168c921704db881e0255015dcfe9091568641aabc",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "chain",
+      "mode": "lod1",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "chain",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/chain-lod1.png",
+        "--lod",
+        "1"
+      ],
+      "exit": 0,
+      "seconds": 1.8178443920332938,
+      "image_sha256": "3f501304bfc61042789a9b7852a4f2f5a0193c05cfe5a873801d0ef94cab5135",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "chain",
+      "mode": "lod2",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "chain",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/chain-lod2.png",
+        "--lod",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.8195332390023395,
+      "image_sha256": "548d3703b974b97a7263bbcb323db63713d223997df9470bc5cfe73d72535a08",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "chain",
+      "mode": "equipped",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "chain",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/chain-equipped.png",
+        "--equipped"
+      ],
+      "exit": 0,
+      "seconds": 2.628663279931061,
+      "image_sha256": "907393157dcd45bb26d4eeb15b2a7af8373818bf79e8fb6c8f7599fa98695365",
+      "equipped_scene_ready": true
+    },
+    {
+      "model": "whip",
+      "mode": "lod0",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "whip",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/whip-lod0.png",
+        "--lod",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 1.818034686963074,
+      "image_sha256": "f18d922847d8ca02dd9e25011f075d969919905b95a699fa5c363f8323630090",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "whip",
+      "mode": "lod1",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "whip",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/whip-lod1.png",
+        "--lod",
+        "1"
+      ],
+      "exit": 0,
+      "seconds": 1.868319345987402,
+      "image_sha256": "36b99fa2d0f3382abb267c038ed7ba9ef077b8a855120ef62399c3d03bea7ddc",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "whip",
+      "mode": "lod2",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "whip",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/whip-lod2.png",
+        "--lod",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.8178543199319392,
+      "image_sha256": "ff18ed8b130207043b98e265c59d79f0bf9277f3aa3fcae72102afaad717663a",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "whip",
+      "mode": "equipped",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "whip",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/whip-equipped.png",
+        "--equipped"
+      ],
+      "exit": 0,
+      "seconds": 2.51932180498261,
+      "image_sha256": "7b279bb8b20d2148b529a8ba7951cf613fdda095f90a8741fea634ce187e3662",
+      "equipped_scene_ready": true
+    },
+    {
+      "model": "rolling_pin",
+      "mode": "lod0",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "rolling_pin",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/rolling_pin-lod0.png",
+        "--lod",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 1.7675975940655917,
+      "image_sha256": "278e895aed389bf3291a1ba0dbda2bd79532673a90b558a915f28c001a432f1a",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "rolling_pin",
+      "mode": "lod1",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "rolling_pin",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/rolling_pin-lod1.png",
+        "--lod",
+        "1"
+      ],
+      "exit": 0,
+      "seconds": 1.8707249929429963,
+      "image_sha256": "16586e7828a7471ea1dfe5d14e6b020728bb661e355c2e5934c93572af4e4555",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "rolling_pin",
+      "mode": "lod2",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "rolling_pin",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/rolling_pin-lod2.png",
+        "--lod",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.8694837520597503,
+      "image_sha256": "46d6933de977623e92ffd3578f074c2b7be0481a7b488abd6d8ff02dcd977222",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "rolling_pin",
+      "mode": "equipped",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "rolling_pin",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/rolling_pin-equipped.png",
+        "--equipped"
+      ],
+      "exit": 0,
+      "seconds": 2.569163754931651,
+      "image_sha256": "60e7e6918fb892f609e6d0769ea7483934bd819bdcb513b0af6f58dd8996f9cf",
+      "equipped_scene_ready": true
+    },
+    {
+      "model": "baseball_bat",
+      "mode": "lod0",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "baseball_bat",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/baseball_bat-lod0.png",
+        "--lod",
+        "0"
+      ],
+      "exit": 0,
+      "seconds": 1.8180648640263826,
+      "image_sha256": "fcddb1df195ffc578517ff6c455059996a1fe0f57953a0675de4f75b42eabf71",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "baseball_bat",
+      "mode": "lod1",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "baseball_bat",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/baseball_bat-lod1.png",
+        "--lod",
+        "1"
+      ],
+      "exit": 0,
+      "seconds": 1.8188283410854638,
+      "image_sha256": "935d34021297b0aaceb5fa2ea44f69e15b8076141c35c564456a837f229a2fe1",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "baseball_bat",
+      "mode": "lod2",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "baseball_bat",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/baseball_bat-lod2.png",
+        "--lod",
+        "2"
+      ],
+      "exit": 0,
+      "seconds": 1.7206764129223302,
+      "image_sha256": "db64b1db96902b18269042d7cac8a2b7db926bfebefeaa2c1c96c4fa21343be7",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "baseball_bat",
+      "mode": "equipped",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "baseball_bat",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/baseball_bat-equipped.png",
+        "--equipped"
+      ],
+      "exit": 0,
+      "seconds": 2.519646671949886,
+      "image_sha256": "2eece21282351a466b2eb2110c66f1b24dcdc43d307cb33afab0993ed6a5da9a",
+      "equipped_scene_ready": true
+    },
+    {
+      "model": "club_baseline",
+      "mode": "equipped",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "club_baseline",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/club_baseline-equipped.png",
+        "--equipped"
+      ],
+      "exit": 0,
+      "seconds": 2.4189228960312903,
+      "image_sha256": "f24d949b605edf20f4dd4a6cb0329dd59cbcf6059ba3fcbfd8a6a08f0be1c34f",
+      "equipped_scene_ready": false
+    },
+    {
+      "model": "invalid_model",
+      "mode": "equipped",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadRash/target/debug/weapon_preview",
+        "--id",
+        "invalid_model",
+        "--capture",
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/weapon-models/docs/testing/new-weapon-models/native/invalid_model-equipped.png",
+        "--equipped"
+      ],
+      "exit": 0,
+      "seconds": 2.519739815965295,
+      "image_sha256": "a3c4c17e04e72638252803b5355663b2de06cb601ada156a9f1e507c236ef05a",
+      "equipped_scene_ready": false
+    }
+  ]
+}

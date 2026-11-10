@@ -205,6 +205,8 @@ pub fn run(
             );
             assert_eq!(profile.races, 0);
             assert_eq!(profile.best_seconds, None);
+            std::fs::create_dir_all("docs/testing/part08-police/native")
+                .expect("create police native evidence directory");
             commands
                 .spawn(Screenshot::primary_window())
                 .observe(save_to_disk("docs/testing/part08-police/native/busted.png"));

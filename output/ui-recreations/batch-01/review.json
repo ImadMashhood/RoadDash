@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-09",
+  "batch_status": "stopped-at-user-request",
+  "planned": 57,
+  "saved": 5,
+  "approved_reference": "UI-IMG-0072",
+  "records": [
+    {
+      "id": "UI-IMG-0055",
+      "file": "output/ui-recreations/batch-01/UI-IMG-0055.png",
+      "sha256": "fa3916b7644fcc1ae113272e4f925853369d6f26cc2420c0b61f09d9fcde522e",
+      "status": "rejected-draft",
+      "runtime_installed": false
+    },
+    {
+      "id": "UI-IMG-0068",
+      "file": "output/ui-recreations/batch-01/UI-IMG-0068.png",
+      "sha256": "bd8cd50c629959e00a6beb4abf9ab8a13709255b813e2db7aee030c5e265fbc8",
+      "status": "rejected-draft",
+      "runtime_installed": false
+    },
+    {
+      "id": "UI-IMG-0070",
+      "file": "output/ui-recreations/batch-01/UI-IMG-0070.png",
+      "sha256": "7df9e9196e16760d175eacd1f589d9eccd90fb5705053710f3559855e9c07c0a",
+      "status": "rejected-draft",
+      "runtime_installed": false
+    },
+    {
+      "id": "UI-IMG-0071",
+      "file": "output/ui-recreations/batch-01/UI-IMG-0071.png",
+      "sha256": "64614f35b42491498aef1ab514d510d8317b24273d6149235dba8b40df86e7b6",
+      "status": "rejected-draft",
+      "runtime_installed": false
+    },
+    {
+      "id": "UI-IMG-0072",
+      "file": "output/ui-recreations/batch-01/UI-IMG-0072.png",
+      "sha256": "a52c74caa1d59acd9ca4dfdd61035d9d72836c1924057fb2b5b789333f140fed",
+      "status": "approved-style-reference-only",
+      "runtime_installed": false
+    }
+  ]
+}

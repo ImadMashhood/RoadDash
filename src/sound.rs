@@ -42,6 +42,11 @@ pub struct Sounds {
 }
 #[derive(Resource, Default)]
 pub struct Muted(pub bool);
+pub(crate) fn mix_gain(base: f32, master: f32, muted: bool) -> f32 {
+    if muted { 0. } else { base * master }
+}
+#[derive(Component)]
+pub struct CueGain(pub f32);
 #[derive(Component, Clone, Copy)]
 pub enum LoopSound {
     Engine,
@@ -154,10 +159,11 @@ pub fn update(
     race: Res<Race>,
     sounds: Res<Sounds>,
     muted: Res<Muted>,
+    preferences: Option<Res<crate::settings::Preferences>>,
     riders: Query<(&Rider, &Recovery, &Transform)>,
     bike_states: Query<(&Rider, &crate::vehicle::BikeState)>,
     mut cues: MessageReader<AudioCue>,
-    mut sinks: Query<(&mut AudioSink, Option<&LoopSound>)>,
+    mut sinks: Query<(&mut AudioSink, Option<&LoopSound>, Option<&CueGain>)>,
     mut last_count: Local<i32>,
     mut last_phase: Local<Option<Phase>>,
 ) {
@@ -166,7 +172,8 @@ pub fn update(
         return;
     };
     let riding = race.phase == Phase::Racing && recovery.stage == RecoveryStage::Riding && !muted.0;
-    for (mut sink, loop_sound) in &mut sinks {
+    let master = preferences.as_ref().map_or(1., |p| p.file.master_volume);
+    for (mut sink, loop_sound, gain) in &mut sinks {
         if race.phase == Phase::Paused {
             sink.pause();
         } else {
@@ -175,6 +182,8 @@ pub fn update(
         let Some(loop_sound) = loop_sound else {
             if muted.0 {
                 sink.set_volume(Volume::SILENT);
+            } else if let Some(g) = gain {
+                sink.set_volume(Volume::Linear(mix_gain(g.0, master, muted.0)));
             }
             continue;
         };
@@ -201,7 +210,7 @@ pub fn update(
                 }
             }
         };
-        sink.set_volume(Volume::Linear(volume));
+        sink.set_volume(Volume::Linear(mix_gain(volume, master, muted.0)));
         if matches!(loop_sound, LoopSound::Engine) {
             sink.set_speed(bike_states.iter().find(|(r, _)| r.id == 0).map_or(
                 0.85 + (player.speed % 12.0) * 0.075 + player.speed * 0.012,
@@ -226,7 +235,12 @@ pub fn update(
         if !muted.0 && race.phase == Phase::Racing {
             commands.spawn((
                 AudioPlayer::new(handle.clone()),
-                PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.55 * gain)),
+                PlaybackSettings::DESPAWN.with_volume(Volume::Linear(mix_gain(
+                    0.55 * gain,
+                    master,
+                    muted.0,
+                ))),
+                CueGain(0.55 * gain),
             ));
         }
     }
@@ -238,7 +252,8 @@ pub fn update(
     if count > 0 && count != *last_count && !muted.0 {
         commands.spawn((
             AudioPlayer::new(sounds.beep.clone()),
-            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.35)),
+            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(mix_gain(0.35, master, muted.0))),
+            CueGain(0.35),
         ));
     }
     if race.phase == Phase::Finished && *last_phase != Some(Phase::Finished) && !muted.0 {
@@ -248,7 +263,8 @@ pub fn update(
             } else {
                 sounds.finish.clone()
             }),
-            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(0.5)),
+            PlaybackSettings::DESPAWN.with_volume(Volume::Linear(mix_gain(0.5, master, muted.0))),
+            CueGain(0.5),
         ));
     }
     *last_count = count;
@@ -258,6 +274,15 @@ pub fn update(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn master_gain_is_absolute_and_preserves_default_mix() {
+        for base in [0., 0.1, 0.35, 0.55, 1.] {
+            assert_eq!(mix_gain(base, 1., false), base);
+            assert_eq!(mix_gain(base, 0., false), 0.);
+            assert_eq!(mix_gain(base, 1., true), 0.);
+            assert_eq!(mix_gain(base, 0.5, false), base * 0.5);
+        }
+    }
     #[test]
     fn generated_audio_is_valid_pcm_and_not_silent() {
         for kind in 0..=13 {

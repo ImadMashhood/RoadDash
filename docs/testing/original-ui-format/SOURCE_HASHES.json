@@ -1,0 +1,8 @@
+{
+  "src/frontend.rs": "eeb705d7b46f86cff7dff754f6f9b7bcc591916d6bafcc0e24a1664275dfa3b3",
+  "src/frontend/layout.rs": "610e33979f09d14050c2d5127df42b605499ee5da7d8a5b9a9cffa5534916955",
+  "assets/ui/fonts/Jost-400-Book.ttf": "3fda07bcb2fe66667798f45dd2fc3834586a15fc6b6df7da36422b459b5a117c",
+  "assets/ui/fonts/Jost-700-Bold.ttf": "95f16d07698549232a121443d9fdef129de15b209d70c8804f28df49bf594838",
+  "assets/ui/fonts/Jost-OFL.txt": "3cc70947dfb71a1afa639b26efa7939e792c9dbf32652332aab57c356697f77b",
+  "docs/ui/catalog.json": "24bc930d7724fee5af15d0a3d574c2a7b3203f3ccebefbb712a16ac7ca2f30a8"
+}

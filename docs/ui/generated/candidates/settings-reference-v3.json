@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-09",
+  "tool": "built-in image_gen",
+  "status": "rejected-by-user",
+  "runtime_installed": false,
+  "path": "docs/ui/generated/candidates/settings-reference-v3.png",
+  "prompt": "docs/ui/generated/candidates/settings-reference-v3.txt",
+  "width": 1672,
+  "height": 941,
+  "sha256": "9899b8350b5f1a7dd8f21258a474e9789bf1d0ea94196d2c3899c7f6aaa4feaa",
+  "reference_images": [
+    "UI-IMG-0032",
+    "UI-IMG-0071",
+    "UI-IMG-0090"
+  ],
+  "reference_role": "Style references supplied directly to image generation; local retail media excluded from repository",
+  "inspection": "Entire154-image catalog reviewed via26contact sheets. Prior three attempts rejected by user; no runtime/UI code changes. This sample has rounded caricature volumes and foreshortened hands; detail/style approval remains open."
+}
