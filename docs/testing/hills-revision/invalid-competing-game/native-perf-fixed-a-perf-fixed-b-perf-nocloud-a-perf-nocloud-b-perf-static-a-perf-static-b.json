@@ -1,0 +1,34 @@
+[
+  {
+    "verification_complete": true,
+    "case": "perf-fixed-a",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": true,
+    "volumetric_clouds": true,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 130.729020398001
+  },
+  {
+    "verification_complete": true,
+    "case": "perf-static-a",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 119.46755297300115
+  }
+]

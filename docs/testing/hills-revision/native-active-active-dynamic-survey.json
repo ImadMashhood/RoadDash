@@ -1,0 +1,50 @@
+[
+  {
+    "verification_complete": true,
+    "case": "active",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "assisted",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "f6e03d32721a32f6226170f92e4f3245658ca3b8459c806b2610ac797b377842",
+    "exit_code": 0,
+    "elapsed_seconds": 94.65904888999648
+  },
+  {
+    "verification_complete": true,
+    "case": "active-dynamic",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "f6e03d32721a32f6226170f92e4f3245658ca3b8459c806b2610ac797b377842",
+    "exit_code": 0,
+    "elapsed_seconds": 103.26886763799848
+  },
+  {
+    "verification_complete": true,
+    "case": "survey",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "f6e03d32721a32f6226170f92e4f3245658ca3b8459c806b2610ac797b377842",
+    "exit_code": 0,
+    "elapsed_seconds": 60.388352353998926
+  }
+]

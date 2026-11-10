@@ -1,0 +1,44 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 41s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 21 tests
+test world_gen::hills::atmosphere::tests::dust_requires_motion_ground_and_unpaved_wheel_position ... ok
+test world_gen::hills::atmosphere::tests::original_dust_sprite_has_transparent_edges_and_bounded_payload ... ok
+test world_gen::hills::atmosphere::tests::native_pool_lifecycle_keeps_pause_and_resets_retry_without_spawning ... ok
+test world_gen::hills::city_slice::tests::clipping_preserves_surface_area_and_open_holes ... ok
+test world_gen::hills::props::tests::original_rounded_forms_have_outward_facing_triangles ... ok
+test world_gen::hills::clouds::tests::density_is_bounded_soft_at_all_box_faces_and_has_real_depth ... ok
+test world_gen::hills::props::tests::storefront_letters_read_left_to_right_from_the_front ... ok
+test world_gen::hills::city_slice::tests::clipping_original_triangulated_holes_does_not_fill_them ... ok
+test world_gen::hills::city_slice::tests::clipped_source_road_covers_both_lane_edges_for_the_entire_imported_kilometre ... ok
+test world_gen::hills::static_collision::tests::conversion_preserves_entities_shapes_roles_and_moving_bodies ... ok
+test world_gen::hills::city_slice::tests::city_is_an_actual_source_slice_with_unchanged_building_shapes_and_styles ... ok
+test world_gen::hills::mounted::tests::clock_driven_mounts_pause_restart_and_match_late_guest_snapshots ... ok
+test world_gen::hills::geometry::tests::hills_roads_and_shoulders_face_up_without_spanning_live_lanes ... ok
+test world_gen::hills::countryside::tests::farm_parcels_are_hills_only_and_foundations_are_small_supported_shelves ... ok
+test world_gen::hills::countryside::tests::reused_metropolis_farm_props_are_bounded_supported_and_road_clear ... ok
+test world_gen::hills::static_collision::physical_equivalence::standalone_static_shapes_preserve_support_scaled_wall_contact_and_queries ... ok
+test world_gen::hills::dressing::tests::desert_and_forest_details_have_supported_nonoverlapping_road_clear_footprints ... ok
+test world_gen::hills::static_collision::physical_equivalence::standalone_solid_wall_preserves_native_knockoff_and_assisted_blocking ... ok
+test world_gen::hills::mounted::tests::mounted_patrols_stay_grounded_clear_of_both_roads_and_inside_reserved_envelopes ... ok
+test world_gen::hills::bridge::tests::suspended_deck_has_no_railings_and_square_solid_hangers ... FAILED
+test world_gen::hills::props::tests::placed_hills_geometry_has_every_family_and_buildings_clear_both_streets ... ok
+
+failures:
+
+---- world_gen::hills::bridge::tests::suspended_deck_has_no_railings_and_square_solid_hangers stdout ----
+
+thread 'world_gen::hills::bridge::tests::suspended_deck_has_no_railings_and_square_solid_hangers' (425748) panicked at src/world_gen/hills/bridge.rs:458:13:
+assertion `left == right` failed
+  left: Vec3(0.325, 0.325, 14.20075)
+ right: Vec3(0.325, 0.325, 14.200726)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    world_gen::hills::bridge::tests::suspended_deck_has_no_railings_and_square_solid_hangers
+
+test result: FAILED. 20 passed; 1 failed; 0 ignored; 0 measured; 375 filtered out; finished in 40.48s
+
+error: test failed, to rerun pass `--lib`

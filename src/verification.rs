@@ -30,21 +30,29 @@ pub struct SmokeProgress {
     walk_crossing_setup: [bool; 2],
     walk_crossing_distance: [f32; 2],
     walk_crossing_diagnostic_tick: [u32; 2],
+    recovery_diagnostic_tick: [u32; 2],
+    rescue_counts: [u32; 2],
+    rescue_penalties: [f32; 2],
+    rescue_stationary_seconds: [f32; 2],
     strike_windup: bool,
     strike_contact: bool,
 }
 // A running stage can last one physics tick when the rider lands near the bike.
 // Observe fixed transitions independently of render-frame screenshot timing.
+#[allow(clippy::type_complexity)]
 pub fn observe_smoke_recovery(
     mut state: ResMut<SmokeProgress>,
     riders: Query<(Entity, &Rider, &Recovery, &Transform)>,
-    (bodies, controller_outputs): (
+    (bodies, controller_outputs, velocities, names): (
         Query<&Transform, Without<Rider>>,
         Query<&bevy_rapier3d::prelude::KinematicCharacterControllerOutput>,
+        Query<&bevy_rapier3d::prelude::Velocity>,
+        Query<&Name>,
     ),
-    (track, navigation): (
+    (track, navigation, controls): (
         Res<Track>,
         Option<Res<crate::world_gen::metropolis::navigation::Navigation>>,
+        Res<crate::controls::Controls>,
     ),
     ground: Query<
         (
@@ -61,6 +69,15 @@ pub fn observe_smoke_recovery(
             continue;
         }
         let index = usize::from(state.hill_started);
+        if recovery.rescues > state.rescue_counts[index] {
+            state.rescue_counts[index] = recovery.rescues;
+            state.rescue_penalties[index] = recovery.rescue_penalty_total;
+            state.rescue_stationary_seconds[index] = recovery.last_rescue_stationary;
+            println!(
+                "Native exceptional recovery {index}: count={} stationary={:.3}s penalty={:.3}s",
+                recovery.rescues, recovery.last_rescue_stationary, recovery.rescue_penalty_total
+            );
+        }
         if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1")
             && recovery.stage == RecoveryStage::GettingUp
             && !state.walk_crossing_setup[index]
@@ -134,6 +151,81 @@ pub fn observe_smoke_recovery(
             println!(
                 "Native foot crossing setup {index}: station={:.3} start={p:?} (farm terrain / city sidewalk)",
                 rider.progress
+            );
+        }
+        // Diagnostics only: preserve the physical setup, all recovery assertions
+        // and timeout. A stalled run must explain what its actual bodies did.
+        let interval = (recovery.elapsed / 5.).floor() as u32;
+        if matches!(
+            recovery.stage,
+            RecoveryStage::Running | RecoveryStage::GettingUp
+        ) && interval >= 2
+            && interval > state.recovery_diagnostic_tick[index]
+        {
+            state.recovery_diagnostic_tick[index] = interval;
+            let runner = recovery
+                .runner
+                .and_then(|e| bodies.get(e).ok())
+                .map(|t| t.translation);
+            let wreck = recovery
+                .wreck
+                .and_then(|e| bodies.get(e).ok())
+                .map(|t| (t.translation, t.rotation));
+            let speed = recovery
+                .wreck
+                .and_then(|e| velocities.get(e).ok())
+                .map(|v| (v.linvel, v.angvel));
+            let output = recovery.runner.and_then(|e| controller_outputs.get(e).ok());
+            let contacts: Vec<_> = output
+                .into_iter()
+                .flat_map(|o| o.collisions.iter())
+                .take(8)
+                .map(|c| {
+                    (
+                        c.entity,
+                        names.get(c.entity).map_or("unnamed", Name::as_str),
+                        ground.get(c.entity).ok(),
+                        bodies.get(c.entity).ok().map(|t| t.translation),
+                    )
+                })
+                .collect();
+            let ahead = runner.zip(wreck).and_then(|(from, (p, q))| {
+                let direction = (p + q * Vec3::Y * 0.85 - from)
+                    .with_y(0.)
+                    .normalize_or_zero();
+                let predicate = |e| Some(e) != recovery.runner && Some(e) != recovery.wreck;
+                context
+                    .single()
+                    .ok()?
+                    .cast_ray_and_get_normal(
+                        from,
+                        direction,
+                        2.,
+                        true,
+                        bevy_rapier3d::prelude::QueryFilter::default().predicate(&predicate),
+                    )
+                    .map(|(e, hit)| {
+                        (
+                            e,
+                            ground.get(e).ok(),
+                            hit.normal,
+                            hit.time_of_impact,
+                            bodies.get(e).ok().map(|t| t.translation),
+                        )
+                    })
+            });
+            println!("Native recovery avoidance ray {index}: hit={ahead:?}");
+            println!(
+                "Native recovery diagnostic {index}: stage={:?} elapsed={:.2} station={:.3} lane={:.3} foot={:?} input={:?} runner={runner:?} wreck={wreck:?} velocity={speed:?} walk={:.3} next={:?} controller={:?} contacts={contacts:?}",
+                recovery.stage,
+                recovery.elapsed,
+                rider.progress,
+                rider.lane,
+                recovery.foot.mode,
+                controls.foot,
+                recovery.walk_distance,
+                recovery.walk_path.first(),
+                output.map(|o| (o.grounded, o.desired_translation, o.effective_translation))
             );
         }
         match recovery.stage {
@@ -640,7 +732,20 @@ pub(crate) fn smoke_test(
             for (mut rider, _, mut transform, mut velocity) in &mut riders {
                 if rider.id == 0 {
                     rider.route = test_route;
-                    if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1") {
+                    if track.is_hills() {
+                        rider.progress = 6200.;
+                        rider.lane = 0.;
+                        let (p, q) = track.sample_route(test_route, rider.progress, 0.);
+                        *transform = Transform::from_translation(p).with_rotation(q);
+                        rider.speed = 30.;
+                        rider.motion_velocity = q * Vec3::Z * rider.speed;
+                        if let Some(v) = velocity.as_mut() {
+                            **v = bevy_rapier3d::prelude::Velocity::linear(rider.motion_velocity);
+                        }
+                        contacts.clear();
+                        sweeps.clear();
+                    } else if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1")
+                    {
                         rider.progress = 2800.;
                         rider.lane = 0.;
                         rider.speed = 0.;
@@ -674,7 +779,10 @@ pub(crate) fn smoke_test(
                 } else {
                     rr_content::track::Sector::Hills
                 };
-                let index = if track.metropolis.is_some() {
+                let index = if track.is_hills() {
+                    let distance = if elapsed == 60 { 3800. } else { 6200. };
+                    track.distances.partition_point(|d| *d < distance)
+                } else if track.metropolis.is_some() {
                     let distance = if elapsed == 60 { 4400.0 } else { 4300.0 };
                     track.distances.partition_point(|d| *d < distance)
                 } else if elapsed == 60 && track.city_surface.is_some() {
@@ -837,6 +945,35 @@ pub(crate) fn smoke_test(
             report["gamepads_connected"] = serde_json::json!(pads.iter().count());
             report["comfort"] = serde_json::json!(prefs.file.comfort);
             report["fixed_recovery_stages"] = serde_json::json!(state.fixed_stages);
+            report["exceptional_recovery"] = serde_json::json!({
+                "counts_first_and_hill":state.rescue_counts,
+                "penalties_seconds":state.rescue_penalties,
+                "stationary_seconds":state.rescue_stationary_seconds,
+                "extended_hills_fixture":std::env::var("ROADDASH_VERIFY_HILLS_RESCUE").as_deref()==Ok("1"),
+                "unassisted_both":state.rescue_counts.iter().all(|count| *count==0)
+            });
+            if track.is_hills()
+                && std::env::var("ROADDASH_VERIFY_HILLS_RESCUE").as_deref() == Ok("1")
+            {
+                assert_eq!(
+                    state.rescue_counts[0], 0,
+                    "first Hills recovery must remain unassisted"
+                );
+                assert_eq!(
+                    state.remounts, 2,
+                    "both physical recoveries must actually remount"
+                );
+                if state.rescue_counts[1] > 0 {
+                    assert!(
+                        state.rescue_stationary_seconds[1] >= 120.,
+                        "exceptional Hills rescue fired early"
+                    );
+                    assert_eq!(
+                        state.rescue_penalties[1],
+                        5. * state.rescue_counts[1] as f32
+                    );
+                }
+            }
             if std::env::var("ROADDASH_VERIFY_WALK_CROSSINGS").as_deref() == Ok("1") {
                 assert!(
                     state.walk_crossing_setup.iter().all(|v| *v),
@@ -878,7 +1015,12 @@ pub(crate) fn smoke_test(
                 serde_json::to_vec_pretty(&report).unwrap(),
             )
             .expect("write smoke evidence");
-            if track.metropolis.is_some() {
+            if track.is_hills() {
+                println!(
+                    "Render smoke test passed: Hills route {test_route} -> city/town/hills -> crash recovery -> results fixture; exceptional rescues {:?}",
+                    state.rescue_counts
+                );
+            } else if track.metropolis.is_some() {
                 println!(
                     "Render smoke test passed: Metropolis route {test_route} -> farm/city crashes -> both recoveries -> results fixture"
                 );
@@ -894,8 +1036,15 @@ pub(crate) fn smoke_test(
             exit.write(AppExit::Success);
         }
     }
+    let limit = if track.is_hills()
+        && std::env::var("ROADDASH_VERIFY_HILLS_RESCUE").as_deref() == Ok("1")
+    {
+        12000
+    } else {
+        6000
+    };
     assert!(
-        state.frame < 6000,
+        state.frame < limit,
         "render smoke test timed out during recovery"
     );
 }

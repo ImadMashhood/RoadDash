@@ -1,0 +1,14 @@
+{
+  "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+  "before_status": "Baloo File Indexer is running\nIndexer state: Idle\nTotal files indexed: 565801\nFiles waiting for content indexing: 0\nFiles failed to index: 0\nCurrent size of index is 2.91 GiB\n",
+  "started_utc": "2026-11-10T19:48:51Z",
+  "actions": [
+    "temporarily suspended Baloo indexing",
+    "resumed Baloo indexing"
+  ],
+  "resume_note": "Retain valid fixed-a from prior session; rerun static-a and remaining cases after competing game closed.",
+  "suspended_status": "Baloo File Indexer is running\nIndexer state: Suspended\nTotal files indexed: 565801\nFiles waiting for content indexing: 0\nFiles failed to index: 0\nCurrent size of index is 2.91 GiB\n",
+  "runner_exit_code": 0,
+  "after_status": "Baloo File Indexer is running\nIndexer state: Indexing new files\nTotal files indexed: 565801\nFiles waiting for content indexing: 0\nFiles failed to index: 0\nCurrent size of index is 2.91 GiB\n",
+  "ended_utc": "2026-11-10T19:59:31Z"
+}

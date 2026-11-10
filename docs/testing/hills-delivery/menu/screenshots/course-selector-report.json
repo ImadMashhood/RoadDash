@@ -1,0 +1,22 @@
+{
+  "featured_courses": [
+    "Metropolis",
+    "Hills"
+  ],
+  "legacy_courses": [
+    "Valley Run",
+    "City Run"
+  ],
+  "limits": "Native menu actions and world handoff; legacy map handoffs covered by command/identity tests, not a full driven race.",
+  "live_portrait_preferences_handling_preserved": true,
+  "loaded_sequence": [
+    "Metropolis",
+    "Hills",
+    "Metropolis"
+  ],
+  "profile_credits_preserved": true,
+  "return_to_menu": true,
+  "same_course_retry_without_reload": true,
+  "screenshots": 6,
+  "verified": true
+}

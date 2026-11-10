@@ -9,6 +9,7 @@ pub enum OnlineMap {
     Metropolis,
     Valley,
     City,
+    Hills,
 }
 impl OnlineMap {
     pub fn label(self) -> &'static str {
@@ -16,6 +17,7 @@ impl OnlineMap {
             Self::Metropolis => "Metropolis",
             Self::Valley => "Valley Run",
             Self::City => "City Run",
+            Self::Hills => "Hills",
         }
     }
 }
@@ -403,6 +405,7 @@ fn map_matches(map: OnlineMap, track: &crate::track::Track) -> bool {
         OnlineMap::Metropolis => track.metropolis.is_some(),
         OnlineMap::Valley => track.definition.id.as_str() == "valley-run-01",
         OnlineMap::City => track.city_surface.is_some(),
+        OnlineMap::Hills => track.is_hills(),
     }
 }
 #[allow(clippy::too_many_arguments)]
@@ -417,7 +420,11 @@ fn relaunch(
 ) -> Result<(), String> {
     let executable = std::env::current_exe().map_err(|e| e.to_string())?;
     std::process::Command::new(executable)
-        .args(std::env::args().skip(1))
+        .args(crate::frontend::map_launch_arguments(
+            std::env::args_os().skip(1),
+        ))
+        .env_remove("ROADDASH_OFFLINE_BOOT")
+        .env_remove("ROADDASH_OFFLINE_STATE")
         .env("ROADDASH_EXPECTED_GUESTS", expected.to_string())
         .env(
             "ROADDASH_TRACK",
@@ -425,6 +432,7 @@ fn relaunch(
                 OnlineMap::Metropolis => "metro",
                 OnlineMap::Valley => "valley",
                 OnlineMap::City => "city",
+                OnlineMap::Hills => "hills",
             },
         )
         .env("ROADDASH_SERVER", endpoint)
@@ -1103,7 +1111,9 @@ fn next_quickplay(state: &mut NetState, online: &mut Online) -> OnlineAction {
     }
 }
 fn loaded_map(track: &crate::track::Track) -> OnlineMap {
-    if track.metropolis.is_some() {
+    if track.is_hills() {
+        OnlineMap::Hills
+    } else if track.metropolis.is_some() {
         OnlineMap::Metropolis
     } else if track.city_surface.is_some() {
         OnlineMap::City
@@ -1143,7 +1153,7 @@ mod admission_tests {
         assert!(online.error.is_none());
     }
     #[test]
-    fn empty_quickplay_on_legacy_maps_preserves_automatic_start_without_relaunch() {
+    fn empty_quickplay_on_supported_maps_preserves_automatic_start_without_relaunch() {
         for (json, expected) in [
             (
                 include_str!("../../content/tracks/valley.json"),
@@ -1152,6 +1162,10 @@ mod admission_tests {
             (
                 include_str!("../../content/tracks/city5300.json"),
                 OnlineMap::City,
+            ),
+            (
+                include_str!("../../content/tracks/hills.json"),
+                OnlineMap::Hills,
             ),
         ] {
             let track = crate::track::Track::from_json(json).unwrap();

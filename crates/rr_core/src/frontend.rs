@@ -24,6 +24,36 @@ pub enum Mode {
     Thrash,
     Street,
 }
+/// Offline course identity, independent of rendering and world lifetime.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Course {
+    Metropolis,
+    Hills,
+    Valley,
+    City,
+}
+impl Course {
+    pub const ALL: [Self; 4] = [Self::Metropolis, Self::Hills, Self::Valley, Self::City];
+    pub fn key(self) -> &'static str {
+        match self {
+            Self::Metropolis => "metro",
+            Self::Hills => "hills",
+            Self::Valley => "valley",
+            Self::City => "city",
+        }
+    }
+    pub fn label(self) -> &'static str {
+        match self {
+            Self::Metropolis => "METROPOLIS",
+            Self::Hills => "HILLS",
+            Self::Valley => "VALLEY RUN",
+            Self::City => "CITY RUN",
+        }
+    }
+    pub fn from_key(key: &str) -> Option<Self> {
+        Self::ALL.into_iter().find(|c| c.key() == key)
+    }
+}
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Action {
     Continue,
@@ -55,6 +85,7 @@ pub enum Action {
     PreviousPortrait,
     NextPortrait,
     SelectPortrait(usize),
+    SelectCourse(Course),
 }
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum Effect {
@@ -69,12 +100,18 @@ pub struct Flow {
     pub page: Page,
     pub mode: Mode,
     pub portrait: usize,
+    pub course: Option<Course>,
 }
 impl Flow {
     pub fn dispatch(&mut self, action: Action) -> Effect {
         use Action as A;
         use Page as P;
         let next = match (self.page, action) {
+            (P::Courses, A::SelectCourse(course)) => {
+                self.course = Some(course);
+                return Effect::None;
+            }
+            (P::Results, A::Courses) => P::Courses,
             (P::Portrait, A::PreviousPortrait) => {
                 self.portrait = (self.portrait + ROSTER.len() - 1) % ROSTER.len();
                 return Effect::None;
@@ -269,6 +306,24 @@ mod tests {
             assert_eq!(f.dispatch(Action::Ride), Effect::None);
             assert_eq!(f.dispatch(Action::Back), Effect::None);
         }
+    }
+    #[test]
+    fn selecting_a_course_does_not_launch_and_results_can_return_to_selection() {
+        let mut f = Flow {
+            page: Page::Courses,
+            ..Default::default()
+        };
+        for c in Course::ALL {
+            assert_eq!(f.dispatch(Action::SelectCourse(c)), Effect::None);
+            assert_eq!(f.page, Page::Courses);
+            assert_eq!(f.course, Some(c));
+            assert_eq!(Course::from_key(c.key()), Some(c));
+        }
+        assert_eq!(f.dispatch(Action::Ride), Effect::Start);
+        f.page = Page::Results;
+        assert_eq!(f.dispatch(Action::Courses), Effect::None);
+        assert_eq!(f.page, Page::Courses);
+        assert_eq!(f.course, Some(Course::City));
     }
     #[test]
     fn back_restores_the_correct_hub_and_settings_does_not_lose_it() {

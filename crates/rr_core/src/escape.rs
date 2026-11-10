@@ -181,6 +181,20 @@ pub struct WalkWatch {
     elapsed: f32,
 }
 impl WalkWatch {
+    /// Automatic recovery can be exceptionally rescued only after remaining
+    /// inside one half-metre region for the entire configured wait. Manual
+    /// control clears the watch; walking progress resets its anchor.
+    pub fn seek_rescue_due(&mut self, dt: f32, p: [f32; 2], automatic: bool, wait: f32) -> bool {
+        if !automatic {
+            *self = Self::default();
+            return false;
+        }
+        self.stalled(dt, p);
+        self.elapsed > wait
+    }
+    pub fn stationary_seconds(&self) -> f32 {
+        self.elapsed
+    }
     pub fn stalled(&mut self, dt: f32, p: [f32; 2]) -> bool {
         let a = *self.anchor.get_or_insert(p);
         if (a[0] - p[0]).powi(2) + (a[1] - p[1]).powi(2) > 0.25 {
@@ -203,6 +217,30 @@ mod tests {
             !((x.abs() < 8. && (8. ..11.).contains(&z))
                 || ((5. ..8.).contains(&x.abs()) && (-10. ..11.).contains(&z)))
         })
+    }
+    #[test]
+    fn exceptional_seek_waits_for_full_stagnation_and_never_overrides_manual_or_progress() {
+        let mut watch = WalkWatch::default();
+        for _ in 0..480 {
+            assert!(!watch.seek_rescue_due(0.25, [0., 0.], true, 120.));
+        }
+        assert!(watch.seek_rescue_due(0.25, [0.1, -0.1], true, 120.));
+        assert!(watch.stationary_seconds() > 120.);
+        assert!(!watch.seek_rescue_due(0.25, [0.1, 0.1], false, 120.));
+        assert_eq!(watch.stationary_seconds(), 0.);
+        for _ in 0..480 {
+            assert!(!watch.seek_rescue_due(0.25, [0., 0.], true, 120.));
+        }
+        // Meaningful displacement, even slow continuous walking, clears the timer.
+        assert!(!watch.seek_rescue_due(0.25, [0.6, 0.], true, 120.));
+        for i in 0..2000 {
+            assert!(!watch.seek_rescue_due(0.25, [0.6 + i as f32 * 0.01, 0.], true, 120.));
+        }
+        let before = watch.stationary_seconds();
+        for _ in 0..10000 {
+            assert!(!watch.seek_rescue_due(0., [20.59, 0.], true, 120.));
+        }
+        assert_eq!(watch.stationary_seconds(), before);
     }
     #[test]
     fn exits_a_concave_dead_end_before_rejoining_ahead() {

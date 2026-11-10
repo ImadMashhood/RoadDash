@@ -1,0 +1,2899 @@
+{
+  "schema_version": 1,
+  "closed": false,
+  "spawns": [
+    {
+      "id": "spawn-0",
+      "distance": -176.0,
+      "lane": -2
+    },
+    {
+      "id": "spawn-1",
+      "distance": -8.0,
+      "lane": 2
+    },
+    {
+      "id": "spawn-2",
+      "distance": -20.0,
+      "lane": -2
+    },
+    {
+      "id": "spawn-3",
+      "distance": -32.0,
+      "lane": 2
+    },
+    {
+      "id": "spawn-4",
+      "distance": -44.0,
+      "lane": -2
+    },
+    {
+      "id": "spawn-5",
+      "distance": -56.0,
+      "lane": 2
+    },
+    {
+      "id": "spawn-6",
+      "distance": -68.0,
+      "lane": -2
+    },
+    {
+      "id": "spawn-7",
+      "distance": -80.0,
+      "lane": 2
+    },
+    {
+      "distance": -92.0,
+      "lane": -2.0,
+      "id": "spawn-8"
+    },
+    {
+      "distance": -104.0,
+      "lane": 2.0,
+      "id": "spawn-9"
+    },
+    {
+      "distance": -116.0,
+      "lane": -2.0,
+      "id": "spawn-10"
+    },
+    {
+      "distance": -128.0,
+      "lane": 2.0,
+      "id": "spawn-11"
+    },
+    {
+      "distance": -140.0,
+      "lane": -2.0,
+      "id": "spawn-12"
+    },
+    {
+      "distance": -152.0,
+      "lane": 2.0,
+      "id": "spawn-13"
+    },
+    {
+      "distance": -164.0,
+      "lane": -2.0,
+      "id": "spawn-14"
+    }
+  ],
+  "id": "hills-01",
+  "name": "Hills",
+  "scenery_seed": 7319,
+  "verge_width": 3,
+  "props": [],
+  "control_points": [
+    {
+      "position": [
+        0.0,
+        8.0,
+        0.0
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -11.09685,
+        7.75447,
+        48.74485
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -26.12083,
+        7.48441,
+        96.37029
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -41.98481,
+        7.18972,
+        143.78105
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -60.78856,
+        6.87733,
+        190.05123
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -80.639,
+        6.54685,
+        235.94099
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -102.35164,
+        6.20422,
+        280.94431
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -125.05997,
+        5.8501,
+        325.49112
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -149.28989,
+        5.48989,
+        369.21342
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -174.01185,
+        5.12289,
+        412.67643
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -199.78277,
+        4.75435,
+        455.51264
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -226.07168,
+        4.38476,
+        498.04697
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -252.36037,
+        4.01461,
+        540.58095
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -278.64792,
+        3.64646,
+        583.11308
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -304.93486,
+        3.28282,
+        625.64423
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -331.22222,
+        2.92613,
+        668.17605
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -357.51063,
+        2.57877,
+        710.70956
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -383.79925,
+        2.24303,
+        753.24343
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -410.08479,
+        1.92108,
+        795.7723
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -435.40662,
+        1.61219,
+        838.84628
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -459.16475,
+        1.31717,
+        882.84047
+      ],
+      "half_width": 6.0,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -482.71579,
+        1.27325,
+        926.94586
+      ],
+      "half_width": 6.014,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -505.09964,
+        1.64709,
+        971.65062
+      ],
+      "half_width": 6.052,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -525.35382,
+        2.34137,
+        1017.35224
+      ],
+      "half_width": 6.108,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -542.74002,
+        3.25879,
+        1064.21299
+      ],
+      "half_width": 6.176,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -556.76614,
+        4.30205,
+        1112.18237
+      ],
+      "half_width": 6.25,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -567.21805,
+        5.37382,
+        1161.05455
+      ],
+      "half_width": 6.324,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -574.18655,
+        6.37681,
+        1210.54685
+      ],
+      "half_width": 6.392,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -578.0808,
+        7.21371,
+        1260.38146
+      ],
+      "half_width": 6.448,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -579.6276,
+        7.78721,
+        1310.35119
+      ],
+      "half_width": 6.486,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -579.86265,
+        8.0,
+        1360.34961
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -577.81067,
+        9.28013,
+        1410.26234
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -568.82004,
+        13.01755,
+        1459.24328
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -551.93246,
+        18.91471,
+        1505.87456
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -528.97626,
+        26.50855,
+        1549.61091
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -503.37525,
+        35.21502,
+        1591.66608
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -479.33267,
+        44.38532,
+        1634.51729
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -461.56433,
+        53.36807,
+        1680.3017
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -454.78248,
+        61.57162,
+        1729.00617
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -462.16033,
+        68.52026,
+        1777.7761
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -483.60544,
+        73.89882,
+        1822.43322
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -515.72091,
+        77.58141,
+        1860.44864
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -553.65395,
+        79.64143,
+        1892.92046
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -592.69676,
+        80.34182,
+        1924.14048
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -628.04471,
+        80.10673,
+        1959.40487
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -653.74891,
+        79.47713,
+        2002.06385
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -663.40208,
+        79.05491,
+        2050.81053
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -653.40803,
+        79.44092,
+        2099.45249
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -625.76659,
+        81.17296,
+        2140.75347
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -586.72607,
+        84.66993,
+        2171.56899
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -542.7553,
+        90.1875,
+        2194.66243
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -498.53512,
+        97.78976,
+        2216.69505
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -458.51283,
+        107.33958,
+        2244.90149
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -429.18802,
+        118.50867,
+        2283.47337
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -418.16247,
+        130.80638,
+        2330.23746
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -429.34822,
+        143.62443,
+        2376.80135
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -459.52666,
+        156.29323,
+        2414.17037
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -500.99655,
+        168.14422,
+        2439.15095
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -546.99999,
+        178.57229,
+        2455.65009
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -593.55447,
+        187.09202,
+        2471.71628
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -636.67275,
+        193.38243,
+        2495.92063
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -669.05584,
+        197.31567,
+        2533.33686
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -681.39391,
+        198.96709,
+        2581.22833
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -668.94738,
+        198.60547,
+        2629.10581
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -635.97108,
+        196.66464,
+        2666.12004
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -591.78066,
+        193.69904,
+        2688.9368
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -543.79496,
+        190.32774,
+        2702.48472
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -495.73923,
+        187.17237,
+        2715.84618
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -451.28827,
+        184.79499,
+        2738.23087
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -417.88481,
+        183.64206,
+        2774.88722
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -405.18552,
+        184.0,
+        2822.6782
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -417.87226,
+        185.96658,
+        2870.43422
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -451.2021,
+        189.44111,
+        2907.01325
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -495.50639,
+        194.13429,
+        2929.32536
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -543.36985,
+        199.59674,
+        2942.63357
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -591.15509,
+        205.26349,
+        2956.12495
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -635.17864,
+        210.51002,
+        2978.85652
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -668.06123,
+        214.71433,
+        3015.7689
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -680.48782,
+        217.31909,
+        3063.5834
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -668.13995,
+        217.88756,
+        3111.49684
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -635.67321,
+        216.14805,
+        3149.0043
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -592.35672,
+        212.02232,
+        3173.31731
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -545.49818,
+        205.63529,
+        3189.48774
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -499.118,
+        197.30505,
+        3206.12269
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -457.25874,
+        187.51411,
+        3231.33904
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -426.77847,
+        176.86467,
+        3269.08253
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -415.48062,
+        166.02238,
+        3316.10994
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -426.60663,
+        155.65393,
+        3363.30784
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -456.16632,
+        146.3647,
+        3402.19215
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -496.44928,
+        138.64243,
+        3430.58421
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -540.1604,
+        132.8125,
+        3454.08463
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -569.906,
+        129.00913,
+        3492.80549
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -568.59659,
+        127.16533,
+        3542.10553
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -553.65219,
+        127.02253,
+        3589.81337
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -538.38218,
+        128.15891,
+        3637.41009
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -523.11876,
+        130.03377,
+        3684.9863
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -507.85689,
+        132.04336,
+        3732.55766
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -492.59006,
+        133.58287,
+        3780.14448
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -475.93742,
+        134.10843,
+        3827.25884
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -450.73268,
+        133.19299,
+        3870.31063
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -421.09919,
+        130.5707,
+        3910.48311
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -399.62275,
+        126.16525,
+        3955.23222
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -392.22805,
+        120.09962,
+        4004.11616
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -399.02713,
+        112.68609,
+        4052.94381
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -416.83928,
+        104.39745,
+        4098.84147
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -440.93425,
+        95.82244,
+        4141.78635
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -466.57942,
+        87.60955,
+        4183.914
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -489.56298,
+        80.40467,
+        4227.70197
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -506.46207,
+        74.78893,
+        4274.36411
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -515.45525,
+        71.22249,
+        4323.35774
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        4373.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        4423.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -518.00112,
+        70,
+        4473.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -519.46736,
+        70,
+        4523.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -521.86154,
+        70,
+        4573.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -525.11092,
+        70,
+        4623.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -529.11677,
+        70,
+        4673.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -533.75737,
+        70,
+        4723.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -538.89171,
+        70,
+        4773.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -544.3638,
+        70,
+        4823.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -550.00737,
+        70,
+        4873.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -555.65093,
+        70,
+        4923.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -561.12302,
+        70,
+        4973.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -566.25737,
+        70,
+        5023.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -570.89797,
+        70,
+        5073.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -574.90381,
+        70,
+        5123.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -578.15319,
+        70,
+        5173.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -580.54738,
+        70,
+        5223.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -582.01362,
+        70,
+        5273.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -582.50737,
+        70,
+        5323.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -582.01362,
+        70,
+        5373.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -580.54738,
+        70,
+        5423.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -578.15319,
+        70,
+        5473.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -574.90381,
+        70,
+        5523.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -570.89797,
+        70,
+        5573.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -566.25737,
+        70,
+        5623.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -561.12302,
+        70,
+        5673.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -555.65093,
+        70,
+        5723.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -550.00737,
+        70,
+        5773.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -544.3638,
+        70,
+        5823.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -538.89171,
+        70,
+        5873.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -533.75737,
+        70,
+        5923.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -529.11677,
+        70,
+        5973.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -525.11092,
+        70,
+        6023.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -521.86154,
+        70,
+        6073.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -519.46736,
+        70,
+        6123.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -518.00112,
+        70,
+        6173.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6223.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6273.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6323.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6373.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6423.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6473.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6523.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6573.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6623.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6673.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6723.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6773.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6823.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6873.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6923.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        6973.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7023.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7073.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7123.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7173.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7223.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7273.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70,
+        7323.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "city",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.50737,
+        70.0,
+        7373.27238
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.40762,
+        70.70148,
+        7423.26566
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -516.71909,
+        72.73829,
+        7473.21745
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -514.90249,
+        75.91497,
+        7523.08094
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -511.5131,
+        79.92751,
+        7572.80132
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -506.23809,
+        84.39307,
+        7622.31791
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -498.92458,
+        88.88733,
+        7671.57186
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -489.59764,
+        92.98601,
+        7720.51935
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -478.46729,
+        96.30624,
+        7769.1484
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -465.92369,
+        98.54403,
+        7817.49519
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -452.51981,
+        99.50391,
+        7865.65368
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -438.9433,
+        99.11797,
+        7913.77204
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -425.9806,
+        97.45249,
+        7962.03155
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -414.47674,
+        94.70128,
+        8010.60835
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -405.29194,
+        91.16671,
+        8059.62335
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -399.25351,
+        87.22998,
+        8109.09032
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -397.09987,
+        83.31376,
+        8158.87528
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -399.41606,
+        79.84071,
+        8208.68191
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -406.56716,
+        77.19204,
+        8258.07526
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -418.64361,
+        75.67011,
+        8306.54817
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -435.4365,
+        75.46875,
+        8353.62139
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -456.4544,
+        76.65421,
+        8398.95501
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -480.97923,
+        79.15861,
+        8442.44136
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -508.14214,
+        82.78646,
+        8484.25468
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -536.99271,
+        87.23376,
+        8524.84582
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -566.53944,
+        92.11768,
+        8564.88487
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -595.75454,
+        97.01389,
+        8605.16392
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -623.55523,
+        101.49811,
+        8646.47364
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -648.78727,
+        105.18749,
+        8689.4679
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -670.24059,
+        107.77801,
+        8734.53376
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -686.71677,
+        109.07422,
+        8781.69115
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -697.14754,
+        109.00821,
+        8830.55179
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -700.73789,
+        107.64624,
+        8880.36038
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -697.09031,
+        105.18214,
+        8930.12075
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -686.26836,
+        101.91827,
+        8978.78202
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -668.77924,
+        98.23584,
+        9025.43829
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -645.48503,
+        94.55751,
+        9069.49369
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -617.47619,
+        91.30595,
+        9110.75935
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -585.94712,
+        88.86236,
+        9149.47262
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -552.10528,
+        87.5291,
+        9186.24738
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.12798,
+        87.5,
+        9221.97383
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -482.16323,
+        88.84132,
+        9257.6874
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -448.35662,
+        91.48517,
+        9294.4237
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -416.87866,
+        95.23607,
+        9333.07396
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -388.92696,
+        99.79001,
+        9374.25521
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -365.68528,
+        104.76416,
+        9418.21114
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -348.23545,
+        109.73421,
+        9464.7628
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -337.43541,
+        114.27585,
+        9513.32651
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -333.79388,
+        118.00624,
+        9563.00857
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -337.38102,
+        120.62137,
+        9612.76738
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -347.80861,
+        121.92578,
+        9661.61132
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -364.2906,
+        121.85157,
+        9708.78438
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -385.76471,
+        120.46499,
+        9753.89335
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -411.03405,
+        117.95987,
+        9796.9509
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -438.8856,
+        114.63858,
+        9838.3361
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -468.15884,
+        110.88232,
+        9878.69529
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -497.7631,
+        107.11376,
+        9918.8123
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -526.66312,
+        103.75556,
+        9959.47294
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -553.86201,
+        101.18892,
+        10001.34148
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -578.40718,
+        99.7162,
+        10044.86357
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -599.43107,
+        99.53125,
+        10090.20961
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -616.21972,
+        100.70031,
+        10137.27035
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -628.28739,
+        103.15548,
+        10185.70725
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -635.43064,
+        106.7013,
+        10235.04556
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -637.74378,
+        111.03376,
+        10284.78503
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -635.59321,
+        115.77002,
+        10334.49886
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -629.56294,
+        120.48577,
+        10383.89866
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -620.38871,
+        124.75671,
+        10432.85695
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -608.89471,
+        128.19999,
+        10481.39187
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -595.93868,
+        130.51161,
+        10529.62644
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -582.36442,
+        131.49609,
+        10577.73679
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -568.95856,
+        131.08555,
+        10625.90243
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -556.41002,
+        129.34624,
+        10674.26833
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -545.27354,
+        126.47198,
+        10722.92428
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -535.94086,
+        122.76514,
+        10771.90185
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -528.62306,
+        118.60693,
+        10821.18465
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -523.34546,
+        114.42001,
+        10870.72532
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -519.95488,
+        110.62704,
+        10920.46291
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -518.1379,
+        107.60923,
+        10970.33635
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.44931,
+        105.66894,
+        11020.29211
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    },
+    {
+      "position": [
+        -517.34956,
+        105.0,
+        11070.28599
+      ],
+      "half_width": 6.5,
+      "bank_degrees": 0,
+      "sector": "hills",
+      "surface": "asphalt"
+    }
+  ],
+  "checkpoints": [
+    {
+      "id": "hills-gate-00",
+      "fraction": 0.0
+    },
+    {
+      "id": "hills-gate-01",
+      "fraction": 0.12
+    },
+    {
+      "id": "hills-gate-02",
+      "fraction": 0.22
+    },
+    {
+      "id": "hills-gate-03",
+      "fraction": 0.32
+    },
+    {
+      "id": "hills-gate-04",
+      "fraction": 0.44
+    },
+    {
+      "id": "hills-gate-05",
+      "fraction": 0.496
+    },
+    {
+      "id": "hills-gate-06",
+      "fraction": 0.56
+    },
+    {
+      "id": "hills-gate-07",
+      "fraction": 0.624
+    },
+    {
+      "id": "hills-gate-08",
+      "fraction": 0.68
+    },
+    {
+      "id": "hills-gate-09",
+      "fraction": 0.8
+    },
+    {
+      "id": "hills-gate-10",
+      "fraction": 0.9
+    },
+    {
+      "id": "hills-gate-11",
+      "fraction": 1.0
+    }
+  ]
+}

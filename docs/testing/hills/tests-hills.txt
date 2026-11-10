@@ -1,0 +1,44 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 41s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 6 tests
+test track::hills::tests::hills_has_strong_relief_flat_town_and_rejoins_before_town_exit ... ok
+test track::hills::tests::hills_grade_and_station_speed_are_bounded_and_scenery_clears_both_streets ... ok
+test track::hills::tests::hills_distant_terrain_stays_continuous_across_nearest_road_changes ... ok
+test world_gen::hills::geometry::tests::hills_roads_and_shoulders_face_up_without_spanning_live_lanes ... ok
+test track::hills::tests::both_hills_routes_project_and_complete_physical_gates ... ok
+test world_gen::hills::props::tests::placed_hills_geometry_has_every_family_and_buildings_clear_both_streets ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 362 filtered out; finished in 13.47s
+
+     Running unittests src/bin/city_preview.rs (target/debug/deps/city_preview-49ba9a4938b61e93)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (target/debug/deps/prop_preview-96e18c8db10644c9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-6421aa5f4b17ac21)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (target/debug/deps/visibility_probe-829d1fae7a018d90)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/weapon_preview.rs (target/debug/deps/weapon_preview-340f45ef6707789b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

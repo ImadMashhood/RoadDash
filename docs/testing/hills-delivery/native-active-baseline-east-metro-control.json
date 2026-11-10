@@ -1,0 +1,58 @@
+[
+  {
+    "case": "active",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 110.08320355415344,
+    "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+    "track": "hills",
+    "route": "0",
+    "vehicle_adapter": "assisted",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  },
+  {
+    "case": "east",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 55.773587703704834,
+    "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+    "track": "hills",
+    "route": "1",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  },
+  {
+    "case": "baseline",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 64.73480677604675,
+    "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+    "track": "hills",
+    "route": "1",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  },
+  {
+    "case": "metro-control",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 37.39766550064087,
+    "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+    "track": "metro",
+    "route": "0",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  }
+]

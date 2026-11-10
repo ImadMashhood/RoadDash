@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-10",
+  "decision": "ADR138",
+  "sources": [
+    "Existing RoadDash course screenshots and catalog",
+    "Original procedural river, cumulus volume and analytic sun",
+    "Installed Bevy 0.17.3 renderer interfaces"
+  ],
+  "external_media_imported": false,
+  "dependencies_changed": false,
+  "registry": "docs/third_party/ASSETS.csv",
+  "limits": "Authorship/hash declarations; not new legal clearance"
+}

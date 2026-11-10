@@ -1,0 +1,70 @@
+{
+  "checkpoints": 12,
+  "elevation_max_m": 217.95555114746094,
+  "elevation_min_m": 7.90521764755249,
+  "id": "hills-01",
+  "length_m": 12500.0,
+  "maximum_sampled_grade": 0.2669390141963959,
+  "name": "Hills",
+  "routes": 2,
+  "town_end_m": 8500.0,
+  "town_rejoin_m": 7400.0,
+  "town_split_m": 5500.0,
+  "views": [
+    {
+      "aerial": false,
+      "route": 0,
+      "station_m": 150.0
+    },
+    {
+      "aerial": false,
+      "route": 0,
+      "station_m": 1200.0
+    },
+    {
+      "aerial": false,
+      "route": 0,
+      "station_m": 2500.0
+    },
+    {
+      "aerial": true,
+      "route": 0,
+      "station_m": 4200.0
+    },
+    {
+      "aerial": true,
+      "route": 0,
+      "station_m": 5500.0
+    },
+    {
+      "aerial": false,
+      "route": 0,
+      "station_m": 6200.0
+    },
+    {
+      "aerial": false,
+      "route": 1,
+      "station_m": 6200.0
+    },
+    {
+      "aerial": true,
+      "route": 0,
+      "station_m": 7400.0
+    },
+    {
+      "aerial": false,
+      "route": 0,
+      "station_m": 8200.0
+    },
+    {
+      "aerial": false,
+      "route": 0,
+      "station_m": 9800.0
+    },
+    {
+      "aerial": true,
+      "route": 0,
+      "station_m": 12300.0
+    }
+  ]
+}

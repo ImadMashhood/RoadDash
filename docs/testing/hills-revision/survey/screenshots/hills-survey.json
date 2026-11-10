@@ -1,0 +1,174 @@
+{
+  "census": {
+    "buildings": 227,
+    "cowboys": 22,
+    "cows": 34,
+    "farm_cows": 18,
+    "farms": 6,
+    "grass_batches": 64,
+    "grass_tufts": 62931,
+    "guardrail_segments": 670,
+    "horses": 16,
+    "mounted_pairs": 5,
+    "road_chunks": 174,
+    "terrain_chunks": 666,
+    "trees": 1015,
+    "trucks": 20
+  },
+  "limits": "Camera survey with paused racers; not full-race performance, GPU timings, human art acceptance or hardware certification.",
+  "maximum_support_error_m": 0.025834083557128906,
+  "metrics": {
+    "active_fixed_ticks": 3,
+    "colliders": 4860,
+    "entities": 28611,
+    "fixed_ticks": 1543,
+    "last_gameplay_ms": 0.7438920140266418,
+    "last_physics_ms": 2.116499900817871,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1544,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 7.9103546142578125,
+    "wall_frame_p95_ms": 9.522708892822266
+  },
+  "resident_solids": 4460,
+  "road_support_probes": 1506,
+  "screenshots_completed": 11,
+  "track": {
+    "checkpoints": 12,
+    "elevation_max_m": 217.95555114746094,
+    "elevation_min_m": 1.2476420402526855,
+    "id": "hills-01",
+    "length_m": 12500.0,
+    "maximum_sampled_grade": 0.2720905542373657,
+    "name": "Hills",
+    "routes": 2,
+    "town_end_m": 8500.0,
+    "town_rejoin_m": 7400.0,
+    "town_split_m": 5500.0,
+    "views": [
+      {
+        "aerial": false,
+        "route": 0,
+        "station_m": 150.0
+      },
+      {
+        "aerial": false,
+        "route": 0,
+        "station_m": 1200.0
+      },
+      {
+        "aerial": false,
+        "route": 0,
+        "station_m": 2500.0
+      },
+      {
+        "aerial": true,
+        "route": 0,
+        "station_m": 4200.0
+      },
+      {
+        "aerial": true,
+        "route": 0,
+        "station_m": 5500.0
+      },
+      {
+        "aerial": false,
+        "route": 0,
+        "station_m": 6200.0
+      },
+      {
+        "aerial": false,
+        "route": 1,
+        "station_m": 6200.0
+      },
+      {
+        "aerial": true,
+        "route": 0,
+        "station_m": 7400.0
+      },
+      {
+        "aerial": false,
+        "route": 0,
+        "station_m": 8200.0
+      },
+      {
+        "aerial": false,
+        "route": 0,
+        "station_m": 9800.0
+      },
+      {
+        "aerial": true,
+        "route": 0,
+        "station_m": 12300.0
+      }
+    ]
+  },
+  "views": [
+    {
+      "route": 0,
+      "station_m": 150.0,
+      "view": 0,
+      "visible_solid_meshes": 3218
+    },
+    {
+      "route": 0,
+      "station_m": 1200.0,
+      "view": 1,
+      "visible_solid_meshes": 3199
+    },
+    {
+      "route": 0,
+      "station_m": 2500.0,
+      "view": 2,
+      "visible_solid_meshes": 629
+    },
+    {
+      "route": 0,
+      "station_m": 4200.0,
+      "view": 3,
+      "visible_solid_meshes": 1315
+    },
+    {
+      "route": 0,
+      "station_m": 5500.0,
+      "view": 4,
+      "visible_solid_meshes": 1342
+    },
+    {
+      "route": 0,
+      "station_m": 6200.0,
+      "view": 5,
+      "visible_solid_meshes": 1204
+    },
+    {
+      "route": 1,
+      "station_m": 6200.0,
+      "view": 6,
+      "visible_solid_meshes": 1218
+    },
+    {
+      "route": 0,
+      "station_m": 7400.0,
+      "view": 7,
+      "visible_solid_meshes": 845
+    },
+    {
+      "route": 0,
+      "station_m": 8200.0,
+      "view": 8,
+      "visible_solid_meshes": 685
+    },
+    {
+      "route": 0,
+      "station_m": 9800.0,
+      "view": 9,
+      "visible_solid_meshes": 407
+    },
+    {
+      "route": 0,
+      "station_m": 12300.0,
+      "view": 10,
+      "visible_solid_meshes": 157
+    }
+  ]
+}

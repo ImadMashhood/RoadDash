@@ -10,6 +10,8 @@ use bevy::{
     },
 };
 mod lighting;
+mod solar;
+pub use solar::{SolarBudget, SolarMaterial};
 const JSON: &str = include_str!("../content/world/art.json");
 fn smooth(a: f32, b: f32, x: f32) -> f32 {
     let t = ((x - a) / (b - a)).clamp(0.0, 1.0);
@@ -128,6 +130,9 @@ fn sky_colour(d: Vec3, c: &rr_content::world_art::Config) -> Vec3 {
     display_colour(sky_radiance(d, c), c)
 }
 fn sky_radiance(d: Vec3, c: &rr_content::world_art::Config) -> Vec3 {
+    sky_radiance_with_disc(d, c, true)
+}
+fn sky_radiance_with_disc(d: Vec3, c: &rr_content::world_art::Config, disc: bool) -> Vec3 {
     let horizon = Vec3::from_array(c.horizon_color_srgb);
     let altitude = d.y.max(0.0);
     let high = Vec3::new(0.24, 0.44, 0.70);
@@ -143,11 +148,15 @@ fn sky_radiance(d: Vec3, c: &rr_content::world_art::Config) -> Vec3 {
     // stretching. Broad banks plus smaller lobes provide a bounded angular scale.
     let p = d * Vec3::new(5.0, 11.0, 5.0) + Vec3::new(17.0, 31.0, 8.0);
     let bank = noise(p) * 0.65 + noise(p * 2.03) * 0.25 + noise(p * 4.11) * 0.10;
-    let cloud = smooth(
-        0.61 - c.cloud_coverage * 0.19,
-        0.78 - c.cloud_coverage * 0.19,
-        bank,
-    ) * smooth(0.025, 0.20, altitude);
+    let cloud = if c.cloud_coverage <= 0. {
+        0.
+    } else {
+        smooth(
+            0.61 - c.cloud_coverage * 0.19,
+            0.78 - c.cloud_coverage * 0.19,
+            bank,
+        ) * smooth(0.025, 0.20, altitude)
+    };
     let sunward = noise(p + sun(c) * 0.22) - noise(p - sun(c) * 0.22);
     let light = (0.62 + bank * 0.27 - sunward * 0.8).clamp(0.55, 0.96);
     let cloud_colour = Vec3::new(light * 1.02, light, light * 0.97);
@@ -156,9 +165,12 @@ fn sky_radiance(d: Vec3, c: &rr_content::world_art::Config) -> Vec3 {
     let veil = smooth(0.62, 0.80, noise(d * 19.0 + Vec3::new(4.0, 9.0, 21.0)))
         * smooth(0.18, 0.6, altitude)
         * 0.10
-        * (1.0 - cloud);
+        * (1.0 - cloud)
+        * if c.cloud_coverage > 0. { 1. } else { 0. };
     base = base.lerp(Vec3::new(0.83, 0.86, 0.89), veil);
-    base = base.lerp(Vec3::new(1.0, 0.98, 0.90), smooth(0.9996, 0.9999, solar));
+    if disc {
+        base = base.lerp(Vec3::new(1.0, 0.98, 0.90), smooth(0.9996, 0.9999, solar));
+    }
     base.clamp(Vec3::ZERO, Vec3::ONE)
 }
 fn cubemap(size: usize, coverage: f32, diffuse: bool, sun_direction: Vec3, horizon: Vec3) -> Image {
@@ -253,22 +265,108 @@ fn atmosphere(c: &rr_content::world_art::Config) -> DistanceFog {
         ..default()
     }
 }
-#[allow(clippy::type_complexity)]
+/// Hills selects one shared profile before building display sky, fog and IBL.
+/// No texture or light rotates independently; other maps retain the authored baseline.
+#[derive(Resource, serde::Serialize)]
+pub struct HillsLighting {
+    pub cloud_coverage: f32,
+    pub sun_lux: f32,
+    pub sky_nits: f32,
+    pub environment_nits: f32,
+    pub fog_density_per_m: f32,
+    pub sun_direction: [f32; 3],
+}
+fn profile(hills: bool) -> rr_content::world_art::Config {
+    let mut c = rr_content::world_art::Config::from_json(JSON).expect("validated world art");
+    if hills {
+        c.cloud_coverage = 0.68;
+        c.sun_lux = 48000.;
+        c.sky_nits = 17000.;
+        c.environment_nits = 1700.;
+        c.ambient_nits = 2800.;
+        c.sun_color_srgb = [1., 0.91, 0.79];
+        c.horizon_color_srgb = [0.73, 0.79, 0.84];
+        c.fog_density_per_m = 0.00055;
+    }
+    c
+}
+#[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub fn install(
     mut commands: Commands,
     images: Option<ResMut<Assets<Image>>>,
+    mut meshes: Option<ResMut<Assets<Mesh>>>,
+    mut cloud_materials: Option<ResMut<Assets<crate::world_gen::hills::clouds::CloudMaterial>>>,
+    mut solar_materials: Option<ResMut<Assets<SolarMaterial>>>,
     cameras: Query<Entity, With<crate::game::ChaseCamera>>,
     mut lights: Query<(&mut DirectionalLight, &mut Transform)>,
+    track: Option<Res<crate::track::Track>>,
 ) {
     let Some(mut images) = images else { return };
-    let c = rr_content::world_art::Config::from_json(JSON).expect("validated world art");
+    let hills = track.as_ref().is_some_and(|t| t.is_hills());
+    let cloud_map = track
+        .as_ref()
+        .is_some_and(|t| t.is_hills() || t.metropolis.is_some());
+    let analytic_sun = meshes.is_some() && solar_materials.is_some();
+    let volumetric = cloud_map
+        && crate::world_gen::hills::clouds::enabled()
+        && meshes.is_some()
+        && cloud_materials.is_some();
+    let c = profile(hills);
+    if hills {
+        commands.insert_resource(HillsLighting {
+            cloud_coverage: c.cloud_coverage,
+            sun_lux: c.sun_lux,
+            sky_nits: c.sky_nits,
+            environment_nits: c.environment_nits,
+            fog_density_per_m: c.fog_density_per_m,
+            sun_direction: c.sun_direction,
+        });
+    }
+    let mut display_profile = c.clone();
+    if volumetric {
+        display_profile.cloud_coverage = 0.;
+    }
+    if analytic_sun {
+        solar::spawn(
+            &mut commands,
+            meshes.as_deref_mut().unwrap(),
+            solar_materials.as_deref_mut().unwrap(),
+            sun(&c),
+        );
+    }
+    if volumetric {
+        crate::world_gen::hills::clouds::spawn(
+            &mut commands,
+            &mut images,
+            meshes.as_deref_mut().unwrap(),
+            cloud_materials.as_deref_mut().unwrap(),
+            track.as_ref().unwrap(),
+            sun(&c),
+            c.sky_nits,
+        );
+    } else if cloud_map {
+        commands.insert_resource(crate::world_gen::hills::clouds::CloudBudget {
+            volumetric: false,
+            banks: 0,
+            steps: 0,
+            density_bytes: 0,
+        });
+    }
     let started = std::time::Instant::now();
     let display_cube = cube_from(c.sky_resolution as usize, |d| {
         // Bevy skybox sampling reverses Z; author in world directions.
-        sky_colour(d * Vec3::new(1.0, 1.0, -1.0), &c)
+        let d = d * Vec3::new(1.0, 1.0, -1.0);
+        if analytic_sun {
+            display_colour(
+                sky_radiance_with_disc(d, &display_profile, false),
+                &display_profile,
+            )
+        } else {
+            sky_colour(d, &display_profile)
+        }
     });
     info!(
-        "Sky display cube: {} bytes, generated in {:.3}ms; stationary world sun/cloud field",
+        "Sky display cube: {} bytes, generated in {:.3}ms; separate analytic sun and bounded spatial clouds",
         display_cube.data.as_ref().map_or(0, Vec::len),
         started.elapsed().as_secs_f64() * 1000.0
     );
@@ -357,6 +455,24 @@ pub fn install(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn hills_light_clouds_and_fog_share_one_fixed_sun_profile() {
+        let base = profile(false);
+        let hills = profile(true);
+        assert_eq!(base.cloud_coverage, 0.48);
+        assert_eq!(base.sun_lux, 42000.);
+        assert_eq!(hills.sun_direction, base.sun_direction);
+        assert!(hills.cloud_coverage > base.cloud_coverage);
+        assert!(hills.fog_density_per_m < base.fog_density_per_m);
+        let linear = atmosphere(&hills).color.to_linear();
+        let v = Vec3::new(linear.red, linear.green, linear.blue);
+        let expected = v / (Vec3::ONE + v);
+        for d in [Vec3::X, Vec3::Z, Vec3::NEG_X, Vec3::NEG_Z] {
+            let rgb = sky_colour(d, &hills);
+            let actual = Color::srgb(rgb.x, rgb.y, rgb.z).to_linear();
+            assert!(Vec3::new(actual.red, actual.green, actual.blue).distance(expected) < 1e-6);
+        }
+    }
     #[test]
     fn displayed_horizon_matches_reinhard_fog_and_all_cube_edges() {
         let c = rr_content::world_art::Config::from_json(JSON).unwrap();
@@ -560,6 +676,64 @@ mod tests {
                 .unwrap()
                 .specular_map
         );
+    }
+    #[test]
+    fn new_courses_install_separate_cloud_volumes_and_a_light_aligned_solar_disc() {
+        for track in [
+            crate::track::Track::hills().unwrap(),
+            crate::track::Track::metropolis().unwrap(),
+        ] {
+            let c = profile(track.is_hills());
+            let mut app = App::new();
+            app.insert_resource(track)
+                .init_resource::<Assets<Image>>()
+                .init_resource::<Assets<Mesh>>()
+                .init_resource::<Assets<SolarMaterial>>()
+                .init_resource::<Assets<crate::world_gen::hills::clouds::CloudMaterial>>()
+                .add_systems(Startup, install);
+            app.world_mut().spawn(crate::game::ChaseCamera);
+            let light = app
+                .world_mut()
+                .spawn((DirectionalLight::default(), Transform::default()))
+                .id();
+            app.update();
+            let budget = app.world().resource::<SolarBudget>();
+            let direction = Vec3::from_array(budget.direction);
+            assert_eq!(budget.triangles, 2);
+            assert!((budget.angular_diameter_degrees - 1.2).abs() < 1e-5);
+            assert!(direction.distance(sun(&c)) < 1e-6);
+            assert!(
+                app.world()
+                    .get::<Transform>(light)
+                    .unwrap()
+                    .forward()
+                    .as_vec3()
+                    .distance(-direction)
+                    < 1e-5
+            );
+            assert_eq!(
+                app.world_mut()
+                    .query_filtered::<Entity, With<solar::SolarDisc>>()
+                    .iter(app.world())
+                    .count(),
+                1
+            );
+            let clouds = app
+                .world()
+                .resource::<crate::world_gen::hills::clouds::CloudBudget>();
+            assert_eq!(
+                clouds.volumetric,
+                crate::world_gen::hills::clouds::enabled()
+            );
+            assert_eq!(
+                clouds.banks,
+                if clouds.volumetric {
+                    crate::world_gen::hills::clouds::BANKS
+                } else {
+                    0
+                }
+            );
+        }
     }
     #[test]
     fn sky_faces_share_edge_directions_and_mips_are_complete() {

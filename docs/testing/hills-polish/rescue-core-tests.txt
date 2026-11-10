@@ -1,0 +1,8 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2.63s
+     Running unittests src/lib.rs (target/debug/deps/rr_core-2eedc0a263b28bc0)
+
+running 1 test
+test escape::tests::exceptional_seek_waits_for_full_stagnation_and_never_overrides_manual_or_progress ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 111 filtered out; finished in 0.00s

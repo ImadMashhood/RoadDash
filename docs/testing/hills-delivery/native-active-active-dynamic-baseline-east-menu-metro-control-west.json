@@ -1,0 +1,58 @@
+[
+  {
+    "case": "menu",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 67.61574459075928,
+    "binary_sha256": "96be350e7fb7a4f1d3a83d1a90ceffa43025c43b30f5374d35c15a7d4e3d0e00",
+    "track": "metro",
+    "route": "0",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  },
+  {
+    "case": "active",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 108.63669896125793,
+    "binary_sha256": "96be350e7fb7a4f1d3a83d1a90ceffa43025c43b30f5374d35c15a7d4e3d0e00",
+    "track": "hills",
+    "route": "0",
+    "vehicle_adapter": "assisted",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  },
+  {
+    "case": "active-dynamic",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 119.658527135849,
+    "binary_sha256": "96be350e7fb7a4f1d3a83d1a90ceffa43025c43b30f5374d35c15a7d4e3d0e00",
+    "track": "hills",
+    "route": "0",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  },
+  {
+    "case": "west",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 106.69934320449829,
+    "binary_sha256": "96be350e7fb7a4f1d3a83d1a90ceffa43025c43b30f5374d35c15a7d4e3d0e00",
+    "track": "hills",
+    "route": "0",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": false
+  }
+]

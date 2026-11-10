@@ -135,6 +135,23 @@ impl TrackDef {
                 return Err("degenerate segment / excessive grade".into());
             }
         }
+        if matches!(self.id.as_str(), "hills-01" | "hills-east-01") {
+            if self.closed || self.control_points.len() != 251 {
+                return Err("Hills needs 251 ordered 50 m station knots and an open finish".into());
+            }
+            if self
+                .control_points
+                .windows(2)
+                .any(|p| p[1].position[2] <= p[0].position[2])
+            {
+                return Err("Hills terrain datum requires monotonically northward knots".into());
+            }
+            for (i, p) in self.control_points.iter().enumerate() {
+                if (110..=170).contains(&i) && (p.position[1] - 70.).abs() > 0.001 {
+                    return Err("Hills town station knots must share the flat 70 m plateau".into());
+                }
+            }
+        }
         let mut ids = HashSet::new();
         if self.checkpoints.len() < 3 {
             return Err("need start and at least two ordered gates".into());
@@ -195,6 +212,17 @@ mod tests {
     use super::*;
     fn fixture() -> TrackDef {
         TrackDef::from_json(include_str!("../../../content/tracks/handling.json")).unwrap()
+    }
+    #[test]
+    fn hills_authoring_requires_shared_station_knots_and_flat_town() {
+        let mut t =
+            TrackDef::from_json(include_str!("../../../content/tracks/hills.json")).unwrap();
+        TrackDef::from_json(include_str!("../../../content/tracks/hills-east.json")).unwrap();
+        t.control_points[130].position[1] += 2.;
+        assert!(t.validate().is_err());
+        t.control_points[130].position[1] = 70.;
+        t.control_points.pop();
+        assert!(t.validate().is_err());
     }
     #[test]
     fn narrow_back_road_verges_are_valid_but_zero_or_nonfinite_are_not() {

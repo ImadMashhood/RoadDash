@@ -2,6 +2,7 @@ use bevy::prelude::*;
 use rr_content::track::{Sector, Surface, TrackDef};
 pub const ROAD_HALF: f32 = 6.5;
 pub const LAPS: u32 = 1;
+pub mod hills;
 pub mod metropolis;
 #[derive(Resource)]
 pub struct Track {
@@ -17,6 +18,7 @@ pub struct Track {
     pub bounds: (Vec3, Vec3),
     pub city_surface: Option<rr_content::city::CitySettings>,
     pub metropolis: Option<std::sync::Arc<rr_content::metropolis::Metropolis>>,
+    pub hills_branch: Option<Box<Track>>,
     pub earthworks: Option<Box<crate::world_gen::ground::Earthworks>>,
 }
 impl Default for Track {
@@ -41,6 +43,9 @@ impl Track {
     }
     pub fn selected() -> Self {
         if let Some(path) = std::env::var_os("ROADDASH_TRACK") {
+            if path == "hills" {
+                return Self::hills().expect("validated Hills course");
+            }
             if path == "metro" {
                 return Self::metropolis().expect("approved metropolis course");
             }
@@ -146,7 +151,7 @@ impl Track {
             .iter()
             .map(|s| -s.distance + 40.)
             .fold(250., f32::max);
-        let track = Self {
+        let mut track = Self {
             start_apron,
             city_surface,
             definition,
@@ -159,8 +164,16 @@ impl Track {
             length,
             bounds: (min, max),
             earthworks: None,
+            hills_branch: None,
             metropolis: None,
         };
+        if matches!(track.definition.id.as_str(), "hills-01" | "hills-east-01") {
+            track.normalize_hills_stations();
+            track.import_hills_city_samples();
+        }
+        if track.is_hills() {
+            track.hills_branch = Some(Box::new(Self::from_json(hills::EAST_JSON)?));
+        }
         for spawn in &track.definition.spawns {
             if spawn.lane.abs() + 0.6 > track.half_width(spawn.distance) {
                 return Err("spawn outside safe road width".into());
@@ -201,7 +214,7 @@ impl Track {
         let d = if self.definition.closed {
             d.rem_euclid(self.length)
         } else {
-            d.clamp(0.0, self.length)
+            d.clamp(self.distances[0], self.length)
         };
         let i = self
             .distances
@@ -235,6 +248,9 @@ impl Track {
             }
             return Surface::Grass;
         }
+        if self.is_hills() && d >= hills::SPLIT && lane.abs() > self.half_width(d) {
+            return Surface::Dirt;
+        }
         if lane.abs() > self.half_width(d) + 1.5 {
             Surface::Grass
         } else if lane.abs() > self.half_width(d) {
@@ -253,8 +269,8 @@ impl Track {
         let mut p = self.points[i].lerp(self.points[i + 1], t) - q * Vec3::X * lane;
         if !self.definition.closed {
             p += forward
-                * if d < 0.0 {
-                    d
+                * if d < self.distances[0] {
+                    d - self.distances[0]
                 } else if d > self.length {
                     d - self.length
                 } else {
@@ -357,6 +373,17 @@ impl Track {
             Sector::City => 0.02,
             Sector::Hills => 1.0,
         };
+        if matches!(self.definition.id.as_str(), "hills-01" | "hills-east-01") {
+            // A nearest-road elevation is only a local road-bed constraint. Using
+            // it as the distant mountain base creates vertical Voronoi cliffs
+            // wherever two winding road sections have different elevations.
+            let blend = ((distance - 18.) / 42.).clamp(0., 1.);
+            let blend = blend * blend * (3. - 2. * blend);
+            let base =
+                (closest.y + lateral_height - 0.35).lerp(self.hills_remote_height(x, z), blend);
+            let base = self.hills_city_terrain(x, z, self.distances[best.0], base);
+            return self.hills_canyon_height(x, z, base);
+        }
         let remote = if self.definition.id.as_str() == "valley-run-01" {
             closest.y
                 + hill
@@ -401,6 +428,10 @@ impl Track {
     pub fn scenery_fits(&self, center: Vec3, radius: f32, margin: f32) -> bool {
         let (d, _, distance) = self.project(center, 0.0);
         distance > self.half_width(d) + radius + margin
+            && self
+                .hills_branch
+                .as_ref()
+                .is_none_or(|branch| branch.scenery_fits(center, radius, margin))
     }
     pub fn curvature(&self, d: f32) -> f32 {
         let (_, a) = self.sample(d - 4.0, 0.0);

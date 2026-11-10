@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-10",
+  "decision": "ADR137",
+  "sources": [
+    "Existing Metropolis final race kilometre, physical street chainage 10500\u201311500",
+    "Repository farm planning concept and original prop catalog",
+    "Original procedural suspension bridge, eighteen-wheeler and tractor meshes",
+    "Original bounded cloud density volume and raymarch shader; pinned local Bevy 0.17.3 renderer APIs"
+  ],
+  "external_media_imported": false,
+  "dependencies_changed": false,
+  "source_registry": "docs/third_party/ASSETS.csv",
+  "limitations": "Declaration and hash evidence only; no new rights clearance claimed"
+}

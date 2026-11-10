@@ -1,0 +1,10 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 40.83s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 2 tests
+Actual clipped shoulder triangles: 19818
+test world_gen::metropolis::geometry::landscape::tests::soil_meets_the_farm_asphalt_without_an_exposed_grass_seam ... ok
+test world_gen::metropolis::geometry::landscape::tests::soil_ribbons_remain_farm_only_and_outside_drivable_road ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 419 filtered out; finished in 2.17s

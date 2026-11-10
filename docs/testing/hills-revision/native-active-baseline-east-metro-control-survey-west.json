@@ -1,0 +1,99 @@
+[
+  {
+    "verification_complete": true,
+    "case": "active",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "assisted",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "7b801cde9b575c64faac912ca22b7da60c9db5a2cdf9311ebb2158a62ac1d4ad",
+    "exit_code": 0,
+    "elapsed_seconds": 73.0420902850019
+  },
+  {
+    "verification_complete": true,
+    "case": "survey",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "7b801cde9b575c64faac912ca22b7da60c9db5a2cdf9311ebb2158a62ac1d4ad",
+    "exit_code": 0,
+    "elapsed_seconds": 88.02915696799755
+  },
+  {
+    "verification_complete": true,
+    "case": "west",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "7b801cde9b575c64faac912ca22b7da60c9db5a2cdf9311ebb2158a62ac1d4ad",
+    "exit_code": 0,
+    "elapsed_seconds": 164.30814054600341
+  },
+  {
+    "verification_complete": true,
+    "case": "east",
+    "track": "hills",
+    "route": "1",
+    "flags": [
+      "--smoke-test"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "f3eef82e8787eeec8f0ed07eba53898cf2bc041fa51e6d590f43b834458d3c38",
+    "exit_code": 0,
+    "elapsed_seconds": 78.93093739799951
+  },
+  {
+    "verification_complete": true,
+    "case": "baseline",
+    "track": "hills",
+    "route": "1",
+    "flags": [
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "f3eef82e8787eeec8f0ed07eba53898cf2bc041fa51e6d590f43b834458d3c38",
+    "exit_code": 0,
+    "elapsed_seconds": 66.52657243399881
+  },
+  {
+    "verification_complete": true,
+    "case": "metro-control",
+    "track": "metro",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": false,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "f3eef82e8787eeec8f0ed07eba53898cf2bc041fa51e6d590f43b834458d3c38",
+    "exit_code": 0,
+    "elapsed_seconds": 49.022549428002094
+  }
+]

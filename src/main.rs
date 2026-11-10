@@ -30,6 +30,17 @@ fn main() {
         }
         return;
     }
+    if args.iter().any(|a| a == "--inspect-hills") {
+        let track = road_dash::track::Track::hills().expect("validated Hills course");
+        let report =
+            serde_json::to_string_pretty(&road_dash::hills_survey::inspect(&track)).unwrap();
+        if let Some(i) = args.iter().position(|a| a == "--output") {
+            std::fs::write(args.get(i + 1).expect("output path"), report).expect("write report");
+        } else {
+            println!("{report}");
+        }
+        return;
+    }
     road_dash::diagnostics::install_panic_report();
     if std::env::args().any(|a| a == "--verify-panic-report") {
         panic!("intentional panic-report verification");
@@ -210,6 +221,9 @@ fn main() {
             || a == "--destruction-survey"
             || a == "--traffic-stall-survey"
             || a == "--metro-survey"
+            || a == "--hills-survey"
+            || a == "--hills-polish-survey"
+            || a == "--hills-revision-survey"
             || a == "--smoke-test"
             || a == "--actor-smoke-test"
             || a == "--actor-skin-survey"

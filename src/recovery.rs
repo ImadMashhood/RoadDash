@@ -35,6 +35,9 @@ pub struct Recovery {
     pub path_refresh: f32,
     pub walk_watch: rr_core::escape::WalkWatch,
     pub walk_live_retry: f32,
+    pub rescues: u32,
+    pub last_rescue_stationary: f32,
+    pub rescue_penalty_total: f32,
     pub foot: rr_core::recovery::FootControl,
     pub previous_foot: Option<Vec3>,
     pub walk_distance: f32,
@@ -728,6 +731,16 @@ pub fn recover(
                         dt,
                         config.neutral_delay,
                     ) == rr_core::recovery::FootMode::Manual;
+                let hills_seek_rescue = if track.is_hills() && rider.human_controlled() {
+                    recovery.walk_watch.seek_rescue_due(
+                        dt,
+                        transform.translation.xz().to_array(),
+                        !manual && !rider.police,
+                        config.rescue_after,
+                    )
+                } else {
+                    false
+                };
                 if manual
                     && transform.translation.y
                         < track.terrain_height(transform.translation.x, transform.translation.z)
@@ -744,6 +757,9 @@ pub fn recover(
                         c.translation = Some(Vec3::ZERO);
                     }
                     race.elapsed += config.rescue_penalty;
+                    recovery.rescues += 1;
+                    recovery.last_rescue_stationary = 0.;
+                    recovery.rescue_penalty_total += config.rescue_penalty;
                     race.message = "ON-FOOT RESCUE".into();
                     race.message_time = 3.0;
                     continue;
@@ -863,34 +879,46 @@ pub fn recover(
                                 .normalize_or_zero();
                         }
                     }
-                    // Explicit rescue for an exceptional trap, never ordinary hill travel.
-                    let below = transform.translation.y
-                        < track.terrain_height(transform.translation.x, transform.translation.z)
-                            - 8.0;
-                    if !rider.police && (recovery.elapsed > config.rescue_after || below) {
-                        let (d, _, _) = track.project_route(rider.route, wreck_pos, rider.progress);
-                        let d = d.min(track.race_interval().finish - 6.0);
-                        let (p, q) = track.sample_route(rider.route, d, 0.0);
-                        transform.translation = p + Vec3::Y * 0.98 - q * Vec3::X * 2.0;
-                        if let Some(ref mut c) = controller {
-                            c.translation = Some(Vec3::ZERO);
-                        }
-                        recovery.path_refresh = 0.0;
-                        recovery.previous_foot = Some(transform.translation);
-                        if let Ok((mut t, velocity, _, _)) = bodies.get_mut(wreck) {
-                            *t = Transform::from_translation(p).with_rotation(q);
-                            if let Some(mut v) = velocity {
-                                *v = Velocity::zero();
-                            }
-                        }
-                        recovery.walk_path.clear();
-                        recovery.walk_goal = None;
-                        recovery.elapsed = 0.0;
-                        race.elapsed += config.rescue_penalty;
-                        race.message = "RECOVERY RESCUE / +5 SEC".into();
-                        race.message_time = 4.0;
-                        continue;
+                }
+                // Existing urban exceptional rescue retains its elapsed/below
+                // policy. Hills adds only a full configured wait inside one
+                // half-metre region: continuous progress and manual movement
+                // cannot be mistaken for a trapped automatic recovery.
+                let below = transform.translation.y
+                    < track.terrain_height(transform.translation.x, transform.translation.z) - 8.;
+                let authored_navigation =
+                    layout.is_some() || city.is_some() || metro_navigation.is_some();
+                let exceptional = (authored_navigation
+                    && (recovery.elapsed > config.rescue_after || below))
+                    || hills_seek_rescue
+                    || (track.is_hills() && below);
+                if !manual && !rider.police && exceptional {
+                    let (d, _, _) = track.project_route(rider.route, wreck_pos, rider.progress);
+                    let d = d.min(track.race_interval().finish - 6.0);
+                    let (p, q) = track.sample_route(rider.route, d, 0.0);
+                    transform.translation = p + Vec3::Y * 0.98 - q * Vec3::X * 2.0;
+                    if let Some(ref mut c) = controller {
+                        c.translation = Some(Vec3::ZERO);
                     }
+                    recovery.path_refresh = 0.0;
+                    recovery.previous_foot = Some(transform.translation);
+                    if let Ok((mut t, velocity, _, _)) = bodies.get_mut(wreck) {
+                        *t = Transform::from_translation(p).with_rotation(q);
+                        if let Some(mut v) = velocity {
+                            *v = Velocity::zero();
+                        }
+                    }
+                    recovery.walk_path.clear();
+                    recovery.walk_goal = None;
+                    recovery.rescues += 1;
+                    recovery.last_rescue_stationary = recovery.walk_watch.stationary_seconds();
+                    recovery.rescue_penalty_total += config.rescue_penalty;
+                    recovery.walk_watch = default();
+                    recovery.elapsed = 0.0;
+                    race.elapsed += config.rescue_penalty;
+                    race.message = "RECOVERY RESCUE / +5 SEC".into();
+                    race.message_time = 4.0;
+                    continue;
                 }
                 if !manual && !rider.human_controlled() {
                     while recovery

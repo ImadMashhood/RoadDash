@@ -1,0 +1,22 @@
+{
+  "workspace_tests_passed": 548,
+  "workspace_tests_ignored": 1,
+  "roadmap_tests_passed": 5,
+  "native_cases_passed": 6,
+  "requirements_verified": 222,
+  "requirements_open": 262,
+  "new_ids": [
+    "HILLS-04",
+    "HILLS-05",
+    "HILLS-06"
+  ],
+  "decision": "ADR136",
+  "west_east_rescues_each": [
+    0,
+    1
+  ],
+  "baseline_metropolis_rescues_each": [
+    0,
+    0
+  ]
+}

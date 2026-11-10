@@ -1,0 +1,13 @@
+[
+  {
+    "binary_sha256": "2a39a3278af9e5c6995de2c721364106836fe6b09c13016621d9e50a59ab8f62",
+    "case": "metro-control",
+    "track": "metro",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 41.4592745619957
+  }
+]

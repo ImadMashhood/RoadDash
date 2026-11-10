@@ -1,0 +1,16 @@
+[
+  {
+    "case": "perf-city-a",
+    "verification_complete": true,
+    "render_errors": false,
+    "exit_code": 0,
+    "elapsed_seconds": 134.06595540046692,
+    "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+    "track": "hills",
+    "route": "0",
+    "vehicle_adapter": "dynamic",
+    "shadow_distance_m": 500,
+    "volumetric_clouds": true,
+    "performance": true
+  }
+]

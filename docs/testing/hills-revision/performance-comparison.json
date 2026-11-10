@@ -1,0 +1,348 @@
+{
+  "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+  "hardware": {
+    "platform": "Linux-7.2.11-200.fc44.x86_64-x86_64-with-glibc2.43",
+    "native_window_pixels": [
+      1440,
+      900
+    ],
+    "measurement": "CPU/wall logging windows; no GPU timestamps",
+    "cpu": {
+      "CPU(s)": "12",
+      "Model name": "AMD Ryzen 5 3600 6-Core Processor",
+      "Thread(s) per core": "2",
+      "Core(s) per socket": "6"
+    },
+    "graphics_inventory": [
+      "0a:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3080 Lite Hash Rate] (rev a1)"
+    ],
+    "gpu_limit": "PCI inventory does not establish which Vulkan adapter was selected."
+  },
+  "method": {
+    "runner": "tools/run_hills_revision_checks.py",
+    "vehicle": "Dynamic",
+    "selection": {
+      "skip_samples": 10,
+      "racing_only": true
+    },
+    "metrics": "Median and P95 across independent logging-window means, not raw-frame P95. Physics is weighted by fixed steps within each run and includes sync/step/writeback CPU/wait spans. Group aggregates are arithmetic means of two run statistics, not pooled frame percentiles.",
+    "common_controls": "Same release binary, scene, route, tangent filter, filtered survey queries, collision geometry, 1440x900 window; fresh process/settings per case. No screenshots in timing cases.",
+    "isolation": "No competing compiler/game/indexing worker observed in accepted runs. Baloo temporarily suspended in each session and resumed in finally.",
+    "isolation_receipts": [
+      "performance-isolation.json",
+      "performance-isolation-resumed.json"
+    ],
+    "interruption": "Initial static-a contaminated by a separately launched normal game and excluded. Valid fixed-a retained; remaining five cases rerun after normal game closed. Archive invalid-competing-game preserves both original receipts.",
+    "excluded": "preliminary-before-bridge-exit-fix and before-performance.json: older binaries/configurations; historical optimized-debug timing is not a paired baseline."
+  },
+  "runs": [
+    {
+      "verification_complete": true,
+      "case": "perf-fixed-a",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-revision-survey"
+      ],
+      "vehicle_adapter": "dynamic",
+      "performance": true,
+      "fixed_body_control": true,
+      "volumetric_clouds": true,
+      "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+      "exit_code": 0,
+      "elapsed_seconds": 130.729020398001,
+      "receipt": "invalid-competing-game/native-perf-fixed-a-perf-fixed-b-perf-nocloud-a-perf-nocloud-b-perf-static-a-perf-static-b.json",
+      "summary": "perf-fixed-a/summary.json",
+      "scene_receipt": "perf-fixed-a/screenshots/hills-revision.json",
+      "selected_logging_windows": 91,
+      "total_valid_logging_windows": 101,
+      "fixed_steps_per_render_frame": 1.0,
+      "window_mean_ms": {
+        "median": 21.669349276595746,
+        "maximum": 24.197713190476193,
+        "p95": 23.322685674418604
+      },
+      "main_world_ms": {
+        "median": 20.939682006835938,
+        "maximum": 23.284015655517578,
+        "p95": 22.58637237548828
+      },
+      "weighted_fixed_step_ms": {
+        "fixed_gameplay_ms_per_fixed_step": 3.198654163970031,
+        "physics_ms_per_fixed_step": 8.301219863388605,
+        "physics_sync_ms_per_fixed_step": 2.8144089404852326,
+        "physics_step_ms_per_fixed_step": 4.628749375571243,
+        "physics_writeback_ms_per_fixed_step": 0.8579228403485745
+      }
+    },
+    {
+      "verification_complete": true,
+      "case": "perf-static-a",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-revision-survey"
+      ],
+      "vehicle_adapter": "dynamic",
+      "performance": true,
+      "fixed_body_control": false,
+      "volumetric_clouds": true,
+      "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+      "exit_code": 0,
+      "elapsed_seconds": 124.47837519799941,
+      "receipt": "native-perf-fixed-b-perf-nocloud-a-perf-nocloud-b-perf-static-a-perf-static-b.json",
+      "summary": "perf-static-a/summary.json",
+      "scene_receipt": "perf-static-a/screenshots/hills-revision.json",
+      "selected_logging_windows": 84,
+      "total_valid_logging_windows": 94,
+      "fixed_steps_per_render_frame": 1.0,
+      "window_mean_ms": {
+        "median": 20.425189153061226,
+        "maximum": 23.146515249999997,
+        "p95": 22.044631130434784
+      },
+      "main_world_ms": {
+        "median": 19.70500373840332,
+        "maximum": 22.423402786254883,
+        "p95": 21.283279418945312
+      },
+      "weighted_fixed_step_ms": {
+        "fixed_gameplay_ms_per_fixed_step": 3.0971971557416653,
+        "physics_ms_per_fixed_step": 7.2678332446154155,
+        "physics_sync_ms_per_fixed_step": 2.7352489324453484,
+        "physics_step_ms_per_fixed_step": 4.463414615200412,
+        "physics_writeback_ms_per_fixed_step": 0.06902455437923988
+      }
+    },
+    {
+      "verification_complete": true,
+      "case": "perf-nocloud-a",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-revision-survey"
+      ],
+      "vehicle_adapter": "dynamic",
+      "performance": true,
+      "fixed_body_control": false,
+      "volumetric_clouds": false,
+      "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+      "exit_code": 0,
+      "elapsed_seconds": 124.98539361800067,
+      "receipt": "native-perf-fixed-b-perf-nocloud-a-perf-nocloud-b-perf-static-a-perf-static-b.json",
+      "summary": "perf-nocloud-a/summary.json",
+      "scene_receipt": "perf-nocloud-a/screenshots/hills-revision.json",
+      "selected_logging_windows": 84,
+      "total_valid_logging_windows": 94,
+      "fixed_steps_per_render_frame": 1.0,
+      "window_mean_ms": {
+        "median": 20.27357895,
+        "maximum": 23.907523880952382,
+        "p95": 22.472130666666665
+      },
+      "main_world_ms": {
+        "median": 19.500454902648926,
+        "maximum": 23.16965675354004,
+        "p95": 21.772064208984375
+      },
+      "weighted_fixed_step_ms": {
+        "fixed_gameplay_ms_per_fixed_step": 3.0979022647602443,
+        "physics_ms_per_fixed_step": 7.27331260170703,
+        "physics_sync_ms_per_fixed_step": 2.717789461051549,
+        "physics_step_ms_per_fixed_step": 4.486316349059165,
+        "physics_writeback_ms_per_fixed_step": 0.06905311134019633
+      }
+    },
+    {
+      "verification_complete": true,
+      "case": "perf-nocloud-b",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-revision-survey"
+      ],
+      "vehicle_adapter": "dynamic",
+      "performance": true,
+      "fixed_body_control": false,
+      "volumetric_clouds": false,
+      "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+      "exit_code": 0,
+      "elapsed_seconds": 126.73096827200061,
+      "receipt": "native-perf-fixed-b-perf-nocloud-a-perf-nocloud-b-perf-static-a-perf-static-b.json",
+      "summary": "perf-nocloud-b/summary.json",
+      "scene_receipt": "perf-nocloud-b/screenshots/hills-revision.json",
+      "selected_logging_windows": 86,
+      "total_valid_logging_windows": 96,
+      "fixed_steps_per_render_frame": 1.0,
+      "window_mean_ms": {
+        "median": 20.864928281250002,
+        "maximum": 23.504728860465114,
+        "p95": 22.823182136363638
+      },
+      "main_world_ms": {
+        "median": 20.150965690612793,
+        "maximum": 22.734312057495117,
+        "p95": 22.0910587310791
+      },
+      "weighted_fixed_step_ms": {
+        "fixed_gameplay_ms_per_fixed_step": 3.191422625280269,
+        "physics_ms_per_fixed_step": 7.414563478462561,
+        "physics_sync_ms_per_fixed_step": 2.8121859263895574,
+        "physics_step_ms_per_fixed_step": 4.535001699539629,
+        "physics_writeback_ms_per_fixed_step": 0.06724879910071747
+      }
+    },
+    {
+      "verification_complete": true,
+      "case": "perf-static-b",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-revision-survey"
+      ],
+      "vehicle_adapter": "dynamic",
+      "performance": true,
+      "fixed_body_control": false,
+      "volumetric_clouds": true,
+      "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+      "exit_code": 0,
+      "elapsed_seconds": 128.18126748500072,
+      "receipt": "native-perf-fixed-b-perf-nocloud-a-perf-nocloud-b-perf-static-a-perf-static-b.json",
+      "summary": "perf-static-b/summary.json",
+      "scene_receipt": "perf-static-b/screenshots/hills-revision.json",
+      "selected_logging_windows": 88,
+      "total_valid_logging_windows": 98,
+      "fixed_steps_per_render_frame": 1.0,
+      "window_mean_ms": {
+        "median": 21.104745916666666,
+        "maximum": 24.003229833333336,
+        "p95": 22.584249977777777
+      },
+      "main_world_ms": {
+        "median": 20.352530479431152,
+        "maximum": 23.154592514038086,
+        "p95": 21.822643280029297
+      },
+      "weighted_fixed_step_ms": {
+        "fixed_gameplay_ms_per_fixed_step": 3.2314687239315503,
+        "physics_ms_per_fixed_step": 7.4698584191826765,
+        "physics_sync_ms_per_fixed_step": 2.8431038545599057,
+        "physics_step_ms_per_fixed_step": 4.558757465893344,
+        "physics_writeback_ms_per_fixed_step": 0.06786731668230267
+      }
+    },
+    {
+      "verification_complete": true,
+      "case": "perf-fixed-b",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-revision-survey"
+      ],
+      "vehicle_adapter": "dynamic",
+      "performance": true,
+      "fixed_body_control": true,
+      "volumetric_clouds": true,
+      "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+      "exit_code": 0,
+      "elapsed_seconds": 132.14814280699647,
+      "receipt": "native-perf-fixed-b-perf-nocloud-a-perf-nocloud-b-perf-static-a-perf-static-b.json",
+      "summary": "perf-fixed-b/summary.json",
+      "scene_receipt": "perf-fixed-b/screenshots/hills-revision.json",
+      "selected_logging_windows": 92,
+      "total_valid_logging_windows": 102,
+      "fixed_steps_per_render_frame": 1.0,
+      "window_mean_ms": {
+        "median": 21.940509010869565,
+        "maximum": 24.41981219512195,
+        "p95": 23.890590738095238
+      },
+      "main_world_ms": {
+        "median": 21.193333625793457,
+        "maximum": 23.594980239868164,
+        "p95": 22.84027671813965
+      },
+      "weighted_fixed_step_ms": {
+        "fixed_gameplay_ms_per_fixed_step": 3.251361563545031,
+        "physics_ms_per_fixed_step": 8.382473516047831,
+        "physics_sync_ms_per_fixed_step": 2.8283261067185843,
+        "physics_step_ms_per_fixed_step": 4.646993319156008,
+        "physics_writeback_ms_per_fixed_step": 0.9069944240727851
+      }
+    }
+  ],
+  "groups": {
+    "fixed_control_clouds_on": {
+      "runs": [
+        "perf-fixed-a",
+        "perf-fixed-b"
+      ],
+      "mean_of_run_window_medians_ms": 21.804929143732657,
+      "mean_of_run_window_p95s_ms": 23.60663820625692,
+      "mean_of_run_main_world_medians_ms": 21.066507816314697,
+      "mean_of_run_weighted_physics_ms_per_step": 8.341846689718217,
+      "run_median_spread_ms": 0.27115973427381945
+    },
+    "bodyless_clouds_on": {
+      "runs": [
+        "perf-static-a",
+        "perf-static-b"
+      ],
+      "mean_of_run_window_medians_ms": 20.764967534863946,
+      "mean_of_run_window_p95s_ms": 22.31444055410628,
+      "mean_of_run_main_world_medians_ms": 20.028767108917236,
+      "mean_of_run_weighted_physics_ms_per_step": 7.368845831899046,
+      "run_median_spread_ms": 0.67955676360544
+    },
+    "bodyless_clouds_off": {
+      "runs": [
+        "perf-nocloud-a",
+        "perf-nocloud-b"
+      ],
+      "mean_of_run_window_medians_ms": 20.569253615625,
+      "mean_of_run_window_p95s_ms": 22.64765640151515,
+      "mean_of_run_main_world_medians_ms": 19.82571029663086,
+      "mean_of_run_weighted_physics_ms_per_step": 7.343938040084796,
+      "run_median_spread_ms": 0.5913493312500009
+    }
+  },
+  "bodyless_reduction_percent_relative_to_fixed_control": {
+    "mean_of_run_window_medians_ms": 4.769387701347453,
+    "mean_of_run_window_p95s_ms": 5.4738740893997555,
+    "mean_of_run_main_world_medians_ms": 4.926021514556843,
+    "mean_of_run_weighted_physics_ms_per_step": 11.664094222906877
+  },
+  "cloud_comparison": {
+    "on_minus_off_mean_of_run_medians_ms": 0.1957139192389441,
+    "percent_relative_to_off": 0.9514877053695042,
+    "interpretation": "Observed difference is smaller than within-mode run-to-run spreads; two runs per mode do not establish a reliable cloud cost or speedup. No GPU timestamps."
+  },
+  "limitations": [
+    "Scripted camera survey, not a full driven race or damaged-course stress test.",
+    "Two repeats per mode; no statistical confidence interval or broad hardware coverage.",
+    "Logging-window P95 is not raw-frame P95.",
+    "Selected Vulkan adapter unverified; RTX3080 is PCI inventory only.",
+    "Results do not demonstrate 16.7ms/60FPS target.",
+    "Common tangent filtering and filtered harness held fixed; no independent speedup attributed to them."
+  ],
+  "validated": {
+    "all_six_complete_exit_zero_same_hash": true,
+    "all_captures_zero": true,
+    "scene_census_identical": true,
+    "baloo_restored": true
+  },
+  "bodyless_individual_pairs": [
+    {
+      "pair": "a",
+      "window_median_reduction_percent": 5.74156661399284,
+      "window_p95_reduction_percent": 5.479877239805404,
+      "weighted_physics_reduction_percent": 12.448611599010883
+    },
+    {
+      "pair": "b",
+      "window_median_reduction_percent": 3.8092238142189574,
+      "window_p95_reduction_percent": 5.468013640342548,
+      "weighted_physics_reduction_percent": 10.887181392437425
+    }
+  ]
+}

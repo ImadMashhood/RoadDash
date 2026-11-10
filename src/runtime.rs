@@ -302,6 +302,27 @@ impl Plugin for RoadSimulationPlugin {
             .add_systems(
                 FixedUpdate,
                 (
+                    crate::world_gen::hills::mounted::update,
+                    crate::heavy_traffic::update,
+                )
+                    .after(SimSet::Gameplay)
+                    .before(PhysicsSet::SyncBackend),
+            )
+            .add_systems(Update, crate::world_gen::hills::river::animate)
+            .add_systems(
+                PostUpdate,
+                (
+                    crate::world_gen::hills::atmosphere::reset,
+                    crate::world_gen::hills::atmosphere::animate,
+                )
+                    .chain()
+                    .run_if(resource_exists::<crate::world_gen::hills::atmosphere::Atmosphere>)
+                    .after(game::camera)
+                    .before(bevy::transform::TransformSystems::Propagate),
+            )
+            .add_systems(
+                FixedUpdate,
+                (
                     recovery::constrain_crash_energy,
                     crate::vehicle::readback,
                     crate::vehicle::telemetry,

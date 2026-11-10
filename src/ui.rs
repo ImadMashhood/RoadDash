@@ -192,6 +192,13 @@ pub fn setup_ui(
     if let Some(m) = &track.metropolis {
         map_points.extend(m.paths[1].points.iter().map(|p| Vec3::from_array(*p)));
     }
+    if track.is_hills() {
+        map_points.extend(
+            (5500..=7400)
+                .step_by(5)
+                .map(|s| track.sample_route(1, s as f32, 0.).0),
+        );
+    }
     for p in map_points.iter().step_by(4) {
         let (x, y) = map_point(&track, *p);
         dots.push(
@@ -412,6 +419,7 @@ pub fn update_ui(
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
                 Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.\nF2 / controller LB: comfort & controls.".into(),
+                _ if track.is_hills()=>"Fifteen riders. City to winding hills.\n\nChoose either western town street.\nRejoin inside town; finish in the dunes.\nF2 / controller LB: comfort & controls.".into(),
                 _ if track.metropolis.is_some()=>"Fifteen riders. Farms to downtown.\n\nChoose Old Market or Station Avenue.\nRace to the finish in the city.\nF2 / controller LB: comfort & controls.".into(),
                 _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.\nF2 / controller LB: comfort & controls.".into(),
             },

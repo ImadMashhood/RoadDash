@@ -1,0 +1,6 @@
+{
+  "path": "/home/imad/Documents/ChatGPT/RoadRash/target/debug/road-dash",
+  "sha256": "929f7357ca35bb5f2a4b4f23e4ec3e56febcf9fd522a0fb0b37ac4a183c5e92f",
+  "profile": "optimized debug",
+  "note": "Final rebuild includes only a diagnostic-system Clippy type-complexity annotation after the batch-start binary; runtime behavior unchanged. Per-case native hashes are retained."
+}

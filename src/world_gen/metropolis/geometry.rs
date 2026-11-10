@@ -486,30 +486,32 @@ pub fn spawn(
             }
         }
     }
-    // Ground is continuous under the entire city, fields, shoulders and starting grid.
-    let [xmin, zmin, xmax, zmax] = m.bounds;
-    for x in ((xmin / 256.).floor() as i32)..=((xmax / 256.).ceil() as i32) {
-        for z in ((zmin / 256.).floor() as i32)..=((zmax / 256.).ceil() as i32) {
-            let batch = batches.entry((x, z, 27)).or_default();
-            for i in 0..32 {
-                for j in 0..32 {
-                    let xx = x as f32 * 256. + i as f32 * 8.;
-                    let zz = z as f32 * 256. + j as f32 * 8.;
-                    let v = |x, z| Vec3::new(x, track.terrain_height(x, z) - 0.2, z);
-                    batch.quad(
-                        [
-                            v(xx, zz),
-                            v(xx, zz + 8.),
-                            v(xx + 8., zz + 8.),
-                            v(xx + 8., zz),
-                        ],
-                        [
-                            [xx / 8., zz / 8.],
-                            [xx / 8., zz / 8. + 1.],
-                            [xx / 8. + 1., zz / 8. + 1.],
-                            [xx / 8. + 1., zz / 8.],
-                        ],
-                    );
+    if !track.is_hills() {
+        // Ground is continuous under the entire city, fields, shoulders and starting grid.
+        let [xmin, zmin, xmax, zmax] = m.bounds;
+        for x in ((xmin / 256.).floor() as i32)..=((xmax / 256.).ceil() as i32) {
+            for z in ((zmin / 256.).floor() as i32)..=((zmax / 256.).ceil() as i32) {
+                let batch = batches.entry((x, z, 27)).or_default();
+                for i in 0..32 {
+                    for j in 0..32 {
+                        let xx = x as f32 * 256. + i as f32 * 8.;
+                        let zz = z as f32 * 256. + j as f32 * 8.;
+                        let v = |x, z| Vec3::new(x, track.terrain_height(x, z) - 0.2, z);
+                        batch.quad(
+                            [
+                                v(xx, zz),
+                                v(xx, zz + 8.),
+                                v(xx + 8., zz + 8.),
+                                v(xx + 8., zz),
+                            ],
+                            [
+                                [xx / 8., zz / 8.],
+                                [xx / 8., zz / 8. + 1.],
+                                [xx / 8. + 1., zz / 8. + 1.],
+                                [xx / 8. + 1., zz / 8.],
+                            ],
+                        );
+                    }
                 }
             }
         }
@@ -524,9 +526,14 @@ pub fn spawn(
     }
     // Road paint follows both actual alternatives; it never draws a third spine between them.
     for (route, path) in m.paths.iter().enumerate() {
-        for s in (-340..12000).step_by(4) {
+        let span = if track.is_hills() {
+            -200..1000
+        } else {
+            -340..12000
+        };
+        for s in span.step_by(4) {
             let s = s as f32;
-            if route == 1 && !(3350. ..5362.5).contains(&s) {
+            if route == 1 && (track.is_hills() || !(3350. ..5362.5).contains(&s)) {
                 continue;
             }
             let _ = path;
@@ -706,7 +713,9 @@ pub fn spawn(
             },
         ));
     }
-    landscape::spawn(commands, meshes, grass, track, &mut census, &mats[27]);
+    if !track.is_hills() {
+        landscape::spawn(commands, meshes, grass, track, &mut census, &mats[27]);
+    }
     census
 }
 

@@ -1,0 +1,8 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 42.50s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+test game::tests::metropolis_clear_street_rider_leaves_stall_and_passes_stopped_leader ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 421 filtered out; finished in 1.06s

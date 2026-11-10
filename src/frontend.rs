@@ -7,7 +7,10 @@ use crate::{
     track::Track,
 };
 use bevy::{asset::LoadState, prelude::*};
-use rr_core::frontend::{Action, Effect, Flow, Page, ROSTER};
+use rr_core::frontend::{Action, Course, Effect, Flow, Page, ROSTER};
+mod course;
+mod course_smoke;
+pub(crate) use course::map_launch_arguments;
 mod gallery;
 mod layout;
 mod online_menu;
@@ -16,7 +19,7 @@ mod original_art;
 mod smoke;
 pub(crate) use smoke::install as install_smoke;
 
-#[derive(Resource, Default)]
+#[derive(Resource)]
 pub struct Frontend {
     pub flow: Flow,
     pub selected: usize,
@@ -26,6 +29,43 @@ pub struct Frontend {
     race_seen: bool,
     pub online_pause: bool,
     online_menu: online_menu::Menu,
+    course_load: Option<Course>,
+    course_error: Option<String>,
+    handoff_started: bool,
+    course_initialized: bool,
+}
+impl Default for Frontend {
+    fn default() -> Self {
+        let boot = if std::env::var_os("ROADDASH_ONLINE_BOOT").is_none() {
+            std::env::var("ROADDASH_OFFLINE_BOOT")
+                .ok()
+                .and_then(|s| Course::from_key(&s))
+        } else {
+            None
+        };
+        Self {
+            flow: Flow {
+                page: if boot.is_some() {
+                    Page::Starting
+                } else {
+                    Page::Splash
+                },
+                course: boot,
+                ..default()
+            },
+            selected: 0,
+            pending: None,
+            launch_wait: 0.,
+            released: false,
+            race_seen: false,
+            online_pause: false,
+            online_menu: default(),
+            course_load: None,
+            course_error: None,
+            handoff_started: false,
+            course_initialized: false,
+        }
+    }
 }
 impl Frontend {
     pub fn owns(&self, phase: Phase) -> bool {
@@ -47,6 +87,7 @@ struct Art {
     originals: Vec<Option<Handle<Image>>>,
     heading_font: Handle<Font>,
     body_font: Handle<Font>,
+    courses: [Handle<Image>; 2],
 }
 #[derive(Component)]
 struct Root;
@@ -95,7 +136,11 @@ fn entries(page: Page) -> Vec<Entry> {
             entry("BIKE SHOP", A::Garage),
             entry("RACE", A::Courses),
         ],
-        Page::Courses => vec![entry("RIDE THIS COURSE", A::Ride), entry("BACK", A::Back)],
+        Page::Courses => Course::ALL
+            .into_iter()
+            .map(|c| entry(c.label(), A::SelectCourse(c)))
+            .chain([entry("RIDE SELECTED ROAD", A::Ride), entry("BACK", A::Back)])
+            .collect(),
         Page::Garage => vec![entry("BACK TO THE STREET", A::Back)],
         Page::Bar => ROSTER
             .iter()
@@ -104,7 +149,11 @@ fn entries(page: Page) -> Vec<Entry> {
             .chain(std::iter::once(entry("BACK TO THE STREET", A::Back)))
             .collect(),
         Page::Portrait => vec![entry("BACK TO RIDERS", A::Back)],
-        Page::Results => vec![entry("RACE AGAIN", A::Ride), entry("MAIN MENU", A::Back)],
+        Page::Results => vec![
+            entry("RACE AGAIN", A::Ride),
+            entry("CHANGE COURSE", A::Courses),
+            entry("MAIN MENU", A::Back),
+        ],
         Page::Quit => vec![
             entry("KEEP RIDING", A::Back),
             entry("QUIT GAME", A::ConfirmQuit),
@@ -122,6 +171,7 @@ fn ready(
             server.is_some_and(|s| {
                 a.images
                     .iter()
+                    .chain(a.courses.iter())
                     .all(|h| s.is_loaded_with_dependencies(h.id()))
                     && s.is_loaded_with_dependencies(a.heading_font.id())
                     && s.is_loaded_with_dependencies(a.body_font.id())
@@ -146,7 +196,14 @@ fn input(
     server: Option<Res<AssetServer>>,
     art: Option<Res<Art>>,
     mut online: Option<ResMut<crate::online::Online>>,
+    track: Res<Track>,
 ) {
+    if !front.course_initialized {
+        if front.flow.course.is_none() {
+            front.flow.course = course::loaded(&track);
+        }
+        front.course_initialized = true;
+    }
     let online_race = online.as_ref().is_some_and(|o| o.lobby.is_some())
         && matches!(race.phase, Phase::Racing | Phase::Countdown);
     if online_race && !panel.open {
@@ -240,6 +297,9 @@ fn input(
     }
     let pad = pads.iter().min_by_key(|(e, _)| e.to_bits()).map(|(_, p)| p);
     let edge = |b| pad.is_some_and(|p| p.just_pressed(b));
+    if front.handoff_started || front.course_load.is_some() {
+        return;
+    }
     if front.flow.page == Page::Starting {
         front.launch_wait += time.delta_secs();
         // One rendered loading page and a fresh input boundary, not arbitrary physics work.
@@ -343,6 +403,20 @@ fn input(
         if online_menu::dispatch(&mut front, online.as_deref_mut(), action) {
             return;
         }
+        if action == Action::Ride
+            && matches!(front.flow.page, Page::Courses | Page::Results)
+            && let Some(selected) = front.flow.course
+            && Some(selected) != course::loaded(&track)
+        {
+            front.course_error = None;
+            front.course_load = Some(selected);
+            front.flow.page = Page::Starting;
+            front.launch_wait = 0.;
+            return;
+        }
+        if matches!(action, Action::SelectCourse(_)) {
+            front.course_error = None;
+        }
         match front.flow.dispatch(action) {
             Effect::Settings => panel.open = true,
             Effect::Start => front.launch_wait = 0.0,
@@ -358,7 +432,7 @@ fn input(
                 0
             };
         }
-        if was == Page::Results && front.flow.page == Page::Main {
+        if was == Page::Results && matches!(front.flow.page, Page::Main | Page::Courses) {
             race.phase = Phase::Garage;
         }
     }
@@ -377,6 +451,10 @@ fn setup(mut commands: Commands, server: Res<AssetServer>, mut images: ResMut<As
     ));
     commands.insert_resource(Art {
         originals: original_art::load(&mut images),
+        courses: [
+            server.load("ui/course-metropolis.png"),
+            server.load("ui/course-hills.png"),
+        ],
         heading_font: server.load("ui/fonts/Jost-700-Bold.ttf"),
         body_font: server.load("ui/fonts/Jost-400-Book.ttf"),
         images: ART
@@ -511,12 +589,14 @@ fn view(
         || !art
             .images
             .iter()
+            .chain(art.courses.iter())
             .all(|h| server.is_loaded_with_dependencies(h.id()))
         || !server.is_loaded_with_dependencies(art.heading_font.id())
         || !server.is_loaded_with_dependencies(art.body_font.id());
     let failed = art
         .images
         .iter()
+        .chain(art.courses.iter())
         .any(|h| matches!(server.get_load_state(h.id()), Some(LoadState::Failed(_))))
         || matches!(
             server.get_load_state(art.heading_font.id()),
@@ -532,7 +612,13 @@ fn view(
         loading,
         active,
         failed,
-        online_menu::signature(&front, online.as_deref()),
+        format!(
+            "{}|{:?}|{:?}|{}",
+            online_menu::signature(&front, online.as_deref()),
+            front.flow.course,
+            front.course_error,
+            front.handoff_started
+        ),
     );
     if cache.key.as_ref() == Some(&key) {
         return;
@@ -592,10 +678,19 @@ fn view(
     {
         return;
     }
+    if !loading && !failed && page == Page::Courses {
+        course::render(&mut commands, canvas, &front, &track, &art);
+        return;
+    }
     let value = if failed {
         "ARTWORK COULD NOT LOAD. Restore assets/ui and relaunch.".into()
     } else if loading {
         "PREPARING THE ROAD...".into()
+    } else if front.handoff_started || front.course_load.is_some() {
+        format!(
+            "{}\nPREPARING THE ROAD...",
+            front.flow.course.map_or("", Course::label)
+        )
     } else {
         body(page, &profile, &track, &race)
     };
@@ -611,12 +706,15 @@ fn focus(
         &mut BackgroundColor,
         &mut BorderColor,
         Option<&layout::MenuChoice>,
+        Option<&course::CourseCard>,
         &Children,
     )>,
     mut labels: Query<&mut TextColor>,
 ) {
-    for (b, i, mut bg, mut border, classic, children) in &mut buttons {
-        let selected = b.index == front.selected || *i == Interaction::Hovered;
+    for (b, i, mut bg, mut border, classic, course, children) in &mut buttons {
+        let selected = b.index == front.selected
+            || *i == Interaction::Hovered
+            || course.is_some_and(|c| front.flow.course == Some(c.0));
         if classic.is_some() {
             let selected = b.index == front.selected;
             bg.set_if_neq(BackgroundColor(if *i == Interaction::Hovered {
@@ -745,7 +843,12 @@ impl Plugin for FrontendPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<Frontend>()
             .init_resource::<View>()
-            .add_systems(Startup, setup.in_set(crate::runtime::StartupSet::Ui))
+            .add_systems(
+                Startup,
+                (course::restore_session, setup)
+                    .chain()
+                    .in_set(crate::runtime::StartupSet::Ui),
+            )
             .add_systems(
                 PreUpdate,
                 input
@@ -756,6 +859,7 @@ impl Plugin for FrontendPlugin {
             .add_systems(
                 Update,
                 (
+                    course::handoff,
                     view,
                     typography,
                     focus,
@@ -811,6 +915,66 @@ mod tests {
     fn action(app: &mut App, action: Action) {
         app.world_mut().resource_mut::<Frontend>().pending = Some(action);
         app.update();
+    }
+    #[test]
+    fn course_card_click_only_previews_then_ride_requests_selected_world_once() {
+        let mut app = app();
+        app.world_mut().resource_mut::<Frontend>().flow.page = Page::Courses;
+        let original = app.world().resource::<Track>().definition.id.clone();
+        let credits = app.world().resource::<Profile>().credits;
+        let button = app
+            .world_mut()
+            .spawn((
+                Interaction::Pressed,
+                MenuButton {
+                    index: 1,
+                    action: Action::SelectCourse(Course::Hills),
+                },
+            ))
+            .id();
+        app.update();
+        app.world_mut().despawn(button);
+        assert_eq!(
+            app.world().resource::<Frontend>().flow.course,
+            Some(Course::Hills)
+        );
+        assert_eq!(app.world().resource::<Track>().definition.id, original);
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Garage);
+        assert!(app.world().resource::<Frontend>().course_load.is_none());
+        action(&mut app, Action::Ride);
+        assert_eq!(
+            app.world().resource::<Frontend>().course_load,
+            Some(Course::Hills)
+        );
+        for _ in 0..30 {
+            app.update();
+        }
+        assert_eq!(
+            app.world().resource::<Race>().phase,
+            Phase::Garage,
+            "old map cannot start during handoff"
+        );
+        assert_eq!(app.world().resource::<Profile>().credits, credits);
+    }
+    #[test]
+    fn results_can_change_courses_without_spending_credits_or_starting_old_track() {
+        let mut app = app();
+        let credits = app.world().resource::<Profile>().credits;
+        app.world_mut().resource_mut::<Race>().phase = Phase::Finished;
+        app.update();
+        action(&mut app, Action::Courses);
+        assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Courses);
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Garage);
+        for selected in Course::ALL {
+            action(&mut app, Action::SelectCourse(selected));
+            assert_eq!(
+                app.world().resource::<Frontend>().flow.course,
+                Some(selected)
+            );
+        }
+        action(&mut app, Action::Back);
+        assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Main);
+        assert_eq!(app.world().resource::<Profile>().credits, credits);
     }
     #[test]
     fn online_race_menu_resumes_or_queues_leave_without_pausing_simulation() {
