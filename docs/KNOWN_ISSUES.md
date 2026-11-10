@@ -1200,3 +1200,11 @@ from window averages and whole-frame presentation. The existing16.7ms p95 target
 full-race combat/traffic coverage, cold-machine loading and Windows/other hardware
 acceptance remain open. Final combined content/engine measurements are required
 before treating local branch improvements as overall performance acceptance.
+
+- ADR140 verification: pre-existing Ubuntu pileup CI reports208/240sleeping bodies
+  at900updates on both unchanged main and a sibling PR; local/two-CPU controls
+  pass. Diagnostic-only per-owner/extended-run evidence is being collected; the
+  original assertion and accepted physical settings remain intact. No fix or
+  LinuxCI acceptance is claimed yet. Windows roadmap UTF-8 reading and this
+  branch's stale Part01/16 summary counts are corrected with five locale-hostile
+  roadmap checks passing; actual WindowsCI confirmation remains pending.

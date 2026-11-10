@@ -181,7 +181,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 222 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 32 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 34 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
@@ -196,7 +196,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [13](#part-13) | Authoritative online races and lobbies | 11 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
 | [15](#part-15) | Presentation, audio, UI and accessibility | 25 open |
-| [16](#part-16) | QA, performance, platform, dependency and release gates | 21 open |
+| [16](#part-16) | QA, performance, platform, dependency and release gates | 24 open |
 
 <a id="part-00"></a>
 

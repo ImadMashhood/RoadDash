@@ -1,6 +1,6 @@
 # Development progress
 
-Current scope (2026-11-10): RFU-PERF-01–05, issue25. Measured loading/runtime and exact-preserving startup terrain reuse; ADR140. Both map, collision/recovery and paired evidence required. Cold-cache, full-race60FPS, user art and broad hardware acceptance remain open. Dependencies remain pinned; the requested Bevy0.20 migration is coordinated separately.
+Current scope (2026-11-10; CI diagnostic follow-up): RFU-PERF-01–05, issue25. Measured loading/runtime and exact-preserving startup terrain reuse; ADR140. Both map, collision/recovery and paired evidence required. Cold-cache, full-race60FPS, user art and broad hardware acceptance remain open. Dependencies remain pinned; the requested Bevy0.20 migration is coordinated separately.
 
 Hills rear-grid correction (2026-11-10, ADR139/HILLS-01): reproduced the rear spawn off the imported street. Extend the exact source-city approach through the negative-station grid apron; verify all grid slots and launch corridors against actual road triangles and building footprints. 594 workspace tests and strict lint/build/audit checks pass. Shared Metropolis fixes normalize AI planning coordinates across bends and close the 8cm soil/asphalt seam; Metropolis native seam views and both Hills routes/current-baseline recovery controls pass with zero exceptional rescues. Evidence: testing/hills-grid/REPORT.md. No new IDs or closures.
 

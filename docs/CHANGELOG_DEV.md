@@ -1841,3 +1841,12 @@ experiments pending measurements. RFU-PERF-01..05 are new stable open requiremen
 Pinned dependencies remain unchanged; parent coordinates the requested0.20
 migration separately. Verification and paired results are recorded in
 `testing/issue25-performance/REPORT.md`; broad performance gates remain open.
+
+## 2026-11-10 — CI diagnostics and explicit roadmap encoding (ADR140)
+
+Preserve the900-update/240sleeping-body gate while adding failure-only per-owner
+and1800-update observations for a pre-existing Ubuntu CI failure not reproduced
+locally. No rig or physics changes. Fix Windows locale-dependent roadmap reads
+with explicit UTF-8 and correct issue25 Part01/16 summary counts exposed by the
+complete roadmap test. All five checks pass under an ASCII locale; Rust diagnostic
+compilation/CI and root-cause resolution remain pending.

@@ -94,6 +94,12 @@ fn wall_impact_and_high_speed_ejection_remain_bounded() {
 #[test]
 fn fifteen_crashes_have_bounded_entities_and_can_sleep() {
     let r = lab::measure(true, lab::Scenario::Pileup, 900);
+    println!("BIOMECH_PILEUP_900 {r:?}");
+    if r.sleeping_bodies != 240 {
+        // Diagnose platform-specific late settling without relaxing the 900-tick gate.
+        let extended = lab::measure(true, lab::Scenario::Pileup, 1800);
+        println!("BIOMECH_PILEUP_1800_DIAGNOSTIC {extended:?}");
+    }
     assert!(r.finite);
     assert_eq!(r.bodies, 240);
     assert_eq!(r.sleeping_bodies, 240);

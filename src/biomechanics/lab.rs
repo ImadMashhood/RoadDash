@@ -380,6 +380,35 @@ pub fn measure(enabled: bool, scenario: Scenario, ticks: usize) -> Measurement {
         .filter(|b| b.control.state == rr_core::biomechanics::State::Resting)
         .count();
     result.headless_wall_ms = start.elapsed().as_secs_f64() * 1000.0;
+    #[cfg(test)]
+    if enabled && matches!(scenario, Scenario::Pileup) && result.sleeping_bodies != result.bodies {
+        // Observation only: keep every force, timestep, sleep threshold and assertion intact.
+        let mut owners = std::collections::BTreeMap::<u64, (usize, usize, f32, f32)>::new();
+        for (owned, velocity, sleeping) in w.query::<(&OwnedBody, &Velocity, &Sleeping)>().iter(w) {
+            let row = owners.entry(owned.owner.to_bits()).or_default();
+            row.0 += 1;
+            row.1 += usize::from(sleeping.sleeping);
+            row.2 = row.2.max(velocity.linvel.length());
+            row.3 = row.3.max(velocity.angvel.length());
+        }
+        println!(
+            "BIOMECH_PILEUP_PLATFORM ticks={ticks} os={} arch={} cpus={:?} parallel_physics={}",
+            std::env::consts::OS,
+            std::env::consts::ARCH,
+            std::thread::available_parallelism(),
+            cfg!(feature = "parallel_physics")
+        );
+        for (owned, brain, pilot) in w.query::<(&OwnedBody, &Brain, &velocity::Pilot)>().iter(w) {
+            println!(
+                "BIOMECH_PILEUP_OWNER owner={} bodies_sleeping_max_linear_max_angular={:?} control={:?} supported={} pilot_supported={}",
+                owned.owner.to_bits(),
+                owners.get(&owned.owner.to_bits()),
+                brain.control,
+                brain.supported,
+                pilot.supported
+            );
+        }
+    }
     result
 }
 pub fn run(path: &std::path::Path) -> Result<(), String> {

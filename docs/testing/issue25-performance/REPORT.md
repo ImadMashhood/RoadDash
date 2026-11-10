@@ -106,3 +106,21 @@ No experimental executor or loading admission policy is selected as a new
 production default yet. The local p95 samples remain above16.7ms. Full-course
 CPU/GPU/hardware acceptance and final combined-content budgets remain separate
 from these measurements. No issue-wide performance requirement is checked off.
+
+## Pre-existing CI failures under investigation
+
+Parent inspection found the same Ubuntu pileup sleep failure on unchanged
+main754f9ddb (workflow42908967393/job130154255924) and PR34:208 of240bodies
+sleep after900updates. Local full suites and a two-CPU targeted execution pass.
+This does not identify the cause; parallel solver/platform floating-point behavior
+and late settling remain hypotheses. Test-only diagnostics now print complete
+measurements and per-owner sleep/velocity/control/support data on failure, plus
+an independent1800-update diagnostic. The original900-update assertions remain
+unchanged; no physical coefficients, sleep thresholds or simulation order change.
+These additional Rust diagnostics await compilation/CI; no resolution is claimed.
+
+Windows roadmap failure used locale-default Path.read_text decoding for UTF-8
+README/JSON files. Repository reads now specify UTF-8; sync_progress already did.
+All five roadmap checks pass with PYTHONUTF8=0, PYTHONCOERCECLOCALE=0, LC_ALL=C.
+That complete check also caught stale Part01/16 table counts introduced by this
+branch; both counts now match the unchanged stable-ID placement index.
