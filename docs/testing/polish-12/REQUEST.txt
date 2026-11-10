@@ -1,0 +1,174 @@
+You are coordinating a focused gameplay and graphics polish pass for RoadDash.
+
+Repository: /home/imad/Documents/ChatGPT/RoadRash
+
+Execute the work, test it, document it and integrate it. Do not stop after planning.
+
+Create EXACTLY 12 fresh-context implementation subagents, ONE AT A TIME, following the sequence below. Never run two implementation agents simultaneously.
+
+Each subagent must start without inherited conversation history. Give it a self-contained assignment containing:
+- Repository location and its exact scope.
+- Relevant constraints from this prompt.
+- The previous pass’s commit and handoff.
+- Instructions to read the repository’s AGENTS.md and development records.
+
+Use fork_turns="none" where supported. If fresh-context delegation is unavailable, report that limitation rather than claiming it happened.
+
+Before starting:
+1. Read AGENTS.md, README.md, docs/PROGRESS.md, docs/DECISIONS.md,
+   docs/KNOWN_ISSUES.md, Cargo.toml, Cargo.lock and relevant testing records.
+2. Inspect Git status, branches and running processes.
+3. Preserve existing work. Do not reset, discard or overwrite unrelated changes.
+4. Establish a dedicated codex/ integration branch and record the starting commit.
+5. Create a persistent handoff recording all 12 passes, findings, commits,
+   tests and remaining acceptance gates.
+
+Current direction and constraints:
+- Focus on the playable game. Pause UI artwork generation.
+- Preserve existing approved characters, motorcycle models and content.
+- Preserve accepted handling, ragdoll physics, collision policy, recovery,
+  controls, saves, audio and race progression unless a pass explicitly
+  requires a narrowly justified correction.
+- Do not replace the physics engine or perform a broad ragdoll rewrite.
+- Metropolis is the default farm-to-city course. Retain legacy maps.
+- Preserve resident building envelopes, collision and road rights of way.
+- Follow existing facade LOD lifecycle, material-atlas rebaking and hash rules.
+- Gameplay authority stays in the fixed simulation; visual interpolation must
+  not overwrite authoritative transforms.
+- Better graphics must remain readable at racing speed.
+- Do not assume new effects are affordable. Measure their cost.
+- Do not manufacture screenshots, test results, performance gains or approval.
+
+Execute these 12 passes in order:
+
+01 — Performance and visual stability
+Profile farm, city entry, downtown and simultaneous crashes. Identify actual
+CPU/render/physics/GPU bottlenecks. Fix justified hotspots and investigate
+remaining facade popping, detail oscillation and visibility defects.
+Preserve collision and hazards. Record reproducible before/after evidence.
+
+02 — Low-speed contacts and recovery
+Audit gentle car/wall contacts, rider-to-rider momentum transfer, downed-body
+and wreck contacts, reversing when stuck, bike pickup and remount position.
+Fix reproduced defects against current documented contact rules.
+Do not weaken all collisions or change the accepted ragdoll feel.
+
+03 — Elevation and terrain integration
+Inspect existing elevation first. Create a deliberate, smooth route profile:
+gentle farm rises, a climbing urban approach, long city slopes and occasional
+crests. Preserve the farm-to-city route ending in the city; do not restore a
+separate hills district. Roads, shoulders, sidewalks, intersections, properties,
+props, navigation and both split branches must share compatible elevations.
+Verify clearance, grounded traversal, recovery and branch rejoining.
+
+04 — Unified lighting and exposure
+Establish a coherent late-afternoon baseline: warm sunlight, cooler shadows
+and readable street detail. Tune sun, ambient illumination, exposure and
+tonemapping together. Avoid crushed shadows and washed-out surfaces.
+Provide matched before/after views.
+
+05 — Shadows and ground contact
+Improve wheel/rider/building/vegetation grounding. Investigate detached shadows,
+bias artifacts, shimmering and cascade transitions. Prioritize nearby important
+objects and measure shadow cost. Do not enable costly shadows indiscriminately.
+
+06 — Roads, curbs and sidewalks
+Improve material scale, asphalt variation, repaired patches, faded markings,
+curb seams, drainage and edge dirt. Preserve clear lane markings and existing
+road geometry/contact rules. Keep visual detail consistent across distance
+without flicker, floating overlays or oversized texture repetition.
+
+07 — Building material consistency
+Coordinate brick, concrete, plaster, glass and metal families. Improve entrances
+and ground-floor readability. Preserve approved architectural identity.
+Rebake model-derived distant facade atlases and required hashes/mips when near
+materials change. Verify matching near/far appearance and stable transitions.
+
+08 — Farm-to-city transition and district coherence
+Replace abrupt visual transitions with farms, roadside businesses, workshops,
+low-rise neighborhoods and denser city blocks. Coordinate property boundaries,
+vegetation, setbacks and building-height groups.
+Work within the approved track-first layout and access constraints.
+Avoid arbitrary clutter or uniform rows of identical buildings.
+
+09 — Atmospheric depth
+Improve horizon blending, aerial perspective and distance haze while keeping
+nearby traffic and opponents visible. Coordinate atmosphere with the lighting
+baseline. Start with economical techniques; justify expensive volumetrics.
+Fog must not conceal missing geometry or unresolved LOD defects.
+
+10 — Skybox and clouds
+Improve the actual sky presentation: horizon colors, cloud scale, cloud shapes,
+depth, motion and believable sun direction. Inspect the existing sky system
+before choosing an improved procedural sky or licensed skybox assets.
+Avoid stretched textures, obvious tiling, horizon seams and distracting movement.
+Match lighting/fog colors and measure cost. Document asset provenance.
+
+11 — Character movement and visual continuity
+Fix reproduced limb seams, floating segments, wrist orientation and awkward
+walking, standing, steering/tuck and bike-pickup presentation.
+Keep recognizable character proportions and meaningful contact points.
+Correct rendering/bind/animation defects before considering physical rig changes.
+Verify player and NPC poses, transitions and recovery.
+
+12 — Punch/kick reactions and impact feedback
+Riders must visibly react to successful punches and kicks while remaining
+responsive and physically coherent. Use hit direction and attack type for
+bounded flinches, torso recoil, head/shoulder response and brief recovery.
+Keep hands/feet believable and distinguish impact, miss, block and knockoff
+where the existing combat model supports those outcomes.
+Synchronize reactions, attack contact timing, sound and restrained camera cues.
+Preserve established direct-hit/knockoff rules, momentum and recovery.
+Do not add arbitrary launch energy, force a ragdoll on every hit, or let visual
+reactions steer the authoritative bike. Prevent reaction stacking or animation
+locks during repeated hits.
+
+Workflow for EVERY pass:
+1. Spawn a new fresh-context agent with only the relevant assignment.
+2. Have it inspect current code and evidence, then implement a focused,
+   integrated development pass.
+3. Require meaningful tests and applicable native visual/gameplay verification.
+4. Review its actual diff and results yourself.
+5. Resolve regressions caused by that pass before integrating it.
+6. Commit with a Conventional Commit and record the exact commit.
+7. Update the persistent handoff and collapse that pass into a concise summary.
+8. Only then spawn the next fresh agent.
+
+Continue through development passes even when human art review, Windows,
+controller or hardware acceptance cannot be completed. Keep those requirements
+unchecked and document precise remaining work. An external acceptance gate
+must not be presented as a technical pass failure or silently closed.
+Pause only for a genuine dependency that prevents safe further work.
+
+Verification:
+Follow AGENTS.md. Run applicable checks, including:
+- cargo fmt --all --check
+- cargo clippy --workspace --locked --all-targets -- -D warnings
+- cargo test --workspace --locked
+- cargo build --locked
+- python3 tools/audit.py
+
+Use relevant existing native smoke tests, world/LOD surveys, recovery checks
+and differential physics tests. Choose checks based on the changes.
+Capture visual evidence for graphics changes and reproducible frame-time
+measurements for performance changes. Run a final integrated regression pass.
+
+Tracking:
+README is the single live checklist. Keep docs/PROGRESS.md and task placement
+consistent. Preserve history and existing IDs.
+Check only verified requirements. Add stable IDs for newly discovered work,
+with reason, dependencies, acceptance and verification.
+Update decisions, known issues, development history, provenance and test evidence.
+Do not declare whole milestones complete because one scoped pass succeeded.
+
+Git:
+Integrate sequentially into the dedicated integration branch. Do not force-push,
+rewrite unrelated history or absorb unrelated changes.
+Only push or merge the default branch when explicitly authorized for this run.
+
+Final report:
+Provide a concise 12-pass table with implementation, verification, commit and
+remaining gates. Include changed files, measured performance results, screenshots,
+new roadmap IDs, known issues and exact Git status.
+Clearly distinguish implemented, tested, visually reviewed and user-approved work.
+Stop after pass 12; do not automatically advance the roadmap.

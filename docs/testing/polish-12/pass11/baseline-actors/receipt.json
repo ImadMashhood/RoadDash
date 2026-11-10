@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+    "--actor-smoke-test",
+    "--ragdoll-baseline"
+  ],
+  "exit": 0,
+  "frozen_inputs": {
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/shaders/metropolis_facade.wgsl": "ce2a0bf23db1624fe725c1dced157d7c10173b6b44d3e4fca9ef2979c6e1aa53",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/riding.rdmesh": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/hand-contacts.json": "fa5cecd69f0cf7f54168fc973f12dbb3f254a38cf93dd27f341a8e2fde6b6be7",
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "0e2896da72c6621279606fd85853c036fbe78d7fcdc305b544afd45cd3b57824"
+  },
+  "inputs_unchanged": true
+}

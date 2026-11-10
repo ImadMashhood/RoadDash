@@ -1,0 +1,40 @@
+{
+  "census_unchanged": true,
+  "before": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1883,
+    "last_gameplay_ms": 1.2569299936294556,
+    "last_physics_ms": 10.212508201599121,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1884,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 19.9252986907959,
+    "wall_frame_p95_ms": 39.788204193115234
+  },
+  "after": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1879,
+    "last_gameplay_ms": 0.8672119975090027,
+    "last_physics_ms": 6.8593668937683105,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1880,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 20.062314987182617,
+    "wall_frame_p95_ms": 41.237857818603516
+  },
+  "added_linear_texture_pixel_bytes": 6285312,
+  "added_existing_material_samples": 1,
+  "added_meshes": 0,
+  "added_draw_groups": 0,
+  "native_error_lines": {
+    "after": [],
+    "after-recovery": [],
+    "lod-valley": [],
+    "lod-city": []
+  },
+  "limits": "Single bounded whole-app wall-frame sample per candidate; not isolated GPU cost, causal regression or broad target-hardware acceptance. Both p95 values exceed16.7ms."
+}

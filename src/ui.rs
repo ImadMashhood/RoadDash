@@ -328,8 +328,10 @@ pub fn update_ui(
     panel: Res<crate::settings::SettingsPanel>,
     police: Res<crate::police::Police>,
     frontend: Option<Res<crate::frontend::Frontend>>,
+    online: Option<Res<crate::online::NetState>>,
 ) {
-    let Some(player) = riders.iter().find(|r| r.id == 0) else {
+    let local_slot = online.as_ref().map_or(0, |s| s.local_slot);
+    let Some(player) = riders.iter().find(|r| r.id == local_slot) else {
         return;
     };
     let loading = screen.as_ref().is_some_and(|s| {
@@ -340,7 +342,7 @@ pub fn update_ui(
     });
     let recovery = recoveries
         .iter()
-        .find(|(r, _)| r.id == 0)
+        .find(|(r, _)| r.id == local_slot)
         .map(|(_, recovery)| recovery.stage)
         .unwrap_or_default();
     let menu = matches!(race.phase, Phase::Garage | Phase::Paused | Phase::Finished);
@@ -362,24 +364,30 @@ pub fn update_ui(
         }
     }
     let mut sorted: Vec<_> = riders.iter().filter(|r| !r.police).collect();
-    sorted.sort_by(|a, b| b.progress.total_cmp(&a.progress));
-    let position = sorted.iter().position(|r| r.id == 0).unwrap_or(7) + 1;
+    sorted.sort_by(|a, b| {
+        a.online_busted
+            .cmp(&b.online_busted)
+            .then_with(|| b.progress.total_cmp(&a.progress))
+    });
+    let position = sorted.iter().position(|r| r.id == local_slot).unwrap_or(7) + 1;
     for (field, mut text) in &mut readouts {
         let next = match field.0 {
             0 => {
                 let mut s = format!("P{position:02} / 15\n\n");
                 for (i, r) in sorted.iter().enumerate() {
-                    let marker = if r.id == 0 { ">" } else { " " };
-                    let role=if r.id==0{"YOU"}else if r.combat_mind.role==rr_core::rival_ai::Role::Killer{"K"}else{"R"};
+                    let marker = if r.id == local_slot { ">" } else { " " };
+                    let role=if r.id==local_slot{"YOU"}else if r.combat_mind.role==rr_core::rival_ai::Role::Killer{"K"}else{"R"};
                     s.push_str(&format!("{marker} {}  {:5} [{role}]\n", i + 1, content.0.riders[r.id].display_name));
                 }
                 s
             },
+            1 if track.metropolis.is_some() => format!("ROUTE {:03}%  {:02}:{:05.2}",(track.race_interval().fraction(player.progress)*100.) as u32,(race.elapsed/60.) as u32,race.elapsed%60.),
             1 if !track.definition.closed => format!("ROUTE {:03}%  GATE {}/{}  {:02}:{:05.2}",(player.progress/track.length*100.0).clamp(0.0,100.0) as u32,player.gates.next,track.definition.checkpoints.len()-1,(race.elapsed/60.0) as u32,race.elapsed%60.0),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => format!("{:03}", (player.speed * 3.6) as u32),
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + &player.weapon.map_or_else(|| "\nUNARMED".to_owned(), |w| format!("\n{} EQUIPPED", w.label())) + &format!("\n{}", police.hud()),
-            4 if !track.definition.closed && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
+            4 if track.metropolis.is_some() && player.progress>=track.race_interval().finish && player.finished.is_none() => "ROUTE INCOMPLETE / R TO RETRY".into(),
+            4 if !track.definition.closed && track.metropolis.is_none() && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
             4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
             4 if recoveries.iter().any(|(r,s)|r.id==0 && s.stage==crate::recovery::RecoveryStage::Running) => {
                 let hint = recoveries.iter().find(|(r,_)|r.id==0).and_then(|(_,s)|s.runner.zip(s.wreck))
@@ -394,7 +402,7 @@ pub fn update_ui(
                 format!("{hint} / WASD MOVE / ENTER MOUNT")
             },
             4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { match recovery { crate::recovery::RecoveryStage::Falling => "WIPED OUT / WAIT FOR THE LANDING", crate::recovery::RecoveryStage::GettingUp => "GETTING BACK UP", crate::recovery::RecoveryStage::Running => "GET BACK TO THE BIKE", crate::recovery::RecoveryStage::Mounting => "BACK IN THE SADDLE", _ => "" }.into() } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
-            5 => format!("{:.2} KM / {}",track.length/1000.0,if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
+            5 => format!("{:.2} KM / {}",track.race_interval().length()/1000.0,if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
             6 if loading => "PREPARING THE ROAD".into(),
             7 if loading => "Getting your bike ready...".into(),
             8 if loading => "LOADING...".into(),
@@ -404,7 +412,7 @@ pub fn update_ui(
             7 => match race.phase {
                 Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
                 Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.\nF2 / controller LB: comfort & controls.".into(),
-                _ if track.metropolis.is_some()=>"Fifteen riders. Farms to downtown.\n\nChoose Old Market or Station Avenue.\nPass every gate and finish in the city.\nF2 / controller LB: comfort & controls.".into(),
+                _ if track.metropolis.is_some()=>"Fifteen riders. Farms to downtown.\n\nChoose Old Market or Station Avenue.\nRace to the finish in the city.\nF2 / controller LB: comfort & controls.".into(),
                 _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.\nF2 / controller LB: comfort & controls.".into(),
             },
             8 => if race.phase == Phase::Paused { "ESC / BACK TO IT".into() } else { "ENTER / RIDE OUT".into() },

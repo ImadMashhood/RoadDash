@@ -1,0 +1,14 @@
+2026-11-10T03:04:33.711227Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-10T03:04:33.949507Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/police/performance/performance-3316918.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-10T03:04:37.173183Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape geometry generated in 453.955ms
+2026-11-10T03:04:37.173233Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape: 58985 tufts / 474 batches / 1061730 triangles; caps 120000/600
+2026-11-10T03:04:37.597566Z  INFO road_dash::world_gen::metropolis::geometry::crops: Crops: 147552 wheat stems; 885312 static triangles; 635 tiles / 2600960 deformation bytes
+2026-11-10T03:04:37.726703Z  INFO road_dash::sky: Sky display cube: 2097144 bytes, generated in 115.092ms; stationary world sun/cloud field
+2026-11-10T03:04:38.093830Z  INFO road_dash::sky: Lighting profile: balanced prefiltered IBL; sky and environment ready in 482.220ms; environment pixel payload 532464 bytes
+2026-11-10T03:04:40.170510Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+Police native: normal input speeding / warning / pursuit / escape scenario
+Police native: temporary solid LOS barrier behind moving player; wait for real loss/search/escape
+Police native: stopped crash; preserve falling/getup before foot arrest
+Police native: physical foot chase and safe arrest observed; no race/save payout

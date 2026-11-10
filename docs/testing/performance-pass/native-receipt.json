@@ -1,0 +1,30 @@
+[
+  {
+    "name": "destruction",
+    "flags": [
+      "--destruction-survey"
+    ],
+    "exit": 0,
+    "seconds": 23.71767003997229,
+    "sha256": "64cd5f3acde7793ff8fa184153f5078db86d56833cc0cde7710bba1043de6210"
+  },
+  {
+    "name": "recovery",
+    "flags": [
+      "--smoke-test"
+    ],
+    "exit": 0,
+    "seconds": 37.165989301982336,
+    "sha256": "64cd5f3acde7793ff8fa184153f5078db86d56833cc0cde7710bba1043de6210"
+  },
+  {
+    "name": "recovery-baseline",
+    "flags": [
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "exit": 0,
+    "seconds": 33.88528596202377,
+    "sha256": "64cd5f3acde7793ff8fa184153f5078db86d56833cc0cde7710bba1043de6210"
+  }
+]

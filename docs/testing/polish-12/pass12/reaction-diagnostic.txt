@@ -1,0 +1,127 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 05s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 3 tests
+contact key=2040 side=-1 kick=false step=0 limb=0 error=0.00034493016 baseline=0
+contact key=2040 side=-1 kick=false step=1 limb=0 error=0.00271732 baseline=0
+contact key=2040 side=-1 kick=false step=1 limb=1 error=0.0014115124 baseline=0
+contact key=2040 side=-1 kick=false step=2 limb=0 error=0.0077687413 baseline=0
+contact key=2040 side=-1 kick=false step=2 limb=1 error=0.004842366 baseline=0
+contact key=2040 side=-1 kick=false step=3 limb=0 error=0.010828671 baseline=0
+contact key=2040 side=-1 kick=false step=3 limb=1 error=0.0068309656 baseline=0
+contact key=2040 side=-1 kick=false step=4 limb=0 error=0.01062112 baseline=0
+contact key=2040 side=-1 kick=false step=4 limb=1 error=0.0066977646 baseline=0
+contact key=2040 side=-1 kick=false step=5 limb=0 error=0.010042083 baseline=0
+contact key=2040 side=-1 kick=false step=5 limb=1 error=0.006324795 baseline=0
+contact key=2040 side=-1 kick=false step=6 limb=0 error=0.009162873 baseline=0
+contact key=2040 side=-1 kick=false step=6 limb=1 error=0.005754999 baseline=0
+contact key=2040 side=-1 kick=false step=7 limb=0 error=0.008057819 baseline=0
+contact key=2040 side=-1 kick=false step=7 limb=1 error=0.0050327443 baseline=0
+contact key=2040 side=-1 kick=false step=8 limb=0 error=0.006801091 baseline=0
+contact key=2040 side=-1 kick=false step=8 limb=1 error=0.0042014057 baseline=0
+contact key=2040 side=-1 kick=false step=9 limb=0 error=0.0054626768 baseline=0
+contact key=2040 side=-1 kick=false step=9 limb=1 error=0.0033034373 baseline=0
+contact key=2040 side=-1 kick=false step=10 limb=0 error=0.004106988 baseline=0
+contact key=2040 side=-1 kick=false step=10 limb=1 error=0.0023785753 baseline=0
+contact key=2040 side=-1 kick=false step=11 limb=0 error=0.0027899903 baseline=0
+contact key=2040 side=-1 kick=false step=11 limb=1 error=0.0014626386 baseline=0
+contact key=2040 side=-1 kick=false step=12 limb=0 error=0.0015590946 baseline=0
+contact key=2040 side=-1 kick=false step=12 limb=1 error=0.0005883824 baseline=0
+contact key=2040 side=-1 kick=false step=13 limb=0 error=0.00045232062 baseline=0
+contact key=2040 side=1 kick=false step=0 limb=1 error=0.00034460486 baseline=0
+contact key=2040 side=1 kick=false step=1 limb=0 error=0.0014118345 baseline=0
+contact key=2040 side=1 kick=false step=1 limb=1 error=0.0027170521 baseline=0
+contact key=2040 side=1 kick=false step=2 limb=0 error=0.0048426865 baseline=0
+contact key=2040 side=1 kick=false step=2 limb=1 error=0.0077682007 baseline=0
+contact key=2040 side=1 kick=false step=3 limb=0 error=0.006831287 baseline=0
+contact key=2040 side=1 kick=false step=3 limb=1 error=0.010828294 baseline=0
+contact key=2040 side=1 kick=false step=4 limb=0 error=0.00669799 baseline=0
+contact key=2040 side=1 kick=false step=4 limb=1 error=0.01062069 baseline=0
+contact key=2040 side=1 kick=false step=5 limb=0 error=0.0063250596 baseline=0
+contact key=2040 side=1 kick=false step=5 limb=1 error=0.010041547 baseline=0
+contact key=2040 side=1 kick=false step=6 limb=0 error=0.0057555838 baseline=0
+contact key=2040 side=1 kick=false step=6 limb=1 error=0.009162444 baseline=0
+contact key=2040 side=1 kick=false step=7 limb=0 error=0.0050331205 baseline=0
+contact key=2040 side=1 kick=false step=7 limb=1 error=0.008057602 baseline=0
+contact key=2040 side=1 kick=false step=8 limb=0 error=0.004201782 baseline=0
+contact key=2040 side=1 kick=false step=8 limb=1 error=0.0068006082 baseline=0
+contact key=2040 side=1 kick=false step=9 limb=0 error=0.0033038151 baseline=0
+contact key=2040 side=1 kick=false step=9 limb=1 error=0.005462301 baseline=0
+contact key=2040 side=1 kick=false step=10 limb=0 error=0.0023790072 baseline=0
+contact key=2040 side=1 kick=false step=10 limb=1 error=0.004106769 baseline=0
+contact key=2040 side=1 kick=false step=11 limb=0 error=0.0014630145 baseline=0
+contact key=2040 side=1 kick=false step=11 limb=1 error=0.0027896683 baseline=0
+contact key=2040 side=1 kick=false step=12 limb=0 error=0.0005887602 baseline=0
+contact key=2040 side=1 kick=false step=12 limb=1 error=0.0015587725 baseline=0
+contact key=2040 side=1 kick=false step=13 limb=1 error=0.0004520529 baseline=0
+contact key=2900 side=-1 kick=false step=2 limb=1 error=0.0046909023 baseline=0
+contact key=2900 side=-1 kick=false step=3 limb=1 error=0.0075192754 baseline=0
+contact key=2900 side=-1 kick=false step=4 limb=1 error=0.0073306607 baseline=0
+contact key=2900 side=-1 kick=false step=5 limb=1 error=0.0068025813 baseline=0
+contact key=2900 side=-1 kick=false step=6 limb=1 error=0.0059931898 baseline=0
+contact key=2900 side=-1 kick=false step=7 limb=1 error=0.0049629933 baseline=0
+contact key=2900 side=-1 kick=false step=8 limb=1 error=0.0037716005 baseline=0
+contact key=2900 side=-1 kick=false step=9 limb=1 error=0.0024769597 baseline=0
+contact key=2900 side=-1 kick=false step=10 limb=1 error=0.0011346147 baseline=0
+contact key=2900 side=1 kick=false step=2 limb=1 error=0.0020147364 baseline=0
+contact key=2900 side=1 kick=false step=3 limb=1 error=0.004529594 baseline=0
+contact key=2900 side=1 kick=false step=4 limb=1 error=0.0043579163 baseline=0
+contact key=2900 side=1 kick=false step=5 limb=1 error=0.0038796254 baseline=0
+contact key=2900 side=1 kick=false step=6 limb=1 error=0.0031557283 baseline=0
+contact key=2900 side=1 kick=false step=7 limb=1 error=0.0022504607 baseline=0
+contact key=2900 side=1 kick=false step=8 limb=1 error=0.0012279423 baseline=0
+contact key=2900 side=1 kick=false step=9 limb=1 error=0.0001475395 baseline=0
+contact key=2901 side=-1 kick=false step=2 limb=0 error=0.00201522 baseline=0
+contact key=2901 side=-1 kick=false step=3 limb=0 error=0.0045300815 baseline=0
+contact key=2901 side=-1 kick=false step=4 limb=0 error=0.0043582893 baseline=0
+contact key=2901 side=-1 kick=false step=5 limb=0 error=0.0038801094 baseline=0
+contact key=2901 side=-1 kick=false step=6 limb=0 error=0.0031560492 baseline=0
+contact key=2901 side=-1 kick=false step=7 limb=0 error=0.0022508884 baseline=0
+contact key=2901 side=-1 kick=false step=8 limb=0 error=0.0012281542 baseline=0
+contact key=2901 side=-1 kick=false step=9 limb=0 error=0.00014791709 baseline=0
+contact key=2901 side=1 kick=false step=2 limb=0 error=0.004691267 baseline=0
+contact key=2901 side=1 kick=false step=3 limb=0 error=0.007519652 baseline=0
+contact key=2901 side=1 kick=false step=4 limb=0 error=0.0073309955 baseline=0
+contact key=2901 side=1 kick=false step=5 limb=0 error=0.006803 baseline=0
+contact key=2901 side=1 kick=false step=6 limb=0 error=0.0059935665 baseline=0
+contact key=2901 side=1 kick=false step=7 limb=0 error=0.0049632033 baseline=0
+contact key=2901 side=1 kick=false step=8 limb=0 error=0.0037719214 baseline=0
+contact key=2901 side=1 kick=false step=9 limb=0 error=0.0024772808 baseline=0
+contact key=2901 side=1 kick=false step=10 limb=0 error=0.0011348802 baseline=0
+test animation::reaction::tests::recoil_preserves_root_pelvis_held_landmarks_and_chain_lengths ... ok
+test animation::reaction::tests::reaction_has_no_authority_and_attack_pause_recovery_reset_keep_priority ... ok
+test combat::tests::confirmed_reactions_replace_not_stack_and_misses_pause_recovery_reset_are_safe ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 296 filtered out; finished in 0.05s
+
+     Running unittests src/bin/city_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/city_preview-819433f16b2abd47)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/prop_preview-5ec74f20892fc13c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-68dab0f347b409a4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/visibility_probe-b4a0c0a257349862)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/weapon_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/weapon_preview-09ec7aee7ce70a9b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

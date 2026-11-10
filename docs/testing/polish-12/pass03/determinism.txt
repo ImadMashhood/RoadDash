@@ -1,0 +1,7 @@
+{
+  "buildings": 19068,
+  "surface_patches": 36635,
+  "manifest_bytes": 10133474,
+  "facade_bytes": 3535488
+}
+Deterministic rebake {'content/world/metropolis.json': 'f212ce8e64c4bc1582afc1bbd0f64ff38d1b760efe62cd8b20e2fe5e01068a64', 'assets/metropolis/facades.rgba': 'd0ac1be7634c82a5662cffc39e4378069f878073727a7df9b72747028e28f118', 'assets/metropolis/PROVENANCE.json': '47d7e7b890a72031ac22e0eebd16ba139d7b8bf1c6d55460ba12029e821f564b'}

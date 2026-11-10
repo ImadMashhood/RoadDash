@@ -1,0 +1,7 @@
+{
+  "command": [
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+    "--world-survey"
+  ],
+  "exit": 1
+}

@@ -1,0 +1,11 @@
+{
+  "connections": 2,
+  "frames": 5397,
+  "bytes": 3982811,
+  "max_queue": 7,
+  "one_way_ms": 75.0,
+  "errors": [
+    "ConnectionResetError",
+    "ConnectionResetError"
+  ]
+}

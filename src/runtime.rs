@@ -99,12 +99,22 @@ fn remember_current(mut bodies: Query<(&Transform, &mut PoseHistory)>) {
 }
 pub(crate) fn interpolate_visuals(
     time: Res<Time<Fixed>>,
-    roots: Query<(&Transform, &PoseHistory), Without<VisualRoot>>,
+    roots: Query<
+        (
+            &Transform,
+            &PoseHistory,
+            Option<&crate::online::replication::NetworkPose>,
+        ),
+        Without<VisualRoot>,
+    >,
     mut visuals: Query<(&VisualRoot, &mut Transform)>,
 ) {
     for (visual, mut local) in &mut visuals {
-        if let Ok((physical, history)) = roots.get(visual.owner) {
-            let shown = interpolated(physical, Some(history), time.overstep_fraction());
+        if let Ok((physical, history, network)) = roots.get(visual.owner) {
+            let shown = network.map_or_else(
+                || interpolated(physical, Some(history), time.overstep_fraction()),
+                |n| n.shown(),
+            );
             local.translation =
                 physical.rotation.inverse() * (shown.translation - physical.translation);
             local.rotation = physical.rotation.inverse() * shown.rotation;
@@ -236,18 +246,31 @@ impl Plugin for RoadSimulationPlugin {
             )
             .configure_sets(
                 FixedUpdate,
-                SimSet::Gameplay.before(PhysicsSet::SyncBackend),
+                (
+                    PhysicsSet::SyncBackend,
+                    PhysicsSet::StepSimulation,
+                    PhysicsSet::Writeback,
+                )
+                    .run_if(crate::online::simulates),
             )
             .configure_sets(
                 FixedUpdate,
-                SimSet::AfterPhysics.after(PhysicsSet::Writeback),
+                SimSet::Gameplay
+                    .before(PhysicsSet::SyncBackend)
+                    .run_if(crate::online::simulates),
+            )
+            .configure_sets(
+                FixedUpdate,
+                SimSet::AfterPhysics
+                    .after(PhysicsSet::Writeback)
+                    .run_if(crate::online::simulates),
             )
             .add_systems(
                 FixedPreUpdate,
                 (
-                    crate::vehicle::attach,
-                    remember_previous,
-                    crate::crash_behavior::prepare,
+                    crate::vehicle::attach.run_if(crate::online::simulates),
+                    remember_previous.run_if(crate::online::simulates),
+                    crate::crash_behavior::prepare.run_if(crate::online::simulates),
                 )
                     .chain(),
             )
@@ -265,6 +288,7 @@ impl Plugin for RoadSimulationPlugin {
                     crate::police::think,
                     crate::police::dismount,
                     crate::environment::patrol,
+                    crate::world_gen::metropolis::pedestrians::update,
                     crate::world_gen::metropolis::crossing_traffic,
                     game::debris_cleanup,
                     recovery::slope_friction,
@@ -404,10 +428,6 @@ impl Plugin for RoadWorldPlugin {
                     crate::world_gen::dressing::spawn,
                     crate::material_detail::paving,
                 ),
-            )
-            .add_systems(
-                Update,
-                crate::sky::drift.run_if(resource_exists::<crate::sky::Settings>),
             )
             .add_systems(
                 Startup,

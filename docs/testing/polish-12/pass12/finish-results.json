@@ -1,0 +1,24 @@
+{
+  "models": {
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "models::tests",
+      "--",
+      "--nocapture"
+    ],
+    "exit": 0,
+    "wall_seconds": 1.7058314350433648
+  },
+  "release-build": {
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit": 0,
+    "wall_seconds": 58.1624854990514
+  }
+}

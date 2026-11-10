@@ -12,8 +12,8 @@
           "file": "BUSS1_lod0.glb",
           "lod": 0,
           "triangles": 23584,
-          "bytes": 5035460,
-          "sha256": "9b3315a6f3e21227bf994dd4bafffb3430cb2fc961a6c4a638188f371f4526fc",
+          "bytes": 5035484,
+          "sha256": "086cce52362563a0cd02d8c862939f45e0bc29081db6ad221ac6c224625eecb1",
           "source_sha256": "1adea7ce6a1546722a226376efc3f377e64e4e81d5e7a0a74a865ec7badb83b3",
           "minimum_local_depth_m": -0.6
         },
@@ -21,8 +21,8 @@
           "file": "BUSS1_lod1.glb",
           "lod": 1,
           "triangles": 5276,
-          "bytes": 3201216,
-          "sha256": "4410393622142c1ad90d4c8c2176a843fd86b2ee3493f7e4f1dc694a98e44c92",
+          "bytes": 3201212,
+          "sha256": "60a40000e3e76201835b2d0f87e1821ecfc208d63545a87691a98c48c8cdcc92",
           "source_sha256": "72a045464287ae0d34df4c7a21146943216f29e5b23ee6f468efe2a1d959f037",
           "minimum_local_depth_m": -0.6
         },
@@ -30,8 +30,8 @@
           "file": "BUSS1_lod2.glb",
           "lod": 2,
           "triangles": 852,
-          "bytes": 2135280,
-          "sha256": "d6de0f9ccee5ecc507b4bc931ecab27965b4c6a87cbbf67f6cbcc7becb387175",
+          "bytes": 2135244,
+          "sha256": "bab366d3f2f6f14dd03659335e8eb20c2595a8b9195835d275b936ee9d3e5b4e",
           "source_sha256": "3c062f1977935d7356156c36d0a7bb07e0a5d572bc4f550bbdeb3fda038b38ae",
           "minimum_local_depth_m": -0.6
         }
@@ -114,8 +114,8 @@
           "file": "BUSS4_lod0.glb",
           "lod": 0,
           "triangles": 36312,
-          "bytes": 5877996,
-          "sha256": "562e7f2ad262f543d833693bd86ce90ae8983dee02ea58aea9543c8dbcde39a6",
+          "bytes": 5878004,
+          "sha256": "5c4f565ad4acda089e981672f111f293ec5354ceaa80d13773dd0e4a2184ca57",
           "source_sha256": "3fabfcd564f112cb441fbaf5abaa4c11f3176563bfc9a70acdd1563df511f773",
           "minimum_local_depth_m": -0.6
         },
@@ -123,8 +123,8 @@
           "file": "BUSS4_lod1.glb",
           "lod": 1,
           "triangles": 12636,
-          "bytes": 2853964,
-          "sha256": "72bc2d2b9307395703436e126b57db65e8fb2a5db2bcf5e4970f32d67a2754e9",
+          "bytes": 2853928,
+          "sha256": "41e0bc30a7fe0673ce9c27f1c542f5aa100f7bc6e4bad77c8d7b565a448532f6",
           "source_sha256": "27c8153ff9f7f0e3935554b9d841bf62ce6f3b8b31abf2ee1397a10397d1efbb",
           "minimum_local_depth_m": -0.6
         },
@@ -132,8 +132,8 @@
           "file": "BUSS4_lod2.glb",
           "lod": 2,
           "triangles": 536,
-          "bytes": 2231424,
-          "sha256": "35b9d53d1a3373664aa2f73b9737dfce6c0c6bf42eaf726ceb7e505765de6545",
+          "bytes": 2231388,
+          "sha256": "d7c0d5074aefa7849003e254053f17c9a65686da81b635b32c43fbf0c576abdf",
           "source_sha256": "93108a4a23e098dc3e429f2065ae5f3e404ad4e50b78f61316af21742ed1ae49",
           "minimum_local_depth_m": -0.6
         }
@@ -318,8 +318,8 @@
           "file": "CHINA12_lod0.glb",
           "lod": 0,
           "triangles": 44234,
-          "bytes": 6918000,
-          "sha256": "7dd9c451441a8c82d25f042cdc9ea78da261ee8ce0786a4b522abcd5c690eec1",
+          "bytes": 6918084,
+          "sha256": "6205612c3214bfb1bee86ccdbdf21878458cdbfd28ca3b67a71cd70b15c44ac2",
           "source_sha256": "d3fa287bf4f9af0ef2a7cb1958d2e4a6228735d20fdfe5c425d939103531cf12",
           "minimum_local_depth_m": -0.6
         },
@@ -327,8 +327,8 @@
           "file": "CHINA12_lod1.glb",
           "lod": 1,
           "triangles": 25562,
-          "bytes": 5046024,
-          "sha256": "70cadcd8fe41c07b758ab42a6b1938a3bedb5ae81a6bd4d1766da7d7f2dbe7e6",
+          "bytes": 5046004,
+          "sha256": "5ba7e67acc9d33c58f02bbdc4e27ebc0b9583daf4d0a8038473f8196d96c0a56",
           "source_sha256": "9250c7df2c9525259fa9fb0bda85edc8a4d4d1d7bcf0a27d6dca81ee4367b89a",
           "minimum_local_depth_m": -0.6
         },
@@ -336,8 +336,8 @@
           "file": "CHINA12_lod2.glb",
           "lod": 2,
           "triangles": 1460,
-          "bytes": 3105020,
-          "sha256": "60b28c6d38f269aa5439ae7f9248c3424e8dc1e7fc9a35f36736a1858b974b16",
+          "bytes": 3105028,
+          "sha256": "8637c69ca5d543fdecae107cd026ee5e2864a0caab97312cb9aeaf9923b5a470",
           "source_sha256": "90e039c0eb22a800acb64916ad64e455103f17483ef54b0c032560dd22f77b8a",
           "minimum_local_depth_m": -0.6
         }
@@ -352,8 +352,8 @@
           "file": "CHINA13_lod0.glb",
           "lod": 0,
           "triangles": 43998,
-          "bytes": 6881072,
-          "sha256": "f9d79ecd94863cabaafb3bc904f12484405d0c43684d7b3413cc72dbe642c6fc",
+          "bytes": 6881156,
+          "sha256": "364a07f8d718342399e212a90748008f2e2ef93053d6601701de5d6cc211026f",
           "source_sha256": "9a1c648c454746a3e29662c59c76ddd238c938ec853f6cab44d500791574d8c9",
           "minimum_local_depth_m": -0.6
         },
@@ -361,8 +361,8 @@
           "file": "CHINA13_lod1.glb",
           "lod": 1,
           "triangles": 25370,
-          "bytes": 5012688,
-          "sha256": "e91a76f8e2791ca57e17a8eb74cfa744384a3e10df8b6dcb21c13095f8be6dbc",
+          "bytes": 5012668,
+          "sha256": "4d564b81e209f3b9f0a7dc0cdf62885bda1d57911453120ed9cbc10489d25ca8",
           "source_sha256": "78b2d098ecb83c061fb0d60f8db38eecdf588ffabf1b24a6cf35fd44786188e0",
           "minimum_local_depth_m": -0.6
         },
@@ -370,8 +370,8 @@
           "file": "CHINA13_lod2.glb",
           "lod": 2,
           "triangles": 1388,
-          "bytes": 3082064,
-          "sha256": "b298d9da05b15fc37264ad0a6851ee6d8fd85abbbaae277624d42f3d2adc5511",
+          "bytes": 3082072,
+          "sha256": "d6b567cb991a6acdd010250d05edaa3f8db5fc69c6c807194dbbd50c56012380",
           "source_sha256": "95f842bd48a06f68992de9371af25212fffb6e4e66c5c057e4d0475a064cb5ee",
           "minimum_local_depth_m": -0.6
         }
@@ -386,8 +386,8 @@
           "file": "CHINA14_lod0.glb",
           "lod": 0,
           "triangles": 35696,
-          "bytes": 6290608,
-          "sha256": "c4debffa9bddfb22db7ee69f7205f7d7c44478e13bfe8e00cb6143e87bfe5abe",
+          "bytes": 6290644,
+          "sha256": "e3d19abb301c979cb075e647a968d02d93eb0836508e16a7e85785458a5bdc7f",
           "source_sha256": "26d27d3c699348631d6ab2e62d04fcce9d5d2b55c0642a9f3a9bb45de40357f6",
           "minimum_local_depth_m": -0.6
         },
@@ -395,8 +395,8 @@
           "file": "CHINA14_lod1.glb",
           "lod": 1,
           "triangles": 23712,
-          "bytes": 4967784,
-          "sha256": "85771026f808267c397c674b4d219bf512ad8f05115c10b66606da2e05b1ed42",
+          "bytes": 4967756,
+          "sha256": "4e7fbad2e8961a2a5569213434f0002f510fb22272def1eff03dd4d35fdf6ceb",
           "source_sha256": "356911a9bbc7f63edd0fdfe42de50dd112bf5983435d13fadc76eb5edcabaf05",
           "minimum_local_depth_m": -0.6
         },
@@ -404,8 +404,8 @@
           "file": "CHINA14_lod2.glb",
           "lod": 2,
           "triangles": 1708,
-          "bytes": 2578432,
-          "sha256": "e3fcd331b3fe24587fbcfb4bf8e42d65b2c23fc6f1c158c1998fded2335c24ff",
+          "bytes": 2578404,
+          "sha256": "0f426a4726862e2086ce747e5ac2b9d6a69a5cebf6874cef5026c85b80883aba",
           "source_sha256": "0245420fc8a2db0715778bf1b25abfb7d17f853a3eeafcc43ad7061a6418a1fe",
           "minimum_local_depth_m": -0.6
         }
@@ -522,8 +522,8 @@
           "file": "CLSTGA11_lod0.glb",
           "lod": 0,
           "triangles": 18772,
-          "bytes": 4206136,
-          "sha256": "28bcc9a03fc19527ae52cd1cafbca56b7bb9879e1651744a474074cc835840e9",
+          "bytes": 4206196,
+          "sha256": "77ee3d5805697c34d47d58d3289f3f3166e6e8a8b722f74acd3258b54c2a7463",
           "source_sha256": "e83502c74a4b54a144d4d8268bc671e1c94b38cbfb2efa3c0421b42bcd2a0662",
           "minimum_local_depth_m": -0.6
         },
@@ -531,8 +531,8 @@
           "file": "CLSTGA11_lod1.glb",
           "lod": 1,
           "triangles": 5976,
-          "bytes": 2815392,
-          "sha256": "2f682d00a1c0a335fe291bd4d10fa01724f307d604fa28b6f7e53211a5cb10af",
+          "bytes": 2815376,
+          "sha256": "2b4fe56188778a170e6b3cf69a8778f24be74ffaea0ba6e91cf9238111ab4118",
           "source_sha256": "9f9167baac577c16a7892a0d5110659fbfdfa79617290b164a80d22e191f9545",
           "minimum_local_depth_m": -0.6
         },
@@ -540,8 +540,8 @@
           "file": "CLSTGA11_lod2.glb",
           "lod": 2,
           "triangles": 1164,
-          "bytes": 2131980,
-          "sha256": "62388e3cec1bfb1d5ad455db6da1d525d2de64592c2a57b90faa751aed36f38d",
+          "bytes": 2131948,
+          "sha256": "f342cab85551b926ee71a335780b475811550734e7d2969dd0dd73eb8cb53091",
           "source_sha256": "2c4e2f95cd11f8175c69b80d0912eb58da40c5abb01c0df7b6a35874adf856f5",
           "minimum_local_depth_m": -0.6
         }
@@ -556,8 +556,8 @@
           "file": "CLSTGA12_lod0.glb",
           "lod": 0,
           "triangles": 20392,
-          "bytes": 4418816,
-          "sha256": "0c889a5b5d409bd5617962c9943f763feea50ad31e0b828539af2533b9f79376",
+          "bytes": 4418828,
+          "sha256": "dd27c216ba4c51484620644b55e98a037d3ed60b409d0e3b392ab5503ab2b890",
           "source_sha256": "2f610f89a31de3461e2b81259dbbebe8248e3b5e3d534ca7427cda060e9aa499",
           "minimum_local_depth_m": -0.6
         },
@@ -565,8 +565,8 @@
           "file": "CLSTGA12_lod1.glb",
           "lod": 1,
           "triangles": 3316,
-          "bytes": 2369768,
-          "sha256": "50fb1a7ec356545d02769c698165c9803415a4b978ee16cdca37729c40551bcc",
+          "bytes": 2369732,
+          "sha256": "ca0d280fcdd0570fe5af4e8d121b6995602514ad7046a55caf420fe7ee6c7367",
           "source_sha256": "5ae67a991858abfe0beeac9bf46faa7ca98d74d639b8a034e07bb799191ed363",
           "minimum_local_depth_m": -0.6
         },
@@ -574,8 +574,8 @@
           "file": "CLSTGA12_lod2.glb",
           "lod": 2,
           "triangles": 736,
-          "bytes": 2155408,
-          "sha256": "26190e4095168a40000952e9c1d4e2e53afb9b5251a6e64c3e8a6e1b04e61de7",
+          "bytes": 2155372,
+          "sha256": "f3de20c369db8aca8956d2ef75377bc8df69c058a8c54592b87840e0db369750",
           "source_sha256": "b101017f6f3244c5fff066e66296364dcd97a83b167431e7b1d329758b8a9ebf",
           "minimum_local_depth_m": -0.6
         }
@@ -590,8 +590,8 @@
           "file": "CLSTGA13_lod0.glb",
           "lod": 0,
           "triangles": 16260,
-          "bytes": 4004564,
-          "sha256": "46c099c700ad6afd803dfb3d14638883b7ec93cfdc689f2ea8234c54236d6594",
+          "bytes": 4004624,
+          "sha256": "6056e44edc5e7f288ef2c2699b37764a1aa03f4c3ee8285b9c15a89d81af5819",
           "source_sha256": "3f49b343d4dd240d32c1ca0708461d70be3b146f02815f10928165ba7702c9d9",
           "minimum_local_depth_m": -0.6
         },
@@ -599,8 +599,8 @@
           "file": "CLSTGA13_lod1.glb",
           "lod": 1,
           "triangles": 3684,
-          "bytes": 2631820,
-          "sha256": "42f935d4c868f604577d4b3099ab5563f089bbcc693e7ca72c0669cdb32d1322",
+          "bytes": 2631804,
+          "sha256": "d8c40ac91deae267b3a75cb449cc5b8a7c0e4fd9d5d680036edd695f8e6e2302",
           "source_sha256": "2531450b29f38cce1a1b3b49754b6f7086f58121f9dbe7682ee0ec084b525753",
           "minimum_local_depth_m": -0.6
         },
@@ -608,8 +608,8 @@
           "file": "CLSTGA13_lod2.glb",
           "lod": 2,
           "triangles": 868,
-          "bytes": 2397748,
-          "sha256": "146b96e0f1b824f650ce31439cf16beefed450d024e552c9b8531232f6b2ea24",
+          "bytes": 2397732,
+          "sha256": "30b5ae54ad5a96d90a6df06c5e93bfe8aa599a570f91470723fc0d740bdf6483",
           "source_sha256": "29e27b46099a356059237e464c60b6750ea98a575b3dc76c1dc6389d5bc8d67c",
           "minimum_local_depth_m": -0.6
         }
@@ -624,8 +624,8 @@
           "file": "CLSTGA14_lod0.glb",
           "lod": 0,
           "triangles": 16244,
-          "bytes": 4027944,
-          "sha256": "218ffb6c702146189e0911e988296178fc61d9935702000a1faef4c4106c7595",
+          "bytes": 4028000,
+          "sha256": "63bfa86cdedb7bd537af76eb4786db45cc44c0287e118968ed7f96f8d4eeec5b",
           "source_sha256": "9d7798ef46924c86a1b3dfad295083cd71545f5502d84df3b44e0ef1b852e91c",
           "minimum_local_depth_m": -0.6
         },
@@ -633,8 +633,8 @@
           "file": "CLSTGA14_lod1.glb",
           "lod": 1,
           "triangles": 2568,
-          "bytes": 2565176,
-          "sha256": "8fa23f8d9d85a8455292d41238739a1e2cae5b69713cff5deca660f0f3edc3b3",
+          "bytes": 2565156,
+          "sha256": "cecaa19344fad9b40f8d09805015c99acedfb8a120f6d12a7c0bbee57d7cafea",
           "source_sha256": "f46869473d7d10593bc884d8da8ab8cc8bd6425d834b36dec0fc3815392379f2",
           "minimum_local_depth_m": -0.6
         },
@@ -642,8 +642,8 @@
           "file": "CLSTGA14_lod2.glb",
           "lod": 2,
           "triangles": 616,
-          "bytes": 2402900,
-          "sha256": "cb6ad1ff04643a89f232d87ef3581dad420f3c86182cd32607f5ad5138524b0d",
+          "bytes": 2402884,
+          "sha256": "4abeae93243db0b64d81fe5788a6b1e0112b3f88550467b9ba9b519492861ed0",
           "source_sha256": "c8fa5dff2a4ebeaf33c8d0c13863f78515c85079b8f604135c3d6fd206daa7dc",
           "minimum_local_depth_m": -0.6
         }
@@ -896,8 +896,8 @@
           "file": "OFFC1_lod0.glb",
           "lod": 0,
           "triangles": 27156,
-          "bytes": 4654068,
-          "sha256": "082f6a73f343758d61ac8912ece846510b7ffa53ef317b3821373e145ff820a4",
+          "bytes": 4654064,
+          "sha256": "468c354eb9526ad8a4d9643f9b2b8d2f7a5aa025f0a03a721b22e396cb42f8c4",
           "source_sha256": "8752551c9bb5f86719e4277afd743a44695f2e68a28a8269767a1222cc79e519",
           "minimum_local_depth_m": -0.6
         },
@@ -905,8 +905,8 @@
           "file": "OFFC1_lod1.glb",
           "lod": 1,
           "triangles": 12940,
-          "bytes": 3144792,
-          "sha256": "643514d99ee7b0de48aa99774803d5d36d019fa4b2c78a4cc6838881fe3930e0",
+          "bytes": 3144756,
+          "sha256": "080bdcbea1f74e663efc0d11b614e1ad0be54b6f1111e9c0f2f4752c0a125a8c",
           "source_sha256": "e06178c938eda043e9a339f21798d1fab57f1bbcd7e5f02cfb349f62b7363727",
           "minimum_local_depth_m": -0.6
         },
@@ -914,8 +914,8 @@
           "file": "OFFC1_lod2.glb",
           "lod": 2,
           "triangles": 1984,
-          "bytes": 1969068,
-          "sha256": "85efa937df22804245f2582c4cff6e9391fd87fbab9e1c44c826f86e0361d124",
+          "bytes": 1969016,
+          "sha256": "7b9370c49f74d5d8c7efb71ade66b47db3cc85b7753c74b24519a1dfed92dd0a",
           "source_sha256": "ee39eca8f34fe0d333c025aee5bf09dca3cee589d6a16fa375cd47df6657d0d2",
           "minimum_local_depth_m": -0.6
         }
@@ -930,8 +930,8 @@
           "file": "OFFC10_lod0.glb",
           "lod": 0,
           "triangles": 22432,
-          "bytes": 4168844,
-          "sha256": "3c9abe40ae37e543e93f406ee6d8d2ea80cfb7a21ebc81ebfc139b42c8675399",
+          "bytes": 4168892,
+          "sha256": "b1b3ba57a894fcb177fb3e7e5c09f49e70a590c1a0ef608c1b4b0e3f4f512a10",
           "source_sha256": "eb875f769e021e52276dbe39e0c25733ec646da50447145992bef09467b8168c",
           "minimum_local_depth_m": -0.6
         },
@@ -939,8 +939,8 @@
           "file": "OFFC10_lod1.glb",
           "lod": 1,
           "triangles": 3100,
-          "bytes": 2241948,
-          "sha256": "768bff2da8032afa1cfa87d59c81caca04353f848b111ea9dc415f6e402d592a",
+          "bytes": 2241920,
+          "sha256": "7a4b4f74fa9a6bb97d173cc18867214497cc595be03503f76b6f71378ad98aa8",
           "source_sha256": "88a047d489985d81b6f4957c9c0de744809053a3021948b594f252d1d3a339e7",
           "minimum_local_depth_m": -0.6
         },
@@ -948,8 +948,8 @@
           "file": "OFFC10_lod2.glb",
           "lod": 2,
           "triangles": 760,
-          "bytes": 2047380,
-          "sha256": "f99a9e177f40a6056f27735046ee54180454506408b6fc0586dc2242e4940f22",
+          "bytes": 2047348,
+          "sha256": "4eb99a8f22ab9852233f888ff3e190f23fa36021d3b4efee14ea348377bcedbe",
           "source_sha256": "5c6b8bca94ab8248256bfd0fed2263dc4587683134fc7d9590c7ed9bfc267106",
           "minimum_local_depth_m": -0.6
         }
@@ -964,8 +964,8 @@
           "file": "OFFC11_lod0.glb",
           "lod": 0,
           "triangles": 23208,
-          "bytes": 3964648,
-          "sha256": "5a5ba17532f528ca5b372fd92575852f364752d25ec3fbb16145ee4b8ea311a0",
+          "bytes": 3964624,
+          "sha256": "0584ce20894e25e12420274ac2bb36c751f876147a2a2614417fddcc2642b18d",
           "source_sha256": "666f468a36d42c57243a97b02cea031a37f81228233ce75e9d0f5e774f8b2028",
           "minimum_local_depth_m": -0.6
         },
@@ -973,8 +973,8 @@
           "file": "OFFC11_lod1.glb",
           "lod": 1,
           "triangles": 3964,
-          "bytes": 2382192,
-          "sha256": "858f1121680fb26f55264003789c963b908b26223168a614dbd91cf9482c537f",
+          "bytes": 2382156,
+          "sha256": "d595650cbea51e091b389235f8b1cf425767111c680aaf4d1b02faf5e2a53f6f",
           "source_sha256": "844d4dc8c0486a05ba270fb59191662a6f44cb5187ae4d4bf49cd02b63dc7617",
           "minimum_local_depth_m": -0.6
         },
@@ -982,8 +982,8 @@
           "file": "OFFC11_lod2.glb",
           "lod": 2,
           "triangles": 856,
-          "bytes": 1838216,
-          "sha256": "7a38d0f3bef7cb743e1ce3a89541d33c92bd62fbc935a1dd9f24f509f1990c80",
+          "bytes": 1838164,
+          "sha256": "662456fa3a5f4d761e1dd2fac4f1e2cbbf145e6dc254868e1c2e9b0c699b59c5",
           "source_sha256": "50141a5d0e4f52c66e980d204f7dcceb331fad337ab3b66b725b056201828913",
           "minimum_local_depth_m": -0.6
         }
@@ -998,8 +998,8 @@
           "file": "OFFC12_lod0.glb",
           "lod": 0,
           "triangles": 23656,
-          "bytes": 4000744,
-          "sha256": "3af77619af8d0b1d4508383276dd4c0a65a421d9ebfa9334ad6ec57e2a5ce994",
+          "bytes": 4000720,
+          "sha256": "c328b3fadd444f9deb9d8c3dfae66943b91619e607a16b1ff9f2f7501c03e8d9",
           "source_sha256": "10f98175c1b237c70aa40e9745caad77c79c94a0278e88770deb03682092fbbd",
           "minimum_local_depth_m": -0.6
         },
@@ -1007,8 +1007,8 @@
           "file": "OFFC12_lod1.glb",
           "lod": 1,
           "triangles": 5292,
-          "bytes": 2490292,
-          "sha256": "0b58ff6b34b8aa934f2cc909de7229b30345cbcbddd30d7c92dc19fb2675fde6",
+          "bytes": 2490256,
+          "sha256": "7f2ae6fb6554fe27c748a313ec4b547b945af2e302d8697f1203a7d0f5694b03",
           "source_sha256": "e86dba94ff41224f207af8bb6c86e4b4c71dd313e6291ecf2560b554a65bae37",
           "minimum_local_depth_m": -0.6
         },
@@ -1016,8 +1016,8 @@
           "file": "OFFC12_lod2.glb",
           "lod": 2,
           "triangles": 1216,
-          "bytes": 1865592,
-          "sha256": "60d38fc92f573d4a011a68a2997a6e73119fc634eb7d811c4193f8524d9227c1",
+          "bytes": 1865540,
+          "sha256": "dfb9ac7604354f191f6d348fc1dec8f184f2d9c479ac89d915a3deba67d1c5ed",
           "source_sha256": "178725dd2307fc26f9997499a90dc5a701fe63481d67ece5406f0ee3bb581e2f",
           "minimum_local_depth_m": -0.6
         }
@@ -1032,8 +1032,8 @@
           "file": "OFFC13_lod0.glb",
           "lod": 0,
           "triangles": 31716,
-          "bytes": 4374780,
-          "sha256": "46ba8c94ec69a5b9cb8a88cf37eb63b712b1c78b9c644d10dcabed2fdb806712",
+          "bytes": 4374740,
+          "sha256": "88f0f84d3af7e1e76f0b40c33d1f342fda8c65493335da1c14787f375332c804",
           "source_sha256": "74e86b326bbed2ef892f9202ecd43b085edef436321404c2f0e2c52d79230e37",
           "minimum_local_depth_m": -0.6
         },
@@ -1041,8 +1041,8 @@
           "file": "OFFC13_lod1.glb",
           "lod": 1,
           "triangles": 7168,
-          "bytes": 2356948,
-          "sha256": "58e7c157d07f22bf4a9908647d30a3dedef98d6aff1bd68c26c36c9ad2e04112",
+          "bytes": 2356900,
+          "sha256": "9dc0c5641fc065463dd1cfe73f60010d3a8cebaadeba46e14c10e7adbca38061",
           "source_sha256": "ed120db84aea71460aa5071653268f54ed373fd56a52ccc3477f68e28b2314bb",
           "minimum_local_depth_m": -0.6
         },
@@ -1050,8 +1050,8 @@
           "file": "OFFC13_lod2.glb",
           "lod": 2,
           "triangles": 1240,
-          "bytes": 1867428,
-          "sha256": "386afbe3d7f171546e9421c1811cfc893cbd24c7331897e5f37eca08ac875916",
+          "bytes": 1867376,
+          "sha256": "0c22f988a70d21c982ecb7aad6ab211217dca8eb50269e7172c974efcbaef127",
           "source_sha256": "ea8ae2ef7c555273ab5ae635f8297139ae4ffc79ac33d5eeaf217096005584ba",
           "minimum_local_depth_m": -0.6
         }
@@ -1270,8 +1270,8 @@
           "file": "OFFC2_lod0.glb",
           "lod": 0,
           "triangles": 51028,
-          "bytes": 6280464,
-          "sha256": "b64297f224ac07aea388874b0d9f1f2eabe592bcb4e3ffc07539f3097654b8e2",
+          "bytes": 6280440,
+          "sha256": "d202580787ddbc4c94acd4c90257b522848481a17d19834472056db47ee641fa",
           "source_sha256": "8afb2ce8ae41630bb8bd67227c4454588884a64841cf4b9c104deacbd012c763",
           "minimum_local_depth_m": -0.6
         },
@@ -1279,8 +1279,8 @@
           "file": "OFFC2_lod1.glb",
           "lod": 1,
           "triangles": 14524,
-          "bytes": 3281548,
-          "sha256": "60168a8b32eadf447bc6a2ae7ccd57e6dddcfba740ce991b72ebf9862e8424aa",
+          "bytes": 3281512,
+          "sha256": "7f44af71003a5a2f3c227526d0dc6cded3e0b66f1f6e38cd35be7e2972ba8f38",
           "source_sha256": "8084fd22d21d7e51c3f6ae865cb89ff501f58e441b6cc18fdbe24651ce44f9b7",
           "minimum_local_depth_m": -0.6
         },
@@ -1288,8 +1288,8 @@
           "file": "OFFC2_lod2.glb",
           "lod": 2,
           "triangles": 3832,
-          "bytes": 2102816,
-          "sha256": "f9a66a7f7308a4bc6b2cdfbe2d3f82f9b35d1985aaa9891fa509fb7fd6c8c83b",
+          "bytes": 2102768,
+          "sha256": "01087a3c697589926f6378133870308588afeda8d3b433dfc2f018df7e185397",
           "source_sha256": "81d59e5611025a8667a0317c75084543bb3a9b7582ca6846b6623f5f0a944b00",
           "minimum_local_depth_m": -0.6
         }
@@ -1440,8 +1440,8 @@
           "file": "RUNDWN11_lod0.glb",
           "lod": 0,
           "triangles": 22880,
-          "bytes": 4250928,
-          "sha256": "06015d6d23f2a97d12a9024cf3fb2a87ea9cff0252ce519bf18c92984da13002",
+          "bytes": 4250972,
+          "sha256": "a359a747d4b2be5dae9e9bd7a7456153b85d76acfe2982b64f3ef324de9c459f",
           "source_sha256": "df791fc24646d17517dc5fdc9ffb233356679127090db1b4936cb636da4ea945",
           "minimum_local_depth_m": -0.6
         },
@@ -1449,8 +1449,8 @@
           "file": "RUNDWN11_lod1.glb",
           "lod": 1,
           "triangles": 3504,
-          "bytes": 2320420,
-          "sha256": "507f31db5f030531e304fd3ba1bc748cb067cee12252c375c924b1c8ca864e39",
+          "bytes": 2320392,
+          "sha256": "087ba514514a3ff955c4b77cd499444e6426975336232fecd1775a6d4492b425",
           "source_sha256": "6593d26299eff2283990a6168f8d7fa060354dfd94d2a6227644e3744678b8cc",
           "minimum_local_depth_m": -0.6
         },
@@ -1458,8 +1458,8 @@
           "file": "RUNDWN11_lod2.glb",
           "lod": 2,
           "triangles": 876,
-          "bytes": 2101728,
-          "sha256": "06a4cc47e19d23f751ab39f9f4a544df6c755e79e7043b54c1dd98e91d78e97b",
+          "bytes": 2101696,
+          "sha256": "2c511941522c18ad8bae9f1d947a8f3b6c1d85b6433ed55049c5ffe45e320e95",
           "source_sha256": "a9c888edf574e6fea0e31af02eafbde9bcf09d0e6f6421ca24745b726723f7d9",
           "minimum_local_depth_m": -0.6
         }
@@ -1474,8 +1474,8 @@
           "file": "RUNDWN12_lod0.glb",
           "lod": 0,
           "triangles": 23104,
-          "bytes": 5214660,
-          "sha256": "e01cc937d5d1701059003a12784c80e6a490289c33ff57e0fe917dc9d80e6937",
+          "bytes": 5214744,
+          "sha256": "c8a52072b03915e2c9f4dd6886c4aafd44343478743436ee08f561bf32b1093e",
           "source_sha256": "4b79d9d4c462018181f33897fdcef37cb3a47d49b2493ca149a5083a86661e74",
           "minimum_local_depth_m": -0.6
         },
@@ -1483,8 +1483,8 @@
           "file": "RUNDWN12_lod1.glb",
           "lod": 1,
           "triangles": 5252,
-          "bytes": 3407900,
-          "sha256": "312d331e4d9740ca8b27dc0de020ad6282d9f35ce60b3e2ae84b89ddbcd39408",
+          "bytes": 3407908,
+          "sha256": "c44be0b2e81c345c32f71a35f5568ee2a358ed997fc7e0c2400db2af8f7598df",
           "source_sha256": "faa07f5825fa08e6ae1556e4e0a71e35ece53c5f5198049cbc187dd9b6b7353d",
           "minimum_local_depth_m": -0.6
         },
@@ -1492,8 +1492,8 @@
           "file": "RUNDWN12_lod2.glb",
           "lod": 2,
           "triangles": 1346,
-          "bytes": 2794124,
-          "sha256": "b613dd5f2502a8d4383c0083a83509e594b7f1f909a50c239fa6a32c6d5b3c97",
+          "bytes": 2794120,
+          "sha256": "c08b7751bb7e092171b1c2479232cafbf79f5746ef5f5ea564a99eaf762488bf",
           "source_sha256": "fb2c76a5eabb746549bc31f6a6e54dbbb1a8139f766359d6d178088155550c5f",
           "minimum_local_depth_m": -0.6
         }
@@ -1678,8 +1678,8 @@
           "file": "VICT11_lod0.glb",
           "lod": 0,
           "triangles": 15488,
-          "bytes": 3426816,
-          "sha256": "eb7e14c7cd72cc3a6e60e51321451f6f0371483e281ba000a0ee1faf09d5c807",
+          "bytes": 3426800,
+          "sha256": "68f7b594dc3d8c2085f531f7d193181c33b6fb48865c41a43345bbd07723afee",
           "source_sha256": "208f50eed5835dc26129b991870843919405de781239ca923b12f88bce93d9ff",
           "minimum_local_depth_m": -0.6
         },
@@ -1687,8 +1687,8 @@
           "file": "VICT11_lod1.glb",
           "lod": 1,
           "triangles": 6408,
-          "bytes": 2340668,
-          "sha256": "1094b4cdafa5d01c192f4438dd705604cf8fe3bbb85d9579336659993e56f27a",
+          "bytes": 2340616,
+          "sha256": "434cc8f20fa711da1ea4e41d0a0e26cc97ac6ad7790b23765ff7ec7b9c4d0efc",
           "source_sha256": "1254f57e818c7f2739974c2bf7dab3d77865a10d1431881431f3a21eb895d316",
           "minimum_local_depth_m": -0.6
         },
@@ -1696,8 +1696,8 @@
           "file": "VICT11_lod2.glb",
           "lod": 2,
           "triangles": 928,
-          "bytes": 1888784,
-          "sha256": "af3e330ceafbbbc322c6538393c48760569c9ce3345731e2afe760b228a89638",
+          "bytes": 1888732,
+          "sha256": "bed6a0f3e3102c64ae9b60b5e1866cf6ab8fb9ee5a1ef77a15cc31b057a8ff6a",
           "source_sha256": "5246cd5c91afbb484f4f32257d3ff6c486c3a39dcaad20e3cd588c9cbdb275e9",
           "minimum_local_depth_m": -0.6
         }
@@ -1712,8 +1712,8 @@
           "file": "VICT12_lod0.glb",
           "lod": 0,
           "triangles": 13378,
-          "bytes": 4186228,
-          "sha256": "0b02c09e0468ebfea2a496e5f936dd8c17d4d95c04d5f90926b6001c585505c0",
+          "bytes": 4186276,
+          "sha256": "1ff9d3159211e8f7b1eaf8b25f8e2ee6aad723325671ac47018182ad56b8a1d0",
           "source_sha256": "ca06f7af86a45a75c59d351b032f4fe097d92ac20fde9b406d2a18f4362aafeb",
           "minimum_local_depth_m": -0.6
         },
@@ -1721,8 +1721,8 @@
           "file": "VICT12_lod1.glb",
           "lod": 1,
           "triangles": 4062,
-          "bytes": 3080788,
-          "sha256": "88ec63d93a65a5f549e945a3d0a9a941fe85a39a84dafbfe1ccd1993e172ca1d",
+          "bytes": 3080772,
+          "sha256": "b018122496230c77ecd4247f5a3ed1616ad51ad9ea860053a38474e60f432031",
           "source_sha256": "0be4267a5c423cfa417b052f00a5c107e9734d91eb088cbabe3db180715633a0",
           "minimum_local_depth_m": -0.6
         },
@@ -1730,8 +1730,8 @@
           "file": "VICT12_lod2.glb",
           "lod": 2,
           "triangles": 1017,
-          "bytes": 2538944,
-          "sha256": "77c4f9e268efb558aef8991c5da5ca261ece4e53469a4664c148cfde3c12151f",
+          "bytes": 2538916,
+          "sha256": "228ec07e0a6e8fded819128582f93fab2d4f5f16baa13318bdef81d3ed15afde",
           "source_sha256": "6d65aa7dc19ca9fef9edd20435ecaadec5b647fed62a4a6f636e6d9b07a27d65",
           "minimum_local_depth_m": -0.6
         }
@@ -1746,8 +1746,8 @@
           "file": "VICT13_lod0.glb",
           "lod": 0,
           "triangles": 22372,
-          "bytes": 3896244,
-          "sha256": "9aa03876ea309097a84c8c96b465d8df96b1684f89f337bfd81e3e3e8ce52ff5",
+          "bytes": 3896220,
+          "sha256": "3982064265b4ce8a4aff5d189c06d8a0bbea6387d3f32333d889d09aa2c91f0f",
           "source_sha256": "767e207cbdaddef46c15ffc6372dc85f890195b7dfb337ee6a192b5f6493a257",
           "minimum_local_depth_m": -0.6
         },
@@ -1755,8 +1755,8 @@
           "file": "VICT13_lod1.glb",
           "lod": 1,
           "triangles": 4404,
-          "bytes": 2418188,
-          "sha256": "eab9a431d272a04c669677e4454f3af81efc2a444d83c97900f7be281aa5b825",
+          "bytes": 2418152,
+          "sha256": "5417ecf1e91e41b2f2e901d8d2176228466a564160bc8f998e209f108cbfc440",
           "source_sha256": "e690993b6af099dfcb15101503682375539f0076b717d7503992af1492d78818",
           "minimum_local_depth_m": -0.6
         },
@@ -1764,8 +1764,8 @@
           "file": "VICT13_lod2.glb",
           "lod": 2,
           "triangles": 976,
-          "bytes": 1847340,
-          "sha256": "0ba19ef9ebf50647cdf139a0d8d08315ccec0ac1324ac67e6ca0c24c12750887",
+          "bytes": 1847288,
+          "sha256": "9a7b08e7ab456ec81fdf59c4f70f649ab9eb2c1575421ef770ad2f5a88d261d8",
           "source_sha256": "976d1ad6319c001efece6a8a69706e305d6df0bf79c863f90380145a08c30669",
           "minimum_local_depth_m": -0.6
         }
@@ -1780,8 +1780,8 @@
           "file": "VICT14_lod0.glb",
           "lod": 0,
           "triangles": 28740,
-          "bytes": 4447392,
-          "sha256": "454a711db362573816b2aae19d3822508a5ca9bd78d7c44646149d415d488d93",
+          "bytes": 4447368,
+          "sha256": "108d9fe32dc01c53a691bcb782158fcfc68d743ed1f12ff5298591aa8eb8cf10",
           "source_sha256": "0747d51a7626b323fd4948e1c7a8de8b116bdf5fa3484314052642add18e8917",
           "minimum_local_depth_m": -0.6
         },
@@ -1789,8 +1789,8 @@
           "file": "VICT14_lod1.glb",
           "lod": 1,
           "triangles": 9408,
-          "bytes": 2857736,
-          "sha256": "5c667c0775cf8df547784ade47584fa3aa9cb39b6b5cf5d8d0d9c7a4ecd31e69",
+          "bytes": 2857700,
+          "sha256": "8085f6154bc13349b3eb87b679858a94ca639506aa259afaeea59b4a375042ff",
           "source_sha256": "e4db1940fd5ab1399213baaa0ab050bd10523e42c338e4fd99d07600056f4b95",
           "minimum_local_depth_m": -0.6
         },
@@ -1798,8 +1798,8 @@
           "file": "VICT14_lod2.glb",
           "lod": 2,
           "triangles": 1056,
-          "bytes": 1891468,
-          "sha256": "a4b94577f903e1fd0b77e884e89de2d1e260fd13cce016fa877848a7a2dc91f9",
+          "bytes": 1891416,
+          "sha256": "38925dd00d42f728553e904bdc2c27b2fdf1d2a9aa9bda02f71ab67916e73c72",
           "source_sha256": "ed66ae2eff7bbc0bdfea29bf577bf165d9c151ec0965a5321e18ce780ae7911e",
           "minimum_local_depth_m": -0.6
         }
@@ -2732,8 +2732,8 @@
           "file": "WHSE11_lod0.glb",
           "lod": 0,
           "triangles": 9360,
-          "bytes": 2862752,
-          "sha256": "2dc79c386efbf6b2e2b88ab77b5f7ebf135ff13403fb44a11c3bd6f8ffd53912",
+          "bytes": 2862908,
+          "sha256": "c157fac47fac3ab777a8d2b79753148ae2766a07bd923777b516780f5246077a",
           "source_sha256": "e5a0a3ebf7bf7851cbd38aa1de6bfe5c83b98e4f7202f2bc0601550d9d73662c",
           "minimum_local_depth_m": -0.6
         },
@@ -2741,8 +2741,8 @@
           "file": "WHSE11_lod1.glb",
           "lod": 1,
           "triangles": 2064,
-          "bytes": 1924940,
-          "sha256": "09b7879741b77e2f9f631db202c299a537a139923057b79487b1357d691de475",
+          "bytes": 1925032,
+          "sha256": "b5b53c762b95476dd7b1594c7d2f99b2df5ad449ef36f88c3d0564073d550085",
           "source_sha256": "ff863605e7eeb493a2d1ab6b02b9cf53646e2efd602e19894fb07d2eda979a53",
           "minimum_local_depth_m": -0.6
         },
@@ -2750,8 +2750,8 @@
           "file": "WHSE11_lod2.glb",
           "lod": 2,
           "triangles": 112,
-          "bytes": 1435692,
-          "sha256": "989354603823a0e5dc5a28b257a8352f98774681b59650a3f7d2b40c726f07ae",
+          "bytes": 1435772,
+          "sha256": "2c2c99edfe195cfdba3f6974d1f344ee708561d3e368ac4f0a3ad5b6e9e80dc0",
           "source_sha256": "4d897695cb25f955c884809c301adba72bd3d768a497ed386a8e122c25f296f5",
           "minimum_local_depth_m": -0.6
         }
@@ -2766,8 +2766,8 @@
           "file": "WHSE12_lod0.glb",
           "lod": 0,
           "triangles": 15728,
-          "bytes": 3961300,
-          "sha256": "feec44dc6a27706eb00ba5bd9b8c997e2e92d25ade67d3abc486e537d3d9dc84",
+          "bytes": 3961360,
+          "sha256": "313a5669630b4e5b99fd69cdcc6186bf3d66951882b47dc449047bafcf142b83",
           "source_sha256": "63c9e299710d3822c28d123187fb11be758640dabed6fd46b3815d50331183a8",
           "minimum_local_depth_m": -0.6
         },
@@ -2775,8 +2775,8 @@
           "file": "WHSE12_lod1.glb",
           "lod": 1,
           "triangles": 2668,
-          "bytes": 2549908,
-          "sha256": "1c4d8159efc3b8596d4e335bae28d0445fabbf1a23ad4b1af4b33f68fd88a1d9",
+          "bytes": 2549864,
+          "sha256": "9795ec84d789b57df21bd5a9b92b8da9e8f9342ace6bed18a6285af354fd7ea3",
           "source_sha256": "a6a68c7c19098ab33128fa87a07183cbf12aa4b0fa5fff3d4b8ac722483ac410",
           "minimum_local_depth_m": -0.6
         },
@@ -2784,8 +2784,8 @@
           "file": "WHSE12_lod2.glb",
           "lod": 2,
           "triangles": 580,
-          "bytes": 2087880,
-          "sha256": "8c2922f0329edb9ad7c79f8a932e2593dede97bf75b771544b2d4e44514b7ac6",
+          "bytes": 2087852,
+          "sha256": "ff10b6bf33816522bd47c814193a4cb7fa78d47154f2e4507fe32ecc3f857dca",
           "source_sha256": "a0518c8af2ecde6a7832c509d3c2643135b9e34823f806932ba51e5870b9c372",
           "minimum_local_depth_m": -0.6
         }
@@ -3140,8 +3140,8 @@
           "file": "WRHS1_lod0.glb",
           "lod": 0,
           "triangles": 34120,
-          "bytes": 5119672,
-          "sha256": "d5e79d7c048917b62881667143315e61cfc6821d78aa4a346b145a2118327d37",
+          "bytes": 5119744,
+          "sha256": "51cc33fa6251908634b588f3cc760792402f09ac6b9e1059c98703102e79dd2a",
           "source_sha256": "9b63b4a4ffd10176085e9136bbc91d9b0148f3175f61493a601099a71402822e",
           "minimum_local_depth_m": -0.6
         },
@@ -3149,8 +3149,8 @@
           "file": "WRHS1_lod1.glb",
           "lod": 1,
           "triangles": 3852,
-          "bytes": 2297536,
-          "sha256": "554b09b370f57cbda11a33d6768d7907eccaa284b3375c12428008a3cead4e86",
+          "bytes": 2297504,
+          "sha256": "f5649ff34dd7ecfbdeaf1bbc6472b7d5a67cf18341f5d371f10bc1e768bed5c0",
           "source_sha256": "a177bee7ce8f0c96c42ef170250df50e55d0d914068ee4592de85663d98f5039",
           "minimum_local_depth_m": -0.6
         },
@@ -3158,8 +3158,8 @@
           "file": "WRHS1_lod2.glb",
           "lod": 2,
           "triangles": 568,
-          "bytes": 1697832,
-          "sha256": "e4e710bc336ec11569d165ac3f0533bb9433e0c337400db5c6b7bb5295135bb4",
+          "bytes": 1697792,
+          "sha256": "5ea6db940f71034c0bc52245b209e7a7b336d457c40178c46ba7c3de52b69ee4",
           "source_sha256": "45532b9eb421dd2976f7b2884e875617300c368041f91e0b31fce70656f4d7b6",
           "minimum_local_depth_m": -0.6
         }

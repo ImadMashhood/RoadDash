@@ -877,6 +877,7 @@ pub fn patrol(
         (
             Without<ColliderDisabled>,
             Without<crate::world_gen::metropolis::Crossing>,
+            Without<crate::world_gen::metropolis::pedestrians::CrossingWalker>,
         ),
     >,
 ) {
@@ -952,7 +953,12 @@ pub fn inspector(
         Transform::from_translation((min + max) * 0.5).with_scale((max - min).max(Vec3::ONE)),
         Color::srgb(0.6, 0.4, 1.0),
     );
-    for gate in &track.definition.checkpoints {
+    for gate in track
+        .definition
+        .checkpoints
+        .iter()
+        .filter(|_| track.metropolis.is_none())
+    {
         let (p, q) = track.sample(gate.fraction * track.length, 0.0);
         gizmos.line(
             p - q * Vec3::X * 12.0 + Vec3::Y * 2.0,
@@ -962,7 +968,12 @@ pub fn inspector(
     }
     for spawn in &track.definition.spawns {
         gizmos.sphere(
-            Isometry3d::from_translation(track.sample(spawn.distance, spawn.lane).0 + Vec3::Y),
+            Isometry3d::from_translation(
+                track
+                    .sample(track.grid_station(spawn.distance), spawn.lane)
+                    .0
+                    + Vec3::Y,
+            ),
             0.5,
             Color::srgb(0.2, 1.0, 0.8),
         );
@@ -1076,6 +1087,26 @@ pub(crate) fn spawn_crossing(
         }
         crate::runtime::attach_visuals(commands, root, &parts);
     }
+}
+
+/// Recycle a kinematic actor without turning the reset displacement into contact velocity.
+pub(crate) fn teleport_kinematic(commands: &mut Commands, entity: Entity, pose: Transform) {
+    commands.queue(move |world: &mut World| {
+        for mut set in world.query::<&mut RapierRigidBodySet>().iter_mut(world) {
+            if let Some(handle) = set.entity2body().get(&entity).copied()
+                && let Some(body) = set.bodies.get_mut(handle)
+            {
+                let p = bevy_rapier3d::na::Isometry3::from_parts(
+                    pose.translation.into(),
+                    pose.rotation.into(),
+                );
+                body.set_position(p, true);
+                body.set_next_kinematic_position(p);
+                body.set_linvel(Vec3::ZERO.into(), true);
+                body.set_angvel(Vec3::ZERO.into(), true);
+            }
+        }
+    });
 }
 
 #[cfg(test)]

@@ -1,0 +1,20 @@
+{
+  "body_samples": 12552,
+  "paint_samples": 4892,
+  "body_dimensions_m": [
+    1.9,
+    3.9
+  ],
+  "fine_sample_step_m": 1,
+  "road_tolerance_m": 0.025,
+  "visible_road_sidewalk_overlap_m2": 1934.2138974806865
+}
+failures: 2352 [{'kind': 'body', 'route': 0, 'station': 2972, 'outgoing': True, 'slot': 1, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 1.6250612100183697, 'building_overlap_m2': 0}, {'kind': 'body', 'route': 0, 'station': 2972, 'outgoing': False, 'slot': 1, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 0.001003420553067575, 'building_overlap_m2': 0}, {'kind': 'paint', 'route': 0, 'station': 2972, 'lane': -6.0, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 0.4247431765812228}, {'kind': 'paint', 'route': 0, 'station': 2972, 'lane': 6.0, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 0.28077609304621076}, {'kind': 'body', 'route': 0, 'station': 2973, 'outgoing': True, 'slot': 1, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 3.5250946997564796, 'building_overlap_m2': 0}, {'kind': 'body', 'route': 0, 'station': 2973, 'outgoing': False, 'slot': 1, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 0.13381517928985526, 'building_overlap_m2': 0}, {'kind': 'body', 'route': 0, 'station': 2974, 'outgoing': True, 'slot': 1, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 5.425128189494588, 'building_overlap_m2': 0}, {'kind': 'body', 'route': 0, 'station': 2974, 'outgoing': False, 'slot': 1, 'outside_road_m2': 0.0, 'sidewalk_overlap_m2': 0.2817127806476703, 'building_overlap_m2': 0}]
+Traceback (most recent call last):
+  File "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-city-lanes/tools/audit_metropolis_lanes.py", line 136, in <module>
+    main()
+    ~~~~^^
+  File "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-city-lanes/tools/audit_metropolis_lanes.py", line 132, in main
+    assert not report['failures'] and report['visible_road_sidewalk_overlap_m2'] < .01
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "events": [
+    "wrong-secret rejected",
+    "wrong-protocol rejected",
+    "private probe unavailable",
+    "late join preserves moving bot state",
+    "disconnect restored bot roster",
+    "out-of-range input disconnected",
+    "all14 guest slots unique and full host rejects overflow",
+    "host termination closes remaining guest"
+  ],
+  "countdown_to_first_snapshot_seconds": 15.107058887020685,
+  "late_slot": 2,
+  "bot_progress_before_takeover": -76.5568,
+  "human_progress_after_takeover": -74.873474,
+  "bot_pose_before_takeover": {
+    "p": [
+      303.74582,
+      5.9604645e-08,
+      -75.33002
+    ],
+    "q": [
+      0.0007342106,
+      0.11915476,
+      0.0061178086,
+      0.9928566
+    ]
+  },
+  "human_pose_after_takeover": {
+    "p": [
+      304.1451,
+      5.9604645e-08,
+      -73.70301
+    ],
+    "q": [
+      0.00032449272,
+      0.11720217,
+      0.0027495655,
+      0.9931043
+    ]
+  },
+  "binary_sha256": "417388c3f866d162d088871a9990e985e64db5a3a3843ee611e9ffae3f15da64",
+  "limitations": "Raw peers exercise actual authority; native rendering/recovery is separate."
+}

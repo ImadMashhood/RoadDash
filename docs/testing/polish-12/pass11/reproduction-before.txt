@@ -1,0 +1,19 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 37.13s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+
+thread 'models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions' (2997583) panicked at src/models/tests.rs:560:13:
+ankle surface drifts under distal flex: 0.034307607m
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions ... FAILED
+
+failures:
+
+failures:
+    models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 294 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

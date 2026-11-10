@@ -1,0 +1,31 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 37.45s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+base false 0 pos=0.00943172 rot=0
+base false 1 pos=0.009431601 rot=0
+base false 2 pos=0.009431601 rot=0
+base false 3 pos=0.009431601 rot=0.15846744
+base false 4 pos=0.052921105 rot=0.37127563
+base false 5 pos=0.009431601 rot=0.15846443
+base false 6 pos=0.05292166 rot=0.37127632
+base false 7 pos=0.009431601 rot=0.19158284
+base false 8 pos=0.07916581 rot=0.11436308
+base false 9 pos=0.009431481 rot=0.19158284
+base false 10 pos=0.07916595 rot=0.11436308
+base true 0 pos=0.0000000000000030390185 rot=0
+base true 1 pos=0.00000012383438 rot=0
+base true 2 pos=0.000000029802322 rot=0
+base true 3 pos=0.000000101338856 rot=0.12738152
+base true 4 pos=0.040509038 rot=0.15017202
+base true 5 pos=0.00000003071953 rot=0.1273759
+base true 6 pos=0.040508755 rot=0.15017202
+base true 7 pos=0.000000014901161 rot=0.24324237
+base true 8 pos=0.022324653 rot=0.06646672
+base true 9 pos=0.000000022351742 rot=0.24324137
+base true 10 pos=0.022324646 rot=0.0664739
+test animation::correction_tests::distal_contact_diagnostic ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 294 filtered out; finished in 0.00s
+

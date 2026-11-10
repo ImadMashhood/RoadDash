@@ -1,0 +1,13 @@
+{
+  "different_pixel_bounds": [
+    0,
+    515,
+    1440,
+    900
+  ],
+  "size": [
+    1440,
+    900
+  ],
+  "limitation": "Fixed survey camera; difference includes wind and any other temporal scene variation. Not an isolated shader correctness or performance test."
+}

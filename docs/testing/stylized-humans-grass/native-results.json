@@ -1,0 +1,56 @@
+{
+  "native": [
+    {
+      "name": "recovery",
+      "exit": 0,
+      "images": 21,
+      "errors": [],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "shoulder",
+      "exit": 0,
+      "images": 16,
+      "errors": [],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "poses",
+      "exit": 0,
+      "images": 38,
+      "errors": [],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "baseline-recovery",
+      "exit": 0,
+      "images": 21,
+      "errors": [],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "actors",
+      "exit": 0,
+      "images": 2,
+      "errors": [],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "skins",
+      "exit": 0,
+      "images": 12,
+      "errors": [],
+      "inputs_unchanged": true
+    },
+    {
+      "name": "after",
+      "exit": 0,
+      "images": 14,
+      "errors": [],
+      "inputs_unchanged": true
+    }
+  ],
+  "lab_cases": 18,
+  "all_lab_finite": true,
+  "art_approval": false
+}

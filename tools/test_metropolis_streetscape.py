@@ -2,7 +2,7 @@
 import unittest
 from shapely import Point,box
 from street_first_layout import encode
-from metropolis_streetscape import sidewalks,furniture,footprint
+from metropolis_streetscape import sidewalks,furniture,footprint,farm_pavement
 
 def fixture():
     road=box(-6,-100,6,9000)
@@ -20,6 +20,15 @@ class Sidewalks(unittest.TestCase):
         self.assertAlmostEqual(r.union(w).area,16.8*9100)
         self.assertLess(r.intersection(w).area,1e-6)
         self.assertGreater(g.area,1000)
+    def test_farm_extension_cannot_hide_urban_sidewalks_or_buildings(self):
+        d=dict(edges=[dict(id='farm_approach',points=[[0,0,-100],[0,0,100]])],
+               road_surface=encode(box(-4,0,4,100)),city_envelope=encode(box(-100,0,100,100)))
+        added=farm_pavement(d)
+        self.assertTrue(added.covers(footprint([4.5,-20],0,1.9,3.9)))
+        self.assertFalse(added.intersects(box(4,0,6.4,100).buffer(-.001)))
+        self.assertFalse(added.intersects(box(6.4,1,9,99)))
+        self.assertLess(added.intersection(box(-100,0,100,100)).area,1e-8)
+
     def test_repeatable_furniture_has_open_walk_and_junction_setbacks(self):
         d=fixture();_,w,_=sidewalks(d)
         path=dict(points=[[0,12,0],[0,12,8850]],progress=[3150,12000])

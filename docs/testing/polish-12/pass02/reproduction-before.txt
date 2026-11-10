@@ -1,0 +1,21 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 28.90s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+
+thread 'collision_tests::downed_contact_lift_uses_pre_solver_relative_motion_for_both_bodies' (2887243) panicked at src/collision_tests.rs:1099:13:
+assertion `left == right` failed: wreck=true incoming=2 target_pre=2 target_post=-5
+  left: true
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test collision_tests::downed_contact_lift_uses_pre_solver_relative_motion_for_both_bodies ... FAILED
+
+failures:
+
+failures:
+    collision_tests::downed_contact_lift_uses_pre_solver_relative_motion_for_both_bodies
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 283 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `--lib`

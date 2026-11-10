@@ -1,0 +1,11 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/ai-queue-pass)
+    Finished `test` profile [optimized + debuginfo] target(s) in 31.09s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+crawling queue car=false obstruction=133.25818 nearest=1.775982 obstruction_clearance=1.775982 max_lane=5.763174 sustained_ticks=[504, 644, 229, 0] results=[(1, 1038.5299, 48.727573, 2.2729566), (2, 1178.7803, 49.632065, 2.3013194), (3, 1262.5627, 49.305367, 2.4727178), (4, 133.25818, 2.0050957, 1.9996034)]
+crawling queue car=true obstruction=155.00526 nearest=5.7641664 obstruction_clearance=2.366074 max_lane=5.71968 sustained_ticks=[1076, 847, 628, 591] results=[(1, 686.68677, 48.597363, 2.3479507), (2, 892.90576, 49.625393, 4.3829536), (3, 952.4048, 49.30061, 2.3518944), (4, 1044.6946, 49.60407, 2.2811928)]
+test game::tests::crawling_rider_queue_passes_without_a_car_trigger ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 355 filtered out; finished in 4.33s
+

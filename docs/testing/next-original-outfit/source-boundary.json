@@ -1,0 +1,24 @@
+{
+  "base": "f83cfbf7",
+  "original_outfit": "6039be4e",
+  "restored_exactly": {
+    "src/models.rs": "663c40b6ee683009335b30ef4f4432e19a3d1e90a19ac343dd2abb35b8524660",
+    "src/models/tests.rs": "ca643f86a37744ea0a900bbc89fdda4591a78a6b5d61357fc9287f75d7aeeb41"
+  },
+  "removed": "src/models/style.rs",
+  "unchanged": {
+    "src/models/articulation.rs": "039a84735047b64585d4e69a2ef49baa62ea74d3e387cb1325625035ec87c978",
+    "src/models/hands.rs": "6c4add8293329a90989da46e1182380c137bce91ae13c72201d25a5bc437e664",
+    "src/human.rs": "a75f32cc88d7fd5ef2fdf78ac3052e2fae7148cac940a313a0e55877bee0179b",
+    "src/recovery.rs": "91d0e75c8f4b6d39d6d6ef368d3c5266777760611cec1c9c71f809389184c048",
+    "src/props.rs": "2617ba23bb45317d03ba6cea01f1fe3660c0afdc3e2d8b6b81a0f673e93bd1b6",
+    "src/world.rs": "3367b30dbd9f44f1522d509a87ae21e849ea7812b92f4c0a0064d127da1ed990",
+    "Cargo.lock": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "assets/models/riding.rdmesh": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+    "assets/textures/rider-base.png": "347d3c985b19a70ad46deafd8eb0c16bfae6d67519f42a019c5ff2edccb43e9c",
+    "assets/textures/rider-normal.png": "e2bf7510c44374af27e742dce836e5f984d39f915ae2ee7ae06478b5ffe8782b",
+    "assets/textures/rider-roughness.png": "feac4c8915c604adbf379594e19ccfed60bf1643c4ece350b735ee0d5d300a10",
+    "assets/shaders/grass_wind.wgsl": "bcde7c36754989f3b0799adade765e0aab4c6f8d11a84fe05a72d64db5ab7f3f"
+  }
+}

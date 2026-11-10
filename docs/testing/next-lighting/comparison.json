@@ -1,0 +1,30 @@
+{
+  "census_equal": true,
+  "legacy_metrics": {
+    "active_fixed_ticks": 985,
+    "colliders": 4627,
+    "entities": 65356,
+    "fixed_ticks": 1958,
+    "last_gameplay_ms": 1.033682942390442,
+    "last_physics_ms": 9.966276168823242,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1959,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 18.30877685546875,
+    "wall_frame_p95_ms": 23.24268341064453
+  },
+  "balanced_metrics": {
+    "active_fixed_ticks": 985,
+    "colliders": 4627,
+    "entities": 55479,
+    "fixed_ticks": 1952,
+    "last_gameplay_ms": 1.084818959236145,
+    "last_physics_ms": 9.886588096618652,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1953,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 17.933900833129883,
+    "wall_frame_p95_ms": 21.72503662109375
+  },
+  "limit": "Single serial matched-camera wall-frame sample, not GPU timing or a causal speedup claim. Both p95 exceed16.7ms."
+}

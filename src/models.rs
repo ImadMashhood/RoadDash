@@ -2,6 +2,7 @@
 use crate::{human, world};
 mod articulation;
 pub mod hands;
+mod patrol;
 use bevy::{
     asset::RenderAssetUsages,
     camera::visibility::NoFrustumCulling,
@@ -12,6 +13,7 @@ use bevy::{
     prelude::*,
     transform::helper::TransformHelper,
 };
+pub use patrol::OFFICER_PALETTE;
 
 /// Prefer assets beside a packaged binary; Cargo builds use the source checkout.
 /// Bevy otherwise resolves relative to target/{debug,release}, not the repository.
@@ -36,6 +38,8 @@ pub const BUNDLE: &[u8] = include_bytes!("../assets/models/riding.rdmesh");
 struct Part {
     mesh: Handle<Mesh>,
     materials: Vec<Handle<StandardMaterial>>,
+    officer_material: Handle<StandardMaterial>,
+    officer_hidden: bool,
     group: String,
     rest: Transform,
     glove: bool,
@@ -82,6 +86,7 @@ impl AuthoredModels {
         let decoded =
             rr_content::riding_model::decode(BUNDLE).expect("validated authored visual bundle");
         let base = server.map(|s| s.load("textures/rider-base.png"));
+        let officer_base = server.map(|s| s.load("textures/officer-base.png"));
         let normal = server.map(|s| {
             s.load_with_settings(
                 "textures/rider-normal.png",
@@ -221,7 +226,20 @@ impl AuthoredModels {
                 };
                 palette.push(materials.add(mat));
             }
+            let mut officer = materials.get(&palette[0]).unwrap().clone();
+            if skinned {
+                officer.base_color = Color::WHITE;
+                officer.base_color_texture = officer_base.clone();
+            } else if region == "paint" {
+                officer.base_color = swatch(0xe5e9e5);
+            } else if data.name.contains("Gloss black fairing")
+                || data.name.contains("Red graphics")
+            {
+                officer.base_color = swatch(0x12334c);
+            }
             parts.push(Part {
+                officer_material: materials.add(officer),
+                officer_hidden: data.name.contains("Smoked windscreen"),
                 mesh: meshes.add(mesh),
                 materials: palette,
                 group: data.group,
@@ -229,10 +247,14 @@ impl AuthoredModels {
                 glove: has_glove,
             });
         }
+        parts.extend(patrol::equipment(meshes, materials));
         Self {
             parts,
             hand_contacts,
-            textures: [base, normal, roughness].into_iter().flatten().collect(),
+            textures: [base, normal, roughness, officer_base]
+                .into_iter()
+                .flatten()
+                .collect(),
             standing_bind: binds.add(SkinnedMeshInverseBindposes::from(
                 standing_frames
                     .iter()
@@ -327,7 +349,11 @@ impl AuthoredModels {
                     Name::new("Authored rider skin"),
                     AuthoredHuman,
                     Mesh3d(p.mesh.clone()),
-                    MeshMaterial3d(p.materials[color % p.materials.len()].clone()),
+                    MeshMaterial3d(if color == OFFICER_PALETTE {
+                        p.officer_material.clone()
+                    } else {
+                        p.materials[color % p.materials.len()].clone()
+                    }),
                     Transform::IDENTITY,
                     Visibility::default(),
                     NoFrustumCulling,
@@ -351,13 +377,21 @@ impl AuthoredModels {
     pub fn motorcycle(&self, commands: &mut Commands, color: usize) -> Vec<Entity> {
         self.parts
             .iter()
-            .filter(|p| !matches!(p.group.as_str(), "standing" | "seated"))
+            .filter(|p| {
+                !matches!(p.group.as_str(), "standing" | "seated")
+                    && (p.group != "patrol-equipment" || color == OFFICER_PALETTE)
+                    && !(p.officer_hidden && color == OFFICER_PALETTE)
+            })
             .map(|p| {
                 let mut e = commands.spawn((
                     Name::new("Authored motorcycle mesh"),
                     AuthoredMotorcycle,
                     Mesh3d(p.mesh.clone()),
-                    MeshMaterial3d(p.materials[color % p.materials.len()].clone()),
+                    MeshMaterial3d(if color == OFFICER_PALETTE {
+                        p.officer_material.clone()
+                    } else {
+                        p.materials[color % p.materials.len()].clone()
+                    }),
                     p.rest,
                 ));
                 if matches!(p.group.as_str(), "front-wheel" | "rear-wheel") {

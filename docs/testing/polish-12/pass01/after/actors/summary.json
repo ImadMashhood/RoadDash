@@ -1,0 +1,129 @@
+{
+  "parallel_physics": true,
+  "available_cpu_threads": 12,
+  "requested_rayon_threads": null,
+  "total_valid_samples": 5,
+  "samples": 1,
+  "invalid_or_partial_lines": 0,
+  "selection": {
+    "skip_samples": 4,
+    "racing_only": true
+  },
+  "racing_samples": 1,
+  "fixed_steps_per_render_frame": 1.0,
+  "window_distributions_ms": {
+    "window_wall_ms_per_frame": {
+      "median": 20.177554940000004,
+      "maximum": 20.177554940000004,
+      "p95": 20.177554940000004
+    },
+    "wall_average_ms": {
+      "median": 38.245574951171875,
+      "maximum": 38.245574951171875,
+      "p95": 38.245574951171875
+    },
+    "wall_p95_ms": {
+      "median": 41.81864547729492,
+      "maximum": 41.81864547729492,
+      "p95": 41.81864547729492
+    },
+    "main_world_ms_per_frame": {
+      "median": 18.575117111206055,
+      "maximum": 18.575117111206055,
+      "p95": 18.575117111206055
+    },
+    "last_render_extract_ms": {
+      "median": 0.51908,
+      "maximum": 0.51908,
+      "p95": 0.51908
+    },
+    "last_render_schedule_ms": {
+      "median": 4.370382,
+      "maximum": 4.370382,
+      "p95": 4.370382
+    },
+    "fixed_gameplay_ms_per_frame": {
+      "median": 1.5018044710159302,
+      "maximum": 1.5018044710159302,
+      "p95": 1.5018044710159302
+    },
+    "physics_ms_per_frame": {
+      "median": 9.88977336883545,
+      "maximum": 9.88977336883545,
+      "p95": 9.88977336883545
+    },
+    "physics_sync_ms_per_frame": {
+      "median": 1.6501834392547607,
+      "maximum": 1.6501834392547607,
+      "p95": 1.6501834392547607
+    },
+    "physics_step_ms_per_frame": {
+      "median": 7.819579601287842,
+      "maximum": 7.819579601287842,
+      "p95": 7.819579601287842
+    },
+    "physics_writeback_ms_per_frame": {
+      "median": 0.41986626386642456,
+      "maximum": 0.41986626386642456,
+      "p95": 0.41986626386642456
+    }
+  },
+  "weighted_fixed_step_ms": {
+    "fixed_gameplay_ms_per_fixed_step": 1.5018044710159302,
+    "physics_ms_per_fixed_step": 9.88977336883545,
+    "physics_sync_ms_per_fixed_step": 1.6501834392547607,
+    "physics_step_ms_per_fixed_step": 7.819579601287842,
+    "physics_writeback_ms_per_fixed_step": 0.41986626386642456
+  },
+  "worst_windows": [
+    {
+      "racing": true,
+      "camera_xyz": [
+        -823.6038818359375,
+        11.47524356842041,
+        -1603.9697265625
+      ],
+      "elapsed_s": 2.6166666666666667,
+      "player_progress_m": 1200.0,
+      "fixed_steps": 50,
+      "frames": 50,
+      "visible_mesh_entities": 1941,
+      "mesh_entities": 17822,
+      "dynamic_bodies": 42,
+      "physics_backend": {
+        "awake_dynamic_bodies": 42,
+        "backend_colliders": 4434,
+        "contact_manifolds": 60,
+        "contact_pairs": 35638,
+        "impulse_joints": 24,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "rigid_bodies": 1905
+      },
+      "mesh_assets": 6223,
+      "material_assets": 1527,
+      "linux_process_memory": {
+        "RssAnon": "2387040 kB",
+        "RssFile": "754196 kB",
+        "VmRSS": "3704260 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "1790784",
+        "pswpin": "256750",
+        "pswpout": "2493620"
+      },
+      "window_wall_ms_per_frame": 20.177554940000004,
+      "wall_average_ms": 38.245574951171875,
+      "wall_p95_ms": 41.81864547729492,
+      "main_world_ms_per_frame": 18.575117111206055,
+      "last_render_extract_ms": 0.51908,
+      "last_render_schedule_ms": 4.370382,
+      "fixed_gameplay_ms_per_frame": 1.5018044710159302,
+      "physics_ms_per_frame": 9.88977336883545,
+      "physics_sync_ms_per_frame": 1.6501834392547607,
+      "physics_step_ms_per_frame": 7.819579601287842,
+      "physics_writeback_ms_per_frame": 0.41986626386642456
+    }
+  ],
+  "guidance": "Distributions summarize logged windows, not raw per-frame percentiles; wall_p95_ms is an overlapping rolling 240-frame metric. window_wall_ms_per_frame is the independent logging-window mean. Compare matched scenes without compilation/other game instances. Physics includes sync/step/writeback CPU/wait spans, not just the solver. If steps/render frame rises, catch-up multiplies simulation cost. Large wall with small main needs GPU/presentation profiling; low utilization is not proof. Paging counters are system-wide; full swap alone does not prove active game paging."
+}

@@ -81,5 +81,64 @@
       "OFFC13"
     ]
   },
-  "tower_min_floors": 13
+  "tower_min_floors": 13,
+  "approach": {
+    "max_lowrise_floors": 5,
+    "stations": [
+      {
+        "z": -180,
+        "weights": {
+          "roadside": 1
+        }
+      },
+      {
+        "z": 250,
+        "weights": {
+          "roadside": 0.45,
+          "workshop": 0.55
+        }
+      },
+      {
+        "z": 650,
+        "weights": {
+          "workshop": 0.45,
+          "neighborhood": 0.55
+        }
+      },
+      {
+        "z": 1100,
+        "weights": {
+          "neighborhood": 0.8,
+          "district": 0.2
+        }
+      },
+      {
+        "z": 1800,
+        "weights": {
+          "district": 1
+        }
+      }
+    ],
+    "pools": {
+      "roadside": [
+        "BUSS1",
+        "BUSS4",
+        "CLSTGA11"
+      ],
+      "workshop": [
+        "WHSE11",
+        "WHSE12",
+        "WRHS1",
+        "CLSTGA12"
+      ],
+      "neighborhood": [
+        "VICT11",
+        "VICT12",
+        "VICT13",
+        "VICT14",
+        "CLSTGA11",
+        "CLSTGA13"
+      ]
+    }
+  }
 }

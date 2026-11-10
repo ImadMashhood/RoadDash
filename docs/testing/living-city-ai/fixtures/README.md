@@ -1,0 +1,1 @@
+Historical positive control: exact local pavement/sidewalk surfaces from b4dd5e7:content/world/metropolis.json, route0/station3000, vertices within50m. Used only by the intentionally broken old grounded-down-drive test. Current-map traversal tests keep current geometry. SHA256 b6d7f1476e16be40474fee9e50e1962648d590f6dc4da0ed93dd8f5c95ecb518

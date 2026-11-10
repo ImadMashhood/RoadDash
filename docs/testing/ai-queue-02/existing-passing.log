@@ -1,0 +1,8 @@
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.28s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+test vehicle::tests::queued_ai_physically_passes_a_stopped_car_without_escape_or_recovery ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 355 filtered out; finished in 0.17s
+

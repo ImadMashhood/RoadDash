@@ -1,0 +1,59 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 03s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 4 tests
+test world_gen::metropolis::geometry::landscape::tests::crop_undergrowth_stays_below_flattened_wheat_without_shortening_other_grass ... ok
+test world_gen::metropolis::geometry::crops::tests::physical_runner_bike_and_crash_shapes_leave_persistent_marks ... ok
+test world_gen::metropolis::geometry::crops::tests::airborne_disabled_unplanted_and_paused_actors_cannot_stamp ... ok
+Actual grain crop tiles=635 deformation_bytes=2600960 static_triangles=885312
+test world_gen::metropolis::geometry::crops::tests::actual_grain_geometry_has_bounded_tiles_and_no_crop_colliders ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 311 filtered out; finished in 0.69s
+
+     Running unittests src/bin/city_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/city_preview-819433f16b2abd47)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/prop_preview-5ec74f20892fc13c)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-68dab0f347b409a4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/visibility_probe-b4a0c0a257349862)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/weapon_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/weapon_preview-09ec7aee7ce70a9b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/rr_content-5c98050e5b90df00)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 54 filtered out; finished in 0.01s
+
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/rr_core-a1a57a764823b808)
+
+running 3 tests
+test crops::tests::excludes_air_unplanted_and_teleport_corridors ... ok
+test crops::tests::sweep_persists_without_gaps_and_reset_preserves_planting ... ok
+crop grid: 36000 inactive sweeps 7.441977ms; 576000 body sweeps 122.174522ms; 31200 newly damaged cells; 32768 tile bytes
+test crops::tests::bounded_benchmark ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 93 filtered out; finished in 0.13s
+

@@ -1,0 +1,25 @@
+51d3fd54199a0976cec51757bd211bc7c45347ad docs: record reviewed polish pass 12
+ef7a4826ffa6de94ca49dab3f39c42a50a6be951 feat(combat): add bounded confirmed-hit rider reactions
+a2fb8b045153890b1fcfd80de65c235bf52355f9 docs: record reviewed polish pass 11
+1ebf2b11dc2a60a706f8a8b9294c40dcad201850 fix(animation): align boot skin pivots with authored ankle contacts
+1d7290d9297005ca03a99fa910aa221c8d8dd768 docs: record reviewed polish pass 10
+7263342d182b1f2b7bf274e74b7c0000af1475d0 feat(render): align procedural sky with haze and sunlight
+69cf45e1d15cc684750f0f904d1a4bcbdf7bf7a3 docs: record reviewed polish pass 09
+0a23465c406eeb8096ad2341a6de0efd165838fa feat(render): add near-readable atmospheric depth
+2cf4160c9e1c4f4bffab9961faddc30677e1d46c docs: record reviewed polish pass 08
+75ccf0dc270d1f7166b1e50b3c77cdc0a61f378f feat(world): blend low-rise farm-to-city district facades
+166f47b60e4f8d91bd8ce7a19ad3a8309bec9647 docs: record reviewed polish pass 07
+669cb094f8d1930b81f783c350275f65bbeabac1 feat(render): synchronize authored facade finishes across distance
+c93f8527595c7eecdfa65170d266f273bb89c331 docs: record reviewed polish pass 06
+3bdd9fb668718501cec6fd5e32cceb0dc7c77cf7 feat(render): integrate coherent pavement detail on Metropolis
+8c6e694257a0cc4e919a0ddd5898a00c48911484 docs: record reviewed polish pass 05
+9f89e6005805c213d228a50966ad6ca30466a745 fix(render): tighten contact shadows within existing cascade budget
+1367e29cd99035387684706dd7e00f21cdc72599 docs: record reviewed polish pass 04
+e87ed2be8b6594d07ae7f923cd151698d391baee feat(render): unify late-afternoon lighting and exposure
+09ab1c3f382a59f1b8757e46ebdb19d000938fd4 docs: record reviewed polish pass 03
+b26d7f59c34bf91f9362c4a1d9e5ccb247424b85 feat(world): author shared smooth Metropolis elevation
+be1a1dc84d64138ef253cac989e50238e332e414 docs: record reviewed polish pass 02
+3c88ba368dbc50ec9d12e4274636666476285f4a fix(physics): use pre-contact motion for downed ride-over gate
+150e45495cff02fa7a2b196ca3b2d2aff543c400 docs: record reviewed polish pass 01
+554956de7d02990dc02ffe19050d495e716581b3 fix(render): stabilize retained facade selection
+6518379aaf110f81ee605e858d1bbed37d0f5155 docs: establish sequential gameplay polish handoff

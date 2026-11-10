@@ -1,0 +1,162 @@
+{
+  "after": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--metro-survey"
+    ],
+    "exit": 0,
+    "images": 14,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "shoulder": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--metro-survey"
+    ],
+    "exit": 0,
+    "images": 14,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "recovery": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--smoke-test"
+    ],
+    "exit": 0,
+    "images": 21,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "recovery-baseline": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "exit": 0,
+    "images": 21,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "lod-city": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--lod-survey"
+    ],
+    "exit": 0,
+    "images": 11,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "lod-valley": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--lod-survey"
+    ],
+    "exit": 0,
+    "images": 11,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "world-valley": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--world-survey"
+    ],
+    "exit": 1,
+    "images": 29,
+    "blank_images": [],
+    "error_lines": [],
+    "frozen_inputs": {
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "779cef61a8de8d0a950498a48f04676a4bbf538d0663c28d5cc4788d0be5906a",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/rider-bindings.json": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/models/motion.json": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36"
+    },
+    "inputs_unchanged": true
+  },
+  "lab": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--ragdoll-lab",
+      "--output",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/landscape-graphics/lab.json"
+    ],
+    "exit": 0
+  },
+  "inspect-world": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--inspect-world"
+    ],
+    "exit": 0
+  },
+  "inspect-metropolis": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--inspect-metropolis"
+    ],
+    "exit": 0
+  },
+  "inspect-valley": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--inspect-world",
+      "content/world/valley_world_v1.json",
+      "content/world/building_archetypes_v1.json",
+      "content/tracks/valley.json"
+    ],
+    "exit": 0
+  }
+}

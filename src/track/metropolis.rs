@@ -100,7 +100,9 @@ impl Track {
         } else if d > self.length {
             point += f * (d - self.length)
         }
-        if lane.abs() > self.half_width(d) + self.definition.verge_width {
+        if self.metropolis.is_some() {
+            point.y = self.terrain_height(point.x, point.z) + 0.025;
+        } else if lane.abs() > self.half_width(d) + self.definition.verge_width {
             point.y = self.terrain_height(point.x, point.z) + 0.1;
         }
         (point, q)
@@ -160,17 +162,6 @@ impl Track {
         let b = self.sample_route(route, d + 3., 0.).1 * Vec3::Z;
         a.cross(b).y.atan2(a.dot(b)) / 6.
     }
-}
-pub fn height(x: f32, z: f32) -> f32 {
-    let farm = 12. + 2. * (z / 950.).sin() + 1.3 * (x / 650.).sin();
-    let city = 12.
-        + 0.0042 * z
-        + 8. * (z / 1050.).sin()
-        + 4. * (x / 700. + z / 1300.).sin()
-        + 6. * (z / 450.).sin();
-    let t = ((z + 200.) / 400.).clamp(0., 1.);
-    let blend = t * t * (3. - 2. * t);
-    farm * (1. - blend) + city * blend
 }
 #[cfg(test)]
 mod tests {
@@ -247,6 +238,61 @@ mod tests {
                         assert!(lane.abs() + 0.95 < t.half_width(d));
                     }
                 }
+            }
+        }
+    }
+    #[test]
+    fn playable_bounds_preserve_full_map_and_both_routes() {
+        let t = Track::metropolis().unwrap();
+        let m = t.metropolis.as_ref().unwrap();
+        assert_eq!(t.length, 12000.);
+        assert_eq!(t.points.len(), m.paths[0].points.len());
+        assert_eq!(t.distances, m.paths[0].progress);
+        assert_eq!(t.race_interval().length(), 11000.);
+        for route in 0..2 {
+            for spawn in &t.definition.spawns {
+                let station = t.grid_station(spawn.distance);
+                assert!((212. ..=492.).contains(&station));
+                let p = t.sample_route(route, station, spawn.lane).0;
+                let (d, lane, _) = t.project_route(route, p, station);
+                assert!((d - station).abs() < 0.05);
+                assert!((lane - spawn.lane).abs() < 0.05);
+            }
+            let mut g = GateProgress::default();
+            for d in (500..11500).step_by(5) {
+                let a = d as f32;
+                g.observe_route(
+                    &t,
+                    route,
+                    t.sample_route(route, a, 0.).0,
+                    t.sample_route(route, a + 5., 0.).0,
+                    a,
+                    a + 5.,
+                );
+                assert_eq!(g.completed_laps, u32::from(d == 11495));
+            }
+            // Crossing the old physical endpoint cannot produce another result.
+            g.observe_route(
+                &t,
+                route,
+                t.sample_route(route, 11996., 0.).0,
+                t.sample_route(route, 12000., 0.).0,
+                11996.,
+                12000.,
+            );
+            assert_eq!(g.completed_laps, 1);
+            // Neither direct finish travel nor backwards crossing is a win.
+            for (a, b) in [(11496., 11504.), (11504., 11496.), (500., 11504.)] {
+                let mut fresh = GateProgress::default();
+                fresh.observe_route(
+                    &t,
+                    route,
+                    t.sample_route(route, a, 0.).0,
+                    t.sample_route(route, b, 0.).0,
+                    a,
+                    b,
+                );
+                assert_eq!(fresh.completed_laps, 0);
             }
         }
     }

@@ -312,6 +312,32 @@ mod tests {
         assert!(Config::from_json(&bad).is_err());
     }
     #[test]
+    fn facade_baker_roughness_fixture_matches_actual_runtime_maps() {
+        let fixtures: serde_json::Value = serde_json::from_str(include_str!(
+            "../docs/testing/polish-12/pass07/roughness-fixture.json"
+        ))
+        .unwrap();
+        let c = Config::from_json(JSON).unwrap();
+        for row in fixtures.as_array().unwrap() {
+            let roughness = row["roughness"].as_f64().unwrap() as f32;
+            let profile = c
+                .profiles
+                .iter()
+                .find(|p| p.roughness == roughness)
+                .unwrap();
+            let derived = derive(&vec![128; 512 * 512 * 4], 512, profile);
+            for (index, (x, y)) in [(0, 0), (1, 0), (0, 1), (37, 91), (511, 511)]
+                .into_iter()
+                .enumerate()
+            {
+                assert_eq!(
+                    u64::from(derived.rough[(y * 512 + x) * 4 + 1]),
+                    row["values"][index].as_u64().unwrap()
+                );
+            }
+        }
+    }
+    #[test]
     fn native_png_decoder_matches_every_original_palette_profile() {
         let c = Config::from_json(JSON).unwrap();
         for p in c.profiles {

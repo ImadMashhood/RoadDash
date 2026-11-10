@@ -1,0 +1,7 @@
+pavement maximum sampled triangle interpolation error 0.009556906746816196
+fields maximum sampled triangle interpolation error 0.00946997905521485
+...
+----------------------------------------------------------------------
+Ran 3 tests in 4.383s
+
+OK

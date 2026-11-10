@@ -1,0 +1,11 @@
+[
+  {
+    "name": "destruction",
+    "flags": [
+      "--destruction-survey"
+    ],
+    "exit": 101,
+    "seconds": 19.668134410050698,
+    "sha256": "12e1d2fa5f780f477594c1b616e328d7861cbc2c2024468ce5fe7ea52ef322e6"
+  }
+]

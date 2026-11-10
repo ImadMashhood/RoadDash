@@ -1,0 +1,20 @@
+{
+  "buildings": true,
+  "streets": true,
+  "junctions": true,
+  "parked_cars": true,
+  "pedestrians": false,
+  "street_props": false,
+  "bounds": true,
+  "street_life": true,
+  "route_xz_exact": true,
+  "field_boundaries_exact": true,
+  "old_surfaces": 36618,
+  "new_surfaces": 36635,
+  "field_old_triangles": 674,
+  "field_new_triangles": 6276,
+  "street_props_ids_roles_exact": true,
+  "street_props_max_position_roundoff_m": 2.0211412785967044e-12,
+  "pedestrians_ids_roles_exact": true,
+  "pedestrians_max_position_roundoff_m": 1.9057386696477137e-12
+}

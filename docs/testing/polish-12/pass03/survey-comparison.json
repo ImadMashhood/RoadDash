@@ -1,0 +1,79 @@
+{
+  "before": {
+    "census": {
+      "buildings": 19068,
+      "chunks": 3065,
+      "collision_triangles": 2607483,
+      "crossing_cars": 30,
+      "parked_cars": 122,
+      "physical_routes": 2,
+      "render_triangles": 2903477,
+      "source_collision_batches": 2920,
+      "source_layout_sha256": "bad1cc469404a171315a32906a68275905e4711c2e315430d79980414e357d96",
+      "static_collision_batches": 2529,
+      "street_props": 1494,
+      "walking_pedestrians": 96
+    },
+    "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+    "metrics": {
+      "active_fixed_ticks": 985,
+      "colliders": 4408,
+      "entities": 50529,
+      "fixed_ticks": 1882,
+      "last_gameplay_ms": 0.9575200080871582,
+      "last_physics_ms": 7.049702167510986,
+      "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+      "render_frames": 1883,
+      "target_hz": 60.0,
+      "wall_frame_average_ms": 19.131807327270508,
+      "wall_frame_p95_ms": 40.02693557739258
+    },
+    "p95_target_met": false,
+    "p95_target_ms": 16.7
+  },
+  "after": {
+    "census": {
+      "buildings": 19068,
+      "chunks": 3067,
+      "collision_triangles": 2613119,
+      "crossing_cars": 30,
+      "parked_cars": 122,
+      "physical_routes": 2,
+      "render_triangles": 2909113,
+      "source_collision_batches": 2922,
+      "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777",
+      "static_collision_batches": 2531,
+      "street_props": 1494,
+      "walking_pedestrians": 96
+    },
+    "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+    "metrics": {
+      "active_fixed_ticks": 985,
+      "colliders": 4410,
+      "entities": 50533,
+      "fixed_ticks": 1880,
+      "last_gameplay_ms": 1.1893939971923828,
+      "last_physics_ms": 7.1857781410217285,
+      "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+      "render_frames": 1881,
+      "target_hz": 60.0,
+      "wall_frame_average_ms": 19.977598190307617,
+      "wall_frame_p95_ms": 38.93364334106445
+    },
+    "p95_target_met": false,
+    "p95_target_ms": 16.7
+  },
+  "delta": {
+    "buildings": 0,
+    "chunks": 2,
+    "collision_triangles": 5636,
+    "crossing_cars": 0,
+    "parked_cars": 0,
+    "physical_routes": 0,
+    "render_triangles": 5636,
+    "source_collision_batches": 2,
+    "static_collision_batches": 2,
+    "street_props": 0,
+    "walking_pedestrians": 0
+  }
+}

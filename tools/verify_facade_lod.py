@@ -8,6 +8,7 @@ a=json.loads((OUT/'MANIFEST.json').read_text());source=json.loads((KIT/'MANIFEST
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 assert sha(KIT/'MANIFEST.json')==a['source_manifest_sha256']
 assert sha(ROOT/'tools/bake_facade_lod.py')==a['generator_sha256']
+assert sha(ROOT/'content/world/material_profiles.json')==a['material_profiles_sha256']
 expected={(d['id'],band) for d in source['records'] for band in range(3) if d['lods'][2]['triangles'][band]}
 seen=set();cells=set()
 for t in a['records']:

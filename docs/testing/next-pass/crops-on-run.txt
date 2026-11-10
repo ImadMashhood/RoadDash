@@ -1,0 +1,18 @@
+{
+  "render_mode": "on",
+  "exit": 0,
+  "input_hashes": {
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/.next-pass-binary/road-dash": "fe27212299bbd1fbbab20307d8098f4d9474e0c09747bbcc1cef3235ff163baf",
+    "/home/imad/Documents/ChatGPT/RoadRash/content/world/metropolis.json": "b925e2485662b55520011035c56dc1e6a0a58921f5fe800386ffec5cfe84aa81",
+    "/home/imad/Documents/ChatGPT/RoadRash/assets/shaders/crops.wgsl": "75b66365066ce449dbd6fca091c0f64cb709caa94d472b4b922e7e2458c5fe8d",
+    "/home/imad/Documents/ChatGPT/RoadRash/src/world_gen/metropolis/geometry/crops.rs": "68fa52be1c076b840681fd597182c32300ccc6e9a93f1e7cab80a914c41e518b",
+    "/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core/src/crops.rs": "c8db854c17b3b67e094491d316a4340032ce452f3f212979b8cbb56f7ef63447",
+    "/home/imad/Documents/ChatGPT/RoadRash/src/world_gen/metropolis/geometry/crops/gpu.rs": "8e317c951fff4e88614f2ad826e450c73416877c7ee4f12413d5be7f69033dbf",
+    "/home/imad/Documents/ChatGPT/RoadRash/src/world_gen/metropolis/geometry/crops/survey.rs": "a9059e9339b78287280900e75dd6a5f6c0266438ca7ed2b960d0980a2cdcf809",
+    "/home/imad/Documents/ChatGPT/RoadRash/src/world_gen/metropolis/geometry/landscape.rs": "21381e20c34795c8223c686afb17d4a41642fe39a348f00793cd13aa94d67758"
+  },
+  "inputs_unchanged": true,
+  "captures": 5,
+  "blank_captures": [],
+  "fixture": "scripted physical shape contact; not a free-running crash or GPU benchmark"
+}

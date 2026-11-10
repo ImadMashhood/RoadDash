@@ -18,7 +18,7 @@ class Population(unittest.TestCase):
         # Deliberately block one entire stretch, not just candidate points.
         blocked=dict(position=[7.2,4000],heading=0,kind='bench',size=[2.4,1,200])
         result=pedestrians(self.data,[self.path],walk,[blocked])
-        self.assertEqual(len(result),96)
+        self.assertEqual(len(result),384)
         self.assertEqual(result,pedestrians(self.data,[self.path],walk,[blocked]))
         safe=walk.buffer(-.42).difference(box(6,3900,8.4,4100).buffer(.62))
         for p in result:
@@ -40,3 +40,17 @@ class Population(unittest.TestCase):
             self.assertAlmostEqual(abs(p['position'][1]-4000),2.95)
 
 if __name__=='__main__':unittest.main()
+
+class Crossings(unittest.TestCase):
+    def test_crossings_need_both_sidewalks_clear_complete_corridor_and_spacing(self):
+        from metropolis_population import crossing_routes
+        walk=box(-12,0,-7,1200).union(box(7,0,12,1200));road=box(-7,0,7,1200)
+        walkers=[dict(position=[x,z],station=3300+z,route=0) for z in range(50,1150,50) for x in [-9,9]]
+        selected=crossing_routes(walkers,road,walk,[],24)
+        self.assertGreaterEqual(len(selected),4)
+        self.assertTrue(all(b-a>=240 for a,b in zip(selected,selected[1:])))
+        self.assertTrue(all(LineString([p['position'],p['crossing_end']]).length==18 for p in walkers if 'crossing_end' in p))
+        blocked=[dict(position=[0,600],heading=0,size=[26,2,1200])]
+        fresh=[{k:v for k,v in p.items() if k!='crossing_end'} for p in walkers]
+        self.assertEqual(crossing_routes(fresh,road,walk,blocked),[])
+        self.assertEqual(crossing_routes(fresh,road.difference(box(-1,0,1,1200)),walk,[]),[])

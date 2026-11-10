@@ -12,6 +12,10 @@ struct Smoke {
     layouts: Vec<serde_json::Value>,
 }
 pub(crate) fn install(app: &mut App) {
+    if std::env::var("ROADDASH_VERIFY_ONLINE_UI").as_deref() == Ok("1") {
+        super::online_smoke::install(app);
+        return;
+    }
     app.init_resource::<Smoke>()
         .add_systems(Update, run.after(super::resize))
         .add_systems(PostUpdate, layout.after(bevy::ui::UiSystems::PostLayout));
@@ -259,7 +263,13 @@ fn run(
             }
             assert!(matches!(race.phase, Phase::Countdown | Phase::Racing));
             let equipped: Vec<_> = riders.iter().filter(|r| r.weapon.is_some()).collect();
-            assert_eq!(equipped.len(), 7, "default 14-rival grid must arm half");
+            let mut equipped_ids: Vec<_> = equipped.iter().map(|r| r.id).collect();
+            equipped_ids.sort_unstable();
+            assert_eq!(
+                equipped_ids,
+                [3, 4, 7, 9, 10, 11, 12, 14],
+                "approved dossier weapons must survive offline frontend start"
+            );
             assert!(
                 equipped
                     .iter()
@@ -269,8 +279,8 @@ fn run(
                 held.iter()
                     .filter(|(_, v)| **v == Visibility::Inherited)
                     .count(),
-                7,
-                "all starting clubs must be rendered"
+                equipped.len(),
+                "all starting dossier weapons must be rendered"
             );
             commands
                 .spawn(Screenshot::primary_window())

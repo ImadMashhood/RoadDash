@@ -1,0 +1,36 @@
+{
+  "extra_texture_pixel_bytes_per_cpu_gpu_copy": 2097144,
+  "one_time_cpu_generation_ms": 120.588,
+  "timing_source": "after-recovery/native.txt; one native installation observation",
+  "steady_state_extra_passes": 0,
+  "steady_state_extra_sky_samples": 0,
+  "steady_state_texture_uploads": 0,
+  "cloud_motion": "stationary; removed whole-sky/environment rotation",
+  "before_wall_metrics": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1874,
+    "last_gameplay_ms": 0.9136589765548706,
+    "last_physics_ms": 6.449462890625,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1875,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 18.237741470336914,
+    "wall_frame_p95_ms": 32.107601165771484
+  },
+  "after_wall_metrics": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1873,
+    "last_gameplay_ms": 0.9616789817810059,
+    "last_physics_ms": 10.137051582336426,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1874,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 18.492605209350586,
+    "wall_frame_p95_ms": 33.548309326171875
+  },
+  "limits": "Single bounded wall samples. Approach windows can straddle a camera move; counts/CPU/wall timing only, not GPU cost, temporal/hardware approval or causal speedup. Static collision census equal; actual near detail and resident geometry are compared; no visibility policy changes."
+}

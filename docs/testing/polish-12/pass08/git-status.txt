@@ -1,0 +1,15 @@
+ M README.md
+ M assets/metropolis/PROVENANCE.json
+ M content/world/metropolis.json
+ M content/world/metropolis_facades.json
+ M crates/rr_content/src/lib.rs
+ M docs/CHANGELOG_DEV.md
+ M docs/DECISIONS.md
+ M docs/KNOWN_ISSUES.md
+ M docs/PROGRESS.md
+ M docs/third_party/ASSETS.csv
+ M tools/bake_metropolis.py
+ M tools/test_metropolis_facades.py
+?? crates/rr_content/src/metropolis_palette.rs
+?? docs/testing/polish-12/pass08/
+?? tools/test_metropolis_districts.py

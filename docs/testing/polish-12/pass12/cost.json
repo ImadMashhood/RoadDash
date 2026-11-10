@@ -1,0 +1,11 @@
+{
+  "measurement": "isolated active reaction::apply in optimized test profile opt-level1, 7 batches of100000 samples; no GPU/full-frame claim",
+  "median_nanoseconds": 116.52,
+  "minimum_nanoseconds": 113.26,
+  "maximum_nanoseconds": 119.31,
+  "optional_pulse_bytes_per_rider": 12,
+  "new_meshes_materials_draws_lights_uploads": 0,
+  "new_systems": 0,
+  "implementation": "One optional pulse on Rider; existing scheduler clears stale pulse, existing animator layers4joint rotations only while active and not attacking/staggering. Existing contact IK unchanged.",
+  "limitations": "Does not isolate ECS option-branch cost, cache padding, render/GPU or full crowd timing. Broad frame budgets remain open."
+}

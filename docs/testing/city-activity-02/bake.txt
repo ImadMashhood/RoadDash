@@ -1,0 +1,5 @@
+{
+  "buildings": 19108,
+  "surface_patches": 36615,
+  "manifest_bytes": 11005911
+}

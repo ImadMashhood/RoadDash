@@ -1,0 +1,312 @@
+{
+  "before": {
+    "census": {
+      "buildings": 19068,
+      "chunks": 3067,
+      "collision_triangles": 2613119,
+      "crossing_cars": 30,
+      "parked_cars": 122,
+      "physical_routes": 2,
+      "render_triangles": 2909113,
+      "source_collision_batches": 2922,
+      "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777",
+      "static_collision_batches": 2531,
+      "street_props": 1494,
+      "walking_pedestrians": 96
+    },
+    "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+    "metrics": {
+      "active_fixed_ticks": 985,
+      "colliders": 4410,
+      "entities": 50533,
+      "fixed_ticks": 1877,
+      "last_gameplay_ms": 0.8789039850234985,
+      "last_physics_ms": 8.252559661865234,
+      "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+      "render_frames": 1878,
+      "target_hz": 60.0,
+      "wall_frame_average_ms": 19.039716720581055,
+      "wall_frame_p95_ms": 36.35031509399414
+    },
+    "p95_target_met": false,
+    "p95_target_ms": 16.7,
+    "early_farm_windows": [
+      {
+        "camera_xyz": [
+          -1554.9981689453125,
+          14.770049095153809,
+          -2797.97216796875
+        ],
+        "frames": 121,
+        "window_wall_ms_per_frame": 8.273385165289255,
+        "visible_mesh_entities": 553,
+        "mesh_entities": 17783,
+        "linux_process_memory": {
+          "RssAnon": "2352744 kB",
+          "RssFile": "753044 kB",
+          "VmRSS": "3664844 kB",
+          "VmSwap": "0 kB"
+        }
+      },
+      {
+        "camera_xyz": [
+          -1554.9981689453125,
+          14.770049095153809,
+          -2797.97216796875
+        ],
+        "frames": 145,
+        "window_wall_ms_per_frame": 6.922927862068966,
+        "visible_mesh_entities": 553,
+        "mesh_entities": 17783,
+        "linux_process_memory": {
+          "RssAnon": "2360208 kB",
+          "RssFile": "755092 kB",
+          "VmRSS": "3676404 kB",
+          "VmSwap": "0 kB"
+        }
+      },
+      {
+        "camera_xyz": [
+          -1554.9981689453125,
+          14.770049095153809,
+          -2797.97216796875
+        ],
+        "frames": 142,
+        "window_wall_ms_per_frame": 7.0614764859154935,
+        "visible_mesh_entities": 553,
+        "mesh_entities": 16974,
+        "linux_process_memory": {
+          "RssAnon": "2368888 kB",
+          "RssFile": "755092 kB",
+          "VmRSS": "3685084 kB",
+          "VmSwap": "0 kB"
+        }
+      },
+      {
+        "camera_xyz": [
+          -1563.728515625,
+          17.743492126464844,
+          -2793.188232421875
+        ],
+        "frames": 125,
+        "window_wall_ms_per_frame": 8.0206978,
+        "visible_mesh_entities": 3902,
+        "mesh_entities": 16974,
+        "linux_process_memory": {
+          "RssAnon": "2391816 kB",
+          "RssFile": "757012 kB",
+          "VmRSS": "3711852 kB",
+          "VmSwap": "0 kB"
+        }
+      }
+    ],
+    "early_farm_weighted_wall_ms": 7.523866849906192
+  },
+  "after": {
+    "census": {
+      "buildings": 19068,
+      "chunks": 3067,
+      "collision_triangles": 2613119,
+      "crossing_cars": 30,
+      "grass_batches": 333,
+      "grass_triangles": 285985,
+      "grass_tufts": 57197,
+      "parked_cars": 122,
+      "physical_routes": 2,
+      "render_triangles": 3208310,
+      "shoulder_triangles": 13212,
+      "source_collision_batches": 2922,
+      "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777",
+      "static_collision_batches": 2531,
+      "street_props": 1494,
+      "walking_pedestrians": 96
+    },
+    "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+    "metrics": {
+      "active_fixed_ticks": 985,
+      "colliders": 4410,
+      "entities": 50893,
+      "fixed_ticks": 1878,
+      "last_gameplay_ms": 0.7697400450706482,
+      "last_physics_ms": 5.766077041625977,
+      "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+      "render_frames": 1879,
+      "target_hz": 60.0,
+      "wall_frame_average_ms": 17.685354232788086,
+      "wall_frame_p95_ms": 34.764625549316406
+    },
+    "p95_target_met": false,
+    "p95_target_ms": 16.7,
+    "early_farm_windows": [
+      {
+        "camera_xyz": [
+          -1554.9981689453125,
+          14.770049095153809,
+          -2797.97216796875
+        ],
+        "frames": 131,
+        "window_wall_ms_per_frame": 7.671034213740459,
+        "visible_mesh_entities": 567,
+        "mesh_entities": 18143,
+        "linux_process_memory": {
+          "RssAnon": "2459704 kB",
+          "RssFile": "751392 kB",
+          "VmRSS": "3770152 kB",
+          "VmSwap": "0 kB"
+        }
+      },
+      {
+        "camera_xyz": [
+          -1554.9981689453125,
+          14.770049095153809,
+          -2797.97216796875
+        ],
+        "frames": 145,
+        "window_wall_ms_per_frame": 6.938858979310345,
+        "visible_mesh_entities": 567,
+        "mesh_entities": 17334,
+        "linux_process_memory": {
+          "RssAnon": "2479244 kB",
+          "RssFile": "753440 kB",
+          "VmRSS": "3793788 kB",
+          "VmSwap": "0 kB"
+        }
+      },
+      {
+        "camera_xyz": [
+          -1554.9981689453125,
+          14.770049095153809,
+          -2797.97216796875
+        ],
+        "frames": 145,
+        "window_wall_ms_per_frame": 7.017866779310346,
+        "visible_mesh_entities": 567,
+        "mesh_entities": 17334,
+        "linux_process_memory": {
+          "RssAnon": "2479244 kB",
+          "RssFile": "753440 kB",
+          "VmRSS": "3793788 kB",
+          "VmSwap": "0 kB"
+        }
+      },
+      {
+        "camera_xyz": [
+          -1563.728515625,
+          17.743492126464844,
+          -2793.188232421875
+        ],
+        "frames": 131,
+        "window_wall_ms_per_frame": 7.677450870229008,
+        "visible_mesh_entities": 3936,
+        "mesh_entities": 17334,
+        "linux_process_memory": {
+          "RssAnon": "2509572 kB",
+          "RssFile": "771936 kB",
+          "VmRSS": "3860916 kB",
+          "VmSwap": "0 kB"
+        }
+      }
+    ],
+    "early_farm_weighted_wall_ms": 7.3086535887681165
+  },
+  "preserved_census_keys": [
+    "buildings",
+    "chunks",
+    "collision_triangles",
+    "source_collision_batches",
+    "static_collision_batches",
+    "physical_routes",
+    "source_layout_sha256",
+    "crossing_cars",
+    "street_props",
+    "parked_cars",
+    "walking_pedestrians"
+  ],
+  "grass_views": [
+    {
+      "view": 0,
+      "chainage": -280.0,
+      "grass_visible_batches": 7,
+      "grass_visible_triangles": 12560
+    },
+    {
+      "view": 1,
+      "chainage": 900.0,
+      "grass_visible_batches": 11,
+      "grass_visible_triangles": 14630
+    },
+    {
+      "view": 2,
+      "chainage": 3100.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 3,
+      "chainage": 3250.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 4,
+      "chainage": 3500.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 5,
+      "chainage": 4300.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 6,
+      "chainage": 4300.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 7,
+      "chainage": 6800.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 8,
+      "chainage": 6800.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 9,
+      "chainage": 8500.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 10,
+      "chainage": 8500.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 11,
+      "chainage": 10400.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 12,
+      "chainage": 10400.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    },
+    {
+      "view": 13,
+      "chainage": 11900.0,
+      "grass_visible_batches": 0,
+      "grass_visible_triangles": 0
+    }
+  ],
+  "limits": "Single native samples. Early-farm one-second windows include asset warmup and can straddle camera moves; no isolated900m timing, GPU attribution, causal speedup or full-course/Windows/hardware certificate. Final240frame p95 is downtown after grass fades. Collision-soup regression and preservation.json supplement count equality."
+}

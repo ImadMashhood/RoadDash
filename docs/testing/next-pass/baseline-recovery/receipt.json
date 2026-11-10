@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/.next-pass-binary/road-dash",
+    "--smoke-test",
+    "--ragdoll-baseline"
+  ],
+  "exit": 0,
+  "frozen_inputs": {
+    "/home/imad/Documents/ChatGPT/RoadRash/content/world/living_city.json": "514161ca115f430a0d5bd065294cebe5c8049fe1ae8cb484846b9081181fc102",
+    "/home/imad/Documents/ChatGPT/RoadRash/content/catalog.json": "791caa868c54b5cdfd2bd6828235a5d5e77c53b33b6580ea56d92b9e7f4c84cf",
+    "/home/imad/Documents/ChatGPT/RoadRash/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+    "/home/imad/Documents/ChatGPT/RoadRash/content/world/metropolis.json": "b925e2485662b55520011035c56dc1e6a0a58921f5fe800386ffec5cfe84aa81",
+    "/home/imad/Documents/ChatGPT/RoadRash/assets/shaders/metropolis_facade.wgsl": "ce2a0bf23db1624fe725c1dced157d7c10173b6b44d3e4fca9ef2979c6e1aa53",
+    "/home/imad/Documents/ChatGPT/RoadRash/assets/shaders/crops.wgsl": "75b66365066ce449dbd6fca091c0f64cb709caa94d472b4b922e7e2458c5fe8d",
+    "/home/imad/Documents/ChatGPT/RoadRash/content/world/metropolis_elevation.json": "f8f51cacdcca25836a82e3a9d70bd1c3a7e745d5cc57c2ff6b168c9418811b30",
+    "/home/imad/Documents/ChatGPT/RoadRash/assets/textures/officer-base.png": "075404c5573c71ad48d2434486f5450873afe4f1063c480270fd9b82c0e0fd32",
+    "/home/imad/Documents/ChatGPT/RoadRash/assets/models/riding.rdmesh": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/.next-pass-binary/road-dash": "fe27212299bbd1fbbab20307d8098f4d9474e0c09747bbcc1cef3235ff163baf"
+  },
+  "inputs_unchanged": true
+}

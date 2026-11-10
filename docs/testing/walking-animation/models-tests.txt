@@ -1,0 +1,17 @@
+
+running 12 tests
+test models::tests::neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms ... ok
+test models::tests::visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose ... ok
+test models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions ... ok
+test models::tests::visual_intake_rejects_nonfinite_vertices_bad_joint_ids_and_physics_payloads ... ok
+test models::tests::distal_skin_weights_are_normalized_and_all_five_joints_are_used ... ok
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+test models::tests::authored_ankle_pivots_preserve_weights_and_neutral_mesh_surface ... ok
+test models::tests::glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices ... ok
+test models::tests::patrol_presentation_is_exclusive_and_persists_on_wrecks_without_physics ... ok
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... ok
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... ok
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 314 filtered out; finished in 1.33s
+

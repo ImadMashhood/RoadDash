@@ -1,0 +1,20 @@
+{
+  "base": "ef3eecc0",
+  "manifest_identical": true,
+  "sha256": "4ad912fc878f99eb485ce03cb6fb0b4848a57b9fbe147866eda5f5d588cb8850",
+  "hall": {
+    "id": "civic-city_hall",
+    "position": [
+      293.6059341976553,
+      3955.668733365865
+    ],
+    "heading": 1.752260036903085,
+    "size": [
+      300.0,
+      145.0
+    ],
+    "context_buildings": 31
+  },
+  "trees": 120,
+  "all_buildings": 19108
+}

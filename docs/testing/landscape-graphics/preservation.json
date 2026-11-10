@@ -1,0 +1,18 @@
+{
+  "base": "f4086433a98e0c92bed48846d922d7dbe2486842",
+  "unchanged_sha256": {
+    "Cargo.toml": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+    "Cargo.lock": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+    "content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+    "src/track.rs": "eb7b72593b2a34ff70035107bce5152b7909e9b660e6842ee581b5b018acc80a",
+    "src/track/metropolis.rs": "508e7bb3f6576603e4f604367350a3abef31e1a26d56b7fba80d61841d325cf4",
+    "src/game.rs": "5d7ea5a49b5720a1d2da615a5acdcfccf89239cbb7fee692d17bedb6cb28a72b",
+    "src/recovery.rs": "62a3586e2c28f97376818ed6f55d9956d63681ed8c53b99d919fd634f32c3c43",
+    "src/models/tests.rs": "ca643f86a37744ea0a900bbc89fdda4591a78a6b5d61357fc9287f75d7aeeb41",
+    "src/world_gen/ground.rs": "2f6af417347837301d734b8ea53490ae57819ff4c401e865c70f3736a8a2d1ab",
+    "src/world_gen/city/mod.rs": "37f5f5a740a8e12b354b467cf921de7b8ffa930234a1715a06e7bfad4dc5856b"
+  },
+  "domain_content_assets_diff": [],
+  "limits": "Exact source/input preservation plus collision-soup regression and native census; no hardware/full-route authority claim."
+}

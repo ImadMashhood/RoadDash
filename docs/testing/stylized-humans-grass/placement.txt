@@ -1,0 +1,1 @@
+{'cows': 16, 'props': 16, 'ready_prop_scenes': 16, 'minimum_body_to_field_boundary_m': 4.533234749277701, 'actual_paved_surfaces_clear': True, 'pairwise_occupant_clear': True, 'method': 'Independent Shapely on native positions and source polygon rings, including holes; not collider or GPU performance certification.'}

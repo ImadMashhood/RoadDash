@@ -1,0 +1,7 @@
+2026-11-10T02:27:50.075675Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-10T02:27:50.121231Z  INFO bevy_render::renderer: AdapterInfo { name: "NVIDIA GeForce RTX 3080", vendor: 4318, device: 8726, device_type: DiscreteGpu, driver: "NVIDIA", driver_info: "615.78.08", backend: Vulkan }
+2026-11-10T02:27:50.324637Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-3261002.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-10T02:27:53.999474Z  INFO road_dash::world_gen::metropolis::geometry::crops: Crops: 147552 wheat stems; 885312 static triangles; 635 tiles / 2600960 deformation bytes
+2026-11-10T02:27:56.284956Z  WARN present_frames: wgpu_hal::vulkan: Suboptimal present of frame 1

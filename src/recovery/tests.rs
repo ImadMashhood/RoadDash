@@ -356,3 +356,85 @@ fn walking_backward_across_finish_is_rejected_even_with_prior_gates() {
     );
     assert!(app.world().get::<Rider>(owner).unwrap().finished.is_none());
 }
+
+#[test]
+fn npc_walker_exits_concave_trap_and_reaches_bike_without_rescue() {
+    let (mut app, owner, runner, _wreck, q) = foot_scene(100., 25.);
+    app.world_mut().get_mut::<Rider>(owner).unwrap().id = 1;
+    let origin = app.world().get::<Transform>(runner).unwrap().translation;
+    app.world_mut()
+        .resource_mut::<RecoveryTuning>()
+        .0
+        .rescue_after = 100.;
+    for (offset, size) in [
+        (Vec3::new(0., 0.5, 8.), Vec3::new(14., 3., 2.)),
+        (Vec3::new(-6., 0.5, -1.), Vec3::new(2., 3., 20.)),
+        (Vec3::new(6., 0.5, -1.), Vec3::new(2., 3., 20.)),
+    ] {
+        app.world_mut().spawn((
+            RigidBody::Fixed,
+            Collider::cuboid(size.x / 2., size.y / 2., size.z / 2.),
+            Transform::from_translation(origin + q * offset).with_rotation(q),
+            crate::world::Obstacle,
+        ));
+    }
+    let mut behind = false;
+    let mut arrived = false;
+    for _ in 0..2400 {
+        app.update();
+        if let Some(t) = app.world().get::<Transform>(runner) {
+            behind |= (q.inverse() * (t.translation - origin)).z < -10.;
+        }
+        let stage = app.world().get::<Recovery>(owner).unwrap().stage;
+        if matches!(stage, RecoveryStage::Mounting | RecoveryStage::Riding) {
+            arrived = true;
+            break;
+        }
+    }
+    assert!(
+        behind && arrived,
+        "walker must go out the back and around the enclosure: behind={behind} arrived={arrived}"
+    );
+    assert!(!app.world().resource::<Race>().message.contains("RESCUE"));
+}
+
+#[test]
+fn remote_human_auto_seek_matches_local_player_around_blocking_wall() {
+    fn run(id: usize) -> (Vec3, Vec<Vec3>) {
+        let (mut app, owner, runner, _, q) = foot_scene(100., 12.);
+        let start = app.world().get::<Transform>(runner).unwrap().translation;
+        {
+            let mut rider = app.world_mut().get_mut::<Rider>(owner).unwrap();
+            rider.id = id;
+            rider.networked = true;
+            rider.remote_human = true;
+        }
+        app.insert_resource(crate::online::AuthorityInputs::default());
+        if id != 0 {
+            app.world_mut()
+                .resource_mut::<crate::online::AuthorityInputs>()
+                .0
+                .insert(id, rr_core::online::Input::default());
+        }
+        app.world_mut().spawn((
+            RigidBody::Fixed,
+            Collider::cuboid(20., 5., 0.5),
+            Transform::from_translation(start + q * Vec3::Z * 3.).with_rotation(q),
+        ));
+        step(&mut app, 90);
+        let position = app.world().get::<Transform>(runner).unwrap().translation;
+        let recovery = app.world().get::<Recovery>(owner).unwrap();
+        assert_eq!(recovery.stage, RecoveryStage::Running);
+        (position, recovery.walk_path.clone())
+    }
+    let (local, local_path) = run(0);
+    let (remote, remote_path) = run(1);
+    assert!(
+        local.distance(remote) < 0.001,
+        "local={local:?} remote={remote:?}"
+    );
+    assert_eq!(
+        local_path, remote_path,
+        "remote humans must not enter NPC-only live routing"
+    );
+}

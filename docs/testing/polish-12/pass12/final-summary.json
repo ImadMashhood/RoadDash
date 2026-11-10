@@ -1,0 +1,71 @@
+{
+  "anatomy-reactions": {
+    "exit": 0,
+    "inputs_unchanged": true,
+    "images": 35,
+    "reaction_images": 20,
+    "confirmed_reactions": [
+      "Native confirmed reaction: side=-1 kick=false at=0.166667",
+      "Native confirmed reaction: side=1 kick=false at=0.833333",
+      "Native confirmed reaction: side=-1 kick=true at=1.499999",
+      "Native confirmed reaction: side=1 kick=true at=2.166665"
+    ],
+    "panics_or_errors": false,
+    "nonblank": true
+  },
+  "baseline-reactions": {
+    "exit": 0,
+    "inputs_unchanged": true,
+    "images": 35,
+    "reaction_images": 20,
+    "confirmed_reactions": [
+      "Native confirmed reaction: side=-1 kick=false at=0.166667",
+      "Native confirmed reaction: side=1 kick=false at=0.833333",
+      "Native confirmed reaction: side=-1 kick=true at=1.499999",
+      "Native confirmed reaction: side=1 kick=true at=2.166665"
+    ],
+    "panics_or_errors": false,
+    "nonblank": true
+  },
+  "anatomy-recovery": {
+    "exit": 0,
+    "inputs_unchanged": true,
+    "images": 21,
+    "reaction_images": 0,
+    "confirmed_reactions": [],
+    "panics_or_errors": false,
+    "nonblank": true
+  },
+  "baseline-recovery": {
+    "exit": 0,
+    "inputs_unchanged": true,
+    "images": 21,
+    "reaction_images": 0,
+    "confirmed_reactions": [],
+    "panics_or_errors": false,
+    "nonblank": true
+  },
+  "anatomy-actors": {
+    "exit": 0,
+    "inputs_unchanged": true,
+    "images": 2,
+    "reaction_images": 0,
+    "confirmed_reactions": [],
+    "panics_or_errors": false,
+    "nonblank": true
+  },
+  "baseline-actors": {
+    "exit": 0,
+    "inputs_unchanged": true,
+    "images": 2,
+    "reaction_images": 0,
+    "confirmed_reactions": [],
+    "panics_or_errors": false,
+    "nonblank": true
+  },
+  "lab": {
+    "cases": 18,
+    "finite": true,
+    "fifteen_anatomy_sleep": 240
+  }
+}

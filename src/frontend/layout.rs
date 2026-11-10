@@ -6,7 +6,7 @@ pub(super) const ACCENT: Color = Color::srgb(0.96, 0.40, 0.22);
 pub(super) struct MenuChoice;
 fn rect(page: Page, index: usize, count: usize) -> [f32; 4] {
     if page == Page::Main {
-        [64., 29. + index as f32 * 12., 30., 10.]
+        [5., 29. + index as f32 * 12., 39., 10.]
     } else {
         let width = 90. / count.max(1) as f32;
         [5. + index as f32 * width, 78., width - 2., 12.]
@@ -52,7 +52,7 @@ pub(super) fn render(
     ];
     if page == Page::Main {
         gradients.push(LinearGradient {
-            angle: LinearGradient::TO_RIGHT,
+            angle: LinearGradient::TO_LEFT,
             stops: vec![
                 ColorStop::new(shade(0.), percent(0.)),
                 ColorStop::new(shade(0.12), percent(40.)),
@@ -167,6 +167,91 @@ pub(super) fn render(
     );
     commands.entity(canvas).add_child(hint);
 }
+pub(super) fn button(
+    commands: &mut Commands,
+    canvas: Entity,
+    index: usize,
+    entry: &Entry,
+    area: [f32; 4],
+    loading: bool,
+) {
+    let mut n = node(area);
+    n.align_items = AlignItems::Center;
+    n.padding = UiRect::axes(px(18.), px(8.));
+    n.border = UiRect::left(px(3.));
+    let button = commands
+        .spawn((
+            n,
+            BackgroundColor(Color::srgba(0.015, 0.012, 0.02, 0.94)),
+            BorderColor::all(Color::NONE),
+        ))
+        .id();
+    if let Some(action) = entry.action.filter(|_| !loading) {
+        commands
+            .entity(button)
+            .insert((Button, MenuButton { index, action }));
+    }
+    let label = text(
+        commands,
+        &entry.text,
+        if entry.text.len() > 38 { 18. } else { 24. },
+        Node::default(),
+        if entry.action.is_some() {
+            PAPER
+        } else {
+            PAPER.with_alpha(0.45)
+        },
+    );
+    commands.entity(button).add_child(label);
+    commands.entity(canvas).add_child(button);
+}
+pub(super) fn render_online(
+    commands: &mut Commands,
+    canvas: Entity,
+    heading: &str,
+    body: &str,
+    rows: &[Entry],
+) {
+    let panel = commands
+        .spawn((
+            node([3., 3., 94., 94.]),
+            BackgroundColor(Color::srgba(0.014, 0.018, 0.025, 0.88)),
+        ))
+        .id();
+    commands.entity(canvas).add_child(panel);
+    for (value, size, area, color) in [
+        (
+            "ROAD / DASH   /   MULTIPLAYER",
+            16.,
+            [6., 6., 87., 4.],
+            ACCENT,
+        ),
+        (heading, 48., [6., 12., 87., 10.], PAPER),
+        (body, 23., [6., 28., 47., 37.], PAPER),
+    ] {
+        let label = text(commands, value, size, node(area), color);
+        commands.entity(canvas).add_child(label);
+    }
+    for (i, entry) in rows.iter().enumerate() {
+        button(
+            commands,
+            canvas,
+            i,
+            entry,
+            [58., 28. + i as f32 * 13., 35., 10.],
+            false,
+        );
+    }
+    let hint = text(
+        commands,
+        "ARROWS / D-PAD  Navigate     ENTER / A  Select     ESC / B  Back",
+        16.,
+        node([6., 88., 87., 5.]),
+        PAPER.with_alpha(0.65),
+    );
+    commands.entity(canvas).add_child(hint);
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

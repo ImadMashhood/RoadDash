@@ -1,0 +1,12 @@
+2026-11-09T22:47:54.199466Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T22:47:54.441433Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/stylized-humans-grass/skins/performance/performance-3087642.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-09T22:47:57.723167Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape geometry generated in 427.192ms
+2026-11-09T22:47:57.723237Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape: 54053 tufts / 333 batches / 972954 triangles; caps 120000/600
+2026-11-09T22:47:57.920969Z  INFO road_dash::sky: Sky display cube: 2097144 bytes, generated in 116.216ms; stationary world sun/cloud field
+2026-11-09T22:47:59.478672Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+Actor skin survey source: AVGMSM06
+Actor skin survey source: CTM1A00
+Actor skin survey source: JGW100
+Actor skin native close survey completed; visual acceptance remains open

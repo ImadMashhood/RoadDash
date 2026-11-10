@@ -1,9 +1,13 @@
-//! Offline entry flow, inspired by the original screen relationships, not its code.
+//! Entry navigation. Online transport and simulation remain outside this pure flow.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub enum Page {
     #[default]
     Splash,
     Main,
+    Online,
+    Host,
+    Join,
+    Lobby,
     Rider,
     Street,
     Courses,
@@ -24,6 +28,21 @@ pub enum Mode {
 pub enum Action {
     Continue,
     Thrash,
+    Online,
+    Host,
+    Join,
+    QuickPlay,
+    TogglePublic,
+    NextMap,
+    CreateLobby,
+    JoinLobby,
+    EditCode,
+    ToggleCodeType,
+    CodePrevious,
+    CodeNext,
+    CodeUp,
+    CodeDown,
+    StartOnline,
     Street,
     Courses,
     Garage,
@@ -70,6 +89,11 @@ impl Flow {
             }
             (P::Portrait, A::Back) => P::Bar,
             (P::Splash, A::Continue) => P::Main,
+            (P::Main, A::Online) => P::Online,
+            (P::Online, A::Host) => P::Host,
+            (P::Online, A::Join) => P::Join,
+            (P::Host | P::Join | P::Lobby, A::Back) => P::Online,
+            (P::Online, A::Back) => P::Main,
             (P::Main, A::Thrash) => {
                 self.mode = Mode::Thrash;
                 P::Courses

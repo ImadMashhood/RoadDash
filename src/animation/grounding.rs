@@ -41,22 +41,26 @@ pub(super) fn apply(
     body: &Transform,
     context: &ReadRapierContext,
     dt: f32,
-    stride: f32,
 ) {
     let Some(runner) = rec.runner else { return };
     let Ok(ctx) = context.single() else { return };
     let anchor = body.mul_transform(Transform::from_xyz(0.0, -0.95, 0.0));
     let inverse = anchor.to_matrix().inverse();
     let frames = lib.world_pose(a.current);
-    let phase = (rec.walk_distance / stride).rem_euclid(1.0);
+    let phase = a.gait.phase;
     for limb in &lib.data.limbs {
         if limb.bit < 2 {
             continue;
         }
         let i = (limb.bit - 2) as usize;
         let stance = rec.stage == RecoveryStage::GettingUp
-            || rec.walk_velocity.with_y(0.0).length() < 0.2
-            || (phase < 0.5) == (i == 0);
+            || if rec.walk_velocity.with_y(0.).length() < 0.2 {
+                // Let the settling pose bring feet under the hips before taking
+                // idle locks; otherwise a stopped mid-swing stride stays spread.
+                a.gait.speed < 0.2
+            } else {
+                locomotion::contact(phase, a.gait.speed, i)
+            };
         let sole =
             anchor.transform_point(frames[limb.end].transform_point(Vec3::from_array(limb.offset)));
         // A new stance always captures a new contact, even if exponential release
@@ -112,7 +116,7 @@ pub(super) fn apply(
                 0.0
             },
             dt,
-            0.06,
+            if stance { 0.015 } else { 0.035 },
         );
         // Exponential decay never reaches zero. Finite release prevents stale
         // locks surviving a swing; the next stance independently reacquires.
@@ -125,9 +129,38 @@ pub(super) fn apply(
         {
             a.current.planted[i] =
                 Some(inverse.transform_point3(sole.lerp(point, a.plant_weight[i])));
-            a.current.normals[i] = anchor.rotation.inverse() * normal;
+            a.current.normals[i] = a.current.normals[i]
+                .lerp(anchor.rotation.inverse() * normal, a.plant_weight[i])
+                .normalize_or_zero();
         }
     }
+    // Reach-aware pelvis height is visual only. A back foot on an uphill support
+    // must not be pulled off the ground by the capsule moving up the slope.
+    // Lower only as far as required by the existing anatomical chain; recover
+    // height smoothly after lift-off so contacts cannot produce a pelvis pop.
+    let fitted = lib.world_pose(a.current);
+    let mut required = 0f32;
+    for limb in lib.data.limbs.iter().filter(|l| l.bit >= 2) {
+        let side = (limb.bit - 2) as usize;
+        if !a.plant_stance[side] || a.plant_weight[side] < 0.5 {
+            continue;
+        }
+        if let Some(sole) = a.current.planted[side] {
+            let ankle = sole - fitted[limb.end].rotation * Vec3::from_array(limb.offset);
+            let hip = fitted[limb.upper].translation;
+            let reach = Vec3::from_array(lib.data.offsets[limb.lower]).length()
+                + Vec3::from_array(lib.data.offsets[limb.end]).length()
+                - 0.008;
+            let vertical = (reach * reach - (ankle - hip).xz().length_squared())
+                .max(0.)
+                .sqrt();
+            required = required.min(ankle.y + vertical - hip.y);
+        }
+    }
+    a.ground_drop = required
+        .min(a.ground_drop * (-dt / 0.10).exp())
+        .clamp(-0.18, 0.);
+    a.current.root.y += a.ground_drop;
 }
 #[cfg(test)]
 mod tests {
@@ -140,6 +173,8 @@ mod tests {
     ) {
         for (mut a, rec) in &mut q {
             a.current = lib.standing();
+            a.gait.phase = (rec.walk_distance / 3.2).rem_euclid(1.);
+            a.gait.speed = 6.;
             apply(
                 &lib,
                 &mut a,
@@ -147,7 +182,6 @@ mod tests {
                 bodies.get(rec.runner.unwrap()).unwrap(),
                 &context,
                 1.0 / 60.0,
-                3.2,
             );
         }
     }

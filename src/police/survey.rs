@@ -8,6 +8,8 @@ pub struct Survey {
     started: f32,
     states: std::collections::BTreeSet<String>,
     foot: bool,
+    pursuit_capture: bool,
+    arrest_capture: bool,
     falling: bool,
     done: u32,
     occluder: Option<Entity>,
@@ -92,6 +94,15 @@ pub fn run(
             "speeding scenario never escaped: {:?}",
             police.mind
         );
+        if police.mind.state == State::Pursue && !survey.pursuit_capture {
+            std::fs::create_dir_all("docs/testing/part08-police/native").unwrap();
+            commands
+                .spawn(Screenshot::primary_window())
+                .observe(save_to_disk(
+                    "docs/testing/part08-police/native/pursuit.png",
+                ));
+            survey.pursuit_capture = true;
+        }
         if police.mind.state.wanted() && survey.occluder.is_none() {
             let (_, pr, _, pt) = riders.iter().find(|(_, r, _, _)| r.id == 0).unwrap();
             let (_, cr, _, ct) = riders.iter().find(|(_, r, _, _)| r.police).unwrap();
@@ -183,6 +194,15 @@ pub fn run(
             println!("Police native: stopped crash; preserve falling/getup before foot arrest");
         }
     } else if survey.phase == 3 {
+        if police.mind.arrest > 0.2 && !survey.arrest_capture && !race.arrested {
+            std::fs::create_dir_all("docs/testing/part08-police/native").unwrap();
+            commands
+                .spawn(Screenshot::primary_window())
+                .observe(save_to_disk(
+                    "docs/testing/part08-police/native/arrest-contact.png",
+                ));
+            survey.arrest_capture = true;
+        }
         assert!(
             race.elapsed - survey.started < 40.,
             "foot scenario did not arrest: {:?}",

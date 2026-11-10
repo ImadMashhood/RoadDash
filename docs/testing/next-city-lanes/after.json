@@ -1,0 +1,13 @@
+{
+  "body_samples": 30120,
+  "paint_samples": 17828,
+  "body_dimensions_m": [
+    1.9,
+    3.9
+  ],
+  "fine_sample_step_m": 1,
+  "road_tolerance_m": 0.025,
+  "visible_road_sidewalk_overlap_m2": 1.5579855370354734e-06,
+  "visible_road_building_overlap_m2": 0.0,
+  "failures": []
+}

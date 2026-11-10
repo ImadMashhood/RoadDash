@@ -1,0 +1,28 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 44s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 2 tests
+
+thread 'animation::reaction::tests::recoil_preserves_root_pelvis_held_landmarks_and_chain_lengths' (3012591) panicked at src/animation/reaction.rs:55:33:
+key=2040 side=-1 kick=false limb=0 error=0.00034493016
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test animation::reaction::tests::recoil_preserves_root_pelvis_held_landmarks_and_chain_lengths ... FAILED
+
+thread 'animation::reaction::tests::reaction_has_no_authority_and_attack_pause_recovery_reset_keep_priority' (3012590) panicked at src/animation/reaction.rs:121:9:
+assertion `left == right` failed
+  left: [Quat(-8.557136e-9, 1.7114273e-8, -2.9289833e-16, 1.0), Quat(0.08715572, 5.3633576e-15, 2.9832126e-9, 0.9961947), Quat(0.27429613, -0.20626262, -0.19314592, 0.919191), Quat(0.08682416, -0.08682414, -0.007596158, 0.99240386), Quat(-0.13052626, 6.0118964e-8, 6.1997696e-8, 0.9914449), Quat(-0.32589418, -0.20402497, 0.07224896, 0.9202972), Quat(-0.4999999, -0.50000006, -0.49999994, 0.50000006), Quat(0.3477617, -0.28056112, -0.21917933, 0.8673567), Quat(-0.12147679, 0.002054363, -0.5385421, 0.8337935), Quat(-0.14893878, 0.7381135, 0.30285814, 0.584194), Quat(-0.5, 0.50000006, 0.50000006, 0.49999997), Quat(-0.31567273, 0.40241414, 0.4016032, 0.75968975), Quat(0.04247159, -0.03564406, 0.07996698, 0.9952542), Quat(-6.239862e-8, 0.0, 9.615907e-8, 1.0), Quat(0.6121544, 0.32881558, 0.033930603, 0.71832865), Quat(0.83086056, 0.04269516, 0.3281173, 0.4474225), Quat(-0.7779279, -0.006180139, 0.0015997736, 0.6283212), Quat(0.61612374, -0.34892842, -0.03173297, 0.7054315), Quat(0.819576, -0.09112127, -0.30146083, 0.47865796), Quat(-0.7738935, 0.043307904, -0.057008877, 0.6292561)]
+ right: [Quat(-8.557136e-9, 1.7114273e-8, -2.9289833e-16, 1.0), Quat(0.08715572, 5.3633576e-15, 2.9832126e-9, 0.9961947), Quat(0.27429613, -0.20626262, -0.19314592, 0.919191), Quat(0.08682416, -0.08682414, -0.007596158, 0.99240386), Quat(-0.13052626, 6.0118964e-8, 6.1997696e-8, 0.9914449), Quat(-0.32589415, -0.20402496, 0.07224895, 0.92029715), Quat(-0.4999999, -0.50000006, -0.49999994, 0.50000006), Quat(0.3477617, -0.28056112, -0.21917933, 0.8673567), Quat(-0.12147679, 0.002054363, -0.5385421, 0.8337935), Quat(-0.14893878, 0.7381135, 0.30285814, 0.584194), Quat(-0.5, 0.50000006, 0.50000006, 0.49999997), Quat(-0.31567273, 0.40241414, 0.4016032, 0.75968975), Quat(0.04247159, -0.03564406, 0.07996698, 0.9952542), Quat(-6.239862e-8, 0.0, 9.615907e-8, 1.0), Quat(0.6121544, 0.32881558, 0.033930603, 0.71832865), Quat(0.83086056, 0.04269516, 0.3281173, 0.4474225), Quat(-0.7779279, -0.006180139, 0.0015997736, 0.6283212), Quat(0.61612374, -0.34892842, -0.03173297, 0.7054315), Quat(0.819576, -0.09112127, -0.30146083, 0.47865796), Quat(-0.7738935, 0.043307904, -0.057008877, 0.6292561)]
+test animation::reaction::tests::reaction_has_no_authority_and_attack_pause_recovery_reset_keep_priority ... FAILED
+
+failures:
+
+failures:
+    animation::reaction::tests::reaction_has_no_authority_and_attack_pause_recovery_reset_keep_priority
+    animation::reaction::tests::recoil_preserves_root_pelvis_held_landmarks_and_chain_lengths
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 296 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--lib`

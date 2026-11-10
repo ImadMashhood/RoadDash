@@ -1,0 +1,74 @@
+{
+  "scenarios": 18,
+  "all_finite": true,
+  "max_anchor_error_m": 0.046063438,
+  "fifteen_crashes": [
+    {
+      "mode": "baseline",
+      "bodies": 165,
+      "max_anchor_error_m": 0.0021164527,
+      "final_max_speed_mps": 0.2771159,
+      "sleeping_bodies": 0,
+      "finite": true
+    },
+    {
+      "mode": "biomechanical",
+      "bodies": 240,
+      "max_anchor_error_m": 0.0021087688,
+      "final_max_speed_mps": 0.0,
+      "sleeping_bodies": 240,
+      "finite": true
+    }
+  ],
+  "native": {
+    "before-poses": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 38,
+      "nonblank": true,
+      "runtime_errors": false
+    },
+    "after-poses": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 38,
+      "nonblank": true,
+      "runtime_errors": false
+    },
+    "anatomy-recovery": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 21,
+      "nonblank": true,
+      "runtime_errors": false
+    },
+    "baseline-recovery": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 21,
+      "nonblank": true,
+      "runtime_errors": false
+    },
+    "anatomy-actors": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 2,
+      "nonblank": true,
+      "runtime_errors": false
+    },
+    "baseline-actors": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 2,
+      "nonblank": true,
+      "runtime_errors": false
+    },
+    "npc-skin": {
+      "exit": 0,
+      "frozen_inputs_unchanged": true,
+      "screenshots": 12,
+      "nonblank": true,
+      "runtime_errors": false
+    }
+  }
+}

@@ -139,3 +139,62 @@ impl StrikeClock {
         }
     }
 }
+
+/// One confirmed mounted impact, sampled on the race clock. Presentation only.
+/// Replacement rather than accumulation bounds repeated/opposite-side hits.
+#[derive(Clone, Copy, Debug)]
+pub struct HitReaction {
+    pub at: f32,
+    pub direction: f32,
+    pub kicking: bool,
+}
+impl HitReaction {
+    pub fn new(at: f32, local_away_x: f32, kicking: bool) -> Self {
+        Self {
+            at,
+            direction: if local_away_x < 0.0 { -1.0 } else { 1.0 },
+            kicking,
+        }
+    }
+    pub fn active(self, now: f32) -> bool {
+        let age = now - self.at;
+        age.is_finite() && (0.0..self.duration()).contains(&age)
+    }
+    pub fn duration(self) -> f32 {
+        if self.kicking { 0.38 } else { 0.30 }
+    }
+    /// Immediate small contact response, peak at 50ms, smooth return to neutral.
+    pub fn weight(self, now: f32) -> f32 {
+        if !self.active(now) {
+            return 0.0;
+        }
+        let age = now - self.at;
+        if age < 0.05 {
+            0.25 + 0.75 * smoothstep(age / 0.05)
+        } else {
+            1.0 - smoothstep((age - 0.05) / (self.duration() - 0.05))
+        }
+    }
+}
+#[cfg(test)]
+mod hit_reaction_tests {
+    use super::*;
+    #[test]
+    fn impact_pulse_is_bounded_mirrored_finite_and_expires() {
+        for kicking in [false, true] {
+            for side in [-1.0, 1.0] {
+                let hit = HitReaction::new(4.0, side, kicking);
+                assert_eq!(hit.direction, side);
+                assert_eq!(hit.weight(4.0), 0.25);
+                assert!((hit.weight(4.05) - 1.0).abs() < 1e-5);
+                for step in 0..1000 {
+                    let w = hit.weight(3.9 + step as f32 / 1000.0);
+                    assert!((0.0..=1.0).contains(&w));
+                }
+                for now in [0.0, 5.0, f32::NAN, f32::INFINITY] {
+                    assert_eq!(hit.weight(now), 0.0);
+                }
+            }
+        }
+    }
+}

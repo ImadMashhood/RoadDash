@@ -1,6 +1,6 @@
 # Runtime architecture and developer entry points
 
-- Root package `road-dash`: the functioning native offline client library/binary.
+- Root package `road-dash`: the native offline client and player-hosted online adapter.
 - `rr_core`: no Bevy/Rapier; stable IDs, phase/intent contracts, buffered edges,
   reward rules and save/protocol version constants.
 - `rr_content`: serde authoring validation and the built-in typed catalog.
@@ -26,7 +26,7 @@ ms, measured fixed tick count, entity/collider counts and last gameplay/physics
 cost. These CPU/wall metrics are not GPU timings or hardware acceptance claims.
 `debug_physics` enables Rapier's collider visualization. `offline` and `devtools`
 are default; `--no-default-features --features offline` omits the dev overlay.
-There is no pretend netplay feature; server authority/transport is P10/P13.
+Player-hosted authority/transport now lives in `src/online`; production networking acceptance remains P10/P13. The existing `offline` feature marker is retained for compatibility.
 
 Input bindings: `content/input.json`; override with `ROADDASH_BINDINGS=/path.json`.
 Unknown actions/keys, duplicate keys, empty actions and schema mismatch are rejected
@@ -45,8 +45,7 @@ include local backtrace, OS and app version. No network telemetry. Test via
 `--verify-panic-report` (intentional nonzero exit, never a gameplay run).
 
 Future extraction: vehicle/combat/race/AI still share game.rs, physics types remain
-in the client adapter, and server/network crates do not exist. Adding empty crates
-would not establish authority. See ADR-003 and P01-SPLIT/P10 prerequisites.
+in the client adapter, and the listen-host adapter uses the same existing simulation. No empty server/network crates are added. See ADR128 and the remaining P01-SPLIT/P10/P13 gates.
 
 ## Part 02 additions
 
@@ -121,3 +120,24 @@ world/BASE_WORLD_COMPLETE.md; foundation evidence remains historical.
 Construction dimensions, street reservations and sampling/LOD authoring validation
 are GPU-independent in rr_content::construction. The client construction wrapper
 adds only Track binding/cross-section helpers; it serializes transparently.
+
+## Player-hosted online adapter (ADR128/129; integration in progress)
+
+`rr_core::online` holds pure input bounds, endpoint encoding, RTT eligibility and
+randomized-grid rules. `src/online` owns bounded framed TCP, sequence/ownership
+validation, lobbies and a native listen host. The host advances the unchanged
+60Hz gameplay/Rapier path; guests send intentions and apply host snapshots.
+Remote interpolation offsets visual children only; guest gameplay/physics
+advancement is gated. Rider, abandoned bike, runner and articulated poses have
+separate lifecycles. Host/guest results and local pause overlays must not stop
+the authoritative world for other players. Online awards are not local offline
+profile rewards. Source module tests are not Internet acceptance.
+
+Quick Play probes candidates from LAN, configured peers and an existing public
+DHT, selecting available hosts at measured RTT <=250ms or creating a host.
+Private endpoint-plus-capability codes are unlisted. Optional temporary UPnP
+leases and observed external addresses assist hosting; they cannot bypass CGNAT
+or prove remote reachability. Public discovery and router work stay off the
+render/fixed threads. The initial20Hz complete snapshots have no production
+prediction/lag-compensation or bandwidth certification. Verification and limits:
+[online integration](testing/online-pass/README.md).

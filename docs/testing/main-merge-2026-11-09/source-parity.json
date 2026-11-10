@@ -1,0 +1,17 @@
+{
+  "source": "2bbf731c",
+  "paths": [
+    "src",
+    "crates",
+    "tools",
+    "content",
+    "assets",
+    "Cargo.toml",
+    "Cargo.lock"
+  ],
+  "different_files": [],
+  "main_before": "2665e732",
+  "earlier_base": "2a3770e1",
+  "base_tree_equal": true,
+  "conflict_paths_resolved_from_verified_source": 18
+}

@@ -1,0 +1,79 @@
+[
+  {
+    "name": "fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 1.733
+  },
+  {
+    "name": "clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 4.855
+  },
+  {
+    "name": "tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 67.286
+  },
+  {
+    "name": "build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 13.375
+  },
+  {
+    "name": "release",
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 56.98
+  },
+  {
+    "name": "audit",
+    "command": [
+      "python3",
+      "tools/audit.py"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 0.693
+  },
+  {
+    "name": "progress",
+    "command": [
+      "python3",
+      "tools/sync_progress.py",
+      "--check"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 0.054
+  }
+]

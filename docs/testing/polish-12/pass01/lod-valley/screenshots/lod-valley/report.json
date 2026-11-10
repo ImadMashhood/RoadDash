@@ -1,0 +1,12 @@
+{
+  "direct_crossfades": 54,
+  "limits": "captures and source/coverage checks do not imply perfect parallax, zero silhouette change or hardware/performance approval",
+  "map": "valley",
+  "max_cached_lods": 12,
+  "max_city_transition_groups": 0,
+  "max_displayed_panels": 132,
+  "max_displayed_triangles": 150434,
+  "render_frames": 1080,
+  "saves": false,
+  "views": "continuous near/far sweep, reverse review and Valley all-face orbit"
+}

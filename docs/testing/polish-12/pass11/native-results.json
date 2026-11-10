@@ -1,0 +1,59 @@
+{
+  "after-poses": {
+    "command": [
+      "/usr/bin/python3",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/run_native.py",
+      "after-poses"
+    ],
+    "exit": 0
+  },
+  "anatomy-recovery": {
+    "command": [
+      "/usr/bin/python3",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/run_native.py",
+      "anatomy-recovery"
+    ],
+    "exit": 0
+  },
+  "baseline-recovery": {
+    "command": [
+      "/usr/bin/python3",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/run_native.py",
+      "baseline-recovery"
+    ],
+    "exit": 0
+  },
+  "anatomy-actors": {
+    "command": [
+      "/usr/bin/python3",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/run_native.py",
+      "anatomy-actors"
+    ],
+    "exit": 0
+  },
+  "baseline-actors": {
+    "command": [
+      "/usr/bin/python3",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/run_native.py",
+      "baseline-actors"
+    ],
+    "exit": 0
+  },
+  "npc-skin": {
+    "command": [
+      "/usr/bin/python3",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/run_native.py",
+      "npc-skin"
+    ],
+    "exit": 0
+  },
+  "paired-lab": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--ragdoll-lab",
+      "--output",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass11/lab.json"
+    ],
+    "exit": 0
+  }
+}

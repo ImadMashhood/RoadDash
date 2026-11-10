@@ -39,14 +39,13 @@ impl GridWeapons {
         let mut ids: Vec<_> = ids.into_iter().filter(|id| *id != 0).collect();
         ids.sort_unstable();
         ids.dedup();
-        let count = (ids.len() as f32 * self.fraction).round() as usize;
-        let race_seed = self
-            .seed
-            .wrapping_add(self.race_number.wrapping_mul(0x9e3779b97f4a7c15));
-        self.armed = rr_core::weapons::armed_rivals(race_seed, ids, count);
+        self.armed = ids
+            .into_iter()
+            .filter(|id| rr_core::cast::character(*id).is_some_and(|c| c.weapon.is_some()))
+            .collect();
         self.race_number = self.race_number.wrapping_add(1);
         info!(
-            "Rival starting weapons: seed={} race={} riders={:?}",
+            "Cast starting weapons: legacy-seed={} race={} riders={:?}",
             self.seed, self.race_number, self.armed
         );
     }
@@ -176,6 +175,7 @@ pub fn inventory(
     mut riders: Query<(Entity, &mut Rider, &Recovery, &Transform)>,
     pickups: Query<(Entity, &Transform, Option<&Kind>), With<Pickup>>,
     mut seeded: Local<bool>,
+    network: Option<Res<crate::online::AuthorityInputs>>,
     context: bevy_rapier3d::prelude::ReadRapierContext,
 ) {
     if race.phase == Phase::Garage || race.phase == Phase::Countdown {
@@ -222,9 +222,12 @@ pub fn inventory(
         let Ok((_, mut rider, rec, t)) = riders.get_mut(e) else {
             continue;
         };
+        let remote = network.as_ref().and_then(|n| n.get(rider.id));
+        let take = remote.map_or(take, |i| i.pickup);
+        let drop = remote.map_or(drop, |i| i.drop);
         let interrupted =
             rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || rider.finished.is_some();
-        if rider.weapon.is_some() && (interrupted || (rider.id == 0 && drop)) {
+        if rider.weapon.is_some() && (interrupted || (rider.human_controlled() && drop)) {
             // Manual drop waits for completed contact; crash cancels the pending clock.
             if !interrupted && rider.strike.is_some_and(|s| s.pending()) {
                 if rider.id == 0 {
@@ -255,7 +258,7 @@ pub fn inventory(
             || rider.weapon.is_some()
             || rider.police
             || rider.strike.is_some_and(|s| s.pending())
-            || (rider.id == 0 && !take)
+            || (rider.human_controlled() && !take)
         {
             continue;
         }
@@ -375,7 +378,7 @@ impl Plugin for WeaponVisualPlugin {
 mod tests {
     use super::*;
     #[test]
-    fn fresh_grid_and_retry_randomize_only_rivals_and_pause_does_not_rearm() {
+    fn fresh_grid_and_retry_restore_cast_loadouts_and_pause_does_not_rearm() {
         let mut app = crate::game::tests::simulation();
         app.world_mut().resource_mut::<GridWeapons>().seed = 1234;
         for id in 1..=crate::police::OFFICER_ID {
@@ -390,10 +393,13 @@ mod tests {
         press(&mut app, KeyCode::Enter);
         run(&mut app, 3);
         let first = app.world().resource::<GridWeapons>().armed.clone();
-        assert_eq!(first.len(), 7);
+        assert_eq!(first.len(), 8);
         assert_eq!(app.world().resource::<GridWeapons>().race_number, 1);
         for r in app.world_mut().query::<&Rider>().iter(app.world()) {
-            assert_eq!(r.weapon.is_some(), first.contains(&r.id));
+            assert_eq!(
+                r.weapon,
+                rr_core::cast::character(r.id).and_then(|c| c.weapon)
+            );
             if r.id == 0 || r.police {
                 assert!(r.weapon.is_none());
             }
@@ -416,8 +422,8 @@ mod tests {
         press(&mut app, KeyCode::KeyR);
         run(&mut app, 3);
         let next = &app.world().resource::<GridWeapons>().armed;
-        assert_eq!(next.len(), 7);
-        assert_ne!(&first, next);
+        assert_eq!(next.len(), 8);
+        assert_eq!(&first, next);
         assert_eq!(app.world().resource::<GridWeapons>().race_number, 2);
     }
     #[test]

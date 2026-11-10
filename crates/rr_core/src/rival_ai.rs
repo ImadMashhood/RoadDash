@@ -1,6 +1,6 @@
 //! Race-local intent: retaliation is keyed by racer ID, never shared personality columns.
 use crate::pursuit::Target;
-use std::collections::BTreeSet;
+use std::collections::BTreeMap;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Role {
     Racer,
@@ -9,24 +9,30 @@ pub enum Role {
 #[derive(Clone, Debug)]
 pub struct Mind {
     pub role: Role,
-    aggressors: BTreeSet<usize>,
+    aggressors: BTreeMap<usize, f32>,
 }
 impl Mind {
     pub fn new(id: usize) -> Self {
         Self {
-            role: if id != 0 && id.is_multiple_of(2) {
+            role: if crate::cast::character(id).is_some_and(|c| c.aggressive) {
                 Role::Killer
             } else {
                 Role::Racer
             },
-            aggressors: BTreeSet::new(),
+            aggressors: BTreeMap::new(),
         }
     }
     pub fn struck_by(&mut self, attacker: usize) {
-        self.aggressors.insert(attacker);
+        self.aggressors.insert(attacker, 24.);
+    }
+    pub fn tick(&mut self, dt: f32) {
+        self.aggressors.retain(|_, life| {
+            *life -= dt.max(0.);
+            *life > 0.
+        });
     }
     pub fn can_fight(&self, target: usize) -> bool {
-        self.role == Role::Killer || self.aggressors.contains(&target)
+        self.role == Role::Killer || self.aggressors.contains_key(&target)
     }
     pub fn cooldown(&self, base: f32) -> f32 {
         if self.role == Role::Killer {
@@ -102,6 +108,16 @@ mod tests {
             speed: 30.,
             downed: false,
         }
+    }
+    #[test]
+    fn race_focused_riders_return_to_racing_after_a_grudge_expires() {
+        let mut mind = Mind::new(1);
+        mind.struck_by(3);
+        mind.tick(23.);
+        assert!(mind.can_fight(3));
+        mind.tick(1.1);
+        assert!(!mind.can_fight(3));
+        assert!(Mind::new(2).can_fight(3));
     }
     #[test]
     fn roster_has_seven_of_each_and_racers_never_start_fights() {

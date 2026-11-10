@@ -352,6 +352,67 @@ pub(crate) fn smoke_test(
     }
     let test_route = usize::from(std::env::var("ROADDASH_SMOKE_ROUTE").as_deref() == Ok("1"));
     state.frame += 1;
+    // Opt-in confirmed-contact fixture: use the real melee resolver/LOS/audio,
+    // with a temporary logical attacker. It isolates victim presentation; the
+    // separate keyboard fixture verifies live windup/contact timing.
+    if std::env::var("ROADDASH_VERIFY_REACTIONS").as_deref() == Ok("1") {
+        for (start, side, kicking) in [
+            (70, -1.0, false),
+            (110, 1.0, false),
+            (150, -1.0, true),
+            (190, 1.0, true),
+        ] {
+            if state.frame == start {
+                commands.queue(move |world: &mut World| {
+                    use bevy::ecs::system::RunSystemOnce;
+                    let (target, pose) = world
+                        .query::<(Entity, &Rider, &Transform)>()
+                        .iter(world)
+                        .find(|(_, r, _)| r.id == 0)
+                        .map(|(e, _, t)| (e, *t))
+                        .unwrap();
+                    world.get_mut::<Rider>(target).unwrap().immunity = 0.0;
+                    let right = (pose.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+                    let attacker = world
+                        .spawn((
+                            Rider::new(2),
+                            Transform::from_translation(pose.translation - right * side * 1.4)
+                                .with_rotation(pose.rotation),
+                            Visibility::Hidden,
+                        ))
+                        .id();
+                    world.write_message(crate::combat::AttackAttempt(
+                        attacker,
+                        if kicking {
+                            rr_core::AttackSide::Kick
+                        } else if side < 0.0 {
+                            rr_core::AttackSide::Left
+                        } else {
+                            rr_core::AttackSide::Right
+                        },
+                    ));
+                    world.run_system_once(crate::combat::melee).unwrap();
+                    let hit = world
+                        .get::<Rider>(target)
+                        .unwrap()
+                        .hit_reaction
+                        .expect("native successful hit must create reaction");
+                    assert_eq!(hit.kicking, kicking);
+                    assert_eq!(hit.direction, -side);
+                    println!(
+                        "Native confirmed reaction: side={side} kick={kicking} at={:.6}",
+                        hit.at
+                    );
+                    world.despawn(attacker);
+                });
+            }
+            for offset in [0, 1, 4, 12, 25] {
+                if state.frame == start + offset {
+                    capture(&mut commands, &format!("reaction-{start}-{offset:02}"));
+                }
+            }
+        }
+    }
     if std::env::var("ROADDASH_VERIFY_STRIKES").as_deref() == Ok("1") {
         if state.frame == 60 && std::env::var("ROADDASH_VERIFY_CLUB").as_deref() != Ok("1") {
             smoke_key(&mut commands, KeyCode::KeyJ, true);
@@ -471,7 +532,8 @@ pub(crate) fn smoke_test(
                     continue;
                 }
                 let spawn = &track.definition.spawns[r.id];
-                let (p, _) = track.sample_route(test_route, spawn.distance, spawn.lane);
+                let (p, _) =
+                    track.sample_route(test_route, track.grid_station(spawn.distance), spawn.lane);
                 assert!(
                     t.translation.distance(p) < 0.2,
                     "native retry did not restore grid for {}: phase={:?} progress={} body={:?} start={:?}",
@@ -742,7 +804,7 @@ pub(crate) fn smoke_test(
                     continue;
                 }
                 rider.gates.completed_laps = LAPS;
-                rider.progress = track.length * LAPS as f32 + 1.0;
+                rider.progress = track.race_interval().finish * LAPS as f32 + 1.0;
                 rider.lane = 0.0;
                 let (p, q) = track.sample_route(test_route, rider.progress, rider.lane);
                 *transform = Transform::from_translation(p).with_rotation(q);
@@ -806,7 +868,7 @@ pub(crate) fn smoke_test(
                 .join("\n");
             std::fs::write("screenshots/vehicle-trace.jsonl", trace).unwrap();
             report["route"] = serde_json::json!(test_route);
-            report["track"] = serde_json::json!({"id":track.definition.id.as_str(),"closed":track.definition.closed,"length_m":track.length,"gates":track.definition.checkpoints.len(),"render_triangles":inspector.render_triangles,"collision_triangles":inspector.collision_triangles});
+            report["track"] = serde_json::json!({"id":track.definition.id.as_str(),"closed":track.definition.closed,"length_m":track.length,"race_start_m":track.race_interval().start,"race_finish_m":track.race_interval().finish,"race_length_m":track.race_interval().length(),"gates":track.definition.checkpoints.len(),"render_triangles":inspector.render_triangles,"collision_triangles":inspector.collision_triangles});
             report["recovery_at_run_capture"] = serde_json::json!({"farm_distance_and_height_delta_m":state.farm_walk,"hill_distance_and_height_delta_m":state.hill_walk});
             if let Some(adapter) = adapter.as_ref() {
                 report["adapter"] = serde_json::json!({"name": adapter.name, "driver": adapter.driver, "backend": format!("{:?}", adapter.backend)});

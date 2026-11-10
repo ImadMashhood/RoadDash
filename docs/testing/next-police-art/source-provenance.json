@@ -1,0 +1,19 @@
+{
+  "task": "POLICE-ART-01",
+  "base_commit": "d7b219f5",
+  "author": "RoadDash original procedural artwork",
+  "external_intake": false,
+  "license": "MIT (project-original source/art)",
+  "source_sha256": {
+    "src/models.rs": "a79b0ef1d787dbc65209d14d114a62da369c94c07d8ba7ede30ca16a700c4599",
+    "src/models/patrol.rs": "68c4c782157a41e59fdf7a820ed29cba27cb27b3c1776388dd834c6190152ed3",
+    "src/models/tests.rs": "8dc552ffc3410b7b3d8c046abbab66c0286f90ef5a8fd76c1b404a52e2a8175c",
+    "src/police.rs": "b1f2783ed0e3174ec0ab48f6809362e934ce4e145e0239f714d7506839ca2854",
+    "src/police/survey.rs": "3c1a2bf6d6cb47a36bd10c488adbe74446b5cbfac6155affdf5e0cfd86bc1ff7",
+    "src/world.rs": "afd922011614a3f5e14603c18726427c0e444c42fc878de52c7b67b5e65cf9ec",
+    "src/animation/preview.rs": "9f4c8566e758e7add3a8761be4308f7f470452d9ccc96b43afb0a9deb0682327",
+    "tools/bake_police_uniform.py": "8db1e9012fb9840a7bb83c15c89ef40a0a9a74d1964d78ec111cdff864a7b489",
+    "assets/textures/officer-base.png": "075404c5573c71ad48d2434486f5450873afe4f1063c480270fd9b82c0e0fd32",
+    "assets/textures/officer-provenance.json": "68534fe1a74ad828c42cdfd1a6c4a913341fb1f9355f4de42b245378dedabe5f"
+  }
+}

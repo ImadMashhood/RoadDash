@@ -1,0 +1,12 @@
+{
+  "binary": "/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-762983a265f28464",
+  "sha256": "1316d66d1c580613c213c43922c5097aaaf0f1d525feb8b270f0eadd0a20918f",
+  "source_matches": {
+    "src/animation.rs": true,
+    "src/animation/locomotion.rs": true,
+    "src/animation/grounding.rs": true,
+    "src/animation/locomotion_ground_tests.rs": true
+  },
+  "case": "animation::locomotion_ground_tests::translated_walk_run_slope_and_stop_keep_contact_and_physical_root",
+  "scope": "parent-built integrated test binary; no cargo rebuild in worker"
+}

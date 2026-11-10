@@ -1,0 +1,143 @@
+[
+  {
+    "name": "after",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "after"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 35.546
+  },
+  {
+    "name": "route",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "route"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 34.267
+  },
+  {
+    "name": "recovery",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "recovery"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 28.573
+  },
+  {
+    "name": "baseline-recovery",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "baseline-recovery"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 27.968
+  },
+  {
+    "name": "actors",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "actors"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 12.205
+  },
+  {
+    "name": "police",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "police"
+    ],
+    "exit": 1,
+    "elapsed_seconds": 32.758
+  },
+  {
+    "name": "police",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "police"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 33.155
+  },
+  {
+    "name": "police-baseline",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "police-baseline"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 30.998
+  },
+  {
+    "name": "poses",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "poses"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 19.224
+  },
+  {
+    "name": "legacy-city-recovery",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "legacy-city-recovery"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 43.153
+  },
+  {
+    "name": "legacy-valley-recovery",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_native.py",
+      "legacy-valley-recovery"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 21.072
+  },
+  {
+    "name": "crops-off",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_crop_native.py",
+      "off"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 16.938
+  },
+  {
+    "name": "crops-on",
+    "command": [
+      "python3",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/run_crop_native.py",
+      "on"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 16.782
+  },
+  {
+    "name": "ragdoll-lab",
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadDash-worktrees/.next-pass-binary/road-dash",
+      "--ragdoll-lab",
+      "--output",
+      "/home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/ragdoll-lab.json"
+    ],
+    "exit": 0,
+    "elapsed_seconds": 20.814
+  }
+]

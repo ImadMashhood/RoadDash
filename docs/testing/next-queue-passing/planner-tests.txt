@@ -1,0 +1,19 @@
+
+running 14 tests
+test tests::matched_speed_follower_plans_before_accelerating_into_queue ... ok
+test tests::narrowed_road_and_solid_pass_corridor_wait_instead_of_using_sidewalk ... ok
+test tests::occupied_rider_pass_lane_keeps_traffic_queue_clear ... ok
+test tests::stationary_blockage_stops_and_cleared_traffic_resumes ... ok
+test tests::moving_cross_car_yields_before_lane_entry_and_resumes_after_clearance ... ok
+test tests::stopped_queue_waits_for_occupied_rear_and_oncoming_gaps ... ok
+test tests::cannot_swerve_through_a_car_alongside ... ok
+test tests::unobstructed_combat_and_racing_intents_are_unchanged ... ok
+test tests::alongside_cross_motion_cannot_be_steered_through ... ok
+test tests::committed_pass_rechecks_new_obstacles_and_a_dropping_lane ... ok
+test tests::occupied_pass_brakes_and_never_chooses_oncoming_side ... ok
+test tests::predicts_fast_approach_beyond_old_35m_trigger ... ok
+test tests::results_do_not_depend_on_traffic_iteration_order ... ok
+test tests::stopped_queue_selects_walking_speed_pass_and_holds_it ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

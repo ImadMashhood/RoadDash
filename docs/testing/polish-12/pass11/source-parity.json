@@ -1,0 +1,92 @@
+{
+  "Cargo.toml": {
+    "before": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+    "after": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+    "equal": true
+  },
+  "Cargo.lock": {
+    "before": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "after": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "equal": true
+  },
+  "assets/models/riding.rdmesh": {
+    "before": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "after": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "equal": true
+  },
+  "assets/models/rider-bindings.json": {
+    "before": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+    "after": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+    "equal": true
+  },
+  "assets/models/motion.json": {
+    "before": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36",
+    "after": "297118561723216a3e72f38995e90e021bd00217246f7ed9a933dcb961d70a36",
+    "equal": true
+  },
+  "content/hand-contacts.json": {
+    "before": "fa5cecd69f0cf7f54168fc973f12dbb3f254a38cf93dd27f341a8e2fde6b6be7",
+    "after": "fa5cecd69f0cf7f54168fc973f12dbb3f254a38cf93dd27f341a8e2fde6b6be7",
+    "equal": true
+  },
+  "src/human.rs": {
+    "before": "a75f32cc88d7fd5ef2fdf78ac3052e2fae7148cac940a313a0e55877bee0179b",
+    "after": "a75f32cc88d7fd5ef2fdf78ac3052e2fae7148cac940a313a0e55877bee0179b",
+    "equal": true
+  },
+  "src/recovery.rs": {
+    "before": "62a3586e2c28f97376818ed6f55d9956d63681ed8c53b99d919fd634f32c3c43",
+    "after": "62a3586e2c28f97376818ed6f55d9956d63681ed8c53b99d919fd634f32c3c43",
+    "equal": true
+  },
+  "src/npc.rs": {
+    "before": "03557912c40382f1a3051092d4829c1c5326aaef05a8a2cc5341c5e105452a1a",
+    "after": "03557912c40382f1a3051092d4829c1c5326aaef05a8a2cc5341c5e105452a1a",
+    "equal": true
+  },
+  "src/vehicle.rs": {
+    "before": "2ff40147e9b0dcd705bd1c85b25001f9778eee7d9455b18d7a291aa55b581eda",
+    "after": "2ff40147e9b0dcd705bd1c85b25001f9778eee7d9455b18d7a291aa55b581eda",
+    "equal": true
+  },
+  "src/biomechanics/debug.rs": {
+    "before": "5cd3f5113b3b901aa38413dbb2f73db544e8bfaf21ce1259acd77325c15c86c0",
+    "after": "5cd3f5113b3b901aa38413dbb2f73db544e8bfaf21ce1259acd77325c15c86c0",
+    "equal": true
+  },
+  "src/biomechanics/lab.rs": {
+    "before": "3409d8fba0d8e4133cff56c9bda6cc4ceac94b20bafdd5ed09be50519a15c761",
+    "after": "3409d8fba0d8e4133cff56c9bda6cc4ceac94b20bafdd5ed09be50519a15c761",
+    "equal": true
+  },
+  "src/biomechanics/mod.rs": {
+    "before": "8d1dcf8e34e8d2060276ee8028086f8e5996be6eb94a9a8a3021141c94bc3060",
+    "after": "8d1dcf8e34e8d2060276ee8028086f8e5996be6eb94a9a8a3021141c94bc3060",
+    "equal": true
+  },
+  "src/biomechanics/muscles.rs": {
+    "before": "f0c1071098aecdc997b406da6b31dd9c0ea7a3031b477cd1f29e5dbddf84dcf0",
+    "after": "f0c1071098aecdc997b406da6b31dd9c0ea7a3031b477cd1f29e5dbddf84dcf0",
+    "equal": true
+  },
+  "src/biomechanics/reactions.rs": {
+    "before": "bddbb09ff36e10fbf7709368adf71b8c6bf74339c463552b0cb8d914aaeb5872",
+    "after": "bddbb09ff36e10fbf7709368adf71b8c6bf74339c463552b0cb8d914aaeb5872",
+    "equal": true
+  },
+  "src/biomechanics/tests.rs": {
+    "before": "12a37723f77030684fb0fa94b68446167f20cee0c35ab0438a8de3037999c828",
+    "after": "12a37723f77030684fb0fa94b68446167f20cee0c35ab0438a8de3037999c828",
+    "equal": true
+  },
+  "src/biomechanics/velocity.rs": {
+    "before": "14ce7e11252133f0129aa39a6215cec3694050936cc47a63915913be052cda6a",
+    "after": "14ce7e11252133f0129aa39a6215cec3694050936cc47a63915913be052cda6a",
+    "equal": true
+  },
+  "src/biomechanics/view.rs": {
+    "before": "eb2e1f4796409c61711378cd24c3d5b49041242615ad11d60dd0921b5f077c37",
+    "after": "eb2e1f4796409c61711378cd24c3d5b49041242615ad11d60dd0921b5f077c37",
+    "equal": true
+  }
+}

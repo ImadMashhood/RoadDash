@@ -1,0 +1,26 @@
+{
+  "contact_wall_frame_ms": {
+    "limits": "whole application wall frames, synthetic contact and racing actor activity differ; not GPU timestamps or isolated algorithm A/B",
+    "mean": 17.217027590476196,
+    "p95": 19.791501,
+    "samples": 105
+  },
+  "crash_cells": 10,
+  "damaged_cells_before_reset": 15,
+  "deformation_bytes": 2600960,
+  "dirty_tile_uploads_including_reset": 11,
+  "fixture": "scripted physical wreck/capsule contact shapes; no free-running crash/GPU-timing claim",
+  "paused_clock_and_persistence_verified": true,
+  "quiet_wall_frame_ms": {
+    "limits": "whole application wall frames, synthetic contact and racing actor activity differ; not GPU timestamps or isolated algorithm A/B",
+    "mean": 6.913973950000002,
+    "p95": 8.74301,
+    "samples": 40
+  },
+  "reset_verified": true,
+  "stationary_contact_tile_bytes_per_frame": 0,
+  "tiles": 635,
+  "uploaded_tile_bytes_including_reset": 45056,
+  "visible_crop_batches": 0,
+  "visible_crop_triangles": 0
+}

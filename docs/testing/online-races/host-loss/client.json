@@ -1,0 +1,17 @@
+{
+  "samples": [],
+  "max_players": 2,
+  "serialized_bytes": 0,
+  "encoded_frame_bytes": 0,
+  "largest_encoded_frame": 0,
+  "largest_snapshot": 0,
+  "remote_max_speed": 0.0,
+  "first_snapshot_wall_seconds": null,
+  "remote_attack": false,
+  "remote_crash": false,
+  "remote_foot": false,
+  "remote_remount": false,
+  "errors": [
+    "Connection lost: peer closed with an incomplete frame"
+  ]
+}

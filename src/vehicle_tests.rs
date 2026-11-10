@@ -1033,3 +1033,186 @@ fn disabled_player_nitro_matches_normal_throttle_on_both_adapters() {
         assert!(results[0].1.distance(results[1].1) < 0.0001, "{adapter:?}");
     }
 }
+
+#[test]
+fn ai_backing_intent_uses_the_existing_reverse_adapter() {
+    let mut app = app(1, 60);
+    {
+        let w = app.world_mut();
+        let mut rider = w.query::<&mut Rider>().single_mut(w).unwrap();
+        rider.id = 1;
+        assert!(rider.ai_drive.step(3., 0., true, true));
+    }
+    let mut minimum = 0.0_f32;
+    for _ in 0..45 {
+        app.update();
+        let w = app.world_mut();
+        let (r, v) = w.query::<(&Rider, &Velocity)>().single(w).unwrap();
+        let forward = w
+            .resource::<Track>()
+            .sample_route(r.route, r.progress, 0.)
+            .1
+            * Vec3::Z;
+        minimum = minimum.min(v.linvel.dot(forward));
+    }
+    assert!(minimum < -0.5, "AI never backed up: {minimum}");
+    assert!(minimum >= -rr_core::reverse::MAX_SPEED - 0.5);
+}
+
+#[test]
+fn crossing_recycle_has_no_140_metre_kinematic_velocity() {
+    let mut app = crate::game::tests::simulation();
+    let center = Vec3::new(100., 0., 100.);
+    let e = app
+        .world_mut()
+        .spawn((
+            crate::environment::Patrol {
+                center,
+                axis: Vec3::X,
+                extent: 70.,
+                speed: 9.,
+                phase: 0.,
+                one_way: true,
+            },
+            crate::world_gen::metropolis::Crossing {
+                distance: 69.95,
+                junction: center,
+            },
+            crate::environment::CrossTraffic,
+            RigidBody::KinematicPositionBased,
+            Collider::cuboid(0.95, 0.9, 1.95),
+            Velocity::zero(),
+            Transform::from_translation(center + Vec3::X * 69.95),
+        ))
+        .id();
+    app.update();
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    for _ in 0..5 {
+        app.update();
+        let v = app.world().get::<Velocity>(e).unwrap().linvel.length();
+        assert!(v < 20., "recycle produced contact speed {v}");
+    }
+    assert!(app.world().get::<Transform>(e).unwrap().translation.x < 40.);
+}
+
+#[test]
+fn ai_routes_out_of_a_three_sided_trap_with_physical_motion() {
+    let mut app = app(1, 60);
+    let (origin, q) = {
+        let w = app.world_mut();
+        let (r, t) = w.query::<(&Rider, &Transform)>().single(w).unwrap();
+        (
+            t.translation,
+            w.resource::<Track>()
+                .sample_route(r.route, r.progress, 0.)
+                .1,
+        )
+    };
+    {
+        let w = app.world_mut();
+        let mut r = w.query::<&mut Rider>().single_mut(w).unwrap();
+        r.id = 1;
+        r.immunity = 1000.;
+    }
+    app.world_mut().resource_mut::<Race>().elapsed = 6.;
+    for (offset, size) in [
+        (Vec3::new(0., 1.5, 9.), Vec3::new(16., 3., 2.)),
+        (Vec3::new(-7., 1.5, -1.), Vec3::new(2., 3., 22.)),
+        (Vec3::new(7., 1.5, -1.), Vec3::new(2., 3., 22.)),
+    ] {
+        app.world_mut().spawn((
+            RigidBody::Fixed,
+            Collider::cuboid(size.x / 2., size.y / 2., size.z / 2.),
+            Transform::from_translation(origin + q * offset).with_rotation(q),
+            crate::world::Obstacle,
+        ));
+    }
+    let mut backed = false;
+    let mut routed = false;
+    let mut escaped = false;
+    let mut furthest = f32::NEG_INFINITY;
+    for _ in 0..2400 {
+        app.update();
+        let w = app.world_mut();
+        let (r, t, recovery) = w
+            .query::<(&Rider, &Transform, &Recovery)>()
+            .single(w)
+            .unwrap();
+        let local = q.inverse() * (t.translation - origin);
+        furthest = furthest.max(local.z);
+        backed |= local.z < -12.;
+        routed |= r.ai_escape.active();
+        escaped |= local.z > 16.;
+        assert_eq!(
+            recovery.stage,
+            RecoveryStage::Riding,
+            "escape must use the bike, not a recovery teleport"
+        );
+        if escaped {
+            break;
+        }
+    }
+    assert!(
+        routed && backed && escaped,
+        "routed={routed}, backed={backed}, escaped={escaped}, furthest={furthest}"
+    );
+}
+
+#[test]
+fn queued_ai_physically_passes_a_stopped_car_without_escape_or_recovery() {
+    let mut app = app(1, 60);
+    let station = 20.;
+    let (bike_position, heading, car_position) = {
+        let track = app.world().resource::<Track>();
+        let (p, q) = track.sample_route(0, station, 2.);
+        (p, q, track.sample_route(0, station + 16., 2.).0)
+    };
+    {
+        let w = app.world_mut();
+        let (mut r, mut t) = w
+            .query::<(&mut Rider, &mut Transform)>()
+            .single_mut(w)
+            .unwrap();
+        r.id = 1;
+        r.route = 0;
+        r.progress = station;
+        r.lane = 2.;
+        r.speed = 0.;
+        *t = Transform::from_translation(bike_position).with_rotation(heading);
+    }
+    app.world_mut().resource_mut::<Race>().elapsed = 6.;
+    app.world_mut().spawn((
+        crate::environment::CrossTraffic,
+        RigidBody::Fixed,
+        Collider::cuboid(0.95, 0.9, 1.95),
+        Transform::from_translation(car_position + Vec3::Y * 0.9).with_rotation(heading),
+    ));
+    let mut passed = false;
+    let mut moved_aside = false;
+    let mut previous = bike_position;
+    for _ in 0..1200 {
+        app.update();
+        let w = app.world_mut();
+        let (r, t, recovery) = w
+            .query::<(&Rider, &Transform, &Recovery)>()
+            .single(w)
+            .unwrap();
+        assert_eq!(recovery.stage, RecoveryStage::Riding);
+        assert!(
+            !r.ai_escape.active(),
+            "ordinary queue must not need the escape planner"
+        );
+        assert!(t.translation.distance(previous) < 2., "no teleport");
+        previous = t.translation;
+        moved_aside |= r.lane > 4.5;
+        assert!(r.lane < 6.5, "pass left the road: {}", r.lane);
+        if r.progress > station + 26. {
+            passed = true;
+            break;
+        }
+    }
+    assert!(
+        passed && moved_aside,
+        "passed={passed}, moved_aside={moved_aside}"
+    );
+}

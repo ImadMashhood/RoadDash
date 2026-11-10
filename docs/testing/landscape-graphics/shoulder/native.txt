@@ -1,0 +1,8 @@
+2026-11-09T21:46:25.069377Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T21:46:25.318047Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/landscape-graphics/shoulder/performance/performance-3051118.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-09T21:46:28.560302Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape geometry generated in 341.371ms
+2026-11-09T21:46:28.560357Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape: 57197 tufts / 333 batches / 285985 triangles; caps 120000/600
+2026-11-09T21:46:30.236819Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+2026-11-09T21:46:30.246134Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 0

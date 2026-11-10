@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/home/imad/roaddash-online-integrated-1/road-dash",
+    "--animation-lab-view",
+    "--animation-lab-smoke"
+  ],
+  "exit": 0,
+  "binary_sha256": "a52dee9f2330a662e80d3ee602bd083717c6c091941fbef6b0e53c6c788373c9",
+  "binary_unchanged": true,
+  "frames": 152,
+  "blank": [],
+  "scope": "functional visual review; not a performance benchmark"
+}

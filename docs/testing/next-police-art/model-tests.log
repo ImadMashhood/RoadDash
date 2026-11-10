@@ -1,0 +1,47 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-police-art)
+    Finished `test` profile [optimized + debuginfo] target(s) in 39.91s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 12 tests
+test models::tests::neutral_distal_skin_joints_remain_attached_and_wrist_axes_follow_forearms ... ok
+contact bind=false clip=normal sole=0.000000353 grip=0.000000763 held=0.000000766
+test models::tests::visual_chains_keep_anatomical_endpoints_and_hinges_connected_in_every_pose ... ok
+contact bind=false clip=tuck sole=0.000000375 grip=0.000000773 held=0.000000766
+contact bind=false clip=run sole=0.000000270 grip=0.000000387 held=0.000000000
+contact bind=false clip=getup sole=0.000000553 grip=0.000000358 held=0.000000000
+contact bind=false clip=pickup sole=0.000000351 grip=0.000001002 held=0.000000000
+contact bind=false clip=pickup_mirrored sole=0.000000324 grip=0.000000860 held=0.000000000
+contact bind=false clip=steer_tuck_blend sole=0.000000393 grip=0.000000819 held=0.000000819
+contact bind=false clip=walk sole=0.000000315 grip=0.000000364 held=0.000000000
+contact bind=false clip=running sole=0.000000322 grip=0.000000362 held=0.000000000
+contact bind=false clip=stop sole=0.000000295 grip=0.000000362 held=0.000000000
+contact bind=true clip=normal sole=0.000000521 grip=0.000000527 held=0.000000514
+contact bind=true clip=tuck sole=0.000000585 grip=0.000000708 held=0.000000708
+contact bind=true clip=run sole=0.000000489 grip=0.000000935 held=0.000000000
+contact bind=true clip=getup sole=0.000000603 grip=0.000000962 held=0.000000000
+contact bind=true clip=pickup sole=0.000000484 grip=0.000000579 held=0.000000000
+contact bind=true clip=pickup_mirrored sole=0.000000378 grip=0.000000642 held=0.000000000
+contact bind=true clip=steer_tuck_blend sole=0.000000582 grip=0.000000711 held=0.000000711
+contact bind=true clip=walk sole=0.000000374 grip=0.000000958 held=0.000000000
+contact bind=true clip=running sole=0.000000432 grip=0.000000904 held=0.000000000
+contact bind=true clip=stop sole=0.000000432 grip=0.000000885 held=0.000000000
+ankle_metrics {"flex_m":1.2287812012345967e-7,"grip_m":1.0018191005656263e-6,"held_grip_m":8.194284077944758e-7,"held_sole_m":5.84763768074481e-7,"pivot_m":5.5033518719938e-7,"sole_m":6.034510420249717e-7}
+test models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions ... ok
+test models::tests::visual_intake_rejects_nonfinite_vertices_bad_joint_ids_and_physics_payloads ... ok
+test models::tests::distal_skin_weights_are_normalized_and_all_five_joints_are_used ... ok
+test models::tests::bundle_has_shared_standing_seated_and_bike_geometry_and_rejects_bad_data ... ok
+neutral source surface max error: 0.000000427m; weights identical
+test models::tests::authored_ankle_pivots_preserve_weights_and_neutral_mesh_surface ... ok
+test models::tests::all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics ... ok
+shared glove targets: 2 surfaces, 894240 bytes
+test models::tests::glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices ... ok
+test models::tests::patrol_presentation_is_exclusive_and_persists_on_wrecks_without_physics ... ok
+MODEL_PHYSICS_PARITY palette=4 enabled=false ticks=180 source_bodies=11 max_position_error_m=0
+MODEL_PHYSICS_PARITY palette=4 enabled=true ticks=180 source_bodies=11 max_position_error_m=0
+MODEL_PHYSICS_PARITY palette=18446744073709551615 enabled=false ticks=180 source_bodies=11 max_position_error_m=0
+test models::tests::visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin ... ok
+MODEL_PHYSICS_PARITY palette=18446744073709551615 enabled=true ticks=180 source_bodies=11 max_position_error_m=0
+test models::tests::authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 310 filtered out; finished in 1.38s
+

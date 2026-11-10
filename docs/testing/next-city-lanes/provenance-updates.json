@@ -1,0 +1,42 @@
+[
+  {
+    "asset_id": "original-metro-content-world-metropolis-json",
+    "path": "content/world/metropolis.json",
+    "sha256": "4a9c7e956197e68e3bb3daa34720aea1b5c9e139c12a048f015a26d02672ad00"
+  },
+  {
+    "asset_id": "original-metro-tools-bake_metropolis-py",
+    "path": "tools/bake_metropolis.py",
+    "sha256": "65861776aaee83d2c844d47319f45438881a0a2658dc2d0fbed693cff5ee52fb"
+  },
+  {
+    "asset_id": "original-metro-src-world_gen-metropolis-geometry-rs",
+    "path": "src/world_gen/metropolis/geometry.rs",
+    "sha256": "c61d36ad61c604c06f2bffe767ccd0715f1607bb3eca79f8a8a7ff27a56748a8"
+  },
+  {
+    "asset_id": "original-sidewalk-metropolis_streetscape",
+    "path": "tools/metropolis_streetscape.py",
+    "sha256": "f766586a6eeedab7a8d1ee1dedcb9ec74cc070b6728ff409d82b1e9f9a3dda5c"
+  },
+  {
+    "asset_id": "original-sidewalk-test_metropolis_streetscape",
+    "path": "tools/test_metropolis_streetscape.py",
+    "sha256": "c2cdc071a703d236993a736b3441af8b45fad41bdff11e0b598a048e9dc036be"
+  },
+  {
+    "asset_id": "original-street-life-content-world-metropolis_street_life-json",
+    "path": "content/world/metropolis_street_life.json",
+    "sha256": "97b33fd59c4234c8afcf5f895fd6ba1ed61cd9674ef7f829605b8563aa7ba64a"
+  },
+  {
+    "asset_id": "original-street-life-crates-rr_core-src-streets-rs",
+    "path": "crates/rr_core/src/streets.rs",
+    "sha256": "d885d5865467c4918db4e71d04fed7455cc6a1ce0779d33c3ec15edc44dcee1e"
+  },
+  {
+    "asset_id": "original-street-life-tools-metropolis_street_life-py",
+    "path": "tools/metropolis_street_life.py",
+    "sha256": "83ca3904a41b98dd9f4432261a326c770e4a4ec3f90dd30f4f434358bfec4481"
+  }
+]

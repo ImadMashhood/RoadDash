@@ -10,6 +10,8 @@ pub struct FacadeAtlas {
     #[texture(100)]
     #[sampler(101)]
     pub image: Handle<Image>,
+    #[texture(102)]
+    pub packed: Handle<Image>,
 }
 impl MaterialExtension for FacadeAtlas {
     fn fragment_shader() -> ShaderRef {

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "assets/metropolis/PROVENANCE.json",
+    "before": "e9b2b90433da766230fa4fe44ecda3afa8b40d57767aefc7c301146c98684eaa",
+    "after": "f7e1a71be560471080850fd914fdd7430a3aa0f9c6d26faddfe6d02d9f341a4c"
+  },
+  {
+    "path": "content/world/metropolis.json",
+    "before": "f212ce8e64c4bc1582afc1bbd0f64ff38d1b760efe62cd8b20e2fe5e01068a64",
+    "after": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f"
+  },
+  {
+    "path": "tools/bake_metropolis.py",
+    "before": "a9d35561719e3d48a10c179c6dff2cbf4fc5aa1d525838264c11439a4c7ca53c",
+    "after": "b6db358c166fa4e62baa187f32776a8c96e65b5de8a3ec1613d79cf9377a4c2b"
+  },
+  {
+    "path": "content/world/metropolis_facades.json",
+    "before": "6c025cefb3c87c3cbad6a7d13fd78123ae09222fb45f630efa300d87dff1d83c",
+    "after": "c6a50dca9492d77e5b12629be58cfe304672b2d883da76c19b26bc5a2ac60d9f"
+  }
+]

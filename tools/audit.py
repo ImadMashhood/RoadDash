@@ -51,6 +51,20 @@ def permitted(expression):
 def metadata():
     return json.loads(subprocess.check_output(["cargo","metadata","--locked","--format-version","1"],cwd=ROOT,text=True,encoding="utf-8"))
 
+def permitted_dependency(package):
+    if permitted(package.get('license') or ''):
+        return True
+    # Reviewed file-level license intake is narrower than the general asset
+    # whitelist: exact registry package/version/license, checked text and notice.
+    path = ROOT/'docs/third_party/DEPENDENCY_LICENSE_INTAKE.json'
+    for row in json.loads(path.read_text(encoding='utf-8')) if path.exists() else []:
+        if all(package.get(key) == row.get(key) for key in ('name','version','license','source')):
+            license_path = ROOT/row['license_copy']
+            return (bool(row.get('source_url')) and bool(row.get('reason'))
+                    and (ROOT/row['notice']).is_file() and license_path.is_file()
+                    and hashlib.sha256(license_path.read_bytes()).hexdigest() == row['license_sha256'])
+    return False
+
 def audit_assets(meta):
     packages={(p["name"],p["version"]):Path(p["manifest_path"]).parent for p in meta["packages"]}
     required=["asset_id","path","creator","source_url","license","license_copy","sha256","modifications","attribution","redistribution","shipped"]
@@ -86,7 +100,7 @@ def audit_research():
 def main():
     parser=argparse.ArgumentParser(); parser.add_argument('--output',type=Path); args=parser.parse_args()
     meta=metadata()
-    failures=[f"{p['name']} {p['version']}: {p.get('license')}" for p in meta['packages'] if not permitted(p.get('license') or '')]
+    failures=[f"{p['name']} {p['version']}: {p.get('license')}" for p in meta['packages'] if not permitted_dependency(p)]
     if failures: raise ValueError('Dependency declaration requires review: '+repr(failures))
     package_names={p['id']:p['name'] for p in meta['packages']}
     for node in meta['resolve']['nodes']:

@@ -1,0 +1,32 @@
+{
+  "census": {
+    "buildings": 19068,
+    "chunks": 3067,
+    "collision_triangles": 2613119,
+    "crossing_cars": 30,
+    "parked_cars": 122,
+    "physical_routes": 2,
+    "render_triangles": 2909113,
+    "source_collision_batches": 2922,
+    "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777",
+    "static_collision_batches": 2531,
+    "street_props": 1494,
+    "walking_pedestrians": 96
+  },
+  "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+  "metrics": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1879,
+    "last_gameplay_ms": 0.8672119975090027,
+    "last_physics_ms": 6.8593668937683105,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1880,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 20.062314987182617,
+    "wall_frame_p95_ms": 41.237857818603516
+  },
+  "p95_target_met": false,
+  "p95_target_ms": 16.7
+}

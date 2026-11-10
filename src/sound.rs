@@ -6,7 +6,7 @@ use crate::{
 use bevy::{audio::Volume, prelude::*};
 use std::{f32::consts::TAU, sync::Arc};
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, serde::Serialize, serde::Deserialize)]
 pub enum Cue {
     Crash,
     Break,
@@ -166,8 +166,11 @@ pub fn update(
     mut sinks: Query<(&mut AudioSink, Option<&LoopSound>, Option<&CueGain>)>,
     mut last_count: Local<i32>,
     mut last_phase: Local<Option<Phase>>,
+    online: Option<Res<crate::online::NetState>>,
 ) {
-    let Some((player, recovery, player_transform)) = riders.iter().find(|(r, _, _)| r.id == 0)
+    let Some((player, recovery, player_transform)) = riders
+        .iter()
+        .find(|(r, _, _)| r.id == online.as_ref().map_or(0, |n| n.local_slot))
     else {
         return;
     };
@@ -212,10 +215,15 @@ pub fn update(
         };
         sink.set_volume(Volume::Linear(mix_gain(volume, master, muted.0)));
         if matches!(loop_sound, LoopSound::Engine) {
-            sink.set_speed(bike_states.iter().find(|(r, _)| r.id == 0).map_or(
-                0.85 + (player.speed % 12.0) * 0.075 + player.speed * 0.012,
-                |(_, b)| 0.7 + b.rpm / 6500.0,
-            ));
+            sink.set_speed(
+                bike_states
+                    .iter()
+                    .find(|(r, _)| r.id == online.as_ref().map_or(0, |n| n.local_slot))
+                    .map_or(
+                        0.85 + (player.speed % 12.0) * 0.075 + player.speed * 0.012,
+                        |(_, b)| 0.7 + b.rpm / 6500.0,
+                    ),
+            );
         }
     }
     for cue in cues.read() {

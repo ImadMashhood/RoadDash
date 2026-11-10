@@ -1,0 +1,15 @@
+{
+  "buildings": true,
+  "paths": true,
+  "fields": true,
+  "bounds": true,
+  "junctions": true,
+  "streets": true,
+  "source_layout_sha256": true,
+  "track": true,
+  "street_props": true,
+  "pedestrians": true,
+  "civic_sites": true,
+  "parked_before": 122,
+  "parked_after": 122
+}

@@ -1,0 +1,50 @@
+{
+  "reviewed": "All 14 captures in contact-sheet.jpg; metro-00, metro-07 and metro-09 additionally full-size. Ground/roads/sidewalks/buildings visible. Street walkers and main/cross traffic visible. Screenshots are static; runtime completion counters and endpoint coordinates supply motion evidence.",
+  "actual_completed_routes": [
+    {
+      "completed": 1,
+      "end": [
+        199.86106872558594,
+        0.0,
+        3126.2578125
+      ],
+      "position": [
+        199.86106872558594,
+        56.9627799987793,
+        3126.2578125
+      ],
+      "start": [
+        184.86114501953125,
+        56.987579345703125,
+        3127.993408203125
+      ],
+      "started": 1
+    },
+    {
+      "completed": 1,
+      "end": [
+        216.4660186767578,
+        0.0,
+        5120.43017578125
+      ],
+      "position": [
+        216.4660186767578,
+        47.846458435058594,
+        5120.43017578125
+      ],
+      "start": [
+        201.92335510253906,
+        47.82853317260742,
+        5117.68212890625
+      ],
+      "started": 1
+    }
+  ],
+  "completed_endpoint_xz_error_max_m": 0.0,
+  "census_verified": true,
+  "build": "Frozen combined root debug functional binary, source through 8c1ab49; not older release benchmark.",
+  "wall_p95_ms": 32.730770111083984,
+  "target_ms": 16.7,
+  "target_met": false,
+  "limits": "No comparative performance, GPU timing, full-route traffic fairness, visual acceptance or multiplayer certification claim."
+}

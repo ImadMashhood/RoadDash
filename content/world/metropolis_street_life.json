@@ -1,13 +1,21 @@
 {
   "schema_version": 1,
-  "main_traffic": 64,
+  "main_traffic": 96,
   "lane_sections": [
     {
       "route": 0,
       "start": 0,
-      "end": 3350,
+      "end": 2800,
       "outbound": 2,
       "inbound": 2,
+      "lane_width": 3.0
+    },
+    {
+      "route": 0,
+      "start": 2800,
+      "end": 3350,
+      "outbound": 1,
+      "inbound": 1,
       "lane_width": 3.0
     },
     {
@@ -29,9 +37,17 @@
     {
       "route": 1,
       "start": 0,
-      "end": 3350,
+      "end": 2800,
       "outbound": 2,
       "inbound": 2,
+      "lane_width": 3.0
+    },
+    {
+      "route": 1,
+      "start": 2800,
+      "end": 3350,
+      "outbound": 1,
+      "inbound": 1,
       "lane_width": 3.0
     },
     {

@@ -1,12 +1,21 @@
 //! Visual-only distal articulation. Source mesh vertices and physical drivers stay independent.
 use super::*;
+// Original motion.json shin-to-foot endpoint length. Keep this visual pivot at
+// the authored ankle: a shorter approximation makes distal flex orbit the shin.
+// The source mesh, weights and physical rig pivots are deliberately independent.
+const ANKLE_DISTANCE: f32 = 0.558_046_2;
 pub const PARENTS: [usize; 5] = [0, 4, 6, 8, 10];
 pub fn bind_frames(base: [Transform; 11]) -> [Transform; 16] {
     let mut out = [Transform::IDENTITY; 16];
     out[..11].copy_from_slice(&base);
     out[11] = base[0];
     out[11].translation = base[2].translation.lerp(base[0].translation, 0.6);
-    for (i, parent, distance) in [(12, 4, 0.27), (13, 6, 0.27), (14, 8, 0.50), (15, 10, 0.50)] {
+    for (i, parent, distance) in [
+        (12, 4, 0.27),
+        (13, 6, 0.27),
+        (14, 8, ANKLE_DISTANCE),
+        (15, 10, ANKLE_DISTANCE),
+    ] {
         out[i] = base[parent];
         out[i].translation = base[parent].transform_point(Vec3::Y * distance);
     }

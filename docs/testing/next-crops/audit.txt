@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/tools/audit.py", line 98, in <module>
+    if __name__=='__main__': main()
+                             ~~~~^^
+  File "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/tools/audit.py", line 95, in main
+    report={'dependency_declarations':len(meta['packages']),'runtime_asset_records':audit_assets(meta),'reference_observations':audit_research(),'limitations':'Declaration/hash audit only; not legal clearance, vulnerability scanning, or platform certification.'}
+                                                                                    ~~~~~~~~~~~~^^^^^^
+  File "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/tools/audit.py", line 71, in audit_assets
+    if hashlib.sha256(path.read_bytes()).hexdigest()!=row['sha256']: raise ValueError(f"asset/source hash mismatch: {row['asset_id']}")
+                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: asset/source hash mismatch: original-metro-src-world_gen-metropolis-geometry-rs

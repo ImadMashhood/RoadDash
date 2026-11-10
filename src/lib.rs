@@ -1,7 +1,6 @@
 pub mod contact_telemetry;
+pub mod online;
 mod police;
-#[cfg(not(feature = "offline"))]
-compile_error!("No online transport is implemented. Enable the offline feature (default).");
 
 pub mod animation;
 pub mod biomechanics;
@@ -111,6 +110,9 @@ pub fn build_app(smoke: bool) -> App {
     .add_plugins(MaterialPlugin::<
         world_gen::metropolis::material::FacadeMaterial,
     >::default())
+    .add_plugins(MaterialPlugin::<
+        world_gen::metropolis::geometry::grass_material::GrassMaterial,
+    >::default())
     .add_plugins(world_gen::city::visuals::BuildingSceneTypesPlugin)
     .add_plugins((
         content::RoadContentPlugin,
@@ -120,9 +122,11 @@ pub fn build_app(smoke: bool) -> App {
         models::RoadModelPlugin,
         props::PropPlugin,
         destruction::PropDestructionPlugin,
+        world_gen::metropolis::geometry::crops::CropPlugin,
         runtime::RoadWorldPlugin,
         runtime::RoadPresentationPlugin,
         frontend::FrontendPlugin,
+        online::OnlinePlugin,
         runtime::RoadAudioPlugin,
         diagnostics::RoadDiagnosticsPlugin,
     ));

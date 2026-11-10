@@ -1,0 +1,166 @@
+{
+  "base": "035968caeba26fdb9be921c39d1f860e2f3cd93f",
+  "changed_generated_keys": [
+    "street_life",
+    "pedestrians"
+  ],
+  "main_traffic": [
+    96,
+    144
+  ],
+  "pedestrians": [
+    192,
+    384
+  ],
+  "crossings": [
+    {
+      "id": "metro-walker-007",
+      "station": 6500,
+      "route": 0,
+      "start": [
+        184.86115132403404,
+        3127.993495129791
+      ],
+      "end": [
+        199.86106703721993,
+        3126.2578313958497
+      ]
+    },
+    {
+      "id": "metro-walker-016",
+      "station": 11000,
+      "route": 0,
+      "start": [
+        392.5946085646411,
+        7449.150302249181
+      ],
+      "end": [
+        405.25396485887455,
+        7456.817159376821
+      ]
+    },
+    {
+      "id": "metro-walker-040",
+      "station": 5020,
+      "route": 0,
+      "start": [
+        484.7116211996925,
+        1714.7943973822807
+      ],
+      "end": [
+        498.5411672627727,
+        1709.5233770171958
+      ]
+    },
+    {
+      "id": "metro-walker-053",
+      "station": 11540,
+      "route": 0,
+      "start": [
+        113.44518950650678,
+        7911.865120258238
+      ],
+      "end": [
+        126.64840004767655,
+        7918.552065106637
+      ]
+    },
+    {
+      "id": "metro-walker-065",
+      "station": 8540,
+      "route": 0,
+      "start": [
+        201.9233551172991,
+        5117.682279959366
+      ],
+      "end": [
+        216.46602566478137,
+        5120.430139735153
+      ]
+    },
+    {
+      "id": "metro-walker-078",
+      "station": 6040,
+      "route": 0,
+      "start": [
+        218.34893798921203,
+        2669.364288511735
+      ],
+      "end": [
+        232.6384121186588,
+        2673.217978834513
+      ]
+    },
+    {
+      "id": "metro-walker-093",
+      "station": 4600,
+      "route": 0,
+      "start": [
+        210.15215483395875,
+        1408.3851541938297
+      ],
+      "end": [
+        219.05372057746607,
+        1396.5613592313816
+      ]
+    },
+    {
+      "id": "metro-walker-224",
+      "station": 7120,
+      "route": 0,
+      "start": [
+        332.75007129233427,
+        3730.506198482943
+      ],
+      "end": [
+        347.0647910965289,
+        3726.7473692865847
+      ]
+    },
+    {
+      "id": "metro-walker-277",
+      "station": 7700,
+      "route": 0,
+      "start": [
+        392.49412882570243,
+        4301.525393418338
+      ],
+      "end": [
+        407.83230609357594,
+        4302.903913675457
+      ]
+    },
+    {
+      "id": "metro-walker-324",
+      "station": 5720,
+      "route": 0,
+      "start": [
+        330.2682279168804,
+        2368.6635479079773
+      ],
+      "end": [
+        343.75709999184676,
+        2374.753731004173
+      ]
+    }
+  ],
+  "unchanged_fields": [
+    "schema_version",
+    "elevation_profile",
+    "source_layout_sha256",
+    "track",
+    "paths",
+    "bounds",
+    "civic_sites",
+    "buildings",
+    "surfaces",
+    "streets",
+    "junctions",
+    "traffic_paths",
+    "parked_cars",
+    "street_props",
+    "fields"
+  ],
+  "unchanged_rural_fleet": 64,
+  "source_layout_sha256": "36ad931648350ba814849f266f67e6a1d6c4025dcb75e6ee1afe246ed23683f2"
+}

@@ -67,6 +67,119 @@ impl Navigation {
                 .collect();
             result.add_ring(m.buildings.len() + m.street_props.len() + i, ring);
         }
+        // Civic footprints remain navigational obstacles independent of detail.
+        // The hall foundation and fountain basin are solid; cafe patios reserve
+        // their occupied furniture area while the authored public walk stays open.
+        let first = m.buildings.len() + m.street_props.len() + m.parked_cars.len();
+        for (i, site) in m.civic_sites.iter().enumerate() {
+            let (sin, cos) = site.heading.sin_cos();
+            let world = |p: Vec2| {
+                Vec2::new(
+                    site.position[0] + cos * p.x + sin * p.y,
+                    site.position[1] - sin * p.x + cos * p.y,
+                )
+            };
+            let ring = if site.kind == "park" {
+                (0..32)
+                    .map(|j| {
+                        let a = j as f32 / 32. * std::f32::consts::TAU;
+                        world(Vec2::new(a.cos(), a.sin()) * 8.5)
+                    })
+                    .collect()
+            } else {
+                let size = if site.kind == "city_hall" {
+                    Vec2::new(62., 46.) * super::civic::HALL_SCALE
+                } else {
+                    Vec2::from_array(site.size)
+                };
+                [
+                    Vec2::new(-1., -1.),
+                    Vec2::new(1., -1.),
+                    Vec2::new(1., 1.),
+                    Vec2::new(-1., 1.),
+                ]
+                .map(|p| world(p * size * 0.5))
+                .to_vec()
+            };
+            result.add_ring(first + i, ring);
+            for [x, z] in &site.trees {
+                result.add_ring(
+                    first + i,
+                    [
+                        Vec2::new(-0.5, -0.5),
+                        Vec2::new(0.5, -0.5),
+                        Vec2::new(0.5, 0.5),
+                        Vec2::new(-0.5, 0.5),
+                    ]
+                    .map(|v| v + Vec2::new(*x, *z))
+                    .to_vec(),
+                );
+            }
+
+            if site.kind == "park" {
+                let mut furniture = vec![(Vec2::new(24., 130.), Vec2::splat(14.))];
+                for side in [-1., 1.] {
+                    for z in [-100., -50., 50., 100.] {
+                        furniture.extend([
+                            (Vec2::new(side * 23., z), Vec2::new(8., 12.)),
+                            (Vec2::new(side * 9., z), Vec2::new(4., 1.2)),
+                            (Vec2::new(side * 5., z + 12.), Vec2::splat(0.2)),
+                        ]);
+                    }
+                }
+                for z in [-35., 35., 105.] {
+                    furniture.extend([
+                        (Vec2::new(90., z), Vec2::new(8., 12.)),
+                        (Vec2::new(75., z), Vec2::new(4., 1.3)),
+                    ]);
+                }
+                for (p, size) in furniture {
+                    result.add_ring(
+                        first + i,
+                        [
+                            Vec2::new(-1., -1.),
+                            Vec2::new(1., -1.),
+                            Vec2::new(1., 1.),
+                            Vec2::new(-1., 1.),
+                        ]
+                        .map(|v| world(p + v * size * 0.5))
+                        .to_vec(),
+                    );
+                }
+                for p in super::civic::park_tree_positions(site) {
+                    result.add_ring(
+                        first + i,
+                        [
+                            Vec2::new(-0.5, -0.5),
+                            Vec2::new(0.5, -0.5),
+                            Vec2::new(0.5, 0.5),
+                            Vec2::new(-0.5, 0.5),
+                        ]
+                        .map(|v| world(p + v))
+                        .to_vec(),
+                    );
+                }
+
+                for side in [-1., 1.] {
+                    for z in [-20., 20.] {
+                        {
+                            let (center, size) = (Vec2::new(side * 16., z), Vec2::new(4., 1.3));
+                            result.add_ring(
+                                first + i,
+                                [
+                                    Vec2::new(-1., -1.),
+                                    Vec2::new(1., -1.),
+                                    Vec2::new(1., 1.),
+                                    Vec2::new(-1., 1.),
+                                ]
+                                .map(|p| world(center + p * size * 0.5))
+                                .to_vec(),
+                            );
+                        }
+                    }
+                }
+            }
+        }
         result
     }
     fn add_ring(&mut self, owner: usize, ring: Vec<Vec2>) {
@@ -302,6 +415,10 @@ mod tests {
         let track = crate::track::Track::metropolis().unwrap();
         let m = track.metropolis.as_ref().unwrap();
         let nav = Navigation::new(m);
+        for site in &m.civic_sites {
+            let p = Vec2::from_array(site.position);
+            assert!(!nav.clear(p, p), "missing civic obstacle {}", site.id);
+        }
         for car in &m.parked_cars {
             let q = Vec2::from_array(car.position);
             assert!(!nav.clear(q, q));

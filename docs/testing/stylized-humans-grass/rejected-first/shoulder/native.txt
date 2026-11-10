@@ -1,0 +1,8 @@
+2026-11-09T22:39:17.928211Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T22:39:18.159113Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/stylized-humans-grass/shoulder/performance/performance-3080150.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-09T22:39:21.412053Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape geometry generated in 407.087ms
+2026-11-09T22:39:21.412102Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape: 54053 tufts / 333 batches / 648636 triangles; caps 120000/600
+2026-11-09T22:39:21.621286Z  INFO road_dash::sky: Sky display cube: 2097144 bytes, generated in 121.356ms; stationary world sun/cloud field
+2026-11-09T22:39:23.220143Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1

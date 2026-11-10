@@ -7,6 +7,7 @@ use bevy::{
     render::render_resource::{Extent3d, TextureDimension, TextureFormat},
 };
 const SIDE: usize = 512;
+pub(crate) const TILE_METERS: f32 = 8.0;
 fn hash(x: u32, y: u32) -> u32 {
     let mut h = x.wrapping_mul(374761393) ^ y.wrapping_mul(668265263);
     h = (h ^ (h >> 13)).wrapping_mul(1274126177);
@@ -23,17 +24,19 @@ fn pixels() -> [Vec<u8>; 3] {
     for y in 0..SIDE {
         for x in 0..SIDE {
             let grit = height(x, y);
-            let coarse = grain(x / 32, y / 32);
-            let tar = (y as f32 - (270.0 + 8.0 * (x as f32 * 0.021).sin())).abs() < 1.3
+            // Quiet, metre-scale repairs; no axis-aligned tire bands repeated across lanes.
+            let u = x as f32 / SIDE as f32;
+            let v = y as f32 / SIDE as f32;
+            let macro_tone =
+                (u * std::f32::consts::TAU).sin() * (v * std::f32::consts::TAU).cos() * 2.5;
+            let patch = (u > 0.12 && u < 0.28 && v > 0.18 && v < 0.43)
+                || (u > 0.62 && u < 0.85 && v > 0.67 && v < 0.82);
+            let tar = (y as f32 - (270.0 + 8.0 * (x as f32 * 0.021).sin())).abs() < 0.8
                 && x > 80
-                && x < 415;
-            let patch = x > 275 && x < 485 && y > 55 && y < 200;
-            let tire = (x as f32 / SIDE as f32 - 0.28).abs() < 0.045
-                || (x as f32 / SIDE as f32 - 0.72).abs() < 0.045;
-            let value = (49.0 + grit * 25.0 + coarse * 6.0
-                - if tar { 18.0 } else { 0.0 }
-                - if patch { 7.0 } else { 0.0 }
-                - if tire { 3.0 } else { 0.0 }) as u8;
+                && x < 215;
+            let value = (79.0 + grit * 17.0 + macro_tone
+                - if tar { 10.0 } else { 0.0 }
+                - if patch { 5.0 } else { 0.0 }) as u8;
             data[0].extend([value, value.saturating_add(2), value.saturating_add(3), 255]);
             let dx = height((x + 1) % SIDE, y) - height((x + SIDE - 1) % SIDE, y);
             let dy = height(x, (y + 1) % SIDE) - height(x, (y + SIDE - 1) % SIDE);
@@ -104,6 +107,35 @@ pub(crate) fn image(base: Vec<u8>, size: usize, srgb: bool) -> Image {
     });
     result
 }
+/// Shared source for legacy and Metropolis roads; UVs are measured in world metres.
+pub(crate) fn asphalt(images: &mut Assets<Image>) -> StandardMaterial {
+    let [albedo, normal, rough] = pixels();
+    StandardMaterial {
+        base_color_texture: Some(images.add(image(albedo, SIDE, true))),
+        normal_map_texture: Some(images.add(image(normal, SIDE, false))),
+        metallic_roughness_texture: Some(images.add(image(rough, SIDE, false))),
+        perceptual_roughness: 1.0,
+        reflectance: 0.18,
+        ..default()
+    }
+}
+/// Opaque faded paint retains continuous silhouettes and does not require blending.
+pub(crate) fn paint(images: &mut Assets<Image>, color: Color) -> StandardMaterial {
+    let mut pixels = Vec::with_capacity(64 * 64 * 4);
+    for y in 0..64 {
+        for x in 0..64 {
+            let value = 215 + (hash(x, y) % 41) as u8;
+            pixels.extend([value, value, value, 255]);
+        }
+    }
+    StandardMaterial {
+        base_color: color,
+        base_color_texture: Some(images.add(image(pixels, 64, true))),
+        perceptual_roughness: 0.96,
+        reflectance: 0.1,
+        ..default()
+    }
+}
 #[allow(clippy::type_complexity)]
 pub fn install(
     mut commands: Commands,
@@ -118,15 +150,14 @@ pub fn install(
     )>,
 ) {
     let Some(mut images) = images else { return };
-    let [albedo, normal, rough] = pixels();
-    let material = materials.add(StandardMaterial {
-        base_color_texture: Some(images.add(image(albedo, SIDE, true))),
-        normal_map_texture: Some(images.add(image(normal, SIDE, false))),
-        metallic_roughness_texture: Some(images.add(image(rough, SIDE, false))),
-        perceptual_roughness: 1.0,
-        reflectance: 0.18,
-        ..default()
-    });
+    // Metropolis owns its render materials; its RoadChunk components are collider-only.
+    // Do not allocate an unused second PBR image set there.
+    if !roads.iter().any(|(_, _, road, surface)| {
+        road.is_some() || surface.is_some_and(|s| matches!(s.0, "junction" | "grid_road"))
+    }) {
+        return;
+    }
+    let material = materials.add(asphalt(&mut images));
     for (entity, handle, road, surface) in &roads {
         if road.is_none() && !surface.is_some_and(|s| matches!(s.0, "junction" | "grid_road")) {
             continue;
@@ -137,7 +168,7 @@ pub fn install(
             {
                 let uv = p
                     .iter()
-                    .map(|v| [v[0] / 6.0, v[2] / 6.0])
+                    .map(|v| [v[0] / TILE_METERS, v[2] / TILE_METERS])
                     .collect::<Vec<_>>();
                 mesh.insert_attribute(Mesh::ATTRIBUTE_UV_0, uv);
             }
@@ -153,6 +184,32 @@ pub fn install(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn legacy_installer_does_not_allocate_without_matching_render_surfaces() {
+        let mut app = App::new();
+        app.init_resource::<Assets<Image>>()
+            .init_resource::<Assets<Mesh>>()
+            .init_resource::<Assets<StandardMaterial>>()
+            .add_systems(Update, install);
+        app.world_mut().spawn(crate::environment::RoadChunk);
+        app.update();
+        assert_eq!(app.world().resource::<Assets<Image>>().len(), 0);
+        assert_eq!(app.world().resource::<Assets<StandardMaterial>>().len(), 0);
+    }
+    #[test]
+    fn paint_stays_opaque_and_readable_through_all_distance_mips() {
+        let mut images = Assets::<Image>::default();
+        let material = paint(&mut images, Color::WHITE);
+        assert_eq!(material.alpha_mode, AlphaMode::Opaque);
+        let image = images
+            .get(material.base_color_texture.as_ref().unwrap())
+            .unwrap();
+        assert_eq!(image.texture_descriptor.mip_level_count, 7);
+        for pixel in image.data.as_ref().unwrap().chunks_exact(4) {
+            assert!(pixel[0] >= 215);
+            assert_eq!(pixel[3], 255);
+        }
+    }
     #[test]
     fn asphalt_has_repeat_sampling_full_mips_and_bounded_pbr_channels() {
         let [a, n, r] = pixels();

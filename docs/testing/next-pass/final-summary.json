@@ -1,0 +1,35 @@
+{
+  "workspace_tests_passed": 481,
+  "workspace_tests_ignored": 1,
+  "python_metropolis_tests": 23,
+  "roadmap_tests": 5,
+  "accepted_native_cases": [
+    "after",
+    "route",
+    "recovery",
+    "baseline-recovery",
+    "actors",
+    "police",
+    "police-baseline",
+    "poses",
+    "legacy-city-recovery",
+    "legacy-valley-recovery",
+    "crops-off",
+    "crops-on",
+    "ragdoll-lab"
+  ],
+  "all_final_native_exits_zero": true,
+  "paired_lab_cases": 18,
+  "all_lab_finite": true,
+  "crop_paused_images_identical": true,
+  "crop_image_hashes": {
+    "crops-before.png": "e3798e759c725911c2cce4ed45a1db6140a755896becebb3e7ed0b9bb68119a7",
+    "crops-bending.png": "f725b9e6541d69f46befde490c4c76ee572fba279a55e7b5023dc02e965520c8",
+    "crops-trail.png": "8aefdf711184614ed70a23456a42dc1653430f9edf9a5f590e146a082692a42f",
+    "crops-persistent.png": "8aefdf711184614ed70a23456a42dc1653430f9edf9a5f590e146a082692a42f",
+    "crops-reset.png": "51202f6a53e5e883c371a174b2f21e943b5e2c9f1ee26c6aeeccc2a8078fc356"
+  },
+  "route_wall_p95_ms": 22.37589454650879,
+  "target_ms": 16.7,
+  "target_met": false
+}

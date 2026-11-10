@@ -1,0 +1,73 @@
+{
+  "source_commit": "ef3eecc0",
+  "purpose": "Freeze the passed historical negative-control road frame and terrain alongside old-farm-rim-surfaces.json; current-map crossings remain on current data.",
+  "station": 3000,
+  "elevation_profile": {
+    "knots": [
+      [
+        -4000,
+        10
+      ],
+      [
+        -3000,
+        12
+      ],
+      [
+        -2200,
+        17
+      ],
+      [
+        -1400,
+        13
+      ],
+      [
+        -650,
+        18
+      ],
+      [
+        600,
+        38
+      ],
+      [
+        2100,
+        31
+      ],
+      [
+        3600,
+        51
+      ],
+      [
+        5100,
+        40
+      ],
+      [
+        6500,
+        62
+      ],
+      [
+        8500,
+        55
+      ]
+    ],
+    "crossfall_amplitude": 0.8,
+    "crossfall_wavelength": 900
+  },
+  "traffic_path": {
+    "points": [
+      [
+        9.324924181421224,
+        24.36651575551401,
+        -149.65910944046774
+      ],
+      [
+        8.87953505956009,
+        24.504323245462178,
+        -144.67898610384162
+      ]
+    ],
+    "progress": [
+      2999.922719545259,
+      3004.9226541045514
+    ]
+  }
+}
