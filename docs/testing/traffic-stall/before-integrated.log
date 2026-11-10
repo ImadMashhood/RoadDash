@@ -1,0 +1,30 @@
+   Compiling cpal v0.15.3 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/vendor/cpal)
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/crates/rr_core)
+   Compiling rodio v0.20.1
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/crates/rr_content)
+   Compiling bevy_audio v0.17.3
+   Compiling bevy_internal v0.17.3
+   Compiling bevy v0.17.3
+   Compiling bevy_rapier3d v0.32.0
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 54s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+test game::traffic_stall_tests::compressed_city_car_queue_drains_in_both_directions ... FAILED
+
+failures:
+
+---- game::traffic_stall_tests::compressed_city_car_queue_drains_in_both_directions stdout ----
+
+thread 'game::traffic_stall_tests::compressed_city_car_queue_drains_in_both_directions' (385602) panicked at src/traffic_stall_tests.rs:55:13:
+stationary circular queue, direction=-1: [(2900.0, -0.0), (2899.96, -0.0), (2899.92, -0.0)]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    game::traffic_stall_tests::compressed_city_car_queue_drains_in_both_directions
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 379 filtered out; finished in 1.56s
+
+error: test failed, to rerun pass `--lib`

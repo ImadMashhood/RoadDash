@@ -3596,3 +3596,24 @@ static graph edges. No dependency migration, external code or asset import.
 
 Retained optimization reduces measured gameplay work. Overall frame timing
 varies across runs and remains above target; do not claim 60 FPS or GPU attribution.
+
+## ADR132 follow-up — Civilian queue ordering (2026-11-10)
+
+The user reports stopped city cars and attached queue screenshots. Investigation
+reproduced a circular leader dependency: three cars at stations0,0.04,0.08 can
+select C,A,B as leaders when the five-centimetre fuzzy-tie rule mixes position
+with entity priority. The production fixed-update regression also freezes all
+three inbound cars at2900/2899.96/2899.92 for20simulated seconds.
+
+Use strict longitudinal order, resolving exactly coincident stations by stable
+entity priority. This is a total order, so car-following dependencies cannot
+cycle. Preserve lane-merge lookahead, desired cruising speeds, braking, safe
+following gaps, downed-person yielding, population, collision and physical rigs.
+A legitimate occupied lane can still stop traffic. No timeout-through-obstacles,
+teleport, or new lane-changing behavior is part of this correction.
+
+Continue existing AI-QUEUE-02/P08-005; no new IDs or acceptance closures. Add
+headless compressed-queue/both-direction/full-fleet regressions and an opt-in
+rendered --traffic-stall-survey fixture. This proves the reproduced defect,
+not every possible stop shown in a still image. No new assets/dependencies or
+external source intake. Work is isolated from concurrent Hills revisions.

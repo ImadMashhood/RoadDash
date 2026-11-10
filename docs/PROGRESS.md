@@ -1,5 +1,7 @@
 # Development progress
 
+Current traffic follow-up (2026-11-10): AI-QUEUE-02/P08-005 addresses the user’s stopped-city-car report. Reproduced a three-car circular wait in core and production fixed-update tests; strict leader ordering implemented. Isolated codex/traffic-stall-fix passes 551 tests, strict lint/format, debug/release builds and audit. Both-direction rendered queue and shared-checkout traffic regressions pass; active and baseline native recovery checks both pass. Evidence: testing/traffic-stall. No population/physics changes, new IDs or checklist closures.
+
 Current scope: user-authorized performance work under PERF-08/P16-003, after fast-forwarding local main to the verified multiplayer/city pass. Remote push is waiting for Git authentication. Release comparisons show lower gameplay CPU work from skipping ineligible crossing forecasts; total-frame gains overlap run variation and the 16.7ms target stays open. Rejected worker/prop-body/damage-prefilter experiments are not shipped. Final529tests/strict checks/builds/audit and native destruction/both-rig recovery/city survey pass; no new IDs or checklist closures.
 
 Current follow-up: AI-QUEUE-02 and CITY-ACTIVITY-02 track multi-rider queue escapes,50%more city main traffic, doubled city pedestrians and paced crossings. No rural increase. Implemented with529passing workspace tests; native city/reload checks pass. CITY-ACTIVITY-02 verified/moved to Part00; broader networking/AI review remains open;222verified/256open.

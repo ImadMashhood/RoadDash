@@ -79,6 +79,12 @@ pub fn shares_lane_ahead(
             < 1.9
     })
 }
+/// A strict longitudinal order prevents circular waits in compressed queues.
+/// Use stable identity only at exactly equal stations: a fuzzy equality band
+/// is not transitive (A can wait for C, C for B, and B for A).
+pub fn leader_gap(gap: f32, same_station_priority: bool) -> Option<f32> {
+    (gap > 0. || (gap == 0. && same_station_priority)).then_some(gap.max(0.05))
+}
 pub fn following_speed(cruise: f32, gap: Option<(f32, f32)>) -> f32 {
     gap.map_or(cruise.abs(), |(gap, leader)| {
         if gap < 8. {
@@ -193,7 +199,7 @@ mod tests {
                 let other = 1 - car;
                 let gap = old[other] - old[car];
                 let leader = shares_lane_ahead(&p, 0, old[car], true, car, other)
-                    && (gap > 0.05 || (gap.abs() <= 0.05 && other < car));
+                    && leader_gap(gap, other < car).is_some();
                 let desired =
                     following_speed(18., leader.then_some((gap.max(0.05), old_speed[other])));
                 speed[car] = if desired < speed[car] {
@@ -235,5 +241,32 @@ mod tests {
             assert!(gap > 3.8);
         }
         assert!(speed < 0.01);
+    }
+    #[test]
+    fn nearly_level_three_car_queue_has_a_free_leader() {
+        // The former five-centimetre fuzzy tie created A→C→B→A here.
+        for positions in [[0., 0.04, 0.08], [0., 0., 0.], [0.08, 0.04, 0.]] {
+            for direction in [-1., 1.] {
+                let leaders: Vec<_> = (0..3)
+                    .map(|car| {
+                        (0..3)
+                            .filter(|other| *other != car)
+                            .filter_map(|other| {
+                                leader_gap(
+                                    (positions[other] - positions[car]) * direction,
+                                    other < car,
+                                )
+                                .map(|gap| (other, gap))
+                            })
+                            .min_by(|a, b| a.1.total_cmp(&b.1))
+                            .map(|x| x.0)
+                    })
+                    .collect();
+                assert!(
+                    leaders.iter().any(Option::is_none),
+                    "cyclic queue: {positions:?}, direction {direction}, {leaders:?}"
+                );
+            }
+        }
     }
 }

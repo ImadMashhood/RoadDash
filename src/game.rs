@@ -1699,10 +1699,9 @@ pub fn drive(
                     })
                     .filter_map(|c| {
                         let gap = (c.1 - car.progress) * direction;
-                        // Stable priority lets a side-by-side pair zipper without
-                        // both entering the same merged centre simultaneously.
-                        (gap > 0.05 || (gap.abs() <= 0.05 && c.6 < entity))
-                            .then_some((gap.max(0.05), c.3))
+                        // Strict progress order with exact-station identity ties keeps
+                        // compressed/merging queues free of circular waits.
+                        rr_core::streets::leader_gap(gap, c.6 < entity).map(|gap| (gap, c.3))
                     })
                     .filter(|c| c.0 < 100.)
                     .min_by(|a, b| a.0.total_cmp(&b.0));
@@ -4263,3 +4262,10 @@ pub(crate) mod tests {
 #[cfg(test)]
 #[path = "camera_tests.rs"]
 mod camera_tests;
+
+#[cfg(test)]
+#[path = "traffic_stall_tests.rs"]
+mod traffic_stall_tests;
+
+#[path = "traffic_stall_survey.rs"]
+pub(crate) mod traffic_stall_survey;

@@ -1,0 +1,42 @@
+{
+  "cases": [
+    {
+      "cars": [
+        {
+          "speed_mps": 18.0,
+          "station": 3077.466064453125
+        },
+        {
+          "speed_mps": 18.0,
+          "station": 3128.21435546875
+        },
+        {
+          "speed_mps": 18.0,
+          "station": 3178.962646484375
+        }
+      ],
+      "direction": 1.0,
+      "queue_drained": true
+    },
+    {
+      "cars": [
+        {
+          "speed_mps": -18.0,
+          "station": 2722.533935546875
+        },
+        {
+          "speed_mps": -18.0,
+          "station": 2671.78564453125
+        },
+        {
+          "speed_mps": -18.0,
+          "station": 2621.037353515625
+        }
+      ],
+      "direction": -1.0,
+      "queue_drained": true
+    }
+  ],
+  "frames": 3000,
+  "limits": "Deliberately compressed production car queue; racers and other traffic excluded from the scenario. Functional rendering/queue evidence, not performance or whole-race coverage."
+}

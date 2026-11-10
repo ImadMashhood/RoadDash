@@ -1,0 +1,38 @@
+Diff in /home/imad/Documents/ChatGPT/RoadRash/src/hills_revision_survey.rs:65:
+     mut race: ResMut<Race>,
+     mut keys: ResMut<ButtonInput<KeyCode>>,
+     mut recoveries: Query<&mut crate::recovery::Recovery>,
+-    mut objects: Query<(
+-        Entity,
+-        &mut Transform,
+-        Option<&mut Rider>,
+-        Option<&mut Velocity>,
+-        Option<&HeavyTraffic>,
+-        Option<&ChaseCamera>,
+-        Option<&HillsFarm>,
+-        Option<&OwnedBody>,
+-        Option<&mut BikeState>,
+-    ), Or<(With<Rider>, With<HeavyTraffic>, With<ChaseCamera>, With<HillsFarm>, With<OwnedBody>)>>,
++    mut objects: Query<
++        (
++            Entity,
++            &mut Transform,
++            Option<&mut Rider>,
++            Option<&mut Velocity>,
++            Option<&HeavyTraffic>,
++            Option<&ChaseCamera>,
++            Option<&HillsFarm>,
++            Option<&OwnedBody>,
++            Option<&mut BikeState>,
++        ),
++        Or<(
++            With<Rider>,
++            With<HeavyTraffic>,
++            With<ChaseCamera>,
++            With<HillsFarm>,
++            With<OwnedBody>,
++        )>,
++    >,
+     ui: Query<(Entity, Option<&ChildOf>), With<Node>>,
+     (city, census, solids, metrics, clock, art, bridge_census, clouds): (
+         Res<CitySlice>,

@@ -139,7 +139,9 @@ pub fn build_app(smoke: bool) -> App {
             .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
                 std::time::Duration::from_secs_f64(1.0 / 60.0),
             ));
-        if std::env::args().any(|a| a == "--frontend-smoke") {
+        if std::env::args().any(|a| a == "--traffic-stall-survey") {
+            game::traffic_stall_survey::install(&mut app);
+        } else if std::env::args().any(|a| a == "--frontend-smoke") {
             frontend::install_smoke(&mut app);
         } else if std::env::args().any(|a| a == "--police-smoke") {
             app.init_resource::<police::survey::Survey>()
