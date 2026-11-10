@@ -1,0 +1,12 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 3m 01s
+     Running unittests src/lib.rs (/home/imad/roaddash-traffic-target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 2 tests
+test game::traffic_stall_tests::compressed_city_car_queue_drains_in_both_directions ... ok
+test game::traffic_stall_tests::production_city_fleet_keeps_moving_on_an_unobstructed_course ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 396 filtered out; finished in 15.34s
+

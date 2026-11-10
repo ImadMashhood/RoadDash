@@ -1690,3 +1690,7 @@ debug/release builds and audit pass. Native13-kind destruction/reset and both-ri
 recovery pass. Controlled release surveys show lower gameplay CPU work but total
 frame gains overlap run variation; no16.7ms/GPU/full-race/hardware acceptance.
 Evidence: testing/performance-pass. No new task IDs/closures;222verified/256open.
+
+## 2026-11-10 — Civilian circular-wait correction
+
+AI-QUEUE-02/P08-005: reproduced three closely spaced cars selecting a circular chain of leaders and remaining stationary. Replace fuzzy station ties with strict progress ordering and identity only at exact ties. Preserve normal yielding, speeds, physical rigs and populations. Add both-direction production regressions, a two-minute production-fleet check and an opt-in rendered queue survey. Evidence and final verification: testing/traffic-stall. No external code/assets or new task IDs; broader traffic acceptance remains open.

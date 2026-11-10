@@ -1,0 +1,29 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.27
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling syn v3.0.9
+   Compiling serde_derive v1.0.229
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/crates/rr_core)
+    Finished `test` profile [optimized + debuginfo] target(s) in 28.25s
+     Running unittests src/lib.rs (/home/imad/roaddash-traffic-core-target/debug/deps/rr_core-2eedc0a263b28bc0)
+
+running 1 test
+test streets::tests::nearly_level_three_car_queue_has_a_free_leader ... FAILED
+
+failures:
+
+---- streets::tests::nearly_level_three_car_queue_has_a_free_leader stdout ----
+
+thread 'streets::tests::nearly_level_three_car_queue_has_a_free_leader' (373058) panicked at crates/rr_core/src/streets.rs:253:17:
+cyclic queue: [0.0, 0.04, 0.08], direction 1, [Some(2), Some(0), Some(1)]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    streets::tests::nearly_level_three_car_queue_has_a_free_leader
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 112 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p rr_core --lib`

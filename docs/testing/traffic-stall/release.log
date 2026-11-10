@@ -1,0 +1,10 @@
+   Compiling cpal v0.15.3 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/vendor/cpal)
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/crates/rr_core)
+   Compiling rodio v0.20.1
+   Compiling bevy_audio v0.17.3
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall/crates/rr_content)
+   Compiling bevy_internal v0.17.3
+   Compiling bevy v0.17.3
+   Compiling bevy_rapier3d v0.32.0
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-traffic-stall)
+    Finished `release` profile [optimized] target(s) in 2m 46s

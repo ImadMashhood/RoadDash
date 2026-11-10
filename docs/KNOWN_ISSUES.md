@@ -1072,3 +1072,5 @@ new broad performance acceptance is claimed.
   One existing600-second turning soak remains intentionally ignored. No broad
   GPU/full-course/Windows certification or user art/feel approval is claimed.
   See testing/next-pass for accepted receipts and excluded interrupted/harness runs.
+
+- AI-QUEUE-02/P08-005: the reproduced civilian circular wait is corrected (testing/traffic-stall). A still image cannot establish the cause of every stopped car. Legitimate obstacle yielding and broader full-race traffic acceptance remain distinct from this regression.

@@ -208,6 +208,7 @@ fn main() {
         a == "--police-smoke"
             || a == "--frontend-smoke"
             || a == "--destruction-survey"
+            || a == "--traffic-stall-survey"
             || a == "--metro-survey"
             || a == "--smoke-test"
             || a == "--actor-smoke-test"
