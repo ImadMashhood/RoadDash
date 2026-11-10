@@ -26,6 +26,14 @@ Latest local integration: the gameplay/graphics, AI and civic work is merged int
 
 [Multiplayer, walking and city activity](docs/testing/online-city-final/README.md) is integrated on `codex/multiplayer-ui-walking`: Host/Join/Quick Play, public/private lobbies, original local backgrounds, corrected rider walking, slow-queue passing,48extra city-only cars,384urban pedestrians and occasional crossings.529workspace tests pass; native city/reload checks pass. Separate-network reachability and production bandwidth remain open.
 
+[Hills](docs/testing/hills/README.md) adds a separate12.5km city-to-mountains-to-western-town-to-dunes course. Strong winding relief, solid guardrails, two town streets rejoining inside town, farms, trees, grass, cattle, static saddled horses, cowboy residents and trucks. Launch with `ROADDASH_TRACK=hills cargo run --release --locked`; Metropolis remains the default. Art/feel and broad performance gates remain open.
+
+[Hills polish](docs/testing/hills-polish/README.md) adds grounded dust, circling birds, coherent cloud/lighting changes, original cacti/rocks/deadwood, varied trees, western signs and five walking horse-and-cowboy pairs. Original road relief and the in-town merge are preserved; human art/performance acceptance remains open.
+
+[Hills revision](docs/testing/hills-revision/REPORT.md) reuses the final city kilometre, tightens hill bends, limits guardrails to curves, develops hill farms/greenery and brings western frontage closer. A canyon suspension bridge has unrailed edges and thick square supports; eight semitrailers and six tractors join traffic. Launch with `cargo run --release --locked -- --hills`. Verification and measured performance are recorded in the report; human full-course acceptance remains open.
+
+[Course menu and landscape follow-up](docs/testing/hills-delivery/REPORT.md): choose **Thrash → Hills or Metropolis → Ride**; legacy courses remain available. Bridge hangers now connect to deck supports, a river runs beneath the span, six farms use gentler parcels, spatial cumulus clouds and a visible sun replace the flat cloud presentation, and city shadows extend to 500 m. Verification, timing and remaining acceptance gates are recorded in the report. [Grid, passing and road-edge corrections](docs/testing/hills-grid/REPORT.md) address the rear Hills spawn, false AI stops/passing failures at Metropolis bends, and the thin green asphalt seam. Existing HILLS-01/AI-QUEUE-02/CITY-CIVIC-01 acceptance remains open for broader review.
+
 ## Run
 
 Install [Rust](https://rustup.rs/) (the project pins Rust 1.94.0), then run from the repository directory:
@@ -154,7 +162,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**222 verified tasks complete; 256 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**222 verified tasks complete; 270 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -178,7 +186,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 10 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 13 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 25 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -187,7 +195,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 11 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 23 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 25 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 21 open |
 
 <a id="part-00"></a>
@@ -926,6 +934,30 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views.
+
+- [ ] **SKY-SUN-01** Make the visible sun distinct and coherent with separate volumetric clouds. Reason: user cannot see a real sun and rejects flat skybox-like clouds; part:06; dependencies:SKY-01 and HILLS-10; acceptance: clearly readable solar disc aligned with the directional light, spatial cloud depth separate from the display sky with bounded cost, consistent fog/exposure and other-map behavior; verification: sun-direction/cloud-volume tests and native sun/cloud views.
+
+- [ ] **HILLS-10** Add bounded volumetric clouds to Hills with measured cost. Reason: user requests volumetric clouds while prioritizing speed; part:06; dependencies:HILLS-04 and PERF-08; acceptance: visible spatial cloud depth, coherent daylight, fixed resource/step budgets and a measured low-cost option, no unverified FPS claim; verification: native cloud views, fixed-budget tests and matched release performance comparison.
+
+- [ ] **HILLS-07** Replace the plain Hills composition with a clearly urban opening, developed rolling-hill farms and giant rocks, and dense close western frontage. Reason: user rejected the sparse result and requested the earlier farm concept; part:06; dependencies:HILLS-01/03/06; acceptance: city before hills, no opening farms, supported farm parcels on hills, visibly denser buildings close to both town roads without blocking roads or mounted paths; verification: actual footprint/support tests, driving-height city/farm/town captures and full-course review. Partial implementation and current checks: [revision evidence](docs/testing/hills-revision/REPORT.md); full acceptance remains open.
+
+- [ ] **HILLS-08** Add a suspension bridge over a physical canyon with open edges and thick square supports. Reason: user requests a memorable bridge where riders can fall or be kicked off; part:06; dependencies:HILLS-01 and existing collision/recovery; acceptance: supported suspended deck, deep canyon below, original towers/cables, open deck edges with no low railing or hidden blocking collider, thicker square vertical supports and working fall/recovery; verification: physical deck/open-edge/support/fall tests and native bridge views and fall fixture, preserving accepted rigs. Partial implementation and current checks: [revision evidence](docs/testing/hills-revision/REPORT.md); full acceptance remains open.
+
+- [ ] **HILLS-09** Add moving eighteen-wheel semitrailers and agricultural tractors to Hills traffic. Reason: user requests richer vehicle traffic; part:06; dependencies:HILLS-01/02/08 and existing traffic/network interfaces; acceptance: recognizable original/reused vehicles, full-size collision and articulated turning, safe supported course/branch traversal, consistent traffic avoidance and guest presentation, no other-map regression; verification: wheel/dimension/path tests, native moving-traffic views, bridge/town traversal and recovery controls. Partial implementation and current checks: [revision evidence](docs/testing/hills-revision/REPORT.md); full acceptance remains open.
+
+- [ ] **HILLS-04** Polish Hills atmosphere with grounded dust, flying birds, coherent clouds and improved lighting. Reason: explicit extra polish request; part:06; dependencies:HILLS-01/03 and existing sky/presentation systems; acceptance: bounded effects, dust tied to actual moving ground contacts/surfaces, pause/reset safety, coherent sun/fog/IBL, no other-map or physics regression; verification: effect budgets/state tests, native active views and recovery/legacy controls. Human art and full-course performance remain open. Partial: implemented and technically checked in [Hills polish evidence](docs/testing/hills-polish/README.md); final human acceptance remains open.
+
+- [ ] **HILLS-05** Add cowboys riding moving horses around Hills. Reason: explicit mounted-life request; part:06; dependencies:HILLS-03 and authoritative world-actor interfaces; acceptance: recognizable riders, horse gait, supported clear patrols, matched physical bodies, pause/restart and host/guest consistency without player-rig tuning; verification: path/body/animation tests, native movement/contact/recovery evidence. Full animal behavior/art remains open. Partial: implemented and technically checked in [Hills polish evidence](docs/testing/hills-polish/README.md); final human acceptance remains open.
+
+- [ ] **HILLS-06** Enrich Hills with original cacti, tree variation, rocks/deadwood and western street details. Reason: user grants agents room for environmental polish; part:06; dependencies:HILLS-03; acceptance: biome-specific original/reused assets, road-clear supported placement, bounded detail independent of solid collision and readable town/dunes; verification: actual-placement/support tests, provenance and native close/wide views. Final art and target-hardware performance remain open. Partial: implemented and technically checked in [Hills polish evidence](docs/testing/hills-polish/README.md); final human acceptance remains open.
+
+- [ ] **HILLS-01** Add a separate12.5km Hills course with city opening, winding elevated hills, flat western town and dune finish. Reason: user map request/reference on2026-11-10; part:06; dependencies: existing track, road/terrain collision and race systems; acceptance: selectable course, strong supported relief/guardrails, preserved legacy maps/default, complete race/checkpoints/retry and both physical rigs; verification: route/content tests, locked regression suite and native Hills survey/recovery. Human full-course feel and hardware review remain open.
+
+- [ ] **HILLS-02** Split Hills at town entry and rejoin inside the town before its exit. Reason: user's explicit correction to the reference diagram; part:06; dependencies:HILLS-01 and existing branch navigation; acceptance: fork around5.5km, merge around7.4km with town continuing to8.5km, two supported race corridors, correct AI/traffic/minimap/checkpoints and no shortcut wins; verification: route projection/choice/gate tests and native both-branch coverage.
+
+- [ ] **HILLS-03** Populate Hills with original western storefronts, cattle, horses, cowboys and trucks, plus trees, grass, farms and city/hill/dune scenery. Reason: requested setting, asset reuse and follow-up for a livelier countryside; part:06; dependencies:HILLS-01/HILLS-02 and original prop catalog; acceptance: buildings on both sides of both town branches and after merge, road-clear trees/grass/pastures/farms, solid supported props/railings, distinct requested silhouettes and retained collision/recovery; verification: asset provenance, placed-geometry tests and native visual review. Final art, animal animation and broad performance approval remain open.
+
 
 - [ ] **CROP-TRAIL-01** Add farm crops with animated persistent crash, walking and driving deformation. Reason: user wants visible interaction trails in fields; part: 06; dependencies: WORLDART-01, current fixed simulation and vegetation renderer; acceptance: actual field crops, contact-only continuous footprints and trails, smoothly animated bends retained through the race and cleared on restart, bounded state/uploads/geometry; verification: contact/reset/sweep tests, native visual sequences and measured memory/CPU/render cost with documented method comparison.
 
@@ -1122,6 +1154,10 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-15"></a>
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: two prominent course choices, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.
+
+- [ ] **SHADOW-RANGE-01** Extend readable city shadow coverage. Reason: user requests shadows farther through the city; part:15; dependencies:P15-004 and existing facade lifecycle; acceptance: broader bounded cascade coverage with preserved close contacts, no collision or facade-LOD regression, measured cost and a baseline comparison; verification: cascade policy tests, native city near/far views and matched timing.
 
 Retain these unfinished original blueprint requirements and acceptance gates. Schedule prerequisite work alongside the relevant earlier part; final acceptance remains here.
 

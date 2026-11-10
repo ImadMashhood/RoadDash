@@ -1,11 +1,23 @@
 //! Baked curb furniture, independent solid contact and an open building-side walk.
 use super::*;
 pub fn spawn(commands: &mut Commands, art: &Art, track: &Track) -> usize {
+    spawn_props(
+        commands,
+        art,
+        track,
+        &track.metropolis.as_ref().unwrap().street_props,
+    )
+}
+pub fn spawn_props(
+    commands: &mut Commands,
+    art: &Art,
+    track: &Track,
+    items: &[rr_content::metropolis::StreetProp],
+) -> usize {
     let Some(props) = &art.props else {
         return 0;
     };
-    let m = track.metropolis.as_ref().unwrap();
-    for (i, p) in m.street_props.iter().enumerate() {
+    for (i, p) in items.iter().enumerate() {
         let base = Vec3::new(
             p.position[0],
             track.terrain_height(p.position[0], p.position[1]) + 0.14,
@@ -24,7 +36,7 @@ pub fn spawn(commands: &mut Commands, art: &Art, track: &Track) -> usize {
             Some(i),
         );
     }
-    m.street_props.len()
+    items.len()
 }
 pub fn paving(images: &mut Assets<Image>) -> StandardMaterial {
     let mut pixels = Vec::with_capacity(256 * 256 * 4);

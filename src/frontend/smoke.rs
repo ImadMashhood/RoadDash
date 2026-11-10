@@ -12,6 +12,10 @@ struct Smoke {
     layouts: Vec<serde_json::Value>,
 }
 pub(crate) fn install(app: &mut App) {
+    if std::env::var("ROADDASH_VERIFY_COURSES").as_deref() == Ok("1") {
+        super::course_smoke::install(app);
+        return;
+    }
     if std::env::var("ROADDASH_VERIFY_ONLINE_UI").as_deref() == Ok("1") {
         super::online_smoke::install(app);
         return;

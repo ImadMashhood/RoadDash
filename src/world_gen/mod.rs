@@ -3,6 +3,7 @@ pub mod buildings;
 pub mod city;
 pub mod frontage;
 pub mod ground;
+pub mod hills;
 pub mod layout;
 pub mod lod_survey;
 pub mod navigation;

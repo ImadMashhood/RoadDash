@@ -137,6 +137,13 @@ pub struct Kit {
 }
 impl Kit {
     pub fn load(server: &AssetServer, track: &Track) -> Self {
+        Self::load_buildings(server, &track.metropolis.as_ref().unwrap().buildings, track)
+    }
+    pub fn load_buildings(
+        server: &AssetServer,
+        buildings: &[rr_content::metropolis::Building],
+        track: &Track,
+    ) -> Self {
         let catalog = Catalog::from_json(crate::world_gen::architecture::CATALOG).unwrap();
         let designs: Vec<_> = FAMILIES
             .iter()
@@ -160,7 +167,7 @@ impl Kit {
             .collect();
         let mut faces = vec![];
         let mut cells: HashMap<_, Vec<usize>> = HashMap::new();
-        for b in &track.metropolis.as_ref().unwrap().buildings {
+        for b in buildings {
             let base = b
                 .shape
                 .vertices()

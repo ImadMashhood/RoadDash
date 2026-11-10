@@ -1,0 +1,2 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-hills-menu)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 10.36s

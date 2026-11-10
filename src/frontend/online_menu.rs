@@ -123,7 +123,8 @@ fn next_map(map: OnlineMap) -> OnlineMap {
     match map {
         OnlineMap::Metropolis => OnlineMap::Valley,
         OnlineMap::Valley => OnlineMap::City,
-        OnlineMap::City => OnlineMap::Metropolis,
+        OnlineMap::City => OnlineMap::Hills,
+        OnlineMap::Hills => OnlineMap::Metropolis,
     }
 }
 pub(super) fn dispatch(front: &mut Frontend, online: Option<&mut Online>, action: Action) -> bool {

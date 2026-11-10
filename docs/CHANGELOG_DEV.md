@@ -1691,6 +1691,140 @@ recovery pass. Controlled release surveys show lower gameplay CPU work but total
 frame gains overlap run variation; no16.7ms/GPU/full-race/hardware acceptance.
 Evidence: testing/performance-pass. No new task IDs/closures;222verified/256open.
 
+## 2026-11-10 — Hills course (ADR135, HILLS-01/02/03)
+
+User supplied a12.5km city/hills/western-town/dunes diagram, explicitly revised
+the town merge to occur inside town, then reinforced strong relief/turns and
+added trees/grass/farms/liveliness. Three requested subagents split route/content,
+world/scenery and selection/survey integration. Original procedural additions
+reuse existing cow/human/truck assets; no retail media or dependency migration.
+Parent reviews source, collision, actual placements and native images; early
+535-test run passed, later actual-placement test exposed overconservative stock
+reservations and initial survey exposed a never-stepped query pipeline. Final
+receipts and remaining gates are tracked in testing/hills/README.md.
+
+Hills final:536workspace tests (one existing ignored soak), format/strict Clippy/
+locked build/audit and five roadmap tests pass. All five native cases pass:
+11-view Hills survey with1506road rays (max0.025898m error), west/east town plus
+hill crash/recovery, baseline rig recovery and Metropolis regression. Every
+tested remount has0.0000m pickup error. Final census includes737trees,4farms,
+27cows,15static horses,21cowboy residents,8parked trucks and40,035grass tufts.
+No new task closures:222verified/259open. User art/feel, full driven-race and
+hardware/performance gates remain open; no next major part started.
+
+## 2026-11-10 — Extra Hills polish (ADR136)
+
+User authorized agent discretion for dust/birds/clouds/lighting/cacti/tree props
+and mounted cowboys. Three agents added bounded atmosphere, five analytic
+fixed-step horse patrols, original desert/forest props and western detail.
+Parent integrated runtime/native fixtures, corrected effect scheduling in
+headless fixtures and final-camera ordering, and strengthened dynamic-wheel
+dust eligibility/native mounted collider verification. Smaller stone variants
+restore steep-shelf coverage without weakening footprint guards.
+HILLS-04/05/06 remain open for human art/full-course/hardware acceptance.
+Final receipts are maintained in testing/hills-polish; no next major part begun.
+
+Native close-up review found and corrected mirrored storefront lettering with
+a front-view glyph regression. Initial west/east smoke then exposed an existing
+Hills-only recovery gap: a wreck outside continuous rails left automatic foot
+recovery oscillating inside. Retained diagnostics distinguish cumulative walking
+from real displacement. The follow-up extends exceptional delayed rescue to
+Hills and reports it explicitly, preserving rails and accepted physical rigs.
+
+Final polish verification: 548 workspace tests (one existing ignored soak),
+strict Clippy, formatting, locked build, asset audit and five roadmap tests pass.
+All six native cases pass: active effects/mount collision/pause, 1,506-probe
+course survey, west/east extended recovery, baseline-rig and Metropolis controls.
+West/east each record [0,1] rescues after 120.011 stationary seconds with +5s;
+baseline/Metropolis each record [0,0]. No requirement closures: 222 verified /
+262 open. Source/art is original or reused from the existing catalog; no new
+external media or dependency. Human full-course art/feel and hardware/performance
+acceptance remain open.
+
 ## 2026-11-10 — Civilian circular-wait correction
 
 AI-QUEUE-02/P08-005: reproduced three closely spaced cars selecting a circular chain of leaders and remaining stationary. Replace fuzzy station ties with strict progress ordering and identity only at exact ties. Preserve normal yielding, speeds, physical rigs and populations. Add both-direction production regressions, a two-minute production-fleet check and an opt-in rendered queue survey. Evidence and final verification: testing/traffic-stall. No external code/assets or new task IDs; broader traffic acceptance remains open.
+
+## 2026-11-10 — Hills city, canyon and lived-in countryside revision
+
+HILLS-07/08/09/10: reuse the final kilometre of Metropolis street and scenery,
+blend into sharper elevated hills, limit guardrails to curves, and cross an
+original suspension bridge above a physical canyon. Follow-up removes all low
+bridge rails and replaces thin round hangers with square 0.65 m supports.
+Optional Assisted control now hands unsupported bridge departures to existing
+physical recovery; steering and actual combat kicks are covered on both sides.
+No accepted rig/mass/joint tuning or default-map change.
+
+Fresh agents added actual Metropolis farm catalog props/materials, denser
+western frontage, central ranches, coherent dirt backlots and roadside clutter,
+eight articulated eighteen-wheelers, six tractors and bounded original volumetric
+clouds. Static Hills solids preserve collision while omitting redundant fixed
+body state; normal-map material event filtering avoids unnecessary whole-world
+mesh scans. Same-binary controls separate collision-state and cloud cost.
+Evidence, final verification and remaining performance/art gates are maintained
+in testing/hills-revision. Requirements stay open for full-course human and
+hardware acceptance; no next major development part begun. Concurrent civilian
+queue work is preserved separately.
+
+Final overhead review required a further median/outer-field pass: 42 compact
+courtyards and 54 broad crop/orchard parcels make shared town space visible.
+Exact-coordinate terrain caches and a conservative road-distance bound retain
+layout while avoiding repeated generation queries. Native bridge evidence is
+adapter-specific: Assisted enters physical ragdoll recovery; native-default
+Dynamic physically falls while mounted in the tested lateral departure. Assisted
+remounts without exceptional rescue; Dynamic stays mounted in this trajectory.
+Actual combat-triggered native races
+remain a separate acceptance gate.
+
+Final checks: 575 workspace tests pass (one existing ignored soak), strict
+Clippy/format, locked debug/release builds, asset audit and roadmap checks pass.
+Native scene/road probes, both adapter departures and west/east/baseline/Metropolis
+controls are recorded with per-case hashes. Paired final-release timing averages
+21.805 versus20.765ms frame-window medians (4.8% lower) and8.342 versus7.369ms
+weighted physics/fixedstep (11.7% lower) for fixed-body versus collider-only
+scenery. Cloud differences are below run variation; no cloud speedup or60FPS
+certification. One competing-game sample is explicitly excluded. Indexing was
+temporarily suspended for timing and restored. README remains222verified/266open.
+
+## 2026-11-10 — Selectable Hills and landscape delivery (ADR138)
+
+Fresh agents implement seven requested refinements: native Metropolis/Hills
+course cards with legacy access and preserved session/profile handoffs
+(UI-COURSE-01), regular bridge hangers attached to girders/outriggers (HILLS-08),
+whole-parcel gentle farm selection retaining six Metropolis asset farms
+(HILLS-07), an original canyon river (HILLS-11), separate volumetric cumulus
+(HILLS-10), a light-aligned solar disc (SKY-SUN-01), and bounded 500 m city/Hills
+shadows preserving the near cascades (SHADOW-RANGE-01). Accepted rigs, strong
+road relief, open bridge edges and existing course content remain integrated.
+
+Locked debug/release builds, strict Clippy, formatting, 590 workspace tests
+(one existing ignored soak), declaration audit and five roadmap tests pass.
+All seven native cases pass across the recorded binary hashes. Menu receipts
+verify Metropolis → Hills → Metropolis, preserved credits/live preferences,
+return and same-course retry. Assisted falls 82.54 m and recovers; Dynamic chassis
+descends 82.677 m and remains mounted, both without exceptional rescue. West,
+east, baseline-rig and Metropolis controls each record zero rescues. Six farms
+passed visual review. Final active replaces the initial active evidence after
+river texture/camera polish: 26 captures show supported water and softened
+ripples. The first east attempt was interrupted and is excluded; its final rerun
+passes. Four clean final-binary ABBA shadow 150/500 m runs with clouds constant
+measure pooled median window means 21.848 → 21.773 ms and P95 window means
+23.544 → 23.814 ms; differences remain within variation. No speedup, raw-frame
+P95, GPU timing or 60 FPS claim. Full-city/hardware acceptance remains open;
+`testing/hills-delivery/PERFORMANCE.md` records scope and controls.
+Evidence and exact binary hashes: `testing/hills-delivery/REPORT.md`. No new
+dependencies or retail media; original procedural/reused assets are recorded in
+the provenance registry. Full-course art/feel, sustained performance and hardware
+acceptance remain separate. Integration owns final merge/commit/push receipts.
+
+
+### 2026-11-10 — Hills grid, stopped rivals and road-edge seam (ADR139)
+
+Reproduced the off-street rear Hills slot and 23 false-empty Metropolis planning
+envelopes (first2940m, matching the user screenshot). Preserve the curved city
+apron through -300m and normalize AI bounds, proxies and passing memory to the
+street centre. Close the8cm exposed grass seam with a bounded soil underlap.
+All594workspace tests, strict lint/build/audit and five roadmap checks pass.
+Native Metropolis seam views and both Hills current/baseline recovery runs pass
+with no exceptional rescues. No physical rig/handling/dependency changes or new
+IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.

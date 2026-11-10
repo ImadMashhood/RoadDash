@@ -1,0 +1,5 @@
+2026-11-10T19:50:58.214402Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-10T19:50:58.424609Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/hills-revision/perf-nocloud-a/performance/performance-560784.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-10T19:51:28.476811Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1

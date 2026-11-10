@@ -1,0 +1,15 @@
+{
+  "case": "metro",
+  "binary_sha256": "4c9875bc767b53398bbb5e4de6f9ca198c5267953296c5d66105a632c67e65aa",
+  "exit_code": 0,
+  "render_errors": false,
+  "verified": true,
+  "reports": [
+    "screenshots/metro-pedestrians.json",
+    "screenshots/metro-street-life.json",
+    "screenshots/metro-authored-facades.json",
+    "screenshots/metro-survey.json",
+    "screenshots/metro-performance.json"
+  ],
+  "elapsed_seconds": 40.438923597335815
+}

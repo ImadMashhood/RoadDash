@@ -123,7 +123,15 @@ pub fn run(
         55
     };
     let index = ((state.frame / period) as usize).min(scenes.len() - 1);
-    let (route, s, aerial) = scenes[index];
+    let (route, mut s, aerial) = scenes[index];
+    if std::env::var_os("ROADDASH_ROAD_EDGE_VIEWS").is_some() {
+        if index == 1 {
+            s = 2920.;
+        }
+        if index == 2 {
+            s = 2940.;
+        }
+    }
     let (p, q) = track.sample_route(route, s, 0.);
     for mut camera in &mut cameras {
         let eye = if landscape_view && index < 2 {

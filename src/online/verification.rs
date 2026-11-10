@@ -252,6 +252,7 @@ fn observe(
                 "valley" => Some(OnlineMap::Valley),
                 "city" => Some(OnlineMap::City),
                 "metro" => Some(OnlineMap::Metropolis),
+                "hills" => Some(OnlineMap::Hills),
                 _ => None,
             });
         if let Some(map) =
@@ -358,23 +359,7 @@ pub fn run_native(host: bool, endpoint: String, output: String) {
                 .before(crate::runtime::SimSet::AfterPhysics),
         )
         .add_systems(Last, observe);
-    let map = if app
-        .world()
-        .resource::<crate::track::Track>()
-        .metropolis
-        .is_some()
-    {
-        OnlineMap::Metropolis
-    } else if app
-        .world()
-        .resource::<crate::track::Track>()
-        .city_surface
-        .is_some()
-    {
-        OnlineMap::City
-    } else {
-        OnlineMap::Valley
-    };
+    let map = super::loaded_map(app.world().resource::<crate::track::Track>());
     let mut online = app.world_mut().resource_mut::<Online>();
     if std::env::var_os("ROADDASH_ONLINE_BOOT").is_none() {
         online.endpoint = endpoint.clone();

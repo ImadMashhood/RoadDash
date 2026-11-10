@@ -14,6 +14,10 @@ pub mod environment;
 pub mod feedback;
 pub mod frontend;
 pub mod game;
+pub mod heavy_traffic;
+pub mod hills_polish_survey;
+pub mod hills_revision_survey;
+pub mod hills_survey;
 pub mod human;
 pub mod material_detail;
 pub mod models;
@@ -22,6 +26,8 @@ pub mod offscreen_crash;
 pub mod original_crash;
 pub mod props;
 pub mod recovery;
+#[cfg(test)]
+mod recovery_hills_tests;
 pub mod road_detail;
 pub mod runtime;
 pub mod settings;
@@ -62,7 +68,18 @@ pub fn build_app(smoke: bool) -> App {
     if !smoke {
         app.insert_resource(settings::Preferences::load(settings::Preferences::path()));
     }
-    app.insert_resource(track::Track::selected());
+    app.insert_resource(
+        if std::env::args().any(|a| {
+            matches!(
+                a.as_str(),
+                "--hills" | "--hills-survey" | "--hills-polish-survey" | "--hills-revision-survey"
+            )
+        }) {
+            track::Track::hills().expect("validated Hills course")
+        } else {
+            track::Track::selected()
+        },
+    );
     app.insert_resource(
         if std::env::var("ROADDASH_VEHICLE").as_deref() == Ok("assisted") {
             vehicle::VehiclePhysicsAdapter::Assisted
@@ -113,6 +130,8 @@ pub fn build_app(smoke: bool) -> App {
     .add_plugins(MaterialPlugin::<
         world_gen::metropolis::geometry::grass_material::GrassMaterial,
     >::default())
+    .add_plugins(MaterialPlugin::<world_gen::hills::clouds::CloudMaterial>::default())
+    .add_plugins(MaterialPlugin::<sky::SolarMaterial>::default())
     .add_plugins(world_gen::city::visuals::BuildingSceneTypesPlugin)
     .add_plugins((
         content::RoadContentPlugin,
@@ -160,6 +179,36 @@ pub fn build_app(smoke: bool) -> App {
                 .add_systems(
                     PostUpdate,
                     destruction::survey::camera
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--hills-revision-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<hills_revision_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    hills_revision_survey::run
+                        .after(game::camera)
+                        .before(world_gen::hills::atmosphere::reset)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--hills-polish-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<hills_polish_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    hills_polish_survey::run
+                        .before(world_gen::hills::atmosphere::reset)
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--hills-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<hills_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    hills_survey::run
+                        .before(world_gen::hills::atmosphere::reset)
                         .after(game::camera)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );

@@ -1,0 +1,19 @@
+2026-11-10T16:08:56.850529Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-10T16:08:56.851246Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-10T16:08:56.855312Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-10T16:08:56.855373Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x55a9b05c2790, name: ?)
+2026-11-10T16:08:57.091255Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-237810.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-10T16:09:09.813386Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+AI roster verified: seven racers and seven killers
+Audio output initialized: 4 playback sinks
+Native remount 1: pickup error 0.0000 m
+Crash report: /tmp/roaddash-crashes/panic-1794327133-237810.log
+
+thread 'Compute Task Pool (2)' (237819) panicked at src/verification.rs:917:5:
+render smoke test timed out during recovery
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+Encountered a panic in system `Enable the debug feature to see the name`!
+Encountered a panic in system `Enable the debug feature to see the name`!

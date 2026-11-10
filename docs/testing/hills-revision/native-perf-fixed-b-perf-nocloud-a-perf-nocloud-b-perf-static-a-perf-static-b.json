@@ -1,0 +1,82 @@
+[
+  {
+    "verification_complete": true,
+    "case": "perf-static-a",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 124.47837519799941
+  },
+  {
+    "verification_complete": true,
+    "case": "perf-nocloud-a",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": false,
+    "volumetric_clouds": false,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 124.98539361800067
+  },
+  {
+    "verification_complete": true,
+    "case": "perf-nocloud-b",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": false,
+    "volumetric_clouds": false,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 126.73096827200061
+  },
+  {
+    "verification_complete": true,
+    "case": "perf-static-b",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": false,
+    "volumetric_clouds": true,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 128.18126748500072
+  },
+  {
+    "verification_complete": true,
+    "case": "perf-fixed-b",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-revision-survey"
+    ],
+    "vehicle_adapter": "dynamic",
+    "performance": true,
+    "fixed_body_control": true,
+    "volumetric_clouds": true,
+    "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+    "exit_code": 0,
+    "elapsed_seconds": 132.14814280699647
+  }
+]

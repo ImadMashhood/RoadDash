@@ -1,0 +1,71 @@
+{
+  "workspace_tests_passed": 536,
+  "ignored": 1,
+  "fmt": "passed",
+  "strict_clippy": "passed",
+  "locked_build": "passed",
+  "audit": "passed",
+  "roadmap_tests": 5,
+  "native_cases": [
+    {
+      "case": "survey",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--hills-survey"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 31.527664707999065
+    },
+    {
+      "case": "recovery-west",
+      "track": "hills",
+      "route": "0",
+      "flags": [
+        "--smoke-test"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 51.70654523800113
+    },
+    {
+      "case": "recovery-east",
+      "track": "hills",
+      "route": "1",
+      "flags": [
+        "--smoke-test"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 33.51705344899892
+    },
+    {
+      "case": "recovery-baseline",
+      "track": "hills",
+      "route": "1",
+      "flags": [
+        "--smoke-test",
+        "--ragdoll-baseline"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 33.07891589800056
+    },
+    {
+      "case": "legacy-metro",
+      "track": "metro",
+      "route": "0",
+      "flags": [
+        "--smoke-test"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 41.75998068900299
+    }
+  ],
+  "source_files": {
+    "src/track.rs": "862cddd18db75ccf4a803aa08a68868a92814bfcbfacbeeb13b09805b80232df",
+    "src/track/hills.rs": "8db52ad8b6c52f12ca716f2a670707f79b5d74a77a86f5c5c53f5c8f4aea8ed2",
+    "src/world_gen/hills/mod.rs": "02b4ad0101a621826473473865be545648eeed25c44daf1e77e3d1abc537012d",
+    "src/world_gen/hills/geometry.rs": "3fa0ca37c4d6b7853b699ce921802267d40a6a400a34ed93c8d858c3d411129b",
+    "src/world_gen/hills/props.rs": "e498a0a70e7cf91f8d13dfe0e8b5b1892302c020b2b1de007623266d3f36642a",
+    "src/world_gen/hills/countryside.rs": "d46f411ce0f42ece399c863b08a3aa4236176ff2802f21eb581d582817d7b0af",
+    "src/hills_survey.rs": "da49d84d8ec807c5f92b16ab54cf0350e20a0acb0263f3517bff6063ca72d835"
+  }
+}

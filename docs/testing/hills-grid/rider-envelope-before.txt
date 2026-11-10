@@ -1,0 +1,20 @@
+    Blocking waiting for file lock on artifact directory
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 42.53s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+
+thread 'game::tests::metropolis_outbound_lookahead_never_erases_current_road' (653531) panicked at src/game.rs:2233:9:
+23 erased envelopes, first [(0, 2940, (-0.6759012, -0.70279837)), (0, 2945, (-0.6996801, -0.7349714)), (0, 2950, (-0.73431873, -0.75583124)), (0, 3245, (-1.7591792, -1.7620379)), (0, 3250, (-1.6516327, -1.7583743)), (0, 3255, (-1.5731272, -1.7620379)), (0, 3260, (-1.5492343, -1.7583743)), (0, 3265, (-1.54835, -1.7620379)), (0, 3270, (-1.5492343, -1.7583743)), (0, 3275, (-1.54835, -1.7620379)), (0, 3280, (-1.5492343, -1.7583743)), (0, 3285, (-1.54835, -1.7620379)), (0, 3290, (-1.5492343, -1.7583743)), (0, 3295, (-1.54835, -1.7620379)), (0, 3300, (-1.5492343, -1.7583743))]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test game::tests::metropolis_outbound_lookahead_never_erases_current_road ... FAILED
+
+failures:
+
+failures:
+    game::tests::metropolis_outbound_lookahead_never_erases_current_road
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 419 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `--lib`

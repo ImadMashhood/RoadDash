@@ -1,0 +1,18 @@
+{
+  "platform": "Linux-7.2.11-200.fc44.x86_64-x86_64-with-glibc2.43",
+  "native_window_pixels": [
+    1440,
+    900
+  ],
+  "measurement": "CPU/wall logging windows; no GPU timestamps",
+  "cpu": {
+    "CPU(s)": "12",
+    "Model name": "AMD Ryzen 5 3600 6-Core Processor",
+    "Thread(s) per core": "2",
+    "Core(s) per socket": "6"
+  },
+  "graphics_inventory": [
+    "0a:00.0 VGA compatible controller: NVIDIA Corporation GA102 [GeForce RTX 3080 Lite Hash Rate] (rev a1)"
+  ],
+  "gpu_limit": "PCI inventory does not establish which Vulkan adapter was selected."
+}

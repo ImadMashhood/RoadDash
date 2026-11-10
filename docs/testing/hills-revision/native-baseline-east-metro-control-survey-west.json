@@ -1,0 +1,68 @@
+[
+  {
+    "case": "survey",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-survey"
+    ],
+    "performance": false,
+    "fixed_body_control": false,
+    "binary_sha256": "95f6d7439ba2b3f70ebd00685395b9466b1ca07b3564c0d598900f9b288babf6",
+    "exit_code": 0,
+    "elapsed_seconds": 36.60749059999944
+  },
+  {
+    "case": "west",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "performance": false,
+    "fixed_body_control": false,
+    "binary_sha256": "95f6d7439ba2b3f70ebd00685395b9466b1ca07b3564c0d598900f9b288babf6",
+    "exit_code": 0,
+    "elapsed_seconds": 47.34831062599551
+  },
+  {
+    "case": "east",
+    "track": "hills",
+    "route": "1",
+    "flags": [
+      "--smoke-test"
+    ],
+    "performance": false,
+    "fixed_body_control": false,
+    "binary_sha256": "95f6d7439ba2b3f70ebd00685395b9466b1ca07b3564c0d598900f9b288babf6",
+    "exit_code": 0,
+    "elapsed_seconds": 42.472734313996625
+  },
+  {
+    "case": "baseline",
+    "track": "hills",
+    "route": "1",
+    "flags": [
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "performance": false,
+    "fixed_body_control": false,
+    "binary_sha256": "95f6d7439ba2b3f70ebd00685395b9466b1ca07b3564c0d598900f9b288babf6",
+    "exit_code": 0,
+    "elapsed_seconds": 51.90006509399973
+  },
+  {
+    "case": "metro-control",
+    "track": "metro",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "performance": false,
+    "fixed_body_control": false,
+    "binary_sha256": "95f6d7439ba2b3f70ebd00685395b9466b1ca07b3564c0d598900f9b288babf6",
+    "exit_code": 0,
+    "elapsed_seconds": 40.982507462002104
+  }
+]

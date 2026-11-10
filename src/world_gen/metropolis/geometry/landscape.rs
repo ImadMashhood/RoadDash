@@ -45,7 +45,7 @@ fn ground_tint(p: Vec2, track: &Track) -> Vec3 {
         variation * (1. - soil * 0.15),
     )
 }
-pub(super) fn ground_texture(images: &mut Assets<Image>) -> Handle<Image> {
+pub(crate) fn ground_texture(images: &mut Assets<Image>) -> Handle<Image> {
     let mut pixels = Vec::with_capacity(64 * 64 * 4);
     for z in 0..64 {
         for x in 0..64 {
@@ -56,7 +56,7 @@ pub(super) fn ground_texture(images: &mut Assets<Image>) -> Handle<Image> {
     }
     images.add(crate::road_detail::image(pixels, 64, false))
 }
-pub(super) fn ground_material(color: Color, texture: &Handle<Image>) -> StandardMaterial {
+pub(crate) fn ground_material(color: Color, texture: &Handle<Image>) -> StandardMaterial {
     StandardMaterial {
         base_color: color,
         base_color_texture: Some(texture.clone()),
@@ -317,9 +317,17 @@ fn shoulder_geometry(track: &Track) -> BTreeMap<i32, Batch> {
         let s = station as f32;
         for side in [-1., 1.] {
             for band in 0..3 {
-                let point = |s: f32, band: usize| {
+                let point = |s: f32, band: usize, clipping: bool| {
                     let width = match band {
-                        0 => 0.08,
+                        // Asphalt is 6.8 m from the route centre. Cover its edge
+                        // with a small underlap instead of exposing an 8 cm grass seam.
+                        0 => {
+                            if clipping {
+                                0.08
+                            } else {
+                                -0.10
+                            }
+                        }
                         1 => 1.5 + 0.12 * (s * 0.19).sin(),
                         2 => 2.4 + 0.25 * (s * 0.19).sin(),
                         _ => 4.6 + 0.65 * (s * 0.13).sin() + 0.3 * (s * 0.7).sin(),
@@ -338,19 +346,27 @@ fn shoulder_geometry(track: &Track) -> BTreeMap<i32, Batch> {
                     )
                 };
                 let points = [
-                    point(s, band),
-                    point(s + 2., band),
-                    point(s + 2., band + 1),
-                    point(s, band + 1),
+                    point(s, band, false),
+                    point(s + 2., band, false),
+                    point(s + 2., band + 1, false),
+                    point(s, band + 1, false),
                 ];
                 let points = if side < 0. {
                     points
                 } else {
                     [points[3], points[2], points[1], points[0]]
                 };
+                // Retain the original road/access exclusion footprint. Only the
+                // inner render edge extends 18 cm toward the asphalt beneath it.
+                let clipping = [
+                    point(s, band, true),
+                    point(s + 2., band, true),
+                    point(s + 2., band + 1, true),
+                    point(s, band + 1, true),
+                ];
                 if solids
                     .iter()
-                    .any(|f| f.intersects_quad(points.map(|p| p.xz())))
+                    .any(|f| f.intersects_quad(clipping.map(|p| p.xz())))
                 {
                     continue;
                 }
@@ -538,7 +554,15 @@ mod tests {
         let triangles = batches.values().map(|b| b.ix.len()).sum::<usize>();
         assert!((18000..20000).contains(&triangles));
         println!("Actual clipped shoulder triangles: {triangles}");
-        let solids = farm_solids(&track);
+        let m = track.metropolis.as_ref().unwrap();
+        let solids: Vec<_> = m
+            .surfaces
+            .iter()
+            .filter(|s| s.kind != 0)
+            .map(|s| &s.shape)
+            .chain(m.buildings.iter().map(|b| &b.shape))
+            .map(Footprint::new)
+            .collect();
         for batch in batches.values() {
             assert!(
                 batch.n.iter().all(|n| n[1] > 0.85),
@@ -556,6 +580,33 @@ mod tests {
                 assert!((-0.176..=0.021).contains(&offset));
             }
         }
+    }
+    #[test]
+    fn soil_meets_the_farm_asphalt_without_an_exposed_grass_seam() {
+        let track = Track::metropolis().unwrap();
+        let batches = shoulder_geometry(&track);
+        let mut soil = PavementHeights::default();
+        for b in batches.values() {
+            for indices in &b.ix {
+                soil.add(indices.map(|i| Vec3::from_array(b.p[i as usize])));
+            }
+        }
+        let mut checked = 0;
+        for station in (0..2990).step_by(5) {
+            for side in [-1., 1.] {
+                let p = track.sample(station as f32, side * 6.81).0;
+                let outer = track.sample(station as f32, side * 7.2).0;
+                if soil.height(outer.xz()).is_none() {
+                    continue;
+                }
+                assert!(
+                    soil.height(p.xz()).is_some(),
+                    "uncovered asphalt edge at {station}/{side}"
+                );
+                checked += 1;
+            }
+        }
+        assert!(checked > 500);
     }
     #[test]
     fn field_holes_and_full_blade_footprints_are_excluded() {

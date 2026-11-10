@@ -1,0 +1,19 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 18s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+
+thread 'world_gen::hills::city_slice::tests::starting_grid_and_launch_corridor_follow_clear_source_street' (649268) panicked at src/world_gen/hills/city_slice.rs:328:29:
+off street: spawn-0/-176: Vec2(40.112816, -172.5645)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test world_gen::hills::city_slice::tests::starting_grid_and_launch_corridor_follow_clear_source_street ... FAILED
+
+failures:
+
+failures:
+    world_gen::hills::city_slice::tests::starting_grid_and_launch_corridor_follow_clear_source_street
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 418 filtered out; finished in 0.13s
+
+error: test failed, to rerun pass `--lib`

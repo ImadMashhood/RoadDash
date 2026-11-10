@@ -45,13 +45,17 @@ impl Track {
     }
     /// Carriageway centre follows the actual simplified street reservation; race geometry stays exact.
     pub fn street_offset(&self, route: usize, s: f32) -> f32 {
-        if self.metropolis.is_none() {
-            0.
-        } else {
+        if self.metropolis.is_some() || (self.is_hills() && (-300. ..=1000.).contains(&s)) {
             self.lane_at(route, s, self.street_sample(route, s, 0.).0)
+        } else {
+            0.
         }
     }
     pub fn street_sample(&self, route: usize, d: f32, lane: f32) -> (Vec3, Quat) {
+        if self.is_hills() && (-300. ..=1000.).contains(&d) {
+            let (p, q) = Self::hills_city_source_track().street_sample(0, 10_500. + d, lane);
+            return (Self::hills_city_to_local(p), q);
+        }
         let Some(m) = &self.metropolis else {
             return self.sample_route(route, d, lane);
         };
@@ -78,6 +82,11 @@ impl Track {
         (point, q)
     }
     pub fn sample_route(&self, route: usize, d: f32, lane: f32) -> (Vec3, Quat) {
+        if route == 1
+            && let Some(branch) = &self.hills_branch
+        {
+            return branch.sample(d, lane);
+        }
         let Some(m) = self.metropolis.as_ref().filter(|_| route == 1) else {
             return self.sample(d, lane);
         };
@@ -108,6 +117,11 @@ impl Track {
         (point, q)
     }
     pub fn project_route(&self, route: usize, point: Vec3, near: f32) -> (f32, f32, f32) {
+        if route == 1
+            && let Some(branch) = &self.hills_branch
+        {
+            return branch.project(point, near);
+        }
         let Some(m) = self.metropolis.as_ref().filter(|_| route == 1) else {
             return self.project(point, near);
         };
@@ -138,9 +152,33 @@ impl Track {
         best
     }
     pub fn same_corridor(&self, a: usize, sa: f32, b: usize, sb: f32) -> bool {
-        self.metropolis.is_none() || rr_core::route::same_corridor(a, sa, b, sb)
+        if self.is_hills() {
+            rr_core::route::same_corridor_between(
+                a,
+                sa,
+                b,
+                sb,
+                hills::SPLIT + 250.,
+                hills::MERGE - 250.,
+            )
+        } else {
+            self.metropolis.is_none() || rr_core::route::same_corridor(a, sa, b, sb)
+        }
     }
     pub fn choose_route(&self, current: usize, progress: f32, point: Vec3, player: bool) -> usize {
+        if self.is_hills() {
+            return rr_core::route::choice_between(
+                current,
+                progress,
+                [
+                    self.project_route(0, point, progress).2,
+                    self.project_route(1, point, progress).2,
+                ],
+                player,
+                hills::SPLIT - 30.,
+                hills::SPLIT + 250.,
+            );
+        }
         if self.metropolis.is_none() {
             return 0;
         }
@@ -155,7 +193,7 @@ impl Track {
         )
     }
     pub fn curvature_route(&self, route: usize, d: f32) -> f32 {
-        if route == 0 || self.metropolis.is_none() {
+        if route == 0 || (self.metropolis.is_none() && self.hills_branch.is_none()) {
             return self.curvature(d);
         }
         let a = self.sample_route(route, d - 3., 0.).1 * Vec3::Z;

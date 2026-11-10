@@ -1,0 +1,12 @@
+{
+  "status": "timing sequence aborted; not final comparison",
+  "binary_sha256": "215cc272371945362b35eb3e8c7f35c61f287afb5af1406810b16f3215166977",
+  "valid_completed_cases": [
+    "perf-fixed-a"
+  ],
+  "invalid_timing_cases": [
+    "perf-static-a"
+  ],
+  "reason": "A second normal game PID551500 started2026-11-10 13:46:26 America/Chicago during static-a. The between-case guard rejected continuation; finally-handler restored Baloo. Native assertions passed but static-a timing is contaminated.",
+  "competing_game_untouched": true
+}

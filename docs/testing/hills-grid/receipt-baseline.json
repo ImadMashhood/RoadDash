@@ -1,0 +1,9 @@
+{
+  "case": "baseline",
+  "binary_sha256": "4c9875bc767b53398bbb5e4de6f9ca198c5267953296c5d66105a632c67e65aa",
+  "exit_code": 0,
+  "render_errors": false,
+  "verified": true,
+  "reports": [],
+  "elapsed_seconds": 66.1294367313385
+}

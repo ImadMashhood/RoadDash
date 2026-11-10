@@ -3,6 +3,56 @@ use bevy::prelude::*;
 #[cfg(test)]
 use bevy_rapier3d::prelude::*;
 
+/// Bounded presentation policy; the two near cascades retain their original
+/// coverage/resolution while city blocks receive shadows farther down the road.
+#[derive(Resource, Clone, Debug, serde::Serialize)]
+pub struct ShadowBudget {
+    pub cascade_bounds_m: [f32; 4],
+    pub maximum_distance_m: f32,
+    pub overlap_proportion: f32,
+    pub normal_bias: f32,
+    pub extended_course: bool,
+    pub override_applied: bool,
+}
+fn shadow_policy(
+    track: &Track,
+    requested: Option<&str>,
+) -> (bevy::light::CascadeShadowConfig, ShadowBudget) {
+    let extended_course = track.metropolis.is_some() || track.is_hills();
+    let requested = requested
+        .and_then(|s| s.parse::<f32>().ok())
+        .filter(|distance| distance.is_finite() && (150.0..=600.0).contains(distance));
+    let maximum_distance = requested.unwrap_or(if extended_course { 500.0 } else { 150.0 });
+    let mut cascades = bevy::light::CascadeShadowConfigBuilder {
+        num_cascades: 4,
+        first_cascade_far_bound: 10.0,
+        maximum_distance: 150.0,
+        overlap_proportion: 0.25,
+        ..default()
+    }
+    .build();
+    if maximum_distance > 150.0 {
+        // Do not spread every split geometrically: that would sacrifice the
+        // existing wheel/foot and near-street shadow density. The outer pair
+        // trades distant sharpness for greater coverage, without another map.
+        cascades.bounds[2] *= (maximum_distance / 150.0).sqrt();
+        cascades.bounds[3] = maximum_distance;
+    }
+    let budget = ShadowBudget {
+        cascade_bounds_m: cascades
+            .bounds
+            .clone()
+            .try_into()
+            .expect("four shadow cascades"),
+        maximum_distance_m: maximum_distance,
+        overlap_proportion: cascades.overlap_proportion,
+        normal_bias: 1.5,
+        extended_course,
+        override_applied: requested.is_some(),
+    };
+    (cascades, budget)
+}
+
 pub const RIDER_COLORS: [u32; 15] = [
     0xf0eee6, 0xe5c13e, 0xd9bd54, 0x323bc4, 0xb12b8d, 0x3ab94e, 0xf1f0e9, 0xc5d1dc, 0x9296b5,
     0x303338, 0xd5c4ea, 0xe5c144, 0x3e9cd5, 0xd52c27, 0xe4c348,
@@ -136,6 +186,11 @@ pub fn setup_world(
         },
         ..default()
     });
+    let (shadow_cascades, shadow_budget) = shadow_policy(
+        &track,
+        std::env::var("ROADDASH_SHADOW_DISTANCE_M").ok().as_deref(),
+    );
+    commands.insert_resource(shadow_budget);
     commands.spawn((
         DirectionalLight {
             illuminance: if track.city_surface.is_some() {
@@ -150,16 +205,7 @@ pub fn setup_world(
             shadow_normal_bias: 1.5,
             ..default()
         },
-        bevy::light::CascadeShadowConfigBuilder {
-            // Retain near-object resolution and 150m coverage; slightly widen
-            // the existing blended transition, without adding shadow views.
-            num_cascades: 4,
-            first_cascade_far_bound: 10.0,
-            maximum_distance: 150.0,
-            overlap_proportion: 0.25,
-            ..default()
-        }
-        .build(),
+        shadow_cascades,
         Transform::from_rotation(Quat::from_euler(EulerRot::XYZ, -0.75, -0.5, 0.0)),
     ));
     let generated = if track.definition.id.as_str() == "valley-run-01" {
@@ -189,6 +235,30 @@ pub fn setup_world(
     } else {
         None
     };
+    if track.is_hills() {
+        crate::world_gen::hills::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            &art,
+            &track,
+            images.as_deref_mut(),
+        );
+        crate::world_gen::hills::city_slice::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            images.as_deref_mut(),
+            facade_materials.as_deref_mut(),
+            grass_materials.as_deref_mut(),
+            server.as_deref(),
+            &art,
+            &track,
+        );
+        crate::world_gen::hills::static_collision::queue(&mut commands);
+        commands.insert_resource(art);
+        return;
+    }
     if track.metropolis.is_some() {
         crate::world_gen::metropolis::spawn(
             &mut commands,
@@ -523,6 +593,45 @@ pub fn validate_scenery(track: Res<Track>, scenery: Query<(&Transform, &SceneryF
 mod tests {
     use super::*;
     #[test]
+    fn city_shadow_policy_extends_outer_cascades_and_preserves_near_resolution() {
+        let (baseline, legacy) = shadow_policy(&Track::default(), None);
+        assert!(!legacy.extended_course);
+        assert_eq!(legacy.maximum_distance_m, 150.0);
+        for track in [Track::metropolis().unwrap(), Track::hills().unwrap()] {
+            let (city, budget) = shadow_policy(&track, None);
+            assert_eq!(city.bounds.len(), 4);
+            assert_eq!(city.bounds[..2], baseline.bounds[..2]);
+            assert!(city.bounds[2] > baseline.bounds[2]);
+            assert_eq!(city.bounds[3], 500.0);
+            assert_eq!(city.minimum_distance, baseline.minimum_distance);
+            assert_eq!(city.overlap_proportion, baseline.overlap_proportion);
+            assert_eq!(budget.cascade_bounds_m.as_slice(), city.bounds);
+            assert_eq!(budget.normal_bias, 1.5);
+            assert!(budget.extended_course);
+            assert!(!budget.override_applied);
+        }
+    }
+    #[test]
+    fn shadow_override_is_bounded_and_restores_exact_legacy_control() {
+        let track = Track::hills().unwrap();
+        let (baseline, _) = shadow_policy(&Track::default(), None);
+        let (control, budget) = shadow_policy(&track, Some("150"));
+        assert_eq!(control.bounds, baseline.bounds);
+        assert!(budget.override_applied);
+        for distance in ["150", "300", "600"] {
+            let (config, budget) = shadow_policy(&track, Some(distance));
+            assert_eq!(budget.maximum_distance_m, distance.parse::<f32>().unwrap());
+            assert_eq!(config.bounds[..2], baseline.bounds[..2]);
+            assert!(config.bounds.windows(2).all(|pair| pair[1] > pair[0]));
+            assert!(budget.override_applied);
+        }
+        for invalid in ["", "NaN", "inf", "-1", "0", "149.9", "600.1", "far"] {
+            let (_, budget) = shadow_policy(&track, Some(invalid));
+            assert_eq!(budget.maximum_distance_m, 500.0);
+            assert!(!budget.override_applied);
+        }
+    }
+    #[test]
     fn scenery_is_solid_and_every_footprint_clears_the_whole_circuit() {
         let mut app = App::new();
         app.add_plugins(MinimalPlugins)
@@ -546,6 +655,9 @@ mod tests {
         assert_eq!(cascades.bounds[0], 10.0);
         assert!((cascades.bounds[3] - 150.0).abs() < 0.001);
         assert_eq!(cascades.overlap_proportion, 0.25);
+        let budget = app.world().resource::<ShadowBudget>();
+        assert_eq!(budget.cascade_bounds_m.as_slice(), cascades.bounds);
+        assert_eq!(budget.normal_bias, light.shadow_normal_bias);
         let mut footprints = app
             .world_mut()
             .query::<(&Transform, &SceneryFootprint, &Collider)>();

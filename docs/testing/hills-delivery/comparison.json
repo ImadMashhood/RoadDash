@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-10",
+  "scope": "Whole 15-view Hills survey including opening city slice; not a dedicated Metropolis benchmark",
+  "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+  "order": [
+    "perf-near-a",
+    "perf-city-a",
+    "perf-city-b",
+    "perf-near-b"
+  ],
+  "configuration": {
+    "vehicle": "dynamic",
+    "clouds": true,
+    "screenshots": false,
+    "available_cpu_threads": 12,
+    "parallel_physics": true,
+    "requested_rayon_threads": null
+  },
+  "selection": "Discard first 10 valid one-second windows per run, then select racing windows. P95 uses sorted index ceil((n-1)*0.95).",
+  "runs": [
+    {
+      "case": "perf-near-a",
+      "receipt": {
+        "case": "perf-near-a",
+        "verification_complete": true,
+        "render_errors": false,
+        "exit_code": 0,
+        "elapsed_seconds": 133.82703828811646,
+        "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+        "track": "hills",
+        "route": "0",
+        "vehicle_adapter": "dynamic",
+        "shadow_distance_m": 150,
+        "volumetric_clouds": true,
+        "performance": true
+      },
+      "shadow_budget": {
+        "cascade_bounds_m": [
+          10.0,
+          24.662120819091797,
+          60.822021484375,
+          149.99998474121094
+        ],
+        "extended_course": true,
+        "maximum_distance_m": 150.0,
+        "normal_bias": 1.5,
+        "overlap_proportion": 0.25,
+        "override_applied": true
+      },
+      "monitor": {
+        "case": "perf-near-a",
+        "monitor_samples": 131,
+        "poll_seconds": 1,
+        "observed_game_pids": [
+          632270
+        ],
+        "contamination": [],
+        "baloo_suspended_then_restored": [
+          2060,
+          3170,
+          632233
+        ],
+        "returncode": 0,
+        "sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb"
+      },
+      "selection": {
+        "skip_samples": 10,
+        "racing_only": true
+      },
+      "stats": {
+        "samples": 93,
+        "frames": 4268,
+        "fixed_steps": 4268,
+        "window_mean_ms": {
+          "median": 21.8519902173913,
+          "p95": 23.890927714285713,
+          "maximum": 24.26940342857143
+        },
+        "weighted_physics_ms_per_fixed_step": 7.940731530560437,
+        "weighted_solver_step_ms_per_fixed_step": 4.897960778475925
+      },
+      "log": "docs/testing/hills-delivery/perf-near-a/performance/performance-632270.jsonl"
+    },
+    {
+      "case": "perf-city-a",
+      "receipt": {
+        "case": "perf-city-a",
+        "verification_complete": true,
+        "render_errors": false,
+        "exit_code": 0,
+        "elapsed_seconds": 134.06595540046692,
+        "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+        "track": "hills",
+        "route": "0",
+        "vehicle_adapter": "dynamic",
+        "shadow_distance_m": 500,
+        "volumetric_clouds": true,
+        "performance": true
+      },
+      "shadow_budget": {
+        "cascade_bounds_m": [
+          10.0,
+          24.662120819091797,
+          111.0453109741211,
+          500.0
+        ],
+        "extended_course": true,
+        "maximum_distance_m": 500.0,
+        "normal_bias": 1.5,
+        "overlap_proportion": 0.25,
+        "override_applied": true
+      },
+      "monitor": {
+        "case": "perf-city-a",
+        "monitor_samples": 132,
+        "poll_seconds": 1,
+        "observed_game_pids": [
+          633334
+        ],
+        "contamination": [],
+        "baloo_suspended_then_restored": [
+          2060,
+          3170
+        ],
+        "returncode": 0,
+        "sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb"
+      },
+      "selection": {
+        "skip_samples": 10,
+        "racing_only": true
+      },
+      "stats": {
+        "samples": 93,
+        "frames": 4250,
+        "fixed_steps": 4250,
+        "window_mean_ms": {
+          "median": 21.976589239130437,
+          "p95": 23.814242333333333,
+          "maximum": 24.95844646341463
+        },
+        "weighted_physics_ms_per_fixed_step": 7.941598072725184,
+        "weighted_solver_step_ms_per_fixed_step": 4.891280889959896
+      },
+      "log": "docs/testing/hills-delivery/perf-city-a/performance/performance-633334.jsonl"
+    },
+    {
+      "case": "perf-city-b",
+      "receipt": {
+        "case": "perf-city-b",
+        "verification_complete": true,
+        "render_errors": false,
+        "exit_code": 0,
+        "elapsed_seconds": 132.43423080444336,
+        "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+        "track": "hills",
+        "route": "0",
+        "vehicle_adapter": "dynamic",
+        "shadow_distance_m": 500,
+        "volumetric_clouds": true,
+        "performance": true
+      },
+      "shadow_budget": {
+        "cascade_bounds_m": [
+          10.0,
+          24.662120819091797,
+          111.0453109741211,
+          500.0
+        ],
+        "extended_course": true,
+        "maximum_distance_m": 500.0,
+        "normal_bias": 1.5,
+        "overlap_proportion": 0.25,
+        "override_applied": true
+      },
+      "monitor": {
+        "case": "perf-city-b",
+        "monitor_samples": 130,
+        "poll_seconds": 1,
+        "observed_game_pids": [
+          635214
+        ],
+        "contamination": [],
+        "baloo_suspended_then_restored": [
+          2060,
+          3170
+        ],
+        "returncode": 0,
+        "sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb"
+      },
+      "selection": {
+        "skip_samples": 10,
+        "racing_only": true
+      },
+      "stats": {
+        "samples": 91,
+        "frames": 4237,
+        "fixed_steps": 4237,
+        "window_mean_ms": {
+          "median": 21.50904661702128,
+          "p95": 23.904217238095235,
+          "maximum": 25.65602076923077
+        },
+        "weighted_physics_ms_per_fixed_step": 7.804903468405945,
+        "weighted_solver_step_ms_per_fixed_step": 4.80837788603231
+      },
+      "log": "docs/testing/hills-delivery/perf-city-b/performance/performance-635214.jsonl"
+    },
+    {
+      "case": "perf-near-b",
+      "receipt": {
+        "case": "perf-near-b",
+        "verification_complete": true,
+        "render_errors": false,
+        "exit_code": 0,
+        "elapsed_seconds": 133.61977553367615,
+        "binary_sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb",
+        "track": "hills",
+        "route": "0",
+        "vehicle_adapter": "dynamic",
+        "shadow_distance_m": 150,
+        "volumetric_clouds": true,
+        "performance": true
+      },
+      "shadow_budget": {
+        "cascade_bounds_m": [
+          10.0,
+          24.662120819091797,
+          60.822021484375,
+          149.99998474121094
+        ],
+        "extended_course": true,
+        "maximum_distance_m": 150.0,
+        "normal_bias": 1.5,
+        "overlap_proportion": 0.25,
+        "override_applied": true
+      },
+      "monitor": {
+        "case": "perf-near-b",
+        "monitor_samples": 131,
+        "poll_seconds": 1,
+        "observed_game_pids": [
+          636300
+        ],
+        "contamination": [],
+        "baloo_suspended_then_restored": [
+          2060,
+          3170
+        ],
+        "returncode": 0,
+        "sha256": "9b9b0d2025eee25c4167086d30b320317a68b215382b55fa627e89a1749e3eeb"
+      },
+      "selection": {
+        "skip_samples": 10,
+        "racing_only": true
+      },
+      "stats": {
+        "samples": 92,
+        "frames": 4230,
+        "fixed_steps": 4230,
+        "window_mean_ms": {
+          "median": 21.843653880434783,
+          "p95": 23.39773818604651,
+          "maximum": 24.88159329268293
+        },
+        "weighted_physics_ms_per_fixed_step": 7.906223594719637,
+        "weighted_solver_step_ms_per_fixed_step": 4.871921650005007
+      },
+      "log": "docs/testing/hills-delivery/perf-near-b/performance/performance-636300.jsonl"
+    }
+  ],
+  "pooled": {
+    "150m": {
+      "samples": 185,
+      "frames": 8498,
+      "fixed_steps": 8498,
+      "window_mean_ms": {
+        "median": 21.848365586956522,
+        "p95": 23.544443069767443,
+        "maximum": 24.88159329268293
+      },
+      "weighted_physics_ms_per_fixed_step": 7.923554716179808,
+      "weighted_solver_step_ms_per_fixed_step": 4.884999433049709
+    },
+    "500m": {
+      "samples": 184,
+      "frames": 8487,
+      "fixed_steps": 8487,
+      "window_mean_ms": {
+        "median": 21.772887423913044,
+        "p95": 23.814242333333333,
+        "maximum": 25.65602076923077
+      },
+      "weighted_physics_ms_per_fixed_step": 7.873355461849655,
+      "weighted_solver_step_ms_per_fixed_step": 4.8498928815186115
+    }
+  },
+  "pooled_change_percent_500_vs_150": {
+    "median": -0.3454636583367088,
+    "p95": 1.1459148248544881
+  },
+  "limitations": [
+    "Window mean distributions are not raw-frame P95, GPU timestamps or a 60 FPS certification.",
+    "Skip10 selection may omit some initial city-driving view. Scene windows are time-weighted, not equally weighted per view.",
+    "Separate runs retain changing dynamic traffic/physics and normal scheduler variation; pooled deltas are descriptive, not isolated causal GPU cost.",
+    "Per-second process sampling can miss shorter competitors. No observed competing game, compiler or test; Baloo PIDs were resumed in finally after each run.",
+    "No dedicated Metropolis or additional hardware coverage."
+  ]
+}

@@ -1,0 +1,41 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 20.08s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 4 tests
+test game::hills_bridge_exit_tests::bridge_support_handoff_does_not_apply_to_other_maps ... ok
+test game::hills_bridge_exit_tests::supported_bridge_hops_and_swept_solids_do_not_trigger_a_false_exit ... ok
+test game::hills_bridge_exit_tests::actual_combat_kick_pushes_assisted_rider_off_each_bridge_edge ... ok
+test game::hills_bridge_exit_tests::assisted_steering_crosses_each_open_bridge_edge_into_a_real_fall ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 399 filtered out; finished in 0.46s
+
+     Running unittests src/bin/city_preview.rs (target/debug/deps/city_preview-49ba9a4938b61e93)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (target/debug/deps/prop_preview-96e18c8db10644c9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/road_dash-6421aa5f4b17ac21)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (target/debug/deps/visibility_probe-829d1fae7a018d90)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/weapon_preview.rs (target/debug/deps/weapon_preview-340f45ef6707789b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s

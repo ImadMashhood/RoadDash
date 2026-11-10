@@ -1,6 +1,17 @@
 //! Branch choice is local to each racer and locks after leaving the fork throat.
 pub fn choice(current: usize, progress: f32, distances: [f32; 2], player: bool) -> usize {
-    if !player || !(3320. ..=3500.).contains(&progress) {
+    choice_between(current, progress, distances, player, 3320., 3500.)
+}
+/// A course-specific decision throat with the same bounded lane hysteresis.
+pub fn choice_between(
+    current: usize,
+    progress: f32,
+    distances: [f32; 2],
+    player: bool,
+    start: f32,
+    end: f32,
+) -> usize {
+    if !player || !(start..=end).contains(&progress) {
         return current.min(1);
     }
     let other = 1 - current.min(1);
@@ -12,7 +23,10 @@ pub fn choice(current: usize, progress: f32, distances: [f32; 2], player: bool) 
 }
 /// Split branches are independent lanes; outside the fork the routes are shared.
 pub fn same_corridor(a: usize, sa: f32, b: usize, sb: f32) -> bool {
-    a == b || !(3350. ..5362.5).contains(&sa) || !(3350. ..5362.5).contains(&sb)
+    same_corridor_between(a, sa, b, sb, 3350., 5362.5)
+}
+pub fn same_corridor_between(a: usize, sa: f32, b: usize, sb: f32, split: f32, merge: f32) -> bool {
+    a == b || !(split..merge).contains(&sa) || !(split..merge).contains(&sb)
 }
 
 #[cfg(test)]

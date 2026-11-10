@@ -3597,6 +3597,105 @@ static graph edges. No dependency migration, external code or asset import.
 Retained optimization reduces measured gameplay work. Overall frame timing
 varies across runs and remains above target; do not claim 60 FPS or GPU attribution.
 
+## ADR135 — Independent Hills course with an in-town rejoin (2026-11-10)
+
+Implement the user's supplied12.5km concept as a separate Hills map; preserve
+Metropolis as default and retain Valley/City. Sequence: city0–1.5km, winding
+hills1.5–5.5km, western town5.5–8.5km, dunes8.5–12.5km. The latest user
+correction overrides the diagram's town-exit merge: join branches around7.4km
+and continue through a shared town street before entering dunes.
+
+Reuse existing route/control/recovery interfaces and original asset catalog.
+Author missing western silhouettes as original procedural geometry; the supplied
+diagram and local original-game research are references, not imported retail
+media. No dependency migration, existing-map regeneration, physical-rig tuning
+or facade-source material override is authorized by this map addition.
+
+HILLS-01/02/03 retain user art/feel and broad performance acceptance separately
+from technical implementation/tests. Native geometry and branch recovery evidence
+are required; entity allocation alone is insufficient.
+
+ADR135 follow-up: user explicitly reinforces strong elevation/turns and asks
+for trees, grass, farms and a livelier map. Preserve the strong authored road
+relief; correct only discontinuous remote terrain. Add original countryside
+dressing and bounded grass/tree/farm populations with lane and footprint
+clearance, tapering vegetation before dunes. HILLS-03 acceptance includes this.
+
+## ADR136 — Hills atmosphere, mounted life and scenery polish (2026-11-10)
+
+The user explicitly authorizes extra polish and agent discretion for dust, birds,
+clouds, lighting, cacti, richer trees/props and cowboys riding horses. Keep the
+authored strong road relief/turns and town split/rejoin, all other maps, controls,
+saves and accepted physical rigs. New mounted pairs are separate world actors,
+not a change to motorcycle/ragdoll anatomy. Authoritative moving collision stays
+in the fixed simulation; bird/dust/gait presentation cannot overwrite bodies.
+
+Use bounded reusable effect pools and original procedural/reused assets. No new
+dependency or retail media intake. Hills-specific lighting must keep the visible
+sun, illumination, fog and environment maps coherent. Shared-map defaults stay
+unchanged. New HILLS-04/05/06 remain open until their technical and human gates
+are met; native active views are required, not just paused allocation counts.
+
+ADR136 recovery follow-up: native west/east hill crashes exposed an unreachable
+foot-recovery case behind the continuous mountain guardrail. Hills must support
+the existing exceptional rescue duration and +5-second penalty without changing
+rigs, step height or solid rails. Only an automatic, non-police rider genuinely
+stationary for the configured duration qualifies; advancing or manual movement
+resets the watch. Native rescue evidence uses an explicit opt-in extended
+deadline and reports rescues separately from ordinary remounts.
+
+## ADR137 — Hills composition, canyon crossing and heavy traffic (2026-11-10)
+
+The user rejects the sparse polish and explicitly requests three fresh agent
+scopes. Keep the city → rolling hills → western town → dunes sequence; move
+farms out of the opening and develop hills using the existing farm concept.
+Build closer, denser western frontage around both branches and the shared
+in-town rejoin. Preserve the strong route profile and accepted physical rigs.
+
+Place an original suspension bridge over an actual lowered canyon in the hills,
+with deliberate visible and physical gaps in side barriers. Falling and combat
+knockoff through those gaps are intended hazards, not collision defects. Retain
+a supported road deck, protected sections and integrated recovery. No invisible
+terrain shelf may prevent the requested fall.
+
+Add Hills-only eighteen-wheel semitrailer and agricultural tractor traffic with
+correct full-size collision and turn behavior. Shared avoidance/replication must
+respect those dimensions; existing maps and defaults are retained. Use original
+procedural work and existing catalog/farm sources, with no dependency migration
+or proprietary media. HILLS-07/08/09 remain open until technical and human
+acceptance; allocation counts alone do not demonstrate the visual improvement.
+
+ADR137 follow-up: user selects the existing city race's last kilometre rather
+than a new generic city. Use Metropolis physical street chainage 10,500–11,500 m
+as the Hills opening, translated with its whole buildings, source facade
+families and clipped pavement. Match street centre/elevation, then blend into
+hills. Tighten hill bends, retain barriers on curves rather than continuous
+straights, and increase batched greenery.
+
+Performance work remains PERF-08/P16-003: record a measured baseline, then
+compare the same new scene/binary with and without redundant fixed rigid bodies
+on immutable Hills solids. Colliders, identities, transforms, semantic roles
+and moving/breakable bodies must be preserved. Retain only verified gains;
+never report GPU timing or target-frame-rate success from entity counts.
+
+ADR137 collision verification: standalone immutable colliders preserve settling,
+scaled-wall CCD, ground rays, dynamic-bike knockoff and assisted blocking in
+physical equivalence fixtures. Source city breakables retain their existing
+lifecycle. Native west/east recovery now succeeds without exceptional rescue
+in both recorded fixtures; the existing delayed rescue policy stays available.
+The first bridge survey incorrectly treated the assisted chassis as a dynamic
+body. The corrected test must invoke real knockoff/recovery physics, without
+changing production handling to satisfy a fixture.
+
+ADR137 second visual follow-up: user explicitly removes all bridge low rails,
+not just their earlier gaps. Retain physical square-section thick hangers and
+towers, with unguarded intervals and no hidden side walls. Reuse actual
+Metropolis farm props and ground texture/material helpers, and populate western
+backlots/interior spaces with coherent rural yards rather than only road rows.
+New HILLS-10 covers bounded volumetric clouds; their frame cost must be measured
+and they are not assumed to improve speed. Three fresh agents handle bridge,
+farms and town, followed by a fresh cloud agent when a slot is available.
+
 ## ADR132 follow-up — Civilian queue ordering (2026-11-10)
 
 The user reports stopped city cars and attached queue screenshots. Investigation
@@ -3617,3 +3716,79 @@ headless compressed-queue/both-direction/full-fleet regressions and an opt-in
 rendered --traffic-stall-survey fixture. This proves the reproduced defect,
 not every possible stop shown in a still image. No new assets/dependencies or
 external source intake. Work is isolated from concurrent Hills revisions.
+
+ADR137 final integration: original bounded volume-cloud material avoids the
+built-in fog renderer's distant-light/shadow limitations without adding shadow
+maps or a depth prepass. Eight fixed high banks share one 48³ density texture
+and at most twelve march steps. Cloud-only NoFrustumCulling avoids the ordinary
+1 km scenery culling boundary; global camera/scenery distance stays unchanged.
+The baked fallback remains ROADDASH_HILLS_CLOUDS=0.
+
+Dust alpha material events now filter out materials without normal maps before
+tangent preparation scans mesh instances. Dynamic normal-map intake remains
+regression-tested; no mesh positions or collisions change. The survey itself
+filters its object query to actual actors/cameras/farm markers; this removes
+fixture overhead and is not claimed as a production speedup. Paired body-state
+measurements hold this common code constant.
+
+ADR137 assisted-edge correction: a direct knockoff fixture proves the canyon
+geometry, not accidental deck departure. The optional assisted controller kept
+authored road height beyond the 7.25 m deck until the wider road/verge sampler
+snapped to the canyon floor. Missing real Ground support at deck height must
+hand off to existing physical crash/recovery after solid sweeps, retaining
+forward/lateral momentum. Do not alter accepted rigs or globally change handling.
+The native fixture must apply ordinary lateral shove state and observe actual
+physical Falling/OwnedBody descent instead of calling crash itself. Preliminary
+timing runs before this correction remain labeled separately.
+
+
+ADR137 final composition review: a high view at station 6800 still exposed the
+four frontage rows after large ranch parcels were added. Retain their reserved
+footprints, then use smaller mixed courtyard footprints for narrow branch
+medians, including an explicit 6650–6950 placement check. Extend outer farmyards
+with broad irregular textured crop/orchard parcels clipped cell-by-cell around
+roads, existing lots and mounted paths. Batch field ground, crops and trunks;
+keep physical tree trunks resident, and do not use extra building rows as a
+substitute for shared town space. Native defaults to Dynamic; the Assisted
+bridge handoff is an optional-adapter correction. Native evidence must identify
+its adapter and separately measure authoritative Dynamic chassis descent.
+
+
+## ADR138 — Selectable courses and Hills structure/landscape follow-up (2026-11-10)
+
+The user requests merge/commit/push plus a native Metropolis/Hills selector,
+regular connected bridge hangers, a canyon river, flatter farm sites, broader
+city shadows, spatial clouds and a distinct sun. The repository default branch
+is main. Integrate the published traffic fix without dropping Hills or changing
+accepted physical rigs; preserve profiles, controls, legacy maps and online flow.
+Existing HILLS-07/08/10 cover farm/bridge/cloud refinements. New UI-COURSE-01,
+HILLS-11, SKY-SUN-01 and SHADOW-RANGE-01 record the additional acceptance gates.
+
+Use original procedural/reused assets and pinned Bevy0.17.3; no dependency or
+retail-media intake. Prefer the existing safe course relaunch lifecycle over a
+new partial world teardown. Structural suspension hangers must connect to actual
+support members without reinstating low railings. Farm placement must evaluate
+whole parcels on gentler land rather than manufacture cliff-sided barn mesas.
+Water remains bounded presentation over the resident terrain; preserve physical
+canyon falls. Visible sun/cloud direction and illumination must agree. Expand
+shadow distance with a bounded cascade policy and measure cost, not an assumed
+speedup. Validate before pushing; no force push or history rewrite.
+
+
+## ADR139 — Preserve the curved Hills starting apron (2026-11-10)
+
+The reported last-place spawn used straight backward extrapolation from station
+zero, while the reused city street bends behind that point. Preserve source
+street samples from -300 m through the grid, sample those negative stations
+directly, and let the imported surface own the apron. Extend the source slice
+to include it. Preserve grid offsets, race timing, spacing and physical rigs.
+HILLS-01 covers this correction; no new requirement or dependency migration.
+Validate every spawn and launch corridor against placed street/building geometry.
+
+The follow-up screenshot also exposes stalled Metropolis rivals and a road-edge
+grass seam. Normalize future outbound bounds and obstacle lanes into a shared
+carriageway frame before planning; preserve real lane-drop limits, collision
+queries and accepted physics. AI-QUEUE-02 covers the runtime regression. Close
+the 8 cm exposed terrain seam with a soil render-edge underlap, retaining road,
+sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
+facade material changes or third-party assets.

@@ -438,3 +438,89 @@ fn remote_human_auto_seek_matches_local_player_around_blocking_wall() {
         "remote humans must not enter NPC-only live routing"
     );
 }
+
+#[test]
+fn hills_exceptional_seek_rescue_waits_and_preserves_manual_pause_progress_and_gates() {
+    fn fixture() -> (App, Entity, Entity, Entity) {
+        let (mut app, owner, runner, wreck, _) = foot_scene(100., 20.);
+        let track = Track::hills().unwrap();
+        let (p, q) = track.sample_route(0, 6200., 0.);
+        app.insert_resource(track);
+        *app.world_mut().get_mut::<Transform>(runner).unwrap() =
+            Transform::from_translation(p + Vec3::Y * 0.98).with_rotation(q);
+        *app.world_mut().get_mut::<Transform>(wreck).unwrap() =
+            Transform::from_translation(p + q * Vec3::Z * 20. + Vec3::Y * 0.6).with_rotation(q);
+        app.world_mut().get_mut::<Rider>(owner).unwrap().progress = 6200.;
+        let mut recovery = app.world_mut().get_mut::<Recovery>(owner).unwrap();
+        recovery.previous_foot = Some(p + Vec3::Y * 0.98);
+        assert!(
+            !recovery
+                .walk_watch
+                .seek_rescue_due(119.75, p.xz().to_array(), true, 120.)
+        );
+        app.world_mut()
+            .resource_mut::<Time<Fixed>>()
+            .advance_by(std::time::Duration::from_secs_f32(0.25));
+        (app, owner, runner, wreck)
+    }
+    let (mut app, owner, runner, wreck) = fixture();
+    let gate_before = app.world().get::<Rider>(owner).unwrap().gates.next;
+    let before = *app.world().get::<Transform>(wreck).unwrap();
+    app.world_mut().run_system_once(recover).unwrap();
+    assert_eq!(app.world().get::<Recovery>(owner).unwrap().rescues, 0);
+    assert_eq!(*app.world().get::<Transform>(wreck).unwrap(), before);
+    let elapsed = app.world().resource::<Race>().elapsed;
+    app.world_mut().run_system_once(recover).unwrap();
+    let rec = app.world().get::<Recovery>(owner).unwrap();
+    assert_eq!(rec.rescues, 1);
+    assert!(rec.last_rescue_stationary > 120.);
+    assert_eq!(rec.rescue_penalty_total, 5.);
+    assert_eq!(app.world().resource::<Race>().elapsed, elapsed + 5.);
+    assert_eq!(
+        rec.previous_foot,
+        Some(app.world().get::<Transform>(runner).unwrap().translation)
+    );
+    assert_eq!(
+        app.world().get::<Rider>(owner).unwrap().gates.next,
+        gate_before
+    );
+    assert_ne!(*app.world().get::<Transform>(wreck).unwrap(), before);
+
+    for mode in ["manual", "paused", "progress", "other-map", "police"] {
+        let (mut app, owner, runner, wreck) = fixture();
+        let before = *app.world().get::<Transform>(wreck).unwrap();
+        match mode {
+            "manual" => {
+                app.world_mut()
+                    .resource_mut::<crate::controls::Controls>()
+                    .foot = Vec2::X
+            }
+            "paused" => app.world_mut().resource_mut::<Race>().phase = Phase::Paused,
+            "progress" => {
+                app.world_mut()
+                    .get_mut::<Transform>(runner)
+                    .unwrap()
+                    .translation
+                    .x += 1.
+            }
+            "other-map" => {
+                app.insert_resource(Track::default());
+            }
+            "police" => app.world_mut().get_mut::<Rider>(owner).unwrap().police = true,
+            _ => unreachable!(),
+        }
+        for _ in 0..3 {
+            app.world_mut().run_system_once(recover).unwrap();
+        }
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().rescues,
+            0,
+            "{mode}"
+        );
+        assert_eq!(
+            *app.world().get::<Transform>(wreck).unwrap(),
+            before,
+            "{mode}"
+        );
+    }
+}

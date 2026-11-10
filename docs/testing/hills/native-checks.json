@@ -1,0 +1,53 @@
+[
+  {
+    "case": "survey",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--hills-survey"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 31.527664707999065
+  },
+  {
+    "case": "recovery-west",
+    "track": "hills",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 51.70654523800113
+  },
+  {
+    "case": "recovery-east",
+    "track": "hills",
+    "route": "1",
+    "flags": [
+      "--smoke-test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 33.51705344899892
+  },
+  {
+    "case": "recovery-baseline",
+    "track": "hills",
+    "route": "1",
+    "flags": [
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 33.07891589800056
+  },
+  {
+    "case": "legacy-metro",
+    "track": "metro",
+    "route": "0",
+    "flags": [
+      "--smoke-test"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 41.75998068900299
+  }
+]

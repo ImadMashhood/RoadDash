@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
@@ -375,6 +375,8 @@
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "HILLS-11",
+        "SKY-SUN-01",
         "CROP-TRAIL-01",
         "NPC-SEAMS-01",
         "V2-06-001",
@@ -387,7 +389,17 @@
         "V2-06-008",
         "ENV-008",
         "P08-005",
-        "CITY-LIFE-02"
+        "CITY-LIFE-02",
+        "HILLS-01",
+        "HILLS-02",
+        "HILLS-03",
+        "HILLS-04",
+        "HILLS-05",
+        "HILLS-06",
+        "HILLS-07",
+        "HILLS-08",
+        "HILLS-09",
+        "HILLS-10"
       ]
     },
     "07": {
@@ -515,6 +527,8 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "UI-COURSE-01",
+        "SHADOW-RANGE-01",
         "UI-RETRO-BG-01",
         "UI-02",
         "P15-003",

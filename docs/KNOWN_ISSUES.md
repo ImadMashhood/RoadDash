@@ -1,6 +1,6 @@
 # Known issues and remaining acceptance
 
-Updated 2026-11-09. This is not a list of fabricated failures; distinguish known
+Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
@@ -1073,4 +1073,118 @@ new broad performance acceptance is claimed.
   GPU/full-course/Windows certification or user art/feel approval is claimed.
   See testing/next-pass for accepted receipts and excluded interrupted/harness runs.
 
+## Hills follow-up (2026-11-10 / ADR135)
+
+HILLS-01/02/03 add a separate course with strong road relief, western branch
+streets rejoining inside town, dunes and requested countryside dressing.
+Final art, horse gait/physical animal rig, full driven-race balance/performance
+and broad hardware coverage remain open. Horses are static solid scenery.
+The initial native camera survey paused before Rapier's first active step,
+leaving its query broadphase uninitialized; its road-support failure cannot
+serve as passing evidence. A bounded countdown warmup precedes the corrected
+survey. Initial images also exposed nearest-road remote terrain height jumps;
+continuous remote terrain replaces them without flattening the authored road.
+
+Hills corrected final survey passes1506road-support probes (max25.898mm), with
+11completed native captures. Both town branches, steep-hill and baseline-rig
+recovery pass, as does the unchanged Metropolis recovery control. This resolves
+the initial survey initialization failure; prior rejected logs are retained.
+Visual authoring remains procedural/draft, and these scripted cases are not a
+full manual race or performance certification.
+
+## Hills polish (ADR136 / HILLS-04/05/06)
+
+Mounted cowboys are bounded scenic kinematic actors with fixed-step animated
+colliders; they do not eject riders, dynamically avoid traffic or use new animal
+ragdolls. Guest poses are derived from replicated race time; broader live-network
+latency/visual review remains open. Dust is a bounded sprite approximation, not
+volumetric simulation; it requires wheel contact on dynamic bikes. Bird flocks
+are presentation-only and have no collisions. Clouds remain stationary to keep
+the visible sun and lighting coherent. Native art and full-course performance
+remain separate from automated geometry/state checks.
+
+Initial polish test failures traced to an ungated render system requiring render
+assets in headless fixtures; gating on the Hills atmosphere resource fixes that
+without physics changes. Steep-shelf rock coverage now uses physically smaller
+solitary stones with matching clearance, alongside original large clusters.
+Initial close-up captures used the player camera for bird culling/billboards
+before the survey camera override; corrected ordering uses the final view.
+
+The extra native pass exposed a Hills recovery trap after a high-speed hill
+crash: the stationary wreck lies outside the continuous rail while automatic
+foot recovery oscillates inside it. Cumulative walking distance is not proof of
+progress. The correction uses bounded displacement to detect the exceptional
+trap and retains the existing configured rescue delay and penalty; it does not
+remove rail collision or alter the physical rigs. Rescue receipts must be
+reported separately from ordinary remounts.
+
+Final native validation resolves the indefinite Hills trap via the explicit
+120-second/+5-second fallback; west/east receipts distinguish it from unassisted
+recovery. Baseline and Metropolis controls need no rescue. This does not add
+rail vaulting or make the continuous barrier traversable; full-course recovery
+balance and human playtesting remain open.
+
+
+## Hills revision follow-up (2026-11-10, ADR137)
+
+The continuous-rail composition above is historical: the revised hills now
+protect bends and leave straights open. A physical open-straight recovery test
+and native west/east fixtures remount without exceptional rescue. The original
+delayed fallback remains available for exceptional traps.
+
+The new city opening reuses the source street/facades and its actual pavement;
+full-course art/feel and hardware acceptance remain open. The canyon deliberately
+has open deck edges without low railings, with square solid suspension hangers.
+Physical tests verify support and the deep floor; production steering and combat
+kicks on both sides trigger real falls through the Assisted controller. The
+active native fixture checks a lateral departure and physical recovery. This
+does not prove every combat approach or canyon recovery scenario. The native
+Dynamic trial remains mounted during its physical descent; it does not establish
+automatic return from the canyon floor to the bridge road.
+Heavy traffic has supported authored trajectories and native motion evidence;
+full multiplayer session review and broad vehicle/animal behavior remain open.
+
+Performance comparison and remaining limits are recorded in
+`testing/hills-revision/REPORT.md`. Historical prior-build timing is not the
+paired baseline. CPU/wall measurements must not be described as GPU timestamps
+or universal hardware/60 FPS certification.
+
 - AI-QUEUE-02/P08-005: the reproduced civilian circular wait is corrected (testing/traffic-stall). A still image cannot establish the cause of every stopped car. Legitimate obstacle yielding and broader full-race traffic acceptance remain distinct from this regression.
+
+## Hills course and landscape delivery (2026-11-10, ADR138)
+
+UI-COURSE-01/HILLS-11/SKY-SUN-01/SHADOW-RANGE-01 and existing HILLS-07/08/10
+are implemented with 590 passing workspace tests (one existing ignored soak).
+The native course selector verifies Metropolis → Hills → Metropolis, profile
+credits/preferences, retry and menu return. All seven native cases pass across
+recorded pre-polish/final binary hashes; the final active run replaces the first
+active receipt after river texture/camera polish. The interrupted first east
+attempt is excluded. Assisted falls/recovery and all route/control recoveries
+use no exceptional rescue; Dynamic remains mounted during its 82.677 m chassis
+descent. Six farm parcels and final river/sun/cloud/bridge captures passed visual
+review. Four clean ABBA shadow-distance runs with clouds constant measured
+150 → 500 m median window means of 21.848 → 21.773 ms and P95 window means of
+23.544 → 23.814 ms. Differences are within run variation, not a speedup. This
+Hills-view fixture is not a full Metropolis/GPU benchmark or 60 FPS certificate.
+See `testing/hills-delivery/REPORT.md` and `testing/hills-delivery/PERFORMANCE.md`.
+
+All six farm parcels now choose gentler natural land and check whole-field
+slopes/relief plus road-cut clearance. This does not flatten the course's strong
+elevation changes. Regular bridge hangers connect through girders/outriggers;
+open deck edges still permit falls. Water is presentation over resident terrain,
+not swimming/fluid physics or an added collision surface.
+
+Volumetric cumulus and a directional-light-aligned sun are bounded presentation,
+not weather simulation. The 500 m Metropolis/Hills shadow policy preserves the
+two near splits but trades outer resolution and rendering work for distance.
+No speedup, GPU timestamp, sustained 60 FPS, full-course human art/feel or Windows
+hardware acceptance is inferred. Legacy maps retain their 150 m default shadow
+range; explicit cloud-off and 150 m shadow controls remain available.
+
+
+- ADR139/HILLS-01/AI-QUEUE-02/CITY-CIVIC-01: reported rear-grid building
+  obstruction, false AI stops through Metropolis bends and thin green asphalt
+  seam have targeted/runtime/native corrections; see testing/hills-grid/REPORT.md.
+  594tests and both-rig native recovery pass; complete human race/passing balance,
+  other hardware/network conditions and60FPS remain open. No blanket guarantee
+  that every traffic blockage is eliminated.
