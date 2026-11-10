@@ -1828,3 +1828,16 @@ All594workspace tests, strict lint/build/audit and five roadmap checks pass.
 Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
+
+## 2026-11-10 — Issue25 profiling and exact generation reuse (ADR140)
+
+Added opt-in loading spans, raw race-frame evidence, render-pass diagnostics and
+an isolated paired survey harness. Profiled both courses before optimization;
+recorded loading/CPU/GPU boundaries, sampling policy limits, cache provenance and
+lighting/budget research. Introduced scoped exact terrain reuse and duplicate
+Metropolis corner-color reuse with original geometry/collision preserved;
+loading-only job admission and fixed-schedule executor remain controlled
+experiments pending measurements. RFU-PERF-01..05 are new stable open requirements.
+Pinned dependencies remain unchanged; parent coordinates the requested0.20
+migration separately. Verification and paired results are recorded in
+`testing/issue25-performance/REPORT.md`; broad performance gates remain open.

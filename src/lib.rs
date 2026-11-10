@@ -45,6 +45,8 @@ use bevy::prelude::*;
 
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
+    diagnostics::loading::mark("build_app_begin");
+    let _load_span = diagnostics::loading::Span::new("build_app");
     // Bevy's default IO workers inherit the OS stack, which overflows in the
     // debug glTF loader for the larger authored scenes. Configure only this
     // pool before DefaultPlugins; preserve Bevy's default 25%, 1..4 IO policy.
@@ -284,6 +286,11 @@ pub fn build_app(smoke: bool) -> App {
                 )
                 .add_systems(Update, verification::smoke_test.after(ui::update_ui));
         }
+    }
+    if std::env::var("ROADDASH_FIXED_EXECUTOR").as_deref() == Ok("single") {
+        app.edit_schedule(FixedUpdate, |schedule| {
+            schedule.set_executor_kind(bevy::ecs::schedule::ExecutorKind::SingleThreaded);
+        });
     }
     app
 }

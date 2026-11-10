@@ -84,6 +84,9 @@ fn shoulders(track: &Track, route: usize, a: f32, b: f32) -> (Vec<Vec3>, Vec<[u3
 }
 
 fn terrain_vertex(track: &Track, x: f32, z: f32) -> Vec3 {
+    super::terrain_cache::vertex(track, x, z, || terrain_vertex_uncached(track, x, z))
+}
+fn terrain_vertex_uncached(track: &Track, x: f32, z: f32) -> Vec3 {
     let mut p = Vec3::new(x, track.terrain_height(x, z), z);
     let (s, l) = track.nearby_station(p.x, p.z);
     if l.abs() < 18. {
@@ -264,6 +267,7 @@ pub(super) fn spawn(
     }
     // Resident heightfield with shared render/collision topology; near-road surface
     // is recessed under the finely tessellated shoulder, so crests cannot bury lanes.
+    let terrain_span = crate::diagnostics::loading::Span::new("hills_terrain");
     let (min, max) = track.bounds;
     let tile = 160.;
     let step = 8.;
@@ -277,10 +281,17 @@ pub(super) fn spawn(
             );
             let center = origin + Vec2::splat(tile / 2.);
             let (station, _) = track.nearby_station(center.x, center.y);
-            let (mut v, ix) = crate::world_gen::ground::terrain_grid(track, origin, tile, step);
-            for p in &mut v {
-                *p = terrain_vertex(track, p.x, p.z);
-            }
+            let (v, ix) = if std::env::var("ROADDASH_TERRAIN_CACHE").as_deref() == Ok("0") {
+                let (mut v, ix) = crate::world_gen::ground::terrain_grid(track, origin, tile, step);
+                for p in &mut v {
+                    *p = terrain_vertex_uncached(track, p.x, p.z);
+                }
+                (v, ix)
+            } else {
+                crate::world_gen::ground::terrain_grid_with_height(origin, tile, step, |p| {
+                    terrain_vertex_uncached(track, p.x, p.y).y
+                })
+            };
             let base = if station < 5300. {
                 Vec3::new(0.32, 0.37, 0.19)
             } else if station < 8500. {
@@ -315,6 +326,7 @@ pub(super) fn spawn(
             census.terrain_chunks += 1;
         }
     }
+    drop(terrain_span);
     // Mountain rails remain solid; the suspension bridge owns its gapped sides.
     for d in (1580..5380).step_by(8) {
         if !bridge::curve_guardrail(track, d as f32 + 4.)
@@ -364,6 +376,25 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn direct_grid_sampling_preserves_resident_mesh_vertices_and_triangles() {
+        let track = Track::hills().unwrap();
+        for station in [0., 1600., 2800., 4740., 6800., 9200., 12400.] {
+            let p = track.sample(station, 0.).0;
+            let origin = p.xz() - Vec2::splat(80.);
+            let (mut old, indices) =
+                crate::world_gen::ground::terrain_grid(&track, origin, 160., 8.);
+            for vertex in &mut old {
+                *vertex = terrain_vertex_uncached(&track, vertex.x, vertex.z);
+            }
+            let (new, direct_indices) =
+                crate::world_gen::ground::terrain_grid_with_height(origin, 160., 8., |p| {
+                    terrain_vertex_uncached(&track, p.x, p.y).y
+                });
+            assert_eq!(old, new);
+            assert_eq!(indices, direct_indices);
+        }
+    }
     #[test]
     fn hills_roads_and_shoulders_face_up_without_spanning_live_lanes() {
         let track = Track::hills().unwrap();

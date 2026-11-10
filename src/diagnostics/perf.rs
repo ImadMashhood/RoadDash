@@ -16,6 +16,9 @@ pub(super) struct PerfLog {
     main_ms: f32,
     steps: u64,
     dropped: u64,
+    raw_frames: Option<Vec<f64>>,
+    raw_racing_frames: Vec<f64>,
+    previous_frame: Instant,
 }
 impl Default for PerfLog {
     fn default() -> Self {
@@ -42,7 +45,7 @@ impl Default for PerfLog {
                         for mut value in rx {
                             value["linux_process_memory"] = linux_fields(
                                 "/proc/self/status",
-                                &["VmRSS:", "RssAnon:", "RssFile:", "VmSwap:"],
+                                &["VmRSS:", "VmHWM:", "RssAnon:", "RssFile:", "VmSwap:"],
                             );
                             value["linux_system_memory"] =
                                 linux_fields("/proc/meminfo", &["MemAvailable:", "SwapFree:"]);
@@ -80,6 +83,10 @@ impl Default for PerfLog {
             main_ms: 0.,
             steps: 0,
             dropped: 0,
+            raw_frames: (std::env::var("ROADDASH_RAW_FRAMES").as_deref() == Ok("1"))
+                .then(|| Vec::with_capacity(4096)),
+            raw_racing_frames: Vec::new(),
+            previous_frame: Instant::now(),
         }
     }
 }
@@ -113,9 +120,28 @@ pub(super) fn sample(
     bodies: Query<(&RigidBody, Option<&RigidBodyDisabled>)>,
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     context: ReadRapierContext,
+    diagnostics: Option<Res<bevy::diagnostic::DiagnosticsStore>>,
+    loading: (
+        Option<Res<crate::material_detail::Queue>>,
+        Option<Res<crate::tangent_detail::Queue>>,
+    ),
 ) {
     if log.sender.is_none() {
         return;
+    }
+    let now = Instant::now();
+    let frame_ms = now.duration_since(log.previous_frame).as_secs_f64() * 1000.;
+    log.previous_frame = now;
+    if let Some(raw) = &mut log.raw_frames
+        && raw.len() < 4096
+    {
+        raw.push(frame_ms);
+        if race
+            .as_ref()
+            .is_some_and(|r| r.phase == crate::game::Phase::Racing)
+        {
+            log.raw_racing_frames.push(frame_ms);
+        }
     }
     log.frames += 1;
     log.game_ms += metrics.frame_gameplay_ms;
@@ -159,7 +185,14 @@ pub(super) fn sample(
         })
     });
     let player = riders.iter().find(|r| r.id == 0);
-    let value = serde_json::json!({"schema_version":1,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
+    let render_diagnostics: std::collections::BTreeMap<_, _> = diagnostics
+        .as_ref()
+        .into_iter()
+        .flat_map(|store| store.iter())
+        .filter(|d| d.path().as_str().starts_with("render/"))
+        .filter_map(|d| d.value().map(|v| (d.path().as_str().to_owned(), v)))
+        .collect();
+    let value = serde_json::json!({"schema_version":1,"loading_queues":{"materials":loading.0.as_ref().map(|q|q.loading_evidence()),"tangents":loading.1.as_ref().map(|q|q.loading_evidence())},"raw_frame_ms":log.raw_frames,"raw_racing_frame_ms":log.raw_frames.as_ref().map(|_| &log.raw_racing_frames),"raw_frame_samples_dropped":log.raw_frames.as_ref().map(|raw| log.frames.saturating_sub(raw.len() as u64)),"render_diagnostics_latest":render_diagnostics,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"requested_fixed_executor":std::env::var("ROADDASH_FIXED_EXECUTOR").unwrap_or_else(|_| "multi".into()),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
  "fixed_steps":log.steps,"fixed_gameplay_ms_per_frame":log.game_ms/frames,"physics_ms_per_frame":log.physics_ms/frames,"physics_sync_ms_per_frame":log.physics_phases_ms[0]/frames,"physics_step_ms_per_frame":log.physics_phases_ms[1]/frames,"physics_writeback_ms_per_frame":log.physics_phases_ms[2]/frames,"main_world_ms_per_frame":log.main_ms/frames,
  "entities":metrics.entities,"colliders":metrics.colliders,"dynamic_bodies":bodies.iter().filter(|(b,d)|**b==RigidBody::Dynamic&&d.is_none()).count(),
  "mesh_entities":views.iter().count(),"visible_mesh_entities":views.iter().filter(|v|v.get()).count(),"mesh_assets":meshes.map_or(0,|a|a.len()),"material_assets":materials.map_or(0,|a|a.len()),
@@ -176,6 +209,10 @@ pub(super) fn sample(
         }
     }
     log.last = Instant::now();
+    if let Some(raw) = &mut log.raw_frames {
+        raw.clear();
+    }
+    log.raw_racing_frames.clear();
     log.frames = 0;
     log.game_ms = 0.;
     log.physics_ms = 0.;

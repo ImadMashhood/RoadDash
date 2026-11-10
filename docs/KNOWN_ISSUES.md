@@ -1188,3 +1188,15 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   594tests and both-rig native recovery pass; complete human race/passing balance,
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
+
+## Performance/loading investigation (2026-11-10, ADR140)
+
+RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
+lighting evaluation, generation reuse and content budgets. Initial clean local
+profiling identifies repeated terrain support construction and CPU physics/
+dispatch as candidates; see `testing/issue25-performance/REPORT.md`. Raw frames,
+loading milestones and actual asynchronous GPU pass diagnostics are distinguished
+from window averages and whole-frame presentation. The existing16.7ms p95 target,
+full-race combat/traffic coverage, cold-machine loading and Windows/other hardware
+acceptance remain open. Final combined content/engine measurements are required
+before treating local branch improvements as overall performance acceptance.
