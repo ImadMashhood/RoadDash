@@ -1,0 +1,10 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-town-hall)
+    Finished `test` profile [optimized + debuginfo] target(s) in 20.25s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+Hall detail: five resident meshes, 19764 triangles; no collider changes
+test world_gen::metropolis::hall_detail::tests::resident_stonework_is_bounded_and_outward_wound ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 311 filtered out; finished in 0.00s
+

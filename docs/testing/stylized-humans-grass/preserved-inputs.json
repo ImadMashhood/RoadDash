@@ -1,0 +1,52 @@
+[
+  {
+    "path": "Cargo.toml",
+    "sha256": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "Cargo.lock",
+    "sha256": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "assets/models/riding.rdmesh",
+    "sha256": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "assets/models/rider-bindings.json",
+    "sha256": "07c23b90d2ee71f44958ea8ea659ffb9e1f287d68f95ea3bcda7aa1fecc49a11",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "src/human.rs",
+    "sha256": "a75f32cc88d7fd5ef2fdf78ac3052e2fae7148cac940a313a0e55877bee0179b",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "src/biomechanics/mod.rs",
+    "sha256": "8d1dcf8e34e8d2060276ee8028086f8e5996be6eb94a9a8a3021141c94bc3060",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "src/biomechanics/muscles.rs",
+    "sha256": "f0c1071098aecdc997b406da6b31dd9c0ea7a3031b477cd1f29e5dbddf84dcf0",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "content/world/metropolis.json",
+    "sha256": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "content/world/art.json",
+    "sha256": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+    "unchanged_from_base": true
+  },
+  {
+    "path": "src/world_gen/metropolis/farms.rs",
+    "sha256": "28dd4c050d98f5c74e6ac554ee4a513505e0e7c7747e96d35ed3d94a6f4757bb",
+    "unchanged_from_base": true
+  }
+]

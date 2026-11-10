@@ -1,0 +1,23 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/ai-queue-pass/crates/rr_core)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2.85s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/rr_core-2eedc0a263b28bc0)
+
+running 15 tests
+test traffic_avoidance::tests::alongside_cross_motion_cannot_be_steered_through ... ok
+test traffic_avoidance::tests::cannot_swerve_through_a_car_alongside ... ok
+test traffic_avoidance::tests::committed_pass_rechecks_new_obstacles_and_a_dropping_lane ... ok
+test traffic_avoidance::tests::narrowed_road_and_solid_pass_corridor_wait_instead_of_using_sidewalk ... ok
+test traffic_avoidance::tests::matched_speed_follower_plans_before_accelerating_into_queue ... ok
+test traffic_avoidance::tests::moving_cross_car_yields_before_lane_entry_and_resumes_after_clearance ... ok
+test traffic_avoidance::tests::occupied_pass_brakes_and_never_chooses_oncoming_side ... ok
+test traffic_avoidance::tests::occupied_rider_pass_lane_keeps_traffic_queue_clear ... ok
+test traffic_avoidance::tests::predicts_fast_approach_beyond_old_35m_trigger ... ok
+test traffic_avoidance::tests::results_do_not_depend_on_traffic_iteration_order ... ok
+test traffic_avoidance::tests::slow_rider_queue_is_a_hazard_without_car_traffic ... ok
+test traffic_avoidance::tests::stationary_blockage_stops_and_cleared_traffic_resumes ... ok
+test traffic_avoidance::tests::stopped_queue_selects_walking_speed_pass_and_holds_it ... ok
+test traffic_avoidance::tests::stopped_queue_waits_for_occupied_rear_and_oncoming_gaps ... ok
+test traffic_avoidance::tests::unobstructed_combat_and_racing_intents_are_unchanged ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 94 filtered out; finished in 0.00s
+

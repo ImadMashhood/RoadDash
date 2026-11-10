@@ -1,0 +1,43 @@
+{
+  "after": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--metro-survey"
+    ],
+    "exit": 0
+  },
+  "anatomy-recovery": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--smoke-test"
+    ],
+    "exit": 0,
+    "route": "0"
+  },
+  "anatomy-actors": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--actor-smoke-test"
+    ],
+    "exit": 0,
+    "route": "0"
+  },
+  "baseline-recovery": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "exit": 0,
+    "route": "1"
+  },
+  "baseline-actors": {
+    "command": [
+      "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+      "--actor-smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "exit": 0,
+    "route": "1"
+  }
+}

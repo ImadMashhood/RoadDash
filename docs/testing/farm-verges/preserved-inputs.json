@@ -1,0 +1,10 @@
+{
+  "content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+  "content/props.json": "b7e335781f0ddb3d2078f5d7447eaee94f122f5245d1f0f114c263ca3adb8d54",
+  "Cargo.toml": "92d4aa079e7e619f9aa3b5398e9786933f9b7559e7672e750a4e19e967453ea4",
+  "Cargo.lock": "a36be968d0ac55f1cd6dbe8c1f64c6ec723852f54752178ee6a6ba257e9103ab",
+  "src/environment.rs": "162c0df67e38389f7f6de8c4fbb9db292c4a12cb01b79d42a88973faab831bbd",
+  "src/npc.rs": "03557912c40382f1a3051092d4829c1c5326aaef05a8a2cc5341c5e105452a1a",
+  "src/track.rs": "eb7b72593b2a34ff70035107bce5152b7909e9b660e6842ee581b5b018acc80a",
+  "src/models/tests.rs": "ca643f86a37744ea0a900bbc89fdda4591a78a6b5d61357fc9287f75d7aeeb41"
+}

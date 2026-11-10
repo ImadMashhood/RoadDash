@@ -1,0 +1,32 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/walking-animation)
+    Finished `test` profile [optimized + debuginfo] target(s) in 42.53s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 22 tests
+test animation::grounding::tests::plant_tracks_translated_and_rotated_support_without_world_drift ... ok
+test animation::correction_tests::held_elbows_point_down_in_normal_and_fast_tuck ... ok
+test animation::correction_tests::planted_feet_fit_a_sloped_surface_without_stretching_the_leg ... ok
+test animation::locomotion::trajectory_tests::stance_velocity_matches_displacement_and_run_has_aerial_intervals ... ok
+test animation::hand_tests::fist_grip_and_relaxed_weights_blend_without_side_swaps_or_overshoot ... ok
+test animation::correction_tests::pickup_and_running_keep_ankles_on_their_own_side_and_knees_in_a_bending_plane ... ok
+test animation::correction_tests::tuck_and_steering_draw_both_elbows_in_without_releasing_grips ... ok
+test animation::correction_tests::seated_knee_bend_plane_points_slightly_outward_and_feet_stay_on_pegs ... ok
+test animation::locomotion::tests::gait_is_continuous_mirrored_and_stops_with_neutral_palms ... ok
+test animation::locomotion::trajectory_tests::turning_changes_swing_direction_without_changing_leg_lengths ... ok
+test animation::reaction::tests::recoil_preserves_root_pelvis_held_landmarks_and_chain_lengths ... ok
+test animation::tests::normal_tuck_endpoints_are_distinct_and_shortest_arc_is_finite ... ok
+test animation::tests::held_contacts_and_anatomical_lengths_survive_between_keyframes ... ok
+test animation::tests::interpolation_preserves_every_render_chain_length_and_unit_rotations ... ok
+test animation::tests::pause_freezes_pose_clock_and_crash_interrupts_only_visual_state ... ok
+test animation::tests::resolved_gameplay_side_selects_the_matching_punch_and_kick ... ok
+test animation::reaction::tests::reaction_has_no_authority_and_attack_pause_recovery_reset_keep_priority ... ok
+test animation::tests::attacks_enter_from_actual_tuck_and_return_to_the_latest_base_without_retrigger ... ok
+test animation::grounding::tests::swing_replants_and_physical_support_motion_and_loss_are_observed ... ok
+test animation::hand_tests::club_ready_layer_preserves_lean_tuck_and_returns_after_both_attacks ... ok
+Actual translated support slip (speed,grade,max m/tick,samples): [(2.0, 0.0, 5.3517215e-6, 136), (6.0, 0.0, 3.9452917e-7, 46), (2.0, 0.12, 0.00041065124, 136), (6.0, -0.12, 0.00023913385, 46)]
+test animation::locomotion_ground_tests::translated_walk_run_slope_and_stop_keep_contact_and_physical_root ... ok
+reaction CPU sample: 100000 active layers/batch,7 batches,median_ns=111.60,min_ns=110.61,max_ns=146.83,pulse_option_bytes=12,Rider_bytes=520; test opt-level1, no GPU/frame-budget claim
+test animation::reaction::tests::reaction_cost_receipt ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 304 filtered out; finished in 0.09s
+

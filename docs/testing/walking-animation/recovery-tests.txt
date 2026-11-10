@@ -1,0 +1,15 @@
+
+running 10 tests
+test recovery::tests::bike_and_foot_finish_attempts_share_exactly_one_award ... ok
+test recovery::tests::manual_below_terrain_rescue_does_not_cross_the_finish_or_teleport_the_bike ... ok
+test recovery::tests::slow_facing_interaction_mounts_but_a_moving_bike_is_rejected ... ok
+test recovery::tests::walking_away_beside_the_bike_does_not_snap_or_force_a_mount ... ok
+test recovery::tests::walking_backward_across_finish_is_rejected_even_with_prior_gates ... ok
+test recovery::tests::manual_movement_is_camera_relative_and_blocks_unwanted_nearby_mounts ... ok
+test recovery::tests::neutral_delay_and_disabled_assist_do_not_force_mounts ... ok
+test recovery::tests::running_away_from_the_bike_can_finish_once_with_valid_prior_gates ... ok
+test recovery::tests::actual_crash_five_meters_before_finish_allows_a_manual_foot_finish ... ok
+test recovery::tests::npc_walker_exits_concave_trap_and_reaches_bike_without_rescue ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 316 filtered out; finished in 0.77s
+

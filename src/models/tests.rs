@@ -110,7 +110,12 @@ fn all_four_human_states_use_the_same_skin_and_render_entities_have_no_physics()
 fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory() {
     use bevy::ecs::system::RunSystemOnce;
     use bevy_rapier3d::prelude::*;
-    for enabled in [false, true] {
+    for (enabled, palette) in [
+        (false, 4),
+        (true, 4),
+        (false, OFFICER_PALETTE),
+        (true, OFFICER_PALETTE),
+    ] {
         let mut old = crate::game::tests::simulation();
         let mut new = crate::game::tests::simulation();
         authored(&mut new);
@@ -120,15 +125,15 @@ fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory()
         new.world_mut()
             .resource_mut::<crate::biomechanics::Settings>()
             .enabled = enabled;
-        fn spawn(app: &mut App) -> Vec<Entity> {
+        fn spawn(app: &mut App, palette: usize) -> Vec<Entity> {
             app.world_mut()
-                .run_system_once(|mut commands: Commands, art: Res<world::Art>| {
+                .run_system_once(move |mut commands: Commands, art: Res<world::Art>| {
                     let owner = commands.spawn_empty().id();
                     crate::recovery::humanoid(
                         &mut commands,
                         &art,
                         owner,
-                        4,
+                        palette,
                         Vec3::new(0.0, 3.0, 8.0),
                         Quat::from_rotation_y(0.3),
                         Vec3::new(3.0, -2.0, 18.0),
@@ -136,8 +141,8 @@ fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory()
                 })
                 .unwrap()
         }
-        let a = spawn(&mut old);
-        let b = spawn(&mut new);
+        let a = spawn(&mut old, palette);
+        let b = spawn(&mut new, palette);
         for (a, b) in a.iter().zip(&b) {
             let a = old.world().entity(*a);
             let b = new.world().entity(*b);
@@ -234,12 +239,17 @@ fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory()
             }
         }
         println!(
-            "MODEL_PHYSICS_PARITY enabled={enabled} ticks=180 source_bodies=11 max_position_error_m={max_position_error}"
+            "MODEL_PHYSICS_PARITY palette={palette} enabled={enabled} ticks=180 source_bodies=11 max_position_error_m={max_position_error}"
         );
     }
 }
 #[test]
 fn visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin() {
+    for palette in [0, OFFICER_PALETTE] {
+        recovery_parity(palette);
+    }
+}
+fn recovery_parity(palette: usize) {
     use crate::{
         game::{Phase, Race, Rider},
         recovery::{Recovery, RecoveryStage},
@@ -252,6 +262,7 @@ fn visual_replacement_preserves_full_crash_run_remount_and_cleans_up_skin() {
         let w = app.world_mut();
         let mut q = w.query::<&mut Rider>();
         let mut r = q.single_mut(w).unwrap();
+        r.palette_index = palette;
         r.speed = 8.0;
         r.motion_velocity = Vec3::new(3.0, 0.0, 8.0);
         r.health = 0.0;
@@ -520,4 +531,238 @@ fn glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices() {
         "unexpected morph texture growth: {bytes}"
     );
     println!("shared glove targets: {count} surfaces, {bytes} bytes");
+}
+
+#[test]
+fn animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions() {
+    let source = rr_content::riding_model::Bindings::from_json(include_str!(
+        "../../assets/models/rider-bindings.json"
+    ))
+    .unwrap();
+    let motion =
+        rr_content::motion::Library::from_json(include_str!("../../assets/models/motion.json"))
+            .unwrap();
+    let lib = crate::animation::Library::default();
+    let mut maximum = 0.0_f32;
+    let mut flex_error = 0.0_f32;
+    let mut contact_max = [0.0_f32; 2];
+    let mut held_max = [0.0_f32; 2];
+    for (seated, raw) in [(false, source.standing), (true, source.seated)] {
+        let base = raw.map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
+        let bind = articulation::bind_frames(base);
+        let neutral = lib.key(if seated { 2020 } else { 2364 });
+        let ref_frames = lib.frames(neutral);
+        let ref_fk = lib.world_pose(neutral);
+        for name in [
+            "normal",
+            "tuck",
+            "run",
+            "getup",
+            "pickup",
+            "pickup_mirrored",
+            "steer_tuck_blend",
+            "walk",
+            "running",
+            "stop",
+        ] {
+            let clip = motion.clips.iter().find(|c| c.name == name);
+            let duration: f32 = clip.map_or(1.0, |c| c.durations.iter().sum());
+            let mut errors = [0.0_f32; 3];
+            for tick in 0..=120 {
+                let fraction = tick as f32 / 120.0;
+                let pose = if clip.is_some() {
+                    lib.sample(name, duration * fraction)
+                } else if name == "walk" || name == "running" || name == "stop" {
+                    lib.locomotion(
+                        fraction,
+                        match name {
+                            "walk" => 2.0,
+                            "running" => 6.0,
+                            _ => 6.0 * (1.0 - fraction),
+                        },
+                    )
+                } else {
+                    lib.key(2900)
+                        .blend(lib.key(2030).blend(lib.key(2901), fraction), fraction)
+                };
+                let frames = lib.skin_frames(pose, bind, seated);
+                let authored = lib.world_pose(pose);
+                for (joint, parent, node, bit) in [
+                    (14, 8, 19, 3),
+                    (15, 10, 16, 2),
+                    (12, 4, 13, 1),
+                    (13, 6, 9, 0),
+                ] {
+                    let endpoint =
+                        frames[parent].transform_point(Vec3::from_array(motion.offsets[node]));
+                    maximum = maximum.max(endpoint.distance(frames[joint].translation));
+                    let limb = motion.limbs.iter().find(|l| l.bit == bit).unwrap();
+                    let reference_local =
+                        ref_frames[parent].rotation.inverse() * ref_fk[node].rotation;
+                    // A sole/grip landmark in source space, independently based
+                    // on the actual authored endpoint rather than the skin pivot.
+                    let source_contact = base[parent]
+                        .transform_point(Vec3::from_array(motion.offsets[node]))
+                        + bind[joint].rotation * reference_local * Vec3::from_array(limb.offset);
+                    let deformed = (frames[joint].to_matrix() * bind[joint].to_matrix().inverse())
+                        .transform_point3(source_contact);
+                    let expected = authored[node].transform_point(Vec3::from_array(limb.offset));
+                    let kind = usize::from(bit < 2);
+                    let error = deformed.distance(expected);
+                    contact_max[kind] = contact_max[kind].max(error);
+                    errors[kind] = errors[kind].max(error);
+                    if pose.held & (1 << bit) != 0 {
+                        let error = deformed.distance(Vec3::from_array(limb.target));
+                        held_max[kind] = held_max[kind].max(error);
+                        errors[2] = errors[2].max(error);
+                    }
+                }
+            }
+            println!(
+                "contact bind={seated} clip={name} sole={:.9} grip={:.9} held={:.9}",
+                errors[0], errors[1], errors[2]
+            );
+        }
+        for (joint, parent, node) in [(14, 8, 19), (15, 10, 16)] {
+            let ankle = base[parent].transform_point(Vec3::from_array(motion.offsets[node]));
+            let mut physical = [Transform::IDENTITY; 16];
+            physical[joint].rotation = Quat::from_rotation_x(0.6);
+            let posed = articulation::extend(base, bind, Some(&physical));
+            let skin = posed[joint].to_matrix() * bind[joint].to_matrix().inverse();
+            flex_error = flex_error.max(skin.transform_point3(ankle).distance(ankle));
+        }
+    }
+    println!(
+        "ankle_metrics {}",
+        serde_json::json!({"pivot_m":maximum,"flex_m":flex_error,"sole_m":contact_max[0],"grip_m":contact_max[1],"held_sole_m":held_max[0],"held_grip_m":held_max[1]})
+    );
+    assert!(
+        flex_error < 1e-5,
+        "ankle surface drifts under distal flex: {flex_error}m"
+    );
+    assert!(
+        maximum < 1e-5,
+        "skin ankle detached from authored endpoint: {maximum}m"
+    );
+    assert!(
+        contact_max.into_iter().all(|e| e < 1e-5),
+        "sole/grip retarget drift"
+    );
+    assert!(
+        held_max.into_iter().all(|e| e < 0.006),
+        "held sole/grip drift"
+    );
+}
+
+#[test]
+fn authored_ankle_pivots_preserve_weights_and_neutral_mesh_surface() {
+    let source = rr_content::riding_model::Bindings::from_json(include_str!(
+        "../../assets/models/rider-bindings.json"
+    ))
+    .unwrap();
+    let mut maximum = 0.0_f32;
+    for (mesh, mut old) in rr_content::riding_model::decode(BUNDLE)
+        .unwrap()
+        .into_iter()
+        .zip(rr_content::riding_model::decode(BUNDLE).unwrap())
+    {
+        let raw = match mesh.group.as_str() {
+            "standing" => source.standing,
+            "seated" => source.seated,
+            _ => continue,
+        };
+        let base = raw.map(|m| Transform::from_matrix(Mat4::from_cols_array_2d(&m)));
+        let bind = articulation::bind_frames(base);
+        let mut legacy = bind;
+        for (joint, parent) in [(14, 8), (15, 10)] {
+            legacy[joint].translation = base[parent].transform_point(Vec3::Y * 0.50);
+        }
+        let mut new = mesh;
+        articulation::weights(&mut old, &legacy);
+        articulation::weights(&mut new, &bind);
+        assert_eq!(old.joints, new.joints);
+        assert_eq!(old.weights, new.weights);
+        let neutral = articulation::extend(base, bind, None);
+        let skin: [Mat4; 16] =
+            std::array::from_fn(|i| neutral[i].to_matrix() * bind[i].to_matrix().inverse());
+        for (i, point) in new.positions.iter().enumerate() {
+            let point = Vec3::from_array(*point);
+            let deformed: Vec3 = new.joints[i]
+                .iter()
+                .zip(new.weights[i])
+                .map(|(j, w)| skin[*j as usize].transform_point3(point) * w)
+                .sum();
+            maximum = maximum.max(point.distance(deformed));
+        }
+    }
+    println!("neutral source surface max error: {maximum:.9}m; weights identical");
+    assert!(maximum < 1e-5);
+}
+
+#[test]
+fn patrol_presentation_is_exclusive_and_persists_on_wrecks_without_physics() {
+    use bevy::ecs::system::RunSystemOnce;
+    use bevy_rapier3d::prelude::*;
+    let mut app = crate::game::tests::simulation();
+    authored(&mut app);
+    let art = app.world().resource::<world::Art>();
+    let models = art.models.as_ref().unwrap();
+    let equipment = models
+        .parts
+        .iter()
+        .filter(|p| p.group == "patrol-equipment")
+        .count();
+    assert!(equipment >= 16);
+    for p in models
+        .parts
+        .iter()
+        .filter(|p| matches!(p.group.as_str(), "standing" | "seated"))
+    {
+        assert!(!p.materials.contains(&p.officer_material));
+    }
+    let base = models
+        .parts
+        .iter()
+        .filter(|p| !matches!(p.group.as_str(), "standing" | "seated" | "patrol-equipment"))
+        .count();
+    for palette in (0..16).chain([OFFICER_PALETTE]) {
+        let entities = app
+            .world_mut()
+            .run_system_once(move |mut commands: Commands, art: Res<world::Art>| {
+                art.models
+                    .as_ref()
+                    .unwrap()
+                    .motorcycle(&mut commands, palette)
+            })
+            .unwrap();
+        assert_eq!(
+            entities.len(),
+            base + if palette == OFFICER_PALETTE {
+                equipment - 1
+            } else {
+                0
+            }
+        );
+        for entity in entities {
+            let e = app.world().entity(entity);
+            assert!(
+                e.get::<RigidBody>().is_none()
+                    && e.get::<Collider>().is_none()
+                    && e.get::<ImpulseJoint>().is_none()
+            );
+        }
+    }
+    // Actual officer factory selects the reserved identity, never a roster swatch.
+    app.world_mut()
+        .run_system_once(crate::police::setup)
+        .unwrap();
+    let w = app.world_mut();
+    assert_eq!(
+        w.query::<&crate::game::Rider>()
+            .iter(w)
+            .find(|r| r.police)
+            .unwrap()
+            .palette_index,
+        OFFICER_PALETTE
+    );
 }

@@ -1,0 +1,8 @@
+......pavement maximum sampled triangle interpolation error 0.011920569923248081
+fields maximum sampled triangle interpolation error 0.011828067095660089
+.................
+----------------------------------------------------------------------
+Ran 23 tests in 24.449s
+
+OK
+{"market": {"BUSS1": 379, "BUSS4": 372, "CHINA12": 380, "CHINA13": 406, "CHINA14": 414, "CLSTGA11": 413}, "mixed": {"BUSS1": 421, "BUSS4": 397, "CLSTGA12": 405, "CLSTGA14": 421, "WHSE11": 392, "WHSE12": 446, "WRHS1": 398}, "neighborhood": {"CLSTGA11": 92, "CLSTGA13": 95, "VICT11": 96, "VICT12": 114, "VICT13": 100, "VICT14": 97}, "north_city": {"OFFC1": 447, "OFFC10": 471, "OFFC11": 457, "OFFC12": 449, "OFFC13": 440, "OFFC2": 468, "WHSE11": 450, "WHSE12": 438}, "old_city": {"CHINA12": 306, "CHINA13": 288, "CHINA14": 310, "RUNDWN11": 302, "RUNDWN12": 306, "VICT11": 309, "VICT13": 299}, "roadside": {"BUSS1": 142, "BUSS4": 155, "CLSTGA11": 133}, "terraces": {"CLSTGA11": 392, "CLSTGA12": 346, "CLSTGA13": 382, "CLSTGA14": 344, "VICT11": 394, "VICT12": 393, "VICT13": 385, "VICT14": 394}, "tower": {"OFFC1": 648, "OFFC10": 607, "OFFC11": 568, "OFFC12": 653, "OFFC13": 597, "OFFC2": 615}, "workshop": {"CLSTGA12": 83, "WHSE11": 99, "WHSE12": 87, "WRHS1": 73}}

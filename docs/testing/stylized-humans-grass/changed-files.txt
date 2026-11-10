@@ -1,0 +1,16 @@
+README.md
+docs/CHANGELOG_DEV.md
+docs/DECISIONS.md
+docs/KNOWN_ISSUES.md
+docs/PROGRESS.md
+docs/third_party/ASSETS.csv
+docs/third_party/REPOSITORIES.md
+src/lib.rs
+src/models.rs
+src/models/tests.rs
+src/props.rs
+src/world.rs
+src/world_gen/metropolis/geometry.rs
+src/world_gen/metropolis/geometry/landscape.rs
+src/world_gen/metropolis/mod.rs
+src/world_gen/metropolis/survey.rs

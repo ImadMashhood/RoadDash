@@ -1,0 +1,731 @@
+{
+  "parallel_physics": true,
+  "available_cpu_threads": 12,
+  "requested_rayon_threads": null,
+  "total_valid_samples": 102,
+  "samples": 92,
+  "invalid_or_partial_lines": 0,
+  "selection": {
+    "skip_samples": 10,
+    "racing_only": true
+  },
+  "racing_samples": 92,
+  "fixed_steps_per_render_frame": 1.0,
+  "window_distributions_ms": {
+    "window_wall_ms_per_frame": {
+      "median": 24.818253134146342,
+      "maximum": 27.854707888888893,
+      "p95": 26.80176689473684
+    },
+    "wall_average_ms": {
+      "median": 24.96825408935547,
+      "maximum": 26.416316986083984,
+      "p95": 26.11861228942871
+    },
+    "wall_p95_ms": {
+      "median": 28.72158145904541,
+      "maximum": 30.34476089477539,
+      "p95": 29.805482864379883
+    },
+    "main_world_ms_per_frame": {
+      "median": 23.90071392059326,
+      "maximum": 26.377975463867188,
+      "p95": 25.77350425720215
+    },
+    "last_render_extract_ms": {
+      "median": 0.6954054999999999,
+      "maximum": 1.283751,
+      "p95": 1.097723
+    },
+    "last_render_schedule_ms": {
+      "median": 11.093773,
+      "maximum": 13.879487,
+      "p95": 13.05192
+    },
+    "fixed_gameplay_ms_per_frame": {
+      "median": 3.724062442779541,
+      "maximum": 4.742951393127441,
+      "p95": 4.480685234069824
+    },
+    "physics_ms_per_frame": {
+      "median": 11.188089847564697,
+      "maximum": 13.24985122680664,
+      "p95": 11.908163070678711
+    },
+    "physics_sync_ms_per_frame": {
+      "median": 2.445830225944519,
+      "maximum": 2.756950616836548,
+      "p95": 2.6761229038238525
+    },
+    "physics_step_ms_per_frame": {
+      "median": 8.337294578552246,
+      "maximum": 10.063082695007324,
+      "p95": 8.96208381652832
+    },
+    "physics_writeback_ms_per_frame": {
+      "median": 0.40991970896720886,
+      "maximum": 0.4520297944545746,
+      "p95": 0.4313245713710785
+    }
+  },
+  "weighted_fixed_step_ms": {
+    "fixed_gameplay_ms_per_fixed_step": 3.7809641419910633,
+    "physics_ms_per_fixed_step": 11.143784912151771,
+    "physics_sync_ms_per_fixed_step": 2.443026843983271,
+    "physics_step_ms_per_fixed_step": 8.293318302929796,
+    "physics_writeback_ms_per_fixed_step": 0.40729628730053685
+  },
+  "worst_windows": [
+    {
+      "racing": true,
+      "camera_xyz": [
+        63.5738525390625,
+        48.95262908935547,
+        1132.96875
+      ],
+      "elapsed_s": 36.35,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 41,
+      "frames": 41,
+      "visible_mesh_entities": 10692,
+      "mesh_entities": 29353,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 3,
+        "contact_pairs": 35638,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            2001,
+            56
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8556,
+      "material_assets": 2318,
+      "linux_process_memory": {
+        "RssAnon": "3040072 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4367648 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 24.647485585365857,
+      "wall_average_ms": 25.87779998779297,
+      "wall_p95_ms": 30.34476089477539,
+      "main_world_ms_per_frame": 23.731231689453125,
+      "last_render_extract_ms": 0.857664,
+      "last_render_schedule_ms": 13.879487,
+      "fixed_gameplay_ms_per_frame": 3.260770797729492,
+      "physics_ms_per_frame": 11.441203117370605,
+      "physics_sync_ms_per_frame": 2.432400941848755,
+      "physics_step_ms_per_frame": 8.598526954650879,
+      "physics_writeback_ms_per_frame": 0.41014283895492554
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        248.49485778808594,
+        67.04707336425781,
+        3404.261962890625
+      ],
+      "elapsed_s": 44.93333333333333,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 37,
+      "frames": 37,
+      "visible_mesh_entities": 4936,
+      "mesh_entities": 24115,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 3,
+        "contact_pairs": 35628,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            1996,
+            51
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8899,
+      "material_assets": 2462,
+      "linux_process_memory": {
+        "RssAnon": "3047760 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4375336 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 27.476593891891895,
+      "wall_average_ms": 26.190500259399414,
+      "wall_p95_ms": 30.0126895904541,
+      "main_world_ms_per_frame": 25.970783233642578,
+      "last_render_extract_ms": 0.943314,
+      "last_render_schedule_ms": 12.593783,
+      "fixed_gameplay_ms_per_frame": 3.986548662185669,
+      "physics_ms_per_frame": 11.53598690032959,
+      "physics_sync_ms_per_frame": 2.520150899887085,
+      "physics_step_ms_per_frame": 8.592609405517578,
+      "physics_writeback_ms_per_frame": 0.42309126257896423
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        63.5738525390625,
+        48.95262908935547,
+        1132.96875
+      ],
+      "elapsed_s": 35.666666666666664,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 39,
+      "frames": 39,
+      "visible_mesh_entities": 10669,
+      "mesh_entities": 29353,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 4,
+        "contact_pairs": 35636,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            1994,
+            61
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8556,
+      "material_assets": 2318,
+      "linux_process_memory": {
+        "RssAnon": "3040032 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4367608 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 26.070164000000002,
+      "wall_average_ms": 26.11861228942871,
+      "wall_p95_ms": 29.929195404052734,
+      "main_world_ms_per_frame": 24.808691024780273,
+      "last_render_extract_ms": 1.283751,
+      "last_render_schedule_ms": 12.453792,
+      "fixed_gameplay_ms_per_frame": 3.482236385345459,
+      "physics_ms_per_frame": 11.71119213104248,
+      "physics_sync_ms_per_frame": 2.6023683547973633,
+      "physics_step_ms_per_frame": 8.686516761779785,
+      "physics_writeback_ms_per_frame": 0.42214080691337585
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        49.983245849609375,
+        49.29587173461914,
+        329.3153991699219
+      ],
+      "elapsed_s": 33.06666666666667,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 39,
+      "frames": 39,
+      "visible_mesh_entities": 9206,
+      "mesh_entities": 27563,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 0,
+        "contact_pairs": 35626,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            1991,
+            54
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8397,
+      "material_assets": 2252,
+      "linux_process_memory": {
+        "RssAnon": "3028072 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4355648 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 25.843673974358975,
+      "wall_average_ms": 26.416316986083984,
+      "wall_p95_ms": 29.84846305847168,
+      "main_world_ms_per_frame": 24.885498046875,
+      "last_render_extract_ms": 0.736768,
+      "last_render_schedule_ms": 11.258656,
+      "fixed_gameplay_ms_per_frame": 4.071218013763428,
+      "physics_ms_per_frame": 11.238717079162598,
+      "physics_sync_ms_per_frame": 2.2796475887298584,
+      "physics_step_ms_per_frame": 8.550642013549805,
+      "physics_writeback_ms_per_frame": 0.4082810580730438
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        63.5738525390625,
+        48.95262908935547,
+        1132.96875
+      ],
+      "elapsed_s": 35.016666666666666,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 38,
+      "frames": 38,
+      "visible_mesh_entities": 7080,
+      "mesh_entities": 25755,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 0,
+        "contact_pairs": 35636,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            1995,
+            60
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8556,
+      "material_assets": 2318,
+      "linux_process_memory": {
+        "RssAnon": "3039084 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4366660 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 26.599210184210527,
+      "wall_average_ms": 26.130489349365234,
+      "wall_p95_ms": 29.805482864379883,
+      "main_world_ms_per_frame": 25.237817764282227,
+      "last_render_extract_ms": 1.01015,
+      "last_render_schedule_ms": 9.65661,
+      "fixed_gameplay_ms_per_frame": 3.4257895946502686,
+      "physics_ms_per_frame": 11.863763809204102,
+      "physics_sync_ms_per_frame": 2.6741044521331787,
+      "physics_step_ms_per_frame": 8.769305229187012,
+      "physics_writeback_ms_per_frame": 0.42021656036376953
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        49.983245849609375,
+        49.29587173461914,
+        329.3153991699219
+      ],
+      "elapsed_s": 33.71666666666667,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 39,
+      "frames": 39,
+      "visible_mesh_entities": 9206,
+      "mesh_entities": 27563,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 0,
+        "contact_pairs": 35631,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            1992,
+            58
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8397,
+      "material_assets": 2252,
+      "linux_process_memory": {
+        "RssAnon": "3028148 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4355724 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 25.916465743589743,
+      "wall_average_ms": 26.207300186157227,
+      "wall_p95_ms": 29.796083450317383,
+      "main_world_ms_per_frame": 24.949331283569336,
+      "last_render_extract_ms": 0.870047,
+      "last_render_schedule_ms": 11.662932,
+      "fixed_gameplay_ms_per_frame": 3.902554988861084,
+      "physics_ms_per_frame": 11.33617115020752,
+      "physics_sync_ms_per_frame": 2.4528236389160156,
+      "physics_step_ms_per_frame": 8.461681365966797,
+      "physics_writeback_ms_per_frame": 0.42150014638900757
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        63.5738525390625,
+        48.95262908935547,
+        1132.96875
+      ],
+      "elapsed_s": 34.38333333333333,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 40,
+      "frames": 40,
+      "visible_mesh_entities": 8854,
+      "mesh_entities": 27538,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 0,
+        "contact_pairs": 35629,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            1990,
+            58
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8503,
+      "material_assets": 2304,
+      "linux_process_memory": {
+        "RssAnon": "3028160 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4355736 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 25.597096825,
+      "wall_average_ms": 26.027008056640625,
+      "wall_p95_ms": 29.79555320739746,
+      "main_world_ms_per_frame": 24.620433807373047,
+      "last_render_extract_ms": 0.660274,
+      "last_render_schedule_ms": 8.531486,
+      "fixed_gameplay_ms_per_frame": 3.262660264968872,
+      "physics_ms_per_frame": 11.037837982177734,
+      "physics_sync_ms_per_frame": 2.3380072116851807,
+      "physics_step_ms_per_frame": 8.281599044799805,
+      "physics_writeback_ms_per_frame": 0.41809791326522827
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        700.3458862304688,
+        50.839744567871094,
+        948.2528686523438
+      ],
+      "elapsed_s": 42.96666666666667,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 40,
+      "frames": 40,
+      "visible_mesh_entities": 10334,
+      "mesh_entities": 29373,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 6,
+        "contact_pairs": 35650,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            2013,
+            56
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8677,
+      "material_assets": 2375,
+      "linux_process_memory": {
+        "RssAnon": "3041124 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4368700 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 25.449957375,
+      "wall_average_ms": 25.866718292236328,
+      "wall_p95_ms": 29.71150779724121,
+      "main_world_ms_per_frame": 24.637582778930664,
+      "last_render_extract_ms": 0.530472,
+      "last_render_schedule_ms": 8.981557,
+      "fixed_gameplay_ms_per_frame": 3.827932357788086,
+      "physics_ms_per_frame": 11.148544311523438,
+      "physics_sync_ms_per_frame": 2.3691701889038086,
+      "physics_step_ms_per_frame": 8.364553451538086,
+      "physics_writeback_ms_per_frame": 0.4146624505519867
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        248.49485778808594,
+        67.04707336425781,
+        3404.261962890625
+      ],
+      "elapsed_s": 45.6,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 40,
+      "frames": 40,
+      "visible_mesh_entities": 8344,
+      "mesh_entities": 27513,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 8,
+        "contact_pairs": 35634,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            2004,
+            49
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8917,
+      "material_assets": 2470,
+      "linux_process_memory": {
+        "RssAnon": "3047764 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4375340 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 25.535347325,
+      "wall_average_ms": 25.9700927734375,
+      "wall_p95_ms": 29.71150779724121,
+      "main_world_ms_per_frame": 24.451271057128906,
+      "last_render_extract_ms": 0.85015,
+      "last_render_schedule_ms": 10.85392,
+      "fixed_gameplay_ms_per_frame": 3.917325973510742,
+      "physics_ms_per_frame": 11.274796485900879,
+      "physics_sync_ms_per_frame": 2.539720058441162,
+      "physics_step_ms_per_frame": 8.312963485717773,
+      "physics_writeback_ms_per_frame": 0.4219723641872406
+    },
+    {
+      "racing": true,
+      "camera_xyz": [
+        49.983245849609375,
+        49.29587173461914,
+        329.3153991699219
+      ],
+      "elapsed_s": 32.416666666666664,
+      "player_progress_m": 211.99978637695312,
+      "fixed_steps": 38,
+      "frames": 38,
+      "visible_mesh_entities": 9206,
+      "mesh_entities": 27563,
+      "dynamic_bodies": 16,
+      "physics_backend": {
+        "awake_dynamic_bodies": 16,
+        "backend_colliders": 4831,
+        "contact_manifolds": 0,
+        "contact_pairs": 35633,
+        "impulse_joints": 0,
+        "note": "instantaneous graph census, not per-substep timing or GPU profiling",
+        "pair_types_static_kinematic_dynamic": [
+          [
+            33581,
+            2001,
+            51
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "rigid_bodies": 2296
+      },
+      "mesh_assets": 8379,
+      "material_assets": 2244,
+      "linux_process_memory": {
+        "RssAnon": "3028072 kB",
+        "RssFile": "762504 kB",
+        "VmRSS": "4355648 kB",
+        "VmSwap": "0 kB"
+      },
+      "linux_system_paging_counters": {
+        "pgmajfault": "2320000",
+        "pswpin": "258524",
+        "pswpout": "2495878"
+      },
+      "window_wall_ms_per_frame": 26.74454513157895,
+      "wall_average_ms": 25.88260269165039,
+      "wall_p95_ms": 29.691059112548828,
+      "main_world_ms_per_frame": 25.747997283935547,
+      "last_render_extract_ms": 0.815284,
+      "last_render_schedule_ms": 11.54417,
+      "fixed_gameplay_ms_per_frame": 4.052140712738037,
+      "physics_ms_per_frame": 11.594503402709961,
+      "physics_sync_ms_per_frame": 2.348252534866333,
+      "physics_step_ms_per_frame": 8.82152271270752,
+      "physics_writeback_ms_per_frame": 0.4245701730251312
+    }
+  ],
+  "guidance": "Distributions summarize logged windows, not raw per-frame percentiles; wall_p95_ms is an overlapping rolling 240-frame metric. window_wall_ms_per_frame is the independent logging-window mean. Compare matched scenes without compilation/other game instances. Physics includes sync/step/writeback CPU/wait spans, not just the solver. If steps/render frame rises, catch-up multiplies simulation cost. Large wall with small main needs GPU/presentation profiling; low utilization is not proof. Paging counters are system-wide; full swap alone does not prove active game paging."
+}

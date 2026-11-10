@@ -1,0 +1,113 @@
+{
+  "binary": "/home/imad/roaddash-online-eof-fixed/road-dash",
+  "binary_sha256": "417388c3f866d162d088871a9990e985e64db5a3a3843ee611e9ffae3f15da64",
+  "command": [
+    "/home/imad/roaddash-online-eof-fixed/road-dash",
+    "--frontend-smoke"
+  ],
+  "exit_code": 0,
+  "screenshot_count": 11,
+  "environment": {
+    "ROADDASH_DHT": "0",
+    "ROADDASH_UPNP": "0",
+    "ROADDASH_VERIFY_ONLINE_UI": "1",
+    "ROADDASH_PERF_LOG": "0",
+    "original_art": "externaluserkit",
+    "save_settings": "fresh external scoped files"
+  },
+  "screenshots": [
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-00.png",
+      "sha256": "b095430ba4a765569a008ff04d7e6a6034bcf091c39916241ee32cff1349ec68",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-01.png",
+      "sha256": "c4f6f4a883a20a972fd5495d5a7081e0401f08265e92472066472e021b7cf30a",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-02.png",
+      "sha256": "e1d13dfc9f782e90d4c35889870938298107718d3155744fee67136ca450067c",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-03.png",
+      "sha256": "d399dea6b379afdf7aae9eceb3eb9cb08f1e1ab351892a1d46748af641129090",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-04.png",
+      "sha256": "f55faac8c20dbf4985de7368203a3a4a1e3816a1b19892fd8ffc39d80cd431b2",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-05.png",
+      "sha256": "a306665968e49ffb640f417cdf585281ef70553804d44c8d4f1b9091b5418541",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-06.png",
+      "sha256": "281ab77bcd77f14d945021fcf97cb8e6181b89e68b90b6c610e6ebe80fd560f9",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-07.png",
+      "sha256": "f67cce50220aebd0bc051e69b9f89653cdf42af91530b41d3ba6a12a415bbf2d",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-08.png",
+      "sha256": "32f83fb244c7eb37015c0d2ce3faf75245c477368dd622a3ac48a7216cb07773",
+      "size": [
+        1440,
+        900
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-09.png",
+      "sha256": "01fb1d0b1f2947f01fbd53adafab81fd954769030a217dd555b9021f900a9120",
+      "size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/overlay-final/captures/online-ui-10.png",
+      "sha256": "8c28673de81926c1f27b684b052ce34c7bd0339cbd7b784d20abe9c56f26b333",
+      "size": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "review": {
+    "overlay": "Reviewed online-ui-10 at1280x720. HUD text/map/speed are hidden; live3Dworld remains visible; Resume/Leave,host warning,status/footer are readable and separated. No overlap.",
+    "remaining": "Human controller/art acceptance, Internet transport and performance/hardware coverage are separate gates. This fixture is presentation evidence only.",
+    "source_change": "None in this finalrecapture; verifies4b6578c."
+  }
+}

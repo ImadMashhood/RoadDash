@@ -77,6 +77,7 @@ pub fn schedule(
         intents.clear();
         for (_, mut r, _, _) in &mut riders {
             r.strike = None;
+            r.hit_reaction = None;
         }
         return;
     }
@@ -99,7 +100,7 @@ pub fn schedule(
                 .iter()
                 .filter(|(e, other, state, pose)| {
                     *e != owner
-                        && (r.id == 0 || r.combat_mind.can_fight(other.id))
+                        && (r.human_controlled() || r.combat_mind.can_fight(other.id))
                         && target_pose(other, state, pose, &positions, police_foot).is_some()
                         && state.stagger.is_none()
                         && other.immunity <= 0.0
@@ -117,7 +118,7 @@ pub fn schedule(
                     npcs.iter()
                         .filter(|(_, n, _)| {
                             n.active()
-                                && (r.id == 0
+                                && (r.human_controlled()
                                     || r.combat_mind.role == rr_core::rival_ai::Role::Killer)
                         })
                         .map(|(e, _, t)| (e, t.translation)),
@@ -158,6 +159,13 @@ pub fn schedule(
         }
     }
     for (e, mut r, rec, _) in &mut riders {
+        if rec.stage != RecoveryStage::Riding
+            || rec.stagger.is_some()
+            || r.finished.is_some()
+            || r.hit_reaction.is_some_and(|hit| !hit.active(race.elapsed))
+        {
+            r.hit_reaction = None;
+        }
         if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
             r.strike = None;
             continue;
@@ -229,7 +237,8 @@ pub fn melee(
         }
         let weapon = chosen_side.and_then(|_| rider.strike.and_then(|s| s.weapon));
         let kicking = matches!(action, rr_core::AttackSide::Kick);
-        let player = rider.id == 0;
+        let player = rider.human_controlled();
+        let networked = rider.networked;
         let attacker_id = rider.id;
         let mind = rider.combat_mind.clone();
         let kick_strength = if player {
@@ -412,6 +421,15 @@ pub fn melee(
             let column = rr_core::pursuit::personality(attacker_id);
             r.relationships[column] =
                 (r.relationships[column] + r.ai_profile.hit_reaction).clamp(-1024.0, 1024.0);
+            // Confirmed contact only. Replaces the old pulse; never adds force or locks input.
+            if !foot {
+                let away = hit_pose.rotation.inverse() * (p - origin);
+                r.hit_reaction = Some(rr_core::motion::HitReaction::new(
+                    race.elapsed,
+                    away.x,
+                    kicking,
+                ));
+            }
             if kicking && foot {
                 continue;
             }
@@ -435,6 +453,7 @@ pub fn melee(
                 race.message_time = 1.0;
             }
             if knocked_out {
+                r.hit_reaction = None;
                 if state.active_crash_behavior && !foot {
                     if state.stagger.is_none() {
                         state.stagger = Some(rr_core::crash_behavior::Stagger::new(
@@ -461,8 +480,20 @@ pub fn melee(
                 }
                 audio.write(AudioCue::new(Cue::Crash, t.translation));
                 if player {
-                    race.takedowns += 1;
-                    race.message = "TAKEDOWN / +100 CREDITS".into();
+                    commands.queue(move |world: &mut World| {
+                        if let Some(mut r) = world.get_mut::<Rider>(attacker) {
+                            r.online_takedowns += 1;
+                        }
+                    });
+                    if attacker_id == 0 {
+                        race.takedowns += 1;
+                    }
+                    race.message = if networked {
+                        "TAKEDOWN"
+                    } else {
+                        "TAKEDOWN / +100 CREDITS"
+                    }
+                    .into();
                     race.message_time = 2.0;
                 }
             }
@@ -474,6 +505,127 @@ pub fn melee(
 mod tests {
     use super::*;
     use bevy::ecs::system::RunSystemOnce;
+    #[test]
+    fn confirmed_reactions_replace_not_stack_and_misses_pause_recovery_reset_are_safe() {
+        for kicking in [false, true] {
+            for side in [-1.0, 1.0] {
+                let mut app = crate::game::tests::simulation();
+                app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+                for _ in 0..3 {
+                    app.update();
+                }
+                let owner = app
+                    .world_mut()
+                    .query_filtered::<Entity, With<Rider>>()
+                    .single(app.world())
+                    .unwrap();
+                let pose = *app.world().get::<Transform>(owner).unwrap();
+                let right = (pose.rotation * Vec3::Z).cross(Vec3::Y).normalize();
+                let mut victim = Rider::new(1);
+                victim.immunity = 0.0;
+                let target = app
+                    .world_mut()
+                    .spawn((
+                        victim,
+                        Transform::from_translation(pose.translation + right * side * 1.4)
+                            .with_rotation(pose.rotation),
+                        Visibility::Visible,
+                        Velocity::zero(),
+                    ))
+                    .id();
+                let action = if kicking {
+                    rr_core::AttackSide::Kick
+                } else if side < 0.0 {
+                    rr_core::AttackSide::Left
+                } else {
+                    rr_core::AttackSide::Right
+                };
+                app.world_mut().write_message(AttackAttempt(owner, action));
+                app.world_mut().run_system_once(melee).unwrap();
+                let hit = app
+                    .world()
+                    .get::<Rider>(target)
+                    .unwrap()
+                    .hit_reaction
+                    .unwrap();
+                assert_eq!(hit.direction, -side);
+                assert_eq!(hit.kicking, kicking);
+                let victim = app.world().get::<Rider>(target).unwrap();
+                assert_eq!(victim.hits.count, if kicking { 0 } else { 1 });
+                assert!(
+                    (app.world().get::<Velocity>(target).unwrap().linvel
+                        - if kicking {
+                            right * side * 8.0
+                        } else {
+                            Vec3::ZERO
+                        })
+                    .length()
+                        < 1e-6
+                );
+                assert_eq!(
+                    app.world().get::<Recovery>(target).unwrap().stage,
+                    RecoveryStage::Riding
+                );
+                assert_eq!(
+                    app.world().get::<Transform>(target).unwrap().rotation,
+                    pose.rotation
+                );
+                app.world_mut().resource_mut::<Race>().elapsed += 0.1;
+                app.world_mut().write_message(AttackAttempt(owner, action));
+                app.world_mut().run_system_once(melee).unwrap();
+                let replaced = app
+                    .world()
+                    .get::<Rider>(target)
+                    .unwrap()
+                    .hit_reaction
+                    .unwrap();
+                assert!(replaced.at > hit.at);
+                assert_eq!(replaced.weight(replaced.at), 0.25);
+                // Out-of-range misses do not retrigger or play impact audio.
+                app.world_mut()
+                    .get_mut::<Transform>(target)
+                    .unwrap()
+                    .translation += Vec3::Y * 10.0;
+                app.world_mut().resource_mut::<Messages<AudioCue>>().clear();
+                app.world_mut().resource_mut::<Race>().shake = 0.0;
+                app.world_mut().write_message(AttackAttempt(owner, action));
+                app.world_mut().run_system_once(melee).unwrap();
+                assert_eq!(
+                    app.world()
+                        .get::<Rider>(target)
+                        .unwrap()
+                        .hit_reaction
+                        .unwrap()
+                        .at,
+                    replaced.at
+                );
+                assert!(app.world().resource::<Messages<AudioCue>>().is_empty());
+                assert_eq!(app.world().resource::<Race>().shake, 0.0);
+                app.world_mut().resource_mut::<Race>().phase = Phase::Paused;
+                app.world_mut().run_system_once(schedule).unwrap();
+                assert_eq!(
+                    app.world()
+                        .get::<Rider>(target)
+                        .unwrap()
+                        .hit_reaction
+                        .unwrap()
+                        .at,
+                    replaced.at
+                );
+                app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+                app.world_mut().get_mut::<Recovery>(target).unwrap().stage = RecoveryStage::Falling;
+                app.world_mut().run_system_once(schedule).unwrap();
+                assert!(
+                    app.world()
+                        .get::<Rider>(target)
+                        .unwrap()
+                        .hit_reaction
+                        .is_none()
+                );
+                assert!(Rider::new(1).hit_reaction.is_none());
+            }
+        }
+    }
     /// Real buffered input -> drive -> scheduler -> LOS/contact -> hit chain.
     /// Render frequency includes zero-tick frames; no resolved contact is injected.
     #[test]
@@ -833,6 +985,13 @@ mod tests {
             app.world_mut().run_system_once(melee).unwrap();
         }
         assert_eq!(app.world().get::<Rider>(target).unwrap().health, 0.0);
+        assert!(
+            app.world()
+                .get::<Rider>(target)
+                .unwrap()
+                .hit_reaction
+                .is_none()
+        );
         assert!(
             app.world()
                 .get::<Recovery>(target)

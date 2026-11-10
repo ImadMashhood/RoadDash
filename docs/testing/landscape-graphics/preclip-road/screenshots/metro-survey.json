@@ -1,0 +1,18 @@
+{
+  "shoulder_triangles": 13328,
+  "grass_tufts": 57197,
+  "grass_batches": 333,
+  "grass_triangles": 285985,
+  "buildings": 19068,
+  "chunks": 3067,
+  "render_triangles": 3208426,
+  "collision_triangles": 2613119,
+  "source_collision_batches": 2922,
+  "static_collision_batches": 2531,
+  "physical_routes": 2,
+  "crossing_cars": 30,
+  "street_props": 1494,
+  "parked_cars": 122,
+  "walking_pedestrians": 96,
+  "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777"
+}

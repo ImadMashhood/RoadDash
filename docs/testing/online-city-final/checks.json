@@ -1,0 +1,47 @@
+{
+  "source_commit": "9a63712",
+  "binary": "/home/imad/roaddash-online-city-complete/road-dash",
+  "binary_sha256": "d13a380af74ba75773b17bb0ea684b68f201ecd1949602686a19d66ff2ce4401",
+  "checks": {
+    "tests": {
+      "log": "/home/imad/online-city-final-tests.log",
+      "sha256": "47db0fb8998f0cc24ceac621a6e0f3402b1b0bde9d9c0c6e35d760d12ae8804c",
+      "result": "pass",
+      "passed": 529,
+      "failed": 0,
+      "ignored": 1,
+      "note": "Includes final Quick Play fallback regression; one pre-existing long soak ignored."
+    },
+    "clippy": {
+      "log": "/home/imad/online-city-final-clippy.log",
+      "sha256": "242c7763b127bd87d15452634259e13ddad4fb1e2718a024379b222982428789",
+      "result": "pass"
+    },
+    "fmt": {
+      "log": "/home/imad/online-city-final-fmt.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "result": "pass"
+    },
+    "build": {
+      "log": "/home/imad/online-city-final-build.log",
+      "sha256": "55c24b431daf32bf63d40aed890a7e1c00bf4329b19fb12c618498929d080063",
+      "result": "pass"
+    },
+    "authoring": {
+      "log": "/home/imad/online-city-final-authoring.log",
+      "sha256": "cd2f7119c3e95327296dec282e475a85ada867a6deb610d878bc7fef3e68c45c",
+      "result": "pass"
+    },
+    "audit": {
+      "log": "/home/imad/online-city-final-audit.json",
+      "sha256": "338cdb885d198ac18404f807ea67cfc0beed0129f7bc70eab9a8d98686201d8a",
+      "result": "pass"
+    }
+  },
+  "native_status": "pass on preceding binary81c6c8c9d3e56e4f5998f18b093127a857120b1fc6b88dfac46256b4255dfc50; final Quick Play loaded-map fallback-only change regression tested afterward",
+  "limitations": [
+    "No separate-Internet/NAT proof",
+    "No performance or hardware acceptance",
+    "No push or main merge"
+  ]
+}

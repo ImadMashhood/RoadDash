@@ -183,6 +183,7 @@ pub fn forces(
             state.preset = tuning.selected;
         }
         if !state.was_riding {
+            r.ai_escape = default();
             if r.drive_intent.steer.abs() < 0.001 {
                 state.lean = 0.0;
             }
@@ -190,7 +191,7 @@ pub fn forces(
             state.was_riding = true;
         }
         let (_, road) = track.sample_route(r.route, r.progress, 0.0);
-        let forward = if r.id == 0 {
+        let forward = if r.human_controlled() || r.ai_escape.active() {
             (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero()
         } else {
             (road * Vec3::Z).normalize()
@@ -200,14 +201,18 @@ pub fn forces(
         let signed_speed = v.linvel.dot(forward);
         let speed = signed_speed.abs();
         let input = r.drive_intent;
-        let player = r.id == 0;
-        let at_end = !track.definition.closed && r.progress >= track.length - 0.1;
+        let player = r.human_controlled();
+        let at_end = !track.definition.closed && r.progress >= track.race_interval().finish - 0.1;
         let throttle = input.throttle && !at_end;
         let brake = input.brake || at_end;
         let nitro =
             (!player || tuning.player_nitro_enabled) && input.nitro && throttle && r.nitro > 0.5;
         let steer = input.steer;
-        state.raw_steer = if r.id == 0 { r.raw_steer } else { steer };
+        state.raw_steer = if r.human_controlled() {
+            r.raw_steer
+        } else {
+            steer
+        };
         let mut normal = Vec3::ZERO;
         let mut load = 0.0;
         state.grounded = [false; 2];
@@ -291,7 +296,11 @@ pub fn forces(
             limit
         } else {
             limit
-                .min(r.ai_profile.cruise_mps())
+                .min(
+                    rr_core::cast::character(r.id).map_or(r.ai_profile.cruise_mps(), |c| {
+                        r.ai_profile.race_pace(p.top_speed) * c.pace
+                    }),
+                )
                 .min((12.0 / track.curvature_route(r.route, r.progress).abs().max(0.0001)).sqrt())
         };
         let surface = track.surface(r.progress, r.lane);
@@ -326,7 +335,7 @@ pub fn forces(
             } else {
                 0.0
             };
-        let longitudinal = if player && !at_end {
+        let longitudinal = if (player || r.ai_drive.reversing() || r.ai_escape.reverse) && !at_end {
             rr_core::reverse::acceleration(
                 signed_speed,
                 throttle,
@@ -376,10 +385,15 @@ pub fn forces(
         force.torque += upright_axis * (p.dry_mass + rider_mass) * 28.0
             - Vec3::new(v.angvel.x, 0.0, v.angvel.z) * (p.dry_mass + rider_mass) * 5.5;
         let heading = (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
-        let target = (forward
-            + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.675, 0.675))
-        .with_y(0.0)
-        .normalize_or_zero();
+        let target = r
+            .ai_escape
+            .heading
+            .map(|[x, z]| Vec3::new(x, 0., z))
+            .unwrap_or(
+                (forward + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.675, 0.675))
+                    .with_y(0.0)
+                    .normalize_or_zero(),
+            );
         let yaw = heading.cross(target).y.atan2(heading.dot(target));
         // Heading is input-owned. Rapier may translate/tilt the chassis, but
         // collision yaw must not steer it. Keep the existing response curve.
@@ -422,7 +436,7 @@ pub fn readback(
         }
         if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing {
             let previous = r.progress;
-            r.route = track.choose_route(r.route, previous, t.translation, r.id == 0);
+            r.route = track.choose_route(r.route, previous, t.translation, r.human_controlled());
             let (d, lane, _) = track.project_route(r.route, t.translation, previous);
             let d = if track.definition.closed {
                 d

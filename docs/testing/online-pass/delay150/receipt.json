@@ -1,0 +1,11 @@
+{
+  "binary_sha256": "aa2c8b5489e1f996fe8822ead76eb7757cd04741cb76cbea3f384bee805476dd",
+  "delay_ms_per_direction": 75,
+  "matched_snapshot_ticks": {
+    "host": 659,
+    "client1": 601,
+    "client2": 601
+  },
+  "result": "pass",
+  "limitation": "Loopback application delay; no packet loss, Internet or NAT claim"
+}

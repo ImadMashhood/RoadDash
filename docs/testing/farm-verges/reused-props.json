@@ -1,0 +1,106 @@
+[
+  {
+    "id": "PROP-86E1D1FF95BA",
+    "name": "HAYDOUB2",
+    "group": "loose_materials_hazards",
+    "builder": "hay_bales",
+    "files": [
+      "models/PROP-86E1D1FF95BA_lod0.glb",
+      "models/PROP-86E1D1FF95BA_lod1.glb",
+      "models/PROP-86E1D1FF95BA_lod2.glb"
+    ],
+    "size": [
+      1.5699999332427979,
+      0.4099999964237213,
+      0.8200000077486038
+    ],
+    "center": [
+      0.0,
+      0.20499999821186066,
+      -0.21000000089406967
+    ],
+    "sha256": {
+      "models/PROP-86E1D1FF95BA_lod0.glb": "12ae80fee1a06169d7dc4594f41b641ab903226c1f6afcd5a4faff60863c1484",
+      "models/PROP-86E1D1FF95BA_lod1.glb": "72f9ac28f0fac2f52c2070dbf79184c79ccbb3aea1357220cdcc6b58db5addcc",
+      "models/PROP-86E1D1FF95BA_lod2.glb": "afcdbb9ac671699ce8dcaf7ad68471799cc1044c5effdc53b4a81230ba948aa2"
+    }
+  },
+  {
+    "id": "PROP-64E08261D88E",
+    "name": "HAYTRIP2",
+    "group": "loose_materials_hazards",
+    "builder": "hay_bales",
+    "files": [
+      "models/PROP-64E08261D88E_lod0.glb",
+      "models/PROP-64E08261D88E_lod1.glb",
+      "models/PROP-64E08261D88E_lod2.glb"
+    ],
+    "size": [
+      1.5699999332427979,
+      0.4099999964237213,
+      0.8200000077486038
+    ],
+    "center": [
+      0.0,
+      0.20499999821186066,
+      -0.21000000089406967
+    ],
+    "sha256": {
+      "models/PROP-64E08261D88E_lod0.glb": "7c3f3262c9b7b4cdc54a4a5bf0799cfddb010306801e27ed736009746986da97",
+      "models/PROP-64E08261D88E_lod1.glb": "8cc92b4a7f8636adfcbd60da5fa8ba7102f89b3b05efa03faa3d4d32922cdcfa",
+      "models/PROP-64E08261D88E_lod2.glb": "c595174acaf4e81d28eb86dbc7e20d5cd250561fb2e6427aee67105c0ed25457"
+    }
+  },
+  {
+    "id": "PROP-5DA0FFA05D33",
+    "name": "WINDVN2",
+    "group": "street_furniture",
+    "builder": "windmill",
+    "files": [
+      "models/PROP-5DA0FFA05D33_lod0.glb",
+      "models/PROP-5DA0FFA05D33_lod1.glb",
+      "models/PROP-5DA0FFA05D33_lod2.glb"
+    ],
+    "size": [
+      2.200000047683716,
+      5.108280181884766,
+      1.2291823029518127
+    ],
+    "center": [
+      0.0,
+      2.554140090942383,
+      -0.07489094138145447
+    ],
+    "sha256": {
+      "models/PROP-5DA0FFA05D33_lod0.glb": "87d34b035f8816317945a41de02ac72ad2b15e654cedb9b23996cf12fa902783",
+      "models/PROP-5DA0FFA05D33_lod1.glb": "86cce17e2e2ee44e58a20e65daddf94bdbcfefcb57e7d4cd234b1623818ad5a7",
+      "models/PROP-5DA0FFA05D33_lod2.glb": "8b9c97599518e76e43f96f833d57176a972ea5cbf52c57c21b4cf11e65821a97"
+    }
+  },
+  {
+    "id": "PROP-B2E2C8C2802A",
+    "name": "BRNGRN2",
+    "group": "unclassified_review",
+    "builder": "barn",
+    "files": [
+      "models/PROP-B2E2C8C2802A_lod0.glb",
+      "models/PROP-B2E2C8C2802A_lod1.glb",
+      "models/PROP-B2E2C8C2802A_lod2.glb"
+    ],
+    "size": [
+      5.079648017883301,
+      3.7907140254974365,
+      7.400000095367432
+    ],
+    "center": [
+      0.0,
+      1.8953570127487183,
+      -0.0
+    ],
+    "sha256": {
+      "models/PROP-B2E2C8C2802A_lod0.glb": "2dd89ad7c35966b7cddcd51b37271a41d3b1cb8a89fc2609ca5fd8b4735c6061",
+      "models/PROP-B2E2C8C2802A_lod1.glb": "31181130ff369c56b0e684265304da682db3747f9638da8af6855e71c3b76209",
+      "models/PROP-B2E2C8C2802A_lod2.glb": "870fc64f5e6af9ac80c2cda0b13c2de54b4b41850cce12556315eb8424b93d0a"
+    }
+  }
+]

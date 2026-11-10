@@ -1,0 +1,24 @@
+ M README.md
+ M content/world/metropolis.json
+ M crates/rr_content/src/metropolis.rs
+ M crates/rr_core/src/lib.rs
+ M docs/CHANGELOG_DEV.md
+ M docs/DECISIONS.md
+ M docs/KNOWN_ISSUES.md
+ M docs/PROGRESS.md
+ M docs/planning/farms-long-city/LAYOUT.json
+ M docs/planning/farms-long-city/README.md
+ M docs/planning/farms-long-city/elevation-profile.png
+ M docs/third_party/ASSETS.csv
+ M src/track.rs
+ M src/track/metropolis.rs
+ M src/world_gen/metropolis/geometry.rs
+ M tools/bake_metropolis.py
+ M tools/metropolis_street_life.py
+ M tools/plan_farms_long_city.py
+?? content/world/metropolis_elevation.json
+?? crates/rr_core/src/elevation.rs
+?? docs/testing/polish-12/pass03/
+?? tools/metropolis_elevation.py
+?? tools/test_metropolis_elevation.py
+?? tools/update_metropolis_elevation.py

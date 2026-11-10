@@ -32,6 +32,7 @@ pub struct Atlas {
     pub mip_levels: u32,
     pub source_manifest_sha256: String,
     pub generator_sha256: String,
+    pub material_profiles_sha256: String,
     pub records: Vec<Tile>,
     pub images: Vec<Mip>,
 }
@@ -49,6 +50,7 @@ impl Atlas {
             || a.mip_levels != 5
             || !digest(&a.source_manifest_sha256)
             || !digest(&a.generator_sha256)
+            || !digest(&a.material_profiles_sha256)
             || a.records.len() > 384
             || a.images.len() != 15
         {
@@ -141,6 +143,7 @@ mod tests {
             ("/images/1/width", serde_json::json!(17)),
             ("/images/0/path", serde_json::json!("../arbitrary.png")),
             ("/mip_levels", serde_json::json!(8)),
+            ("/material_profiles_sha256", serde_json::json!("invalid")),
         ] {
             let mut v: serde_json::Value = serde_json::from_str(&s).unwrap();
             *v.pointer_mut(ptr).unwrap() = value;

@@ -1,0 +1,37 @@
+{
+  "source": "User-supplied local kit; no new download; no redistribution permission inferred",
+  "files": [
+    {
+      "path": "reference-images/UI-IMG-0142.png",
+      "sha256": "0695681d217a28c60606cd1e2a382ecc9ea75c57b1892b8cfd5e26538efb3e8a"
+    },
+    {
+      "path": "reference-images/UI-IMG-0068.png",
+      "sha256": "dbf105a5c697681fe355a186fbb26604884ff1ae6c99e3a742fcbb917729ff7c"
+    },
+    {
+      "path": "menu-previews/RR-0E.png",
+      "sha256": "16ce8aec1bef3120f14de71d48cd119485a2cbed38c1d5de0dc7d7515d0c15df"
+    },
+    {
+      "path": "reference-images/UI-IMG-0146.png",
+      "sha256": "1824852b213addfa78ebebfebd5827876193be49c99c490496ef609547ce8958"
+    },
+    {
+      "path": "menu-previews/RR-0A.png",
+      "sha256": "ce1354acb502b254b452a8a97c24e2d2f1f77e8c1ce82fb698a3732405a53b49"
+    },
+    {
+      "path": "reference-images/UI-IMG-0071.png",
+      "sha256": "53279d2e0888bf8947e23de70ba94dd938afa1c3e2ea515f50b4cb2a82554198"
+    },
+    {
+      "path": "reference-images/UI-IMG-0072.png",
+      "sha256": "95e56a273a6e8b857a02e83cc65d8a9d65d6522679124f8552022c92c63de97f"
+    },
+    {
+      "path": "reference-images/UI-IMG-0045.png",
+      "sha256": "83fb283f5fc473052293a50688d72ec6234f01fca12fdd4d73871d24b3a21038"
+    }
+  ]
+}

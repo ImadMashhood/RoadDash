@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+    "--actor-skin-survey"
+  ],
+  "exit": 0,
+  "frozen_inputs": {
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/shaders/metropolis_facade.wgsl": "ce2a0bf23db1624fe725c1dced157d7c10173b6b44d3e4fca9ef2979c6e1aa53",
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "b167422ede29cd89722ed39b8c0aa931bb440ab18add8dde538e111a426b3055"
+  },
+  "inputs_unchanged": true
+}

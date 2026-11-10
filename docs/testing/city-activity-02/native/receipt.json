@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/home/imad/roaddash-online-city-final/road-dash",
+    "--metro-survey"
+  ],
+  "exit": 0,
+  "binary_sha256": "81c6c8c9d3e56e4f5998f18b093127a857120b1fc6b88dfac46256b4255dfc50",
+  "unchanged_binary": true,
+  "images": 14,
+  "blank_images": [],
+  "error_lines": [],
+  "environment_overrides": {
+    "ROADDASH_TRACK": "metro",
+    "ROADDASH_CROSSING_SURVEY": "1",
+    "ROADDASH_UPNP": "0",
+    "ROADDASH_SAVE_DIR": "/home/imad/Documents/ChatGPT/RoadDash-city-activity/docs/testing/city-activity-02/native/save",
+    "ROADDASH_SETTINGS": "/home/imad/Documents/ChatGPT/RoadDash-city-activity/docs/testing/city-activity-02/native/settings.json",
+    "ROADDASH_LOG_DIR": "/home/imad/Documents/ChatGPT/RoadDash-city-activity/docs/testing/city-activity-02/native/performance"
+  },
+  "limits": "Native scripted census/actual motion, not user art approval, full route, GPU timestamps or network certification."
+}

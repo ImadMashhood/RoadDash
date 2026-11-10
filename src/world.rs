@@ -74,6 +74,9 @@ pub fn setup_world(
     mut facade_materials: Option<
         ResMut<Assets<crate::world_gen::metropolis::material::FacadeMaterial>>,
     >,
+    mut grass_materials: Option<
+        ResMut<Assets<crate::world_gen::metropolis::geometry::grass_material::GrassMaterial>>,
+    >,
     mut track: ResMut<Track>,
     plan: Option<Res<crate::world_gen::WorldPlan>>,
     server: Option<Res<AssetServer>>,
@@ -141,8 +144,22 @@ pub fn setup_world(
                 25000.0
             },
             shadows_enabled: true,
+            // Bevy scales normal bias by cascade texel size. Its generic 1.8
+            // pushes road receivers away from wheel/foot/foundation contacts.
+            // Keep depth bias (acne protection), map size and caster policy.
+            shadow_normal_bias: 1.5,
             ..default()
         },
+        bevy::light::CascadeShadowConfigBuilder {
+            // Retain near-object resolution and 150m coverage; slightly widen
+            // the existing blended transition, without adding shadow views.
+            num_cascades: 4,
+            first_cascade_far_bound: 10.0,
+            maximum_distance: 150.0,
+            overlap_proportion: 0.25,
+            ..default()
+        }
+        .build(),
         Transform::from_rotation(Quat::from_euler(EulerRot::XYZ, -0.75, -0.5, 0.0)),
     ));
     let generated = if track.definition.id.as_str() == "valley-run-01" {
@@ -181,6 +198,9 @@ pub fn setup_world(
             facade_materials
                 .as_deref_mut()
                 .expect("metropolis facade assets"),
+            grass_materials
+                .as_deref_mut()
+                .expect("grass material assets"),
             server.as_deref(),
             &art,
             &track,
@@ -292,7 +312,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
             (
                 Vec3::new(0.0, 1.03, 0.24),
                 Vec3::new(0.57, 0.38, 0.73),
-                art.bike_colors[color].clone(),
+                art.bike_colors[color % art.bike_colors.len()].clone(),
             ),
             (
                 Vec3::new(0.0, 1.02, -0.52),
@@ -302,7 +322,7 @@ pub fn bike(commands: &mut Commands, art: &Art, color: usize, with_rider: bool) 
             (
                 Vec3::new(0.0, 1.04, 0.87),
                 Vec3::new(0.56, 0.48, 0.34),
-                art.bike_colors[color].clone(),
+                art.bike_colors[color % art.bike_colors.len()].clone(),
             ),
             (
                 Vec3::new(0.0, 1.3, 0.60),
@@ -511,6 +531,21 @@ mod tests {
             .init_resource::<Assets<StandardMaterial>>()
             .add_systems(Startup, (setup_world, validate_scenery).chain());
         app.update();
+        let (light, cascades) = app
+            .world_mut()
+            .query::<(&DirectionalLight, &bevy::light::CascadeShadowConfig)>()
+            .single(app.world())
+            .unwrap();
+        assert!(light.shadows_enabled);
+        assert_eq!(light.shadow_normal_bias, 1.5);
+        assert_eq!(
+            light.shadow_depth_bias,
+            DirectionalLight::DEFAULT_SHADOW_DEPTH_BIAS
+        );
+        assert_eq!(cascades.bounds.len(), 4);
+        assert_eq!(cascades.bounds[0], 10.0);
+        assert!((cascades.bounds[3] - 150.0).abs() < 0.001);
+        assert_eq!(cascades.overlap_proportion, 0.25);
         let mut footprints = app
             .world_mut()
             .query::<(&Transform, &SceneryFootprint, &Collider)>();

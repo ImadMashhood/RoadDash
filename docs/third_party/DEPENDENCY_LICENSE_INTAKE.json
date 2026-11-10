@@ -1,0 +1,13 @@
+[
+  {
+    "name": "attohttpc",
+    "version": "0.30.1",
+    "license": "MPL-2.0",
+    "source": "registry+https://github.com/rust-lang/crates.io-index",
+    "license_copy": "docs/third_party/licenses/attohttpc-0.30.1-MPL-2.0.txt",
+    "license_sha256": "f77c12e42245743c6ab960c67fd81715ba7a5149f35836365d442328a69d55c2",
+    "notice": "docs/third_party/ATTOHTTPC_NOTICE.md",
+    "source_url": "https://crates.io/api/v1/crates/attohttpc/0.30.1/download",
+    "reason": "Unmodified transitive router HTTP client; scoped file-level license intake with source/notice distribution requirements."
+  }
+]

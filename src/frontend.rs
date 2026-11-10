@@ -1,4 +1,4 @@
-//! Native art-led offline entry screens. Simulation and profile contracts stay in game.rs.
+//! Native entry screens and authoritative-session lobby presentation.
 use crate::{
     controls::Controls,
     game::{Phase, Profile, Race},
@@ -10,6 +10,9 @@ use bevy::{asset::LoadState, prelude::*};
 use rr_core::frontend::{Action, Effect, Flow, Page, ROSTER};
 mod gallery;
 mod layout;
+mod online_menu;
+mod online_smoke;
+mod original_art;
 mod smoke;
 pub(crate) use smoke::install as install_smoke;
 
@@ -21,6 +24,8 @@ pub struct Frontend {
     launch_wait: f32,
     pub(crate) released: bool,
     race_seen: bool,
+    pub online_pause: bool,
+    online_menu: online_menu::Menu,
 }
 impl Frontend {
     pub fn owns(&self, phase: Phase) -> bool {
@@ -39,6 +44,7 @@ const ART: [&str; 7] = [
 #[derive(Resource)]
 struct Art {
     images: Vec<Handle<Image>>,
+    originals: Vec<Option<Handle<Image>>>,
     heading_font: Handle<Font>,
     body_font: Handle<Font>,
 }
@@ -59,7 +65,7 @@ struct MenuButton {
 struct FontSize(f32);
 #[derive(Resource, Default)]
 struct View {
-    key: Option<(Page, usize, bool, bool, bool)>,
+    key: Option<(Page, usize, bool, bool, bool, String)>,
 }
 #[derive(Clone)]
 struct Entry {
@@ -77,14 +83,12 @@ fn entries(page: Page) -> Vec<Entry> {
     match page {
         Page::Splash => vec![entry("HIT THE ROAD", A::Continue)],
         Page::Main => vec![
-            entry("THRASH", A::Thrash),
-            entry("BIG GAME", A::Street),
-            Entry {
-                text: "MANO A MANO  /  UNAVAILABLE".into(),
-                action: None,
-            },
+            entry("PLAY OFFLINE", A::Thrash),
+            entry("STREET HUB", A::Street),
+            entry("MULTIPLAYER", A::Online),
             entry("SETTINGS", A::Settings),
         ],
+        Page::Online | Page::Host | Page::Join | Page::Lobby => vec![],
         Page::Rider => vec![entry("RIDE AS YOU", A::Continue), entry("BACK", A::Back)],
         Page::Street => vec![
             entry("BIKER BAR", A::Bar),
@@ -141,7 +145,71 @@ fn input(
     mut exit: MessageWriter<AppExit>,
     server: Option<Res<AssetServer>>,
     art: Option<Res<Art>>,
+    mut online: Option<ResMut<crate::online::Online>>,
 ) {
+    let online_race = online.as_ref().is_some_and(|o| o.lobby.is_some())
+        && matches!(race.phase, Phase::Racing | Phase::Countdown);
+    if online_race && !panel.open {
+        let pad = pads.iter().min_by_key(|(e, _)| e.to_bits()).map(|(_, p)| p);
+        let edge = |b| pad.is_some_and(|p| p.just_pressed(b));
+        if std::mem::take(&mut controls.pause)
+            || keys.just_pressed(KeyCode::Escape)
+            || edge(GamepadButton::Start)
+        {
+            front.online_pause = !front.online_pause;
+            front.selected = 0;
+        }
+        if front.online_pause {
+            let start = std::mem::take(&mut controls.start);
+            controls.buffer = default();
+            controls.foot = Vec2::ZERO;
+            controls.look = Vec2::ZERO;
+            controls.interact = false;
+            controls.pickup = false;
+            controls.drop = false;
+            controls.camera = false;
+            controls.restart = false;
+            menu.0 = false;
+            if keys.just_pressed(KeyCode::ArrowUp)
+                || keys.just_pressed(KeyCode::ArrowDown)
+                || edge(GamepadButton::DPadUp)
+                || edge(GamepadButton::DPadDown)
+            {
+                front.selected = 1 - front.selected.min(1);
+            }
+            let click = clicks
+                .iter()
+                .find_map(|(i, b)| (*i == Interaction::Pressed).then_some(b.action));
+            let action = front.pending.take().or(click).or_else(|| {
+                if edge(GamepadButton::East) {
+                    Some(Action::Continue)
+                } else if start {
+                    Some(if front.selected == 0 {
+                        Action::Continue
+                    } else {
+                        Action::Back
+                    })
+                } else {
+                    None
+                }
+            });
+            match action {
+                Some(Action::Continue) => front.online_pause = false,
+                Some(Action::Back) => {
+                    if let Some(online) = online.as_deref_mut() {
+                        online.actions.push_back(crate::online::OnlineAction::Leave);
+                    }
+                    front.online_pause = false;
+                    front.online_menu.leaving = true;
+                    front.flow.page = Page::Main;
+                }
+                _ => {}
+            }
+            return;
+        }
+    } else if !online_race {
+        front.online_pause = false;
+    }
     if !matches!(race.phase, Phase::Garage | Phase::Finished) {
         front.released = false;
         front.race_seen = true;
@@ -181,8 +249,30 @@ fn input(
         }
         return;
     }
-    let rows = entries(front.flow.page);
-    let direction = if keys.just_pressed(KeyCode::ArrowRight)
+    if let Some(online) = online.as_deref_mut() {
+        online_menu::sync(&mut front, online);
+    }
+    let rows =
+        online_menu::entries(&front, online.as_deref()).unwrap_or_else(|| entries(front.flow.page));
+    front.selected = front.selected.min(rows.len().saturating_sub(1));
+    let editing = online_menu::type_code(&mut front, &keys);
+    if editing {
+        // Text characters must not trigger remapped gameplay/mute shortcuts.
+        controls.mute = false;
+        for (button, action) in [
+            (GamepadButton::DPadLeft, Action::CodePrevious),
+            (GamepadButton::DPadRight, Action::CodeNext),
+            (GamepadButton::DPadUp, Action::CodeUp),
+            (GamepadButton::DPadDown, Action::CodeDown),
+        ] {
+            if edge(button) {
+                online_menu::dispatch(&mut front, online.as_deref_mut(), action);
+            }
+        }
+    }
+    let direction = if editing {
+        0
+    } else if keys.just_pressed(KeyCode::ArrowRight)
         || keys.just_pressed(KeyCode::ArrowDown)
         || edge(GamepadButton::DPadRight)
         || edge(GamepadButton::DPadDown)
@@ -229,11 +319,20 @@ fn input(
         .iter()
         .find_map(|(i, b)| (*i == Interaction::Pressed).then_some(b.action));
     let action = front.pending.take().or(click).or_else(|| {
-        if back || edge(GamepadButton::East) {
+        if (if editing {
+            keys.just_pressed(KeyCode::Escape)
+        } else {
+            back
+        }) || edge(GamepadButton::East)
+        {
             Some(Action::Back)
         } else if retry {
             Some(Action::Ride)
-        } else if start {
+        } else if if editing {
+            keys.just_pressed(KeyCode::Enter) || edge(GamepadButton::South)
+        } else {
+            start
+        } {
             rows.get(front.selected).and_then(|e| e.action)
         } else {
             None
@@ -241,6 +340,9 @@ fn input(
     });
     if let Some(action) = action {
         let was = front.flow.page;
+        if online_menu::dispatch(&mut front, online.as_deref_mut(), action) {
+            return;
+        }
         match front.flow.dispatch(action) {
             Effect::Settings => panel.open = true,
             Effect::Start => front.launch_wait = 0.0,
@@ -262,7 +364,7 @@ fn input(
     }
 }
 
-fn setup(mut commands: Commands, server: Res<AssetServer>) {
+fn setup(mut commands: Commands, server: Res<AssetServer>, mut images: ResMut<Assets<Image>>) {
     commands.spawn((
         Camera2d,
         UiCamera,
@@ -274,6 +376,7 @@ fn setup(mut commands: Commands, server: Res<AssetServer>) {
         },
     ));
     commands.insert_resource(Art {
+        originals: original_art::load(&mut images),
         heading_font: server.load("ui/fonts/Jost-700-Bold.ttf"),
         body_font: server.load("ui/fonts/Jost-400-Book.ttf"),
         images: ART
@@ -335,6 +438,10 @@ fn text(
 fn title(page: Page) -> &'static str {
     match page {
         Page::Splash | Page::Main => "ROAD / DASH",
+        Page::Online => "RACE TOGETHER",
+        Page::Host => "HOST A RACE",
+        Page::Join => "JOIN A RACE",
+        Page::Lobby => "RACE LOBBY",
         Page::Rider => "MEET YOUR RIDER",
         Page::Street => "THE STREET",
         Page::Courses => "PICK YOUR ROAD",
@@ -350,6 +457,7 @@ fn picture(page: Page) -> usize {
     match page {
         Page::Splash => 0,
         Page::Main | Page::Quit => 1,
+        Page::Online | Page::Host | Page::Join | Page::Lobby => 7,
         Page::Rider => 2,
         Page::Street => 3,
         Page::Courses | Page::Starting | Page::Results => 4,
@@ -361,10 +469,11 @@ fn body(page: Page, profile: &Profile, track: &Track, race: &Race) -> String {
     let course_name = track.definition.name.replace('—', "/").replace('–', "-");
     match page {
         Page::Splash => "Fifteen riders. One road.\nNo polite company.".into(),
+        Page::Online | Page::Host | Page::Join | Page::Lobby => String::new(),
         Page::Main => format!("{} CREDITS  /  {} WINS", profile.credits, profile.wins),
         Page::Rider => "YOU / BLUE HELMET\nYOUR CURRENT RIDER AND MOTORCYCLE".into(),
         Page::Street => format!("{}\n{} CREDITS", course_name, profile.credits),
-        Page::Courses => format!("{}\n{:.2} KM / {}\n15 RIDERS", course_name, track.length/1000.0, if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
+        Page::Courses => format!("{}\n{:.2} KM / {}\n15 RIDERS", course_name, track.race_interval().length()/1000.0, if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
         Page::Garage => "YOUR ROAD BIKE / READY TO RIDE\nBIKE PURCHASES UNAVAILABLE".into(),
         Page::Portrait => "RIDER PORTRAITS".into(),
         Page::Bar => "THE LOCALS DON'T LIKE YOU.\n\nWatch the aggressive riders.\nA clean pass is safer than a fight.\n\nConversations coming later.".into(),
@@ -386,11 +495,17 @@ fn view(
     art: Res<Art>,
     server: Res<AssetServer>,
     mut cache: ResMut<View>,
-    mut root: Query<&mut Node, With<Root>>,
+    mut root: Query<(&mut Node, &mut BackgroundColor), With<Root>>,
     canvas: Query<(Entity, Option<&Children>), With<Canvas>>,
+    online: Option<Res<crate::online::Online>>,
 ) {
-    let active = matches!(race.phase, Phase::Garage | Phase::Finished);
-    let mut root = root.single_mut().expect("frontend root");
+    let active = front.online_pause || matches!(race.phase, Phase::Garage | Phase::Finished);
+    let (mut root, mut background) = root.single_mut().expect("frontend root");
+    *background = BackgroundColor(if front.online_pause {
+        Color::NONE
+    } else {
+        Color::BLACK
+    });
     root.display = if active { Display::Flex } else { Display::None };
     let loading = matches!(state.get(), AppScreen::Boot | AppScreen::Loading)
         || !art
@@ -417,8 +532,9 @@ fn view(
         loading,
         active,
         failed,
+        online_menu::signature(&front, online.as_deref()),
     );
-    if cache.key == Some(key) {
+    if cache.key.as_ref() == Some(&key) {
         return;
     }
     cache.key = Some(key);
@@ -428,17 +544,28 @@ fn view(
             commands.entity(*e).despawn();
         }
     }
+    if front.online_pause {
+        online_menu::render_pause(&mut commands, canvas, online.as_deref());
+        return;
+    }
     let page = front.flow.page;
     let image = commands
         .spawn((
-            ImageNode::new(
-                art.images[if page == Page::Portrait {
-                    ART.len() + front.flow.portrait
-                } else {
-                    picture(page)
-                }]
-                .clone(),
-            ),
+            ImageNode::new(if page == Page::Portrait {
+                art.images[ART.len() + front.flow.portrait].clone()
+            } else {
+                art.originals
+                    .get(picture(page))
+                    .and_then(Clone::clone)
+                    .unwrap_or_else(|| {
+                        art.images[if picture(page) >= ART.len() {
+                            1
+                        } else {
+                            picture(page)
+                        }]
+                        .clone()
+                    })
+            }),
             Node {
                 position_type: PositionType::Absolute,
                 width: percent(100),
@@ -458,6 +585,12 @@ fn view(
             gallery::render(&mut commands, canvas, &art.images[ART.len()..]);
             return;
         }
+    }
+    if !loading
+        && !failed
+        && online_menu::render(&mut commands, canvas, &front, online.as_deref(), &race)
+    {
+        return;
     }
     let value = if failed {
         "ARTWORK COULD NOT LOAD. Restore assets/ui and relaunch.".into()
@@ -515,11 +648,12 @@ fn focus(
         }));
     }
 }
-#[allow(clippy::type_complexity)]
+#[allow(clippy::type_complexity, clippy::too_many_arguments)]
 fn resize(
     windows: Query<&Window>,
     front: Res<Frontend>,
     images: Res<Assets<Image>>,
+    art: Res<Art>,
     mut backdrops: Query<(&ImageNode, &mut Node), (With<Backdrop>, Without<Canvas>)>,
     mut canvas: Query<&mut Node, (With<Canvas>, Without<Backdrop>)>,
     mut fonts: Query<(&FontSize, &mut TextFont)>,
@@ -549,7 +683,12 @@ fn resize(
     for (image, mut node) in &mut backdrops {
         if let Some(asset) = images.get(&image.image) {
             let size = asset.size_f32();
-            let scale = (width / size.x).max(height / size.y);
+            let original = art.originals.iter().flatten().any(|h| h == &image.image);
+            let scale = if original {
+                (width / size.x).min(height / size.y)
+            } else {
+                (width / size.x).max(height / size.y)
+            };
             let w = size.x * scale / width * 100.;
             let h = size.y * scale / height * 100.;
             let left = percent((100. - w) * 0.5);
@@ -597,6 +736,10 @@ fn typography(art: Res<Art>, mut labels: Query<(&FontSize, &mut TextFont)>) {
         }
     }
 }
+#[derive(SystemSet, Debug, Clone, PartialEq, Eq, Hash)]
+pub(crate) enum FrontendSet {
+    Input,
+}
 pub struct FrontendPlugin;
 impl Plugin for FrontendPlugin {
     fn build(&self, app: &mut App) {
@@ -606,15 +749,33 @@ impl Plugin for FrontendPlugin {
             .add_systems(
                 PreUpdate,
                 input
+                    .in_set(FrontendSet::Input)
                     .after(crate::controls::capture)
                     .before(crate::game::input),
             )
             .add_systems(
                 Update,
-                (view, typography, focus, resize, scene_camera)
+                (
+                    view,
+                    typography,
+                    focus,
+                    resize,
+                    scene_camera,
+                    mask_online_hud,
+                )
                     .chain()
                     .after(crate::ui::update_ui),
             );
+    }
+}
+
+// update_ui restores normal HUD visibility each frame; mask it only while the
+// live race menu is open, without hiding the world or pausing its simulation.
+fn mask_online_hud(front: Res<Frontend>, mut hud: Query<&mut Node, With<crate::ui::Hud>>) {
+    if front.online_pause {
+        for mut node in &mut hud {
+            node.display = Display::None;
+        }
     }
 }
 
@@ -650,6 +811,70 @@ mod tests {
     fn action(app: &mut App, action: Action) {
         app.world_mut().resource_mut::<Frontend>().pending = Some(action);
         app.update();
+    }
+    #[test]
+    fn online_race_menu_resumes_or_queues_leave_without_pausing_simulation() {
+        for host in [true, false] {
+            let mut app = app();
+            app.insert_resource(crate::online::Online {
+                phase: crate::online::OnlinePhase::Racing,
+                lobby: Some(crate::online::LobbyView {
+                    code: "AAAQAAK3CY".into(),
+                    public: true,
+                    host,
+                    map: crate::online::OnlineMap::Metropolis,
+                    players: vec![],
+                    countdown: None,
+                }),
+                ..default()
+            });
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut().resource_mut::<Controls>().pause = true;
+            app.update();
+            assert!(app.world().resource::<Frontend>().online_pause);
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
+            assert!(!app.world().resource::<Controls>().pause);
+            action(&mut app, Action::Continue);
+            assert!(!app.world().resource::<Frontend>().online_pause);
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
+            app.world_mut().resource_mut::<Controls>().pause = true;
+            app.update();
+            action(&mut app, Action::Back);
+            assert!(!app.world().resource::<Frontend>().online_pause);
+            assert!(matches!(
+                app.world_mut()
+                    .resource_mut::<crate::online::Online>()
+                    .actions
+                    .pop_front(),
+                Some(crate::online::OnlineAction::Leave)
+            ));
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
+        }
+    }
+    #[test]
+    fn join_code_typing_owns_remapped_start_pause_and_mute_edges() {
+        let mut app = app();
+        {
+            let mut front = app.world_mut().resource_mut::<Frontend>();
+            front.flow.page = Page::Join;
+            front.online_menu.editing = true;
+        }
+        {
+            let mut controls = app.world_mut().resource_mut::<Controls>();
+            controls.start = true;
+            controls.pause = true;
+            controls.mute = true;
+        }
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyM);
+        app.update();
+        let front = app.world().resource::<Frontend>();
+        assert_eq!(front.flow.page, Page::Join);
+        assert!(front.online_menu.editing);
+        assert_eq!(front.online_menu.code, "M");
+        assert!(!app.world().resource::<Controls>().mute);
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Garage);
     }
     #[test]
     fn browsing_portraits_preserves_profile_and_garage_phase() {
@@ -852,7 +1077,7 @@ mod tests {
         assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Street);
     }
     #[test]
-    fn disabled_network_is_skipped_and_results_menu_preserves_profile() {
+    fn multiplayer_is_selectable_and_results_menu_preserves_profile() {
         let mut app = app();
         action(&mut app, Action::Continue);
         app.world_mut().resource_mut::<Frontend>().selected = 1;
@@ -860,7 +1085,7 @@ mod tests {
             .resource_mut::<ButtonInput<KeyCode>>()
             .press(KeyCode::ArrowRight);
         app.update();
-        assert_eq!(app.world().resource::<Frontend>().selected, 3);
+        assert_eq!(app.world().resource::<Frontend>().selected, 2);
         app.world_mut().resource_mut::<Profile>().credits = 1234;
         app.world_mut().resource_mut::<Frontend>().flow.page = Page::Starting;
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;

@@ -1,0 +1,8 @@
+{
+  "base": "75eadcf1",
+  "binary": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/walking-binaries/before",
+  "sha256": "e12fcffc0e3d87abf85ef506057d728a37601033b63f74f855656d1b095e48b5",
+  "native_completed": true,
+  "frames": 50,
+  "physics_changes": false
+}

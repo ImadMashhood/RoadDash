@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "binary_sha256": "81c6c8c9d3e56e4f5998f18b093127a857120b1fc6b88dfac46256b4255dfc50",
+  "shared_matching_snapshots": 1495,
+  "reload": null,
+  "host_snapshot_mean_bytes": 240652.39471989698,
+  "host_snapshot_max_bytes": 242607,
+  "uncompressed_snapshot_bytes_per_second_at_20hz": 4813127.89439794,
+  "encoded_frame_bytes_per_second_at_20hz": 801101.609787508,
+  "largest_encoded_frame": 41054,
+  "note": "Encoded frame estimate excludes lobby/TCP/IP overhead; no performance or WAN claim"
+}

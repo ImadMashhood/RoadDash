@@ -34,7 +34,7 @@ pub fn setup(mut commands: Commands) {
         ));
     }
 }
-#[allow(clippy::type_complexity)]
+#[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub fn update(
     time: Res<Time>,
     race: Res<crate::game::Race>,
@@ -47,8 +47,11 @@ pub fn update(
     )>,
     mut labels: Query<&mut Text, With<Traction>>,
     mut lines: Query<(&SpeedLine, &mut Node)>,
+    online: Option<Res<crate::online::NetState>>,
 ) {
-    let player = racers.iter().find(|(r, _, _)| r.id == 0);
+    let player = racers
+        .iter()
+        .find(|(r, _, _)| r.id == online.as_ref().map_or(0, |n| n.local_slot));
     let visible = race.phase == crate::game::Phase::Racing && !panel.open;
     let riding = player.is_some_and(|(_, _, s)| s.stage == crate::recovery::RecoveryStage::Riding);
     for mut text in &mut labels {

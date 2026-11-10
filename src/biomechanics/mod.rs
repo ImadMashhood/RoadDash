@@ -265,7 +265,7 @@ fn release_pose(
     pose
 }
 /// Upgrade immediately after existing spawn/ejection; never change the baseline path.
-fn initialize(world: &mut World) {
+pub(crate) fn initialize(world: &mut World) {
     if !world.resource::<Settings>().enabled {
         return;
     }

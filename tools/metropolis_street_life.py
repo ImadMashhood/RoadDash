@@ -35,7 +35,7 @@ def parked_cars(data,paths,road,cfg):
         for d in range(3260,11800,42):
             if route==1 and not 3500<d<5320:continue
             section=next(s for s in cfg['lane_sections'] if s['route']==route and s['start']<=d<s['end'])
-            if section['outbound']+section['inbound']!=2 or d<section['start']+110 or d>section['end']-110:continue
+            if section['end']<=3350 or section['outbound']+section['inbound']!=2 or d<section['start']+110 or d>section['end']-110:continue
             i=next(i for i in range(len(path['progress'])-1) if path['progress'][i]<=d<path['progress'][i+1]);a,b=path['points'][i:i+2];t=(d-path['progress'][i])/(path['progress'][i+1]-path['progress'][i]);dx,dz=b[0]-a[0],b[2]-a[2];n=math.hypot(dx,dz);dx,dz=dx/n,dz/n
             for side in [-1,1]:
                 p=[a[0]+(b[0]-a[0])*t+dz*side*3.95,a[2]+(b[2]-a[2])*t-dx*side*3.95];yaw=math.atan2(dx,dz)+(math.pi if side<0 else 0)
@@ -83,8 +83,13 @@ def traffic_paths(paths,data=None):
                 name='farm_approach' if s<=3350 else ('old_market' if route==0 else 'station_avenue') if s<=5362.5 else 'long_city'
                 e=next(e for e in data['edges'] if e['id']==name)
                 line=LineString([(v[0],v[2]) for v in e['points']]).simplify(2.0)
-            q=line.interpolate(line.project(Point(p[0],p[2]))) if s>=3150 else Point(p[0],p[2])
-            v=[q.x,p[1],q.y]
+            # Join the reserved street centre before the narrow urban entry, while
+            # still on the wide farm pavement. Avoid a lateral snap at3150m.
+            original=Point(p[0],p[2]);projected=line.interpolate(line.project(original))
+            t=max(0.,min(1.,(s-2800.)/100.));t=t*t*(3.-2.*t)
+            q=Point(original.x+(projected.x-original.x)*t,original.y+(projected.y-original.y)*t)
+            from metropolis_elevation import height
+            v=[q.x,height(q.x,q.y),q.y]
             if points and math.dist(v,points[-1])<.001:continue
             points.append(v);progress.append(s)
         assert progress[0]==0 and progress[-1]==12000

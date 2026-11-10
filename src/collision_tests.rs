@@ -1064,3 +1064,66 @@ fn measured_solid_car_height_trajectories_keep_passive_control_and_finite_recove
         }
     }
 }
+
+#[test]
+fn downed_contact_lift_uses_pre_solver_relative_motion_for_both_bodies() {
+    use bevy::ecs::system::RunSystemOnce;
+    for kind in [recovery::BodyKind::Wreck, recovery::BodyKind::Ragdoll] {
+        for (incoming, before, after, lifts) in [(2.0, 2.0, -5.0, false), (10.0, 0.0, 10.0, true)] {
+            let mut app = game::tests::simulation();
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let pose = *app.world().get::<Transform>(owner).unwrap();
+            let forward = pose.rotation * Vec3::Z;
+            app.world_mut().entity_mut(owner).insert((
+                BikeState {
+                    impact_velocity: forward * incoming,
+                    ..default()
+                },
+                Velocity::linear(Vec3::ZERO),
+            ));
+            app.world_mut()
+                .get_mut::<Rider>(owner)
+                .unwrap()
+                .impact_cooldown = 0.0;
+            let foreign = app.world_mut().spawn_empty().id();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let target = app
+                .world_mut()
+                .spawn((
+                    OwnedBody {
+                        owner: foreign,
+                        kind,
+                    },
+                    pose.with_translation(pose.translation + forward),
+                    Velocity::linear(forward * after),
+                    recovery::PreviousMotion(forward * before),
+                ))
+                .id();
+            app.world_mut()
+                .write_message(recovery::SweptContact(owner, target));
+            app.world_mut().run_system_once(recovery::impacts).unwrap();
+            let rider = app.world().get::<Rider>(owner).unwrap();
+            assert_eq!(
+                rider.hop_velocity > 0.0,
+                lifts,
+                "wreck={} incoming={incoming} target_pre={before} target_post={after}",
+                kind == recovery::BodyKind::Wreck
+            );
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            if !lifts {
+                assert_eq!(
+                    app.world().get::<Velocity>(target).unwrap().linvel,
+                    forward * after
+                );
+                assert_eq!(rider.impact_cooldown, 0.0);
+            }
+        }
+    }
+}

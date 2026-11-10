@@ -180,6 +180,7 @@ pub mod velocity_muscles;
 
 pub mod facade_atlas;
 pub mod metropolis;
+pub mod metropolis_palette;
 
 pub mod destruction;
 

@@ -1,0 +1,30 @@
+{
+  "census_unchanged": true,
+  "before": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1886,
+    "last_gameplay_ms": 1.1109980344772339,
+    "last_physics_ms": 7.436806678771973,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1887,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 19.605716705322266,
+    "wall_frame_p95_ms": 33.70801544189453
+  },
+  "after": {
+    "active_fixed_ticks": 985,
+    "colliders": 4410,
+    "entities": 50533,
+    "fixed_ticks": 1882,
+    "last_gameplay_ms": 1.1444200277328491,
+    "last_physics_ms": 8.368968963623047,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1883,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 19.97224235534668,
+    "wall_frame_p95_ms": 37.740482330322266
+  },
+  "limits": "Single isolated wall-frame samples; not causal GPU cost or hardware acceptance; both miss16.7ms."
+}

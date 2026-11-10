@@ -1,0 +1,7 @@
+2026-11-09T21:47:44.867366Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T21:47:45.108941Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/landscape-graphics/lod-city/performance/performance-3052239.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+ACTUAL GLB CITY: 8904 modules, 100 facade designs; 146 total catalog assets
+2026-11-09T21:47:46.428688Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+LOD survey passed: city, 391 direct crossfades

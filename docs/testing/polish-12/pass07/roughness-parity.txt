@@ -1,0 +1,4 @@
+PASS effective profile lookup and runtime roughness parity: 34 material instances
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
+Blender quit

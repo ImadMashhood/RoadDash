@@ -1,0 +1,32 @@
+    Checking cpal v0.15.3 (/home/imad/Documents/ChatGPT/RoadRash/vendor/cpal)
+    Checking rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core)
+    Checking rodio v0.20.1
+    Checking bevy_audio v0.17.3
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+    Checking bevy_internal v0.17.3
+    Checking bevy v0.17.3
+    Checking bevy_rapier3d v0.32.0
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+error: approximate value of `f{32, 64}::consts::TAU` found
+   --> src/world_gen/metropolis/hall_detail.rs:288:56
+    |
+288 |                     at(2.45 * a.sin(), 2.45 * a.cos(), 6.28),
+    |                                                        ^^^^
+    |
+    = help: consider using the constant directly
+    = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#approx_constant
+    = note: `#[deny(clippy::approx_constant)]` on by default
+
+error: manual arithmetic check found
+  --> src/world_gen/metropolis/hall_surface.rs:92:22
+   |
+92 |         let family = if i < 2 { 0 } else { i - 2 };
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: replace it with: `i.saturating_sub(2)`
+   |
+   = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#implicit_saturating_sub
+   = note: `-D clippy::implicit-saturating-sub` implied by `-D warnings`
+   = help: to override `-D warnings` add `#[allow(clippy::implicit_saturating_sub)]`
+
+error: could not compile `road-dash` (lib) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `road-dash` (lib test) due to 2 previous errors

@@ -1,0 +1,10 @@
+[
+  "src/track.rs",
+  "tools/plan_farms_long_city.py",
+  "content/world/metropolis.json",
+  "tools/bake_metropolis.py",
+  "src/world_gen/metropolis/geometry.rs",
+  "src/track/metropolis.rs",
+  "crates/rr_content/src/metropolis.rs",
+  "tools/metropolis_street_life.py"
+]

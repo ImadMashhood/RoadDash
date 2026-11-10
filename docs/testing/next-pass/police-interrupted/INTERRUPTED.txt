@@ -1,0 +1,1 @@
+The parent serial batch ended with SIGTERM (exit143) during this run, before any police assertion receipt. No game failure/assertion appeared in its log. These partial files are not accepted test evidence. Parent reruns the case separately; the cause of interruption is not established.

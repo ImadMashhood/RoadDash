@@ -1267,8 +1267,426 @@ Final ADR103 verification:408Rust tests passed,1existing soak ignored; fmt/stric
 
 User requested settings setup after menu polish. codex/settings-menu replaces the flat comfort/binding list with Camera/Controls/Audio/Display tabs,keyboard/mouse/controller navigation,optional pickup/drop bindings,live absolute master gain/mute,borderless fullscreen with windowed-size restoration,and VSync. Optional preference fields load old files without rewriting; invalid/future files remain preserved. Save errors remain visible; explicit session-only close is available. Settings pause/resume/suppress input and stop hidden3D rendering; accepted rigs/gameplay unchanged. New native opt-in settings traversal uses real keyboard category/adjust/save and temp-file reload; scoped results/evidence in testing/settings-menu/README.md. Broad quality/audio-bus/human/hardware gates remain open.
 
-2026-11-09: UI art review on codex/reference-led-ui. User rejected three samples and selected originals as visual references. Reviewed all26reference sheets and generated one reference-fed options caricature draft; no runtime installation/code changes or completed checklist gates. Exact prompt/input IDs/hash recorded in docs/ui/generated/candidates/settings-reference-v3.json.
+## 2026-11-09 — Sequential polish pass01
 
-2026-11-09: user clarified approved attachment faces/bodies plus original-game locations. Generated one new pool-room bar draft using separate identity/rendering and location references; prompt/hash recorded, no runtime code/assets replaced.
+PERF-08: corrected facade detail selection hysteresis around tangent camera views and retiring groups. Resident collision/envelopes, source meshes/atlas and physical settings preserved. Paired native evidence and mandatory check receipts: testing/polish-12/pass01/README.md. No new IDs or task moves; broader performance/visual/hardware gates remain open.
 
-2026-11-09 integration: preserve exact selected bar style reference, mark rejected drafts/stopped batch accurately, retain local reference-only original galleries outside repository. Commit/merge encompasses existing17 implementation commits plus art-review records; twelve new gameplay/graphics agent passes have not started. Final validation recorded under testing/integration-2026-11-09/.
+
+## 2026-11-09 — Sequential polish pass02: low-speed contacts and recovery
+
+Audited gentle car/wall contacts, rear momentum, downed body/wreck lift, parking
+reverse and live pickup. Reproduced false lift from mixed pre/post-solver target
+velocity; aligned eligibility with existing pre-solver energy input (ADR106).
+Added actual impact-system regression with both owned-body kinds and opposing
+solver outcomes. Existing thresholds, rig/handling, collision and recovery
+parameters remain. No new IDs/assets/research repositories; V2-01-003 evidence
+extended, checklist counts/placement unchanged. Verification and limitations
+are recorded in testing/polish-12/pass02/README.md.
+
+## 2026-11-09 — Sequential polish03: authored elevation and terrain support
+
+Inspected existing farm/city sine-based grades before changing them. ADR107
+replaces duplicated runtime/planner formulas with a serialized C2 knot profile,
+shared across baked routes, terrain, props and navigation. Preserved approved
+horizontal source geometry, IDs/rights of way, field boundaries, building shells
+and legacy maps. Frozen progress prevents height edits reshuffling authoring.
+Retiled long start apron and farm surfaces; fixed repair-before-clipping for
+self-intersecting source fields after strict coverage tests exposed the issue.
+Final pavement/field samples stay below10mm; both routes' actual marked lanes
+and grid verified.419 tests plus mandatory checks pass. Native survey/cost and
+paired recovery evidence in docs/testing/polish-12/pass03; no broad milestone
+closure, physics tuning, external code/media or UI artwork. Current isolated
+survey misses16.7ms p95; human/full-route/hardware gates remain open.
+
+## 2026-11-09 — Sequential polish04: unified lighting and exposure
+
+Inspected existing environment, sky, world/camera adapters and Bevy0.17.3's
+installed analytic tonemapping implementation. No external repositories/media
+imported. Added bounded colors/direction/operator authoring and one complete
+camera/light installation; warmer lower sun and stronger cool fill balance
+EV12.7 with explicit Reinhard. No facade/atlas, physics or dependency changes.
+Existing SKY-01 evidence extended, no new task IDs/count/placement changes.
+Mandatory checks, matched captures and remaining gates: testing/polish-12/pass04.
+
+## 2026-11-09 — Sequential polish05 shadow contact (ADR109)
+
+Investigated pinned Bevy default receiver bias/cascades, existing texel snapping,
+coarse-facade/ornament exclusions and matched native farm/city/recovery captures.
+Reduced normal bias1.8→1.5,retained depth bias0.02,4×2048 shadow maps,10m first
+split/150m reach; widened cascade blend20→25%. Shared world installation assertions
+protect bounded configuration and solid scenery. No lighting/exposure/material/
+atlas/physics or content/dependency changes. P15-004 evidence extended without
+new IDs, placement changes or broad closures. Source provenance updated; no
+external assets/code imported. Native and mandatory receipts: polish-12/pass05.
+Parent reviews/integrates; no commit/push/merge by implementation agent.
+
+
+## 2026-11-09 — Sequential polish06: roads and paving
+
+Inspected legacy UV/PBR and default Metropolis batches; found the default map
+never received the asphalt installer. Connected shared original procedural
+albedo/normal/roughness, measured world UVs/tangents and quieter repair patches.
+Weathered existing paving seams and added opaque faded paint without new meshes,
+overlays, collision or facade changes. ADR110 extends P11-004 evidence; no task
+IDs moved/closed, no dependency or imported asset. Native/check results and
+remaining temporal/art/drainage/hardware gates: testing/polish-12/pass06.
+
+
+## 2026-11-09 — Polish07 building material consistency
+
+ADR111: coordinate the24 placed facade families in the offline front compiler,
+preserve original source models/textures and all derived geometry bytes, refresh
+72front/72storey material headers, rebake383model-derived bands and their complete
+mip chains/Metropolis crops. Correct far roughness to consume the same provenance
+profiles and quantized micro-map as runtime. Metropolis consumes packed linear
+roughness/metallic factors in one additional existing-material texture sample;
+no additional meshes/draw groups, physical changes or media imports.
+Shared actual-map fixture and source/geometry/hash verification accompany native
+Metropolis, both LOD modes and recovery evidence in testing/polish-12/pass07.
+MAT-03 remains partial for human/streaming/hardware acceptance. No new IDs, task
+moves or closures; original dirty RoadRash/UI work untouched. No commit/push/merge.
+
+## 2026-11-09 — Sequential polish08 / approach district use (ADR112)
+
+Preserve the approved farm-to-city geometry and existing height ramp. Blend
+low-rise business/workshop/neighborhood facade pools before1800m; fix capped
+interior-tower office use only inside this scope. Taller and distant identities,
+all roads/ROW/fields/fences/vegetation/closed collisions and simulation remain.
+Original catalog reused with matching near/far style IDs; no external intake.
+PALETTE-01/V2-04-003 evidence extended, no new IDs or closures. Verification and
+remaining art/hardware/performance gates: testing/polish-12/pass08/README.md.
+
+## 2026-11-09 — Sequential polish09 / atmospheric depth (ADR113)
+
+Replaced fully opaque1050m linear fog with bounded exponential-squared haze;
+shared unchanged horizon palette and actual sky exposure scale remove the
+separate dark fog target. Retain non-HDR after an HDR trial rendered black;
+record remaining sky/PBR tonemap mismatch for pass10 (V2-06-007). Preserve near traffic contrast, resident geometry,
+collision, facades/atlas lifecycle, all physical rigs and gameplay. No external
+media, dependencies or UI art changes. SKY-01 evidence extends without ID/state/
+placement/count changes. Native paired views, cost and mandatory receipts:
+testing/polish-12/pass09. Sky/cloud work remains pass10; broad gates stay open.
+
+
+## 2026-11-09 — Sequential polish10 sky presentation
+
+ADR114 separates displayed sky from unchanged lighting radiance, applies matching
+analytic exposure/tonemap, adds original layered cloud shading and corrects mirrored
+solar direction. Removes whole-sky/environment wind rotation; independent cloud
+motion remains open. No geometry/physics/facade/rig or UI changes. Tests and native
+paired captures/cost receipts: testing/polish-12/pass10. Parent reviews/integrates;
+no commit/push/merge by implementation agent. No IDs, moves or gate closures.
+
+## 2026-11-09 — Sequential polish11 character articulation
+
+ADR115 replaces the render-only0.50m ankle pivot approximation with the existing
+0.558046m authoring endpoint. Joint inverse binds update with it; original mesh,
+weights, proportions, neutral wrists and physics remain unchanged. Negative
+reproduction and contact/neutral-surface/model parity tests cover the correction;
+native paired pose/recovery/NPC/lab receipts live in testing/polish-12/pass11.
+ART-04 remains partial; no IDs, moves, count changes, next-part advance or UI art.
+Full deformation/gait/civilian seams and art/hardware/performance gates stay open.
+Parent reviews/integrates; implementation agent makes no commit/push/merge.
+
+## 2026-11-09 — Sequential polish12: confirmed mounted impact reactions
+
+Final of the requested12 fresh sequential implementation agents. Added one bounded
+replaceable presentation pulse per confirmed mounted hit, with mirrored punch
+head/shoulder recoil and kick trunk fold, fixed race-clock recovery, attack/knockoff
+priority and no input lock. Existing grip/peg fitting, kick push, three-hit knockoff,
+velocity muscles/11body control, physical authority, audio/camera contact timing,
+controls/saves/race and prior eleven polish passes retained. Initial acceleration
+grip reach regression was reproduced and corrected by changing visual punch pitch;
+strict contact tests retained. ADR116 and testing/polish-12/pass12 record exact
+receipts/provenance/limits. COMBAT-FEEL-01/P05-006 remain partial; no IDs/moves/count
+changes, no art approval, no push/merge and no automatic next-major-part work.
+
+## 2026-11-09 — Parent final twelve-pass integration verification
+
+Exactly12 fresh-context agents completed sequentially with reviewed Conventional Commits on codex/gameplay-graphics-polish. Final439 workspace tests (one existing ignored), mandatory lint/build/audit, authoring/atlas/progress checks, ten native cases and18-case paired lab passed. Parent visual review rejected the first groundless farm survey capture; same-binary repeat rendered it correctly, and cold-start capture readiness remains PERF-08. Both runs retained; p9539.747/33.901ms miss16.7ms. README/PROGRESS remain220 verified/245 open with no newIDs/closures. Full files, decisions, provenance, images and limits: testing/polish-12/final/README.md. No push/default merge, no next-part work. Original checkout independently advanced to clean main2a3770e; unrelated work not absorbed.
+
+## 2026-11-09 — User-authorized landscape follow-up after twelve-pass polish
+
+Started codex/landscape-graphics from f4086433a98e0c92bed48846d922d7dbe2486842.
+Implemented original deterministic farm grass, native dither distance handling,
+coherent field tint and irregular soil shoulder geometry. Added actual visible
+batch/triangle survey counters and opt-in shoulder camera. Field holes, paved
+access, buildings, barns and fence margins constrain placement. No physics,
+collision/layout/source content/dependencies/facade materials or legacy maps
+changed. ADR117 and testing/landscape-graphics preserve references, rejected
+incompatible plugin intake and exact check/native receipts. Existing
+V2-06-005/006/007 and WORLDART-01 extended; no new IDs, closures or task moves.
+User art, full-map/temporal/hardware/performance acceptance remain open. Parent
+review/commit remains outstanding; no push or merge performed.
+
+Landscape final verification:443tests (one ignored), mandatory fmt/clippy/locked
+builds/audit/progress/roadmap checks passed. Final grass57,197tufts/333batches;
+58overlapping soil candidates rejected by actual polygon intersection,6,606quads
+retained with independent Shapely parity. Six native survey/recovery/LOD cases,
+18-case paired lab and explicit inspections passed;121native captures, no blanks
+or logged errors. Valley world-survey completed geometry but exited1 solely for
+p9518.597ms; Metropolis p9534.765ms also misses16.7. Retain performance/user-art/
+hardware gates; no newID/closure/commit/push/merge by implementation agent.
+
+Parent landscape integration review: accepted final road/shoulder/gameplay evidence after correcting sparse tufts, shoulder winding/material mismatch and actual-polygon overlaps. Independently checked audit/progress/diff; committed on codex/landscape-graphics. Existing performance and user art gates remain open; no push/default merge.
+
+## 2026-11-09 — Farm gravel verge, cattle clearance and original prop reuse
+
+User follow-up requests a less abrupt road edge, correction of cows on fences,
+and existing3D farmland props. ADR118 adds a broad gravel/mown verge, moves whole
+cow footprints inside fields, and places16existing green barn/windmill/hay models
+with fixed collision and access/boundary clearance. No physical rig or source
+layout changes. README/PROGRESS retain220verified/245open and no new taskIDs.
+Evidence and verification: testing/farm-verges; no push/default merge.
+
+Farm follow-up verified:444tests (one existing ignored), mandatory lint/build/audit,
+roadmap checks, five native road/shoulder/recovery/actor cases all passed. Independent
+Shapely audit confirms32occupants, minimum4.533m boundary margin and no access
+intersection. All16reused prop scenes ready; actual road/shoulder views reviewed.
+Metropolis p9533.464ms still misses16.7ms; no performance/user approval claim.
+
+## 2026-11-09 — Helmeted stylized humans and wind grass
+
+User selected helmets with stylized clothing after supplying pastoral references.
+ADR119 adds matte faceted clothing/human skins and original curved wind grass,
+retaining physical rigs, authored surfaces, farm exclusions and existing content.
+First native clothing trial exposed mixed jacket/leg source regions; canonical
+height partition corrected them. First broad blades were narrowed after native
+review. Rejected evidence is retained. Existing checklist IDs remain partial;
+no new IDs, task moves or closures. Verification: testing/stylized-humans-grass.
+
+ADR119 verified:445workspace tests (one existing ignored), strict fmt/clippy,
+locked debug/release builds, asset audit and roadmap checks passed. Both model
+physics trajectories remain exactly unchanged over180ticks. Seven serial native
+runs/124captures and18paired lab cases passed; independent farm clearance audit
+still passes. Native p9535.341ms misses16.7ms; resident grass payload estimate
+115.46MB versus49.62MB parent. Original silhouette and NPC waist seams remain
+open; no claim of full reference-look or user art acceptance. No push/main merge.
+
+## 2026-11-09 — Portrait cast AI and living city (ADR120)
+
+User requested major AI/cast/loadout changes, urban-only density, crossing-speed
+repair, reverse recovery, approach infill, City Hall, fountain park, cafes,
+sidewalk expansion and crosswalks. New four scoped IDs added with acceptance and
+verification; README220verified/249open. Stable content IDs/save format retained.
+Original procedural civic geometry and existing assets; no external intake.
+Initial reverse fixture incorrectly inspected unsigned HUD speed; corrected to
+measure signed physical velocity. Actual reverse and140m crossing-wrap physics
+fixtures pass. Wider authoring exposed the old1500furniture cap at1519; explicit
+new1600cap retains a bounded budget. Geometric clipping uses existing micrometre
+quantization with10micrometre audit tolerance; meaningful overlaps remain errors.
+Independent8572whole-car samples and20Metropolis authoring tests passed. Full
+Rust/native results will be recorded in testing/living-city-ai; no next major
+part or main merge/push.
+
+- User correction during ADR120: the first civic-site proposal used small labelled
+  public lots and was rejected. Explicit selection is park3 LC-S0152 for a grand
+  City Hall, arches facing west into the city, and park5 LC-S0246 for the detailed
+  fountain park. Replaced the proposal; preserved the other green blocks.
+
+- Final ADR120 validation:450workspace tests passed (1existing ignored),20authoring
+  tests,fmt,strict Clippy,debug/release builds,provenance and roadmap audits.
+  Five final serial native runs passed with nonblank/hash-stable captures;
+  both rigs/routes reversed at-1.898m/s and remounted with0pickup error; NPC
+  contacts passed.18paired lab cases finite. Final city census96main/58crossing
+  cars/192pedestrians/1521street props. Native bounded wall18.55ms average and
+  23.24ms p95 leaves the16.7ms target open. All requested implementation items
+  are enumerated in testing/living-city-ai/README.md; art/balance/hardware
+  acceptance remains separate, no next major part or main merge/push.
+
+- Final user correction supersedes west/city-centre frontage: point the arches
+  at the actual driving street. Heading now uses the nearest race traffic path
+  (alignment dot1.0); park5 turf covers its full irregular block minus pavement
+  (60,964.44m²), with26trees,11beds,15benches,8lamps and pergola. Grounds are
+  clipped and triangulated by the baker, validated by rr_content and checked
+  independently for complete block coverage; paths/gardens extend into the
+  formerly empty eastern portion. Superseded visual iterations retained.
+
+- Final corrected frontage/full-block park build re-passed450workspace tests,
+  20authoring tests,strict Clippy,fmt,debug/release builds and audits. Five fresh
+  native runs all exited0 with stable frozen hashes/nonblank images; both
+  recovery rigs/routes and actors passed;18paired lab cases finite. Final
+  bounded wall19.91ms average/22.65ms p95 still exceeds16.7ms. Complete requested
+  implementation checklist and remaining review gates recorded in the report.
+
+## 2026-11-09 — Civic access and both AI escape paths (ADR121)
+
+User rejected empty City Hall surroundings, requested nearer road placement and
+sidewalk-connected park paths, and confirmed both mounted/walking AI traps.
+Added31context buildings/ten trees and grass, moved hall24m, baked six connected
+park entrances with a fountain ring. Added bounded pure grid planning with live
+physics sweeps, mounted road-rejoin steering and stale walking-route replanning.
+Physical mounted and walking concave-enclosure regressions pass without a rescue
+or teleport. Existing four living-city IDs stay open; no new IDs or next part.
+Final integrated evidence is recorded in testing/civic-access-ai.
+
+Final ADR121 verification: 457 workspace tests passed (one existing ignored),
+20 authoring tests, strict Clippy, fmt, locked debug/release builds, geometry,
+provenance and roadmap audits. Five serial native runs passed with stable input
+hashes and nonblank images; both rigs/routes remounted twice at zero pickup
+error, NPC contact checks passed, and all 18 paired lab cases remained finite.
+City Hall/park captures were visually inspected. Route survey wall average
+17.32ms / p95 22.26ms leaves the 16.7ms gate open; art/balance and full-race escape
+coverage also remain open. Original checkout unchanged; no push or merge.
+
+## 2026-11-09 — Civic greenery and city-width proposal (ADR122)
+
+Added denser hall/park trees and 5,346 civic grass tufts using existing batched
+wind rendering and clear-access exclusions. Hall has 120 trees (previously 10),
+all context buildings and both civic sites stay intact. User requested a map of
+removing about half of non-frontage blocks: CITY-WIDTH-01 records a preview of
+136 removed / 194 retained blocks and 7,833 fewer buildings; no live city deletion.
+Generated full before/after map and character gallery (16 portraits, all ten
+exported catalog sheets and native rider capture), explicitly separating art
+from unique 3D models. No external asset import or dependency migration.
+458 workspace tests, 20 authoring tests, fmt, strict Clippy, debug/release builds,
+provenance/roadmap and whole-car geometry audits pass. Native survey p95 22.99ms
+leaves the 16.7ms performance gate open. Final native evidence: testing/civic-greenery.
+Five final serial native checks passed; both rigs/routes reversed and remounted
+with zero pickup error, actor contact checks passed, frozen inputs stayed stable
+and images were nonblank. No push/merge; original checkout unchanged.
+
+## 2026-11-09 — User-authorized main integration
+
+Merged codex/living-city-ai into main (repository has no master branch) and created
+codex/city-next-pass. Resolved overlapping-history conflicts using verified source
+while retaining main-only historical evidence/artwork. Source/dependency/runtime
+asset comparison matches 2bbf731c exactly. Recorded run/model-view commands and
+actual biker captures in testing/main-merge-2026-11-09. No remote push, history
+rewrite or requirement closure. Narrow-city map remains a proposal only.
+Merged checkout passed 458 tests, fmt, strict Clippy, locked debug/release builds,
+provenance/roadmap audits and a fresh release native recovery smoke (both farm/city
+remounts at zero pickup error). Source parity receipt preserves exact comparison.
+
+## 2026-11-09 — Fresh-agent city and gameplay follow-up begins
+
+User requests separate contextless GPT-6 Astra medium agents for ten focused
+changes: town hall; original biker outfit restoration; lighting research;
+500m race-end trims/no gates; city lane consistency; traffic queue overtaking;
+texture fidelity; persistent crop deformation; moderately stronger elevation;
+and police uniform/custom bike. Added three stable IDs and acceptance gates;
+no task is complete merely from delegation. Work is isolated and reviewed before
+integration on codex/city-next-pass. Map-width reduction remains preview-only.
+
+## 2026-11-09 — Fresh-agent follow-up integrated and verified (ADR123–127)
+
+Completed ten separate contextless GPT-6 Astra/medium worker tasks, reviewed and
+integrated on codex/city-next-pass: detailed Hall stonework/PBR, original biker
+outfit restore, researched prefiltered sky IBL,500m race trims/no visible gates,
+entry carriageway alignment, safe queued-rider passing, persistent animated wheat
+trails,25%longitudinal relief and dedicated officer uniform/patrol motorcycle.
+All buildings/planar map/legacy maps and accepted physical rigs remain; no city
+width deletion, dependency migration or new external media/code intake.
+
+Parent clean-workspace run passed481tests (one existing600-second turning soak
+ignored),fmt,strict all-target Clippy,locked debug/release builds,audit and progress
+checks.23Metropolis authoring and5roadmap tests pass;30,120whole-car/17,828paint
+samples have no failures. Corrected readiness timing in the new retry fixture
+and froze the historical negative-control rim's old elevation/road frame without
+weakening current-map support tests. Native review also caught and corrected a
+worker GPU-buffer binding defect before integration acceptance.
+
+Twelve serial release native cases pass, plus18finite paired ragdoll lab cases.
+Both Metropolis branches/rigs, both police rigs, original model poses, pedestrian
+solids, legacy City/Valley and crop persistence/pause/reset are covered. An
+interrupted police batch and a wrapper screenshot-path failure are retained and
+excluded; repeated standalone police cases pass. Hall, officer, original outfit,
+road entry and crop art were visually reviewed. Route wall p9522.376ms remains
+above16.7ms; single-pair crop wall samples do not establish a GPU speedup or globally
+fastest method. Art/feel, full-course performance and wider hardware stay open.
+
+Four new IDs tracked: RACE-TRIM-01 verified and moved toPart00; CROP-TRAIL-01,
+ELEVATION-01 and POLICE-ART-01 remain open for remaining acceptance.221verified /
+253open, README/PROGRESS/TASK_PLACEMENT synchronized. Shared provenance refreshed;
+source/binary hashes and full report: testing/next-pass. Local Conventional
+Commits only; no new merge/push or next major part.
+
+## 2026-11-09 — Multiplayer/UI/walking follow-up under integration
+
+User requested actual multiplayer and subagents, clarified walking animation
+rather than controls, and selected player hosting across different internet
+connections: Quick Play joins an available <=250ms host or becomes host. They
+rejected operating a separate directory. Two fresh contextless Astra/medium
+workers own network/UI; the existing Astra walking worker was reused when the
+agent limit prevented another fresh worker. Root coordinates and reviews.
+
+Added ONLINE-PLAY-01 and UI-RETRO-BG-01; no completion yet (221verified/255open).
+UI source and visual gait checkpoint integrated first. Initial UI12tests and
+10-state native captures passed before later overlay/status changes; walking
+22animation/12model/10recovery tests passed before final native after-review.
+Network12focused tests passed, including isolated DHT, lease ownership/handoff,
+probe validation, interpolation and offline cleanup; actual multi-process race
+and final combined checks are pending. Native UI fixtures are not online proof.
+
+Review caught launch input consumed by menu, missing in-race Leave, stale
+post-reload menu state and incomplete guest/offline cleanup; fixes are being
+integrated and require reruns. Public Mainline discovery and temporary UPnP
+mapping avoid a user-operated directory but do not guarantee NAT reachability.
+No automated public DHT announcements or live router changes are required for
+fixtures. Dependency declaration review found attohttpc0.30.1 MPL-2.0; recorded
+its exact source/license notice and scoped audit intake after reading upstream
+license/FAQ. All580 declarations then pass; complete integrated audit remains.
+
+### 2026-11-09 — Integrated online evidence and city-activity follow-up
+
+Final rider gait capture152nonblank frames and original/fallback11-state UI plus
+22-stage offline flow pass; last online-overlay HUD mask recapture remains.
+Rendered Metropolis host/guest matches598snapshot hashes and observes movement,
+attack, crash, foot recovery and remount. Compression/750m interest reduces measured
+encoded payload from45.6Mbps JSON to6.32Mbps per guest, still above production
+bandwidth target. Full508-test checkpoint passed; later compression/EOF changes
+await final integrated rerun. Failed native checkpoint/Valley short-window receipts
+remain evidence, not overwritten successes. Separate-network/NAT is unverified.
+
+User adds multi-rider queue escapes, more city traffic, doubled city pedestrians
+and occasional crossings. Added AI-QUEUE-02 (Part01) and CITY-ACTIVITY-02 (Part06),
+221verified/257open. Separate workers own queue behavior and city activity; rural
+counts and accepted physics remain unchanged. Implementation/verification pending.
+
+### 2026-11-09 — Multiplayer/walking/city follow-up verified locally
+
+Implemented Host/Join/Quick Play with15-second automatic start, private/public
+lobbies/map selection, bot takeover/fallback, original local UI backgrounds and
+travel-matched rider gait. Review corrected remote-human obstacle holds/camera/
+footsteps, results-clock regression, buffered EOF delivery, downed-NPC offline
+cleanup and Quick Play losing automatic Start after a legacy-map relaunch.
+
+AI-QUEUE-02 now activates the existing predictive passing planner for crawling
+rider queues; four-rider physical bike/car queues drain safely with sustained
+passing. CITY-ACTIVITY-02 adds48city-only cars and doubles urban pedestrians to384,
+with10authored crossing routes and bounded gap-aware admission. Generated geometry
+and64shared/rural cars remain unchanged. Native survey exits0 with14reviewed views,
+144main cars,384walkers and two completed opposite-side crossings. CITY-ACTIVITY-02
+moves toPart00:222verified/256open. Dedicated rendered queue/full-course human
+balance and broad UI/network acceptance remain open.
+
+Final529workspace tests pass (1existing long soak ignored), strict clippy/fmt,
+locked build and580dependency/180asset declaration/hash audit pass. Five population,
+three audit and five roadmap Python tests pass. Native private Metropolis→Valley
+reload matches1497snapshots; final loaded-Metropolis pair matches1495, with all
+movement/attack/crash/foot/remount states and noerrors. Admission/late takeover/
+fullcapacity/hostloss and150ms loopback-delay fixtures pass. No separate-WAN/NAT,
+packet-loss,15scattered-human or production performance claim: observed farm-area
+wire payload remains6.41Mbps/guest and debugcity wallp9532.73ms exceeds16.7ms.
+Final Quick Play map-selection change has the final regression/build evidence;
+preceding native captures retain their exact binary identity. No new engine/rig
+migration, public deployment, push, main merge or automatic next major part.
+
+## 2026-11-10 — Controlled performance follow-up (ADR134)
+
+User requested commit/push/merge followed by optimization. Fast-forwarded local
+main to d8824bf and created codex/performance-profile-pass. The GitHub push is
+blocked on the desktop credential prompt; origin/main remains2665e73.
+
+PERF-08/P16-003: skip traffic forecasts while pedestrian crossing admission is
+impossible, add physical pair-type diagnostics and fix a stale native destruction
+fixture count against the expanded world. Preserve all geometry, city population,
+physics/recovery and damage behavior. Rejected worker-count changes (no total
+frame gain), standalone breakable bodies (settling regression) and damage-sweep
+prefilter (no consistent measured benefit). Retain their evidence, not their code.
+
+Final529workspace tests (one existing soak ignored), fmt, strict clippy, locked
+debug/release builds and audit pass. Native13-kind destruction/reset and both-rig
+recovery pass. Controlled release surveys show lower gameplay CPU work but total
+frame gains overlap run variation; no16.7ms/GPU/full-race/hardware acceptance.
+Evidence: testing/performance-pass. No new task IDs/closures;222verified/256open.

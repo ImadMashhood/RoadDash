@@ -206,6 +206,7 @@ pub fn capture(
     panel: Res<crate::settings::SettingsPanel>,
     recoveries: Query<(&crate::game::Rider, &crate::recovery::Recovery)>,
     mut controls: ResMut<Controls>,
+    online: Option<Res<crate::online::NetState>>,
 ) {
     let suppressed = std::mem::take(&mut controls.suppress_frame) || panel.open;
     if suppressed {
@@ -268,10 +269,10 @@ pub fn capture(
     });
     controls.context = if race.phase != Phase::Racing {
         rr_core::comfort::InputContext::Menu
-    } else if recoveries
-        .iter()
-        .any(|(r, s)| r.id == 0 && s.stage != crate::recovery::RecoveryStage::Riding)
-    {
+    } else if recoveries.iter().any(|(r, s)| {
+        r.id == online.as_ref().map_or(0, |n| n.local_slot)
+            && s.stage != crate::recovery::RecoveryStage::Riding
+    }) {
         rr_core::comfort::InputContext::OnFoot
     } else {
         rr_core::comfort::InputContext::Riding

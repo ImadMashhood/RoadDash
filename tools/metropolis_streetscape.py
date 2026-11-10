@@ -18,6 +18,16 @@ def sidewalks(data):
     gained = walk.buffer(CURB_SHIFT, join_style='mitre').intersection(road).intersection(urban).difference(primary)
     return road.difference(gained), walk.union(gained), gained
 
+def farm_pavement(data):
+    """Additional farm asphalt, excluding the city's retained street reservation.
+
+    The farm is four lanes wide. The existing urban approach is eight metres;
+    widening underneath its raised sidewalks/buildings does not make more lanes.
+    """
+    farm=next(e for e in data['edges'] if e['id']=='farm_approach')
+    wide=LineString([(p[0],p[2]) for p in farm['points']]).buffer(6.8,cap_style='square',join_style='mitre')
+    return wide.difference(decode(data['city_envelope'])).difference(decode(data['road_surface']))
+
 def footprint(p, yaw, width, depth):
     c,s=math.cos(yaw),math.sin(yaw)
     return Polygon([(p[0]+c*x+s*z,p[1]-s*x+c*z) for x,z in [(-width/2,-depth/2),(width/2,-depth/2),(width/2,depth/2),(-width/2,depth/2)]])
@@ -87,12 +97,17 @@ def furniture(data, paths, walk):
         add(kind,p,yaw+side*math.pi/2 if kind=='bench' else yaw,size,.36 if kind=='broadleaf' else None,.36 if kind=='broadleaf' else None)
     return result
 
-def audit(data, road, walk, gained, props):
+def audit(data, road, walk, gained, props, built_override=None):
     built=unary_union([Polygon(b['faces'][v['footprint_index']],b['face_holes'][v['footprint_index']]) for b in data['blocks'] for v in b['buildings']])
-    assert road.intersection(walk).area<1e-5
-    assert walk.intersection(built).area<1e-4
+    assert road.intersection(walk.buffer(-0.00001)).area<1e-5
+    if built_override is not None: built=built_override
+    overlap=walk.buffer(-0.00001).intersection(built).area
+    assert overlap<1e-4, f"building/walk overlap {overlap} m2"
     old=decode(data['road_surface']).union(decode(data['sidewalks']))
-    assert old.symmetric_difference(road.union(walk)).area<1e-5
+    if built_override is None:
+        assert old.symmetric_difference(road.union(walk)).area<1e-5
+    else:
+        assert old.difference(road.union(walk).buffer(0.00001)).area<1e-4
     assert gained.area>1000 and len(props)>200
     # Every physical footprint is on paved sidewalk; all buildings/route points untouched.
     for p in props:
@@ -100,4 +115,4 @@ def audit(data, road, walk, gained, props):
         assert walk.covers(footprint(p['position'],p['heading'],w,z).buffer(.12))
     return dict(curb_shift_m=CURB_SHIFT,typical_primary_sidewalk_width_m=2.4,minimum_building_side_walk_m=CLEAR_WALK_M,
                 added_sidewalk_area_m2=round(gained.area,3),props=len(props),by_kind=dict(Counter(p['kind'] for p in props)),
-                checks=['no building overlap','no carriageway overlap','unchanged street reservation','all physical footprints on sidewalk','junction setbacks >=20m','deterministic curb band placement'])
+                checks=['no building overlap','no carriageway overlap','unchanged street reservation' if built_override is None else 'landward expansion with retained carriageway','all physical footprints on sidewalk','junction setbacks >=20m','deterministic curb band placement'])

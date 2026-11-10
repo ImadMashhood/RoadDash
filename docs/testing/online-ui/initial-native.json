@@ -1,0 +1,51 @@
+{
+  "kind": "Initial visual fixtures only; not network transport evidence",
+  "exit_code": 0,
+  "screenshots": [
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-00.png",
+      "sha256": "c52a6a6c85d0bd2e47da1b5449358a2cb2a73c200f8f0f0f6dfeafbc16fd3fb2"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-01.png",
+      "sha256": "159190b353501398973639928d9f21dbdadf7d37b75df8cfac567c2a333d3687"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-02.png",
+      "sha256": "76eb0487bdffa94fdb7a5415f497438f6ee1aa70f869dfcd6120557e45efd30b"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-03.png",
+      "sha256": "c5a36e945ee388ea561e989d61c188d21a36e0b64d84123e669b2b4b83600c17"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-04.png",
+      "sha256": "689bb70fb5e1354d8d16b05c23c8803f81c6486aefdb7fd530398a2e3b7c59b0"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-05.png",
+      "sha256": "646616f0bb82b9b03b6d014db7d2057883cc8968bb640655b59ac4366b3d98da"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-06.png",
+      "sha256": "26aa9a905175227ada05ac0ab3f5260901106ce159b9eab0117cb90f7d480bcc"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-07.png",
+      "sha256": "8455278e89d714c1ee80a40965e908c4510e4cab52f54634bcaee9e6f1894469"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-08.png",
+      "sha256": "6406bd342d1785bca57e5c3dadf1570b5e1a90af2cfcce596453917563711d7f"
+    },
+    {
+      "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/original/online-ui-09.png",
+      "sha256": "a7b83a66569ac66a952e9c2e04d23d1f7f46f8789ccef7aa0dfa87360e822610"
+    }
+  ],
+  "issues_found": [
+    "Jost arrow glyphs absent; source changed to ASCII controls after this capture",
+    "Final long-private-code and discovery-status captures pending"
+  ],
+  "performance": "No claim; concurrent network compilation and default perf log failed due temporary-disk quota"
+}

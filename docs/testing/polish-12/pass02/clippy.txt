@@ -1,0 +1,3 @@
+    Blocking waiting for file lock on build directory
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 30.28s

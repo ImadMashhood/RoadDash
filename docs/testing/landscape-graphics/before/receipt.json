@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+    "--metro-survey"
+  ],
+  "exit": 0,
+  "frozen_inputs": {
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/art.json": "d4996f59cf7879276f1f3ae299bc8efe7c73db869e9588333431ed74aa0e8e33",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/content/world/metropolis.json": "978e58eddcc89db04fa0104a45a8719b578d93d7274a8fc8b262ea96fba5e35f",
+    "/home/imad/Documents/ChatGPT/RoadDash-polish/assets/shaders/metropolis_facade.wgsl": "ce2a0bf23db1624fe725c1dced157d7c10173b6b44d3e4fca9ef2979c6e1aa53",
+    "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash": "74254ec58fc767b3ce425780a186f160d655a9d12ac438eb49bb5c3ac4be29ca"
+  },
+  "inputs_unchanged": true
+}

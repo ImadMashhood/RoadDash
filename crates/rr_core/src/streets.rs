@@ -60,6 +60,25 @@ pub fn markings(sections: &[Section], route: usize, s: f32) -> (f32, f32, f32) {
         a.half_width() + (b.half_width() - a.half_width()) * t,
     )
 }
+/// A dropping lane must follow its destination queue before its bodies overlap.
+/// Compare both slots in one street frame, including the next 120 metres; this
+/// works in either travel direction and does not depend on render-frame poses.
+pub fn shares_lane_ahead(
+    sections: &[Section],
+    route: usize,
+    station: f32,
+    outgoing: bool,
+    slot: usize,
+    other_slot: usize,
+) -> bool {
+    let ahead = station + if outgoing { 120. } else { -120. };
+    [station, ahead].into_iter().any(|s| {
+        (lane_center(sections, route, s, outgoing, slot)
+            - lane_center(sections, route, s, outgoing, other_slot))
+        .abs()
+            < 1.9
+    })
+}
 pub fn following_speed(cruise: f32, gap: Option<(f32, f32)>) -> f32 {
     gap.map_or(cruise.abs(), |(gap, leader)| {
         if gap < 8. {
@@ -121,6 +140,76 @@ mod tests {
                 }
             }
         }
+    }
+    #[test]
+    fn entry_merging_slots_share_queue_before_bodies_touch() {
+        let p = vec![
+            Section {
+                route: 0,
+                start: 0.,
+                end: 2800.,
+                outbound: 2,
+                inbound: 2,
+                lane_width: 3.,
+            },
+            Section {
+                route: 0,
+                start: 2800.,
+                end: 3350.,
+                outbound: 1,
+                inbound: 1,
+                lane_width: 3.,
+            },
+            Section {
+                route: 0,
+                start: 3350.,
+                end: 12000.,
+                outbound: 2,
+                inbound: 1,
+                lane_width: 3.,
+            },
+        ];
+        assert!(!shares_lane_ahead(&p, 0, 2600., true, 0, 1));
+        assert!(shares_lane_ahead(&p, 0, 2780., true, 0, 1));
+        assert!(
+            (lane_center(&p, 0, 2780., true, 0) - lane_center(&p, 0, 2780., true, 1)).abs() > 1.9
+        );
+        for s in 2900..3350 {
+            for outgoing in [true, false] {
+                for slot in 0..2 {
+                    let center = lane_center(&p, 0, s as f32, outgoing, slot);
+                    assert!(center.abs() + 0.95 < markings(&p, 0, s as f32).2);
+                }
+            }
+        }
+        // A side-by-side pair approaching the four-to-two taper must establish
+        // longitudinal separation before the physical 1.9m bodies converge.
+        let mut progress = [2740_f32; 2];
+        let mut speed = [18_f32; 2];
+        for _ in 0..1200 {
+            let old = progress;
+            let old_speed = speed;
+            for car in 0..2 {
+                let other = 1 - car;
+                let gap = old[other] - old[car];
+                let leader = shares_lane_ahead(&p, 0, old[car], true, car, other)
+                    && (gap > 0.05 || (gap.abs() <= 0.05 && other < car));
+                let desired =
+                    following_speed(18., leader.then_some((gap.max(0.05), old_speed[other])));
+                speed[car] = if desired < speed[car] {
+                    (speed[car] - 6. / 60.).max(desired)
+                } else {
+                    (speed[car] + 2. / 60.).min(desired)
+                };
+                progress[car] += speed[car] / 60.;
+            }
+            let lateral = (lane_center(&p, 0, progress[0], true, 0)
+                - lane_center(&p, 0, progress[1], true, 1))
+            .abs();
+            assert!(lateral >= 1.9 || (progress[0] - progress[1]).abs() >= 3.9);
+        }
+        assert!(progress[1] > 2900., "merging queue must keep moving");
+        assert!(shares_lane_ahead(&p, 0, 3380., false, 0, 1));
     }
     #[test]
     fn traffic_collision_interest_has_margin_and_hysteresis() {

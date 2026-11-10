@@ -2842,3 +2842,757 @@ Add real linear master gain and persisted mute; use an unscaled CueGain on one-s
 Existing input mappings stay stable; add optional pickup/drop editor rows and retain reserved keys/duplicate rejection. Tabs navigate only visible rows; keyboard,mouse actions and one deterministic controller owner share the handler. Category navigation uses PageUp/Down/RB; Tab/Y switches binding editor device. Modal input remains suppressed before fixed capture, races/countdowns pause/restore exactly, and the opaque settings screen suspends3D rendering without changing simulation/rig tuning. Save failure stays visible/open/paused; explicit close without saving retains session values but leaves the file unchanged. No ambiguous discard/reset behavior. Camera defaults reset only comfort.
 
 Alternatives were decorating the old22-row list or adding unsupported graphics/audio buses; neither provides a truthful usable editor. No backend/dependency/art migration or external code/media import. Tradeoffs: two-column bindings validated at720p+,per-bus audio/quality presets/mouse or kick rebinding and human/controller/Windows/monitor acceptance remain open. Rollback is optional preference extensions,render/input adapters and master-gain multiplication; restore prior settings backup if using an older build. Evidence: testing/settings-menu/.
+
+
+## ADR105 — Retained-only facade selection hysteresis (2026-11-09)
+
+Metropolis additive authored detail granted radius/ranking bonuses to every active
+group, including groups already retiring. Near a face plane, sign changes also
+reversed selection without a deadband. Keep the existing 25m radius/20m ranking
+bonuses only while a group is wanted; require retiring groups to qualify as new.
+Retain wanted faces until the camera is 2m behind their plane. New faces still
+require a front-side camera. This suppresses tangent-camera jitter without
+changing source geometry, materials/atlas hashes, collision, fade duration or
+mesh/triangle budgets. Resident envelopes remain independent. Regression tests
+cover tangent jitter, exit threshold and retiring radius/rank behavior. No solver,
+rig, engine, dependency or asset change. PERF-08 remains open; native CPU/window
+measurements are not GPU timings. See testing/polish-12/pass01/README.md.
+
+
+## ADR106 — Paired pre-solver motion for downed contact eligibility (2026-11-09)
+
+The contact adapter used mounted-bike pre-solver motion but downed wreck/ragdoll
+post-solver motion to decide the existing3m/s ride-over threshold. A focused ECS
+regression reproduces a false lift with2m/s matched pre-contact speeds and a
+solver-changed target at−5m/s. Conversely a target accelerated to the bike's
+10m/s could suppress a genuine approach. Use the existing PreviousMotion sample
+for both eligibility and the existing energy response; retain current-velocity
+fallback only if that component is absent. No new domain rule or constants.
+
+Keep car18km/h and wall50km/h gates, rear60km/h front-rider knockoff/shared
+normal momentum, downed lift cap/energy accounting/cooldown, reverse and remount
+policy unchanged. No body/joint/motor/velocity-muscle tuning, dependencies or
+assets. Rollback is this adapter sample selection. Broader confined clearance,
+human feel and hardware approval remain open; synthetic solver fixtures are
+not a measured ordinary-game incidence rate. Evidence: testing/polish-12/pass02/.
+
+## ADR107 — One authored smooth Metropolis elevation profile (2026-11-09)
+
+Pass03 of the sequential polish replaces duplicated Python/Rust sine formulas
+with one serialized knot profile (`metropolis_elevation.json`, embedded in the
+approved planning layer and baked runtime manifest). Quintic interpolation has
+zero first/second derivatives at crests; broad farm rises lead into the climbing
+urban approach and long city slopes, with no separate hills district. rr_core
+owns interpolation; rr_content rejects malformed/steep profiles and stale path
+heights. Both route adapters sample the shared land for lanes and the extended
+grid; traffic navigation heights are recalculated after street projection.
+
+Preserve exact approved 2D source geometry, nodes' XZ, edges' XZ, blocks, IDs,
+rights of way and building envelopes; reauthor only the elevation layer, then
+run the normal Metropolis bake. Subdivide the formerly single starting apron
+and field surface triangles at32m. Field boundaries/fences remain their original
+rings; only visible/contact surface patches change. Check field union/overlap
+coverage offline and area at intake. Existing8m ground and32m streets remain.
+No rig, dynamics, controls, material/facade source or dependency migration.
+Native and geometric evidence: docs/testing/polish-12/pass03/README.md. Broader
+terrain/full-route/art/hardware acceptance stays open under existing requirements.
+
+## ADR108 — Unified late-afternoon lighting profile (2026-11-09)
+
+The sky adapter already replaced world lighting and exposure, but sun direction,
+colors and the camera's tonemapping lived in separate defaults. Author them in
+one bounded rr_content configuration and apply the complete profile in existing
+PostStartup installation. Share sun direction with the existing cubemap disc.
+Use 42klux warm sun at34.7 degrees,3400 cool ambient,1500 environment intensity,
+EV12.7 and explicit Reinhard. Retain Reinhard's gradual highlight rolloff; avoid
+contrast-heavy ACES and LUT-dependent operators/new embedded media. Supported
+analytic operators are an enum, unsupported LUT choices rejected at intake.
+
+No time-of-day system, autoexposure, shadow/cascade tuning, clouds/fog overhaul,
+new lights or passes. Existing drifting sky still rotates the disc independently
+of the fixed light over time; pass10 owns that known coherence issue. No facade
+materials or geometry changed: model-derived atlas rebake is not needed. No
+physics, save, dependency or asset migration. Tests assert actual installed
+camera/light settings and unchanged shadow policy. Native evidence and cost
+limits: testing/polish-12/pass04. Human art approval remains open.
+
+## ADR109 — Bounded shadow contact bias and cascade blending (2026-11-09)
+
+Pass05 preserves the pass04 lighting/exposure and Bevy0.17.3 four2048px
+cascades,10m first split and150m maximum reach. Reduce texel-scaled normal bias
+from1.8 to1.5 to tighten wheel/foot/foundation/vegetation receiver contact;
+retain0.02 depth bias as acne protection. Increase overlap from0.20 to0.25
+for a wider transition between existing maps. This can increase overlap work;
+it does not add maps or widen maximum shadow reach. Nearby geometry retains
+the finest map. Existing ornament/coarse-facade NotShadowCaster exclusions
+remain; resident envelopes, collision, trees and rider/bike casters unchanged.
+
+Installed Bevy cascade implementation already stabilizes projections by rounding
+cascade diameter and snapping to texels. Do not add a competing camera/light
+snapper. No PCSS, SSAO, new lights, runtime quality toggles, dependencies or
+material/atlas changes. Local dependency/API research only; no external code or
+media imported. Native paired evidence/cost limits: testing/polish-12/pass05.
+The initial1.0 normal-bias trial exposed faint terrain self-shadow patterning
+in native recovery and was rejected;1.5 retains a more conservative margin.
+Rollback changes only world light bias/cascade config and its integration
+assertions. P15-004 retains presets, temporal motion/hardware and art acceptance.
+
+
+## ADR110 — Shared measured-scale road materials on existing surfaces (2026-11-09)
+
+The legacy road installer queries RoadChunk render meshes, while Metropolis
+separates render chunks from RoadChunk collision owners. Consequently default
+roads remained flat-color despite the original asphalt PBR implementation.
+Create the shared asphalt material directly when Metropolis builds its road
+material slot. Use world-coordinate UVs before256m origin rebasing and generate
+valid tangents for its normal map. All triangle positions/indices, pavement
+height projection, collision roles/friction and marks remain unchanged.
+
+Use8m original aggregate tiles, quiet1.28–1.84m repair patches and short tar
+seals. Remove repeated world-axis tire bands. Preserve complete linear-filtered
+mip chains. Paint adds bounded opaque wear at0.5m world scale; no alpha holes,
+new blended passes or overlays. Existing1m sidewalk slab seams receive restrained
+slab tones and edge-dirt gradients; they are visual joints, not drainage physics
+or new grates. No facade material/atlas, dependencies, rig/simulation or licensed
+media changed. Model-derived facade source hashes/mips remain byte-identical.
+
+No new road meshes/entities/draw groups; default roads now sample three PBR
+maps and paint two small albedo maps. Native wall-frame measurements cannot
+isolate GPU texture cost or establish shimmer-free motion. Physical drainage
+hardware/full curb authoring and human/hardware approval remain P11-004 gates.
+Evidence: testing/polish-12/pass06. Rollback is the material/UV/paving change.
+
+## ADR111 — Source-compiled facade finishes and effective roughness parity (2026-11-09)
+
+Coordinate the24 placed Metropolis facade families at their original-model front
+compilation boundary. Keep original full models, editable blends, texture tiles,
+geometry streams, shade variants and architectural openings. A shared offline
+policy makes painted metal/masonry dielectric, retains restrained gold trim,
+quietens masonry by6% in linear color, slightly neutralizes concrete, and lifts
+opaque glazing/interior colors for readable existing entrances. No transmission,
+new overlays, geometry or runtime recoloring. Original hues/signage remain.
+
+Refresh72front and72storey GLB material headers directly from source materials;
+assert identical BIN bytes and every nonmaterial JSON field. The regular front
+compiler consumes the same policy, so a later normal rebuild reproduces it.
+Only current24families change source materials; legacy unplaced designs retain
+source finishes. Rebake all383far bands/five mip levels and Metropolis crops.
+Add a crop-only mode to the existing Metropolis baker so this material-only work
+cannot alter world geometry/elevation. Hashes include the effective profile input.
+
+The runtime already replaces textured roughness factors with provenance-linked
+micro-roughness maps. The old far baker ignored that operation. Bake the identical
+profile lookup/quantized micro-roughness instead; a shared fixture checks the
+actual Rust maps and Python baker values. Distant geometric normals still omit
+subpixel procedural micro-normal relief; this is an intentional LOD approximation.
+Metropolis previously cropped only albedo and forced roughness0.84/metallic0.
+Crop packed factors at the identical24family/three-band/five-mip mapping and
+sample them in its existing facade shader with matching gradients/gutters.
+Use linear RGBA8 (G=roughness/B=metallic), one extra texture sample and6,285,312
+resident pixel bytes; no new draw groups, meshes or lights. This removes the
+fixed-finish mismatch without changing silhouette/collision/ready lifecycle.
+No physical rule, dependency or imported media change.
+Human architectural/art, temporal/long-streaming and hardware/performance gates
+remain open under MAT-03/PALETTE-01/LOD-03. Evidence: testing/polish-12/pass07.
+
+## ADR112 — Low-rise use transition within approved property envelopes (2026-11-09)
+
+The existing height cap grows the first1.8km skyline gradually, but source-role
+selection gave even capped two-storey interior towers office facades. Keep the
+height profile and all approved geometry. Blend existing24-family palette use
+from roadside businesses to workshops, residential fronts and original city
+pools across authored northward stations−180/250/650/1100/1800m. Only buildings
+of at most five storeys before1800m participate. All taller buildings and all
+assignments beyond1800m retain the previous source-role rule exactly.
+
+Three consecutive authored footprint-index groups share a deterministic use
+choice; individual building IDs choose family variation. These groups are an
+index coherence device, not a claim that arbitrary polygon indices guarantee
+spatial adjacency. Finite normalized station weights and eligible non-office
+pools are checked in rr_content and the offline compiler. Existing setbacks,
+fields/fences, vegetation, closed collision envelopes and access gaps remain
+unchanged. No new clutter, mesh, texture, material or light allocation.
+
+Regenerate Metropolis through tools/bake_metropolis.py from the unchanged approved
+LAYOUT.json. The unchanged source families/GLBs/far atlas and both pixel crops
+retain identity; palette provenance changes. This is district-use presentation,
+not a layout redesign or newly authored farm buildings. PALETTE-01/V2-04-003
+retain complete site/transition art, human review, streaming and performance
+acceptance. Evidence: testing/polish-12/pass08. No external media/code imported.
+
+## ADR113 — Near-readable haze and exposure-matched horizon (2026-11-09)
+
+Pinned Bevy0.17.3 applies fog after exposed PBR lighting and before tonemapping;
+its skybox multiplies sampled linear colour by sky brightness and exposure. The
+previous fixed fog colour ignored that scale and became completely opaque at
+1050m. Use built-in exponential-squared distance haze at density0.00075/m:
+99.44% scene contrast at100m,98.19% at180m,53.79% at1050m and16.16% at1800m.
+This gradually separates distance layers while showing more distant geometry.
+One shared authored horizon sRGB colour (unchanged0.68/0.76/0.82) supplies both
+cube generation and fog. Convert it to linear and scale by actual sky_nits and
+Exposure::exposure for the fog target. Do not independently retune lighting.
+
+Native evaluation exposed a second mismatch: the existing non-HDR camera
+applies Reinhard inside the PBR shader, but the skybox writes exposed colour
+directly and clips. Trialing Hdr on the camera produced black frames throughout
+the native survey despite exit0 and no shader/pipeline errors. Reject that
+candidate; do not broaden this pass into a renderer migration. Keep the supported
+non-HDR path and document that shared radiance improves the seam but does not
+make sky and fog display colours identical. Pass10 must evaluate a coherent
+sky-output tonemap using the same profile; do not compensate with inverse-fog
+colour hacks. Preserve rejected-hdr images/logs and intermediate non-HDR receipts.
+
+Validate finite density0.0004–0.001/m and colour channels in rr_content. No added
+volumetric passes, textures, meshes, lights, directional-scattering loop or
+visibility/collision changes. The shader substitutes an exponential evaluation
+for a clamp; measure bounded native wall frames without claiming GPU cost.
+No facade source/material change, so no atlas rebake is required. Existing
+city_preview diagnostic lighting remains separate. Content config is authored
+and embedded, not a player save; replace obsolete linear endpoints in-place.
+
+Sky/cloud design and sun-disc drift stay with pass10; share the horizon parameter
+and preserve its radiometric relation if that palette or brightness changes.
+No external source or media intake. SKY-01 evidence is extended, no new IDs,
+closures or task moves. Human racing-speed readability and broad art/performance/
+hardware gates remain open. Evidence: testing/polish-12/pass09.
+
+
+## ADR114 — Display-referred procedural sky with stable solar direction (2026-11-09)
+
+Preserve the supported non-HDR renderer after ADR113's rejected black HDR trial.
+Bake the exposed analytic tone operator into a separate256px sRGB display cube;
+set Skybox brightness to reciprocal camera exposure so Bevy's built-in multiplier
+leaves that display-linear value unchanged. PBR fog uses the same horizon radiance
+and Reinhard operator. Keep original radiance/specular and16px diffuse cubes,
+intensities and all lighting settings unchanged. This is authored static exposure;
+a future dynamic exposure change must rebuild the display cube together with fog.
+
+Author the visible cube in world directions, compensating for Bevy's Z-reversed
+cube sampling. Previously the sun disc was mirrored north/south and the entire
+sky/environment rotated as wind. Remove that update system: sun, horizon and
+lighting now remain world-fixed. Hold clouds stationary until independent cloud
+motion is implemented; retained legacy wind config is explicitly inactive.
+Avoid per-frame texture uploads or new custom render passes for this bounded fix.
+
+Original continuous direction-domain banks with fine lobes, sunward shading and
+a weak high veil replace the visible single-scale mottling. Directional warmth
+and clouds fade out at the horizon to its exact shared fog target. Separate sky
+presentation avoids changing accepted environment illumination. One additional
+2,097,144byte cubemap with nine mips is generated once; no added draw call or
+per-frame sky sampling, meshes, lights, collision or visibility changes. Angular
+cubemap filtering remains subject to native/hardware review at extreme minification.
+SBDT fallback is adapted from the installed licensed Bevy analytic implementation;
+attribute Tomasz Stachowiak and retain upstream notices. No external media intake.
+Full landscape, independent cloud motion, human art/temporal and broad performance/
+hardware gates remain open; SKY-01 evidence extends without checklist closure.
+
+## ADR115 — Authored ankle pivots for render-only boot articulation (2026-11-09)
+
+The distal skin adapter approximated both shin-to-ankle offsets as0.50m,
+although the immutable source animation chain places them at0.558046m. This
+rotated boots around points above the ankle: a0.6rad distal flex displaced the
+anatomical ankle by34.3mm. Use the authored endpoint distance in runtime skin
+binds and their paired inverse binds. Keep the original weights, mesh geometry,
+materials, eleven base frames and physical16/11body rigs exactly as before.
+No wrist twist, motion-library rewrite, physics/muscle/recovery tuning or dependency.
+
+The source-space sole/grip landmarks are independently retargeted across normal,
+tuck, steering blend, run, get-up and both pickup clips; check inverse-bind neutral
+identity and physical/visual differential fixtures. Native current walking/running,
+standing, mounted and recovery views supplement these numeric clips. This is a
+bounded articulation correction, not certification of whole mesh clearance,
+civilian volume seams, full gait quality or final art/performance/hardware gates.
+Evidence: testing/polish-12/pass11. Rollback changes only the two distal skin pivot
+distances and their regression; no authored asset/schema migration.
+
+## ADR116 — Confirmed-contact presentation recoil without physical authority (2026-11-09)
+
+Successful mounted melee contacts record one replaceable race-clock pulse on the
+victim. rr_core owns finite duration/envelope and signed local impact direction;
+the visual adapter layers a small spine/chest/neck/head rotation onto the current
+riding pose. Punch peaks emphasize head recoil; kick peaks emphasize trunk fold.
+Root/pelvis/feet remain unchanged, shoulders inherit the connected chest, and
+existing two-link fitting retains held grips/pegs. The pulse never writes physical
+transforms, velocities, drive intent, cooldown, immunity or recovery.
+
+Attack clips take priority to preserve released strike contact landmarks; the
+reaction ages underneath rather than delaying/queuing input. Decisive knockoff
+clears the ordinary pulse and retains existing stagger/crash presentation.
+Recovery/finish/inactive race phases discard pulses, pause freezes the race clock,
+and retry reconstructs Rider. Replacement prevents additive stacking. Misses and
+LOS/immunity rejection do not trigger a pulse, impact audio or camera cue. There
+is no defensive block mechanic to invent; obstruction remains a miss. Existing
+confirmed-hit punch/kick sound and bounded camera shake remain on the same
+contact event. Kick push and three-direct-punch knockoff rules are unchanged.
+
+No engine/dependency, audio/media, physical rig, model/bind or authoring asset
+change. Opt-in native reaction smoke uses temporary logical attackers and the real
+LOS/melee resolver to isolate confirmed victim reactions; it bypasses windup and
+is separate from the existing real keyboard contact-clock fixtures. Broad
+contact geometry, human impact/audio/balance/art and hardware/performance gates
+stay open under COMBAT-FEEL-01/P05-006/ANIM-09; no new IDs or closures. Evidence:
+testing/polish-12/pass12. Stop after the twelfth polish pass.
+
+## ADR117 — Bounded original farm grass and continuous shoulder color (2026-11-09)
+
+The user explicitly requested a new landscape pass after the twelve polish passes,
+using pastoral grass/road-edge references. Keep Bevy0.17.3 and the accepted world,
+collision and physical rigs. Investigated warbler_grass (Bevy0.13),
+bevy_procedural_grass (0.12.1), and GEMI/bevy-grass (0.20); pinned source/license
+receipts are in testing/landscape-graphics/research. None is imported. New grass,
+soil geometry and spatial color functions are original project code. Supplied
+screenshots inform density, irregular edges and palette only; no reference media,
+models, texture pixels, terrain or protected UI is copied.
+
+Use opaque two-sided five-blade tufts with independent deterministic placement,
+density and size seeds, coherent pasture/grain/fallow colors,32m batches and native
+65–110m dither visibility ranges. Avoid grass shadow cascades, transparent cards,
+per-frame uploads, new shaders and collider changes. Retain continuous ground
+color and soil-edge ribbons beyond the tuft range. Shared original64px flecks
+with seven mips add21,844bytes and no new render pass; shoulder outer vertices
+use the same field material, UVs and color function. Dense0.6m verge candidates
+replace sparse1.2m candidates within12m; farther fields stop at34m lateral extent
+to concentrate the geometry budget near the racing camera. Soil ramps meet the
+actual6.8m farm pavement, above the retained physical ground without adding a
+collider. Exclude field holes, roads,
+access surfaces, building footprints, barns and fence margins. Unplanted verges
+are eligible only outside field bounding boxes; this conservative rule may leave
+some extra bare space. Caps fail explicitly during generation instead of silently
+truncating the end of the course. Census records actual tuft/batch/triangle counts.
+
+Terrain surface vertices/indices, field polygons, building envelopes, source
+layout, Valley quotas and both legacy maps remain unchanged. No facade changes
+require an atlas rebake. This is scoped V2-06-005/006/007 and WORLDART-01 evidence,
+not completion of the entire landscape/NPC/art/performance gates. Wind, new trees,
+stone walls, terrain silhouette remodeling and full-map vegetation remain future
+work. Verification and measured limitations: testing/landscape-graphics/README.md.
+
+## ADR118 — Rural gravel verges and whole-field farm placement (2026-11-09)
+
+User review found the asphalt/grass transition abrupt and cows overlapping fences,
+and requested reuse of existing farmland props. Extend ADR117 with a light gravel
+shoulder about1.5m wide, a graded short-grass verge and an irregular outer edge.
+Set tall tuft candidates back beyond the gravel. Keep actual polygon clipping,
+shared ground texture/mips, source road/terrain geometry and physical support.
+This is a rural shoulder, not an urban raised sidewalk or a new collision curb.
+
+Replace the fixed16m cow offset with deterministic whole-body field-interior
+clearance. Preserve population, physical rig and reset/recovery ownership. Root
+positions now rest at field surface height; fences require body radius plus1m.
+Reuse the existing BRNGRN2, WINDVN2, HAYDOUB2 and HAYTRIP2 original catalog models
+in four small field groups, with16 independent fixed obstacle owners using fitted
+bounds. Exclude authored roads/access/building polygons, old barns, parcel holes,
+fences and other farm occupants; new grass excludes these same placements.
+Existing world layout/source buildings/colliders remain; the16 prop colliders are
+explicit additions, never hidden by LOD. No external asset/code intake, dependencies,
+facade edits or source-layout migration. Full-map art/performance acceptance stays
+open under V2-06-003/006/007, ENV-008 and WORLDART-01. Evidence: testing/farm-verges.
+
+## ADR119 — Helmeted matte clothing and curved wind grass (2026-11-09)
+
+User requested humans and grass closer to the supplied pastoral low-poly reference,
+then explicitly selected helmets with stylized clothing. Keep original authored
+surfaces, bind frames, weights, glove morphs and both physical rigs. Render-only
+cloth partitions use canonical standing height, retaining every source triangle
+and skin influence. Matte rust-red player jacket, independent rival palettes,
+charcoal trousers, dark boots/gloves and faceted normals replace shiny armor-like
+cloth cues. Vertex tint gives broad cloth variation, not a new sculpted garment or
+high-resolution plaid texture. Helmets and visor remain. Human prop skins receive
+cached flat-normal/matte variants; cows retain their existing presentation.
+
+Extend ADR117/118 with narrow curved six-blade tufts, variable green/dry tips,
+root-darkening and bounded GPU wind. Use pinned Bevy0.17.3 ExtendedMaterial and
+standard PBR shading; no dependency migration. Roots remain fixed; maximum tip
+sway is below0.078m and conservative bounds include0.08m. Opaque two-sided blades
+avoid alpha overdraw and shadow casting. Keep32m batches,65–110m visibility ranges,
+road/fence/building/whole-farm-occupant exclusions and independent collision.
+Near candidates use0.5m spacing. Geometry cost increases and must be reported;
+this is visual work, not a claimed performance optimization. No facade/source
+layout/material atlas changes are involved.
+
+Research-only: Foxtrot, warbler_grass and Saddle Rendering Grass pinned receipts
+are in testing/stylized-humans-grass/research. Their Bevy versions differ from the
+installed engine. No repository implementation or proprietary screenshot pixels
+are imported. New code/shader is original, using installed Bevy interface APIs.
+Existing ART-04, V2-06-007 and WORLDART-01 remain partial; art acceptance, character
+silhouette remodeling, full-map vegetation and hardware/performance gates stay
+open. No new IDs or task closures. Evidence: testing/stylized-humans-grass.
+
+## ADR120 — Portrait cast and living city integration (2026-11-09)
+
+User explicitly requests major AI/cast/loadout changes, safe reversing, urban-only
+population growth, crossing-car speed correction, progressive roadside buildings,
+City Hall with arches, a fountain park, covered cafes,20%wider sidewalks and clear
+lane/crosswalk geometry. Extend the current polish branch without merging main.
+No engine/dependency migration or physical ragdoll tuning. Keep stable content IDs,
+save format and the15rider race contract. Fourteen active slots use approved bar
+portrait names; George and Elif stay in the16portrait bar cast. Weapon/behavior
+choices follow described riding/fighting/occupation, never demographic traits.
+Use existing weapon families; no invented new combat abilities. Preserve seven
+aggressive and seven race-focused opponents with exact-identity retaliation.
+
+Pure fixed-tick driving memory lives in rr_core: slower committed lane movement,
+description-based pace/patience/kicks and timed low-speed backing only when the
+rider wants progress and a full rear shape sweep is clear. Use the existing reverse
+force adapter, no teleport/recovery shortcuts. Traffic queues must not trigger
+backing. Reset history with the existing Rider restart lifecycle.
+
+Crossing paths wrap140m. Reset Rapier current and next kinematic poses during
+recycling instead of representing that displacement as a physics velocity.
+Apply the same reset to main traffic recycling. Add32urban-only main cars and
+increase city patrol budget96->192; retain original64-car baseline distribution
+through farms. Populate additional city crossings without increasing farm actors.
+
+Bake source-derived civic sites and approach buildings through bake_metropolis.py
+using content/world/living_city.json alongside the approved planning source.
+User corrected the first small-public-lot interpretation and explicitly selected
+park 3 (LC-S0152) for City Hall and park 5 (LC-S0246) for the detailed park.
+City Hall faces the actual adjacent driving street to the east/southeast, with a 174m frontage, 129m deep foundation,
+116m clock tower, pediment and grand arched colonnade. Other parks remain.
+Civic site validation now permits bounded sites up to400m to fit these real park blocks. Original resident civic geometry
+has persistent compound collision and actual open archways. Existing model-derived
+facade atlas/materials remain; geometry uses new source footprints with the same
+near/far family contract. Sidewalk expansion grows landward, with bounded building
+setbacks retaining all old IDs/envelopes and lane widths; precise geometry checks
+own acceptance.20%area is an approximation to width on irregular junctions, not
+an assertion that every cross-section is exactly20%wider. Cafe placement retains
+an open1.5m walking strip. New pavement-aligned zebra crossings and stronger lane
+paint share actual carriageway triangles. No proprietary media or external code
+intake; all additions are original procedural models/code and existing project
+assets. Art/AI fairness, long-streaming and hardware/performance remain gates.
+
+ADR120 final user clarification: city-facing means facing the actual driving
+street, not the westward city centre. Derive the entrance heading from the nearest
+authored traffic path instead of a cardinal-direction guess. Author full-block
+civic ground patches from each selected source polygon minus road/sidewalk,
+triangulate in32m tiles, validate Shape data in rr_content, and render those exact
+patches at terrain height. Do not substitute an inscribed rectangular lawn.
+Keep other parks unchanged; extend park5 planting/paths throughout its footprint.
+
+## ADR121 — Connected civic grounds and live AI escape routing (2026-11-09)
+
+User rejected the isolated City Hall plaza and disconnected park paths, and
+confirmed stuck AI occurs both mounted and walking. Keep the approved park3/5
+locations, road-facing architecture, previous cast/density work and all old IDs.
+Move the hall24m toward the race street while retaining its whole foundation and
+stairs inside the block. Frame it with31original low-rise closed-envelope buildings
+using existing facade families and ten trees; replace most open paving with lawn.
+Bake one park path network joining six actual sidewalk points and an annular
+fountain path, using source road/sidewalk polygons. Retain full-block grass.
+
+Pure bounded search, progress memory and walking stall detection live in rr_core.
+Search49×49cells at3m spacing, at most1024expansions and one plan per fixed tick
+per mounted/walking subsystem. Physics adapters supply live swept-body/capsule
+clearance; route segments are rechecked while moving and blocked routes expire.
+Mounted recovery detects lack of forward progress so repeated backing oscillations
+do not hide deadlock. Follow world-space waypoints through the existing vehicle
+forces and bounded heading assistance; reverse is latched per segment. Ordinary
+short traffic queues wait; prolonged gridlock may seek an alternative after10s.
+Walking NPCs replan when blocked or stationary; manual/player recovery is unchanged.
+No rescue teleport was added. Existing exceptional on-foot rescue remains unchanged.
+No ragdoll masses, joints, muscles, accepted player controls or saves were tuned.
+
+No dependency migration, external code or media intake. Existing CAST-AI-01 and
+CITY-CIVIC-01 acceptance is clarified, not closed; art, general deadlock freedom,
+long races and hardware/performance remain open. Search may fail in a sealed or
+larger-than-local enclosure; it must stop/retry rather than return a wall-crossing
+route. Model changes reuse existing baked facade families/atlas source contracts.
+
+## ADR122 — Civic planting and reviewable city-width reduction (2026-11-09)
+
+Increase hall planting to 120 trees using actual lawn/paving clearances; retain
+all 31 context buildings and public access. Add park interior trees with furnishing
+exclusions. Civic blade patches reuse the existing 32m grass batches, 65–110m
+visibility range, shared opaque wind material and existing budgets; turf remains
+continuous. Trunk colliders/navigation use the same positions; no physics tuning.
+
+The user wants a map of a narrower city, then specified about half the blocks
+which do not touch main race roads. CITY-WIDTH-01 is a review proposal, not a live
+map deletion. Protect whole blocks within 45m of either race centreline (conservative
+road/walk frontage), plus all six park sites. Rank other whole blocks by distance
+from the race corridor; propose the farthest 136 of 273 non-frontage blocks.
+This preserves 194/330 blocks and 11,275/19,108 buildings. Keep both branches,
+source planning and the live manifest's buildings untouched. Edge streets and
+terrain transitions need design after selection. Counts do not imply FPS gains.
+
+Character gallery uses existing approved portrait art and actual exported GLB
+review sheets. Do not imply the 16 portrait identities already have distinct 3D
+rider meshes. No external media/code import or runtime dependency migration.
+
+## ADR123 — Fresh-agent civic, lighting and race follow-up (2026-11-09)
+
+The user requested separate contextless GPT-6 Astra/medium workers for each
+follow-up. Isolated branches are reviewed and integrated by the parent, with
+serialized native measurements and final combined regressions. This is the
+active follow-up, not advancement to the next major roadmap part. The earlier
+city-width reduction remains a proposal; no blocks are removed.
+
+Restore original biker presentation from6039be4e, retaining helmets and the
+accepted physical rigs. The rejected render-only clothing style is removed;
+later world/grass work remains. Give civic ornament five resident opaque batches
+rather than individual entities: limestone mouldings, window surrounds, doors,
+clocks and copper roof articulation preserve the existing hall pose, open arches,
+31 context buildings and120trees. Original periodic surface maps and metre-scale
+UVs apply to those resident batches. No facade family/atlas geometry changes;
+MAT-03 still governs any future facade changes. Art acceptance remains open.
+
+Use the existing pinned Bevy0.17.3 environment-light API with original, once-built
+cosine diffuse and GGX specular prefilters of the same procedural sky. Correct
+cube handedness; preserve direct sun, MSAA, exposure, haze and shadow policy.
+ROADDASH_LIGHTING=legacy retains the earlier profile. This is static global IBL,
+not scene-aware GI. SSAO/temporal-AA migration is deferred; research and costs
+are in testing/next-lighting. No dependency or external media intake.
+
+Metropolis keeps the full12km physical map and both routes, but its playable
+interval is500..11500m. Shift the existing grid by500m; retain relative spacing.
+Remove visible checkpoint structures and their dedicated colliders/HUD, retaining
+internal ordered route validation. Legacy race intervals/presentation remain.
+RACE-TRIM-01 tracks integrated start, retry, endpoint and branch acceptance.
+
+The entry-road defect came from a late asphalt overlay under raised sidewalks,
+not merely incorrect lane paint. Use final road/walk partitioning and a smooth
+4→2 lane taper at2800..2900m ahead of the2970m city envelope; retain subsequent
+city widening. Traffic centers, full car footprints and paint use the same road
+profile. Preserve all building envelopes and landward walks. Equal-progress cars
+use stable merge priority and look ahead for shared downstream lanes. Geometry
+sampling alone does not close native traffic/AI or performance acceptance.
+
+Parent integrated tests, provenance and native review remain required; worker
+source commits and historical captures are not final combined acceptance.
+
+## ADR124 — Persistent, sparsely updated field deformation (2026-11-09)
+
+Use original static wheat meshes in grain parcels within72m of the farm course,
+with16m batches and1m damage cells. Each cell stores bend direction, amount and
+first-contact time; the shader animates a0.32s bend. Fixed-step swept physical
+bike/rider/wreck/limb shapes stamp planted cells. Vertical separation, disabled
+bodies, teleport-sized displacements and pause are excluded. Marks survive actor
+removal and culling, lasting until race reset; no save schema change. Grain-only
+undergrass is shortened so it cannot hide the flattened canopy.
+
+This avoids per-stalk entities, dynamic mesh rebuilds, crop colliders and ongoing
+simulation per stem. State is capped at2048tiles/8MiB per damage copy; current
+geometry uses635tiles/2.60MB and885,312allocated triangles, with distance culling.
+Only dirty4KiBtiles upload; the shared clock is16bytes. Stable COPY_DST GPU buffers
+are necessary: native review rejected an earlier asset-replacement path whose
+unchanged material bindings still read stale allocations. Startup-resident buffer
+handles live across retries; future runtime map teardown must also clear queued
+render writes. Research and rejected/accepted evidence: testing/next-crops.
+
+This is a bounded selected method, not a proof of globally fastest vegetation.
+One material/draw per visible tile remains a cost; a custom instanced atlas could
+reduce it after profiling. The native fixture verifies physical-shape contact,
+visible marks, persistence, pause/reset and stationary zero tile uploads; it is
+not a free-running crash or GPU timestamp benchmark. User art approval, broad
+hardware/full-course performance and the16.7ms target remain open under
+CROP-TRAIL-01. No external code/media or dependency migration.
+
+## ADR125 — Height-only moderate relief enhancement (2026-11-09)
+
+Scale longitudinal height displacement above the existing10m datum by1.25;
+retain knot stations, quintic C2 blends and0.8m lateral crossfall. Relief rises
+52→65m; maximum analytic longitudinal grade3.00→3.75%, below the existing4% bound.
+Preserve full12km paths/progress, all x/z/IDs/counts/footprints and final lane repair.
+A guarded elevation-only baker requires the exact previous layout hash and rejects
+all source changes except heights and explicitly derived metadata; it updates
+shared profile, source hash and route/control-point y without planar regeneration.
+
+Terrain/render/collision/pads already use the shared profile. Existing actual
+triangle support sampling remains below12mm (11.921mm pavement,11.828mm fields);
+that narrow margin is not permission to raise tolerances or further increase
+relief without tessellation review. Both-branch native recovery and user feel
+remain acceptance gates under ELEVATION-01. No physics, dependencies, legacy map
+or external media changes. Evidence: testing/next-elevation.
+
+## ADR126 — Reachable queue passing through existing vehicle forces (2026-11-09)
+
+The prior traffic planner assumed at least8m/s during passing, excluding close
+stopped queues; matched-speed followers could repeatedly accelerate then brake.
+Evaluate current and intended speeds, including a current-speed stage for moving
+queues and4/2/1m/s stages when physically reachable. A reduced-speed choice must
+lead to a clear passing lane rather than merely follow forever. Remember a passing
+side until the original queue clears, while rechecking live rear/oncoming/alongside
+traffic, destination occupancy and safe return every fixed tick.
+
+Intersect outbound road bounds120m ahead to reject dropping lanes and inbound or
+sidewalk space. Segmented physics sweeps follow actual curved-road candidates
+and reject static obstructions. Pure planning remains in rr_core; steering,
+braking and acceleration use the existing vehicle adapter. No transform writes,
+teleports, traffic removal, collision exemptions or player-controller tuning.
+The physical stopped-car fixture must pass without exceptional escape/recovery.
+Existing bounded escape remains the fallback when no safe passing route exists.
+
+These bounded forecasts do not reserve lanes or guarantee deadlock freedom against
+arbitrary traffic motion. Additional sweeps need combined native performance
+review; narrow/sealed queues may still wait. CAST-AI-01/P08-005 remain open for
+full-course fairness/feel/performance. No new dependency or external intake.
+Evidence: testing/next-queue-passing.
+
+## ADR127 — Officer-only uniform and patrol equipment (2026-11-09)
+
+Use an original UV-baked navy/silver uniform, white helmet and generic gold shield
+on the existing human mesh/binds. A reserved usize::MAX presentation token is
+assigned only to the resident officer; all16 ordinary roster identities retain
+the restored original appearance. The token follows the existing runner/ragdoll/
+wreck/remount lifecycle. Generic project-original art uses no real department or
+motorcycle brand. Original rider texture and source geometry remain untouched.
+
+Add20 visual equipment children from three shared meshes/seven materials: touring
+screen/nose, chamfered panniers, radio box and compact red/blue emissive lamps.
+Officer fairings are navy and paint white. Replace only the officer stock screen
+with the touring screen; preserve all ordinary bikes. Lamps are static emissive
+surfaces, not new lights or siren logic. No collider, mass, joint, motor, pursuit,
+recovery or player physics changes. The primitive fallback safely wraps palettes.
+
+A first native review rejected doubled glass and toy-like luggage; the refined
+actual-model gallery and both-rig police behavior fixtures passed. Differential
+model trajectories remain exact. Root combined verification remains required.
+POLICE-ART-01 keeps user art/fairness/full-course/hardware gates separate from
+presentation integration. Evidence/provenance: testing/next-police-art.
+
+## ADR128 — Player-hosted sessions and distributed public discovery (2026-11-09)
+
+The user requests native listen-host races and Quick Play joining an available
+host at measured RTT <=250ms or creating a host, with no separately operated
+lobby directory. The current request authorizes this focused networking work;
+it does not close the earlier production latency, prediction or platform gates.
+The host owns simulation; guests submit validated input and consume snapshots.
+
+For public discovery, evaluate and integrate pinned MIT mainline8.0.1 against
+the existing Mainline DHT bootstrap network, using a game/protocol-specific
+namespace. No torrent content is downloaded or shared. Public endpoints alone
+are announced; private codes and names are never published. Bounded off-thread
+lookups supply untrusted candidate endpoints to the game-specific measured-ping
+and availability handshake. Reject nonpublic/reserved destinations from DHT
+results, cap candidates and never block the fixed simulation. Short-lived nodes
+avoid the library's automatic long-lived routing-server mode.
+
+This removes a user-operated directory, not external bootstrap dependencies or
+NAT restrictions. DHT discovery is eventually consistent and may miss hosts;
+results must not be called an exhaustive global search. An unreachable host
+still needs forwarding or a future relay/NAT-traversal solution. Keep direct
+codes and local discovery; expose discovery failure rather than asserting an
+empty internet. Private lobbies use endpoint plus a random128-bit capability.
+No public deployment or guaranteed different-network connectivity is claimed.
+
+Sources inspected: https://github.com/pubky/mainline (crate8.0.1 source and MIT
+license), https://docs.rs/mainline/8.0.1/mainline/ and BEP5 at
+https://www.bittorrent.org/beps/bep_0005.html. Alternatives: owned registry
+(rejected by user), LAN/known-peer only (insufficient WAN discovery), platform
+matchmaking (requires platform integration). Pending: locked dependency checks,
+local DHT/handshake tests and actual different-network verification.
+
+## ADR129 — Temporary router mappings for explicit listen hosting (2026-11-09)
+
+An explicit Host or Quick Play host can request a temporary TCP mapping from a
+local UPnP IGD, using pinned MIT igd-next0.17.1 on a worker. Use a finite120-second
+lease, refresh while hosting and remove the owned mapping on cancellation; never
+request a permanent lease or map unrelated services. ROADDASH_UPNP=0 disables
+this behavior and an explicit advertised endpoint takes precedence. Native
+automation disables it; tests use mocks, not the developer's router.
+
+Expose successful mapped endpoints to code/discovery updates. A mapping response
+is not proof of external reachability; CGNAT, firewall restrictions, disabled
+UPnP and routers refusing finite leases remain explicit limitations. No relay
+service or separate user-operated directory is introduced. Relevant upstream:
+https://github.com/dariusc93/rust-igd and
+https://docs.rs/igd-next/0.17.1/igd_next/struct.Gateway.html . Inspected published
+source, MIT license, lease/error behavior and Rust1.75 minimum before intake.
+
+## ADR130 — Travel-matched presentation gait (2026-11-09)
+
+The user corrected the walking complaint to animation. Keep the original6m/s
+controller, turning, physical rigs, recovery and gameplay audio ownership. A
+phase-continuous renderer-only gait uses measured travel and smoothed speed,
+walking double support and running flight, opposing bent arms, velocity-relative
+swing targets and bounded visual pelvis lowering when a support chain exceeds
+reach. Physical body transforms are unchanged. This corrects the previous
+3.2m cycle versus0.84m support-sweep mismatch rather than tuning player physics.
+
+Targeted animation/model/recovery tests passed before integration. Established
+contact slip is at most0.411mm/tick in translated flat and12%up/down fixtures;
+this is not full terrain/stair/contact acceptance. Native after-review and
+both-rig recovery remain required. Existing footstep sound timing is retained;
+exact sound/contact synchronization and civilian NPC gait remain separate.
+Evidence: testing/walking-animation. V2-03-003 remains open for broader gates.
+
+ADR129 intake follow-up: igd-next pulls unmodified attohttpc0.30.1 (MPL-2.0).
+Read its complete license and Mozilla FAQ Q8/Q11; retain a source-access notice
+and license copy. The declaration audit accepts only this exact registry
+package/version/license with validated intake files, not MPL globally. Binary
+packaging must carry the notice/license; release packaging remains open.
+
+## ADR131 — Bounded world replication neighborhoods (2026-11-09)
+
+Actual rendered-map verification measured roughly285KB JSON per20Hz snapshot,
+about45.6Mbps per guest, making an empty-world bandwidth estimate misleading.
+Retain every racer/chassis/runner/wreck/rig and all persistent damaged-prop state;
+limit NPC/traffic snapshots to the union of750m neighborhoods around each human's
+actual runner, torso or rider position. The boundary is beyond the current fog
+range. The host still simulates/collides with every actor; this is replication
+selection, not removal of authoritative hazards. Guests hide excluded actor
+parents and ragdoll parts, restore them on reentry, and restore normal visibility
+when returning offline. No interpolation writes into host bodies.
+
+The protocol worker separately adds bounded lossless compression once per
+broadcast. Tests cover human-neighborhood boundaries, on-foot centers, stale
+parts/reentry/offline visibility and preserved host entities. Native populated
+payload measured6.32Mbps per guest (789,422encoded bytes/second at20Hz); this remains above the100kbps target. These changes do not establish production
+bandwidth or hardware acceptance. New user city-density work follows this pass.
+
+## ADR132 — Slow rider queues activate predictive passing (2026-11-09)
+
+The prior traffic planner added rider occupancy only after a car hazard, leaving
+rider-only crawling queues outside its safe passing path. Promote slow forward
+upright riders into hazard detection, then include every nearby upright rider
+in existing lateral/rear clearance and committed passing. Preserve normal-speed
+combat spacing, existing steering/physics, outbound bounds and the requirement
+for a reachable gap. A sealed road still waits. AI-QUEUE-02 records this follow-up.
+
+Four-rider physical cases now clear both a crawling rider and a slow-car queue,
+with sustained passing, no damage/recovery and no inbound/shoulder excursions.
+Existing predictive passing and blocked/reopened corridor tests remain controls.
+Full-route human balance and a dedicated rendered queue fixture remain separate.
+
+## ADR133 — Denser urban activity with paced pedestrian crossings (2026-11-09)
+
+CITY-ACTIVITY-02 raises Metropolis main traffic96→144 and pedestrians192→384,
+without rural changes. Rebuild from the approved planning source; only generated
+street_life/pedestrians fields change. Ten crossing routes pass full-capsule
+support and prop/cafe clearance checks. At most two walkers cross concurrently,
+with12seconds between admissions and45seconds rest. Forecast relative traffic
+motion for the full crossing; derive main-car signed velocity from its traffic
+state because those movers do not have Velocity components.
+
+Fixed host simulation owns admission and movement. Actual support rays place
+walkers on road/sidewalk surfaces; waiting actors have zero velocity. Preserve
+NPC collision/ragdolls, authored-origin replication identities, every world lot
+and all Valley quotas. No new dependencies, external assets or physical tuning.
+Native crossing/census and final integrated checks remain required; higher counts
+are not a performance certificate.
+
+## ADR134 — Measure crossing forecasts before broader physics changes (2026-11-09)
+
+PERF-08/P16-003 continue on a focused performance branch after local main was
+fast-forwarded to d8824bf. Compare frozen release binaries in the same isolated
+Metropolis survey; no compiler or second game runs during measurements. Window
+statistics are not GPU timestamps or full-race/frame-budget certification.
+
+Retain the cheap pedestrian crossing admission/cooldown/capacity check before
+its traffic forecast. Preserve the original admission rules and all world actors.
+Add pair-type census to distinguish graph edges from actual active collisions.
+Correct the native destruction fixture's obsolete 995-world-prop count: record
+the loaded production population and assert it plus the 13 fixture props remains
+present. Keep all actual impact, presentation, reset and dynamic-budget checks.
+
+Rejected experiments: reducing Rayon workers did not improve total frame time;
+a standalone-collider prop representation failed the existing debris settling
+regression; a conservative damage-sweep prefilter passed trajectory/occlusion
+checks but showed no consistent improvement in the same-binary control. None ships. Preserve
+fixed bodies, existing damage queries, physical rigs, solver and worker defaults.
+Pinned Rapier source inspection showed body-type rejection already precedes
+collision groups after graph construction, so a group filter would not remove
+static graph edges. No dependency migration, external code or asset import.
+
+Retained optimization reduces measured gameplay work. Overall frame timing
+varies across runs and remains above target; do not claim 60 FPS or GPU attribution.

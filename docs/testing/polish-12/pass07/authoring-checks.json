@@ -1,0 +1,76 @@
+{
+  "material-policy": {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_facade_materials.py"
+    ],
+    "exit": 0
+  },
+  "roughness-parity": {
+    "command": [
+      "/tmp/roaddash-blender-run/blender-4.5.9-linux-x64/blender",
+      "-b",
+      "--factory-startup",
+      "--python-exit-code",
+      "1",
+      "--python",
+      "tools/test_facade_bake_materials.py"
+    ],
+    "exit": 0
+  },
+  "atlas-validation": {
+    "command": [
+      "python3",
+      "tools/verify_facade_lod.py"
+    ],
+    "exit": 0
+  },
+  "profiles": {
+    "command": [
+      "python3",
+      "tools/verify_material_profiles.py"
+    ],
+    "exit": 0
+  },
+  "kit": {
+    "command": [
+      "python3",
+      "tools/verify_architecture_kit.py",
+      "--output",
+      "/home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/pass07/kit-validation.json"
+    ],
+    "exit": 0
+  },
+  "city-source": {
+    "command": [
+      "/tmp/roaddash-layout-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_city_buildings.py"
+    ],
+    "exit": 0
+  },
+  "metro-source": {
+    "command": [
+      "/tmp/roaddash-layout-venv/bin/python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_metropolis_facades.py"
+    ],
+    "exit": 0
+  }
+}

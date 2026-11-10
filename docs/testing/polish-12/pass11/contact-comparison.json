@@ -1,0 +1,35 @@
+{
+  "contacts-before": {
+    "flex_m": 0.03430772200226784,
+    "grip_m": 1.0018191005656263e-06,
+    "held_grip_m": 8.194284077944758e-07,
+    "held_sole_m": 0.03992689773440361,
+    "pivot_m": 0.05804634094238281,
+    "sole_m": 0.06927809864282608
+  },
+  "contacts-after": {
+    "flex_m": 1.2287812012345967e-07,
+    "grip_m": 1.0018191005656263e-06,
+    "held_grip_m": 8.194284077944758e-07,
+    "held_sole_m": 5.84763768074481e-07,
+    "pivot_m": 5.5033518719938e-07,
+    "sole_m": 3.9452916666959936e-07
+  },
+  "models-final": {
+    "flex_m": 1.2287812012345967e-07,
+    "grip_m": 1.0018191005656263e-06,
+    "held_grip_m": 8.194284077944758e-07,
+    "held_sole_m": 5.84763768074481e-07,
+    "pivot_m": 5.5033518719938e-07,
+    "sole_m": 6.034510420249717e-07
+  },
+  "definitions": {
+    "pivot_m": "Skin joint versus authored shin endpoint; both binds and sampled clips.",
+    "sole_m": "Source-space sole landmark retarget versus authored end-frame contact, not full mesh clearance.",
+    "grip_m": "Same for grip landmark.",
+    "flex_m": "Anatomical ankle point drift under 0.6rad distal flex.",
+    "held_sole_m": "Retargeted sole landmark versus held peg target.",
+    "held_grip_m": "Retargeted grip landmark versus held grip target."
+  },
+  "scope": "Before/after contain matched seven modes; final adds live gait/stop (ten modes), both binds121samples each. Neutral surface max0.000000427m; joint IDs/weights exact. Both180tick physics max_position_error0m."
+}

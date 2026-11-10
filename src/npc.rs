@@ -36,7 +36,7 @@ impl Npc {
         self.parts.is_empty()
     }
 }
-fn cow_ragdoll(
+pub(crate) fn cow_ragdoll(
     commands: &mut Commands,
     art: &Art,
     owner: Entity,

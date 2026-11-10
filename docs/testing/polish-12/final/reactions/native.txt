@@ -1,0 +1,16 @@
+2026-11-09T21:15:37.015000Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-09T21:15:37.265150Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-polish/docs/testing/polish-12/final/reactions/performance/performance-3026767.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-09T21:15:38.836819Z  INFO road_dash::sky: Sky display cube: 2097144 bytes, generated in 109.273ms; stationary world sun/cloud field
+2026-11-09T21:15:40.205060Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+2026-11-09T21:15:40.212768Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 0
+AI roster verified: seven racers and seven killers
+Audio output initialized: 4 playback sinks
+Native confirmed reaction: side=-1 kick=false at=0.166667
+Native confirmed reaction: side=1 kick=false at=0.833333
+Native confirmed reaction: side=-1 kick=true at=1.499999
+Native confirmed reaction: side=1 kick=true at=2.166665
+Native remount 1: pickup error 0.0000 m
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Metropolis route 0 -> farm/city crashes -> both recoveries -> results fixture

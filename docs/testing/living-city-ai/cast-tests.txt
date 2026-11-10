@@ -1,0 +1,9 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish/crates/rr_core)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2.46s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/rr_core-2eedc0a263b28bc0)
+
+running 2 tests
+test cast::tests::blocked_rider_backs_out_but_not_at_a_queue_or_into_a_car ... ok
+test cast::tests::portrait_names_and_loadouts_match_dossiers ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 86 filtered out; finished in 0.00s

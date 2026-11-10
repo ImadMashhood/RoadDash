@@ -1,0 +1,21 @@
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.23s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 10 tests
+test police::tests::hud_explains_continuous_warning_and_loss_windows_without_negative_timers ... ok
+test police::tests::police_cannot_finish_or_enter_fifteen_racer_payout ... ok
+test police::tests::search_drive_goal_stops_at_memory_without_mutating_target_or_vehicle ... ok
+police fixture f=0 player=100/-2/0 cop=80.00305/0.0017060626/0.18333334 vel=Vec3(-0.1446533, 0.0, 0.15197752) target=None mind=Mind { state: Pursue, warning: 0.0, unseen: 0.0, search: 0.0, arrest: 0.0 }
+stage=Riding runner=None walk=Vec3(0.0, 0.0, 0.0) footgoal=None
+test police::tests::same_tick_third_contact_interrupts_officer_arrest_authority ... ok
+test police::tests::opposite_motion_and_one_tick_wall_or_support_break_reset_arrest ... ok
+test police::fairness_tests::confirmed_assault_must_be_witnessed_at_contact_not_after_arrival ... ok
+test police::tests::real_pause_restart_and_valid_finish_take_priority_over_threshold_arrest ... ok
+test police::tests::buffered_club_hits_live_foot_officer_interrupt_arrest_and_third_hit_knocks_down ... ok
+police fixture f=300 player=100/-2/0 cop=98.41785/-1.7031069/0 vel=Vec3(-0.22888182, 2.235174e-6, 0.74569696) target=Some((100.0, 2.235174e-6, Vec3(301.1566, 0.099999964, 98.96199))) mind=Mind { state: Pursue, warning: 0.0, unseen: 0.0, search: 0.0, arrest: 0.28333336 }
+stage=Running runner=Some(Vec3(301.36658, 0.9270565, 97.35847)) walk=Vec3(0.0, 0.006000995, 0.0) footgoal=Some(Vec3(301.1566, 0.099999964, 98.96199))
+test police::tests::integrated_arrest_has_no_payout_or_best_time_and_retry_preserves_noncompetitor ... ok
+test police::tests::integrated_los_and_falling_prevent_arrest_and_loss_allows_escape ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 312 filtered out; finished in 0.33s
+

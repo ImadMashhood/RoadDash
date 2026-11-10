@@ -1,7 +1,23 @@
 # Known issues and remaining acceptance
 
-Updated 2026-11-08. This is not a list of fabricated failures; distinguish known
+Updated 2026-11-09. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
+
+- PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
+
+- ONLINE-PLAY-01: listen-host/UI/discovery is implemented and locally verified on
+  codex/multiplayer-ui-walking. Public DHT discovery removes a user-operated
+  directory but depends on existing bootstrap peers and is not exhaustive.
+  Temporary UPnP mappings depend on router support; CGNAT/blocked inbound traffic
+  are not solved by finding an address. Separate-network connectivity, network
+  impairment/prediction/bandwidth and production acceptance remain unverified.
+  Do not confuse injected UI fixtures or loopback tests with Internet play.
+- V2-03-003: visual walking cadence/support correction has targeted test evidence;
+  native152-frame after-review and both-rig recovery have passed; broader terrain/art acceptance remains open. Civilian NPC gait and exact footstep-audio
+  synchronization are outside this rider recovery animation correction.
+
+- CITY-ACTIVITY-02:144main cars/384urban walkers and two completed crossings pass the native survey. The debug functional run measured wall p9532.73ms, above16.7ms; this is not directly comparable to earlier release benchmarks. Rural/shared fleet and structural content are unchanged.
+- AI-QUEUE-02: four-rider crawling-bike/slow-car physical queues now drain without damage/recovery or leaving outbound road. Dedicated rendered queue and broader human/full-course deadlock/balance review remain open.
 
 - UI-02: source UI/media catalog and artist skeleton are available in docs/ui, with original references in the separate local kit. A first art-led offline native entry flow is integrated (ADR091); full production UI/art acceptance remains open. Dynamic retail handlers/fonts/disabled states, inherited backgrounds and runtime Windows-dialog labels are not reproduced; unused clouds are context-only/inferred. Source-file coverage is not a retail playthrough or full UI parity. See ui/README.md and testing/ui-kit/README.md.
 
@@ -14,7 +30,7 @@ missing features, architectural debt and unverified platforms.
   Windows hardware/input verification and clean installation remain open. A short
   scripted smoke is not a production benchmark or a real gamepad test.
 - P01-SPLIT: workspace has real core/content boundaries and subsystem plugins;
-  game.rs still combines vehicle/AI/combat/race. No server/netplay implementation.
+  game.rs still combines vehicle/AI/combat/race; listen-host networking is implemented, with production gates open.
 - P01-MIGRATE: newer Bevy/Avian/Enhanced Input manifests are compatible with each
   other, not this baseline. Coordinated migration with its regressions is pending.
 - P04: native gamepad/analog input, key/button rebinding and persisted comfort are
@@ -46,7 +62,7 @@ missing features, architectural debt and unverified platforms.
   crash separation falls back in confined spaces; manual override is implemented; arbitrary confined/stuck recovery
   remains open. Ordinary crashes no longer inject upward momentum.
 - P08: one resident player-targeting police motorcycle is integrated; full uniforms/vehicle/dismount/gesture art, moving-foot capture/tackles (safe arrest requires slowing to<=1.2m/s), rival violation selection, road-block/stuck traffic policies, human fairness, repeated full-race soak and broad performance/hardware acceptance remain open. No reinforcement spawns or hidden acceleration/grip boosts. The return state resumes a forward patrol along the open course, rather than teleporting to a home station. See testing/part08-police/README.md.
-- P12/P13: real garage/economy, career and multiplayer absent.
+- P12/P13: production garage/economy and career remain absent. Listen-host multiplayer now exists; separate-network reachability, prediction, bandwidth, loss and scale acceptance remain open.
 - P02-END: missing an ordered gate requires R-to-retry; unfinished riders stop at
   the finish. Parking reverse is now available; manual return-to-gate and missed-gate race recovery acceptance remain open.
 - P02-ACTORS: cows stand until hit; pedestrians/cross traffic use bounded patrols,
@@ -857,4 +873,202 @@ remain deferred; accepted human/quadruped physics and cow skin bytes unchanged.
 - ADR103 supersedes the user-rejected literal-retro ADR102 entry style. Menus fill the viewport with proportional cover crop; portrait grid/dossiers retain4:3. Clean type/native gradients and restrained focus are a presentation pass, not user approval or completed UI-02/UI-05. HUD/pause/settings and physical controller/Windows/accessibility/performance remain open. No original art bytes/gameplay/physics changed.
 - Settings menu ADR104: grouped camera/controls/master audio/mute/fullscreen/VSync settings integrate with protected preferences and live adapters. Kick remains Space and mouse punches remain fixed alternatives; pickup/drop can now be rebound. Controller,Windows and real monitor/fullscreen restore/audible transitions require human hardware review. Native setter validation is not proof a driver/compositor honors VSync. Per-bus engine/SFX/ambience/music sliders,quality presets,subtitles and smaller-than720p/accessibility acceptance remain P15/AUDIO-013/UI-02 gates. Closing without saving intentionally keeps live session changes; it does not revert them. Old builds reject extended preference fields as read-only; restore backup for rollback.
 
-- Final UI art direction selects output/ui-recreations/batch-01/UI-IMG-0072.png only as a style reference. Rejected samples remain archival and unshipped.57 background recreations and the proposed twelve-pass gameplay/graphics program are not implemented. Native entry art remains the previously integrated set.
+- PERF-08 / ADR105: pass01 corrects facade retained/retiring selection hysteresis, but full-course driven racing, raw GPU timestamps, target frame budget and human visual acceptance remain open. Camera survey views retain farm physics actors and cannot certify downtown simulation load. See testing/polish-12/pass01/README.md.
+
+
+Pass02 contact audit (ADR106): reproduced and corrected mixed-time downed-body/
+wreck lift eligibility. Pre-contact matched-speed touches cannot gain a scripted
+hop from a later target bounce. Current car/wall/rear thresholds and reverse/
+pickup policy remain. Ordinary incidence was not measured; arbitrary enclosed
+mount clearance, human feel/full-race and hardware acceptance remain open under
+existing P06-009/P06-CONFINED and V2 exit gates. See testing/polish-12/pass02/.
+
+## 2026-11-09 — Pass03 elevation integration limits
+
+One authored profile now supplies Metropolis streets/terrain, branch navigation,
+props and property foundations. Apron and field tessellation address interpolation
+mismatch; both route/grid support is measured against actual pavement triangles.
+This does not certify every frontage/pad, all moving-traffic merge cases or an
+uninterrupted human full race. Human slope/crest readability, confined recovery,
+production terrain art, Windows/controller and broad hardware/performance gates
+remain open. The preserved flat building floors retain their existing stepped
+foundation treatment; elevation work is not new architectural approval.
+
+Pass03 isolated native costs: Metropolis bounded survey19.978ms average /
+38.934ms p95; Valley world survey16.280ms average /19.208ms p95. Both exceed the
+16.7ms p95 target; Valley exits1 for that gate despite complete15-section/657-root
+geometry assertions. Before Metropolis visual capture overlapped authoring CPU
+work and is not a valid performance baseline. No causal speedup/regression or
+new broad performance acceptance is claimed.
+
+- Polish04 / SKY-01: coordinated late-afternoon baseline has matched native
+  evidence in testing/polish-12/pass04. Human art/readability and hardware gates
+  remain open. Existing cubemap rotation moves its sun disc while directional
+  light stays fixed; pass10 sky work must reconcile this. Cloud appearance,
+  atmospheric depth and shadow grounding remain later sequential scopes.
+
+- Polish05 / P15-004: reduced normal bias and wider existing cascade blend have
+  paired native contact evidence (testing/polish-12/pass05), but static views do
+  not certify elimination of temporal shimmer/cascade transitions at racing speed.
+  Existing texel snapping retained. Four2048px maps/150m reach and caster policy
+  unchanged; overlap increases work near boundaries. Full GPU cost, scalable
+  presets, art and hardware acceptance remain open; no blanket shadow enabling.
+
+- Polish06 / P11-004: original mipmapped road PBR now reaches default Metropolis;
+  road/paving/paint scale and restrained wear have native evidence. Repeated
+  tiles remain procedural approximations. Static screenshots cannot certify
+  racing-speed shimmer or human art acceptance. Paving dirt follows slab edges;
+  this is not curb-specific runoff, real drain grates or hydraulic simulation.
+  Authored drainage, broad modular road/curb art and GPU/hardware gates remain
+  open; no geometry/collision or facade-atlas change. See testing/polish-12/pass06.
+
+- Polish07 / MAT-03: coordinated source finishes and runtime-equivalent roughness
+  are baked into all facade distance assets. Original geometry/textures retained;
+  distant normals still approximate subpixel procedural relief with projected
+  geometric normals. Flat proxies cannot reproduce close parallax. Entrances
+  gain restrained contrast without new geometry/signage; production ground-floor
+  authoring and human architectural/art/temporal/long-streaming acceptance remain
+  PALETTE-01/LOD-03 gates. See testing/polish-12/pass07 for bounded native evidence;
+  no claim of target GPU cost, Windows coverage or user art approval.
+
+- Polish08 / PALETTE-01 / V2-04-003: low-rise approach facades now progress through
+  roadside businesses, workshops and residential fronts on existing envelopes.
+  This retains the approved continuous street walls and fixed setbacks; it does
+  not add detached farmstead models, new property layouts or extra vegetation.
+  Complete site art, human transition/readability review, long streaming and
+  target GPU/hardware acceptance remain open. Authored index groups share use
+  selection but are not guaranteed spatial neighborhoods. Evidence: polish-12/pass08.
+
+- Polish09 / SKY-01: exponential-squared haze preserves >99% contrast at100m and
+  shares exposed horizon radiance with the sky. Non-HDR sky output bypasses
+  Reinhard while PBR fog uses it, so a visible horizon mismatch remains under
+  V2-06-007. An HDR trial produced all-black native frames with clean logs and
+  was rejected; exact cause remains unresolved for pass10 investigation. This
+  is analytic distance haze, not
+  volumetric/height-dependent weather. Existing flat terrain silhouette,
+  cloud shapes and drifting sun disc remain pass10 presentation issues; no fog
+  concealment or geometry/LOD closure. Human racing-speed/readability, target GPU
+  cost, Windows/controller and broad hardware gates remain open. Evidence:
+  testing/polish-12/pass09.
+
+
+- Polish10 / V2-06-007: the supported non-HDR procedural display cube now shares
+  the fog's exposed analytic tonemap and correct world sun direction (ADR114).
+  Clouds are intentionally stationary: the previous wind rotated the sun and
+  environment incorrectly. Independent cloud-only motion is still unimplemented;
+  the legacy wind setting is retained but inactive. Static authored exposure
+  requires a display-cube/fog rebuild if a later runtime exposure system is added.
+  Full landscape/art, temporal filtering, Windows and broad GPU/frame-budget
+  acceptance remain open. ADR113's rejected black HDR trial remains historical.
+
+- Polish11 / ART-04 / ANIM-09 / NPC-SEAMS-01: source ankle pivots now replace
+  the shortened skin approximation, preventing boot flex from orbiting a point
+  above the anatomical ankle. Landmark accuracy is not proof of complete boot
+  surface contact, cloth/leg clearance or final gait quality. Existing civilian
+  intersecting-volume seams/individual deformation regressions and hovering
+  appearance in the close native walking fixture, fingers and full
+  multi-angle art/hardware/performance acceptance remain open. Standing wrist
+  inheritance is retained; no twist or accepted physics change. See ADR115 and
+  testing/polish-12/pass11 for exact measured scope.
+
+- Polish12 / COMBAT-FEEL-01 / P05-006: confirmed mounted hits now have bounded
+  directional upper-body recoil. A rider's active attack owns its contact pose,
+  so the ordinary flinch ages underneath and can be visually suppressed during
+  a simultaneous strike; input is never delayed. Third-punch knockoff retains its
+  existing mounted stagger/physical release. There is no block mechanic; LOS
+  rejection is a miss. Native scripted reactions and contact landmarks do not
+  certify full attacker/victim mesh overlap, subjective sound/feel, combat balance,
+  all weapon/foot states or broad art/hardware/performance acceptance. No new
+  launch, hit-stop or physical rig tuning. See ADR116/testing/polish-12/pass12.
+
+- PERF-08 final polish regression: first Metropolis survey farm screenshot omitted ground despite a passing entity census/nonblank check; same-binary repeat rendered it, as did actual gameplay smoke. Fixed-frame survey capture lacks pipeline-readiness gating; root cause and cold-start visibility acceptance remain unresolved. Both images/receipts retained in testing/polish-12/final. Final p9539.747ms and repeat33.901ms exceed16.7ms; no60FPS/GPU claim.
+
+- Landscape / V2-06-007 / WORLDART-01: original bounded grass covers the farm
+  corridor and conservative unplanted verges only. Distinct crop palettes and
+  soil ribbons improve near/mid ground; distant fields retain vertex-color
+  variation. No wind deformation, new trees/stone walls or complete terrain
+  silhouette rebuild. Existing field boundaries/fences remain. Grass receives
+  lighting but does not cast expensive cascade shadows. Native dither range is
+  not a guarantee of temporal/art acceptance at every speed. Full-route GPU,
+  Windows/hardware and user visual acceptance stay open. PERF-08 cold-start
+  survey readiness and the existing unmet16.7ms p95 target remain separate.
+  Evidence/provenance: testing/landscape-graphics/README.md and ADR117.
+  Final landscape verification: Metropolis p9534.765ms and legacy Valley
+  world-survey p9518.597ms exceed16.7ms. Valley exits1 solely for that benchmark;
+  geometry/657roots/15sections/224dressing and overlap assertions pass. Original
+  visual candidates and58nominal-width shoulder overlaps were rejected; final
+  full-polygon clipping matches6,606independent zero-overlap quads. Final121native
+  captures and18-case lab are retained; no blanket visual/hardware acceptance.
+
+- Farm follow-up (ADR118): user rejected the abrupt ADR117 road/grass edge and
+  reported cows on fences. Gravel-to-short-grass verges and whole-field placement
+  now address those specific defects. New props reuse existing draft art; animal
+  deformation, full landscape art, GPU/performance/hardware approval remain open.
+  The16 added props have fixed bounds and do not remove legacy collision. See
+  testing/farm-verges for native captures, tests and any outstanding findings.
+
+- ADR119 clothing/grass: user selected helmets with stylized clothing, not final
+  visual approval. Original body silhouette and glove morph path are retained;
+  vertex cloth shading is broad variation, not detailed plaid tailoring. Human
+  NPC faceting does not resolve existing anatomical seam/art gates. Six curved
+  blades increase geometry/memory; measured performance and hardware coverage
+  remain separate gates. Grass covers the bounded farm corridor, not every field.
+  Shader wind is visual only and does not react to riders. See testing/stylized-humans-grass.
+
+  Final ADR119 survey p9535.341ms still misses16.7ms. Grass resident attribute/index
+  payload estimate115.46MB (previous49.62MB), excluding engine/CPU/GPU overhead;
+ 333batches and65–110m visibility do not eliminate this resident memory cost.
+
+- ADR120 living-city AI/cast:14active opponents use the approved portrait names
+  and descriptor-based loadouts; George/Elif remain bar cast rather than expanding
+  the15rider race. New pace/curve planning, lane memory and bounded backing need
+  human fairness review. Rear sweeps reduce unsafe reverse attempts but do not
+  guarantee avoidance of a fast vehicle entering the gap after a check.
+- ADR120 city:20%sidewalk area expansion approximates width on irregular blocks;
+  individual widths differ. Existing building IDs/envelopes remain with landward
+  setbacks. Static procedural fountain jets are not fluid simulation. Final
+  civic/cafe art, full-course streaming, GPU timing and target hardware acceptance
+  remain open.192urban pedestrians,32extra urban main cars, more crossing cars
+  and1521street props increase work; no performance improvement is claimed.
+
+- ADR121 bounded escape routing covers mounted and walking AI with real concave
+  trap fixtures; it does not prove every procedural enclosure escapable. The local
+  planner has a72m radius and1024-expansion cap; sealed spaces cannot be escaped
+  physically. Live obstructions can still enter after a sweep. Existing foot
+  rescue remains the exceptional fallback. Full-race deadlock and performance
+  acceptance remain open. Civic/park art remains subject to user review.
+
+- ADR122: added civic foliage costs geometry/instances; no optimization gain is
+  claimed. CITY-WIDTH-01 is only a map proposal; runtime street trimming, edge
+  dressing, navigation and performance validation remain pending selection.
+  Sixteen named portraits remain distinct art, not sixteen unique rider meshes.
+
+- ADR123 supersedes ADR119's rejected rider clothing presentation: original biker
+  outfit is restored. This does not close broader human art/skin seam gates.
+  Detailed civic stonework/PBR is resident geometry with no new interior or snag
+  colliders. Static sky IBL is not local occlusion, reflections or dynamic GI;
+  SSAO/temporal-AA and Windows/target-GPU approval remain open.
+- CROP-TRAIL-01/ADR124: wheat covers grain parcels within72m of the farm route,
+  with1m contact cells and current-race persistence only. Existing grass remains
+  wind-only. Damage state is bounded, but crop mesh memory and per-tile draws cost
+  resources. Scripted shape-contact native evidence is not a free-running crash
+  or full-course/GPU benchmark; active crop-view p95 remains above16.7ms.
+- ELEVATION-01/ADR125:25% stronger relief remains below4% analytic longitudinal
+  grade. Sampled support error is close to the12mm gate; more relief would require
+  tessellation review. Existing full-map planar/identity/lane content is retained;
+  both-branch native recovery now passes; user feel remains an acceptance gate.
+- ADR126 queue passing uses bounded live forecasts and static sweeps, not lane
+  reservations or guaranteed general deadlock freedom. Narrow/sealed gaps can
+  still wait, and unexpected vehicle motion can invalidate a forecast. Additional
+  sweeps need combined performance review; player handling is unchanged.
+- POLICE-ART-01/ADR127: officer texture and touring equipment are integrated with
+  the original rig. Beacons are static emissive lenses; no flashing lights or
+  new siren behavior was added. This remains one resident officer, with existing
+  pursuit/arrest limitations. Native gallery/behavior proof does not close human
+  art/fairness, full-course performance or Windows/hardware acceptance.
+
+- Final fresh-agent integration:481tests and12release native cases plus18paired
+  lab cases pass. Route wall p9522.376ms and crop-contact p9520.527ms exceed16.7ms.
+  One existing600-second turning soak remains intentionally ignored. No broad
+  GPU/full-course/Windows certification or user art/feel approval is claimed.
+  See testing/next-pass for accepted receipts and excluded interrupted/harness runs.

@@ -1,0 +1,30 @@
+{
+  "before-recovery": {
+    "region_xyxy": [
+      1000,
+      320,
+      1180,
+      430
+    ],
+    "mean_adjacent_horizontal_RGB_difference": 0.4448484848484848
+  },
+  "rejected-bias1-recovery": {
+    "region_xyxy": [
+      1000,
+      320,
+      1180,
+      430
+    ],
+    "mean_adjacent_horizontal_RGB_difference": 0.6082491582491582
+  },
+  "after-recovery": {
+    "region_xyxy": [
+      1000,
+      320,
+      1180,
+      430
+    ],
+    "mean_adjacent_horizontal_RGB_difference": 0.44441077441077437
+  },
+  "limits": "Raw screenshot flat-field variation diagnostic only; different cloud/actor phase and camera pose; not a perceptual or photometric metric."
+}

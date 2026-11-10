@@ -1,0 +1,11 @@
+{
+  "paused_frames_pixel_identical": true,
+  "visual_review": "Intact seed heads, bent impact region, extended walking strip, persistent marks after probe despawn, and upright reset reviewed from original1440x900 native images. Scripted shape trajectories, not a free-running crash.",
+  "sha256": {
+    "crops-before.png": "7edb65a70543b41f8bffd2befede393231e3b162464b13fcfe280b93d7800c23",
+    "crops-bending.png": "1586ce172be4f44de2b8ee5e0732daa44f80fb8995ff6b126ccbd798f9110c6e",
+    "crops-trail.png": "a393efde12ab04608aa7258ae46ed87434e537ac1de8b5c61b94671cce5c0fec",
+    "crops-persistent.png": "a393efde12ab04608aa7258ae46ed87434e537ac1de8b5c61b94671cce5c0fec",
+    "crops-reset.png": "bfe0eae9d583010c6f67bf3f6ff5830796525422d616c69287b9f0a5480c0a09"
+  }
+}

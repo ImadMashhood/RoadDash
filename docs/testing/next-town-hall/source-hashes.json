@@ -1,0 +1,6 @@
+{
+  "src/world_gen/metropolis/hall_detail.rs": "a503baa2a88910330e10fbf4749a5ce6978498b1090df354c56136261cfdbc9d",
+  "src/world_gen/metropolis/civic.rs": "16d6d28ef03fb8fca2fbea235c3da2497f03af224946bc962179d1bb70c6ed7c",
+  "src/world_gen/metropolis/mod.rs": "6c7139824004d7d470bf66adf7e000a5da6ff42276efb037174b54971510a9ad",
+  "src/world_gen/metropolis/survey.rs": "e45b4b903299c82eb9be0003c34873d265d0ffa52edc697a09186700006b3f7c"
+}

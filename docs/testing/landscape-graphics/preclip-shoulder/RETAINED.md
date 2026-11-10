@@ -1,0 +1,1 @@
+Provisional native run. Original receipt records captures at run time; only the two farm PNGs are retained for rejected/intermediate visual comparison. JSON evidence and logs retained. Final native evidence is in after/ and shoulder/.

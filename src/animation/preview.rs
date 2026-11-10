@@ -9,6 +9,8 @@ struct Review {
     view: usize,
     smoke: bool,
     hands: bool,
+    gait: bool,
+    position: Vec3,
     seen_shapes: [bool; 4],
     weapon_review: Option<String>,
 }
@@ -50,6 +52,7 @@ pub fn build(smoke: bool) -> App {
     .insert_resource(Review {
         smoke,
         hands: std::env::args().any(|a| a == "--hand-review"),
+        gait: std::env::var_os("ROADDASH_GAIT_REVIEW").is_some(),
         ..default()
     })
     .insert_resource(Time::<Fixed>::from_hz(60.0))
@@ -62,6 +65,11 @@ pub fn build(smoke: bool) -> App {
     .add_systems(FixedUpdate, drive.before(super::update))
     .add_systems(FixedUpdate, hand_keyframes.after(super::update))
     .add_systems(Update, review.after(crate::vehicle::visuals));
+    if std::env::var_os("ROADDASH_GAIT_REVIEW").is_some() {
+        app.add_plugins(bevy_rapier3d::prelude::RapierPhysicsPlugin::<
+            bevy_rapier3d::prelude::NoUserData,
+        >::default());
+    }
     if smoke {
         std::fs::create_dir_all("screenshots/animation-part03").unwrap();
         std::fs::create_dir_all("screenshots/hand-contacts").unwrap();
@@ -127,10 +135,27 @@ fn setup(
         white: white.clone(),
         colors: vec![materials.add(world::shirt_color(4)); 15],
         helmets: vec![white.clone(); 15],
-        bike_colors: vec![white; 15],
+        bike_colors: vec![white.clone(); 15],
     };
-    let root = world::bike(&mut commands, &art, 4, true);
-    let (runner, pose) = world::runner(&mut commands, &art, 4);
+    if std::env::var_os("ROADDASH_GAIT_REVIEW").is_some() {
+        use bevy_rapier3d::prelude::*;
+        commands.spawn((
+            RigidBody::Fixed,
+            Collider::cuboid(20., 0.1, 100.),
+            Transform::from_xyz(0., -0.1, 70.),
+        ));
+        for n in -10..180 {
+            commands.spawn((
+                Mesh3d(meshes.add(Cuboid::new(10., 0.01, 0.025))),
+                MeshMaterial3d(white.clone()),
+                Transform::from_xyz(0., 0.005, n as f32 * 0.5),
+            ));
+        }
+    }
+    let police = std::env::args().any(|a| a == "--police-art-review");
+    let palette = if police { models::OFFICER_PALETTE } else { 4 };
+    let root = world::bike(&mut commands, &art, palette, true);
+    let (runner, pose) = world::runner(&mut commands, &art, palette);
     commands.entity(runner).insert((
         Transform::from_xyz(0.0, 0.95, 0.0),
         OwnedBody {
@@ -139,7 +164,7 @@ fn setup(
         },
     ));
     commands.entity(root).insert((
-        Rider::new(0),
+        Rider::new(if police { crate::police::OFFICER_ID } else { 0 }),
         Recovery {
             runner: Some(runner),
             pose: Some(pose),
@@ -200,11 +225,12 @@ fn setup(
     ));
 }
 fn drive(
-    state: Res<Review>,
+    mut state: ResMut<Review>,
     time: Res<Time<Fixed>>,
     mut race: ResMut<Race>,
     mut riders: Query<(&mut Rider, &mut Recovery, Entity)>,
     mut visible: Query<&mut Visibility>,
+    mut bodies: Query<&mut Transform, Without<Rider>>,
 ) {
     race.elapsed += time.delta_secs();
     for (mut r, mut rec, root) in &mut riders {
@@ -233,6 +259,12 @@ fn drive(
         };
         rec.walk_velocity = Vec3::Z * speed;
         rec.walk_distance += speed * time.delta_secs();
+        if state.gait {
+            state.position += Vec3::Z * speed * time.delta_secs();
+            if let Some(runner) = rec.runner {
+                bodies.get_mut(runner).unwrap().translation = state.position + Vec3::Y * 0.95;
+            }
+        }
         r.speed = if state.mode == 1 { 65.0 } else { 30.0 };
         r.drive_intent.throttle = true;
         r.lean = match state.mode {
@@ -289,7 +321,10 @@ fn review(
     ),
 ) {
     state.frame += 1;
-    if state.smoke {
+    if state.smoke && state.gait {
+        state.mode = if state.frame < 330 { 9 } else { 10 };
+        state.view = if state.frame < 570 { 2 } else { 1 };
+    } else if state.smoke {
         state.mode =
             ((state.frame.saturating_sub(90)) / 180).min((LABELS.len() - 1) as u32) as usize;
         state.view = ((state.frame / 60) % 3) as usize;
@@ -324,9 +359,10 @@ fn review(
                 Vec3::new(0.0, 2.0, -4.8),
                 Vec3::new(0.0, 2.0, 4.8),
                 Vec3::new(4.2, 2.0, 0.0),
-            ][state.view],
+            ][state.view]
+                + state.position,
         )
-        .looking_at(Vec3::Y * 1.2, Vec3::Y);
+        .looking_at(Vec3::Y * 1.2 + state.position, Vec3::Y);
     }
     if state.hands {
         let side = usize::from(state.mode == 5 || state.mode == 12);
@@ -364,6 +400,14 @@ fn review(
             ));
         }
     }
+    if state.gait && state.frame >= 150 && state.frame.is_multiple_of(4) {
+        commands
+            .spawn(Screenshot::primary_window())
+            .observe(save_to_disk(format!(
+                "screenshots/gait-{:04}.png",
+                state.frame
+            )));
+    }
     if state.smoke && state.frame > if state.hands { 90 } else { 120 } && state.frame % 60 == 50 {
         commands
             .spawn(Screenshot::primary_window())
@@ -385,6 +429,7 @@ fn review(
             )));
     }
     if keys.just_pressed(KeyCode::Escape)
+        || (state.gait && state.frame >= 750)
         || (state.smoke && state.frame >= 90 + LABELS.len() as u32 * 180)
     {
         if state.hands && state.smoke {

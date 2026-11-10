@@ -117,7 +117,7 @@ impl Police {
 }
 pub fn setup(mut commands: Commands, art: Res<Art>, track: Res<Track>) {
     let mut r = Rider::new(OFFICER_ID);
-    r.palette_index = 6;
+    r.palette_index = crate::models::OFFICER_PALETTE;
     r.progress = track.length * rr_content::police::builtin().patrol_fraction;
     r.route = 0;
     r.lane = 2.;
@@ -131,18 +131,6 @@ pub fn setup(mut commands: Commands, art: Res<Art>, track: Res<Track>) {
         Transform::from_translation(p).with_rotation(q),
         crate::recovery::bike_body(),
     ));
-    // Original high-contrast blue/white marker. Existing shared GPU geometry only.
-    for (x, mat) in [(-0.22, art.colors[3].clone()), (0.22, art.white.clone())] {
-        let part = world::part(
-            &mut commands,
-            art.cube.clone(),
-            mat,
-            Vec3::new(x, 1.25, -0.85),
-            Vec3::new(0.20, 0.18, 0.22),
-            Quat::IDENTITY,
-        );
-        commands.entity(root).add_child(part);
-    }
 }
 fn location(r: &Recovery, t: &Transform, poses: &Query<&Transform, Without<Rider>>) -> Vec3 {
     r.runner
@@ -152,6 +140,7 @@ fn location(r: &Recovery, t: &Transform, poses: &Query<&Transform, Without<Rider
 }
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn think(
+    mut commands: Commands,
     mut police: ResMut<Police>,
     mut race: ResMut<Race>,
     riders: Query<(Entity, &Rider, &Recovery, &Transform)>,
@@ -332,7 +321,17 @@ pub fn think(
     if police.mind.state == State::Arrested {
         race.arrested = true;
         race.earned = 0;
-        race.phase = Phase::Finished;
+        if pr.networked {
+            let elapsed = race.elapsed;
+            commands.queue(move |world: &mut World| {
+                if let Some(mut r) = world.get_mut::<Rider>(player) {
+                    r.online_busted = true;
+                    r.finished.get_or_insert(elapsed);
+                }
+            });
+        } else {
+            race.phase = Phase::Finished;
+        }
     }
     let micros = start.elapsed().as_micros() as u64;
     police.evaluations += 1;
@@ -532,7 +531,7 @@ mod tests {
             .unwrap()
             .0;
         let mut cop = Rider::new(OFFICER_ID);
-        cop.palette_index = 6;
+        cop.palette_index = crate::models::OFFICER_PALETTE;
         cop.progress = -8.;
         cop.lane = -0.5;
         cop.immunity = 0.;
@@ -706,7 +705,10 @@ mod tests {
         assert!(!app.world().resource::<Race>().arrested);
         assert_eq!(app.world().resource::<Police>().mind.state, State::Patrol);
         assert!(app.world().get::<Rider>(officer).unwrap().police);
-        assert_eq!(app.world().get::<Rider>(officer).unwrap().palette_index, 6);
+        assert_eq!(
+            app.world().get::<Rider>(officer).unwrap().palette_index,
+            crate::models::OFFICER_PALETTE
+        );
     }
     #[test]
     fn integrated_los_and_falling_prevent_arrest_and_loss_allows_escape() {
@@ -994,7 +996,7 @@ mod fairness_tests {
                 .unwrap();
             let track = app.world().resource::<Track>();
             let mut cop = Rider::new(OFFICER_ID);
-            cop.palette_index = 6;
+            cop.palette_index = crate::models::OFFICER_PALETTE;
             cop.progress = -18.;
             cop.lane = -2.;
             cop.immunity = 0.;

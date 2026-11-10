@@ -135,7 +135,20 @@ pub(super) fn sample(
     let frames = log.frames.max(1) as f32;
     let window_wall_ms = log.last.elapsed().as_secs_f64() * 1000. / f64::from(frames);
     let backend = context.single().ok().map(|ctx| {
+        let mut pair_types = [[0usize; 3]; 3];
+        let kind = |handle| {
+            ctx.colliders.colliders.get(handle)
+                .and_then(|c| c.parent())
+                .and_then(|p| ctx.rigidbody_set.bodies.get(p))
+                .map_or(0, |b| if b.is_dynamic() { 2 } else if b.is_kinematic() { 1 } else { 0 })
+        };
+        for pair in ctx.simulation.narrow_phase.contact_pairs() {
+            let a = kind(pair.collider1);
+            let b = kind(pair.collider2);
+            pair_types[a.min(b)][a.max(b)] += 1;
+        }
         serde_json::json!({
+            "pair_types_static_kinematic_dynamic": pair_types,
             "rigid_bodies": ctx.rigidbody_set.bodies.len(),
             "backend_colliders": ctx.colliders.colliders.len(),
             "contact_pairs": ctx.simulation.narrow_phase.contact_pairs().count(),

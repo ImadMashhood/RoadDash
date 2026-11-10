@@ -1,0 +1,633 @@
+    PID COMMAND         COMMAND
+      1 systemd         /usr/lib/systemd/systemd --switched-root --system --deserialize=57 rhgb
+      2 kthreadd        [kthreadd]
+      3 pool_workqueue_ [pool_workqueue_release]
+      4 kworker/R-rcu_g [kworker/R-rcu_gp]
+      5 kworker/R-sync_ [kworker/R-sync_wq]
+      6 kworker/R-kvfre [kworker/R-kvfree_rcu_reclaim]
+      7 kworker/R-slub_ [kworker/R-slub_flushwq]
+      8 kworker/R-netns [kworker/R-netns]
+     10 kworker/0:0H-kb [kworker/0:0H-kblockd]
+     13 kworker/R-mm_pe [kworker/R-mm_percpu_wq]
+     15 ksoftirqd/0     [ksoftirqd/0]
+     16 rcu_preempt     [rcu_preempt]
+     17 rcu_exp_par_gp_ [rcu_exp_par_gp_kthread_worker/0]
+     18 rcu_exp_gp_kthr [rcu_exp_gp_kthread_worker]
+     19 migration/0     [migration/0]
+     20 kprobe-optimize [kprobe-optimizer]
+     21 idle_inject/0   [idle_inject/0]
+     22 cpuhp/0         [cpuhp/0]
+     23 cpuhp/1         [cpuhp/1]
+     24 idle_inject/1   [idle_inject/1]
+     25 migration/1     [migration/1]
+     26 ksoftirqd/1     [ksoftirqd/1]
+     28 kworker/1:0H-kb [kworker/1:0H-kblockd]
+     29 cpuhp/2         [cpuhp/2]
+     30 idle_inject/2   [idle_inject/2]
+     31 migration/2     [migration/2]
+     32 ksoftirqd/2     [ksoftirqd/2]
+     34 kworker/2:0H-kb [kworker/2:0H-kblockd]
+     35 cpuhp/3         [cpuhp/3]
+     36 idle_inject/3   [idle_inject/3]
+     37 migration/3     [migration/3]
+     38 ksoftirqd/3     [ksoftirqd/3]
+     40 kworker/3:0H-kb [kworker/3:0H-kblockd]
+     41 cpuhp/4         [cpuhp/4]
+     42 idle_inject/4   [idle_inject/4]
+     43 migration/4     [migration/4]
+     44 ksoftirqd/4     [ksoftirqd/4]
+     46 kworker/4:0H-kb [kworker/4:0H-kblockd]
+     47 cpuhp/5         [cpuhp/5]
+     48 idle_inject/5   [idle_inject/5]
+     49 migration/5     [migration/5]
+     50 ksoftirqd/5     [ksoftirqd/5]
+     52 kworker/5:0H-kb [kworker/5:0H-kblockd]
+     53 cpuhp/6         [cpuhp/6]
+     54 idle_inject/6   [idle_inject/6]
+     55 migration/6     [migration/6]
+     56 ksoftirqd/6     [ksoftirqd/6]
+     58 kworker/6:0H-kb [kworker/6:0H-kblockd]
+     59 cpuhp/7         [cpuhp/7]
+     60 idle_inject/7   [idle_inject/7]
+     61 migration/7     [migration/7]
+     62 ksoftirqd/7     [ksoftirqd/7]
+     64 kworker/7:0H-kb [kworker/7:0H-kblockd]
+     65 cpuhp/8         [cpuhp/8]
+     66 idle_inject/8   [idle_inject/8]
+     67 migration/8     [migration/8]
+     68 ksoftirqd/8     [ksoftirqd/8]
+     70 kworker/8:0H-kb [kworker/8:0H-kblockd]
+     71 cpuhp/9         [cpuhp/9]
+     72 idle_inject/9   [idle_inject/9]
+     73 migration/9     [migration/9]
+     74 ksoftirqd/9     [ksoftirqd/9]
+     76 kworker/9:0H-kb [kworker/9:0H-kblockd]
+     77 cpuhp/10        [cpuhp/10]
+     78 idle_inject/10  [idle_inject/10]
+     79 migration/10    [migration/10]
+     80 ksoftirqd/10    [ksoftirqd/10]
+     82 kworker/10:0H-k [kworker/10:0H-kblockd]
+     83 cpuhp/11        [cpuhp/11]
+     84 idle_inject/11  [idle_inject/11]
+     85 migration/11    [migration/11]
+     86 ksoftirqd/11    [ksoftirqd/11]
+     88 kworker/11:0H-k [kworker/11:0H-kblockd]
+     91 kdevtmpfs       [kdevtmpfs]
+     92 kworker/R-inet_ [kworker/R-inet_frag_wq]
+     93 rcu_tasks_kthre [rcu_tasks_kthread]
+     94 rcu_tasks_rude_ [rcu_tasks_rude_kthread]
+     95 kauditd         [kauditd]
+     97 oom_reaper      [oom_reaper]
+    100 kworker/R-write [kworker/R-writeback]
+    101 kcompactd0      [kcompactd0]
+    102 ksmd            [ksmd]
+    103 khugepaged      [khugepaged]
+    104 kworker/R-kbloc [kworker/R-kblockd]
+    105 kworker/R-blkcg [kworker/R-blkcg_punt_bio]
+    106 kworker/R-kinte [kworker/R-kintegrityd]
+    107 irq/9-acpi      [irq/9-acpi]
+    108 kworker/R-tpm_d [kworker/R-tpm_dev_wq]
+    109 kworker/R-ata_s [kworker/R-ata_sff]
+    110 kworker/R-md_bi [kworker/R-md_bitmap]
+    111 kworker/R-edac- [kworker/R-edac-poller]
+    112 kworker/R-devfr [kworker/R-devfreq_wq]
+    113 watchdogd       [watchdogd]
+    114 kworker/R-quota [kworker/R-quota_events_unbound]
+    119 irq/26-AMD-Vi0- [irq/26-AMD-Vi0-Evt]
+    120 irq/27-AMD-Vi0- [irq/27-AMD-Vi0-PPR]
+    121 irq/28-AMD-Vi0- [irq/28-AMD-Vi0-GA]
+    123 kswapd0         [kswapd0]
+    124 kworker/R-crypt [kworker/R-cryptd]
+    127 kworker/R-kthro [kworker/R-kthrotld]
+    128 kworker/u51:0-h [kworker/u51:0-hci0]
+    129 irq/33-aerdrv   [irq/33-aerdrv]
+    130 irq/34-aerdrv   [irq/34-aerdrv]
+    131 irq/35-aerdrv   [irq/35-aerdrv]
+    132 irq/36-aerdrv   [irq/36-aerdrv]
+    133 kworker/R-acpi_ [kworker/R-acpi_thermal_pm]
+    135 scsi_eh_0       [scsi_eh_0]
+    136 kworker/R-scsi_ [kworker/R-scsi_tmf_0]
+    138 scsi_eh_1       [scsi_eh_1]
+    139 kworker/R-scsi_ [kworker/R-scsi_tmf_1]
+    141 scsi_eh_2       [scsi_eh_2]
+    142 kworker/R-scsi_ [kworker/R-scsi_tmf_2]
+    144 scsi_eh_3       [scsi_eh_3]
+    145 kworker/R-scsi_ [kworker/R-scsi_tmf_3]
+    148 kworker/R-dm_bu [kworker/R-dm_bufio_cache]
+    149 kworker/R-mld   [kworker/R-mld]
+    151 kworker/R-ipv6_ [kworker/R-ipv6_addrconf]
+    152 kworker/R-kstrp [kworker/R-kstrp]
+    171 kworker/u52:0   [kworker/u52:0]
+    172 kworker/u53:0   [kworker/u53:0]
+    230 kworker/5:1H-kb [kworker/5:1H-kblockd]
+    447 kworker/R-nvme- [kworker/R-nvme-wq]
+    448 kworker/R-nvme- [kworker/R-nvme-reset-wq]
+    449 kworker/R-nvme- [kworker/R-nvme-delete-wq]
+    450 kworker/R-nvme- [kworker/R-nvme-auth-wq]
+    456 kworker/11:1H-k [kworker/11:1H-kblockd]
+    472 kworker/R-btrfs [kworker/R-btrfs-worker]
+    473 kworker/R-btrfs [kworker/R-btrfs-delalloc]
+    474 kworker/R-btrfs [kworker/R-btrfs-flush_delalloc]
+    475 kworker/R-btrfs [kworker/R-btrfs-cache]
+    476 kworker/R-btrfs [kworker/R-btrfs-fixup]
+    477 kworker/R-btrfs [kworker/R-btrfs-endio]
+    478 kworker/R-btrfs [kworker/R-btrfs-endio-meta]
+    479 kworker/R-btrfs [kworker/R-btrfs-rmw]
+    480 kworker/R-btrfs [kworker/R-btrfs-endio-write]
+    481 kworker/R-btrfs [kworker/R-btrfs-freespace-write]
+    482 kworker/R-btrfs [kworker/R-btrfs-delayed-meta]
+    483 kworker/R-btrfs [kworker/R-btrfs-qgroup-rescan]
+    484 btrfs-cleaner   [btrfs-cleaner]
+    485 btrfs-transacti [btrfs-transaction]
+    516 kworker/7:1H-kb [kworker/7:1H-kblockd]
+    528 kworker/2:1H-kb [kworker/2:1H-kblockd]
+    529 kworker/6:1H-kb [kworker/6:1H-kblockd]
+    530 kworker/1:1H-kb [kworker/1:1H-kblockd]
+    533 kworker/8:1H-kb [kworker/8:1H-kblockd]
+    544 kworker/9:1H-kb [kworker/9:1H-kblockd]
+    571 kworker/10:1H-k [kworker/10:1H-kblockd]
+    582 systemd-journal /usr/lib/systemd/systemd-journald
+    609 kworker/0:1H-kb [kworker/0:1H-kblockd]
+    611 systemd-userdbd /usr/lib/systemd/systemd-userdbd
+    617 systemd-resolve /usr/lib/systemd/systemd-resolved
+    626 systemd-udevd   /usr/lib/systemd/systemd-udevd
+    627 kworker/3:1H-kb [kworker/3:1H-kblockd]
+    628 kworker/4:1H-kb [kworker/4:1H-kblockd]
+    633 psimon          [psimon]
+    707 systemd-oomd    /usr/lib/systemd/systemd-oomd
+    724 kworker/R-cfg80 [kworker/R-cfg80211]
+    735 kworker/R-led_w [kworker/R-led_workqueue]
+    755 jbd2/nvme1n1p3- [jbd2/nvme1n1p3-8]
+    756 kworker/R-ext4- [kworker/R-ext4-rsv-conversion]
+    763 kworker/u51:1-h [kworker/u51:1-hci0]
+    792 napi/phy0-0     [napi/phy0-0]
+    793 napi/phy0-0     [napi/phy0-0]
+    794 napi/phy0-0     [napi/phy0-0]
+    797 auditd          /usr/bin/auditd
+    799 sedispatch      /usr/sbin/sedispatch
+    824 dbus-broker-lau /usr/bin/dbus-broker-launch --scope system --audit
+    826 dbus-broker     dbus-broker --log 10 --controller 9 --machine-id 769214e149bd4ba4918e55ca250e0dc9 --max-bytes 536870912 --max-fds 4096 --max-matches 131072 --audit
+    830 nv_queue        [nv_queue]
+    831 nv_mem_pool_scr [nv_mem_pool_scrubber_queue]
+    832 nv_mem_pool_scr [nv_mem_pool_scrubber_queue]
+    833 nv_mem_pool_scr [nv_mem_pool_scrubber_queue]
+    834 nv_queue        [nv_queue]
+    836 nv_open_q       [nv_open_q]
+    837 avahi-daemon    avahi-daemon: running [imads-pc.local]
+    838 bluetoothd      /usr/libexec/bluetooth/bluetoothd
+    840 firewalld       /usr/bin/python3 -sP /usr/bin/firewalld --nofork --nopid
+    844 NetworkManager  /usr/bin/NetworkManager --no-daemon
+    848 irqbalance      /usr/sbin/irqbalance
+    849 chronyd         /usr/sbin/chronyd -n -F 2
+    853 polkitd         /usr/lib/polkit-1/polkitd --no-debug --log-level=notice
+    855 smartd          /usr/bin/smartd -n -q never --capabilities=mail
+    856 switcheroo-cont /usr/libexec/switcheroo-control
+    865 systemd-homed   /usr/lib/systemd/systemd-homed
+    868 udisksd         /usr/libexec/udisks2/udisksd
+    870 upowerd         /usr/libexec/upowerd
+    886 irq/105-nvidia  [irq/105-nvidia]
+    887 nvidia          [nvidia]
+    888 nv_queue        [nv_queue]
+    911 psimon          [psimon]
+    940 mt76-tx phy0    [mt76-tx phy0]
+    942 abrtd           /usr/sbin/abrtd -d -s
+    959 avahi-daemon    avahi-daemon: chroot helper
+    962 accounts-daemon /usr/libexec/accounts-daemon
+    963 alsactl         /usr/sbin/alsactl -s -n 19 -c -E ALSA_CONFIG_PATH=/etc/alsa/alsactl.conf --initfile=/lib/alsa/init/00main rdaemon
+    967 systemd-logind  /usr/lib/systemd/systemd-logind
+   1007 ModemManager    /usr/bin/ModemManager
+   1027 abrt-dump-journ /usr/bin/abrt-dump-journal-core -D -T -f -e
+   1029 abrt-dump-journ /usr/bin/abrt-dump-journal-oops -fxtD
+   1034 abrt-dump-journ /usr/bin/abrt-dump-journal-xorg -fxtD
+   1038 kworker/R-rpcio [kworker/R-rpciod]
+   1039 kworker/R-xprti [kworker/R-xprtiod]
+   1052 nvidia-modeset/ [nvidia-modeset/kthread_q]
+   1053 nvidia-modeset/ [nvidia-modeset/deferred_close_kthread_q]
+   1089 cupsd           /usr/bin/cupsd -l
+   1090 gssproxy        /usr/bin/gssproxy -i
+   1099 tuned           /usr/bin/python3 -Es /usr/sbin/tuned -l -P
+   1118 atd             /usr/sbin/atd -f
+   1119 crond           /usr/sbin/crond -n
+   1285 plasmalogin     /usr/bin/plasmalogin
+   1462 uresourced      /usr/libexec/uresourced
+   1467 psimon          [psimon]
+   1474 tuned-ppd       /usr/bin/python3 -Es /usr/sbin/tuned-ppd -l
+   1495 wpa_supplicant  /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -u -s
+   1650 krfcommd        [krfcommd]
+   1708 rsyslogd        /usr/sbin/rsyslogd -n
+   1730 plasmalogin-hel /usr/libexec/plasmalogin-helper --socket /tmp/plasmalogin-auth-74480ed3-5f71-4364-9009-bef59efa6cca --id 1 --start /usr/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland --user imad
+   1736 systemd         /usr/lib/systemd/systemd --user
+   1738 (sd-pam)        (sd-pam)
+   1757 dbus-broker-lau /usr/bin/dbus-broker-launch --scope user
+   1759 dbus-broker     dbus-broker --log 11 --controller 10 --machine-id 769214e149bd4ba4918e55ca250e0dc9 --max-bytes 100000000000000 --max-fds 25000000000000 --max-matches 5000000000
+   1762 ksecretd        /usr/bin/ksecretd --pam-login 9 10
+   1763 startplasma-way /usr/bin/startplasma-wayland
+   1855 gvfsd           /usr/libexec/gvfsd
+   1867 gvfsd-fuse      /usr/libexec/gvfsd-fuse /run/user/1000/gvfs -f
+   1920 dconf-service   /usr/libexec/dconf-service
+   2014 kwin_wayland_wr /usr/bin/kwin_wayland_wrapper --xwayland
+   2015 uresourced      /usr/libexec/uresourced --user
+   2024 baloo_file      /usr/libexec/kf6/baloo_file
+   2026 pipewire        /usr/bin/pipewire
+   2027 wireplumber     /usr/bin/wireplumber
+   2028 kwin_wayland    /usr/bin/kwin_wayland --wayland-fd 7 --socket wayland-0 --xwayland-fd 8 --xwayland-fd 9 --xwayland-display :0 --xwayland-xauthority /run/user/1000/xauth_nGWoZb --xwayland
+   2067 nvidia-drm/time [nvidia-drm/timeline-2a]
+   2069 nvidia-drm/time [nvidia-drm/timeline-2b]
+   2072 nvidia-drm/time [nvidia-drm/timeline-2c]
+   2079 nvidia-drm/time [nvidia-drm/timeline-2d]
+   2080 nvidia-drm/time [nvidia-drm/timeline-2e]
+   2081 nvidia-drm/time [nvidia-drm/timeline-2f]
+   2082 nvidia-drm/time [nvidia-drm/timeline-30]
+   2083 nvidia-drm/time [nvidia-drm/timeline-31]
+   2084 nvidia-drm/time [nvidia-drm/timeline-32]
+   2100 nvidia-drm/time [nvidia-drm/timeline-33]
+   2101 nvidia-drm/time [nvidia-drm/timeline-34]
+   2104 plasma-keyboard /usr/bin/plasma-keyboard
+   2112 Xwayland        /usr/bin/Xwayland :0 -auth /run/user/1000/xauth_nGWoZb -listenfd 8 -listenfd 9 -displayfd 128 -wm 136 -rootless
+   2118 nvidia-drm/time [nvidia-drm/timeline-35]
+   2131 at-spi-bus-laun /usr/libexec/at-spi-bus-launcher
+   2144 dbus-broker-lau /usr/bin/dbus-broker-launch --config-file=/usr/share/defaults/at-spi2/accessibility.conf --scope user
+   2146 dbus-broker     dbus-broker --log 10 --controller 9 --machine-id 769214e149bd4ba4918e55ca250e0dc9 --max-bytes 100000000000000 --max-fds 6400000 --max-matches 5000000000
+   2148 ksmserver       /usr/bin/ksmserver
+   2150 kded6           /usr/bin/kded6
+   2162 nvidia-drm/time [nvidia-drm/timeline-3d]
+   2170 plasmashell     /usr/bin/plasmashell --no-respawn
+   2173 at-spi2-registr /usr/libexec/at-spi2-registryd --use-gnome-session
+   2251 kactivitymanage /usr/libexec/kactivitymanagerd
+   2260 gmenudbusmenupr /usr/bin/gmenudbusmenuproxy
+   2261 kaccess         /usr/bin/kaccess
+   2262 polkit-kde-auth /usr/libexec/kf6/polkit-kde-authentication-agent-1
+   2263 org_kde_powerde /usr/libexec/org_kde_powerdevil
+   2264 xembedsniproxy  /usr/bin/xembedsniproxy
+   2265 ssh-agent       /usr/bin/ssh-agent -D
+   2299 pipewire-pulse  /usr/bin/pipewire-pulse
+   2351 xsettingsd      /usr/bin/xsettingsd
+   2361 obexd           /usr/libexec/bluetooth/obexd
+   2384 nvidia-drm/time [nvidia-drm/timeline-40]
+   2479 ghostty         /usr/bin/ghostty --class=com.imad.norddashboard --title=Nord-Dashboard -e /usr/bin/bash /home/imad/.local/bin/monitor-dashboard
+   2483 abrt-applet     /usr/bin/abrt-applet --gapplication-service
+   2491 xwaylandvideobr /usr/bin/xwaylandvideobridge
+   2494 seapplet        /usr/bin/python3 -Es /usr/bin/seapplet
+   2501 kunifiedpush-di /usr/bin/kunifiedpush-distributor
+   2506 xdg-desktop-por /usr/libexec/xdg-desktop-portal
+   2511 agent           /usr/libexec/geoclue-2.0/demos/agent
+   2519 DiscoverNotifie /usr/libexec/DiscoverNotifier --check-delay 20
+   2546 xdg-permission- /usr/libexec/xdg-permission-store
+   2572 xdg-document-po /usr/libexec/xdg-document-portal
+   2596 fusermount3     fusermount3 -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+   2600 abrt-dbus       /usr/sbin/abrt-dbus -t133
+   2614 xdg-desktop-por /usr/libexec/xdg-desktop-portal-kde
+   2755 xdg-desktop-por /usr/libexec/xdg-desktop-portal-gtk
+   2771 imsettings-daem /usr/libexec/imsettings-daemon --replace
+   2781 UVM global queu [UVM global queue]
+   2782 UVM deferred re [UVM deferred release queue]
+   2783 UVM Tools Event [UVM Tools Event Queue]
+   2786 nvidia-drm/time [nvidia-drm/timeline-4e]
+   2821 nvidia-drm/time [nvidia-drm/timeline-51]
+   2849 gvfsd-metadata  /usr/libexec/gvfsd-metadata
+   2958 tmux: client    tmux attach-session -t dashboard
+   2964 tmux: server    tmux new-session -d -s dashboard -n monitoring
+   2965 bash            -bash
+   2969 bash            -bash
+   2973 bash            -bash
+   3053 btop            btop
+   3083 ksystemstats    /usr/bin/ksystemstats
+   3342 pcscd           /usr/bin/pcscd --foreground --auto-exit
+   3438 kwalletd6       /usr/bin/kwalletd6
+   3928 nvidia-drm/time [nvidia-drm/timeline-67]
+   4516 baloorunner     /usr/libexec/baloorunner
+   4597 ChatGPT         /usr/lib/chatgpt/ChatGPT
+   4602 browser_crashpa /usr/lib/chatgpt/browser_crashpad_handler --monitor-self --monitor-self-annotation=ptype=crashpad-handler --user-stream-region=4,65568 --database=/home/imad/.config/Codex/Crash Reports --annotation=lsb-release=Fedora Linux 44 (KDE Plasma Desktop Edition) --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=156.0.8078.48 --initial-client-fd=7 --shared-client-connection
+   4604 browser_crashpa /usr/lib/chatgpt/browser_crashpad_handler --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=/home/imad/.config/Codex/Crash Reports --annotation=lsb-release=Fedora Linux 44 (KDE Plasma Desktop Edition) --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=156.0.8078.48 --initial-client-fd=4 --shared-client-connection
+   4608 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=zygote --no-zygote-sandbox --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --change-stack-guard-on-fork=enable
+   4609 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=zygote --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --change-stack-guard-on-fork=enable
+   4615 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=zygote --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --change-stack-guard-on-fork=enable
+   4653 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=gpu-process --gpu-recent-crash-count=0 --ozone-platform=x11 --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --change-stack-guard-on-fork=enable --gpu-preferences=YAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAASAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAwAAAAAAAAAAEAAAAAAAAACAAAAAAAAAAMAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --metrics-shmem-handle=4,i,17061407577348232276,6688627692327189746,262144 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190708988185955192
+   4655 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,11028241729405835945,5311738499780998597,524288 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190708989122997041
+   4668 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,12019752796952394786,15379914068940767857,524288 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190708990060038890
+   4694 nvidia-drm/time [nvidia-drm/timeline-7f]
+   4702 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=broker
+   4928 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=11 --launch-time-ticks=398721787 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,17697737009463285220,7349818355867169959,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190708996619331833
+   4964 codex           /usr/lib/chatgpt/resources/codex -c features.code_mode_host=true app-server --analytics-default-enabled -c plugins.codex-app-tools@openai-bundled.mcp_servers.codex_app.enabled=true
+   5033 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=utility --utility-sub-type=node.mojom.NodeService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,9101795063784736556,13882146509715942626,524288 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190708998493415531
+   5206 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,9642572307065663880,780470824709793027,524288 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709000367499229
+   5405 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=17 --launch-time-ticks=404173886 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,8418543577825913169,10901861121583702565,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709002241582927 --force-fieldtrials=WebRTC-Sctp-Snap/Enabled/WebRTC-IceHandshakeDtls/Enabled/WebRTC-ForceDtls13/Enabled/
+   5457 MainThread      /home/imad/.config/Codex/artifact-sessions/runtime-generations/generation-XALjq6/runtime/bin/node /home/imad/.config/Codex/artifact-sessions/runtime-generations/generation-XALjq6/runtime/node_modules/@oai/artifact-tool/dist/artifact-session/host-daemon.mjs
+   5851 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=19 --launch-time-ticks=409857662 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,1572443701202780200,9684365106727172563,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709004115666625 --force-fieldtrials=WebRTC-Sctp-Snap/Enabled/WebRTC-IceHandshakeDtls/Enabled/WebRTC-ForceDtls13/Enabled/
+   7908 codex-code-mode /usr/lib/chatgpt/resources/codex-code-mode-host
+   8268 nvidia-drm/time [nvidia-drm/timeline-9f]
+  97620 bash            bash /home/imad/.local/share/Steam/steam.sh -srt-logger-opened
+  97642 srt-logger      /home/imad/.local/share/Steam/ubuntu12_32/steam-runtime/usr/libexec/steam-runtime-tools-0/srt-logger --sh-syntax --rotate=8388608 --log-directory /home/imad/.local/share/Steam/logs --filename console-linux.txt --log-fd=7 --journal-fd=5 --parse-level-prefix
+  97744 steam           /home/imad/.local/share/Steam/ubuntu12_32/steam -srt-logger-opened
+  97780 nvidia-drm/time [nvidia-drm/timeline-2f9]
+  97786 srt-bwrap       /home/imad/.local/share/Steam/steamrt64/pv-runtime/steam-runtime-steamrt/pressure-vessel/libexec/steam-runtime-tools-0/srt-bwrap --args 26 /usr/lib/pressure-vessel/from-host/libexec/steam-runtime-tools-0/pv-adverb --prefix=/usr/lib/pressure-vessel/from-host --generate-locales --fd 11 --regenerate-ld.so-cache /var/pressure-vessel/ldso --add-ld.so-path /usr/lib/pressure-vessel/overrides/lib/x86_64-linux-gnu --add-ld.so-path /usr/lib/pressure-vessel/overrides/lib/i386-linux-gnu --set-ld-library-path /usr/lib/pressure-vessel/overrides/lib/x86_64-linux-gnu/aliases:/usr/lib/pressure-vessel/overrides/lib/i386-linux-gnu/aliases --overrides-path /usr/lib/pressure-vessel/overrides --assign-fd=1=3 --assign-fd=2=4 -- /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper_sniper_wrap.sh -nocrashdialog -lang=en_US -cachedir=/home/imad/.local/share/Steam/config/htmlcache -steampid=97744 -buildid=1792618285 -steamid=0 -logdir=/home/imad/.local/share/Steam/logs -uimode=7 -startcount=0 -steamuniverse=Public -realm=Global -clientui=/home/imad/.local/share/Steam/clientui -steampath=/home/imad/.local/share/Steam/ubuntu12_32/steam -launcher=0 -use_xcomposite_workaround --valve-enable-site-isolation --crl-sets-path=/home/imad/.local/share/Steam/resource/crl-set --enable-smooth-scrolling --password-store=basic --log-file=/home/imad/.local/share/Steam/logs/cef_log.txt --disable-quick-menu --disable-component-update --gaia-url=http://disabled.invalid --enable-features=PlatformHEVCDecoderSupport --disable-features=WinRetrieveSuggestionsOnlyOnDemand,SpareRendererForSitePerProcess,BlockPromptsIfIgnoredOften,WebUsbDeviceDetection,ValveFFmpegAllowLowDelayHEVC
+  97798 srt-logger      /home/imad/.local/share/Steam/ubuntu12_32/steam-runtime/usr/libexec/steam-runtime-tools-0/srt-logger --sh-syntax --rotate=8388608 --log-directory /home/imad/.steam/steam/logs --filename webhelper-linux.txt --log-fd=7 --journal-fd=5 --parse-level-prefix --journal-level=info
+  97907 steam-runtime-l steam-runtime-launcher-service --alongside-steam
+  98023 pv-adverb       /usr/lib/pressure-vessel/from-host/libexec/steam-runtime-tools-0/pv-adverb --prefix=/usr/lib/pressure-vessel/from-host --generate-locales --fd 11 --regenerate-ld.so-cache /var/pressure-vessel/ldso --add-ld.so-path /usr/lib/pressure-vessel/overrides/lib/x86_64-linux-gnu --add-ld.so-path /usr/lib/pressure-vessel/overrides/lib/i386-linux-gnu --set-ld-library-path /usr/lib/pressure-vessel/overrides/lib/x86_64-linux-gnu/aliases:/usr/lib/pressure-vessel/overrides/lib/i386-linux-gnu/aliases --overrides-path /usr/lib/pressure-vessel/overrides --assign-fd=1=3 --assign-fd=2=4 -- /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper_sniper_wrap.sh -nocrashdialog -lang=en_US -cachedir=/home/imad/.local/share/Steam/config/htmlcache -steampid=97744 -buildid=1792618285 -steamid=0 -logdir=/home/imad/.local/share/Steam/logs -uimode=7 -startcount=0 -steamuniverse=Public -realm=Global -clientui=/home/imad/.local/share/Steam/clientui -steampath=/home/imad/.local/share/Steam/ubuntu12_32/steam -launcher=0 -use_xcomposite_workaround --valve-enable-site-isolation --crl-sets-path=/home/imad/.local/share/Steam/resource/crl-set --enable-smooth-scrolling --password-store=basic --log-file=/home/imad/.local/share/Steam/logs/cef_log.txt --disable-quick-menu --disable-component-update --gaia-url=http://disabled.invalid --enable-features=PlatformHEVCDecoderSupport --disable-features=WinRetrieveSuggestionsOnlyOnDemand,SpareRendererForSitePerProcess,BlockPromptsIfIgnoredOften,WebUsbDeviceDetection,ValveFFmpegAllowLowDelayHEVC
+  98049 steamwebhelper  ./steamwebhelper -nocrashdialog -lang=en_US -cachedir=/home/imad/.local/share/Steam/config/htmlcache -steampid=97744 -buildid=1792618285 -steamid=0 -logdir=/home/imad/.local/share/Steam/logs -uimode=7 -startcount=0 -steamuniverse=Public -realm=Global -clientui=/home/imad/.local/share/Steam/clientui -steampath=/home/imad/.local/share/Steam/ubuntu12_32/steam -launcher=0 -use_xcomposite_workaround --valve-enable-site-isolation --crl-sets-path=/home/imad/.local/share/Steam/resource/crl-set --enable-smooth-scrolling --password-store=basic --log-file=/home/imad/.local/share/Steam/logs/cef_log.txt --disable-quick-menu --disable-component-update --gaia-url=http://disabled.invalid --enable-features=PlatformHEVCDecoderSupport --disable-features=WinRetrieveSuggestionsOnlyOnDemand,SpareRendererForSitePerProcess,BlockPromptsIfIgnoredOften,WebUsbDeviceDetection,ValveFFmpegAllowLowDelayHEVC
+  98054 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --no-zygote-sandbox --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98055 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98057 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98082 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --no-zygote-sandbox --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98084 nvidia-drm/time [nvidia-drm/timeline-304]
+  98085 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --no-zygote-sandbox --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98095 steamwebhelper  /proc/self/exe --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0 --shared-files --field-trial-handle=3,i,2312457831808460956,92282780675279241,262144 --enable-features=PlatformHEVCDecoderSupport --disable-features=BlockPromptsIfIgnoredOften,SpareRendererForSitePerProcess,ValveFFmpegAllowLowDelayHEVC,WebUsbDeviceDetection,WinRetrieveSuggestionsOnlyOnDemand --variations-seed-version --log-file=/home/imad/.local/share/Steam/logs/cef_log.txt
+  98098 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98117 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+  98174 nvidia-drm/time [nvidia-drm/timeline-305]
+  98691 nvidia-drm/time [nvidia-drm/timeline-315]
+  99255 steamwebhelper  /proc/self/exe --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0 --shared-files --field-trial-handle=3,i,2312457831808460956,92282780675279241,262144 --enable-features=PlatformHEVCDecoderSupport --disable-features=BlockPromptsIfIgnoredOften,SpareRendererForSitePerProcess,ValveFFmpegAllowLowDelayHEVC,WebUsbDeviceDetection,WinRetrieveSuggestionsOnlyOnDemand --variations-seed-version --log-file=/home/imad/.local/share/Steam/logs/cef_log.txt
+ 103731 gvfsd-trash     /usr/libexec/gvfsd-trash --spawner :1.6 /org/gtk/gvfs/exec_spaw/0
+ 103741 gvfs-udisks2-vo /usr/libexec/gvfs-udisks2-volume-monitor
+ 103747 gvfs-goa-volume /usr/libexec/gvfs-goa-volume-monitor
+ 175843 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+ 175844 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+ 183657 krunner         /usr/bin/krunner --daemon
+ 183773 nvidia-drm/time [nvidia-drm/timeline-86c]
+ 221826 gvfsd-network   /usr/libexec/gvfsd-network --spawner :1.6 /org/gtk/gvfs/exec_spaw/1
+ 221850 gvfsd-dnssd     /usr/libexec/gvfsd-dnssd --spawner :1.6 /org/gtk/gvfs/exec_spaw/2
+ 221871 gvfsd-wsdd      /usr/libexec/gvfsd-wsdd --spawner :1.6 /org/gtk/gvfs/exec_spaw/3
+ 221882 wsdd            /usr/bin/python3 /usr/bin/wsdd --no-host --discovery --listen /run/user/1000/gvfsd/wsdd
+ 278322 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+ 281857 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+ 336572 chrome_crashpad /home/imad/.config/discord/app-1.0.167/chrome_crashpad_handler --monitor-self-annotation=ptype=crashpad-handler --no-rate-limit --database=/home/imad/.config/discord/Crashpad --url=https://f.a.k/e --annotation=_productName=discord --annotation=_version=1.0.167 --annotation=lsb-release=Fedora Linux 44 (KDE Plasma Desktop Edition) --annotation=plat=Linux --annotation=prod=Electron --annotation=ver=44.9.3 --initial-client-fd=36 --shared-client-connection
+ 336662 Discord         /home/imad/.config/discord/app-1.0.168/Discord
+ 336670 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=zygote --no-zygote-sandbox
+ 336671 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=zygote
+ 336673 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=zygote
+ 336692 chrome_crashpad /home/imad/.config/discord/app-1.0.168/chrome_crashpad_handler --monitor-self-annotation=ptype=crashpad-handler --no-rate-limit --database=/home/imad/.config/discord/Crashpad --url=https://f.a.k/e --annotation=_productName=discord --annotation=_version=1.0.168 --annotation=lsb-release=Fedora Linux 44 (KDE Plasma Desktop Edition) --annotation=plat=Linux --annotation=prod=Electron --annotation=ver=44.10.0 --initial-client-fd=100 --shared-client-connection
+ 336713 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=336692 --enable-crash-reporter=78ad3661-3b7c-4463-a258-d9b51edf148b,no_channel --user-data-dir=/home/imad/.config/discord --gpu-preferences=YAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAASAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --use-gl=disabled --shared-files --field-trial-handle=3,i,972391818782960018,15655554724904144826,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=AllowAggressiveThrottlingWithWebSocket,DropInputEventsWhilePaintHolding,HardwareMediaKeyHandling,IntensiveWakeUpThrottling,LocalNetworkAccessChecks,MediaSessionService,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation,UseEcoQoSForBackgroundProcess,WaylandWpColorManagerV1,WinRetrieveSuggestionsOnlyOnDemand --variations-seed-version --pseudonymization-salt-handle=7,i,8543627783887377689,850607590322496329,4 --trace-process-track-uuid=3190708988185955192
+ 336716 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=336692 --enable-crash-reporter=78ad3661-3b7c-4463-a258-d9b51edf148b,no_channel --user-data-dir=/home/imad/.config/discord --standard-schemes=disclip --secure-schemes=disclip,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=disclip,sentry-ipc --fetch-schemes=disclip,sentry-ipc --streaming-schemes=disclip --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,972391818782960018,15655554724904144826,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=AllowAggressiveThrottlingWithWebSocket,DropInputEventsWhilePaintHolding,HardwareMediaKeyHandling,IntensiveWakeUpThrottling,LocalNetworkAccessChecks,MediaSessionService,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation,UseEcoQoSForBackgroundProcess,WaylandWpColorManagerV1,WinRetrieveSuggestionsOnlyOnDemand --variations-seed-version --pseudonymization-salt-handle=7,i,8543627783887377689,850607590322496329,4 --trace-process-track-uuid=3190708989122997041
+ 336717 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=broker
+ 336791 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=renderer --crashpad-handler-pid=336692 --enable-crash-reporter=78ad3661-3b7c-4463-a258-d9b51edf148b,no_channel --user-data-dir=/home/imad/.config/discord --standard-schemes=disclip --secure-schemes=disclip,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=disclip,sentry-ipc --fetch-schemes=disclip,sentry-ipc --streaming-schemes=disclip --app-path=/home/imad/.config/discord/app-1.0.168/resources/app.asar --no-sandbox --no-zygote --enable-blink-features=EnumerateDevices,AudioOutputDevices --autoplay-policy=no-user-gesture-required --openh264-library-path=/home/imad/.config/discord/discord_asset_cache/openh264/libopenh264-2.7.0-linux64.8.so --enable-libopenh264 --ozone-platform=wayland --disable-gpu-compositing --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --launch-time-ticks=29752421790 --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,972391818782960018,15655554724904144826,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=AllowAggressiveThrottlingWithWebSocket,DropInputEventsWhilePaintHolding,HardwareMediaKeyHandling,IntensiveWakeUpThrottling,LocalNetworkAccessChecks,MediaSessionService,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation,UseEcoQoSForBackgroundProcess,WaylandWpColorManagerV1,WinRetrieveSuggestionsOnlyOnDemand --variations-seed-version --pseudonymization-salt-handle=7,i,8543627783887377689,850607590322496329,4 --trace-process-track-uuid=3190708992871164437 --enable-node-leakage-in-renderers
+ 336875 Discord         /home/imad/.config/discord/app-1.0.168/Discord --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=336692 --enable-crash-reporter=78ad3661-3b7c-4463-a258-d9b51edf148b,no_channel --user-data-dir=/home/imad/.config/discord --standard-schemes=disclip --secure-schemes=disclip,sentry-ipc --bypasscsp-schemes=sentry-ipc --cors-schemes=disclip,sentry-ipc --fetch-schemes=disclip,sentry-ipc --streaming-schemes=disclip --shared-files=v8_context_snapshot_data:100 --field-trial-handle=3,i,972391818782960018,15655554724904144826,262144 --enable-features=DocumentPolicyIncludeJSCallStacksInCrashReports,PdfUseShowSaveFilePicker --disable-features=AllowAggressiveThrottlingWithWebSocket,DropInputEventsWhilePaintHolding,HardwareMediaKeyHandling,IntensiveWakeUpThrottling,LocalNetworkAccessChecks,MediaSessionService,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TraceSiteInstanceGetProcessCreation,UseEcoQoSForBackgroundProcess,WaylandWpColorManagerV1,WinRetrieveSuggestionsOnlyOnDemand --variations-seed-version --pseudonymization-salt-handle=7,i,8543627783887377689,850607590322496329,4 --trace-process-track-uuid=3190708993808206286
+ 337991 vidmem lazy fre [vidmem lazy free]
+ 337992 UVM GPU1 BH     [UVM GPU1 BH]
+ 337993 UVM GPU1 KC     [UVM GPU1 KC]
+ 490640 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+ 490644 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+ 490664 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+ 490698 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+ 503777 gvfsd-recent    /usr/libexec/gvfsd-recent --spawner :1.6 /org/gtk/gvfs/exec_spaw/4
+ 506756 codex           /usr/lib/chatgpt/resources/codex -c forced_login_method="chatgpt" exec-server --remote https://codex-cloud-environments.chatgpt.com/api --environment-id ccarenv_b64_Y2NhcmVudl82YWUxMmM1YWMwODA4MTkxOTg4YTQyM2JkNzY2ZjhiNg
+ 644678 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+ 790641 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+ 791026 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1050713 flatpak-session /usr/libexec/flatpak-session-helper
+1050718 p11-kit-server  server --sh -n /run/user/1000/.flatpak-helper/pkcs11-flatpak-1050713 --provider p11-kit-trust.so pkcs11:model=p11-kit-trust?write-protected=yes
+1110078 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1110093 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1110126 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1124492 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+1191829 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1191831 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1191867 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1203914 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1203929 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1203962 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1210800 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+1224289 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+1267887 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1334347 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1339995 rtkit-daemon    /usr/libexec/rtkit-daemon
+1348595 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1348596 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1348628 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+1348642 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1358372 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=46 --launch-time-ticks=122748741144 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,5089626956472542430,14743344896375404113,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709029415796548
+1360160 catatonit       catatonit -P
+1475164 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=50 --launch-time-ticks=128223505542 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,7593484418043554998,14493222984238317845,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709033163963944
+1475474 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=51 --launch-time-ticks=128244055318 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,5470439119206969199,14950959409618103051,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709034101005793
+1503369 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=52 --launch-time-ticks=130034148564 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,15747500838201927378,8838420149755209057,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709035038047642
+1678451 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1680581 ghostty         /usr/bin/ghostty --gtk-single-instance=true --initial-window=false
+1680601 nvidia-drm/time [nvidia-drm/timeline-636e]
+1680734 bash            /bin/bash
+1741873 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+1741878 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1741890 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1741893 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1774943 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1774957 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+1774987 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1775002 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1940090 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1940995 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1941282 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1949289 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+1968532 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1973738 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+1973753 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+1973786 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2003238 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2006855 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2006861 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2006863 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2137334 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2137336 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2137343 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2137392 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2137459 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2191491 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2191514 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2191541 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2191558 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2225908 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2225910 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2225930 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2225967 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2252980 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2252984 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2252992 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2253006 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2297431 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2297442 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2297451 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2297459 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2324404 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2324442 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2324461 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2324474 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2340472 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+2356769 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=16 --launch-time-ticks=802929910014 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,4237356699694059508,14058519150784474098,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709001304541078
+2357754 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2357788 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2357831 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2357865 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2447626 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2447648 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2447678 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2447707 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2469079 drkonqi-coredum /usr/libexec/drkonqi-coredump-launcher
+2470230 steamwebhelper  /home/imad/.local/share/Steam/ubuntu12_64/steamwebhelper --type=zygote --enable-crash-reporter=, --change-stack-guard-on-fork=enable --enable-chrome-runtime --user-data-dir=/home/imad/.local/share/Steam/config/htmlcache --user-agent-product=Valve Steam Client --buildid=1792618285 --steamid=0
+2491167 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2491179 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2491198 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2491266 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2523868 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=10 --launch-time-ticks=825831554191 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,11493732168152261694,1203220575517142833,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190708995682289984 --force-fieldtrials=WebRTC-Sctp-Snap/Enabled/WebRTC-IceHandshakeDtls/Enabled/WebRTC-ForceDtls13/Enabled/
+2524113 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2524254 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2525269 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=156 --launch-time-ticks=825844325433 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,11979386296466466264,4907770249640911826,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709132490399938
+2525443 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=161 --launch-time-ticks=825846426010 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,13227479940324271662,8645207820984963036,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709137175609183
+2534535 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2534536 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2534545 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2534554 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2537286 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2537290 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2537308 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2537342 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2538037 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2538065 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2538079 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2538087 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2607580 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2607582 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2607602 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2607635 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2608369 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2608393 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2608439 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2616816 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2616844 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2616864 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2638064 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2638066 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2783981 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2784011 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2784020 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2784030 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2814275 kworker/2:2-eve [kworker/2:2-events]
+2819987 kworker/5:1-mm_ [kworker/5:1-mm_percpu_wq]
+2831216 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2831257 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2831272 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2831313 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2831463 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2841319 kworker/6:1-eve [kworker/6:1-events]
+2848135 ChatGPT         /usr/lib/chatgpt/ChatGPT --type=renderer --crashpad-handler-pid=4602 --enable-crash-reporter=, --user-data-dir=/home/imad/.config/Codex --owl-electron-scheme-replay --standard-schemes=app,codex-sandbox --service-worker-schemes=codex-sandbox --secure-schemes=app,codex-sandbox --fetch-schemes=app,codex-sandbox --cors-schemes=codex-sandbox --streaming-schemes=app,codex-sandbox --owl-scoped-user-agent-additional-hosts=openai.com,chatgpt.com,chatgpt.site,chatgpt-team.site --owl-scoped-user-agent-prefix=CodexBrowser --change-stack-guard-on-fork=enable --ozone-platform=x11 --enable-blink-features=WebMCP --disable-blink-features=ReplacedNormalFlowStackingInlinePaint --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=171 --launch-time-ticks=869765858911 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,18118415443485774770,15696752245363592486,1572864 --field-trial-handle=3,i,236180292958546565,7538559826640506382,262144 --enable-features=DevToolsWebMCPSupport,DocumentPolicyIncludeJSCallStacksInCrashReports,ReportStuckThrottle --disable-features=DropInputEventsWhilePaintHolding,OwlNativeCaret,WebUIOmniboxAimPopup,WebUIOmniboxPopup --variations-seed-version --pseudonymization-salt-handle=7,i,71831786818633369,5929428375221734113,4 --trace-process-track-uuid=3190709146546027673
+2850001 kworker/7:0-eve [kworker/7:0-events]
+2850534 kworker/3:1-eve [kworker/3:1-events]
+2862177 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2862178 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2862197 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2862226 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2862236 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2866342 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+2866368 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+2866377 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2866388 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2866424 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2875199 kworker/11:2-ev [kworker/11:2-events]
+2919098 kworker/u49:21- [kworker/u49:21-blkcg_punt_bio]
+2929023 kworker/u50:17- [kworker/u50:17-btrfs-endio-write]
+2952818 kworker/u50:11- [kworker/u50:11-btrfs-endio]
+2955727 kworker/0:0-eve [kworker/0:0-events]
+2957031 kworker/4:1-mm_ [kworker/4:1-mm_percpu_wq]
+2963642 kworker/u49:8-b [kworker/u49:8-btrfs-endio]
+2963923 chrome          /opt/google/chrome/chrome
+2963929 cat             cat
+2963930 cat             cat
+2963953 chrome_crashpad /opt/google/chrome/chrome_crashpad_handler --monitor-self --monitor-self-annotation=ptype=crashpad-handler --user-stream-region=4,65568 --database=/home/imad/.config/google-chrome/Crash Reports --metrics-dir=/home/imad/.config/google-chrome --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Fedora Linux 44 (KDE Plasma Desktop Edition) --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=156.0.8078.47 --initial-client-fd=7 --shared-client-connection
+2963955 chrome_crashpad /opt/google/chrome/chrome_crashpad_handler --no-periodic-tasks --monitor-self-annotation=ptype=crashpad-handler --database=/home/imad/.config/google-chrome/Crash Reports --url=https://clients2.google.com/cr/report --annotation=channel= --annotation=lsb-release=Fedora Linux 44 (KDE Plasma Desktop Edition) --annotation=plat=Linux --annotation=prod=Chrome_Linux --annotation=ver=156.0.8078.47 --initial-client-fd=4 --shared-client-connection
+2963962 chrome          /opt/google/chrome/chrome --type=zygote --no-zygote-sandbox --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable
+2963963 chrome          /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable
+2963965 chrome          /opt/google/chrome/chrome --type=zygote --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable
+2964018 chrome          /opt/google/chrome/chrome --type=gpu-process --gpu-recent-crash-count=0 --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --gpu-preferences=YAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAASAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --metrics-shmem-handle=4,i,4886902855990297213,1118247194591356928,262144 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190708988185955192
+2964020 chrome          /opt/google/chrome/chrome --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,3440755672208172317,8602692645199420912,524288 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190708989122997041
+2964033 chrome          /opt/google/chrome/chrome --type=utility --utility-sub-type=storage.mojom.StorageService --lang=en-US --service-sandbox-type=utility --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,17091623471996792639,13501221286255998316,524288 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190708990060038890
+2964049 nvidia-drm/time [nvidia-drm/timeline-7ed7]
+2964072 chrome          /opt/google/chrome/chrome --type=renderer --top-chrome-webui --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --launch-time-ticks=876924044820 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,4771392292811815440,3683956768075915344,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190708990997080739
+2964175 chrome          /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --extension-process --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=12 --launch-time-ticks=876924271120 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,12769675455757701150,18079540265035683774,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190708997556373682
+2964218 chrome          /opt/google/chrome/chrome --type=broker
+2964252 nvidia-drm/time [nvidia-drm/timeline-7ed8]
+2964276 nvidia-drm/time [nvidia-drm/timeline-7ed9]
+2964279 nvidia-drm/time [nvidia-drm/timeline-7eda]
+2964423 chrome          /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=23 --launch-time-ticks=876926605043 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,13498875973023129861,13180299920724843191,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709007863834021
+2964908 chrome          /opt/google/chrome/chrome --type=utility --utility-sub-type=audio.mojom.AudioService --lang=en-US --service-sandbox-type=none --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,15425648072622096468,16061275011688600477,524288 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709026604671001
+2966047 chrome          /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=86 --launch-time-ticks=877001844831 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,14055835278211642476,3120098188870781306,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709066897470508
+2970294 kworker/8:2-mm_ [kworker/8:2-mm_percpu_wq]
+2975675 kworker/u50:22- [kworker/u50:22-btrfs-endio-write]
+2981827 kworker/u49:15- [kworker/u49:15-btrfs-endio]
+2983000 kworker/u50:21- [kworker/u50:21-blkcg_punt_bio]
+2987634 kworker/u50:4-e [kworker/u50:4-events_unbound]
+2987751 kworker/u49:13- [kworker/u49:13-btrfs-endio-write]
+2989136 kworker/9:1-eve [kworker/9:1-events]
+2989182 kworker/1:1-eve [kworker/1:1-events]
+2994743 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+2994876 kworker/10:0-ev [kworker/10:0-events]
+3002299 kworker/u49:9-b [kworker/u49:9-btrfs-endio]
+3002854 kworker/u50:15- [kworker/u50:15-btrfs-endio-write]
+3008257 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3008270 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+3008304 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3010830 kworker/u50:2-b [kworker/u50:2-btrfs-endio-write]
+3010831 kworker/u50:3-b [kworker/u50:3-btrfs-endio-write]
+3011940 kworker/u50:8-b [kworker/u50:8-btrfs-endio-write]
+3011955 kworker/u49:0-b [kworker/u49:0-btrfs-endio]
+3011956 kworker/u49:1-b [kworker/u49:1-btrfs-endio-write]
+3011957 kworker/u49:4-b [kworker/u49:4-btrfs-endio-write]
+3012515 kworker/u49:18- [kworker/u49:18-btrfs-endio-write]
+3012524 kworker/u49:20- [kworker/u49:20-btrfs-endio-write]
+3012525 kworker/u49:22- [kworker/u49:22-btrfs-endio-write]
+3014598 chrome          /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=280 --launch-time-ticks=879988193851 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,1202660158081498559,2622480865038520343,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709248683589214
+3015067 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+3015068 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+3015080 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3015083 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3015121 kworker/2:0-eve [kworker/2:0-events]
+3015252 kworker/0:2-cgr [kworker/0:2-cgroup_release]
+3016190 chrome          /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=284 --launch-time-ticks=880022103947 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,5458626455912858143,1553637670217720614,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709252431756610
+3017206 chrome          /opt/google/chrome/chrome --type=utility --utility-sub-type=mirroring.mojom.MirroringService --lang=en-US --service-sandbox-type=service --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --change-stack-guard-on-fork=enable --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,3181802671692756501,10067880997315341570,524288 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709258991049553
+3023568 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3023569 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node --import file:///home/imad/.codex/plugins/cache/openai-bundled/unified-computer-use/26.1023.50603/require-browser-access.mjs /usr/lib/chatgpt/resources/cua_node/lib/node_modules/@oai/cua-repl/bin/cua-repl.mjs
+3023616 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3023798 kworker/10:1-ev [kworker/10:1-events]
+3026589 kworker/u50:0-b [kworker/u50:0-blkcg_punt_bio]
+3029507 kworker/7:1-eve [kworker/7:1-events_power_efficient]
+3030373 kworker/4:2-cgr [kworker/4:2-cgroup_release]
+3030381 kworker/9:0     [kworker/9:0]
+3030711 kworker/5:2-eve [kworker/5:2-events]
+3030712 kworker/u48:2-m [kworker/u48:2-mt76]
+3031120 kworker/8:0     [kworker/8:0]
+3031615 node_repl       /usr/lib/chatgpt/resources/cua_node/bin/node_repl
+3031729 kworker/3:0-cgr [kworker/3:0-cgroup_free]
+3031825 kworker/6:2-cgr [kworker/6:2-cgroup_free]
+3032314 kworker/u49:2-b [kworker/u49:2-btrfs-endio-write]
+3032691 kworker/u50:1-b [kworker/u50:1-btrfs-endio]
+3033718 kworker/u50:5-b [kworker/u50:5-btrfs-endio-write]
+3033719 kworker/u50:6-b [kworker/u50:6-blkcg_punt_bio]
+3033720 kworker/u50:7-b [kworker/u50:7-btrfs-endio-write]
+3033721 kworker/u50:10- [kworker/u50:10-btrfs-endio-write]
+3034555 kworker/u48:0-i [kworker/u48:0-ipv6_addrconf]
+3034581 kworker/11:1-ev [kworker/11:1-events]
+3034671 kworker/u50:12- [kworker/u50:12-btrfs-endio-meta]
+3034672 kworker/u50:13- [kworker/u50:13-btrfs-endio-write]
+3034673 kworker/u50:14- [kworker/u50:14-blkcg_punt_bio]
+3034723 kworker/u49:3-b [kworker/u49:3-btrfs-endio]
+3034740 kworker/u49:5-b [kworker/u49:5-btrfs-endio]
+3034741 kworker/u49:6-b [kworker/u49:6-btrfs-endio]
+3034742 kworker/u49:7-b [kworker/u49:7-btrfs-endio]
+3035070 kworker/u50:16- [kworker/u50:16-btrfs-endio-write]
+3035462 kworker/u49:11- [kworker/u49:11-blkcg_punt_bio]
+3035660 kworker/u49:12- [kworker/u49:12-btrfs-endio]
+3035680 kworker/u49:14- [kworker/u49:14-btrfs-endio]
+3035682 kworker/u50:19- [kworker/u50:19-blkcg_punt_bio]
+3036722 kworker/1:0     [kworker/1:0]
+3038219 kworker/0:1-eve [kworker/0:1-events]
+3038354 systemd-userwor systemd-userwork: waiting...
+3038355 systemd-userwor systemd-userwork: waiting...
+3038553 kworker/4:0-cgr [kworker/4:0-cgroup_free]
+3039171 kworker/u48:1-m [kworker/u48:1-mt76]
+3039223 kworker/u49:10- [kworker/u49:10-btrfs-endio-write]
+3040016 kworker/3:2     [kworker/3:2]
+3040114 systemd-hostnam /usr/lib/systemd/systemd-hostnamed
+3040177 MainThread      /usr/lib/chatgpt/resources/cua_node/bin/node ./server.mjs
+3040236 kworker/7:2-eve [kworker/7:2-events]
+3040351 kworker/8:1     [kworker/8:1]
+3040382 kworker/9:2-eve [kworker/9:2-events]
+3040856 kworker/5:0-mm_ [kworker/5:0-mm_percpu_wq]
+3041454 systemd-userwor systemd-userwork: waiting...
+3041614 chrome          /opt/google/chrome/chrome --type=renderer --crashpad-handler-pid=2963953 --enable-crash-reporter=3242678d-ea53-4616-9506-16a05eb67191, --extension-process --change-stack-guard-on-fork=enable --ozone-platform=wayland --lang=en-US --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=367 --launch-time-ticks=881923201646 --shared-files=v8_context_snapshot_data:100 --metrics-shmem-handle=4,i,16138267330844600412,5711633322111624071,1572864 --field-trial-handle=3,i,17317492625367451584,12216184098206358937,262144 --variations-seed-version=20261031-030032.506000-production --pseudonymization-salt-handle=7,i,9102613836860366773,11652759290478035030,4 --trace-process-track-uuid=3190709330206230077
+3042022 python3         python3 docs/testing/landscape-graphics/run_native.py after
+3042041 ps              ps -eo pid,comm,args

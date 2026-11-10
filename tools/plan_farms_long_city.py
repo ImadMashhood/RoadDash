@@ -89,12 +89,8 @@ class World:
         return [u, v]
 
     def height(self, p):
-        x, z = p
-        farm = 12 + 2.0 * math.sin(z / 950) + 1.3 * math.sin(x / 650)
-        city = (12 + 0.0042 * z + 8 * math.sin(z / 1050)
-                + 4 * math.sin(x / 700 + z / 1300) + 6 * math.sin(z / 450))
-        blend = smooth((z + 200) / 400)
-        return farm * (1 - blend) + city * blend
+        from metropolis_elevation import height
+        return height(*p)
 
     def xyz(self, p):
         return [p[0], self.height(p), p[1]]
@@ -143,7 +139,9 @@ def plan(report):
         ('long_city', 'rejoin', 'finish', tail, [CITY_START + MERGE, FINISH]),
     ]:
         xyz = [world.xyz(p) for p in points]
-        edges.append(dict(id=ident, source=source, target=target, points=xyz,
+        distances=[0.]
+        for a,b in zip(xyz,xyz[1:]):distances.append(distances[-1]+length([a,b]))
+        edges.append(dict(progress_fractions=[v/distances[-1] for v in distances],id=ident, source=source, target=target, points=xyz,
                           logical_chainage_m=interval, measured_planar_m=length(points),
                           measured_3d_m=length(xyz)))
     fields=[]
@@ -170,7 +168,8 @@ def plan(report):
             public_sites.append(dict(id=landmark['id'],name=landmark['name'],bounds=[x-r,z-r,x+r,z+r]))
     race_rules=json.loads((OUTPUT/'RACE_LAYOUT_RULES.json').read_text())
     fabric=make_fabric(world,edges,public_sites,nodes,race_rules)
-    result=dict(status='2D layout/elevation proposal only; current game and all 3D content unchanged',
+    from metropolis_elevation import PROFILE
+    result=dict(elevation_profile=PROFILE,status='2D layout/elevation proposal only; current game and all 3D content unchanged',
         design='farms → urban transition → long city with curved graded streets defining polygonal blocks and straight-edged corner buildings → urban finish; one split/rejoin',
         planning_chainage_m=dict(farms_end=FARM_END,city_start=CITY_START,split=CITY_START+SPLIT,rejoin=CITY_START+MERGE,finish=FINISH),
         distance_note='12 km is the draft spine chainage. Measured paths include the branch detour and are reported separately.',
@@ -233,9 +232,9 @@ def profile(world,data,out):
     w,h=2100,760;im=Image.new('RGB',(w,h),'#14272d');d=ImageDraw.Draw(im)
     d.text((65,30),'ELEVATION STUDY — FARMS TO CITY FINISH',font=fonts(34),fill='#f2ebdb')
     d.text((65,84),'Urban rises, dips and crests remain. The separate hills district is removed from this proposal.',font=fonts(22),fill='#d7c094')
-    lo,hi=0,70;top,bottom=160,580
+    lo,hi=0,max(70,math.ceil(max(p[1] for e in data['edges'] for p in e['points'])/10)*10);top,bottom=160,580
     def xy(station,height):return(90+station/FINISH*(w-180),bottom-(height-lo)/(hi-lo)*(bottom-top))
-    for level in range(0,71,10):
+    for level in range(0,hi+1,10):
         yy=xy(0,level)[1];d.line((90,yy,w-90,yy),fill='#354c50',width=1);d.text((40,yy),str(level)+' m',font=fonts(16),fill='#afc4c5',anchor='lm')
     for edge in data['edges']:
         a,b=edge['logical_chainage_m'];pts=[]
@@ -244,7 +243,7 @@ def profile(world,data,out):
     for station,label in [(0,'START'),(FARM_END,'FARM EDGE'),(CITY_START,'CITY'),(CITY_START+MERGE,'REJOIN'),(FINISH,'FINISH')]:
         x=xy(station,0)[0];d.line((x,top,x,bottom),fill='#597270');d.text((x,bottom+24),f'{station/1000:.2f} km',font=fonts(18),fill='#e8e2cd',anchor='mm')
     d.text((90,650),'ONE split / rejoin • draft ~12 km spine • no separate hills zone • city continues through the finish',font=fonts(22),fill='#e6d7b6')
-    d.text((90,700),f"Maximum sampled proposal grade: {data['validation']['max_sampled_grade_percent']:.2f}% • elevations are planning data, not game terrain",font=fonts(20),fill='#b2c9c9')
+    d.text((90,700),f"Maximum sampled authored grade: {data['validation']['max_sampled_grade_percent']:.2f}% • shared authored profile baked into game terrain",font=fonts(20),fill='#b2c9c9')
     im.save(out/'elevation-profile.png')
 
 

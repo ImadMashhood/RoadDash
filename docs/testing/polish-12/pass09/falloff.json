@@ -1,0 +1,56 @@
+{
+  "formula": "1 - exp(-(distance_m * 0.00075)^2)",
+  "rows": [
+    {
+      "distance_m": 0,
+      "previous_opacity": 0,
+      "haze_opacity": 0.0
+    },
+    {
+      "distance_m": 30,
+      "previous_opacity": 0,
+      "haze_opacity": 0.0005061218770904263
+    },
+    {
+      "distance_m": 60,
+      "previous_opacity": 0,
+      "haze_opacity": 0.002022951070760559
+    },
+    {
+      "distance_m": 100,
+      "previous_opacity": 0,
+      "haze_opacity": 0.005609209308919061
+    },
+    {
+      "distance_m": 180,
+      "previous_opacity": 0,
+      "haze_opacity": 0.018059929014893283
+    },
+    {
+      "distance_m": 300,
+      "previous_opacity": 0.13793103448275862,
+      "haze_opacity": 0.04936490814130157
+    },
+    {
+      "distance_m": 600,
+      "previous_opacity": 0.4827586206896552,
+      "haze_opacity": 0.18331351740188917
+    },
+    {
+      "distance_m": 1050,
+      "previous_opacity": 1,
+      "haze_opacity": 0.46213960965733714
+    },
+    {
+      "distance_m": 1800,
+      "previous_opacity": 1,
+      "haze_opacity": 0.8383788075346608
+    },
+    {
+      "distance_m": 3000,
+      "previous_opacity": 1,
+      "haze_opacity": 0.9936702845725143
+    }
+  ],
+  "interpretation": "Analytic scene contrast retained, not human detection accuracy. Near objects receive less than1% blending through100m."
+}

@@ -1116,3 +1116,76 @@ Bevy v0.17.3, installed examples/ui/gradients.rs and bevy_ui/src/gradients.rs: i
 ### R08 installed-source window/audio settings review — 2026-11-09 (ADR104)
 
 Inspected installed Bevy0.17.3 bevy_audio/src/volume.rs GlobalVolume and AudioSink volume semantics,plus WindowMode/MonitorSelection/PresentMode APIs. GlobalVolume only applies at playback creation,so independent master adapter retains base CueGain and applies absolute per-sink/spawn volume. Existing Bevy DEPENDENCY/version/license (MIT OR Apache-2.0,https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT) retained; no upstream implementation/media copied or new dependency. Compatibility checked by strict compile and native API/GUI walkthrough; physical driver/audio/controller/Windows acceptance remains open. Existing Rapier backend and Jost asset/license unchanged.
+
+### R08 installed sky output and analytic tone operator — 2026-11-09 (ADR114)
+
+Inspected pinned Bevy0.17.3 skybox mod.rs/skybox.wgsl, PBR fog ordering and
+bevy_core_pipeline/src/tonemapping/tonemapping_shared.wgsl. Original procedural
+sky now has a separate display cube for the supported non-HDR renderer.
+SomewhatBoringDisplayTransform CPU fallback adapts Tomasz Stachowiak's operator
+from that installed Bevy shader, under existing MIT OR Apache-2.0 notices
+(licenses/Bevy-MIT.txt, licenses/Apache-2.0.txt). Selected profile remains Reinhard.
+Source: https://github.com/bevyengine/bevy/blob/v0.17.3/crates/bevy_core_pipeline/src/tonemapping/tonemapping_shared.wgsl.
+No new repository/media/dependency intake; original banks/veil/cloud shading
+remain independently authored. Provenance and validation: testing/polish-12/pass10.
+
+## 2026-11-09 — Grass rendering research (no intake)
+
+Investigated EmiOnGit/warbler_grass@bdb4228d715bed7868f8183a5a14d0abd0ba7ebc,
+jadedbay/bevy_procedural_grass@83dadd29314a19f0168c6a6fff4c2e88f222642a and
+GEMI/bevy-grass@b0215ad9f808481839150e156a59c00fbac3480e. MIT/Apache declarations
+and source license receipts, versions and decisions: [landscape provenance](../testing/landscape-graphics/PROVENANCE.md).
+Targets0.13/0.12.1/0.20 do not match pinned Bevy0.17.3. Research only; original
+bounded opaque tuft geometry and native visibility ranges chosen, no code/media
+intake or dependency migration.
+
+## 2026-11-09 — Stylized grass follow-up (ADR119; research only)
+
+- https://github.com/janhohenheim/foxtrot at
+  db0746fc5d7b0485b6e46d5541c152146916c2f8: current manifest Bevy0.18;
+  declared MIT OR Apache-2.0 OR CC0-1.0. Demo reference; no code/asset intake.
+- https://github.com/EmiOnGit/warbler_grass at
+  bdb4228d715bed7868f8183a5a14d0abd0ba7ebc: Bevy0.13, MIT/Apache-2.0;
+  README lists Foxtrot usage. Historical integration is not a claim that current
+  Foxtrot uses this version. Instancing approach researched; no code intake.
+- https://github.com/julien-blanchon/saddle-rendering-grass at
+  16d4e92afeeec8129d2bc926f5a234bd7ef80ca4: Bevy0.18, MIT-0;
+  curved foliage/wind/LOD approach researched; no code intake.
+- Come Bye developer news: https://steamcommunity.com/app/1282380/allnews/;
+  developer identifies Bevy. User images are direction only, no runtime media.
+- Installed Bevy0.17.3 PBR mesh/forward_io/mesh_view_bindings interfaces inspected
+  for an original ExtendedMaterial vertex shader; existing MIT/Apache notices
+  retained. No new dependency or implementation copying.
+
+Pinned manifest/README/license research receipts and caveats:
+../testing/stylized-humans-grass/research. Version mismatch favors implementing
+bounded original grass on the installed engine over a migration in an art pass.
+
+## R-MAINLINE — Public listen-host discovery (2026-11-09; ADR128)
+
+- Source: https://github.com/pubky/mainline ; inspected published mainline8.0.1
+  source from crates.io, Cargo.toml, dht.rs, async API and LICENSE (MIT).
+- API: https://docs.rs/mainline/8.0.1/mainline/ ; protocol:
+  https://www.bittorrent.org/beps/bep_0005.html .
+- Intake: pinned dependency candidate8.0.1, Rustminimum1.85 versus project1.94;
+  futures-lite2.6.1 already exists transitively and becomes direct. No copied
+  reference code or media. Actual transitive/license audit follows locked build.
+- Role: public game-specific endpoint discovery using existing DHT bootstrap,
+  followed by bounded game-protocol availability/RTT probes. Private lobby
+  capabilities never enter DHT. UDPbootstrap/discovery does not provide TCP
+  NAT traversal, relays, authentication or exhaustive global matchmaking.
+- Implementation keeps lookups/announcements on a cancelable worker, bounds
+  endpoints, filters reserved destinations and drops nodes before adaptive
+  routing-server promotion. No public-network test announcements performed.
+- Compared libp2p rendezvous (https://libp2p.io/docs/rendezvous/): still needs
+  known rendezvous peers and broader transport integration. No libp2p intake.
+
+## R-IGD — Temporary listen-host port mapping (2026-11-09; ADR129)
+
+Inspected https://github.com/dariusc93/rust-igd through published igd-next0.17.1
+source, Cargo.toml, LICENSE, gateway.rs and search.rs; MIT, Rustminimum1.75.
+Pinned dependency candidate with defaultfeatures disabled; no copied media or
+reference implementation. Sync operations run only on a background worker,
+finite leases only, private/CGNAT external addresses rejected. Existing explicit
+advertise configuration wins. Native tests must disable live router mapping;
+mocked lifecycle tests cannot certify any router or external Internet connection.

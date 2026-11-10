@@ -36,85 +36,85 @@
     },
     {
       "id": "rider-mike",
-      "display_name": "Mike",
+      "display_name": "Yamakha",
       "bike_id": "prototype-bike-01",
       "palette_index": 1
     },
     {
       "id": "rider-cydney",
-      "display_name": "Cydney",
+      "display_name": "Tyrone White",
       "bike_id": "prototype-bike-01",
       "palette_index": 2
     },
     {
       "id": "rider-jim",
-      "display_name": "Jim",
+      "display_name": "Esteban Gonzalez",
       "bike_id": "prototype-bike-01",
       "palette_index": 3
     },
     {
       "id": "rider-pearl",
-      "display_name": "Pearl",
+      "display_name": "Osama bin Countryistani",
       "bike_id": "prototype-bike-01",
       "palette_index": 4
     },
     {
       "id": "rider-jon",
-      "display_name": "Jon",
+      "display_name": "Naveen Gowda Nambiar",
       "bike_id": "prototype-bike-01",
       "palette_index": 5
     },
     {
       "id": "rider-rhonda",
-      "display_name": "Rhonda",
+      "display_name": "Ellen Windyke",
       "bike_id": "prototype-bike-01",
       "palette_index": 6
     },
     {
       "id": "rider-bose",
-      "display_name": "Bose",
+      "display_name": "Luigi\u2019s Pizzeria",
       "bike_id": "prototype-bike-01",
       "palette_index": 7
     },
     {
       "id": "rider-axle",
-      "display_name": "Axle",
+      "display_name": "Pee Pi Long",
       "bike_id": "prototype-bike-01",
       "palette_index": 8
     },
     {
       "id": "rider-eric",
-      "display_name": "Eric",
+      "display_name": "Hog",
       "bike_id": "prototype-bike-01",
       "palette_index": 9
     },
     {
       "id": "rider-buzz",
-      "display_name": "Buzz",
+      "display_name": "Cleetus Mayballs",
       "bike_id": "prototype-bike-01",
       "palette_index": 10
     },
     {
       "id": "rider-druid",
-      "display_name": "Druid",
+      "display_name": "Abeyomi",
       "bike_id": "prototype-bike-01",
       "palette_index": 11
     },
     {
       "id": "rider-hog",
-      "display_name": "Hog",
+      "display_name": "Sha\u2019queesha",
       "bike_id": "prototype-bike-01",
       "palette_index": 12
     },
     {
       "id": "rider-serge",
-      "display_name": "Serge",
+      "display_name": "Anastasia Jakmiova",
       "bike_id": "prototype-bike-01",
       "palette_index": 13
     },
     {
       "id": "rider-slash",
-      "display_name": "Slash",
+      "display_name": "Dolph Hiller",
       "bike_id": "prototype-bike-01",
       "palette_index": 14
     }

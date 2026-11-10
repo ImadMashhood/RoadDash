@@ -1,0 +1,17 @@
+{
+  "fmt": 0,
+  "targeted_sky_tests": {
+    "exit": 0,
+    "passed": 7
+  },
+  "release_build": 0,
+  "native_profiles_and_recovery": 0,
+  "clippy": "canceled while queued for shared build lock at parent request; integrated parent gate pending",
+  "workspace_tests": "parent integrated gate pending",
+  "debug_build": "parent integrated gate pending",
+  "audit": "failed expected original-cloud-daylight source hash; parent owns ASSETS refresh",
+  "sources": {
+    "src/sky.rs": "7df8615d37eb120a4a6914b606829243ff7a772ffcff595f3a0d8cd1c7396e77",
+    "src/sky/lighting.rs": "73c93cc573b2a94a413152e6427a49a587dfbefcbebcb4d806840765ade15711"
+  }
+}

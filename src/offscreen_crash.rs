@@ -31,7 +31,7 @@ pub fn classify(
     let camera = cameras.single().ok().copied();
     for (r, t, mut rec) in &mut riders {
         rec.defer_allowed = !r.police
-            && r.id != 0
+            && !r.human_controlled()
             && rec.stage == RecoveryStage::Riding
             && player
                 .zip(camera)
@@ -45,7 +45,10 @@ pub fn start(
     recovery: &mut Recovery,
     origin: Vec3,
 ) -> bool {
-    if rider.id == 0 || !recovery.defer_allowed || recovery.stage != RecoveryStage::Riding {
+    if rider.human_controlled()
+        || !recovery.defer_allowed
+        || recovery.stage != RecoveryStage::Riding
+    {
         return false;
     }
     recovery.deferred = Some(Deferred {

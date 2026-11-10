@@ -1,0 +1,43 @@
+{
+  "actual_officer_running": true,
+  "actual_player_ragdoll": true,
+  "busted_observed": true,
+  "limits": "scripted Linux RTX3080 fixture; scenario placements only; not human balance, complete art, broad perf or hardware approval",
+  "metrics": {
+    "active_fixed_ticks": 1182,
+    "colliders": 4593,
+    "entities": 51252,
+    "fixed_ticks": 1768,
+    "last_gameplay_ms": 0.7814710140228271,
+    "last_physics_ms": 0.8768799901008606,
+    "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+    "render_frames": 1769,
+    "target_hz": 60.0,
+    "wall_frame_average_ms": 21.139842987060547,
+    "wall_frame_p95_ms": 24.6787109375
+  },
+  "native_retry_verified": true,
+  "officers": 1,
+  "police_cost": {
+    "detection_perceptions": 54,
+    "max_evaluation_us": 60,
+    "mean_evaluation_us": 33.08441558441559,
+    "ray_state_evaluations": 154,
+    "safe_contact_checks": 121,
+    "scope": "timed conditional ray/state span; excludes common rider queries, drive, navigation, physics and rendering; no controlled whole-police A/B"
+  },
+  "profile_best": null,
+  "profile_races": 0,
+  "racer_count": 15,
+  "recent_remount_foot_grace_expired": true,
+  "retry_arrested": false,
+  "states": [
+    "Arrested",
+    "Intercept",
+    "Patrol",
+    "Pursue",
+    "Return",
+    "Search",
+    "Warning"
+  ]
+}

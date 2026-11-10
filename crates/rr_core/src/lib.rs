@@ -7,6 +7,7 @@ pub mod frontend;
 pub mod original_crash;
 pub mod police;
 pub mod pursuit;
+pub mod race;
 pub mod reverse;
 pub mod steering;
 pub mod traffic;
@@ -297,3 +298,15 @@ pub mod destruction;
 pub mod rival_ai;
 
 pub mod weapons;
+
+pub mod elevation;
+
+pub mod cast;
+
+pub mod escape;
+
+pub mod crops;
+
+pub mod online;
+
+pub mod pedestrian_crossing;

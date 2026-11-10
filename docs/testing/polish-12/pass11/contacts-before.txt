@@ -1,0 +1,34 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 34.48s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+contact bind=false clip=normal sole=0.039926853 grip=0.000000800 held=0.039926898
+contact bind=false clip=tuck sole=0.036242850 grip=0.000000664 held=0.036242936
+contact bind=false clip=run sole=0.004904201 grip=0.000000387 held=0.000000000
+contact bind=false clip=getup sole=0.051542122 grip=0.000000358 held=0.000000000
+contact bind=false clip=pickup sole=0.034631379 grip=0.000001002 held=0.000000000
+contact bind=false clip=pickup_mirrored sole=0.034631386 grip=0.000000860 held=0.000000000
+contact bind=false clip=steer_tuck_blend sole=0.039926801 grip=0.000000877 held=0.039926898
+contact bind=true clip=normal sole=0.000000273 grip=0.000000582 held=0.000000503
+contact bind=true clip=tuck sole=0.005247510 grip=0.000000608 held=0.005247500
+contact bind=true clip=run sole=0.040176898 grip=0.000000935 held=0.000000000
+contact bind=true clip=getup sole=0.069278099 grip=0.000000962 held=0.000000000
+contact bind=true clip=pickup sole=0.048741575 grip=0.000000579 held=0.000000000
+contact bind=true clip=pickup_mirrored sole=0.048741676 grip=0.000000642 held=0.000000000
+contact bind=true clip=steer_tuck_blend sole=0.001298976 grip=0.000000647 held=0.001299052
+ankle_metrics {"flex_m":0.03430772200226784,"grip_m":1.0018191005656263e-6,"held_grip_m":8.194284077944758e-7,"held_sole_m":0.03992689773440361,"pivot_m":0.05804634094238281,"sole_m":0.06927809864282608}
+
+thread 'models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions' (2999003) panicked at src/models/tests.rs:603:5:
+ankle surface drifts under distal flex: 0.034307722m
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions ... FAILED
+
+failures:
+
+failures:
+    models::tests::animated_boot_pivots_match_authored_ankles_across_contacts_and_transitions
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 294 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `--lib`

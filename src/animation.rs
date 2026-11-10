@@ -7,7 +7,10 @@ use bevy::prelude::*;
 use rr_core::motion::{self, RidePose};
 mod grounding;
 mod locomotion;
+#[cfg(test)]
+mod locomotion_ground_tests;
 pub mod preview;
+mod reaction;
 #[derive(Clone, Copy)]
 pub(crate) struct Pose {
     pub root: Vec3,
@@ -233,7 +236,7 @@ impl Library {
         }
         out
     }
-    fn world_pose(&self, pose: Pose) -> [Transform; 20] {
+    pub(crate) fn world_pose(&self, pose: Pose) -> [Transform; 20] {
         let mut world = [Transform::IDENTITY; 20];
         for i in 0..20 {
             let parent = self.data.parents[i];
@@ -379,6 +382,8 @@ pub struct Animator {
     plants: [Option<grounding::Plant>; 2],
     plant_stance: [bool; 2],
     plant_weight: [f32; 2],
+    gait: locomotion::Gait,
+    ground_drop: f32,
 }
 impl Default for Animator {
     fn default() -> Self {
@@ -403,6 +408,8 @@ impl Default for Animator {
             plants: [None; 2],
             plant_stance: [false; 2],
             plant_weight: [0.0; 2],
+            gait: default(),
+            ground_drop: 0.,
         }
     }
 }
@@ -420,7 +427,6 @@ fn update(
     bodies: Query<&Transform, Without<Rider>>,
     context: bevy_rapier3d::prelude::ReadRapierContext,
     art: Option<Res<crate::world::Art>>,
-    recovery_tuning: Option<Res<crate::recovery::RecoveryTuning>>,
 ) {
     let Some(race) = race else { return };
     if !race.phase.simulating() {
@@ -443,6 +449,8 @@ fn update(
         a.previous_bank = a.bike_bank;
         let entered = rec.stage != a.stage;
         if entered {
+            a.gait = default();
+            a.ground_drop = 0.;
             a.plants = [None; 2];
             a.plant_stance = [false; 2];
             a.plant_weight = [0.0; 2];
@@ -600,6 +608,15 @@ fn update(
                         .return_from
                         .blend(pose, motion::smoothstep(a.return_age / 0.16));
                 }
+                // Attack contact and decisive stagger retain priority. The pulse keeps
+                // aging underneath, so input never queues behind a flinch.
+                if a.attack.is_none()
+                    && rec.stagger.is_none()
+                    && r.finished.is_none()
+                    && let Some(hit) = r.hit_reaction
+                {
+                    pose = reaction::apply(pose, hit, race.elapsed);
+                }
                 a.current = pose;
                 a.bike_bank = 0.0;
             }
@@ -618,10 +635,14 @@ fn update(
                 });
             }
             RecoveryStage::Running => {
-                let stride = recovery_tuning.as_ref().map_or(3.2, |t| t.0.stride_length);
-                let phase = (rec.walk_distance / stride).rem_euclid(1.0);
-                let speed = rec.walk_velocity.with_y(0.0).length();
-                let target = lib.locomotion(phase, speed);
+                let heading = rec
+                    .runner
+                    .and_then(|e| bodies.get(e).ok())
+                    .map_or(Quat::IDENTITY, |t| t.rotation);
+                a.gait
+                    .advance(rec.walk_distance, rec.walk_velocity, heading, dt);
+                let target =
+                    lib.directional_locomotion(a.gait.phase, a.gait.speed, a.gait.direction);
                 a.return_age += dt;
                 a.current = a
                     .return_from
@@ -669,15 +690,7 @@ fn update(
             && let Some(runner) = rec.runner
             && let Ok(body) = bodies.get(runner)
         {
-            grounding::apply(
-                &lib,
-                &mut a,
-                rec,
-                body,
-                &context,
-                dt,
-                recovery_tuning.as_ref().map_or(3.2, |t| t.0.stride_length),
-            );
+            grounding::apply(&lib, &mut a, rec, body, &context, dt);
         }
     }
 }

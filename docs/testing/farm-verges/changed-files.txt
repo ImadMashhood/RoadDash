@@ -1,0 +1,11 @@
+README.md
+docs/CHANGELOG_DEV.md
+docs/DECISIONS.md
+docs/KNOWN_ISSUES.md
+docs/PROGRESS.md
+docs/third_party/ASSETS.csv
+src/world_gen/metropolis/geometry/landscape.rs
+src/world_gen/metropolis/mod.rs
+src/world_gen/metropolis/survey.rs
+src/world_gen/metropolis/farms.rs
+docs/testing/farm-verges/

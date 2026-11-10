@@ -5,7 +5,7 @@ import json
 import unittest
 from collections import Counter, defaultdict
 from PIL import Image
-from bake_metropolis import ROOT, facade_style, validate_palette
+from bake_metropolis import ROOT, facade_style, facade_role, validate_palette
 from metropolis_street_life import varied_floors
 
 PALETTE = json.loads((ROOT/'content/world/metropolis_facades.json').read_text())
@@ -37,9 +37,9 @@ class Facades(unittest.TestCase):
                 self.assertEqual(style,facade_style(b, block, floors, PALETTE))
                 self.assertEqual(records[b['id']]['style'],style)
                 self.assertEqual(records[b['id']]['floors'],floors)
-                role = 'tower' if floors >= 13 or b['role'] == 'interior_tower' else block['district']
+                role = facade_role(b, block, floors, PALETTE)
                 design = PALETTE['families'][style]
-                self.assertIn(design,PALETTE['pools'][role])
+                self.assertIn(design,PALETTE['pools'].get(role) or PALETTE['approach']['pools'][role])
                 coverage[role][design] += 1
         self.assertEqual(set(x for pool in coverage.values() for x in pool),set(PALETTE['families']))
         self.assertEqual(sum(sum(x.values()) for x in coverage.values()),19068)
@@ -53,6 +53,9 @@ class Facades(unittest.TestCase):
         self.assertEqual(hashlib.sha256(raw).hexdigest(),provenance['sha256'])
         self.assertEqual(hashlib.sha256((ROOT/'content/world/metropolis_facades.json').read_bytes()).hexdigest(),provenance['palette_sha256'])
         self.assertEqual(len(provenance['sources']),72)
+        packed_raw=(ROOT/'assets/metropolis/facades-packed.rgba').read_bytes()
+        self.assertEqual(hashlib.sha256(packed_raw).hexdigest(),provenance['packed_sha256'])
+        packed_images=[Image.open(atlas_root/f'packed-mip{l}.png').convert('RGBA') for l in range(5)]
         offset=0
         images=[Image.open(atlas_root/f'albedo-mip{l}.png').convert('RGBA') for l in range(5)]
         for i,source in enumerate(provenance['sources']):
@@ -68,11 +71,19 @@ class Facades(unittest.TestCase):
                 expected=Image.new('RGBA',crop.size,(135,126,108,255));expected.alpha_composite(crop)
                 data=expected.tobytes()
                 self.assertEqual(raw[offset:offset+len(data)],data)
+                packed=packed_images[level].crop((x,y,x+side,y+side))
+                expected_packed=Image.new('RGBA',crop.size,(255,230,0,255))
+                expected_packed.alpha_composite(packed)
+                self.assertEqual(packed_raw[offset:offset+len(data)],expected_packed.tobytes())
                 offset+=len(data)
         self.assertEqual(offset,len(raw))
+        self.assertEqual(offset,len(packed_raw))
         shader=(ROOT/'assets/shaders/metropolis_facade.wgsl').read_text()
         self.assertIn('tile % 8u',shader);self.assertIn('tile / 8u',shader)
         self.assertIn('1024.0, 1152.0',shader)
+        self.assertIn('textureSampleGrad(facade_packed, facade_sampler, uv, dx, dy)',shader)
+        self.assertIn('pbr.material.perceptual_roughness *= packed.g',shader)
+        self.assertIn('pbr.material.metallic *= packed.b',shader)
         self.assertEqual((provenance['atlas_columns'],provenance['atlas_rows']),(8,9))
 
 if __name__=='__main__': unittest.main()

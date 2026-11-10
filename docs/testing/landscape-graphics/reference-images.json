@@ -1,0 +1,52 @@
+[
+  {
+    "name": "1-Photo-1.jpg",
+    "sha256": "6d5f4da50cf6bc60925e11756f46c3d8b06fc59700f18b5430d59b5c962da446",
+    "size": [
+      1280,
+      695
+    ],
+    "source": "user supplied visual reference",
+    "usage": "inspected only; no pixels/assets copied or shipped"
+  },
+  {
+    "name": "2-Photo-2.jpg",
+    "sha256": "5a88805d52688401c52bcdbf5df92c420baa558c35a183050c336d75b19ec136",
+    "size": [
+      1280,
+      704
+    ],
+    "source": "user supplied visual reference",
+    "usage": "inspected only; no pixels/assets copied or shipped"
+  },
+  {
+    "name": "3-Photo-3.jpg",
+    "sha256": "62add2ca33197db18aef7ddc1d2bbd52cb38d12c8563e3c912f7497e5706b35b",
+    "size": [
+      1280,
+      700
+    ],
+    "source": "user supplied visual reference",
+    "usage": "inspected only; no pixels/assets copied or shipped"
+  },
+  {
+    "name": "4-Photo-4.jpg",
+    "sha256": "b19f56e50e1a6b0409baabeb4d323c2b05a278bb825cf9340d3ee28e028ade2a",
+    "size": [
+      1280,
+      716
+    ],
+    "source": "user supplied visual reference",
+    "usage": "inspected only; no pixels/assets copied or shipped"
+  },
+  {
+    "name": "5-Photo-5.jpg",
+    "sha256": "4739b263130e4ba5ce908b0ca241c39dff05b70a543d3fe4b5c6d844f7e2f438",
+    "size": [
+      1280,
+      706
+    ],
+    "source": "user supplied visual reference",
+    "usage": "inspected only; no pixels/assets copied or shipped"
+  }
+]

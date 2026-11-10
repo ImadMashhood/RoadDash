@@ -377,11 +377,77 @@ fn record_native_intake(
     )
     .expect("native prop evidence");
 }
+#[derive(Component)]
+struct StyledHuman;
+#[derive(Resource, Default)]
+struct HumanStyleCache {
+    meshes: HashMap<AssetId<Mesh>, Handle<Mesh>>,
+    materials: HashMap<AssetId<StandardMaterial>, Handle<StandardMaterial>>,
+}
+#[allow(clippy::type_complexity)]
+fn style_humans(
+    mut commands: Commands,
+    bindings: Query<(Entity, &ActorBinding)>,
+    children: Query<&Children>,
+    mut visuals: Query<
+        (&mut Mesh3d, &mut MeshMaterial3d<StandardMaterial>),
+        (With<SkinnedMesh>, Without<StyledHuman>),
+    >,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+    mut cache: ResMut<HumanStyleCache>,
+) {
+    for (root, binding) in &bindings {
+        if binding.drivers.len() != 11 {
+            continue;
+        } // Cow presentation is unchanged.
+        for entity in children.iter_descendants(root) {
+            let Ok((mut mesh, mut material)) = visuals.get_mut(entity) else {
+                continue;
+            };
+            let mesh_id = mesh.0.id();
+            let material_id = material.0.id();
+            let Some(source_mesh) = meshes.get(mesh_id) else {
+                continue;
+            };
+            let Some(source_material) = materials.get(material_id) else {
+                continue;
+            };
+            let mut new_mesh = source_mesh.clone();
+            let mut new_material = source_material.clone();
+            let replacement = cache
+                .meshes
+                .entry(mesh_id)
+                .or_insert_with(|| {
+                    new_mesh.duplicate_vertices();
+                    new_mesh.compute_flat_normals();
+                    meshes.add(new_mesh)
+                })
+                .clone();
+            let finish = cache
+                .materials
+                .entry(material_id)
+                .or_insert_with(|| {
+                    new_material.metallic = 0.;
+                    new_material.perceptual_roughness = 0.95;
+                    new_material.reflectance = 0.12;
+                    new_material.normal_map_texture = None;
+                    materials.add(new_material)
+                })
+                .clone();
+            mesh.0 = replacement;
+            material.0 = finish;
+            commands.entity(entity).insert(StyledHuman);
+        }
+    }
+}
 impl Plugin for PropPlugin {
     fn build(&self, app: &mut App) {
         app.register_type::<SkinnedMesh>()
             .init_resource::<SceneCache>()
             .init_resource::<PropStats>()
+            .init_resource::<HumanStyleCache>()
+            .add_systems(Update, style_humans.after(PropLods))
             .add_systems(Update, (lods, actor_lods).chain().in_set(PropLods))
             .add_systems(Last, record_native_intake)
             .add_systems(

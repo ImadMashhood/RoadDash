@@ -1,3 +1,11 @@
+> 2026-11-09 elevation update: the user-approved plan was subsequently baked into
+> Metropolis (ADR069). Pass03 reauthors only its height layer using the shared
+> `content/world/metropolis_elevation.json` profile (ADR107); all horizontal
+> streets, properties and route geometry below remain unchanged. Earlier
+> layout-only/user-review statements below describe the original planning stage.
+> Reapply heights with `tools/update_metropolis_elevation.py`, then bake with
+> `tools/bake_metropolis.py`. Current evidence: [pass03](../../testing/polish-12/pass03/README.md).
+
 # Street-first plan — farms to a long city
 
 2026-11-07 · current local branch `codex/race-first-city-layout` (height/detail base de20a70) · ADR066.

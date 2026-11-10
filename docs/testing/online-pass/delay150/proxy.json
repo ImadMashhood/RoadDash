@@ -1,0 +1,8 @@
+{
+  "connections": 2,
+  "frames": 6020,
+  "bytes": 10042138,
+  "max_queue": 4,
+  "one_way_ms": 75.0,
+  "errors": []
+}

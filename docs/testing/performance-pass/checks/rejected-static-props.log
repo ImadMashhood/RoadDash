@@ -1,0 +1,32 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1m 38s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 11 tests
+test destruction::tests::reset_restores_prop_body_and_damage ... ok
+test destruction::tests::damage_readiness_waits_for_materials_and_only_normal_mapped_mesh_tangents ... ok
+test destruction::tests::prepared_damage_presentation_handles_loading_reset_and_distance_without_double_crush ... ok
+test destruction::tests::resolved_kick_cannot_flip_to_a_prop_on_the_opposite_side ... ok
+test destruction::tests::budget_keeps_additional_damage_as_persistent_static_wreckage ... ok
+test destruction::tests::slow_contacts_and_paused_damage_are_ignored ... ok
+test destruction::tests::real_contact_breaks_releases_and_reset_restores_backend_pose ... ok
+test destruction::tests::two_direct_punches_break_a_bin_but_a_wall_blocks_the_same_strike ... ok
+test destruction::tests::live_buffered_punch_reaches_props_once_at_contact_and_pause_cancel_discard_it ... ok
+test destruction::tests::broad_phase_prefilter_preserves_hits_walls_and_motion ... ok
+test destruction::tests::supported_slow_debris_settles_and_stays_present ... FAILED
+
+failures:
+
+---- destruction::tests::supported_slow_debris_settles_and_stays_present stdout ----
+
+thread 'destruction::tests::supported_slow_debris_settles_and_stays_present' (3481986) panicked at src/destruction/tests.rs:244:5:
+assertion failed: app.world().get::<Loose>(e).is_none()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    destruction::tests::supported_slow_debris_settles_and_stays_present
+
+test result: FAILED. 10 passed; 1 failed; 0 ignored; 0 measured; 352 filtered out; finished in 0.89s
+
+error: test failed, to rerun pass `--lib`

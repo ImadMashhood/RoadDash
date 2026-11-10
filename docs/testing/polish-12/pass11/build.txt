@@ -1,0 +1,2 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 13.27s

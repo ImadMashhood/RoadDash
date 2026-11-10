@@ -26,6 +26,19 @@ impl Default for Track {
     }
 }
 impl Track {
+    pub fn race_interval(&self) -> rr_core::race::RaceInterval {
+        if self.metropolis.is_some() {
+            rr_core::race::RaceInterval::METROPOLIS
+        } else {
+            rr_core::race::RaceInterval {
+                start: 0.,
+                finish: self.length,
+            }
+        }
+    }
+    pub fn grid_station(&self, offset: f32) -> f32 {
+        self.race_interval().grid_station(offset)
+    }
     pub fn selected() -> Self {
         if let Some(path) = std::env::var_os("ROADDASH_TRACK") {
             if path == "metro" {
@@ -248,7 +261,9 @@ impl Track {
                     0.0
                 };
         }
-        if lane.abs() > self.half_width(d) + self.definition.verge_width {
+        if self.metropolis.is_some() {
+            p.y = self.terrain_height(p.x, p.z) + 0.025;
+        } else if lane.abs() > self.half_width(d) + self.definition.verge_width {
             p.y = self.terrain_height(p.x, p.z) + 0.1;
         }
         (p, q)
@@ -284,8 +299,8 @@ impl Track {
     /// Single-valued terrain shared by mesh collision and off-road controller.
     /// A flat safe verge follows each road; distant hills blend smoothly away.
     pub fn terrain_height(&self, x: f32, z: f32) -> f32 {
-        if self.metropolis.is_some() {
-            return metropolis::height(x, z);
+        if let Some(m) = &self.metropolis {
+            return m.elevation_profile.height(x, z);
         }
         if let Some(c) = &self.city_surface {
             return crate::world_gen::city::surface_height(c, x, z);
@@ -296,8 +311,8 @@ impl Track {
             .map_or(base, |e| e.height(x, z, base))
     }
     pub fn base_terrain_height(&self, x: f32, z: f32) -> f32 {
-        if self.metropolis.is_some() {
-            return metropolis::height(x, z);
+        if let Some(m) = &self.metropolis {
+            return m.elevation_profile.height(x, z);
         }
         if let Some(c) = &self.city_surface {
             return crate::world_gen::city::surface_height(c, x, z);
@@ -427,7 +442,12 @@ impl GateProgress {
             return;
         }
         let gate = &track.definition.checkpoints[self.next];
-        let base = gate.fraction * track.length;
+        let base =
+            if track.metropolis.is_some() && self.next + 1 == track.definition.checkpoints.len() {
+                track.race_interval().finish
+            } else {
+                gate.fraction * track.length
+            };
         let target = if track.definition.closed {
             base + ((before - base) / track.length).ceil() * track.length
         } else {

@@ -1,0 +1,18 @@
+{
+  "binary_sha256": "661a75b405f9ef6fd0157c068413f4195b519ff28f08417abdcba47b29828a6a",
+  "exit": 0,
+  "command": [
+    "/home/imad/roaddash-performance-pass/profile/road-dash",
+    "--metro-survey"
+  ],
+  "environment": {
+    "ROADDASH_TRACK": "metro",
+    "ROADDASH_CROSSING_SURVEY": "1",
+    "ROADDASH_DHT": "0",
+    "ROADDASH_UPNP": "0",
+    "ROADDASH_SETTINGS": "/home/imad/roaddash-performance-pass/two-workers/settings.json",
+    "ROADDASH_SAVE_DIR": "/home/imad/roaddash-performance-pass/two-workers/save",
+    "ROADDASH_LOG_DIR": "/home/imad/roaddash-performance-pass/two-workers/performance"
+  },
+  "limits": "Matched scripted native windows; manual60Hz one fixed step/frame, not a full-race/GPU/hardware certification."
+}

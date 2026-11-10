@@ -1,0 +1,26 @@
+[
+  {
+    "asset_id": "original-metro-content-world-metropolis-json",
+    "path": "content/world/metropolis.json",
+    "sha256": "b925e2485662b55520011035c56dc1e6a0a58921f5fe800386ffec5cfe84aa81",
+    "modifications_append": "Original moderate longitudinal elevation enhancement; height-only bake preserves all planar geometry and repaired lanes; no external code/media intake"
+  },
+  {
+    "asset_id": "original-metro-tools-bake_metropolis-py",
+    "path": "tools/bake_metropolis.py",
+    "sha256": "7400f3f305e98e5a9b143cfb0272d3402bb92de42b1c51c3e97e6ffb675f25a7",
+    "modifications_append": "Original moderate longitudinal elevation enhancement; height-only bake preserves all planar geometry and repaired lanes; no external code/media intake"
+  },
+  {
+    "asset_id": "original-metro-elevation-metropolis_elevation-json",
+    "path": "content/world/metropolis_elevation.json",
+    "sha256": "f8f51cacdcca25836a82e3a9d70bd1c3a7e745d5cc57c2ff6b168c9418811b30",
+    "modifications_append": "Original moderate longitudinal elevation enhancement; height-only bake preserves all planar geometry and repaired lanes; no external code/media intake"
+  },
+  {
+    "asset_id": "original-metro-elevation-update_metropolis_elevation-py",
+    "path": "tools/update_metropolis_elevation.py",
+    "sha256": "fef6bac6023d2c627ea3aa2de4228845302276cdb8836581cd8e682fc0e61577",
+    "modifications_append": "Original moderate longitudinal elevation enhancement; height-only bake preserves all planar geometry and repaired lanes; no external code/media intake"
+  }
+]

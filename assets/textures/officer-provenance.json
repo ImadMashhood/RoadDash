@@ -1,0 +1,11 @@
+{
+  "author": "RoadDash original procedural artwork",
+  "source": "tools/bake_police_uniform.py",
+  "license": "MIT (project-original)",
+  "inputs": {
+    "assets/models/riding.rdmesh": "9f59524e9b1bb42f68408160144b29c042b3e662a24159abd57c3dc17a47ad87",
+    "assets/textures/rider-base.png": "347d3c985b19a70ad46deafd8eb0c16bfae6d67519f42a019c5ff2edccb43e9c"
+  },
+  "sha256": "075404c5573c71ad48d2434486f5450873afe4f1063c480270fd9b82c0e0fd32",
+  "notes": "UV-only patrol navy cloth, silver yoke/belt, white striped helmet and generic gold shield. Existing normal/roughness/skin retained; no department logo or external media."
+}

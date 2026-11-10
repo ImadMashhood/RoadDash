@@ -31,8 +31,13 @@ pub fn paving(images: &mut Assets<Image>) -> StandardMaterial {
     for y in 0..256u32 {
         for x in 0..256u32 {
             let seam = x % 64 < 1 || y % 64 < 1;
-            let grain = ((x * 137 + y * 313) % 9) as u8;
-            let v = if seam { 115 } else { 177 + grain };
+            let grain = ((x * 137 + y * 313) % 7) as u8;
+            let slab = ((x / 64 * 7 + y / 64 * 11) % 9) as u8;
+            // Narrow drainage/expansion grooves, with accumulated dirt feathered
+            // into each slab. All detail is in the existing mipmapped surface.
+            let edge = (x % 64).min(63 - x % 64).min((y % 64).min(63 - y % 64));
+            let dirt = (4 - edge.min(4)) as u8 * 2;
+            let v = if seam { 126 } else { 172 + grain + slab - dirt };
             pixels.extend([v, v.saturating_sub(3), v.saturating_sub(9), 255]);
         }
     }

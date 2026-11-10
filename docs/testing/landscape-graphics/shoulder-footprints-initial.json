@@ -1,0 +1,6 @@
+{
+  "soil_quads": 6664,
+  "summed_overlap_area_m2": 130.14962372329458,
+  "maximum_quad_overlap_m2": 4.737893214987205,
+  "method": "Independent source-path planar reconstruction and Shapely polygon intersections against all actual paved/sidewalk/other surfaces and building envelopes; not collider authority."
+}

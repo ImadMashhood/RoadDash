@@ -1,0 +1,16 @@
+    Checking rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/walking-animation/crates/rr_core)
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/walking-animation/crates/rr_content)
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-worktrees/walking-animation)
+warning: method `locomotion` is never used
+  --> src/animation/locomotion.rs:83:19
+   |
+73 | impl Library {
+   | ------------ method in this implementation
+...
+83 |     pub(crate) fn locomotion(&self, phase: f32, speed: f32) -> Pose {
+   |                   ^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `road-dash` (lib) generated 1 warning
+    Finished `dev` profile [optimized + debuginfo] target(s) in 13.11s

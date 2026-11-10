@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "sidewalk_width_scale": 1.2,
+  "main_traffic": 144,
+  "pedestrians": 384,
+  "city_hall_site": "LC-S0152",
+  "park_site": "LC-S0246",
+  "approach_start": 2100,
+  "approach_end": 3120,
+  "cafe_count": 12,
+  "pedestrian_crossings": 24
+}

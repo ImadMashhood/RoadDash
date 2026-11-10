@@ -45,6 +45,16 @@ impl Face {
         )
         .length()
     }
+    // Retain visible detail across a small camera/face-plane deadband. A group
+    // already retiring must qualify as new detail rather than inheriting the
+    // radius/rank bonuses reserved for the currently selected faces.
+    fn priority(&self, p: Vec3, retained: bool) -> Option<f32> {
+        let distance = self.distance(p);
+        let facing = self.normal().dot(p - (self.a + self.b) * 0.5);
+        (distance < RADIUS + if retained { 25. } else { 0. }
+            && facing > if retained { -2. } else { 0. })
+        .then_some(distance - if retained { 20. } else { 0. })
+    }
     fn panels(&self, designs: &[Design]) -> Vec<(usize, usize, usize, Transform)> {
         let d = &designs[self.style];
         let width = self.width();
@@ -401,14 +411,9 @@ pub fn update(
     let mut nearest: Vec<_> = ids
         .into_iter()
         .filter_map(|i| {
-            let f = &kit.faces[i];
-            let distance = f.distance(p);
-            (distance < RADIUS + if kit.active.contains_key(&i) { 25. } else { 0. }
-                && f.normal().dot(p - (f.a + f.b) * 0.5) > 0.)
-                .then_some((
-                    i,
-                    distance - if kit.active.contains_key(&i) { 20. } else { 0. },
-                ))
+            kit.faces[i]
+                .priority(p, kit.active.get(&i).is_some_and(|g| g.wanted))
+                .map(|priority| (i, priority))
         })
         .collect();
     nearest.sort_by(|a, b| a.1.total_cmp(&b.1).then_with(|| a.0.cmp(&b.0)));
@@ -668,6 +673,84 @@ mod tests {
                 assert!((top - 5. - height).abs() < 0.001);
             }
         }
+    }
+    #[test]
+    fn full_face_selection_survives_tangent_camera_jitter() {
+        let mut app = App::new();
+        let mut time = Time::<()>::default();
+        time.advance_by(std::time::Duration::from_secs_f32(0.11));
+        app.insert_resource(time);
+        app.insert_resource(Kit {
+            designs: vec![],
+            sources: vec![],
+            warm: vec![],
+            faces: (0..MAX_FACES)
+                .map(|_| Face {
+                    style: 0,
+                    a: Vec3::ZERO,
+                    b: Vec3::X * 12.,
+                    base: 0.,
+                    height: 20.,
+                })
+                .collect(),
+            cells: HashMap::from([((0, 0), (0..MAX_FACES).collect())]),
+            ready: true,
+            loaded_at: std::time::Instant::now(),
+            ready_seconds: 0.,
+            elapsed: 0.,
+            triangles: MAX_FACES,
+            mesh_instances: 0,
+            peak_meshes: 0,
+            peak_triangles: MAX_FACES,
+            active: (0..MAX_FACES)
+                .map(|i| {
+                    (
+                        i,
+                        Group {
+                            entities: vec![],
+                            weight: 1.,
+                            wanted: true,
+                            triangles: 1,
+                        },
+                    )
+                })
+                .collect(),
+        });
+        let camera = app
+            .world_mut()
+            .spawn((Camera3d::default(), Transform::default()))
+            .id();
+        app.add_systems(Update, update);
+        for z in [-0.1, 0.1, -0.05, 0.05, -0.1] {
+            app.world_mut()
+                .entity_mut(camera)
+                .insert(Transform::from_xyz(6., 5., z));
+            app.update();
+            let kit = app.world().resource::<Kit>();
+            assert_eq!(kit.active.len(), MAX_FACES);
+            assert!(kit.active.values().all(|g| g.wanted && g.weight == 1.));
+        }
+    }
+    #[test]
+    fn face_selection_hysteresis_retains_visible_but_not_retiring_detail() {
+        let face = Face {
+            style: 0,
+            a: Vec3::ZERO,
+            b: Vec3::X * 12.,
+            base: 0.,
+            height: 20.,
+        };
+        for z in [-0.1, 0.1, -0.05, 0.05] {
+            assert!(face.priority(Vec3::new(6., 5., z), true).is_some());
+        }
+        assert!(face.priority(Vec3::new(6., 5., 2.1), true).is_none());
+        assert!(face.priority(Vec3::new(6., 5., 0.1), false).is_none());
+        let p = Vec3::new(6., 5., -185.);
+        assert!(face.priority(p, true).is_some());
+        assert!(face.priority(p, false).is_none());
+        let p = Vec3::new(6., 5., -100.);
+        assert_eq!(face.priority(p, true), Some(80.));
+        assert_eq!(face.priority(p, false), Some(100.));
     }
     #[test]
     fn outward_normals_and_segment_distance_respect_diagonal_boundaries() {

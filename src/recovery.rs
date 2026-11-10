@@ -33,6 +33,8 @@ pub struct Recovery {
     pub walk_path: Vec<Vec3>,
     pub walk_goal: Option<Vec3>,
     pub path_refresh: f32,
+    pub walk_watch: rr_core::escape::WalkWatch,
+    pub walk_live_retry: f32,
     pub foot: rr_core::recovery::FootControl,
     pub previous_foot: Option<Vec3>,
     pub walk_distance: f32,
@@ -356,6 +358,8 @@ fn crash_with_response(
     recovery.walk_path.clear();
     recovery.walk_goal = None;
     recovery.path_refresh = 0.0;
+    recovery.walk_watch = default();
+    recovery.walk_live_retry = 0.;
     let forward = (rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
     let rotation = Quat::from_rotation_y(forward.x.atan2(forward.z));
     let momentum = original.map_or_else(
@@ -498,10 +502,11 @@ pub fn recover(
     time: Res<Time<Fixed>>,
     mut race: ResMut<Race>,
     mut controls: ResMut<crate::controls::Controls>,
-    (tuning, adapter, police): (
+    (tuning, adapter, police, network_inputs): (
         Res<RecoveryTuning>,
         Res<crate::vehicle::VehiclePhysicsAdapter>,
         Res<crate::police::Police>,
+        Option<Res<crate::online::AuthorityInputs>>,
     ),
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut profile: ResMut<crate::game::Profile>,
@@ -524,9 +529,11 @@ pub fn recover(
         ),
         Without<Rider>,
     >,
-    (context, controller_outputs): (
+    (context, controller_outputs, nav_ground, nav_owned): (
         ReadRapierContext,
         Query<&KinematicCharacterControllerOutput>,
+        Query<(), With<crate::world::Ground>>,
+        Query<&OwnedBody>,
     ),
     mut audio: MessageWriter<AudioCue>,
     layout: Option<Res<crate::world_gen::layout::WorldLayout>>,
@@ -550,7 +557,11 @@ pub fn recover(
         .iter()
         .find(|(_, r, _, _, _)| r.id == 0)
         .map(|(e, _, rec, _, _)| rec.runner.unwrap_or(e));
+    let mut walk_plan_budget = 1usize;
     for (owner, mut rider, mut recovery, mut root, mut visibility) in &mut riders {
+        let remote_input = network_inputs.as_ref().and_then(|n| n.get(rider.id));
+        let input = remote_input.map_or(input, |i| Vec2::from_array(i.foot).clamp_length_max(1.));
+        let interact = remote_input.map_or(interact, |i| i.interact);
         if recovery.stage == RecoveryStage::Riding || rider.finished.is_some() {
             continue;
         }
@@ -679,7 +690,7 @@ pub fn recover(
                     rider.route,
                     rider.progress,
                     transform.translation,
-                    rider.id == 0,
+                    rider.human_controlled(),
                 );
                 let (before, _, _) = track.project_route(rider.route, previous, rider.progress);
                 let (progress, lane, _) =
@@ -710,7 +721,7 @@ pub fn recover(
                     commands.entity(runner).insert(ColliderDisabled);
                     continue;
                 }
-                let manual = rider.id == 0
+                let manual = rider.human_controlled()
                     && recovery.foot.step(
                         input.length_squared() > 0.01,
                         config.auto_seek,
@@ -722,7 +733,9 @@ pub fn recover(
                         < track.terrain_height(transform.translation.x, transform.translation.z)
                             - 8.0
                 {
-                    let distance = rider.progress.clamp(0.0, (track.length - 6.0).max(0.0));
+                    let distance = rider
+                        .progress
+                        .clamp(0.0, (track.race_interval().finish - 6.0).max(0.0));
                     let (safe, rotation) = track.sample_route(rider.route, distance, 0.0);
                     transform.translation = safe + Vec3::Y * 0.98;
                     transform.rotation = rotation;
@@ -749,6 +762,71 @@ pub fn recover(
                 };
                 let delta = (center - transform.translation).with_y(0.0);
                 let mut direction = delta.normalize_or_zero();
+                let mut live_hold = false;
+                if !manual
+                    && !rider.human_controlled()
+                    && let Ok(ctx) = context.single()
+                {
+                    recovery.walk_live_retry = (recovery.walk_live_retry - dt).max(0.);
+                    let p = transform.translation.xz();
+                    let stalled = recovery.walk_watch.stalled(dt, p.to_array());
+                    let pursuit_owner = pursuit_body
+                        .and_then(|e| nav_owned.get(e).ok().map(|o| o.owner))
+                        .or(pursuit_body);
+                    let clear = |a: [f32; 2], b: [f32; 2]| {
+                        let from = Vec3::new(a[0], track.terrain_height(a[0], a[1]) + 0.98, a[1]);
+                        let to = Vec3::new(b[0], track.terrain_height(b[0], b[1]) + 0.98, b[1]);
+                        let delta = to - from;
+                        let predicate = |e| {
+                            e != runner
+                                && e != wreck
+                                && !(pursuit
+                                    && (Some(e) == pursuit_body
+                                        || nav_owned
+                                            .get(e)
+                                            .is_ok_and(|o| Some(o.owner) == pursuit_owner)))
+                                && !nav_ground.contains(e)
+                                && nav_owned.get(e).map_or(true, |o| o.owner != owner)
+                        };
+                        ctx.cast_shape(
+                            from,
+                            Quat::IDENTITY,
+                            delta.normalize_or_zero(),
+                            Collider::capsule_y(0.55, 0.38).raw.as_ref(),
+                            ShapeCastOptions {
+                                max_time_of_impact: delta.length(),
+                                stop_at_penetration: false,
+                                ..default()
+                            },
+                            QueryFilter::default()
+                                .exclude_collider(runner)
+                                .predicate(&predicate),
+                        )
+                        .is_none()
+                    };
+                    let next = recovery.walk_path.first().copied().unwrap_or(center).xz();
+                    let blocked = !clear(
+                        p.to_array(),
+                        (p + (next - p).clamp_length_max(2.)).to_array(),
+                    );
+                    if (stalled || blocked)
+                        && recovery.walk_live_retry == 0.
+                        && walk_plan_budget > 0
+                    {
+                        walk_plan_budget -= 1;
+                        recovery.walk_live_retry = 1.5;
+                        let goal = p + (center.xz() - p).clamp_length_max(65.);
+                        recovery.walk_path =
+                            rr_core::escape::route(p.to_array(), goal.to_array(), clear)
+                                .unwrap_or_default()
+                                .into_iter()
+                                .map(|[x, z]| Vec3::new(x, track.terrain_height(x, z) + 0.98, z))
+                                .collect();
+                        recovery.walk_goal = Some(center);
+                        recovery.path_refresh = 2.;
+                    }
+                    live_hold = blocked && recovery.walk_path.is_empty();
+                }
                 if !manual && (layout.is_some() || city.is_some() || metro_navigation.is_some()) {
                     recovery.path_refresh -= dt;
                     if recovery.path_refresh <= 0.0
@@ -791,7 +869,7 @@ pub fn recover(
                             - 8.0;
                     if !rider.police && (recovery.elapsed > config.rescue_after || below) {
                         let (d, _, _) = track.project_route(rider.route, wreck_pos, rider.progress);
-                        let d = d.min(track.length - 6.0);
+                        let d = d.min(track.race_interval().finish - 6.0);
                         let (p, q) = track.sample_route(rider.route, d, 0.0);
                         transform.translation = p + Vec3::Y * 0.98 - q * Vec3::X * 2.0;
                         if let Some(ref mut c) = controller {
@@ -812,6 +890,20 @@ pub fn recover(
                         race.message = "RECOVERY RESCUE / +5 SEC".into();
                         race.message_time = 4.0;
                         continue;
+                    }
+                }
+                if !manual && !rider.human_controlled() {
+                    while recovery
+                        .walk_path
+                        .first()
+                        .is_some_and(|p| p.xz().distance(transform.translation.xz()) < 0.8)
+                    {
+                        recovery.walk_path.remove(0);
+                    }
+                    if let Some(next) = recovery.walk_path.first() {
+                        direction = (*next - transform.translation)
+                            .with_y(0.)
+                            .normalize_or_zero();
                     }
                 }
                 let reach = contact - transform.translation;
@@ -846,6 +938,9 @@ pub fn recover(
                     } else {
                         direction
                     };
+                    if live_hold {
+                        movement = Vec3::ZERO;
+                    }
                     if !manual
                         && movement.length_squared() > 0.001
                         && let Ok(context) = context.single()
@@ -880,6 +975,9 @@ pub fn recover(
                             .map_or(road_rotation * Vec3::Z, |c| *c.forward())
                             .with_y(0.0)
                             .normalize_or_zero();
+                        let forward = remote_input.map_or(forward, |i| {
+                            Vec3::new(i.foot_forward[0], 0., i.foot_forward[1]).normalize_or_zero()
+                        });
                         movement = forward.cross(Vec3::Y) * input.x + forward * input.y;
                     }
                     if movement.length_squared() > 0.001 {
@@ -896,7 +994,7 @@ pub fn recover(
                         controller.translation =
                             Some((movement * config.walk_speed - Vec3::Y * down) * dt);
                     }
-                    if rider.id == 0
+                    if rider.human_controlled()
                         && (recovery.walk_distance / (config.stride_length * 0.5)) as u32
                             != previous_step
                     {
@@ -1244,8 +1342,13 @@ pub fn impacts(
                         let direction = (b.translation - a.translation)
                             .with_y(0.0)
                             .normalize_or_zero();
-                        let target_velocity =
-                            velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel);
+                        // Both sides of the threshold must use the same pre-solver
+                        // sample. A solver push/bounce can otherwise hide a real
+                        // approach or turn a gentle touch into a scripted lift.
+                        let target_velocity = previous.get(other).map_or_else(
+                            |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel),
+                            |v| v.0,
+                        );
                         let closing = (velocity - target_velocity).dot(direction).max(0.0);
                         if rr_core::contact::ride_over_velocity(closing).is_some()
                             && b.translation.y < a.translation.y + 1.5
@@ -1254,7 +1357,7 @@ pub fn impacts(
                                 bike,
                                 velocity,
                                 closing,
-                                Some((other, previous.get(other).map_or(target_velocity, |v| v.0))),
+                                Some((other, target_velocity)),
                             ));
                         }
                     }

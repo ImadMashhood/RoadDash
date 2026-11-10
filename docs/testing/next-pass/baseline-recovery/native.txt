@@ -1,0 +1,17 @@
+2026-11-10T03:02:31.462133Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-10T03:02:31.683518Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/next-pass/baseline-recovery/performance/performance-3312554.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+2026-11-10T03:02:34.951014Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape geometry generated in 444.162ms
+2026-11-10T03:02:34.951069Z  INFO road_dash::world_gen::metropolis::geometry::landscape: Landscape: 58985 tufts / 474 batches / 1061730 triangles; caps 120000/600
+2026-11-10T03:02:35.337308Z  INFO road_dash::world_gen::metropolis::geometry::crops: Crops: 147552 wheat stems; 885312 static triangles; 635 tiles / 2600960 deformation bytes
+2026-11-10T03:02:35.485347Z  INFO road_dash::sky: Sky display cube: 2097144 bytes, generated in 128.788ms; stationary world sun/cloud field
+2026-11-10T03:02:35.855459Z  INFO road_dash::sky: Lighting profile: balanced prefiltered IBL; sky and environment ready in 498.902ms; environment pixel payload 532464 bytes
+2026-11-10T03:02:38.009835Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+AI roster verified: seven racers and seven killers
+Native retry passed: all fifteen racers restored from mid-course to authored grid
+Audio output initialized: 5 playback sinks
+Native reverse verified: -1.922 m/s
+Native remount 1: pickup error 0.0000 m
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Metropolis route 1 -> farm/city crashes -> both recoveries -> results fixture

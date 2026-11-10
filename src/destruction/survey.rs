@@ -7,6 +7,7 @@ pub struct Survey {
     props: Vec<Entity>,
     base: Vec3,
     peak: usize,
+    production_props: usize,
     variant_roots: usize,
     variant_entities: usize,
     variant_meshes: usize,
@@ -94,6 +95,11 @@ pub(crate) fn step(
         }
     }
     if state.frame == 1 {
+        state.production_props = props.iter().count();
+        assert!(
+            state.production_props > 0,
+            "production world must be loaded"
+        );
         let p = track.sample_route(0, -148., 0.).0 + Vec3::X * 34.;
         let ground = [
             Vec2::new(p.x - 24., p.z - 15.),
@@ -213,7 +219,10 @@ pub(crate) fn step(
             }
         }
         assert_eq!(forbidden.iter().count(), 0);
-        assert_eq!(props.iter().count(), 1008);
+        assert_eq!(
+            props.iter().count(),
+            state.production_props + state.props.len()
+        );
     }
     if state.frame == 390 {
         for e in &probes {
@@ -238,7 +247,7 @@ pub(crate) fn step(
             serde_json::json!({"frames": sorted.len(), "p50_ms": sorted[sorted.len()/2], "p95_ms": sorted[(sorted.len()*95/100).min(sorted.len()-1)], "max_ms": sorted.last()})
         }).collect();
         std::fs::write("screenshots/destruction-results.json", serde_json::to_string_pretty(&serde_json::json!({
-            "production_props": 995, "tested_kinds": 13, "real_collision_breaks": 13,
+            "production_props": state.production_props, "tested_kinds": 13, "real_collision_breaks": 13,
             "restart_restored": true, "cars_damaged": 0, "peak_dynamic_props": state.peak,
             "variant_roots": state.variant_roots, "variant_entities": state.variant_entities,
             "variant_meshes": state.variant_meshes, "wall_frame_metrics_intact_damaged_reset": metrics,

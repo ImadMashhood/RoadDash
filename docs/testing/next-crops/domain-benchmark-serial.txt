@@ -1,0 +1,7 @@
+
+running 1 test
+crop grid: 36000 inactive sweeps 7.371464ms; 576000 body sweeps 106.105562ms; 31200 newly damaged cells; 32768 tile bytes
+test crops::tests::bounded_benchmark ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 95 filtered out; finished in 0.11s
+

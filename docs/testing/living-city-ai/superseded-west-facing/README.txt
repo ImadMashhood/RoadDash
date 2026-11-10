@@ -1,0 +1,1 @@
+Superseded by user correction: arches must face the actual driving street (east), not city centre (west), and park grass must cover its full irregular block. Hall/park images, logs, census and receipts retained; redundant route/smoke PNG frames omitted.

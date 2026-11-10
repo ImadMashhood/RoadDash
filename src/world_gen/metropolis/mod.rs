@@ -1,8 +1,13 @@
 //! Approved polygonal metropolis, chunk-batched with independent static collision.
+pub mod civic;
 pub mod facades;
+pub mod farms;
 pub mod geometry;
+mod hall_detail;
+mod hall_surface;
 pub mod material;
 pub mod navigation;
+pub mod pedestrians;
 pub mod streetscape;
 pub mod survey;
 use crate::{
@@ -15,6 +20,16 @@ use bevy_rapier3d::prelude::*;
 pub struct MetroChunk;
 #[derive(Resource, Default, serde::Serialize)]
 pub struct Census {
+    pub civic_sites: usize,
+    pub farm_cows: usize,
+    pub farm_props: usize,
+    pub shoulder_triangles: usize,
+    pub grass_tufts: usize,
+    pub grass_batches: usize,
+    pub grass_triangles: usize,
+    pub crop_stems: usize,
+    pub crop_batches: usize,
+    pub crop_triangles: usize,
     pub buildings: usize,
     pub chunks: usize,
     pub render_triangles: usize,
@@ -44,6 +59,7 @@ pub fn spawn(
     materials: &mut Assets<StandardMaterial>,
     images: &mut Assets<Image>,
     facade_materials: &mut Assets<material::FacadeMaterial>,
+    grass_materials: &mut Assets<geometry::grass_material::GrassMaterial>,
     server: Option<&AssetServer>,
     art: &Art,
     track: &Track,
@@ -59,6 +75,7 @@ pub fn spawn(
         materials,
         images,
         facade_materials,
+        grass_materials,
         m,
         track,
     );
@@ -74,7 +91,7 @@ pub fn spawn(
             track.terrain_height(j.point[0], j.point[1]),
             j.point[1],
         );
-        if i % 2 == 0 {
+        if street.width_m >= 6. {
             for sign in [-1., 1.] {
                 let axis = axis * sign;
                 let center = p + Vec3::Y.cross(axis) * ((street.width_m * 0.5 - 1.) * 0.5);
@@ -127,29 +144,11 @@ pub fn spawn(
             }
         }
     }
-    // Existing authored scenery/skins and their physical owners are reused.
+    farms::spawn(commands, art, track, &mut census);
+    civic::spawn(commands, meshes, materials, art, track, images);
+    census.civic_sites = m.civic_sites.len();
     if art.props.is_some() {
-        for (route, path) in m.paths.iter().enumerate() {
-            for i in (0..path.points.len()).step_by(12) {
-                let d = path.progress[i];
-                if route == 1 && !(3350. ..5362.5).contains(&d) {
-                    continue;
-                }
-                let (p, q) = track.sample_route(route, d, 0.);
-                if d < 2700. && i % 36 == 0 {
-                    let p = p + q * Vec3::X * 16.;
-                    crate::environment::spawn_cow(
-                        commands,
-                        art,
-                        p.with_y(track.terrain_height(p.x, p.z)),
-                        q,
-                    );
-                }
-            }
-        }
-    }
-    if art.props.is_some() {
-        for walker in &m.pedestrians {
+        for (index, walker) in m.pedestrians.iter().enumerate() {
             let p = Vec3::new(
                 walker.position[0],
                 track.terrain_height(walker.position[0], walker.position[1]) + 0.15,
@@ -169,6 +168,12 @@ pub fn spawn(
                     station: walker.station,
                 },
             ));
+            if let Some(end) = walker.crossing_end {
+                commands.entity(entity).insert((
+                    pedestrians::CrossingWalker::new(p, Vec3::new(end[0], 0., end[1]), index),
+                    Velocity::zero(),
+                ));
+            }
             census.walking_pedestrians += 1;
         }
     }
@@ -219,27 +224,6 @@ pub fn spawn(
             Obstacle,
         ));
     }
-    for gate in &track.definition.checkpoints {
-        let d = gate.fraction * track.length;
-        for route in 0..if (3350. ..5362.5).contains(&d) { 2 } else { 1 } {
-            let (p, q) = track.sample_route(route, d, 0.);
-            for side in [-1., 1.] {
-                let e = crate::world::part(
-                    commands,
-                    art.cube.clone(),
-                    art.white.clone(),
-                    p + q * Vec3::X * side * (track.half_width(d) + 1.) + Vec3::Y * 2.,
-                    Vec3::new(0.15, 4., 0.15),
-                    q,
-                );
-                commands.entity(e).insert((
-                    RigidBody::Fixed,
-                    Collider::cuboid(0.5, 0.5, 0.5),
-                    Obstacle,
-                ));
-            }
-        }
-    }
     commands.insert_resource(crate::environment::TrackInspector {
         visible: false,
         render_triangles: census.render_triangles,
@@ -252,6 +236,7 @@ pub fn spawn(
     commands.insert_resource(census);
 }
 pub fn crossing_traffic(
+    mut commands: Commands,
     time: Res<Time<Fixed>>,
     race: Res<crate::game::Race>,
     track: Res<Track>,
@@ -264,6 +249,7 @@ pub fn crossing_traffic(
         ),
     >,
     mut cars: Query<(
+        Entity,
         &crate::environment::Patrol,
         &mut Crossing,
         &mut Transform,
@@ -274,7 +260,7 @@ pub fn crossing_traffic(
         return;
     }
     let dt = time.delta_secs();
-    for (path, mut cross, mut pose, mut velocity) in &mut cars {
+    for (entity, path, mut cross, mut pose, mut velocity) in &mut cars {
         let wait = riders
             .iter()
             .any(|(r, t)| r.speed > 1. && t.translation.xz().distance(cross.junction.xz()) < 45.)
@@ -285,8 +271,9 @@ pub fn crossing_traffic(
         if !(wait && cross.distance <= -12. && next > -12.) {
             cross.distance = next;
         }
-        if cross.distance > 70. {
-            cross.distance = -70.;
+        let recycle = cross.distance > path.extent;
+        if recycle {
+            cross.distance = -path.extent;
         }
         let mut p = path.center + path.axis * cross.distance;
         p.y = track.terrain_height(p.x, p.z) + 0.025;
@@ -296,5 +283,8 @@ pub fn crossing_traffic(
             Vec3::ZERO
         };
         pose.translation = p;
+        if recycle {
+            crate::environment::teleport_kinematic(&mut commands, entity, *pose);
+        }
     }
 }

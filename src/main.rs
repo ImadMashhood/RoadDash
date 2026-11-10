@@ -1,5 +1,21 @@
 fn main() {
     let args: Vec<_> = std::env::args().collect();
+    if let Some(i) = args.iter().position(|a| a == "--online-test-node") {
+        road_dash::online::verification::run(
+            args.get(i + 1).is_some_and(|s| s == "host"),
+            args.get(i + 2).expect("endpoint").clone(),
+            args.get(i + 3).expect("report path").clone(),
+        );
+        return;
+    }
+    if let Some(i) = args.iter().position(|a| a == "--online-native-test") {
+        road_dash::online::verification::run_native(
+            args.get(i + 1).is_some_and(|s| s == "host"),
+            args.get(i + 2).expect("endpoint").clone(),
+            args.get(i + 3).expect("report path").clone(),
+        );
+        return;
+    }
     let default_inspection = args.get(1).is_some_and(|a| a == "--inspect-world")
         && args.get(2).is_none_or(|a| a.starts_with("--"))
         && std::env::var("ROADDASH_TRACK").map_or(true, |v| v == "metro");

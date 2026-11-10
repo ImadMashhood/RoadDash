@@ -1,3 +1,6 @@
+pub(crate) mod crops;
+pub(crate) mod grass_material;
+pub(crate) mod landscape;
 use super::*;
 use bevy::{
     asset::RenderAssetUsages,
@@ -85,6 +88,23 @@ impl Batch {
             } else {
                 [k + t[0], k + t[1], k + t[2]]
             });
+        }
+    }
+    fn surface_uvs(&mut self, mat: usize) {
+        if [25, 27, 28, 30, 31, 33].contains(&mat) {
+            let scale = if mat == 25 {
+                crate::road_detail::TILE_METERS
+            } else if [27, 30, 31].contains(&mat) {
+                4.
+            } else {
+                0.5
+            };
+            // Before origin rebasing: adjacent chunks share the same world phase.
+            self.uv = self
+                .p
+                .iter()
+                .map(|p| [p[0] / scale, p[2] / scale])
+                .collect();
         }
     }
     fn mesh(&self, origin: Vec3) -> Mesh {
@@ -185,7 +205,30 @@ fn textures(
     Vec<Handle<StandardMaterial>>,
     Handle<super::material::FacadeMaterial>,
 ) {
-    let raw = include_bytes!("../../../assets/metropolis/facades.rgba");
+    let image = facade_image(
+        include_bytes!("../../../assets/metropolis/facades.rgba"),
+        TextureFormat::Rgba8UnormSrgb,
+    );
+    let packed = facade_image(
+        include_bytes!("../../../assets/metropolis/facades-packed.rgba"),
+        TextureFormat::Rgba8Unorm,
+    );
+    let handle = facades.add(super::material::FacadeMaterial {
+        base: StandardMaterial {
+            perceptual_roughness: 1.0,
+            metallic: 1.0,
+            ..default()
+        },
+        extension: super::material::FacadeAtlas {
+            image: images.add(image),
+            packed: images.add(packed),
+        },
+    });
+    let empty = materials.add(StandardMaterial::default());
+    (vec![empty; 24], handle)
+}
+
+fn facade_image(raw: &[u8], format: TextureFormat) -> Image {
     let per: usize = (0..5).map(|l| ((96 >> l) * (96 >> l) * 4) as usize).sum();
     assert_eq!(
         raw.len(),
@@ -223,7 +266,7 @@ fn textures(
         },
         TextureDimension::D2,
         pixels[..1024 * 1152 * 4].to_vec(),
-        TextureFormat::Rgba8UnormSrgb,
+        format,
         RenderAssetUsages::default(),
     );
     image.data = Some(pixels);
@@ -232,17 +275,7 @@ fn textures(
         lod_max_clamp: 4.,
         ..ImageSamplerDescriptor::linear()
     });
-    let handle = facades.add(super::material::FacadeMaterial {
-        base: StandardMaterial {
-            perceptual_roughness: 0.84,
-            ..default()
-        },
-        extension: super::material::FacadeAtlas {
-            image: images.add(image),
-        },
-    });
-    let empty = materials.add(StandardMaterial::default());
-    (vec![empty; 24], handle)
+    image
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -252,20 +285,37 @@ pub fn spawn(
     materials: &mut Assets<StandardMaterial>,
     images: &mut Assets<Image>,
     facades: &mut Assets<super::material::FacadeMaterial>,
+    grass: &mut Assets<grass_material::GrassMaterial>,
     m: &Metropolis,
     track: &Track,
 ) -> Census {
     let (mut mats, facade) = textures(images, materials, facades);
+    let ground_texture = landscape::ground_texture(images);
     mats.push(materials.add(Color::srgb(0.23, 0.24, 0.24)));
-    mats.push(materials.add(Color::srgb(0.12, 0.13, 0.14)));
+    mats.push(materials.add(crate::road_detail::asphalt(images)));
     mats.push(materials.add(super::streetscape::paving(images)));
-    mats.push(materials.add(Color::srgb(0.3, 0.44, 0.23)));
-    mats.push(materials.add(Color::srgb(0.84, 0.78, 0.62)));
+    mats.push(materials.add(landscape::ground_material(
+        Color::srgb(0.3, 0.44, 0.23),
+        &ground_texture,
+    )));
+    mats.push(materials.add(crate::road_detail::paint(
+        images,
+        Color::srgb(0.84, 0.78, 0.62),
+    )));
     mats.push(materials.add(Color::srgb(0.30, 0.23, 0.14)));
-    mats.push(materials.add(Color::srgb(0.57, 0.52, 0.28)));
-    mats.push(materials.add(Color::srgb(0.40, 0.36, 0.25)));
+    mats.push(materials.add(landscape::ground_material(
+        Color::srgb(0.57, 0.52, 0.28),
+        &ground_texture,
+    )));
+    mats.push(materials.add(landscape::ground_material(
+        Color::srgb(0.40, 0.36, 0.25),
+        &ground_texture,
+    )));
     mats.push(materials.add(Color::srgb(0.43, 0.43, 0.39)));
-    mats.push(materials.add(Color::srgb(0.88, 0.87, 0.82)));
+    mats.push(materials.add(crate::road_detail::paint(
+        images,
+        Color::srgb(0.88, 0.87, 0.82),
+    )));
     let mut batches: BTreeMap<(i32, i32, usize), Batch> = BTreeMap::new();
     let mut details: BTreeMap<(i32, i32, usize), Batch> = BTreeMap::new();
     let catalog =
@@ -366,19 +416,21 @@ pub fn spawn(
     }
     for f in &m.fields {
         let p = f.shape.rings[0][0];
-        batches
-            .entry(key(
-                Vec2::from_array(p),
-                if f.crop == "grain" {
-                    30
-                } else if f.crop == "fallow" {
-                    31
-                } else {
-                    27
-                },
-            ))
-            .or_default()
-            .shape(&f.shape, |x, z| track.terrain_height(x, z) - 0.12, true);
+        for patch in &f.patches {
+            batches
+                .entry(key(
+                    Vec2::from_array(p),
+                    if f.crop == "grain" {
+                        30
+                    } else if f.crop == "fallow" {
+                        31
+                    } else {
+                        27
+                    },
+                ))
+                .or_default()
+                .shape(patch, |x, z| track.terrain_height(x, z) - 0.12, true);
+        }
     }
     let mut fence_posts = std::collections::HashSet::new();
     for field in &m.fields {
@@ -484,8 +536,10 @@ pub fn spawn(
             let mut stripes = vec![
                 (divider - 0.11, 28, 4.),
                 (divider + 0.11, 28, 4.),
-                (-half, 33, 4.),
-                (half, 33, 4.),
+                // Keep the complete 14cm edge stripe inside the carriageway,
+                // including the small chords across reserved street bends.
+                (-half + 0.25, 33, 4.),
+                (half - 0.25, 33, 4.),
             ];
             if (s as i32).rem_euclid(12) < 6 {
                 for i in 1..profile.outbound {
@@ -505,16 +559,25 @@ pub fn spawn(
             }
             for (lane, material, length) in stripes {
                 let (p, q) = track.street_sample(route, s, 0.);
-                let (a, _) = track.street_sample(route, (s + length).min(12000.), 0.);
+                let end_s = (s + length).min(12000.);
+                let (end_divider, end_width, end_half) =
+                    rr_core::streets::markings(sections, route, end_s);
+                let end_lane = if material == 33 && (lane.abs() - (half - 0.25)).abs() < 0.001 {
+                    lane.signum() * (end_half - 0.25)
+                } else {
+                    end_divider + (lane - divider) / width * end_width
+                };
+                let (a, end_q) = track.street_sample(route, end_s, end_lane);
                 let side = q * Vec3::X;
+                let end_side = end_q * Vec3::X;
                 let p = p - side * lane + Vec3::Y * 0.05;
-                let a = a - side * lane + Vec3::Y * 0.05;
+                let a = a + Vec3::Y * 0.05;
                 batches.entry(key(p.xz(), material)).or_default().quad(
                     [
-                        p - side * 0.04,
-                        a - side * 0.04,
-                        a + side * 0.04,
-                        p + side * 0.04,
+                        p - side * 0.07,
+                        a - end_side * 0.07,
+                        a + end_side * 0.07,
+                        p + side * 0.07,
                     ]
                     .map(|vertex| {
                         vertex.with_y(
@@ -528,6 +591,41 @@ pub fn spawn(
             }
         }
     }
+    // Marked pedestrian crossings on both actual carriageways, projected onto
+    // the same pavement triangles as lane paint; never stripe a sidewalk.
+    for junction in &m.junctions {
+        let point = Vec3::new(junction.point[0], 0., junction.point[1]);
+        let route =
+            if track.project_route(0, point, 4000.).2 < track.project_route(1, point, 4000.).2 {
+                0
+            } else {
+                1
+            };
+        let station = track.project_route(route, point, 4000.).0 - 17.;
+        let (center, q) = track.street_sample(route, station, 0.);
+        let half = rr_core::streets::markings(&m.street_life.lane_sections, route, station).2;
+        for i in -12..=12 {
+            let lane = i as f32 * 0.8;
+            if lane.abs() > half - 0.5 {
+                continue;
+            }
+            let center = center - q * Vec3::X * lane;
+            let points = [
+                Vec3::new(-0.23, 0., -1.8),
+                Vec3::new(-0.23, 0., 1.8),
+                Vec3::new(0.23, 0., 1.8),
+                Vec3::new(0.23, 0., -1.8),
+            ]
+            .map(|p| center + q * p);
+            if points.iter().any(|p| pavement.height(p.xz()).is_none()) {
+                continue;
+            }
+            batches.entry(key(center.xz(), 33)).or_default().quad(
+                points.map(|p| p.with_y(pavement.height(p.xz()).unwrap() + 0.022)),
+                [[0., 0.], [0., 1.], [1., 1.], [1., 0.]],
+            );
+        }
+    }
     let mut census = Census {
         buildings: m.buildings.len(),
         physical_routes: 2,
@@ -535,7 +633,9 @@ pub fn spawn(
         ..default()
     };
     let mut collision_batches: BTreeMap<(i32, i32, usize), CollisionBatch> = BTreeMap::new();
-    for ((x, z, mat), batch) in batches {
+    for ((x, z, mat), mut batch) in batches {
+        batch.surface_uvs(mat);
+        landscape::tint(&mut batch, mat, track);
         if batch.ix.is_empty() {
             continue;
         }
@@ -545,7 +645,13 @@ pub fn spawn(
         let mut entity = commands.spawn((
             Name::new(format!("Metro chunk {x} {z} / {mat}")),
             MetroChunk,
-            Mesh3d(meshes.add(batch.mesh(origin))),
+            Mesh3d(meshes.add({
+                let mut mesh = batch.mesh(origin);
+                if mat == 25 {
+                    mesh.generate_tangents().expect("world-space road UVs");
+                }
+                mesh
+            })),
             Transform::from_translation(origin),
         ));
         if mat == 0 {
@@ -600,12 +706,113 @@ pub fn spawn(
             },
         ));
     }
+    landscape::spawn(commands, meshes, grass, track, &mut census, &mats[27]);
     census
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn landscape_finishes_preserve_actual_field_collision_geometry() {
+        let track = Track::metropolis().unwrap();
+        let m = track.metropolis.as_ref().unwrap();
+        let mut checked = 0;
+        for field in &m.fields {
+            let material = if field.crop == "grain" {
+                30
+            } else if field.crop == "fallow" {
+                31
+            } else {
+                27
+            };
+            for patch in &field.patches {
+                let mut batch = Batch::default();
+                batch.shape(patch, |x, z| track.terrain_height(x, z) - 0.12, true);
+                let mut before = CollisionBatch::default();
+                before.append(&batch, Vec3::ZERO);
+                batch.surface_uvs(material);
+                landscape::tint(&mut batch, material, &track);
+                let mut after = CollisionBatch::default();
+                after.append(&batch, Vec3::ZERO);
+                assert_eq!(before.points, after.points);
+                assert_eq!(before.triangles, after.triangles);
+                checked += after.triangles.len();
+            }
+        }
+        assert!(checked > 1000);
+        println!("Exact field collision positions/winding preserved: {checked} triangles");
+    }
+    #[test]
+    fn packed_facade_image_preserves_linear_channels_and_wrapped_mip_gutters() {
+        let raw = include_bytes!("../../../assets/metropolis/facades-packed.rgba");
+        let image = facade_image(raw, TextureFormat::Rgba8Unorm);
+        assert_eq!(image.texture_descriptor.format, TextureFormat::Rgba8Unorm);
+        assert_eq!(image.texture_descriptor.mip_level_count, 5);
+        let data = image.data.unwrap();
+        let per: usize = (0..5).map(|l| (96 >> l) * (96 >> l) * 4).sum();
+        let mut layer_offset = 0;
+        let mut source_offset = 0;
+        for level in 0..5 {
+            let width = 1024 >> level;
+            let height = 1152 >> level;
+            let cell = 128 >> level;
+            let gutter = 16 >> level;
+            let side = 96 >> level;
+            for tile in 0..72 {
+                for y in [0, gutter, cell - 1] {
+                    for x in [0, gutter, cell - 1] {
+                        let sx = (x as i32 - gutter as i32).rem_euclid(side as i32) as usize;
+                        let sy = (y as i32 - gutter as i32).rem_euclid(side as i32) as usize;
+                        let src = tile * per + source_offset + (sy * side + sx) * 4;
+                        let dest = layer_offset
+                            + ((tile / 8 * cell + y) * width + tile % 8 * cell + x) * 4;
+                        assert_eq!(&data[dest..dest + 4], &raw[src..src + 4]);
+                    }
+                }
+            }
+            layer_offset += width * height * 4;
+            source_offset += side * side * 4;
+        }
+        assert_eq!(data.len(), layer_offset);
+        assert_eq!(data.len(), 6_285_312);
+    }
+
+    #[test]
+    fn road_surface_uvs_survive_chunk_rebasing_without_changing_geometry() {
+        let mut batch = Batch::default();
+        batch.quad(
+            [
+                Vec3::new(254., 3., -2.),
+                Vec3::new(254., 3.1, 2.),
+                Vec3::new(258., 3.1, 2.),
+                Vec3::new(258., 3., -2.),
+            ],
+            [[0.; 2]; 4],
+        );
+        let points = batch.p.clone();
+        let indices = batch.ix.clone();
+        batch.surface_uvs(25);
+        assert_eq!(batch.p, points);
+        assert_eq!(batch.ix, indices);
+        let mut a = batch.mesh(Vec3::ZERO);
+        let mut b = batch.mesh(Vec3::new(256., 0., 0.));
+        a.generate_tangents().unwrap();
+        b.generate_tangents().unwrap();
+        assert_eq!(
+            a.attribute(Mesh::ATTRIBUTE_UV_0),
+            b.attribute(Mesh::ATTRIBUTE_UV_0)
+        );
+        assert_eq!(
+            a.attribute(Mesh::ATTRIBUTE_TANGENT),
+            b.attribute(Mesh::ATTRIBUTE_TANGENT)
+        );
+        assert_eq!(batch.uv[0], [31.75, -0.25]);
+        batch.surface_uvs(33);
+        assert_eq!(batch.uv[0], [508., -4.]);
+        assert_eq!(batch.p, points);
+        assert_eq!(batch.ix, indices);
+    }
     #[test]
     fn paint_follows_paved_crossfall_instead_of_burying_outer_lanes() {
         let mut heights = PavementHeights::default();
@@ -628,6 +835,113 @@ mod tests {
         assert!((outer - 0.28).abs() < 1e-6);
         assert!(heights.height(Vec2::new(9., 10.)).is_none());
     }
+    #[test]
+    fn both_routes_and_grid_follow_actual_pavement_triangles() {
+        let track = Track::metropolis().unwrap();
+        let m = track.metropolis.as_ref().unwrap();
+        let mut support = PavementHeights::default();
+        for s in m.surfaces.iter().filter(|s| s.kind == 0) {
+            let v: Vec<_> = s
+                .shape
+                .vertices()
+                .map(|[x, z]| Vec3::new(x, track.terrain_height(x, z) + 0.025, z))
+                .collect();
+            for t in &s.shape.triangles {
+                support.add(t.map(|i| v[i as usize]));
+            }
+        }
+        let mut worst = 0f32;
+        for route in 0..2 {
+            for station in (-300..=12000).step_by(5) {
+                let s = station as f32;
+                let mut points = vec![track.sample_route(route, s, 0.).0];
+                if station < 0 {
+                    points.extend([-4.5, -1.5].map(|lane| track.sample_route(route, s, lane).0));
+                } else {
+                    for outgoing in [true, false] {
+                        for slot in 0..2 {
+                            let lane = rr_core::streets::lane_center(
+                                &m.street_life.lane_sections,
+                                route,
+                                s,
+                                outgoing,
+                                slot,
+                            );
+                            points.push(track.street_sample(route, s, lane).0);
+                        }
+                    }
+                }
+                for (lane, p) in points.into_iter().enumerate() {
+                    let road = support.height(p.xz()).unwrap_or_else(||panic!("missing pavement route={route} station={station} sample={lane} point={p:?}"));
+                    worst = worst.max((p.y - road).abs());
+                }
+            }
+        }
+        println!("Both routes/grid maximum sampled pavement support deviation: {worst}m");
+        assert!(worst < 0.015, "{worst}");
+    }
+    #[test]
+    fn entry_car_bodies_and_paint_stay_on_visible_carriageway() {
+        let track = Track::metropolis().unwrap();
+        let m = track.metropolis.as_ref().unwrap();
+        let mut road = PavementHeights::default();
+        let mut walk = PavementHeights::default();
+        for surface in m.surfaces.iter().filter(|s| s.kind <= 1) {
+            let vertices: Vec<_> = surface
+                .shape
+                .vertices()
+                .map(|[x, z]| Vec3::new(x, 0., z))
+                .collect();
+            let support = if surface.kind == 0 {
+                &mut road
+            } else {
+                &mut walk
+            };
+            for triangle in &surface.shape.triangles {
+                support.add(triangle.map(|i| vertices[i as usize]));
+            }
+        }
+        for route in 0..2 {
+            for station in (2700..3500).chain(5260..5480).step_by(2) {
+                let s = station as f32;
+                let mut points = Vec::new();
+                for outgoing in [true, false] {
+                    for slot in 0..2 {
+                        let lane = rr_core::streets::lane_center(
+                            &m.street_life.lane_sections,
+                            route,
+                            s,
+                            outgoing,
+                            slot,
+                        );
+                        let (p, q) = track.street_sample(route, s, lane);
+                        for x in [-0.95, 0., 0.95] {
+                            for z in [-1.95, 0., 1.95] {
+                                points.push((p + q * Vec3::new(x, 0., z)).xz());
+                            }
+                        }
+                    }
+                }
+                let (divider, _, half) =
+                    rr_core::streets::markings(&m.street_life.lane_sections, route, s);
+                for lane in [divider - 0.11, divider + 0.11, -half + 0.25, half - 0.25] {
+                    for edge in [-0.07, 0.07] {
+                        points.push(track.street_sample(route, s, lane + edge).0.xz());
+                    }
+                }
+                for point in points {
+                    assert!(
+                        road.height(point).is_some(),
+                        "missing road route={route} s={s} p={point:?}"
+                    );
+                    assert!(
+                        walk.height(point).is_none(),
+                        "raised sidewalk over traffic/paint route={route} s={s} p={point:?}"
+                    );
+                }
+            }
+        }
+    }
     fn crossing_trace(
         route: usize,
         station: f32,
@@ -636,7 +950,24 @@ mod tests {
         wall: bool,
         legacy_down: bool,
     ) -> Vec3 {
-        let track = Track::metropolis().unwrap();
+        let mut track = Track::metropolis().unwrap();
+        if legacy_down {
+            // Freeze the whole historical support context, not just its triangles.
+            // The live road centre/elevation can change without invalidating this
+            // deliberately broken-controller negative control.
+            #[derive(serde::Deserialize)]
+            struct Frozen {
+                elevation_profile: rr_content::metropolis::ElevationProfile,
+                traffic_path: rr_content::metropolis::Path,
+            }
+            let frozen: Frozen = serde_json::from_str(include_str!(
+                "../../../docs/testing/living-city-ai/fixtures/old-farm-rim-context.json"
+            ))
+            .unwrap();
+            let map = std::sync::Arc::make_mut(track.metropolis.as_mut().unwrap());
+            map.elevation_profile = frozen.elevation_profile;
+            map.traffic_paths[0] = frozen.traffic_path;
+        }
         let m = track.metropolis.as_ref().unwrap();
         let (centre, rotation) = track.street_sample(route, station, 0.);
         let lateral = rotation * Vec3::X * side;
@@ -655,8 +986,23 @@ mod tests {
             dt: 1. / 60.,
             substeps: 3,
         });
+        // The deliberately broken old controller needs its frozen pre-remodel rim.
+        // Current controller crossing tests always use the current baked map.
+        let historical: Vec<rr_content::metropolis::Surface> = if legacy_down {
+            serde_json::from_str(include_str!(
+                "../../../docs/testing/living-city-ai/fixtures/old-farm-rim-surfaces.json"
+            ))
+            .unwrap()
+        } else {
+            vec![]
+        };
+        let surfaces = if legacy_down {
+            &historical
+        } else {
+            &m.surfaces
+        };
         // Use actual source pavement/sidewalk triangles, at their production heights.
-        for surface in &m.surfaces {
+        for surface in surfaces {
             if !surface
                 .shape
                 .vertices()

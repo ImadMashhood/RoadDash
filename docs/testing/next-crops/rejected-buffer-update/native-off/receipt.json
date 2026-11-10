@@ -1,0 +1,15 @@
+{
+  "render_mode": "off",
+  "exit": 0,
+  "input_hashes": {
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/.crop-binary/road-dash": "e52683c813b6472a828c7b9ed907de292a86b78daf56c70021e0e099b3d9b655",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/content/world/metropolis.json": "4ad912fc878f99eb485ce03cb6fb0b4848a57b9fbe147866eda5f5d588cb8850",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/assets/shaders/crops.wgsl": "75b66365066ce449dbd6fca091c0f64cb709caa94d472b4b922e7e2458c5fe8d",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/src/world_gen/metropolis/geometry/crops.rs": "6edb37a60f917e5341d4697bf1e533d37abbd4764215fe2d7e649d8fbc2b918d",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/next-crops/crates/rr_core/src/crops.rs": "c8db854c17b3b67e094491d316a4340032ce452f3f212979b8cbb56f7ef63447"
+  },
+  "inputs_unchanged": true,
+  "captures": 5,
+  "blank_captures": [],
+  "fixture": "scripted physical shape contact; not a free-running crash or GPU benchmark"
+}

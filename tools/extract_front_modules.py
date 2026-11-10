@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import struct
 from verify_building_mesh_assets import read_glb,accessor,FORMATS,WIDTH
+from facade_material_policy import coordinate
 ROOT=Path(__file__).resolve().parents[1];KIT=ROOT/'art/buildings/mesh_assets';OUT=KIT/'front_modules'
 
 
@@ -39,7 +40,7 @@ def derive(identity,depth,lod):
         raw=struct.pack('<'+'I'*len(kept),*(mapping[i]for i in kept));primitives.append(dict(attributes=attrs,indices=array(raw,5125,'SCALAR',len(kept)),material=primitive['material']));triangles+=len(kept)//3
     if not primitives:raise ValueError('No geometric facade '+identity)
     used_materials=sorted({p['material']for p in primitives});material_map={old:new for new,old in enumerate(used_materials)}
-    materials=[d['materials'][i]for i in used_materials]
+    materials=[coordinate(identity,d['materials'][i])for i in used_materials]
     def texture_refs(value):
         if isinstance(value,dict):
             for key,v in value.items():

@@ -1,5 +1,44 @@
 //! Approved race-first map: triangulated authoring data, independent of rendering.
 use serde::Deserialize;
+/// One authoring source for roads, land, navigation and property support.
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ElevationProfile {
+    pub knots: Vec<[f32; 2]>,
+    pub crossfall_amplitude: f32,
+    pub crossfall_wavelength: f32,
+}
+impl ElevationProfile {
+    pub fn height(&self, x: f32, z: f32) -> f32 {
+        rr_core::elevation::height(
+            &self.knots,
+            [self.crossfall_amplitude, self.crossfall_wavelength],
+            x,
+            z,
+        )
+    }
+    pub fn validate(&self) -> Result<(), String> {
+        if self.knots.len() < 2
+            || self.knots.len() > 64
+            || self
+                .knots
+                .iter()
+                .flatten()
+                .any(|v| !v.is_finite() || v.abs() > 20000.)
+            || !self.crossfall_amplitude.is_finite()
+            || self.crossfall_amplitude.abs() > 2.
+            || !self.crossfall_wavelength.is_finite()
+            || self.crossfall_wavelength < 500.
+            || self.knots.windows(2).any(|p| {
+                p[1][0] - p[0][0] < 300.
+                    || 1.875 * (p[1][1] - p[0][1]).abs() / (p[1][0] - p[0][0]) > 0.04
+            })
+        {
+            return Err("invalid elevation profile / grade".into());
+        }
+        Ok(())
+    }
+}
 /// Ordered atlas/detail identity. Authoring palette parity is checked below.
 pub const FACADE_FAMILIES: [&str; 24] = [
     "BUSS1", "BUSS4", "CHINA12", "CLSTGA11", "OFFC1", "OFFC2", "OFFC10", "RUNDWN11", "VICT11",
@@ -16,6 +55,16 @@ pub struct Shape {
 impl Shape {
     pub fn vertices(&self) -> impl Iterator<Item = [f32; 2]> + '_ {
         self.rings.iter().flatten().copied()
+    }
+    fn triangle_area(&self) -> f64 {
+        let v: Vec<_> = self.vertices().map(|p| p.map(f64::from)).collect();
+        self.triangles
+            .iter()
+            .map(|t| {
+                let [a, b, c] = t.map(|i| v[i as usize]);
+                ((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])).abs() * 0.5
+            })
+            .sum()
     }
     pub fn validate(&self) -> Result<(), String> {
         let v: Vec<_> = self.vertices().collect();
@@ -75,6 +124,7 @@ pub struct Junction {
 #[derive(Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Field {
+    pub patches: Vec<Shape>,
     pub id: String,
     pub shape: Shape,
     pub crop: String,
@@ -165,6 +215,8 @@ pub struct ParkedCar {
 #[derive(Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Pedestrian {
+    #[serde(default)]
+    pub crossing_end: Option<[f32; 2]>,
     pub id: String,
     pub position: [f32; 2],
     pub heading: f32,
@@ -174,7 +226,29 @@ pub struct Pedestrian {
 }
 #[derive(Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
+pub struct CivicSite {
+    pub id: String,
+    pub kind: String,
+    pub position: [f32; 2],
+    pub heading: f32,
+    pub size: [f32; 2],
+    #[serde(default)]
+    pub grounds: Vec<Shape>,
+    #[serde(default)]
+    pub paving: Vec<Shape>,
+    #[serde(default)]
+    pub entrances: Vec<[f32; 2]>,
+    #[serde(default)]
+    pub trees: Vec<[f32; 2]>,
+    #[serde(default)]
+    pub context_buildings: usize,
+}
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Metropolis {
+    #[serde(default)]
+    pub civic_sites: Vec<CivicSite>,
+    pub elevation_profile: ElevationProfile,
     pub schema_version: u32,
     pub source_layout_sha256: String,
     pub track: crate::track::TrackDef,
@@ -199,10 +273,73 @@ impl Metropolis {
         Ok(m)
     }
     pub fn validate(&self) -> Result<(), String> {
+        self.elevation_profile.validate()?;
+        let mut site_ids = HashSet::new();
+        if self.civic_sites.iter().any(|s| {
+            !site_ids.insert(&s.id)
+                || !matches!(s.kind.as_str(), "city_hall" | "park" | "cafe")
+                || !s.heading.is_finite()
+                || s.position.iter().any(|v| !v.is_finite())
+                || s.size
+                    .iter()
+                    .any(|v| !v.is_finite() || *v <= 0. || *v > 400.)
+        }) {
+            return Err("invalid civic site".into());
+        }
+        for site in &self.civic_sites {
+            if site.grounds.len() + site.paving.len() > 2048 {
+                return Err("civic grounds budget".into());
+            }
+            if site
+                .entrances
+                .iter()
+                .chain(&site.trees)
+                .flatten()
+                .any(|v| !v.is_finite())
+            {
+                return Err("invalid civic positions".into());
+            }
+            for patch in site.grounds.iter().chain(&site.paving) {
+                patch.validate()?;
+            }
+        }
+        for field in &self.fields {
+            if field.patches.is_empty() {
+                return Err("missing field surface".into());
+            }
+            field.shape.validate()?;
+            for patch in &field.patches {
+                patch.validate()?;
+            }
+            let area = field.shape.triangle_area();
+            let tiled: f64 = field.patches.iter().map(Shape::triangle_area).sum();
+            if (tiled - area).abs() > area * 0.00001 + 0.02 {
+                return Err("field patch area differs from boundary".into());
+            }
+        }
+        for path in self.paths.iter().chain(self.traffic_paths.iter()) {
+            for [x, y, z] in &path.points {
+                if ![x, y, z].iter().all(|v| v.is_finite())
+                    || (self.elevation_profile.height(*x, *z) - y).abs() > 0.002
+                {
+                    return Err("path elevation differs from authored land".into());
+                }
+            }
+        }
         let mut walker_ids = HashSet::new();
-        if self.pedestrians.len() > 96
+        if self.pedestrians.len() > 384
+            || self
+                .pedestrians
+                .iter()
+                .filter(|p| p.crossing_end.is_some())
+                .count()
+                > 24
             || self.pedestrians.iter().any(|p| {
-                !walker_ids.insert(&p.id)
+                p.crossing_end.is_some_and(|end| {
+                    !end.iter().all(|v| v.is_finite())
+                        || !(12. ..=26.)
+                            .contains(&((end[0] - p.position[0]).hypot(end[1] - p.position[1])))
+                }) || !walker_ids.insert(&p.id)
                     || p.id.is_empty()
                     || p.route > 1
                     || !p.station.is_finite()
@@ -218,6 +355,24 @@ impl Metropolis {
             return Err("invalid pedestrian patrol".into());
         }
         self.track.validate()?;
+        // The race interval uses absolute route chainage; authoring keeps both
+        // physical tails and the original grid offsets intact.
+        let race = rr_core::race::RaceInterval::METROPOLIS;
+        if self
+            .track
+            .checkpoints
+            .iter()
+            .skip(1)
+            .take(self.track.checkpoints.len() - 2)
+            .any(|g| !(race.start..race.finish).contains(&(g.fraction * 12000.)))
+            || self
+                .track
+                .spawns
+                .iter()
+                .any(|s| !(0. ..race.start).contains(&race.grid_station(s.distance)))
+        {
+            return Err("metropolis race interval excludes route checks or grid".into());
+        }
         self.street_life.validate()?;
         if self.parked_cars.len() > 300
             || self.parked_cars.iter().any(|p| {
@@ -296,7 +451,8 @@ impl Metropolis {
         for f in &self.fields {
             f.shape.validate()?;
         }
-        if self.street_props.len() > 1500 {
+        // ADR120: wider urban walks allow a bounded increase (1519 authored).
+        if self.street_props.len() > 1600 {
             return Err("street furniture budget".into());
         }
         let mut prop_ids = HashSet::new();
@@ -365,10 +521,38 @@ mod tests {
         }
     }
     #[test]
+    fn race_bounds_reject_internal_checks_outside_playable_interval() {
+        let mut m =
+            Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
+        m.track.checkpoints[1].fraction = 250. / 12000.;
+        assert!(m.validate().unwrap_err().contains("race interval"));
+    }
+    #[test]
     fn approved_world_loads_and_rejects_broken_geometry_routes_and_styles() {
         let mut m =
             Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
-        assert_eq!(m.buildings.len(), 19068);
+        assert_eq!(
+            m.buildings
+                .iter()
+                .filter(|b| !b.id.starts_with("approach-") && !b.id.starts_with("civic-context-"))
+                .count(),
+            19068
+        );
+        assert_eq!(
+            m.buildings
+                .iter()
+                .filter(|b| b.id.starts_with("approach-"))
+                .count(),
+            9
+        );
+        assert_eq!(
+            m.buildings
+                .iter()
+                .filter(|b| b.id.starts_with("civic-context-"))
+                .count(),
+            31
+        );
+        assert_eq!(m.civic_sites.len(), 14);
         assert_eq!(m.paths.len(), 2);
         m.buildings[0].style = FACADE_FAMILIES.len();
         assert!(m.validate().is_err());
@@ -412,7 +596,7 @@ mod tests {
     fn pedestrian_patrols_are_bounded_unique_and_finite() {
         let mut m =
             Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
-        assert_eq!(m.pedestrians.len(), 96);
+        assert_eq!(m.pedestrians.len(), 384);
         m.pedestrians[0].extent = 40.;
         assert!(m.validate().is_err());
         m.pedestrians[0].extent = 6.;
@@ -420,6 +604,32 @@ mod tests {
         assert!(m.validate().is_err());
         m.pedestrians[1].id = "unique-pedestrian".into();
         m.pedestrians[1].position[0] = f32::NAN;
+        assert!(m.validate().is_err());
+    }
+    #[test]
+    fn crossing_endpoints_and_population_budgets_are_validated() {
+        let mut m =
+            Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
+        assert_eq!(m.street_life.main_traffic, 144);
+        assert_eq!(
+            m.pedestrians
+                .iter()
+                .filter(|p| p.crossing_end.is_some())
+                .count(),
+            10
+        );
+        let i = m
+            .pedestrians
+            .iter()
+            .position(|p| p.crossing_end.is_some())
+            .unwrap();
+        let valid = m.pedestrians[i].crossing_end;
+        m.pedestrians[i].crossing_end = Some(m.pedestrians[i].position);
+        assert!(m.validate().is_err());
+        m.pedestrians[i].crossing_end = Some([f32::NAN, 0.]);
+        assert!(m.validate().is_err());
+        m.pedestrians[i].crossing_end = valid;
+        m.pedestrians.push(m.pedestrians[0].clone());
         assert!(m.validate().is_err());
     }
     #[test]
@@ -434,5 +644,22 @@ mod tests {
         s.triangles[0][2] = 2;
         s.rings[0][0][0] = f32::INFINITY;
         assert!(s.validate().is_err());
+    }
+}
+
+#[cfg(test)]
+mod elevation_tests {
+    use super::*;
+    #[test]
+    fn reject_bad_profile_and_stale_path_heights() {
+        let source = include_str!("../../../content/world/metropolis.json");
+        let mut m = Metropolis::from_json(source).unwrap();
+        m.paths[1].points[900][1] += 0.1;
+        assert!(m.validate().unwrap_err().contains("path elevation"));
+        let mut p = m.elevation_profile;
+        p.knots[1][0] = p.knots[0][0];
+        assert!(p.validate().is_err());
+        p.knots[1][0] = f32::NAN;
+        assert!(p.validate().is_err());
     }
 }

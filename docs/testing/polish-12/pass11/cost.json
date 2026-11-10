@@ -1,0 +1,12 @@
+{
+  "added_vertices": 0,
+  "added_triangles": 0,
+  "added_skin_joints": 0,
+  "added_draws": 0,
+  "added_texture_bytes": 0,
+  "added_per_frame_operations": 0,
+  "changed_startup_values": "Two ankle bind translations; paired inverse binds recomputed by the existing load path.",
+  "evidence": "Source diff, exact joint/weight parity and full original neutral-surface regression.",
+  "gpu_timing_measured": false,
+  "performance_gate_closed": false
+}

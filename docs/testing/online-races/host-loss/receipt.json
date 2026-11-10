@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "expected_client_failure_exit": 1,
+  "client_errors": [
+    "Connection lost: peer closed with an incomplete frame"
+  ],
+  "max_players": 2,
+  "binary_sha256": "417388c3f866d162d088871a9990e985e64db5a3a3843ee611e9ffae3f15da64"
+}

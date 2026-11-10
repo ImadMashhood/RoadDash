@@ -1,0 +1,253 @@
+{
+  "purpose": "Functional visual verification only; concurrent headless network tests may run. No performance claims. Original pixels remain external.",
+  "runs": [
+    {
+      "name": "original",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/road-dash",
+        "--frontend-smoke"
+      ],
+      "cwd": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original",
+      "exit_code": 0,
+      "elapsed_seconds": 23.77,
+      "screenshot_count": 10,
+      "screenshots": [
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-00.png",
+          "sha256": "b095430ba4a765569a008ff04d7e6a6034bcf091c39916241ee32cff1349ec68"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-01.png",
+          "sha256": "5ba164c3522da42b3110b65de66b06c49c91154d2e980b6d32925a62cad9ae30"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-02.png",
+          "sha256": "5dee67b61e5ac29ec06c536b49dba65e5165a5ba4c277b9d3fe3026367728e10"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-03.png",
+          "sha256": "9fb8d54e8dc1b1ab07c8c76e353504a3445a3ef50bb6119045a9af99c44276b4"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-04.png",
+          "sha256": "f55faac8c20dbf4985de7368203a3a4a1e3816a1b19892fd8ffc39d80cd431b2"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-05.png",
+          "sha256": "a306665968e49ffb640f417cdf585281ef70553804d44c8d4f1b9091b5418541"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-06.png",
+          "sha256": "281ab77bcd77f14d945021fcf97cb8e6181b89e68b90b6c610e6ebe80fd560f9"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-07.png",
+          "sha256": "f67cce50220aebd0bc051e69b9f89653cdf42af91530b41d3ba6a12a415bbf2d"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-08.png",
+          "sha256": "32f83fb244c7eb37015c0d2ce3faf75245c477368dd622a3ac48a7216cb07773"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/original/captures/online-ui-09.png",
+          "sha256": "01fb1d0b1f2947f01fbd53adafab81fd954769030a217dd555b9021f900a9120"
+        }
+      ]
+    },
+    {
+      "name": "fallback",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/road-dash",
+        "--frontend-smoke"
+      ],
+      "cwd": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback",
+      "exit_code": 0,
+      "elapsed_seconds": 23.61,
+      "screenshot_count": 10,
+      "screenshots": [
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-00.png",
+          "sha256": "3021f0203709640552e0557e40eb3188f196717271dddaac1b527e62918b4c88"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-01.png",
+          "sha256": "2b253f668666edf43689a107a56e33d737e95d5036280729bb7427dce45fd327"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-02.png",
+          "sha256": "94129f2efc2ba57869afb4cde9e06547740643638889ac17cee9871c5996fe3c"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-03.png",
+          "sha256": "29e01124ae1c7dee973b63958c887a1752360a6dce90d9122f9cea3c0120adea"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-04.png",
+          "sha256": "4f6cbf7b3ade3f2dad3de27b91649b7907dfda14b0456cf313dc210284dae347"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-05.png",
+          "sha256": "258d18a579e6b62ea2eb15e3b23e9293555e279d0c15bfb9da28b6d4783f4bfb"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-06.png",
+          "sha256": "a20c83edb79a430d43bfbaa4d5625c4793ed15f19892637be040dd8251ef434f"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-07.png",
+          "sha256": "78ae214f3ae11acfd1bac8513938a1662730e08e8db46e38e694052774ac3fd9"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-08.png",
+          "sha256": "83e2f6878452949b986987d72dc27313e0d8a38f3105b5147fea15d952950aad"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/fallback/captures/online-ui-09.png",
+          "sha256": "d54a1db03ff3114ac0270eb5800c19073e478318347141f640c0dc4ccc6b854c"
+        }
+      ]
+    },
+    {
+      "name": "offline",
+      "command": [
+        "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/road-dash",
+        "--frontend-smoke"
+      ],
+      "cwd": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline",
+      "exit_code": 101,
+      "elapsed_seconds": 29.08,
+      "screenshot_count": 29,
+      "screenshots": [
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-01-splash.png",
+          "sha256": "465bac7685047165d642004571f923bf6b4bbb254ef6f1d7004a9b69e2b11076"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-02-main.png",
+          "sha256": "b095430ba4a765569a008ff04d7e6a6034bcf091c39916241ee32cff1349ec68"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-03-rider.png",
+          "sha256": "6f4440b3613eee3c0208425d05c5e92af3038449aaad920cb517e146fe25727a"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-04-street.png",
+          "sha256": "c100ebeab9903d6df97bb6e2e2fc718ed9056268292be221056e7a9a80a32e7c"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-05-shop.png",
+          "sha256": "8e54811f272fa537ee9ead09af5886d54a06efc78df634174df197000d3cfd2d"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-06-bar.png",
+          "sha256": "31feddd0a0bb3b714968fd264b25373f720cdfb0d01d755b2e7f078571fff575"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-07-settings.png",
+          "sha256": "29ad712d634bd45af91b47edd267e2c8e99ae5cad6e9ab3fc70db55db656e2ce"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-08-course-1440x900.png",
+          "sha256": "a8318ad0b913288b30f9285c8ae9f39603e783a5310b9b03f5451813b7e23583"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-09-course-1280x720.png",
+          "sha256": "8a6fcc2ff6e024c665b7f0c821c1902ba57db7a1c76823bcde67ecb685bbb59b"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-10-course-2560x1440.png",
+          "sha256": "505247913d68b9192a19bdf4423a4db23dca8095c5a6d9f8ed615a021d64defc"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-11-course-ultrawide.png",
+          "sha256": "3a81f49dc11448d914a653e9ad21bf6be948585215caecbd891b091ded8497c6"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-12-course-4k.png",
+          "sha256": "63b3b387b5b9cb01b0514cf82d310c151c7a5f345f171f04277266cd7b4c7d56"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-13-loading.png",
+          "sha256": "488cf1d2dce6825c8376ad851c7e3d5f0fd7d06a1ce5b1780118e8be24bc68ad"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-01.png",
+          "sha256": "68ec01fd780805341b1fdea00ce8473eadb36a567cc68be921ee7ecbaf5900fc"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-02.png",
+          "sha256": "0cfdcf3d3fd940827f3ea0e5366b91841f85f0b80a558a7e6887e8ff8735ac63"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-03.png",
+          "sha256": "b07574962bce35b0cbd34d5f235c8e637b606f2b8f1df96e414331cb1880c1e9"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-04.png",
+          "sha256": "b27382d87b6295aeb5f684355e96bf994bb6928aac09b959f800279718e3ebd0"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-05.png",
+          "sha256": "fb1d6becd69d3b578a5a070bbf4d00f7b330afee667f75eb6d67623b269d60a3"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-06.png",
+          "sha256": "ccdbfc794947a57f55a4fd1a6cad996eaac177c7de230c9c67e6d01933aa31a3"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-07.png",
+          "sha256": "ee469af36ede77b919506dfa9880d13c3af27ab186b74806741d95bd5da04408"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-08.png",
+          "sha256": "4cd49e3b2672106d9372e5de786b21c98f6e57ac3b784580570425ef8ed569dd"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-09.png",
+          "sha256": "a0f47a912ddc6963117e85b60605dec0674717d35b222f80ab785c8fb58cb195"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-10.png",
+          "sha256": "7e9fc3ec25e47818a6768af64cb6ff3a14ef95c21cd47664d9d84459c8867dce"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-11.png",
+          "sha256": "e86b297b20253f8d032f5e69cb8f6bbf6195b8010878e54ec9c9bc61f13ee7f4"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-12.png",
+          "sha256": "6fbdce250c3d13a9638035bd6d89d0ae529a6f8aeeb99cfd06dd571ef5e3b7c1"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-13.png",
+          "sha256": "be1da29f2fcb62c49dad5a05f8f66ab001cddaa20838e135bf4ac584c188e9ff"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-14.png",
+          "sha256": "ef584d7d4b1d25d262e34ea3f2950c7d004eef48bc0641b018fbec9e4b9f650a"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-15.png",
+          "sha256": "1ca4b5c11c69cb09e4fe3d71add7a389a1e2e208342e482ffcfe8ab02342c4da"
+        },
+        {
+          "path": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/online-ui-evidence/final/offline/screenshots/frontend-portrait-16.png",
+          "sha256": "049aae1a54eded9dc1bffe1c61633c1b86978cd11d38fb5ae875d7d5246a5551"
+        }
+      ]
+    }
+  ],
+  "binary_sha256": "aa2c8b5489e1f996fe8822ead76eb7757cd04741cb76cbea3f384bee805476dd",
+  "review": {
+    "original_36_character_join_720p": "readable; complete code wraps into two lines inside its button",
+    "private_full_lobby": "all15riders and full36-character code fit; status separate from roster",
+    "fallback": "project art present and text readable at720p",
+    "countdown": "15-second label and disabled host Start/map controls present",
+    "error": "error text and Cancel/Back clear; stale status strip hidden by follow-upd22fe04",
+    "limitations": [
+      "This checkpoint contains10-state fixture, predating11th live-overlay fixture; next binary required",
+      "Offline flow exited101 on obsolete7-club assertion. Baseline authoring/unit tests already require8dossier weapons; fixed exactarmedIDs in d68f207. Rerun required",
+      "No performance/internettransport/humancontroller certification"
+    ]
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "before": {
+    "performance": {
+      "census": {
+        "buildings": 19068,
+        "chunks": 3067,
+        "collision_triangles": 2613119,
+        "crossing_cars": 30,
+        "parked_cars": 122,
+        "physical_routes": 2,
+        "render_triangles": 2909113,
+        "source_collision_batches": 2922,
+        "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777",
+        "static_collision_batches": 2531,
+        "street_props": 1494,
+        "walking_pedestrians": 96
+      },
+      "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+      "metrics": {
+        "active_fixed_ticks": 985,
+        "colliders": 4410,
+        "entities": 50533,
+        "fixed_ticks": 1882,
+        "last_gameplay_ms": 0.7991750240325928,
+        "last_physics_ms": 7.3319501876831055,
+        "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+        "render_frames": 1883,
+        "target_hz": 60.0,
+        "wall_frame_average_ms": 19.312538146972656,
+        "wall_frame_p95_ms": 39.287269592285156
+      },
+      "p95_target_met": false,
+      "p95_target_ms": 16.7
+    },
+    "entry_regions": {
+      "shadow_facade": {
+        "box": [
+          1100,
+          300,
+          1400,
+          800
+        ],
+        "mean_srgb_8bit": [
+          40.92648666666667,
+          44.65980666666667,
+          47.40305333333333
+        ],
+        "weighted_display_value": 44.064165244
+      },
+      "shadow_road": {
+        "box": [
+          680,
+          650,
+          820,
+          880
+        ],
+        "mean_srgb_8bit": [
+          25.224627329192547,
+          30.31605590062112,
+          38.40717391304348
+        ],
+        "weighted_display_value": 29.817796906832296
+      },
+      "lit_upper_facade": {
+        "box": [
+          30,
+          30,
+          270,
+          260
+        ],
+        "mean_srgb_8bit": [
+          102.88039855072464,
+          97.68326086956522,
+          84.30990942028986
+        ],
+        "weighted_display_value": 97.82261636594203
+      }
+    }
+  },
+  "after": {
+    "performance": {
+      "census": {
+        "buildings": 19068,
+        "chunks": 3067,
+        "collision_triangles": 2613119,
+        "crossing_cars": 30,
+        "parked_cars": 122,
+        "physical_routes": 2,
+        "render_triangles": 2909113,
+        "source_collision_batches": 2922,
+        "source_layout_sha256": "5e23b4425269229bf47579b85e37227fdad6596a51fd9e098a09268db2ff1777",
+        "static_collision_batches": 2531,
+        "street_props": 1494,
+        "walking_pedestrians": 96
+      },
+      "limits": "Bounded native wall-frame sample; fifteen racers simulated in farm section, render camera at urban finish; not GPU timing or full-course/hardware certification.",
+      "metrics": {
+        "active_fixed_ticks": 985,
+        "colliders": 4410,
+        "entities": 50533,
+        "fixed_ticks": 1883,
+        "last_gameplay_ms": 0.9056540131568909,
+        "last_physics_ms": 6.913238048553467,
+        "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+        "render_frames": 1884,
+        "target_hz": 60.0,
+        "wall_frame_average_ms": 19.66407012939453,
+        "wall_frame_p95_ms": 39.19096755981445
+      },
+      "p95_target_met": false,
+      "p95_target_ms": 16.7
+    },
+    "entry_regions": {
+      "shadow_facade": {
+        "box": [
+          1100,
+          300,
+          1400,
+          800
+        ],
+        "mean_srgb_8bit": [
+          52.60712,
+          58.99668666666667,
+          64.17504
+        ],
+        "weighted_display_value": 58.012141904
+      },
+      "shadow_road": {
+        "box": [
+          680,
+          650,
+          820,
+          880
+        ],
+        "mean_srgb_8bit": [
+          33.580714285714286,
+          41.58341614906832,
+          53.23416149068323
+        ],
+        "weighted_display_value": 40.72322554658385
+      },
+      "lit_upper_facade": {
+        "box": [
+          30,
+          30,
+          270,
+          260
+        ],
+        "mean_srgb_8bit": [
+          120.84782608695652,
+          112.17880434782609,
+          96.24682971014492
+        ],
+        "weighted_display_value": 112.87154980072462
+      }
+    }
+  },
+  "limits": "Fixed display-space regions, not photometric ground truth; lower sun changes shadow footprint. One paired wall-frame run, no GPU or speedup claim."
+}

@@ -1,0 +1,8 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-polish)
+    Finished `test` profile [optimized + debuginfo] target(s) in 46.67s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-aabd6f186c1a05d6)
+
+running 1 test
+test vehicle::tests::ai_backing_intent_uses_the_existing_reverse_adapter ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 307 filtered out; finished in 0.04s

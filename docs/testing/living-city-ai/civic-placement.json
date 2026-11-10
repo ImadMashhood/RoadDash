@@ -1,0 +1,27 @@
+{
+  "manifest_sha256": "5543451abfde9a1343ddbcc892a81e1f377c5938114c450eb343be4b8773ae12",
+  "sites": [
+    {
+      "kind": "city_hall",
+      "grounds_area_m2": 65511.9724964313,
+      "grounds_patches": 89,
+      "driving_street_point": [
+        385.7219536123024,
+        3938.7670916846137
+      ],
+      "entrance_heading": 1.752260036903085,
+      "entrance_alignment_dot": 1.0
+    },
+    {
+      "kind": "park",
+      "grounds_area_m2": 60964.44342774978,
+      "grounds_patches": 73,
+      "trees": 26,
+      "flower_beds": 11,
+      "benches": 15,
+      "lamps": 8,
+      "pergolas": 1,
+      "canopy_clearance_m": 6
+    }
+  ]
+}

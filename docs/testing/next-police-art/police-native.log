@@ -1,0 +1,15 @@
+2026-11-10T02:48:25.455491Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-10T02:48:25.456204Z  WARN wgpu_hal::vulkan::instance: InstanceFlags::VALIDATION requested, but unable to find layer: VK_LAYER_KHRONOS_validation
+2026-11-10T02:48:25.459534Z  WARN wgpu_hal::vulkan::instance: GENERAL [Loader Message (0x0)]
+	terminator_CreateInstance: Received return code -9 from call to vkCreateInstance in ICD /usr/lib64/libvulkan_dzn.so. Skipping this driver.
+2026-11-10T02:48:25.459545Z  WARN wgpu_hal::vulkan::instance: 	objects: (type: INSTANCE, hndl: 0x560efac2e950, name: ?)
+2026-11-10T02:48:25.696436Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-3289641.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+Performance log stopped: Disk quota exceeded (os error 122)
+Performance log worker unavailable
+2026-11-10T02:48:32.715398Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+Police native: normal input speeding / warning / pursuit / escape scenario
+Police native: temporary solid LOS barrier behind moving player; wait for real loss/search/escape
+Police native: stopped crash; preserve falling/getup before foot arrest
+Police native: physical foot chase and safe arrest observed; no race/save payout

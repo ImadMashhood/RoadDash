@@ -1,0 +1,105 @@
+{
+  "baseline_commit": "b3f14b48",
+  "before": {
+    "knot_min_m": 10,
+    "knot_max_m": 62,
+    "analytic_max_longitudinal_grade_percent": 3.0,
+    "analytic_max_longitudinal_curvature_per_m": 7.39008344562721e-05,
+    "crossfall_amplitude_m": 0.8,
+    "routes": [
+      {
+        "min_m": 12.596441987767003,
+        "max_m": 62.481747524381305,
+        "playable_sample_min_m": 12.596441987767003,
+        "playable_sample_max_m": 62.481747524381305,
+        "max_sampled_grade_percent": 2.9962844854307087,
+        "samples": 1601,
+        "progress_endpoints": [
+          0.0,
+          12000.0
+        ]
+      },
+      {
+        "min_m": 12.596441987767003,
+        "max_m": 62.481747524381305,
+        "playable_sample_min_m": 12.596441987767003,
+        "playable_sample_max_m": 62.481747524381305,
+        "max_sampled_grade_percent": 2.9962844854307087,
+        "samples": 1601,
+        "progress_endpoints": [
+          0.0,
+          12000.0
+        ]
+      }
+    ],
+    "support": {
+      "pavement": {
+        "samples": 358856,
+        "max_sampled_interpolation_error_m": 0.009556906746816196
+      },
+      "fields": {
+        "samples": 25104,
+        "max_sampled_interpolation_error_m": 0.00946997905521485
+      }
+    }
+  },
+  "after": {
+    "knot_min_m": 10.0,
+    "knot_max_m": 75.0,
+    "analytic_max_longitudinal_grade_percent": 3.75,
+    "analytic_max_longitudinal_curvature_per_m": 9.237604307034013e-05,
+    "crossfall_amplitude_m": 0.8,
+    "routes": [
+      {
+        "min_m": 13.352857251274786,
+        "max_m": 75.48062573774482,
+        "playable_sample_min_m": 13.352857251274786,
+        "playable_sample_max_m": 75.48062573774482,
+        "max_sampled_grade_percent": 3.7458640956929248,
+        "samples": 1601,
+        "progress_endpoints": [
+          0.0,
+          12000.0
+        ]
+      },
+      {
+        "min_m": 13.352857251274786,
+        "max_m": 75.48062573774482,
+        "playable_sample_min_m": 13.352857251274786,
+        "playable_sample_max_m": 75.48062573774482,
+        "max_sampled_grade_percent": 3.7458640956929248,
+        "samples": 1601,
+        "progress_endpoints": [
+          0.0,
+          12000.0
+        ]
+      }
+    ],
+    "support": {
+      "pavement": {
+        "samples": 358856,
+        "max_sampled_interpolation_error_m": 0.011920569923248081
+      },
+      "fields": {
+        "samples": 25104,
+        "max_sampled_interpolation_error_m": 0.011828067095660089
+      }
+    }
+  },
+  "preservation": {
+    "exact_planar_manifest": true,
+    "normalized_sha256": "b3374e4439f0eaf50be21ecca0a100ca3fb84090603525e41eb9ce9608d72fd9",
+    "source_layout_sha256": "36ad931648350ba814849f266f67e6a1d6c4025dcb75e6ee1afe246ed23683f2",
+    "counts": {
+      "paths": 2,
+      "traffic_paths": 2,
+      "buildings": 19108,
+      "fields": 42,
+      "surfaces": 36615,
+      "civic_sites": 14,
+      "parked_cars": 122,
+      "pedestrians": 192,
+      "street_props": 1521
+    }
+  }
+}
