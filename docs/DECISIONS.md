@@ -3794,6 +3794,26 @@ sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
 
 
+## ADR143 — Urgent recovery gait and signed reverse heading (2026-11-10)
+
+Issue #28 retains the configured 6 m/s recovery controller and measured-distance
+phase. Improve the visual run silhouette and terrain-aware swing clearance,
+retaining support-local stance locks, anatomical chain lengths and visual-only
+pelvis fitting. Keep both accepted physical rigs, input buffering, recovery
+policy and audio unchanged. No standing wrist twist or engine migration.
+
+Dynamic steering heading uses signed longitudinal travel; lateral tire demand
+retains the existing wheel-side convention. Assisted remains road-constrained,
+with a bounded reverse heading offset fading continuously to zero at rest; its
+forward handling remains exact. AI escape's explicit heading remains authoritative.
+
+RFU-MOVE-01..04 track implementation and separate user visual acceptance.
+Read the installed MIT bevy/bevy-animation/bevy-input-actions guidance and
+Apache-2.0 game-feel/input-systems guidance from the user-requested collections.
+Apply engine-neutral presentation/input separation only: installed Bevy0.17.3 /
+Rapier0.32.0 remain pinned; 0.20 APIs/migration are deferred. No external code,
+new media or dependencies are imported. Evidence: testing/issue-28-movement.
+
 ## ADR140 — Measure course loading and frame distributions before optimization (2026-11-10)
 
 Issue #25 prioritizes both Hills and Metropolis loading/runtime performance.

@@ -3,6 +3,8 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
+- RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
+
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
 
 - ONLINE-PLAY-01: listen-host/UI/discovery is implemented and locally verified on

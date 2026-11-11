@@ -384,6 +384,7 @@ pub struct Animator {
     plant_weight: [f32; 2],
     gait: locomotion::Gait,
     ground_drop: f32,
+    swing_ground: [f32; 2],
 }
 impl Default for Animator {
     fn default() -> Self {
@@ -410,6 +411,7 @@ impl Default for Animator {
             plant_weight: [0.0; 2],
             gait: default(),
             ground_drop: 0.,
+            swing_ground: [0.; 2],
         }
     }
 }
@@ -451,6 +453,7 @@ fn update(
         if entered {
             a.gait = default();
             a.ground_drop = 0.;
+            a.swing_ground = [0.; 2];
             a.plants = [None; 2];
             a.plant_stance = [false; 2];
             a.plant_weight = [0.0; 2];

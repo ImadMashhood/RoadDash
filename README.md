@@ -170,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**222 verified tasks complete; 275 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**224 verified tasks complete; 277 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -188,10 +188,10 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 222 verified complete |
+| [00](#part-00) | Completed and verified foundations | 224 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 34 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
-| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
+| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 29 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 10 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 25 open |
@@ -209,6 +209,10 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 <a id="part-00"></a>
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RFU-MOVE-03** Reverse steering turns heading left for D and right for A. Reason: issue #28 reports wrong reverse heading; part: 01; dependencies: REVERSE-01/P03-019; acceptance: both Dynamic and Assisted paths, symmetric inputs, continuous zero crossing and unchanged forward handling; verification: integrated vehicle tests and native reverse/forward review. [Evidence](docs/testing/issue-28-movement/README.md).
+- [x] **RFU-MOVE-04** Keep run cadence matched to measured movement. Reason: issue #28 forbids silent recovery-speed tuning; part: 03; dependencies: RFU-MOVE-01; acceptance: measured-distance phase, continuous speed changes, unchanged 6m/s controller and physical recovery; verification: gait trajectories, models differential checks and paired lab/native recovery. [Evidence](docs/testing/issue-28-movement/README.md).
+
 
 - [x] **CITY-ACTIVITY-02** Increase urban main traffic by50%, double urban pedestrians and add occasional sidewalk-to-sidewalk crossings. Reason: explicit user city-activity request; part: 06; dependencies: approved Metropolis baker, NPC patrols and host authority; acceptance:144 main traffic vehicles and384 city pedestrians, rural counts unchanged, paced grounded crossings and preserved collision; verification: authoring/runtime tests, generated census and native Metropolis survey. Verified:144main cars/384urban pedestrians,10clear crossing routes, two completed native crossings, rural/structural preservation and full integrated checks. [Evidence](docs/testing/city-activity-02/README.md). Performance remains a separate open gate.
 
@@ -660,6 +664,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+
 - [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Full cold-boot/presentation timing and broader hardware remain open.
 - [ ] **RFU-PERF-04** Evaluate offline baking/caching, streaming, instancing, culling and bounded simulation against measured bottlenecks. Reason: issue25 requests substantial performance improvements; part:01; dependencies: RFU-PERF-01/02 and preserved world/physics contracts; acceptance: measured gains without removing resident hazards, source identities or required content; verification: matched profiles, deterministic geometry/collision and long-route recovery/streaming checks.
 
@@ -794,6 +799,11 @@ First study every original rider animation category, use sprites as reference ke
 <a id="part-03"></a>
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
+
+
+- [ ] **RFU-MOVE-02** Align recovery feet/body over slopes, crests and uneven elevations. Reason: issue #28 terrain-contact defects; part: 03; dependencies: RFU-MOVE-01 and existing physical support locks; acceptance: bounded swing clearance, stable stance, continuous transitions and no physical rig changes; verification: translated up/down/cross-slope contact tests, native uneven-ground/manual/automatic/remount captures and user review. [Evidence](docs/testing/issue-28-movement/README.md).
+
+- [ ] **RFU-MOVE-01** Present urgent bike-return running. Reason: issue #28 reports a slow-looking recovery walk; part: 03; dependencies: V2-03-003/ADR130; acceptance: readable run at unchanged actual movement speed with user visual review; verification: distance-matched gait tests and native flat/slope sequences. Implementation pending acceptance; [evidence](docs/testing/issue-28-movement/README.md).
 
 <!-- DEVELOPMENT_PASS_03 -->
 <details>

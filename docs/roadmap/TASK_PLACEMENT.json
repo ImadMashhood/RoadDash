@@ -6,6 +6,8 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RFU-MOVE-04",
+        "RFU-MOVE-03",
         "CITY-ACTIVITY-02",
         "RACE-TRIM-01",
         "SETTINGS-01",
@@ -292,6 +294,8 @@
     "03": {
       "title": "Animation B \u2014 interpolation, terrain locomotion and active recovery",
       "task_ids": [
+        "RFU-MOVE-02",
+        "RFU-MOVE-01",
         "COMBAT-FEEL-01",
         "RAG-B-01",
         "RAG-B-02",

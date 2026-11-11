@@ -1829,6 +1829,22 @@ Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
+
+## 2026-11-10 — Issue #28 recovery run and reverse heading (ADR143)
+
+Isolated codex/issue-28-movement from754f9ddb after fetching main. Confirmed6m/s
+recovery controller and fully blended run above4.5m/s. Refined visual silhouette,
+added swing terrain probes and signed reverse heading. Added RFU-MOVE-01..04 with
+acceptance retained. Source/tests and native evidence tracked separately under
+testing/issue-28-movement; no physical rig, recovery policy, media or dependency
+changes. Commit/push/merge recorded only once performed.
+
+Issue #28 headless checkpoint:596workspace tests passed,1existing opt-in soak
+ignored; strict Clippy, fmt, build, audit and5roadmap tests pass. Eight translated
+terrain cases keep established sole slip below0.688mm/tick. Frozen native binary
+and draft checkpoint prepared for the parent's coordinated GPU window; native
+visual/recovery evidence and user/performance/hardware gates remain open.
+
 ## 2026-11-10 — Issue25 profiling and exact generation reuse (ADR140)
 
 Added opt-in loading spans, raw race-frame evidence, render-pass diagnostics and
@@ -1875,3 +1891,17 @@ the bounded writer; final release is frozen with exact source/tree/binary hashes
 Default-only four recovery/two survey checks pass with zero dropped logs and
 retained terminal audits; final publication/merge follows required checks.
 Broad RFU-PERF gates remain open; no physics/dependency migration is included.
+
+## 2026-11-11 — Issue28 native matrix and performance integration
+
+The capture-drain correction passes all ten native cases, including both adapters,
+both rigs and18paired lab scenarios. Preserve the initial shutdown failure.
+Visual spot review finds readable running/terrain contact; user motion acceptance
+remains open. RFU-MOVE-03/04 move to verified;01/02 stay open. Merge measured
+performance main76d4fe15 without changing movement source. Final strict checks
+and publication follow; no runtime timing or hardware certificate.
+
+Issue28 final integrated source passes600workspace tests,1existing ignored soak,
+strict all-target Clippy, locked build, fmt, audit and roadmap checks. Grouping
+the native preview queries in a named SystemParam resolves lint without changing
+query behavior. Native10/10 evidence retains its exact earlier executable hash.
