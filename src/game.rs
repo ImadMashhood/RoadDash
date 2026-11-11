@@ -924,9 +924,10 @@ pub fn drive(
             } else {
                 top.min((10.0 / curve.max(0.0001)).sqrt().max(12.))
             };
+            let surface = track.surface_route(r.route, r.progress, r.lane);
             let on_grass = (r.lane - track.street_offset(r.route, r.progress)).abs()
                 > track.half_width(r.progress);
-            let mut target = if on_grass { target.min(32.0) } else { target };
+            let mut target = surface.speed_limit(if on_grass { target.min(32.0) } else { target });
             let corner_braking = !is_player && r.speed > target + 1.5;
             if corner_braking {
                 brake = true;
@@ -1238,7 +1239,8 @@ pub fn drive(
                                 } else {
                                     1.0
                                 })
-                                * track.surface(r.progress, r.lane).traction())
+                                * surface.traction()
+                                * surface.drive_scale())
                         .min(target);
                     } else if r.speed > target || !throttle {
                         r.speed = r.speed.signum()
@@ -1255,6 +1257,9 @@ pub fn drive(
                         .max(0.0);
                     }
                 }
+            }
+            if !dynamic {
+                r.speed += surface.rolling_acceleration(r.speed, dt) * dt;
             }
             if boost {
                 r.nitro = (r.nitro - dt * 25.0).max(0.0);
@@ -1412,7 +1417,7 @@ pub fn drive(
                 rr_core::steering::visual_bank(steer),
                 1.0 - (-dt * 16.0).exp(),
             );
-            if on_grass && !dynamic {
+            if on_grass && !dynamic && surface != rr_core::surface::Surface::Sand {
                 r.speed = r.speed.signum() * (r.speed.abs() - dt * 1.8).max(0.0);
             }
             if !dynamic {

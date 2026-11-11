@@ -10,6 +10,7 @@ pub mod pursuit;
 pub mod race;
 pub mod reverse;
 pub mod steering;
+pub mod surface;
 pub mod traffic;
 pub mod traffic_avoidance;
 use serde::{Deserialize, Serialize};

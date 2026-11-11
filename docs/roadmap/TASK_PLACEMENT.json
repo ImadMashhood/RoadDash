@@ -233,6 +233,9 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "RFU-SURF-01",
+        "RFU-SURF-02",
+        "RFU-SURF-03",
         "RFU-PERF-01",
         "RFU-PERF-04",
         "FOOT-SPAWN-01",

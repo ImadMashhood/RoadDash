@@ -1,5 +1,7 @@
 # Known issues and remaining acceptance
 
+- RFU-SURF-01/02/03: sand behavior and four native cases pass; human feel, steep-uphill reverse and final integrated verification remain open; see testing/sand-speed/REPORT.md. Metropolis contains soil/gravel, not authored sand.
+
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 

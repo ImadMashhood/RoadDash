@@ -1,0 +1,9 @@
+{
+  "case": "recovery-baseline",
+  "exit_code": 0,
+  "errors": false,
+  "passed": true,
+  "binary_sha256": "f5751b658a3213d404cae3775f1ca9919b0fc178759ed9a078471e0232eaa7bf",
+  "elapsed_wall_s": 69.07997466799861,
+  "limits": "Native functional under bounded compiler load; no frame-time or human-feel claim."
+}

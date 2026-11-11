@@ -222,6 +222,7 @@ fn main() {
             || a == "--traffic-stall-survey"
             || a == "--metro-survey"
             || a == "--hills-survey"
+            || a == "--surface-survey"
             || a == "--hills-polish-survey"
             || a == "--hills-revision-survey"
             || a == "--smoke-test"

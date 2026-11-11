@@ -1829,6 +1829,12 @@ Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
+## 2026-11-10 — Issue29 sand follow-up (ADR144)
+
+Investigated missing Sand classification and asymmetric adapter penalties;
+implemented shared sand power/rolling rules and authored Hills biome agreement,
+with route-aware pavement protection. RFU-SURF-01/02/03 added to Part01.
+Verification/acceptance tracked in testing/sand-speed/REPORT.md; no gate closed.
 ## 2026-11-10 — Issue25 profiling and exact generation reuse (ADR140)
 
 Added opt-in loading spans, raw race-frame evidence, render-pass diagnostics and
@@ -1875,3 +1881,9 @@ the bounded writer; final release is frozen with exact source/tree/binary hashes
 Default-only four recovery/two survey checks pass with zero dropped logs and
 retained terminal audits; final publication/merge follows required checks.
 Broad RFU-PERF gates remain open; no physics/dependency migration is included.
+
+Issue29 follow-up verification: 603 pre-integration tests and four native cases
+pass. Corrected only native fixture broadphase readiness after its first failed
+run; preserved that failure. Integrated PR35's measured defaults/exact terrain
+cache while retaining shared sand tint. Human feel/steep-uphill reverse remain
+open; final integrated checks and publication are tracked in the sand report.

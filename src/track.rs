@@ -234,6 +234,11 @@ impl Track {
         self.sectors[self.segment(d).0]
     }
     pub fn surface(&self, d: f32, lane: f32) -> Surface {
+        self.surface_route(0, d, lane)
+    }
+    pub fn surface_route(&self, route: usize, d: f32, lane: f32) -> Surface {
+        // Lane belongs to the race path; actual city streets can be offset from it.
+        let lane = lane - self.street_offset(route, d);
         if let Some(c) = &self.city_surface {
             let cross = d
                 .rem_euclid(c.block_pitch_m)
@@ -248,8 +253,18 @@ impl Track {
             }
             return Surface::Grass;
         }
-        if self.is_hills() && d >= hills::SPLIT && lane.abs() > self.half_width(d) {
-            return Surface::Dirt;
+        if self.is_hills() && lane.abs() > self.half_width(d) {
+            // A rider off one town branch can already be on the other branch.
+            let point = self.sample_route(route, d, lane).0;
+            if (hills::SPLIT - 30.0..=hills::MERGE + 30.0).contains(&d) {
+                let (s, l, _) = self.project_route(1 - route.min(1), point, d);
+                if l.abs() <= self.half_width(s) {
+                    return Surface::Asphalt;
+                }
+            }
+            if rr_core::surface::hills_ground(d) == Surface::Sand {
+                return Surface::Sand;
+            }
         }
         if lane.abs() > self.half_width(d) + 1.5 {
             Surface::Grass
@@ -682,5 +697,45 @@ mod tests {
         let progress = t.project(t.sample(t.length - 1.0, 0.0).0, 0.0).0;
         assert!((progress - (t.length - 1.0)).abs() < 0.05);
         assert!(t.sample(t.length + 5.0, 0.0).0.distance(end) < 5.01);
+    }
+}
+
+#[cfg(test)]
+mod sand_surfaces {
+    use super::*;
+    #[test]
+    fn hills_sand_respects_both_authored_pavement_branches() {
+        let track = Track::hills().unwrap();
+        for route in 0..2 {
+            for station in [5400., 5500., 6200., 7400., 8200., 9800., 11000.] {
+                for lane in [-5.9, 0., 5.9] {
+                    assert_eq!(
+                        track.surface_route(route, station, lane),
+                        Surface::Asphalt,
+                        "{route} {station} {lane}"
+                    );
+                }
+            }
+        }
+        for station in [8200., 9800., 11000.] {
+            assert_eq!(track.surface_route(0, station, 10.), Surface::Sand);
+        }
+    }
+    #[test]
+    fn metropolis_soil_is_not_invented_sand_and_offset_pavement_stays_road() {
+        let track = Track::metropolis().unwrap();
+        for route in 0..2 {
+            for station in (0..12000).step_by(25) {
+                let offset = track.street_offset(route, station as f32);
+                assert_eq!(
+                    track.surface_route(route, station as f32, offset),
+                    Surface::Asphalt
+                );
+                assert_ne!(
+                    track.surface_route(route, station as f32, offset + 12.),
+                    Surface::Sand
+                );
+            }
+        }
     }
 }

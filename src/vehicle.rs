@@ -303,19 +303,21 @@ pub fn forces(
                 )
                 .min((12.0 / track.curvature_route(r.route, r.progress).abs().max(0.0001)).sqrt())
         };
-        let surface = track.surface(r.progress, r.lane);
-        let limit = if surface == rr_content::track::Surface::Grass {
-            limit.min(32.0)
-        } else {
-            limit
-        };
+        let surface = track.surface_route(r.route, r.progress, r.lane);
+        let limit = surface.speed_limit(limit);
         let torque_curve = if state.rpm >= 10000.0 {
             0.0
         } else {
             0.7 + 0.3 * (1.0 - ((state.rpm - 5500.0) / 5000.0).powi(2)).clamp(0.0, 1.0)
         };
         let engine = if throttle && speed < limit {
-            p.torque_nm * input.throttle_strength() * torque_curve * gears[gear] * 3.2 / 0.4
+            p.torque_nm
+                * surface.drive_scale()
+                * input.throttle_strength()
+                * torque_curve
+                * gears[gear]
+                * 3.2
+                / 0.4
                 * (if nitro { 1.8 } else { 1.0 })
                 * (1.0 - (speed / limit).powi(8)).max(0.0)
         } else {
@@ -371,6 +373,13 @@ pub fn forces(
         };
         if grounded {
             force.force += forward * applied.x + right * applied.y;
+            force.force += forward
+                * surface.rolling_after_drive(
+                    signed_speed,
+                    (applied.x - signed_speed * speed * p.drag) / (p.dry_mass + rider_mass),
+                    dt,
+                )
+                * (p.dry_mass + rider_mass);
         }
         force.force -= v.linvel * speed * p.drag;
         let current_up = t.rotation * Vec3::Y;

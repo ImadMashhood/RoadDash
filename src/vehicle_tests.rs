@@ -1216,3 +1216,207 @@ fn queued_ai_physically_passes_a_stopped_car_without_escape_or_recovery() {
         "passed={passed}, moved_aside={moved_aside}"
     );
 }
+
+fn surface_speed(app: &mut App) -> f32 {
+    let world = app.world_mut();
+    world.query::<&Rider>().single(world).unwrap().speed
+}
+fn surface_fixture(surface: rr_core::surface::Surface, adapter: VehiclePhysicsAdapter) -> App {
+    let mut app = app(1, 60);
+    let mut definition = app.world().resource::<Track>().definition.clone();
+    definition.closed = false;
+    definition.checkpoints.last_mut().unwrap().fraction = 1.0;
+    for (i, cp) in definition.control_points.iter_mut().enumerate() {
+        cp.position = [0., 0.1, i as f32 * 400.];
+        cp.surface = surface;
+        cp.half_width = 12.;
+        cp.bank_degrees = 0.;
+    }
+    app.insert_resource(Track::from_definition(definition).unwrap());
+    app.insert_resource(adapter);
+    let (p, q) = app.world().resource::<Track>().sample(10., 0.);
+    let world = app.world_mut();
+    let owner = world
+        .query_filtered::<Entity, With<Rider>>()
+        .single(world)
+        .unwrap();
+    *world.get_mut::<Transform>(owner).unwrap() = Transform::from_translation(p).with_rotation(q);
+    world.get_mut::<Rider>(owner).unwrap().progress = 10.;
+    world.get_mut::<Rider>(owner).unwrap().lane = 0.;
+    world.spawn((
+        RigidBody::Fixed,
+        Ground,
+        Collider::cuboid(100., 0.5, 10000.),
+        Transform::from_xyz(0., -0.5, 0.),
+    ));
+    app
+}
+fn change_fixture_surface(app: &mut App, surface: rr_core::surface::Surface) {
+    let mut definition = app.world().resource::<Track>().definition.clone();
+    for cp in &mut definition.control_points {
+        cp.surface = surface;
+    }
+    app.insert_resource(Track::from_definition(definition).unwrap());
+}
+#[test]
+fn sand_penalty_compares_real_adapters_and_exits_without_velocity_clamps() {
+    use rr_core::surface::Surface;
+    for adapter in [
+        VehiclePhysicsAdapter::Dynamic,
+        VehiclePhysicsAdapter::Assisted,
+    ] {
+        let mut results = vec![];
+        for surface in [
+            Surface::Asphalt,
+            Surface::Dirt,
+            Surface::Gravel,
+            Surface::Grass,
+            Surface::Sand,
+        ] {
+            let mut app = surface_fixture(surface, adapter);
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyW);
+            for _ in 0..120 {
+                app.update();
+            }
+            let acceleration_speed = surface_speed(&mut app);
+            for _ in 0..1080 {
+                app.update();
+            }
+            let sustained = surface_speed(&mut app);
+            println!(
+                "surface={surface:?} adapter={adapter:?} two_seconds={acceleration_speed:.3} twenty_seconds={sustained:.3}"
+            );
+            assert!(sustained > 2.0, "sand must remain escapable");
+            results.push((acceleration_speed, sustained));
+            if surface == Surface::Sand {
+                change_fixture_surface(&mut app, Surface::Asphalt);
+                for _ in 0..360 {
+                    app.update();
+                }
+                assert!(surface_speed(&mut app) > sustained + 10.);
+                let before = surface_speed(&mut app);
+                change_fixture_surface(&mut app, Surface::Sand);
+                app.update();
+                let entry = surface_speed(&mut app);
+                assert!(entry > before - 1., "entry must not clamp velocity");
+                app.world_mut()
+                    .resource_mut::<ButtonInput<KeyCode>>()
+                    .release(KeyCode::KeyW);
+                for _ in 0..120 {
+                    app.update();
+                }
+                assert!(surface_speed(&mut app) < entry - 5.);
+            }
+        }
+        for other in &results[..4] {
+            assert!(results[4].0 < other.0, "acceleration {results:?}");
+            assert!(results[4].1 < other.1, "sustained {results:?}");
+        }
+        let mut app = surface_fixture(Surface::Sand, adapter);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyS);
+        for _ in 0..360 {
+            app.update();
+        }
+        let reverse = if adapter == VehiclePhysicsAdapter::Dynamic {
+            let world = app.world_mut();
+            let (pose, velocity) = world
+                .query_filtered::<(&Transform, &Velocity), With<Rider>>()
+                .single(world)
+                .unwrap();
+            velocity.linvel.dot(pose.rotation * Vec3::Z)
+        } else {
+            surface_speed(&mut app)
+        };
+        println!("{adapter:?} sand reverse after6s={reverse:.4}");
+        assert!(
+            reverse < -0.5,
+            "reverse remains available: {adapter:?} {reverse}"
+        );
+        {
+            let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+            keys.release(KeyCode::KeyS);
+            keys.press(KeyCode::KeyW);
+        }
+        for _ in 0..360 {
+            app.update();
+        }
+        assert!(surface_speed(&mut app) > 2., "forward exits reverse");
+    }
+}
+
+#[test]
+fn sand_coasting_and_ai_traversal_use_live_shared_adapter_rules() {
+    use rr_core::surface::Surface;
+    for adapter in [
+        VehiclePhysicsAdapter::Dynamic,
+        VehiclePhysicsAdapter::Assisted,
+    ] {
+        let mut coast = Vec::new();
+        for surface in [
+            Surface::Asphalt,
+            Surface::Dirt,
+            Surface::Gravel,
+            Surface::Grass,
+            Surface::Sand,
+        ] {
+            let mut app = surface_fixture(surface, adapter);
+            for _ in 0..30 {
+                app.update();
+            }
+            let world = app.world_mut();
+            let mut q = world.query::<(&mut Rider, &Transform, Option<&mut Velocity>)>();
+            let (mut rider, pose, velocity) = q.single_mut(world).unwrap();
+            rider.speed = 30.;
+            if let Some(mut velocity) = velocity {
+                velocity.linvel = pose.rotation * Vec3::Z * 30.;
+            }
+            for _ in 0..60 {
+                app.update();
+            }
+            coast.push(surface_speed(&mut app));
+        }
+        println!("{adapter:?} one_second_coast_from30={coast:?}");
+        assert!(coast[..4].iter().all(|s| *s > coast[4] + 2.));
+        let mut app = surface_fixture(Surface::Sand, adapter);
+        let world = app.world_mut();
+        world.query::<&mut Rider>().single_mut(world).unwrap().id = 1;
+        for _ in 0..300 {
+            app.update();
+        }
+        let world = app.world_mut();
+        let rider = world.query::<&Rider>().single(world).unwrap();
+        assert!(rider.speed > 2. && rider.speed < 18. && rider.crashed == 0.);
+    }
+}
+
+#[test]
+fn assisted_reverse_can_leave_authored_hills_sand_shoulder() {
+    let mut app = crate::game::tests::simulation();
+    app.insert_resource(Track::hills().unwrap());
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    let (p, q) = app.world().resource::<Track>().sample_route(0, 8200., 10.);
+    let world = app.world_mut();
+    let owner = world
+        .query_filtered::<Entity, With<Rider>>()
+        .single(world)
+        .unwrap();
+    {
+        let mut rider = world.get_mut::<Rider>(owner).unwrap();
+        rider.progress = 8200.;
+        rider.lane = 10.;
+    }
+    *world.get_mut::<Transform>(owner).unwrap() = Transform::from_translation(p).with_rotation(q);
+    world
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyS);
+    for _ in 0..360 {
+        app.update();
+    }
+    let world = app.world_mut();
+    let rider = world.query::<&Rider>().single(world).unwrap();
+    assert!(rider.speed < -0.5, "sand shoulder reverse {}", rider.speed);
+}
