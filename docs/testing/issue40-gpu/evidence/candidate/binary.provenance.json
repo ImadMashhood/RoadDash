@@ -1,0 +1,12 @@
+{
+  "binary_sha256": "e7384423dc37afea57aa4b5f20836b61170856753ecbea9e75d045ddf7ab0e63",
+  "source_head": "e2a3191876d57f266b1e36c967a48c9e8e5667ae",
+  "source_tracked_diff_sha256": "97a8addfbd100ac7a024be0e7d0ce1e10e8704504fa6a8ac69753026ea744d26",
+  "asset_sha256": {
+    "assets/shaders/grass_wind.wgsl": "e0b8ebd8d7145a52788b7d109e092452b1ae7914087a14a9f5d57aace3985511"
+  },
+  "build": "private reflink target; cargo clean -p rr_core -p rr_content -p road-dash --release; cargo build --release --locked -j 4",
+  "build_profile": "release",
+  "source_checkout": "/home/imad/Documents/ChatGPT/RoadDash-worktrees/issue40-gpu",
+  "note": "Frozen candidate binary; native asset root is the candidate checkout baked into CARGO_MANIFEST_DIR."
+}

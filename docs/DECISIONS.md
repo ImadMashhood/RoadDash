@@ -3925,3 +3925,18 @@ a500m available-road control still passes while140m rejects, in both directions.
 Existing claims still revalidate merge normally. The native runner rejects final
 claims older than45s; historical execution success does not override the retained
 failed behavior review. Full-course human acceptance remains open.
+
+## Issue 40 candidate D — grass GPU instruction experiment (2026-11-10)
+
+Evaluate the existing farm grass vertex shader as an independent GPU candidate
+without changing material identity, blade geometry, collision, visibility range,
+shadow policy, engine version or fixed simulation. Reuse one sine wave for X/Z
+tip bend instead of evaluating a sine and a cosine. The resulting bound remains
+below the authored0.08m culling expansion and the root stays fixed. The shape of
+wind motion changes, so paired close native frames and human visual review matter.
+Two clean Hills and two Metropolis release surveys give only about1% weighted
+combined p95/readiness gain, within run variation; Hills sampled opaque GPU time
+increases while Metropolis decreases. Preserve this as an unselected candidate
+until the four-way issue40 comparison; no PERF-08 closure or60FPS claim.
+Evidence: testing/issue40-gpu/REPORT.md. The shader remains original RoadDash
+source under the existing MIT asset record; no upstream code/media was imported.

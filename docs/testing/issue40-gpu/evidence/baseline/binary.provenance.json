@@ -1,0 +1,8 @@
+{
+  "binary_sha256": "682b328291655b18b812c2182ed5366bdd1bdf5bf948ca6731fee64863911536",
+  "source_head": "e2a3191876d57f266b1e36c967a48c9e8e5667ae",
+  "source_tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "build": "CARGO_TARGET_DIR=$PWD/target cargo clean -p rr_core -p rr_content -p road-dash --release; CARGO_TARGET_DIR=$PWD/target cargo build --release --locked -j 6",
+  "build_profile": "release",
+  "note": "Private target copied dependency cache from main with reflinks, then cleaned and rebuilt workspace packages plus affected path dependencies. Frozen binary is read-only."
+}

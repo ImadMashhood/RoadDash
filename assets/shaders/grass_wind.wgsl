@@ -8,8 +8,11 @@ fn vertex(v: Vertex) -> VertexOutput {
     var world = mesh_functions::mesh_position_local_to_world(transform, vec4<f32>(v.position,1.0));
     let phase = world.x * 0.31 + world.z * 0.19 + globals.time * settings.y;
     let bend = v.uv.y * v.uv.y * settings.x;
-    world.x += sin(phase) * bend;
-    world.z += cos(phase * 0.73) * bend * 0.45;
+    // One trigonometric evaluation per vertex keeps the full bend envelope.
+    // The directional sway changes shape but roots remain fixed (uv.y == 0).
+    let wave = sin(phase);
+    world.x += wave * bend;
+    world.z += wave * bend * 0.45;
     out.world_position = world;
     out.position = position_world_to_clip(world.xyz);
     out.world_normal = mesh_functions::mesh_normal_local_to_world(v.normal, v.instance_index);

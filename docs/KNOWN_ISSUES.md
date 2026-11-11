@@ -1228,3 +1228,11 @@ before treating local branch improvements as overall performance acceptance.
   are recorded in testing/civilian-overtaking.
   Upright oncoming bikers intentionally do not veto a pass; their solid
   contact/recovery behavior is retained.
+
+- PERF-08 / issue40 candidate D: a one-wave grass wind shader is visually
+  plausible in paired farm frames, but its clean repeated Hills/Metropolis
+  warm-survey score improves only about1%, within run variation. Hills sampled
+  opaque GPU time and single-frame maximum increase; Metro's opaque pass falls.
+  Asynchronous pass samples do not prove whole-frame GPU p95 or causality. Keep
+  this branch unselected pending four-way comparison, human motion review and
+  full-route/hardware acceptance. See testing/issue40-gpu/REPORT.md.

@@ -1,5 +1,12 @@
 # Development progress
 
+Issue40 independent GPU candidate D (2026-11-10): one-wave grass wind shader
+retains geometry, material and collision. Clean two-run Hills/Metropolis warm
+surveys show about1% combined p95/readiness gain, within variation; sampled
+opaque GPU pass improves on Metro but rises on Hills. Paired close farm captures
+show stable roots/coverage and subtly different motion. PERF-08 remains open;
+this draft is not selected. Evidence: testing/issue40-gpu/REPORT.md.
+
 Current scope: issue #28 / ADR143 adds urgent recovery run presentation, terrain-aware swing clearance and signed reverse heading. RFU-MOVE-03/04 verified by headless checks and ten native cases; RFU-MOVE-01/02 retain user terrain/feel acceptance. Final civilian-integrated617workspace tests (two explicit ignored benchmarks), strict lint/build/fmt/audit and roadmap checks pass. Evidence: testing/issue-28-movement/README.md. No movement-speed, rig or dependency migration.
 
 
@@ -1275,7 +1282,7 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 11 — Remaining production-art integration and acceptance
 
-- [ ] **PERF-08** Profile and optimize the measured low-FPS bottleneck on the user's hardware. Reason: instrumentation and aggregate utilization alone do not establish root cause or60FPS; part: 11; dependencies: PERF-07, reproducible farm/edge/downtown and damaged-course logs; acceptance: identify dominant main/render/simulation/paging spans, capture GPU timestamps when needed, make justified focused optimizations and demonstrate target P95 frame budget without removing authoritative hazards; verification: before/after native logs, GPU profiler receipts when applicable and user hardware confirmation. Current user-authorized follow-up: controlled release profiling, collision-pair classification and cheaper pedestrian crossing admission on `codex/performance-profile-pass`; evidence and rejected experiments are recorded in [performance pass](testing/performance-pass/README.md). Partial: [ADR089 performance pass](testing/performance-ui-prompts/README.md) adds separate sync/step/writeback and catch-up diagnostics, stable render updates and exact semantic static-collider batching; full target-hardware city/crash frame-budget acceptance remains open. Sequential polish pass01 adds retained-only facade selection hysteresis and paired native profiling; see [pass01 evidence](testing/polish-12/pass01/README.md).
+- [ ] **PERF-08** Profile and optimize the measured low-FPS bottleneck on the user's hardware. Reason: instrumentation and aggregate utilization alone do not establish root cause or60FPS; part: 11; dependencies: PERF-07, reproducible farm/edge/downtown and damaged-course logs; acceptance: identify dominant main/render/simulation/paging spans, capture GPU timestamps when needed, make justified focused optimizations and demonstrate target P95 frame budget without removing authoritative hazards; verification: before/after native logs, GPU profiler receipts when applicable and user hardware confirmation. Current user-authorized follow-up: controlled release profiling, collision-pair classification and cheaper pedestrian crossing admission on `codex/performance-profile-pass`; evidence and rejected experiments are recorded in [performance pass](testing/performance-pass/README.md). Partial: [ADR089 performance pass](testing/performance-ui-prompts/README.md) adds separate sync/step/writeback and catch-up diagnostics, stable render updates and exact semantic static-collider batching; full target-hardware city/crash frame-budget acceptance remains open. Sequential polish pass01 adds retained-only facade selection hysteresis and paired native profiling; see [pass01 evidence](testing/polish-12/pass01/README.md). Independent [issue40 GPU candidate D](testing/issue40-gpu/REPORT.md) changes grass wind math; repeated both-map gain is within variation and this draft is not selected.
 
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
 
