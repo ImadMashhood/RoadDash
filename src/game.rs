@@ -2046,6 +2046,13 @@ pub fn drive(
                 let clearance = rr_core::civilian::Clearance {
                     depart: permitted,
                     merge: yielding.merge_geometry_clear && gap.is_none_or(|g| g >= 5.),
+                    forward_distance: if track.definition.closed {
+                        f32::INFINITY
+                    } else if direction > 0. {
+                        track.length - car.progress
+                    } else {
+                        car.progress
+                    },
                 };
                 let plan = yielding.passing.step(
                     fleet[index],

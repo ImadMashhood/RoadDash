@@ -367,3 +367,50 @@ fn civilian_eventually_passes_a_persistently_disabled_same_class_car() {
     assert_eq!(y.passing.blend, 0.);
     assert!(app.world().get::<Collider>(ids[1]).is_some());
 }
+
+#[test]
+fn civilian_does_not_begin_pass_into_open_route_endpoint() {
+    for direction in [1., -1.] {
+        let mut app = tests::simulation();
+        app.world_mut()
+            .insert_resource(Track::metropolis().unwrap());
+        let station = if direction > 0. { 11860. } else { 140. };
+        let mut follower = None;
+        for (progress, speed) in [(station, 18.), (station + direction * 30., 15.)] {
+            let track = app.world().resource::<Track>();
+            let ratio = 3.1 * direction / track.half_width(progress);
+            let (home, _, _) = civilian_lanes(track, 0, progress, direction, 0, ratio);
+            let (p, q) = track.street_sample(0, progress, home);
+            let id = app
+                .world_mut()
+                .spawn((
+                    Traffic {
+                        route: 0,
+                        progress,
+                        lane: home,
+                        speed: speed * direction,
+                    },
+                    TrafficYield {
+                        cruise: Some(speed * direction),
+                        lane_ratio: Some(ratio),
+                        start_progress: Some(progress),
+                        ..default()
+                    },
+                    Transform::from_translation(p).with_rotation(q),
+                    RigidBody::KinematicPositionBased,
+                    Collider::cuboid(0.95, 0.9, 1.95),
+                ))
+                .id();
+            follower.get_or_insert(id);
+        }
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        for _ in 0..300 {
+            app.update();
+            let state = app.world().get::<TrafficYield>(follower.unwrap()).unwrap();
+            assert!(
+                !state.passing.reserved(),
+                "new pass borrowed road beyond authored endpoint"
+            );
+        }
+    }
+}

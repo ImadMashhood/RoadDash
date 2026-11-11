@@ -1,0 +1,10 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27/crates/rr_core)
+    Finished `release` profile [optimized] target(s) in 2.97s
+     Running unittests src/lib.rs (target/shared-snapshot/release/deps/rr_core-2730d92d3b09e343)
+
+running 1 test
+civilian 144-vehicle fleet decision CPU microseconds/tick median=242.059 p95=245.491; includes reusable perception copying, excludes native geometry sweeps/physics/rendering
+test civilian::benchmark::civilian_planner_cost ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 124 filtered out; finished in 0.49s
+

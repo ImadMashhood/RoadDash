@@ -38,11 +38,14 @@ pub struct Memory {
 pub struct Clearance {
     pub depart: bool,
     pub merge: bool,
+    /// Authored forward pavement remaining; infinity for closed routes.
+    pub forward_distance: f32,
 }
 impl Clearance {
     pub const OPEN: Self = Self {
         depart: true,
         merge: true,
+        forward_distance: f32::INFINITY,
     };
 }
 #[derive(Clone, Copy, Debug)]
@@ -156,7 +159,11 @@ impl Memory {
                         + accelerating_time * accelerating_time
                         + cruise * (moving_time - accelerating_time);
                     let merge_station = me.station + direction * travel;
-                    if horizon < 35. && clear(horizon) && room(merge_station, horizon) {
+                    if horizon < 35.
+                        && travel + me.front.max(me.rear) + 8. < clearance.forward_distance
+                        && clear(horizon)
+                        && room(merge_station, horizon)
+                    {
                         self.phase = Phase::Pass;
                         self.target = Some(lead.id);
                         self.age = 0.;
@@ -278,6 +285,31 @@ mod tests {
             rear: 2.,
             half_width: 0.95,
             reserved: false,
+        }
+    }
+    #[test]
+    fn predicted_pass_and_return_must_fit_authored_road() {
+        for direction in [-1., 1.] {
+            for available in [140., 500.] {
+                let mut me = car(0, 0., 18. * direction);
+                me.speed = 15. * direction;
+                let lead = car(1, 30. * direction, 15. * direction);
+                let mut memory = Memory::default();
+                for _ in 0..70 {
+                    memory.step(
+                        me,
+                        &[lead],
+                        -3.,
+                        Clearance {
+                            forward_distance: available,
+                            ..Clearance::OPEN
+                        },
+                        18.,
+                        1. / 60.,
+                    );
+                }
+                assert_eq!(memory.reserved(), available > 140.);
+            }
         }
     }
     #[test]
@@ -415,6 +447,7 @@ mod tests {
                 Clearance {
                     depart: false,
                     merge: true,
+                    ..Clearance::OPEN
                 },
                 0.,
                 1. / 60.,

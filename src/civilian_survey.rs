@@ -218,6 +218,9 @@ struct FleetSurvey {
     aborted: u32,
     peak_active: usize,
     follow_camera: Option<Entity>,
+    started: std::collections::BTreeMap<Entity, f32>,
+    transitions: Vec<serde_json::Value>,
+    frame_limit: u32,
 }
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 fn fleet_run(
@@ -238,6 +241,14 @@ fn fleet_run(
     ) {
         return;
     }
+    if state.frame == 0 {
+        state.frame_limit = std::env::var("ROADDASH_CIVILIAN_FLEET_SECONDS")
+            .ok()
+            .and_then(|v| v.parse::<u32>().ok())
+            .unwrap_or(120)
+            .clamp(120, 360)
+            * 60;
+    }
     state.frame += 1;
     race.phase = Phase::Racing;
     // Production civilian positions, speed classes, lane slots and schedules are
@@ -257,6 +268,7 @@ fn fleet_run(
         if phase == rr_core::civilian::Phase::Pass && previous.0 == rr_core::civilian::Phase::Follow
         {
             state.initiated += 1;
+            state.started.insert(e, race.elapsed);
             target = y.passing.target();
             state.follow_camera = Some(e);
         }
@@ -274,6 +286,9 @@ fn fleet_run(
                 state.aborted += 1;
             }
             target = None;
+        }
+        if phase != previous.0 && state.transitions.len() < 2048 {
+            state.transitions.push(serde_json::json!({"entity":e.to_bits(),"elapsed":race.elapsed,"from":format!("{:?}",previous.0),"to":format!("{phase:?}"),"station":car.progress,"speed":car.speed,"blend":y.passing.blend,"depart_geometry":y.pass_geometry_clear,"merge_geometry":y.merge_geometry_clear}));
         }
         state.actors.insert(e, (phase, target));
     }
@@ -299,8 +314,9 @@ fn fleet_run(
                 state.frame
             )));
     }
-    if state.frame == 7200 {
-        let report = serde_json::json!({"course":if track.is_hills(){"Hills"}else{"Metropolis"},"nominal_simulated_seconds":120,"race_elapsed_seconds":race.elapsed,"vehicles":cars.iter().count(),"initiated":state.initiated,"completed":state.completed,"aborted_returns":state.aborted,"active_at_end":active,"peak_active":state.peak_active,"planning_cpu":timings.report(),"limits":"Unmodified production civilian fleet; racers parked to isolate ordinary motor-traffic opportunities. Counters observe all vehicles, camera follows initiated passes. No guarantee every impediment has a safe opposing-lane window. Not whole-race/human/GPU acceptance."});
+    if state.frame == state.frame_limit {
+        let outstanding: Vec<_> = cars.iter().filter(|(_,_,y,_)| y.passing.reserved()).map(|(e,car,y,_)| serde_json::json!({"entity":e.to_bits(),"phase":format!("{:?}",y.passing.phase),"blend":y.passing.blend,"station":car.progress,"speed":car.speed,"age_seconds":state.started.get(&e).map(|start| race.elapsed-start),"target":y.passing.target(),"depart_geometry":y.pass_geometry_clear,"merge_geometry":y.merge_geometry_clear})).collect();
+        let report = serde_json::json!({"course":if track.is_hills(){"Hills"}else{"Metropolis"},"nominal_simulated_seconds":state.frame_limit/60,"transitions":state.transitions,"outstanding":outstanding,"race_elapsed_seconds":race.elapsed,"vehicles":cars.iter().count(),"initiated":state.initiated,"completed":state.completed,"aborted_returns":state.aborted,"active_at_end":active,"peak_active":state.peak_active,"planning_cpu":timings.report(),"limits":"Unmodified production civilian fleet; racers parked to isolate ordinary motor-traffic opportunities. Counters observe all vehicles, camera follows initiated passes. No guarantee every impediment has a safe opposing-lane window. Not whole-race/human/GPU acceptance."});
         std::fs::write(
             "screenshots/civilian-fleet.json",
             serde_json::to_string_pretty(&report).unwrap(),

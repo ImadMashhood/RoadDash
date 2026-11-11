@@ -11,6 +11,7 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--binary', type=Path, required=True)
+parser.add_argument('--timeout-seconds', type=int, default=600, help='Wall-clock bound per case; use 1800 for extended diagnostics under compilation load')
 parser.add_argument('--output-root', type=Path, default=ROOT/'docs/testing/civilian-overtaking')
 parser.add_argument('cases', nargs='+', choices=['hills', 'metro', 'fleet-hills', 'fleet-metro', 'active', 'baseline'])
 args = parser.parse_args()
@@ -38,7 +39,7 @@ for name in args.cases:
     with (folder/'native.txt').open('w') as log:
         try:
             result = subprocess.run([str(binary), *flags], cwd=folder, env=env,
-                                    stdout=log, stderr=subprocess.STDOUT, timeout=600)
+                                    stdout=log, stderr=subprocess.STDOUT, timeout=max(1, args.timeout_seconds))
             code = result.returncode
         except subprocess.TimeoutExpired:
             code = -1
@@ -55,6 +56,8 @@ for name in args.cases:
             if name.startswith('fleet-'):
                 assert report['vehicles'] > 0 and report['race_elapsed_seconds'] >= 119
                 assert report['initiated'] >= report['completed'] + report['aborted_returns']
+                for actor in report.get('outstanding', []):
+                    assert actor['age_seconds'] < 45, f"stranded claim: {actor}"
             else:
                 assert len(report['cases']) == 4
                 for case in report['cases']:
@@ -66,7 +69,7 @@ for name in args.cases:
             report_error = f'{type(error).__name__}: {error}'
     receipt = dict(case=name, binary_sha256=digest, exit_code=code, render_errors=errors,
                    verified=complete and not errors and code == 0, elapsed_seconds=time.monotonic()-started,
-                   report_error=report_error,
+                   report_error=report_error, timeout_seconds=max(1, args.timeout_seconds),
                    limits='Scripted native functional motion/recovery evidence; no GPU/frame-budget or human/full-race acceptance.')
     (folder/'receipt.json').write_text(json.dumps(receipt, indent=2)+'\n')
     print(json.dumps(receipt), flush=True)

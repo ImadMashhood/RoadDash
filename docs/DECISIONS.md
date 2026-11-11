@@ -3818,3 +3818,16 @@ after six stable seconds; its stored cruise is not an unconditional veto. Use th
 native2m/s² acceleration and both3s lateral transitions in the passing horizon
 and projected merge station. Separate departure/return geometry checks and
 opt-in CPU timing preserve the normal fixed-step adapter and publication gates.
+
+
+ADR142 native endpoint refinement: the extended production Metropolis census
+found a73-second stationary abort after a pass began near11862m on a12000m
+road. Six-second local collider sweeps did not establish an eventual supported
+exit. Pass admission now compares the existing acceleration-integrated predicted
+completion/return travel plus vehicle extent and8m margin against authored road
+remaining. Closed routes retain unlimited forward distance. This reuses the
+actual candidate horizon rather than excluding a blanket maximum-time zone;
+a500m available-road control still passes while140m rejects, in both directions.
+Existing claims still revalidate merge normally. The native runner rejects final
+claims older than45s; historical execution success does not override the retained
+failed behavior review. Full-course human acceptance remains open.

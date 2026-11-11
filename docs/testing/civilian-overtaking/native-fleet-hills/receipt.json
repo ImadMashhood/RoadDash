@@ -1,0 +1,10 @@
+{
+  "case": "fleet-hills",
+  "binary_sha256": "4b7758c5edf711746fba08ea8b9253a7663b208ea4f644152131353aad62288e",
+  "exit_code": 0,
+  "render_errors": false,
+  "verified": true,
+  "elapsed_seconds": 184.2908108260017,
+  "report_error": null,
+  "limits": "Scripted native functional motion/recovery evidence; no GPU/frame-budget or human/full-race acceptance."
+}

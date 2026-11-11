@@ -1851,3 +1851,19 @@ body spacing, and still allow a genuinely stalled same-class motor after six
 stable seconds. Integrate acceleration into the passing horizon and projected
 merge point. Final609 workspace tests, strict lint/format, debug/release builds, audit and
 roadmap checks pass; native timing/motion/recovery remain scheduled separately.
+
+Issue27 native follow-up: frozen release passed eight selected civilian passes
+(Hills real tractor/semi and Metropolis car-body speed fixtures, both directions),
+with completed home returns, zero selected collider intersections and sampler
+support errors. Active/baseline Hills recovery both remained unassisted. Captures
+and receipts reviewed; concurrent compilation makes these functional evidence
+only. Normal-fleet opportunities and quiet CPU measurements remain pending.
+
+Issue27 full-fleet follow-up: quiet120s Hills38 actors completed11/11 passes;
+Metropolis144 actors completed1/3 with two active. Extended240s diagnostics
+exposed a73s stationary endpoint abort, preserved as failed behavioral evidence.
+Use actual predicted pass+return distance for open-road admission; both-direction
+core/adapter regression passes. Corrected240s Metro completed9/10 passes with
+one healthy final merge, no aborted returns. Original quiet planner P95 was
+0.176ms Hills/1.031ms Metro; whole-adapter P950.274/2.603ms. These are CPU costs,
+not GPU/frame-budget acceptance or a speedup. All RFU-TRAF IDs remain open.

@@ -1,7 +1,9 @@
 # Civilian overtaking — issue27
 
 Implementation is complete on codex/issue-27-traffic. Automated checks pass;
-scheduled native motion/recovery and quiet CPU receipts remain pending.
+eight selected native overtakes and both recovery controls pass. Normal-fleet
+observations and quiet CPU receipts pass; extended diagnostics exposed and corrected an endpoint admission defect.
+The corrected240-second census has nine completed passes and one healthy ongoing merge.
 
 RFU-TRAF-01–04 / ADR142: pure fixed-step Follow/Pass/Abort/Merge decisions
 live in rr_core/civilian.rs. Existing kinematic traffic, solid colliders,
@@ -53,7 +55,7 @@ this report. The trusted release binary is `/tmp/road-dash-issue27`, SHA256
 `4b7758c5edf711746fba08ea8b9253a7663b208ea4f644152131353aad62288e`.
 All three workspace packages were explicitly cleaned in the release profile
 before rebuilding; `build-receipt.json` includes source hashes. Native receipts
-are recorded separately when completed;
+are recorded separately below;
 no native outcome or timing is inferred from unit tests. Core motion checks
 cover two followers behind a tractor/long trailer in both directions, competing
 claims, blocked oncoming traffic, a partial departure, occupied return, zero-speed
@@ -80,7 +82,24 @@ or a before/after frame-rate improvement. Quiet measurement receipts are separat
 from functional tests run alongside compilation.
 
 
-Pending native commands (run after obtaining the final frozen binary):
+Completed native functional verification used the frozen binary above on Linux/
+Vulkan/RTX3080. Hills and Metropolis each completed four selected overtakes
+(tractor/semi cruise, both directions), reaching Follow with blend0 after
+max blend1, zero selected-pair collider intersections and zero sampler support
+error. Hills uses actual heavy models; Metropolis uses ordinary car bodies at
+heavy cruise. Active route0 and baseline route1 Hills recovery both remounted
+unassisted with zero exceptional rescues. The four receipts report exit0 and
+no render errors. These runs overlapped compilation: their embedded CPU/frame
+timings are loaded functional observations and are not quiet performance evidence.
+
+Reviewed capture stages show lateral separation and return to the road lane.
+Hills semi case2 frame480 is partly occluded by a foreground building; case3
+frame480 shows the real trailer and adjacent passing car clearly. Images alone
+do not establish swept clearance; the per-frame collider/support assertions
+and final phase fields supply that evidence. Full raw captures remain beside
+the receipts; compact JSON/log evidence is retained for review.
+
+Completed functional command and pending quiet measurements:
 
 ```sh
 python3 tools/run_civilian_checks.py --binary /tmp/road-dash-issue27 hills metro active baseline
@@ -93,6 +112,76 @@ The runner rejects any existing case folder (including interrupted evidence);
 use a new `--output-root` for another attempt. It validates each JSON completion/
 merge/intersection/support result, isolates saves/preferences, hashes the
 binary, detects process failure/timeouts/render errors, and preserves each case's
-JSON and motion captures. Do not replace pending entries with pass claims until
-these runs finish. RFU-TRAF-01–04 remain open; user/full-course acceptance and
+JSON and motion captures. The original full-fleet and isolated CPU commands passed; extended Metropolis
+transition diagnostics remain pending. RFU-TRAF-01–04 remain open; user/full-course acceptance and
 broader hardware/performance gates are not covered by the automated counts.
+
+## Quiet production-fleet observation
+
+The original frozen binary/source above ran with exclusive native access and
+no competing builds/games. The validated user-owned file indexer was paused by
+an owned pidfd and restored in finally; `quiet-indexer.json` records identity,
+start-time check and restoration. Both fleets completed119.994 simulated seconds
+(7199 sampled ticks); Linux/Vulkan/RTX3080. Racers were parked, civilian spawns,
+cruises and lane slots were unchanged. No thresholds changed to force counts.
+
+| Production fleet | Vehicles | Started / completed / aborted / active at cutoff | Planner mean / P95 / max ms | Whole adapter mean / P95 ms |
+|---|---:|---|---|---|
+| Hills |38|11 /11 /0 /0|0.114 /0.176 /0.289|0.206 /0.274|
+| Metropolis |144|3 /1 /0 /2|0.767 /1.031 /1.570|1.995 /2.603|
+
+Peak simultaneous reservations were5 and2 respectively. Both processes exited0
+without render errors. These counts demonstrate ordinary passing opportunities;
+they do not establish that every queue clears. Metropolis final camera is
+occluded by a foreground building. Its two ongoing claims require transition
+age/geometry diagnostics and a longer observation before concluding they resolve.
+
+The separate release core144-vehicle microbenchmark passed: median242.059µs,
+P95 245.491µs per tick, including reused perception copies and excluding native
+geometry/physics/rendering. This is not comparable directly to whole-adapter
+cost. Metropolis planner P95 1.031ms is material in a16.67ms frame budget;
+combined game/frame/GPU performance after integration remains an open gate.
+The next diagnostic rebuild changes survey reporting only; loaded diagnostic
+runs must not replace these original quiet measurements.
+
+## Endpoint diagnosis and verified correction
+
+The first extended240-second Metropolis run (`extended/`) exposed a73.38-second
+stationary Abort near12048m. Its execution receipt passes, but the separate
+`behavior-review.json` rejects behavior: a pass admitted near11862m ran beyond
+the12000m authored road support and then both geometry gates vetoed motion.
+Another aborted actor only returned to Follow through ordinary recycling.
+Preserve this failed evidence; it is not a successful merge receipt.
+
+Admission now compares the existing acceleration-integrated completion/return
+travel plus vehicle extent and8m against authored forward road remaining.
+Both directions reject140m and retain a500m safe opening; the production adapter
+has a matching two-direction endpoint regression. The gate applies at admission,
+so ongoing claims retain normal merge/abort handling. No broad maximum-time
+no-passing zone or lowered safety thresholds were introduced.
+
+The endpoint-fixed frozen binary SHA256 is
+`fda415372598f2d3e6e650df869edc77017d5a02faac1a5597dfe694e28a5bca`;
+`endpoint-build-receipt.json` records source hashes. The corrected240-second
+Metropolis census (`endpoint-fixed/`) reports144 vehicles,10 initiated,
+9 completed,0 aborted returns and1 active at cutoff, peak2 claims. The remaining
+actor is a healthy Merge: age9.88s, blend0.0389, speed19m/s and both geometry gates
+clear. It started at230.09s and began returning at237.10s. Do not claim all passes
+completed. The earlier stranded actor waited through the endpoint, recycled
+normally, and completed a later supported pass at192.68s. No errors;489.98s wall.
+This run overlapped builds and supplies behavior evidence only.
+
+The runner now rejects final claims aged45s or more, records timeout bounds,
+and accepts `--timeout-seconds 1800` for extended diagnostics under compilation.
+Survey-only transition timestamps and final actor/gate details make a stuck
+abort distinguishable from a recent pass. Reproduce with a fresh output root:
+
+```sh
+ROADDASH_CIVILIAN_FLEET_SECONDS=240 python3 tools/run_civilian_checks.py --binary /tmp/road-dash-issue27-endpoint --timeout-seconds 1800 --output-root NEW_PATH fleet-metro
+```
+
+Final endpoint source:611 workspace tests pass (428 library,1 binary,57 content,
+125 core), including unchanged differential rider physics/recovery controls.
+Strict fmt/Clippy, locked debug/release builds, provenance audit and five roadmap
+checks pass; final-* logs record results. Original quiet CPU costs refer to
+the earlier frozen source; no fresh quiet speedup claim follows the endpoint fix.

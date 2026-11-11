@@ -1,0 +1,44 @@
+{
+  "reviewed_captures": [
+    {
+      "path": "native-hills/screenshots/civilian-1-900.png",
+      "sha256": "ae11ba0a7b2c3569344ccc5749559e1a1239abd47d4859b8ef73a8d1c72ab01f",
+      "bytes": 1126604
+    },
+    {
+      "path": "native-hills/screenshots/civilian-2-480.png",
+      "sha256": "bc2fa10dcba36a01888ecf83b07fb13b561d597724293367cfdbb06f9b54e14e",
+      "bytes": 980175
+    },
+    {
+      "path": "native-hills/screenshots/civilian-2-900.png",
+      "sha256": "c21df02907066dcb50f14c685e9f95bd198843c9469cc51aa8adf4a6f4c1493b",
+      "bytes": 1029833
+    },
+    {
+      "path": "native-hills/screenshots/civilian-3-480.png",
+      "sha256": "08aacdcff755b8527cf42c70113d79e7ae03a79456065a3f573ecdd54f536832",
+      "bytes": 1100653
+    },
+    {
+      "path": "native-metro/screenshots/civilian-0-480.png",
+      "sha256": "9fae7a6a91024e133088cc408993c082782a8171aaaccee139f08fffc30bfc35",
+      "bytes": 1144867
+    },
+    {
+      "path": "native-active/screenshots/06-remounting.png",
+      "sha256": "06ac41448422645d4b25475755218235f3534fdc7c006f799998a1878a789a01",
+      "bytes": 1395641
+    },
+    {
+      "path": "native-baseline/screenshots/11-hill-running.png",
+      "sha256": "e47e6fcb638cbb2462c8eed3c1f81970ad9f7bef128ba4735ad40dd10909c612",
+      "bytes": 1313670
+    }
+  ],
+  "limitations": [
+    "Hills semi case2 frame480 is partly occluded by foreground building; case3 frame480 shows real trailer and adjacent passing car.",
+    "Selected frames show presentation; per-frame collider assertions and final phase fields establish motion checks.",
+    "Native runs overlapped compilation; timing values are functional observations only."
+  ]
+}

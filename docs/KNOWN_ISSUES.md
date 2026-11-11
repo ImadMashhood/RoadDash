@@ -1192,6 +1192,9 @@ range; explicit cloud-off and 150 m shadow controls remain available.
 - RFU-TRAF-01–04 / issue27: civilian overtaking work adds deterministic
   reservations and live merge/abort checks. Human traffic balance, full-race
   unforeseen queues and broad hardware/frame-time acceptance remain open;
-  regression evidence and pending native gates are recorded in testing/civilian-overtaking.
+  selected native passes, both recovery controls and normal-fleet observations
+  pass; endpoint admission defect found and corrected. Metropolis240s has nine
+  completed passes and one healthy ongoing merge. Quiet CPU costs and limits
+  are recorded in testing/civilian-overtaking.
   Upright oncoming bikers intentionally do not veto a pass; their solid
   contact/recovery behavior is retained.
