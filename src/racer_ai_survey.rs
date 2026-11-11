@@ -43,7 +43,7 @@ fn run(
     // this does not alter decisions or the unteleported race state.
     if std::env::var_os("ROADDASH_AI_TRACE_3040").is_some() {
         for (_, mut rider, _) in &mut riders {
-            if matches!(rider.id, 1 | 11 | 13) && (3010.0..=3090.0).contains(&rider.progress) {
+            if matches!(rider.id, 1 | 11 | 13) && (3010.0..=3180.0).contains(&rider.progress) {
                 rider.ai_trace_next.get_or_insert(race.elapsed);
             } else if matches!(rider.id, 1 | 11 | 13) {
                 rider.ai_trace_next = None;

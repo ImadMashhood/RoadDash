@@ -4244,3 +4244,20 @@ RFU-PERF-06/07 and full cold/hardware/recovery gates remain open; investigate
 Metropolis physics and render scheduling separately. See
 testing/issue25-projection/REPORT.md. No third-party code/media or dependency
 migration was introduced; prior lightmap discussion remains evaluation only.
+
+## ADR159 — Free rival lines and incident-based combat (2026-11-11)
+
+The rider queue persists after outbound-refuge and oncoming-pass refinements.
+The user now explicitly removes racer/killer roles and the right-side rider
+constraint. Civilian traffic keeps its own road convention. Rival route choice
+will use the full physical road, sidewalks and a narrow clear outer band; the
+existing static sweep and moving-traffic envelopes must reject collisions.
+Riders race at their own profile pace. A nearby eligible rider may be struck
+without a pursuit role; confirmed hits produce a reproducible 50/50 incident
+fight-or-flee choice. Fight permits nearby retaliation; flee prioritizes race
+pace and separation. Neither response asks the leader to match a trailing
+rider's speed. Keep save schema, controls, 60 Hz ownership, physical rigs,
+police and civilian traffic convention. Preserve a frozen old-policy control
+and verify the same pileup station and native full-race behavior; no queue or
+performance claim until the comparison is run. RFU-AI-09..11 remain open until
+their gates pass. No external AI code or media was imported.

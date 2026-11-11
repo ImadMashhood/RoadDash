@@ -616,20 +616,12 @@ pub(crate) fn smoke_test(
         }
     }
     if state.frame == 1 {
-        let killers = riders
+        let rivals = riders
             .iter()
-            .filter(|(r, _, _, _)| {
-                !r.police && r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Killer
-            })
+            .filter(|(r, _, _, _)| !r.police && r.id != 0)
             .count();
-        let racers = riders
-            .iter()
-            .filter(|(r, _, _, _)| {
-                !r.police && r.id != 0 && r.combat_mind.role == rr_core::rival_ai::Role::Racer
-            })
-            .count();
-        assert_eq!((racers, killers), (7, 7));
-        println!("AI roster verified: seven racers and seven killers");
+        assert_eq!(rivals, 14);
+        println!("AI roster verified: fourteen role-free rivals");
     }
     if std::env::var("ROADDASH_VERIFY_REPAIRS").as_deref() == Ok("1") {
         if state.frame == 25 {

@@ -100,7 +100,7 @@ pub fn schedule(
                 .iter()
                 .filter(|(e, other, state, pose)| {
                     *e != owner
-                        && (r.human_controlled() || r.combat_mind.can_fight(other.id))
+                        && (r.human_controlled() || r.can_fight(other.id))
                         && target_pose(other, state, pose, &positions, police_foot).is_some()
                         && state.stagger.is_none()
                         && other.immunity <= 0.0
@@ -116,11 +116,7 @@ pub fn schedule(
                 })
                 .chain(
                     npcs.iter()
-                        .filter(|(_, n, _)| {
-                            n.active()
-                                && (r.human_controlled()
-                                    || r.combat_mind.role == rr_core::rival_ai::Role::Killer)
-                        })
+                        .filter(|(_, n, _)| n.active() && r.can_fight(usize::MAX))
                         .map(|(e, _, t)| (e, t.translation)),
                 )
                 .filter_map(|(e, p)| {
@@ -241,6 +237,7 @@ pub fn melee(
         let networked = rider.networked;
         let attacker_id = rider.id;
         let mind = rider.combat_mind.clone();
+        let police_attacker = rider.police;
         let kick_strength = if player {
             8.0
         } else {
@@ -254,7 +251,12 @@ pub fn melee(
             let direction = riders
                 .iter()
                 .filter(|(e, r, state, t, _)| {
-                    (player || mind.can_fight(r.id))
+                    (player
+                        || (if police_attacker {
+                            r.id == 0
+                        } else {
+                            mind.can_fight(r.id)
+                        }))
                         && *e != attacker
                         && target_pose(r, state, t, &positions, police_foot)
                             .is_some_and(|p| p.translation.distance_squared(origin) < 144.)
@@ -320,7 +322,12 @@ pub fn melee(
         };
         for (e, r, s, t, _) in &riders {
             if e != attacker
-                && (player || mind.can_fight(r.id))
+                && (player
+                    || (if police_attacker {
+                        r.id == 0
+                    } else {
+                        mind.can_fight(r.id)
+                    }))
                 && target_pose(r, s, t, &positions, police_foot).is_some()
                 && s.stagger.is_none()
                 && r.immunity <= 0.0
@@ -339,7 +346,7 @@ pub fn melee(
             }
         }
         for (e, n, t) in &npcs {
-            if n.active() && (player || mind.role == rr_core::rival_ai::Role::Killer) {
+            if n.active() && (player || (!police_attacker && mind.can_fight(usize::MAX))) {
                 consider(
                     e,
                     t.translation
@@ -808,7 +815,7 @@ mod tests {
         assert!(app.world().get::<Rider>(owner).unwrap().strike.is_none());
     }
     #[test]
-    fn racer_refuses_first_strike_then_only_retaliates_against_actual_attacker() {
+    fn nearby_role_free_rider_can_strike_without_prior_grudge() {
         let mut app = crate::game::tests::simulation();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         for _ in 0..3 {
@@ -836,10 +843,7 @@ mod tests {
         app.world_mut()
             .write_message(AttackAttempt(racer, rr_core::AttackSide::Right));
         app.world_mut().run_system_once(melee).unwrap();
-        assert_eq!(app.world().get::<Rider>(player).unwrap().health, 100.);
-        app.world_mut()
-            .write_message(AttackAttempt(player, rr_core::AttackSide::Left));
-        app.world_mut().run_system_once(melee).unwrap();
+        assert!(app.world().get::<Rider>(player).unwrap().health < 100.);
         assert!(
             app.world()
                 .get::<Rider>(racer)
@@ -847,24 +851,6 @@ mod tests {
                 .combat_mind
                 .can_fight(0)
         );
-        let mut innocent = Rider::new(10);
-        innocent.immunity = 0.;
-        let innocent = app
-            .world_mut()
-            .spawn((
-                innocent,
-                Transform::from_translation(
-                    pose.translation - right * 0.2 + pose.rotation * Vec3::Z * 0.5,
-                )
-                .with_rotation(pose.rotation),
-                Visibility::Visible,
-            ))
-            .id();
-        app.world_mut()
-            .write_message(AttackAttempt(racer, rr_core::AttackSide::Kick));
-        app.world_mut().run_system_once(melee).unwrap();
-        assert!(app.world().get::<Rider>(player).unwrap().health < 100.);
-        assert_eq!(app.world().get::<Rider>(innocent).unwrap().health, 100.);
     }
     #[test]
     fn kick_faces_nearest_out_of_reach_opponent_without_a_remote_hit() {

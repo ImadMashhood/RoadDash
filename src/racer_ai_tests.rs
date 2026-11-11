@@ -3,75 +3,136 @@ use super::tests::simulation;
 use super::*;
 
 #[test]
-fn killer_pairs_and_chains_make_bounded_progress_without_mutual_stopping() {
+fn close_rider_pairs_and_chains_make_bounded_progress_without_mutual_stopping() {
     for count in [2, 4] {
-        for leading_killer_only in [false, true] {
-            let mut app = simulation();
-            let mut definition = app.world().resource::<Track>().definition.clone();
-            for point in &mut definition.control_points {
-                point.half_width = 6.5;
-            }
-            app.insert_resource(Track::from_definition(definition).unwrap());
-            app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
-            let mut owners = vec![];
-            for index in 0..count {
-                let mut rider = Rider::new(index + 1);
-                rider.combat_mind.role = if leading_killer_only && index < count - 1 {
-                    rr_core::rival_ai::Role::Racer
-                } else {
-                    rr_core::rival_ai::Role::Killer
-                };
-                rider.progress = 30. + index as f32 * 8.;
-                rider.lane = 2.;
-                // Isolate driving feedback, retaining solid bodies and real forces.
-                rider.attack = 1000.;
-                let (p, q) = app
-                    .world()
-                    .resource::<Track>()
-                    .sample(rider.progress, rider.lane);
-                owners.push(
-                    app.world_mut()
-                        .spawn((
-                            rider,
-                            Transform::from_translation(p).with_rotation(q),
-                            Visibility::Visible,
-                            recovery::bike_body(),
-                        ))
-                        .id(),
-                );
-            }
-            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
-            app.world_mut().resource_mut::<Race>().elapsed = 10.;
-            let mut stopped = vec![0_u32; count];
-            let mut max_stopped = vec![0_u32; count];
-            for _ in 0..900 {
-                app.update();
-                for (i, owner) in owners.iter().enumerate() {
-                    let r = app.world().get::<Rider>(*owner).unwrap();
-                    stopped[i] = if r.speed < 0.5 { stopped[i] + 1 } else { 0 };
-                    max_stopped[i] = max_stopped[i].max(stopped[i]);
-                    assert_eq!(
-                        app.world().get::<Recovery>(*owner).unwrap().stage,
-                        RecoveryStage::Riding
-                    );
-                    assert_eq!(r.health, 100.);
-                }
-            }
+        let mut app = simulation();
+        let mut definition = app.world().resource::<Track>().definition.clone();
+        for point in &mut definition.control_points {
+            point.half_width = 6.5;
+        }
+        app.insert_resource(Track::from_definition(definition).unwrap());
+        app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+        let mut owners = vec![];
+        for index in 0..count {
+            let mut rider = Rider::new(index + 1);
+            rider.progress = 30. + index as f32 * 8.;
+            rider.lane = 2.;
+            // Isolate driving feedback, retaining solid bodies and real forces.
+            rider.attack = 1000.;
+            let (p, q) = app
+                .world()
+                .resource::<Track>()
+                .sample(rider.progress, rider.lane);
+            owners.push(
+                app.world_mut()
+                    .spawn((
+                        rider,
+                        Transform::from_translation(p).with_rotation(q),
+                        Visibility::Visible,
+                        recovery::bike_body(),
+                    ))
+                    .id(),
+            );
+        }
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut().resource_mut::<Race>().elapsed = 10.;
+        let mut stopped = vec![0_u32; count];
+        let mut max_stopped = vec![0_u32; count];
+        for _ in 0..900 {
+            app.update();
             for (i, owner) in owners.iter().enumerate() {
                 let r = app.world().get::<Rider>(*owner).unwrap();
-                println!(
-                    "RFU-AI count={count} leading_only={leading_killer_only} id={} station={} speed={} decision={:?} target={:?} stopped_ticks={}",
-                    r.id,
-                    r.progress,
-                    r.speed,
-                    r.combat_mind.decision,
-                    r.combat_mind.target_id(),
-                    max_stopped[i]
+                stopped[i] = if r.speed < 0.5 { stopped[i] + 1 } else { 0 };
+                max_stopped[i] = max_stopped[i].max(stopped[i]);
+                assert_eq!(
+                    app.world().get::<Recovery>(*owner).unwrap().stage,
+                    RecoveryStage::Riding
                 );
-                assert!(r.progress > 130. && r.speed > 5. && max_stopped[i] < 300);
+                assert_eq!(r.health, 100.);
             }
         }
+        for (i, owner) in owners.iter().enumerate() {
+            let r = app.world().get::<Rider>(*owner).unwrap();
+            println!(
+                "RFU-AI count={count} id={} station={} speed={} decision={:?} target={:?} stopped_ticks={}",
+                r.id,
+                r.progress,
+                r.speed,
+                r.combat_mind.decision,
+                r.combat_mind.target_id(),
+                max_stopped[i]
+            );
+            assert!(r.progress > 130. && r.speed > 5. && max_stopped[i] < 300);
+        }
     }
+}
+
+#[test]
+fn sidewalk_flee_goal_rejects_solid_outer_wall_before_physical_contact() {
+    let mut app = simulation();
+    let mut definition = app.world().resource::<Track>().definition.clone();
+    for point in &mut definition.control_points {
+        point.half_width = 6.5;
+    }
+    app.insert_resource(Track::from_definition(definition).unwrap());
+    app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+    let mut rider = Rider::new(1);
+    rider.progress = 0.;
+    rider.lane = 2.;
+    rider.speed = 20.;
+    rider.attack = 1000.;
+    // The nearby attacker requests the blocked right-side sidewalk line.
+    while rider.combat_mind.struck_by(0) != rr_core::rival_ai::Response::Flee {}
+    let (p, q) = app.world().resource::<Track>().sample(0., 2.);
+    rider.motion_velocity = q * Vec3::Z * rider.speed;
+    let owner = app
+        .world_mut()
+        .spawn((
+            rider,
+            Transform::from_translation(p).with_rotation(q),
+            Visibility::Visible,
+            recovery::bike_body(),
+        ))
+        .id();
+    let (p, q) = app.world().resource::<Track>().sample(40., 5.);
+    app.world_mut().spawn((
+        RigidBody::Fixed,
+        Collider::cuboid(2.0, 1.0, 3.0),
+        Transform::from_translation(p + Vec3::Y).with_rotation(q),
+    ));
+    // Rapier must import the resident fixed wall before the first racing plan.
+    for _ in 0..4 {
+        app.update();
+    }
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    app.world_mut().resource_mut::<Race>().elapsed = 10.;
+    for _ in 0..3 {
+        app.update();
+    }
+    let first_plan = app.world().get::<Rider>(owner).unwrap().ai_plan.unwrap();
+    assert!(
+        first_plan.lane < 3.5,
+        "solid sidewalk goal was accepted: {first_plan:?}"
+    );
+    let mut passed = false;
+    for _ in 0..600 {
+        app.update();
+        let r = app.world().get::<Rider>(owner).unwrap();
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().stage,
+            RecoveryStage::Riding
+        );
+        assert_eq!(r.health, 100.);
+        if r.progress > 50. {
+            passed = true;
+        }
+    }
+    let final_rider = app.world().get::<Rider>(owner).unwrap();
+    assert!(
+        passed,
+        "the rider did not clear the solid-walled sidewalk: station={} lane={} speed={} plan={:?}",
+        final_rider.progress, final_rider.lane, final_rider.speed, final_rider.ai_plan
+    );
 }
 
 #[test]
@@ -153,7 +214,7 @@ fn rider_physically_passes_in_opposite_lane_and_returns() {
 }
 
 #[test]
-fn racers_and_killer_chain_physically_pass_a_stationary_human_player() {
+fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
     for (count, width, compressed) in [
         (1, 6.5, false),
         (3, 6.5, false),
@@ -193,11 +254,6 @@ fn racers_and_killer_chain_physically_pass_a_stationary_human_player() {
         let mut followers = Vec::new();
         for id in 1..=count {
             let mut r = Rider::new(id);
-            r.combat_mind.role = if id == 1 {
-                rr_core::rival_ai::Role::Racer
-            } else {
-                rr_core::rival_ai::Role::Killer
-            };
             r.progress = if compressed {
                 100. - id as f32 * 4.7
             } else {
@@ -251,12 +307,11 @@ fn racers_and_killer_chain_physically_pass_a_stationary_human_player() {
                 borrowed |= r.lane < -0.65;
                 if width < 4. && tick % 120 == 0 {
                     println!(
-                        "NARROW compressed={compressed} tick={tick} id={} station={} lane={} speed={} role={:?} target={:?} decision={:?} plan={:?} committed={:?} home={:?} escape={} throttle={} brake={}",
+                        "NARROW compressed={compressed} tick={tick} id={} station={} lane={} speed={} target={:?} decision={:?} plan={:?} committed={:?} home={:?} escape={} throttle={} brake={}",
                         r.id,
                         r.progress,
                         r.lane,
                         r.speed,
-                        r.combat_mind.role,
                         r.combat_mind.target_id(),
                         r.combat_mind.decision,
                         r.ai_plan,
@@ -267,9 +322,10 @@ fn racers_and_killer_chain_physically_pass_a_stationary_human_player() {
                         r.drive_intent.brake_strength()
                     );
                 }
+                let bounds = ai_free_bounds(app.world().resource::<Track>(), r.route, r.progress);
                 assert!(
-                    r.lane.abs() < width + 0.15,
-                    "compressed={compressed} id={} left road at {}",
+                    r.lane > bounds.0 - 0.5 && r.lane < bounds.1 + 0.5,
+                    "compressed={compressed} id={} left usable corridor at {} {bounds:?}",
                     r.id,
                     r.lane
                 );
