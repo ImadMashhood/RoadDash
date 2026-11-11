@@ -86,8 +86,8 @@ fn heat_sprite() -> Image {
             let ripple = (v * 20. + (u * 11. + v * 5.).sin() * 1.1)
                 .sin()
                 .abs()
-                .powi(12);
-            let envelope = (1. - u * u).max(0.).powi(2) * (1. - v * v).max(0.).powi(2);
+                .powi(2);
+            let envelope = (1. - u * u).max(0.) * (1. - v * v).max(0.);
             rgba.extend([255, 250, 226, (ripple * envelope * 255.) as u8]);
         }
     }
@@ -145,10 +145,10 @@ pub fn spawn(
     };
     for &kind in kinds {
         let color = match kind {
-            Kind::Sand => Color::srgba(0.87, 0.72, 0.48, 0.16),
-            Kind::Heat => Color::srgba(0.97, 0.82, 0.59, 0.17),
-            Kind::Steam => Color::srgba(0.72, 0.78, 0.82, 0.13),
-            Kind::Pollen => Color::srgba(0.78, 0.83, 0.61, 0.13),
+            Kind::Sand => Color::srgba(0.87, 0.72, 0.48, 0.55),
+            Kind::Heat => Color::srgba(0.97, 0.82, 0.59, 0.65),
+            Kind::Steam => Color::srgba(0.72, 0.78, 0.82, 0.42),
+            Kind::Pollen => Color::srgba(0.78, 0.83, 0.61, 0.35),
         };
         let image = if kind == Kind::Heat {
             heat_texture.clone().unwrap()
@@ -193,7 +193,11 @@ pub fn spawn(
                 Kind::Pollen => 13. + (i % 3) as f32 * 5.,
             };
             let (mut anchor, _) = track.sample_route(route, station, -side * offset);
-            anchor.y += 0.5;
+            anchor.y += match kind {
+                Kind::Sand => 1.05,
+                Kind::Heat => 1.7,
+                Kind::Steam | Kind::Pollen => 0.5,
+            };
             commands.spawn((
                 Name::new(match kind {
                     Kind::Sand => "Blowing sand",
@@ -232,13 +236,13 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
                     0.25 + (wave * 1.9).sin().abs() * 0.4,
                     (travel - 0.5) * 20.,
                 ),
-                Vec3::new(3.8, 1.1, 1.),
+                Vec3::new(8., 2.2, 1.),
                 0.18 * fade,
             )
         }
         Kind::Heat => (
             Vec3::new((wave * 1.3).sin() * 0.35, (wave * 0.13).fract() * 0.9, 0.),
-            Vec3::new(5., 1.35, 1.),
+            Vec3::new(9., 3.2, 1.),
             0.13 + 0.05 * (wave * 3.1).sin().abs(),
         ),
         Kind::Steam => {

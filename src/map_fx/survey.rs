@@ -80,20 +80,24 @@ pub fn run(
         "hills" if stage == 1 => 9000.,
         "hills" if stage == 2 => 7900.,
         "hills" => 9000.,
-        "metro" => 9000.,
+        "metro" => 8960.,
         "city" => 1200.,
         _ => track.length * 0.28,
     };
     let (road, rotation) = track.sample_route(0, station, 0.);
     let side = rotation * Vec3::X;
     let sign = if map == "city" || (map == "hills" && stage == 1) {
-        -1.
-    } else {
         1.
+    } else {
+        -1.
     };
     let (eye, target) = if map == "hills" && stage >= 2 {
         let (behind, _) = track.sample_route(0, station - 45., 0.);
         (behind + Vec3::Y * 2.6, road + Vec3::Y * 1.4)
+    } else if map == "metro" || map == "city" {
+        let (behind, _) = track.sample_route(0, station - 35., 0.);
+        let (ahead, _) = track.sample_route(0, station + 15., 0.);
+        (behind + Vec3::Y * 2.7, ahead + Vec3::Y * 1.5)
     } else {
         (
             road + side * sign * 31. + Vec3::Y * 3.8 - rotation * Vec3::Z * 11.,
