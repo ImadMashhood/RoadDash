@@ -1830,6 +1830,9 @@ with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
 
+## 2026-11-10 — Guardrail issue33 source checkpoint (ADR148)
+
+Prepared original turn-side barriers with separate road-height/ground-foot calculations, 96m maximum runs, 16m gaps, solid flared ends, physical gap/support/terminal tests and a native bidirectional walking fixture. Added RFU-RAIL-01..05 as open requirements. Compilation and native execution are deferred for the coordinated performance window; no test completion, performance gain, push or merge is claimed.
 ## 2026-11-10 — Issue #28 recovery run and reverse heading (ADR143)
 
 Isolated codex/issue-28-movement from754f9ddb after fetching main. Confirmed6m/s

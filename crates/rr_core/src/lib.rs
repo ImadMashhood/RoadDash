@@ -5,6 +5,7 @@ pub mod comfort;
 pub mod contact;
 pub mod crash;
 pub mod frontend;
+pub mod guardrails;
 pub mod original_crash;
 pub mod police;
 pub mod pursuit;

@@ -1,0 +1,25 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-33)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 44s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 4 tests
+recovery gap Some(-1) at 2276: analytic_start=Vec3(-649.22174, 79.92342, 2029.3302) collision_start=Vec3(-649.22174, 79.45771, 2029.3302)
+recovery gap Some(1) at 1852: analytic_start=Vec3(-472.71204, 54.443943, 1685.1466) collision_start=Vec3(-472.71204, 56.345024, 1685.1466)
+
+thread 'recovery_hills_tests::hills_guardrail_midrun_allows_unassisted_return_via_a_real_end_or_gap' (959942) panicked at src/recovery_hills_tests.rs:158:5:
+on-foot return must reach wreck: side=Some(1) station=1852 start=Vec3(-472.71204, 56.345024, 1685.1466) runner=Some(Transform { translation: Vec3(-469.56873, 55.241444, 1684.0612), rotation: Quat(0.0, 0.7840546, 0.0, 0.6206919), scale: Vec3(1.0, 1.0, 1.0) }) wreck=Some(Transform { translation: Vec3(-461.0769, 53.71394, 1682.21), rotation: Quat(-0.08601531, 0.122835964, 0.010687236, 0.98863465), scale: Vec3(1.0, 1.0, 1.0) }) stage=Running path=[]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test recovery_hills_tests::hills_guardrail_midrun_allows_unassisted_return_via_a_real_end_or_gap ... FAILED
+test world_gen::hills::guardrails::legacy_tests::legacy_valley_guardrails_preserve_reservations_and_real_support ... ok
+test world_gen::hills::guardrails::tests::placed_rails_have_grounded_feet_solid_terminals_and_clear_full_size_gaps ... ok
+recovery gap Some(1) at 1908: analytic_start=Vec3(-466.9997, 63.509716, 1736.2728) collision_start=Vec3(-466.9997, 64.67205, 1736.2728)
+test recovery_hills_tests::hills_guardrail_gaps_allow_real_unassisted_foot_return ... ok
+
+failures:
+
+failures:
+    recovery_hills_tests::hills_guardrail_midrun_allows_unassisted_return_via_a_real_end_or_gap
+
+test result: FAILED. 3 passed; 1 failed; 0 ignored; 0 measured; 426 filtered out; finished in 49.11s
+
+error: test failed, to rerun pass `--lib`

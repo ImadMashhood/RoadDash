@@ -3794,6 +3794,33 @@ sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
 
 
+## ADR148 — Turn-side guardrails with grounded supports and recovery gaps (2026-11-10)
+
+Issue33 explicitly requests right-turn/right-side and left-turn/left-side ordinary
+rails, superseding the historical outside-curve rule. Measure signed horizontal
+yaw across40m so elevation cannot reverse handedness. Merge adjacent same-side
+8m cells; cap continuous runs at96m with16m re-entry openings. Every exposed end
+gets an original2m outward-flared terminal and broad solid folded shoe, contained
+inside its run. These dimensions remain provisional until physical/native checks.
+
+Rail centre follows road elevation at1.05m, with at least0.85m clearance above
+actual support. Independently ground each vertical post against captured resident
+shoulder triangles and the exact resident terrain triangles, embedding0.12m.
+Keep surfaces/physics authoritative, with no runtime placement or LOD collision
+removal. The suspension bridge retains open edges and its thick structural supports.
+Pure turn/run policy belongs in rr_core; generation and physical fixtures remain
+in the native adapter. Preserve controls, saves, accepted bodies/joints, recovery
+and velocity muscles. Keep Rust1.94/Bevy0.17.3/bevy_rapier0.32 pins unchanged.
+
+Follow-up source inspection found a second live, unnamed legacy barrier loop in
+`environment.rs` under Sector::Hills. It uses the same run/terminal generator,
+with actual resident road/verge/terrain triangles and existing Valley
+scenery_allowed lot/access exclusions. Legacy pieces do not acquire HillsSolid.
+PropKind::Guardrail has no current authored instances; its shared fence adapter
+and all Valley quotas remain unchanged. No external repository or media was
+copied; original procedural geometry reuses the existing cube/material.
+RFU-RAIL-01..05 stay open pending actual verification, human full-course review
+and relevant hardware/performance gates. See testing/guardrails/REPORT.md.
 ## ADR143 — Urgent recovery gait and signed reverse heading (2026-11-10)
 
 Issue #28 retains the configured 6 m/s recovery controller and measured-distance
@@ -3887,6 +3914,15 @@ require all240naturally asleep with zero motion by1800updates, record first slee
 update, and run both explicit executors. No forces, damping, motors, collision,
 sleep thresholds or accepted physical behavior change. Original failedCI retained.
 
+ADR148 physical midpoint follow-up: the corrected collider-grounded fixture
+reproduces an automatic player trapped behind the96m run at1852 for40simulated
+seconds. Existing live A* excludes human-controlled recovery. Add narrowly scoped
+authored end/gap guidance for automatic players separated from their wreck by a
+rail; examine at most two routes with4m station steps, ground every waypoint and
+sweep the unchanged capsule against current obstacles. Consume the existing global
+one-plan budget and1.5s retry timer. Store only the resulting walk_path; no teleport,
+rescue, control/rig tuning or unbounded search. Manual input clears that path and
+retains existing authority. This is required physical usability, not an NPC AI rewrite.
 ## ADR142 — Civilian opposing-lane overtaking (2026-11-10)
 
 Issue27 requests sustained slow-leader passing: tractors6m/s, semis12m/s,

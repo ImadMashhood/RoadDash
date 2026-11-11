@@ -1,0 +1,12 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-33)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 17s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 2 tests
+test world_gen::hills::guardrails::tests::placed_rails_have_grounded_feet_solid_terminals_and_clear_full_size_gaps ... ok
+recovery gap Some(-1) at 2276: analytic_start=Vec3(-649.22174, 79.92342, 2029.3302) collision_start=Vec3(-649.22174, 79.45771, 2029.3302)
+recovery gap Some(1) at 1908: analytic_start=Vec3(-466.9997, 63.509716, 1736.2728) collision_start=Vec3(-466.9997, 64.67205, 1736.2728)
+test recovery_hills_tests::hills_guardrail_gaps_allow_real_unassisted_foot_return ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 426 filtered out; finished in 49.54s
+
