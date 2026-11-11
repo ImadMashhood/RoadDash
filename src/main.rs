@@ -229,6 +229,7 @@ fn main() {
             || a == "--guardrail-survey"
             || a == "--legacy-guardrail-survey"
             || a == "--hills-polish-survey"
+            || a == "--wildlife-survey"
             || a == "--hills-revision-survey"
             || a == "--smoke-test"
             || a == "--actor-smoke-test"

@@ -244,7 +244,6 @@
         "RFU-SURF-03",
         "RFU-PERF-01",
         "RFU-PERF-04",
-
         "RFU-AI-01",
         "RFU-AI-02",
         "RFU-AI-06",
@@ -382,6 +381,7 @@
     "05": {
       "title": "World B \u2014 props, materials and procedural dressing",
       "task_ids": [
+        "RFU-WILD-05",
         "RFU-WORLD-04",
         "DESTRUCTION-02",
         "WORLDART-01",
@@ -400,6 +400,10 @@
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "RFU-WILD-01",
+        "RFU-WILD-02",
+        "RFU-WILD-03",
+        "RFU-WILD-04",
         "RFU-CITY-01",
         "RFU-CITY-02",
         "RFU-CITY-03",

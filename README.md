@@ -171,7 +171,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**228 verified tasks complete; 315 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**228 verified tasks complete; 320 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -194,8 +194,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
-| [05](#part-05) | World B — props, materials and procedural dressing | 13 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 44 open |
+| [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 48 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -957,6 +957,9 @@ Study the original building/facade textures locally, rebuild them as original ar
 
 ### Part 05 — World B — props, materials and procedural dressing
 
+- [ ] **RFU-WILD-05** Keep wild herds distinct from mounted cowboys/static animals and record original asset provenance. Reason: issue32 adds wildlife without replacing existing content; part:05; dependencies:HILLS-03/HILLS-05; acceptance: original recognizable horses/bison, no saddles/riders, retained existing animals and complete source/license records; verification: model/asset audit, native close views and user art review. Partial integrated evidence: [issue #32 wildlife report](docs/testing/wildlife/REPORT.md); remaining acceptance gates stay open.
+
+
 - [ ] **RFU-RAIL-03** Place ordinary guardrails on the requested turn side. Reason: explicit right-turn/right-side and left-turn/left-side request; dependencies:HILLS-01; acceptance: stable horizontal signed turns through grades, open straights/opposite side and separate authored bridge policy; verification: signed-yaw rules and placed collider survey. Part:05. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
 
 - [ ] **RFU-RAIL-04** Terminate every guardrail run and gap end with solid end hardware. Reason: exposed thin beam ends; dependencies:RFU-RAIL-02/03; acceptance: readable flared terminals with matching collision and useful gap clearance; verification: terminal census/contact tests, native close views and traversal. Part:05. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
@@ -995,6 +998,15 @@ Repeat the reference → original textures/models → procedural placement → c
 <a id="part-06"></a>
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **RFU-WILD-01** Add coherent moving wild horse herds to Hills. Reason: issue32 requests life beyond traffic; part:06; dependencies:HILLS-01, RFU-WILD-03/04; acceptance: distinct off-road regional herds, terrain-grounded continuous gait/group movement and no nearby frozen actors or population popping; verification: whole-path clearance/coherence tests and native near/mid/far/traversal motion captures. Partial integrated evidence: [issue #32 wildlife report](docs/testing/wildlife/REPORT.md); remaining acceptance gates stay open.
+
+- [ ] **RFU-WILD-02** Add varied bounded bison herds to Hills. Reason: issue32 requests regional herd variety; part:06; dependencies:RFU-WILD-01/03/04; acceptance: readable original bison, varied group sizes, coherent motion and suitable mountain/arid-transition placement; verification: population/path/gait bounds and native motion/art review. Partial integrated evidence: [issue #32 wildlife report](docs/testing/wildlife/REPORT.md); remaining acceptance gates stay open.
+
+- [ ] **RFU-WILD-03** Bound wildlife populations, distance work and LOD cost. Reason: performance is the highest priority; part:06; dependencies:PERF-08 and RFU-WILD-01/02; acceptance: explicit population/animation/render budgets, no distant per-animal terrain/path work, matched release enabled/disabled loading/frame/memory measurements with representative traffic; verification: runtime counters, matched quiet performance repeats and native distance traversal. Broad hardware acceptance remains open. Partial integrated evidence: [issue #32 wildlife report](docs/testing/wildlife/REPORT.md); remaining acceptance gates stay open.
+
+- [ ] **RFU-WILD-04** Specify and verify wild-herd road/contact policy. Reason: issue32 did not authorize new animal hazards; part:06; dependencies:existing collision/recovery and HILLS-01; acceptance: off-road scenic-only herds, no road crossing/colliders/damage, full swept road/fence/prop clearance and retained existing animal contacts; verification: authoring/placed-geometry tests, native contact inventory and both-rig recovery controls. Partial integrated evidence: [issue #32 wildlife report](docs/testing/wildlife/REPORT.md); remaining acceptance gates stay open.
+
 
 - [ ] **RFU-RAIL-05** Validate guardrail gap spacing, terrain access and bridge exceptions. Reason: openings must work in the actual landscape; dependencies:RFU-RAIL-01/02/03/04 and HILLS-08; acceptance: bounded long runs, practically traversable gaps, preserved open suspension edges/thick supports, both branch/rig recovery and human full-course acceptance; verification: native gap/route/recovery receipts, collision tests and full-course review; hardware/performance acceptance remains open. Part:06. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
 - [ ] **RFU-CITY-01** Increase Metropolis urban pedestrian population and purposeful crosswalk use. Reason: city still feels sparse; part:06; dependencies: CITY-ACTIVITY-02, patrol authoring and RFU-PERF-06; acceptance: measured higher resident count than384, more completed grounded crossings without crowd jams, rural counts and solid interactions preserved; verification: generated census, crossing progress tests, both-route native surveys and matched frame profiles. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43). Authoring and scripted both-route native evidence: [issue #43 city-life report](docs/testing/issue-43-city-life/REPORT.md); matched frame and human review gates remain open.

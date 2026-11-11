@@ -2113,3 +2113,22 @@ the concurrent atmosphere merge. Art/full-course/GPU/hardware gates stay open.
 Preserve roads, legacy maps, dependency pins and accepted rigs. Seven RFU-WORLD
 IDs remain open. Strict/native/combined performance verification in progress;
 see testing/issue31-world/REPORT.md. No publication or broad acceptance claim.
+
+## 2026-11-10 — Issue32 bounded scenic herds (ADR147)
+
+Added RFU-WILD-01..05 to the live checklist. Implementing original wild horses
+and bison with bounded deterministic groups, swept off-road reservations, exact
+resident-terrain path samples and shared near/far meshes. Explicit no-crossing,
+no-contact policy retains existing cows/cowboys and accepted physical rigs.
+Technical/native/performance verification is pending, not a completion claim.
+
+## 2026-11-11 — Issue #32 wildlife integrated verification
+
+Integrated original scenic horse/bison herds with PR55 Hills terrain, woodland,
+frontage and guardrail content. Kept five RFU-WILD tasks open. Final source passed
+667 workspace tests (two ignored), strict formatting/Clippy, locked debug/release
+builds, audit and roadmap checks. One native 1,100-frame visual survey and four
+alternating release enabled/disabled cost runs completed. Wildlife system CPU
+median was 8.6–9.0 µs in the near-herd fixture; total frame medians overlap run
+variation. Full-course/native both-rig, art, GPU and broad hardware gates remain
+open. No new collider, save field, fixed-loop physics or imported media.

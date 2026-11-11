@@ -15,6 +15,7 @@ missing features, architectural debt and unverified platforms.
 
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
+- RFU-WILD-01..05: Hills scenic wild herds are original procedural meshes with no contacts. Native close bison/horse and four matched release cost runs pass, with frame differences inside run variation. Mid/far animal readability, full-course movement, both-rig native recovery, user art and broad GPU/hardware acceptance remain open; retained cow/mounted contacts need final integrated native regression receipts. See testing/wildlife/REPORT.md.
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
 
 - ONLINE-PLAY-01: listen-host/UI/discovery is implemented and locally verified on

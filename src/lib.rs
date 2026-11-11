@@ -1,6 +1,7 @@
 pub mod contact_telemetry;
 pub mod online;
 mod police;
+pub mod wildlife_survey;
 
 pub mod animation;
 pub mod atmosphere_survey;
@@ -76,7 +77,8 @@ pub fn build_app(smoke: bool) -> App {
         if std::env::args().any(|a| {
             matches!(
                 a.as_str(),
-                "--hills"
+                "--wildlife-survey"
+                    | "--hills"
                     | "--guardrail-survey"
                     | "--hills-survey"
                     | "--hills-polish-survey"
@@ -237,6 +239,16 @@ pub fn build_app(smoke: bool) -> App {
                     hills_revision_survey::run
                         .after(game::camera)
                         .before(world_gen::hills::atmosphere::reset)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--wildlife-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<wildlife_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    wildlife_survey::run
+                        .after(game::camera)
+                        .before(world_gen::hills::wildlife::animate)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
         } else if std::env::args().any(|a| a == "--hills-polish-survey") {
