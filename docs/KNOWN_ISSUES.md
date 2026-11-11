@@ -1197,6 +1197,11 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
 
+
+## Guardrail follow-up (2026-11-11, issue33/ADR148)
+
+RFU-RAIL-01..05 have physical gap and automatic re-entry checks, 623 integrated workspace tests, both native gap surveys and five native recovery controls passing. Eight oblique captures show openings and capped ends, but do not prove riding-height appearance at every turn, vertical skirt quality, or full-course human usability. Broad hardware/performance gates stay open. Rider physics and bridge-edge policy remain unchanged.
+
 ## Performance/loading investigation (2026-11-10, ADR140)
 
 RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
@@ -1237,8 +1242,12 @@ before treating local branch improvements as overall performance acceptance.
 
 - RFU-CITY-01..04 / issue43: the 25% landward sidewalk area expansion, 480
   authored urban walkers, 13 clear crossing routes and 1,552 placed original
-  curb props (257 broadleaf trees; 79 distinct model IDs) pass the baker and authoring fixtures. Full
-  walking-strip clearance is checked locally at placements, but continuous
-  capsule passage along every irregular block and crowd/traffic behavior need
-  native review. Extra character physics and prop rendering have unmeasured
-  frame and memory cost; the 16.7ms p95 and user art gates stay open.
+  curb props (257 broadleaf trees; 79 distinct model IDs) pass the baker and
+  authoring fixtures. The guardrail-integrated native survey moved 464 walkers
+  over 0.5m and completed four grounded crossings, two on each route; its
+  alternate-branch riding-height view has 14 nearby moving walkers. Sampled
+  trees still look sparse, and continuous capsule passage along every
+  irregular block plus broader crowd/traffic behavior need human traversal.
+  The unpaired debug sample is 31.056ms p95, above 16.7ms; matched release
+  cost, memory, hardware and user art gates stay open. See
+  testing/issue-43-city-life/REPORT.md.

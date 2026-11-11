@@ -106,7 +106,7 @@ pub fn run(
         (0, 3250., false), // Four-lane city entry, before the 3350m split.
         (0, 3500., false),
         (0, 4300., false),
-        (1, 4300., false),
+        (1, 4100., false),
         (0, 6800., false),
         (0, 6800., true),
         (0, 8500., false),
@@ -187,7 +187,7 @@ pub fn run(
             (eye, target)
         };
         let (eye, target) = if std::env::var_os("ROADDASH_CITY_PEDESTRIAN_VIEWS").is_some()
-            && matches!(index, 5 | 7 | 9)
+            && matches!(index, 5 | 6 | 7 | 9)
         {
             (
                 p - q * Vec3::Z * 12. + Vec3::Y * 1.8,

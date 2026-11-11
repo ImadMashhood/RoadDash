@@ -1,0 +1,25 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-33)
+    Finished `test` profile [optimized + debuginfo] target(s) in 6m 16s
+     Running unittests src/lib.rs (target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 2 tests
+
+thread 'world_gen::hills::guardrails::tests::placed_rails_have_grounded_feet_solid_terminals_and_clear_full_size_gaps' (949227) panicked at src/world_gen/hills/guardrails.rs:318:25:
+turn-side rail missing at 1852: road=Vec3(-461.0769, 53.71394, 1682.21), side=1, ground=Some((22v0, 49.51206))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test world_gen::hills::guardrails::tests::placed_rails_have_grounded_feet_solid_terminals_and_clear_full_size_gaps ... FAILED
+test recovery_hills_tests::hills_guardrail_gaps_allow_real_unassisted_foot_return has been running for over 60 seconds
+
+thread 'recovery_hills_tests::hills_guardrail_gaps_allow_real_unassisted_foot_return' (949226) panicked at src/recovery_hills_tests.rs:128:5:
+on-foot return must reach wreck: side=Some(1) station=1908 start=Vec3(-466.9997, 63.509716, 1736.2728) runner=Some(Transform { translation: Vec3(-465.13663, 62.416985, 1736.4954), rotation: Quat(-1e-45, 0.69704527, -1e-45, 0.7170271), scale: Vec3(1.0, 1.0, 1.0) }) wreck=Some(Transform { translation: Vec3(-455.0165, 62.779736, 1736.9077), rotation: Quat(-0.07446009, -0.026387908, -0.0019710094, 0.9968729), scale: Vec3(1.0, 1.0, 1.0) }) stage=Running path=[]
+test recovery_hills_tests::hills_guardrail_gaps_allow_real_unassisted_foot_return ... FAILED
+
+failures:
+
+failures:
+    recovery_hills_tests::hills_guardrail_gaps_allow_real_unassisted_foot_return
+    world_gen::hills::guardrails::tests::placed_rails_have_grounded_feet_solid_terminals_and_clear_full_size_gaps
+
+test result: FAILED. 0 passed; 2 failed; 0 ignored; 0 measured; 426 filtered out; finished in 63.36s
+
+error: test failed, to rerun pass `-p road-dash --lib`

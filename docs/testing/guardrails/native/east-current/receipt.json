@@ -1,0 +1,30 @@
+{
+  "case": "east-current",
+  "completed": true,
+  "exit_code": 0,
+  "errors": false,
+  "binary_sha256": "3bd1538944c7bdb3e1ba47afc07566f93075ac1694818887621ec99e97ad10a2",
+  "functional_only": true,
+  "elapsed_seconds": 41.290939807891846,
+  "fixed_recovery_stages": [
+    true,
+    true,
+    true
+  ],
+  "exceptional_recovery": {
+    "counts_first_and_hill": [
+      0,
+      0
+    ],
+    "extended_hills_fixture": true,
+    "penalties_seconds": [
+      0.0,
+      0.0
+    ],
+    "stationary_seconds": [
+      0.0,
+      0.0
+    ],
+    "unassisted_both": true
+  }
+}

@@ -2,8 +2,9 @@
 
 Branch `codex/issue-43-city-life` from `main` at `e2a31918`, with scope records
 cherry-picked from `36246757` as `cf8f4ad9`. No external media, reference code,
-runtime crate or save-format change. This report records the current authoring
-candidate; native and performance acceptance remain open.
+runtime crate or save-format change. The city candidate was subsequently
+integrated with main through guardrail merge `9932b53b`. Performance and
+human full-course acceptance remain open.
 
 ## Baked changes
 
@@ -61,13 +62,40 @@ and retains total-area conservation.
 - Nine `test_metropolis_population` and `test_metropolis_streetscape` authoring
   tests passed, including a two-path allocation fixture. `sync_progress.py
   --check` passed; README and PROGRESS keep all four RFU-CITY IDs open.
-- `cargo fmt --all --check`, strict locked workspace Clippy, and locked
-  workspace tests passed (617 passed, two ignored, zero failed). The final
-  locked build and route-balanced native checks are pending. The
-  384-main/96-branch manifest remains subject to visual and crossing
-  acceptance. Route, recovery, placed-geometry/collision,
-  crossing completion and matched performance checks remain required before
-  checking the acceptance boxes.
+- On the guardrail-integrated tree, `cargo fmt --all --check`, strict locked
+  workspace Clippy, `cargo test --workspace --locked` (623 passed, two ignored,
+  zero failed), `cargo build --locked`, `python3 tools/audit.py` (580 dependency
+  declarations, 199 runtime asset records, 28 reference observations), and
+  the nine Python authoring tests all passed. The physical crossing test now
+  exercises both routes.
+- The exact-tree native `--metro-survey` exited zero using debug binary SHA-256
+  `ff04d63b880afba5d86829738df1bf1d1e41d97044a37fd7c4ef23c99b4cf33d`:
+  480 walkers spawned, 464 moved over 0.5m, four crossing starts and four
+  completions, with two completed on each route (matched to baked crossing
+  origins within 0.0001m), maximum two active, 144 main cars and 1,552 street
+  props. All 14 captures were nonblank and no error lines appeared. The
+  alternate-branch riding-height view at station 4100 recorded 14 walkers
+  within 80m, all moving; main-route view four recorded 21 within 80m.
+  [Alternate branch](evidence/alternate-branch.png),
+  [main avenue](evidence/main-street.png) and
+  [curb props and trees](evidence/curb-props-trees.png) show the live result.
+  The sampled alternate view has visible people on both sidewalks and some
+  trees, lights and furniture; trees still look sparse in this view.
+  [Crossing counters](evidence/pedestrian-crossings.json),
+  [walker census](evidence/metro-pedestrians.json) and
+  [survey receipt](evidence/survey-receipt.json) preserve the measured values.
+- The same binary's `--smoke-test` recovery exited zero with 21 nonblank
+  captures, unchanged frozen inputs and no error lines
+  ([receipt](evidence/recovery-receipt.json)). This is a scripted smoke, not
+  a human full-course review.
+- The debug native wall sample averaged 27.429ms and had 31.056ms p95, above
+  the 16.7ms target. It has no matched baseline and no GPU timestamp. A valid
+  cost comparison should run baseline and candidate release binaries with the
+  same renderer, resolution, settings, scripted camera path and quiet host;
+  compare median/p95 wall time, fixed/physics time, entities and draw budgets
+  across repeated paired runs. [Sample](evidence/metro-performance.json).
+  RFU-CITY-01..04 and RFU-PERF-06 stay open for this comparison, broader
+  visual density, collision/human traversal and hardware review.
 
 ## Development history
 
@@ -89,7 +117,12 @@ and retains total-area conservation.
    Reserving a 96-person branch allocation and authoring crossing separation
    per route produced 96 branch walkers and three branch crossing corridors.
    First-candidate native timing is retained only as an unpaired control;
-   final route-balanced native evidence is pending.
+   final route-balanced native evidence was then obtained. The first route-1
+   camera at station 4300 landed in an empty local gap; shifting the survey-only
+   camera to station 4100 exposed 14 nearby moving walkers at riding height.
+6. Integrated the guardrail mainline, reran all strict checks and the exact
+   binary's native survey/recovery. No city authored IDs or approved road lanes
+   changed during integration.
 
 ## Superseded first-candidate native control
 

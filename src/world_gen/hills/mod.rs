@@ -7,6 +7,7 @@ pub mod bridge;
 mod countryside;
 pub mod dressing;
 mod geometry;
+pub mod guardrails;
 pub mod mounted;
 mod props;
 pub mod river;
