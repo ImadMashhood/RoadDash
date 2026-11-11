@@ -1,0 +1,11 @@
+{
+  "case": "hills",
+  "binary_sha256": "6f17c4986451e9874bb7a3593ae8def8db4dce295ebbacace2917af5137118f1",
+  "exit_code": 0,
+  "render_errors": false,
+  "verified": true,
+  "elapsed_seconds": 206.68127777300106,
+  "report_error": null,
+  "timeout_seconds": 1800,
+  "limits": "Scripted native functional motion/recovery evidence; no GPU/frame-budget or human/full-race acceptance."
+}

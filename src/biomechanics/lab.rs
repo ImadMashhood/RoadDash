@@ -40,10 +40,11 @@ impl Scenario {
         }
     }
 }
-#[derive(Serialize, Debug)]
+#[derive(Clone, Serialize, Debug)]
 pub struct Measurement {
     pub scenario: String,
     pub mode: String,
+    pub fixed_executor: String,
     pub bodies: usize,
     pub simulated_seconds: f32,
     pub max_anchor_error_m: f32,
@@ -214,6 +215,7 @@ pub fn fixture(enabled: bool, scenario: Scenario) -> App {
     for (e, i) in inertia {
         w.entity_mut(e).insert(i);
     }
+    crate::configure_fixed_executor(&mut app);
     app
 }
 fn mass(world: &World, e: Entity) -> f32 {
@@ -236,8 +238,26 @@ fn energy(world: &World, e: Entity, t: &Transform, v: &Velocity) -> f64 {
     m * (0.5 * v.linvel.length_squared() as f64 + 9.81 * t.translation.y as f64) + angular
 }
 pub fn measure(enabled: bool, scenario: Scenario, ticks: usize) -> Measurement {
-    let mut app = fixture(enabled, scenario);
+    measure_app(
+        fixture(enabled, scenario),
+        enabled,
+        scenario,
+        ticks,
+        |_, _, _| {},
+    )
+}
+fn measure_app(
+    mut app: App,
+    enabled: bool,
+    scenario: Scenario,
+    ticks: usize,
+    mut observe: impl FnMut(usize, &mut App, &Measurement),
+) -> Measurement {
     let config = app.world().resource::<Settings>().config.clone();
+    let fixed_executor = format!(
+        "{:?}",
+        app.get_schedule(FixedUpdate).unwrap().get_executor_kind()
+    );
     let w = app.world_mut();
     let initial: Vec<_> = w
         .query::<(Entity, &Transform, &Velocity, &OwnedBody)>()
@@ -259,6 +279,7 @@ pub fn measure(enabled: bool, scenario: Scenario, ticks: usize) -> Measurement {
     let mut result = Measurement {
         scenario: scenario.name().into(),
         mode: if enabled { "biomechanical" } else { "baseline" }.into(),
+        fixed_executor,
         bodies: initial.len(),
         simulated_seconds: ticks as f32 / 60.0,
         max_anchor_error_m: 0.0,
@@ -367,6 +388,7 @@ pub fn measure(enabled: bool, scenario: Scenario, ticks: usize) -> Measurement {
             }
         }
         result.peak_mechanical_energy_j = result.peak_mechanical_energy_j.max(total);
+        observe(tick + 1, &mut app, &result);
     }
     let w = app.world_mut();
     result.sleeping_bodies = w
@@ -380,8 +402,81 @@ pub fn measure(enabled: bool, scenario: Scenario, ticks: usize) -> Measurement {
         .filter(|b| b.control.state == rr_core::biomechanics::State::Resting)
         .count();
     result.headless_wall_ms = start.elapsed().as_secs_f64() * 1000.0;
+    #[cfg(test)]
+    if enabled && matches!(scenario, Scenario::Pileup) && result.sleeping_bodies != result.bodies {
+        // Observation only: keep every force, timestep, sleep threshold and assertion intact.
+        let mut owners = std::collections::BTreeMap::<u64, (usize, usize, f32, f32)>::new();
+        for (owned, velocity, sleeping) in w.query::<(&OwnedBody, &Velocity, &Sleeping)>().iter(w) {
+            let row = owners.entry(owned.owner.to_bits()).or_default();
+            row.0 += 1;
+            row.1 += usize::from(sleeping.sleeping);
+            row.2 = row.2.max(velocity.linvel.length());
+            row.3 = row.3.max(velocity.angvel.length());
+        }
+        println!(
+            "BIOMECH_PILEUP_PLATFORM ticks={ticks} os={} arch={} cpus={:?} parallel_physics={}",
+            std::env::consts::OS,
+            std::env::consts::ARCH,
+            std::thread::available_parallelism(),
+            cfg!(feature = "parallel_physics")
+        );
+        for (owned, brain, pilot) in w.query::<(&OwnedBody, &Brain, &velocity::Pilot)>().iter(w) {
+            println!(
+                "BIOMECH_PILEUP_OWNER owner={} bodies_sleeping_max_linear_max_angular={:?} control={:?} supported={} pilot_supported={}",
+                owned.owner.to_bits(),
+                owners.get(&owned.owner.to_bits()),
+                brain.control,
+                brain.supported,
+                pilot.supported
+            );
+        }
+    }
     result
 }
+/// Keep the 15-second checkpoint and the eventual sleep deadline on one trajectory.
+#[cfg(test)]
+pub(super) fn pileup_settling(
+    executor: bevy::ecs::schedule::ExecutorKind,
+) -> (Measurement, Measurement, Option<usize>) {
+    let mut app = fixture(true, Scenario::Pileup);
+    app.edit_schedule(FixedUpdate, |schedule| {
+        schedule.set_executor_kind(executor);
+    });
+    let mut checkpoint = None;
+    let mut first_all_sleep = None;
+    let start = std::time::Instant::now();
+    let final_state = measure_app(
+        app,
+        true,
+        Scenario::Pileup,
+        1800,
+        |tick, app, observation| {
+            let w = app.world_mut();
+            let sleeping = w
+                .query::<(&OwnedBody, &Sleeping)>()
+                .iter(w)
+                .filter(|(_, s)| s.sleeping)
+                .count();
+            if sleeping == 240 && first_all_sleep.is_none() {
+                first_all_sleep = Some(tick);
+            }
+            if tick == 900 {
+                let mut snapshot = observation.clone();
+                snapshot.simulated_seconds = tick as f32 / 60.;
+                snapshot.sleeping_bodies = sleeping;
+                snapshot.resting_ragdolls = w
+                    .query::<&Brain>()
+                    .iter(w)
+                    .filter(|b| b.control.state == rr_core::biomechanics::State::Resting)
+                    .count();
+                snapshot.headless_wall_ms = start.elapsed().as_secs_f64() * 1000.;
+                checkpoint = Some(snapshot);
+            }
+        },
+    );
+    (checkpoint.unwrap(), final_state, first_all_sleep)
+}
+
 pub fn run(path: &std::path::Path) -> Result<(), String> {
     let mut results = vec![];
     for scenario in Scenario::ALL {

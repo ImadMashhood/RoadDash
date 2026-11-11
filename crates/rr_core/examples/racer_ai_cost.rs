@@ -8,6 +8,7 @@ fn main() {
             lane: -2.,
             speed: 20.,
             lateral_speed: 0.,
+            lateral_goal: None,
             half_width: 0.95,
             half_length: 1.95,
         }; 96];

@@ -1,0 +1,8 @@
+{
+  "cases_per_executor": 18,
+  "ignored_fields": [
+    "headless_wall_ms",
+    "fixed_executor"
+  ],
+  "non_timing_changes": []
+}

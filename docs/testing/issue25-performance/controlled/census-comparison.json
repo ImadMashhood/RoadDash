@@ -1,0 +1,10 @@
+{
+  "cold/control/hills": "c9e47d65e710259305993a3ab807bdd643edc501295fa3fc7d09a92aea7f0d1e",
+  "cold/control/metro": "311fb8ae4036d881fee8ab8c0547b1ea12c31442d5c41754ce642a161c7ca813",
+  "cold/candidate/hills": "c9e47d65e710259305993a3ab807bdd643edc501295fa3fc7d09a92aea7f0d1e",
+  "cold/candidate/metro": "311fb8ae4036d881fee8ab8c0547b1ea12c31442d5c41754ce642a161c7ca813",
+  "warm/control/hills": "c9e47d65e710259305993a3ab807bdd643edc501295fa3fc7d09a92aea7f0d1e",
+  "warm/control/metro": "311fb8ae4036d881fee8ab8c0547b1ea12c31442d5c41754ce642a161c7ca813",
+  "warm/candidate/hills": "c9e47d65e710259305993a3ab807bdd643edc501295fa3fc7d09a92aea7f0d1e",
+  "warm/candidate/metro": "311fb8ae4036d881fee8ab8c0547b1ea12c31442d5c41754ce642a161c7ca813"
+}

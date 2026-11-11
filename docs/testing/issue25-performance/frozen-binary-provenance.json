@@ -1,0 +1,8 @@
+{
+  "binary_sha256": "6fe419d28e8833e2c4777b94b1cd642b04e8a76ae0303cced84b74636371ad44",
+  "build_base_head": "754f9ddb14553ca6bf20c4d44287768bacbae5e7",
+  "release_source_equivalent_review_commit": "a5966b81a5d98cb8b6191d62b8af544c497d45f1",
+  "exact_build_tree_saved": false,
+  "limits": "Built with uncommitted issue25 source after explicitly cleaning all3 workspace crates in release. Review commit differs from build source only by a cfg(test)-only Track construction correction and evidence/harness/docs changes. Later CI diagnostics/shared lab executor edits are not in this frozen binary. Do not describe measurement checkout HEAD as this binary build HEAD.",
+  "build_log": "docs/testing/issue25-performance/checks/release-build.txt"
+}

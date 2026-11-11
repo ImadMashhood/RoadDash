@@ -1829,6 +1829,69 @@ Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
+
+## 2026-11-10 — Issue #28 recovery run and reverse heading (ADR143)
+
+Isolated codex/issue-28-movement from754f9ddb after fetching main. Confirmed6m/s
+recovery controller and fully blended run above4.5m/s. Refined visual silhouette,
+added swing terrain probes and signed reverse heading. Added RFU-MOVE-01..04 with
+acceptance retained. Source/tests and native evidence tracked separately under
+testing/issue-28-movement; no physical rig, recovery policy, media or dependency
+changes. Commit/push/merge recorded only once performed.
+
+Issue #28 headless checkpoint:596workspace tests passed,1existing opt-in soak
+ignored; strict Clippy, fmt, build, audit and5roadmap tests pass. Eight translated
+terrain cases keep established sole slip below0.688mm/tick. Frozen native binary
+and draft checkpoint prepared for the parent's coordinated GPU window; native
+visual/recovery evidence and user/performance/hardware gates remain open.
+
+## 2026-11-10 — Issue25 profiling and exact generation reuse (ADR140)
+
+Added opt-in loading spans, raw race-frame evidence, render-pass diagnostics and
+an isolated paired survey harness. Profiled both courses before optimization;
+recorded loading/CPU/GPU boundaries, sampling policy limits, cache provenance and
+lighting/budget research. Introduced scoped exact terrain reuse and duplicate
+Metropolis corner-color reuse with original geometry/collision preserved;
+loading-only job admission and fixed-schedule executor remain controlled
+experiments pending measurements. RFU-PERF-01..05 are new stable open requirements.
+Pinned dependencies remain unchanged; parent coordinates the requested0.20
+migration separately. Verification and paired results are recorded in
+`testing/issue25-performance/REPORT.md`; broad performance gates remain open.
+
+## 2026-11-10 — CI diagnostics and explicit roadmap encoding (ADR140)
+
+Preserve the900-update/240sleeping-body gate while adding failure-only per-owner
+and1800-update observations for a pre-existing Ubuntu CI failure not reproduced
+locally. No rig or physics changes. Fix Windows locale-dependent roadmap reads
+with explicit UTF-8 and correct issue25 Part01/16 summary counts exposed by the
+complete roadmap test. All five checks pass under an ASCII locale; Rust diagnostic
+compilation/CI and root-cause resolution remain pending.
+
+## 2026-11-11 — Controlled repeats, defaults and bounded natural-sleep verification (ADR140)
+
+Detected a replacement indexer, rejected two attempts and downgraded earlier
+pairs to exploratory evidence. Verified/pidfd-paused parent2060 for eight fresh
+cold-asset/reverse-warm runs, then restored it in finally. Loading/frame gains
+repeat with exact census/support parity; retain the terminal audit61ms sample
+and separate it from a common gameplay cohort. Both rigs recover on both maps.
+Select measured single-dispatch/eight-loading-job defaults with controls intact;
+add actual lab executor reporting and terminal verification spans. CI establishes
+bounded late natural sleep, so preserve15s stability and require all240sleeping
+by30s on the same fixture for both executors, without physical tuning. Final
+rebuilt checks and merge remain pending.
+
+## 2026-11-11 — Final executor parity and source-frozen verification (ADR140)
+
+All18lab scenarios match exactly across explicit single/multi executors after
+excluding only executor label/wall time. Final598workspace tests, strict Clippy,
+format, provenance audit and Python evidence/roadmap checks pass. Same-fixture
+pileups first naturally sleep all240bodies at update877 in both executors.
+Terminal survey markers now flush partial raw windows and normal shutdown drains
+the bounded writer; final release is frozen with exact source/tree/binary hashes.
+Default-only four recovery/two survey checks pass with zero dropped logs and
+retained terminal audits; final publication/merge follows required checks.
+Broad RFU-PERF gates remain open; no physics/dependency migration is included.
+
 ### 2026-11-10 — Racer/killer follow-up issue26 (ADR141)
 
 Traced rear-target speed subtraction, combat-capped queue detection and outbound-only
@@ -1837,3 +1900,130 @@ fallback for stopped targets, and bounded opposite-road/return checks. Added
 RFU-AI-01–08 and diagnostic native race fixture;604workspace tests and strict
 code/build/audit gates pass. RFU-AI-03/04/05/07 verified; four gameplay/native
 gates remain open, with no hardware/frame-budget claim. See testing/issue26-racer-ai/REPORT.md.
+
+### 2026-11-10 — Issue26 native completion and crossing review
+
+Corrected the native survey completion predicate (605 tests). The frozen binary
+completed the unteleported race in 435.238 simulation seconds; current and
+baseline recovery runs passed with two remounts each. Retained the earlier
+incomplete receipt and the late-section sampled stop rather than treating course
+completion as blanket queue acceptance. Review found an unrelated-crossing veto;
+restricted it to predicted home-corridor/time conflicts, with 20 focused rule
+tests passing. Added opt-in synthetic segment/proxy/static-hit diagnostics; full
+checks and native validation of this refinement are pending the measurement slot.
+
+### 2026-11-10 — Issue26 stationary-human acceptance and bounded reposition
+
+The full crossing refinement passed 608 tests. A new real Dynamic stationary
+human fixture then exposed a narrow-road killer queue: the fallback consumed its
+launch gap. Reserving maneuver space fixes the approaching queue. A separately
+compressed queue exposed off-road A* escape and unsigned reverse-speed feedback.
+Retain signed motion with a tested resting-jitter deadband and use a rear-swept,
+live-gap reverse goal. One bounded pulse per rider clears the compressed fixture
+in 22.82 simulation seconds, with health, road bounds and clearance preserved.
+Retain the earlier failures and slower four-pulse result; 130 core tests pass.
+Final combined gates and civilian lane-change interaction verification remain
+pending integration. No vehicle/ragdoll physics or dependency changes.
+
+
+## 2026-11-10 — Civilian overtaking (issue27 / ADR142)
+
+- Read the current checklist/decisions/issues, installed0.17.3/0.32.0 lockfile,
+  AI-QUEUE-02 evidence and traffic/racer adapters before implementing.
+- Added RFU-TRAF-01–04 as open requirements in Part06, retaining prior tasks.
+- Implemented a pure civilian pass/abort/merge FSM, deterministic local claims,
+  continuous sampler-grounded lane changes, live large-vehicle/merge checks,
+  width-derived lateral clearance and a bounded static collider sweep.
+- Upright oncoming bikers intentionally do not veto passes; solid contacts,
+  downed-person yielding, accepted rigs and speed hierarchy remain integrated.
+- Added core motion/obstruction tests, production-course support/biker/static
+  fixtures and opt-in native --civilian-survey. Full verification receipts and
+  limitations are recorded in testing/civilian-overtaking/REPORT.md.
+
+Issue27 validation follow-up: the first full suite exposed transient same-class
+launch queues initiating passes from compressed envelopes. Preserve strict queue
+order, reset impediment memory while a leader accelerates, require clear initial
+body spacing, and still allow a genuinely stalled same-class motor after six
+stable seconds. Integrate acceleration into the passing horizon and projected
+merge point. Final609 workspace tests, strict lint/format, debug/release builds, audit and
+roadmap checks pass; native timing/motion/recovery remain scheduled separately.
+
+Issue27 native follow-up: frozen release passed eight selected civilian passes
+(Hills real tractor/semi and Metropolis car-body speed fixtures, both directions),
+with completed home returns, zero selected collider intersections and sampler
+support errors. Active/baseline Hills recovery both remained unassisted. Captures
+and receipts reviewed; concurrent compilation makes these functional evidence
+only. Normal-fleet opportunities and quiet CPU measurements remain pending.
+
+Issue27 full-fleet follow-up: quiet120s Hills38 actors completed11/11 passes;
+Metropolis144 actors completed1/3 with two active. Extended240s diagnostics
+exposed a73s stationary endpoint abort, preserved as failed behavioral evidence.
+Use actual predicted pass+return distance for open-road admission; both-direction
+core/adapter regression passes. Corrected240s Metro completed9/10 passes with
+one healthy final merge, no aborted returns. Original quiet planner P95 was
+0.176ms Hills/1.031ms Metro; whole-adapter P950.274/2.603ms. These are CPU costs,
+not GPU/frame-budget acceptance or a speedup. All RFU-TRAF IDs remain open.
+
+Issue27 integration: merged PR35 main76d4fe into traffic branch, preserving
+all tasks/ADR140+142. Combined615 tests, strict lint/format, debug/release and
+audit pass. Integrated native Hills4heavy overtakes and Metro240s144vehicle
+census pass;9complete/1healthy ongoing merge, no aborts. Source/binary hashes
+and loaded-functional limitations are retained in civilian-overtaking evidence.
+
+## 2026-11-11 — Issue28 native matrix and performance integration
+
+The capture-drain correction passes all ten native cases, including both adapters,
+both rigs and18paired lab scenarios. Preserve the initial shutdown failure.
+Visual spot review finds readable running/terrain contact; user motion acceptance
+remains open. RFU-MOVE-03/04 move to verified;01/02 stay open. Merge measured
+performance main76d4fe15 without changing movement source. Final strict checks
+and publication follow; no runtime timing or hardware certificate.
+
+Issue28 final integrated source passes600workspace tests,1existing ignored soak,
+strict all-target Clippy, locked build, fmt, audit and roadmap checks. Grouping
+the native preview queries in a named SystemParam resolves lint without changing
+query behavior. Native10/10 evidence retains its exact earlier executable hash.
+
+### 2026-11-11 — Issue26 combined civilian and reverse regression
+
+Integrated measured performance defaults, civilian overtaking and published
+reverse-heading corrections. Cache measured civilian lateral motion once per
+car/tick and cap forecasts at committed lane endpoints, including return paths.
+Corrected a test-only legacy-map mismatch; actual Metropolis incoming overtaking
+now passes with2.632m minimum car clearance. All four physical racer tests pass;
+compressed queue retains22.82s/one pulse under the reverse correction. Full
+combined gates and final native segment are running; no frame-time claim.
+
+## 2026-11-11 — Issue28 integrates civilian overtaking
+
+Merge main7a63ef18 and preserve both opt-in smoke dispatch entries, all IDs and
+both sets of evidence. Remove inherited PROGRESS conflict markers without losing
+its civilian/performance summaries. Combined strict checks and paired native
+manual/automatic recovery are required before publication; terrain/human-motion
+approval and broad hardware/performance remain open.
+
+Issue28 combined final:617tests pass,2explicit benchmarks ignored; strict checks
+and paired native recovery2/2 pass. Exact binary hash and separate original
+ten-case receipts retained. Final GitHub Linux/Windows CI remains asynchronous;
+no CI success or hardware acceptance is inferred from local checks.
+
+## 2026-11-10 — Issue41 running hand follow-up
+
+The user found rear-facing flat palms during the new urgent run. Add a bounded
+visual wrist correction from the authored arm chain, with bilateral thumb-axis
+checks through 240 phases. Flat and uneven native animation review cases passed
+and sample front/side frames were retained. Full workspace checks and paired
+anatomical/baseline native recovery passed; integrated performance and human
+motion review remain open under RFU-MOVE-05/06.
+
+## 2026-11-10 — Issue26 full-road racer lane follow-up
+
+User playtesting showed riders choosing only the traffic side. Remove the
+outbound-only default and allow intentional opposite-side racing lines through
+the existing oncoming/return and static-body forecast. Preserve civilian lane
+rules, physical collision, committed pass return and the bounded legacy roam
+needed by trap escape. The first full run exposed a positive-lane-only fixture,
+a pass-return regression and a wider-roam trap regression; all were resolved
+without disabling collision or escape. Final merged source passes 641 workspace
+tests, strict Clippy, format/build, roadmap and audit; native full-race and quiet
+planner-cost review remain open.

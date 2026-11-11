@@ -1,0 +1,4 @@
+    Checking rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26/crates/rr_core)
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26/crates/rr_content)
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 36.47s

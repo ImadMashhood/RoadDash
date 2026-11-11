@@ -13,13 +13,22 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--binary', type=Path, required=True)
 parser.add_argument('--case', choices=['race', 'recovery', 'baseline'], required=True)
 parser.add_argument('--frames', type=int, default=21600)
+parser.add_argument('--segment', action='store_true', help='Synthetic final-segment planner diagnostic; not full-race completion')
 parser.add_argument('--label', help='Distinct evidence folder; preserves earlier receipts')
+parser.add_argument('--require-complete', action='store_true', help='Fail if the recorded race does not finish')
 args = parser.parse_args()
+if args.segment and args.require_complete:
+    parser.error('--segment is diagnostic traversal, not --require-complete full-race acceptance')
+if args.segment and args.case != 'race':
+    parser.error('--segment requires --case race')
 root = Path(__file__).resolve().parents[1]
 folder = root / 'docs/testing/issue26-racer-ai' / (Path(args.label).name if args.label else 'native-' + args.case)
-folder.mkdir(parents=True, exist_ok=True)
+if folder.exists():
+    parser.error(f'Evidence folder already exists; choose a unique --label: {folder}')
+folder.mkdir(parents=True, exist_ok=False)
 binary = args.binary.resolve()
 env = dict(os.environ, ROADDASH_TRACK='metro', ROADDASH_VEHICLE='dynamic',
+           ROADDASH_AI_SURVEY_SEGMENT='1' if args.segment else '0',
            ROADDASH_AI_SURVEY_FRAMES=str(args.frames), ROADDASH_DHT='0', ROADDASH_UPNP='0',
            ROADDASH_SAVE_DIR=str(folder/'save'), ROADDASH_SETTINGS=str(folder/'settings.json'),
            ROADDASH_LOG_DIR=str(folder/'performance'), ROADDASH_SMOKE_ROUTE='0')
@@ -31,7 +40,7 @@ if args.case == 'baseline':
 start = time.time()
 with (folder/'native.txt').open('w') as log:
     result = subprocess.run([str(binary), *flags], cwd=folder, env=env,
-                            stdout=log, stderr=subprocess.STDOUT, timeout=1200)
+                            stdout=log, stderr=subprocess.STDOUT, timeout=1800 if args.case == 'race' else 1200)
 log = (folder/'native.txt').read_text()
 errors = bool(re.search(r'\bERROR\b|panicked at|Shader compilation error', log))
 receipt_path = folder/'screenshots/racer-ai.json'
@@ -39,7 +48,8 @@ report = json.loads(receipt_path.read_text()) if args.case == 'race' and receipt
 # Earlier fixture binaries used Phase::Finished, which AI slot zero does not set.
 # A real recorded slot-zero finish is authoritative even in those raw receipts.
 completed = (report.get('completed', False) or 0 in report.get('finished_ids', [])) if args.case == 'race' else 'Render smoke test passed:' in log
-receipt = dict(case=args.case, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
+segment_passed = report.get('segment_passed', False) if args.segment else None
+receipt = dict(case=args.case, synthetic_segment=args.segment, segment_passed=segment_passed, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
                exit_code=result.returncode, render_errors=errors, completed=completed,
                requested_frames=args.frames if args.case == 'race' else None,
                recorded_finished_ids=report.get('finished_ids', []),
@@ -47,5 +57,6 @@ receipt = dict(case=args.case, binary_sha256=hashlib.sha256(binary.read_bytes())
                limits='Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval.')
 (folder/'receipt.json').write_text(json.dumps(receipt, indent=2)+'\n')
 print(json.dumps(receipt), flush=True)
-if result.returncode or errors or (args.case != 'race' and not completed):
+required_result = segment_passed if args.segment else completed
+if result.returncode or errors or ((args.segment or args.case != 'race' or args.require_complete) and not required_result):
     raise SystemExit(1)

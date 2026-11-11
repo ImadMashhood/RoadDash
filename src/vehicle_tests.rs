@@ -1216,3 +1216,92 @@ fn queued_ai_physically_passes_a_stopped_car_without_escape_or_recovery() {
         "passed={passed}, moved_aside={moved_aside}"
     );
 }
+
+#[test]
+fn reverse_heading_mirrors_keys_and_crosses_zero_in_both_adapters() {
+    for adapter in [
+        VehiclePhysicsAdapter::Dynamic,
+        VehiclePhysicsAdapter::Assisted,
+    ] {
+        for (key, sign) in [(KeyCode::KeyD, 1.0), (KeyCode::KeyA, -1.0)] {
+            let mut app = app(1, 60);
+            app.insert_resource(adapter);
+            for _ in 0..5 {
+                app.update();
+            }
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyW);
+            for _ in 0..90 {
+                app.update();
+            }
+            let initial = app.world().get::<Transform>(owner).unwrap().rotation;
+            {
+                let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+                keys.release(KeyCode::KeyW);
+                keys.press(KeyCode::KeyS);
+            }
+            for _ in 0..240 {
+                app.update();
+            }
+            let signed_speed = |app: &App| {
+                let r = app.world().get::<Rider>(owner).unwrap();
+                if adapter == VehiclePhysicsAdapter::Dynamic {
+                    r.motion_velocity
+                        .dot(app.world().get::<Transform>(owner).unwrap().rotation * Vec3::Z)
+                } else {
+                    r.speed
+                }
+            };
+            assert!(signed_speed(&app) < -0.5);
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(key);
+            for _ in 0..45 {
+                app.update();
+            }
+            let heading =
+                initial.inverse() * app.world().get::<Transform>(owner).unwrap().rotation * Vec3::Z;
+            assert!(
+                heading.x * sign > 0.005,
+                "reverse {adapter:?} {key:?}: {heading:?}"
+            );
+            {
+                let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
+                keys.release(KeyCode::KeyS);
+                keys.press(KeyCode::KeyW);
+            }
+            let mut last = app.world().get::<Transform>(owner).unwrap().rotation;
+            let mut forward = None;
+            for _ in 0..90 {
+                app.update();
+                let now = app.world().get::<Transform>(owner).unwrap().rotation;
+                assert!(now.angle_between(last) < 0.08, "zero-speed heading pop");
+                last = now;
+                if signed_speed(&app) > 1.0 && forward.is_none() {
+                    forward = Some(now);
+                }
+            }
+            assert!(
+                forward.is_some(),
+                "must actually cross back into forward travel"
+            );
+            if adapter == VehiclePhysicsAdapter::Dynamic {
+                let delta = forward.unwrap().inverse() * last * Vec3::Z;
+                assert!(
+                    delta.x * sign < -0.005,
+                    "forward heading retained: {delta:?}"
+                );
+            }
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+        }
+    }
+}

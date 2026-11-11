@@ -1,0 +1,11 @@
+{
+  "case": "fleet-metro",
+  "binary_sha256": "fda415372598f2d3e6e650df869edc77017d5a02faac1a5597dfe694e28a5bca",
+  "exit_code": 0,
+  "render_errors": false,
+  "verified": true,
+  "elapsed_seconds": 489.9818271490003,
+  "report_error": null,
+  "timeout_seconds": 1800,
+  "limits": "Scripted native functional motion/recovery evidence; no GPU/frame-budget or human/full-race acceptance."
+}

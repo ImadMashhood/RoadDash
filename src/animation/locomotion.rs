@@ -41,13 +41,16 @@ fn amount(speed: f32) -> f32 {
     (speed / 1.5).clamp(0., 1.)
 }
 pub(super) fn cycle(speed: f32) -> f32 {
-    (1.5 + 1.25 * running(speed)) * amount(speed).max(0.15)
+    (1.5 + 1.0 * running(speed)) * amount(speed).max(0.15)
 }
 pub(super) fn stance(speed: f32) -> f32 {
-    0.825 / (1.5 + 1.25 * running(speed))
+    (0.825 + 0.175 * running(speed)) / (1.5 + 1.0 * running(speed))
 }
 pub(super) fn contact(phase: f32, speed: f32, side: usize) -> bool {
     speed < 0.15 || (phase + side as f32 * 0.5).rem_euclid(1.) < stance(speed)
+}
+pub(super) fn swing_lift(phase: f32, speed: f32, side: usize) -> f32 {
+    foot((phase + side as f32 * 0.5).rem_euclid(1.), speed).1
 }
 fn foot(phase: f32, speed: f32) -> (f32, f32) {
     let contact = stance(speed);
@@ -65,7 +68,7 @@ fn foot(phase: f32, speed: f32) -> (f32, f32) {
             + (u3 - 2. * u2 + u) * tangent
             + (-2. * u3 + 3. * u2) * reach
             + (u3 - u2) * tangent;
-        let lift = (0.08 + 0.14 * running(speed))
+        let lift = (0.08 + 0.24 * running(speed))
             * amount(speed)
             * (std::f32::consts::PI * u).sin().powi(2);
         (forward, lift)
@@ -108,10 +111,10 @@ impl Library {
         for (bone, angle, axis) in [
             (1, 0.045 * theta.sin() + yaw * 0.25, Vec3::Y),
             (3, -0.065 * theta.sin() - yaw * 0.10, Vec3::Y),
-            (3, 0.07 + 0.12 * run, Vec3::X),
-            (4, -0.05 - 0.10 * run, Vec3::X),
-            (7, (0.30 + 0.38 * run) * theta.cos(), Vec3::X),
-            (11, -(0.30 + 0.38 * run) * theta.cos(), Vec3::X),
+            (3, 0.07 + 0.17 * run, Vec3::X),
+            (4, -0.05 - 0.14 * run, Vec3::X),
+            (7, (0.30 + 0.48 * run) * theta.cos(), Vec3::X),
+            (11, -(0.30 + 0.48 * run) * theta.cos(), Vec3::X),
             (8, -0.25 - 0.85 * run - 0.12 * theta.sin(), Vec3::X),
             (12, -0.25 - 0.85 * run + 0.12 * theta.sin(), Vec3::X),
         ] {
@@ -119,6 +122,21 @@ impl Library {
             let q = standing[parent].rotation;
             p.rotations[bone] =
                 (q.inverse() * Quat::from_axis_angle(axis, angle * weight) * q * p.rotations[bone])
+                    .normalize();
+        }
+        // Running fists follow the arm swing but keep the thumbs aimed ahead.
+        // Bend at the visual wrist only; neither the physical forearm nor the
+        // controller receives this correction. Limit flexion to a human range.
+        let chest = p.rotations[0] * p.rotations[1] * p.rotations[2] * p.rotations[3];
+        for (clavicle, upper, forearm, hand, thumb_side) in
+            [(6, 7, 8, 9, 1.0), (10, 11, 12, 13, -1.0)]
+        {
+            let parent = chest * p.rotations[clavicle] * p.rotations[upper] * p.rotations[forearm];
+            let thumb = parent * p.rotations[hand] * Vec3::X * thumb_side;
+            let forward_error = thumb.y.atan2(thumb.z);
+            let correction = forward_error.clamp(-0.7, 0.7) * run * weight;
+            p.rotations[hand] =
+                (parent.inverse() * Quat::from_rotation_x(correction) * parent * p.rotations[hand])
                     .normalize();
         }
         let direction = if direction.length_squared() > 0.5 {
@@ -171,6 +189,13 @@ mod tests {
         for tick in 1..=240 {
             let p = lib.locomotion(tick as f32 / 240.0, 6.0);
             let w = lib.world_pose(p);
+            for (hand, thumb_side) in [(9, 1.0), (13, -1.0)] {
+                let thumb = w[hand].rotation * Vec3::X * thumb_side;
+                assert!(
+                    thumb.z > 0.45,
+                    "running thumb {hand} turns backward at tick {tick}: {thumb:?}"
+                );
+            }
             for i in 0..20 {
                 assert!(w[i].translation.is_finite() && w[i].rotation.is_finite());
                 assert!(

@@ -7,8 +7,39 @@ pub struct Car {
     pub lane: f32,
     pub speed: f32,
     pub lateral_speed: f32,
+    /// Committed lane endpoint; stop extrapolating once measured motion reaches it.
+    pub lateral_goal: Option<f32>,
     pub half_width: f32,
     pub half_length: f32,
+}
+impl Car {
+    fn lateral_stop(self) -> f32 {
+        self.lateral_goal.map_or(f32::INFINITY, |goal| {
+            let time = (goal - self.lane) / self.lateral_speed;
+            if time.is_finite() && time >= 0.0 {
+                time
+            } else {
+                // A newly changed destination must not erase measured motion
+                // still travelling away from it during the transition tick.
+                f32::INFINITY
+            }
+        })
+    }
+    fn lane_at(self, time: f32) -> f32 {
+        self.lane + self.lateral_speed * time.min(self.lateral_stop())
+    }
+    fn advance(self, time: f32, observer_speed: f32) -> Self {
+        Self {
+            gap: self.gap + (self.speed - observer_speed) * time,
+            lane: self.lane_at(time),
+            lateral_speed: if time >= self.lateral_stop() {
+                0.0
+            } else {
+                self.lateral_speed
+            },
+            ..self
+        }
+    }
 }
 #[derive(Clone, Copy, Debug)]
 pub struct Plan {
@@ -42,9 +73,10 @@ fn clear(from: f32, to: f32, speed: f32, car: Car, horizon: f32) -> bool {
         return true;
     }
     // Relative lateral motion is exponential rider convergence minus linear car
-    // travel. Check endpoints, the steering delay kink and its one possible extremum;
+    // travel until its committed endpoint. Check endpoints, both motion kinks and
+    // the one possible extremum before the car settles;
     // endpoint-only snapshots can miss a car crossing the whole lane in this interval.
-    let relative = |t| lane_at(from, to, speed, t) - car.lane - car.lateral_speed * t;
+    let relative = |t| lane_at(from, to, speed, t) - car.lane_at(t);
     let mut low = relative(start).min(relative(end));
     let mut high = relative(start).max(relative(end));
     let rate = 0.65 * (speed / 4.).clamp(0.05, 1.);
@@ -54,25 +86,26 @@ fn clear(from: f32, to: f32, speed: f32, car: Car, horizon: f32) -> bool {
     } else {
         -1.0
     };
-    for t in [0.4, extremum] {
-        if t >= start && t <= end && t >= 0.4 {
+    for t in [0.4, car.lateral_stop(), extremum] {
+        if t >= start && t <= end && (t != extremum || (t >= 0.4 && t <= car.lateral_stop())) {
             low = low.min(relative(t));
             high = high.max(relative(t));
         }
     }
     low > clearance || high < -clearance
 }
+fn crossing_conflict(lane: f32, home: f32, speed: f32, cars: &[Car]) -> bool {
+    cars.iter()
+        .any(|c| c.lateral_speed.abs() > 0.25 && !clear(lane, home, speed, *c, 12.))
+}
 /// Require enough relative speed to clear the whole nearby queue and return
 /// within twelve seconds. This is a forecast, never a collision exemption.
 /// Inbound candidates must remain clear through both outward and return legs.
 pub fn oncoming_pass_clear(lane: f32, goal: f32, home: f32, pace: f32, cars: &[Car]) -> bool {
-    if pace < 1.
-        || cars
-            .iter()
-            .any(|c| c.lateral_speed.abs() > 0.25 && (-5.0..120.0).contains(&c.gap))
-    {
-        // Crossing junction traffic has priority; do not borrow opposing road
-        // to defeat its yield, even if one constant-velocity forecast looks open.
+    if pace < 1. || crossing_conflict(lane, home, pace, cars) {
+        // Yield only when crossing motion intersects our home corridor while
+        // longitudinal envelopes overlap. Nearby parallel roads and traffic that
+        // clears before arrival must not veto an otherwise safe passing route.
         return false;
     }
     let mut return_at = 0.0_f32;
@@ -87,11 +120,7 @@ pub fn oncoming_pass_clear(lane: f32, goal: f32, home: f32, pace: f32, cars: &[C
     let return_at = return_at.max(0.5);
     cars.iter().all(|c| {
         clear(lane, goal, pace, *c, return_at + 4.) && {
-            let shifted = Car {
-                gap: c.gap + (c.speed - pace) * return_at,
-                lane: c.lane + c.lateral_speed * return_at,
-                ..*c
-            };
+            let shifted = c.advance(return_at, pace);
             clear(goal, home, pace, shifted, 4.)
         }
     })
@@ -104,6 +133,20 @@ pub fn slow_queue_ahead(lane: f32, cruise: f32, rider: Car) -> bool {
         && rider.speed < (cruise * 0.75).max(4.)
         && rider.speed < cruise - 3.
         && (rider.lane - lane).abs() < rider.half_width + 1.3
+}
+/// Filter resting contact-solver jitter without discarding meaningful backing.
+pub fn rider_forward_speed(speed: f32) -> f32 {
+    if speed.abs() < 0.1 { 0. } else { speed }
+}
+/// A stopped upright rider inside the reserved launch gap needs room restored
+/// before another forward pass can be planned. The adapter must independently
+/// sweep the rear before using its bounded reverse controller.
+pub fn queue_launch_deficit(lane: f32, rider: Car) -> f32 {
+    if rider.gap > 0. && rider.speed < 0.65 && (rider.lane - lane).abs() < rider.half_width + 1.3 {
+        (rider.half_length + 3.55 + 7. - rider.gap).max(0.)
+    } else {
+        0.
+    }
 }
 /// Pick a reachable gap, otherwise follow/brake. Desired combat/passing intent is retained
 /// when safe; it cannot override a car speed limit or request an occupied lane.
@@ -143,8 +186,8 @@ pub struct Request {
     pub bounds: (f32, f32),
 }
 impl Memory {
-    /// Outbound passing has priority. Opposite road is considered only when the
-    /// outbound plan cannot progress, and must admit a complete return forecast.
+    /// A rider may choose any road lane. An inbound choice must admit a complete
+    /// return forecast, even when the rider has no immediate queue to pass.
     /// The adapter supplies lazy road geometry and resident static-body sweeps.
     pub fn plan_with_oncoming(
         &mut self,
@@ -158,32 +201,52 @@ impl Memory {
             return self.plan(input, cars, drivable);
         }
         let held_inbound = self.committed_lane().is_some_and(inbound);
+        let wants_inbound = inbound(input.desired);
         let original = *self;
         let outbound = if held_inbound {
             None
         } else {
-            Some(self.plan(input, cars, &drivable))
+            Some(self.plan(
+                Request {
+                    desired: input.desired.clamp(input.bounds.0, input.bounds.1),
+                    ..input
+                },
+                cars,
+                &drivable,
+            ))
         };
-        if held_inbound || outbound.is_some_and(|p| p.speed < input.cruise && !self.active()) {
+        if held_inbound
+            || wants_inbound
+            || outbound.is_some_and(|p| p.speed < input.cruise && !self.active())
+        {
             let mut candidate = original;
             let home = original
                 .home_lane()
                 .unwrap_or(input.desired)
                 .clamp(input.bounds.0, input.bounds.1);
+            // A committed pass still returns to its home lane after clearing
+            // the leader; fresh free-lane intent applies on a later tick.
+            let direct_inbound = wants_inbound
+                && !held_inbound
+                && oncoming_pass_clear(input.lane, input.desired, home, input.cruise, cars)
+                && drivable(input.desired, input.cruise);
             let pass = candidate.plan(
                 Request {
                     bounds: road_bounds(),
-                    desired: home,
+                    desired: if direct_inbound { input.desired } else { home },
                     ..input
                 },
                 cars,
                 |goal, pace| {
-                    (!inbound(goal) || oncoming_pass_clear(input.lane, goal, home, pace, cars))
+                    (!inbound(goal)
+                        || (!crossing_conflict(input.lane, home, input.speed.max(1.), cars)
+                            && oncoming_pass_clear(input.lane, goal, home, pace, cars)))
                         && drivable(goal, pace)
                 },
             );
             if held_inbound
-                || (inbound(pass.lane) && outbound.is_some_and(|p| pass.speed > p.speed))
+                || (inbound(pass.lane)
+                    && (direct_inbound || outbound.is_some_and(|p| pass.speed > p.speed)))
             {
                 *self = candidate;
                 return pass;
@@ -311,7 +374,12 @@ impl Memory {
             {
                 continue;
             }
-            let gap = (car.gap - car.half_length - 3.55 - speed * 0.5).max(0.);
+            // A bike cannot launch a lane change from the collision envelope's
+            // nose-to-tail stop point. Preserve room for the steering delay and
+            // convergence at walking pace when a slow queue temporarily seals
+            // every passing candidate; otherwise that queue can never reopen.
+            let maneuver_room = if car.speed.abs() < 4. { 7. } else { 0. };
+            let gap = (car.gap - car.half_length - 3.55 - speed * 0.5 - maneuver_room).max(0.);
             let leader = car.speed.max(0.);
             limit = limit.min((leader * leader + 12. * gap).sqrt());
             if car.speed < 0. {
@@ -340,9 +408,46 @@ mod tests {
             lane,
             speed,
             lateral_speed: 0.0,
+            lateral_goal: None,
             half_width: 0.95,
             half_length: 1.95,
         }
+    }
+    #[test]
+    fn committed_lane_endpoint_remains_occupied_after_transition() {
+        let moving = Car {
+            lateral_speed: 4.,
+            lateral_goal: Some(2.),
+            ..car(100., -8., 0.)
+        };
+        assert!(!clear(2., 2., 20., moving, 12.));
+        assert!(clear(
+            2.,
+            2.,
+            20.,
+            Car {
+                lateral_goal: None,
+                ..moving
+            },
+            12.
+        ));
+        let settled = moving.advance(4., 20.);
+        assert_eq!(settled.lane, 2.);
+        assert_eq!(settled.lateral_speed, 0.);
+        assert!(!clear(2., 2., 20., settled, 4.));
+    }
+    #[test]
+    fn committed_lane_forecast_does_not_teleport_when_held_or_reversing() {
+        let held = Car {
+            lateral_goal: Some(2.),
+            ..car(20., -8., 0.)
+        };
+        assert_eq!(held.lane_at(12.), -8.);
+        let reversing = Car {
+            lateral_speed: -1.,
+            ..held
+        };
+        assert_eq!(reversing.lane_at(12.), -20.);
     }
     #[test]
     fn slow_rider_queue_is_a_hazard_without_car_traffic() {
@@ -378,6 +483,47 @@ mod tests {
         assert_eq!(blocked.speed, 0.);
         let resumed = memory.plan(input, &queue, |_, _| true);
         assert!(resumed.lane > 3.6 && resumed.speed > 0., "{resumed:?}");
+    }
+    #[test]
+    fn rider_speed_deadband_does_not_turn_resting_jitter_into_oncoming_traffic() {
+        for speed in [-0.099, 0., 0.099] {
+            assert_eq!(rider_forward_speed(speed), 0.);
+        }
+        for speed in [-2.5, -0.1, 0.1, 2.5] {
+            assert_eq!(rider_forward_speed(speed), speed);
+        }
+        let request = |speed| {
+            plan(
+                1.,
+                20.,
+                1.,
+                40.,
+                (0.65, 2.35),
+                &[car(40., 1., rider_forward_speed(speed))],
+            )
+        };
+        assert!(request(-0.099).speed > 1.);
+        assert_eq!(request(-0.1).speed, 0.);
+    }
+    #[test]
+    fn compressed_queue_reposition_is_only_for_close_stopped_leaders() {
+        let rider = Car {
+            half_width: 0.36,
+            half_length: 1.05,
+            ..car(4.7, 1., 0.)
+        };
+        assert!(queue_launch_deficit(1., rider) > 0.5);
+        for other in [
+            Car { gap: -4.7, ..rider },
+            Car { gap: 11.6, ..rider },
+            Car { speed: 2., ..rider },
+            Car {
+                lane: -2.35,
+                ..rider
+            },
+        ] {
+            assert!(queue_launch_deficit(1., other) <= 0.5, "{other:?}");
+        }
     }
     #[test]
     fn stopped_queue_selects_walking_speed_pass_and_holds_it() {
@@ -615,6 +761,7 @@ mod inbound_tests {
             lane,
             speed,
             lateral_speed: 0.,
+            lateral_goal: None,
             half_width: 0.95,
             half_length: 1.95,
         }
@@ -638,6 +785,80 @@ mod inbound_tests {
             25.,
             &[front, car(0., 2., 25.)]
         ));
+    }
+    #[test]
+    fn unrelated_crossing_motion_does_not_veto_a_clear_pass() {
+        let front = car(60., 2., 10.);
+        for crossing in [
+            Car {
+                lateral_speed: 6.,
+                ..car(45., 100., 0.)
+            },
+            Car {
+                lateral_speed: 6.,
+                ..car(45., -2., 0.)
+            },
+            Car {
+                lateral_speed: -6.,
+                ..car(100., -12., 0.)
+            },
+        ] {
+            assert!(
+                oncoming_pass_clear(2., -2., 2., 25., &[front, crossing]),
+                "{crossing:?}"
+            );
+        }
+    }
+    #[test]
+    fn crossing_priority_checks_current_arrival_not_only_optimistic_cruise() {
+        let crossing = Car {
+            lateral_speed: 6.,
+            ..car(45., -12., 0.)
+        };
+        assert!(!crossing_conflict(2., 2., 40., &[crossing]));
+        assert!(crossing_conflict(2., 2., 20., &[crossing]));
+        let p = Memory::default().plan_with_oncoming(
+            Request {
+                lane: 2.,
+                speed: 20.,
+                desired: 2.,
+                cruise: 40.,
+                bounds: (0.65, 2.35),
+            },
+            &[crossing],
+            || (-2.35, 2.35),
+            |_, _| true,
+        );
+        assert!(p.lane > 0. && p.speed < 20., "{p:?}");
+    }
+    #[test]
+    fn actual_crossing_conflict_keeps_junction_priority() {
+        let crossing = Car {
+            lateral_speed: 6.,
+            ..car(60., -12., 0.)
+        };
+        assert!(!clear(2., 2., 25., crossing, 12.));
+        assert!(!oncoming_pass_clear(2., -2., 2., 25., &[crossing]));
+    }
+    #[test]
+    fn queued_stop_preserves_room_to_launch_a_later_opposite_pass() {
+        let parked = Car {
+            half_width: 0.36,
+            half_length: 1.05,
+            ..car(11.6, 1., 0.)
+        };
+        let input = Request {
+            lane: 1.,
+            speed: 0.,
+            desired: 1.,
+            cruise: 40.,
+            bounds: (0.65, 2.35),
+        };
+        let stopped = Memory::default().plan(input, &[parked], |_, _| true);
+        assert!(stopped.speed < 0.01, "{stopped:?}");
+        let released =
+            Memory::default().plan_with_oncoming(input, &[parked], || (-2.35, 2.35), |_, _| true);
+        assert!(released.lane < 0. && released.speed >= 1., "{released:?}");
     }
     #[test]
     fn clear_oncoming_corridor_can_pass_a_blocked_outbound_lane() {
@@ -667,5 +888,27 @@ mod inbound_tests {
         let p =
             Memory::default().plan_with_oncoming(input, &blocked, || (-2.35, 2.35), |_, _| true);
         assert!(p.lane > 0. && p.speed < 35., "{p:?}");
+    }
+    #[test]
+    fn clear_racing_line_can_use_any_paved_lane_without_a_queue() {
+        let input = Request {
+            lane: 1.5,
+            speed: 24.,
+            desired: -1.5,
+            cruise: 35.,
+            bounds: (0.65, 2.35),
+        };
+        let chosen =
+            Memory::default().plan_with_oncoming(input, &[], || (-2.35, 2.35), |_, _| true);
+        assert!(chosen.lane < 0. && chosen.speed == 35., "{chosen:?}");
+
+        let approaching = [car(100., -1.5, -25.)];
+        let yielded = Memory::default().plan_with_oncoming(
+            input,
+            &approaching,
+            || (-2.35, 2.35),
+            |_, _| true,
+        );
+        assert!(yielded.lane >= 0.65, "{yielded:?}");
     }
 }

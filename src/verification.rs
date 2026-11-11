@@ -1,4 +1,5 @@
 //! Render the actual crash/get-up/run/remount sequence, then verify results.
+pub(crate) mod movement;
 use crate::{
     game::{Phase, Race, Rider},
     recovery::{Recovery, RecoveryStage},
@@ -36,6 +37,9 @@ pub struct SmokeProgress {
     rescue_stationary_seconds: [f32; 2],
     strike_windup: bool,
     strike_contact: bool,
+    manual_ticks: u32,
+    manual_seen: bool,
+    auto_return_seen: bool,
 }
 // A running stage can last one physics tick when the rider lands near the bike.
 // Observe fixed transitions independently of render-frame screenshot timing.
@@ -69,6 +73,35 @@ pub fn observe_smoke_recovery(
             continue;
         }
         let index = usize::from(state.hill_started);
+        if std::env::var_os("ROADDASH_VERIFY_MANUAL_RETURN").is_some()
+            && !state.hill_started
+            && recovery.stage == RecoveryStage::Running
+        {
+            if state.manual_ticks == 0 && recovery.walk_distance > 0.3 {
+                smoke_key(&mut commands, KeyCode::KeyA, true);
+                state.manual_ticks = 1;
+            } else if state.manual_ticks > 0 {
+                state.manual_ticks += 1;
+                if recovery.foot.mode == rr_core::recovery::FootMode::Manual {
+                    if !state.manual_seen {
+                        capture(&mut commands, "manual-return-interrupt");
+                    }
+                    state.manual_seen = true;
+                }
+                if state.manual_ticks == 46 {
+                    smoke_key(&mut commands, KeyCode::KeyA, false);
+                }
+                if state.manual_ticks > 46
+                    && recovery.foot.mode == rr_core::recovery::FootMode::AutoSeekBike
+                {
+                    if !state.auto_return_seen {
+                        capture(&mut commands, "manual-return-resume");
+                    }
+                    state.auto_return_seen = true;
+                }
+            }
+        }
+
         if recovery.rescues > state.rescue_counts[index] {
             state.rescue_counts[index] = recovery.rescues;
             state.rescue_penalties[index] = recovery.rescue_penalty_total;
@@ -990,6 +1023,14 @@ pub(crate) fn smoke_test(
                 );
                 report["walk_crossing_distances_m"] =
                     serde_json::json!(state.walk_crossing_distance);
+            }
+            if std::env::var_os("ROADDASH_VERIFY_MANUAL_RETURN").is_some() {
+                assert!(
+                    state.manual_seen && state.auto_return_seen,
+                    "manual interruption/automatic resume missing"
+                );
+                report["manual_interruption_and_auto_resume"] =
+                    serde_json::json!([state.manual_seen, state.auto_return_seen]);
             }
             report["render_running_captured"] = serde_json::json!(state.running);
             report["vehicle"] = telemetry

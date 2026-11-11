@@ -1189,3 +1189,29 @@ reference implementation. Sync operations run only on a background worker,
 finite leases only, private/CGNAT external addresses rejected. Existing explicit
 advertise configuration wins. Native tests must disable live router mapping;
 mocked lifecycle tests cannot certify any router or external Internet connection.
+
+
+### 2026-11-10 issue #28 skills/source review
+
+Read local skills from chrisgliddon/bevy-skills (MIT): bevy router, animation,
+input actions; gamedev-skills/awesome-gamedev-agent-skills (Apache-2.0):
+game-feel and input-systems. Only engine-neutral visual/physics separation,
+continuous motion and buffered action guidance applied. The collection targets
+Bevy0.20; current lockfile pins0.17.3/Rapier0.32. Local installed bevy_mesh0.17.3
+Mesh::with_computed_normals inspected for the original native terrain fixture.
+No dependency migration or external source/media copying. ADR143 records scope.
+
+## 2026-11-10 — Issue25 performance investigation (ADR140)
+
+R08 Bevy: inspected installed0.17.3 diagnostics, lightmap and schedule executor
+source (MIT OR Apache-2.0), plus the pinned public lightmap example. Inspected
+installed bevy_rapier3d0.32.0 collider synchronization and prior ADR089/134 trials.
+No reference implementation/media copied. Verified registry availability of
+Bevy0.20.1/Rapier0.37.0 separately; no dependency change in this issue branch.
+Installed Bevy skills identify MIT; game-development performance guidance is
+Apache-2.0. See testing/issue25-performance/RESEARCH.md for URLs and limitations.
+
+Fedora perf7.3.3 RPM was downloaded and extracted under/tmp only for local CPU
+sampling; no package source/binary is redistributed. User-cycle flat sampling
+works; callchain/DWARF sampling was denied by host policy, which was preserved.
+Zero-lost flat samples support hypotheses, not full function-call attribution.

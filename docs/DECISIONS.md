@@ -3793,6 +3793,100 @@ the 8 cm exposed terrain seam with a soil render-edge underlap, retaining road,
 sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
 
+
+## ADR143 — Urgent recovery gait and signed reverse heading (2026-11-10)
+
+Issue #28 retains the configured 6 m/s recovery controller and measured-distance
+phase. Improve the visual run silhouette and terrain-aware swing clearance,
+retaining support-local stance locks, anatomical chain lengths and visual-only
+pelvis fitting. Keep both accepted physical rigs, input buffering, recovery
+policy and audio unchanged. No standing wrist twist or engine migration.
+
+Dynamic steering heading uses signed longitudinal travel; lateral tire demand
+retains the existing wheel-side convention. Assisted remains road-constrained,
+with a bounded reverse heading offset fading continuously to zero at rest; its
+forward handling remains exact. AI escape's explicit heading remains authoritative.
+
+RFU-MOVE-01..04 track implementation and separate user visual acceptance.
+Read the installed MIT bevy/bevy-animation/bevy-input-actions guidance and
+Apache-2.0 game-feel/input-systems guidance from the user-requested collections.
+Apply engine-neutral presentation/input separation only: installed Bevy0.17.3 /
+Rapier0.32.0 remain pinned; 0.20 APIs/migration are deferred. No external code,
+new media or dependencies are imported. Evidence: testing/issue-28-movement.
+
+## ADR140 — Measure course loading and frame distributions before optimization (2026-11-10)
+
+Issue #25 prioritizes both Hills and Metropolis loading/runtime performance.
+Keep the pinned Bevy 0.17.3/Rapier 0.32.0 control while recording opt-in nested
+CPU startup spans, bounded raw-frame samples and supported render diagnostics.
+Readiness is the existing required-asset gate; it does not prove GPU pipelines
+have completed or that every distant detail is resident. Nested spans overlap.
+Do not sum them or label CPU render scheduling as GPU timestamps. Preserve all
+collision, physics, recovery, saves and content while measuring changes.
+
+Primary crates.io registry queries confirm Bevy 0.20.1 (Rust 1.97.1) and
+bevy_rapier3d 0.37.0 with Bevy ^0.20. The requested migration is coordinated
+separately after these branches; this work must not silently mix three releases
+of breaking APIs. Installed Bevy skills are MIT guidance, the game-development
+performance skill package is Apache-2.0 guidance; no source/media is imported.
+Installed 0.17.3 renderer diagnostics source is the API authority for this pass.
+
+ADR140 measured loading follow-up: instrumented Hills construction costs
+29.2 seconds on Ryzen 5 3600 (countryside14.48s, props9.44s, terrain4.63s).
+Memoize exact-bit support vertices only within an immutable borrowed-track
+generation scope; cap131072entries, release at scope exit and retain a same-binary
+ROADDASH_TERRAIN_CACHE=0 control. A different track bypasses the scope; nested
+scopes restore previous state. Skip preliminary terrain heights immediately
+overwritten by the final resident terrain sampler, preserving topology/order.
+No disk cache/version invalidation, approximate heights, moved props, collision
+removal or physical-rig tuning. The GPU sample supports investigating CPU work
+first; it is not a full-course GPU conclusion.
+
+ADR140 runtime experiment: delayed flat CPU sampling reports executor work as a
+major user-cycle consumer, but awaited work/spin can obscure cause. Evaluate
+ROADDASH_FIXED_EXECUTOR=single against the default multi-threaded FixedUpdate
+dispatcher. This changes scheduler dispatch only: retain ordered systems, deferred
+command barriers,60Hz, substeps, collider/rig parameters and Rapier internal
+parallel solving. The default remains unchanged until repeatable timing and
+physical/recovery parity pass; revert the experiment on regression.
+
+ADR140 load-admission experiment: Metropolis source construction takes3.24s
+while required readiness takes10.96s, with thousands of materials. Instrument
+pending/jobs/done queues; evaluate an opt-in eight-job admission ceiling during
+Boot/Loading (ROADDASH_LOAD_JOBS=8), retaining two jobs during gameplay and
+unchanged worker-pool size, derived bytes/fingerprints and readiness gates.
+Do not adopt a higher default without measured queue/load improvement.
+
+ADR140 first isolated matched samples: exact reuse reduces Hills world setup
+29.910→18.595s and Metro3.221→2.366s with unchanged native census/support fields.
+Single fixed dispatch improves raw p95 Hills25.56→20.45ms and Metro28.66→24.76ms;
+eight loading jobs reduce Metro readiness10.132→6.950s. These are one sample per
+configuration, not repeated acceptance. Both configurations pass598 workspace
+tests (one existing ignored soak). Dedicated recovery/cold/reverse-order repeats
+remain before changing dispatch/admission defaults; see issue25 evidence.
+
+ADR140 controlled follow-up: replacement indexing invalidated the first pair's
+full-isolation claim; retain it as exploratory only. Eight new cold-asset/reverse
+warm runs with verified PID2060 paused/restored confirm readiness gains37–39%
+and raw p95 gains13–23%, with unchanged census/support structures. One61.423ms
+Metro event is the exact terminal audit frame; retain it and add explicit fixture
+completion/span markers, plus same-length cohort comparisons across all controls.
+Four both-map/both-rig native recovery cases pass. Select single FixedUpdate
+dispatch and eight loading-only material jobs, preserving explicit multi/two-job
+controls, internal parallel Rapier,60Hz/substeps and two-job gameplay admission.
+Rebuilt18-case explicit paired lab checks pass with exact non-timing equality;
+598workspace tests pass on selected defaults. Final source-frozen native default-only recovery and terminal-log surveys
+pass on both maps; no dropped evidence and no timing claim under build load.
+
+CI on unchanged main and the diagnostic PR shows15resting riders at900updates,
+240finite bodies, anchor error0.00217m, linear0.00639m/s, angular0.13730rad/s, but
+only208sleeping bodies. An independent1800-update diagnostic sleeps all240 with
+zero velocity. Correct the test's hardware-dependent deadline using one fixture:
+retain900-update finite/body/resting/anchor checks and low motion<0.1m/s,<0.5rad/s;
+require all240naturally asleep with zero motion by1800updates, record first sleep
+update, and run both explicit executors. No forces, damping, motors, collision,
+sleep thresholds or accepted physical behavior change. Original failedCI retained.
+
 ## ADR141 — Forward combat dependencies and bounded opposite-road passing (2026-11-10)
 
 Issue26/RFU-AI-01–08 supersedes rear-chasing/downed-hunting behavior for ordinary
@@ -3810,3 +3904,111 @@ range only as needed; no obstacle exemptions, teleport or sidewalk escape. Keep
 full-race fairness/performance gates open until measured. Native decision receipts
 expose intent versus avoidance. No dependency migration or external code/media
 intake. See testing/issue26-racer-ai/REPORT.md for tests and remaining limits.
+
+ADR141 follow-up: native completion and both rig recoveries passed on the original
+implementation. Review then restricted junction priority to a continuous
+home-corridor/time intersection, instead of any nearby lateral movement. Keep
+the original full-race receipt distinct from later synthetic segment diagnostics;
+record proxy/static-hit traces to diagnose rather than infer causes from speed.
+
+ADR141 queue follow-up: reserve launch space when a slow queue temporarily seals
+passing candidates. For an already-compressed upright-rider queue, keep a bounded
+live gap goal using existing rear-swept reverse controls; preserve normal
+unsticking timing, reverse physics/cap, cooldown and collision clearance. Use
+signed rider velocity with a small resting-jitter deadband and reset the generic
+escape anchor after intentional backing. The physical fixture must stay on road;
+A* sidewalk escape is not acceptance. See the report's retained failing and
+superseding receipts for the 4-pulse to 1-pulse improvement.
+
+## ADR142 — Civilian opposing-lane overtaking (2026-11-10)
+
+Issue27 requests sustained slow-leader passing: tractors6m/s, semis12m/s,
+ordinary cars13–19m/s retain their authored cruises. Add an engine-neutral
+Follow/Pass/Abort/Merge memory in rr_core; evaluate in the existing60Hz traffic
+adapter, with continuous3s lane transitions and sampler-owned ground support.
+Normalize per-station road lanes into a shared divider frame. Compare signed
+travel progress, actual vehicle bounds, relative passing duration and projected
+merge room. Deterministic entity ordering publishes local reservations before
+subsequent decisions; retain them until the merge finishes. Revalidate moving
+hazards, brake/drop behind before merging if room closes, and cool down retries.
+Upright bikers are intentionally absent from the civilian oncoming-car veto:
+this creates the requested riding hazard, with all existing solid contacts and
+crash/recovery intact. Downed-person yielding remains a higher-priority stop.
+No new dependency, assets or source-code intake; Bevy0.17.3/Rapier0.32.0 retained
+pending the separately coordinated engine migration. Human traffic balance,
+long-race/hardware and broad frame-time acceptance remain separate gates.
+
+ADR142 validation refinement: preserve compressed equal-class launch ordering by
+requiring nonoverlapping departure envelopes and resetting impediment memory
+while the leader accelerates. A genuine same-class stalled motor remains eligible
+after six stable seconds; its stored cruise is not an unconditional veto. Use the
+native2m/s² acceleration and both3s lateral transitions in the passing horizon
+and projected merge station. Separate departure/return geometry checks and
+opt-in CPU timing preserve the normal fixed-step adapter and publication gates.
+
+
+ADR142 native endpoint refinement: the extended production Metropolis census
+found a73-second stationary abort after a pass began near11862m on a12000m
+road. Six-second local collider sweeps did not establish an eventual supported
+exit. Pass admission now compares the existing acceleration-integrated predicted
+completion/return travel plus vehicle extent and8m margin against authored road
+remaining. Closed routes retain unlimited forward distance. This reuses the
+actual candidate horizon rather than excluding a blanket maximum-time zone;
+a500m available-road control still passes while140m rejects, in both directions.
+Existing claims still revalidate merge normally. The native runner rejects final
+claims older than45s; historical execution success does not override the retained
+failed behavior review. Full-course human acceptance remains open.
+
+ADR141 civilian integration: consume actual previous-step lateral motion once per
+car, cached in its existing traffic memory. Forecast that motion only as far as
+the committed passing/merge lane, then retain the settled occupancy, including
+the return-path check. Test continuous envelope kinks rather than sparse future
+snapshots. Preserve ADR142's intentional upright-biker nonveto on the civilian
+side; the racer must avoid physical cars entering its corridor.
+
+ADR141 rider-lane playtest follow-up (2026-11-10): the racer adapter chose a
+right-side roaming line and the shared passing wrapper prioritized outbound
+bounds until progress was blocked. This made every clear-road rider return to the
+traffic side. Allow free racing-line intent across the paved width, including
+oncoming lanes, while retaining the civilian vehicle convention. A fresh inbound
+choice requires the existing twelve-second opposing-traffic/return forecast and
+resident static sweep; a committed overtake still clears its leader and returns
+home. The physical bike and collision layers remain authoritative. Open-road and
+occupied-oncoming tests must pass before publication, and runtime cost of more
+frequent inbound forecasts needs a quiet profile on the combined content build.
+
+## ADR150 — Four-way performance selection and expanded place-making (2026-11-10)
+
+The user requests four fresh independent performance candidates and asks to keep
+only the highest verified gain, alongside a more natural urgent run, map-specific
+heat/sand/city effects and denser Metropolis sidewalks and pedestrians. Freeze a
+common source/asset/settings/seed baseline before candidate edits. Assign separate
+CPU traffic, render visibility, loading admission and GPU shader approaches. A
+candidate's own measurements cannot establish the winner. Rank clean repeated
+Hills and Metropolis runs by the geometric mean of baseline/candidate raw gameplay
+p95 ratios (weight two per map) and required-assets-ready load ratios (weight one
+per map). Review p99/max, RSS, supported GPU pass samples, visual quality and
+correctness as vetoes; a repeatable >5% p95 regression on either map or content/
+physics loss rejects a candidate. Retest the eligible candidates against the same
+fully integrated content before merging one. Keep losing branches/reports and do
+not infer the 60 FPS target from a relative gain. This decision precedes timing
+results and does not authorize lowering authoritative populations or collisions.
+
+The city additions depend on widened right-of-way-safe sidewalks and measured
+pedestrian capacity; crosswalk routes must stay grounded and collision-clear.
+Heat and blowing sand use bounded presentation quality controls; the rendered
+sand effect does not change the authored Sand driving classification. Keep the
+accepted eleven-body control and velocity-muscle default unchanged when correcting
+hands. City effect options (vent steam, depth haze, wet-road variant) remain
+proposals until visual, source and performance review. Bevy0.20 migration is a
+separate issue #37 gate and must not be treated as a proven performance win.
+
+## ADR151 — Correct running hands in the visual pose chain (2026-11-10)
+
+The moving thumb cue depends on the chest, clavicle, upper arm and forearm
+rotations already applied by the authored run pose. Compute each hand's current
+world thumb vector from that chain, then apply at most 0.7 radians of visual
+wrist flexion toward travel-forward, weighted by running speed. Leave the idle
+bind unchanged. Do not alter the accepted eleven physical bodies, joints,
+motors, momentum, recovery forces or controller displacement to fix a rendered
+hand orientation. Keep RFU-MOVE-05/06 open for close native and human review.

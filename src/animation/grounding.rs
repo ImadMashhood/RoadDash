@@ -61,7 +61,7 @@ pub(super) fn apply(
             } else {
                 locomotion::contact(phase, a.gait.speed, i)
             };
-        let sole =
+        let mut sole =
             anchor.transform_point(frames[limb.end].transform_point(Vec3::from_array(limb.offset)));
         // A new stance always captures a new contact, even if exponential release
         // from the previous stride has not reached exact zero.
@@ -75,6 +75,30 @@ pub(super) fn apply(
                 .exclude_sensors()
                 .exclude_collider(runner)
         };
+        // Swing also samples the surface: an uphill/crest foot must clear the
+        // ground before touchdown, not wait for its next stance lock. One bounded
+        // ray per swing foot; physical runner/terrain transforms are read-only.
+        if !stance && rec.stage == RecoveryStage::Running {
+            let lift = locomotion::swing_lift(phase, a.gait.speed, i);
+            let hit = ctx
+                .cast_ray_and_get_normal(sole + Vec3::Y * 0.6, -Vec3::Y, 1.3, true, filter())
+                .filter(|(_, h)| h.normal.y > 0.4);
+            let required = hit.map_or(0., |(_, h)| {
+                (0.615 - h.time_of_impact + lift).clamp(-0.35, 0.35)
+            });
+            // Rising support wins immediately; downward changes settle smoothly.
+            a.swing_ground[i] =
+                required.max(motion::approach(a.swing_ground[i], required, dt, 0.04));
+            sole.y += a.swing_ground[i];
+            a.current.planted[i] = Some(inverse.transform_point3(sole));
+            if let Some((_, h)) = hit {
+                a.current.normals[i] =
+                    Quat::from_rotation_arc(Vec3::Y, anchor.rotation.inverse() * h.normal)
+                        * a.current.normals[i];
+            }
+        } else {
+            a.swing_ground[i] = 0.;
+        }
         if let Some(plant) = a.plants[i] {
             let supported = support_frame(&ctx, plant.support)
                 .map(|frame| plant.world(frame))

@@ -1,0 +1,12 @@
+{
+  "case": "race",
+  "synthetic_segment": true,
+  "binary_sha256": "a3942775941cbcbe932442b3873289c06360dae94ec5364dc58d5aa30a385b94",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": false,
+  "requested_frames": 1800,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 71.83807325363159,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

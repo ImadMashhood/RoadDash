@@ -3,6 +3,16 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
+- RFU-AI-02: full-road rider lane choice passes 641 merged-tree workspace tests, including Metropolis lane entry, sealed queue, pass return and trap escape; combined native race review, all-map oncoming traffic behavior and quiet planner cost remain open. See testing/issue26-racer-ai/REPORT.md.
+
+- RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
+
+- RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
+
+- RFU-FX-01–03 and RFU-CITY-01–04: biome/city effects and further Metropolis crowd/sidewalk/prop density remain open requests without implementation acceptance. See issues #42–#43.
+
+- RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
+
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
 
 - ONLINE-PLAY-01: listen-host/UI/discovery is implemented and locally verified on
@@ -1189,8 +1199,53 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
 
-- RFU-AI-01–08/ADR141: targeted racer/killer decision and oncoming-pass corrections
-  have604-test/code/build verification for RFU-AI-03/04/05/07. Other gameplay/native gates remain open. Forecasts do not reserve lanes; an opening can close
-  after entry. Sealed roads legitimately wait. Full native race, human aggression
-  balance and broad performance/hardware acceptance are separate gates. See
+## Performance/loading investigation (2026-11-10, ADR140)
+
+RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
+lighting evaluation, generation reuse and content budgets. Initial clean local
+profiling identifies repeated terrain support construction and CPU physics/
+dispatch as candidates; see `testing/issue25-performance/REPORT.md`. Raw frames,
+loading milestones and actual asynchronous GPU pass diagnostics are distinguished
+from window averages and whole-frame presentation. The existing16.7ms p95 target,
+full-race combat/traffic coverage, cold-machine loading and Windows/other hardware
+acceptance remain open. Final combined content/engine measurements are required
+before treating local branch improvements as overall performance acceptance.
+
+- ADR140 verification: unchanged main and initial PR CI showed208/240sleeping
+  bodies at900updates despite all15controllers Resting with tiny residual motion.
+  The same-fixture test retains15s finite/body/resting/anchor and strict low-motion
+  checks, then requires all240naturally sleeping with zero motion by30s, under
+  both explicit executors. Local full598tests pass. No physics coefficients,
+  forced sleep or backend thresholds change; final-head CI remains separate.
+  Original failed CI evidence is retained. Windows repository reads now specify
+  UTF-8; five locale-hostile roadmap checks pass, actual Windows CI remains pending.
+
+- ADR140 measurement: first exploratory pairs missed replacement indexing and are
+  excluded. Eight controlled replacements confirm loading/runtime gains, with
+  exact census/support parity. Both-map/both-rig native recovery and18-case
+  explicit executor lab parity pass. The16.7ms p95/full-course/final combined
+  content/hardware gates stay open; peak CPU memory remains roughly2.1GiB Hills/
+  5.8GiB Metro, and no GPU-memory reduction is claimed.
+
+- RFU-AI-01–08/ADR141: the original implementation passed 605 tests, a full
+  native race and both rig recoveries. Some riders still have long sampled waits;
+  slot zero briefly stopped near station 11,152 before passing. The old trace
+  cannot identify its obstacle cause. The crossing refinement passed 608 tests;
+  a synthetic final-segment traversal passed station11,152 without stopping,
+  which is not an exact replay. A separate real stationary-human fixture found
+  and corrected narrow-road launch-space starvation; compressed chains now clear
+  in22.82s with one rear-swept reverse pulse per rider. Final combined civilian
+  forecast/native verification remains pending. Forecasts do not reserve racer
+  lanes, and sealed roads legitimately wait. Human aggression
+  balance and broad performance/hardware acceptance remain separate gates. See
   testing/issue26-racer-ai/REPORT.md; no physical rig tuning is part of issue26.
+
+- RFU-TRAF-01–04 / issue27: civilian overtaking work adds deterministic
+  reservations and live merge/abort checks. Human traffic balance, full-race
+  unforeseen queues and broad hardware/frame-time acceptance remain open;
+  selected native passes, both recovery controls and normal-fleet observations
+  pass; endpoint admission defect found and corrected. Metropolis240s has nine
+  completed passes and one healthy ongoing merge. Quiet CPU costs and limits
+  are recorded in testing/civilian-overtaking.
+  Upright oncoming bikers intentionally do not veto a pass; their solid
+  contact/recovery behavior is retained.

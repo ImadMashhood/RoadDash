@@ -221,6 +221,7 @@ fn main() {
             || a == "--destruction-survey"
             || a == "--traffic-stall-survey"
             || a == "--racer-ai-survey"
+            || a == "--civilian-survey"
             || a == "--metro-survey"
             || a == "--hills-survey"
             || a == "--hills-polish-survey"

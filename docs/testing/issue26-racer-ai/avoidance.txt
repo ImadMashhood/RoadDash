@@ -17,4 +17,3 @@ AI traffic width=6.5 car_speed=0 rider_s=458.9508 car_s=110 rider_speed=48.40887
 test game::tests::predictive_ai_traffic_uses_real_dynamic_braking_and_passing ... ok
 
 test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 421 filtered out; finished in 1.75s
-

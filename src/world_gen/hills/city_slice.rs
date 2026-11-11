@@ -87,6 +87,7 @@ fn clipped(shape: &Shape, lo: Vec2, hi: Vec2) -> Option<Shape> {
 }
 
 fn content() -> Metropolis {
+    let _load_span = crate::diagnostics::loading::Span::new("hills_city_source");
     let source = Track::metropolis().expect("approved Metropolis source");
     let mut m = (**source.metropolis.as_ref().unwrap()).clone();
     let spine: Vec<_> = (10200..=11600)

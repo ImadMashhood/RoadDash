@@ -1,0 +1,42 @@
+{
+  "started_unix": 1794354983.8543744,
+  "processes": [
+    {
+      "pid": 2060,
+      "uid": 1000,
+      "name": "baloo_file",
+      "exe": "/usr/libexec/kf6/baloo_file",
+      "cwd": "/home/imad",
+      "start_ticks": "2121",
+      "parent_pid": 1772,
+      "parent_exe": "/proc/1772/exe",
+      "parent_name": "systemd",
+      "resume_signal_sent": true
+    }
+  ],
+  "resumed": true,
+  "cases": [
+    {
+      "cache": "cold",
+      "kind": "control",
+      "exit_code": 0
+    },
+    {
+      "cache": "cold",
+      "kind": "candidate",
+      "exit_code": 0
+    },
+    {
+      "cache": "warm",
+      "kind": "candidate",
+      "exit_code": 0
+    },
+    {
+      "cache": "warm",
+      "kind": "control",
+      "exit_code": 0
+    }
+  ],
+  "finished_unix": 1794355586.060489,
+  "parent_executable_note": "Parent systemd PID/name observed; its executable symlink was unavailable and Path.resolve retained /proc/1772/exe. The paused process executable/UID/starttime were verified."
+}

@@ -1,0 +1,314 @@
+{
+  "source": "docs/testing/issue26-racer-ai/native-race/screenshots/racer-ai.json",
+  "frames": 21600,
+  "elapsed": 356.9403076171875,
+  "recorded_finished_ids": [
+    13,
+    8
+  ],
+  "slot_zero_finished": false,
+  "riders": [
+    {
+      "id": 0,
+      "initial_progress": 212.0,
+      "last_progress": 9334.42578125,
+      "last_speed": 21.483882904052734,
+      "finished": null,
+      "sampled_longest_stop_seconds": 5.99853515625,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 119,
+        "GettingUp": 1
+      }
+    },
+    {
+      "id": 1,
+      "initial_progress": 232.0,
+      "last_progress": 4543.66259765625,
+      "last_speed": 23.82903480529785,
+      "finished": null,
+      "sampled_longest_stop_seconds": 8.998725891113281,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 109,
+        "Falling": 11
+      }
+    },
+    {
+      "id": 2,
+      "initial_progress": 252.0,
+      "last_progress": 10347.6025390625,
+      "last_speed": 16.36960792541504,
+      "finished": null,
+      "sampled_longest_stop_seconds": 0.0,
+      "longest_stop_kind": null,
+      "sampled_target_changes": 19,
+      "decisions": {
+        "Race": 3,
+        "Alongside": 7,
+        "Pursue": 98,
+        "PassSlow": 12
+      },
+      "recovery": {
+        "Riding": 118,
+        "Falling": 1,
+        "GettingUp": 1
+      }
+    },
+    {
+      "id": 3,
+      "initial_progress": 272.0,
+      "last_progress": 7424.51904296875,
+      "last_speed": 12.306041717529297,
+      "finished": null,
+      "sampled_longest_stop_seconds": 8.997802734375,
+      "longest_stop_kind": "mixed",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 116,
+        "Falling": 4
+      }
+    },
+    {
+      "id": 4,
+      "initial_progress": 292.0,
+      "last_progress": 6523.45703125,
+      "last_speed": 3.8866426944732666,
+      "finished": null,
+      "sampled_longest_stop_seconds": 11.9970703125,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 25,
+      "decisions": {
+        "Race": 3,
+        "Pursue": 58,
+        "Alongside": 14,
+        "PassSlow": 45
+      },
+      "recovery": {
+        "Riding": 114,
+        "Falling": 6
+      }
+    },
+    {
+      "id": 5,
+      "initial_progress": 312.0,
+      "last_progress": 7443.423828125,
+      "last_speed": 4.697728157043457,
+      "finished": null,
+      "sampled_longest_stop_seconds": 6.00128173828125,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 120
+      }
+    },
+    {
+      "id": 6,
+      "initial_progress": 332.0,
+      "last_progress": 6535.314453125,
+      "last_speed": 3.733786106109619,
+      "finished": null,
+      "sampled_longest_stop_seconds": 8.997802734375,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 22,
+      "decisions": {
+        "Race": 3,
+        "Pursue": 82,
+        "Alongside": 5,
+        "PassSlow": 30
+      },
+      "recovery": {
+        "Riding": 109,
+        "GettingUp": 1,
+        "Falling": 9,
+        "Running": 1
+      }
+    },
+    {
+      "id": 7,
+      "initial_progress": 352.0,
+      "last_progress": 6711.732421875,
+      "last_speed": 17.184675216674805,
+      "finished": null,
+      "sampled_longest_stop_seconds": 9.000099182128906,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 113,
+        "Falling": 7
+      }
+    },
+    {
+      "id": 8,
+      "initial_progress": 372.0,
+      "last_progress": 11500.74609375,
+      "last_speed": 0.12390756607055664,
+      "finished": 346.49285888671875,
+      "sampled_longest_stop_seconds": 0.0,
+      "longest_stop_kind": null,
+      "sampled_target_changes": 14,
+      "decisions": {
+        "Race": 17,
+        "Alongside": 6,
+        "Pursue": 83,
+        "PassSlow": 14
+      },
+      "recovery": {
+        "Riding": 120
+      }
+    },
+    {
+      "id": 9,
+      "initial_progress": 392.0,
+      "last_progress": 8484.5283203125,
+      "last_speed": 12.923806190490723,
+      "finished": null,
+      "sampled_longest_stop_seconds": 9.000099182128906,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 116,
+        "Falling": 4
+      }
+    },
+    {
+      "id": 10,
+      "initial_progress": 412.0,
+      "last_progress": 9306.01171875,
+      "last_speed": 23.509611129760742,
+      "finished": null,
+      "sampled_longest_stop_seconds": 8.997802734375,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 16,
+      "decisions": {
+        "Race": 4,
+        "Pursue": 102,
+        "Alongside": 4,
+        "PassSlow": 10
+      },
+      "recovery": {
+        "Riding": 112,
+        "Falling": 6,
+        "Running": 2
+      }
+    },
+    {
+      "id": 11,
+      "initial_progress": 432.0,
+      "last_progress": 6518.8583984375,
+      "last_speed": 10.031221389770508,
+      "finished": null,
+      "sampled_longest_stop_seconds": 17.99560546875,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 112,
+        "Falling": 8
+      }
+    },
+    {
+      "id": 12,
+      "initial_progress": 452.0,
+      "last_progress": 7170.01171875,
+      "last_speed": 0.0,
+      "finished": null,
+      "sampled_longest_stop_seconds": 9.000099182128906,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 25,
+      "decisions": {
+        "Race": 3,
+        "Pursue": 54,
+        "Alongside": 11,
+        "PassSlow": 52
+      },
+      "recovery": {
+        "Riding": 111,
+        "Running": 2,
+        "GettingUp": 1,
+        "Falling": 6
+      }
+    },
+    {
+      "id": 13,
+      "initial_progress": 472.0,
+      "last_progress": 11500.0126953125,
+      "last_speed": 0.03661803901195526,
+      "finished": 309.93511962890625,
+      "sampled_longest_stop_seconds": 0.0,
+      "longest_stop_kind": null,
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 120
+      }
+    },
+    {
+      "id": 14,
+      "initial_progress": 492.0,
+      "last_progress": 11065.5693359375,
+      "last_speed": 29.189380645751953,
+      "finished": null,
+      "sampled_longest_stop_seconds": 2.999267578125,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 10,
+      "decisions": {
+        "Race": 55,
+        "Pursue": 63,
+        "Alongside": 1,
+        "PassSlow": 1
+      },
+      "recovery": {
+        "Riding": 114,
+        "Falling": 3,
+        "Running": 1,
+        "GettingUp": 1,
+        "Mounting": 1
+      }
+    },
+    {
+      "id": 15,
+      "initial_progress": 300.0,
+      "last_progress": 3929.041259765625,
+      "last_speed": 11.4000883102417,
+      "finished": null,
+      "sampled_longest_stop_seconds": 5.99853515625,
+      "longest_stop_kind": "avoidance",
+      "sampled_target_changes": 0,
+      "decisions": {
+        "Race": 120
+      },
+      "recovery": {
+        "Riding": 103,
+        "Falling": 3,
+        "Running": 12,
+        "Mounting": 2
+      }
+    }
+  ],
+  "limits": "Three-second samples; stop durations and target changes are sampled evidence, not continuous 60Hz guarantees. Police id15 is separate from race riders."
+}

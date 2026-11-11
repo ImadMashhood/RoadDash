@@ -43,6 +43,7 @@ for identity, samples in sorted(groups.items()):
                      decisions=dict(Counter(s['decision'] for s in samples)),
                      recovery=dict(Counter(s['recovery'] for s in samples))))
 result = dict(source=str(args.receipt), frames=source['frames'], elapsed=source['elapsed'],
+              synthetic_segment=source.get('synthetic_segment', False), segment_passed=source.get('segment_passed'),
               recorded_finished_ids=source['finished_ids'], slot_zero_finished=0 in source['finished_ids'],
               riders=rows, limits='Three-second samples; stop durations and target changes are sampled evidence, not continuous 60Hz guarantees. Police id15 is separate from race riders.')
 args.output.write_text(json.dumps(result, indent=2)+'\n')

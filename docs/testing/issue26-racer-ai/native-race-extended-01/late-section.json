@@ -1,0 +1,222 @@
+[
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 401.9293212890625,
+    "finished": null,
+    "frame": 24300,
+    "id": 0,
+    "lane": -0.7540491819381714,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -0.7539438009262085,
+      "speed": 37.59050750732422
+    },
+    "progress": 10938.64453125,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 36.995487213134766,
+    "target": null,
+    "throttle": 0.4956546723842621
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 404.9285888671875,
+    "finished": null,
+    "frame": 24480,
+    "id": 0,
+    "lane": -0.7885158061981201,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -0.7899377942085266,
+      "speed": 29.94246482849121
+    },
+    "progress": 11039.060546875,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 29.89805030822754,
+    "target": null,
+    "throttle": 0.3476754128932953
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 407.9278564453125,
+    "finished": null,
+    "frame": 24660,
+    "id": 0,
+    "lane": -0.8165192008018494,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -0.8158454895019531,
+      "speed": 23.821044921875
+    },
+    "progress": 11119.3828125,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 23.787004470825195,
+    "target": null,
+    "throttle": 0.3469596803188324
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 410.9271240234375,
+    "finished": null,
+    "frame": 24840,
+    "id": 0,
+    "lane": -0.8441950082778931,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -0.8941770195960999,
+      "speed": 0.0
+    },
+    "progress": 11152.0361328125,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 0.011883602477610111,
+    "target": null,
+    "throttle": 0.34702926874160767
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 413.9263916015625,
+    "finished": null,
+    "frame": 25020,
+    "id": 0,
+    "lane": -0.8441950082778931,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -0.8941770195960999,
+      "speed": 0.0
+    },
+    "progress": 11152.0361328125,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 0.011896170675754547,
+    "target": null,
+    "throttle": 0.34702596068382263
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 416.9256591796875,
+    "finished": null,
+    "frame": 25200,
+    "id": 0,
+    "lane": -0.8605511784553528,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -1.0052168369293213,
+      "speed": 40.997642517089844
+    },
+    "progress": 11160.861328125,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 3.9861295223236084,
+    "target": null,
+    "throttle": 0.005623626988381147
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 419.9249267578125,
+    "finished": null,
+    "frame": 25380,
+    "id": 0,
+    "lane": -0.8254867792129517,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -1.1553514003753662,
+      "speed": 0.0
+    },
+    "progress": 11172.5478515625,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 3.9904637336730957,
+    "target": null,
+    "throttle": 0.0038137435913085938
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 422.9241943359375,
+    "finished": null,
+    "frame": 25560,
+    "id": 0,
+    "lane": -3.202375888824463,
+    "passing": true,
+    "plan": {
+      "avoiding": true,
+      "lane": -5.148412227630615,
+      "speed": 51.70000076293945
+    },
+    "progress": 11181.1630859375,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 10.051007270812988,
+    "target": null,
+    "throttle": 1.0
+  },
+  {
+    "brake": 1.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 425.9234619140625,
+    "finished": null,
+    "frame": 25740,
+    "id": 0,
+    "lane": -5.444244861602783,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -5.440673351287842,
+      "speed": 0.0
+    },
+    "progress": 11233.8369140625,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 16.31916046142578,
+    "target": null,
+    "throttle": 0.0
+  },
+  {
+    "brake": 0.0,
+    "combat_desired_speed": 51.70000076293945,
+    "decision": "Race",
+    "elapsed": 428.9227294921875,
+    "finished": null,
+    "frame": 25920,
+    "id": 0,
+    "lane": -5.517779350280762,
+    "passing": false,
+    "plan": {
+      "avoiding": true,
+      "lane": -5.5189690589904785,
+      "speed": 42.71584701538086
+    },
+    "progress": 11291.6044921875,
+    "recovery": "Riding",
+    "route": 0,
+    "speed": 28.892742156982422,
+    "target": null,
+    "throttle": 1.0
+  }
+]
