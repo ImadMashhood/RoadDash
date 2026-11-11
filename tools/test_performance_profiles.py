@@ -4,10 +4,22 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
+from run_performance_profiles import processes
 from summarize_performance import summarize
 
 
 class FrameEvidence(unittest.TestCase):
+    def test_monitor_ignores_zombies_and_only_the_verified_indexer(self):
+        listing = ('1 cargo <defunct> ZN\n'
+                   '2 cargo RNl\n'
+                   '3 road-dash RNl\n'
+                   '4 baloo_file_extr RNl\n'
+                   '5 baloo_file_extr RNl\n')
+        with patch('run_performance_profiles.subprocess.check_output', return_value=listing):
+            self.assertEqual(processes(exclude=(3, 4)),
+                             [(2, 'cargo'), (5, 'baloo_file_extr')])
+
     def report(self, raw=None):
         sample = dict(schema_version=1, frames=100, fixed_steps=100,
                       wall_p95_ms=20., racing=True)

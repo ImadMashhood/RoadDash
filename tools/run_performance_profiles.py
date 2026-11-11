@@ -19,7 +19,7 @@ def processes(exclude=()):
     rows = subprocess.check_output(['ps', '-eo', 'pid=,comm=,stat='], text=True)
     return [(int(pid), name) for row in rows.splitlines()
             for pid, name, state in [row.strip().split(None, 2)]
-            if int(pid) not in exclude and
+            if int(pid) not in exclude and not state.startswith(('Z', '<defunct>')) and
             (name in ('cargo', 'rustc', 'clippy-driver', 'road-dash') or name.startswith(('road-dash', 'road_dash-', 'rr_core-', 'rr_content-', 'issue25-')) or
              (name == 'baloo_file_extr' and not state.startswith('T')) or
              (name == 'baloo_file' and state.startswith('R')))]
@@ -60,6 +60,8 @@ def main():
     parser.add_argument('--terrain-control', action='store_true')
     parser.add_argument('--fixed-executor', choices=['single','multi'], default='multi')
     parser.add_argument('--load-jobs', choices=[2,8], type=int, default=2)
+    parser.add_argument('--tangent-load-jobs', choices=[2,8], type=int,
+                        help='Explicit tangent preparation admission during Boot/Loading; omitted preserves binary default.')
     args = parser.parse_args()
     def interrupt(signum, frame):
         raise KeyboardInterrupt(f'signal {signum}')
@@ -120,6 +122,8 @@ def main():
                            ROADDASH_SETTINGS=str(folder/'settings.json'),
                            ROADDASH_SAVE_DIR=str(folder/'save'),
                            ROADDASH_DHT='0', ROADDASH_UPNP='0')
+                if args.tangent_load_jobs is not None:
+                    env['ROADDASH_TANGENT_LOAD_JOBS'] = str(args.tangent_load_jobs)
                 flags = ['--hills-revision-survey' if track == 'hills' else '--metro-survey']
                 cache_probe = evict_asset_pages(Path(__file__).resolve().parents[1]) if args.cold_assets else None
                 start = time.monotonic()
@@ -129,7 +133,7 @@ def main():
                                              stdout=out, stderr=subprocess.STDOUT)
                     try:
                         while child.poll() is None:
-                            contaminants.update(processes([child.pid]))
+                            contaminants.update(processes([child.pid, args.indexer_pid]))
                             if contaminants:
                                 break
                             if time.monotonic()-start > 600:

@@ -3,6 +3,8 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
+- RFU-PERF-01/PERF-08/P16-003: issue40 candidate C's tangent-admission and exact-height-cache loading changes did not pass matched performance review and were reverted. The 16.7ms p95, cold-machine presentation and broad hardware gates remain open; see [candidate evidence](testing/issue40-loading/REPORT.md).
+
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.

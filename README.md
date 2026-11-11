@@ -75,6 +75,9 @@ unchanged. [Controlled measurements and limits](docs/testing/issue25-performance
 show local loading and frame-time gains; sustained 60 FPS and broader hardware
 remain open. Diagnostic controls are `ROADDASH_TERRAIN_CACHE=0`,
 `ROADDASH_FIXED_EXECUTOR=multi` and `ROADDASH_LOAD_JOBS=2`.
+Issue 40 candidate C tested wider tangent admission and exact per-texel height
+reuse for startup material maps; neither passed matched Hills/Metropolis
+performance review, so both were reverted. [Raw evidence and decision](docs/testing/issue40-loading/REPORT.md).
 
 ## Controls
 
@@ -665,7 +668,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
 
-- [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Full cold-boot/presentation timing and broader hardware remain open.
+- [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Issue40 candidate C's [additional loading experiments](docs/testing/issue40-loading/REPORT.md) were rejected after matched trials. Full cold-boot/presentation timing and broader hardware remain open.
 - [ ] **RFU-PERF-04** Evaluate offline baking/caching, streaming, instancing, culling and bounded simulation against measured bottlenecks. Reason: issue25 requests substantial performance improvements; part:01; dependencies: RFU-PERF-01/02 and preserved world/physics contracts; acceptance: measured gains without removing resident hazards, source identities or required content; verification: matched profiles, deterministic geometry/collision and long-route recovery/streaming checks.
 
 - [ ] **AI-QUEUE-02** Resolve multi-rider slow queues with safe committed overtakes and escape from blocked approaches. Reason: user observes racers piling up despite the earlier single-queue fix; part: 01; dependencies: traffic avoidance and shared vehicle controls; acceptance: multiple rivals make progress around slower traffic when a reachable gap exists, without entering sidewalks or bypassing collision; verification: deterministic multi-rider physical regression and native queue observation. Implemented; four-rider physical regressions pass, dedicated rendered queue/human balance review remains open. Civilian circular-wait correction and verification are tracked in [traffic stall follow-up](docs/testing/traffic-stall/README.md); legitimate obstacle yielding is retained.

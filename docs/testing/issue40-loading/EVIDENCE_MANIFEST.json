@@ -1,0 +1,996 @@
+{
+  "schema_version": 1,
+  "archive": "raw-evidence.tar.gz",
+  "archive_sha256": "f021065ea7b4c08f31468fd315854d371b972bb6a89cc3fdf493aba46d73805b",
+  "archive_bytes": 1473162,
+  "files": [
+    {
+      "path": "evidence/baseline-cold-final/hills-1/logs/performance-1013696.jsonl.gz",
+      "size": 57507,
+      "sha256": "187140fb8276783afdefd2c3c08a69e96ec190c3c54cdc8c8d23c3a1d8856309"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-1/native.txt.gz",
+      "size": 1189,
+      "sha256": "07262ba248231ba65ad13c7acf1f9dd8f737334f567de559a84f53f3e8f92c8f"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2358,
+      "sha256": "8094b7bd178b9e74a2db02704a74086387a366485757528e6c84139a1b3d2d86"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-1/summary.json.gz",
+      "size": 7194,
+      "sha256": "fa90802ec32c7e324267a5edf86535cbc6cedf791b736e7257a02217b22b09aa"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-2/logs/performance-1015168.jsonl.gz",
+      "size": 58083,
+      "sha256": "d97a50a407d02eb674d8b734e4553c2e8e2dbbbcaec54dbed34257f92d810f97"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-2/native.txt.gz",
+      "size": 1151,
+      "sha256": "d02c341c0054f6ccc16c3e19a0972a0781a59960eb6d7b8baf8d7dce3edd41d6"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-2/screenshots/hills-revision.json.gz",
+      "size": 2362,
+      "sha256": "5a3f0043022651457193eb1484f43d0b30dcb2be775303aa9975a40ec8729edc"
+    },
+    {
+      "path": "evidence/baseline-cold-final/hills-2/summary.json.gz",
+      "size": 7204,
+      "sha256": "f3adfd4d668e1da04b38d2081d17f780743b4f4d71164503cccf3b646f196362"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/logs/performance-1014607.jsonl.gz",
+      "size": 23586,
+      "sha256": "760242aa3e778db2b0e1e4717b3d293864f58849d4f0f3ca2df1674246940f7f"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/native.txt.gz",
+      "size": 966,
+      "sha256": "adc76e9a3ad5c39a48e703a0583bcb4d541cc9437d1b209c06cc36235f4707db"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1564,
+      "sha256": "a8bdc4da1a0d1a8c61ff7a0d5905bd5d051e8e86b107e578315a0215f8df22c5"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/metro-performance.json.gz",
+      "size": 687,
+      "sha256": "fcff1467022407614d781cf3dc88ce347846d53419d6313747bc216e5e00fd47"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-1/summary.json.gz",
+      "size": 7017,
+      "sha256": "a803d29327f249d238cd1391e808073210a76c634e082ac908ee95d0627cdd68"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/logs/performance-1016728.jsonl.gz",
+      "size": 22962,
+      "sha256": "d74b76352144ce5fa40d5b5ca182a96659f3480f5923272d159573185ab8f8d9"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/native.txt.gz",
+      "size": 976,
+      "sha256": "44fb4ba15910d0b0b85b697633066ada7ebad8d98986049882306247a5285e71"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "ea317baa0bf5a07c92fabdc24b8930e3cf7df6a080ee3debc592b26e24fa68d9"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/metro-performance.json.gz",
+      "size": 688,
+      "sha256": "eb070513abcf67b594c036dd4f8126514502ac75271c4d819e45226098cd40cf"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/baseline-cold-final/metro-2/summary.json.gz",
+      "size": 6878,
+      "sha256": "46bbbed5ec007795fa0a425324d86ee6d7a28ed20bf4de3c1ca9aa73aca40d53"
+    },
+    {
+      "path": "evidence/baseline-cold-final/receipts.json.gz",
+      "size": 26739,
+      "sha256": "7b87c7a5c32b0ee960e48fd34a0131a8eddc0e2e872b3eb037c07ba05c4de272"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-1/logs/performance-1010488.jsonl.gz",
+      "size": 57879,
+      "sha256": "8b7e2173066ce4aafd00ab1cd7a6ad82de9f2ecb94a9c45f3380677633bafb68"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-1/native.txt.gz",
+      "size": 1175,
+      "sha256": "cff824370ea951f9bb58d80692f4047a6465b4f2e19b3692aa5bb23c8ef1b0ab"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2366,
+      "sha256": "eb47338484332a8e339cc01ca6d832904d4e1e0c168ba1213506940ee584b760"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-1/summary.json.gz",
+      "size": 7112,
+      "sha256": "5e550f40450bf00c0a9a6d0b59c9dfbb5f40dad8a2ca941bc9c2cfb11608cc90"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-2/logs/performance-1012420.jsonl.gz",
+      "size": 57679,
+      "sha256": "867469ab242d75ba405b740599aa3ef27996a7b718af5d6d62d30fca2f03f7b8"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-2/native.txt.gz",
+      "size": 1176,
+      "sha256": "68818816bbfb911794cb059f7fb691f2cdf7ef499ee2d3a7e5c714d7c7692210"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-2/screenshots/hills-revision.json.gz",
+      "size": 2364,
+      "sha256": "eb1be37332186b8f8e177e140f7c09ed022c62d9b4b092f9e21dc54a64966646"
+    },
+    {
+      "path": "evidence/baseline-warm-final/hills-2/summary.json.gz",
+      "size": 7103,
+      "sha256": "4bf7c74932d6ea76bbc5657e6fde681816eecffee4842c9a8ee43cb9ab10e62d"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/logs/performance-1011270.jsonl.gz",
+      "size": 23229,
+      "sha256": "efaf52cb194b746013843af7d0f86832ba309a0fe4ae3fd64ebc0f78b9239f23"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/native.txt.gz",
+      "size": 974,
+      "sha256": "d27613df9ebad93eaf337858318f0e4952cb3d1a368fe1807d15f6f6ef4dff4a"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1561,
+      "sha256": "0a4b71c26925cea771c3653d837a8f9efac107b78fe639f52d2872d41eb98c71"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/metro-performance.json.gz",
+      "size": 689,
+      "sha256": "de161fc1572588b4d05dbd081e009fead7fb394904582f26b7a13d1bfefebdc2"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-1/summary.json.gz",
+      "size": 6871,
+      "sha256": "7033a2eb94dec60316b4444ca4d3e732d339d3a614080623c63d0137829b2d6d"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/logs/performance-1013154.jsonl.gz",
+      "size": 22966,
+      "sha256": "2cb3d7c736ce457794b052a588e97db1de1e95e6de34591ac71e44d9bf0aae62"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/native.txt.gz",
+      "size": 964,
+      "sha256": "e2cbf954b0c5d9b086b84cc184c82a382b591caf9812d3ece3ce958c980594d8"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "abffc9d0286bff91cefa49fb9ed7ea29cd940bc8b5e101c05d4a5674316e5b4d"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/metro-performance.json.gz",
+      "size": 688,
+      "sha256": "89ded7eafc69b146153e7b117a612bc636cb802e2c3fa9d83cffeab15afda6bb"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/baseline-warm-final/metro-2/summary.json.gz",
+      "size": 6805,
+      "sha256": "2a0508bc40625f434b4bc6c0d9f96e681d2ddd5b08e9333ec99bfcd1344fe992"
+    },
+    {
+      "path": "evidence/baseline-warm-final/receipts.json.gz",
+      "size": 26296,
+      "sha256": "fa27b569b62ec0298d4e4cabd31d3abfba270b1e2a91e3763308f23713d8e801"
+    },
+    {
+      "path": "evidence/binaries/baseline.provenance.json",
+      "size": 632,
+      "sha256": "3ba5ec6a1ae9a9e6abec0ac516e9197778829383c455c73871e31517b0a8b525"
+    },
+    {
+      "path": "evidence/binaries/derived.provenance.json",
+      "size": 511,
+      "sha256": "46b99e96217186bf1df246a4fb2a96c6af427d35b08466aaed6a1b5c373d0eda"
+    },
+    {
+      "path": "evidence/binaries/tangent.provenance.json",
+      "size": 555,
+      "sha256": "7a0e8d96d8292f6d1a41017db9b153d11501eb18912b1017b3fb7a13c53758f4"
+    },
+    {
+      "path": "evidence/discarded/load-derived-warm/hills-1/logs/performance-1058648.jsonl.gz",
+      "size": 20022,
+      "sha256": "2e3772bf2fb976e3bd53bd4cdbe4ac740efeabfd3cfd8afb390d758b891bb2e5"
+    },
+    {
+      "path": "evidence/discarded/load-derived-warm/hills-1/native.txt.gz",
+      "size": 1131,
+      "sha256": "5b2a0ab3fa72372878a34d6244f410df6bfc7cb4a4502f3fa1e1eb5c7516bc24"
+    },
+    {
+      "path": "evidence/discarded/load-warm-control-clean/hills-1/native.txt.gz",
+      "size": 93,
+      "sha256": "6cfe9dec65530aefc7a550977e4dcebc39ac65d4f19ef7f1928437ed5d14116d"
+    },
+    {
+      "path": "evidence/discarded/load-warm-control-clean/hills-1/summary.json.gz",
+      "size": 1195,
+      "sha256": "3204b71c7154a88c7287a0173574e16947f0664c409f181bd7662fc404f079a3"
+    },
+    {
+      "path": "evidence/discarded/load-warm-control-clean/receipts.json.gz",
+      "size": 1208,
+      "sha256": "28409097a372d6a1403dab20f0bed2db848725e74dad0eb2ecee10c6c592b861"
+    },
+    {
+      "path": "evidence/final-tests.txt.gz",
+      "size": 17155,
+      "sha256": "d99b12df1f70d11698ee0eda08f0052b5a859b89fefb374994bcb67b67b87c99"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/hills-1/logs/performance-1029328.jsonl.gz",
+      "size": 58028,
+      "sha256": "03bfd024b66aaa6cb80f6a156a2303b52f0909b6dc78f0372f3f3261ace72ec7"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/hills-1/native.txt.gz",
+      "size": 1164,
+      "sha256": "0e8a8b08772b7b25f7540d85ed3d2fac68ab66c8dc87729cf89bfce024cc7f4f"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2365,
+      "sha256": "2c34c6149ffe73a3f49866c34aa3cd921fa0a090b1c1f7f75dbb169a62eae0a5"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/hills-1/summary.json.gz",
+      "size": 7115,
+      "sha256": "669d6271f9f875a176991036a001e62666235eaae27544cc6f7390e06f835fc2"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/logs/performance-1030242.jsonl.gz",
+      "size": 22865,
+      "sha256": "e2fd752337567b3fb1248bda6693d2b2deaaf8ca10687bfdc17a021b43bd682f"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/native.txt.gz",
+      "size": 967,
+      "sha256": "7cd284098187d186ea68e5d1ec34ef6b7b78695d3fd01bae9f08c5928a7b136b"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "ae2591c6c86eec6b8fd836a40e5a652913e03e0d682aa823e4a7e370e8e6c242"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/metro-performance.json.gz",
+      "size": 687,
+      "sha256": "d2e66b6898a6dd58793f3e114bf261a5df57c87aba7f38d94ed5f09c5a4ea91c"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/metro-1/summary.json.gz",
+      "size": 6850,
+      "sha256": "f7abfaa1e227a0640c30108ab1ad70deaa22bf38ffa517de191a14f40d5384cb"
+    },
+    {
+      "path": "evidence/load-cold-control-run1/receipts.json.gz",
+      "size": 13518,
+      "sha256": "a30c18e875ef598e5a47c7ab82ebcc485649eb8cdda7d0e58db9aec3746a487b"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/hills-1/logs/performance-1027055.jsonl.gz",
+      "size": 57923,
+      "sha256": "280766dfea850419460171c78f53f0652133eaca61c3ac500fdb0c81ae3bfc0e"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/hills-1/native.txt.gz",
+      "size": 1179,
+      "sha256": "b59b44f32ae7dbae0a1f72f697bc2b1ac512cc520c4645896d16e5545263ed31"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2362,
+      "sha256": "58c23f10c0886ca8e954304ab073ff8da2c09bcebfeac413b4fe760870da0862"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/hills-1/summary.json.gz",
+      "size": 7187,
+      "sha256": "877a7062732dd87d09b5ec7b61d62a562c519531562a6464d47329acbdbc9217"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/logs/performance-1028097.jsonl.gz",
+      "size": 23065,
+      "sha256": "90116936861a5763537c9d78f841033d94b5791195b01add45564781592a6f45"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/native.txt.gz",
+      "size": 967,
+      "sha256": "bad9cf9611d5295a056beff4b22ff8648af77c8e33e6f75f2b367c7d1f60d892"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1561,
+      "sha256": "7e71b98b9c246c0f676313e300c329ba843278fe548992a4d6ce9a07ca5b6c77"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/metro-performance.json.gz",
+      "size": 687,
+      "sha256": "058bb216d4a12fa9b070b489a9d76d29a30c1f938008e9ead482b3223fdaec72"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/metro-1/summary.json.gz",
+      "size": 6811,
+      "sha256": "9ba793af42ff8ec2a475e93e171a0fd48f17d15333ec6baa2f0e0b8da431b528"
+    },
+    {
+      "path": "evidence/load-cold-eight-run1/receipts.json.gz",
+      "size": 13583,
+      "sha256": "718382f3bd971b78890e06ebe9f671e89d1c4f48abf716adf24c18f3183a5230"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-1/logs/performance-1063785.jsonl.gz",
+      "size": 58485,
+      "sha256": "ef6f68f36ad3b13dfe512686eb758fe6066dda8be51ab40b9474e6aa9699a8a6"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-1/native.txt.gz",
+      "size": 1160,
+      "sha256": "dc1da979c1f00b2812602335acc89a25e2c10451bf47a26ff53db9fd0828db0c"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2363,
+      "sha256": "8d9cfe047eeb1271c1dcba0abde66f8f93a7a1a9d6a91f1c84a7b1f58221ddd0"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-1/summary.json.gz",
+      "size": 7056,
+      "sha256": "de040ddc41d59f413c7458a2c3eb18f2679c5b0a06c231c8d787d6ff2dec43ef"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-2/logs/performance-1065137.jsonl.gz",
+      "size": 58224,
+      "sha256": "eeebfdc648a5520057ce4dac4396c173df998d8e07386fd9f2a0716165c167df"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-2/native.txt.gz",
+      "size": 1166,
+      "sha256": "65adedad0082f3a4f0578a6ad17eab948aef280620a02cd74a1ba5d9baa1a66f"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-2/screenshots/hills-revision.json.gz",
+      "size": 2363,
+      "sha256": "f2081db66447460b9a8f44f815220dff6506bae134418d39f62127375b94bed1"
+    },
+    {
+      "path": "evidence/load-derived-cold/hills-2/summary.json.gz",
+      "size": 7127,
+      "sha256": "b39221ca777d5c17feab6999313936316687fcee321a8813aa8bd4e9f72cdc2b"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/logs/performance-1064744.jsonl.gz",
+      "size": 23217,
+      "sha256": "94a3913de9c499eade146ce6ec741320ad4ca0668cdfb5408ff15c91a0bd6441"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/native.txt.gz",
+      "size": 956,
+      "sha256": "83e9c802c42ef74265c516b9bfb66e1f68cb2f5ab176a73334afd8329dc02e49"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "e11c752ba66dc3e6c10cbcf328cde93cd4fa19b37dae6ebd0c39da85a732cf74"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/metro-performance.json.gz",
+      "size": 689,
+      "sha256": "e451d214425499f5c1054429d9b013b56a1c6abba8697773f2351ab88a1166ea"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-1/summary.json.gz",
+      "size": 6792,
+      "sha256": "c2b7ca230716dc15561e3da00a700a02c5f64430c1d565c5a0ccfa45c1f91f50"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/logs/performance-1066033.jsonl.gz",
+      "size": 23450,
+      "sha256": "2360d0456dc0dd2d5793bc8b5272ad43c5d061fb540af364e7beca517d91e5bb"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/native.txt.gz",
+      "size": 964,
+      "sha256": "24ff3f8520283b55ad6f2ae1b7e2cd4be3267b4699daaaa5c077e9d260606cfa"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "35acd548a6632aca5d3b6ea3301b0b55176c7a63e3cd0ed42df093f62fc6b228"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/metro-performance.json.gz",
+      "size": 688,
+      "sha256": "8fad391c8aa45914c6bfdc0ad32c53f4e664e54cc0d21b2e5324b943bcd57387"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-derived-cold/metro-2/summary.json.gz",
+      "size": 6952,
+      "sha256": "f8ecd06815fcd9cdede85b71aa750acf12309fdc30436d1d30ad8995aec2cf52"
+    },
+    {
+      "path": "evidence/load-derived-cold/receipts.json.gz",
+      "size": 26366,
+      "sha256": "79d0e82e89ab9a7c305fc20991476a224624a9941b041d9c9b611238b8dc733d"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-1/logs/performance-1059566.jsonl.gz",
+      "size": 58486,
+      "sha256": "85b493bf5e376742fa55e8ae8607618c8f69904e83268ff627224e40234adc9d"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-1/native.txt.gz",
+      "size": 1168,
+      "sha256": "55ed31d49a7331842ed59473fcc895f58d9afc61bf6afcde9c985d5d3bead68c"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2363,
+      "sha256": "a20e73cb3858a5d432e032068f272639de48b3022843f316fc4574e42d6de730"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-1/summary.json.gz",
+      "size": 7077,
+      "sha256": "a2b86ea38bc687229777db2269b58cf67ab241e0cec18970814469d88cf0f6b0"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-2/logs/performance-1060967.jsonl.gz",
+      "size": 59099,
+      "sha256": "67bad4706ecbdd96e1de955930c9cc249069e762b0d45b201e84306cdd53ef6f"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-2/native.txt.gz",
+      "size": 1175,
+      "sha256": "1939898d1f1e0e31dd24f0cdd1d1d5df6e2bbaad707a040bce9ecf562bdb9a54"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-2/screenshots/hills-revision.json.gz",
+      "size": 2361,
+      "sha256": "22f6b78758f9aa93741fc44a718a2bbc65778a54a31a12801e38de7cdb9880c5"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/hills-2/summary.json.gz",
+      "size": 7005,
+      "sha256": "e067e6f48d8d6c2ae9071f4a7d711882e31a6f229c1012fa668e9d80c228689f"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/logs/performance-1060502.jsonl.gz",
+      "size": 23075,
+      "sha256": "a13eb91690f6fa40e4f78916feaaa6a0a681551d85a4e9c2576085149d403f58"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/native.txt.gz",
+      "size": 969,
+      "sha256": "c944acc76738a2a80269fbdff9deeaacba4cc66c7305cfbcf2252f8de07fd36d"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1564,
+      "sha256": "b40f5f564d477e2f633a361cefac2b3c5e128de549ff608f6e6d471fd530d505"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/metro-performance.json.gz",
+      "size": 686,
+      "sha256": "ac5f86b1f5aa9ada71810f68f849357a11edcfd4df1ee7f5d7766dfd8e5b4840"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-1/summary.json.gz",
+      "size": 6744,
+      "sha256": "9cf200504fe67e1a594d71cc901db4a26841b8751a78478eef810bea9c6117f6"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/logs/performance-1062223.jsonl.gz",
+      "size": 23690,
+      "sha256": "cf95d2093c6c62042b115167502b0538f59552b74faf66d28bce9fbc41dc016f"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/native.txt.gz",
+      "size": 975,
+      "sha256": "1863f4e180bc53d6dc2ccf190f492fd1d3e933e3021a8308ac14ab4cc5980617"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/metro-authored-facades.json.gz",
+      "size": 1567,
+      "sha256": "13e5c4c540f5fa7c015b8ca3a80e2524c04ed5109544b2c5465968ac827c938c"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/metro-performance.json.gz",
+      "size": 685,
+      "sha256": "8ddc6e1066af20e6e0ad874ddbd5bde834d6300482b9ad4d4d7e64920abec8f4"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/metro-2/summary.json.gz",
+      "size": 6844,
+      "sha256": "fbeec0895b3d72dd0c6b1bd9637d9dc4ce81a7424ac1f00b4b2b521f01f256a2"
+    },
+    {
+      "path": "evidence/load-derived-warm-clean/receipts.json.gz",
+      "size": 26017,
+      "sha256": "f6e4b1b36eebe68bd0f915f9160bd8fcbc4cb947f3d1eeb3357d43b4268795de"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/hills-1/logs/performance-1023123.jsonl.gz",
+      "size": 57551,
+      "sha256": "9eda1cbf185c40f8a28809722cb75bd6cd7ccace9034afe36928482af3262ede"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/hills-1/native.txt.gz",
+      "size": 1168,
+      "sha256": "5b958ab9b9d53850e8fc536b4c13318fbd0d782b71b23f5c562fb58156679d71"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2361,
+      "sha256": "8927eaead395dae5b915a928314db80ef9ee566ffde6e6ae79d1a108c4602d79"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/hills-1/summary.json.gz",
+      "size": 7132,
+      "sha256": "58cbdc67b410fa6b76637c51dd0d6973648c9e8493263c7e4e1cfdac0d9447e9"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/logs/performance-1024044.jsonl.gz",
+      "size": 23208,
+      "sha256": "6bd2016cd650f0786b070b46333820f46ce8ebdb560d8a4abdf1a03e3b2442f6"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/native.txt.gz",
+      "size": 973,
+      "sha256": "755f0a43493b2ee0ff75e86965abfd056c047a35dfb29a5980cfa5ebf593f559"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "7c25d7d7401ac4719473569576794f91fee7c24177b3bca23bdeb87d8926dae7"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/metro-performance.json.gz",
+      "size": 687,
+      "sha256": "d4f7ffa774037740fa8623c1fd5e1df01149d656df981e28ec0bf99bf050563b"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/metro-1/summary.json.gz",
+      "size": 6784,
+      "sha256": "8fdbd49906538d14a645f35490b309e9b4632bb25501d3f050fe0dbb375157e3"
+    },
+    {
+      "path": "evidence/load-warm-control-run1/receipts.json.gz",
+      "size": 13471,
+      "sha256": "0b338213d63a2c76fee9dd5851bdb32f816f8618bde846febdcd70270dd885c9"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/hills-1/logs/performance-1025316.jsonl.gz",
+      "size": 57527,
+      "sha256": "4ff44940192f91c5db77836c7401c7bdc2a470bc24eb1b75046418efba546289"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/hills-1/native.txt.gz",
+      "size": 1162,
+      "sha256": "812a4f72aa60676f4d89a77b433c2558fad742fd414a7506abb82d3e77736c5a"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/hills-1/screenshots/hills-revision.json.gz",
+      "size": 2366,
+      "sha256": "2379fe9a51c163078c1080d702d49a47af5107a9e274767993555d8378026193"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/hills-1/summary.json.gz",
+      "size": 7005,
+      "sha256": "eca6d3a38dbf42048166e3a515f1fc66d7456eaaf7a482ace2480cb14278ad80"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/logs/performance-1026564.jsonl.gz",
+      "size": 22802,
+      "sha256": "1beab1d5037543ac023d5212d84ae24eb2d22d5ec7761d92f0347cfe234a4cea"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/native.txt.gz",
+      "size": 972,
+      "sha256": "ed89d0bf12c421895c8168648175c6f7eeed17744afeb2e50b9b23efdbb29e54"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/farm-placements.json.gz",
+      "size": 1396,
+      "sha256": "7661bfd7fb1f8dbc201fa5bb50e225d79b70adc91f8f28e689fe1b8edd400a94"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/metro-authored-facades.json.gz",
+      "size": 1563,
+      "sha256": "6a0102fb48d5689e359660fafdf28962d7a997a3110c654695ba198b1220f81b"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/metro-pedestrians.json.gz",
+      "size": 144,
+      "sha256": "01790324d166a16d5360d82b6d2aa6176847ef9d802026e0bf29cd0de6a5c1a6"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/metro-performance.json.gz",
+      "size": 686,
+      "sha256": "9034dcc1f9d2d687a12492ee9b32d8b6b04d1e208e06d8877aa44416ab72f146"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/metro-street-life.json.gz",
+      "size": 397,
+      "sha256": "741da68c72eb6e324b342248744139513e5584d2623751e0b12c3c4d3138cb6f"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/metro-survey.json.gz",
+      "size": 346,
+      "sha256": "78be1f1dbc887d0a2a0befd16b5243f40ffb3a6fad9850847fc6d82d7656ec07"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/pedestrian-crossings.json.gz",
+      "size": 759,
+      "sha256": "6a6cdc6ee3f3fe5c6a7faa5194a31c94d9b84e3beafd2724a1548faf3606247d"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/screenshots/urban-extra-cars.json.gz",
+      "size": 538,
+      "sha256": "10f4edf5cefb95d7f20ce73823a4a256e78895ccce9812793130c36ee3859440"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/metro-1/summary.json.gz",
+      "size": 6811,
+      "sha256": "15ea1cbbec696612629669222be42687f6c6614d7d430fa470b3d70e8bb64a39"
+    },
+    {
+      "path": "evidence/load-warm-eight-run1/receipts.json.gz",
+      "size": 13347,
+      "sha256": "cdef0fb234066ab3f59ec98b645c78bd6a5b0e4ae4325ec9c354905a48d0feda"
+    }
+  ],
+  "rebuild_command": "tar --sort=name --mtime='UTC 2026-11-10' --owner=0 --group=0 --numeric-owner -czf raw-evidence.tar.gz evidence",
+  "extract_command": "tar -xzf raw-evidence.tar.gz",
+  "limits": "Original native JSON/text and raw JSONL are individually gzip-compressed inside archive; unmeasured failed attempts are retained under evidence/discarded."
+}

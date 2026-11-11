@@ -1,5 +1,7 @@
 # Development progress
 
+Issue40 candidate C (2026-11-10): isolated loading trials evaluated eight versus two tangent jobs and exact per-texel source-height reuse. Clean common-baseline and candidate Hills/Metropolis warm/cold native receipts showed no repeatable tangent admission benefit; height reuse worsened warm Hills and Metropolis p95 and loading. Both runtime changes were reverted; the branch retains experiment/rollback commits, raw evidence and a harness monitor correction. RFU-PERF-01/PERF-08/P16-003 stay open, with no new task IDs or checklist closures. See [candidate C report](testing/issue40-loading/REPORT.md).
+
 Current scope: issue #28 / ADR143 adds urgent recovery run presentation, terrain-aware swing clearance and signed reverse heading. RFU-MOVE-03/04 verified by headless checks and ten native cases; RFU-MOVE-01/02 retain user terrain/feel acceptance. Final civilian-integrated617workspace tests (two explicit ignored benchmarks), strict lint/build/fmt/audit and roadmap checks pass. Evidence: testing/issue-28-movement/README.md. No movement-speed, rig or dependency migration.
 
 
@@ -847,7 +849,7 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
-- [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Full cold-boot/presentation timing and broader hardware remain open.
+- [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Issue40 candidate C's [additional loading experiments](testing/issue40-loading/REPORT.md) were rejected after matched trials. Full cold-boot/presentation timing and broader hardware remain open.
 
 - [ ] **RFU-PERF-04** Evaluate offline baking/caching, streaming, instancing, culling and bounded simulation against measured bottlenecks. Reason: issue25 requests substantial performance improvements; part:01; dependencies: RFU-PERF-01/02 and preserved world/physics contracts; acceptance: measured gains without removing resident hazards, source identities or required content; verification: matched profiles, deterministic geometry/collision and long-route recovery/streaming checks.
 
