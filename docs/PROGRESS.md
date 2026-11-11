@@ -1,6 +1,6 @@
 # Development progress
 
-Issue26 junction-queue follow-up (2026-11-11, ADR151): a bounded native trace
+Issue26 junction-queue follow-up (2026-11-11, ADR158): a bounded native trace
 at Metropolis station 3,040 identified a real oncoming car, then rear-occupied
 outbound merge space, not a static rejection, at the former queue head. A pure
 outbound-refuge candidate moves the denied inbound racing line toward the legal

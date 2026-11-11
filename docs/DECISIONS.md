@@ -4196,7 +4196,7 @@ count. City steam moves to the measured route curb and uses an original narrow
 vertical wisp mask; this avoids the earlier round facade glow. Heat remains a
 subtle non-refractive cue. Temporal art and supported GPU acceptance stay open.
 
-## ADR151 — Anticipate a safe outbound refuge for denied inbound racing lines (2026-11-11)
+## ADR158 — Anticipate a safe outbound refuge for denied inbound racing lines (2026-11-11)
 
 Issue26 queue follow-up: an unteleported native trace near Metropolis station
 3,040 found the leading racer beside the divider as a real main-road oncoming

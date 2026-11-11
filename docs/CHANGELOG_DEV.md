@@ -2149,3 +2149,9 @@ alternating release enabled/disabled cost runs completed. Wildlife system CPU
 median was 8.6–9.0 µs in the near-herd fixture; total frame medians overlap run
 variation. Full-course/native both-rig, art, GPU and broad hardware gates remain
 open. No new collider, save field, fixed-loop physics or imported media.
+
+## 2026-11-11 — AI refuge decision ID correction
+
+Renumbered the issue26 outbound-refuge decision from the already-used ADR151
+to ADR158 in the decision log and progress summary. No requirement, source,
+evidence, or acceptance status changed.
