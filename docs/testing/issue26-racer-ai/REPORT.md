@@ -241,3 +241,41 @@ over 2.2 m rider spacing and position before both solid blockers. The failed
 combined failure is retained in `combined-checks/tests.txt`; the final passing
 pre-integration run is in `lane-followup-tests.txt`; the passing merged-tree run
 is in `integrated-tests.txt`. The native full race and quiet cost gate remain.
+
+A first new-policy debug native full-race attempt was [interrupted](native-lane-metro-full-01/INTERRUPTED.md)
+at about 53.9 simulated seconds because simultaneous branch compilers made the
+rendered survey impractically slow. It has no completion receipt and supplies
+no performance or full-race acceptance. A fresh release-binary run is required.
+
+### Final combined Metropolis native run (2026-11-11)
+
+After guardrail PR51 and city activity PR53 were merged, the combined branch
+passed `cargo fmt --all --check`, strict locked workspace Clippy, locked debug
+and release builds, the source/hash audit, progress sync, five roadmap tests and
+**647 workspace tests** (443 game library, 1 preview, 57 content, 146 core;
+two ignored benchmarks). No source changes followed those checks. The release
+binary SHA-256 is `c11a348c77a6f52ca9d4a36c9fdbeab805c96a26bfae17f85745f72f7c9cb38d`.
+
+The unteleported [Metropolis race](native-lane-metro-combined-01/receipt.json)
+finished slot zero at 31,689 frames / 525.05 simulated seconds; nine riders finished in the
+window, the process exited 0, and no render/panic/shader error was found. The
+36,000-frame cap did not end the race prematurely. [Current anatomy](native-lane-metro-recovery-01/receipt.json)
+and [eleven-body baseline](native-lane-metro-baseline-01/receipt.json) native
+recovery smokes passed on the same binary. These were functional Linux runs,
+not isolated frame-time benchmarks or human playtests.
+
+The [decision samples](native-lane-metro-combined-01/screenshots/racer-ai.json)
+record rider lane coordinates and a completed slot-zero race. The physical
+Metropolis regression above proves entry into the opposite paved lane; raw
+native lane coordinates alone do not classify road side on every bend. The
+samples also expose remaining stalls: riders 1 and 11 each have
+an approximately 33-second longest consecutive sampled stop (three-second
+sample interval) near station 3,040–3,055. At those samples combat decision is
+`Race`, desired pace is above 50 m/s and final avoidance pace is zero. Thus the
+observed stop is imposed by avoidance, not the killer's speed-matching rule at
+those instants. The trace does not record the nearby car/rider proxies or static
+hits; it cannot distinguish a legitimate blocked road from an avoidable queue.
+Some stopped riders fall, and nine eventually finish. RFU-AI-01/02/06/08 and
+AI-11 remain open for sustained-queue diagnosis, all-map road-side behavior,
+quiet planner cost and human balance. No claim of eliminating every stop follows
+from this finish.

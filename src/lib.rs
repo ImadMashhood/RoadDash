@@ -74,7 +74,11 @@ pub fn build_app(smoke: bool) -> App {
         if std::env::args().any(|a| {
             matches!(
                 a.as_str(),
-                "--hills" | "--hills-survey" | "--hills-polish-survey" | "--hills-revision-survey"
+                "--hills"
+                    | "--guardrail-survey"
+                    | "--hills-survey"
+                    | "--hills-polish-survey"
+                    | "--hills-revision-survey"
             )
         }) {
             track::Track::hills().expect("validated Hills course")
@@ -187,6 +191,26 @@ pub fn build_app(smoke: bool) -> App {
                 .add_systems(
                     PostUpdate,
                     destruction::survey::camera
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| {
+            matches!(
+                a.as_str(),
+                "--guardrail-survey" | "--legacy-guardrail-survey"
+            )
+        }) {
+            use world_gen::hills::guardrails::survey;
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<survey::Survey>()
+                .add_systems(Update, survey::setup)
+                .add_systems(
+                    FixedUpdate,
+                    survey::walk.before(bevy_rapier3d::plugin::PhysicsSet::SyncBackend),
+                )
+                .add_systems(
+                    PostUpdate,
+                    survey::camera
                         .after(game::camera)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );

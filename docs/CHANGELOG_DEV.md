@@ -1830,6 +1830,9 @@ with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
 
+## 2026-11-10 — Guardrail issue33 source checkpoint (ADR148)
+
+Prepared original turn-side barriers with separate road-height/ground-foot calculations, 96m maximum runs, 16m gaps, solid flared ends, physical gap/support/terminal tests and a native bidirectional walking fixture. Added RFU-RAIL-01..05 as open requirements. Compilation and native execution are deferred for the coordinated performance window; no test completion, performance gain, push or merge is claimed.
 ## 2026-11-10 — Issue #28 recovery run and reverse heading (ADR143)
 
 Isolated codex/issue-28-movement from754f9ddb after fetching main. Confirmed6m/s
@@ -2027,3 +2030,41 @@ a pass-return regression and a wider-roam trap regression; all were resolved
 without disabling collision or escape. Final merged source passes 641 workspace
 tests, strict Clippy, format/build, roadmap and audit; native full-race and quiet
 planner-cost review remain open.
+
+## 2026-11-11 — Issue40 four-candidate selection checkpoint
+
+Four fresh agents measured CPU traffic snapshot reuse, facade visibility sync,
+loading admission/cache and grass-wind shader arithmetic against the frozen
+e2a31918 Hills/Metropolis baseline. Draft PRs #44, #49, #46 and #45 retain raw
+receipts and failed or mixed trials. CPU has the smallest nominal warm weighted
+ratio (~0.9886), narrowly ahead of GPU (~0.98955), but its final source was not
+reprofiled and cold Hills p95 regressed. Facade Hills p95/tail regressed and the
+loading cache was reverted. None is merged; final-source, full cold and
+combined-content reruns remain RFU-PERF-06/07 gates. See
+testing/issue40-selection/REPORT.md.
+
+## 2026-11-11 — Guardrail issue #33 integrated functional verification
+
+Merged current docs-only main after the source/test integration. Corrected the
+headless fixture to start from resident shoulder support and added bounded
+collision-grounded automatic end/gap guidance for trapped riders. 623 locked
+workspace tests, strict Clippy/format, locked debug/release builds, audit,
+roadmap checks,18 paired lab cases and seven native Hills/Valley functional
+scenarios pass. Both turn-side runs and baseline/current recovery have zero
+exceptional rescues in the native fixtures. Eight close captures and their
+visual limits are recorded at testing/guardrails/REPORT.md. RFU-RAIL-01..05
+remain open for human full-course and broad hardware/performance acceptance.
+Draft PR #51 records publication; merge is tracked separately.
+
+## 2026-11-11 — Racer lane follow-up on merged city and guardrail content
+
+Removed the unconditional right-side free-racing target and allowed a safe
+opposite-pavement racing line through the existing oncoming/return forecast.
+Integrated PR51 guardrails and PR53 city activity. The combined source passed
+647 workspace tests (two ignored), strict Clippy/format, locked debug/release
+builds, audit, roadmap and progress checks. An unteleported release Metropolis
+race finished slot zero at frame31,689; current and baseline recovery smokes
+passed. The race still sampled avoidance-driven stops up to33 seconds around
+station3,040, so broad queue behavior and frame-cost acceptance remain open.
+See testing/issue26-racer-ai/REPORT.md and ADR141. No rig/physics or dependency
+migration was made here.

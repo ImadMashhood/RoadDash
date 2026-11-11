@@ -143,6 +143,7 @@ pub fn build(
     let brick = materials.add(Color::srgb(0.48, 0.25, 0.17));
     let concrete = materials.add(Color::srgb(0.45, 0.48, 0.48));
     let window = materials.add(Color::srgb(0.19, 0.36, 0.43));
+    let mut rail_ground = crate::world_gen::hills::guardrails::GroundSamples::default();
     let mut render_triangles = 0;
     let mut collision_triangles = 0;
     let chunks = (track.length / 80.0).ceil() as usize;
@@ -162,6 +163,7 @@ pub fn build(
         render_triangles += ix.len();
         let (c, ci) = ribbon(track, start, end, 2.5, 0.0, 0.02);
         collision_triangles += ci.len();
+        rail_ground.add(&c, &ci);
         commands.spawn((
             Mesh3d(meshes.add(mesh(&v, &ix))),
             MeshMaterial3d(asphalt.clone()),
@@ -174,6 +176,7 @@ pub fn build(
         ));
         let (v, ix) = ribbon(track, start, end, 2.5, track.definition.verge_width, -0.04);
         render_triangles += ix.len();
+        rail_ground.add(&v, &ix);
         commands.spawn((
             Mesh3d(meshes.add(mesh(&v, &ix))),
             MeshMaterial3d(gravel.clone()),
@@ -203,6 +206,7 @@ pub fn build(
             if let Some(earthworks) = &track.earthworks {
                 earthworks.cut_pads(track, &mut vertices, &mut indices);
             }
+            rail_ground.add(&vertices, &indices);
             render_triangles += indices.len();
             collision_triangles += indices.len();
             let center = Vec3::new(origin.x + tile * 0.5, 0.0, origin.y + tile * 0.5);
@@ -288,6 +292,7 @@ pub fn build(
     if let Some(layout) = layout {
         crate::world_gen::surfaces::spawn(commands, meshes, materials, track, layout);
     }
+    crate::world_gen::hills::guardrails::spawn_legacy(commands, art, track, &rail_ground, layout);
     let cone = meshes.add(Cone::new(1.0, 1.0).mesh().resolution(7));
     let count = (track.length / 14.0) as usize;
     for i in 0..count {
@@ -323,35 +328,6 @@ pub fn build(
         random = ((random >> ((random >> 28) + 4)) ^ random).wrapping_mul(277803737);
         random = (random >> 22) ^ random;
         let sector = track.sector(d);
-        if sector == Sector::Hills
-            && track.curvature(d).abs() > 0.0025
-            && layout.is_none_or(|l| {
-                l.scenery_allowed(track.sample(d, 10.8 * track.curvature(d).signum()).0, 8.0)
-            })
-        {
-            {
-                let lane = 10.8 * track.curvature(d).signum();
-                let (v, r) = track.sample(d, lane);
-                block(
-                    commands,
-                    art,
-                    art.metal.clone(),
-                    v + Vec3::Y * 0.8,
-                    Vec3::new(0.18, 0.25, 14.3),
-                    r,
-                    true,
-                );
-                block(
-                    commands,
-                    art,
-                    art.metal.clone(),
-                    v + Vec3::Y * 0.4,
-                    Vec3::new(0.15, 0.8, 0.15),
-                    r,
-                    true,
-                );
-            }
-        }
         let near_crossing = track.definition.props.iter().any(|prop| {
             prop.kind == PropKind::Crossing
                 && crate::game::wrapped_gap(d - prop.fraction * track.length, track.length).abs()

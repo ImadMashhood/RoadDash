@@ -12,6 +12,7 @@ import time
 parser = argparse.ArgumentParser()
 parser.add_argument('--binary', type=Path, required=True)
 parser.add_argument('--case', choices=['race', 'recovery', 'baseline'], required=True)
+parser.add_argument('--track', choices=['metro', 'hills', 'valley'], default='metro')
 parser.add_argument('--frames', type=int, default=21600)
 parser.add_argument('--segment', action='store_true', help='Synthetic final-segment planner diagnostic; not full-race completion')
 parser.add_argument('--label', help='Distinct evidence folder; preserves earlier receipts')
@@ -27,7 +28,7 @@ if folder.exists():
     parser.error(f'Evidence folder already exists; choose a unique --label: {folder}')
 folder.mkdir(parents=True, exist_ok=False)
 binary = args.binary.resolve()
-env = dict(os.environ, ROADDASH_TRACK='metro', ROADDASH_VEHICLE='dynamic',
+env = dict(os.environ, ROADDASH_TRACK=args.track, ROADDASH_VEHICLE='dynamic',
            ROADDASH_AI_SURVEY_SEGMENT='1' if args.segment else '0',
            ROADDASH_AI_SURVEY_FRAMES=str(args.frames), ROADDASH_DHT='0', ROADDASH_UPNP='0',
            ROADDASH_SAVE_DIR=str(folder/'save'), ROADDASH_SETTINGS=str(folder/'settings.json'),
@@ -49,7 +50,7 @@ report = json.loads(receipt_path.read_text()) if args.case == 'race' and receipt
 # A real recorded slot-zero finish is authoritative even in those raw receipts.
 completed = (report.get('completed', False) or 0 in report.get('finished_ids', [])) if args.case == 'race' else 'Render smoke test passed:' in log
 segment_passed = report.get('segment_passed', False) if args.segment else None
-receipt = dict(case=args.case, synthetic_segment=args.segment, segment_passed=segment_passed, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
+receipt = dict(case=args.case, track=args.track, synthetic_segment=args.segment, segment_passed=segment_passed, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
                exit_code=result.returncode, render_errors=errors, completed=completed,
                requested_frames=args.frames if args.case == 'race' else None,
                recorded_finished_ids=report.get('finished_ids', []),

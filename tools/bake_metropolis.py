@@ -20,7 +20,11 @@ def triangulate(poly):
         rings.extend(rr);vertices.extend(p for r in rr for p in r)
         lookup={p:i for i,p in enumerate(vertices)}
         for t in shapely.constrained_delaunay_triangles(part).geoms:
-            assert part.covers(t.representative_point())
+            # Narrow landward sidewalk clips can leave a sub-millimetre edge
+            # triangle whose representative point rounds onto the boundary.
+            # Check actual exterior area; the total-area assertion below still
+            # rejects missing or duplicate building geometry.
+            assert t.difference(part).area < 1e-6
             triangles.append([lookup[p] for p in list(orient(t,sign=1).exterior.coords)[:3]])
     assert triangles
     assert abs(sum(Polygon([vertices[i] for i in t]).area for t in triangles)-clean.area)<1e-5

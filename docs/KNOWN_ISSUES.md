@@ -3,9 +3,9 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
-- RFU-AI-02: full-road rider lane choice passes 641 merged-tree workspace tests, including Metropolis lane entry, sealed queue, pass return and trap escape; combined native race review, all-map oncoming traffic behavior and quiet planner cost remain open. See testing/issue26-racer-ai/REPORT.md.
+- RFU-AI-02: full-road rider lane choice passes 647 city/guardrail-integrated workspace tests, including physical Metropolis opposite-lane entry, sealed queue, pass return and trap escape. A release Metropolis race finished slot zero, but several riders still had avoidance-driven stops up to 33 sampled seconds around station 3,040. The snapshot lacks the obstacle proxies needed to assign the exact cause. All-map oncoming behavior, queue balance and quiet planner cost remain open. See testing/issue26-racer-ai/REPORT.md.
 
-- RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
+- RFU-PERF-06/07: four candidate drafts are measured; the CPU and GPU nominal warm gains are about 1% and overlap variation, while cold/final-source and combined-content comparisons remain open. No candidate is merged and the 16.7 ms budget is unmet. See testing/issue40-selection/REPORT.md and issue #40.
 
 - RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
 
@@ -1199,6 +1199,11 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
 
+
+## Guardrail follow-up (2026-11-11, issue33/ADR148)
+
+RFU-RAIL-01..05 have physical gap and automatic re-entry checks, 623 integrated workspace tests, both native gap surveys and five native recovery controls passing. Eight oblique captures show openings and capped ends, but do not prove riding-height appearance at every turn, vertical skirt quality, or full-course human usability. Broad hardware/performance gates stay open. Rider physics and bridge-edge policy remain unchanged.
+
 ## Performance/loading investigation (2026-11-10, ADR140)
 
 RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
@@ -1249,3 +1254,15 @@ before treating local branch improvements as overall performance acceptance.
   are recorded in testing/civilian-overtaking.
   Upright oncoming bikers intentionally do not veto a pass; their solid
   contact/recovery behavior is retained.
+
+- RFU-CITY-01..04 / issue43: the 25% landward sidewalk area expansion, 480
+  authored urban walkers, 13 clear crossing routes and 1,552 placed original
+  curb props (257 broadleaf trees; 79 distinct model IDs) pass the baker and
+  authoring fixtures. The guardrail-integrated native survey moved 464 walkers
+  over 0.5m and completed four grounded crossings, two on each route; its
+  alternate-branch riding-height view has 14 nearby moving walkers. Sampled
+  trees still look sparse, and continuous capsule passage along every
+  irregular block plus broader crowd/traffic behavior need human traversal.
+  The unpaired debug sample is 31.056ms p95, above 16.7ms; matched release
+  cost, memory, hardware and user art gates stay open. See
+  testing/issue-43-city-life/REPORT.md.
