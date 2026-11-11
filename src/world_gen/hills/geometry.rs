@@ -1,5 +1,5 @@
 use super::*;
-use crate::world::{Ground, Obstacle};
+use crate::world::Ground;
 use bevy_rapier3d::prelude::*;
 
 pub(super) fn surface(
@@ -184,6 +184,7 @@ pub(super) fn spawn(
     census: &mut Census,
     images: Option<&mut Assets<Image>>,
 ) {
+    let mut rail_ground = super::guardrails::GroundSamples::default();
     let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
     let shoulder = materials.add(shoulder_material(images));
     let terrain_material = materials.add(StandardMaterial {
@@ -220,6 +221,9 @@ pub(super) fn spawn(
                 continue;
             }
             let (v, ix) = shoulders(track, route, a, b);
+            if route == 0 && b >= 1580. && a <= 5380. {
+                rail_ground.add(&v, &ix);
+            }
             let origin = v[v.len() / 2];
             let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &ix);
@@ -327,50 +331,7 @@ pub(super) fn spawn(
         }
     }
     drop(terrain_span);
-    // Mountain rails remain solid; the suspension bridge owns its gapped sides.
-    for d in (1580..5380).step_by(8) {
-        if !bridge::curve_guardrail(track, d as f32 + 4.)
-            || ((d as f32) < bridge::END && (d as f32 + 8.) > bridge::START)
-        {
-            continue;
-        }
-        for side in [-1., 1.] {
-            let (a, _) = track.sample_route(0, d as f32, side * (track.half_width(d as f32) + 1.8));
-            let (b, _) =
-                track.sample_route(0, d as f32 + 8., side * (track.half_width(d as f32) + 1.8));
-            let edge = b - a;
-            let q = Quat::from_rotation_arc(Vec3::Z, edge.normalize());
-            let rail = crate::world::part(
-                commands,
-                art.cube.clone(),
-                art.metal.clone(),
-                (a + b) * 0.5 + Vec3::Y * 0.82,
-                Vec3::new(0.16, 0.32, edge.length() + 0.06),
-                q,
-            );
-            commands.entity(rail).insert((
-                RigidBody::Fixed,
-                Collider::cuboid(0.5, 0.5, 0.5),
-                Obstacle,
-                HillsSolid,
-            ));
-            let post = crate::world::part(
-                commands,
-                art.cube.clone(),
-                art.metal.clone(),
-                a + Vec3::Y * 0.4,
-                Vec3::new(0.15, 0.8, 0.15),
-                Quat::IDENTITY,
-            );
-            commands.entity(post).insert((
-                RigidBody::Fixed,
-                Collider::cuboid(0.5, 0.5, 0.5),
-                Obstacle,
-                HillsSolid,
-            ));
-            census.guardrail_segments += 1;
-        }
-    }
+    super::guardrails::spawn(commands, art, track, census, &rail_ground);
 }
 
 #[cfg(test)]

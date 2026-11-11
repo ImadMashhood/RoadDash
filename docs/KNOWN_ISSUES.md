@@ -1197,6 +1197,11 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
 
+
+## Guardrail follow-up (2026-11-11, issue33/ADR148)
+
+RFU-RAIL-01..05 have physical gap and automatic re-entry checks, 623 integrated workspace tests, both native gap surveys and five native recovery controls passing. Eight oblique captures show openings and capped ends, but do not prove riding-height appearance at every turn, vertical skirt quality, or full-course human usability. Broad hardware/performance gates stay open. Rider physics and bridge-edge policy remain unchanged.
+
 ## Performance/loading investigation (2026-11-10, ADR140)
 
 RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,

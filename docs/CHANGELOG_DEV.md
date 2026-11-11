@@ -1830,6 +1830,9 @@ with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
 
+## 2026-11-10 — Guardrail issue33 source checkpoint (ADR148)
+
+Prepared original turn-side barriers with separate road-height/ground-foot calculations, 96m maximum runs, 16m gaps, solid flared ends, physical gap/support/terminal tests and a native bidirectional walking fixture. Added RFU-RAIL-01..05 as open requirements. Compilation and native execution are deferred for the coordinated performance window; no test completion, performance gain, push or merge is claimed.
 ## 2026-11-10 — Issue #28 recovery run and reverse heading (ADR143)
 
 Isolated codex/issue-28-movement from754f9ddb after fetching main. Confirmed6m/s
@@ -1984,3 +1987,16 @@ reprofiled and cold Hills p95 regressed. Facade Hills p95/tail regressed and the
 loading cache was reverted. None is merged; final-source, full cold and
 combined-content reruns remain RFU-PERF-06/07 gates. See
 testing/issue40-selection/REPORT.md.
+
+## 2026-11-11 — Guardrail issue #33 integrated functional verification
+
+Merged current docs-only main after the source/test integration. Corrected the
+headless fixture to start from resident shoulder support and added bounded
+collision-grounded automatic end/gap guidance for trapped riders. 623 locked
+workspace tests, strict Clippy/format, locked debug/release builds, audit,
+roadmap checks,18 paired lab cases and seven native Hills/Valley functional
+scenarios pass. Both turn-side runs and baseline/current recovery have zero
+exceptional rescues in the native fixtures. Eight close captures and their
+visual limits are recorded at testing/guardrails/REPORT.md. RFU-RAIL-01..05
+remain open for human full-course and broad hardware/performance acceptance.
+Draft PR #51 records publication; merge is tracked separately.

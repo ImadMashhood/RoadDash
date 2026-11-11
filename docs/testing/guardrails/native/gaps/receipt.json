@@ -1,0 +1,12 @@
+{
+  "case": "gaps",
+  "completed": true,
+  "exit_code": 0,
+  "errors": false,
+  "binary_sha256": "3bd1538944c7bdb3e1ba47afc07566f93075ac1694818887621ec99e97ad10a2",
+  "functional_only": true,
+  "elapsed_seconds": 36.640207052230835,
+  "physical_foot_crossings": 2,
+  "grounded_ticks": 315,
+  "screenshots": 4
+}

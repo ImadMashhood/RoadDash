@@ -170,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**224 verified tasks complete; 292 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**224 verified tasks complete; 297 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -189,12 +189,12 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 224 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 34 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 36 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
-| [05](#part-05) | World B — props, materials and procedural dressing | 10 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 33 open |
+| [05](#part-05) | World B — props, materials and procedural dressing | 12 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 34 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -664,6 +664,9 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **RFU-RAIL-01** Separate guardrail road-relative height from post grounding. Reason: user reports low rails and floating feet; dependencies:HILLS-01 and resident shoulder/terrain collision; acceptance: raised readable rails and every support reaches actual ground across crests, dips and cross-slopes; verification: all-post ground rays, geometry measurements and native close views. Part:01. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
+
+- [ ] **RFU-RAIL-02** Provide deliberate practical re-entry openings in long guardrail runs. Reason: riders trapped outside barriers; dependencies:RFU-RAIL-01 and existing recovery; acceptance: full-width openings traversable on foot and by intended bike footprint without exceptional rescue; verification: physical controller return, bidirectional shape sweeps and native traversal. Part:01. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
 
 - [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Full cold-boot/presentation timing and broader hardware remain open.
 - [ ] **RFU-PERF-04** Evaluate offline baking/caching, streaming, instancing, culling and bounded simulation against measured bottlenecks. Reason: issue25 requests substantial performance improvements; part:01; dependencies: RFU-PERF-01/02 and preserved world/physics contracts; acceptance: measured gains without removing resident hazards, source identities or required content; verification: matched profiles, deterministic geometry/collision and long-route recovery/streaming checks.
@@ -925,6 +928,10 @@ Study the original building/facade textures locally, rebuild them as original ar
 
 ### Part 05 — World B — props, materials and procedural dressing
 
+- [ ] **RFU-RAIL-03** Place ordinary guardrails on the requested turn side. Reason: explicit right-turn/right-side and left-turn/left-side request; dependencies:HILLS-01; acceptance: stable horizontal signed turns through grades, open straights/opposite side and separate authored bridge policy; verification: signed-yaw rules and placed collider survey. Part:05. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
+
+- [ ] **RFU-RAIL-04** Terminate every guardrail run and gap end with solid end hardware. Reason: exposed thin beam ends; dependencies:RFU-RAIL-02/03; acceptance: readable flared terminals with matching collision and useful gap clearance; verification: terminal census/contact tests, native close views and traversal. Part:05. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
+
 <!-- DEVELOPMENT_PASS_05 -->
 <details>
 <summary>Reviewed development pass — 10 open requirements retained (expand)</summary>
@@ -959,6 +966,7 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **RFU-RAIL-05** Validate guardrail gap spacing, terrain access and bridge exceptions. Reason: openings must work in the actual landscape; dependencies:RFU-RAIL-01/02/03/04 and HILLS-08; acceptance: bounded long runs, practically traversable gaps, preserved open suspension edges/thick supports, both branch/rig recovery and human full-course acceptance; verification: native gap/route/recovery receipts, collision tests and full-course review; hardware/performance acceptance remains open. Part:06. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
 - [ ] **RFU-CITY-01** Increase Metropolis urban pedestrian population and purposeful crosswalk use. Reason: city still feels sparse; part:06; dependencies: CITY-ACTIVITY-02, patrol authoring and RFU-PERF-06; acceptance: measured higher resident count than384, more completed grounded crossings without crowd jams, rural counts and solid interactions preserved; verification: generated census, crossing progress tests, both-route native surveys and matched frame profiles. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
 - [ ] **RFU-CITY-02** Widen usable Metropolis sidewalks without shrinking the approved roadway. Reason: current walking bands look narrow; part:06 coordinating04; dependencies: ROAD-WALK-01, SIDEWALK-01 and RFU-CITY-01; acceptance: continuous capsule-clear walking routes, retained4/3/4 lanes and closed building envelopes/parking; verification: authored right-of-way geometry, physical two-way foot crossings and native street views. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
 - [ ] **RFU-CITY-03** Line suitable Metropolis sidewalks with more trees. Reason: avenues remain bare; part:06 coordinating05; dependencies: RFU-CITY-02 and existing vegetation/collision; acceptance: varied bounded supported tree placement with pedestrian clearance, no doorway/crosswalk blockage and distance LOD; verification: placement/collision census, close/far native views and render cost. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
