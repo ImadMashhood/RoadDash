@@ -1234,3 +1234,11 @@ before treating local branch improvements as overall performance acceptance.
   are recorded in testing/civilian-overtaking.
   Upright oncoming bikers intentionally do not veto a pass; their solid
   contact/recovery behavior is retained.
+
+- RFU-CITY-01..04 / issue43: the 25% landward sidewalk area expansion, 480
+  authored urban walkers, 13 clear crossing routes and 1,552 placed original
+  curb props (257 broadleaf trees; 79 distinct model IDs) pass the baker and authoring fixtures. Full
+  walking-strip clearance is checked locally at placements, but continuous
+  capsule passage along every irregular block and crowd/traffic behavior need
+  native review. Extra character physics and prop rendering have unmeasured
+  frame and memory cost; the 16.7ms p95 and user art gates stay open.

@@ -186,6 +186,16 @@ pub fn run(
         } else {
             (eye, target)
         };
+        let (eye, target) = if std::env::var_os("ROADDASH_CITY_PEDESTRIAN_VIEWS").is_some()
+            && matches!(index, 5 | 7 | 9)
+        {
+            (
+                p - q * Vec3::Z * 12. + Vec3::Y * 1.8,
+                p + q * Vec3::Z * 30. + Vec3::Y * 1.8,
+            )
+        } else {
+            (eye, target)
+        };
         *camera = Transform::from_translation(eye).looking_at(target, Vec3::Y);
     }
     if landscape_view && (state.frame == period + 35 || state.frame == period + 85) {
@@ -197,8 +207,22 @@ pub fn run(
             )));
     }
     if state.frame % period == period - 5 {
+        let nearby_walkers = walkers
+            .iter()
+            .filter(|(_, _, t)| t.translation().xz().distance(p.xz()) <= 80.)
+            .count();
+        let nearby_moving = walkers
+            .iter()
+            .filter(|(e, _, t)| {
+                t.translation().xz().distance(p.xz()) <= 80.
+                    && state
+                        .walker_start
+                        .get(e)
+                        .is_some_and(|start| start.distance(t.translation()) > 0.5)
+            })
+            .count();
         if let Some(ref kit) = kit {
-            state.views.push(serde_json::json!({"view":index,"route":route,"chainage":s,"aerial":aerial,"grass_visible_batches":grass.iter().filter(|(_,v)|v.get()).count(),"grass_visible_triangles":grass.iter().filter(|(_,v)|v.get()).map(|(b,_)|b.triangles).sum::<usize>(),"kit":kit.evidence(),"native_draw_audit":if kit.mesh_instances > 0 { kit.audit(authored.iter(), &meshes) } else { serde_json::Value::Null }}));
+            state.views.push(serde_json::json!({"view":index,"route":route,"chainage":s,"aerial":aerial,"walkers_within_80m":nearby_walkers,"walkers_moving_within_80m":nearby_moving,"grass_visible_batches":grass.iter().filter(|(_,v)|v.get()).count(),"grass_visible_triangles":grass.iter().filter(|(_,v)|v.get()).map(|(b,_)|b.triangles).sum::<usize>(),"kit":kit.evidence(),"native_draw_audit":if kit.mesh_instances > 0 { kit.audit(authored.iter(), &meshes) } else { serde_json::Value::Null }}));
         }
         if std::env::var("ROADDASH_SURVEY_CAPTURE").as_deref() != Ok("0") {
             commands

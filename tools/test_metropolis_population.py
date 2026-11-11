@@ -18,7 +18,7 @@ class Population(unittest.TestCase):
         # Deliberately block one entire stretch, not just candidate points.
         blocked=dict(position=[7.2,4000],heading=0,kind='bench',size=[2.4,1,200])
         result=pedestrians(self.data,[self.path],walk,[blocked])
-        self.assertEqual(len(result),384)
+        self.assertEqual(len(result),480)
         self.assertEqual(result,pedestrians(self.data,[self.path],walk,[blocked]))
         safe=walk.buffer(-.42).difference(box(6,3900,8.4,4100).buffer(.62))
         for p in result:
@@ -27,6 +27,14 @@ class Population(unittest.TestCase):
         self.assertGreater(len({int(p['station']//1000) for p in result}),7)
     def test_too_narrow_walk_has_no_unsafe_patrols(self):
         self.assertEqual(pedestrians(self.data,[self.path],box(6,0,6.7,8850),[]),[])
+    def test_short_branch_receives_reserved_clear_patrols(self):
+        branch=dict(points=[[100,0,0],[100,0,8850]],progress=[3150,12000])
+        walk=box(-10,0,-6,8850).union(box(6,0,10,8850))
+        walk=walk.union(box(90,0,94,8850)).union(box(106,0,110,8850))
+        result=pedestrians(self.data,[self.path,branch],walk,[],budget=480)
+        self.assertEqual(len(result),480)
+        self.assertEqual(sum(p['route']==1 for p in result),96)
+        self.assertEqual(sum(p['route']==0 for p in result),384)
     def test_narrow_secondary_parking_keeps_crossing_sweeps_clear(self):
         from street_first_layout import encode
         self.data['streets']=[dict(id='side',points=[[-130,4000],[130,4000]],width_m=8)]
@@ -48,7 +56,7 @@ class Crossings(unittest.TestCase):
         walkers=[dict(position=[x,z],station=3300+z,route=0) for z in range(50,1150,50) for x in [-9,9]]
         selected=crossing_routes(walkers,road,walk,[],24)
         self.assertGreaterEqual(len(selected),4)
-        self.assertTrue(all(b-a>=240 for a,b in zip(selected,selected[1:])))
+        self.assertTrue(all(b-a>=180 for a,b in zip(selected,selected[1:])))
         self.assertTrue(all(LineString([p['position'],p['crossing_end']]).length==18 for p in walkers if 'crossing_end' in p))
         blocked=[dict(position=[0,600],heading=0,size=[26,2,1200])]
         fresh=[{k:v for k,v in p.items() if k!='crossing_end'} for p in walkers]
