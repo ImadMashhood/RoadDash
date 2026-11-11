@@ -229,7 +229,11 @@
         "UI-01",
         "UI-03",
         "UI-04",
-        "RIVAL-WEAPONS-01"
+        "RIVAL-WEAPONS-01",
+        "RFU-AI-03",
+        "RFU-AI-04",
+        "RFU-AI-05",
+        "RFU-AI-07"
       ]
     },
     "01": {
@@ -237,6 +241,11 @@
       "task_ids": [
         "RFU-PERF-01",
         "RFU-PERF-04",
+
+        "RFU-AI-01",
+        "RFU-AI-02",
+        "RFU-AI-06",
+        "RFU-AI-08",
         "FOOT-SPAWN-01",
         "AI-11",
         "CRASHREF-004",

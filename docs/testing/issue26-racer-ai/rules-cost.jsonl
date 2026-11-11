@@ -1,0 +1,6 @@
+{"case":"clear","oncoming_enabled":false,"iterations":10000,"nanoseconds_per_plan":1403,"static_callbacks_per_plan":0,"scope":"pure rules only; not native frame time"}
+{"case":"clear","oncoming_enabled":true,"iterations":10000,"nanoseconds_per_plan":1387,"static_callbacks_per_plan":0,"scope":"pure rules only; not native frame time"}
+{"case":"blocked_outbound","oncoming_enabled":false,"iterations":10000,"nanoseconds_per_plan":479,"static_callbacks_per_plan":1,"scope":"pure rules only; not native frame time"}
+{"case":"blocked_outbound","oncoming_enabled":true,"iterations":10000,"nanoseconds_per_plan":5583,"static_callbacks_per_plan":2,"scope":"pure rules only; not native frame time"}
+{"case":"oncoming","oncoming_enabled":false,"iterations":10000,"nanoseconds_per_plan":506,"static_callbacks_per_plan":1,"scope":"pure rules only; not native frame time"}
+{"case":"oncoming","oncoming_enabled":true,"iterations":10000,"nanoseconds_per_plan":7597,"static_callbacks_per_plan":2,"scope":"pure rules only; not native frame time"}

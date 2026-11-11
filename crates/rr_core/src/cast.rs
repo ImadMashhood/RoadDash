@@ -70,20 +70,35 @@ pub const NAMES: [&str; 15] = [
 pub struct DriveMemory {
     stalled: f32,
     backing: f32,
+    queue_reposition: bool,
     cooldown: f32,
     pub lane: Option<f32>,
 }
 impl DriveMemory {
     pub fn cancel_reverse(&mut self) {
         self.backing = 0.;
+        self.queue_reposition = false;
     }
     pub fn reversing(&self) -> bool {
         self.backing > 0.
     }
     pub fn step(&mut self, dt: f32, speed: f32, wants_progress: bool, rear_clear: bool) -> bool {
+        self.step_with_queue(dt, speed, wants_progress, rear_clear, false, false)
+    }
+    /// Preserve the ordinary short unsticking pulse. A compressed queue instead
+    /// keeps a bounded launch-space goal, terminating as soon as it is satisfied.
+    pub fn step_with_queue(
+        &mut self,
+        dt: f32,
+        speed: f32,
+        wants_progress: bool,
+        rear_clear: bool,
+        request_queue: bool,
+        needs_space: bool,
+    ) -> bool {
         self.cooldown = (self.cooldown - dt).max(0.);
         if self.backing > 0. {
-            self.backing = if rear_clear {
+            self.backing = if rear_clear && (!self.queue_reposition || needs_space) {
                 (self.backing - dt).max(0.)
             } else {
                 0.
@@ -91,13 +106,14 @@ impl DriveMemory {
             self.stalled = 0.;
             return self.reversing();
         }
-        self.stalled = if speed.abs() < 0.65 && wants_progress {
+        self.stalled = if speed.abs() < 0.65 && (wants_progress || request_queue) {
             self.stalled + dt
         } else {
             0.
         };
         if self.stalled > 2.5 && rear_clear && self.cooldown == 0. {
-            self.backing = 1.25;
+            self.queue_reposition = request_queue;
+            self.backing = if request_queue { 4.5 } else { 1.25 };
             self.cooldown = 6.;
             self.stalled = 0.;
         }
@@ -123,6 +139,33 @@ mod tests {
         assert_eq!(CAST.iter().filter(|c| c.aggressive).count(), 7);
         assert_eq!(CAST[3].weapon, Some(Weapon::Whip));
         assert_eq!(CAST[10].weapon, Some(Weapon::BaseballBat));
+    }
+    #[test]
+    fn queue_backoff_holds_goal_but_stops_for_space_rear_obstruction_and_time_bound() {
+        for stop_for_gap in [false, true] {
+            let mut m = DriveMemory::default();
+            for _ in 0..151 {
+                m.step_with_queue(1. / 60., 0., false, true, true, true);
+            }
+            assert!(m.reversing());
+            for _ in 0..120 {
+                assert!(m.step_with_queue(1. / 60., -2., false, true, false, true));
+            }
+            assert!(!m.step_with_queue(1. / 60., -2., false, stop_for_gap, false, !stop_for_gap));
+            for _ in 0..120 {
+                assert!(!m.step_with_queue(1. / 60., 0., false, true, true, true));
+            }
+        }
+        let mut m = DriveMemory::default();
+        for _ in 0..151 {
+            m.step_with_queue(1. / 60., 0., false, true, true, true);
+        }
+        let mut ticks = 0;
+        while m.step_with_queue(1. / 60., -2., false, true, false, true) {
+            ticks += 1;
+            assert!(ticks <= 270);
+        }
+        assert!(ticks >= 268);
     }
     #[test]
     fn blocked_rider_backs_out_but_not_at_a_queue_or_into_a_car() {

@@ -166,6 +166,8 @@ pub fn build_app(smoke: bool) -> App {
             ));
         if std::env::var_os("ROADDASH_REVERSE_REVIEW").is_some() {
             app.add_systems(Update, verification::movement::review.after(ui::update_ui));
+        } else if std::env::args().any(|a| a == "--racer-ai-survey") {
+            game::racer_ai_survey::install(&mut app);
         } else if std::env::args().any(|a| a == "--civilian-survey") {
             game::civilian_survey::install(&mut app);
         } else if std::env::args().any(|a| a == "--traffic-stall-survey") {

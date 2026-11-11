@@ -1,0 +1,16 @@
+PR34 original head 27e9d09712fc6f6554175c4350d35690a34eea70
+Ubuntu job https://github.com/ImadMashhood/RoadDash/actions/runs/42917765234/job/130184497294
+Failure excerpt (trailing whitespace normalized) (baseline failure separately investigated by issue25 owner):
+2026-11-10T23:18:09.5429316Z ---- biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep stdout ----
+2026-11-10T23:18:09.5429757Z
+2026-11-10T23:18:09.5430189Z thread 'biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep' (15997) panicked at src/biomechanics/tests.rs:99:5:
+2026-11-10T23:18:09.5430671Z assertion `left == right` failed
+2026-11-10T23:18:09.5430886Z   left: 208
+2026-11-10T23:18:09.5431056Z  right: 240
+2026-11-10T23:18:09.5431323Z note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+2026-11-10T23:18:09.5431558Z
+2026-11-10T23:18:09.5431570Z
+2026-11-10T23:18:09.5431640Z failures:
+2026-11-10T23:18:09.5431897Z     biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep
+2026-11-10T23:18:09.5432133Z
+2026-11-10T23:18:09.5432353Z test result: FAILED. 423 passed; 1 failed; 1 ignored; 0 measured; 0 filtered out; finished in 98.48s

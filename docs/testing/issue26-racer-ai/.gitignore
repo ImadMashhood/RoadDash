@@ -1,0 +1,5 @@
+# Keep raw local evidence without committing duplicate images or build-contaminated profiles.
+native-*/performance/
+native-*/save/
+native-*/settings.json
+native-*/screenshots/

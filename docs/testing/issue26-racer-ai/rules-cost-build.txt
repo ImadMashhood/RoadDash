@@ -1,0 +1,9 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling serde v1.0.229
+   Compiling syn v3.0.9
+   Compiling serde_derive v1.0.229
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26/crates/rr_core)
+    Finished `release` profile [optimized] target(s) in 4.60s
+     Running `/home/imad/Documents/ChatGPT/RoadRash/target/release/examples/racer_ai_cost`

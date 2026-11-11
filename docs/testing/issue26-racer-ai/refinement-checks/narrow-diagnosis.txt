@@ -1,0 +1,52 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26)
+    Finished `test` profile [optimized + debuginfo] target(s) in 51.20s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadDash-issue-26-target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+RFU-AI stationary human count=1 width=6.5 player=100 progress=[130.49878] longest_stop_ticks=[0] minimum=3.3513477 borrowed=false
+RFU-AI stationary human count=3 width=6.5 player=100 progress=[261.9038, 228.17407, 130.27881] longest_stop_ticks=[0, 0, 0] minimum=1.9304478 borrowed=false
+NARROW tick=0 id=1 station=50.337036 lane=0.9989611 speed=19.987265 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.0, speed: 20.610678, avoiding: true }) committed=None home=None escape=false throttle=0.50266945 brake=0
+NARROW tick=0 id=2 station=35.333252 lane=0.9999851 speed=19.986126 role=Killer target=Some(1) decision=Pursue plan=Some(Plan { lane: 1.0, speed: 20.119642, avoiding: true }) committed=None home=None escape=false throttle=0.37991056 brake=0
+NARROW tick=0 id=3 station=20.333252 lane=0.99994504 speed=19.98652 role=Killer target=Some(2) decision=Pursue plan=Some(Plan { lane: 1.0, speed: 20.119642, avoiding: true }) committed=None home=None escape=false throttle=0.37991056 brake=0
+NARROW tick=120 id=1 station=86.21582 lane=-1.1444426 speed=17.93837 role=Racer target=None decision=Race plan=Some(Plan { lane: -2.35, speed: 52.379585, avoiding: true }) committed=Some(-2.35) home=Some(0.99316263) escape=false throttle=1 brake=0
+NARROW tick=120 id=2 station=71.30615 lane=1.000887 speed=14.517721 role=Killer target=Some(1) decision=Pursue plan=Some(Plan { lane: 1.0006387, speed: 14.307138, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=0
+NARROW tick=120 id=3 station=57.067383 lane=0.99884856 speed=15.384427 role=Killer target=Some(2) decision=Pursue plan=Some(Plan { lane: 0.99872506, speed: 15.335821, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=240 id=1 station=134.41846 lane=-1.9496676 speed=30.484846 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 54.104473, avoiding: true }) committed=Some(1.4699999) home=Some(-1.9625586) escape=false throttle=1 brake=0
+NARROW tick=240 id=2 station=90.685425 lane=1.0031494 speed=5.256299 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.0031494, speed: 5.08903, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=0
+NARROW tick=240 id=3 station=79.88635 lane=1.0012056 speed=7.637266 role=Killer target=Some(2) decision=Pursue plan=Some(Plan { lane: 1.0010167, speed: 7.5371695, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=360 id=1 station=206.32898 lane=0.8111955 speed=40.58308 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 53.86787, avoiding: true }) committed=Some(1.4699999) home=Some(0.79864883) escape=false throttle=1 brake=0
+NARROW tick=360 id=2 station=95.17822 lane=1.0037744 speed=0.29781005 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.0037744, speed: 0.001373291, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=1
+NARROW tick=360 id=3 station=89.23364 lane=1.0025091 speed=2.0244367 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 1.0024778, speed: 2.0858421, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=480 id=1 station=292.70508 lane=1.392389 speed=45.021694 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 52.537785, avoiding: false }) committed=None home=None escape=false throttle=1 brake=0
+NARROW tick=480 id=2 station=95.40039 lane=1.0027621 speed=0.0000016559069 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.0027621, speed: 0.001373291, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=0
+NARROW tick=480 id=3 station=90.74097 lane=1.0027008 speed=0.09141399 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 1.0027679, speed: 0.07982166, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=600 id=1 station=385.68213 lane=1.4000695 speed=47.242023 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 53.009056, avoiding: false }) committed=None home=None escape=false throttle=1 brake=0
+NARROW tick=600 id=2 station=95.40039 lane=1.0027621 speed=0.0000000033743768 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.0027621, speed: 1.767389e-7, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=0
+NARROW tick=600 id=3 station=90.80054 lane=1.0011435 speed=0.00000016784502 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 1.0011435, speed: 3.55318e-9, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=720 id=1 station=481.67725 lane=1.3943404 speed=48.17454 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 53.174316, avoiding: false }) committed=None home=None escape=false throttle=1 brake=0
+NARROW tick=720 id=2 station=95.40039 lane=1.0027621 speed=0.0000000000068762496 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.0027621, speed: 3.6015393e-10, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=0
+NARROW tick=720 id=3 station=90.80054 lane=1.0011435 speed=0.00000000034203024 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 1.0011435, speed: 7.2406126e-12, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=840 id=1 station=578.8739 lane=1.3815138 speed=48.527096 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 53.172512, avoiding: false }) committed=None home=None escape=false throttle=1 brake=0
+NARROW tick=840 id=2 station=95.40039 lane=1.0027621 speed=0.000000000000014012232 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.0027621, speed: 7.339116e-13, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=false throttle=0 brake=0
+NARROW tick=840 id=3 station=90.80054 lane=1.0011435 speed=0.00000000000069697985 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 1.0011435, speed: 1.4754721e-14, avoiding: true }) committed=None home=None escape=false throttle=0 brake=0
+NARROW tick=960 id=1 station=676.51135 lane=1.3642002 speed=48.654846 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 53.11769, avoiding: false }) committed=None home=None escape=false throttle=1 brake=0
+NARROW tick=960 id=2 station=96.80469 lane=1.3612435 speed=0.021465559 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 1.3616898, speed: 0.001373291, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=true throttle=0 brake=1
+NARROW tick=960 id=3 station=92.069336 lane=1.0003312 speed=0.20198935 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 1.0003604, speed: 0.8915483, avoiding: true }) committed=None home=None escape=false throttle=0.53696626 brake=0
+NARROW tick=1080 id=1 station=774.30493 lane=1.3576382 speed=48.701813 role=Racer target=None decision=Race plan=Some(Plan { lane: 1.4699999, speed: 53.03258, avoiding: false }) committed=None home=None escape=false throttle=1 brake=0
+NARROW tick=1080 id=2 station=97.53735 lane=2.1953542 speed=3.0162795 role=Killer target=Some(0) decision=PassSlow plan=Some(Plan { lane: 2.1507766, speed: 0.001373291, avoiding: true }) committed=Some(-2.35) home=Some(0.9979094) escape=true throttle=0.40696278 brake=0
+NARROW tick=1080 id=3 station=93.034424 lane=2.1947813 speed=3.1812384 role=Killer target=Some(2) decision=PassSlow plan=Some(Plan { lane: 2.1449509, speed: 2.982593, avoiding: true }) committed=None home=None escape=true throttle=0.33830595 brake=0
+RFU-AI stationary human count=3 width=3 player=100 progress=[871.3369, 100.961426, 94.95056] longest_stop_ticks=[0, 521, 455] minimum=2.7237105 borrowed=true
+
+thread 'game::racer_ai_tests::racers_and_killer_chain_physically_pass_a_stationary_human_player' (871741) panicked at src/racer_ai_tests.rs:261:9:
+assertion failed: progress.iter().all(|p| *p > parked.progress + 15.)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test game::racer_ai_tests::racers_and_killer_chain_physically_pass_a_stationary_human_player ... FAILED
+
+failures:
+
+failures:
+    game::racer_ai_tests::racers_and_killer_chain_physically_pass_a_stationary_human_player
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 425 filtered out; finished in 2.86s
+
+error: test failed, to rerun pass `-p road-dash --lib`

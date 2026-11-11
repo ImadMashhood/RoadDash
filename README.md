@@ -136,7 +136,7 @@ full native trajectory/caller parity remains CRASHREF-004.
 - Seeded farms/fences and solid cows that react physically on contact; city cross traffic and walking sidewalk pedestrians; elevated hill terrain and guardrails.
 - Authored textured rider and sport motorcycle meshes, plus original procedural cars, road markings, trees, farms, buildings, cows, pedestrians and start/finish markers. Human skins follow the existing ragdoll joints.
 - PBR materials, directional shadows, atmospheric distance fog, and a speed-sensitive chase camera.
-- Fourteen AI racers with pursuit, speed matching, lane changes, traffic avoidance, attacks, and selective downed-rider hunts.
+- Fourteen AI rivals with forward-target pursuit, moving side-by-side combat, committed passing, traffic avoidance, attacks and shared recovery. Nearby rear targets do not make a leading killer brake.
 - Twelve traffic vehicles traveling in both directions.
 - Three direct side-by-side punches knock out a target when each consecutive hit is within three seconds; misses, gaps and duplicate contact do not count.
 - Armor, nitro, collision detection, crash recovery and camera shake.
@@ -170,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**224 verified tasks complete; 297 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**228 verified tasks complete; 301 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -188,8 +188,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 224 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 36 open |
+| [00](#part-00) | Completed and verified foundations | 228 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 40 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
@@ -662,6 +662,19 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 </details>
 
+<details>
+<summary>Racer decision follow-up — 4 verified tasks</summary>
+
+- [x] **RFU-AI-03** Target the closest rider ahead, pursue beyond10m and seek moving side-by-side combat inside10m. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: eligible targets, stable side and bounded speed matching; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
+
+- [x] **RFU-AI-04** Race cleanly while leading until another rider approaches within10m. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: rear engagement never creates braking feedback; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
+
+- [x] **RFU-AI-05** Trace leading-killer/follower braking through target, pace and avoidance. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: reproducible diagnostics distinguish combat matching from obstacle stops; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
+
+- [x] **RFU-AI-07** Define combat, passing, avoidance and race-progress priorities. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: explicit radius, eligibility, target/side hysteresis and forward preference; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
+
+</details>
+
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
 - [ ] **RFU-RAIL-01** Separate guardrail road-relative height from post grounding. Reason: user reports low rails and floating feet; dependencies:HILLS-01 and resident shoulder/terrain collision; acceptance: raised readable rails and every support reaches actual ground across crests, dips and cross-slopes; verification: all-post ground rays, geometry measurements and native close views. Part:01. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
@@ -670,6 +683,18 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 - [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Full cold-boot/presentation timing and broader hardware remain open.
 - [ ] **RFU-PERF-04** Evaluate offline baking/caching, streaming, instancing, culling and bounded simulation against measured bottlenecks. Reason: issue25 requests substantial performance improvements; part:01; dependencies: RFU-PERF-01/02 and preserved world/physics contracts; acceptance: measured gains without removing resident hazards, source identities or required content; verification: matched profiles, deterministic geometry/collision and long-route recovery/streaming checks.
+
+- [ ] **RFU-AI-01** Seek overtaking opportunities and race progress around slow/stopped riders. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: stopped-player followers must pass when a reachable route exists; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). The city/guardrail-integrated branch passes 647 tests, strict checks, locked builds and a release Metropolis race with both recovery rigs. Avoidance-driven stops up to 33 sampled seconds, all-map lane behavior, quiet cost and human balance remain open.
+
+- [ ] **RFU-AI-02** Let racers and killers choose any physically drivable lane, including a clear opposite lane for passing, then merge back after a committed pass. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: predict outbound/return clearance, yield to oncoming/rear obstacles and preserve collision; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). The city/guardrail-integrated branch passes 647 tests, strict checks, locked builds and a release Metropolis race with both recovery rigs. Avoidance-driven stops up to 33 sampled seconds, all-map lane behavior, quiet cost and human balance remain open.
+
+
+
+
+- [ ] **RFU-AI-06** Remove mutual-killer braking and multi-rider combat queues. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: bounded progress in passable scenarios and legitimate yielding in sealed corridors; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). The city/guardrail-integrated branch passes 647 tests, strict checks, locked builds and a release Metropolis race with both recovery rigs. Avoidance-driven stops up to 33 sampled seconds, all-map lane behavior, quiet cost and human balance remain open.
+
+
+- [ ] **RFU-AI-08** Add reproducible scenario and decision receipts. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: headless rules/physical cases plus native full-race and measured cost evidence; verification: [rules, physical regressions and native decision receipts](docs/testing/issue26-racer-ai/REPORT.md). The city/guardrail-integrated branch passes 647 tests, strict checks, locked builds and a release Metropolis race with both recovery rigs. Avoidance-driven stops up to 33 sampled seconds, all-map lane behavior, quiet cost and human balance remain open.
 
 - [ ] **AI-QUEUE-02** Resolve multi-rider slow queues with safe committed overtakes and escape from blocked approaches. Reason: user observes racers piling up despite the earlier single-queue fix; part: 01; dependencies: traffic avoidance and shared vehicle controls; acceptance: multiple rivals make progress around slower traffic when a reachable gap exists, without entering sidewalks or bypassing collision; verification: deterministic multi-rider physical regression and native queue observation. Implemented; four-rider physical regressions pass, dedicated rendered queue/human balance review remains open. Civilian circular-wait correction and verification are tracked in [traffic stall follow-up](docs/testing/traffic-stall/README.md); legitimate obstacle yielding is retained.
 

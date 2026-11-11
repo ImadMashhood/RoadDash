@@ -3914,6 +3914,39 @@ require all240naturally asleep with zero motion by1800updates, record first slee
 update, and run both explicit executors. No forces, damping, motors, collision,
 sleep thresholds or accepted physical behavior change. Original failedCI retained.
 
+## ADR141 — Forward combat dependencies and bounded opposite-road passing (2026-11-10)
+
+Issue26/RFU-AI-01–08 supersedes rear-chasing/downed-hunting behavior for ordinary
+rivals. Choose closest eligible forward mounted racer; exact-station ID ordering,
+0.75m target tolerance and10/12m road-distance hysteresis prevent tie chatter.
+Rear engagement never dictates braking; slow targets are passed instead of matched.
+Separate race-pace queue detection from combat speed. Keep collision/curve safety
+above passing above combat, through existing60Hz controls and physical forces.
+Police pursuit stays separate. Preserve selected velocity muscles and baseline.
+
+Opposite road is only a fallback after blocked outbound planning. Predict complete
+outward and return paths against traffic, recheck each fixed tick, retain original
+home lane and require return within12s. Expand static lookahead and bounded proxy
+range only as needed; no obstacle exemptions, teleport or sidewalk escape. Keep
+full-race fairness/performance gates open until measured. Native decision receipts
+expose intent versus avoidance. No dependency migration or external code/media
+intake. See testing/issue26-racer-ai/REPORT.md for tests and remaining limits.
+
+ADR141 follow-up: native completion and both rig recoveries passed on the original
+implementation. Review then restricted junction priority to a continuous
+home-corridor/time intersection, instead of any nearby lateral movement. Keep
+the original full-race receipt distinct from later synthetic segment diagnostics;
+record proxy/static-hit traces to diagnose rather than infer causes from speed.
+
+ADR141 queue follow-up: reserve launch space when a slow queue temporarily seals
+passing candidates. For an already-compressed upright-rider queue, keep a bounded
+live gap goal using existing rear-swept reverse controls; preserve normal
+unsticking timing, reverse physics/cap, cooldown and collision clearance. Use
+signed rider velocity with a small resting-jitter deadband and reset the generic
+escape anchor after intentional backing. The physical fixture must stay on road;
+A* sidewalk escape is not acceptance. See the report's retained failing and
+superseding receipts for the 4-pulse to 1-pulse improvement.
+
 ADR148 physical midpoint follow-up: the corrected collider-grounded fixture
 reproduces an automatic player trapped behind the96m run at1852 for40simulated
 seconds. Existing live A* excludes human-controlled recovery. Add narrowly scoped
@@ -3967,6 +4000,24 @@ a500m available-road control still passes while140m rejects, in both directions.
 Existing claims still revalidate merge normally. The native runner rejects final
 claims older than45s; historical execution success does not override the retained
 failed behavior review. Full-course human acceptance remains open.
+
+ADR141 civilian integration: consume actual previous-step lateral motion once per
+car, cached in its existing traffic memory. Forecast that motion only as far as
+the committed passing/merge lane, then retain the settled occupancy, including
+the return-path check. Test continuous envelope kinks rather than sparse future
+snapshots. Preserve ADR142's intentional upright-biker nonveto on the civilian
+side; the racer must avoid physical cars entering its corridor.
+
+ADR141 rider-lane playtest follow-up (2026-11-10): the racer adapter chose a
+right-side roaming line and the shared passing wrapper prioritized outbound
+bounds until progress was blocked. This made every clear-road rider return to the
+traffic side. Allow free racing-line intent across the paved width, including
+oncoming lanes, while retaining the civilian vehicle convention. A fresh inbound
+choice requires the existing twelve-second opposing-traffic/return forecast and
+resident static sweep; a committed overtake still clears its leader and returns
+home. The physical bike and collision layers remain authoritative. Open-road and
+occupied-oncoming tests must pass before publication, and runtime cost of more
+frequent inbound forecasts needs a quiet profile on the combined content build.
 
 ## ADR150 — Four-way performance selection and expanded place-making (2026-11-10)
 

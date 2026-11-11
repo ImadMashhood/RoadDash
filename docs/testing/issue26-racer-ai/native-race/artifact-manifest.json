@@ -1,0 +1,29 @@
+{
+  "local_artifacts": {
+    "racer-ai-10800.png": {
+      "bytes": 1618425,
+      "sha256": "1f2238620740b1a6ff9c2b3649f1169e5c6bbac1b77fa32d21e476bddfa35003"
+    },
+    "racer-ai-14400.png": {
+      "bytes": 1551631,
+      "sha256": "273646f3b2b9e126bf140f66d8e4328576c31e031c27df0a69a7d62fd50c04ec"
+    },
+    "racer-ai-18000.png": {
+      "bytes": 1654589,
+      "sha256": "23701228ace7abce55c328f4bd8f6a3fc844707254484fad575a580fbb09f3c5"
+    },
+    "racer-ai-3600.png": {
+      "bytes": 1174256,
+      "sha256": "1374dd79d624f36ee3991cfe2e540f5ce09cf36a61b243d666eb719f7e1c4eed"
+    },
+    "racer-ai-7200.png": {
+      "bytes": 1647084,
+      "sha256": "a20744a3ed860d5518121e6fafc1ae8ddff44ec72ddfbfad2e22c8071a9a474f"
+    },
+    "racer-ai.json": {
+      "bytes": 1052378,
+      "sha256": "95be03763898ce1168613dc3a189764f9537545022b44d3a2d580a816b4a517e"
+    }
+  },
+  "note": "Raw traces and images retained locally; compact receipts and summaries committed. Hashes identify the original evidence."
+}

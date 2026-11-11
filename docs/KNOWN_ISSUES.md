@@ -3,6 +3,8 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
+- RFU-AI-02: full-road rider lane choice passes 647 city/guardrail-integrated workspace tests, including physical Metropolis opposite-lane entry, sealed queue, pass return and trap escape. A release Metropolis race finished slot zero, but several riders still had avoidance-driven stops up to 33 sampled seconds around station 3,040. The snapshot lacks the obstacle proxies needed to assign the exact cause. All-map oncoming behavior, queue balance and quiet planner cost remain open. See testing/issue26-racer-ai/REPORT.md.
+
 - RFU-PERF-06/07: four candidate drafts are measured; the CPU and GPU nominal warm gains are about 1% and overlap variation, while cold/final-source and combined-content comparisons remain open. No candidate is merged and the 16.7 ms budget is unmet. See testing/issue40-selection/REPORT.md and issue #40.
 
 - RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
@@ -1229,6 +1231,19 @@ before treating local branch improvements as overall performance acceptance.
   explicit executor lab parity pass. The16.7ms p95/full-course/final combined
   content/hardware gates stay open; peak CPU memory remains roughly2.1GiB Hills/
   5.8GiB Metro, and no GPU-memory reduction is claimed.
+
+- RFU-AI-01–08/ADR141: the original implementation passed 605 tests, a full
+  native race and both rig recoveries. Some riders still have long sampled waits;
+  slot zero briefly stopped near station 11,152 before passing. The old trace
+  cannot identify its obstacle cause. The crossing refinement passed 608 tests;
+  a synthetic final-segment traversal passed station11,152 without stopping,
+  which is not an exact replay. A separate real stationary-human fixture found
+  and corrected narrow-road launch-space starvation; compressed chains now clear
+  in22.82s with one rear-swept reverse pulse per rider. Final combined civilian
+  forecast/native verification remains pending. Forecasts do not reserve racer
+  lanes, and sealed roads legitimately wait. Human aggression
+  balance and broad performance/hardware acceptance remain separate gates. See
+  testing/issue26-racer-ai/REPORT.md; no physical rig tuning is part of issue26.
 
 - RFU-TRAF-01–04 / issue27: civilian overtaking work adds deterministic
   reservations and live merge/abort checks. Human traffic balance, full-race
