@@ -3,6 +3,10 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
+- RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
+
+- RFU-MOVE-05/06, RFU-FX-01–03 and RFU-CITY-01–04: running-hand correction, biome/city effects and further Metropolis crowd/sidewalk/prop density are new open requests with no implementation acceptance yet. See issues #41–#43.
+
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.

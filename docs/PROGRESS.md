@@ -1,5 +1,7 @@
 # Development progress
 
+2026-11-10 expanded user scope (ADR150, issues #40–#43): eleven new open IDs track four-way measured performance selection, running hand orientation, bounded Hills/city effects, and denser safer Metropolis sidewalks/crossings/props/trees. Baseline remains224 verified /292 open. All new work is pending implementation and evidence; prior completed CITY-ACTIVITY-02 and RFU-MOVE-03/04 remain verified at their original scope.
+
 Current scope: issue #28 / ADR143 adds urgent recovery run presentation, terrain-aware swing clearance and signed reverse heading. RFU-MOVE-03/04 verified by headless checks and ten native cases; RFU-MOVE-01/02 retain user terrain/feel acceptance. Final civilian-integrated617workspace tests (two explicit ignored benchmarks), strict lint/build/fmt/audit and roadmap checks pass. Evidence: testing/issue-28-movement/README.md. No movement-speed, rig or dependency migration.
 
 
@@ -953,6 +955,10 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
 
+- [ ] **RFU-MOVE-05** Set the urgent run hand roll so both thumbs face the travel direction and palms do not stay flat toward the rear. Reason: user visual playtest of issue #28; part:03; dependencies: RFU-MOVE-01 and authoring bind; acceptance: anatomically readable bilateral swing/fist orientation at run speed while stopped pose remains neutral; verification: local hand-axis pose assertions and close native front/side/rear gait frames on flat and uneven ground. [Issue](https://github.com/ImadMashhood/RoadDash/issues/41).
+
+- [ ] **RFU-MOVE-06** Keep the running hand correction through terrain IK and recovery transitions. Reason: user reports the motion looks awkward on changed elevation; part:03; dependencies: RFU-MOVE-02/05; acceptance: no wrist pops, hand/body disconnection or physics/control change across run, stop, slope and remount; verification: pose continuity, differential rig/recovery tests and native gait review. [Issue](https://github.com/ImadMashhood/RoadDash/issues/41).
+
 - [ ] **RFU-MOVE-02** Align recovery feet/body over slopes, crests and uneven elevations. Reason: issue #28 terrain-contact defects; part: 03; dependencies: RFU-MOVE-01 and existing physical support locks; acceptance: bounded swing clearance, stable stance, continuous transitions and no physical rig changes; verification: translated up/down/cross-slope contact tests, native uneven-ground/manual/automatic/remount captures and user review. [Evidence](testing/issue-28-movement/README.md).
 
 - [ ] **RFU-MOVE-01** Present urgent bike-return running. Reason: issue #28 reports a slow-looking recovery walk; part: 03; dependencies: V2-03-003/ADR130; acceptance: readable run at unchanged actual movement speed with user visual review; verification: distance-matched gait tests and native flat/slope sequences. Implementation pending acceptance; [evidence](testing/issue-28-movement/README.md).
@@ -1102,6 +1108,14 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **ENV-004** E3: place memorable landmarks plus interactive fences, cows, cars, rocks, and tractors; make encounters readable rather than unavoidable surprise spawns.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **RFU-CITY-01** Increase Metropolis urban pedestrian population and purposeful crosswalk use. Reason: city still feels sparse; part:06; dependencies: CITY-ACTIVITY-02, patrol authoring and RFU-PERF-06; acceptance: measured higher resident count than384, more completed grounded crossings without crowd jams, rural counts and solid interactions preserved; verification: generated census, crossing progress tests, both-route native surveys and matched frame profiles. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+
+- [ ] **RFU-CITY-02** Widen usable Metropolis sidewalks without shrinking the approved roadway. Reason: current walking bands look narrow; part:06 coordinating04; dependencies: ROAD-WALK-01, SIDEWALK-01 and RFU-CITY-01; acceptance: continuous capsule-clear walking routes, retained4/3/4 lanes and closed building envelopes/parking; verification: authored right-of-way geometry, physical two-way foot crossings and native street views. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+
+- [ ] **RFU-CITY-03** Line suitable Metropolis sidewalks with more trees. Reason: avenues remain bare; part:06 coordinating05; dependencies: RFU-CITY-02 and existing vegetation/collision; acceptance: varied bounded supported tree placement with pedestrian clearance, no doorway/crosswalk blockage and distance LOD; verification: placement/collision census, close/far native views and render cost. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+
+- [ ] **RFU-CITY-04** Broaden Metropolis curb and district prop variety. Reason: repeated furniture makes western/city blocks look plain; part:06 coordinating05; dependencies: RFU-CITY-02/03, prop catalog and RFU-PERF-06; acceptance: original varied district-specific props with solid/support-aware placement and readable crossing/doorway space; verification: source/rights audit, placed-geometry census, native views and frame cost. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
 
 - [ ] **RFU-TRAF-01** Pass sustained slower civilian leaders. Reason: issue27 reports indefinite tractor/truck queues; part:06; dependencies:P08-005 and shared traffic support; acceptance: tractors remain slowest, semis next, cars faster, with eventual passing in an opening; verification: deterministic core/native multi-follower runs on Hills/Metropolis. Evidence: [civilian overtaking](testing/civilian-overtaking/REPORT.md): native selected passes, full-fleet progress and corrected endpoint admission verified; human full-course acceptance remains open.
 
@@ -1343,6 +1357,12 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 15 — Presentation, audio, UI and accessibility
 
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+
+- [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+
+- [ ] **RFU-FX-03** Add map-appropriate city shader/effects such as subtle vent steam, depth haze or a wet-road variation. Reason: requested city visual character; part:15; dependencies: RFU-PERF-06, RFU-SKY-01 and MAT-03; acceptance: coherent Metropolis/legacy-city presentation with restrained legibility, matching near/far material identity and opt-in quality budgets; verification: native views, source hash/provenance, GPU/frame comparison and visual review. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+
 - [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: two prominent course choices, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.
 
 - [ ] **SHADOW-RANGE-01** Extend readable city shadow coverage. Reason: user requests shadows farther through the city; part:15; dependencies:P15-004 and existing facade lifecycle; acceptance: broader bounded cascade coverage with preserved close contacts, no collision or facade-LOD regression, measured cost and a baseline comparison; verification: cascade policy tests, native city near/far views and matched timing.
@@ -1394,6 +1414,10 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **AUDIO-013** Persist master/engine/SFX/ambience/music sliders and input/audio options; caption critical non-speech cues and validate source release permissions. Partial: ADR104 persists master volume/mute with absolute live loop/one-shot gain and existing bindings/comfort; independent buses, captions and full audible/hardware acceptance remain open.
 
 ### Part 16 — QA, performance, platform, dependency and release gates
+
+- [ ] **RFU-PERF-06** Compare four independent performance implementations on identical Hills/Metropolis baselines. Reason: user requests four fresh agents and measured selection; part:16; dependencies: RFU-PERF-02 and content integration; acceptance: same source/assets/seed/settings/hardware, clean repeated cold/warm runs, raw p50/p95/p99/max, readiness, memory and supported GPU samples, predeclared score and visual/correctness veto; verification: frozen binary provenance, contaminant-free receipts and four candidate reports. [Issue](https://github.com/ImadMashhood/RoadDash/issues/40).
+
+- [ ] **RFU-PERF-07** Integrate only the strongest verified performance candidate. Reason: user requests the winning gain; part:16; dependencies: RFU-PERF-06; acceptance: winner rerun on combined content, no repeatable >5% p95 regression on either map, preserved gameplay/collision/visuals and documented losers; verification: required Rust checks/audit, both-map native surveys/recovery and matched before/after profiles. [Issue](https://github.com/ImadMashhood/RoadDash/issues/40).
 
 - [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. Existing60FPS and broader hardware gates remain open.
 
