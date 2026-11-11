@@ -279,3 +279,49 @@ Some stopped riders fall, and nine eventually finish. RFU-AI-01/02/06/08 and
 AI-11 remain open for sustained-queue diagnosis, all-map road-side behavior,
 quiet planner cost and human balance. No claim of eliminating every stop follows
 from this finish.
+
+### Station 3,040 queue-head trace and bounded refuge follow-up (2026-11-11)
+
+A fresh, unteleported release `--racer-ai-survey` with opt-in planner proxy
+tracing ran for 7,500 frames from `99b697d3`. The [before receipt](native-queue-3040-before/README.md)
+found rider 13, the head of the affected chain, at station 3,010/lane -0.29/
+25.37 m/s as a real main-road oncoming car closed from 46.5 m in lane +1.5 at
+-15 m/s. At station 3,030 the gap was 10.77 m. The avoidance brake was
+appropriate; inspected static sweeps recorded no hit. After that car passed,
+faster rear cars/riders occupied the 3 m outbound merge while more oncoming
+cars approached. At two sampled stalled instants, replaying the proxy
+envelopes found no clear outbound candidate at cruise or staged walking pace.
+Rider 1 also slowed behind a nearby stopped rider and oncoming car; rider 11
+had not reached the trace window by frame 7,500. This explains the fresh
+queue's obstacle class without treating the earlier 33-second snapshot as an
+exactly replayed encounter.
+
+The pure `rr_core::traffic_avoidance` follow-up aims a denied inbound racing
+line toward the centre of the legal outbound bounds instead of the divider
+edge. Its usual clearance, oncoming/return, static and physical control checks
+remain in force. Two new deterministic cases cover an early clear refuge and
+an occupied merge/oncoming brake; all 28 standalone planner tests passed.
+The [matched after receipt](native-queue-3040-after/README.md) used the same
+7,500-frame command and trace switch on the changed release binary. In the
+station 3,000–3,100 window, sampled `Riding` zero-speed/zero-plan points
+fell 20→14, non-riding samples 10→6 and zero-plan samples 30→24. Rider 13
+crossed the window without a sampled stop; riders 1 and 11 still had three
+consecutive stopped Riding samples each. Both runs ended at the frame cap
+before race completion. Full-route and all-map queue balance, quiet planner
+cost, hardware and human acceptance remain open.
+
+The final source rebased onto merged main `97918ac8` (including wildlife and
+map FX). `cargo fmt --all --check`, strict locked workspace Clippy, locked
+workspace tests (**670 passed, two ignored**: 456 game library, one binary,
+59 content, 154 core), locked debug and release builds, `tools/audit.py`,
+README/progress sync and five roadmap tests passed. The exact-tree release
+binary SHA-256 was
+`a2d7dc5b34e66cb6e9b11741e32d7389c4df323d1ac0d9637bf4c63f1db87de8`.
+On that binary, both native Metropolis `--smoke-test` and
+`--ragdoll-baseline --smoke-test` exited 0: seven racers/seven killers,
+four audio playback sinks, two recovery/remounts each with 0.0000 m pickup
+error, and the render/results smoke passed without a panic or shader error.
+Those paired smokes verify integration; they are not a full native race or
+an exact-tree replay of the earlier bounded queue comparison. A full race
+on this final tree was not run. No new dependencies, imported code/media,
+physics/rig settings or save schema were changed.

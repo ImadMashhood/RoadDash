@@ -1096,6 +1096,7 @@ pub fn drive(
                         })
                     })
                     .collect();
+                let main_proxy_count = cars.len();
                 let (_, road) = track.sample_route(r.route, r.progress, r.lane);
                 let forward = (road * Vec3::Z).with_y(0.0).normalize();
                 let lateral = (road * Vec3::NEG_X).with_y(0.0).normalize();
@@ -1135,6 +1136,7 @@ pub fn drive(
                         half_length: x.dot(forward).abs() * 0.95 + z.dot(forward).abs() * 1.95,
                     });
                 }
+                let crossing_proxy_count = cars.len() - main_proxy_count;
                 // Rider-only queues must enter the same predictive planner as
                 // cars. Previously this snapshot was added only *after* a car
                 // hazard, so crawling racers never planned around one another.
@@ -1190,7 +1192,7 @@ pub fn drive(
                     && (bounds.0..=bounds.1).contains(&desired)
                 {
                     if trace_ai {
-                        println!("RFU_AI_PLANNER elapsed={} station={} lane={} speed={} preliminary={preliminary:?} proxies={cars:?}", race.elapsed, r.progress, lane, r.speed);
+                        println!("RFU_AI_PLANNER id={} elapsed={} station={} lane={} speed={} preliminary={preliminary:?} proxies={cars:?}", r.id, race.elapsed, r.progress, lane, r.speed);
                     }
                     return in_race_frame(preliminary);
                 }
@@ -1269,7 +1271,7 @@ pub fn drive(
                     drivable,
                 );
                 if trace_ai {
-                    println!("RFU_AI_PLANNER elapsed={} station={} lane={} speed={} preliminary={preliminary:?} final={plan:?} home={:?} proxies={cars:?} static_rejections={:?}", race.elapsed, progress, lane, speed, r.ai_pass.home_lane(), static_rejections.borrow());
+                    println!("RFU_AI_PLANNER id={} elapsed={} station={} lane={} speed={} desired={} bounds={bounds:?} rider_queue={} launch_deficit={} preliminary={preliminary:?} final={plan:?} home={:?} main_proxies={} crossing_proxies={} proxies={cars:?} static_rejections={:?}", r.id, race.elapsed, progress, lane, speed, desired, rider_queue, queue_launch_deficit, r.ai_pass.home_lane(), main_proxy_count, crossing_proxy_count, static_rejections.borrow());
                 }
                 in_race_frame(plan)
             });

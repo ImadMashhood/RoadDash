@@ -203,12 +203,28 @@ impl Memory {
         let held_inbound = self.committed_lane().is_some_and(inbound);
         let wants_inbound = inbound(input.desired);
         let original = *self;
+        let home = original
+            .home_lane()
+            .unwrap_or(input.desired)
+            .clamp(input.bounds.0, input.bounds.1);
+        // A failed opposite-lane forecast must return the rider well inside the
+        // outbound lane. Clamping an inbound wish to the divider edge leaves a
+        // full-size bike inside an oncoming car's clearance envelope.
+        let refuge = (input.bounds.0 + input.bounds.1) * 0.5;
+        let direct_inbound = wants_inbound
+            && !held_inbound
+            && oncoming_pass_clear(input.lane, input.desired, home, input.cruise, cars)
+            && drivable(input.desired, input.cruise);
         let outbound = if held_inbound {
             None
         } else {
             Some(self.plan(
                 Request {
-                    desired: input.desired.clamp(input.bounds.0, input.bounds.1),
+                    desired: if wants_inbound && !direct_inbound {
+                        refuge
+                    } else {
+                        home
+                    },
                     ..input
                 },
                 cars,
@@ -220,16 +236,8 @@ impl Memory {
             || outbound.is_some_and(|p| p.speed < input.cruise && !self.active())
         {
             let mut candidate = original;
-            let home = original
-                .home_lane()
-                .unwrap_or(input.desired)
-                .clamp(input.bounds.0, input.bounds.1);
             // A committed pass still returns to its home lane after clearing
             // the leader; fresh free-lane intent applies on a later tick.
-            let direct_inbound = wants_inbound
-                && !held_inbound
-                && oncoming_pass_clear(input.lane, input.desired, home, input.cruise, cars)
-                && drivable(input.desired, input.cruise);
             let pass = candidate.plan(
                 Request {
                     bounds: road_bounds(),
@@ -910,5 +918,43 @@ mod inbound_tests {
             |_, _| true,
         );
         assert!(yielded.lane >= 0.65, "{yielded:?}");
+    }
+    #[test]
+    fn denied_inbound_line_uses_outbound_refuge_before_oncoming_arrival() {
+        let input = Request {
+            lane: 0.,
+            speed: 25.,
+            desired: 0.,
+            cruise: 55.,
+            bounds: (-2.35, -0.65),
+        };
+        // On this one-lane-per-direction road, clamping to -0.65 leaves the
+        // bike inside the car's lateral clearance; -1.5 gives it room.
+        let approaching = [car(300., 1.5, -15.)];
+        assert!(!oncoming_pass_clear(0., 0., -0.65, 55., &approaching));
+        let refuge = Memory::default().plan_with_oncoming(
+            input,
+            &approaching,
+            || (-2.35, 2.35),
+            |_, _| true,
+        );
+        assert!(refuge.lane <= -1.4 && refuge.speed > 0., "{refuge:?}");
+    }
+    #[test]
+    fn outbound_refuge_never_overrides_an_occupied_merge_or_oncoming_brake() {
+        let input = Request {
+            lane: 0.,
+            speed: 25.,
+            desired: 0.,
+            cruise: 55.,
+            bounds: (-2.35, -0.65),
+        };
+        let blocked = [car(46., 1.5, -15.), car(-10., -1.5, 35.)];
+        let yielded =
+            Memory::default().plan_with_oncoming(input, &blocked, || (-2.35, 2.35), |_, _| true);
+        assert!(
+            yielded.speed < input.speed && yielded.lane > -1.4,
+            "{yielded:?}"
+        );
     }
 }

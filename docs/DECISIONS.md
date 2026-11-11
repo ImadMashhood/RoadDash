@@ -4195,3 +4195,24 @@ centers it about 1–2 m outside the pavement without changing pool or material
 count. City steam moves to the measured route curb and uses an original narrow
 vertical wisp mask; this avoids the earlier round facade glow. Heat remains a
 subtle non-refractive cue. Temporal art and supported GPU acceptance stay open.
+
+## ADR151 — Anticipate a safe outbound refuge for denied inbound racing lines (2026-11-11)
+
+Issue26 queue follow-up: an unteleported native trace near Metropolis station
+3,040 found the leading racer beside the divider as a real main-road oncoming
+car closed from46.5m at-15m/s. The full-size clearance envelope correctly
+required braking; no static sweep rejection appeared in the inspected samples.
+After that car passed, faster rear cars/riders occupied the narrow outbound
+merge while fresh oncoming cars arrived. An outbound fallback clamped to the
+divider edge (-0.65m on this two-lane section) leaves little lateral clearance.
+
+When the existing inbound pass/return forecast denies a desired racing line,
+aim the normal outbound planner toward the centre of its legal bounds. Keep
+the same live car/rider proxies, oncoming forecast, static sweep, staged speeds,
+physical steering/braking, collision and return checks. An occupied merge can
+still force a stop. This pure `rr_core` rule does not alter the rider rig,
+traffic convention, save state or any vehicle force. The matched bounded native
+surveys reduced sampled zero-speed Riding/zero-plan points from20 to14 and
+the prior queue head cleared the junction, but rider1/11 stops persisted.
+RFU-AI-01/02/06/08 and human/full-race/performance gates remain open. Evidence:
+testing/issue26-racer-ai/native-queue-3040-before and -after.
