@@ -171,7 +171,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**228 verified tasks complete; 308 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**228 verified tasks complete; 315 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -194,8 +194,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
-| [05](#part-05) | World B — props, materials and procedural dressing | 12 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 38 open |
+| [05](#part-05) | World B — props, materials and procedural dressing | 13 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 44 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -960,6 +960,7 @@ Study the original building/facade textures locally, rebuild them as original ar
 - [ ] **RFU-RAIL-03** Place ordinary guardrails on the requested turn side. Reason: explicit right-turn/right-side and left-turn/left-side request; dependencies:HILLS-01; acceptance: stable horizontal signed turns through grades, open straights/opposite side and separate authored bridge policy; verification: signed-yaw rules and placed collider survey. Part:05. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
 
 - [ ] **RFU-RAIL-04** Terminate every guardrail run and gap end with solid end hardware. Reason: exposed thin beam ends; dependencies:RFU-RAIL-02/03; acceptance: readable flared terminals with matching collision and useful gap clearance; verification: terminal census/contact tests, native close views and traversal. Part:05. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
+- [ ] **RFU-WORLD-04** Add substantial appropriate western settlement props. Reason: user reports barren Hills/western surroundings and low river in issue31; part:05; dependencies:HILLS-06 and HILLS-07; acceptance:supported shop goods, lights and outskirts scenery with clear roads and resident solids; verification:placed-geometry/clearance tests and close/wide native views. Partial shop-front and outer-lot dressing with clearance checks; remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
 
 <!-- DEVELOPMENT_PASS_05 -->
 <details>
@@ -1014,6 +1015,17 @@ Repeat the reference → original textures/models → procedural placement → c
 - [ ] **RFU-SKY-03** Preserve coherent sunlight, final render-camera culling and Hills atmosphere. Reason: issue30 shared-renderer integration; part:06; dependencies:SKY-01 and HILLS-04; acceptance: one light direction/exposure profile, propagated-camera fade, unchanged physical rigs/content and Hills dust; verification: both-map install/lighting tests and native controls.
 
 - [ ] **RFU-SKY-04** Expose independent cloud/bird quality controls and measure their cost. Reason: issue30 prioritizes performance; part:06/16; dependencies:PERF-08 and RFU-SKY-01/02; acceptance: bounded full/low/fallback clouds and bird switch, matched release wall-frame/load/memory comparisons on both maps; verification: quality tests and independent-toggle native runs, GPU/broad hardware gates remain separate.
+- [ ] **RFU-WORLD-01** Extend hillside woodland onto distant slopes. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:HILLS-03 and PERF-08; acceptance:supported clustered trees at near and distant driving views, bounded spatial meshes and resident collision; verification:deterministic placement/road/support tests, native route views and measured render cost. Partial implementation and remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
+
+- [ ] **RFU-WORLD-02** Vary and widen under-dressed grass and vegetation. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:HILLS-03 and RFU-WORLD-01; acceptance:irregular meadow coverage and clear farms/roads, bounded rendering; verification:placement tests and matched driving views. Partial implementation and remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
+
+- [ ] **RFU-WORLD-03** Add western plateaus, mountains and varied landforms. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:HILLS-02 and HILLS-07; acceptance:continuous remote relief outside settlement lots and unchanged road profiles; verification:terrain continuity/support tests and both-branch native captures. Partial implementation and remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
+
+- [ ] **RFU-WORLD-05** Enrich desert Hills through landforms, scenery and wildlife coordination. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:RFU-WORLD-03/04 and issue32 wildlife; acceptance:distinct populated desert vistas without additional traffic budgets; verification:full-route views, wildlife integration and combined cost measurement. Partial implementation and remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
+
+- [ ] **RFU-WORLD-06** Raise the bridge river with coherent banks and support. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:HILLS-08 and HILLS-11; acceptance:water remains seated on raised resident canyon bed, open bridge edges and deep physical falls retained; verification:exact terrain/water tests and native bank/bridge/fall/recovery cases. Partial implementation and remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
+
+- [ ] **RFU-WORLD-07** Blend road, sand and grass without hiding physical classification. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:issue29 sand boundary and HILLS-03; acceptance:consistent per-vertex material transition and physical biome classification; verification:boundary assertions and matched native road/grass/sand captures. Partial implementation and remaining gates: [world follow-up](docs/testing/issue31-world/REPORT.md).
 
 - [ ] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views.
 

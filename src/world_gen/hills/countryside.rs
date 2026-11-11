@@ -295,7 +295,7 @@ fn noise(n: u32) -> f32 {
     let n = ((n >> ((n >> 28) + 4)) ^ n).wrapping_mul(277803737);
     ((n >> 22) ^ n) as f32 / u32::MAX as f32
 }
-fn field_clear(p: Vec3, farms: &[(Vec3, Quat)]) -> bool {
+pub(super) fn field_clear(p: Vec3, farms: &[(Vec3, Quat)]) -> bool {
     farms.iter().all(|(center, q)| {
         let local = q.inverse() * (p - *center);
         local.x.abs() > 35. || local.z.abs() > 95.
@@ -311,17 +311,17 @@ fn grass_positions(
     for i in 0..((end - start) / 1.6) as u32 {
         let s = start + i as f32 * 1.6;
         for side in [-1., 1.] {
-            for row in 0..18_u32 {
+            for row in 0..24_u32 {
                 let seed = (s as u32)
                     .wrapping_mul(97)
                     .wrapping_add(row * 31)
                     .wrapping_add(u32::from(side > 0.) * 17);
-                if noise(seed) < 0.22 {
+                if noise(seed) < 0.18 + 0.16 * (s * 0.023 + row as f32 * 0.7).sin() {
                     continue;
                 }
                 let lane = side
                     * (if s >= 8000. { 100. } else { 18. }
-                        + row as f32 * 3.4
+                        + row as f32 * 4.0
                         + noise(seed + 1) * 3.);
                 let Some((p, _)) =
                     super::props::site(track, 0, s + noise(seed + 2) * 1.5, lane, 1.1)

@@ -101,7 +101,20 @@ pub fn run(
         )>,
     >,
     ui: Query<(Entity, Option<&ChildOf>), With<Node>>,
-    (city, census, solids, metrics, clock, bridge_census, clouds, lighting, river, shadows, solar): (
+    (
+        city,
+        census,
+        solids,
+        metrics,
+        clock,
+        bridge_census,
+        clouds,
+        lighting,
+        river,
+        shadows,
+        solar,
+        woodland,
+    ): (
         Res<CitySlice>,
         Res<Census>,
         Res<StaticCollision>,
@@ -113,6 +126,7 @@ pub fn run(
         Option<Res<crate::world_gen::hills::river::RiverCensus>>,
         Res<crate::world::ShadowBudget>,
         Option<Res<crate::sky::SolarBudget>>,
+        Res<crate::world_gen::hills::woodland::WoodlandCensus>,
     ),
     physics: ReadRapierContext,
     ground: Query<(), With<crate::world::Ground>>,
@@ -448,7 +462,7 @@ pub fn run(
         if !perf {
             assert_eq!(recovery.stage, crate::recovery::RecoveryStage::Riding);
         }
-        let report = serde_json::json!({"solar":solar.as_deref(),"shadows":&*shadows,"river":river.as_deref(),"city":&*city,"clouds":clouds.as_deref(),"bridge":&*bridge_census,"town_detail":&*town,"census":&*census,"static_collision":&*solids,
+        let report = serde_json::json!({"woodland":&*woodland,"solar":solar.as_deref(),"shadows":&*shadows,"river":river.as_deref(),"city":&*city,"clouds":clouds.as_deref(),"bridge":&*bridge_census,"town_detail":&*town,"census":&*census,"static_collision":&*solids,
             "semis":semi_count,"tractors":tractor_count,"semi_displacement_m":state.semi_moved,
             "tractor_displacement_m":state.tractor_moved,"observed_physical_fall":state.observed_physical_fall,"fall_initiation":"lateral exit without forced crash",
             "vehicle_adapter":format!("{:?}", *adapter),

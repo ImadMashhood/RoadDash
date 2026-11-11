@@ -34,6 +34,8 @@ fn placements(track: &Track) -> Vec<Placement> {
     let farms = super::countryside::farm_sites(track);
     for (start, end, step, kind) in [
         (8500, 12450, 31, "cactus"),
+        (5550, 8420, 43, "cactus"),
+        (5560, 8420, 73, "rock"),
         (1700, 5250, 95, "rock"),
         (1720, 5350, 117, "boulder"),
         (8500, 12450, 113, "rock"),
@@ -62,6 +64,8 @@ fn placements(track: &Track) -> Vec<Placement> {
                         } else {
                             95. + random(seed) * 35.
                         }
+                    } else if s < 8500 {
+                        250. + random(seed) * 48.
                     } else {
                         17. + random(seed) * 85.
                     };

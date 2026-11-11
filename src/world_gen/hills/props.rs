@@ -119,6 +119,22 @@ impl Model {
             }
         }
     }
+    pub(super) fn cone(&mut self, base: Vec3, radius: f32, height: f32, color: [f32; 3]) {
+        let k = self.vertices.len() as u32;
+        self.vertices.extend([base, base + Vec3::Y * height]);
+        self.colors.extend([[color[0], color[1], color[2], 1.]; 2]);
+        for i in 0..8 {
+            let angle = i as f32 * std::f32::consts::TAU / 8.;
+            self.vertices
+                .push(base + Vec3::new(angle.cos(), 0., angle.sin()) * radius);
+            self.colors.push([color[0], color[1], color[2], 1.]);
+        }
+        for i in 0..8 {
+            let a = k + 2 + i;
+            let b = k + 2 + (i + 1) % 8;
+            self.indices.extend([[k + 1, b, a], [k, a, b]]);
+        }
+    }
     pub(super) fn hull(&self) -> Collider {
         Collider::convex_hull(&self.vertices).expect("original scenery convex hull")
     }
@@ -268,7 +284,7 @@ fn building(
     q: Quat,
     index: usize,
     western: bool,
-) {
+) -> bool {
     let mut model = Model::default();
     let width = if western {
         12. + (index % 3) as f32 * 2.
@@ -357,6 +373,36 @@ fn building(
             ["SALOON", "HOTEL", "STORE", "BANK", "LIVERY"][index % 5],
             Vec3::new(0., height + 0.7, -depth / 2. - 0.43),
         );
+        // Original shop-specific goods are batched into the existing storefront.
+        // All lie inside the existing covered boardwalk collision envelope.
+        for goods in 0..3 {
+            let x = -width * 0.30 + goods as f32 * 0.72;
+            let p = Vec3::new(x, 0.62, -depth / 2. - 1.2);
+            if index.is_multiple_of(2) {
+                model.block(p, Vec3::new(0.62, 0.65, 0.65), [0.48, 0.33, 0.17]);
+                for y in [-0.22, 0.22] {
+                    model.block(
+                        p + Vec3::new(0., y, -0.335),
+                        Vec3::new(0.65, 0.08, 0.04),
+                        [0.27, 0.19, 0.11],
+                    );
+                }
+            } else {
+                model.ellipsoid(p, Vec3::new(0.3, 0.42, 0.3), [0.61, 0.52, 0.33], 0.5);
+            }
+        }
+        for x in [-width * 0.43, width * 0.43] {
+            model.block(
+                Vec3::new(x, 2.6, -depth / 2. - 0.7),
+                Vec3::new(0.23, 0.42, 0.23),
+                [0.72, 0.58, 0.28],
+            );
+            model.block(
+                Vec3::new(x, 2.87, -depth / 2. - 0.7),
+                Vec3::new(0.34, 0.1, 0.34),
+                [0.16, 0.17, 0.16],
+            );
+        }
         // A coopered barrel, open water trough and hitching rail make the street
         // read at riding height; all stay inside the existing14m reserved lot.
         let barrel = Vec3::new(width * 0.32, 0.32, -depth / 2. - 1.4);
@@ -410,6 +456,86 @@ fn building(
             0.12,
             [0.36, 0.23, 0.12],
         );
+        // A substantial display fills the empty apron between porch and road.
+        // Its nearest edge remains inside the frontage_site road-clear samples.
+        let front = -depth / 2. - 2.8;
+        match index % 4 {
+            0 => {
+                // General store: a tall produce counter and stacked freight.
+                model.block(
+                    Vec3::new(0., 0.68, front),
+                    Vec3::new(2.8, 1.35, 1.15),
+                    [0.48, 0.31, 0.15],
+                );
+                for x in [-0.9, 0., 0.9] {
+                    model.ellipsoid(
+                        Vec3::new(x, 1.53, front),
+                        Vec3::new(0.38, 0.34, 0.38),
+                        [0.69, 0.44, 0.16],
+                        0.4,
+                    );
+                }
+            }
+            1 => {
+                // Saloon: two seats and a broad table, clear of the porch posts.
+                for x in [-1.5, 1.5] {
+                    model.block(
+                        Vec3::new(x, 0.6, front),
+                        Vec3::new(0.9, 0.15, 1.2),
+                        [0.55, 0.36, 0.17],
+                    );
+                    for z in [-0.4, 0.4] {
+                        model.block(
+                            Vec3::new(x, 0.26, front + z),
+                            Vec3::new(0.14, 0.52, 0.14),
+                            [0.39, 0.24, 0.12],
+                        );
+                    }
+                    model.block(
+                        Vec3::new(x, 0.43, front + 0.4),
+                        Vec3::new(0.9, 0.85, 0.16),
+                        [0.39, 0.24, 0.12],
+                    );
+                }
+                model.block(
+                    Vec3::new(0., 0.85, front),
+                    Vec3::new(1.8, 0.18, 1.05),
+                    [0.50, 0.32, 0.17],
+                );
+            }
+            2 => {
+                // Freight exchange: distinct two-tier crates at riding height.
+                for (x, y) in [(-0.95, 0.57), (0.95, 0.57), (0., 1.7)] {
+                    model.block(
+                        Vec3::new(x, y, front),
+                        Vec3::new(1.75, 1.1, 1.2),
+                        [0.58, 0.40, 0.21],
+                    );
+                    model.block(
+                        Vec3::new(x, y, front - 0.61),
+                        Vec3::new(1.78, 0.1, 0.04),
+                        [0.26, 0.18, 0.1],
+                    );
+                }
+            }
+            _ => {
+                // Livery: hay bales and a raised feed rack.
+                for x in [-1.05, 1.05] {
+                    model.block(
+                        Vec3::new(x, 0.53, front),
+                        Vec3::new(1.95, 1.05, 1.35),
+                        [0.67, 0.53, 0.25],
+                    );
+                    for y in [0.2, 0.85] {
+                        model.block(
+                            Vec3::new(x, y, front - 0.69),
+                            Vec3::new(1.97, 0.09, 0.05),
+                            [0.37, 0.27, 0.14],
+                        );
+                    }
+                }
+            }
+        }
     }
     for level in 0..(height / 3.) as usize {
         for side in [-1., 1.] {
@@ -449,6 +575,25 @@ fn building(
         ));
     }
     if western {
+        let front = -depth / 2. - 2.8;
+        let display = match index % 4 {
+            0 => (Vec3::new(0., 0.8, front), Vec3::new(1.45, 0.8, 0.62)),
+            1 => (Vec3::new(0., 0.7, front), Vec3::new(2.05, 0.7, 0.65)),
+            2 => (Vec3::new(0., 1.1, front), Vec3::new(1.85, 1.1, 0.65)),
+            _ => (Vec3::new(0., 0.6, front), Vec3::new(2.1, 0.6, 0.72)),
+        };
+        solids.push((
+            display.0,
+            Quat::IDENTITY,
+            Collider::cuboid(display.1.x, display.1.y, display.1.z),
+        ));
+        for goods in 0..3 {
+            solids.push((
+                Vec3::new(-width * 0.30 + goods as f32 * 0.72, 0.62, -depth / 2. - 1.2),
+                Quat::IDENTITY,
+                Collider::cuboid(0.32, 0.42, 0.34),
+            ));
+        }
         solids.extend([
             (
                 Vec3::new(width * 0.32, 0.845, -depth / 2. - 1.4),
@@ -477,6 +622,109 @@ fn building(
             ),
         ]);
     }
+    // This second street layer uses only the existing storefront reservation.
+    // Validate its actual outer edge against both branches and mounted paths;
+    // tight bends omit the layer rather than pushing collision into the road.
+    let street_group = western
+        && [-3.7, 0., 3.7].into_iter().all(|x| {
+            let point = p + q * Vec3::new(x, 0., -10.9);
+            !super::mounted::reserved(track, point, 1.)
+                && (0..2).all(|route| {
+                    let (s, _, distance) = track.project_route(route, point, 6000.);
+                    distance > track.half_width(s) + 2.2
+                })
+        });
+    if street_group {
+        let z = -10.;
+        match index % 3 {
+            0 => {
+                // Striped canvas stall: a large readable silhouette above the
+                // goods, with a solid roof and grounded front posts.
+                for strip in 0..6 {
+                    model.block(
+                        Vec3::new(-2.5 + strip as f32, 3.35, -9.7),
+                        Vec3::new(1., 0.12, 2.2),
+                        if strip % 2 == 0 {
+                            [0.72, 0.30, 0.16]
+                        } else {
+                            [0.80, 0.67, 0.42]
+                        },
+                    );
+                }
+                solids.push((
+                    Vec3::new(0., 3.35, -9.7),
+                    Quat::IDENTITY,
+                    Collider::cuboid(3., 0.06, 1.1),
+                ));
+                for x in [-2.5, 2.5] {
+                    lot_block(
+                        &mut model,
+                        &mut solids,
+                        Vec3::new(x, 1.65, -10.65),
+                        Vec3::new(0.16, 3.3, 0.16),
+                        [0.40, 0.27, 0.14],
+                    );
+                }
+            }
+            1 => {
+                // Low freight handcart, with wheels that stay resident solids.
+                lot_block(
+                    &mut model,
+                    &mut solids,
+                    Vec3::new(0., 1.05, z),
+                    Vec3::new(2.7, 0.5, 1.5),
+                    [0.52, 0.33, 0.16],
+                );
+                for x in [-1.35, 1.35] {
+                    for dz in [-0.5, 0.5] {
+                        let wheel = Vec3::new(x, 0.55, z + dz);
+                        model.ellipsoid(wheel, Vec3::new(0.16, 0.55, 0.55), [0.18, 0.15, 0.11], 0.);
+                        solids.push((
+                            wheel,
+                            Quat::from_rotation_z(std::f32::consts::FRAC_PI_2),
+                            Collider::cylinder(0.16, 0.55),
+                        ));
+                    }
+                }
+                for x in [-0.95, 0.95] {
+                    model.rod(
+                        Vec3::new(x, 1., z - 0.7),
+                        Vec3::new(x, 1., z - 1.05),
+                        0.09,
+                        [0.38, 0.24, 0.12],
+                    );
+                }
+            }
+            _ => {
+                // Hitch rail and visible barrel pair leave an open approach.
+                for x in [-2.6, 2.6] {
+                    lot_block(
+                        &mut model,
+                        &mut solids,
+                        Vec3::new(x, 0.85, z),
+                        Vec3::new(0.18, 1.7, 0.18),
+                        [0.38, 0.23, 0.11],
+                    );
+                }
+                lot_block(
+                    &mut model,
+                    &mut solids,
+                    Vec3::new(0., 1.45, z),
+                    Vec3::new(5.35, 0.18, 0.18),
+                    [0.48, 0.30, 0.16],
+                );
+                for x in [-3.35, 3.35] {
+                    let a = Vec3::new(x, 0.05, z + 0.3);
+                    model.rod(a, a + Vec3::Y * 1.05, 0.38, [0.43, 0.27, 0.13]);
+                    solids.push((
+                        a + Vec3::Y * 0.525,
+                        Quat::IDENTITY,
+                        Collider::cylinder(0.525, 0.38),
+                    ));
+                }
+            }
+        }
+    }
     let e = root(
         commands,
         meshes,
@@ -497,6 +745,7 @@ fn building(
             }
         )),
     ));
+    street_group
 }
 fn horse(
     commands: &mut Commands,
@@ -573,6 +822,7 @@ pub struct TownDetailCensus {
     pub outer_fields: usize,
     pub field_cells: usize,
     pub roadside_groups: usize,
+    pub outer_shrubs: usize,
     pub reused_props: usize,
 }
 fn lot_block(
@@ -1492,6 +1742,40 @@ fn town_infill(
                     }
                 }
                 // Barrels and freight crates bring activity into the open backlots.
+                // A pair of original low shrubs/cacti occupies the outer lot
+                // corners, inside the already checked fence and clear of access.
+                for x in [-10.3, 10.3] {
+                    let c = ground(x, -9.);
+                    if kind == 2 {
+                        m.rod(c, c + Vec3::Y * 1.4, 0.2, [0.27, 0.40, 0.20]);
+                        solids.push((
+                            c + Vec3::Y * 0.7,
+                            Quat::IDENTITY,
+                            Collider::cylinder(0.7, 0.2),
+                        ));
+                        for side in [-1., 1.] {
+                            m.rod(
+                                c + Vec3::Y * 0.7,
+                                c + Vec3::new(side * 0.55, 1.25, 0.),
+                                0.12,
+                                [0.30, 0.43, 0.20],
+                            );
+                        }
+                    } else {
+                        m.ellipsoid(
+                            c + Vec3::Y * 0.55,
+                            Vec3::new(0.85, 0.58, 0.8),
+                            [0.26, 0.37, 0.18],
+                            0.6,
+                        );
+                        solids.push((
+                            c + Vec3::Y * 0.55,
+                            Quat::IDENTITY,
+                            Collider::cuboid(0.65, 0.55, 0.65),
+                        ));
+                    }
+                    census.outer_shrubs += 1;
+                }
                 for k in 0..5 {
                     let c = ground(-9. + k as f32 * 4.5, 10.);
                     lot_block(
@@ -1647,7 +1931,7 @@ pub(super) fn spawn(
                         .filter(|(p, _)| clear(&occupied, *p, if western { 12.5 } else { 12. }))
                     {
                         occupied.push((p, if western { 12.5 } else { 12. }));
-                        building(
+                        census.frontage_groups += usize::from(building(
                             commands,
                             meshes,
                             &material,
@@ -1656,7 +1940,7 @@ pub(super) fn spawn(
                             facing,
                             census.buildings,
                             western,
-                        );
+                        ));
                         census.buildings += 1;
                     }
                 }
@@ -1898,6 +2182,7 @@ mod tests {
             details.median_review_band
         );
         assert!(details.outer_fields >= 20 && details.field_cells > 3000);
+        assert_eq!(details.outer_shrubs, details.backlots * 2);
         let mut lots = app
             .world_mut()
             .query_filtered::<&Transform, With<TownLot>>();
@@ -1909,8 +2194,26 @@ mod tests {
                 assert!(d >= track.half_width(s) + 22.);
             }
         }
+        let mut storefronts = app
+            .world_mut()
+            .query_filtered::<&Transform, With<HillsBuilding>>();
+        let track = app.world().resource::<Track>();
+        for t in storefronts.iter(app.world()) {
+            for x in [-2.1, 0., 2.1] {
+                let point = t.translation + t.rotation * Vec3::new(x, 0., -9.5);
+                assert!(!super::super::mounted::reserved(track, point, 0.5));
+                for route in 0..2 {
+                    let (s, _, distance) = track.project_route(route, point, 6000.);
+                    assert!(
+                        distance > track.half_width(s) + 1.6,
+                        "storefront apron obstructs route {route} near {s}: {distance}"
+                    );
+                }
+            }
+        }
         let census = app.world().resource::<Census>();
         assert!(census.buildings > 150);
+        assert!(census.frontage_groups > 100);
         assert!(
             census.cows - census.farm_cows == census.horses && census.horses > 3,
             "{}",

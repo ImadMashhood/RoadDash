@@ -382,6 +382,7 @@
     "05": {
       "title": "World B \u2014 props, materials and procedural dressing",
       "task_ids": [
+        "RFU-WORLD-04",
         "DESTRUCTION-02",
         "WORLDART-01",
         "MAT-03",
@@ -411,6 +412,12 @@
         "RFU-SKY-02",
         "RFU-SKY-03",
         "RFU-SKY-04",
+        "RFU-WORLD-01",
+        "RFU-WORLD-02",
+        "RFU-WORLD-03",
+        "RFU-WORLD-05",
+        "RFU-WORLD-06",
+        "RFU-WORLD-07",
         "HILLS-11",
         "SKY-SUN-01",
         "CROP-TRAIL-01",

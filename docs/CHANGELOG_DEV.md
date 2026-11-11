@@ -2096,3 +2096,20 @@ cases passed on one release binary SHA256 2eeea11c7edb3cb2f5bd90a66c36d8e4bb5afe
 The reproducible runner and compact receipts are in testing/sand-speed/REPORT.md.
 Human feel, steep-uphill reverse and broad hardware/performance gates remain open.
 No imported code/media or dependency migration was added.
+## 2026-11-10 — Issue31 original Hills world enrichment (ADR146)
+
+Add deterministic spatially batched distant conifers with resident trunks,
+wider irregular grass, remote western mesas, storefront goods/lanterns and
+four larger shop-front display variants, plus outskirts cacti/rocks. Raise
+canyon ground and its seated river together12m.
+Riding-height follow-up: guarded striped stalls, handcarts and hitch/barrel
+groups share storefront meshes and compound collision; backlots gain two low
+shrubs/cacti each. Preserve route clearance and existing entity budgets.
+Integrated with e776605f: 663 locked tests, strict format/Clippy, debug/release
+builds, audit and roadmap checks pass. Six native Hills/Metropolis functional
+cases pass; Valley world-survey writes15sections/657roots but exits1 at17.94ms
+p95 against the pre-existing16.7ms gate. CPU sample comparison is confounded by
+the concurrent atmosphere merge. Art/full-course/GPU/hardware gates stay open.
+Preserve roads, legacy maps, dependency pins and accepted rigs. Seven RFU-WORLD
+IDs remain open. Strict/native/combined performance verification in progress;
+see testing/issue31-world/REPORT.md. No publication or broad acceptance claim.
