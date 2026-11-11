@@ -68,6 +68,14 @@ Physics uses Rapier's parallel island solver by default. To compare the serial b
 run `cargo run --release --locked --no-default-features --features offline,devtools`.
 This changes scheduling, not body/joint/substep tuning. [Benchmarks and limits](docs/testing/parallel-physics/README.md).
 
+Course loading now reuses exact terrain queries, uses eight material jobs during
+loading (two during gameplay), and dispatches the fixed schedule on one thread.
+Rapier's internal parallel solving, 60 Hz simulation and physical rigs remain
+unchanged. [Controlled measurements and limits](docs/testing/issue25-performance/REPORT.md)
+show local loading and frame-time gains; sustained 60 FPS and broader hardware
+remain open. Diagnostic controls are `ROADDASH_TERRAIN_CACHE=0`,
+`ROADDASH_FIXED_EXECUTOR=multi` and `ROADDASH_LOAD_JOBS=2`.
+
 ## Controls
 
 | Key | Action |

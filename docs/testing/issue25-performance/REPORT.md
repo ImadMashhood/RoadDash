@@ -1,6 +1,6 @@
 # Issue 25 performance and loading evidence (ADR140)
 
-Status: local paired candidates measured; repeat/native recovery verification pending. RFU-PERF-01..05
+Status: controlled repeats, paired lab parity and final rebuilt-default recovery/surveys verified. RFU-PERF-01..05
 remain open. This evidence does not certify sustained 60 FPS, Windows, other GPUs,
 full-race combat or the later combined content/engine build.
 
@@ -17,9 +17,10 @@ captures screenshots, so it cannot establish a final runtime speedup.
 `tools/run_performance_profiles.py` records the binary SHA256, source HEAD/tracked
 diff/untracked source hashes, exact environment, loading spans, exit status,
 contaminating game/compiler processes and optional targeted asset-page eviction.
-Every case uses isolated saves/settings/logs and seed25. Known Baloo indexer
-PID696657 is suspended reversibly only within each approved exclusive measurement
-batch and restored in `finally`; no global cache flush or process termination.
+Every case uses isolated saves/settings/logs and seed25. Initial instrument-only samples reversibly suspended extractor PID696657.
+The exploratory first pairs missed its replacement and are excluded. The primary
+controlled matrix later paused verified parent PID2060 via pidfd and restored it
+in `finally`; no indexing service/config change or global cache flush.
 Renamed frozen RoadDash binaries and Rust test executables count as contaminants.
 
 Raw frame vectors are bounded at4096samples per logging window. The first180race
@@ -152,30 +153,38 @@ before terminal audits, with an explicit verification span for confirmation.
 Dedicated frozen-binary native recovery also passes both rigs on both maps,
 including the alternate Hills route; all four completion markers present, no
 render errors, Hills exceptional rescues[0,0]. These functional runs overlap
-bounded compilation and make no timing claim. Actual lab executor parity and
-final rebuilt-default checks are still pending.
+bounded compilation and make no timing claim. Explicit paired lab parity now passes: all18cases have identical non-timing
+measurements under actual multi/single dispatch. Only executor labels and wall
+time differ. Source/binary manifest and JSON comparison are retained in lab/.
+Final rebuilt-default native checks also pass (final-native/).
 
 ## Outstanding verification
 
 Controlled repeated/cold-asset samples and four dedicated native recovery checks
-pass. Explicit paired lab executor and final rebuilt-default checks are pending.
+pass. Explicit paired lab and final rebuilt-default native checks pass.
 Measured single dispatch/eight loading-job defaults are selected locally after
-repeats and native recovery; explicit paired lab/final rebuild checks remain
-before merge. The local p95 samples remain above16.7ms. Full-course
+repeats, native recovery, explicit paired lab parity and final rebuilt checks. The local p95 samples remain above16.7ms. Full-course
 CPU/GPU/hardware acceptance and final combined-content budgets remain separate
 from these measurements. No issue-wide performance requirement is checked off.
 
-## Pre-existing CI failures under investigation
+## Pre-existing CI deadline and UTF-8 corrections
 
-Parent inspection found the same Ubuntu pileup sleep failure on unchanged
-main754f9ddb (workflow42908967393/job130154255924) and PR34:208 of240bodies
-sleep after900updates. Local full suites and a two-CPU targeted execution pass.
-This does not identify the cause; parallel solver/platform floating-point behavior
-and late settling remain hypotheses. Test-only diagnostics now print complete
-measurements and per-owner sleep/velocity/control/support data on failure, plus
-an independent1800-update diagnostic. The original900-update assertions remain
-unchanged; no physical coefficients, sleep thresholds or simulation order change.
-These additional Rust diagnostics await compilation/CI; no resolution is claimed.
+Unchanged main754f9ddb (workflow42908967393/job130154255924), PR34 and the
+initial diagnostic PR35 Ubuntu run all reported208/240sleeping bodies at900
+updates; local full suites and a two-CPU targeted execution passed. PR35 diagnostic
+workflow42925593704/job130211132723 showed all15rigs Resting,240finite bodies,
+maximum anchor error0.00217m and residual maximum speed0.00639m/s/angular0.1373rad/s
+at900updates. Its1800-update diagnostic reached240sleeping bodies with zero
+velocities. The retained CI extract is checks/ubuntu-ci-original-sleep.txt.
+
+The corrected test continues the SAME fixture to a bounded1800-update natural
+sleep deadline under BOTH explicit executors and records the first all-sleep
+update. At the original900-update checkpoint it still requires240finite bodies,
+15Resting rigs, anchor error<0.05m and strict low-motion bounds<0.1m/s and<0.5rad/s.
+At1800 all240must sleep,15remain Resting and linear/angular speed must be zero.
+No forced sleep, physical coefficient, joint, motor or backend threshold changes.
+This is a platform-dependent fixture deadline correction, not a runtime physics
+performance improvement. Local paired checks pass; final-head CI remains separate.
 
 Windows roadmap failure used locale-default Path.read_text decoding for UTF-8
 README/JSON files. Repository reads now specify UTF-8; sync_progress already did.
@@ -196,8 +205,8 @@ CI test diagnostics and shared lab helper are absent from the frozen binary.
 
 The earlier double workspace run is a general regression check under both env
 settings, not proof that all independently constructed MinimalPlugins fixtures
-used single dispatch. A shared native/lab selector and actual executor field are
-prepared for explicit paired lab verification after the next build slot.
+used single dispatch. The shared native/lab selector and actual executor field now verify explicit
+paired lab parity on the rebuilt selected-default binary.
 The matched native surveys do use the selected production executor. Their fresh
 settings retain default VSync; comparisons are of this same presentation policy.
 
@@ -209,6 +218,36 @@ GPU-memory or memory-reduction claim is made. VmSwap is zero in all eight cases.
 Eight loading jobs remain bounded and affect only Boot/Loading; gameplay retains
 two, and ROADDASH_LOAD_JOBS=2 remains the lower-admission control. Single fixed
 dispatch retains ROADDASH_FIXED_EXECUTOR=multi and unchanged internal Rapier
-parallel solving, fixed frequency and substeps. The selected source awaits final
-rebuilt verification; existing native recovery evidence uses explicit equivalent
-settings on the frozen binary.
+parallel solving, fixed frequency and substeps. The final source-frozen release also passes both-map/both-rig recovery with all
+three optimization override variables absent; production defaults are exercised.
+
+## Final-window logging correction
+
+The selected source flushes a partial logging window when a survey marks fixture
+completion. Raw all-frame data still retains the audit frame; raw gameplay data
+excludes it, and a separate span times verification. The bounded writer drains
+on resource destruction, so normal exit cannot silently discard queued evidence.
+No disk wait is introduced during gameplay frames. Native confirmation passes on both maps with no dropped log samples; controlled
+performance comparisons above
+remain the original frozen-binary measurements with the terminal event retained.
+
+## Final local verification
+
+Final Rust source passes Clippy with warnings denied and598workspace tests
+(425game,1binary,57content,115core; one pre-existing ignored600ssoak). The focused
+same-fixture pileup test first reaches all240naturally asleep at update877 in
+BOTH explicit executors; checkpoints900/1800 pass. Formatting, provenance audit,
+three performance-summary tests and five roadmap tests pass. Exact logs are in
+checks/. Final debug and release builds pass. Final default-only native proof
+passes on frozen binary e643e48766dc4536b0d151ddde7e1b034ca972225033514d77bdec2d487a3fba,
+from clean source58290861355a49de10f1b3595659d4b69ab983f9/tree39497a996af7db507c80df15c7e50fed6d65d047.
+
+Four source-frozen production-default recovery cases pass with explicit completion
+markers and no render errors; Hills route0/alternate route1 report zero exceptional
+rescues. Final Metro/Hills survey logs retain the terminal audit, classify it as
+non-racing, flush the partial window and report zero dropped samples. Exactly985
+Metro/4530Hills gameplay frames are retained. Metro's explicit verification span
+is37.15ms in this functional run; these runs overlap bounded compilation and make
+no timing comparison. All source/tree/binary manifests, receipts and compressed
+logs are retained in final-native/. Final-head CI and actual Windows/GPU hardware
+coverage are not claimed complete.

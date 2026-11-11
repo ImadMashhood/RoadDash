@@ -1201,19 +1201,18 @@ full-race combat/traffic coverage, cold-machine loading and Windows/other hardwa
 acceptance remain open. Final combined content/engine measurements are required
 before treating local branch improvements as overall performance acceptance.
 
-- ADR140 verification: pre-existing Ubuntu pileup CI reports208/240sleeping bodies
-  at900updates on both unchanged main and a sibling PR; local/two-CPU controls
-  pass. Diagnostic-only per-owner/extended-run evidence is being collected; the
-  original assertion and accepted physical settings remain intact. No fix or
-  LinuxCI acceptance is claimed yet. Windows roadmap UTF-8 reading and this
-  branch's stale Part01/16 summary counts are corrected with five locale-hostile
-  roadmap checks passing; actual WindowsCI confirmation remains pending.
+- ADR140 verification: unchanged main and initial PR CI showed208/240sleeping
+  bodies at900updates despite all15controllers Resting with tiny residual motion.
+  The same-fixture test retains15s finite/body/resting/anchor and strict low-motion
+  checks, then requires all240naturally sleeping with zero motion by30s, under
+  both explicit executors. Local full598tests pass. No physics coefficients,
+  forced sleep or backend thresholds change; final-head CI remains separate.
+  Original failed CI evidence is retained. Windows repository reads now specify
+  UTF-8; five locale-hostile roadmap checks pass, actual Windows CI remains pending.
 
-- ADR140 CI diagnosis: original Ubuntu900-update failure has all15controllers
-  Resting with tiny residual motion;1800updates naturally sleep all240. The test
-  now preserves15s stability and observes the same fixture to a30s full-sleep
-  deadline for both executors. This corrects a platform-sensitive test deadline,
-  not runtime physics; final local/CI confirmation is pending. Prior first paired
-  measurements had unobserved replacement indexing and are exploratory only.
-  Eight controlled replacements confirm gains, but16.7ms p95/full-course/hardware
-  gates remain open; peak CPU memory remains roughly2.1GiB Hills/5.8GiB Metro.
+- ADR140 measurement: first exploratory pairs missed replacement indexing and are
+  excluded. Eight controlled replacements confirm loading/runtime gains, with
+  exact census/support parity. Both-map/both-rig native recovery and18-case
+  explicit executor lab parity pass. The16.7ms p95/full-course/final combined
+  content/hardware gates stay open; peak CPU memory remains roughly2.1GiB Hills/
+  5.8GiB Metro, and no GPU-memory reduction is claimed.

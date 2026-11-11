@@ -3854,7 +3854,9 @@ completion/span markers, plus same-length cohort comparisons across all controls
 Four both-map/both-rig native recovery cases pass. Select single FixedUpdate
 dispatch and eight loading-only material jobs, preserving explicit multi/two-job
 controls, internal parallel Rapier,60Hz/substeps and two-job gameplay admission.
-Final rebuilt-default/explicit paired lab checks remain before merge.
+Rebuilt18-case explicit paired lab checks pass with exact non-timing equality;
+598workspace tests pass on selected defaults. Final source-frozen native default-only recovery and terminal-log surveys
+pass on both maps; no dropped evidence and no timing claim under build load.
 
 CI on unchanged main and the diagnostic PR shows15resting riders at900updates,
 240finite bodies, anchor error0.00217m, linear0.00639m/s, angular0.13730rad/s, but

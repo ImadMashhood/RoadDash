@@ -16,6 +16,7 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--track', choices=['hills', 'metro', 'both'], default='both')
     parser.add_argument('--fixed-executor', choices=['single', 'multi'], default='single')
+    parser.add_argument('--production-defaults', action='store_true', help='Leave dispatch, loading admission and terrain reuse overrides unset.')
     args = parser.parse_args()
     binary = args.binary.resolve()
     output = args.output.resolve()
@@ -36,6 +37,9 @@ def main():
                        ROADDASH_VERIFY_HILLS_RESCUE='1' if track == 'hills' else '0',
                        ROADDASH_SAVE_DIR=str(folder/'save'), ROADDASH_SETTINGS=str(folder/'settings.json'),
                        ROADDASH_LOG_DIR=str(folder/'logs'), ROADDASH_DHT='0', ROADDASH_UPNP='0')
+            if args.production_defaults:
+                for key in ['ROADDASH_FIXED_EXECUTOR', 'ROADDASH_LOAD_JOBS', 'ROADDASH_TERRAIN_CACHE']:
+                    env.pop(key)
             flags = ['--smoke-test'] + (['--ragdoll-baseline'] if baseline else [])
             start = time.monotonic()
             with (folder/'native.txt').open('w') as log:
@@ -44,7 +48,7 @@ def main():
             log = (folder/'native.txt').read_text()
             errors = bool(re.search(r'\bERROR\b|panicked at|Shader compilation error', log))
             complete = 'Render smoke test passed:' in log
-            receipt = dict(case=case, exit_code=result.returncode, binary_sha256=digest,
+            receipt = dict(case=case, exit_code=result.returncode, binary_sha256=digest, production_defaults=args.production_defaults,
                            flags=flags, environment={k:v for k,v in env.items() if k.startswith('ROADDASH_')},
                            complete=complete, render_errors=errors, duration_s=time.monotonic()-start,
                            timing_claim=False)

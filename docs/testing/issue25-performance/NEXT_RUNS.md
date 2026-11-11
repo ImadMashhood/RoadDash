@@ -1,43 +1,54 @@
-# Serialized continuation commands
+# Reproduction and remaining gates
 
-Run from `/home/imad/Documents/ChatGPT/RoadDash-issue-25`, after the parent grants
-an exclusive measurement window. The frozen binary is independent of Cargo target
-changes and resolves assets from this compiled checkout. Its SHA256 must remain
-`6fe419d28e8833e2c4777b94b1cd642b04e8a76ae0303cced84b74636371ad44`.
-All output directories below must be new. Do not use these commands while another
-game, compiler or Rust test process is active. The original Baloo PID has exited;
-no indexer PID is passed. If one is explicitly identified later, only that exact
-validated process may be reversibly suspended by the harness.
+The issue25 cold/warm matrix and four dedicated recovery cases are complete;
+see REPORT.md and controlled/. Final combined-content/engine measurements remain
+required after the separately coordinated branches and Bevy migration integrate.
+No local branch result certifies the full combined workload or16.7ms p95.
 
-Repeat with targeted cold asset pages, approximately5–6minutes total:
+Build and freeze the desired release binary outside an actively rebuilt target.
+Record source commit/tree, clean/dirty state, build log and binary SHA256. A
+`road-dash.provenance.json` beside the binary may record these fields and must
+include its matching `binary_sha256`; the runner rejects a mismatch. The older
+frozen-binary-provenance.json explicitly records the initial snapshot limitation.
+Measurement checkout metadata is separately named and is not build provenance.
 
-```sh
-python3 tools/run_performance_profiles.py --binary output/testing/issue25-optimized/road-dash --output output/testing/issue25-repeat-cold/control --runs 1 --gpu --terrain-control --cold-assets
-python3 tools/run_performance_profiles.py --binary output/testing/issue25-optimized/road-dash --output output/testing/issue25-repeat-cold/candidate --runs 1 --gpu --fixed-executor single --load-jobs 8 --cold-assets
-```
-
-Warm candidate repeat (approximately130seconds), then reverse-order warm control
-(approximately175seconds) supplies a second warm result and reduces fixed-order
-bias. These require a separate explicit measurement window:
+Reserve exclusive CPU/GPU time before running the Linux matrix. All output paths
+must be new; prohibit other builds/games and source writes that trigger indexing.
 
 ```sh
-python3 tools/run_performance_profiles.py --binary output/testing/issue25-optimized/road-dash --output output/testing/issue25-repeat-warm/candidate --runs 1 --gpu --fixed-executor single --load-jobs 8
-python3 tools/run_performance_profiles.py --binary output/testing/issue25-optimized/road-dash --output output/testing/issue25-repeat-warm/control --runs 1 --gpu --terrain-control
+flock /tmp/roaddash-native.lock python3 tools/run_performance_matrix.py --binary /absolute/path/to/frozen/road-dash --output output/testing/new-performance-matrix --gpu
 ```
 
-Functional dedicated recovery checks are separate from performance measurements;
-serialize games but these may share a bounded build window. Four cases cover
-both physical rigs and both tracks, including alternate Hills recovery route.
-Each case requires the existing smoke completion marker and no render errors;
-exit0alone is not acceptance. No timing claim is made. Budget several minutes
-per case; the runner bounds each case at900seconds.
+Only if explicitly authorized and necessary, add `--indexer-pid PID` for the
+currently verified same-user long-lived baloo_file parent. Never copy an old PID
+without revalidation. The runner verifies UID, executable and process starttime,
+uses pidfds to avoid PID reuse, pauses matching existing extractor children, and
+restores the actual process handles in finally/cancellation. It records all actual
+signals. This is not permission to disable an indexing service/configuration or
+pause unrelated processes. Active indexers detected without protection abort the
+case and preserve its receipt. The completed controlled batch's actual proof is
+controlled/indexer-control.json; PID2060 was restored afterward.
+
+The matrix runs cold-asset control→candidate then warm candidate→control on both
+maps. Cold mode evicts only checkout asset pages and records fincore residency;
+it never claims a cold machine, metadata/executable/driver-cache reset. The
+original query/multi-dispatch/two-job controls remain selectable even though the
+production defaults are the measured candidate. The raw-frame warmup is180racing
+frames; use identical frame cohorts across configurations for secondary analyses.
+All-frame samples retain terminal verification while gameplay samples exclude it;
+partial final windows flush and the writer drains on normal shutdown.
+
+Functional recovery is separate from performance measurement; serialize games,
+but bounded builds may overlap without any timing claim. Four cases cover both
+rigs/maps, including alternate Hills route, and require an explicit completion
+marker plus no render errors. Each case is bounded at900seconds.
 
 ```sh
-python3 tools/run_performance_recovery.py --binary output/testing/issue25-optimized/road-dash --output output/testing/issue25-recovery --fixed-executor single
+flock /tmp/roaddash-native.lock python3 tools/run_performance_recovery.py --binary /absolute/path/to/frozen/road-dash --output output/testing/new-performance-recovery --production-defaults
+ROADDASH_FIXED_EXECUTOR=multi /absolute/path/to/frozen/road-dash --ragdoll-lab --output lab-multi.json
+ROADDASH_FIXED_EXECUTOR=single /absolute/path/to/frozen/road-dash --ragdoll-lab --output lab-single.json
 ```
 
-Afterward send receipt paths to the issue25 agent. Do not merge or set new dispatch/
-loading defaults solely from this checkpoint. Recheck deterministic census parity,
-repeat distributions, memory and readiness; preserve any failed/noisy samples
-with explicit exclusions. Final integration must incorporate latestmain, rerun
-appropriate checks and use the parent-approved integration slot.
+Compare the18lab cases excluding only wall time/executor label. Both must retain
+finite/bounded physical behavior, and the original eleven-body baseline remains
+an independent control. No physics tuning is implied by profiling results.

@@ -1,4 +1,4 @@
-//! Bounded asynchronous local performance evidence; never waits for disk on the game thread.
+//! Bounded asynchronous evidence: no frame-time disk waits; drain queued records at shutdown.
 use super::*;
 use std::{
     io::{BufWriter, Write},
@@ -7,6 +7,7 @@ use std::{
 #[derive(Resource)]
 pub(super) struct PerfLog {
     sender: Option<SyncSender<serde_json::Value>>,
+    writer: Option<std::thread::JoinHandle<()>>,
     cpu_threads: usize,
     last: Instant,
     frames: u64,
@@ -22,6 +23,7 @@ pub(super) struct PerfLog {
 }
 impl Default for PerfLog {
     fn default() -> Self {
+        let mut writer = None;
         let sender = if std::env::var("ROADDASH_PERF_LOG").as_deref() == Ok("0") {
             None
         } else {
@@ -38,7 +40,7 @@ impl Default for PerfLog {
                     "Performance log: {} (1-second samples; CPU/wall timing, not GPU timestamps)",
                     path.display()
                 );
-                std::thread::spawn(move || {
+                writer = Some(std::thread::spawn(move || {
                     let result = (|| -> std::io::Result<()> {
                         let mut out = BufWriter::new(std::fs::File::create(&path)?);
                         let mut bytes = 0;
@@ -68,12 +70,13 @@ impl Default for PerfLog {
                     if let Err(e) = result {
                         eprintln!("Performance log stopped: {e}");
                     }
-                });
+                }));
                 Some(tx)
             }
         };
         Self {
             sender,
+            writer,
             cpu_threads: std::thread::available_parallelism().map_or(1, usize::from),
             last: Instant::now(),
             frames: 0,
@@ -87,6 +90,15 @@ impl Default for PerfLog {
                 .then(|| Vec::with_capacity(4096)),
             raw_racing_frames: Vec::new(),
             previous_frame: Instant::now(),
+        }
+    }
+}
+impl Drop for PerfLog {
+    fn drop(&mut self) {
+        // Closing the sole sender lets the bounded writer drain; never join in a frame.
+        self.sender.take();
+        if let Some(writer) = self.writer.take() {
+            let _ = writer.join();
         }
     }
 }
@@ -157,7 +169,7 @@ pub(super) fn sample(
     }
     log.steps += metrics.frame_fixed_steps;
     log.main_ms += metrics.frame_start.elapsed().as_secs_f32() * 1000.;
-    if log.last.elapsed().as_secs_f32() < 1. {
+    if log.last.elapsed().as_secs_f32() < 1. && fixture_complete.is_none() {
         return;
     }
     let frames = log.frames.max(1) as f32;

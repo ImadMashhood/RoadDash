@@ -1,0 +1,42 @@
+    Finished `test` profile [optimized + debuginfo] target(s) in 0.53s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+BIOMECH_PILEUP_900 Measurement { scenario: "fifteen_crashes", mode: "biomechanical", fixed_executor: "MultiThreaded", bodies: 240, simulated_seconds: 15.0, max_anchor_error_m: 0.0021087688, final_anchor_error_m: 7.81268e-5, max_limit_excess_rad: 0.012380928, max_speed_mps: 7.4428897, peak_speed_part: 12, peak_angular_part: 14, peak_angular_radps: 70.91016, max_elbow_flex_rad: 1.0922562, max_knee_flex_rad: 2.4465969, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 240, resting_ragdolls: 15, finite: true, initial_mass_kg: 1049.9993, initial_momentum_error: 0.0, peak_mechanical_energy_j: 37466.15870438267, initial_mechanical_energy_j: 37466.158703984525, headless_wall_ms: 7119.924916999999 }
+BIOMECH_PILEUP_1800 Measurement { scenario: "fifteen_crashes", mode: "biomechanical", fixed_executor: "MultiThreaded", bodies: 240, simulated_seconds: 30.0, max_anchor_error_m: 0.0021087688, final_anchor_error_m: 7.81268e-5, max_limit_excess_rad: 0.012380928, max_speed_mps: 7.4428897, peak_speed_part: 12, peak_angular_part: 14, peak_angular_radps: 70.91016, max_elbow_flex_rad: 1.0922562, max_knee_flex_rad: 2.4465969, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 240, resting_ragdolls: 15, finite: true, initial_mass_kg: 1049.9993, initial_momentum_error: 0.0, peak_mechanical_energy_j: 37466.15870438267, initial_mechanical_energy_j: 37466.158703984525, headless_wall_ms: 8451.752453 } first_all_sleep_update=Some(877)
+BIOMECH_PILEUP_900 Measurement { scenario: "fifteen_crashes", mode: "biomechanical", fixed_executor: "SingleThreaded", bodies: 240, simulated_seconds: 15.0, max_anchor_error_m: 0.0021087688, final_anchor_error_m: 7.81268e-5, max_limit_excess_rad: 0.012380928, max_speed_mps: 7.4428897, peak_speed_part: 12, peak_angular_part: 14, peak_angular_radps: 70.91016, max_elbow_flex_rad: 1.0922562, max_knee_flex_rad: 2.4465969, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 240, resting_ragdolls: 15, finite: true, initial_mass_kg: 1049.9993, initial_momentum_error: 0.0, peak_mechanical_energy_j: 37466.15870438267, initial_mechanical_energy_j: 37466.158703984525, headless_wall_ms: 6083.493047 }
+BIOMECH_PILEUP_1800 Measurement { scenario: "fifteen_crashes", mode: "biomechanical", fixed_executor: "SingleThreaded", bodies: 240, simulated_seconds: 30.0, max_anchor_error_m: 0.0021087688, final_anchor_error_m: 7.81268e-5, max_limit_excess_rad: 0.012380928, max_speed_mps: 7.4428897, peak_speed_part: 12, peak_angular_part: 14, peak_angular_radps: 70.91016, max_elbow_flex_rad: 1.0922562, max_knee_flex_rad: 2.4465969, physics_substeps: 4, extra_solver_iterations: 8, final_max_speed_mps: 0.0, final_max_angular_radps: 0.0, sleeping_bodies: 240, resting_ragdolls: 15, finite: true, initial_mass_kg: 1049.9993, initial_momentum_error: 0.0, peak_mechanical_energy_j: 37466.15870438267, initial_mechanical_energy_j: 37466.158703984525, headless_wall_ms: 7031.218708 } first_all_sleep_update=Some(877)
+test biomechanics::tests::fifteen_crashes_have_bounded_entities_and_can_sleep ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 425 filtered out; finished in 15.50s
+
+     Running unittests src/bin/city_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/city_preview-49ba9a4938b61e93)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running unittests src/bin/prop_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/prop_preview-96e18c8db10644c9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-6421aa5f4b17ac21)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/visibility_probe.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/visibility_probe-829d1fae7a018d90)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/weapon_preview.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/weapon_preview-340f45ef6707789b)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

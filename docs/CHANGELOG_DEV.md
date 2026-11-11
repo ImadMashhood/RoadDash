@@ -1863,3 +1863,15 @@ add actual lab executor reporting and terminal verification spans. CI establishe
 bounded late natural sleep, so preserve15s stability and require all240sleeping
 by30s on the same fixture for both executors, without physical tuning. Final
 rebuilt checks and merge remain pending.
+
+## 2026-11-11 — Final executor parity and source-frozen verification (ADR140)
+
+All18lab scenarios match exactly across explicit single/multi executors after
+excluding only executor label/wall time. Final598workspace tests, strict Clippy,
+format, provenance audit and Python evidence/roadmap checks pass. Same-fixture
+pileups first naturally sleep all240bodies at update877 in both executors.
+Terminal survey markers now flush partial raw windows and normal shutdown drains
+the bounded writer; final release is frozen with exact source/tree/binary hashes.
+Default-only four recovery/two survey checks pass with zero dropped logs and
+retained terminal audits; final publication/merge follows required checks.
+Broad RFU-PERF gates remain open; no physics/dependency migration is included.
