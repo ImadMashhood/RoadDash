@@ -1972,3 +1972,15 @@ checks through 240 phases. Flat and uneven native animation review cases passed
 and sample front/side frames were retained. Full workspace checks and paired
 anatomical/baseline native recovery passed; integrated performance and human
 motion review remain open under RFU-MOVE-05/06.
+
+## 2026-11-11 — Issue40 four-candidate selection checkpoint
+
+Four fresh agents measured CPU traffic snapshot reuse, facade visibility sync,
+loading admission/cache and grass-wind shader arithmetic against the frozen
+e2a31918 Hills/Metropolis baseline. Draft PRs #44, #49, #46 and #45 retain raw
+receipts and failed or mixed trials. CPU has the smallest nominal warm weighted
+ratio (~0.9886), narrowly ahead of GPU (~0.98955), but its final source was not
+reprofiled and cold Hills p95 regressed. Facade Hills p95/tail regressed and the
+loading cache was reverted. None is merged; final-source, full cold and
+combined-content reruns remain RFU-PERF-06/07 gates. See
+testing/issue40-selection/REPORT.md.

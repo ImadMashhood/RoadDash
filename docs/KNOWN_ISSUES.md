@@ -3,7 +3,7 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
-- RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
+- RFU-PERF-06/07: four candidate drafts are measured; the CPU and GPU nominal warm gains are about 1% and overlap variation, while cold/final-source and combined-content comparisons remain open. No candidate is merged and the 16.7 ms budget is unmet. See testing/issue40-selection/REPORT.md and issue #40.
 
 - RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
 
