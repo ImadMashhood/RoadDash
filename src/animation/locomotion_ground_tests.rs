@@ -22,7 +22,16 @@ fn step(
 #[test]
 fn translated_walk_run_slope_and_stop_keep_contact_and_physical_root() {
     let mut report = Vec::new();
-    for (speed, grade) in [(2., 0.), (6., 0.), (2., 0.12), (6., -0.12)] {
+    for (speed, grade, cross, uneven) in [
+        (2., 0., 0., false),
+        (6., 0., 0., false),
+        (2., 0.12, 0., false),
+        (6., -0.12, 0., false),
+        (6., 0.25, 0., false),
+        (6., -0.25, 0., false),
+        (6., 0., 0.2, false),
+        (6., 0., 0., true),
+    ] {
         let mut app = App::new();
         app.add_plugins((
             MinimalPlugins,
@@ -33,11 +42,29 @@ fn translated_walk_run_slope_and_stop_keep_contact_and_physical_root() {
         .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
             std::time::Duration::from_secs_f64(1. / 60.),
         ));
-        let rotation = Quat::from_rotation_x(-f32::atan(grade));
+        let height = |x: f32, z: f32| {
+            x * cross
+                + z * grade
+                + if uneven {
+                    (z * 0.8).sin() * 0.18 + (z * 1.7).sin() * 0.035
+                } else {
+                    0.
+                }
+        };
+        let mut vertices = Vec::new();
+        let mut indices = Vec::new();
+        for n in -20..1000 {
+            let z = n as f32 * 0.1;
+            let base = vertices.len() as u32;
+            for (x, z) in [(-5., z), (-5., z + 0.1), (5., z + 0.1), (5., z)] {
+                vertices.push(Vec3::new(x, height(x, z), z));
+            }
+            indices.extend([[base, base + 1, base + 2], [base, base + 2, base + 3]]);
+        }
         app.world_mut().spawn((
             RigidBody::Fixed,
-            Collider::cuboid(10., 0.1, 100.),
-            Transform::from_xyz(0., -0.1, 0.).with_rotation(rotation),
+            Collider::trimesh(vertices, indices).unwrap(),
+            Transform::default(),
         ));
         let runner = app
             .world_mut()
@@ -65,7 +92,7 @@ fn translated_walk_run_slope_and_stop_keep_contact_and_physical_root() {
             let moving = tick < 240;
             let velocity = if moving { speed } else { 0. };
             distance += velocity / 60.;
-            let body = Transform::from_xyz(0., 0.95 + distance * grade, distance);
+            let body = Transform::from_xyz(0., 0.95 + height(0., distance), distance);
             *app.world_mut().get_mut::<Transform>(runner).unwrap() = body;
             {
                 let mut rec = app.world_mut().get_mut::<Recovery>(owner).unwrap();
@@ -99,15 +126,22 @@ fn translated_walk_run_slope_and_stop_keep_contact_and_physical_root() {
                     previous[side] = None;
                 }
                 assert!(sole.is_finite());
+                if tick > 90 && moving {
+                    let surface = height(sole.x, sole.z);
+                    assert!(
+                        sole.y > surface - 0.035,
+                        "foot clips terrain: speed={speed} grade={grade} cross={cross} tick={tick} side={side} sole={sole:?} surface={surface}"
+                    );
+                }
                 if tick == 359 {
                     assert!(
-                        sole.y - (distance * grade) < 0.12,
+                        sole.y - height(sole.x, sole.z) < 0.12,
                         "idle foot remains suspended {sole:?}"
                     );
                 }
             }
         }
-        report.push((speed, grade, max_slip, samples));
+        report.push((speed, grade, cross, uneven, max_slip, samples));
         assert!(samples > 10, "must measure real stance samples");
         assert!(max_slip < 0.006, "planted foot slip {report:?}");
     }

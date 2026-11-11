@@ -41,13 +41,16 @@ fn amount(speed: f32) -> f32 {
     (speed / 1.5).clamp(0., 1.)
 }
 pub(super) fn cycle(speed: f32) -> f32 {
-    (1.5 + 1.25 * running(speed)) * amount(speed).max(0.15)
+    (1.5 + 1.0 * running(speed)) * amount(speed).max(0.15)
 }
 pub(super) fn stance(speed: f32) -> f32 {
-    0.825 / (1.5 + 1.25 * running(speed))
+    (0.825 + 0.175 * running(speed)) / (1.5 + 1.0 * running(speed))
 }
 pub(super) fn contact(phase: f32, speed: f32, side: usize) -> bool {
     speed < 0.15 || (phase + side as f32 * 0.5).rem_euclid(1.) < stance(speed)
+}
+pub(super) fn swing_lift(phase: f32, speed: f32, side: usize) -> f32 {
+    foot((phase + side as f32 * 0.5).rem_euclid(1.), speed).1
 }
 fn foot(phase: f32, speed: f32) -> (f32, f32) {
     let contact = stance(speed);
@@ -65,7 +68,7 @@ fn foot(phase: f32, speed: f32) -> (f32, f32) {
             + (u3 - 2. * u2 + u) * tangent
             + (-2. * u3 + 3. * u2) * reach
             + (u3 - u2) * tangent;
-        let lift = (0.08 + 0.14 * running(speed))
+        let lift = (0.08 + 0.24 * running(speed))
             * amount(speed)
             * (std::f32::consts::PI * u).sin().powi(2);
         (forward, lift)
@@ -108,10 +111,10 @@ impl Library {
         for (bone, angle, axis) in [
             (1, 0.045 * theta.sin() + yaw * 0.25, Vec3::Y),
             (3, -0.065 * theta.sin() - yaw * 0.10, Vec3::Y),
-            (3, 0.07 + 0.12 * run, Vec3::X),
-            (4, -0.05 - 0.10 * run, Vec3::X),
-            (7, (0.30 + 0.38 * run) * theta.cos(), Vec3::X),
-            (11, -(0.30 + 0.38 * run) * theta.cos(), Vec3::X),
+            (3, 0.07 + 0.17 * run, Vec3::X),
+            (4, -0.05 - 0.14 * run, Vec3::X),
+            (7, (0.30 + 0.48 * run) * theta.cos(), Vec3::X),
+            (11, -(0.30 + 0.48 * run) * theta.cos(), Vec3::X),
             (8, -0.25 - 0.85 * run - 0.12 * theta.sin(), Vec3::X),
             (12, -0.25 - 0.85 * run + 0.12 * theta.sin(), Vec3::X),
         ] {

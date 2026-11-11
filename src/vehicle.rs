@@ -390,9 +390,13 @@ pub fn forces(
             .heading
             .map(|[x, z]| Vec3::new(x, 0., z))
             .unwrap_or(
-                (forward + right * (steering_side / (speed * 4.0).max(1.0)).clamp(-0.675, 0.675))
-                    .with_y(0.0)
-                    .normalize_or_zero(),
+                (forward
+                    + right
+                        * (steering_side * rr_core::reverse::heading_factor(signed_speed)
+                            / (speed * 4.0).max(1.0))
+                        .clamp(-0.675, 0.675))
+                .with_y(0.0)
+                .normalize_or_zero(),
             );
         let yaw = heading.cross(target).y.atan2(heading.dot(target));
         // Heading is input-owned. Rapier may translate/tilt the chassis, but

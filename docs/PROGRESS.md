@@ -1,10 +1,10 @@
 # Development progress
 
-<<<<<<< HEAD
+Current scope: issue #28 / ADR143 adds urgent recovery run presentation, terrain-aware swing clearance and signed reverse heading. RFU-MOVE-03/04 verified by headless checks and ten native cases; RFU-MOVE-01/02 retain user terrain/feel acceptance. Final civilian-integrated617workspace tests (two explicit ignored benchmarks), strict lint/build/fmt/audit and roadmap checks pass. Evidence: testing/issue-28-movement/README.md. No movement-speed, rig or dependency migration.
+
+
 Civilian overtaking (2026-11-10, issue27/ADR142): RFU-TRAF-01–04 add slow-leader passing, opposing motor-vehicle horizon/merge checks, deliberate upright-biker non-veto and competing-pass reservations. Four new open requirements; 222 verified / 274 open. 609 workspace tests, strict format/Clippy, locked debug/release builds, provenance audit and five roadmap checks pass. Native motion/recovery/quiet CPU receipts remain pending; broad traffic balance, long-race and hardware/performance gates remain open. Evidence: testing/civilian-overtaking/REPORT.md.
-=======
 Current scope (2026-11-11; ADR140): RFU-PERF-01–05, issue25. Controlled cold-asset/reverse-warm trials select exact terrain reuse, single fixed dispatch and eight loading-only material jobs. Readiness improves about37–39%; raw traversal p95 improves13–23% locally. Both-map/both-rig recovery and18-case explicit executor parity pass;598workspace tests and strict checks pass. Full-race16.7ms, cold-machine presentation, final combined-content and broad hardware gates remain open. No requirement is closed. Dependencies stay pinned; Bevy0.20 migration is coordinated separately. Evidence: testing/issue25-performance/REPORT.md.
->>>>>>> 76d4fe154baa169bbbf19e163cb0c0868d18d0c4
 
 Hills rear-grid correction (2026-11-10, ADR139/HILLS-01): reproduced the rear spawn off the imported street. Extend the exact source-city approach through the negative-station grid apron; verify all grid slots and launch corridors against actual road triangles and building footprints. 594 workspace tests and strict lint/build/audit checks pass. Shared Metropolis fixes normalize AI planning coordinates across bends and close the 8cm soil/asphalt seam; Metropolis native seam views and both Hills routes/current-baseline recovery controls pass with zero exceptional rescues. Evidence: testing/hills-grid/REPORT.md. No new IDs or closures.
 
@@ -396,6 +396,10 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RFU-MOVE-03** Reverse steering turns heading left for D and right for A. Reason: issue #28 reports wrong reverse heading; part: 01; dependencies: REVERSE-01/P03-019; acceptance: both Dynamic and Assisted paths, symmetric inputs, continuous zero crossing and unchanged forward handling; verification: integrated vehicle tests and native reverse/forward review. [Evidence](testing/issue-28-movement/README.md).
+
+- [x] **RFU-MOVE-04** Keep run cadence matched to measured movement. Reason: issue #28 forbids silent recovery-speed tuning; part: 03; dependencies: RFU-MOVE-01; acceptance: measured-distance phase, continuous speed changes, unchanged 6m/s controller and physical recovery; verification: gait trajectories, models differential checks and paired lab/native recovery. [Evidence](testing/issue-28-movement/README.md).
 
 - [x] **CITY-ACTIVITY-02** Increase urban main traffic by50%, double urban pedestrians and add occasional sidewalk-to-sidewalk crossings. Reason: explicit user city-activity request; part: 06; dependencies: approved Metropolis baker, NPC patrols and host authority; acceptance:144 main traffic vehicles and384 city pedestrians, rural counts unchanged, paced grounded crossings and preserved collision; verification: authoring/runtime tests, generated census and native Metropolis survey. Verified:144main cars/384urban pedestrians,10clear crossing routes, two completed native crossings, rural/structural preservation and full integrated checks. [Evidence](testing/city-activity-02/README.md). Performance remains a separate open gate.
 
@@ -948,6 +952,10 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **ARCH-006** Define evidence/classic-reference/new-design/rights/QA catalog fields; keep original-source observations distinct from new stats/unlocks/visuals.
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
+
+- [ ] **RFU-MOVE-02** Align recovery feet/body over slopes, crests and uneven elevations. Reason: issue #28 terrain-contact defects; part: 03; dependencies: RFU-MOVE-01 and existing physical support locks; acceptance: bounded swing clearance, stable stance, continuous transitions and no physical rig changes; verification: translated up/down/cross-slope contact tests, native uneven-ground/manual/automatic/remount captures and user review. [Evidence](testing/issue-28-movement/README.md).
+
+- [ ] **RFU-MOVE-01** Present urgent bike-return running. Reason: issue #28 reports a slow-looking recovery walk; part: 03; dependencies: V2-03-003/ADR130; acceptance: readable run at unchanged actual movement speed with user visual review; verification: distance-matched gait tests and native flat/slope sequences. Implementation pending acceptance; [evidence](testing/issue-28-movement/README.md).
 
 - [ ] **COMBAT-FEEL-01** Synchronize strikes to visible contact keyframes and review impact feel/audio. Partial: fixed-clock windup/contact and interruption/pause/reset handling are integrated in the [Part03 pass](testing/part03-runtime/README.md). [Polish12](testing/polish-12/pass12/README.md) adds bounded confirmed-hit directional punch/kick recoil with held contacts and attack priority; subjective impact/audio, full geometry and user playtest approval remain open. Reason: faster playback alone does not align input-tick hit resolution; part: 03; dependencies: COMBAT-09 and fixed input buffering; acceptance: one strike at contact, interruption/pause safe, strong readable left/right impacts and approved sound/feel; verification: timed contact/miss/recovery tests, native recording and user playtest.
 

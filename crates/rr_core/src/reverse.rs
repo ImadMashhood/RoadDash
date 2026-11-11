@@ -20,6 +20,19 @@ pub fn acceleration(
     }
 }
 
+/// Heading follows signed travel. The existing speed-bounded steering demand
+/// vanishes at standstill. Lateral
+/// tire demand keeps its wheel-side convention; only heading uses this factor.
+pub fn heading_factor(signed_speed: f32) -> f32 {
+    if signed_speed < 0.0 { -1.0 } else { 1.0 }
+}
+
+/// The Assisted adapter stays lane-constrained; reverse adds a bounded heading
+/// offset. Forward orientation is unchanged and zero-speed crossings are continuous.
+pub fn assisted_heading(steer: f32, signed_speed: f32) -> f32 {
+    steer * (-signed_speed).clamp(0.0, 1.0) * 0.28
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -35,6 +48,32 @@ mod tests {
             }
             assert!((speed + MAX_SPEED).abs() < 0.001);
             assert_eq!(acceleration(speed, false, false, 1.0, dt), None);
+        }
+    }
+}
+
+#[cfg(test)]
+mod heading_tests {
+    use super::*;
+    #[test]
+    fn signed_heading_preserves_forward_and_has_continuous_bounded_zero_crossing() {
+        for steer in [-1.0f32, -0.2, 0., 0.2, 1.] {
+            for speed in [-2.5f32, -0.1, -0.0001, 0., 0.0001, 0.1, 2.5, 60.] {
+                let demand = (steer * 2.).clamp(-speed.abs() * 0.675, speed.abs() * 0.675);
+                let signed = demand * heading_factor(speed);
+                assert_eq!(signed, if speed < 0. { -demand } else { demand });
+                if speed.abs() < 0.001 {
+                    assert!(signed.abs() < 0.001);
+                }
+                assert_eq!(
+                    assisted_heading(steer, speed),
+                    -assisted_heading(-steer, speed)
+                );
+                if speed >= 0. {
+                    assert_eq!(assisted_heading(steer, speed), 0.);
+                }
+                assert!(assisted_heading(steer, speed).abs() <= 0.28);
+            }
         }
     }
 }

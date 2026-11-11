@@ -1304,7 +1304,7 @@ pub fn drive(
             let mut steer;
             if is_player {
                 r.raw_steer = player_intent.steer;
-                let speed = r.speed;
+                let speed = r.speed.abs();
                 let response = handling.presets[handling.selected].steering;
                 steer = r.steering.step(player_intent.steer, speed, dt, response);
                 // High speed on a tight curve pushes the rider toward the outside shoulder.
@@ -1758,9 +1758,12 @@ pub fn drive(
                 }
             }
             transform.translation = destination;
-            transform.rotation = q
-                * Quat::from_rotation_z(r.lean.clamp(-0.6, 0.6))
-                * Quat::from_rotation_x(-r.hop_velocity * 0.025);
+            transform.rotation =
+                q * Quat::from_rotation_y(rr_core::reverse::assisted_heading(
+                    r.drive_intent.steer,
+                    r.speed,
+                )) * Quat::from_rotation_z(r.lean.clamp(-0.6, 0.6))
+                    * Quat::from_rotation_x(-r.hop_velocity * 0.025);
         }
     }
     if active && race.phase != Phase::Finished {
