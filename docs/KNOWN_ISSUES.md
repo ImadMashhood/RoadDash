@@ -3,7 +3,7 @@
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
-- RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
+- RFU-PERF-06/07: four candidate drafts are measured; the CPU and GPU nominal warm gains are about 1% and overlap variation, while cold/final-source and combined-content comparisons remain open. No candidate is merged and the 16.7 ms budget is unmet. See testing/issue40-selection/REPORT.md and issue #40.
 
 - RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
 
@@ -1198,9 +1198,9 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   that every traffic blockage is eliminated.
 
 
-## Guardrail follow-up draft (2026-11-10, issue33/ADR148)
+## Guardrail follow-up (2026-11-11, issue33/ADR148)
 
-RFU-RAIL-01..05 have focused physical gap and automatic re-entry checks passing on the integrated branch. The integrated workspace suite passes; native checks and human full-course review remain pending; broad hardware/performance gates stay open. No rider-physics or bridge-edge policy change is intended.
+RFU-RAIL-01..05 have physical gap and automatic re-entry checks, 623 integrated workspace tests, both native gap surveys and five native recovery controls passing. Eight oblique captures show openings and capped ends, but do not prove riding-height appearance at every turn, vertical skirt quality, or full-course human usability. Broad hardware/performance gates stay open. Rider physics and bridge-edge policy remain unchanged.
 
 ## Performance/loading investigation (2026-11-10, ADR140)
 

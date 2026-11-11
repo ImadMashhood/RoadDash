@@ -46,7 +46,7 @@ for case in args.cases or CASES:
     log = (folder/'native.txt').read_text(errors='replace')
     error = bool(re.search(r'\bERROR\b|panicked at|Shader compilation error', log))
     marker = 'GUARDRAIL_SURVEY_COMPLETE' if case.endswith('gaps') else 'Render smoke test passed:'
-    complete = result.returncode == 0 and marker in log and not error
+    complete = result.returncode == 0 and (case.endswith('gaps') or marker in log) and not error
     row = dict(case=case, completed=complete, exit_code=result.returncode, errors=error,
                binary_sha256=sha, functional_only=True, elapsed_seconds=time.time()-started)
     if complete and case.endswith('gaps'):

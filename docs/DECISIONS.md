@@ -3923,6 +3923,12 @@ sweep the unchanged capsule against current obstacles. Consume the existing glob
 one-plan budget and1.5s retry timer. Store only the resulting walk_path; no teleport,
 rescue, control/rig tuning or unbounded search. Manual input clears that path and
 retains existing authority. This is required physical usability, not an NPC AI rewrite.
+
+ADR148 validation: actual resident collision confirms support feet, terminal
+contacts and full-size gap sweeps; 623 integrated tests, both native gap surveys
+and five paired branch/rig recovery controls pass with zero exceptional rescue.
+The native close views are elevated obliques, so full-course riding-height
+appearance and hardware/performance acceptance remain open.
 ## ADR142 — Civilian opposing-lane overtaking (2026-11-10)
 
 Issue27 requests sustained slow-leader passing: tractors6m/s, semis12m/s,

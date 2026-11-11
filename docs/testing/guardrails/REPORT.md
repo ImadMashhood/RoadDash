@@ -1,7 +1,10 @@
 # Guardrail follow-up — issue33
 
-Status: integrated verification in progress on branch `codex/issue-33-guardrails`.
-RFU-RAIL-01..05 remain open. ADR148 records the policy and provenance.
+Status: integrated functional verification passed on branch
+`codex/issue-33-guardrails`; human full-course visual/feel and broad
+hardware/performance acceptance remain open. RFU-RAIL-01..05 remain unchecked.
+ADR148 records the policy and provenance. Earlier sections preserve the
+chronological diagnostic checkpoints; the final section is the current result.
 
 The existing Hills generator placed both sides on bends with fixed0.8m posts
 referenced to sampled road positions. The replacement selects the explicit turn
@@ -23,7 +26,7 @@ adopted over installed0.17.3 APIs; engine-neutral grounding/traversability princ
 were applied. Level-design, procedural-gen, performance, Bevy rendering/physics
 skills informed topology and verification; no performance gain is asserted.
 
-Prepared checks:
+Prepared checks at the source checkpoint:
 
 - Pure signed-turn and bounded-run/gap tests in rr_core.
 - Actual resident collider rays for every post foot, all terminal contact, and
@@ -40,7 +43,7 @@ status before delivery. Native runs must hold `/tmp/roaddash-native.lock`, use
 isolated settings/save/working directories, validate successful completion and check
 logs for panic/ERROR/shader failures. Quiet timing requires the root's exclusive window.
 
-Remaining: compile and fix tests; strict clippy/workspace test/debug build/audit;
+Remaining at the source checkpoint: compile and fix tests; strict clippy/workspace test/debug build/audit;
 release build; native dedicated gap survey, both Hills branch recoveries with both
 rig controls, model differential tests and paired headless lab; native visual review;
 integrate latest main preserving29 sand/25 terrain cache/31 river edits; regenerate
@@ -82,7 +85,7 @@ both gap-centre recoveries, but the new maximum-run midpoint fixture fails after
 player recovery previously had no authored rail access path. The follow-up adds
 bounded two-candidate, collision-grounded and swept waypoints through actual ends
 or gaps, sharing existing walk_path/controller/manual override and the one-plan
-budget/1.5s retry. Focused run05 is pending. No rig or contact parameters change.
+budget/1.5s retry. Focused run05 was pending at this checkpoint. No rig or contact parameters change.
 
 ## Integrated checkpoint (2026-11-11)
 
@@ -98,3 +101,40 @@ release native functional checks and close visual review remain pending at this
 checkpoint.
 The main branch's new four-city-ID scope is retained; README now totals
 224 verified /297 open.
+
+## Final integrated functional evidence (2026-11-11)
+
+The branch also merged docs-only main35c3d4cf without changing source behavior.
+`cargo fmt --all --check`, strict locked workspace Clippy, locked workspace
+tests (623passed, two intentional ignored benchmarks), locked debug and release
+builds, `tools/audit.py`, progress index, and five roadmap tests pass. The
+release binary SHA256 is
+`3bd1538944c7bdb3e1ba47afc07566f93075ac1694818887621ec99e97ad10a2`.
+The paired headless ragdoll lab has18finite cases. Exact command receipts are
+`clippy.txt`, `workspace-tests.txt`, `debug-build.txt`, `release-build.txt`,
+`audit.json`, `paired-lab.json`, and the native case receipts. No GPU or quiet
+performance measurement is inferred from the functional cases.
+
+The same release binary completed all seven isolated native cases under
+`/tmp/roaddash-native.lock`:
+
+| Case | Result |
+| --- | --- |
+| Hills gap | Two real controller crossings,315grounded ticks, zero rescue, four captures |
+| Valley gap | Two real controller crossings,316grounded ticks, zero rescue, four captures |
+| Valley recovery | All fixed stages; rescue counts[0,0] |
+| Hills west/east, anatomy | All fixed stages; each rescue counts[0,0] |
+| Hills west/east, eleven-body baseline | All fixed stages; each rescue counts[0,0] |
+
+I visually inspected all eight survey captures. The sampled rails have visible
+post-to-shoulder contact, a readable rail height, deliberate wide openings and
+solid capped ends. Hills shows longer runs; Valley shows shorter bend protection.
+The survey camera is elevated and oblique (+9m,+4m,-10m from the walker). It
+cannot establish riding-height appearance, every turn-side placement, vertical
+skirt quality throughout the course, or human full-course usability. Physical
+all-post rays, terminal contacts, opposite-side absence and bidirectional
+full-chassis gap sweeps cover the measured collision/placement rules. RFU-RAIL-01..05
+therefore remain open for full-course human and broad hardware/performance
+acceptance. The initial survey wrapper expected an `info!` marker suppressed by
+the current log filter; it was corrected to verify the emitted JSON and PNGs.
+The first native Hills survey already produced valid data and the rerun passed.

@@ -1975,3 +1975,28 @@ checks through 240 phases. Flat and uneven native animation review cases passed
 and sample front/side frames were retained. Full workspace checks and paired
 anatomical/baseline native recovery passed; integrated performance and human
 motion review remain open under RFU-MOVE-05/06.
+
+## 2026-11-11 — Issue40 four-candidate selection checkpoint
+
+Four fresh agents measured CPU traffic snapshot reuse, facade visibility sync,
+loading admission/cache and grass-wind shader arithmetic against the frozen
+e2a31918 Hills/Metropolis baseline. Draft PRs #44, #49, #46 and #45 retain raw
+receipts and failed or mixed trials. CPU has the smallest nominal warm weighted
+ratio (~0.9886), narrowly ahead of GPU (~0.98955), but its final source was not
+reprofiled and cold Hills p95 regressed. Facade Hills p95/tail regressed and the
+loading cache was reverted. None is merged; final-source, full cold and
+combined-content reruns remain RFU-PERF-06/07 gates. See
+testing/issue40-selection/REPORT.md.
+
+## 2026-11-11 — Guardrail issue #33 integrated functional verification
+
+Merged current docs-only main after the source/test integration. Corrected the
+headless fixture to start from resident shoulder support and added bounded
+collision-grounded automatic end/gap guidance for trapped riders. 623 locked
+workspace tests, strict Clippy/format, locked debug/release builds, audit,
+roadmap checks,18 paired lab cases and seven native Hills/Valley functional
+scenarios pass. Both turn-side runs and baseline/current recovery have zero
+exceptional rescues in the native fixtures. Eight close captures and their
+visual limits are recorded at testing/guardrails/REPORT.md. RFU-RAIL-01..05
+remain open for human full-course and broad hardware/performance acceptance.
+Draft PR #51 records publication; merge is tracked separately.
