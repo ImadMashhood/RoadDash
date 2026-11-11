@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-10 — Metropolis atmosphere follow-up (ADR145, issue #30)
+
+Reused the existing spatial clouds and Hills bird pool in Metropolis with six bounded flocks, independent quality controls and an opt-in moving native survey. Refined urban placement after visual review to use street approaches and authored civic openings. Preserved Hills dust and existing sun, physics, controls and recovery. The combined racer-AI/sand tree passed 661 workspace tests, strict checks/builds, final Metropolis visual proof and eight both-map quality runs. RFU-SKY-01..04 remain open for user visual, full-course/GPU/hardware and broader performance acceptance. No new media or dependency migration. Evidence: testing/metropolis-atmosphere/REPORT.md.
+
 ## 2026-11-08 — Random rival clubs and Part09 starter receipts
 
 RIVAL-WEAPONS-01: seeded seven-of-fourteen starting rival clubs, validated configurable fraction, new-grid/retry-only assignment and player/police exclusion. Existing combat policy, launch grace, drop, visual sockets and physical rig retained. Native held/equipped checks and375 workspace tests passed. No new assets/dependencies; existing source/ability provenance hashes updated.

@@ -3,6 +3,7 @@ pub mod online;
 mod police;
 
 pub mod animation;
+pub mod atmosphere_survey;
 pub mod biomechanics;
 pub mod combat;
 pub mod content;
@@ -216,6 +217,16 @@ pub fn build_app(smoke: bool) -> App {
                     PostUpdate,
                     survey::camera
                         .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--atmosphere-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<atmosphere_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    atmosphere_survey::run
+                        .after(game::camera)
+                        .before(world_gen::hills::atmosphere::reset)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
         } else if std::env::args().any(|a| a == "--hills-revision-survey") {

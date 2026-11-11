@@ -1,0 +1,130 @@
+[
+  {
+    "map": "metro",
+    "mode": "full",
+    "first_racing_sample_s": 2.55,
+    "first_ready_sample_s": 3.3833333333333333,
+    "max_rss_kib": 6150400,
+    "frame_median_ms": 23.016287,
+    "frame_p95_ms": 28.373897,
+    "birds": 24,
+    "clouds": {
+      "banks": 8,
+      "density_bytes": 110592,
+      "steps": 12,
+      "volumetric": true
+    }
+  },
+  {
+    "map": "metro",
+    "mode": "low",
+    "first_racing_sample_s": 2.566666666666667,
+    "first_ready_sample_s": 3.4,
+    "max_rss_kib": 6139676,
+    "frame_median_ms": 23.299176000000003,
+    "frame_p95_ms": 29.187597999999998,
+    "birds": 24,
+    "clouds": {
+      "banks": 8,
+      "density_bytes": 110592,
+      "steps": 6,
+      "volumetric": true
+    }
+  },
+  {
+    "map": "metro",
+    "mode": "off",
+    "first_racing_sample_s": 2.6,
+    "first_ready_sample_s": 3.433333333333333,
+    "max_rss_kib": 6151584,
+    "frame_median_ms": 23.320896,
+    "frame_p95_ms": 28.072023,
+    "birds": 24,
+    "clouds": {
+      "banks": 0,
+      "density_bytes": 0,
+      "steps": 0,
+      "volumetric": false
+    }
+  },
+  {
+    "map": "metro",
+    "mode": "birds_off",
+    "first_racing_sample_s": 2.6,
+    "first_ready_sample_s": 3.45,
+    "max_rss_kib": 6158924,
+    "frame_median_ms": 23.284257,
+    "frame_p95_ms": 28.74457,
+    "birds": 0,
+    "clouds": {
+      "banks": 8,
+      "density_bytes": 110592,
+      "steps": 12,
+      "volumetric": true
+    }
+  },
+  {
+    "map": "hills",
+    "mode": "full",
+    "first_racing_sample_s": 1.1166666666666667,
+    "first_ready_sample_s": 2.1,
+    "max_rss_kib": 2210604,
+    "frame_median_ms": 16.337194999999998,
+    "frame_p95_ms": 17.972723,
+    "birds": 24,
+    "clouds": {
+      "banks": 8,
+      "density_bytes": 110592,
+      "steps": 12,
+      "volumetric": true
+    }
+  },
+  {
+    "map": "hills",
+    "mode": "low",
+    "first_racing_sample_s": 1.1166666666666667,
+    "first_ready_sample_s": 2.1166666666666667,
+    "max_rss_kib": 2230832,
+    "frame_median_ms": 16.504337,
+    "frame_p95_ms": 18.267545,
+    "birds": 24,
+    "clouds": {
+      "banks": 8,
+      "density_bytes": 110592,
+      "steps": 6,
+      "volumetric": true
+    }
+  },
+  {
+    "map": "hills",
+    "mode": "off",
+    "first_racing_sample_s": 1.1,
+    "first_ready_sample_s": 2.05,
+    "max_rss_kib": 2213764,
+    "frame_median_ms": 16.40393,
+    "frame_p95_ms": 18.076518,
+    "birds": 24,
+    "clouds": {
+      "banks": 0,
+      "density_bytes": 0,
+      "steps": 0,
+      "volumetric": false
+    }
+  },
+  {
+    "map": "hills",
+    "mode": "birds_off",
+    "first_racing_sample_s": 1.1166666666666667,
+    "first_ready_sample_s": 2.1333333333333333,
+    "max_rss_kib": 2200792,
+    "frame_median_ms": 16.405032,
+    "frame_p95_ms": 18.135789,
+    "birds": 0,
+    "clouds": {
+      "banks": 8,
+      "density_bytes": 110592,
+      "steps": 12,
+      "volumetric": true
+    }
+  }
+]

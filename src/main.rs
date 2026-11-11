@@ -223,6 +223,7 @@ fn main() {
             || a == "--racer-ai-survey"
             || a == "--civilian-survey"
             || a == "--metro-survey"
+            || a == "--atmosphere-survey"
             || a == "--hills-survey"
             || a == "--surface-survey"
             || a == "--guardrail-survey"

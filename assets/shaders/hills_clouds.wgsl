@@ -27,6 +27,7 @@ fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
     var transmittance = 1.0;
     var colour = vec3(0.0);
     for (var i = 0u; i < 12u; i += 1u) {
+        if f32(i) >= cloud.radiance.y { break; }
         let p = origin + ray * (start + (f32(i) + 0.5) * step_length) + vec3(0.5);
         let density = textureSampleLevel(density_texture, density_sampler, p, 0.0).r;
         let sun_density = textureSampleLevel(density_texture, density_sampler, p + sunlight, 0.0).r;

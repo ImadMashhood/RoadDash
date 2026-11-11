@@ -1268,3 +1268,9 @@ before treating local branch improvements as overall performance acceptance.
   The unpaired debug sample is 31.056ms p95, above 16.7ms; matched release
   cost, memory, hardware and user art gates stay open. See
   testing/issue-43-city-life/REPORT.md.
+Issue30 / ADR145: Metropolis bird presentation and shared spatial-cloud quality
+controls have bounded native evidence on both new maps. Raised Metropolis
+street captures show small flocks; low canyon views remain roof-occluded.
+Single-pass toggle frame differences are mixed and Metropolis exceeds16.7ms.
+RFU-SKY-01..04 remain open for user art, full-course/GPU/hardware and broader
+performance acceptance. See testing/metropolis-atmosphere/REPORT.md.
