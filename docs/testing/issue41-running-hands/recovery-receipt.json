@@ -1,0 +1,43 @@
+{
+  "binary_sha256": "331ac0015bbc42eaa9ffc2cfbb90c7cb0ea696a4365e10b75bbdd6da6de1a388",
+  "cases": [
+    {
+      "group": "recovery",
+      "name": "anatomy",
+      "args": [
+        "--smoke-test"
+      ],
+      "environment": {
+        "ROADDASH_VERIFY_WALK_CROSSINGS": "1",
+        "ROADDASH_VERIFY_MANUAL_RETURN": "1",
+        "ROADDASH_SMOKE_ROUTE": "0"
+      },
+      "passed": true,
+      "exit_code": 0,
+      "walk_crossing_distances_m": [
+        5.326062202453613,
+        35.51520919799805
+      ]
+    },
+    {
+      "group": "recovery",
+      "name": "baseline",
+      "args": [
+        "--smoke-test",
+        "--ragdoll-baseline"
+      ],
+      "environment": {
+        "ROADDASH_VERIFY_WALK_CROSSINGS": "1",
+        "ROADDASH_VERIFY_MANUAL_RETURN": "1",
+        "ROADDASH_SMOKE_ROUTE": "0"
+      },
+      "passed": true,
+      "exit_code": 0,
+      "walk_crossing_distances_m": [
+        5.429083347320557,
+        35.5169563293457
+      ]
+    }
+  ],
+  "limits": "Scripted Linux native fixtures; visual review is separate. No GPU/performance/hardware or human feel certificate."
+}
