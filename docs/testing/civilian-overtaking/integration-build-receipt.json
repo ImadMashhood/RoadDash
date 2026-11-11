@@ -1,0 +1,12 @@
+{
+  "commit": "4f2360a90711b8343ec2b20d3a933bf975c48b24",
+  "integrated_main": "76d4fe154baa169bbbf19e163cb0c0868d18d0c4",
+  "binary": "/tmp/road-dash-issue27-integrated",
+  "binary_sha256": "6f17c4986451e9874bb7a3593ae8def8db4dce295ebbacace2917af5137118f1",
+  "sources": {
+    "crates/rr_core/src/civilian.rs": "542a0eaa5e222f9c35991de065ce9988a602f4a41b0b65774be0c2b116f005bd",
+    "src/game.rs": "4d875b296c9305af7be885cb88b73873a0fc11c1d4646eb71f15e25d3e117c66",
+    "src/lib.rs": "4e43bf361bdcd4aaa330d28f06c932bbe6d1d1b3f19dafeade420019de20bf25",
+    "src/civilian_survey.rs": "3fcd110f34198cf5062cc6b6f4f9bab81520af70a7790a854e095f003717c832"
+  }
+}

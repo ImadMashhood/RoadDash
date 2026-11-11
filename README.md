@@ -68,6 +68,14 @@ Physics uses Rapier's parallel island solver by default. To compare the serial b
 run `cargo run --release --locked --no-default-features --features offline,devtools`.
 This changes scheduling, not body/joint/substep tuning. [Benchmarks and limits](docs/testing/parallel-physics/README.md).
 
+Course loading now reuses exact terrain queries, uses eight material jobs during
+loading (two during gameplay), and dispatches the fixed schedule on one thread.
+Rapier's internal parallel solving, 60 Hz simulation and physical rigs remain
+unchanged. [Controlled measurements and limits](docs/testing/issue25-performance/REPORT.md)
+show local loading and frame-time gains; sustained 60 FPS and broader hardware
+remain open. Diagnostic controls are `ROADDASH_TERRAIN_CACHE=0`,
+`ROADDASH_FIXED_EXECUTOR=multi` and `ROADDASH_LOAD_JOBS=2`.
+
 ## Controls
 
 | Key | Action |
@@ -162,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**222 verified tasks complete; 274 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**222 verified tasks complete; 279 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -181,7 +189,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 222 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 32 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 34 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
@@ -196,7 +204,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [13](#part-13) | Authoritative online races and lobbies | 11 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
 | [15](#part-15) | Presentation, audio, UI and accessibility | 25 open |
-| [16](#part-16) | QA, performance, platform, dependency and release gates | 21 open |
+| [16](#part-16) | QA, performance, platform, dependency and release gates | 24 open |
 
 <a id="part-00"></a>
 
@@ -651,6 +659,9 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 </details>
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **RFU-PERF-01** Measure and reduce Hills and Metropolis loading. Reason: issue25 reports excessive startup; part:01; dependencies: existing course construction/readiness; acceptance: repeated cold/warm samples separating generation, assets, collision, construction and playable readiness, fewer measured seconds with unchanged content/collision; verification: stage profiles, matched native runs and geometry/recovery regressions. Controlled cold-asset/warm repeats and both-rig/map recovery pass; see docs/testing/issue25-performance/REPORT.md. Full cold-boot/presentation timing and broader hardware remain open.
+- [ ] **RFU-PERF-04** Evaluate offline baking/caching, streaming, instancing, culling and bounded simulation against measured bottlenecks. Reason: issue25 requests substantial performance improvements; part:01; dependencies: RFU-PERF-01/02 and preserved world/physics contracts; acceptance: measured gains without removing resident hazards, source identities or required content; verification: matched profiles, deterministic geometry/collision and long-route recovery/streaming checks.
 
 - [ ] **AI-QUEUE-02** Resolve multi-rider slow queues with safe committed overtakes and escape from blocked approaches. Reason: user observes racers piling up despite the earlier single-queue fix; part: 01; dependencies: traffic avoidance and shared vehicle controls; acceptance: multiple rivals make progress around slower traffic when a reachable gap exists, without entering sidewalks or bypassing collision; verification: deterministic multi-rider physical regression and native queue observation. Implemented; four-rider physical regressions pass, dedicated rendered queue/human balance review remains open. Civilian circular-wait correction and verification are tracked in [traffic stall follow-up](docs/testing/traffic-stall/README.md); legitimate obstacle yielding is retained.
 
@@ -1194,6 +1205,10 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-16"></a>
 
 ### Part 16 — QA, performance, platform, dependency and release gates
+
+- [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. Existing60FPS and broader hardware gates remain open.
+- [ ] **RFU-PERF-03** Evaluate baked/hybrid stationary lighting. Reason: issue25 proposes baking as a candidate; part:16; dependencies: RFU-PERF-02 and MAT-03; acceptance: compare shadow cost, lightmap memory/load, visual quality and procedural-content compatibility before migration; verification: primary API/source review, measured GPU passes and documented tradeoffs, with no assumed FPS benefit or unapproved content replacement.
+- [ ] **RFU-PERF-05** Establish explicit content budgets and quality/density controls. Reason: issue25 requires headroom before clouds/birds/vegetation/props/herds grow; part:16 coordinating05/06; dependencies: RFU-PERF-02 and content-family follow-ups; acceptance: bounded counts/draws/memory/work, appropriate presentation-only quality controls and preserved authoritative populations/collision; verification: budget tests, native census and matched per-quality profiles.
 
 Retain these unfinished original blueprint requirements and acceptance gates. Schedule prerequisite work alongside the relevant earlier part; final acceptance remains here.
 

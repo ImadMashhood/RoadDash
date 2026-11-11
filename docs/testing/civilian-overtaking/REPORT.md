@@ -99,7 +99,7 @@ do not establish swept clearance; the per-frame collider/support assertions
 and final phase fields supply that evidence. Full raw captures remain beside
 the receipts; compact JSON/log evidence is retained for review.
 
-Completed functional command and pending quiet measurements:
+Completed functional and quiet measurement commands:
 
 ```sh
 python3 tools/run_civilian_checks.py --binary /tmp/road-dash-issue27 hills metro active baseline
@@ -112,8 +112,8 @@ The runner rejects any existing case folder (including interrupted evidence);
 use a new `--output-root` for another attempt. It validates each JSON completion/
 merge/intersection/support result, isolates saves/preferences, hashes the
 binary, detects process failure/timeouts/render errors, and preserves each case's
-JSON and motion captures. The original full-fleet and isolated CPU commands passed; extended Metropolis
-transition diagnostics remain pending. RFU-TRAF-01–04 remain open; user/full-course acceptance and
+JSON and motion captures. The original full-fleet and isolated CPU commands passed;
+extended Metropolis diagnosis and corrected repeat are recorded below. RFU-TRAF-01–04 remain open; user/full-course acceptance and
 broader hardware/performance gates are not covered by the automated counts.
 
 ## Quiet production-fleet observation
@@ -133,16 +133,16 @@ cruises and lane slots were unchanged. No thresholds changed to force counts.
 Peak simultaneous reservations were5 and2 respectively. Both processes exited0
 without render errors. These counts demonstrate ordinary passing opportunities;
 they do not establish that every queue clears. Metropolis final camera is
-occluded by a foreground building. Its two ongoing claims require transition
-age/geometry diagnostics and a longer observation before concluding they resolve.
+occluded by a foreground building. Its two ongoing claims prompted the extended
+transition diagnostics and correction recorded below.
 
 The separate release core144-vehicle microbenchmark passed: median242.059µs,
 P95 245.491µs per tick, including reused perception copies and excluding native
 geometry/physics/rendering. This is not comparable directly to whole-adapter
 cost. Metropolis planner P95 1.031ms is material in a16.67ms frame budget;
 combined game/frame/GPU performance after integration remains an open gate.
-The next diagnostic rebuild changes survey reporting only; loaded diagnostic
-runs must not replace these original quiet measurements.
+The first diagnostic rebuild changed survey reporting only; subsequent endpoint
+behavior correction is separate. Loaded runs do not replace these original quiet measurements.
 
 ## Endpoint diagnosis and verified correction
 
@@ -185,3 +185,23 @@ Final endpoint source:611 workspace tests pass (428 library,1 binary,57 content,
 Strict fmt/Clippy, locked debug/release builds, provenance audit and five roadmap
 checks pass; final-* logs record results. Original quiet CPU costs refer to
 the earlier frozen source; no fresh quiet speedup claim follows the endpoint fix.
+
+## Integration with performance defaults
+
+Integrated main76d4fe154baa169bbbf19e163cb0c0868d18d0c4 (PR35), preserving all
+roadmap tasks and both decisions. Combined615 tests pass (432 game,1 binary,
+57 content,125 core), strict fmt/Clippy, locked debug/release builds and audit.
+Roadmap/performance Python checks pass with `PYTHONPATH=tools`; the initial
+package invocation lacked that import path and its failed log is retained.
+
+Frozen integrated SHA256:
+`6f17c4986451e9874bb7a3593ae8def8db4dce295ebbacace2917af5137118f1`.
+`integration-build-receipt.json` records commit/source hashes. Combined Hills
+selected4cases pass206.68s wall: actual heavy bodies, complete returns, zero
+pair intersections/support error. Combined Metropolis240s passes313.62s wall:
+144 civilians,10 started,9 completed,0 aborted,1 healthy final Merge(age9.88s,
+blend0.0389,19m/s,both geometry gates clear). No errors or stranded45s claims.
+These repeated behavior outcomes use the new default executor/loading settings;
+loaded wall times are not a performance comparison. Prior quiet timing receipts
+retain their original-source scope. Broad human/full-course/GPU/hardware gates
+remain open; this integration does not close issue27 automatically.

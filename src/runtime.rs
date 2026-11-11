@@ -144,6 +144,7 @@ fn loaded(
     ),
     server: Option<Res<AssetServer>>,
     metro: Option<Res<crate::world_gen::metropolis::facades::Kit>>,
+    mut last_wait: Local<Option<&'static str>>,
     props: Query<
         &SceneRoot,
         Or<(
@@ -152,32 +153,44 @@ fn loaded(
         )>,
     >,
 ) {
+    let mut waiting = |reason| {
+        if *last_wait != Some(reason) {
+            crate::diagnostics::loading::mark(reason);
+            *last_wait = Some(reason);
+        }
+    };
     if metro.as_ref().is_some_and(|k| !k.ready()) {
+        waiting("wait_facade_kit");
         return;
     }
     if identity.as_ref().is_some_and(|i| !i.ready()) {
+        waiting("wait_facade_identity");
         return;
     }
     if server.is_some()
         && (details.as_ref().is_some_and(|d| !d.settled())
             || tangents.as_ref().is_some_and(|t| !t.settled()))
     {
+        waiting("wait_material_tangents");
         return;
     }
     if let (Some(architecture), Some(server)) = (&architecture, &server)
         && !architecture.ready(server)
     {
+        waiting("wait_architecture");
         return;
     }
     if let (Some(city), Some(server)) = (&city, &server)
         && !city.ready(server)
     {
+        waiting("wait_city");
         return;
     }
     if let (Some(art), Some(server)) = (&art, &server)
         && let Some(models) = &art.models
         && !models.ready(server)
     {
+        waiting("wait_rider_models");
         return;
     }
     if let Some(server) = &server {
@@ -186,11 +199,13 @@ fn loaded(
                 panic!("Required prop mesh failed to load: {error}");
             }
             if !server.is_loaded_with_dependencies(scene.id()) {
+                waiting("wait_props");
                 return;
             }
         }
     }
     content.0.validate().expect("validated game content");
+    crate::diagnostics::loading::mark("required_assets_ready");
     next.set(AppScreen::MainMenu);
 }
 fn screen(race: Res<Race>, state: Res<State<AppScreen>>, mut next: ResMut<NextState<AppScreen>>) {

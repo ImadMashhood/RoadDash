@@ -1,0 +1,17 @@
+.....E
+======================================================================
+ERROR: test_performance_profiles (unittest.loader._FailedTest.test_performance_profiles)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_performance_profiles
+Traceback (most recent call last):
+  File "/usr/lib64/python3.14/unittest/loader.py", line 141, in loadTestsFromName
+    module = __import__(module_name)
+  File "/home/imad/Documents/ChatGPT/RoadDash-issue-27/tools/test_performance_profiles.py", line 7, in <module>
+    from summarize_performance import summarize
+ModuleNotFoundError: No module named 'summarize_performance'
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.019s
+
+FAILED (errors=1)

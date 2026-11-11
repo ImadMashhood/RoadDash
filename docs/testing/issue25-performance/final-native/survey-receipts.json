@@ -1,0 +1,30 @@
+[
+  {
+    "track": "metro",
+    "exit_code": 0,
+    "production_defaults": true,
+    "binary_sha256": "e643e48766dc4536b0d151ddde7e1b034ca972225033514d77bdec2d487a3fba",
+    "race_frames": 985,
+    "terminal_fixture_marker": true,
+    "terminal_racing": false,
+    "dropped_log_samples": 0,
+    "timing_claim": false,
+    "flags": [
+      "--metro-survey"
+    ]
+  },
+  {
+    "track": "hills",
+    "exit_code": 0,
+    "production_defaults": true,
+    "binary_sha256": "e643e48766dc4536b0d151ddde7e1b034ca972225033514d77bdec2d487a3fba",
+    "race_frames": 4530,
+    "terminal_fixture_marker": true,
+    "terminal_racing": false,
+    "dropped_log_samples": 0,
+    "timing_claim": false,
+    "flags": [
+      "--hills-revision-survey"
+    ]
+  }
+]

@@ -233,6 +233,8 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "RFU-PERF-01",
+        "RFU-PERF-04",
         "FOOT-SPAWN-01",
         "AI-11",
         "CRASHREF-004",
@@ -561,6 +563,9 @@
     "16": {
       "title": "QA, performance, platform, dependency and release gates",
       "task_ids": [
+        "RFU-PERF-02",
+        "RFU-PERF-03",
+        "RFU-PERF-05",
         "BASE-001",
         "BASE-002",
         "P11-007",

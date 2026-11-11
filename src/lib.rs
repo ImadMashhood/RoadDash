@@ -45,6 +45,8 @@ use bevy::prelude::*;
 
 /// Native offline client. Pure core/content crates can be tested without it.
 pub fn build_app(smoke: bool) -> App {
+    diagnostics::loading::mark("build_app_begin");
+    let _load_span = diagnostics::loading::Span::new("build_app");
     // Bevy's default IO workers inherit the OS stack, which overflows in the
     // debug glTF loader for the larger authored scenes. Configure only this
     // pool before DefaultPlugins; preserve Bevy's default 25%, 1..4 IO policy.
@@ -287,7 +289,22 @@ pub fn build_app(smoke: bool) -> App {
                 .add_systems(Update, verification::smoke_test.after(ui::update_ui));
         }
     }
+    configure_fixed_executor(&mut app);
     app
+}
+
+/// Apply the same diagnostic dispatch selection to the native app and lab fixtures.
+/// Internal Rapier parallel solving and fixed timing are configured independently.
+pub(crate) fn configure_fixed_executor(app: &mut App) {
+    use bevy::ecs::schedule::ExecutorKind;
+    let executor = if std::env::var("ROADDASH_FIXED_EXECUTOR").as_deref() == Ok("multi") {
+        ExecutorKind::MultiThreaded
+    } else {
+        ExecutorKind::SingleThreaded
+    };
+    app.edit_schedule(FixedUpdate, |schedule| {
+        schedule.set_executor_kind(executor);
+    });
 }
 
 #[cfg(test)]

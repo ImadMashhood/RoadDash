@@ -1,0 +1,360 @@
+{
+  "aborted_returns": 0,
+  "active_at_end": 1,
+  "completed": 9,
+  "course": "Metropolis",
+  "initiated": 10,
+  "limits": "Unmodified production civilian fleet; racers parked to isolate ordinary motor-traffic opportunities. Counters observe all vehicles, camera follows initiated passes. No guarantee every impediment has a safe opposing-lane window. Not whole-race/human/GPU acceptance.",
+  "nominal_simulated_seconds": 240,
+  "outstanding": [
+    {
+      "age_seconds": 9.88092041015625,
+      "blend": 0.03888694941997528,
+      "depart_geometry": true,
+      "entity": 4294948027,
+      "merge_geometry": true,
+      "phase": "Merge",
+      "speed": 19.0,
+      "station": 8697.169921875,
+      "target": 4294947859
+    }
+  ],
+  "peak_active": 2,
+  "planning_cpu": {
+    "limits": "CPU/wall elapsed. Planner includes fleet ordering/copy, perception, FSM and full-collider geometry sweeps plus timing overhead. Whole adapter additionally includes existing following, motion/sampling/interest and bounds. No GPU/full-frame or before-after speedup claim.",
+    "new_planner": {
+      "max_ms": 1.33766,
+      "mean_ms": 0.5283159004097504,
+      "p95_ms": 0.765144
+    },
+    "ticks": 14399,
+    "whole_civilian_adapter": {
+      "max_ms": 3.331732,
+      "mean_ms": 1.3336419613862092,
+      "p95_ms": 1.842156
+    }
+  },
+  "race_elapsed_seconds": 239.96885681152344,
+  "transitions": [
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 81.40290832519531,
+      "entity": 4294947955,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 16.428442001342773,
+      "station": 10486.51171875,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 89.72135162353516,
+      "entity": 4294947955,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 10630.609375,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 92.705322265625,
+      "entity": 4294947955,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 10684.2744140625,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 117.64398193359375,
+      "entity": 4294947775,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 15.029242515563965,
+      "station": 9985.490234375,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 128.0795135498047,
+      "entity": 4294947775,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 10155.8486328125,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 132.2118377685547,
+      "entity": 4294947775,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 17.699989318847656,
+      "station": 10223.98828125,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 138.79356384277344,
+      "entity": 4294947787,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 15.014420509338379,
+      "station": 9710.2958984375,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 145.8085174560547,
+      "entity": 4294947787,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9830.498046875,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 148.79112243652344,
+      "entity": 4294947787,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9887.134765625,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 157.9388885498047,
+      "entity": 4294947817,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 16.025224685668945,
+      "station": 9461.0654296875,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 164.4373016357422,
+      "entity": 4294947817,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9578.912109375,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 167.41990661621094,
+      "entity": 4294947817,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9635.548828125,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 167.41990661621094,
+      "entity": 4294947997,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 16.010591506958008,
+      "station": 9429.0703125,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 175.05137634277344,
+      "entity": 4294947997,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9564.9755859375,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 178.0339813232422,
+      "entity": 4294947997,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9621.6123046875,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 182.1663055419922,
+      "entity": 4294947955,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 15.0,
+      "station": -64.3907470703125,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 189.6977996826172,
+      "entity": 4294947955,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 62.13414764404297,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 192.5970916748047,
+      "entity": 4294947835,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 15.014420509338379,
+      "station": 9010.0458984375,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 192.68040466308594,
+      "entity": 4294947955,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 115.83467102050781,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 200.2285614013672,
+      "entity": 4294947835,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 9138.3466796875,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 203.21116638183594,
+      "entity": 4294947835,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 18.0,
+      "station": 9192.01171875,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 203.21116638183594,
+      "entity": 4294947847,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 15.029242515563965,
+      "station": 8924.60546875,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 213.54197692871094,
+      "entity": 4294947847,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9112.3837890625,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 216.5245819091797,
+      "entity": 4294947847,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 9169.0205078125,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 223.0229949951172,
+      "entity": 4294947967,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 16.0,
+      "station": 77.15723419189453,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 229.33811950683594,
+      "entity": 4294947967,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 191.54888916015625,
+      "to": "Merge"
+    },
+    {
+      "blend": 0.0055555556900799274,
+      "depart_geometry": true,
+      "elapsed": 230.0879364013672,
+      "entity": 4294948027,
+      "from": "Follow",
+      "merge_geometry": true,
+      "speed": 15.014420509338379,
+      "station": 8522.5458984375,
+      "to": "Pass"
+    },
+    {
+      "blend": 0.0,
+      "depart_geometry": true,
+      "elapsed": 232.3207244873047,
+      "entity": 4294947967,
+      "from": "Merge",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 248.23204040527344,
+      "to": "Follow"
+    },
+    {
+      "blend": 0.9944444298744202,
+      "depart_geometry": true,
+      "elapsed": 237.10289001464844,
+      "entity": 4294948027,
+      "from": "Pass",
+      "merge_geometry": true,
+      "speed": 19.0,
+      "station": 8642.748046875,
+      "to": "Merge"
+    }
+  ],
+  "vehicles": 144
+}

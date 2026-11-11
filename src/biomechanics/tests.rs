@@ -93,12 +93,29 @@ fn wall_impact_and_high_speed_ejection_remain_bounded() {
 }
 #[test]
 fn fifteen_crashes_have_bounded_entities_and_can_sleep() {
-    let r = lab::measure(true, lab::Scenario::Pileup, 900);
-    assert!(r.finite);
-    assert_eq!(r.bodies, 240);
-    assert_eq!(r.sleeping_bodies, 240);
-    assert_eq!(r.resting_ragdolls, 15);
-    assert!(r.max_anchor_error_m < 0.05);
+    use bevy::ecs::schedule::ExecutorKind;
+    for executor in [ExecutorKind::MultiThreaded, ExecutorKind::SingleThreaded] {
+        let (at_900, at_1800, first_sleep) = lab::pileup_settling(executor);
+        println!("BIOMECH_PILEUP_900 {at_900:?}");
+        println!("BIOMECH_PILEUP_1800 {at_1800:?} first_all_sleep_update={first_sleep:?}");
+        // Both platforms must already be stable/resting at the original checkpoint.
+        // Natural backend sleep is a separate deadline: Ubuntu's unchanged control
+        // has two quiet rigs still awake at 15s, all asleep by 30s (ADR140).
+        assert!(at_900.finite);
+        assert_eq!(at_900.bodies, 240);
+        assert_eq!(at_900.resting_ragdolls, 15);
+        assert!(at_900.max_anchor_error_m < 0.05);
+        assert!(at_900.final_max_speed_mps < 0.1);
+        assert!(at_900.final_max_angular_radps < 0.5);
+        assert!(at_1800.finite);
+        assert_eq!(at_1800.bodies, 240);
+        assert_eq!(at_1800.sleeping_bodies, 240);
+        assert_eq!(at_1800.resting_ragdolls, 15);
+        assert!(at_1800.max_anchor_error_m < 0.05);
+        assert_eq!(at_1800.final_max_speed_mps, 0.0);
+        assert_eq!(at_1800.final_max_angular_radps, 0.0);
+        assert!(first_sleep.is_some_and(|tick| tick <= 1800));
+    }
 }
 #[test]
 fn pose_motor_holds_a_configurable_elbow_target_and_yields_to_external_torque() {

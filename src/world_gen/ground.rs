@@ -258,13 +258,21 @@ pub fn terrain_grid(
     tile: f32,
     step: f32,
 ) -> (Vec<Vec3>, Vec<[u32; 3]>) {
+    terrain_grid_with_height(origin, tile, step, |p| track.terrain_height(p.x, p.y))
+}
+pub(super) fn terrain_grid_with_height(
+    origin: Vec2,
+    tile: f32,
+    step: f32,
+    mut height: impl FnMut(Vec2) -> f32,
+) -> (Vec<Vec3>, Vec<[u32; 3]>) {
     let count = (tile / step).round() as usize;
     let mut vertices = Vec::with_capacity((count + 1) * (count + 1));
     let mut indices = Vec::with_capacity(count * count * 2);
     for z in 0..=count {
         for x in 0..=count {
             let p = origin + Vec2::new(x as f32 * step, z as f32 * step);
-            vertices.push(Vec3::new(p.x, track.terrain_height(p.x, p.y), p.y));
+            vertices.push(Vec3::new(p.x, height(p), p.y));
         }
     }
     for z in 0..count {
