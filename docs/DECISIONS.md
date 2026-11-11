@@ -3951,3 +3951,13 @@ accepted eleven-body control and velocity-muscle default unchanged when correcti
 hands. City effect options (vent steam, depth haze, wet-road variant) remain
 proposals until visual, source and performance review. Bevy0.20 migration is a
 separate issue #37 gate and must not be treated as a proven performance win.
+
+## ADR151 — Correct running hands in the visual pose chain (2026-11-10)
+
+The moving thumb cue depends on the chest, clavicle, upper arm and forearm
+rotations already applied by the authored run pose. Compute each hand's current
+world thumb vector from that chain, then apply at most 0.7 radians of visual
+wrist flexion toward travel-forward, weighted by running speed. Leave the idle
+bind unchanged. Do not alter the accepted eleven physical bodies, joints,
+motors, momentum, recovery forces or controller displacement to fix a rendered
+hand orientation. Keep RFU-MOVE-05/06 open for close native and human review.

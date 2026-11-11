@@ -1963,3 +1963,12 @@ Issue28 combined final:617tests pass,2explicit benchmarks ignored; strict checks
 and paired native recovery2/2 pass. Exact binary hash and separate original
 ten-case receipts retained. Final GitHub Linux/Windows CI remains asynchronous;
 no CI success or hardware acceptance is inferred from local checks.
+
+## 2026-11-10 — Issue41 running hand follow-up
+
+The user found rear-facing flat palms during the new urgent run. Add a bounded
+visual wrist correction from the authored arm chain, with bilateral thumb-axis
+checks through 240 phases. Flat and uneven native animation review cases passed
+and sample front/side frames were retained. Full workspace checks and paired
+anatomical/baseline native recovery passed; integrated performance and human
+motion review remain open under RFU-MOVE-05/06.

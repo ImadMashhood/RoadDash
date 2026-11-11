@@ -124,6 +124,21 @@ impl Library {
                 (q.inverse() * Quat::from_axis_angle(axis, angle * weight) * q * p.rotations[bone])
                     .normalize();
         }
+        // Running fists follow the arm swing but keep the thumbs aimed ahead.
+        // Bend at the visual wrist only; neither the physical forearm nor the
+        // controller receives this correction. Limit flexion to a human range.
+        let chest = p.rotations[0] * p.rotations[1] * p.rotations[2] * p.rotations[3];
+        for (clavicle, upper, forearm, hand, thumb_side) in
+            [(6, 7, 8, 9, 1.0), (10, 11, 12, 13, -1.0)]
+        {
+            let parent = chest * p.rotations[clavicle] * p.rotations[upper] * p.rotations[forearm];
+            let thumb = parent * p.rotations[hand] * Vec3::X * thumb_side;
+            let forward_error = thumb.y.atan2(thumb.z);
+            let correction = forward_error.clamp(-0.7, 0.7) * run * weight;
+            p.rotations[hand] =
+                (parent.inverse() * Quat::from_rotation_x(correction) * parent * p.rotations[hand])
+                    .normalize();
+        }
         let direction = if direction.length_squared() > 0.5 {
             direction
         } else {
@@ -174,6 +189,13 @@ mod tests {
         for tick in 1..=240 {
             let p = lib.locomotion(tick as f32 / 240.0, 6.0);
             let w = lib.world_pose(p);
+            for (hand, thumb_side) in [(9, 1.0), (13, -1.0)] {
+                let thumb = w[hand].rotation * Vec3::X * thumb_side;
+                assert!(
+                    thumb.z > 0.45,
+                    "running thumb {hand} turns backward at tick {tick}: {thumb:?}"
+                );
+            }
             for i in 0..20 {
                 assert!(w[i].translation.is_finite() && w[i].rotation.is_finite());
                 assert!(

@@ -5,7 +5,9 @@ missing features, architectural debt and unverified platforms.
 
 - RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
 
-- RFU-MOVE-05/06, RFU-FX-01–03 and RFU-CITY-01–04: running-hand correction, biome/city effects and further Metropolis crowd/sidewalk/prop density are new open requests with no implementation acceptance yet. See issues #41–#43.
+- RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
+
+- RFU-FX-01–03 and RFU-CITY-01–04: biome/city effects and further Metropolis crowd/sidewalk/prop density remain open requests without implementation acceptance. See issues #42–#43.
 
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
