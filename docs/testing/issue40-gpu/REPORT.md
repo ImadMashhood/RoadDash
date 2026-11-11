@@ -86,4 +86,9 @@ verifies the candidate build and bounded scenarios only.
 
 The root four-candidate comparison will decide whether to retain, revise or
 reject this branch. Long-race combat, damaged course, Windows and other GPU
-hardware remain untested. Draft PR publication is pending.
+hardware remain untested. Draft [PR #45](https://github.com/ImadMashhood/RoadDash/pull/45)
+contains the exact local tree. HTTPS Git push waited for a missing username and
+SSH lacked a key, so the connected GitHub account uploaded Git blobs/tree/commit
+and advanced `codex/issue-40-gpu`. The first remote commit has the exact local
+tree SHA `6bea97e1e18528726672c8a21c91772e8ff32750`; its commit SHA differs
+because the connector authored a separate commit object. No merge is claimed.
