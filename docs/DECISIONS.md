@@ -3925,3 +3925,29 @@ a500m available-road control still passes while140m rejects, in both directions.
 Existing claims still revalidate merge normally. The native runner rejects final
 claims older than45s; historical execution success does not override the retained
 failed behavior review. Full-course human acceptance remains open.
+
+## ADR150 — Four-way performance selection and expanded place-making (2026-11-10)
+
+The user requests four fresh independent performance candidates and asks to keep
+only the highest verified gain, alongside a more natural urgent run, map-specific
+heat/sand/city effects and denser Metropolis sidewalks and pedestrians. Freeze a
+common source/asset/settings/seed baseline before candidate edits. Assign separate
+CPU traffic, render visibility, loading admission and GPU shader approaches. A
+candidate's own measurements cannot establish the winner. Rank clean repeated
+Hills and Metropolis runs by the geometric mean of baseline/candidate raw gameplay
+p95 ratios (weight two per map) and required-assets-ready load ratios (weight one
+per map). Review p99/max, RSS, supported GPU pass samples, visual quality and
+correctness as vetoes; a repeatable >5% p95 regression on either map or content/
+physics loss rejects a candidate. Retest the eligible candidates against the same
+fully integrated content before merging one. Keep losing branches/reports and do
+not infer the 60 FPS target from a relative gain. This decision precedes timing
+results and does not authorize lowering authoritative populations or collisions.
+
+The city additions depend on widened right-of-way-safe sidewalks and measured
+pedestrian capacity; crosswalk routes must stay grounded and collision-clear.
+Heat and blowing sand use bounded presentation quality controls; the rendered
+sand effect does not change the authored Sand driving classification. Keep the
+accepted eleven-body control and velocity-muscle default unchanged when correcting
+hands. City effect options (vent steam, depth haze, wet-road variant) remain
+proposals until visual, source and performance review. Bevy0.20 migration is a
+separate issue #37 gate and must not be treated as a proven performance win.
