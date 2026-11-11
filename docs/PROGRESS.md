@@ -1,6 +1,10 @@
 # Development progress
 
+<<<<<<< HEAD
+Civilian overtaking (2026-11-10, issue27/ADR142): RFU-TRAF-01–04 add slow-leader passing, opposing motor-vehicle horizon/merge checks, deliberate upright-biker non-veto and competing-pass reservations. Four new open requirements; 222 verified / 274 open. 609 workspace tests, strict format/Clippy, locked debug/release builds, provenance audit and five roadmap checks pass. Native motion/recovery/quiet CPU receipts remain pending; broad traffic balance, long-race and hardware/performance gates remain open. Evidence: testing/civilian-overtaking/REPORT.md.
+=======
 Current scope (2026-11-11; ADR140): RFU-PERF-01–05, issue25. Controlled cold-asset/reverse-warm trials select exact terrain reuse, single fixed dispatch and eight loading-only material jobs. Readiness improves about37–39%; raw traversal p95 improves13–23% locally. Both-map/both-rig recovery and18-case explicit executor parity pass;598workspace tests and strict checks pass. Full-race16.7ms, cold-machine presentation, final combined-content and broad hardware gates remain open. No requirement is closed. Dependencies stay pinned; Bevy0.20 migration is coordinated separately. Evidence: testing/issue25-performance/REPORT.md.
+>>>>>>> 76d4fe154baa169bbbf19e163cb0c0868d18d0c4
 
 Hills rear-grid correction (2026-11-10, ADR139/HILLS-01): reproduced the rear spawn off the imported street. Extend the exact source-city approach through the negative-station grid apron; verify all grid slots and launch corridors against actual road triangles and building footprints. 594 workspace tests and strict lint/build/audit checks pass. Shared Metropolis fixes normalize AI planning coordinates across bends and close the 8cm soil/asphalt seam; Metropolis native seam views and both Hills routes/current-baseline recovery controls pass with zero exceptional rescues. Evidence: testing/hills-grid/REPORT.md. No new IDs or closures.
 
@@ -1090,6 +1094,14 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **ENV-004** E3: place memorable landmarks plus interactive fences, cows, cars, rocks, and tractors; make encounters readable rather than unavoidable surprise spawns.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **RFU-TRAF-01** Pass sustained slower civilian leaders. Reason: issue27 reports indefinite tractor/truck queues; part:06; dependencies:P08-005 and shared traffic support; acceptance: tractors remain slowest, semis next, cars faster, with eventual passing in an opening; verification: deterministic core/native multi-follower runs on Hills/Metropolis. Evidence: [civilian overtaking](testing/civilian-overtaking/REPORT.md): native selected passes, full-fleet progress and corrected endpoint admission verified; human full-course acceptance remains open.
+
+- [ ] **RFU-TRAF-02** Reserve opposing-lane passes using vehicle length, relative speed and merge room. Reason: opposing large traffic must prevent unsafe completion; part:06; dependencies:RFU-TRAF-01; acceptance: both directions reject blocked horizons and retain terrain/bridge support; verification: oncoming-car/long-trailer fixtures and native motion/support checks.
+
+- [ ] **RFU-TRAF-03** Allow civilian passing despite an upright oncoming biker. Reason: explicitly requested gameplay hazard; part:06; dependencies:RFU-TRAF-02 and physical contact/recovery; acceptance: biker presence alone does not veto a pass, no teleports/collision exemptions, downed-person yielding retained; verification: paired biker/no-biker native decision fixture and collision/recovery regressions.
+
+- [ ] **RFU-TRAF-04** Resolve competing civilian passes and new obstructions. Reason: prevent overlapping claims and perpetual queues; part:06; dependencies:RFU-TRAF-01/02; acceptance: deterministic reservation, bounded abort/merge and eventual progress with room; verification: multi-follower and mid-pass obstacle tests, measured planner cost and native motion; long-race/hardware performance acceptance remains open.
 
 - [ ] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views.
 

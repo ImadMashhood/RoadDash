@@ -3866,3 +3866,42 @@ retain900-update finite/body/resting/anchor checks and low motion<0.1m/s,<0.5rad
 require all240naturally asleep with zero motion by1800updates, record first sleep
 update, and run both explicit executors. No forces, damping, motors, collision,
 sleep thresholds or accepted physical behavior change. Original failedCI retained.
+
+## ADR142 — Civilian opposing-lane overtaking (2026-11-10)
+
+Issue27 requests sustained slow-leader passing: tractors6m/s, semis12m/s,
+ordinary cars13–19m/s retain their authored cruises. Add an engine-neutral
+Follow/Pass/Abort/Merge memory in rr_core; evaluate in the existing60Hz traffic
+adapter, with continuous3s lane transitions and sampler-owned ground support.
+Normalize per-station road lanes into a shared divider frame. Compare signed
+travel progress, actual vehicle bounds, relative passing duration and projected
+merge room. Deterministic entity ordering publishes local reservations before
+subsequent decisions; retain them until the merge finishes. Revalidate moving
+hazards, brake/drop behind before merging if room closes, and cool down retries.
+Upright bikers are intentionally absent from the civilian oncoming-car veto:
+this creates the requested riding hazard, with all existing solid contacts and
+crash/recovery intact. Downed-person yielding remains a higher-priority stop.
+No new dependency, assets or source-code intake; Bevy0.17.3/Rapier0.32.0 retained
+pending the separately coordinated engine migration. Human traffic balance,
+long-race/hardware and broad frame-time acceptance remain separate gates.
+
+ADR142 validation refinement: preserve compressed equal-class launch ordering by
+requiring nonoverlapping departure envelopes and resetting impediment memory
+while the leader accelerates. A genuine same-class stalled motor remains eligible
+after six stable seconds; its stored cruise is not an unconditional veto. Use the
+native2m/s² acceleration and both3s lateral transitions in the passing horizon
+and projected merge station. Separate departure/return geometry checks and
+opt-in CPU timing preserve the normal fixed-step adapter and publication gates.
+
+
+ADR142 native endpoint refinement: the extended production Metropolis census
+found a73-second stationary abort after a pass began near11862m on a12000m
+road. Six-second local collider sweeps did not establish an eventual supported
+exit. Pass admission now compares the existing acceleration-integrated predicted
+completion/return travel plus vehicle extent and8m margin against authored road
+remaining. Closed routes retain unlimited forward distance. This reuses the
+actual candidate horizon rather than excluding a blanket maximum-time zone;
+a500m available-road control still passes while140m rejects, in both directions.
+Existing claims still revalidate merge normally. The native runner rejects final
+claims older than45s; historical execution success does not override the retained
+failed behavior review. Full-course human acceptance remains open.

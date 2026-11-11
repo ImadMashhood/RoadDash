@@ -170,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**222 verified tasks complete; 275 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**222 verified tasks complete; 279 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -194,7 +194,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 27 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 10 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 25 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 29 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -944,6 +944,11 @@ Repeat the reference → original textures/models → procedural placement → c
 <a id="part-06"></a>
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **RFU-TRAF-01** Pass sustained slower civilian leaders. Reason: issue27 reports indefinite tractor/truck queues; part:06; dependencies:P08-005 and shared traffic support; acceptance: tractors remain slowest, semis next, cars faster, with eventual passing in an opening; verification: deterministic core/native multi-follower runs on Hills/Metropolis. Evidence: [civilian overtaking](docs/testing/civilian-overtaking/REPORT.md): native selected passes, full-fleet progress and corrected endpoint admission verified; human full-course acceptance remains open.
+- [ ] **RFU-TRAF-02** Reserve opposing-lane passes using vehicle length, relative speed and merge room. Reason: opposing large traffic must prevent unsafe completion; part:06; dependencies:RFU-TRAF-01; acceptance: both directions reject blocked horizons and retain terrain/bridge support; verification: oncoming-car/long-trailer fixtures and native motion/support checks.
+- [ ] **RFU-TRAF-03** Allow civilian passing despite an upright oncoming biker. Reason: explicitly requested gameplay hazard; part:06; dependencies:RFU-TRAF-02 and physical contact/recovery; acceptance: biker presence alone does not veto a pass, no teleports/collision exemptions, downed-person yielding retained; verification: paired biker/no-biker native decision fixture and collision/recovery regressions.
+- [ ] **RFU-TRAF-04** Resolve competing civilian passes and new obstructions. Reason: prevent overlapping claims and perpetual queues; part:06; dependencies:RFU-TRAF-01/02; acceptance: deterministic reservation, bounded abort/merge and eventual progress with room; verification: multi-follower and mid-pass obstacle tests, measured planner cost and native motion; long-race/hardware performance acceptance remains open.
 
 - [ ] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views.
 

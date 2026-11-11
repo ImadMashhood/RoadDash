@@ -1,0 +1,19 @@
+{
+  "execution_verified": true,
+  "behavior_accepted": false,
+  "stranded_claims": [
+    {
+      "age_seconds": 73.382080078125,
+      "blend": 0.8444460034370422,
+      "depart_geometry": false,
+      "entity": 4294947955,
+      "merge_geometry": false,
+      "phase": "Abort",
+      "speed": 0.0,
+      "station": 12047.833984375,
+      "target": 4294947949
+    }
+  ],
+  "cause": "Pass admitted close to12000m authored road end; geometry gates veto both departure and return. One prior abort ended only via recycle.",
+  "fix": "Compare existing acceleration-integrated pass+return travel and body margin against remaining authored road at admission."
+}

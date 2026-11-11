@@ -1,0 +1,11 @@
+{
+  "binary": "/tmp/road-dash-issue27-endpoint",
+  "binary_sha256": "fda415372598f2d3e6e650df869edc77017d5a02faac1a5597dfe694e28a5bca",
+  "sources": {
+    "crates/rr_core/src/civilian.rs": "542a0eaa5e222f9c35991de065ce9988a602f4a41b0b65774be0c2b116f005bd",
+    "src/game.rs": "4d875b296c9305af7be885cb88b73873a0fc11c1d4646eb71f15e25d3e117c66",
+    "src/civilian_survey.rs": "3fcd110f34198cf5062cc6b6f4f9bab81520af70a7790a854e095f003717c832",
+    "src/civilian_tests.rs": "97cb814e28202396bbaa82fd05b349d5f60e537435c248ca7566fb1bed8ca2f8"
+  },
+  "change": "Actual projected pass+return travel must fit authored open-road extent; survey-only transition/age reporting."
+}

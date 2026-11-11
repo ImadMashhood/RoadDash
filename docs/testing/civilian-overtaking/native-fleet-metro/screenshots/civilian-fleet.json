@@ -1,0 +1,26 @@
+{
+  "aborted_returns": 0,
+  "active_at_end": 2,
+  "completed": 1,
+  "course": "Metropolis",
+  "initiated": 3,
+  "limits": "Unmodified production civilian fleet; racers parked to isolate ordinary motor-traffic opportunities. Counters observe all vehicles, camera follows initiated passes. No guarantee every impediment has a safe opposing-lane window. Not whole-race/human/GPU acceptance.",
+  "nominal_simulated_seconds": 120,
+  "peak_active": 2,
+  "planning_cpu": {
+    "limits": "CPU/wall elapsed. Planner includes fleet ordering/copy, perception, FSM and full-collider geometry sweeps plus timing overhead. Whole adapter additionally includes existing following, motion/sampling/interest and bounds. No GPU/full-frame or before-after speedup claim.",
+    "new_planner": {
+      "max_ms": 1.5698699999999999,
+      "mean_ms": 0.7671604729823615,
+      "p95_ms": 1.030724
+    },
+    "ticks": 7199,
+    "whole_civilian_adapter": {
+      "max_ms": 3.586388,
+      "mean_ms": 1.9954347712182292,
+      "p95_ms": 2.602928
+    }
+  },
+  "race_elapsed_seconds": 119.9944839477539,
+  "vehicles": 144
+}

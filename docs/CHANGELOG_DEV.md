@@ -1875,3 +1875,48 @@ the bounded writer; final release is frozen with exact source/tree/binary hashes
 Default-only four recovery/two survey checks pass with zero dropped logs and
 retained terminal audits; final publication/merge follows required checks.
 Broad RFU-PERF gates remain open; no physics/dependency migration is included.
+
+
+## 2026-11-10 — Civilian overtaking (issue27 / ADR142)
+
+- Read the current checklist/decisions/issues, installed0.17.3/0.32.0 lockfile,
+  AI-QUEUE-02 evidence and traffic/racer adapters before implementing.
+- Added RFU-TRAF-01–04 as open requirements in Part06, retaining prior tasks.
+- Implemented a pure civilian pass/abort/merge FSM, deterministic local claims,
+  continuous sampler-grounded lane changes, live large-vehicle/merge checks,
+  width-derived lateral clearance and a bounded static collider sweep.
+- Upright oncoming bikers intentionally do not veto passes; solid contacts,
+  downed-person yielding, accepted rigs and speed hierarchy remain integrated.
+- Added core motion/obstruction tests, production-course support/biker/static
+  fixtures and opt-in native --civilian-survey. Full verification receipts and
+  limitations are recorded in testing/civilian-overtaking/REPORT.md.
+
+Issue27 validation follow-up: the first full suite exposed transient same-class
+launch queues initiating passes from compressed envelopes. Preserve strict queue
+order, reset impediment memory while a leader accelerates, require clear initial
+body spacing, and still allow a genuinely stalled same-class motor after six
+stable seconds. Integrate acceleration into the passing horizon and projected
+merge point. Final609 workspace tests, strict lint/format, debug/release builds, audit and
+roadmap checks pass; native timing/motion/recovery remain scheduled separately.
+
+Issue27 native follow-up: frozen release passed eight selected civilian passes
+(Hills real tractor/semi and Metropolis car-body speed fixtures, both directions),
+with completed home returns, zero selected collider intersections and sampler
+support errors. Active/baseline Hills recovery both remained unassisted. Captures
+and receipts reviewed; concurrent compilation makes these functional evidence
+only. Normal-fleet opportunities and quiet CPU measurements remain pending.
+
+Issue27 full-fleet follow-up: quiet120s Hills38 actors completed11/11 passes;
+Metropolis144 actors completed1/3 with two active. Extended240s diagnostics
+exposed a73s stationary endpoint abort, preserved as failed behavioral evidence.
+Use actual predicted pass+return distance for open-road admission; both-direction
+core/adapter regression passes. Corrected240s Metro completed9/10 passes with
+one healthy final merge, no aborted returns. Original quiet planner P95 was
+0.176ms Hills/1.031ms Metro; whole-adapter P950.274/2.603ms. These are CPU costs,
+not GPU/frame-budget acceptance or a speedup. All RFU-TRAF IDs remain open.
+
+Issue27 integration: merged PR35 main76d4fe into traffic branch, preserving
+all tasks/ADR140+142. Combined615 tests, strict lint/format, debug/release and
+audit pass. Integrated native Hills4heavy overtakes and Metro240s144vehicle
+census pass;9complete/1healthy ongoing merge, no aborts. Source/binary hashes
+and loaded-functional limitations are retained in civilian-overtaking evidence.
