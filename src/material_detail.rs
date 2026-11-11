@@ -82,17 +82,25 @@ fn fingerprint(pixels: &[u8]) -> u64 {
     })
 }
 fn derive(pixels: &[u8], size: usize, profile: &Profile) -> Derived {
-    let height = |x: usize, y: usize| {
-        let p = &pixels[((y % size) * size + x % size) * 4..];
-        let l = (f32::from(p[0]) + f32::from(p[1]) + f32::from(p[2])) / (255.0 * 3.0);
-        match profile.kind {
-            Kind::Brick => 1.0 - l,
-            Kind::Wood => l * 0.7,
-            Kind::Stone => l,
-            Kind::Metal | Kind::Plastic => l * 0.08,
-            Kind::Plaster => l * 0.2,
-        }
-    };
+    debug_assert!(size.is_power_of_two());
+    // Each source texel previously converted from RGB to height four times,
+    // once for every neighbouring normal. Cache that exact conversion locally
+    // for this job; the authored source image and resulting maps are unchanged.
+    let heights: Vec<f32> = pixels
+        .chunks_exact(4)
+        .map(|p| {
+            let l = (f32::from(p[0]) + f32::from(p[1]) + f32::from(p[2])) / (255.0 * 3.0);
+            match profile.kind {
+                Kind::Brick => 1.0 - l,
+                Kind::Wood => l * 0.7,
+                Kind::Stone => l,
+                Kind::Metal | Kind::Plastic => l * 0.08,
+                Kind::Plaster => l * 0.2,
+            }
+        })
+        .collect();
+    let wrap = size - 1;
+    let height = |x: usize, y: usize| heights[((y & wrap) * size) + (x & wrap)];
     let mut normal = Vec::with_capacity(size * size * 4);
     let mut rough = Vec::with_capacity(normal.capacity());
     for y in 0..size {
@@ -313,6 +321,73 @@ pub fn paving(
 #[cfg(test)]
 mod tests {
     use super::*;
+    fn reference_derive(pixels: &[u8], size: usize, profile: &Profile) -> Derived {
+        let height = |x: usize, y: usize| {
+            let p = &pixels[((y % size) * size + x % size) * 4..];
+            let l = (f32::from(p[0]) + f32::from(p[1]) + f32::from(p[2])) / (255.0 * 3.0);
+            match profile.kind {
+                Kind::Brick => 1.0 - l,
+                Kind::Wood => l * 0.7,
+                Kind::Stone => l,
+                Kind::Metal | Kind::Plastic => l * 0.08,
+                Kind::Plaster => l * 0.2,
+            }
+        };
+        let mut normal = Vec::with_capacity(size * size * 4);
+        let mut rough = Vec::with_capacity(size * size * 4);
+        for y in 0..size {
+            for x in 0..size {
+                let dx = (height(x + 1, y) - height(x + size - 1, y)) * profile.normal_strength;
+                let dy = (height(x, y + 1) - height(x, y + size - 1)) * profile.normal_strength;
+                let n = Vec3::new(-dx, -dy, 1.0).normalize();
+                normal.extend([
+                    ((n.x * 0.5 + 0.5) * 255.0) as u8,
+                    ((n.y * 0.5 + 0.5) * 255.0) as u8,
+                    ((n.z * 0.5 + 0.5) * 255.0) as u8,
+                    255,
+                ]);
+                let micro =
+                    ((x as u32).wrapping_mul(374761393) ^ (y as u32).wrapping_mul(668265263)) & 255;
+                let r = (profile.roughness + (micro as f32 / 255.0 - 0.5) * 0.08).clamp(0.1, 1.0);
+                rough.extend([255, (r * 255.0) as u8, 255, 255]);
+            }
+        }
+        Derived {
+            size,
+            normal,
+            rough,
+        }
+    }
+    #[test]
+    fn cached_heights_match_original_derived_bytes_for_every_profile() {
+        let config = Config::from_json(JSON).unwrap();
+        for size in [2, 8, 32] {
+            let pixels: Vec<_> = (0..size * size)
+                .flat_map(|i| {
+                    [
+                        ((i * 37 + 19) & 255) as u8,
+                        ((i * 89 + 5) & 255) as u8,
+                        ((i * 13 + 211) & 255) as u8,
+                        255,
+                    ]
+                })
+                .collect();
+            for profile in &config.profiles {
+                let old = reference_derive(&pixels, size, profile);
+                let new = derive(&pixels, size, profile);
+                assert_eq!(
+                    new.normal, old.normal,
+                    "normal map {} at {size}",
+                    profile.source
+                );
+                assert_eq!(
+                    new.rough, old.rough,
+                    "rough map {} at {size}",
+                    profile.source
+                );
+            }
+        }
+    }
     #[test]
     fn provenance_profiles_are_bounded_and_maps_preserve_metallic() {
         let c = Config::from_json(JSON).unwrap();
