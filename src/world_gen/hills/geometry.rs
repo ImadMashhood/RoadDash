@@ -233,7 +233,7 @@ pub(super) fn spawn(
                 (0..rows)
                     .flat_map(|i| {
                         let station = a + (b - a) * i as f32 / (rows - 1) as f32;
-                        let green = ((5500. - station) / 300.).clamp(0., 1.);
+                        let green = rr_core::surface::hills_meadow_weight(station);
                         [1., 0., 0., 1.].map(|u| [u, 0.25 + green * 0.5])
                     })
                     .collect::<Vec<_>>(),
@@ -283,8 +283,6 @@ pub(super) fn spawn(
                 min.x - 320. + x as f32 * tile,
                 min.z - 320. + z as f32 * tile,
             );
-            let center = origin + Vec2::splat(tile / 2.);
-            let (station, _) = track.nearby_station(center.x, center.y);
             let (v, ix) = if std::env::var("ROADDASH_TERRAIN_CACHE").as_deref() == Ok("0") {
                 let (mut v, ix) = crate::world_gen::ground::terrain_grid(track, origin, tile, step);
                 for p in &mut v {
@@ -296,13 +294,6 @@ pub(super) fn spawn(
                     terrain_vertex_uncached(track, p.x, p.y).y
                 })
             };
-            let base = if station < 5300. {
-                Vec3::new(0.32, 0.37, 0.19)
-            } else if station < 8500. {
-                Vec3::new(0.69, 0.51, 0.29)
-            } else {
-                Vec3::new(0.76, 0.61, 0.38)
-            };
             let origin = v[v.len() / 2];
             let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &ix);
@@ -310,6 +301,16 @@ pub(super) fn spawn(
                 Mesh::ATTRIBUTE_COLOR,
                 v.iter()
                     .map(|p| {
+                        let (station, _) = track.nearby_station(p.x, p.z);
+                        let sand = if station < 8500. {
+                            Vec3::new(0.69, 0.51, 0.29)
+                        } else {
+                            Vec3::new(0.76, 0.61, 0.38)
+                        };
+                        let base = sand.lerp(
+                            Vec3::new(0.32, 0.37, 0.19),
+                            rr_core::surface::hills_meadow_weight(station),
+                        );
                         let strata = (p.y * 0.42).sin() * 0.045;
                         let rock = Vec3::new(0.57 + strata, 0.36 + strata, 0.20 + strata);
                         let c = base.lerp(rock, track.hills_canyon_weight(p.x, p.z));

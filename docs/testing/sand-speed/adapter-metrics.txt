@@ -1,0 +1,17 @@
+
+running 1 test
+surface=Asphalt adapter=Dynamic two_seconds=12.600 twenty_seconds=49.482
+surface=Dirt adapter=Dynamic two_seconds=12.576 twenty_seconds=49.482
+surface=Gravel adapter=Dynamic two_seconds=12.557 twenty_seconds=49.482
+surface=Grass adapter=Dynamic two_seconds=12.562 twenty_seconds=31.147
+surface=Sand adapter=Dynamic two_seconds=2.875 twenty_seconds=11.118
+Dynamic sand reverse after6s=-0.7583
+surface=Asphalt adapter=Assisted two_seconds=22.000 twenty_seconds=55.000
+surface=Dirt adapter=Assisted two_seconds=16.500 twenty_seconds=55.000
+surface=Gravel adapter=Assisted two_seconds=14.300 twenty_seconds=55.000
+surface=Grass adapter=Assisted two_seconds=14.960 twenty_seconds=32.000
+surface=Sand adapter=Assisted two_seconds=2.127 twenty_seconds=8.172
+Assisted sand reverse after6s=-0.7935
+test vehicle::tests::sand_penalty_compares_real_adapters_and_exits_without_velocity_clamps ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 426 filtered out; finished in 15.67s

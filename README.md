@@ -170,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**228 verified tasks complete; 301 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**228 verified tasks complete; 304 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -189,7 +189,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 228 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 40 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 43 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
@@ -677,6 +677,9 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **RFU-SURF-01** Give sand the strongest driveable-surface speed penalty. Reason: issue29 reports insufficient sand slowdown; part: 01; dependencies: shared handling/Surface contract; acceptance: lower matched-grade acceleration and sustained speed than asphalt, dirt, gravel and grass, with stronger coasting slowdown; verification: both physical adapters, same bike/input/grade, native authored terrain and player-feel review. [Implementation/evidence](docs/testing/sand-speed/REPORT.md). Integrated flat-grade adapter and exact-binary native functional checks pass; human feel and broader hardware/performance acceptance remain open.
+- [ ] **RFU-SURF-02** Align sand classification with authored ground on Hills and Metropolis. Reason: rendered sand was Dirt and lane coordinates can differ from pavement; part: 01; dependencies: RFU-SURF-01, terrain authoring; acceptance: sand only where authored, asphalt precedence at blended edges and both branches, no texture-pixel inference; verification: surface/schema tests and native surface/road support captures. [Evidence](docs/testing/sand-speed/REPORT.md). Integrated schema, branch-road and both-map native classification checks pass; human terrain-edge review remains open.
+- [ ] **RFU-SURF-03** Preserve predictable sand entry, exit and reverse. Reason: a hard speed clamp or excessive resistance can trap riders; part: 01; dependencies: RFU-SURF-01/02; acceptance: gradual energy loss, recoverable road pace, forward/reverse and AI traversal with accepted rigs unchanged; verification: adapter entry/exit/reverse regressions, native both-rig recovery and player-feel review. [Evidence](docs/testing/sand-speed/REPORT.md). Integrated adapter reverse/entry/exit/AI and both-rig native recovery checks pass; steep-uphill parking reverse and human feel remain open.
 - [ ] **RFU-RAIL-01** Separate guardrail road-relative height from post grounding. Reason: user reports low rails and floating feet; dependencies:HILLS-01 and resident shoulder/terrain collision; acceptance: raised readable rails and every support reaches actual ground across crests, dips and cross-slopes; verification: all-post ground rays, geometry measurements and native close views. Part:01. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).
 
 - [ ] **RFU-RAIL-02** Provide deliberate practical re-entry openings in long guardrail runs. Reason: riders trapped outside barriers; dependencies:RFU-RAIL-01 and existing recovery; acceptance: full-width openings traversable on foot and by intended bike footprint without exceptional rescue; verification: physical controller return, bidirectional shape sweeps and native traversal. Part:01. Physical, integrated and seven native functional checks pass; human full-course and broad hardware/performance acceptance remain open: [guardrail work](docs/testing/guardrails/REPORT.md).

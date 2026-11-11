@@ -1829,6 +1829,12 @@ Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
+## 2026-11-10 — Issue29 sand follow-up (ADR144)
+
+Investigated missing Sand classification and asymmetric adapter penalties;
+implemented shared sand power/rolling rules and authored Hills biome agreement,
+with route-aware pavement protection. RFU-SURF-01/02/03 added to Part01.
+Verification/acceptance tracked in testing/sand-speed/REPORT.md; no gate closed.
 
 ## 2026-11-10 — Guardrail issue33 source checkpoint (ADR148)
 
@@ -1894,6 +1900,12 @@ the bounded writer; final release is frozen with exact source/tree/binary hashes
 Default-only four recovery/two survey checks pass with zero dropped logs and
 retained terminal audits; final publication/merge follows required checks.
 Broad RFU-PERF gates remain open; no physics/dependency migration is included.
+
+Issue29 follow-up verification: 603 pre-integration tests and four native cases
+pass. Corrected only native fixture broadphase readiness after its first failed
+run; preserved that failure. Integrated PR35's measured defaults/exact terrain
+cache while retaining shared sand tint. Human feel/steep-uphill reverse remain
+open; final integrated checks and publication are tracked in the sand report.
 
 ### 2026-11-10 — Racer/killer follow-up issue26 (ADR141)
 
@@ -2068,3 +2080,15 @@ passed. The race still sampled avoidance-driven stops up to33 seconds around
 station3,040, so broad queue behavior and frame-cost acceptance remain open.
 See testing/issue26-racer-ai/REPORT.md and ADR141. No rig/physics or dependency
 migration was made here.
+
+## 2026-11-11 — Sand issue #29 final integrated verification
+
+Merged guardrail, city activity and racer AI main into shared sand handling.
+Resolved additive README/progress/history conflicts without closing RFU-SURF-01..03.
+The final runtime source at 3e22ae81 passed 656 locked workspace tests (two
+existing ignored), strict formatting/Clippy, locked debug/release builds,
+audit and roadmap checks. Four native authored-ground and both-rig recovery
+cases passed on one release binary SHA256 2eeea11c7edb3cb2f5bd90a66c36d8e4bb5afe2c1b2ffcc4b5d41f266dd1b462.
+The reproducible runner and compact receipts are in testing/sand-speed/REPORT.md.
+Human feel, steep-uphill reverse and broad hardware/performance gates remain open.
+No imported code/media or dependency migration was added.

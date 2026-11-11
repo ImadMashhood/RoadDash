@@ -3793,6 +3793,19 @@ the 8 cm exposed terrain seam with a soil render-edge underlap, retaining road,
 sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
 
+## ADR144 — Explicit sand resistance with shared authored terrain semantics (2026-11-10)
+
+Issue29 requires sand to impose the strongest driveable-surface speed penalty.
+Move the existing serde Surface contract to rr_core and re-export it from
+rr_content, appending Sand without changing old names or catalog/save versions.
+Use the shared limit/forward-drive/rolling-resistance rules in both adapters;
+preserve reverse control, braking and all non-sand physical coefficients.
+Sand power cutoff must not clamp speed on entry, and coasting must dissipate
+energy without introducing reverse motion. Share Hills' authored biome blend
+between terrain presentation and surface classification; asphalt wins at branch
+junctions. Metropolis soil is not sand. Preserve accepted rigs, controls, saves,
+collision and geometry. RFU-SURF-01/02/03 remain open for user feel acceptance and broader
+coverage; controlled adapter and four native functional cases pass. No dependency migration or performance claim.
 
 ## ADR148 — Turn-side guardrails with grounded supports and recovery gaps (2026-11-10)
 

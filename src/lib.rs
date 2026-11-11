@@ -33,6 +33,7 @@ pub mod runtime;
 pub mod settings;
 pub mod sky;
 pub mod sound;
+pub mod surface_survey;
 pub mod tangent_detail;
 pub mod track;
 pub mod ui;
@@ -194,6 +195,9 @@ pub fn build_app(smoke: bool) -> App {
                         .after(game::camera)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
+        } else if std::env::args().any(|a| a == "--surface-survey") {
+            app.init_resource::<surface_survey::Survey>()
+                .add_systems(Update, surface_survey::run.after(ui::update_ui));
         } else if std::env::args().any(|a| {
             matches!(
                 a.as_str(),
