@@ -54,13 +54,7 @@ pub fn curve_guardrail(track: &Track, station: f32) -> bool {
     if !(1580. ..5380.).contains(&station) || on_deck(station) {
         return false;
     }
-    let a = (track.sample(station - 20., 0.).1 * Vec3::Z)
-        .with_y(0.)
-        .normalize();
-    let b = (track.sample(station + 20., 0.).1 * Vec3::Z)
-        .with_y(0.)
-        .normalize();
-    a.dot(b).clamp(-1., 1.).acos() > 0.12
+    super::guardrails::side(track, station).is_some()
 }
 /// Keep farms, trees and distant rocks off the exposed canyon and bridge portals.
 pub fn reserved(track: &Track, p: Vec3, radius: f32) -> bool {
@@ -323,10 +317,10 @@ pub fn spawn(
 }
 
 #[cfg(test)]
-mod tests {
+pub(super) mod tests {
     use super::*;
     use bevy::ecs::system::RunSystemOnce;
-    fn scene() -> App {
+    pub(crate) fn scene() -> App {
         let mut app = App::new();
         app.add_plugins((
             MinimalPlugins,
@@ -458,44 +452,6 @@ mod tests {
     #[test]
     fn suspended_deck_has_no_railings_and_square_solid_hangers() {
         let mut app = scene();
-        let rail_samples: Vec<_> = [false, true]
-            .into_iter()
-            .map(|curved| {
-                let track = app.world().resource::<Track>();
-                let station = (1580..4500)
-                    .step_by(8)
-                    .map(|d| d as f32 + 4.)
-                    .find(|s| curve_guardrail(track, *s) == curved)
-                    .unwrap();
-                let (p, q) = track.sample(station, 0.);
-                (p, q, curved)
-            })
-            .collect();
-        app.world_mut()
-            .run_system_once(
-                move |context: ReadRapierContext,
-                      obstacles: Query<(), (With<Obstacle>, Without<Ground>)>| {
-                    let ctx = context.single().unwrap();
-                    let solid = |e| obstacles.contains(e);
-                    for &(p, q, curved) in &rail_samples {
-                        for side in [-1., 1.] {
-                            let hit = ctx.cast_ray(
-                                p + Vec3::Y * 0.82,
-                                q * Vec3::X * side,
-                                12.,
-                                true,
-                                QueryFilter::default().predicate(&solid),
-                            );
-                            assert_eq!(
-                                hit.is_some(),
-                                curved,
-                                "only actual mountain curves should have roadside protection"
-                            );
-                        }
-                    }
-                },
-            )
-            .unwrap();
         let samples: Vec<_> = [GAP_STATIONS[0], CENTER, GAP_STATIONS[1]]
             .into_iter()
             .map(|s| {

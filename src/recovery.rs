@@ -540,9 +540,10 @@ pub fn recover(
     ),
     mut audio: MessageWriter<AudioCue>,
     layout: Option<Res<crate::world_gen::layout::WorldLayout>>,
-    (city, metro_navigation): (
+    (city, metro_navigation, rail_runs): (
         Option<Res<crate::world_gen::city::GeneratedCity>>,
         Option<Res<crate::world_gen::metropolis::navigation::Navigation>>,
+        Option<Res<crate::world_gen::hills::guardrails::RailRuns>>,
     ),
 ) {
     if race.phase != Phase::Racing {
@@ -843,6 +844,67 @@ pub fn recover(
                     }
                     live_hold = blocked && recovery.walk_path.is_empty();
                 }
+                if manual && rider.human_controlled() && rail_runs.is_some() {
+                    recovery.walk_path.clear();
+                }
+                if !manual
+                    && rider.human_controlled()
+                    && let Some(runs) = &rail_runs
+                    && let Ok(ctx) = context.single()
+                {
+                    recovery.walk_live_retry = (recovery.walk_live_retry - dt).max(0.);
+                    if recovery.walk_path.is_empty()
+                        && recovery.walk_live_retry == 0.
+                        && walk_plan_budget > 0
+                    {
+                        recovery.walk_live_retry = 1.5;
+                        walk_plan_budget -= 1;
+                        let is_ground = |e| nav_ground.contains(e);
+                        let obstacle = |e| {
+                            e != runner
+                                && e != wreck
+                                && !nav_ground.contains(e)
+                                && nav_owned.get(e).map_or(true, |o| o.owner != owner)
+                        };
+                        let support = |p: Vec3| {
+                            ctx.cast_ray(
+                                p + Vec3::Y * 30.,
+                                -Vec3::Y,
+                                60.,
+                                true,
+                                QueryFilter::default().predicate(&is_ground),
+                            )
+                            .map(|(_, toi)| p.with_y(p.y + 30. - toi + 0.98))
+                        };
+                        let clear = |a: Vec3, b: Vec3| {
+                            let delta = b - a;
+                            ctx.cast_shape(
+                                a,
+                                Quat::IDENTITY,
+                                delta.normalize_or_zero(),
+                                Collider::capsule_y(0.65, 0.38).raw.as_ref(),
+                                ShapeCastOptions {
+                                    max_time_of_impact: delta.length(),
+                                    stop_at_penetration: false,
+                                    ..default()
+                                },
+                                QueryFilter::default().predicate(&obstacle),
+                            )
+                            .is_none()
+                        };
+                        if let Some(path) = crate::world_gen::hills::guardrails::reentry_path(
+                            &track,
+                            runs,
+                            transform.translation,
+                            center,
+                            support,
+                            clear,
+                        ) {
+                            recovery.walk_path = path;
+                            recovery.walk_goal = Some(center);
+                        }
+                    }
+                }
                 if !manual && (layout.is_some() || city.is_some() || metro_navigation.is_some()) {
                     recovery.path_refresh -= dt;
                     if recovery.path_refresh <= 0.0
@@ -920,7 +982,7 @@ pub fn recover(
                     race.message_time = 4.0;
                     continue;
                 }
-                if !manual && !rider.human_controlled() {
+                if !manual && (!rider.human_controlled() || rail_runs.is_some()) {
                     while recovery
                         .walk_path
                         .first()

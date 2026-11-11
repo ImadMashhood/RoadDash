@@ -1,8 +1,10 @@
 pub mod contact_telemetry;
 pub mod online;
 mod police;
+pub mod wildlife_survey;
 
 pub mod animation;
+pub mod atmosphere_survey;
 pub mod biomechanics;
 pub mod combat;
 pub mod content;
@@ -34,6 +36,7 @@ pub mod runtime;
 pub mod settings;
 pub mod sky;
 pub mod sound;
+pub mod surface_survey;
 pub mod tangent_detail;
 pub mod track;
 pub mod ui;
@@ -75,7 +78,12 @@ pub fn build_app(smoke: bool) -> App {
         if std::env::args().any(|a| {
             matches!(
                 a.as_str(),
-                "--hills" | "--hills-survey" | "--hills-polish-survey" | "--hills-revision-survey"
+                "--wildlife-survey"
+                    | "--hills"
+                    | "--guardrail-survey"
+                    | "--hills-survey"
+                    | "--hills-polish-survey"
+                    | "--hills-revision-survey"
             )
         }) {
             track::Track::hills().expect("validated Hills course")
@@ -165,6 +173,8 @@ pub fn build_app(smoke: bool) -> App {
             ));
         if std::env::var_os("ROADDASH_REVERSE_REVIEW").is_some() {
             app.add_systems(Update, verification::movement::review.after(ui::update_ui));
+        } else if std::env::args().any(|a| a == "--racer-ai-survey") {
+            game::racer_ai_survey::install(&mut app);
         } else if std::env::args().any(|a| a == "--civilian-survey") {
             game::civilian_survey::install(&mut app);
         } else if std::env::args().any(|a| a == "--traffic-stall-survey") {
@@ -191,6 +201,39 @@ pub fn build_app(smoke: bool) -> App {
                         .after(game::camera)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
+        } else if std::env::args().any(|a| a == "--surface-survey") {
+            app.init_resource::<surface_survey::Survey>()
+                .add_systems(Update, surface_survey::run.after(ui::update_ui));
+        } else if std::env::args().any(|a| {
+            matches!(
+                a.as_str(),
+                "--guardrail-survey" | "--legacy-guardrail-survey"
+            )
+        }) {
+            use world_gen::hills::guardrails::survey;
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<survey::Survey>()
+                .add_systems(Update, survey::setup)
+                .add_systems(
+                    FixedUpdate,
+                    survey::walk.before(bevy_rapier3d::plugin::PhysicsSet::SyncBackend),
+                )
+                .add_systems(
+                    PostUpdate,
+                    survey::camera
+                        .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--atmosphere-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<atmosphere_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    atmosphere_survey::run
+                        .after(game::camera)
+                        .before(world_gen::hills::atmosphere::reset)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
         } else if std::env::args().any(|a| a == "--hills-revision-survey") {
             app.insert_resource(bevy::winit::WinitSettings::continuous())
                 .init_resource::<hills_revision_survey::Survey>()
@@ -199,6 +242,16 @@ pub fn build_app(smoke: bool) -> App {
                     hills_revision_survey::run
                         .after(game::camera)
                         .before(world_gen::hills::atmosphere::reset)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--wildlife-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<wildlife_survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    wildlife_survey::run
+                        .after(game::camera)
+                        .before(world_gen::hills::wildlife::animate)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
         } else if std::env::args().any(|a| a == "--hills-polish-survey") {

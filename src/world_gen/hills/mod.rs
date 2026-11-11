@@ -7,12 +7,21 @@ pub mod bridge;
 mod countryside;
 pub mod dressing;
 mod geometry;
+pub mod guardrails;
 pub mod mounted;
 mod props;
 pub mod river;
 mod terrain_cache;
+pub mod wildlife;
+pub mod woodland;
 use crate::{track::Track, world::Art};
 use bevy::prelude::*;
+
+/// Height of the resident Hills terrain mesh at an off-road effect anchor.
+pub(crate) fn rendered_ground_height(track: &Track, x: f32, z: f32) -> f32 {
+    geometry::ground_height(track, x, z)
+}
+
 #[derive(Component)]
 pub struct HillsSolid;
 #[derive(Component)]
@@ -26,6 +35,7 @@ pub struct Census {
     pub road_chunks: usize,
     pub terrain_chunks: usize,
     pub buildings: usize,
+    pub frontage_groups: usize,
     pub guardrail_segments: usize,
     pub cows: usize,
     pub horses: usize,
@@ -78,12 +88,20 @@ pub fn spawn(
         countryside::spawn(commands, meshes, materials, art, track, &mut census);
     }
     {
+        let _span = crate::diagnostics::loading::Span::new("hills_woodland");
+        woodland::spawn(commands, meshes, materials, track);
+    }
+    {
         let _span = crate::diagnostics::loading::Span::new("hills_dressing");
         dressing::spawn(commands, meshes, materials, track);
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_mounted");
         mounted::spawn(commands, meshes, materials, track);
+    }
+    {
+        let _span = crate::diagnostics::loading::Span::new("hills_wildlife");
+        wildlife::spawn(commands, meshes, materials, track);
     }
     census.mounted_pairs = mounted::COUNT;
     {

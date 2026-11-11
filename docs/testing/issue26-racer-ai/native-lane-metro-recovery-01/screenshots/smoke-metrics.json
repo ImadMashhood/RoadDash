@@ -1,0 +1,127 @@
+{
+  "active_fixed_ticks": 1010,
+  "adapter": {
+    "backend": "Vulkan",
+    "driver": "NVIDIA",
+    "name": "NVIDIA GeForce RTX 3080"
+  },
+  "colliders": 4958,
+  "comfort": {
+    "anti_nausea": false,
+    "deadzone": 0.15000000596046448,
+    "fov_degrees": 75.0,
+    "shake": 0.5,
+    "smoothing": 10.0,
+    "speed_fov": true,
+    "speed_lines": false
+  },
+  "entities": 73277,
+  "exceptional_recovery": {
+    "counts_first_and_hill": [
+      0,
+      0
+    ],
+    "extended_hills_fixture": false,
+    "penalties_seconds": [
+      0.0,
+      0.0
+    ],
+    "stationary_seconds": [
+      0.0,
+      0.0
+    ],
+    "unassisted_both": true
+  },
+  "fixed_recovery_stages": [
+    true,
+    true,
+    true
+  ],
+  "fixed_ticks": 1260,
+  "gamepads_connected": 1,
+  "last_gameplay_ms": 0.35992398858070374,
+  "last_physics_ms": 1.0012319087982178,
+  "measurement": "bounded wall-clock sample, not GPU timing or a hardware certification",
+  "recovery_at_run_capture": {
+    "farm_distance_and_height_delta_m": [
+      21.056644439697266,
+      0.9216938018798828
+    ],
+    "hill_distance_and_height_delta_m": [
+      1.6460049152374268,
+      0.7453842163085938
+    ]
+  },
+  "render_frames": 1261,
+  "render_running_captured": true,
+  "route": 0,
+  "target_hz": 60.0,
+  "track": {
+    "closed": false,
+    "collision_triangles": 2697403,
+    "gates": 14,
+    "id": "metro-run-01",
+    "length_m": 12000.0,
+    "race_finish_m": 11500.0,
+    "race_length_m": 11000.0,
+    "race_start_m": 500.0,
+    "render_triangles": 4105609
+  },
+  "vehicle": {
+    "bike_id": "prototype-bike-01",
+    "crash_state": "Riding",
+    "dt": 0.01666666753590107,
+    "gear": 1,
+    "grip_force_n": 0.0,
+    "grounded": [
+      true,
+      true
+    ],
+    "health": 100.0,
+    "intent": {
+      "brake": false,
+      "brake_amount": 0.0,
+      "nitro": false,
+      "steer": 0.0,
+      "throttle": false,
+      "throttle_amount": 0.0
+    },
+    "lane": 1.6722338199615479,
+    "lean": 0.0,
+    "position": [
+      105.71993255615234,
+      41.608341217041016,
+      1282.3428955078125
+    ],
+    "preset": "balanced",
+    "raw_steer": 0.0,
+    "rider_id": 0,
+    "rpm": 1200.0,
+    "slip": 0.0,
+    "slip_angle": 0.0,
+    "speed_mps": 0.0,
+    "spring_force_n": [
+      0.0,
+      0.0
+    ],
+    "steering_force": 0.0,
+    "surface_mu": 1.5,
+    "suspension_m": [
+      -0.1229703426361084,
+      -0.13738763332366943
+    ],
+    "tick": 1010,
+    "tire_force_n": [
+      0.0,
+      0.0
+    ],
+    "velocity": [
+      0.0,
+      -0.16346599161624908,
+      0.0
+    ],
+    "yaw_rate": 0.0
+  },
+  "wall_frame_average_ms": 23.432743072509766,
+  "wall_frame_p95_ms": 29.452186584472656
+}

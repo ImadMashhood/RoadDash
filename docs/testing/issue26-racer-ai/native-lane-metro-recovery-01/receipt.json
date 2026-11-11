@@ -1,0 +1,14 @@
+{
+  "case": "recovery",
+  "track": "metro",
+  "synthetic_segment": false,
+  "segment_passed": null,
+  "binary_sha256": "c11a348c77a6f52ca9d4a36c9fdbeab805c96a26bfae17f85745f72f7c9cb38d",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": true,
+  "requested_frames": null,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 33.60768675804138,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

@@ -1,5 +1,5 @@
 //! Short native before/after view of the same route anchors and effect phases.
-use super::{Kind, MapFxSprite, quality};
+use super::{Kind, MapFxSprite, quality, visual};
 use crate::{
     game::{ChaseCamera, Phase, Race},
     runtime::AppScreen,
@@ -77,25 +77,21 @@ pub fn run(
     };
     let station = match map {
         "hills" if stage == 0 => 8900.,
-        "hills" if stage == 1 => 9000.,
+        "hills" if stage == 1 => 9062.5,
         "hills" if stage == 2 => 7900.,
-        "hills" => 9000.,
+        "hills" => 9062.5,
         "metro" => 8960.,
         "city" => 1200.,
         _ => track.length * 0.28,
     };
     let (road, rotation) = track.sample_route(0, station, 0.);
     let side = rotation * Vec3::X;
-    let sign = if map == "city" || (map == "hills" && stage == 1) {
-        1.
-    } else {
-        -1.
-    };
+    let sign = if map == "city" { 1. } else { -1. };
     let (eye, target) = if map == "hills" && stage >= 2 {
-        let (behind, _) = track.sample_route(0, station - 45., 0.);
+        let (behind, _) = track.sample_route(0, station - 25., 0.);
         (behind + Vec3::Y * 2.6, road + Vec3::Y * 1.4)
     } else if map == "metro" || map == "city" {
-        let (behind, _) = track.sample_route(0, station - 35., 0.);
+        let (behind, _) = track.sample_route(0, station - 20., 0.);
         let (ahead, _) = track.sample_route(0, station + 15., 0.);
         (behind + Vec3::Y * 2.7, ahead + Vec3::Y * 1.5)
     } else {
@@ -104,8 +100,9 @@ pub fn run(
             road + side * sign * 19. + Vec3::Y * 1.1,
         )
     };
+    let view = Transform::from_translation(eye).looking_at(target, Vec3::Y);
     if let Ok(mut camera) = cameras.single_mut() {
-        *camera = Transform::from_translation(eye).looking_at(target, Vec3::Y);
+        *camera = view;
     }
     race.phase = if frame >= 295 {
         Phase::Racing
@@ -119,13 +116,13 @@ pub fn run(
         } else if frame < 90 {
             ("heat-large", 1.04)
         } else if frame < 110 {
-            ("sand-small", 0.50)
+            ("sand-small", 1.70)
         } else if frame < 150 {
-            ("sand-large", 2.06)
+            ("sand-large", 4.32)
         } else if frame < 180 {
             ("town-chase", 0.40)
         } else {
-            ("desert-chase", 2.06)
+            ("desert-chase", 4.32)
         }
     } else {
         let (small, large) = match map {
@@ -141,6 +138,37 @@ pub fn run(
     };
     if frame < 295 {
         race.elapsed = elapsed;
+    }
+    if frame == 200 && track.is_hills() && quality() > 0 {
+        let mut nearest: Vec<_> = sprites
+            .iter()
+            .filter(|(sprite, _)| sprite.kind == Kind::Sand)
+            .map(|(sprite, visibility)| {
+                let (motion, size, alpha) = visual(Kind::Sand, elapsed, sprite.phase);
+                let world = sprite.anchor
+                    + sprite.road_rotation * Vec3::new(motion.x, 0., motion.z)
+                    + Vec3::Y * motion.y;
+                let relative = view.rotation.inverse() * (world - view.translation);
+                let (station, lateral) = track.nearby_station(sprite.anchor.x, sprite.anchor.z);
+                (
+                    world.distance(eye),
+                    serde_json::json!({
+                        "station":station,"lateral":lateral,"distance_m":world.distance(eye),
+                        "view_x_m":relative.x,"view_y_m":relative.y,"view_depth_m":-relative.z,
+                        "world_y":world.y,"terrain_y":crate::world_gen::hills::rendered_ground_height(&track,world.x,world.z),
+                        "quad_size_m":[size.x,size.y],"alpha_envelope":alpha,"visibility":format!("{visibility:?}")
+                    }),
+                )
+            })
+            .collect();
+        nearest.sort_by(|a, b| a.0.total_cmp(&b.0));
+        eprintln!(
+            "MAP_FX_PROJECTION {}",
+            serde_json::json!({
+                "camera_station":station,"eye":[eye.x,eye.y,eye.z],
+                "nearest_sand":nearest.into_iter().take(6).map(|(_, entry)|entry).collect::<Vec<_>>()
+            })
+        );
     }
     let capture = match frame {
         30 | 60 => true,

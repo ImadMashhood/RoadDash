@@ -333,6 +333,13 @@ impl Plugin for RoadSimulationPlugin {
             )
             .add_systems(
                 PostUpdate,
+                crate::world_gen::hills::wildlife::animate
+                    .run_if(resource_exists::<crate::world_gen::hills::wildlife::Wildlife>)
+                    .after(game::camera)
+                    .before(bevy::transform::TransformSystems::Propagate),
+            )
+            .add_systems(
+                PostUpdate,
                 (
                     crate::world_gen::hills::atmosphere::reset,
                     crate::world_gen::hills::atmosphere::animate,

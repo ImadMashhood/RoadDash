@@ -5,12 +5,14 @@ pub mod comfort;
 pub mod contact;
 pub mod crash;
 pub mod frontend;
+pub mod guardrails;
 pub mod original_crash;
 pub mod police;
 pub mod pursuit;
 pub mod race;
 pub mod reverse;
 pub mod steering;
+pub mod surface;
 pub mod traffic;
 pub mod traffic_avoidance;
 use serde::{Deserialize, Serialize};
@@ -299,6 +301,7 @@ pub mod destruction;
 pub mod rival_ai;
 
 pub mod weapons;
+pub mod wildlife;
 
 pub mod elevation;
 
@@ -311,3 +314,5 @@ pub mod crops;
 pub mod online;
 
 pub mod pedestrian_crossing;
+
+pub mod landscape;

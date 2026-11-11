@@ -1,0 +1,11 @@
+{
+  "case": "baseline",
+  "binary_sha256": "ef59ea667831689674c72ca753a091649db6777fe5e8100ff5c5bedbf37c8a89",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": true,
+  "requested_frames": null,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 40.56086039543152,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

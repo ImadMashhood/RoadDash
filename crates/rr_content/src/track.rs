@@ -9,35 +9,7 @@ pub enum Sector {
     City,
     Hills,
 }
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
-#[serde(rename_all = "snake_case")]
-pub enum Surface {
-    Asphalt,
-    Dirt,
-    Gravel,
-    Grass,
-    Water,
-}
-impl Surface {
-    pub fn traction(self) -> f32 {
-        match self {
-            Self::Asphalt => 1.0,
-            Self::Dirt => 0.75,
-            Self::Gravel => 0.65,
-            Self::Grass => 0.68,
-            Self::Water => 0.2,
-        }
-    }
-    pub fn friction(self) -> f32 {
-        match self {
-            Self::Asphalt => 0.9,
-            Self::Dirt => 0.65,
-            Self::Gravel => 0.55,
-            Self::Grass => 0.6,
-            Self::Water => 0.15,
-        }
-    }
-}
+pub use rr_core::surface::Surface;
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ControlPoint {
@@ -263,9 +235,30 @@ mod tests {
             Surface::Gravel,
             Surface::Grass,
             Surface::Water,
+            Surface::Sand,
         ] {
             assert!(s.traction() > 0.0 && s.friction() > 0.0);
         }
         assert!(Surface::Grass.traction() > 0.5);
+    }
+}
+
+#[cfg(test)]
+mod surface_compatibility {
+    use super::*;
+    #[test]
+    fn legacy_names_and_new_sand_roundtrip_without_schema_migration() {
+        for (name, surface) in [
+            ("asphalt", Surface::Asphalt),
+            ("dirt", Surface::Dirt),
+            ("gravel", Surface::Gravel),
+            ("grass", Surface::Grass),
+            ("water", Surface::Water),
+            ("sand", Surface::Sand),
+        ] {
+            let json = format!("\"{name}\"");
+            assert_eq!(serde_json::from_str::<Surface>(&json).unwrap(), surface);
+            assert_eq!(serde_json::to_string(&surface).unwrap(), json);
+        }
     }
 }

@@ -122,7 +122,7 @@ impl Track {
             return base;
         }
         let (center, _) = self.sample(BRIDGE_CENTER, 0.);
-        let bed = center.y - 82. + 2.5 * (x * 0.035).sin() * (z * 0.026).cos();
+        let bed = center.y - 70. + 2.5 * (x * 0.035).sin() * (z * 0.026).cos();
         base.lerp(bed.min(base - 0.1), weight)
     }
     pub(crate) fn hills_remote_height(&self, x: f32, z: f32) -> f32 {
@@ -144,8 +144,14 @@ impl Track {
         };
         let mountain = smooth(CITY_END, CITY_END + 300.) * (1. - smooth(SPLIT - 300., SPLIT));
         let dunes = smooth(TOWN_END, TOWN_END + 300.);
+        let town = smooth(5250., 5650.) * (1. - smooth(8400., 9000.));
+        // Continuous world-space datum: never use the nearest branch for remote
+        // relief. The entire existing settlement corridor remains unchanged.
+        let lateral = (x - a.x.lerp(b.x, t)).abs();
+        let mesas = rr_core::landscape::western_mesa(lateral, z);
         a.y.lerp(b.y, t) - 0.35
             + mountain * (35. * (z * 0.009).sin() + 22. * (x * 0.012).cos())
+            + town * mesas
             + dunes * (18. * (x * 0.013 + z * 0.006).sin() + 14. * (z * 0.017).sin())
     }
     pub(super) fn normalize_hills_stations(&mut self) {
@@ -218,7 +224,7 @@ mod tests {
         );
         // The canyon cut is deep but continuous, without moving the deck.
         let (p, q) = hills.sample(BRIDGE_CENTER, 0.);
-        assert!(p.y - hills.terrain_height(p.x, p.z) > 75.);
+        assert!(p.y - hills.terrain_height(p.x, p.z) > 63.);
         for along in -150..=150 {
             let a = p + (q * Vec3::Z).with_y(0.).normalize() * along as f32;
             let delta = hills.terrain_height(a.x + 0.01, a.z) - hills.terrain_height(a.x, a.z);

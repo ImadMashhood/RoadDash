@@ -1,5 +1,13 @@
 # Development history
 
+## 2026-11-11 — Bounded map atmosphere candidate (ADR156, issue #42)
+
+Added original procedural transparent air cues on all four courses: terrain-seated feathered dust and rising heat bands on Hills, curb steam in Metropolis and City Run, and quiet Valley motes. A quality switch bounds the pools and disables them entirely at `ROADDASH_MAP_FX=0`; one immutable material per kind avoids per-frame uploads. The user rejected an initial thin sand stream, so the native-centered chase review drove a denser gray-brown translucent billow with the same pool count. The latest paired Hills view shows scenery through the dust; City Run shows two curb wisps after replacing an earlier round facade glow. Heat and Metropolis steam remain subtle. Fixed physics, Sand surface classification, saves and controls are unchanged. RFU-FX-01–04 and GPU/full-course/art acceptance remain open. See testing/issue-42-map-fx/REPORT.md for binary hashes, failed stages and final checks.
+
+## 2026-11-10 — Metropolis atmosphere follow-up (ADR145, issue #30)
+
+Reused the existing spatial clouds and Hills bird pool in Metropolis with six bounded flocks, independent quality controls and an opt-in moving native survey. Refined urban placement after visual review to use street approaches and authored civic openings. Preserved Hills dust and existing sun, physics, controls and recovery. The combined racer-AI/sand tree passed 661 workspace tests, strict checks/builds, final Metropolis visual proof and eight both-map quality runs. RFU-SKY-01..04 remain open for user visual, full-course/GPU/hardware and broader performance acceptance. No new media or dependency migration. Evidence: testing/metropolis-atmosphere/REPORT.md.
+
 ## 2026-11-08 — Random rival clubs and Part09 starter receipts
 
 RIVAL-WEAPONS-01: seeded seven-of-fourteen starting rival clubs, validated configurable fraction, new-grid/retry-only assignment and player/police exclusion. Existing combat policy, launch grace, drop, visual sockets and physical rig retained. Native held/equipped checks and375 workspace tests passed. No new assets/dependencies; existing source/ability provenance hashes updated.
@@ -1829,7 +1837,16 @@ Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
 
+## 2026-11-10 — Issue29 sand follow-up (ADR144)
 
+Investigated missing Sand classification and asymmetric adapter penalties;
+implemented shared sand power/rolling rules and authored Hills biome agreement,
+with route-aware pavement protection. RFU-SURF-01/02/03 added to Part01.
+Verification/acceptance tracked in testing/sand-speed/REPORT.md; no gate closed.
+
+## 2026-11-10 — Guardrail issue33 source checkpoint (ADR148)
+
+Prepared original turn-side barriers with separate road-height/ground-foot calculations, 96m maximum runs, 16m gaps, solid flared ends, physical gap/support/terminal tests and a native bidirectional walking fixture. Added RFU-RAIL-01..05 as open requirements. Compilation and native execution are deferred for the coordinated performance window; no test completion, performance gain, push or merge is claimed.
 ## 2026-11-10 — Issue #28 recovery run and reverse heading (ADR143)
 
 Isolated codex/issue-28-movement from754f9ddb after fetching main. Confirmed6m/s
@@ -1892,19 +1909,44 @@ Default-only four recovery/two survey checks pass with zero dropped logs and
 retained terminal audits; final publication/merge follows required checks.
 Broad RFU-PERF gates remain open; no physics/dependency migration is included.
 
-## 2026-11-11 — Issue28 native matrix and performance integration
+Issue29 follow-up verification: 603 pre-integration tests and four native cases
+pass. Corrected only native fixture broadphase readiness after its first failed
+run; preserved that failure. Integrated PR35's measured defaults/exact terrain
+cache while retaining shared sand tint. Human feel/steep-uphill reverse remain
+open; final integrated checks and publication are tracked in the sand report.
 
-The capture-drain correction passes all ten native cases, including both adapters,
-both rigs and18paired lab scenarios. Preserve the initial shutdown failure.
-Visual spot review finds readable running/terrain contact; user motion acceptance
-remains open. RFU-MOVE-03/04 move to verified;01/02 stay open. Merge measured
-performance main76d4fe15 without changing movement source. Final strict checks
-and publication follow; no runtime timing or hardware certificate.
+### 2026-11-10 — Racer/killer follow-up issue26 (ADR141)
 
-Issue28 final integrated source passes600workspace tests,1existing ignored soak,
-strict all-target Clippy, locked build, fmt, audit and roadmap checks. Grouping
-the native preview queries in a named SystemParam resolves lint without changing
-query behavior. Native10/10 evidence retains its exact earlier executable hash.
+Traced rear-target speed subtraction, combat-capped queue detection and outbound-only
+passing bounds. Implement forward-priority/hysteretic moving combat, race-progress
+fallback for stopped targets, and bounded opposite-road/return checks. Added
+RFU-AI-01–08 and diagnostic native race fixture;604workspace tests and strict
+code/build/audit gates pass. RFU-AI-03/04/05/07 verified; four gameplay/native
+gates remain open, with no hardware/frame-budget claim. See testing/issue26-racer-ai/REPORT.md.
+
+### 2026-11-10 — Issue26 native completion and crossing review
+
+Corrected the native survey completion predicate (605 tests). The frozen binary
+completed the unteleported race in 435.238 simulation seconds; current and
+baseline recovery runs passed with two remounts each. Retained the earlier
+incomplete receipt and the late-section sampled stop rather than treating course
+completion as blanket queue acceptance. Review found an unrelated-crossing veto;
+restricted it to predicted home-corridor/time conflicts, with 20 focused rule
+tests passing. Added opt-in synthetic segment/proxy/static-hit diagnostics; full
+checks and native validation of this refinement are pending the measurement slot.
+
+### 2026-11-10 — Issue26 stationary-human acceptance and bounded reposition
+
+The full crossing refinement passed 608 tests. A new real Dynamic stationary
+human fixture then exposed a narrow-road killer queue: the fallback consumed its
+launch gap. Reserving maneuver space fixes the approaching queue. A separately
+compressed queue exposed off-road A* escape and unsigned reverse-speed feedback.
+Retain signed motion with a tested resting-jitter deadband and use a rear-swept,
+live-gap reverse goal. One bounded pulse per rider clears the compressed fixture
+in 22.82 simulation seconds, with health, road bounds and clearance preserved.
+Retain the earlier failures and slower four-pulse result; 130 core tests pass.
+Final combined gates and civilian lane-change interaction verification remain
+pending integration. No vehicle/ragdoll physics or dependency changes.
 
 
 ## 2026-11-10 — Civilian overtaking (issue27 / ADR142)
@@ -1951,6 +1993,30 @@ audit pass. Integrated native Hills4heavy overtakes and Metro240s144vehicle
 census pass;9complete/1healthy ongoing merge, no aborts. Source/binary hashes
 and loaded-functional limitations are retained in civilian-overtaking evidence.
 
+## 2026-11-11 — Issue28 native matrix and performance integration
+
+The capture-drain correction passes all ten native cases, including both adapters,
+both rigs and18paired lab scenarios. Preserve the initial shutdown failure.
+Visual spot review finds readable running/terrain contact; user motion acceptance
+remains open. RFU-MOVE-03/04 move to verified;01/02 stay open. Merge measured
+performance main76d4fe15 without changing movement source. Final strict checks
+and publication follow; no runtime timing or hardware certificate.
+
+Issue28 final integrated source passes600workspace tests,1existing ignored soak,
+strict all-target Clippy, locked build, fmt, audit and roadmap checks. Grouping
+the native preview queries in a named SystemParam resolves lint without changing
+query behavior. Native10/10 evidence retains its exact earlier executable hash.
+
+### 2026-11-11 — Issue26 combined civilian and reverse regression
+
+Integrated measured performance defaults, civilian overtaking and published
+reverse-heading corrections. Cache measured civilian lateral motion once per
+car/tick and cap forecasts at committed lane endpoints, including return paths.
+Corrected a test-only legacy-map mismatch; actual Metropolis incoming overtaking
+now passes with2.632m minimum car clearance. All four physical racer tests pass;
+compressed queue retains22.82s/one pulse under the reverse correction. Full
+combined gates and final native segment are running; no frame-time claim.
+
 ## 2026-11-11 — Issue28 integrates civilian overtaking
 
 Merge main7a63ef18 and preserve both opt-in smoke dispatch entries, all IDs and
@@ -1963,3 +2029,110 @@ Issue28 combined final:617tests pass,2explicit benchmarks ignored; strict checks
 and paired native recovery2/2 pass. Exact binary hash and separate original
 ten-case receipts retained. Final GitHub Linux/Windows CI remains asynchronous;
 no CI success or hardware acceptance is inferred from local checks.
+
+## 2026-11-10 — Issue41 running hand follow-up
+
+The user found rear-facing flat palms during the new urgent run. Add a bounded
+visual wrist correction from the authored arm chain, with bilateral thumb-axis
+checks through 240 phases. Flat and uneven native animation review cases passed
+and sample front/side frames were retained. Full workspace checks and paired
+anatomical/baseline native recovery passed; integrated performance and human
+motion review remain open under RFU-MOVE-05/06.
+
+## 2026-11-10 — Issue26 full-road racer lane follow-up
+
+User playtesting showed riders choosing only the traffic side. Remove the
+outbound-only default and allow intentional opposite-side racing lines through
+the existing oncoming/return and static-body forecast. Preserve civilian lane
+rules, physical collision, committed pass return and the bounded legacy roam
+needed by trap escape. The first full run exposed a positive-lane-only fixture,
+a pass-return regression and a wider-roam trap regression; all were resolved
+without disabling collision or escape. Final merged source passes 641 workspace
+tests, strict Clippy, format/build, roadmap and audit; native full-race and quiet
+planner-cost review remain open.
+
+## 2026-11-11 — Issue40 four-candidate selection checkpoint
+
+Four fresh agents measured CPU traffic snapshot reuse, facade visibility sync,
+loading admission/cache and grass-wind shader arithmetic against the frozen
+e2a31918 Hills/Metropolis baseline. Draft PRs #44, #49, #46 and #45 retain raw
+receipts and failed or mixed trials. CPU has the smallest nominal warm weighted
+ratio (~0.9886), narrowly ahead of GPU (~0.98955), but its final source was not
+reprofiled and cold Hills p95 regressed. Facade Hills p95/tail regressed and the
+loading cache was reverted. None is merged; final-source, full cold and
+combined-content reruns remain RFU-PERF-06/07 gates. See
+testing/issue40-selection/REPORT.md.
+
+## 2026-11-11 — Guardrail issue #33 integrated functional verification
+
+Merged current docs-only main after the source/test integration. Corrected the
+headless fixture to start from resident shoulder support and added bounded
+collision-grounded automatic end/gap guidance for trapped riders. 623 locked
+workspace tests, strict Clippy/format, locked debug/release builds, audit,
+roadmap checks,18 paired lab cases and seven native Hills/Valley functional
+scenarios pass. Both turn-side runs and baseline/current recovery have zero
+exceptional rescues in the native fixtures. Eight close captures and their
+visual limits are recorded at testing/guardrails/REPORT.md. RFU-RAIL-01..05
+remain open for human full-course and broad hardware/performance acceptance.
+Draft PR #51 records publication; merge is tracked separately.
+
+## 2026-11-11 — Racer lane follow-up on merged city and guardrail content
+
+Removed the unconditional right-side free-racing target and allowed a safe
+opposite-pavement racing line through the existing oncoming/return forecast.
+Integrated PR51 guardrails and PR53 city activity. The combined source passed
+647 workspace tests (two ignored), strict Clippy/format, locked debug/release
+builds, audit, roadmap and progress checks. An unteleported release Metropolis
+race finished slot zero at frame31,689; current and baseline recovery smokes
+passed. The race still sampled avoidance-driven stops up to33 seconds around
+station3,040, so broad queue behavior and frame-cost acceptance remain open.
+See testing/issue26-racer-ai/REPORT.md and ADR141. No rig/physics or dependency
+migration was made here.
+
+## 2026-11-11 — Sand issue #29 final integrated verification
+
+Merged guardrail, city activity and racer AI main into shared sand handling.
+Resolved additive README/progress/history conflicts without closing RFU-SURF-01..03.
+The final runtime source at 3e22ae81 passed 656 locked workspace tests (two
+existing ignored), strict formatting/Clippy, locked debug/release builds,
+audit and roadmap checks. Four native authored-ground and both-rig recovery
+cases passed on one release binary SHA256 2eeea11c7edb3cb2f5bd90a66c36d8e4bb5afe2c1b2ffcc4b5d41f266dd1b462.
+The reproducible runner and compact receipts are in testing/sand-speed/REPORT.md.
+Human feel, steep-uphill reverse and broad hardware/performance gates remain open.
+No imported code/media or dependency migration was added.
+## 2026-11-10 — Issue31 original Hills world enrichment (ADR146)
+
+Add deterministic spatially batched distant conifers with resident trunks,
+wider irregular grass, remote western mesas, storefront goods/lanterns and
+four larger shop-front display variants, plus outskirts cacti/rocks. Raise
+canyon ground and its seated river together12m.
+Riding-height follow-up: guarded striped stalls, handcarts and hitch/barrel
+groups share storefront meshes and compound collision; backlots gain two low
+shrubs/cacti each. Preserve route clearance and existing entity budgets.
+Integrated with e776605f: 663 locked tests, strict format/Clippy, debug/release
+builds, audit and roadmap checks pass. Six native Hills/Metropolis functional
+cases pass; Valley world-survey writes15sections/657roots but exits1 at17.94ms
+p95 against the pre-existing16.7ms gate. CPU sample comparison is confounded by
+the concurrent atmosphere merge. Art/full-course/GPU/hardware gates stay open.
+Preserve roads, legacy maps, dependency pins and accepted rigs. Seven RFU-WORLD
+IDs remain open. Strict/native/combined performance verification in progress;
+see testing/issue31-world/REPORT.md. No publication or broad acceptance claim.
+
+## 2026-11-10 — Issue32 bounded scenic herds (ADR147)
+
+Added RFU-WILD-01..05 to the live checklist. Implementing original wild horses
+and bison with bounded deterministic groups, swept off-road reservations, exact
+resident-terrain path samples and shared near/far meshes. Explicit no-crossing,
+no-contact policy retains existing cows/cowboys and accepted physical rigs.
+Technical/native/performance verification is pending, not a completion claim.
+
+## 2026-11-11 — Issue #32 wildlife integrated verification
+
+Integrated original scenic horse/bison herds with PR55 Hills terrain, woodland,
+frontage and guardrail content. Kept five RFU-WILD tasks open. Final source passed
+667 workspace tests (two ignored), strict formatting/Clippy, locked debug/release
+builds, audit and roadmap checks. One native 1,100-frame visual survey and four
+alternating release enabled/disabled cost runs completed. Wildlife system CPU
+median was 8.6–9.0 µs in the near-herd fixture; total frame medians overlap run
+variation. Full-course/native both-rig, art, GPU and broad hardware gates remain
+open. No new collider, save field, fixed-loop physics or imported media.

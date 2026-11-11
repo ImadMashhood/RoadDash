@@ -1,0 +1,9 @@
+{
+  "case": "race",
+  "binary_sha256": "ef00957b52f1f0965e928297ec395084b3939a0a02cf4e8edfb42a074d9809f3",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": false,
+  "elapsed_seconds": 1033.5670461654663,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

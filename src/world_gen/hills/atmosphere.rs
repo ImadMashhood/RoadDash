@@ -5,6 +5,7 @@ use crate::{
 };
 use bevy::{
     asset::RenderAssetUsages,
+    camera::visibility::VisibilityRange,
     prelude::*,
     render::render_resource::{Extent3d, TextureDimension, TextureFormat},
 };
@@ -24,6 +25,7 @@ pub struct Bird {
     radius: f32,
     phase: f32,
     rate: f32,
+    flocking: bool,
 }
 #[derive(Component)]
 pub struct Wing {
@@ -64,6 +66,108 @@ fn sprite() -> Image {
         RenderAssetUsages::default(),
     )
 }
+pub fn birds_enabled() -> bool {
+    std::env::var("ROADDASH_BIRDS").as_deref() != Ok("0")
+}
+
+fn bird_range() -> VisibilityRange {
+    VisibilityRange {
+        start_margin: 0.0..0.0,
+        end_margin: 450.0..650.0,
+        use_aabb: false,
+    }
+}
+
+fn flock_center(track: &Track, group: usize) -> Vec3 {
+    let hills = track.is_hills();
+    let station = if hills {
+        [2200., 3900., 5900., 7900., 9800., 11700.][group]
+    } else {
+        // Rural approach, city entry, two street canyons and both civic spaces.
+        // Keep street flocks ahead of riders so they silhouette above roofs.
+        [1100., 3200., 4850., 7300., 8650., 9950.][group]
+    };
+    let (p, q) = track.sample_route(0, station, 0.);
+    let side = if hills {
+        if group.is_multiple_of(2) { 65. } else { -65. }
+    } else {
+        [35., -35., 35., 0., -35., 0.][group]
+    };
+    let mut center = p + q * Vec3::X * side;
+    let mut altitude = p.y + if hills { 35. } else { 48. };
+    if !hills && let Some(metro) = &track.metropolis {
+        // The two planted civic openings give flocks a lower, readable skyline
+        // without threading the resident street walls. These are authored sites,
+        // not survey-camera targets.
+        if let Some(kind) = match group {
+            3 => Some("city_hall"),
+            5 => Some("park"),
+            _ => None,
+        } && let Some(site) = metro.civic_sites.iter().find(|site| site.kind == kind)
+        {
+            center.x = site.position[0];
+            center.z = site.position[1];
+            altitude = track.terrain_height(center.x, center.z)
+                + if kind == "city_hall" { 62. } else { 42. };
+        }
+        // Reserve the whole flock orbit above nearby resident roofs, not merely
+        // the spawn point. This is authoring-time placement, never physics.
+        for building in &metro.buildings {
+            let mut min = Vec2::splat(f32::INFINITY);
+            let mut max = Vec2::splat(f32::NEG_INFINITY);
+            let mut base = f32::NEG_INFINITY;
+            for v in building.shape.vertices() {
+                let v = Vec2::from_array(v);
+                min = min.min(v);
+                max = max.max(v);
+                base = base.max(track.terrain_height(v.x, v.y));
+            }
+            if center.xz().distance(center.xz().clamp(min, max)) <= 55. {
+                altitude = altitude.max(base + building.height + 12.);
+            }
+        }
+    }
+    center.y = altitude;
+    center
+}
+
+fn bird_at(center: Vec3, hills: bool, i: usize) -> Bird {
+    let group = i / 4;
+    let member = (i % 4) as f32;
+    Bird {
+        center: center + Vec3::Y * member * if hills { 4. } else { 2. },
+        radius: if hills {
+            25. + member * 8.
+        } else {
+            38. + member * 3.
+        },
+        phase: if hills {
+            i as f32 * 2.399
+        } else {
+            group as f32 * 2.399 + member * 0.16
+        },
+        rate: if hills {
+            0.13 + (i % 3) as f32 * 0.025
+        } else {
+            0.17 + group as f32 * 0.005
+        },
+        flocking: !hills,
+    }
+}
+
+fn bird_pose(bird: &Bird, elapsed: f32) -> Transform {
+    let a = elapsed * bird.rate + bird.phase;
+    Transform::from_translation(
+        bird.center
+            + Vec3::new(
+                a.cos() * bird.radius,
+                (a * 1.7).sin() * 3.,
+                a.sin() * bird.radius,
+            ),
+    )
+    .with_rotation(Quat::from_rotation_y(-a) * Quat::from_rotation_z(-0.12))
+}
+
 fn wing_mesh() -> Mesh {
     let p = [
         Vec3::ZERO,
@@ -80,34 +184,40 @@ pub fn spawn(
     track: &Track,
     images: Option<&mut Assets<Image>>,
 ) {
-    if !track.is_hills() {
+    if !track.is_hills() && track.metropolis.is_none() {
         return;
     }
-    let texture = images.map(|images| images.add(sprite()));
-    let quad = meshes.add(Rectangle::new(1., 1.));
-    for _ in 0..DUST_CAPACITY {
-        let material = materials.add(StandardMaterial {
-            base_color: Color::srgba(0.88, 0.76, 0.56, 0.),
-            base_color_texture: texture.clone(),
-            alpha_mode: AlphaMode::Blend,
-            unlit: true,
-            double_sided: true,
-            cull_mode: None,
-            ..default()
-        });
-        commands.spawn((
-            Mesh3d(quad.clone()),
-            MeshMaterial3d(material),
-            Transform::default(),
-            Visibility::Hidden,
-            bevy::light::NotShadowCaster,
-            bevy::light::NotShadowReceiver,
-            DustPuff {
-                age: 2.,
-                life: 1.6,
-                drift: Vec3::ZERO,
-            },
-        ));
+    commands.insert_resource(Atmosphere::default());
+    if track.is_hills() {
+        let texture = images.map(|images| images.add(sprite()));
+        let quad = meshes.add(Rectangle::new(1., 1.));
+        for _ in 0..DUST_CAPACITY {
+            let material = materials.add(StandardMaterial {
+                base_color: Color::srgba(0.88, 0.76, 0.56, 0.),
+                base_color_texture: texture.clone(),
+                alpha_mode: AlphaMode::Blend,
+                unlit: true,
+                double_sided: true,
+                cull_mode: None,
+                ..default()
+            });
+            commands.spawn((
+                Mesh3d(quad.clone()),
+                MeshMaterial3d(material),
+                Transform::default(),
+                Visibility::Hidden,
+                bevy::light::NotShadowCaster,
+                bevy::light::NotShadowReceiver,
+                DustPuff {
+                    age: 2.,
+                    life: 1.6,
+                    drift: Vec3::ZERO,
+                },
+            ));
+        }
+    }
+    if !birds_enabled() {
+        return;
     }
     let body = meshes.add(Sphere::new(1.).mesh().uv(8, 4));
     let wing = meshes.add(wing_mesh());
@@ -118,29 +228,16 @@ pub fn spawn(
         cull_mode: None,
         ..default()
     });
+    let centers: [Vec3; 6] = std::array::from_fn(|group| flock_center(track, group));
     for i in 0..BIRD_COUNT {
-        let group = i / 4;
-        let station = [2200., 3900., 5900., 7900., 9800., 11700.][group];
-        let (p, q) = track.sample_route(0, station, 0.);
-        let center = p
-            + q * Vec3::X * if group % 2 == 0 { 65. } else { -65. }
-            + Vec3::Y * (35. + (i % 4) as f32 * 4.);
+        let bird = bird_at(centers[i / 4], track.is_hills(), i);
         let phase = i as f32 * 2.399;
-        let root = commands
-            .spawn((
-                Transform::from_translation(center),
-                Visibility::default(),
-                Bird {
-                    center,
-                    radius: 25. + (i % 4) as f32 * 8.,
-                    phase,
-                    rate: 0.13 + (i % 3) as f32 * 0.025,
-                },
-            ))
-            .id();
+        let initial = bird_pose(&bird, 0.);
+        let root = commands.spawn((initial, Visibility::default(), bird)).id();
         let torso = commands
             .spawn((
                 Mesh3d(body.clone()),
+                bird_range(),
                 MeshMaterial3d(feather.clone()),
                 Transform::from_scale(Vec3::new(0.13, 0.11, 0.4)),
                 bevy::light::NotShadowCaster,
@@ -151,6 +248,7 @@ pub fn spawn(
             let e = commands
                 .spawn((
                     Mesh3d(wing.clone()),
+                    bird_range(),
                     MeshMaterial3d(feather.clone()),
                     Transform::from_scale(Vec3::new(side, 1., 1.)),
                     Wing { side, phase },
@@ -160,7 +258,6 @@ pub fn spawn(
             commands.entity(root).add_child(e);
         }
     }
-    commands.insert_resource(Atmosphere::default());
 }
 /// Reset only visual pools when the existing race lifecycle starts a fresh run.
 #[allow(clippy::type_complexity)]
@@ -190,8 +287,7 @@ pub fn reset(
         *visibility = Visibility::Hidden;
     }
     for (bird, mut t) in &mut birds {
-        t.translation = bird.center;
-        t.rotation = Quat::IDENTITY;
+        *t = bird_pose(bird, 0.);
     }
     for (_, mut t) in &mut wings {
         t.rotation = Quat::IDENTITY;
@@ -274,7 +370,7 @@ pub fn animate(
         ),
     >,
     mut wings: Query<
-        (&Wing, &mut Transform),
+        (&Wing, &mut Transform, &ChildOf),
         (
             Without<Bird>,
             Without<DustPuff>,
@@ -290,41 +386,41 @@ pub fn animate(
     let Some(mut state) = state else { return };
     let Ok(camera) = cameras.single() else { return };
     let dt = active_delta(race.phase, time.delta_secs());
-    // Camera surveys and pause freelook still update view culling; no bird/dust
-    // positions, ages or emission clocks advance without active presentation time.
-    for (_, t, mut visible) in &mut birds {
-        *visible = if t.translation.distance_squared(camera.translation) < 650f32.powi(2) {
-            Visibility::Inherited
-        } else {
-            Visibility::Hidden
-        };
-    }
+    // Bevy VisibilityRange applies soft dither culling to every mesh after
+    // final GlobalTransform propagation, including paused/survey cameras.
     if dt == 0. {
         return;
     }
     state.elapsed += dt;
     state.emission_clock += dt;
     let elapsed = state.elapsed;
-    for (bird, mut t, mut visible) in &mut birds {
-        let a = elapsed * bird.rate + bird.phase;
-        t.translation = bird.center
-            + Vec3::new(
-                a.cos() * bird.radius,
-                (a * 1.7).sin() * 3.,
-                a.sin() * bird.radius,
-            );
-        t.rotation = Quat::from_rotation_y(-a) * Quat::from_rotation_z(-0.12);
-        *visible = if t.translation.distance_squared(camera.translation) < 650f32.powi(2) {
-            Visibility::Inherited
-        } else {
-            Visibility::Hidden
+    state.animated_birds = 0;
+    for (bird, mut t, _) in &mut birds {
+        // Only 24 analytic poses, independent of camera hierarchy/teleports.
+        // Final-camera range dithering limits draw work without stale poses.
+        *t = bird_pose(bird, elapsed);
+        state.animated_birds += 1;
+    }
+    for (wing, mut t, parent) in &mut wings {
+        let Ok((bird, _, _)) = birds.get(parent.parent()) else {
+            continue;
         };
+        // Metro flocks alternate short flapping bursts with level soaring.
+        // Hills retains its established continuous wing cadence.
+        let beat = if bird.flocking {
+            let cycle = (elapsed * 0.65 + wing.phase).sin();
+            ((cycle + 0.25) * 2.).clamp(0., 1.)
+        } else {
+            1.
+        };
+        t.rotation = Quat::from_rotation_z(
+            wing.side * ((elapsed * 7. + wing.phase).sin() * 0.48 * beat + 0.12),
+        );
     }
-    for (wing, mut t) in &mut wings {
-        t.rotation =
-            Quat::from_rotation_z(wing.side * ((elapsed * 7. + wing.phase).sin() * 0.48 + 0.12));
+    // Metropolis reuses birds only: no dust assets, contact queries or emissions.
+    if dust.is_empty() {
+        return;
     }
-    state.animated_birds = birds.iter().count();
     let mut emissions = Vec::new();
     if state.emission_clock >= EMISSION_INTERVAL {
         state.emission_clock %= EMISSION_INTERVAL;
@@ -411,6 +507,132 @@ pub fn animate(
 mod tests {
     use super::*;
     #[test]
+    fn bird_range_uses_final_propagated_parented_camera_while_paused() {
+        use bevy::camera::visibility::{VisibleEntityRanges, check_visibility_ranges};
+        let mut app = App::new();
+        app.add_plugins((MinimalPlugins, TransformPlugin))
+            .init_resource::<VisibleEntityRanges>()
+            .add_systems(
+                PostUpdate,
+                check_visibility_ranges.after(bevy::transform::TransformSystems::Propagate),
+            );
+        let parent = app
+            .world_mut()
+            .spawn(Transform::from_xyz(1000., 0., 0.))
+            .id();
+        let camera = app
+            .world_mut()
+            .spawn((Camera::default(), Transform::default(), ChildOf(parent)))
+            .id();
+        let bird = app
+            .world_mut()
+            .spawn((Transform::from_xyz(600., 0., 0.), bird_range()))
+            .id();
+        app.update();
+        assert!(
+            app.world()
+                .resource::<VisibleEntityRanges>()
+                .entity_is_in_range_of_view(bird, camera)
+        );
+        app.world_mut()
+            .get_mut::<Transform>(parent)
+            .unwrap()
+            .translation
+            .x = -100.;
+        app.update();
+        assert!(
+            !app.world()
+                .resource::<VisibleEntityRanges>()
+                .entity_is_in_range_of_view(bird, camera)
+        );
+    }
+    #[test]
+    fn metro_flocks_remain_coherent_and_deterministic_through_long_runs() {
+        let track = Track::metropolis().unwrap();
+        for group in 0..6 {
+            let center = flock_center(&track, group);
+            let leader = bird_at(center, false, group * 4);
+            for seconds in [0., 15., 60., 600., 3600.] {
+                let first = bird_pose(&leader, seconds);
+                for member in 0..4 {
+                    let b = bird_at(center, false, group * 4 + member);
+                    let pose = bird_pose(&b, seconds);
+                    assert!(pose.translation.distance(first.translation) < 30.);
+                    assert!(pose.translation.is_finite() && pose.rotation.is_finite());
+                    assert_eq!(pose, bird_pose(&b, seconds));
+                }
+            }
+        }
+        let range = bird_range();
+        assert_eq!(range.end_margin, 450.0..650.0);
+        assert!(!range.use_aabb);
+    }
+    #[test]
+    fn metro_flocks_cover_streets_and_authored_civic_openings() {
+        let track = Track::metropolis().unwrap();
+        let metro = track.metropolis.as_ref().unwrap();
+        for (group, kind) in [(3, "city_hall"), (5, "park")] {
+            let site = metro
+                .civic_sites
+                .iter()
+                .find(|site| site.kind == kind)
+                .unwrap();
+            let center = flock_center(&track, group);
+            assert!(center.xz().distance(Vec2::from_array(site.position)) < 0.01);
+            assert!(center.y > track.terrain_height(center.x, center.z) + 38.);
+        }
+        for (group, station) in [(2, 4850.), (4, 8650.)] {
+            let center = flock_center(&track, group);
+            let (road, _) = track.sample_route(0, station, 0.);
+            assert!(center.xz().distance(road.xz()) < 40.);
+            assert!(center.y > road.y + 40.);
+        }
+    }
+    #[test]
+    fn both_maps_share_bounded_bird_meshes_but_only_hills_allocates_dust() {
+        for track in [Track::metropolis().unwrap(), Track::hills().unwrap()] {
+            let hills = track.is_hills();
+            let mut app = App::new();
+            app.insert_resource(track)
+                .init_resource::<Assets<Mesh>>()
+                .init_resource::<Assets<StandardMaterial>>()
+                .add_systems(
+                    Startup,
+                    |mut commands: Commands,
+                     mut meshes: ResMut<Assets<Mesh>>,
+                     mut materials: ResMut<Assets<StandardMaterial>>,
+                     track: Res<Track>| {
+                        spawn(&mut commands, &mut meshes, &mut materials, &track, None);
+                    },
+                );
+            app.update();
+            let world = app.world_mut();
+            assert_eq!(
+                world
+                    .query_filtered::<Entity, With<Bird>>()
+                    .iter(world)
+                    .count(),
+                if birds_enabled() { BIRD_COUNT } else { 0 }
+            );
+            assert_eq!(
+                world
+                    .query_filtered::<Entity, With<DustPuff>>()
+                    .iter(world)
+                    .count(),
+                if hills { DUST_CAPACITY } else { 0 }
+            );
+            assert_eq!(
+                world
+                    .query_filtered::<Entity, With<VisibilityRange>>()
+                    .iter(world)
+                    .count(),
+                if birds_enabled() { BIRD_COUNT * 3 } else { 0 }
+            );
+            assert_eq!(world.query::<&Collider>().iter(world).count(), 0);
+            assert!(world.contains_resource::<Atmosphere>());
+        }
+    }
+    #[test]
     fn dust_requires_motion_ground_and_unpaved_wheel_position() {
         assert!(dust_eligible(18., 0.2, 9., 6.5, None));
         assert!(dust_eligible(-8., 0.1, -9., 6.5, None));
@@ -466,6 +688,7 @@ mod tests {
                     radius: 25.,
                     phase: 0.,
                     rate: 0.2,
+                    flocking: false,
                 },
                 Transform::from_translation(Vec3::ONE),
             ))
@@ -505,7 +728,7 @@ mod tests {
         );
         assert_eq!(
             app.world().get::<Transform>(bird).unwrap().translation,
-            Vec3::Y * 20.
+            Vec3::new(25., 20., 0.)
         );
         assert_eq!(
             app.world().get::<Transform>(wing).unwrap().rotation,

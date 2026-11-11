@@ -327,7 +327,7 @@ impl Metropolis {
             }
         }
         let mut walker_ids = HashSet::new();
-        if self.pedestrians.len() > 384
+        if self.pedestrians.len() > 480
             || self
                 .pedestrians
                 .iter()
@@ -596,7 +596,8 @@ mod tests {
     fn pedestrian_patrols_are_bounded_unique_and_finite() {
         let mut m =
             Metropolis::from_json(include_str!("../../../content/world/metropolis.json")).unwrap();
-        assert_eq!(m.pedestrians.len(), 384);
+        assert_eq!(m.pedestrians.len(), 480);
+        assert_eq!(m.pedestrians.iter().filter(|p| p.route == 1).count(), 96);
         m.pedestrians[0].extent = 40.;
         assert!(m.validate().is_err());
         m.pedestrians[0].extent = 6.;
@@ -614,9 +615,16 @@ mod tests {
         assert_eq!(
             m.pedestrians
                 .iter()
+                .filter(|p| p.route == 1 && p.crossing_end.is_some())
+                .count(),
+            3
+        );
+        assert_eq!(
+            m.pedestrians
+                .iter()
                 .filter(|p| p.crossing_end.is_some())
                 .count(),
-            10
+            13
         );
         let i = m
             .pedestrians

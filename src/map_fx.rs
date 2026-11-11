@@ -14,9 +14,7 @@ const SAND_COUNT: usize = 48;
 const HEAT_COUNT: usize = 16;
 const STEAM_COUNT: usize = 16;
 const POLLEN_COUNT: usize = 16;
-const SAND_STATIONS: [f32; 12] = [
-    6500., 7000., 7500., 8000., 8500., 9000., 9500., 10000., 10500., 11000., 11500., 12000.,
-];
+const SAND_START: f32 = 6500.;
 const HEAT_STATIONS: [f32; 8] = [5900., 6500., 7100., 7900., 8900., 9900., 10900., 11800.];
 
 #[derive(Clone, Copy, PartialEq, Eq)]
@@ -56,9 +54,68 @@ fn soft_sprite() -> Image {
             let p = Vec2::new((x as f32 + 0.5) / n as f32, (y as f32 + 0.5) / n as f32) * 2.
                 - Vec2::ONE;
             let radial = (1. - p.length_squared()).max(0.);
+            // Low-frequency variation survives filtering as a soft plume, not a grid.
             let grain =
-                0.75 + 0.15 * (p.x * 18. + p.y * 11.).sin() + 0.1 * (p.y * 27. - p.x * 9.).cos();
+                0.9 + 0.07 * (p.x * 5. + p.y * 3.).sin() + 0.03 * (p.y * 7. - p.x * 2.).cos();
             rgba.extend([255, 255, 255, (radial.powi(2) * grain * 255.) as u8]);
+        }
+    }
+    Image::new(
+        Extent3d {
+            width: n as u32,
+            height: n as u32,
+            depth_or_array_layers: 1,
+        },
+        TextureDimension::D2,
+        rgba,
+        TextureFormat::Rgba8UnormSrgb,
+        RenderAssetUsages::default(),
+    )
+}
+
+fn dust_sprite() -> Image {
+    let n = 64usize;
+    let mut rgba = Vec::with_capacity(n * n * 4);
+    for y in 0..n {
+        for x in 0..n {
+            let p = Vec2::new((x as f32 + 0.5) / n as f32, (y as f32 + 0.5) / n as f32) * 2.
+                - Vec2::ONE;
+            let edge = (1. - p.length_squared()).max(0.).powf(0.8);
+            let lobe = |center: Vec2, spread: f32| (-(p - center).length_squared() / spread).exp();
+            // An asymmetric, fully feathered cloud mask. No external particle art.
+            let billows = 0.57
+                + 0.42 * lobe(Vec2::new(-0.32, -0.05), 0.28)
+                + 0.38 * lobe(Vec2::new(0.24, 0.18), 0.23)
+                + 0.33 * lobe(Vec2::new(0.05, -0.28), 0.22);
+            rgba.extend([255, 255, 255, (edge * billows.min(1.) * 255.) as u8]);
+        }
+    }
+    Image::new(
+        Extent3d {
+            width: n as u32,
+            height: n as u32,
+            depth_or_array_layers: 1,
+        },
+        TextureDimension::D2,
+        rgba,
+        TextureFormat::Rgba8UnormSrgb,
+        RenderAssetUsages::default(),
+    )
+}
+
+fn steam_sprite() -> Image {
+    let n = 64usize;
+    let mut rgba = Vec::with_capacity(n * n * 4);
+    for y in 0..n {
+        for x in 0..n {
+            let p = Vec2::new((x as f32 + 0.5) / n as f32, (y as f32 + 0.5) / n as f32) * 2.
+                - Vec2::ONE;
+            let sway = 0.12 * (p.y * 3.4).sin();
+            let width = 0.38 + 0.12 * (p.y + 1.);
+            let core = (1. - ((p.x - sway) / width).powi(2)).max(0.).powf(1.2);
+            let ends = (1. - p.y * p.y).max(0.).powf(0.8);
+            let soft_lobes = 0.72 + 0.16 * (p.y * 4.1 + p.x * 2.).sin();
+            rgba.extend([255, 255, 255, (core * ends * soft_lobes * 255.) as u8]);
         }
     }
     Image::new(
@@ -83,11 +140,8 @@ fn heat_sprite() -> Image {
             let v = (y as f32 + 0.5) / n as f32 * 2. - 1.;
             // Thin, uneven horizontal air bands rise past one another. This is
             // a light-scattering cue, not a screen-colour refraction pass.
-            let ripple = (v * 20. + (u * 11. + v * 5.).sin() * 1.1)
-                .sin()
-                .abs()
-                .powi(2);
-            let envelope = (1. - u * u).max(0.) * (1. - v * v).max(0.);
+            let ripple = (v * 9. + (u * 5. + v * 3.).sin() * 0.9).sin().abs().powi(3);
+            let envelope = (1. - u * u).max(0.).powi(2) * (1. - v * v).max(0.);
             rgba.extend([255, 250, 226, (ripple * envelope * 255.) as u8]);
         }
     }
@@ -129,7 +183,12 @@ pub fn spawn(
     let is_hills = track.is_hills();
     // Metropolis and the authored legacy city share one restrained vent-steam cue.
     let city = track.metropolis.is_some() || track.city_surface.is_some();
-    let texture = images.add(soft_sprite());
+    let texture = images.add(if city { steam_sprite() } else { soft_sprite() });
+    let dust_texture = if is_hills {
+        Some(images.add(dust_sprite()))
+    } else {
+        None
+    };
     let heat_texture = if is_hills {
         Some(images.add(heat_sprite()))
     } else {
@@ -145,15 +204,15 @@ pub fn spawn(
     };
     for &kind in kinds {
         let color = match kind {
-            Kind::Sand => Color::srgba(0.87, 0.72, 0.48, 0.55),
-            Kind::Heat => Color::srgba(0.97, 0.82, 0.59, 0.65),
-            Kind::Steam => Color::srgba(0.72, 0.78, 0.82, 0.42),
+            Kind::Sand => Color::srgba(0.61, 0.59, 0.55, 0.78),
+            Kind::Heat => Color::srgba(0.98, 0.94, 0.85, 0.52),
+            Kind::Steam => Color::srgba(0.72, 0.76, 0.78, 0.48),
             Kind::Pollen => Color::srgba(0.78, 0.83, 0.61, 0.35),
         };
-        let image = if kind == Kind::Heat {
-            heat_texture.clone().unwrap()
-        } else {
-            texture.clone()
+        let image = match kind {
+            Kind::Sand => dust_texture.clone().unwrap(),
+            Kind::Heat => heat_texture.clone().unwrap(),
+            Kind::Steam | Kind::Pollen => texture.clone(),
         };
         // One immutable asset per cue avoids a render-asset upload every frame.
         let material = materials.add(StandardMaterial {
@@ -167,7 +226,11 @@ pub fn spawn(
         });
         for i in 0..budget(kind, level) {
             let station = match kind {
-                Kind::Sand => SAND_STATIONS[i % 12] + (i / 12) as f32 * 20.,
+                Kind::Sand => {
+                    SAND_START
+                        + (i as f32 + 0.5) * (track.length - SAND_START)
+                            / budget(kind, level) as f32
+                }
                 Kind::Heat => HEAT_STATIONS[i % 8] + (i / 8) as f32 * 12.,
                 Kind::Steam if track.metropolis.is_some() => {
                     8300. + (i % 8) as f32 * 330. + (i / 8) as f32 * 12.
@@ -185,18 +248,22 @@ pub fn spawn(
             let (_, rotation) = track.sample_route(route, station, 0.);
             let side = if i % 2 == 0 { 1. } else { -1. };
             let offset = match kind {
-                Kind::Sand if station < crate::track::hills::TOWN_END => 12. + (i % 3) as f32 * 2.,
-                Kind::Sand => 14. + (i % 3) as f32 * 6.,
-                Kind::Heat if station < crate::track::hills::TOWN_END => 9. + (i % 2) as f32 * 1.5,
-                Kind::Heat => 16. + (i % 3) as f32 * 7.,
-                Kind::Steam => 9. + (i % 3) as f32 * 2.,
+                Kind::Sand => 7.2 + (i % 3) as f32 * 0.5,
+                Kind::Heat if station < crate::track::hills::TOWN_END => 7.8 + (i % 2) as f32,
+                Kind::Heat => 14. + (i % 3) as f32 * 3.,
+                Kind::Steam => track.half_width(station) + 0.7,
                 Kind::Pollen => 13. + (i % 3) as f32 * 5.,
             };
             let (mut anchor, _) = track.sample_route(route, station, -side * offset);
-            anchor.y += match kind {
-                Kind::Sand => 1.05,
-                Kind::Heat => 1.7,
-                Kind::Steam | Kind::Pollen => 0.5,
+            anchor.y = if is_hills {
+                crate::world_gen::hills::rendered_ground_height(track, anchor.x, anchor.z)
+            } else {
+                track.terrain_height(anchor.x, anchor.z)
+            } + match kind {
+                Kind::Sand => 2.7,
+                Kind::Heat => 1.45,
+                Kind::Steam => 0.75,
+                Kind::Pollen => 0.5,
             };
             commands.spawn((
                 Name::new(match kind {
@@ -227,22 +294,24 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
     let wave = time + phase;
     match kind {
         Kind::Sand => {
-            // A fixed envelope slides across the shoulder; no sand contact or surface changes.
-            let travel = (wave * 0.32).fract();
-            let fade = (travel * (1. - travel) * 4.).powi(2);
+            // Warm dust billows expand and lift at the verge, with occasional
+            // presentation-only drift across the road edge.
+            // The periodic size envelope makes each plume appear and disperse smoothly.
+            let cycle = (time * 0.19 + phase * 0.16).fract();
+            let fade = (cycle * (1. - cycle) * 4.).powi(2);
             (
                 Vec3::new(
-                    (wave * 0.8).sin() * 0.6,
-                    0.25 + (wave * 1.9).sin().abs() * 0.4,
-                    (travel - 0.5) * 20.,
+                    (wave * 0.3).sin() * 3.5,
+                    0.35 + cycle * 1.3,
+                    (cycle - 0.5) * 7.,
                 ),
-                Vec3::new(8., 2.2, 1.),
+                Vec3::new(9.5 + cycle * 4., 5.5 + cycle * 3., 1.),
                 0.18 * fade,
             )
         }
         Kind::Heat => (
             Vec3::new((wave * 1.3).sin() * 0.35, (wave * 0.13).fract() * 0.9, 0.),
-            Vec3::new(9., 3.2, 1.),
+            Vec3::new(5.5, 2.6, 1.),
             0.13 + 0.05 * (wave * 3.1).sin().abs(),
         ),
         Kind::Steam => {
@@ -250,10 +319,10 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
             (
                 Vec3::new(
                     (wave * 0.5).sin() * 0.8,
-                    cycle * 4.,
+                    0.9 + cycle * 2.3,
                     (wave * 0.3).cos() * 0.5,
                 ),
-                Vec3::splat(1.2 + cycle * 2.),
+                Vec3::new(2.8 + cycle * 1.2, 4.5 + cycle * 2., 1.),
                 0.13 * (1. - cycle).powi(2),
             )
         }
@@ -330,6 +399,8 @@ mod tests {
             }
         }
         assert_eq!(soft_sprite().data.unwrap().len(), 64 * 64 * 4);
+        assert_eq!(dust_sprite().data.unwrap().len(), 64 * 64 * 4);
+        assert_eq!(steam_sprite().data.unwrap().len(), 64 * 64 * 4);
         assert_eq!(heat_sprite().data.unwrap().len(), 64 * 64 * 4);
     }
 }

@@ -1,5 +1,5 @@
 use super::*;
-use crate::world::{Ground, Obstacle};
+use crate::world::Ground;
 use bevy_rapier3d::prelude::*;
 
 pub(super) fn surface(
@@ -184,6 +184,7 @@ pub(super) fn spawn(
     census: &mut Census,
     images: Option<&mut Assets<Image>>,
 ) {
+    let mut rail_ground = super::guardrails::GroundSamples::default();
     let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
     let shoulder = materials.add(shoulder_material(images));
     let terrain_material = materials.add(StandardMaterial {
@@ -220,6 +221,9 @@ pub(super) fn spawn(
                 continue;
             }
             let (v, ix) = shoulders(track, route, a, b);
+            if route == 0 && b >= 1580. && a <= 5380. {
+                rail_ground.add(&v, &ix);
+            }
             let origin = v[v.len() / 2];
             let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &ix);
@@ -229,7 +233,7 @@ pub(super) fn spawn(
                 (0..rows)
                     .flat_map(|i| {
                         let station = a + (b - a) * i as f32 / (rows - 1) as f32;
-                        let green = ((5500. - station) / 300.).clamp(0., 1.);
+                        let green = rr_core::surface::hills_meadow_weight(station);
                         [1., 0., 0., 1.].map(|u| [u, 0.25 + green * 0.5])
                     })
                     .collect::<Vec<_>>(),
@@ -279,8 +283,6 @@ pub(super) fn spawn(
                 min.x - 320. + x as f32 * tile,
                 min.z - 320. + z as f32 * tile,
             );
-            let center = origin + Vec2::splat(tile / 2.);
-            let (station, _) = track.nearby_station(center.x, center.y);
             let (v, ix) = if std::env::var("ROADDASH_TERRAIN_CACHE").as_deref() == Ok("0") {
                 let (mut v, ix) = crate::world_gen::ground::terrain_grid(track, origin, tile, step);
                 for p in &mut v {
@@ -292,13 +294,6 @@ pub(super) fn spawn(
                     terrain_vertex_uncached(track, p.x, p.y).y
                 })
             };
-            let base = if station < 5300. {
-                Vec3::new(0.32, 0.37, 0.19)
-            } else if station < 8500. {
-                Vec3::new(0.69, 0.51, 0.29)
-            } else {
-                Vec3::new(0.76, 0.61, 0.38)
-            };
             let origin = v[v.len() / 2];
             let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &ix);
@@ -306,6 +301,16 @@ pub(super) fn spawn(
                 Mesh::ATTRIBUTE_COLOR,
                 v.iter()
                     .map(|p| {
+                        let (station, _) = track.nearby_station(p.x, p.z);
+                        let sand = if station < 8500. {
+                            Vec3::new(0.69, 0.51, 0.29)
+                        } else {
+                            Vec3::new(0.76, 0.61, 0.38)
+                        };
+                        let base = sand.lerp(
+                            Vec3::new(0.32, 0.37, 0.19),
+                            rr_core::surface::hills_meadow_weight(station),
+                        );
                         let strata = (p.y * 0.42).sin() * 0.045;
                         let rock = Vec3::new(0.57 + strata, 0.36 + strata, 0.20 + strata);
                         let c = base.lerp(rock, track.hills_canyon_weight(p.x, p.z));
@@ -327,50 +332,7 @@ pub(super) fn spawn(
         }
     }
     drop(terrain_span);
-    // Mountain rails remain solid; the suspension bridge owns its gapped sides.
-    for d in (1580..5380).step_by(8) {
-        if !bridge::curve_guardrail(track, d as f32 + 4.)
-            || ((d as f32) < bridge::END && (d as f32 + 8.) > bridge::START)
-        {
-            continue;
-        }
-        for side in [-1., 1.] {
-            let (a, _) = track.sample_route(0, d as f32, side * (track.half_width(d as f32) + 1.8));
-            let (b, _) =
-                track.sample_route(0, d as f32 + 8., side * (track.half_width(d as f32) + 1.8));
-            let edge = b - a;
-            let q = Quat::from_rotation_arc(Vec3::Z, edge.normalize());
-            let rail = crate::world::part(
-                commands,
-                art.cube.clone(),
-                art.metal.clone(),
-                (a + b) * 0.5 + Vec3::Y * 0.82,
-                Vec3::new(0.16, 0.32, edge.length() + 0.06),
-                q,
-            );
-            commands.entity(rail).insert((
-                RigidBody::Fixed,
-                Collider::cuboid(0.5, 0.5, 0.5),
-                Obstacle,
-                HillsSolid,
-            ));
-            let post = crate::world::part(
-                commands,
-                art.cube.clone(),
-                art.metal.clone(),
-                a + Vec3::Y * 0.4,
-                Vec3::new(0.15, 0.8, 0.15),
-                Quat::IDENTITY,
-            );
-            commands.entity(post).insert((
-                RigidBody::Fixed,
-                Collider::cuboid(0.5, 0.5, 0.5),
-                Obstacle,
-                HillsSolid,
-            ));
-            census.guardrail_segments += 1;
-        }
-    }
+    super::guardrails::spawn(commands, art, track, census, &rail_ground);
 }
 
 #[cfg(test)]

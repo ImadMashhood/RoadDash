@@ -229,14 +229,25 @@
         "UI-01",
         "UI-03",
         "UI-04",
-        "RIVAL-WEAPONS-01"
+        "RIVAL-WEAPONS-01",
+        "RFU-AI-03",
+        "RFU-AI-04",
+        "RFU-AI-05",
+        "RFU-AI-07"
       ]
     },
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "RFU-SURF-01",
+        "RFU-SURF-02",
+        "RFU-SURF-03",
         "RFU-PERF-01",
         "RFU-PERF-04",
+        "RFU-AI-01",
+        "RFU-AI-02",
+        "RFU-AI-06",
+        "RFU-AI-08",
         "FOOT-SPAWN-01",
         "AI-11",
         "CRASHREF-004",
@@ -268,7 +279,9 @@
         "P04-014",
         "P06-006",
         "CAST-AI-01",
-        "AI-QUEUE-02"
+        "AI-QUEUE-02",
+        "RFU-RAIL-01",
+        "RFU-RAIL-02"
       ]
     },
     "02": {
@@ -368,6 +381,8 @@
     "05": {
       "title": "World B \u2014 props, materials and procedural dressing",
       "task_ids": [
+        "RFU-WILD-05",
+        "RFU-WORLD-04",
         "DESTRUCTION-02",
         "WORLDART-01",
         "MAT-03",
@@ -377,12 +392,18 @@
         "V2-05-003",
         "V2-05-004",
         "V2-05-005",
-        "ENV-004"
+        "ENV-004",
+        "RFU-RAIL-03",
+        "RFU-RAIL-04"
       ]
     },
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "RFU-WILD-01",
+        "RFU-WILD-02",
+        "RFU-WILD-03",
+        "RFU-WILD-04",
         "RFU-CITY-01",
         "RFU-CITY-02",
         "RFU-CITY-03",
@@ -391,6 +412,16 @@
         "RFU-TRAF-02",
         "RFU-TRAF-03",
         "RFU-TRAF-04",
+        "RFU-SKY-01",
+        "RFU-SKY-02",
+        "RFU-SKY-03",
+        "RFU-SKY-04",
+        "RFU-WORLD-01",
+        "RFU-WORLD-02",
+        "RFU-WORLD-03",
+        "RFU-WORLD-05",
+        "RFU-WORLD-06",
+        "RFU-WORLD-07",
         "HILLS-11",
         "SKY-SUN-01",
         "CROP-TRAIL-01",
@@ -415,7 +446,8 @@
         "HILLS-07",
         "HILLS-08",
         "HILLS-09",
-        "HILLS-10"
+        "HILLS-10",
+        "RFU-RAIL-05"
       ]
     },
     "07": {

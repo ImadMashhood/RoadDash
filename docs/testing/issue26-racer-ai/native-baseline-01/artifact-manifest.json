@@ -1,0 +1,73 @@
+{
+  "local_artifacts": {
+    "01-garage.png": {
+      "bytes": 1322225,
+      "sha256": "465bac7685047165d642004571f923bf6b4bbb254ef6f1d7004a9b69e2b11076"
+    },
+    "02-racing.png": {
+      "bytes": 1193300,
+      "sha256": "7fb77a461417794cc9417adf7f805b929b2f9d8e15e92744e0a387233e1cfc80"
+    },
+    "03-crash.png": {
+      "bytes": 1317146,
+      "sha256": "efb859eb63b78f61ddad691610e9ce775c193e87fc0a4d42be7d884c44cfb939"
+    },
+    "04-getting-up.png": {
+      "bytes": 1233939,
+      "sha256": "6cb9ef1d93be524b0084106bcdf830a943c8a2a7460a671bf37e7c7d6919d4a2"
+    },
+    "05-running-to-bike.png": {
+      "bytes": 1248765,
+      "sha256": "778597f648479f8ec3f75158896c45b90e1f0da8d71f66bc47596053b8aa9268"
+    },
+    "06-remounting.png": {
+      "bytes": 1269655,
+      "sha256": "a3114c13dee33301ef7807f612a9fabf7bfa62bd628db03a33820bfbbb97db4c"
+    },
+    "07-results.png": {
+      "bytes": 1460051,
+      "sha256": "7568913981c52e590f6869077e0b0ba75dcbcab2b461d57a4afb07cf78556b86"
+    },
+    "08-city.png": {
+      "bytes": 1903990,
+      "sha256": "881e916ae15660138be4871c9cc409d8dbff9ee276e69fed998c1cb2a2c53dc0"
+    },
+    "09-hills.png": {
+      "bytes": 1692168,
+      "sha256": "5e87015f588a54d555a5897c6565b07a784d6e25c035a417117f2dbe74b730fa"
+    },
+    "10-hill-crash.png": {
+      "bytes": 1725601,
+      "sha256": "a9c409ad046a50993c3fb7a1c02ee8608cb024ded74856403683c8645ee59862"
+    },
+    "11-hill-running.png": {
+      "bytes": 1652457,
+      "sha256": "b0c2f2a791f36c80a1a9bd9468106695eefaf33b4e8f846b101740b75e0c89a6"
+    },
+    "12-track-inspector.png": {
+      "bytes": 1820708,
+      "sha256": "40caf75b73a46a8fb0e610564379be985663876c9b95b028c98bf47f617004c3"
+    },
+    "15-comfort-settings.png": {
+      "bytes": 90118,
+      "sha256": "29ad712d634bd45af91b47edd267e2c8e99ae5cad6e9ab3fc70db55db656e2ce"
+    },
+    "16-steering-buildup.png": {
+      "bytes": 1167942,
+      "sha256": "ad2819ffa7819a01b11b58fa7f426ed58afa6c62dbb44f8a6aab2777c1c43b58"
+    },
+    "17-held-steering.png": {
+      "bytes": 1190454,
+      "sha256": "aaadea087cb3923be128c8c78c716ae798db7a2cb6a1419836b6703b2021db90"
+    },
+    "smoke-metrics.json": {
+      "bytes": 2642,
+      "sha256": "72434299fd055d2fafd9dcb3253a4ec79ee00a8ccd26bc4131c1747a35a7686e"
+    },
+    "vehicle-trace.jsonl": {
+      "bytes": 772566,
+      "sha256": "599210f2f0e187f4d815b14dc2d981e1962fd9c5432d73e631295eeb5c1ae3d1"
+    }
+  },
+  "note": "Raw traces and images retained locally; compact receipts and summaries committed. Hashes identify the original evidence."
+}

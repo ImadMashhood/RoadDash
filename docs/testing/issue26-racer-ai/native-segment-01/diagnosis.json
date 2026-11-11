@@ -1,0 +1,50 @@
+{
+  "synthetic_segment": true,
+  "normal_race_finish": 11500,
+  "normal_finish_traversed_at": {
+    "elapsed": 424.02942,
+    "station": 11506.539,
+    "lane": -2.0267735,
+    "speed": 34.976482
+  },
+  "minimum_speed_before_finish": 17.114197,
+  "target_neighborhood": [
+    {
+      "elapsed": 409.56628,
+      "station": 11126.999,
+      "lane": -0.9164857,
+      "speed": 28.868614
+    },
+    {
+      "elapsed": 410.08282,
+      "station": 11142.191,
+      "lane": -0.73548055,
+      "speed": 29.046585
+    },
+    {
+      "elapsed": 410.59937,
+      "station": 11156.583,
+      "lane": -0.7255655,
+      "speed": 27.068289
+    },
+    {
+      "elapsed": 411.1159,
+      "station": 11170.166,
+      "lane": -1.3436971,
+      "speed": 25.613375
+    },
+    {
+      "elapsed": 411.63245,
+      "station": 11182.976,
+      "lane": -2.2156985,
+      "speed": 24.129148
+    },
+    {
+      "elapsed": 412.149,
+      "station": 11195.879,
+      "lane": -2.936998,
+      "speed": 26.701427
+    }
+  ],
+  "limits": "Not an exact replay. Original run lacks obstacle history. Later stop around11562 is after race finish; this older segment harness did not end there. Full-race completed remains false because the synthetic start skipped gates."
+}

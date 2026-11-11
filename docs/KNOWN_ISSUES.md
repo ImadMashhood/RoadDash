@@ -1,16 +1,23 @@
 # Known issues and remaining acceptance
 
+- RFU-SURF-01/02/03: integrated sand behavior and four exact-binary native cases pass; human feel, steep-uphill reverse and broader hardware/performance acceptance remain open; see testing/sand-speed/REPORT.md. Metropolis contains soil/gravel, not authored sand.
+
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known
 missing features, architectural debt and unverified platforms.
 
-- RFU-PERF-06/07: four candidate agents have begun, but no same-baseline comparative winner or final combined-content frame budget is established. See issue #40.
+- RFU-AI-02: full-road rider lane choice passes 647 city/guardrail-integrated workspace tests, including physical Metropolis opposite-lane entry, sealed queue, pass return and trap escape. A release Metropolis race finished slot zero, but several riders still had avoidance-driven stops up to 33 sampled seconds around station 3,040. The snapshot lacks the obstacle proxies needed to assign the exact cause. All-map oncoming behavior, queue balance and quiet planner cost remain open. See testing/issue26-racer-ai/REPORT.md.
 
-- RFU-MOVE-05/06 and RFU-CITY-01–04: running-hand correction and further Metropolis crowd/sidewalk/prop density remain open. See issues #41 and #43.
+- RFU-PERF-06/07: four candidate drafts are measured; the CPU and GPU nominal warm gains are about 1% and overlap variation, while cold/final-source and combined-content comparisons remain open. No candidate is merged and the 16.7 ms budget is unmet. See testing/issue40-selection/REPORT.md and issue #40.
 
-- RFU-FX-01–04: finite original air cues are staged for Hills, city and Valley, but the Hills heat cue is not screen-space refraction and native visual, temporal, GPU/frame and target hardware acceptance are open. See issue #42 and testing/issue-42-map-fx/REPORT.md.
+- RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
+
+- RFU-FX-01–04: finite original Hills heat/dust, city steam and Valley air cues are staged, but heat is an atmospheric approximation and centered-chase visual, temporal, GPU/frame and target-hardware acceptance remain open. See issue #42 and testing/issue-42-map-fx/REPORT.md.
+
+- RFU-CITY-01–04: further Metropolis crowd/sidewalk/prop density acceptance remains open. See issue #43.
 
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
+- RFU-WILD-01..05: Hills scenic wild herds are original procedural meshes with no contacts. Native close bison/horse and four matched release cost runs pass, with frame differences inside run variation. Mid/far animal readability, full-course movement, both-rig native recovery, user art and broad GPU/hardware acceptance remain open; retained cow/mounted contacts need final integrated native regression receipts. See testing/wildlife/REPORT.md.
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
 
 - ONLINE-PLAY-01: listen-host/UI/discovery is implemented and locally verified on
@@ -1197,6 +1204,11 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
 
+
+## Guardrail follow-up (2026-11-11, issue33/ADR148)
+
+RFU-RAIL-01..05 have physical gap and automatic re-entry checks, 623 integrated workspace tests, both native gap surveys and five native recovery controls passing. Eight oblique captures show openings and capped ends, but do not prove riding-height appearance at every turn, vertical skirt quality, or full-course human usability. Broad hardware/performance gates stay open. Rider physics and bridge-edge policy remain unchanged.
+
 ## Performance/loading investigation (2026-11-10, ADR140)
 
 RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
@@ -1225,6 +1237,19 @@ before treating local branch improvements as overall performance acceptance.
   content/hardware gates stay open; peak CPU memory remains roughly2.1GiB Hills/
   5.8GiB Metro, and no GPU-memory reduction is claimed.
 
+- RFU-AI-01–08/ADR141: the original implementation passed 605 tests, a full
+  native race and both rig recoveries. Some riders still have long sampled waits;
+  slot zero briefly stopped near station 11,152 before passing. The old trace
+  cannot identify its obstacle cause. The crossing refinement passed 608 tests;
+  a synthetic final-segment traversal passed station11,152 without stopping,
+  which is not an exact replay. A separate real stationary-human fixture found
+  and corrected narrow-road launch-space starvation; compressed chains now clear
+  in22.82s with one rear-swept reverse pulse per rider. Final combined civilian
+  forecast/native verification remains pending. Forecasts do not reserve racer
+  lanes, and sealed roads legitimately wait. Human aggression
+  balance and broad performance/hardware acceptance remain separate gates. See
+  testing/issue26-racer-ai/REPORT.md; no physical rig tuning is part of issue26.
+
 - RFU-TRAF-01–04 / issue27: civilian overtaking work adds deterministic
   reservations and live merge/abort checks. Human traffic balance, full-race
   unforeseen queues and broad hardware/frame-time acceptance remain open;
@@ -1234,3 +1259,36 @@ before treating local branch improvements as overall performance acceptance.
   are recorded in testing/civilian-overtaking.
   Upright oncoming bikers intentionally do not veto a pass; their solid
   contact/recovery behavior is retained.
+
+- RFU-CITY-01..04 / issue43: the 25% landward sidewalk area expansion, 480
+  authored urban walkers, 13 clear crossing routes and 1,552 placed original
+  curb props (257 broadleaf trees; 79 distinct model IDs) pass the baker and
+  authoring fixtures. The guardrail-integrated native survey moved 464 walkers
+  over 0.5m and completed four grounded crossings, two on each route; its
+  alternate-branch riding-height view has 14 nearby moving walkers. Sampled
+  trees still look sparse, and continuous capsule passage along every
+  irregular block plus broader crowd/traffic behavior need human traversal.
+  The unpaired debug sample is 31.056ms p95, above 16.7ms; matched release
+  cost, memory, hardware and user art gates stay open. See
+  testing/issue-43-city-life/REPORT.md.
+Issue30 / ADR145: Metropolis bird presentation and shared spatial-cloud quality
+controls have bounded native evidence on both new maps. Raised Metropolis
+street captures show small flocks; low canyon views remain roof-occluded.
+Single-pass toggle frame differences are mixed and Metropolis exceeds16.7ms.
+RFU-SKY-01..04 remain open for user art, full-course/GPU/hardware and broader
+performance acceptance. See testing/metropolis-atmosphere/REPORT.md.
+## Issue31 / ADR146 world follow-up (2026-11-10)
+
+Distant woodland, western landforms and raised canyon bed are under technical
+and native review. Render batches reduce draw submissions but add resident
+mesh and compound-collision memory; no performance improvement is claimed.
+The final e776 combined Hills native run passes six functional cases; its 224
+frontage groups and 164 backlot plants add compound shapes without new collider
+entities. Valley world-survey still exits1 at17.94ms p95 (16.7ms gate), after
+15 sections and657 roots. Earlier unchanged Valley misses at18.597ms and
+19.208ms are recorded above; this mixed-source result is not an isolated
+Hills cost measurement. Full evidence: testing/issue31-world/REPORT.md.
+The river remains a bounded shallow presentation reach, not a flowing physical
+water volume. Raising the bed12m intentionally shortens the canyon fall while
+preserving the deck and both physical rigs. Full-course human art, wildlife/sand
+integration and combined release/hardware performance gates remain open.

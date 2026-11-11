@@ -1,0 +1,17 @@
+{
+  "birds": 24,
+  "captures": 0,
+  "clouds": {
+    "banks": 8,
+    "density_bytes": 110592,
+    "steps": 6,
+    "volumetric": true
+  },
+  "frame_median_ms": 16.504337,
+  "frame_p95_ms": 18.267545,
+  "frame_p99_ms": 19.731874,
+  "frames": 1080,
+  "map": "hills-01",
+  "note": "CPU wall frame intervals; not GPU timestamps. Moving camera fixture; excludes first180frames.",
+  "performance_mode": true
+}

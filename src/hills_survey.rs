@@ -61,6 +61,7 @@ pub fn run(
     screen: Res<State<crate::runtime::AppScreen>>,
     track: Res<Track>,
     census: Res<Census>,
+    woodland: Res<crate::world_gen::hills::woodland::WoodlandCensus>,
     mut race: ResMut<crate::game::Race>,
     mut cameras: Query<&mut Transform, With<Camera3d>>,
     mut exit: MessageWriter<AppExit>,
@@ -158,7 +159,7 @@ pub fn run(
                 }
             }
         }
-        let report = serde_json::json!({"track":inspect(&track),"census":&*census,"views":state.views,"screenshots_completed":state.screenshots,"resident_solids":count,"road_support_probes":probes,"maximum_support_error_m":maximum_error,"metrics":metrics.evidence(&clock),"limits":"Camera survey with paused racers; not full-race performance, GPU timings, human art acceptance or hardware certification."});
+        let report = serde_json::json!({"track":inspect(&track),"census":&*census,"woodland":&*woodland,"views":state.views,"screenshots_completed":state.screenshots,"resident_solids":count,"road_support_probes":probes,"maximum_support_error_m":maximum_error,"metrics":metrics.evidence(&clock),"limits":"Camera survey with paused racers; not full-race performance, GPU timings, human art acceptance or hardware certification."});
         std::fs::write(
             "screenshots/hills-survey.json",
             serde_json::to_vec_pretty(&report).unwrap(),
