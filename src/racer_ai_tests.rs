@@ -94,6 +94,23 @@ fn sidewalk_flee_goal_rejects_solid_outer_wall_before_physical_contact() {
             recovery::bike_body(),
         ))
         .id();
+    // Place the existing player attacker inside the ten-metre response
+    // radius. Without a nearby target Flee requests the current lane, so the
+    // test would never exercise the blocked sidewalk goal.
+    let (attacker_position, attacker_rotation) = app.world().resource::<Track>().sample(0., -2.);
+    let mut player_query = app.world_mut().query::<(Entity, &Rider)>();
+    let attacker_entity = player_query
+        .iter(app.world())
+        .find(|(_, r)| r.id == 0)
+        .unwrap()
+        .0;
+    let mut attacker = app.world_mut().get_mut::<Rider>(attacker_entity).unwrap();
+    attacker.progress = 0.;
+    attacker.lane = -2.;
+    attacker.attack = 1000.;
+    *app.world_mut()
+        .get_mut::<Transform>(attacker_entity)
+        .unwrap() = Transform::from_translation(attacker_position).with_rotation(attacker_rotation);
     let (p, q) = app.world().resource::<Track>().sample(40., 5.);
     app.world_mut().spawn((
         RigidBody::Fixed,
@@ -110,6 +127,15 @@ fn sidewalk_flee_goal_rejects_solid_outer_wall_before_physical_contact() {
         app.update();
     }
     let first_plan = app.world().get::<Rider>(owner).unwrap().ai_plan.unwrap();
+    let first_rider = app.world().get::<Rider>(owner).unwrap();
+    assert_eq!(
+        first_rider.combat_mind.decision,
+        rr_core::rival_ai::Decision::Flee
+    );
+    assert!(
+        first_rider.ai_static_guard_until > app.world().resource::<Race>().elapsed,
+        "blocked flee goal had no resident-static rejection: {first_plan:?}"
+    );
     assert!(
         first_plan.lane < 3.5,
         "solid sidewalk goal was accepted: {first_plan:?}"
