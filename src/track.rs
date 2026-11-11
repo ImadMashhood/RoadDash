@@ -4,10 +4,17 @@ pub const ROAD_HALF: f32 = 6.5;
 pub const LAPS: u32 = 1;
 pub mod hills;
 pub mod metropolis;
+const PROJECTION_BLOCK_SEGMENTS: usize = 64;
+#[derive(Clone, Copy)]
+struct ProjectionBlock {
+    min: Vec2,
+    max: Vec2,
+}
 #[derive(Resource)]
 pub struct Track {
     pub definition: TrackDef,
     pub points: Vec<Vec3>,
+    projection_blocks: Vec<ProjectionBlock>,
     pub distances: Vec<f32>,
     widths: Vec<f32>,
     banks: Vec<f32>,
@@ -156,6 +163,7 @@ impl Track {
             city_surface,
             definition,
             points,
+            projection_blocks: Vec::new(),
             distances,
             widths,
             banks,
@@ -170,6 +178,9 @@ impl Track {
         if matches!(track.definition.id.as_str(), "hills-01" | "hills-east-01") {
             track.normalize_hills_stations();
             track.import_hills_city_samples();
+        }
+        if matches!(track.definition.id.as_str(), "hills-01" | "hills-east-01") {
+            track.rebuild_projection_blocks();
         }
         if track.is_hills() {
             track.hills_branch = Some(Box::new(Self::from_json(hills::EAST_JSON)?));
@@ -225,6 +236,24 @@ impl Track {
             i,
             (d - self.distances[i]) / (self.distances[i + 1] - self.distances[i]),
         )
+    }
+    fn rebuild_projection_blocks(&mut self) {
+        self.projection_blocks = (0..self.points.len() - 1)
+            .step_by(PROJECTION_BLOCK_SEGMENTS)
+            .map(|start| {
+                let end = (start + PROJECTION_BLOCK_SEGMENTS).min(self.points.len() - 1);
+                self.points[start..=end].iter().fold(
+                    ProjectionBlock {
+                        min: Vec2::splat(f32::INFINITY),
+                        max: Vec2::splat(f32::NEG_INFINITY),
+                    },
+                    |bounds, point| ProjectionBlock {
+                        min: bounds.min.min(point.xz()),
+                        max: bounds.max.max(point.xz()),
+                    },
+                )
+            })
+            .collect();
     }
     pub fn half_width(&self, d: f32) -> f32 {
         let (i, t) = self.segment(d);
@@ -300,6 +329,60 @@ impl Track {
         (p, q)
     }
     pub fn project(&self, point: Vec3, near: f32) -> (f32, f32, f32) {
+        // Only Hills has a measured dense-generation bottleneck. Keep every
+        // other course on the original path and its established runtime cost.
+        if self.projection_blocks.is_empty() {
+            return self.project_full_scan(point, near);
+        }
+        let mut best = (0.0, 0.0, f32::INFINITY);
+        // A known station supplies only a conservative upper bound. Every block
+        // that could beat it is still scanned in original segment order, so
+        // self-near hairpins and first-segment ties keep their exact result.
+        let (hint, t) = self.segment(near);
+        let hint_point = self.points[hint].lerp(self.points[hint + 1], t.clamp(0., 1.));
+        let mut upper = point.xz().distance(hint_point.xz());
+        if !upper.is_finite() {
+            upper = f32::INFINITY;
+        }
+        for (block_index, block) in self.projection_blocks.iter().enumerate() {
+            let lower = point.xz().clamp(block.min, block.max).distance(point.xz());
+            // Two metres covers floating-point roundoff in the bounded 20 km
+            // authoring domain while still rejecting distant route blocks.
+            if lower > upper + 2. {
+                continue;
+            }
+            let start = block_index * PROJECTION_BLOCK_SEGMENTS;
+            let end = (start + PROJECTION_BLOCK_SEGMENTS).min(self.points.len() - 1);
+            for i in start..end {
+                let pair = &self.points[i..=i + 1];
+                let edge = (pair[1] - pair[0]).with_y(0.0);
+                let t = ((point - pair[0]).with_y(0.0).dot(edge) / edge.length_squared()).clamp(
+                    if i == 0 && !self.definition.closed {
+                        -self.start_apron / edge.length()
+                    } else {
+                        0.0
+                    },
+                    1.0,
+                );
+                let delta = (point - pair[0].lerp(pair[1], t)).with_y(0.0);
+                let distance = delta.length();
+                if distance < best.2 {
+                    let d = self.distances[i] + t * (self.distances[i + 1] - self.distances[i]);
+                    let progress = if self.definition.closed {
+                        near + (d - near + self.length * 0.5).rem_euclid(self.length)
+                            - self.length * 0.5
+                    } else {
+                        d
+                    };
+                    let right = Vec3::new(-edge.z, 0.0, edge.x).normalize();
+                    best = (progress, delta.dot(right), distance);
+                    upper = distance;
+                }
+            }
+        }
+        best
+    }
+    fn project_full_scan(&self, point: Vec3, near: f32) -> (f32, f32, f32) {
         let mut best = (0.0, 0.0, f32::INFINITY);
         for (i, pair) in self.points.windows(2).enumerate() {
             let edge = (pair[1] - pair[0]).with_y(0.0);
@@ -530,6 +613,155 @@ impl GateProgress {
 #[cfg(test)]
 mod tests {
     use super::*;
+    // The pre-index algorithm is retained as a test oracle for progress, lane,
+    // and distance bits across near hints and far/off-road points.
+    fn full_scan(track: &Track, point: Vec3, near: f32) -> (f32, f32, f32) {
+        let mut best = (0.0, 0.0, f32::INFINITY);
+        for (i, pair) in track.points.windows(2).enumerate() {
+            let edge = (pair[1] - pair[0]).with_y(0.0);
+            let t = ((point - pair[0]).with_y(0.0).dot(edge) / edge.length_squared()).clamp(
+                if i == 0 && !track.definition.closed {
+                    -track.start_apron / edge.length()
+                } else {
+                    0.0
+                },
+                1.0,
+            );
+            let delta = (point - pair[0].lerp(pair[1], t)).with_y(0.0);
+            let distance = delta.length();
+            if distance < best.2 {
+                let d = track.distances[i] + t * (track.distances[i + 1] - track.distances[i]);
+                let progress = if track.definition.closed {
+                    near + (d - near + track.length * 0.5).rem_euclid(track.length)
+                        - track.length * 0.5
+                } else {
+                    d
+                };
+                let right = Vec3::new(-edge.z, 0.0, edge.x).normalize();
+                best = (progress, delta.dot(right), distance);
+            }
+        }
+        best
+    }
+    #[test]
+    fn projection_index_matches_full_scan_bit_exactly_on_all_courses() {
+        for track in [
+            Track::default(),
+            Track::from_json(include_str!("../content/tracks/valley.json")).unwrap(),
+            Track::metropolis().unwrap(),
+            Track::hills().unwrap(),
+        ] {
+            for route in 0..if track.hills_branch.is_some() { 2 } else { 1 } {
+                let path = if route == 1 && track.hills_branch.is_some() {
+                    track.hills_branch.as_deref().unwrap()
+                } else {
+                    &track
+                };
+                let hills = matches!(path.definition.id.as_str(), "hills-01" | "hills-east-01");
+                assert_eq!(
+                    path.projection_blocks.len(),
+                    if hills {
+                        (path.points.len() - 1).div_ceil(PROJECTION_BLOCK_SEGMENTS)
+                    } else {
+                        0
+                    }
+                );
+                for index in 0..=24 {
+                    let station = path.length * index as f32 / 24.;
+                    for lane in [-260., -95., -19., 0., 19., 95., 260.] {
+                        let (point, _) = path.sample(station, lane);
+                        for near in [station, 0., path.length - station] {
+                            let actual = path.project(point, near);
+                            let expected = full_scan(path, point, near);
+                            assert_eq!(
+                                [actual.0.to_bits(), actual.1.to_bits(), actual.2.to_bits()],
+                                [
+                                    expected.0.to_bits(),
+                                    expected.1.to_bits(),
+                                    expected.2.to_bits()
+                                ],
+                                "{} route {route} station {station} lane {lane} near {near}",
+                                path.definition.id.as_str()
+                            );
+                        }
+                    }
+                }
+                // Exercise arbitrary points between and outside road folds, not
+                // only points generated from a known station. The hint is often
+                // intentionally on the wrong side of the course.
+                let min = path
+                    .points
+                    .iter()
+                    .fold(Vec2::splat(f32::INFINITY), |a, p| a.min(p.xz()))
+                    - Vec2::splat(400.);
+                let max = path
+                    .points
+                    .iter()
+                    .fold(Vec2::splat(f32::NEG_INFINITY), |a, p| a.max(p.xz()))
+                    + Vec2::splat(400.);
+                let mut seed = 0x4d59_5df4_u32;
+                for index in 0..128 {
+                    seed = seed.wrapping_mul(1_664_525).wrapping_add(1_013_904_223);
+                    let x = min.x + (max.x - min.x) * (seed as f32 / u32::MAX as f32);
+                    seed = seed.wrapping_mul(1_664_525).wrapping_add(1_013_904_223);
+                    let z = min.y + (max.y - min.y) * (seed as f32 / u32::MAX as f32);
+                    let point = Vec3::new(x, index as f32 * 0.17, z);
+                    for near in [-2. * path.length, 0., path.length * 0.5, 3. * path.length] {
+                        let actual = path.project(point, near);
+                        let expected = full_scan(path, point, near);
+                        assert_eq!(
+                            [actual.0.to_bits(), actual.1.to_bits(), actual.2.to_bits()],
+                            [
+                                expected.0.to_bits(),
+                                expected.1.to_bits(),
+                                expected.2.to_bits()
+                            ],
+                            "{} route {route} random {index} near {near}",
+                            path.definition.id.as_str()
+                        );
+                    }
+                }
+                for index in (0..path.points.len()).step_by((path.points.len() / 32).max(1)) {
+                    let point = path.points[index];
+                    for near in [0., path.length] {
+                        let actual = path.project(point, near);
+                        let expected = full_scan(path, point, near);
+                        assert_eq!(
+                            [actual.0.to_bits(), actual.1.to_bits(), actual.2.to_bits()],
+                            [
+                                expected.0.to_bits(),
+                                expected.1.to_bits(),
+                                expected.2.to_bits()
+                            ],
+                            "{} route {route} knot {index} near {near}",
+                            path.definition.id.as_str()
+                        );
+                    }
+                }
+                if !path.definition.closed {
+                    for station in [-300., -176., path.length + 50.] {
+                        for lane in [-260., 0., 260.] {
+                            let point = path.sample(station, lane).0;
+                            for near in [station, 0., path.length] {
+                                let actual = path.project(point, near);
+                                let expected = full_scan(path, point, near);
+                                assert_eq!(
+                                    [actual.0.to_bits(), actual.1.to_bits(), actual.2.to_bits()],
+                                    [
+                                        expected.0.to_bits(),
+                                        expected.1.to_bits(),
+                                        expected.2.to_bits()
+                                    ],
+                                    "{} route {route} apron {station} lane {lane} near {near}",
+                                    path.definition.id.as_str()
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     #[test]
     fn circuit_is_closed_and_wraps_negative_distance() {
         let track = Track::default();
