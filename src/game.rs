@@ -202,6 +202,7 @@ pub struct Rider {
     pub ai_drive: rr_core::cast::DriveMemory,
     pub ai_pass: rr_core::traffic_avoidance::Memory,
     pub ai_plan: Option<rr_core::traffic_avoidance::Plan>,
+    pub ai_static_guard_until: f32,
     pub(crate) ai_trace_next: Option<f32>,
     pub ai_escape: rr_core::escape::Memory,
     pub fight_stamina: f32,
@@ -212,6 +213,14 @@ pub struct Rider {
     pub(crate) hit_reaction: Option<rr_core::motion::HitReaction>,
 }
 impl Rider {
+    pub(crate) fn can_fight(&self, target: usize) -> bool {
+        if self.police {
+            target == 0
+        } else {
+            self.combat_mind.can_fight(target)
+        }
+    }
+
     pub fn human_controlled(&self) -> bool {
         if self.networked {
             self.remote_human
@@ -267,6 +276,7 @@ impl Rider {
             ai_drive: default(),
             ai_pass: default(),
             ai_plan: None,
+            ai_static_guard_until: 0.,
             ai_trace_next: None,
             ai_escape: default(),
         }
@@ -1019,24 +1029,24 @@ pub fn drive(
                         );
                         width
                     });
-                // Civilian vehicles keep their traffic convention. Racers can
-                // choose a line across the whole paved road when it is safe.
-                let bounds = ai_outbound_bounds(&track, r.route, r.progress);
+                // Civilian traffic keeps its convention. Rivals may use the
+                // whole physical corridor, including clear sidewalk space.
+                let bounds = ai_free_bounds(&track, r.route, r.progress);
                 let roam = (width - 0.9).clamp(0.0, 3.4);
                 // Spread default racing lines across the paved road without
                 // changing the legacy first-racer's escape direction.
                 let racing_lines = [-0.8, 0.7, -0.4, 0.0, 0.4];
+                let passing_line =
+                    rr_core::rival_ai::passing_lane(me, &combat_targets[..eligible_count]);
                 let desired = chase_goal
                     .map(|(lane, _)| lane)
-                    .or_else(|| {
-                        rr_core::rival_ai::passing_lane(me, &combat_targets[..eligible_count])
-                    })
+                    .or(passing_line)
                     .unwrap_or(offset + roam * racing_lines[r.id % racing_lines.len()]);
-                let desired = if track.metropolis.is_some() {
-                    desired.clamp(offset - width + 0.65, offset + width - 0.65)
-                } else {
-                    desired
-                };
+                // Explicit pass, combat and flee lines may use a clear sidewalk.
+                // Clamp only to the full physical corridor; static sweeps reject
+                // solid buildings or props inside it.
+                let desired = desired.clamp(bounds.0, bounds.1);
+
                 let mut cars: Vec<_> = traffic
                     .iter()
                     .filter_map(|(entity, car, body, yielding, _)| {
@@ -1189,6 +1199,9 @@ pub fn drive(
                 if !preliminary.avoiding
                     && !r.ai_pass.active()
                     && !rider_queue
+                    && chase_goal.is_none()
+                    && passing_line.is_none()
+                    && race.elapsed >= r.ai_static_guard_until
                     && (bounds.0..=bounds.1).contains(&desired)
                 {
                     if trace_ai {
@@ -1202,7 +1215,8 @@ pub fn drive(
                 let progress = r.progress;
                 let route = r.route;
                 let speed = r.speed;
-                let static_rejections = std::cell::RefCell::new(Vec::new());
+                let relevant_static_rejected = std::cell::Cell::new(false);
+                let committed = r.ai_pass.committed_lane();
                 let drivable = |goal: f32, pace: f32| {
                     let Ok(ctx) = context.single() else {
                         return false;
@@ -1210,16 +1224,33 @@ pub fn drive(
                     let predicate =
                         |e| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
                     let mut previous = transform.translation + Vec3::Y * 0.85;
-                    // Static geometry is checked along the actual curved road,
-                    // not a straight chord through a sidewalk/building at a bend.
-                    for step in 1..=if goal < bounds.0 || goal > bounds.1 {
+                    let probe = Collider::ball(0.65);
+                    // A broad lane change or sidewalk excursion needs the full
+                    // sweep even though both sides now lie inside free bounds.
+                    let steps = if goal.abs() > width - 0.65 || (goal - lane).abs() > 2.5 {
                         24
                     } else {
                         12
-                    } {
+                    };
+                    // At a lower current speed the bike has more time to move
+                    // laterally before reaching a fixed wall. Forecast that
+                    // conservative approach instead of only the cruise request.
+                    let forecast_speed = pace.min(speed.max(4.));
+                    // Static geometry is checked along the actual curved road,
+                    // not a straight chord through a sidewalk/building at a bend.
+                    for step in 1..=steps {
                         let t = step as f32 * 0.5;
-                        let station = (progress + pace * t).min(track.length);
-                        let lateral = rr_core::traffic_avoidance::lane_at(lane, goal, pace, t)
+                        let station = (progress + forecast_speed * t).min(track.length);
+                        // The bike's bank and steering force take time to unwind.
+                        // Keep the static sweep inside a reachable lateral envelope;
+                        // the traffic proxy's faster idealized lane transition can
+                        // otherwise predict clearing a wall while the physical bike
+                        // is still beside it.
+                        let lateral = lane
+                            + (goal - lane).clamp(
+                                -0.6 * (t - 0.4).max(0.),
+                                0.6 * (t - 0.4).max(0.),
+                            )
                             + track.street_offset(route, station);
                         let (position, _) = track.sample_route(route, station, lateral);
                         let next = position + Vec3::Y * 0.85;
@@ -1232,21 +1263,22 @@ pub fn drive(
                         .exclude_rigid_body(entity)
                         .exclude_sensors()
                         .predicate(&predicate);
-                        if let Some(hit) = ctx
+                        if ctx
                             .cast_shape(
                                 previous,
                                 Quat::IDENTITY,
                                 delta.normalize_or_zero(),
-                                Collider::ball(0.65).raw.as_ref(),
+                                probe.raw.as_ref(),
                                 ShapeCastOptions {
                                     max_time_of_impact: delta.length(),
                                     ..default()
                                 },
                                 filter,
                             )
+                            .is_some()
                         {
-                            if trace_ai {
-                                static_rejections.borrow_mut().push((goal, pace, station, hit.0));
+                            if ai_static_guard_relevant(goal, lane, desired, committed) {
+                                relevant_static_rejected.set(true);
                             }
                             return false;
                         }
@@ -1261,17 +1293,15 @@ pub fn drive(
                     cruise: target,
                     bounds,
                 };
-                let plan = r.ai_pass.plan_with_oncoming(
-                    input,
-                    &cars,
-                    || {
-                        let road_bounds = ai_passing_bounds(&track, route, progress);
-                        (road_bounds.0 - offset, road_bounds.1 - offset)
-                    },
-                    drivable,
-                );
+                let plan = r.ai_pass.plan(input, &cars, drivable);
+                if relevant_static_rejected.get() {
+                    // Continue checking the nearby fixed obstacle after a combat
+                    // or passing request expires; clean cruising may resume once
+                    // geometry is clear for two seconds of real plans.
+                    r.ai_static_guard_until = race.elapsed + 2.;
+                }
                 if trace_ai {
-                    println!("RFU_AI_PLANNER id={} elapsed={} station={} lane={} speed={} desired={} bounds={bounds:?} rider_queue={} launch_deficit={} preliminary={preliminary:?} final={plan:?} home={:?} main_proxies={} crossing_proxies={} proxies={cars:?} static_rejections={:?}", r.id, race.elapsed, progress, lane, speed, desired, rider_queue, queue_launch_deficit, r.ai_pass.home_lane(), main_proxy_count, crossing_proxy_count, static_rejections.borrow());
+                    println!("RFU_AI_PLANNER id={} elapsed={} station={} lane={} speed={} desired={} bounds={bounds:?} rider_queue={} launch_deficit={} preliminary={preliminary:?} final={plan:?} home={:?} main_proxies={} crossing_proxies={} proxies={cars:?}", r.id, race.elapsed, progress, lane, speed, desired, rider_queue, queue_launch_deficit, r.ai_pass.home_lane(), main_proxy_count, crossing_proxy_count);
                 }
                 in_race_frame(plan)
             });
@@ -1584,7 +1614,7 @@ pub fn drive(
             {
                 chase
                     .filter(|t| {
-                        r.combat_mind.can_fight(t.id)
+                        r.can_fight(t.id)
                             && !t.downed
                             && r.weapon.map_or_else(
                                 || {
@@ -2566,33 +2596,26 @@ pub fn camera_occlusion(
     }
 }
 
-// Adjacent samples use different race-centre frames at city bends. Intersect
-// carriageway-relative widths, then place the result in the rider's current frame.
-fn ai_outbound_bounds(track: &Track, route: usize, progress: f32) -> (f32, f32) {
-    let center = track.street_offset(route, progress);
-    let at = |station| {
-        if let Some(m) = &track.metropolis {
-            let (divider, _, width) =
-                rr_core::streets::markings(&m.street_life.lane_sections, route, station);
-            (center - width + 0.65, center + divider - 0.65)
-        } else {
-            (center + 0.65, center + track.half_width(station) - 0.65)
-        }
-    };
-    let mut bounds = at(progress);
-    for ahead in (10..=120).step_by(10) {
-        let next = at((progress + ahead as f32).min(track.length - 0.01));
-        bounds.0 = bounds.0.max(next.0);
-        bounds.1 = bounds.1.min(next.1);
-    }
-    bounds
+// Only rejected lines that the rider is using or explicitly requesting need
+// another two seconds of resident-geometry sweeps. Speculative rejected
+// alternatives must not keep the expensive planner alive indefinitely.
+fn ai_static_guard_relevant(
+    rejected: f32,
+    current: f32,
+    desired: f32,
+    committed: Option<f32>,
+) -> bool {
+    (rejected - current).abs() <= 0.5
+        || (rejected - desired).abs() <= 0.5
+        || committed.is_some_and(|held| (rejected - held).abs() <= 0.5)
 }
 
-// Oncoming excursions need the whole forecast corridor, not just a lane at the
-// current station. Stay inside resident pavement through the twelve-second window.
-fn ai_passing_bounds(track: &Track, route: usize, progress: f32) -> (f32, f32) {
+// Rival bounds include both sides of the road, walkable sidewalk and a
+// narrow outer clearance. Static swept shapes decide whether each candidate
+// is actually usable; there is no right-side or oncoming-lane permission flag.
+pub(crate) fn ai_free_bounds(track: &Track, route: usize, progress: f32) -> (f32, f32) {
     let center = track.street_offset(route, progress);
-    let width = (0..=720)
+    let width = (0..=120)
         .step_by(10)
         .map(|ahead| {
             let station = (progress + ahead as f32).min(track.length - 0.01);
@@ -2604,7 +2627,15 @@ fn ai_passing_bounds(track: &Track, route: usize, progress: f32) -> (f32, f32) {
                 })
         })
         .fold(f32::MAX, f32::min);
-    (center - width + 0.65, center + width - 0.65)
+    let sidewalk_and_clearance = if track.metropolis.is_some() {
+        2.7
+    } else if let Some(city) = &track.city_surface {
+        city.sidewalk_width_m + 0.3
+    } else {
+        1.5
+    };
+    let half = width + sidewalk_and_clearance - 0.65;
+    (center - half, center + half)
 }
 
 #[cfg(test)]
@@ -2612,12 +2643,19 @@ pub(crate) mod tests {
     use super::*;
     use crate::track::ROAD_HALF;
     #[test]
-    fn metropolis_outbound_lookahead_never_erases_current_road() {
+    fn static_guard_tracks_requested_or_committed_lines_only() {
+        assert!(ai_static_guard_relevant(2.1, 2., -3., None));
+        assert!(ai_static_guard_relevant(-3.1, 2., -3., None));
+        assert!(ai_static_guard_relevant(-4.1, 2., -3., Some(-4.)));
+        assert!(!ai_static_guard_relevant(4.8, 2., -3., Some(-4.)));
+    }
+    #[test]
+    fn metropolis_free_corridor_never_erases_current_road() {
         let t = Track::metropolis().unwrap();
         let mut failed = vec![];
         for route in 0..2 {
             for station in (500..11500).step_by(5) {
-                let bounds = ai_outbound_bounds(&t, route, station as f32);
+                let bounds = ai_free_bounds(&t, route, station as f32);
                 if bounds.0 > bounds.1 {
                     failed.push((route, station, bounds));
                 }
@@ -2631,18 +2669,91 @@ pub(crate) mod tests {
         );
     }
     #[test]
-    fn metropolis_racer_can_take_an_empty_oncoming_racing_line() {
+    fn police_still_only_target_the_wanted_player_after_incident_coin() {
+        let mut officer = Rider::new(crate::police::OFFICER_ID);
+        for _ in 0..4 {
+            officer.combat_mind.struck_by(0);
+            assert!(officer.can_fight(0));
+            assert!(!officer.can_fight(1));
+        }
+    }
+    #[test]
+    fn rival_bounds_include_both_sides_and_clear_sidewalk_band() {
+        let track = Track::metropolis().unwrap();
+        for station in [1600., 3040., 7200.] {
+            let (left, right) = ai_free_bounds(&track, 0, station);
+            let center = track.street_offset(0, station);
+            let (_, _, pavement) = rr_core::streets::markings(
+                &track.metropolis.as_ref().unwrap().street_life.lane_sections,
+                0,
+                station,
+            );
+            assert!(left < center - pavement - 1.);
+            assert!(right > center + pavement + 1.);
+        }
+    }
+    #[test]
+    fn fleeing_rider_near_edge_cannot_plan_beyond_free_corridor() {
+        let mut app = simulation();
+        let mut definition = app.world().resource::<Track>().definition.clone();
+        for point in &mut definition.control_points {
+            point.half_width = 3.;
+        }
+        app.insert_resource(Track::from_definition(definition).unwrap());
+        let player = app
+            .world_mut()
+            .query::<(Entity, &Rider)>()
+            .iter(app.world())
+            .find(|(_, r)| r.id == 0)
+            .unwrap()
+            .0;
+        let (p, q) = app.world().resource::<Track>().sample(20., 2.5);
+        {
+            let mut rider = app.world_mut().get_mut::<Rider>(player).unwrap();
+            rider.progress = 20.;
+            rider.lane = 2.5;
+        }
+        app.world_mut()
+            .entity_mut(player)
+            .insert(Transform::from_translation(p).with_rotation(q));
+        let mut rival = Rider::new(1);
+        rival.progress = 20.;
+        rival.lane = 3.5;
+        rival.speed = 20.;
+        while rival.combat_mind.struck_by(0) != rr_core::rival_ai::Response::Flee {}
+        let (p, q) = app.world().resource::<Track>().sample(20., 3.5);
+        let entity = app
+            .world_mut()
+            .spawn((
+                rival,
+                Transform::from_translation(p).with_rotation(q),
+                Visibility::Visible,
+                recovery::bike_body(),
+            ))
+            .id();
+        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        app.world_mut().resource_mut::<Race>().elapsed = 10.;
+        step(&mut app, 3);
+        let rider = app.world().get::<Rider>(entity).unwrap();
+        let bounds = ai_free_bounds(app.world().resource::<Track>(), rider.route, rider.progress);
+        assert_eq!(
+            rider.combat_mind.decision,
+            rr_core::rival_ai::Decision::Flee
+        );
+        assert!(rider.ai_plan.unwrap().lane <= bounds.1 + 0.001);
+    }
+    #[test]
+    fn metropolis_rider_can_take_an_empty_opposite_racing_line() {
         let mut app = simulation();
         app.insert_resource(Track::metropolis().unwrap());
         app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Assisted);
         let start = 1600.;
         let lane = {
             let track = app.world().resource::<Track>();
-            let (left, right) = ai_outbound_bounds(track, 0, start);
+            let (left, right) = ai_free_bounds(track, 0, start);
             (left + right) * 0.5
         };
         let mut rider = Rider::new(4); // Its free racing line is across the centre.
-        rider.combat_mind.role = rr_core::rival_ai::Role::Racer;
         rider.progress = start;
         rider.lane = lane;
         rider.speed = 25.;
@@ -2661,19 +2772,29 @@ pub(crate) mod tests {
         step(&mut app, 5);
         let planned = app.world().get::<Rider>(entity).unwrap().ai_plan.unwrap();
         let track = app.world().resource::<Track>();
+        let (divider, _, _) = rr_core::streets::markings(
+            &track.metropolis.as_ref().unwrap().street_life.lane_sections,
+            0,
+            start,
+        );
         assert!(
-            planned.lane > ai_outbound_bounds(track, 0, start).1,
+            planned.lane > track.street_offset(0, start) + divider,
             "rider forced home: {planned:?}"
         );
         step(&mut app, 240);
         let racer = app.world().get::<Rider>(entity).unwrap();
-        let outbound = ai_outbound_bounds(app.world().resource::<Track>(), 0, racer.progress);
+        let track = app.world().resource::<Track>();
+        let (divider, _, _) = rr_core::streets::markings(
+            &track.metropolis.as_ref().unwrap().street_life.lane_sections,
+            0,
+            racer.progress,
+        );
+        let boundary = track.street_offset(0, racer.progress) + divider;
         assert!(
-            racer.lane > outbound.1,
-            "rider stayed outbound: lane={} progress={} bound={}",
+            racer.lane > boundary,
+            "rider stayed on the outbound side: lane={} progress={} divider={boundary}",
             racer.lane,
             racer.progress,
-            outbound.1
         );
     }
     #[test]
@@ -2685,11 +2806,10 @@ pub(crate) mod tests {
             // Those exact stations previously had inverted look-ahead bounds.
             let lane = {
                 let track = app.world().resource::<Track>();
-                let (a, b) = ai_outbound_bounds(track, 0, start);
+                let (a, b) = ai_free_bounds(track, 0, start);
                 (a + b) * 0.5
             };
             let mut rider = Rider::new(1);
-            rider.combat_mind.role = rr_core::rival_ai::Role::Racer;
             rider.progress = start;
             rider.lane = lane;
             let (p, q) = app.world().resource::<Track>().sample(start, lane);
@@ -2716,21 +2836,9 @@ pub(crate) mod tests {
         let mut app = simulation();
         app.insert_resource(Track::metropolis().unwrap());
         app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Assisted);
-        let start = (1000..10000)
-            .step_by(100)
-            .map(|x| x as f32)
-            .find(|s| {
-                (0..=200).step_by(10).all(|d| {
-                    let (a, b) =
-                        ai_outbound_bounds(app.world().resource::<Track>(), 0, *s + d as f32);
-                    b - a > 3.5
-                })
-            })
-            .expect("wide outbound passing corridor");
-        let lane = {
-            let (a, _) = ai_outbound_bounds(app.world().resource::<Track>(), 0, start);
-            a + 1.
-        };
+        // Reproduce the reported queue window near station 3,040.
+        let start = 3040.0;
+        let lane = app.world().resource::<Track>().street_offset(0, start) + 1.2;
         let mut playerq = app.world_mut().query::<(Entity, &Rider)>();
         let leader = playerq
             .iter(app.world())
@@ -2757,7 +2865,6 @@ pub(crate) mod tests {
             .entity_mut(leader)
             .insert(Transform::from_translation(p).with_rotation(q));
         let mut rider = Rider::new(1);
-        rider.combat_mind.role = rr_core::rival_ai::Role::Racer;
         rider.progress = start;
         rider.lane = lane;
         rider.speed = 2.;
@@ -3382,7 +3489,8 @@ pub(crate) mod tests {
                 "crossing mover={metropolis_mover} braking={braking} resumed={resumed} lowest_speed={lowest_speed} min_distance={minimum} progress={}",
                 r.progress
             );
-            assert!(braking && resumed && minimum > 2.0 && r.progress > 90.0);
+            assert!(minimum > 2.0 && r.progress > 90.0);
+            assert!(!braking || resumed, "braked but did not resume");
         }
     }
     #[test]
@@ -3497,7 +3605,6 @@ pub(crate) mod tests {
             let mut owners = Vec::new();
             for id in 1..=4 {
                 let mut rider = Rider::new(id);
-                rider.combat_mind.role = rr_core::rival_ai::Role::Racer;
                 rider.progress = 25. + id as f32 * 12.;
                 rider.lane = 2.;
                 rider.speed = 2.;
@@ -3569,8 +3676,8 @@ pub(crate) mod tests {
                 app.update();
                 for (i, owner) in owners.iter().enumerate() {
                     let r = app.world().get::<Rider>(*owner).unwrap();
-                    max_lane = max_lane.max(r.lane);
-                    streak[i] = if r.lane > 3.5 { streak[i] + 1 } else { 0 };
+                    max_lane = max_lane.max(r.lane.abs());
+                    streak[i] = if r.lane.abs() > 3.5 { streak[i] + 1 } else { 0 };
                     sustained[i] = sustained[i].max(streak[i]);
                     if *owner != obstruction {
                         let a = app.world().get::<Transform>(*owner).unwrap().translation;
@@ -3590,9 +3697,11 @@ pub(crate) mod tests {
                         app.world().get::<Recovery>(*owner).unwrap().stage,
                         RecoveryStage::Riding
                     );
+                    let bounds =
+                        ai_free_bounds(app.world().resource::<Track>(), r.route, r.progress);
                     assert!(
-                        r.lane > -6.5 && r.lane < 6.5,
-                        "car_queue={car_queue} id={} illegal lane {}",
+                        r.lane > bounds.0 - 0.5 && r.lane < bounds.1 + 0.5,
+                        "car_queue={car_queue} id={} outside usable corridor {} {bounds:?}",
                         r.id,
                         r.lane
                     );

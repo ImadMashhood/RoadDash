@@ -1,5 +1,7 @@
 # Known issues and remaining acceptance
 
+- RFU-AI-09..11: user-directed free rider lines and role-free incident combat pass pure/physical tests and a bounded 7,500-frame Metropolis survey without sampled sub-1m/s Riding stops through stations 3,000–3,200. The prior same-seed survey exposed temporary stops at 3,105/3,146; a narrowed low-speed lateral escape rule cleared that window, but full-race/all-map pileup elimination, human balance, sidewalk/building clearance beyond the tested wall, and quiet native performance acceptance remain open. ADR159 and testing/rider-free-roam/REPORT.md record the policy and receipts.
+
 - RFU-SURF-01/02/03: integrated sand behavior and four exact-binary native cases pass; human feel, steep-uphill reverse and broader hardware/performance acceptance remain open; see testing/sand-speed/REPORT.md. Metropolis contains soil/gravel, not authored sand.
 
 Updated 2026-11-10. This is not a list of fabricated failures; distinguish known

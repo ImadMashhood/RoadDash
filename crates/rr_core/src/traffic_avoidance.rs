@@ -1,5 +1,5 @@
 //! Predictive traffic intent in a rider's road-relative frame. No collision exemptions.
-//! Metres, seconds, and signed forward speeds; lane bounds describe usable outbound road.
+//! Metres, seconds, and signed forward speeds; bounds describe the usable physical corridor.
 /// Road-space proxy for a car or an upright rider occupying a traffic escape.
 #[derive(Clone, Copy, Debug)]
 pub struct Car {
@@ -325,7 +325,8 @@ impl Memory {
         // Evaluate intended acceleration too: a matched-speed follower otherwise
         // sees no hazard, accelerates into its leader, brakes, and repeats forever.
         let pace = cruise.max(speed).max(1.);
-        let avoiding = returning || !safe(requested, pace) || !safe(lane, pace);
+        let static_blocked = !drivable(requested, pace);
+        let avoiding = returning || !safe(requested, pace) || !safe(lane, pace) || static_blocked;
         if !avoiding {
             return Plan {
                 lane: requested,
@@ -345,7 +346,7 @@ impl Memory {
         // A queued bike can physically steer at walking pace. The old mandatory
         // 8m/s prediction rejected all close passes, even with empty adjacent road.
         for trial in [pace, speed.max(4.).min(pace), 4., 2., 1.] {
-            if trial < speed - 0.25 || trial > pace {
+            if (trial < speed - 0.25 && !static_blocked) || trial > pace {
                 continue;
             }
             let goal = candidates
@@ -354,7 +355,13 @@ impl Memory {
                 .filter(|to| {
                     safe(*to, trial)
                         && (trial >= pace
-                            || cars.iter().all(|c| clear(*to, *to, pace, *c, horizon)))
+                            || cars
+                                .iter()
+                                // Do not settle into a nearby blocked line, but
+                                // do not let distant full-cruise speculation veto
+                                // a lateral walking-speed escape that is replanned.
+                                .filter(|c| (to - lane).abs() <= 0.5 || c.gap.abs() < 60.)
+                                .all(|c| clear(*to, *to, pace, *c, horizon)))
                         && drivable(*to, trial)
                 })
                 .min_by(|a, b| {
@@ -493,6 +500,49 @@ mod tests {
         assert!(resumed.lane > 3.6 && resumed.speed > 0., "{resumed:?}");
     }
     #[test]
+    fn crawling_rider_can_advance_when_distant_rivals_block_full_cruise() {
+        // The Metropolis station-3105 trace had a temporarily stopped rider
+        // with distant vehicles and rivals across several lines. A cruise-speed lookahead
+        // must not veto a safe bounded 4 m/s step that is replanned next tick.
+        let request = Request {
+            lane: 2.58,
+            speed: 0.1,
+            desired: 1.47,
+            cruise: 54.,
+            bounds: (-5.05, 5.05),
+        };
+        let riders = [
+            car(100., -4., 0.),
+            car(100., 0., 0.),
+            car(100., 4., 0.),
+            Car {
+                half_width: 0.36,
+                half_length: 1.05,
+                ..car(26., 5.1, 0.)
+            },
+        ];
+        let mut memory = Memory::default();
+        let plan = memory.plan(request, &riders, |_, _| true);
+        assert!(plan.avoiding && plan.speed >= 4., "{plan:?}");
+        let horizon = (2.5 + request.speed / 12.).clamp(6., 7.);
+        assert!(
+            riders
+                .iter()
+                .any(|r| !clear(plan.lane, plan.lane, request.cruise, *r, horizon)),
+            "{plan:?}"
+        );
+        for rider in riders {
+            assert!(clear(request.lane, plan.lane, plan.speed, rider, horizon));
+            assert!(clear(
+                request.lane,
+                plan.lane,
+                request.speed.max(1.),
+                rider,
+                horizon
+            ));
+        }
+    }
+    #[test]
     fn rider_speed_deadband_does_not_turn_resting_jitter_into_oncoming_traffic() {
         for speed in [-0.099, 0., 0.099] {
             assert_eq!(rider_forward_speed(speed), 0.);
@@ -625,6 +675,20 @@ mod tests {
             |_, _| true,
         );
         assert!(merged.lane <= 2.35 && !memory.active());
+    }
+    #[test]
+    fn free_sidewalk_line_is_allowed_but_a_solid_outer_line_is_rejected() {
+        let request = Request {
+            lane: 2.,
+            speed: 15.,
+            desired: 5.,
+            cruise: 20.,
+            bounds: (-5.5, 5.5),
+        };
+        let open = Memory::default().plan(request, &[], |_, _| true);
+        assert_eq!(open.lane, 5.);
+        let solid = Memory::default().plan(request, &[], |goal, _| goal < 4.);
+        assert!(solid.lane < 4., "solid outer line chosen: {solid:?}");
     }
     #[test]
     fn narrowed_road_and_solid_pass_corridor_wait_instead_of_using_sidewalk() {

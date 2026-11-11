@@ -383,7 +383,7 @@ pub fn update_ui(
                 let mut s = format!("P{position:02} / 15\n\n");
                 for (i, r) in sorted.iter().enumerate() {
                     let marker = if r.id == local_slot { ">" } else { " " };
-                    let role=if r.id==local_slot{"YOU"}else if r.combat_mind.role==rr_core::rival_ai::Role::Killer{"K"}else{"R"};
+                    let role=if r.id==local_slot{"YOU"}else{"RIVAL"};
                     s.push_str(&format!("{marker} {}  {:5} [{role}]\n", i + 1, content.0.riders[r.id].display_name));
                 }
                 s

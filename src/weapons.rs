@@ -761,7 +761,7 @@ mod tests {
         }
     }
     #[test]
-    fn rival_obtains_same_club_and_uses_same_tell_only_after_retaliation() {
+    fn role_free_rival_obtains_same_club_and_uses_same_tell_in_close_combat() {
         let (mut app, owner, target) = fixture(60, 1., 2.4);
         // Target wins this pickup; player input is deliberately absent.
         let mut p = *app.world().get::<Transform>(owner).unwrap();
@@ -770,7 +770,7 @@ mod tests {
         run(&mut app, 3);
         assert!(app.world().get::<Rider>(target).unwrap().weapon.is_some());
         app.world_mut().resource_mut::<Race>().elapsed = 9.;
-        // Restrained racer does not gain a magical first strike from equipment.
+        // A distant pickup does not create a remote strike.
         run(&mut app, 10);
         assert_eq!(app.world().get::<Rider>(target).unwrap().attack_serial, 0);
         {
@@ -803,7 +803,7 @@ mod tests {
         assert!(contact);
         assert_eq!(app.world().get::<Rider>(owner).unwrap().hits.count, 1);
         assert!(
-            !app.world()
+            app.world()
                 .get::<Rider>(target)
                 .unwrap()
                 .combat_mind

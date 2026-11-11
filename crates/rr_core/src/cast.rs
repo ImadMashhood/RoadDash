@@ -5,7 +5,6 @@ use crate::weapons::Weapon;
 pub struct Character {
     pub portrait: usize,
     pub weapon: Option<Weapon>,
-    pub aggressive: bool,
     pub pace: f32,
     pub patience: f32,
     pub kick: bool,
@@ -13,7 +12,6 @@ pub struct Character {
 const fn c(
     portrait: usize,
     weapon: Option<Weapon>,
-    aggressive: bool,
     pace: f32,
     patience: f32,
     kick: bool,
@@ -21,7 +19,6 @@ const fn c(
     Character {
         portrait,
         weapon,
-        aggressive,
         pace,
         patience,
         kick,
@@ -29,20 +26,20 @@ const fn c(
 }
 // Fourteen grid slots preserve the race contract. George and Elif remain bar cast.
 pub const CAST: [Character; 14] = [
-    c(0, None, false, 0.96, 1.5, false),
-    c(1, None, true, 0.99, 0.9, true),
-    c(2, Some(Weapon::Club), false, 0.95, 1.2, false),
-    c(3, Some(Weapon::Whip), true, 1.01, 0.8, false),
-    c(4, None, false, 1.04, 1.6, false),
-    c(5, None, true, 1.02, 0.9, true),
-    c(6, Some(Weapon::RollingPin), false, 0.98, 1.1, false),
-    c(7, None, true, 1.03, 0.7, false),
-    c(8, Some(Weapon::Chain), false, 0.97, 1.3, false),
-    c(9, Some(Weapon::Club), true, 1.0, 0.8, false),
-    c(10, Some(Weapon::BaseballBat), false, 1.05, 1.5, false),
-    c(11, Some(Weapon::Chain), true, 1.02, 1.0, false),
-    c(12, None, false, 1.06, 1.7, false),
-    c(15, Some(Weapon::Club), true, 1.0, 0.75, false),
+    c(0, None, 0.96, 1.5, false),
+    c(1, None, 0.99, 0.9, true),
+    c(2, Some(Weapon::Club), 0.95, 1.2, false),
+    c(3, Some(Weapon::Whip), 1.01, 0.8, false),
+    c(4, None, 1.04, 1.6, false),
+    c(5, None, 1.02, 0.9, true),
+    c(6, Some(Weapon::RollingPin), 0.98, 1.1, false),
+    c(7, None, 1.03, 0.7, false),
+    c(8, Some(Weapon::Chain), 0.97, 1.3, false),
+    c(9, Some(Weapon::Club), 1.0, 0.8, false),
+    c(10, Some(Weapon::BaseballBat), 1.05, 1.5, false),
+    c(11, Some(Weapon::Chain), 1.02, 1.0, false),
+    c(12, None, 1.06, 1.7, false),
+    c(15, Some(Weapon::Club), 1.0, 0.75, false),
 ];
 pub fn character(id: usize) -> Option<Character> {
     id.checked_sub(1).and_then(|i| CAST.get(i)).copied()
@@ -136,7 +133,6 @@ mod tests {
         for (i, c) in CAST.iter().enumerate() {
             assert_eq!(NAMES[i + 1], crate::frontend::ROSTER[c.portrait].name);
         }
-        assert_eq!(CAST.iter().filter(|c| c.aggressive).count(), 7);
         assert_eq!(CAST[3].weapon, Some(Weapon::Whip));
         assert_eq!(CAST[10].weapon, Some(Weapon::BaseballBat));
     }

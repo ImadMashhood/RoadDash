@@ -1205,7 +1205,12 @@ fn queued_ai_physically_passes_a_stopped_car_without_escape_or_recovery() {
         assert!(t.translation.distance(previous) < 2., "no teleport");
         previous = t.translation;
         moved_aside |= r.lane > 4.5;
-        assert!(r.lane < 6.5, "pass left the road: {}", r.lane);
+        let bounds = crate::game::ai_free_bounds(w.resource::<Track>(), r.route, r.progress);
+        assert!(
+            r.lane > bounds.0 - 0.5 && r.lane < bounds.1 + 0.5,
+            "pass left usable corridor: {} {bounds:?}",
+            r.lane
+        );
         if r.progress > station + 26. {
             passed = true;
             break;

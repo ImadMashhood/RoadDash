@@ -554,7 +554,7 @@ fn body(page: Page, profile: &Profile, track: &Track, race: &Race) -> String {
         Page::Courses => format!("{}\n{:.2} KM / {}\n15 RIDERS", course_name, track.race_interval().length()/1000.0, if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
         Page::Garage => "YOUR ROAD BIKE / READY TO RIDE\nBIKE PURCHASES UNAVAILABLE".into(),
         Page::Portrait => "RIDER PORTRAITS".into(),
-        Page::Bar => "THE LOCALS DON'T LIKE YOU.\n\nWatch the aggressive riders.\nA clean pass is safer than a fight.\n\nConversations coming later.".into(),
+        Page::Bar => "THE LOCALS DON'T LIKE YOU.\n\nWatch the riders around you.\nA clean pass is safer than a fight.\n\nConversations coming later.".into(),
         Page::Starting => format!("{}\nW / S: THROTTLE / BRAKE    A / D: STEER\nMOUSE: PUNCH    SPACE: KICK\nRIDE OUT...",course_name),
         Page::Results if race.arrested => "BUSTED\n\nNo payout.\nTry your luck again.".into(),
         Page::Results => format!("P{} / 15    TIME {:02}:{:05.2}\nTAKEDOWNS {}\n+{} CREDITS    BALANCE {}",race.place,(race.elapsed/60.0) as u32,race.elapsed%60.0,race.takedowns,race.earned,profile.credits),
