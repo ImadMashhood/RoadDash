@@ -5,6 +5,9 @@ use crate::runtime::{SimSet, SimulationClock};
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 use std::{collections::VecDeque, time::Instant};
+/// Native survey verification writes files after its gameplay measurement ends.
+#[derive(Resource)]
+pub(crate) struct FixtureComplete;
 #[derive(Resource)]
 pub struct Metrics {
     last_frame: Instant,

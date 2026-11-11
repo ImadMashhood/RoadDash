@@ -127,7 +127,7 @@ pub fn update(
     mut images: ResMut<Assets<Image>>,
     screen: Option<Res<State<crate::runtime::AppScreen>>>,
 ) {
-    // Experimental loading-only admission; background worker count is unchanged.
+    // Measured loading-only admission; background worker count is unchanged.
     // Retain the two-job gameplay budget and cap requested load admission at eight.
     let job_limit = if screen.as_ref().is_some_and(|s| {
         matches!(
@@ -138,7 +138,7 @@ pub fn update(
         std::env::var("ROADDASH_LOAD_JOBS")
             .ok()
             .and_then(|v| v.parse::<usize>().ok())
-            .unwrap_or(2)
+            .unwrap_or(8)
             .clamp(2, 8)
     } else {
         2

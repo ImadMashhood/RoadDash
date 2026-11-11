@@ -3844,3 +3844,23 @@ eight loading jobs reduce Metro readiness10.132→6.950s. These are one sample p
 configuration, not repeated acceptance. Both configurations pass598 workspace
 tests (one existing ignored soak). Dedicated recovery/cold/reverse-order repeats
 remain before changing dispatch/admission defaults; see issue25 evidence.
+
+ADR140 controlled follow-up: replacement indexing invalidated the first pair's
+full-isolation claim; retain it as exploratory only. Eight new cold-asset/reverse
+warm runs with verified PID2060 paused/restored confirm readiness gains37–39%
+and raw p95 gains13–23%, with unchanged census/support structures. One61.423ms
+Metro event is the exact terminal audit frame; retain it and add explicit fixture
+completion/span markers, plus same-length cohort comparisons across all controls.
+Four both-map/both-rig native recovery cases pass. Select single FixedUpdate
+dispatch and eight loading-only material jobs, preserving explicit multi/two-job
+controls, internal parallel Rapier,60Hz/substeps and two-job gameplay admission.
+Final rebuilt-default/explicit paired lab checks remain before merge.
+
+CI on unchanged main and the diagnostic PR shows15resting riders at900updates,
+240finite bodies, anchor error0.00217m, linear0.00639m/s, angular0.13730rad/s, but
+only208sleeping bodies. An independent1800-update diagnostic sleeps all240 with
+zero velocity. Correct the test's hardware-dependent deadline using one fixture:
+retain900-update finite/body/resting/anchor checks and low motion<0.1m/s,<0.5rad/s;
+require all240naturally asleep with zero motion by1800updates, record first sleep
+update, and run both explicit executors. No forces, damping, motors, collision,
+sleep thresholds or accepted physical behavior change. Original failedCI retained.

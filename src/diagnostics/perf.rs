@@ -121,6 +121,7 @@ pub(super) fn sample(
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     context: ReadRapierContext,
     diagnostics: Option<Res<bevy::diagnostic::DiagnosticsStore>>,
+    fixture_complete: Option<Res<super::FixtureComplete>>,
     loading: (
         Option<Res<crate::material_detail::Queue>>,
         Option<Res<crate::tangent_detail::Queue>>,
@@ -129,6 +130,10 @@ pub(super) fn sample(
     if log.sender.is_none() {
         return;
     }
+    let racing = fixture_complete.is_none()
+        && race
+            .as_ref()
+            .is_some_and(|r| r.phase == crate::game::Phase::Racing);
     let now = Instant::now();
     let frame_ms = now.duration_since(log.previous_frame).as_secs_f64() * 1000.;
     log.previous_frame = now;
@@ -136,10 +141,7 @@ pub(super) fn sample(
         && raw.len() < 4096
     {
         raw.push(frame_ms);
-        if race
-            .as_ref()
-            .is_some_and(|r| r.phase == crate::game::Phase::Racing)
-        {
+        if racing {
             log.raw_racing_frames.push(frame_ms);
         }
     }
@@ -192,11 +194,11 @@ pub(super) fn sample(
         .filter(|d| d.path().as_str().starts_with("render/"))
         .filter_map(|d| d.value().map(|v| (d.path().as_str().to_owned(), v)))
         .collect();
-    let value = serde_json::json!({"schema_version":1,"loading_queues":{"materials":loading.0.as_ref().map(|q|q.loading_evidence()),"tangents":loading.1.as_ref().map(|q|q.loading_evidence())},"raw_frame_ms":log.raw_frames,"raw_racing_frame_ms":log.raw_frames.as_ref().map(|_| &log.raw_racing_frames),"raw_frame_samples_dropped":log.raw_frames.as_ref().map(|raw| log.frames.saturating_sub(raw.len() as u64)),"render_diagnostics_latest":render_diagnostics,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"requested_fixed_executor":std::env::var("ROADDASH_FIXED_EXECUTOR").unwrap_or_else(|_| "multi".into()),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
+    let value = serde_json::json!({"schema_version":1,"loading_queues":{"materials":loading.0.as_ref().map(|q|q.loading_evidence()),"tangents":loading.1.as_ref().map(|q|q.loading_evidence())},"raw_frame_ms":log.raw_frames,"raw_racing_frame_ms":log.raw_frames.as_ref().map(|_| &log.raw_racing_frames),"raw_frame_samples_dropped":log.raw_frames.as_ref().map(|raw| log.frames.saturating_sub(raw.len() as u64)),"render_diagnostics_latest":render_diagnostics,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"requested_fixed_executor":std::env::var("ROADDASH_FIXED_EXECUTOR").unwrap_or_else(|_| "single".into()),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
  "fixed_steps":log.steps,"fixed_gameplay_ms_per_frame":log.game_ms/frames,"physics_ms_per_frame":log.physics_ms/frames,"physics_sync_ms_per_frame":log.physics_phases_ms[0]/frames,"physics_step_ms_per_frame":log.physics_phases_ms[1]/frames,"physics_writeback_ms_per_frame":log.physics_phases_ms[2]/frames,"main_world_ms_per_frame":log.main_ms/frames,
  "entities":metrics.entities,"colliders":metrics.colliders,"dynamic_bodies":bodies.iter().filter(|(b,d)|**b==RigidBody::Dynamic&&d.is_none()).count(),
  "mesh_entities":views.iter().count(),"visible_mesh_entities":views.iter().filter(|v|v.get()).count(),"mesh_assets":meshes.map_or(0,|a|a.len()),"material_assets":materials.map_or(0,|a|a.len()),
- "camera_xyz":cameras.iter().next().map(|t|t.translation().to_array()),"player_progress_m":player.map(|r|r.progress),"player_route":player.map(|r|r.route),"racing":race.is_some_and(|r|r.phase==crate::game::Phase::Racing),"dropped_log_samples":log.dropped,
+ "camera_xyz":cameras.iter().next().map(|t|t.translation().to_array()),"player_progress_m":player.map(|r|r.progress),"player_route":player.map(|r|r.route),"racing":racing,"fixture_complete":fixture_complete.is_some(),"dropped_log_samples":log.dropped,
  "measurement":"wall/CPU timing; main excludes render extraction and GPU; render fields are latest CPU/wait spans, may overlap main and are not GPU timestamps; system paging counters are global, not per-game; memory values retain proc units"});
     if let Some(tx) = &log.sender {
         match tx.try_send(value) {

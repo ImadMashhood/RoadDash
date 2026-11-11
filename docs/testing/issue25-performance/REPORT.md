@@ -62,12 +62,13 @@ road-dash from the issue25 checkout. Dependency artifacts were retained. Shared
 worktree Cargo fingerprints previously allowed stale workspace objects; the
 untrusted pre-clean candidate is excluded from comparisons.
 
-## First paired warm-process results
+## Exploratory first pairs — excluded from performance acceptance
 
-One clean run per configuration, same fresh binary and instrument settings, in
-exclusive sequential windows. No competing game/compiler was observed. The known
-Baloo process had exited before these batches, so no process was suspended.
-Values below are measurements, not repeated confidence bounds.
+One run per configuration with the same binary/settings; the monitor excluded
+competing games/compilers but missed a replacement Baloo extractor. Its observed
+lifetime later overlapped these batches. These figures are retained as exploratory
+evidence only, excluded from performance acceptance. No indexer was suspended
+for them; subsequent controlled replacements below supersede their timing claims.
 
 | Course/configuration | World setup s | Asset readiness s | Raw frame p50 / p95 / p99 ms | Max ms | >50ms stalls |
 | --- | ---: | ---: | --- | ---: | ---: |
@@ -99,11 +100,68 @@ Debug and fresh release builds, Clippy with warnings denied, formatting, provena
 consistency pass. Three Python evidence tests pass. Raw/census receipts are in
 `paired/` and `experiments/`; first instrument-only results remain in `initial/`.
 
+## Controlled cold-asset and reverse-order warm repeats
+
+Primary evidence is `controlled/`: eight successful cases, same frozen binary,
+settings/seed and instrumentation, no detected competing games/compilers/indexers.
+Cold control→candidate and warm candidate→control order reduces fixed-order bias.
+A verified same-user Baloo parent (PID2060, `/usr/libexec/kf6/baloo_file`, start
+2121ticks) was suspended via pidfd for the complete batch and resumed in `finally`;
+/proc confirmed it running/sleeping normally afterward. No service/config change.
+The proof records UID, executable, cwd, parent lineage, starttime and actual
+SIGCONT. Earlier extractor739071 and short-lived836380 exited before identity
+capture and received no signal. Two rejected attempts are explicitly preserved.
+
+Asset-page eviction covers3329checkout files. Fincore reports zero resident bytes
+after each cold eviction. This is targeted asset-page coldness, not a cold boot,
+shader/driver-cache reset or globally cold filesystem. Warm runs retain OS caches.
+
+Control uses original queries/multi dispatch/two load jobs; candidate uses exact
+reuse/single dispatch/eight loading jobs. Gameplay job admission stays two.
+
+| Map / cache | Setup s control → candidate | Ready s | Raw p95 ms | Raw p99 ms | Raw max ms |
+| --- | --- | --- | --- | --- | --- |
+| Hills / cold | 29.031 → 18.073 | 32.824 → 20.457 | 24.333 → 19.211 | 25.933 → 21.349 | 34.582 → 35.938 |
+| Hills / warm | 29.097 → 17.866 | 32.836 → 20.297 | 24.535 → 18.796 | 26.444 → 21.087 | 32.073 → 34.346 |
+| Metro / cold | 3.344 → 2.317 | 11.218 → 7.074 | 28.617 → 24.941 | 30.700 → 28.432 | 37.744 → 61.423 |
+| Metro / warm | 3.353 → 2.389 | 11.341 → 6.915 | 28.416 → 23.827 | 31.152 → 26.332 | 35.363 → 33.708 |
+
+Readiness improves37.7%/36.9% cold and38.2%/39.0% warm for Hills/Metro; raw p95
+improves21.1%/12.8% cold and23.4%/16.2% warm. All four census/support structures
+per map match exactly after removing only Hills timing metrics; hashes are saved.
+Only cold candidate Metro records a>50ms frame (61.423ms), none exceed100ms.
+The16.7ms p95 gate remains unmet; these are local traversal fixtures, not full
+combat/free-driving or final combined-content/engine budgets.
+
+The61.423ms event is the final recorded racing frame:986racing frames correspond
+exactly to survey frames436..1421. Frame1421performs terminal farm/pedestrian/
+facade census audits and JSON writes before exit. Material/tangent queues are
+empty before and at that window; camera is unchanged, physics averages8.45ms,
+latest opaque GPU2.48ms, and paging counters do not change. This strongly points
+to fixture completion work, not continuing eight-job loading. GPU samples are
+not frame-aligned proof of its exclusive cause. The raw event remains reported.
+
+The logger may leave a partial final window unflushed. A secondary equal-window
+comparison uses the same180-frame warmup and common available length across ALL
+four cases of each map (4315Hills/768Metro frames). Metro p95 remains28.617→25.127ms
+cold and28.416→23.827ms warm; candidate cold maximum37.435ms in that common gameplay
+cohort. `common-frame-cohorts.json` preserves all four cases, not selective outlier
+removal. Next-build fixture completion markers stop gameplay-frame collection
+before terminal audits, with an explicit verification span for confirmation.
+
+Dedicated frozen-binary native recovery also passes both rigs on both maps,
+including the alternate Hills route; all four completion markers present, no
+render errors, Hills exceptional rescues[0,0]. These functional runs overlap
+bounded compilation and make no timing claim. Actual lab executor parity and
+final rebuilt-default checks are still pending.
+
 ## Outstanding verification
 
-Repeated/cold-asset samples and dedicated native recovery checks are pending.
-No experimental executor or loading admission policy is selected as a new
-production default yet. The local p95 samples remain above16.7ms. Full-course
+Controlled repeated/cold-asset samples and four dedicated native recovery checks
+pass. Explicit paired lab executor and final rebuilt-default checks are pending.
+Measured single dispatch/eight loading-job defaults are selected locally after
+repeats and native recovery; explicit paired lab/final rebuild checks remain
+before merge. The local p95 samples remain above16.7ms. Full-course
 CPU/GPU/hardware acceptance and final combined-content budgets remain separate
 from these measurements. No issue-wide performance requirement is checked off.
 
@@ -124,3 +182,33 @@ README/JSON files. Repository reads now specify UTF-8; sync_progress already did
 All five roadmap checks pass with PYTHONUTF8=0, PYTHONCOERCECLOCALE=0, LC_ALL=C.
 That complete check also caught stale Part01/16 table counts introduced by this
 branch; both counts now match the unchanged stable-ID placement index.
+
+## Receipt provenance clarification
+
+Initial receipts record checkout HEAD/diff at measurement time, not a compiler
+manifest. Subsequent receipts name that field `measurement_checkout_source` and
+read an optional binary sidecar whose SHA256 must match. The frozen candidate's
+record is `frozen-binary-provenance.json`: clean release rebuild from uncommitted
+source based on754f9ddb, release-equivalent to review commita5966b81 (a cfg(test)
+Track construction correction and evidence/harness/docs changes followed build).
+An exact build-tree snapshot was not saved; this limitation is explicit. Later
+CI test diagnostics and shared lab helper are absent from the frozen binary.
+
+The earlier double workspace run is a general regression check under both env
+settings, not proof that all independently constructed MinimalPlugins fixtures
+used single dispatch. A shared native/lab selector and actual executor field are
+prepared for explicit paired lab verification after the next build slot.
+The matched native surveys do use the selected production executor. Their fresh
+settings retain default VSync; comparisons are of this same presentation policy.
+
+## Memory and selected policy
+
+CPU VmHWM in the controlled runs remains roughly2.1GiB Hills/5.8GiB Metro.
+Candidate Metro peak increases about82MiB cold/29MiB warm versus control; no
+GPU-memory or memory-reduction claim is made. VmSwap is zero in all eight cases.
+Eight loading jobs remain bounded and affect only Boot/Loading; gameplay retains
+two, and ROADDASH_LOAD_JOBS=2 remains the lower-admission control. Single fixed
+dispatch retains ROADDASH_FIXED_EXECUTOR=multi and unchanged internal Rapier
+parallel solving, fixed frequency and substeps. The selected source awaits final
+rebuilt verification; existing native recovery evidence uses explicit equivalent
+settings on the frozen binary.

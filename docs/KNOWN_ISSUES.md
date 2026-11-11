@@ -1208,3 +1208,12 @@ before treating local branch improvements as overall performance acceptance.
   LinuxCI acceptance is claimed yet. Windows roadmap UTF-8 reading and this
   branch's stale Part01/16 summary counts are corrected with five locale-hostile
   roadmap checks passing; actual WindowsCI confirmation remains pending.
+
+- ADR140 CI diagnosis: original Ubuntu900-update failure has all15controllers
+  Resting with tiny residual motion;1800updates naturally sleep all240. The test
+  now preserves15s stability and observes the same fixture to a30s full-sleep
+  deadline for both executors. This corrects a platform-sensitive test deadline,
+  not runtime physics; final local/CI confirmation is pending. Prior first paired
+  measurements had unobserved replacement indexing and are exploratory only.
+  Eight controlled replacements confirm gains, but16.7ms p95/full-course/hardware
+  gates remain open; peak CPU memory remains roughly2.1GiB Hills/5.8GiB Metro.

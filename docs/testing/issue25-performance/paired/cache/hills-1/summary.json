@@ -1296,5 +1296,6 @@
       }
     ],
     "guidance": "Distributions summarize logged windows, not raw per-frame percentiles; wall_p95_ms is an overlapping rolling 240-frame metric. window_wall_ms_per_frame is the independent logging-window mean. Compare matched scenes without compilation/other game instances. Physics includes sync/step/writeback CPU/wait spans, not just the solver. If steps/render frame rises, catch-up multiplies simulation cost. Large wall with small main needs GPU/presentation profiling; low utilization is not proof. Paging counters are system-wide; full swap alone does not prove active game paging."
-  }
+  },
+  "retrospective_exclusion": "Excluded from primary performance acceptance: game/compiler monitor was clear, but replacement Baloo extractor739071 was later observed with lifetime overlapping these runs. Actual indexing interference was not monitored. Controlled replacements are under controlled/."
 }

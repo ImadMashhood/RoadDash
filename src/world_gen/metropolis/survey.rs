@@ -207,6 +207,9 @@ pub fn run(
         }
     }
     if state.frame > period * scenes.len() as u32 + 20 {
+        commands.insert_resource(crate::diagnostics::FixtureComplete);
+        let _verification_span =
+            crate::diagnostics::loading::Span::new("metro_survey_verification");
         let farm_ready = actors
             .farm_props
             .iter()

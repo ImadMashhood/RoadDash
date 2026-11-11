@@ -394,6 +394,9 @@ pub fn run(
         return;
     }
     if frame > finish && state.captures == expected {
+        commands.insert_resource(crate::diagnostics::FixtureComplete);
+        let _verification_span =
+            crate::diagnostics::loading::Span::new("hills_survey_verification");
         assert_eq!(semi_count, crate::heavy_traffic::SEMIS);
         assert_eq!(tractor_count, crate::heavy_traffic::TRACTORS);
         assert!(state.semi_moved > 20. && state.tractor_moved > 10.);

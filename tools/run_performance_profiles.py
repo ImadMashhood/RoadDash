@@ -16,11 +16,13 @@ from summarize_performance import summarize
 
 
 def processes(exclude=()):
-    rows = subprocess.check_output(['ps', '-eo', 'pid=,comm='], text=True)
+    rows = subprocess.check_output(['ps', '-eo', 'pid=,comm=,stat='], text=True)
     return [(int(pid), name) for row in rows.splitlines()
-            for pid, name in [row.strip().split(None, 1)]
+            for pid, name, state in [row.strip().split(None, 2)]
             if int(pid) not in exclude and
-            (name in ('cargo', 'rustc', 'clippy-driver', 'road-dash') or name.startswith(('road-dash', 'road_dash-', 'rr_core-', 'rr_content-', 'issue25-')))]
+            (name in ('cargo', 'rustc', 'clippy-driver', 'road-dash') or name.startswith(('road-dash', 'road_dash-', 'rr_core-', 'rr_content-', 'issue25-')) or
+             (name == 'baloo_file_extr' and not state.startswith('T')) or
+             (name == 'baloo_file' and state.startswith('R')))]
 
 
 def evict_asset_pages(root):
@@ -59,13 +61,23 @@ def main():
     parser.add_argument('--fixed-executor', choices=['single','multi'], default='multi')
     parser.add_argument('--load-jobs', choices=[2,8], type=int, default=2)
     args = parser.parse_args()
+    def interrupt(signum, frame):
+        raise KeyboardInterrupt(f'signal {signum}')
+    signal.signal(signal.SIGTERM, interrupt)
     if args.runs < 1:
         parser.error('runs must be positive')
     binary = args.binary.resolve()
+    binary_digest = hashlib.sha256(binary.read_bytes()).hexdigest()
+    manifest = binary.with_suffix('.provenance.json')
+    binary_provenance = json.loads(manifest.read_text(encoding='utf-8')) if manifest.exists() else None
+    if binary_provenance is not None:
+        assert binary_provenance['binary_sha256'] == binary_digest, 'binary provenance hash mismatch'
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
-    assert not processes(), 'another game/compiler/test invalidates timing'
+    assert not processes([args.indexer_pid]), 'another game/compiler/test/active indexer invalidates timing'
     suspended = False
+    indexer_identity = None
+    indexer_fd = None
     receipts = []
     root = Path(__file__).resolve().parents[1]
     source = dict(head=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip(),
@@ -76,9 +88,21 @@ def main():
         for p in [root/name] if p.is_file()}
     try:
         if args.indexer_pid:
-            name = Path(f'/proc/{args.indexer_pid}/comm').read_text().strip()
-            assert name in ('baloo_file_extr', 'baloo_file'), 'only exact Baloo indexer PIDs are accepted'
-            os.kill(args.indexer_pid, signal.SIGSTOP)
+            proc = Path(f'/proc/{args.indexer_pid}')
+            stat = (proc/'stat').read_text().split()
+            parent = Path('/proc')/stat[3]
+            indexer_identity = dict(pid=args.indexer_pid, name=(proc/'comm').read_text().strip(),
+                                    executable=str((proc/'exe').resolve()), cwd=str((proc/'cwd').resolve()),
+                                    start_ticks=stat[21], parent_pid=int(stat[3]),
+                                    parent_name=(parent/'comm').read_text().strip(),
+                                    parent_executable=str((parent/'exe').resolve()))
+            assert indexer_identity['name'] == 'baloo_file_extr'
+            assert Path(indexer_identity['executable']).name == 'baloo_file_extractor'
+            assert indexer_identity['parent_name'] == 'baloo_file'
+            assert Path(indexer_identity['parent_executable']).name == 'baloo_file'
+            indexer_fd = os.pidfd_open(args.indexer_pid)
+            assert (proc/'stat').read_text().split()[21] == indexer_identity['start_ticks'], 'PID reused'
+            signal.pidfd_send_signal(indexer_fd, signal.SIGSTOP)
             suspended = True
         for run in range(args.runs):
             for track in (['hills', 'metro'] if args.track == 'both' else [args.track]):
@@ -106,6 +130,8 @@ def main():
                     try:
                         while child.poll() is None:
                             contaminants.update(processes([child.pid]))
+                            if contaminants:
+                                break
                             if time.monotonic()-start > 600:
                                 raise TimeoutError('native case exceeded 600 seconds')
                             time.sleep(.5)
@@ -120,17 +146,20 @@ def main():
                 marks = [json.loads(line.split('LOAD_PROFILE ', 1)[1])
                          for line in (folder/'native.txt').read_text().splitlines()
                          if 'LOAD_PROFILE ' in line]
-                report = dict(track=track, run=run+1, exit_code=child.returncode, source=source,
-                              binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
+                report = dict(track=track, run=run+1, exit_code=child.returncode, measurement_checkout_source=source, binary_provenance=binary_provenance,
+                              binary_sha256=binary_digest,
                               flags=flags, environment={k:v for k,v in env.items() if k.startswith('ROADDASH_')},
                               duration_s=time.monotonic()-start, loading=marks,
-                              contaminants=sorted(contaminants), indexer_suspended=args.indexer_pid,
+                              contaminants=sorted(contaminants), indexer_suspended=args.indexer_pid, indexer_identity=indexer_identity,
                               asset_page_cache=cache_probe,
                               cache_state='fresh process; targeted asset pages evicted' if args.cold_assets else 'fresh process; OS/driver caches retained, not certified cold disk',
                               measurement='fixed-camera traversal/live street actors; manual 60Hz simulation clock; raw wall frames and CPU spans; asynchronous GPU metrics only when present')
                 logs = list((folder/'logs').glob('*.jsonl'))
                 if logs:
-                    report['runtime'] = summarize(logs[0], racing_only=True, skip_racing_samples=3, raw_skip_frames=180)
+                    try:
+                        report['runtime'] = summarize(logs[0], racing_only=True, skip_racing_samples=3, raw_skip_frames=180)
+                    except ValueError as error:
+                        report['runtime_error'] = str(error)
                 (folder/'summary.json').write_text(json.dumps(report, indent=2)+'\n')
                 receipts.append(report)
                 (output/'receipts.json').write_text(json.dumps(receipts, indent=2)+'\n')
@@ -140,9 +169,11 @@ def main():
     finally:
         if suspended:
             try:
-                os.kill(args.indexer_pid, signal.SIGCONT)
+                signal.pidfd_send_signal(indexer_fd, signal.SIGCONT)
             except ProcessLookupError:
                 pass
+        if indexer_fd is not None:
+            os.close(indexer_fd)
 
 
 if __name__ == '__main__':

@@ -1850,3 +1850,16 @@ locally. No rig or physics changes. Fix Windows locale-dependent roadmap reads
 with explicit UTF-8 and correct issue25 Part01/16 summary counts exposed by the
 complete roadmap test. All five checks pass under an ASCII locale; Rust diagnostic
 compilation/CI and root-cause resolution remain pending.
+
+## 2026-11-11 — Controlled repeats, defaults and bounded natural-sleep verification (ADR140)
+
+Detected a replacement indexer, rejected two attempts and downgraded earlier
+pairs to exploratory evidence. Verified/pidfd-paused parent2060 for eight fresh
+cold-asset/reverse-warm runs, then restored it in finally. Loading/frame gains
+repeat with exact census/support parity; retain the terminal audit61ms sample
+and separate it from a common gameplay cohort. Both rigs recover on both maps.
+Select measured single-dispatch/eight-loading-job defaults with controls intact;
+add actual lab executor reporting and terminal verification spans. CI establishes
+bounded late natural sleep, so preserve15s stability and require all240sleeping
+by30s on the same fixture for both executors, without physical tuning. Final
+rebuilt checks and merge remain pending.
