@@ -29,7 +29,8 @@ pub fn spawn_props(
             commands,
             props,
             &p.kind,
-            i % 4,
+            // Stable placement IDs expose the original catalog's full tree range.
+            i,
             &p.id,
             Transform::from_translation(base).with_rotation(q),
             size,

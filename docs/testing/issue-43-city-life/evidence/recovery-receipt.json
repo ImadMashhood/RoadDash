@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/home/imad/roaddash-issue43-target/debug/road-dash",
+    "--smoke-test"
+  ],
+  "exit": 0,
+  "frozen_inputs": {
+    "/home/imad/roaddash-issue43-target/debug/road-dash": "ff04d63b880afba5d86829738df1bf1d1e41d97044a37fd7c4ef23c99b4cf33d",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/issue-43-city-life/content/world/metropolis.json": "3b7e9485f7317b95ef4b24793cef44de14cf419fb8944455655ece9046775150",
+    "/home/imad/Documents/ChatGPT/RoadDash-worktrees/issue-43-city-life/content/world/living_city.json": "f29e176e99ab6f155c1a5dd6d16d8343b5eefaa43ac1cb3f8322bdf88f43d1c6"
+  },
+  "inputs_unchanged": true,
+  "images": 21,
+  "blank_images": [],
+  "error_lines": [],
+  "limits": "Scripted native survey/recovery and wall timing; no GPU timestamp, full race or hardware certification."
+}

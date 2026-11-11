@@ -205,12 +205,17 @@ mod tests {
     }
     #[test]
     fn authored_crossing_uses_actual_support_waits_and_completes_without_teleport() {
+        for route in 0..2 {
+            verify_authored_crossing(route);
+        }
+    }
+    fn verify_authored_crossing(route: usize) {
         let track = Track::metropolis().unwrap();
         let m = track.metropolis.as_ref().unwrap();
         let plan = m
             .pedestrians
             .iter()
-            .find(|p| p.crossing_end.is_some())
+            .find(|p| p.route == route && p.crossing_end.is_some())
             .expect("authored crossings");
         let plan_route = plan.route;
         let plan_station = plan.station;

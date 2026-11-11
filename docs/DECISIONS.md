@@ -3994,6 +3994,24 @@ hands. City effect options (vent steam, depth haze, wet-road variant) remain
 proposals until visual, source and performance review. Bevy0.20 migration is a
 separate issue #37 gate and must not be treated as a proven performance win.
 
+Issue #43 city-life authoring uses the approved Metropolis source and existing
+original prop catalog. The 1.25 sidewalk-area target expands landward by a
+measured 0.874m while preserving the 12m primary carriageway, parking and all
+building IDs. Constrained triangulation accepts a sub-millimetre boundary
+triangle only when its exterior area is below 1e-6m²; whole-polygon area is
+still conserved. The pedestrian cap rises to 480, crossing candidates are
+spaced 180m apart and fixed-step release remains globally paced at 9s with
+two active crossings maximum. Curb roles vary by source-route district; each
+placement keeps the existing full-footprint, walking-strip and junction
+clearance checks. The Metropolis prop model seed uses the full stable placement
+index, raising placed original model IDs from 32 to 79 within the same 13
+semantic roles and collider/LOD/destruction path. The short branch reserves 96
+of the 480 clear pedestrian origins and three of the thirteen authored
+crossings; the main branch retains 384 and ten. Geometric crossing spacing is
+per road, while host runtime release remains global. This is an authoring/runtime choice under ADR150, not a new
+asset or dependency intake. Native, frame-cost and visual acceptance remain
+open until recorded evidence exists.
+
 ## ADR151 — Correct running hands in the visual pose chain (2026-11-10)
 
 The moving thumb cue depends on the chest, clavicle, upper arm and forearm

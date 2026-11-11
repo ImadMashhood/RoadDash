@@ -1239,3 +1239,15 @@ before treating local branch improvements as overall performance acceptance.
   are recorded in testing/civilian-overtaking.
   Upright oncoming bikers intentionally do not veto a pass; their solid
   contact/recovery behavior is retained.
+
+- RFU-CITY-01..04 / issue43: the 25% landward sidewalk area expansion, 480
+  authored urban walkers, 13 clear crossing routes and 1,552 placed original
+  curb props (257 broadleaf trees; 79 distinct model IDs) pass the baker and
+  authoring fixtures. The guardrail-integrated native survey moved 464 walkers
+  over 0.5m and completed four grounded crossings, two on each route; its
+  alternate-branch riding-height view has 14 nearby moving walkers. Sampled
+  trees still look sparse, and continuous capsule passage along every
+  irregular block plus broader crowd/traffic behavior need human traversal.
+  The unpaired debug sample is 31.056ms p95, above 16.7ms; matched release
+  cost, memory, hardware and user art gates stay open. See
+  testing/issue-43-city-life/REPORT.md.
