@@ -2155,3 +2155,9 @@ open. No new collider, save field, fixed-loop physics or imported media.
 Renumbered the issue26 outbound-refuge decision from the already-used ADR151
 to ADR158 in the decision log and progress summary. No requirement, source,
 evidence, or acceptance status changed.
+
+## 2026-11-11 — Retain accepted map FX visual comparisons
+
+Committed representative paired native dust and City Run curb-steam frames to
+the issue42 report after PR50, so the accepted first-pass form can be reviewed
+from the repository. Temporal art and GPU/frame gates remain open.
