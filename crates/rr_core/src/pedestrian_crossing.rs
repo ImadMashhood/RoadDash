@@ -1,6 +1,6 @@
 //! Bounded pedestrian crossing admission; host simulation owns decisions.
 pub const MAX_ACTIVE: usize = 2;
-pub const RELEASE_INTERVAL: f32 = 12.;
+pub const RELEASE_INTERVAL: f32 = 9.;
 pub const WALK_SPEED: f32 = 1.35;
 pub const REST_SECONDS: f32 = 45.;
 /// Closest relative approach over the entire crossing, not just the first step.

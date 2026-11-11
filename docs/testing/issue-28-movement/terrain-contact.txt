@@ -1,0 +1,7 @@
+
+running 1 test
+test animation::locomotion_ground_tests::translated_walk_run_slope_and_stop_keep_contact_and_physical_root ... Actual translated support slip (speed,grade,max m/tick,samples): [(2.0, 0.0, 0.0, false, 6.5077045e-5, 136), (6.0, 0.0, 0.0, false, 0.0002565773, 70), (2.0, 0.12, 0.0, false, 0.00040305115, 136), (6.0, -0.12, 0.0, false, 0.00039970764, 70), (6.0, 0.25, 0.0, false, 0.00068744604, 70), (6.0, -0.25, 0.0, false, 0.00068766816, 70), (6.0, 0.0, 0.2, false, 0.00042776123, 70), (6.0, 0.0, 0.0, true, 0.00042060736, 70)]
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 422 filtered out; finished in 0.05s
+

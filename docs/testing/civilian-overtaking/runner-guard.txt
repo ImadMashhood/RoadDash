@@ -1,0 +1,1 @@
+PASS: existing case folder with interrupted native.txt and no receipt rejected; contents preserved. Harness Python compilation passed. No native process executed by guard check.

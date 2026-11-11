@@ -1,0 +1,15 @@
+{
+  "case": "recovery-baseline",
+  "track": "hills",
+  "route": "1",
+  "flags": [
+    "--smoke-test",
+    "--ragdoll-baseline"
+  ],
+  "binary_sha256": "2eeea11c7edb3cb2f5bd90a66c36d8e4bb5afe2c1b2ffcc4b5d41f266dd1b462",
+  "elapsed_wall_s": 47.160705392001546,
+  "exit_code": 0,
+  "output_present": true,
+  "passed": true,
+  "limits": "Functional native check, not a frame-time or human-feel measurement."
+}

@@ -1,0 +1,26 @@
+{
+  "aborted_returns": 0,
+  "active_at_end": 0,
+  "completed": 11,
+  "course": "Hills",
+  "initiated": 11,
+  "limits": "Unmodified production civilian fleet; racers parked to isolate ordinary motor-traffic opportunities. Counters observe all vehicles, camera follows initiated passes. No guarantee every impediment has a safe opposing-lane window. Not whole-race/human/GPU acceptance.",
+  "nominal_simulated_seconds": 120,
+  "peak_active": 5,
+  "planning_cpu": {
+    "limits": "CPU/wall elapsed. Planner includes fleet ordering/copy, perception, FSM and full-collider geometry sweeps plus timing overhead. Whole adapter additionally includes existing following, motion/sampling/interest and bounds. No GPU/full-frame or before-after speedup claim.",
+    "new_planner": {
+      "max_ms": 0.28937100000000004,
+      "mean_ms": 0.11362098124739502,
+      "p95_ms": 0.176125
+    },
+    "ticks": 7199,
+    "whole_civilian_adapter": {
+      "max_ms": 0.391542,
+      "mean_ms": 0.20613183775524307,
+      "p95_ms": 0.27356199999999997
+    }
+  },
+  "race_elapsed_seconds": 119.9944839477539,
+  "vehicles": 38
+}

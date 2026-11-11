@@ -1,0 +1,69 @@
+{
+  "cases": [
+    {
+      "car_station": 6617.48828125,
+      "collider_intersections": 0,
+      "direction": 1.0,
+      "final_blend": 0.0,
+      "kind": "Tractor",
+      "leader_station": 6183.14208984375,
+      "max_blend": 1.0,
+      "passed": true,
+      "phase": "Follow",
+      "support_error_max_m": 0.0
+    },
+    {
+      "car_station": 5182.51171875,
+      "collider_intersections": 0,
+      "direction": -1.0,
+      "final_blend": 0.0,
+      "kind": "Tractor",
+      "leader_station": 5616.85791015625,
+      "max_blend": 1.0,
+      "passed": true,
+      "phase": "Follow",
+      "support_error_max_m": 0.0
+    },
+    {
+      "car_station": 6632.84326171875,
+      "collider_intersections": 0,
+      "direction": 1.0,
+      "final_blend": 0.0,
+      "kind": "Semi",
+      "leader_station": 6431.2841796875,
+      "max_blend": 1.0,
+      "passed": true,
+      "phase": "Follow",
+      "support_error_max_m": 0.0
+    },
+    {
+      "car_station": 5167.15771484375,
+      "collider_intersections": 0,
+      "direction": -1.0,
+      "final_blend": 0.0,
+      "kind": "Semi",
+      "leader_station": 5368.7158203125,
+      "max_blend": 1.0,
+      "passed": true,
+      "phase": "Follow",
+      "support_error_max_m": 0.0
+    }
+  ],
+  "course": "Hills",
+  "frames": 10400,
+  "limits": "Production traffic fixed-step motion; selected two-vehicle fixtures; Metropolis uses production car bodies at heavy-vehicle cruise. Full-fleet/biker/abort coverage is in deterministic tests, not inferred from these captures. Not GPU or full-race performance evidence.",
+  "planning_cpu": {
+    "limits": "CPU/wall elapsed. Planner includes fleet ordering/copy, perception, FSM and full-collider geometry sweeps plus timing overhead. Whole adapter additionally includes existing following, motion/sampling/interest and bounds. No GPU/full-frame or before-after speedup claim.",
+    "new_planner": {
+      "max_ms": 1.2211940000000001,
+      "mean_ms": 0.06123381752192774,
+      "p95_ms": 0.08388799999999999
+    },
+    "ticks": 9919,
+    "whole_civilian_adapter": {
+      "max_ms": 1.294792,
+      "mean_ms": 0.11962901986087258,
+      "p95_ms": 0.161712
+    }
+  }
+}

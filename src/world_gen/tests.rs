@@ -1,7 +1,7 @@
 use super::*;
 use bevy_rapier3d::prelude::*;
 use std::time::Duration;
-fn scene() -> App {
+pub(crate) fn scene() -> App {
     let mut app = App::new();
     app.add_plugins((
         MinimalPlugins,

@@ -32,9 +32,9 @@ def balanced(items, paths, position):
             if i<len(buckets[key]):yield buckets[key][i]
 
 
-def pedestrians(data,paths,walk,props,budget=384):
+def pedestrians(data,paths,walk,props,budget=480):
     """Bake the whole traversed capsule corridor, not only its starting point."""
-    assert 0 <= budget <= 384
+    assert 0 <= budget <= 480
     import shapely
     occupied=unary_union([footprint(p['position'],p['heading'],.36 if p['kind']=='broadleaf' else p['size'][0],.36 if p['kind']=='broadleaf' else p['size'][2]).buffer(.2) for p in props])
     safe=walk.buffer(-.42).difference(occupied.buffer(.42))
@@ -42,7 +42,7 @@ def pedestrians(data,paths,walk,props,budget=384):
     junctions=[Point(j['point']) for j in data['race_first']['primary_junctions']]
     candidates=[]
     for route,path in enumerate(paths):
-        for d in range(3240,11850,20):
+        for d in range(3240,11850,16):
             if route==1 and not 3500<d<5320:continue
             i=next(i for i in range(len(path['progress'])-1) if path['progress'][i]<=d<path['progress'][i+1])
             a,b=path['points'][i:i+2];t=(d-path['progress'][i])/(path['progress'][i+1]-path['progress'][i]);dx,dz=b[0]-a[0],b[2]-a[2];n=math.hypot(dx,dz);dx,dz=dx/n,dz/n
@@ -58,10 +58,15 @@ def pedestrians(data,paths,walk,props,budget=384):
                         accepted=True;break
                     if accepted:break
     result=[]
-    for p in balanced(candidates,paths,lambda c:c['position']):
-        if len(result)>=budget:break
-        if any(math.dist(p['position'],a['position'])<10 for a in result):continue
-        result.append(dict(id=f'metro-walker-{len(result):03}',**p))
+    branch_budget=min(96,budget//5)
+    # Source order lists the long main route first. Reserve a measured share for
+    # the shorter alternate branch before filling any remaining clear origins.
+    for group,limit in [(0,budget-branch_budget),(1,budget),(None,budget)]:
+        pool=[p for p in candidates if group is None or p['route']==group]
+        for p in balanced(pool,paths,lambda c:c['position']):
+            if len(result)>=limit:break
+            if any(math.dist(p['position'],a['position'])<8 for a in result):continue
+            result.append(dict(id=f'metro-walker-{len(result):03}',**p))
     return result
 
 
@@ -71,13 +76,15 @@ def crossing_routes(walkers,road,walk,props,budget=24):
     occupied=unary_union([footprint(p['position'],p['heading'],p['size'][0],p['size'][2]).buffer(.5) for p in props])
     support=road.union(walk)
     endpoints=walk.buffer(-.42)
-    picked=[]
+    picked=[];picked_by_route={0:[],1:[]}
     # Use existing authored sidewalk starts; keep the counterpart as a normal walker.
-    for a in walkers:
+    # The shorter alternate branch is authored first, then each street applies
+    # its own geometric separation. Runtime admission keeps one global clock.
+    for a in sorted(walkers,key=lambda p:-p['route']):
         if len(picked)>=budget:break
-        if any(abs(a['station']-s)<240 for s in picked):continue
+        if any(abs(a['station']-s)<180 for s in picked_by_route[a['route']]):continue
         for b in walkers:
-            if a is b or a['route']!=b['route'] or a['station']!=b['station']:continue
+            if a is b or a['route']!=b['route'] or abs(a['station']-b['station'])>16:continue
             line=LineString([a['position'],b['position']])
             if not 12<=line.length<=26:continue
             if not endpoints.covers(Point(a['position'])) or not endpoints.covers(Point(b['position'])):continue
@@ -85,5 +92,5 @@ def crossing_routes(walkers,road,walk,props,budget=24):
             if not support.covers(corridor) or corridor.intersects(occupied):continue
             if line.intersection(road).length<6:continue
             a['crossing_end']=b['position'][:]
-            picked.append(a['station']);break
+            picked.append(a['station']);picked_by_route[a['route']].append(a['station']);break
     return picked

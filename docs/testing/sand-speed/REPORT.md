@@ -43,7 +43,7 @@ coasting bike near rest. Existing model differential/recovery tests are unchange
 
 ## Native evidence and regression checks
 
-The pre-integration behavior tree passed 603 workspace tests (one existing
+The pre-integration source tree passed 603 workspace tests (one existing
 ignored soak), formatting, strict Clippy, debug/release builds, audit and roadmap
 checks. The native fixture initially queried ground in the same Update that
 left Garage, before the physics broad phase was ready. [Initial failure](native/initial-readiness-failure.txt)
@@ -75,7 +75,28 @@ acceptance and steep-uphill parking-reverse coverage remain open.
 
 PR35's measured defaults and exact terrain cache are retained. Shared sand tint
 is evaluated per vertex after the cached/uncached geometry path; vertices,
-indices and collision remain unchanged. Integrated checks: pending completion.
+indices and collision remain unchanged. The branch also incorporates main
+`f28ba560` (guardrails, civilian/racer AI, movement and denser Metropolis content).
+On source commit `3e22ae81`, `cargo fmt --all --check`, strict all-target
+Clippy, 656 locked workspace tests (two existing ignored), locked debug/release
+builds, `tools/audit.py`, progress indexing and five roadmap tests passed.
+Only documentation, captured receipts and the runner's output directory changed
+after that source build; the runtime code and locked dependencies did not.
+
+The final release binary SHA256 is
+`2eeea11c7edb3cb2f5bd90a66c36d8e4bb5afe2c1b2ffcc4b5d41f266dd1b462`.
+All four native cases passed on that same binary. [Hills surface](final-native/surface-hills/receipt.json)
+measured supported asphalt at 25.822 m/s and sand at 4.564 m/s after 240 active
+ticks; [Metropolis surface](final-native/surface-metro/receipt.json) retained
+supported asphalt and grass without invented sand. [Current anatomy](final-native/recovery-anatomy/receipt.json)
+and [eleven-body baseline](final-native/recovery-baseline/receipt.json) both
+completed two remounts with zero exceptional rescues. The
+[native runner](../../../tools/run_sand_checks.py) isolates settings and saves,
+checks generated JSON, and writes full local output under `output/testing/issue29-native`.
+Frozen compact [JSON and text receipts](final-native) and the
+[Hills sand view](final-native/hills-sand.png) are retained. These are native
+functional checks, not an objective frame-time measurement or human-feel approval.
+Steep-uphill parking reverse and broader hardware acceptance remain open.
 
 Research: local current track/handling/terrain implementations and locked Bevy
 0.17.3/Rapier 0.32.0 were inspected. Requested engine-neutral level-design,

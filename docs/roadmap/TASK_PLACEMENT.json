@@ -6,6 +6,8 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RFU-MOVE-04",
+        "RFU-MOVE-03",
         "CITY-ACTIVITY-02",
         "RACE-TRIM-01",
         "SETTINGS-01",
@@ -227,7 +229,11 @@
         "UI-01",
         "UI-03",
         "UI-04",
-        "RIVAL-WEAPONS-01"
+        "RIVAL-WEAPONS-01",
+        "RFU-AI-03",
+        "RFU-AI-04",
+        "RFU-AI-05",
+        "RFU-AI-07"
       ]
     },
     "01": {
@@ -238,6 +244,11 @@
         "RFU-SURF-03",
         "RFU-PERF-01",
         "RFU-PERF-04",
+
+        "RFU-AI-01",
+        "RFU-AI-02",
+        "RFU-AI-06",
+        "RFU-AI-08",
         "FOOT-SPAWN-01",
         "AI-11",
         "CRASHREF-004",
@@ -269,7 +280,9 @@
         "P04-014",
         "P06-006",
         "CAST-AI-01",
-        "AI-QUEUE-02"
+        "AI-QUEUE-02",
+        "RFU-RAIL-01",
+        "RFU-RAIL-02"
       ]
     },
     "02": {
@@ -295,6 +308,10 @@
     "03": {
       "title": "Animation B \u2014 interpolation, terrain locomotion and active recovery",
       "task_ids": [
+        "RFU-MOVE-05",
+        "RFU-MOVE-06",
+        "RFU-MOVE-02",
+        "RFU-MOVE-01",
         "COMBAT-FEEL-01",
         "RAG-B-01",
         "RAG-B-02",
@@ -374,12 +391,22 @@
         "V2-05-003",
         "V2-05-004",
         "V2-05-005",
-        "ENV-004"
+        "ENV-004",
+        "RFU-RAIL-03",
+        "RFU-RAIL-04"
       ]
     },
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "RFU-CITY-01",
+        "RFU-CITY-02",
+        "RFU-CITY-03",
+        "RFU-CITY-04",
+        "RFU-TRAF-01",
+        "RFU-TRAF-02",
+        "RFU-TRAF-03",
+        "RFU-TRAF-04",
         "HILLS-11",
         "SKY-SUN-01",
         "CROP-TRAIL-01",
@@ -404,7 +431,8 @@
         "HILLS-07",
         "HILLS-08",
         "HILLS-09",
-        "HILLS-10"
+        "HILLS-10",
+        "RFU-RAIL-05"
       ]
     },
     "07": {
@@ -532,6 +560,9 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "RFU-FX-01",
+        "RFU-FX-02",
+        "RFU-FX-03",
         "UI-COURSE-01",
         "SHADOW-RANGE-01",
         "UI-RETRO-BG-01",
@@ -562,6 +593,8 @@
     "16": {
       "title": "QA, performance, platform, dependency and release gates",
       "task_ids": [
+        "RFU-PERF-06",
+        "RFU-PERF-07",
         "RFU-PERF-02",
         "RFU-PERF-03",
         "RFU-PERF-05",

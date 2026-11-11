@@ -1191,6 +1191,16 @@ advertise configuration wins. Native tests must disable live router mapping;
 mocked lifecycle tests cannot certify any router or external Internet connection.
 
 
+### 2026-11-10 issue #28 skills/source review
+
+Read local skills from chrisgliddon/bevy-skills (MIT): bevy router, animation,
+input actions; gamedev-skills/awesome-gamedev-agent-skills (Apache-2.0):
+game-feel and input-systems. Only engine-neutral visual/physics separation,
+continuous motion and buffered action guidance applied. The collection targets
+Bevy0.20; current lockfile pins0.17.3/Rapier0.32. Local installed bevy_mesh0.17.3
+Mesh::with_computed_normals inspected for the original native terrain fixture.
+No dependency migration or external source/media copying. ADR143 records scope.
+
 ## 2026-11-10 — Issue25 performance investigation (ADR140)
 
 R08 Bevy: inspected installed0.17.3 diagnostics, lightmap and schedule executor

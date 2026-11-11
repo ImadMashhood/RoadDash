@@ -53,7 +53,9 @@ def augment(data,paths,records,road,walk,triangulate):
         parts=list(polygons(clipped))
         assert parts,r['id']
         assert clipped.area>poly.area*.65,(r['id'],clipped.area/poly.area)
-        r['shape']=triangulate(clipped);updated.append(clipped)
+        try:r['shape']=triangulate(clipped)
+        except AssertionError as exc:raise AssertionError(f"failed sidewalk frontage triangulation: {r['id']}") from exc
+        updated.append(clipped)
     report.update(sidewalk_area_before=old_area,sidewalk_area_after=walk.area,landward_offset_m=offset,width_area_ratio=walk.area/old_area,setback_buildings=sum(a.area-b.area>.001 for a,b in zip(originals,updated)))
     obstacles=unary_union(updated)
     sites=[]

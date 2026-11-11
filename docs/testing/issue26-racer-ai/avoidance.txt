@@ -1,0 +1,19 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-26)
+    Finished `test` profile [optimized + debuginfo] target(s) in 38.47s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadRash/target/debug/deps/road_dash-6169320fe37c13bf)
+
+running 3 tests
+crossing mover=false braking=true resumed=true lowest_speed=0.6826038 min_distance=13.888903 progress=115.45056
+AI traffic width=3 car_speed=0 rider_s=104.5 car_s=110 rider_speed=0.000000025536485 min_distance=5.46754 braking=true
+crossing mover=true braking=true resumed=true lowest_speed=19.96086 min_distance=3.1391943 progress=271.8337
+test game::tests::predictive_ai_yields_to_moving_crossing_cars_and_resumes ... ok
+AI field straight_control=true impacted_riders=4 minimum_pair_distance=0.041026518
+AI traffic width=3 car_speed=12 rider_s=215.78992 car_s=229.99817 rider_speed=13.018759 min_distance=14.121396 braking=true
+AI field straight_control=false impacted_riders=0 minimum_pair_distance=4.5672417
+test game::tests::predictive_ai_field_queues_without_car_or_rear_end_impacts ... ok
+AI traffic width=6.5 car_speed=0 rider_s=458.9508 car_s=110 rider_speed=48.40887 min_distance=3.443868 braking=false
+test game::tests::predictive_ai_traffic_uses_real_dynamic_braking_and_passing ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 421 filtered out; finished in 1.75s

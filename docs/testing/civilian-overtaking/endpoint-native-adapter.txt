@@ -1,0 +1,11 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27/crates/rr_core)
+   Compiling rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27/crates/rr_content)
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 00s
+     Running unittests src/lib.rs (target/shared-snapshot/debug/deps/road_dash-6169320fe37c13bf)
+
+running 1 test
+test game::civilian_tests::civilian_does_not_begin_pass_into_open_route_endpoint ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 428 filtered out; finished in 0.58s
+

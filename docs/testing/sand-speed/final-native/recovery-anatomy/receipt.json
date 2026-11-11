@@ -1,0 +1,14 @@
+{
+  "case": "recovery-anatomy",
+  "track": "hills",
+  "route": "0",
+  "flags": [
+    "--smoke-test"
+  ],
+  "binary_sha256": "2eeea11c7edb3cb2f5bd90a66c36d8e4bb5afe2c1b2ffcc4b5d41f266dd1b462",
+  "elapsed_wall_s": 37.88276030300767,
+  "exit_code": 0,
+  "output_present": true,
+  "passed": true,
+  "limits": "Functional native check, not a frame-time or human-feel measurement."
+}

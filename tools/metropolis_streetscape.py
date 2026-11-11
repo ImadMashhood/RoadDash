@@ -61,7 +61,7 @@ def furniture(data, paths, walk):
                 def pos(along=0):return (x+dz*side*6.5+dx*along,z-dx*side*6.5+dz*along)
                 seed=index+(1 if side>0 else 0)
                 if seed%2==0:add('street_lamp',pos(-9),yaw,(.5,5.2,.5))
-                if seed%4==0:
+                if seed%3==0:
                     add('broadleaf',pos(),yaw,(2.8,6.5,2.8),.36,.36)
                     add('flower_planter',pos(5),yaw,(.7,.7,1.1))
                 elif seed%5==0:
@@ -74,7 +74,11 @@ def furniture(data, paths, walk):
     # nearby secondary streets rather than placing it in live traffic lanes.
     clear_shift=1.4
     primary=unary_union([LineString([(p[0],p[2]) for p in path['points']]) for path in paths])
-    kinds=[('broadleaf',(2.8,6.5,2.8)),('bench',(1.8,.95,.65)),('flower_planter',(.7,.7,1.1)),('news_boxes',(.65,1.1,.65)),('mailboxes',(.65,1.0,.6)),('utility_box',(.65,1.1,.5)),('recycling_pair',(.65,.9,.65))]
+    kinds_by_zone=[
+        [('broadleaf',(2.8,6.5,2.8)),('bench',(1.8,.95,.65)),('mailboxes',(.65,1.0,.6)),('utility_box',(.65,1.1,.5)),('hydrant',(.45,.8,.45)),('parking_meter',(.25,1.25,.3))],
+        [('broadleaf',(2.8,6.5,2.8)),('flower_planter',(.7,.7,1.1)),('news_boxes',(.65,1.1,.65)),('callbox',(.45,1.5,.45)),('street_bin',(.55,.85,.55)),('bus_sign',(.45,2.5,.3))],
+        [('broadleaf',(2.8,6.5,2.8)),('flower_planter',(.7,.7,1.1)),('bench',(1.8,.95,.65)),('recycling_pair',(.65,.9,.65)),('news_boxes',(.65,1.1,.65)),('bus_sign',(.45,2.5,.3))],
+    ]
     before=len(result)
     candidates=[]
     for street in sorted(data.get('streets',[]),key=lambda st:st.get('id','')):
@@ -90,10 +94,15 @@ def furniture(data, paths, walk):
                 candidates.append((p,yaw,dx,dz,side))
     # Spend the bounded secondary-street budget across the full city, rather
     # than exhausting it in source street order near the first neighborhoods.
-    from metropolis_population import balanced
+    from metropolis_population import balanced,station,route_lines
+    route_geometry=route_lines(paths)
+    zone_counts=[0,0,0]
     for p,yaw,dx,dz,side in balanced(candidates,paths,lambda c:c[0]):
         if len(result)-before>=450:break
-        kind,size=kinds[(len(result)-before)%len(kinds)]
+        progress=station(p,paths,route_geometry)
+        zone=0 if progress<5500 else 1 if progress<8500 else 2
+        kind,size=kinds_by_zone[zone][zone_counts[zone]%len(kinds_by_zone[zone])]
+        zone_counts[zone]+=1
         add(kind,p,yaw+side*math.pi/2 if kind=='bench' else yaw,size,.36 if kind=='broadleaf' else None,.36 if kind=='broadleaf' else None)
     return result
 

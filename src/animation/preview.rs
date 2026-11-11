@@ -139,18 +139,47 @@ fn setup(
     };
     if std::env::var_os("ROADDASH_GAIT_REVIEW").is_some() {
         use bevy_rapier3d::prelude::*;
-        commands.spawn((
-            RigidBody::Fixed,
-            Collider::cuboid(20., 0.1, 100.),
-            Transform::from_xyz(0., -0.1, 70.),
-        ));
-        for n in -10..180 {
+        let terrain = std::env::var("ROADDASH_GAIT_TERRAIN").unwrap_or_default();
+        let mut vertices = Vec::new();
+        let mut triangles = Vec::new();
+        for n in -20..180 {
+            let z = n as f32 * 0.5;
+            let base = vertices.len() as u32;
+            for (x, z) in [(-5., z), (-5., z + 0.5), (5., z + 0.5), (5., z)] {
+                vertices.push(Vec3::new(x, gait_height(&terrain, x, z), z));
+            }
+            triangles.extend([[base, base + 1, base + 2], [base, base + 2, base + 3]]);
             commands.spawn((
                 Mesh3d(meshes.add(Cuboid::new(10., 0.01, 0.025))),
                 MeshMaterial3d(white.clone()),
-                Transform::from_xyz(0., 0.005, n as f32 * 0.5),
+                Transform::from_xyz(0., gait_height(&terrain, 0., z) + 0.006, z).with_rotation(
+                    Quat::from_rotation_z(if terrain == "cross" {
+                        0.2f32.atan()
+                    } else {
+                        0.
+                    }),
+                ),
             ));
         }
+        let mesh = Mesh::new(
+            bevy::mesh::PrimitiveTopology::TriangleList,
+            bevy::asset::RenderAssetUsages::default(),
+        )
+        .with_inserted_attribute(
+            Mesh::ATTRIBUTE_POSITION,
+            vertices.iter().map(|v| v.to_array()).collect::<Vec<_>>(),
+        )
+        .with_inserted_indices(bevy::mesh::Indices::U32(
+            triangles.iter().flatten().copied().collect(),
+        ))
+        .with_computed_normals();
+        commands.spawn((
+            RigidBody::Fixed,
+            Collider::trimesh(vertices, triangles).expect("gait terrain"),
+            Mesh3d(meshes.add(mesh)),
+            MeshMaterial3d(dark.clone()),
+            Transform::default(),
+        ));
     }
     let police = std::env::args().any(|a| a == "--police-art-review");
     let palette = if police { models::OFFICER_PALETTE } else { 4 };
@@ -175,6 +204,11 @@ fn setup(
     commands.spawn((
         Mesh3d(meshes.add(Cuboid::new(25.0, 0.1, 25.0))),
         MeshMaterial3d(dark),
+        if std::env::var_os("ROADDASH_GAIT_REVIEW").is_some() {
+            Visibility::Hidden
+        } else {
+            Visibility::Visible
+        },
         Transform::from_xyz(0.0, -0.08, 0.0),
     ));
     commands.spawn((
@@ -260,7 +294,11 @@ fn drive(
         rec.walk_velocity = Vec3::Z * speed;
         rec.walk_distance += speed * time.delta_secs();
         if state.gait {
-            state.position += Vec3::Z * speed * time.delta_secs();
+            let previous = state.position;
+            state.position.z += speed * time.delta_secs();
+            let terrain = std::env::var("ROADDASH_GAIT_TERRAIN").unwrap_or_default();
+            state.position.y = gait_height(&terrain, state.position.x, state.position.z);
+            rec.walk_velocity = (state.position - previous) / time.delta_secs();
             if let Some(runner) = rec.runner {
                 bodies.get_mut(runner).unwrap().translation = state.position + Vec3::Y * 0.95;
             }
@@ -308,6 +346,20 @@ fn drive(
         }
     }
 }
+#[derive(bevy::ecs::system::SystemParam)]
+struct ReviewQueries<'w, 's> {
+    sockets: Query<
+        'w,
+        's,
+        (
+            &'static crate::models::hands::HandSocket,
+            &'static GlobalTransform,
+        ),
+    >,
+    gloves: Query<'w, 's, &'static bevy::mesh::morph::MeshMorphWeights>,
+    pending: Query<'w, 's, (), With<Screenshot>>,
+}
+
 fn review(
     mut commands: Commands,
     mut state: ResMut<Review>,
@@ -315,10 +367,7 @@ fn review(
     mut camera: Query<&mut Transform, With<Camera3d>>,
     mut labels: Query<&mut Text, With<Label>>,
     mut exit: MessageWriter<AppExit>,
-    (sockets, gloves): (
-        Query<(&crate::models::hands::HandSocket, &GlobalTransform)>,
-        Query<&bevy::mesh::morph::MeshMorphWeights>,
-    ),
+    review_queries: ReviewQueries,
 ) {
     state.frame += 1;
     if state.smoke && state.gait {
@@ -366,7 +415,7 @@ fn review(
     }
     if state.hands {
         let side = usize::from(state.mode == 5 || state.mode == 12);
-        if let Some((_, hand)) = sockets.iter().find(|(s, _)| {
+        if let Some((_, hand)) = review_queries.sockets.iter().find(|(s, _)| {
             !s.weapon && s.side == side && s.seated != (8..=10).contains(&state.mode)
         }) {
             let hand = hand.compute_transform();
@@ -380,7 +429,7 @@ fn review(
                     .looking_at(hand.translation, hand.rotation * Vec3::Y);
             }
         }
-        for weights in &gloves {
+        for weights in &review_queries.gloves {
             let w = weights.weights();
             state.seen_shapes[0] |= state.mode >= 8 && w.iter().all(|w| w.abs() < 0.001);
             state.seen_shapes[1] |= state.mode < 4 && w[0] > 0.95 && w[2] > 0.95;
@@ -400,7 +449,7 @@ fn review(
             ));
         }
     }
-    if state.gait && state.frame >= 150 && state.frame.is_multiple_of(4) {
+    if state.gait && (150..750).contains(&state.frame) && state.frame.is_multiple_of(4) {
         commands
             .spawn(Screenshot::primary_window())
             .observe(save_to_disk(format!(
@@ -408,7 +457,11 @@ fn review(
                 state.frame
             )));
     }
-    if state.smoke && state.frame > if state.hands { 90 } else { 120 } && state.frame % 60 == 50 {
+    if state.smoke
+        && (!state.gait || state.frame < 750)
+        && state.frame > if state.hands { 90 } else { 120 }
+        && state.frame % 60 == 50
+    {
         commands
             .spawn(Screenshot::primary_window())
             .observe(save_to_disk(format!(
@@ -429,8 +482,10 @@ fn review(
             )));
     }
     if keys.just_pressed(KeyCode::Escape)
-        || (state.gait && state.frame >= 750)
-        || (state.smoke && state.frame >= 90 + LABELS.len() as u32 * 180)
+        || (state.gait && state.frame >= 800 && review_queries.pending.is_empty())
+        || (state.smoke
+            && state.frame >= 90 + LABELS.len() as u32 * 180
+            && review_queries.pending.is_empty())
     {
         if state.hands && state.smoke {
             assert!(
@@ -473,5 +528,16 @@ fn hand_keyframes(state: Res<Review>, library: Res<Library>, mut animators: Quer
     for mut a in &mut animators {
         a.current = library.key(key);
         a.previous = a.current;
+    }
+}
+
+// Original review-only terrain. Production maps/collision are unchanged.
+fn gait_height(terrain: &str, x: f32, z: f32) -> f32 {
+    match terrain {
+        "up" => z * 0.25,
+        "down" => -z * 0.25,
+        "cross" => x * 0.2,
+        "uneven" => (z * 0.8).sin() * 0.18 + (z * 1.7).sin() * 0.035,
+        _ => 0.,
     }
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "case": 0,
+    "grounded": [
+      true,
+      true
+    ],
+    "lane": 2.3821418285369873,
+    "limits": "Actual authored terrain; native slopes differ. Matched-grade comparisons are in the adapter regression. Not a performance or human-feel approval.",
+    "position": [
+      -776.1738891601562,
+      13.556943893432617,
+      -1578.915771484375
+    ],
+    "speed_mps": 26.104528427124023,
+    "station": 1248.9010009765625,
+    "surface": "asphalt",
+    "ticks": 240
+  },
+  {
+    "case": 1,
+    "grounded": [
+      true,
+      true
+    ],
+    "lane": 12.31245231628418,
+    "limits": "Actual authored terrain; native slopes differ. Matched-grade comparisons are in the adapter regression. Not a performance or human-feel approval.",
+    "position": [
+      -781.0873413085938,
+      13.280948638916016,
+      -1570.2061767578125
+    ],
+    "speed_mps": 25.519868850708008,
+    "station": 1247.7225341796875,
+    "surface": "grass",
+    "ticks": 240
+  }
+]
