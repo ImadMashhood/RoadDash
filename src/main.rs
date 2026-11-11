@@ -230,6 +230,7 @@ fn main() {
             || a == "--actor-skin-survey"
             || a == "--world-survey"
             || a == "--lod-survey"
+            || a == "--map-fx-survey"
     }))
     .run();
     // Native test fixtures report failed acceptance via AppExit. Preserve that

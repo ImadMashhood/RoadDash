@@ -236,6 +236,15 @@ pub fn setup_world(
     } else {
         None
     };
+    if server.is_some() {
+        crate::map_fx::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            images.as_deref_mut(),
+            &track,
+        );
+    }
     if track.is_hills() {
         crate::world_gen::hills::spawn(
             &mut commands,

@@ -294,6 +294,8 @@
     "03": {
       "title": "Animation B \u2014 interpolation, terrain locomotion and active recovery",
       "task_ids": [
+        "RFU-MOVE-05",
+        "RFU-MOVE-06",
         "RFU-MOVE-02",
         "RFU-MOVE-01",
         "COMBAT-FEEL-01",
@@ -381,6 +383,10 @@
     "06": {
       "title": "World C \u2014 NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "RFU-CITY-01",
+        "RFU-CITY-02",
+        "RFU-CITY-03",
+        "RFU-CITY-04",
         "RFU-TRAF-01",
         "RFU-TRAF-02",
         "RFU-TRAF-03",
@@ -537,6 +543,10 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "RFU-FX-01",
+        "RFU-FX-02",
+        "RFU-FX-03",
+        "RFU-FX-04",
         "UI-COURSE-01",
         "SHADOW-RANGE-01",
         "UI-RETRO-BG-01",
@@ -567,6 +577,8 @@
     "16": {
       "title": "QA, performance, platform, dependency and release gates",
       "task_ids": [
+        "RFU-PERF-06",
+        "RFU-PERF-07",
         "RFU-PERF-02",
         "RFU-PERF-03",
         "RFU-PERF-05",

@@ -170,7 +170,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**224 verified tasks complete; 281 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**224 verified tasks complete; 293 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -191,10 +191,10 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [00](#part-00) | Completed and verified foundations | 224 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 34 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
-| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 29 open |
+| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 10 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 29 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 33 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -203,8 +203,8 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 11 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 25 open |
-| [16](#part-16) | QA, performance, platform, dependency and release gates | 24 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 29 open |
+| [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
 
@@ -800,6 +800,10 @@ First study every original rider animation category, use sprites as reference ke
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
 
+- [ ] **RFU-MOVE-05** Set the urgent run hand roll so both thumbs face the travel direction and palms do not stay flat toward the rear. Reason: user visual playtest of issue #28; part:03; dependencies: RFU-MOVE-01 and authoring bind; acceptance: anatomically readable bilateral swing/fist orientation at run speed while stopped pose remains neutral; verification: local hand-axis pose assertions and close native front/side/rear gait frames on flat and uneven ground. [Issue](https://github.com/ImadMashhood/RoadDash/issues/41).
+- [ ] **RFU-MOVE-06** Keep the running hand correction through terrain IK and recovery transitions. Reason: user reports the motion looks awkward on changed elevation; part:03; dependencies: RFU-MOVE-02/05; acceptance: no wrist pops, hand/body disconnection or physics/control change across run, stop, slope and remount; verification: pose continuity, differential rig/recovery tests and native gait review. [Issue](https://github.com/ImadMashhood/RoadDash/issues/41).
+
+
 
 - [ ] **RFU-MOVE-02** Align recovery feet/body over slopes, crests and uneven elevations. Reason: issue #28 terrain-contact defects; part: 03; dependencies: RFU-MOVE-01 and existing physical support locks; acceptance: bounded swing clearance, stable stance, continuous transitions and no physical rig changes; verification: translated up/down/cross-slope contact tests, native uneven-ground/manual/automatic/remount captures and user review. [Evidence](docs/testing/issue-28-movement/README.md).
 
@@ -954,6 +958,12 @@ Repeat the reference → original textures/models → procedural placement → c
 <a id="part-06"></a>
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **RFU-CITY-01** Increase Metropolis urban pedestrian population and purposeful crosswalk use. Reason: city still feels sparse; part:06; dependencies: CITY-ACTIVITY-02, patrol authoring and RFU-PERF-06; acceptance: measured higher resident count than384, more completed grounded crossings without crowd jams, rural counts and solid interactions preserved; verification: generated census, crossing progress tests, both-route native surveys and matched frame profiles. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+- [ ] **RFU-CITY-02** Widen usable Metropolis sidewalks without shrinking the approved roadway. Reason: current walking bands look narrow; part:06 coordinating04; dependencies: ROAD-WALK-01, SIDEWALK-01 and RFU-CITY-01; acceptance: continuous capsule-clear walking routes, retained4/3/4 lanes and closed building envelopes/parking; verification: authored right-of-way geometry, physical two-way foot crossings and native street views. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+- [ ] **RFU-CITY-03** Line suitable Metropolis sidewalks with more trees. Reason: avenues remain bare; part:06 coordinating05; dependencies: RFU-CITY-02 and existing vegetation/collision; acceptance: varied bounded supported tree placement with pedestrian clearance, no doorway/crosswalk blockage and distance LOD; verification: placement/collision census, close/far native views and render cost. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+- [ ] **RFU-CITY-04** Broaden Metropolis curb and district prop variety. Reason: repeated furniture makes western/city blocks look plain; part:06 coordinating05; dependencies: RFU-CITY-02/03, prop catalog and RFU-PERF-06; acceptance: original varied district-specific props with solid/support-aware placement and readable crossing/doorway space; verification: source/rights audit, placed-geometry census, native views and frame cost. [Issue](https://github.com/ImadMashhood/RoadDash/issues/43).
+
 
 - [ ] **RFU-TRAF-01** Pass sustained slower civilian leaders. Reason: issue27 reports indefinite tractor/truck queues; part:06; dependencies:P08-005 and shared traffic support; acceptance: tractors remain slowest, semis next, cars faster, with eventual passing in an opening; verification: deterministic core/native multi-follower runs on Hills/Metropolis. Evidence: [civilian overtaking](docs/testing/civilian-overtaking/REPORT.md): native selected passes, full-fleet progress and corrected endpoint admission verified; human full-course acceptance remains open.
 - [ ] **RFU-TRAF-02** Reserve opposing-lane passes using vehicle length, relative speed and merge room. Reason: opposing large traffic must prevent unsafe completion; part:06; dependencies:RFU-TRAF-01; acceptance: both directions reject blocked horizons and retain terrain/bridge support; verification: oncoming-car/long-trailer fixtures and native motion/support checks.
@@ -1181,6 +1191,12 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 
 ### Part 15 — Presentation, audio, UI and accessibility
 
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original rising heat-band cue is implemented; screen-space refraction and native visual/GPU acceptance remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: bounded deterministic gust sprites are implemented; native temporal and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-03** Add map-appropriate city shader/effects such as subtle vent steam, depth haze or a wet-road variation. Reason: requested city visual character; part:15; dependencies: RFU-PERF-06, RFU-SKY-01 and MAT-03; acceptance: coherent Metropolis/legacy-city presentation with restrained legibility, matching near/far material identity and opt-in quality budgets; verification: native views, source hash/provenance, GPU/frame comparison and visual review. Partial: city vent-steam sprites are implemented; native and GPU review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-04** Add a restrained original effect to Valley so every existing map has distinct air movement. Reason: issue #42 requests visual effects on every map, including Valley; part:15; dependencies: RFU-FX-01–03 and Valley route/content; acceptance: quality-controlled, off-road air motes remain legible and presentation-only across the full route; verification: native Valley before/after and temporal views, original source audit and CPU/GPU frame comparison. Partial: fixed-budget motes are implemented; native visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+
+
 - [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: two prominent course choices, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.
 
 - [ ] **SHADOW-RANGE-01** Extend readable city shadow coverage. Reason: user requests shadows farther through the city; part:15; dependencies:P15-004 and existing facade lifecycle; acceptance: broader bounded cascade coverage with preserved close contacts, no collision or facade-LOD regression, measured cost and a baseline comparison; verification: cascade policy tests, native city near/far views and matched timing.
@@ -1215,6 +1231,10 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-16"></a>
 
 ### Part 16 — QA, performance, platform, dependency and release gates
+
+- [ ] **RFU-PERF-06** Compare four independent performance implementations on identical Hills/Metropolis baselines. Reason: user requests four fresh agents and measured selection; part:16; dependencies: RFU-PERF-02 and content integration; acceptance: same source/assets/seed/settings/hardware, clean repeated cold/warm runs, raw p50/p95/p99/max, readiness, memory and supported GPU samples, predeclared score and visual/correctness veto; verification: frozen binary provenance, contaminant-free receipts and four candidate reports. [Issue](https://github.com/ImadMashhood/RoadDash/issues/40).
+- [ ] **RFU-PERF-07** Integrate only the strongest verified performance candidate. Reason: user requests the winning gain; part:16; dependencies: RFU-PERF-06; acceptance: winner rerun on combined content, no repeatable >5% p95 regression on either map, preserved gameplay/collision/visuals and documented losers; verification: required Rust checks/audit, both-map native surveys/recovery and matched before/after profiles. [Issue](https://github.com/ImadMashhood/RoadDash/issues/40).
+
 
 - [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. Existing60FPS and broader hardware gates remain open.
 - [ ] **RFU-PERF-03** Evaluate baked/hybrid stationary lighting. Reason: issue25 proposes baking as a candidate; part:16; dependencies: RFU-PERF-02 and MAT-03; acceptance: compare shadow cost, lightmap memory/load, visual quality and procedural-content compatibility before migration; verification: primary API/source review, measured GPU passes and documented tradeoffs, with no assumed FPS benefit or unapproved content replacement.
