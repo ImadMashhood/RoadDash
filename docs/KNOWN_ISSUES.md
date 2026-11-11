@@ -1221,6 +1221,15 @@ full-race combat/traffic coverage, cold-machine loading and Windows/other hardwa
 acceptance remain open. Final combined content/engine measurements are required
 before treating local branch improvements as overall performance acceptance.
 
+ADR157 follow-up: conservative Hills/Hills-east projection bounds reduce frozen
+warm required-assets-ready from25.86s to8.25s without a changed structural
+survey. Combined-main native surveys pass, but no paired combined-source or
+cold-boot control exists. Hills raw frame p95 remains about20.4ms and Metro
+about28.1ms in the final combined fixture, both above16.7ms. Metro physics
+and render scheduling need separate measurement and a justified change; this
+loading pass is not a full-course or user-hardware FPS solution. See
+testing/issue25-projection/REPORT.md.
+
 - ADR140 verification: unchanged main and initial PR CI showed208/240sleeping
   bodies at900updates despite all15controllers Resting with tiny residual motion.
   The same-fixture test retains15s finite/body/resting/anchor and strict low-motion

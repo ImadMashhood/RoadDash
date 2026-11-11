@@ -4,10 +4,17 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
+import run_performance_profiles
 from summarize_performance import summarize
 
 
 class FrameEvidence(unittest.TestCase):
+    def test_process_monitor_ignores_defunct_cargo_and_paused_indexer(self):
+        rows = ' 10 cargo <defunct> ZN\n 20 baloo_file_extr TNl\n 30 rustc R\n'
+        with patch.object(run_performance_profiles.subprocess, 'check_output', return_value=rows):
+            self.assertEqual(run_performance_profiles.processes(), [(30, 'rustc')])
+
     def report(self, raw=None):
         sample = dict(schema_version=1, frames=100, fixed_steps=100,
                       wall_p95_ms=20., racing=True)

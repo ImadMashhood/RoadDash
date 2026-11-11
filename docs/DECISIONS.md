@@ -4216,3 +4216,31 @@ surveys reduced sampled zero-speed Riding/zero-plan points from20 to14 and
 the prior queue head cleared the junction, but rider1/11 stops persisted.
 RFU-AI-01/02/06/08 and human/full-race/performance gates remain open. Evidence:
 testing/issue26-racer-ai/native-queue-3040-before and -after.
+
+## ADR157 — Index Hills projection blocks without changing the other courses (2026-11-11)
+
+Issue25 loading follow-up on pinned Bevy0.17.3/Rapier adapter0.32.0. A frozen
+`47b7b8ed` native profile attributed 15.5s of Hills world setup to countryside
+placement. Its dense grass candidate loop invokes nearest-route projection,
+which scanned the full approximately1.25m centerline polyline. Build 64-segment
+XZ bounds after final Hills/Hills-east route import and prune only blocks whose
+conservative lower distance cannot beat a known path-point upper bound. Retain
+the original per-segment float math, visit surviving segments in original order,
+and preserve the negative starting apron. Do not change terrain/collision,
+physical rigs, save fields, controls or rendering. An independent full-scan
+oracle compares all three output bit patterns on sampled path, knots, wrong
+hints, random off-route points and aprons.
+
+The first all-course index trial cut Hills required-assets-ready 25.86→8.24s
+and returned to25.87s on its frozen control. It did not improve frame p95;
+Metropolis candidate p50 was higher in one run. Scope the production index to
+Hills and Hills east, leaving Metropolis/Valley/City on their original scan.
+The scoped frozen run retained 8.25s Hills readiness and structural survey
+parity, while Metropolis p50/p95 fell within the two control runs. The later
+combined main`0f54ff7c` native survey passed both courses and showed similar
+Hills loading, but has no paired combined-source control. Neither it nor the
+asynchronous GPU pass samples certify a 60FPS gain. PERF-08/RFU-PERF-01/02/04,
+RFU-PERF-06/07 and full cold/hardware/recovery gates remain open; investigate
+Metropolis physics and render scheduling separately. See
+testing/issue25-projection/REPORT.md. No third-party code/media or dependency
+migration was introduced; prior lightmap discussion remains evaluation only.

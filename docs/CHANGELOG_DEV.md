@@ -1,5 +1,18 @@
 # Development history
 
+## 2026-11-11 — Hills projection loading pass (ADR157)
+
+After the four issue40 candidates did not establish a frame-time winner,
+profiled the merged Hills/Metropolis source and found 15.5s in Hills countryside
+construction. Added conservative 64-segment route bounds for Hills/Hills east
+only, preserving the exact projection math and original Metropolis/legacy path.
+Frozen control→candidate→control Hills readiness was25.862→8.242→25.867s;
+the final scoped binary measured8.246s, with matching structural survey fields.
+Combined map-FX/AI main passed671 workspace tests, strict checks/builds and
+both native course surveys. The16.7ms p95 frame goal, full cold/hardware and
+final-combined recovery gates remain open; no FPS win or new asset/license
+clearance is claimed. Evidence: testing/issue25-projection/REPORT.md.
+
 ## 2026-11-11 — Bounded map atmosphere candidate (ADR156, issue #42)
 
 Added original procedural transparent air cues on all four courses: terrain-seated feathered dust and rising heat bands on Hills, curb steam in Metropolis and City Run, and quiet Valley motes. A quality switch bounds the pools and disables them entirely at `ROADDASH_MAP_FX=0`; one immutable material per kind avoids per-frame uploads. The user rejected an initial thin sand stream, so the native-centered chase review drove a denser gray-brown translucent billow with the same pool count. The latest paired Hills view shows scenery through the dust; City Run shows two curb wisps after replacing an earlier round facade glow. Heat and Metropolis steam remain subtle. Fixed physics, Sand surface classification, saves and controls are unchanged. RFU-FX-01–04 and GPU/full-course/art acceptance remain open. See testing/issue-42-map-fx/REPORT.md for binary hashes, failed stages and final checks.

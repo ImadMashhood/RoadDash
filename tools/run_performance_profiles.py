@@ -18,8 +18,9 @@ from summarize_performance import summarize
 def processes(exclude=()):
     rows = subprocess.check_output(['ps', '-eo', 'pid=,comm=,stat='], text=True)
     return [(int(pid), name) for row in rows.splitlines()
-            for pid, name, state in [row.strip().split(None, 2)]
-            if int(pid) not in exclude and
+            for fields in [row.strip().split()]
+            for pid, name, state in [(fields[0], fields[1], fields[-1])]
+            if int(pid) not in exclude and not state.startswith('Z') and
             (name in ('cargo', 'rustc', 'clippy-driver', 'road-dash') or name.startswith(('road-dash', 'road_dash-', 'rr_core-', 'rr_content-', 'issue25-')) or
              (name == 'baloo_file_extr' and not state.startswith('T')) or
              (name == 'baloo_file' and state.startswith('R')))]
