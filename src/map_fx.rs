@@ -35,7 +35,7 @@ pub struct MapFxSprite {
     phase: f32,
 }
 
-#[derive(Resource, Default)]
+#[derive(Resource)]
 pub struct MapFxState;
 
 /// The environment variable is deliberately read only during construction.
@@ -185,7 +185,9 @@ pub fn spawn(
             let (_, rotation) = track.sample_route(route, station, 0.);
             let side = if i % 2 == 0 { 1. } else { -1. };
             let offset = match kind {
+                Kind::Sand if station < crate::track::hills::TOWN_END => 12. + (i % 3) as f32 * 2.,
                 Kind::Sand => 14. + (i % 3) as f32 * 6.,
+                Kind::Heat if station < crate::track::hills::TOWN_END => 9. + (i % 2) as f32 * 1.5,
                 Kind::Heat => 16. + (i % 3) as f32 * 7.,
                 Kind::Steam => 9. + (i % 3) as f32 * 2.,
                 Kind::Pollen => 13. + (i % 3) as f32 * 5.,
@@ -214,7 +216,7 @@ pub fn spawn(
             ));
         }
     }
-    commands.insert_resource(MapFxState::default());
+    commands.insert_resource(MapFxState);
 }
 
 fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
@@ -266,7 +268,7 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
 pub fn animate(
     race: Res<Race>,
     camera: Query<&Transform, With<ChaseCamera>>,
-    mut sprites: Query<(&MapFxSprite, &mut Transform, &mut Visibility)>,
+    mut sprites: Query<(&MapFxSprite, &mut Transform, &mut Visibility), Without<ChaseCamera>>,
 ) {
     let Ok(camera) = camera.single() else { return };
     // Fixed-loop race time gives the same air pose across variable render rates.

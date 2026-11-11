@@ -16,6 +16,7 @@ pub struct Survey {
     captures: usize,
     last: Option<std::time::Instant>,
     steady_frames_ms: Vec<f64>,
+    active_frames_ms: Vec<f64>,
 }
 
 fn captured(_: On<ScreenshotCaptured>, mut survey: ResMut<Survey>) {
@@ -48,12 +49,13 @@ pub fn run(
     survey.frame += 1;
     let frame = survey.frame;
     let now = std::time::Instant::now();
-    if let Some(last) = survey.last.replace(now)
-        && (151..=225).contains(&frame)
-    {
-        survey
-            .steady_frames_ms
-            .push((now - last).as_secs_f64() * 1000.);
+    if let Some(last) = survey.last.replace(now) {
+        let wall_ms = (now - last).as_secs_f64() * 1000.;
+        if (210..=284).contains(&frame) {
+            survey.steady_frames_ms.push(wall_ms);
+        } else if (300..=374).contains(&frame) {
+            survey.active_frames_ms.push(wall_ms);
+        }
     }
     let map = if track.is_hills() {
         "hills"
@@ -64,41 +66,62 @@ pub fn run(
     } else {
         "valley"
     };
-    let stage = if track.is_hills() && frame >= 90 {
-        1
-    } else {
+    let stage = if !track.is_hills() || frame < 90 {
         0
+    } else if frame < 150 {
+        1
+    } else if frame < 180 {
+        2
+    } else {
+        3
     };
     let station = match map {
-        "hills" if stage == 0 => 7900.,
-        "hills" => 8000.,
+        "hills" if stage == 0 => 8900.,
+        "hills" if stage == 1 => 9000.,
+        "hills" if stage == 2 => 7900.,
+        "hills" => 9000.,
         "metro" => 9000.,
         "city" => 1200.,
         _ => track.length * 0.28,
     };
     let (road, rotation) = track.sample_route(0, station, 0.);
     let side = rotation * Vec3::X;
-    let sign = if map == "hills" || map == "city" {
+    let sign = if map == "city" || (map == "hills" && stage == 1) {
         -1.
     } else {
         1.
     };
-    let eye = road + side * sign * 31. + Vec3::Y * 3.8 - rotation * Vec3::Z * 11.;
-    let target = road + side * sign * 19. + Vec3::Y * 1.1;
+    let (eye, target) = if map == "hills" && stage >= 2 {
+        let (behind, _) = track.sample_route(0, station - 45., 0.);
+        (behind + Vec3::Y * 2.6, road + Vec3::Y * 1.4)
+    } else {
+        (
+            road + side * sign * 31. + Vec3::Y * 3.8 - rotation * Vec3::Z * 11.,
+            road + side * sign * 19. + Vec3::Y * 1.1,
+        )
+    };
     if let Ok(mut camera) = cameras.single_mut() {
         *camera = Transform::from_translation(eye).looking_at(target, Vec3::Y);
     }
-    race.phase = Phase::Paused;
+    race.phase = if frame >= 295 {
+        Phase::Racing
+    } else {
+        Phase::Paused
+    };
     // The two pairs hold one camera/anchor and only change the race-time phase.
     let (name, elapsed) = if track.is_hills() {
         if frame < 45 {
-            ("heat-small", 1.92)
+            ("heat-small", 2.56)
         } else if frame < 90 {
-            ("heat-large", 0.40)
-        } else if frame < 105 {
-            ("sand-small", 2.18)
+            ("heat-large", 1.04)
+        } else if frame < 110 {
+            ("sand-small", 0.50)
+        } else if frame < 150 {
+            ("sand-large", 2.06)
+        } else if frame < 180 {
+            ("town-chase", 0.40)
         } else {
-            ("sand-large", 0.61)
+            ("desert-chase", 2.06)
         }
     } else {
         let (small, large) = match map {
@@ -112,10 +135,13 @@ pub fn run(
             ("large", large)
         }
     };
-    race.elapsed = elapsed;
+    if frame < 295 {
+        race.elapsed = elapsed;
+    }
     let capture = match frame {
         30 | 60 => true,
         100 | 120 if track.is_hills() => true,
+        170 | 200 if track.is_hills() => true,
         _ => false,
     };
     if capture {
@@ -130,9 +156,9 @@ pub fn run(
             .observe(save_to_disk(path))
             .observe(captured);
     }
-    let expected = if track.is_hills() { 4 } else { 2 };
-    if frame > 230 && survey.captures == expected {
-        let active = sprites
+    let expected = if track.is_hills() { 6 } else { 2 };
+    if frame > 380 && survey.captures == expected {
+        let active_visible = sprites
             .iter()
             .filter(|(_, v)| **v == Visibility::Inherited)
             .count();
@@ -144,14 +170,8 @@ pub fn run(
             _ => "default",
         };
         let path = format!("screenshots/map-fx-{map}-{quality}.json");
-        survey.steady_frames_ms.sort_by(f64::total_cmp);
-        let samples = &survey.steady_frames_ms;
-        let steady = serde_json::json!({
-            "count":samples.len(),
-            "median_ms":samples[samples.len()/2],
-            "p95_ms":samples[samples.len()*95/100],
-            "p99_ms":samples[samples.len()*99/100]
-        });
+        let steady = percentiles(&mut survey.steady_frames_ms);
+        let active_frames = percentiles(&mut survey.active_frames_ms);
         let render_diagnostics: std::collections::BTreeMap<_, _> = diagnostics
             .as_ref()
             .into_iter()
@@ -160,13 +180,24 @@ pub fn run(
             .filter_map(|d| d.value().map(|value| (d.path().as_str().to_owned(), value)))
             .collect();
         std::fs::write(path, serde_json::to_vec_pretty(&serde_json::json!({
-            "map":map,"quality":quality,"captures":survey.captures,"pool_counts":{"sand":counts[0],"heat":counts[1],"steam":counts[2],"pollen":counts[3]},"active_in_final_view":active,
+            "map":map,"quality":quality,"captures":survey.captures,"pool_counts":{"sand":counts[0],"heat":counts[1],"steam":counts[2],"pollen":counts[3]},"active_in_final_view":active_visible,
             "steady_paused_view_wall_frames":steady,
+            "steady_active_simulation_wall_frames":active_frames,
             "latest_render_diagnostics":render_diagnostics,
             "metrics":metrics.evidence(&clock),
-            "limits":"Paused fixed-view visual comparison; wall-frame sample is not GPU timing or gameplay performance. Effects are transparent-texture cues, not refraction."
+            "limits":"Native fixed/chase camera comparison. Active window runs fixed simulation with no player input; wall-frame samples are not GPU timings or a full-race performance certificate. Effects are transparent-texture cues, not refraction."
         })).expect("serialize map FX report")).expect("write map FX report");
         exit.write(AppExit::Success);
     }
-    assert!(frame < 340, "map FX screenshots timed out");
+    assert!(frame < 430, "map FX screenshots timed out");
+}
+
+fn percentiles(samples: &mut [f64]) -> serde_json::Value {
+    samples.sort_by(f64::total_cmp);
+    serde_json::json!({
+        "count":samples.len(),
+        "median_ms":samples[samples.len()/2],
+        "p95_ms":samples[samples.len()*95/100],
+        "p99_ms":samples[samples.len()*99/100]
+    })
 }
