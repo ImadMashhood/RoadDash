@@ -16,6 +16,12 @@ pub mod wildlife;
 pub mod woodland;
 use crate::{track::Track, world::Art};
 use bevy::prelude::*;
+
+/// Height of the resident Hills terrain mesh at an off-road effect anchor.
+pub(crate) fn rendered_ground_height(track: &Track, x: f32, z: f32) -> f32 {
+    geometry::ground_height(track, x, z)
+}
+
 #[derive(Component)]
 pub struct HillsSolid;
 #[derive(Component)]

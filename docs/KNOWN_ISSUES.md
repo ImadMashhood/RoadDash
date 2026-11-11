@@ -11,7 +11,9 @@ missing features, architectural debt and unverified platforms.
 
 - RFU-MOVE-05/06: visual-only running wrist correction, flat/uneven animation captures and paired native recovery pass; broad terrain/performance and human hand-motion approval remain open. See testing/issue41-running-hands/REPORT.md and issue #41.
 
-- RFU-FX-01–03 and RFU-CITY-01–04: biome/city effects and further Metropolis crowd/sidewalk/prop density remain open requests without implementation acceptance. See issues #42–#43.
+- RFU-FX-01–04: finite original Hills heat/dust, city steam and Valley air cues are staged, but heat is an atmospheric approximation and centered-chase visual, temporal, GPU/frame and target-hardware acceptance remain open. See issue #42 and testing/issue-42-map-fx/REPORT.md.
+
+- RFU-CITY-01–04: further Metropolis crowd/sidewalk/prop density acceptance remains open. See issue #43.
 
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 

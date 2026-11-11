@@ -171,7 +171,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**228 verified tasks complete; 320 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**228 verified tasks complete; 321 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -204,7 +204,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 11 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 28 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 29 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -1260,9 +1260,10 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 
 ### Part 15 — Presentation, audio, UI and accessibility
 
-- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
-- [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
-- [ ] **RFU-FX-03** Add map-appropriate city shader/effects such as subtle vent steam, depth haze or a wet-road variation. Reason: requested city visual character; part:15; dependencies: RFU-PERF-06, RFU-SKY-01 and MAT-03; acceptance: coherent Metropolis/legacy-city presentation with restrained legibility, matching near/far material identity and opt-in quality budgets; verification: native views, source hash/provenance, GPU/frame comparison and visual review. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: terrain-seated feathered dust pool implemented; centered-chase visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-03** Add map-appropriate city shader/effects such as subtle vent steam, depth haze or a wet-road variation. Reason: requested city visual character; part:15; dependencies: RFU-PERF-06, RFU-SKY-01 and MAT-03; acceptance: coherent Metropolis/legacy-city presentation with restrained legibility, matching near/far material identity and opt-in quality budgets; verification: native views, source hash/provenance, GPU/frame comparison and visual review. Partial: bounded curb-steam pool implemented; native/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-04** Add a restrained original effect to Valley so every existing map has distinct air movement. Reason: issue #42 requests visual effects on every map, including Valley; part:15; dependencies: RFU-FX-01–03 and Valley route/content; acceptance: quality-controlled, off-road air motes remain legible and presentation-only across the full route; verification: native Valley before/after and temporal views, original source audit and CPU/GPU frame comparison. Partial: fixed-budget motes are implemented; native visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
 
 - [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: two prominent course choices, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.

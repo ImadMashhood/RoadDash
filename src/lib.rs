@@ -21,6 +21,7 @@ pub mod hills_polish_survey;
 pub mod hills_revision_survey;
 pub mod hills_survey;
 pub mod human;
+pub mod map_fx;
 pub mod material_detail;
 pub mod models;
 pub mod npc;
@@ -119,7 +120,9 @@ pub fn build_app(smoke: bool) -> App {
                     } else {
                         bevy::window::WindowMode::Windowed
                     },
-                    present_mode: if std::env::args().any(|a| a == "--world-survey") {
+                    present_mode: if std::env::args()
+                        .any(|a| a == "--world-survey" || a == "--map-fx-survey")
+                    {
                         bevy::window::PresentMode::AutoNoVsync
                     } else {
                         default()
@@ -259,6 +262,16 @@ pub fn build_app(smoke: bool) -> App {
                     hills_polish_survey::run
                         .before(world_gen::hills::atmosphere::reset)
                         .after(game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                );
+        } else if std::env::args().any(|a| a == "--map-fx-survey") {
+            app.insert_resource(bevy::winit::WinitSettings::continuous())
+                .init_resource::<map_fx::survey::Survey>()
+                .add_systems(
+                    PostUpdate,
+                    map_fx::survey::run
+                        .after(game::camera)
+                        .before(map_fx::animate)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
         } else if std::env::args().any(|a| a == "--hills-survey") {

@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-11 — Bounded map atmosphere candidate (ADR156, issue #42)
+
+Added original procedural transparent air cues on all four courses: terrain-seated feathered dust and rising heat bands on Hills, curb steam in Metropolis and City Run, and quiet Valley motes. A quality switch bounds the pools and disables them entirely at `ROADDASH_MAP_FX=0`; one immutable material per kind avoids per-frame uploads. The user rejected an initial thin sand stream, so the native-centered chase review drove a denser gray-brown translucent billow with the same pool count. The latest paired Hills view shows scenery through the dust; City Run shows two curb wisps after replacing an earlier round facade glow. Heat and Metropolis steam remain subtle. Fixed physics, Sand surface classification, saves and controls are unchanged. RFU-FX-01–04 and GPU/full-course/art acceptance remain open. See testing/issue-42-map-fx/REPORT.md for binary hashes, failed stages and final checks.
+
 ## 2026-11-10 — Metropolis atmosphere follow-up (ADR145, issue #30)
 
 Reused the existing spatial clouds and Hills bird pool in Metropolis with six bounded flocks, independent quality controls and an opt-in moving native survey. Refined urban placement after visual review to use street approaches and authored civic openings. Preserved Hills dust and existing sun, physics, controls and recovery. The combined racer-AI/sand tree passed 661 workspace tests, strict checks/builds, final Metropolis visual proof and eight both-map quality runs. RFU-SKY-01..04 remain open for user visual, full-course/GPU/hardware and broader performance acceptance. No new media or dependency migration. Evidence: testing/metropolis-atmosphere/REPORT.md.

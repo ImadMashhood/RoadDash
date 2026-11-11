@@ -4161,3 +4161,37 @@ permit batching; no new dependencies, physical rig changes or imported media.
 The installed procedural-gen, level-design, game-ai and performance-optimization
 skills supply engine-neutral guidance; Bevy skill version0.20 is explicitly not
 applied to the pinned0.17.3 APIs (migration belongs to issue37).
+## ADR156 — Bounded map air cues before renderer migration (2026-11-10)
+
+Issue #42's first implementation uses original generated alpha textures and finite
+world-space sprites in pinned Bevy0.17.3. Hills allocates at most 48 blowing-sand
+and 16 rising heat-band sprites, Metropolis/legacy city 16 vent-steam sprites,
+and Valley 16 quiet air motes. RFU-FX-04 retains Valley-specific native and performance acceptance. The heat bands are an atmospheric approximation:
+they do not sample or refract scene colour. Low opacity, off-road anchors and
+camera-distance culling protect roadway and UI legibility.
+
+`ROADDASH_MAP_FX=0` disables optional pools; `low` halves them. All meshes and
+materials are allocated during world setup. One immutable material is shared
+per effect kind; the animated envelope scales soft sprites instead of uploading
+material alpha every frame. Motion is presentation-only; Sand
+surface, collision, fixed simulation and saves are unchanged. Vent steam is the
+initial city option because it does not alter facades or the model-derived far
+atlas. Depth haze could reuse the existing fog profile after visual review. A
+wet-road variant must update both near and far appearance under MAT-03. No
+external repository, media or shader code was imported. Native appearance and
+GPU/frame cost must be measured before any RFU-FX requirement closes.
+
+2026-11-11 correction: native review rejected the thin sand stream. Keep the
+same fixed 48-sprite budget and shared transparent material, but use an original
+feathered dust mask with expanding/lifting plumes. Place origins just outside
+the Hills pavement, ground-seat them against the resident terrain mesh, and
+allow only translucent visual drift over the road edge. No Sand physics,
+collision or simulation change follows. This still needs close native and
+performance acceptance before RFU-FX-02 closes.
+
+Native centered-chase review found the first feathered billow too pale despite
+correct projection. The final first-pass form uses a denser gray-brown mask and
+centers it about 1–2 m outside the pavement without changing pool or material
+count. City steam moves to the measured route curb and uses an original narrow
+vertical wisp mask; this avoids the earlier round facade glow. Heat remains a
+subtle non-refractive cue. Temporal art and supported GPU acceptance stay open.
