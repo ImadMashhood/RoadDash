@@ -1,0 +1,17 @@
+{
+  "birds": 24,
+  "captures": 6,
+  "clouds": {
+    "banks": 8,
+    "density_bytes": 110592,
+    "steps": 12,
+    "volumetric": true
+  },
+  "frame_median_ms": 23.486225,
+  "frame_p95_ms": 28.884752,
+  "frame_p99_ms": 34.983007,
+  "frames": 1080,
+  "map": "metro-run-01",
+  "note": "CPU wall frame intervals; not GPU timestamps. Moving camera fixture; excludes first180frames.",
+  "performance_mode": false
+}

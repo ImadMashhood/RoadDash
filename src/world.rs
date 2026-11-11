@@ -261,6 +261,13 @@ pub fn setup_world(
         return;
     }
     if track.metropolis.is_some() {
+        crate::world_gen::hills::atmosphere::spawn(
+            &mut commands,
+            &mut meshes,
+            &mut materials,
+            &track,
+            None,
+        );
         crate::world_gen::metropolis::spawn(
             &mut commands,
             &mut meshes,

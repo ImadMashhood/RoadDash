@@ -75,6 +75,7 @@ unchanged. [Controlled measurements and limits](docs/testing/issue25-performance
 show local loading and frame-time gains; sustained 60 FPS and broader hardware
 remain open. Diagnostic controls are `ROADDASH_TERRAIN_CACHE=0`,
 `ROADDASH_FIXED_EXECUTOR=multi` and `ROADDASH_LOAD_JOBS=2`.
+Atmosphere controls: `ROADDASH_CLOUDS=full` (default, 12 steps), `low` (6 steps), or `off` (baked sky fallback). The existing `ROADDASH_HILLS_CLOUDS=0` alias still works unless the new control is set. `ROADDASH_BIRDS=0` disables birds independently in Hills and Metropolis. These startup controls do not change sun, shadows, collision or physics. Review with `--atmosphere-survey` (add `--hills` for Hills); `ROADDASH_ATMOSPHERE_PERF=1` suppresses screenshots during timing.
 
 ## Controls
 
@@ -170,7 +171,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**228 verified tasks complete; 304 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**228 verified tasks complete; 308 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -194,7 +195,7 @@ Current pinned baseline: **Rust 1.94.0, Bevy 0.17.3, Rapier 0.32.0, built-in Bev
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 12 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 34 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 38 open |
 | [07](#part-07) | Weapons and complete riding combat | 10 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 10 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -1006,6 +1007,13 @@ Repeat the reference → original textures/models → procedural placement → c
 - [ ] **RFU-TRAF-02** Reserve opposing-lane passes using vehicle length, relative speed and merge room. Reason: opposing large traffic must prevent unsafe completion; part:06; dependencies:RFU-TRAF-01; acceptance: both directions reject blocked horizons and retain terrain/bridge support; verification: oncoming-car/long-trailer fixtures and native motion/support checks.
 - [ ] **RFU-TRAF-03** Allow civilian passing despite an upright oncoming biker. Reason: explicitly requested gameplay hazard; part:06; dependencies:RFU-TRAF-02 and physical contact/recovery; acceptance: biker presence alone does not veto a pass, no teleports/collision exemptions, downed-person yielding retained; verification: paired biker/no-biker native decision fixture and collision/recovery regressions.
 - [ ] **RFU-TRAF-04** Resolve competing civilian passes and new obstructions. Reason: prevent overlapping claims and perpetual queues; part:06; dependencies:RFU-TRAF-01/02; acceptance: deterministic reservation, bounded abort/merge and eventual progress with room; verification: multi-follower and mid-pass obstacle tests, measured planner cost and native motion; long-race/hardware performance acceptance remains open.
+- [ ] **RFU-SKY-01** Verify convincing spatial clouds in Metropolis. Reason: issue30 user visual request; part:06; dependencies:SKY-SUN-01 and HILLS-10; acceptance: depth/parallax in native driving and distant views using the shared bounded renderer; verification: cloud density/budget tests and moving native captures, separate user art approval.
+
+- [ ] **RFU-SKY-02** Add visible natural bird groups to Metropolis. Reason: issue30 finds Hills-only bird spawning; part:06; dependencies:RFU-SKY-01 and existing atmosphere lifecycle; acceptance: bounded coherent flocks, inexpensive gradual distance behavior, pause/reset safety; verification: installed pool/flock/lifecycle tests and moving native rural/city views.
+
+- [ ] **RFU-SKY-03** Preserve coherent sunlight, final render-camera culling and Hills atmosphere. Reason: issue30 shared-renderer integration; part:06; dependencies:SKY-01 and HILLS-04; acceptance: one light direction/exposure profile, propagated-camera fade, unchanged physical rigs/content and Hills dust; verification: both-map install/lighting tests and native controls.
+
+- [ ] **RFU-SKY-04** Expose independent cloud/bird quality controls and measure their cost. Reason: issue30 prioritizes performance; part:06/16; dependencies:PERF-08 and RFU-SKY-01/02; acceptance: bounded full/low/fallback clouds and bird switch, matched release wall-frame/load/memory comparisons on both maps; verification: quality tests and independent-toggle native runs, GPU/broad hardware gates remain separate.
 
 - [ ] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views.
 

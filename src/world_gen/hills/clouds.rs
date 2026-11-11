@@ -23,8 +23,21 @@ pub struct CloudBudget {
     pub steps: u32,
     pub density_bytes: usize,
 }
+fn quality(value: Option<&str>, legacy: Option<&str>) -> u32 {
+    match value.or(legacy) {
+        Some("0" | "off") => 0,
+        Some("low") => 6,
+        _ => STEPS,
+    }
+}
+pub fn steps() -> u32 {
+    quality(
+        std::env::var("ROADDASH_CLOUDS").ok().as_deref(),
+        std::env::var("ROADDASH_HILLS_CLOUDS").ok().as_deref(),
+    )
+}
 pub fn enabled() -> bool {
-    std::env::var("ROADDASH_HILLS_CLOUDS").as_deref() != Ok("0")
+    steps() > 0
 }
 fn smooth(a: f32, b: f32, value: f32) -> f32 {
     let t = ((value - a) / (b - a)).clamp(0., 1.);
@@ -152,7 +165,7 @@ pub fn spawn(
     commands.insert_resource(CloudBudget {
         volumetric: true,
         banks: BANKS,
-        steps: STEPS,
+        steps: steps(),
         density_bytes: RESOLUTION.pow(3),
     });
     let density = images.add(texture());
@@ -163,7 +176,7 @@ pub fn spawn(
             settings: CloudSettings {
                 local_from_world: transform.to_matrix().inverse(),
                 sun_direction: sun.extend(0.),
-                radiance: Vec4::new(sky_nits, STEPS as f32, 0.012, 0.),
+                radiance: Vec4::new(sky_nits, steps() as f32, 0.012, 0.),
             },
             density: density.clone(),
         });
@@ -184,6 +197,15 @@ pub fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn quality_controls_are_bounded_and_preserve_legacy_fallback() {
+        assert_eq!(quality(None, None), 12);
+        assert_eq!(quality(None, Some("0")), 0);
+        assert_eq!(quality(Some("full"), Some("0")), 12);
+        assert_eq!(quality(Some("low"), None), 6);
+        assert_eq!(quality(Some("off"), None), 0);
+        assert_eq!(quality(Some("invalid"), None), 12);
+    }
     #[test]
     fn density_is_bounded_soft_at_all_box_faces_and_has_real_depth() {
         let mut filled = 0;

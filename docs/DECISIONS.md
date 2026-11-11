@@ -4085,3 +4085,40 @@ wrist flexion toward travel-forward, weighted by running speed. Leave the idle
 bind unchanged. Do not alter the accepted eleven physical bodies, joints,
 motors, momentum, recovery forces or controller displacement to fix a rendered
 hand orientation. Keep RFU-MOVE-05/06 open for close native and human review.
+## ADR145 — Shared Metropolis atmosphere and bounded quality controls (2026-11-10)
+
+Issue30 requests spatial clouds and natural visible birds in Metropolis. Audit
+found ADR138 already enables eight spatial cloud banks in both new maps; only
+Hills invokes the bird/dust pool. Reuse that implementation rather than add a
+second atmosphere renderer. Metropolis gets 24 birds in six coherent orbiting
+groups, with staggered flap/glide phases, shared meshes/material and no dust.
+Hills keeps its established stations, continuous flap cadence and 96-puff pool.
+Six roof-clear flock origins are computed once at spawn: rural approach, city
+entry, two urban street vistas, and the authored City Hall/park openings. The civic
+origins reduce roof occlusion without increasing the pool. Twenty-four analytic
+poses remain camera-independent; range dithering bounds draw work without
+freezing visible birds after parent changes/teleports. Effects are presentation only.
+
+Use installed Bevy0.17.3 VisibilityRange on every bird mesh for 450–650m dither
+fade; it runs after final GlobalTransform propagation. Parent origins are shared
+by body/wings, and use_aabb=false. No physics transforms, timestep, collision or rigs change.
+
+Cloud defaults retain eight banks, 48³ R8 density and twelve steps. Add a six-step
+low setting without increasing shader loop ceiling; off retains baked sky.
+ROADDASH_CLOUDS takes precedence over the historical ROADDASH_HILLS_CLOUDS alias.
+ROADDASH_BIRDS independently disables bird allocation. Controls are startup-only
+and use the established process-relaunch course lifecycle. Native review and
+matched measurements must precede visual/performance claims; user art acceptance
+and broad GPU/hardware gates remain open. RFU-SKY-01..04 are the live requirements.
+
+Installed Bevy sources, shader/procedural/performance/level-design skills were
+reviewed. No imported media or copied third-party algorithm is introduced. Keep
+Bevy0.17.3/Rapier0.32 pinned: the installed Bevy skills target0.20 and its WESL,
+observer, camera/light and query changes belong to the separately requested
+migration. The existing WGSL material/preprocessor remains correct for this lock.
+
+ADR145 follow-up: the sand/racer-AI combined tree passed 661 workspace tests,
+strict checks/builds and an eight-run both-map native quality matrix. Street
+flocks appear in raised Metropolis views while low canyon views remain blocked
+by roofs; user visual acceptance remains open. Single-run frame differences
+are mixed and do not justify a speed claim. See testing/metropolis-atmosphere/REPORT.md.

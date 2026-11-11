@@ -1,0 +1,58 @@
+[
+  {
+    "map": "metro",
+    "mode": "full",
+    "elapsed_s": 37.595,
+    "median_ms": 23.016287,
+    "p95_ms": 28.373897
+  },
+  {
+    "map": "metro",
+    "mode": "low",
+    "elapsed_s": 38.0,
+    "median_ms": 23.299176000000003,
+    "p95_ms": 29.187597999999998
+  },
+  {
+    "map": "metro",
+    "mode": "off",
+    "elapsed_s": 37.645,
+    "median_ms": 23.320896,
+    "p95_ms": 28.072023
+  },
+  {
+    "map": "metro",
+    "mode": "birds_off",
+    "elapsed_s": 37.69,
+    "median_ms": 23.284257,
+    "p95_ms": 28.74457
+  },
+  {
+    "map": "hills",
+    "mode": "full",
+    "elapsed_s": 42.14,
+    "median_ms": 16.337194999999998,
+    "p95_ms": 17.972723
+  },
+  {
+    "map": "hills",
+    "mode": "low",
+    "elapsed_s": 42.394,
+    "median_ms": 16.504337,
+    "p95_ms": 18.267545
+  },
+  {
+    "map": "hills",
+    "mode": "off",
+    "elapsed_s": 42.342,
+    "median_ms": 16.40393,
+    "p95_ms": 18.076518
+  },
+  {
+    "map": "hills",
+    "mode": "birds_off",
+    "elapsed_s": 42.298,
+    "median_ms": 16.405032,
+    "p95_ms": 18.135789
+  }
+]
