@@ -1,0 +1,27 @@
+LOAD_PROFILE {"elapsed_ms":0.000571,"event":"build_app_begin"}
+2026-11-11T02:18:57.636404Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-11T02:18:57.862437Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/roaddash-issue40/baseline-warm-final/metro-2/logs/performance-1013154.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":409.307846,"elapsed_ms":409.43355199999996,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":41.744458,"elapsed_ms":614.33849,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":99.63638700000001,"elapsed_ms":714.055076,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":19.586014,"elapsed_ms":733.7302060000001,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":177.774063,"elapsed_ms":911.593566,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":20.243012,"elapsed_ms":931.928871,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":626.965627,"elapsed_ms":1558.9693169999998,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":700.33276,"elapsed_ms":2259.3903530000002,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":448.608964,"elapsed_ms":2708.090067,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":2136.346575,"elapsed_ms":2708.939606,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":9.830366999999999,"elapsed_ms":2798.11677,"span":"metro_streetscape"}
+LOAD_PROFILE {"duration_ms":88.511358,"elapsed_ms":2798.226405,"span":"metro_farms_civic"}
+LOAD_PROFILE {"duration_ms":89.318669,"elapsed_ms":2798.3254300000003,"span":"metro_world_details"}
+LOAD_PROFILE {"duration_ms":2248.825071,"elapsed_ms":2798.402073,"span":"metro_generation"}
+LOAD_PROFILE {"duration_ms":2335.094708,"elapsed_ms":2798.4838760000002,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":3704.440669,"event":"wait_facade_kit"}
+2026-11-11T02:19:03.236222Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+LOAD_PROFILE {"elapsed_ms":6625.149311,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":6944.769759,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":6957.109388,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":7014.492145,"event":"first_race_update"}
+LOAD_PROFILE {"duration_ms":41.134446,"elapsed_ms":31625.063822,"span":"metro_survey_verification"}

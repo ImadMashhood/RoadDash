@@ -278,6 +278,17 @@ pub struct Traffic {
     pub lane: f32,
     pub speed: f32,
 }
+/// World-space traffic geometry sampled once before the rider planning loop.
+/// Traffic is advanced later in `drive`, so every rider observes the same tick.
+struct RiderTrafficObservation {
+    route: usize,
+    progress: f32,
+    speed: f32,
+    center_offset: f32,
+    lane: f32,
+    half_width: f32,
+    half_length: f32,
+}
 #[derive(Component, Default)]
 pub struct TrafficYield {
     pub city_only: bool,
@@ -837,6 +848,63 @@ pub fn drive(
         .collect();
     let player_progress = snapshots.iter().find(|s| s.1 == 0).map_or(0.0, |s| s.2);
 
+    let rider_windows: Vec<_> = riders
+        .iter()
+        .filter(|(_, r, state, _, _)| {
+            !r.human_controlled() && r.finished.is_none() && state.stage == RecoveryStage::Riding
+        })
+        .map(|(_, r, _, _, _)| (r.route, r.progress))
+        .collect();
+    let traffic_observations: Vec<_> = traffic
+        .iter()
+        .filter_map(|(entity, car, body, _, _)| {
+            let relevant = rider_windows.iter().any(|&(route, progress)| {
+                if !track.same_corridor(route, progress, car.route, car.progress) {
+                    return false;
+                }
+                let mut gap = car.progress - progress;
+                if track.definition.closed {
+                    gap = (gap + track.length * 0.5).rem_euclid(track.length) - track.length * 0.5;
+                }
+                gap.abs() <= 520.
+            });
+            if !relevant {
+                return None;
+            }
+            let default_bounds = (Vec3::ZERO, Vec3::new(0.95, 0.9, 1.95));
+            let (center, half) = if !track.is_hills() {
+                default_bounds
+            } else {
+                shapes.get(entity).map_or(default_bounds, |shape| {
+                    let (lo, hi) = recovery::collider_bounds(&Transform::IDENTITY, shape);
+                    ((lo + hi) * 0.5, (hi - lo) * 0.5)
+                })
+            };
+            let center_offset = if center.z.abs() > 0.001 {
+                let road_forward =
+                    track.sample_route(car.route, car.progress, car.lane).1 * Vec3::Z;
+                center.z
+                    * if (body.rotation * Vec3::Z).dot(road_forward) >= 0. {
+                        1.
+                    } else {
+                        -1.
+                    }
+            } else {
+                0.
+            };
+            Some(RiderTrafficObservation {
+                route: car.route,
+                progress: car.progress,
+                speed: car.speed,
+                center_offset,
+                lane: track.lane_at(car.route, car.progress, body.transform_point(center))
+                    - track.street_offset(car.route, car.progress),
+                half_width: half.x,
+                half_length: half.z,
+            })
+        })
+        .collect();
+
     let mut escape_budget = 1usize;
     for (entity, mut r, mut recovery, mut transform, mut visibility) in &mut riders {
         if recovery.stage != RecoveryStage::Riding {
@@ -1005,9 +1073,9 @@ pub fn drive(
                 } else {
                     desired
                 };
-                let mut cars: Vec<_> = traffic
+                let mut cars: Vec<_> = traffic_observations
                     .iter()
-                    .filter_map(|(entity, car, body, _, _)| {
+                    .filter_map(|car| {
                         if !track.same_corridor(r.route, r.progress, car.route, car.progress) {
                             return None;
                         }
@@ -1021,46 +1089,24 @@ pub fn drive(
                         if coarse_gap.abs() > 520. {
                             return None;
                         }
-                        let default_bounds = (Vec3::ZERO, Vec3::new(0.95, 0.9, 1.95));
-                        let (center, half) = if !track.is_hills() {
-                            default_bounds
-                        } else {
-                            shapes.get(entity).map_or(default_bounds, |shape| {
-                                let (lo, hi) =
-                                    recovery::collider_bounds(&Transform::IDENTITY, shape);
-                                ((lo + hi) * 0.5, (hi - lo) * 0.5)
-                            })
-                        };
-                        let offset = if center.z.abs() > 0.001 {
-                            let road_forward =
-                                track.sample_route(car.route, car.progress, car.lane).1 * Vec3::Z;
-                            center.z
-                                * if (body.rotation * Vec3::Z).dot(road_forward) >= 0. {
-                                    1.
-                                } else {
-                                    -1.
-                                }
-                        } else {
-                            0.
-                        };
-                        let mut gap = car.progress - r.progress + offset;
+                        let mut gap = car.progress - r.progress + car.center_offset;
                         if track.definition.closed {
                             gap = (gap + track.length * 0.5).rem_euclid(track.length)
                                 - track.length * 0.5;
                         }
-                        (gap.abs() < 500.0).then(|| rr_core::traffic_avoidance::Car {
-                            gap,
-                            // Read placed geometry, including street reservation offsets.
-                            lane: track.lane_at(
-                                car.route,
-                                car.progress,
-                                body.transform_point(center),
-                            ) - track.street_offset(car.route, car.progress),
-                            speed: car.speed,
-                            lateral_speed: 0.0,
-                            half_width: half.x,
-                            half_length: half.z,
-                        })
+                        if gap.abs() < 500.0 {
+                            Some(rr_core::traffic_avoidance::Car {
+                                gap,
+                                // Read placed geometry, including street reservation offsets.
+                                lane: car.lane,
+                                speed: car.speed,
+                                lateral_speed: 0.0,
+                                half_width: car.half_width,
+                                half_length: car.half_length,
+                            })
+                        } else {
+                            None
+                        }
                     })
                     .collect();
                 let (_, road) = track.sample_route(r.route, r.progress, r.lane);

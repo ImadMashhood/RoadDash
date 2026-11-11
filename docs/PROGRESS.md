@@ -1,5 +1,7 @@
 # Development progress
 
+Issue40 CPU candidate A (2026-11-10): fixed-step rider planning now reuses exact placed traffic geometry and lane observations within a tick, with original coarse/precise windows and resident collision unchanged. Frozen-baseline matched Hills/Metropolis warm/cold native surveys each completed two clean runs; all36 non-timing survey JSON pairs match. Raw p95 changes are small and mixed, so this candidate is inconclusive pending four-way selection and full integration. RFU-PERF-02/PERF-08 and the16.7ms/full-race/hardware gates remain open. Evidence: testing/issue40-cpu/REPORT.md.
+
 Current scope: issue #28 / ADR143 adds urgent recovery run presentation, terrain-aware swing clearance and signed reverse heading. RFU-MOVE-03/04 verified by headless checks and ten native cases; RFU-MOVE-01/02 retain user terrain/feel acceptance. Final civilian-integrated617workspace tests (two explicit ignored benchmarks), strict lint/build/fmt/audit and roadmap checks pass. Evidence: testing/issue-28-movement/README.md. No movement-speed, rig or dependency migration.
 
 
@@ -1395,7 +1397,7 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 16 — QA, performance, platform, dependency and release gates
 
-- [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. Existing60FPS and broader hardware gates remain open.
+- [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. [Issue40 CPU candidate A](testing/issue40-cpu/REPORT.md) records repeated warm/cold two-course raw frames and exact survey parity; small mixed p95 results do not close this gate. Existing60FPS and broader hardware gates remain open.
 
 - [ ] **RFU-PERF-03** Evaluate baked/hybrid stationary lighting. Reason: issue25 proposes baking as a candidate; part:16; dependencies: RFU-PERF-02 and MAT-03; acceptance: compare shadow cost, lightmap memory/load, visual quality and procedural-content compatibility before migration; verification: primary API/source review, measured GPU passes and documented tradeoffs, with no assumed FPS benefit or unapproved content replacement.
 

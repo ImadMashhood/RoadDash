@@ -68,6 +68,8 @@ Physics uses Rapier's parallel island solver by default. To compare the serial b
 run `cargo run --release --locked --no-default-features --features offline,devtools`.
 This changes scheduling, not body/joint/substep tuning. [Benchmarks and limits](docs/testing/parallel-physics/README.md).
 
+Candidate A for issue40 reuses fixed-tick traffic observations across AI riders. [Matched Hills/Metropolis warm and cold profiles](docs/testing/issue40-cpu/REPORT.md) show a small, inconsistent raw p95 change; candidate selection and the 16.7 ms gate remain open.
+
 Course loading now reuses exact terrain queries, uses eight material jobs during
 loading (two during gameplay), and dispatches the fixed schedule on one thread.
 Rapier's internal parallel solving, 60 Hz simulation and physical rigs remain
@@ -1216,7 +1218,7 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 
 ### Part 16 — QA, performance, platform, dependency and release gates
 
-- [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. Existing60FPS and broader hardware gates remain open.
+- [ ] **RFU-PERF-02** Profile runtime CPU/GPU, raw frame-time distributions, stalls and memory on both courses. Reason: issue25 reports poor runtime; part:16; dependencies: PERF-07 and RFU-PERF-01; acceptance: populated areas, live traffic/combat and route traversal with p50/p95/p99/max, supported GPU timestamps, physics/AI/render attribution and measured improvements; verification: repeated release runs with pinned seed/settings/hardware, raw logs, recovery and full-route controls. [Issue40 CPU candidate A](docs/testing/issue40-cpu/REPORT.md) records repeated warm/cold two-course raw frames and exact survey parity; small mixed p95 results do not close this gate. Existing60FPS and broader hardware gates remain open.
 - [ ] **RFU-PERF-03** Evaluate baked/hybrid stationary lighting. Reason: issue25 proposes baking as a candidate; part:16; dependencies: RFU-PERF-02 and MAT-03; acceptance: compare shadow cost, lightmap memory/load, visual quality and procedural-content compatibility before migration; verification: primary API/source review, measured GPU passes and documented tradeoffs, with no assumed FPS benefit or unapproved content replacement.
 - [ ] **RFU-PERF-05** Establish explicit content budgets and quality/density controls. Reason: issue25 requires headroom before clouds/birds/vegetation/props/herds grow; part:16 coordinating05/06; dependencies: RFU-PERF-02 and content-family follow-ups; acceptance: bounded counts/draws/memory/work, appropriate presentation-only quality controls and preserved authoritative populations/collision; verification: budget tests, native census and matched per-quality profiles.
 

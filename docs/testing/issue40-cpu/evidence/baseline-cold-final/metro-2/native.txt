@@ -1,0 +1,27 @@
+LOAD_PROFILE {"elapsed_ms":0.00016,"event":"build_app_begin"}
+2026-11-11T02:23:27.583831Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-11T02:23:27.815538Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/roaddash-issue40/baseline-cold-final/metro-2/logs/performance-1016728.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":404.957241,"elapsed_ms":405.05938299999997,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":43.55342,"elapsed_ms":608.610946,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":91.396032,"elapsed_ms":700.1024070000001,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":19.124509,"elapsed_ms":719.3164039999999,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":170.72675900000002,"elapsed_ms":890.120797,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":20.098451,"elapsed_ms":910.308906,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":610.982171,"elapsed_ms":1521.3760459999999,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":689.487433,"elapsed_ms":2210.9519139999998,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":472.40515300000004,"elapsed_ms":2683.445843,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":2119.2008269999997,"elapsed_ms":2684.257761,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":11.280999,"elapsed_ms":2774.7424189999997,"span":"metro_streetscape"}
+LOAD_PROFILE {"duration_ms":89.927566,"elapsed_ms":2774.8681739999997,"span":"metro_farms_civic"}
+LOAD_PROFILE {"duration_ms":90.617636,"elapsed_ms":2774.9425840000004,"span":"metro_world_details"}
+LOAD_PROFILE {"duration_ms":2233.306835,"elapsed_ms":2775.0166419999996,"span":"metro_generation"}
+LOAD_PROFILE {"duration_ms":2320.080262,"elapsed_ms":2775.095339,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":3720.955219,"event":"wait_facade_kit"}
+2026-11-11T02:23:33.144988Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+LOAD_PROFILE {"elapsed_ms":6375.268072,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":6814.680387,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":6828.671996,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":6885.842014,"event":"first_race_update"}
+LOAD_PROFILE {"duration_ms":42.004813,"elapsed_ms":31462.692173,"span":"metro_survey_verification"}

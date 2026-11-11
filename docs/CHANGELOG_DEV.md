@@ -1963,3 +1963,14 @@ Issue28 combined final:617tests pass,2explicit benchmarks ignored; strict checks
 and paired native recovery2/2 pass. Exact binary hash and separate original
 ten-case receipts retained. Final GitHub Linux/Windows CI remains asynchronous;
 no CI success or hardware acceptance is inferred from local checks.
+
+## 2026-11-10 — Issue40 isolated CPU candidate A
+
+Built frozen e2a31918 release control after cleaning workspace packages, then
+changed only fixed-step traffic observation reuse for AI rider planning. Kept
+the original coarse/precise windows, routes, collider geometry and iteration
+order. Corrected the common profiling harness to ignore dead Cargo zombies
+while retaining active-process rejection. Repeated warm/cold Hills and
+Metropolis profiles and exact survey parity are recorded in
+testing/issue40-cpu/REPORT.md. Raw p95 gains are small and inconsistent; no
+candidate selection, checklist closure, full-race or hardware claim.

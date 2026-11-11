@@ -1,0 +1,402 @@
+[
+  {
+    "progress": 11448.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 11868.955078125,
+    "route": 1,
+    "speed": 17.0
+  },
+  {
+    "progress": 11271.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 11626.25,
+    "route": 0,
+    "speed": 15.0
+  },
+  {
+    "progress": 11028.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 11465.3076171875,
+    "route": 1,
+    "speed": 18.0
+  },
+  {
+    "progress": 10851.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 11222.6025390625,
+    "route": 0,
+    "speed": 16.0
+  },
+  {
+    "progress": 10608.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 11061.66015625,
+    "route": 1,
+    "speed": 19.0
+  },
+  {
+    "progress": 10431.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 10818.955078125,
+    "route": 0,
+    "speed": 17.0
+  },
+  {
+    "progress": 10188.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 10576.25,
+    "route": 1,
+    "speed": 15.0
+  },
+  {
+    "progress": 10011.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 10415.3076171875,
+    "route": 0,
+    "speed": 18.0
+  },
+  {
+    "progress": 9768.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 10172.6025390625,
+    "route": 1,
+    "speed": 16.0
+  },
+  {
+    "progress": 9591.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 9988.6005859375,
+    "route": 0,
+    "speed": 17.048276901245117
+  },
+  {
+    "progress": 9348.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 9768.955078125,
+    "route": 1,
+    "speed": 17.0
+  },
+  {
+    "progress": 9171.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 9526.25,
+    "route": 0,
+    "speed": 15.0
+  },
+  {
+    "progress": 8928.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 9365.3076171875,
+    "route": 1,
+    "speed": 18.0
+  },
+  {
+    "progress": 8751.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 9122.6025390625,
+    "route": 0,
+    "speed": 16.0
+  },
+  {
+    "progress": 8508.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 8961.66015625,
+    "route": 1,
+    "speed": 19.0
+  },
+  {
+    "progress": 8331.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 8718.955078125,
+    "route": 0,
+    "speed": 17.0
+  },
+  {
+    "progress": 8088.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 8476.25,
+    "route": 1,
+    "speed": 15.0
+  },
+  {
+    "progress": 7911.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 8315.3076171875,
+    "route": 0,
+    "speed": 18.0
+  },
+  {
+    "progress": 7668.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 8072.6025390625,
+    "route": 1,
+    "speed": 16.0
+  },
+  {
+    "progress": 7491.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 7874.32373046875,
+    "route": 0,
+    "speed": 15.14033317565918
+  },
+  {
+    "progress": 7248.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 7668.955078125,
+    "route": 1,
+    "speed": 17.0
+  },
+  {
+    "progress": 7071.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 7426.25,
+    "route": 0,
+    "speed": 15.0
+  },
+  {
+    "progress": 6828.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 7265.3076171875,
+    "route": 1,
+    "speed": 18.0
+  },
+  {
+    "progress": 6651.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 7022.6025390625,
+    "route": 0,
+    "speed": 16.0
+  },
+  {
+    "progress": 6408.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 6862.14111328125,
+    "route": 1,
+    "speed": 19.0
+  },
+  {
+    "progress": 6231.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 6618.955078125,
+    "route": 0,
+    "speed": 17.0
+  },
+  {
+    "progress": 5988.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 6376.25,
+    "route": 1,
+    "speed": 15.0
+  },
+  {
+    "progress": 5811.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 6215.3076171875,
+    "route": 0,
+    "speed": 18.0
+  },
+  {
+    "progress": 5568.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 5972.6025390625,
+    "route": 1,
+    "speed": 16.0
+  },
+  {
+    "progress": 5391.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 5812.14111328125,
+    "route": 0,
+    "speed": 19.0
+  },
+  {
+    "progress": 5148.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 5568.955078125,
+    "route": 1,
+    "speed": 17.0
+  },
+  {
+    "progress": 4971.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 5326.25,
+    "route": 0,
+    "speed": 15.0
+  },
+  {
+    "progress": 4728.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 5165.3076171875,
+    "route": 1,
+    "speed": 18.0
+  },
+  {
+    "progress": 4551.455078125,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 4922.6025390625,
+    "route": 0,
+    "speed": 16.0
+  },
+  {
+    "progress": 4308.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 4762.14111328125,
+    "route": 1,
+    "speed": 19.0
+  },
+  {
+    "progress": 4152.30029296875,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 4518.955078125,
+    "route": 0,
+    "speed": 17.0
+  },
+  {
+    "progress": 3888.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 4276.25,
+    "route": 1,
+    "speed": 15.0
+  },
+  {
+    "progress": 3711.695556640625,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 4115.5322265625,
+    "route": 0,
+    "speed": 18.0
+  },
+  {
+    "progress": 3468.75,
+    "route": 1,
+    "speed": -15.0
+  },
+  {
+    "progress": 3872.6025390625,
+    "route": 1,
+    "speed": 16.0
+  },
+  {
+    "progress": 3291.695556640625,
+    "route": 0,
+    "speed": -13.0
+  },
+  {
+    "progress": 3711.900634765625,
+    "route": 0,
+    "speed": 19.0
+  }
+]

@@ -1,0 +1,27 @@
+LOAD_PROFILE {"elapsed_ms":0.00014000000000000001,"event":"build_app_begin"}
+2026-11-11T02:21:19.203328Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-11T02:21:19.421754Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/roaddash-issue40/baseline-cold-final/metro-1/logs/performance-1014607.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":390.981142,"elapsed_ms":391.084826,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":38.67737,"elapsed_ms":569.924899,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":97.900448,"elapsed_ms":667.915205,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":18.929805,"elapsed_ms":686.9295589999999,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":174.252022,"elapsed_ms":861.269305,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":19.548040999999998,"elapsed_ms":880.905582,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":611.9888930000001,"elapsed_ms":1492.976158,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":694.917719,"elapsed_ms":2187.9823429999997,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":447.650303,"elapsed_ms":2635.720089,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":2105.278898,"elapsed_ms":2636.525936,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":12.21702,"elapsed_ms":2743.745143,"span":"metro_streetscape"}
+LOAD_PROFILE {"duration_ms":106.667074,"elapsed_ms":2743.869706,"span":"metro_farms_civic"}
+LOAD_PROFILE {"duration_ms":107.339412,"elapsed_ms":2743.946109,"span":"metro_world_details"}
+LOAD_PROFILE {"duration_ms":2232.633476,"elapsed_ms":2744.020929,"span":"metro_generation"}
+LOAD_PROFILE {"duration_ms":2301.771428,"elapsed_ms":2744.130584,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":3644.48931,"event":"wait_facade_kit"}
+2026-11-11T02:21:24.813226Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+LOAD_PROFILE {"elapsed_ms":6439.4523389999995,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":6918.7846979999995,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":6932.053796,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":7000.442637,"event":"first_race_update"}
+LOAD_PROFILE {"duration_ms":45.726635,"elapsed_ms":32010.305461999997,"span":"metro_survey_verification"}

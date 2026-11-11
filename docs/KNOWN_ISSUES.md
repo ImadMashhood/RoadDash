@@ -1193,6 +1193,8 @@ range; explicit cloud-off and 150 m shadow controls remain available.
 
 ## Performance/loading investigation (2026-11-10, ADR140)
 
+Issue40 isolated CPU candidate A: repeated Hills/Metropolis warm/cold native raw p95 changes are small and mixed despite exact non-timing survey parity. The candidate's cold Hills mean p95 is 0.4% higher and Metro cold maximum reaches42.450ms (no >50ms stall); neither establishes a repeatable frame-budget gain. Four-way integrated selection, full-race combat/recovery and target-hardware confirmation remain open. See `testing/issue40-cpu/REPORT.md`.
+
 RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
 lighting evaluation, generation reuse and content budgets. Initial clean local
 profiling identifies repeated terrain support construction and CPU physics/

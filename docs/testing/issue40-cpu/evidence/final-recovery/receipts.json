@@ -1,0 +1,116 @@
+[
+  {
+    "case": "hills-biomechanical",
+    "exit_code": 0,
+    "binary_sha256": "f2ee87bca21f09abbdec9408ab618fc940e893174914832723787e1d9e1d5537",
+    "production_defaults": false,
+    "flags": [
+      "--smoke-test"
+    ],
+    "environment": {
+      "ROADDASH_TRACK": "hills",
+      "ROADDASH_FIXED_EXECUTOR": "single",
+      "ROADDASH_LOAD_JOBS": "8",
+      "ROADDASH_TERRAIN_CACHE": "1",
+      "ROADDASH_VEHICLE": "dynamic",
+      "ROADDASH_RACE_SEED": "25",
+      "ROADDASH_SMOKE_ROUTE": "0",
+      "ROADDASH_VERIFY_HILLS_RESCUE": "1",
+      "ROADDASH_SAVE_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/hills-biomechanical/save",
+      "ROADDASH_SETTINGS": "/home/imad/roaddash-issue40/cpu-final-recovery/hills-biomechanical/settings.json",
+      "ROADDASH_LOG_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/hills-biomechanical/logs",
+      "ROADDASH_DHT": "0",
+      "ROADDASH_UPNP": "0"
+    },
+    "complete": true,
+    "render_errors": false,
+    "duration_s": 56.055057321005734,
+    "timing_claim": false
+  },
+  {
+    "case": "hills-baseline",
+    "exit_code": 0,
+    "binary_sha256": "f2ee87bca21f09abbdec9408ab618fc940e893174914832723787e1d9e1d5537",
+    "production_defaults": false,
+    "flags": [
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "environment": {
+      "ROADDASH_TRACK": "hills",
+      "ROADDASH_FIXED_EXECUTOR": "single",
+      "ROADDASH_LOAD_JOBS": "8",
+      "ROADDASH_TERRAIN_CACHE": "1",
+      "ROADDASH_VEHICLE": "dynamic",
+      "ROADDASH_RACE_SEED": "25",
+      "ROADDASH_SMOKE_ROUTE": "1",
+      "ROADDASH_VERIFY_HILLS_RESCUE": "1",
+      "ROADDASH_SAVE_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/hills-baseline/save",
+      "ROADDASH_SETTINGS": "/home/imad/roaddash-issue40/cpu-final-recovery/hills-baseline/settings.json",
+      "ROADDASH_LOG_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/hills-baseline/logs",
+      "ROADDASH_DHT": "0",
+      "ROADDASH_UPNP": "0"
+    },
+    "complete": true,
+    "render_errors": false,
+    "duration_s": 65.2866818879993,
+    "timing_claim": false
+  },
+  {
+    "case": "metro-biomechanical",
+    "exit_code": 0,
+    "binary_sha256": "f2ee87bca21f09abbdec9408ab618fc940e893174914832723787e1d9e1d5537",
+    "production_defaults": false,
+    "flags": [
+      "--smoke-test"
+    ],
+    "environment": {
+      "ROADDASH_TRACK": "metro",
+      "ROADDASH_FIXED_EXECUTOR": "single",
+      "ROADDASH_LOAD_JOBS": "8",
+      "ROADDASH_TERRAIN_CACHE": "1",
+      "ROADDASH_VEHICLE": "dynamic",
+      "ROADDASH_RACE_SEED": "25",
+      "ROADDASH_SMOKE_ROUTE": "0",
+      "ROADDASH_VERIFY_HILLS_RESCUE": "0",
+      "ROADDASH_SAVE_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/metro-biomechanical/save",
+      "ROADDASH_SETTINGS": "/home/imad/roaddash-issue40/cpu-final-recovery/metro-biomechanical/settings.json",
+      "ROADDASH_LOG_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/metro-biomechanical/logs",
+      "ROADDASH_DHT": "0",
+      "ROADDASH_UPNP": "0"
+    },
+    "complete": true,
+    "render_errors": false,
+    "duration_s": 38.22133473600843,
+    "timing_claim": false
+  },
+  {
+    "case": "metro-baseline",
+    "exit_code": 0,
+    "binary_sha256": "f2ee87bca21f09abbdec9408ab618fc940e893174914832723787e1d9e1d5537",
+    "production_defaults": false,
+    "flags": [
+      "--smoke-test",
+      "--ragdoll-baseline"
+    ],
+    "environment": {
+      "ROADDASH_TRACK": "metro",
+      "ROADDASH_FIXED_EXECUTOR": "single",
+      "ROADDASH_LOAD_JOBS": "8",
+      "ROADDASH_TERRAIN_CACHE": "1",
+      "ROADDASH_VEHICLE": "dynamic",
+      "ROADDASH_RACE_SEED": "25",
+      "ROADDASH_SMOKE_ROUTE": "0",
+      "ROADDASH_VERIFY_HILLS_RESCUE": "0",
+      "ROADDASH_SAVE_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/metro-baseline/save",
+      "ROADDASH_SETTINGS": "/home/imad/roaddash-issue40/cpu-final-recovery/metro-baseline/settings.json",
+      "ROADDASH_LOG_DIR": "/home/imad/roaddash-issue40/cpu-final-recovery/metro-baseline/logs",
+      "ROADDASH_DHT": "0",
+      "ROADDASH_UPNP": "0"
+    },
+    "complete": true,
+    "render_errors": false,
+    "duration_s": 29.948904161996325,
+    "timing_claim": false
+  }
+]
