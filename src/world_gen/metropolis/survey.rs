@@ -200,11 +200,16 @@ pub fn run(
         if let Some(ref kit) = kit {
             state.views.push(serde_json::json!({"view":index,"route":route,"chainage":s,"aerial":aerial,"grass_visible_batches":grass.iter().filter(|(_,v)|v.get()).count(),"grass_visible_triangles":grass.iter().filter(|(_,v)|v.get()).map(|(b,_)|b.triangles).sum::<usize>(),"kit":kit.evidence(),"native_draw_audit":if kit.mesh_instances > 0 { kit.audit(authored.iter(), &meshes) } else { serde_json::Value::Null }}));
         }
-        commands
-            .spawn(Screenshot::primary_window())
-            .observe(save_to_disk(format!("screenshots/metro-{index:02}.png")));
+        if std::env::var("ROADDASH_SURVEY_CAPTURE").as_deref() != Ok("0") {
+            commands
+                .spawn(Screenshot::primary_window())
+                .observe(save_to_disk(format!("screenshots/metro-{index:02}.png")));
+        }
     }
     if state.frame > period * scenes.len() as u32 + 20 {
+        commands.insert_resource(crate::diagnostics::FixtureComplete);
+        let _verification_span =
+            crate::diagnostics::loading::Span::new("metro_survey_verification");
         let farm_ready = actors
             .farm_props
             .iter()

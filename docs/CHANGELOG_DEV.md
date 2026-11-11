@@ -1828,3 +1828,50 @@ All594workspace tests, strict lint/build/audit and five roadmap checks pass.
 Native Metropolis seam views and both Hills current/baseline recovery runs pass
 with no exceptional rescues. No physical rig/handling/dependency changes or new
 IDs/checklist closures. Full evidence: testing/hills-grid/REPORT.md.
+
+## 2026-11-10 — Issue25 profiling and exact generation reuse (ADR140)
+
+Added opt-in loading spans, raw race-frame evidence, render-pass diagnostics and
+an isolated paired survey harness. Profiled both courses before optimization;
+recorded loading/CPU/GPU boundaries, sampling policy limits, cache provenance and
+lighting/budget research. Introduced scoped exact terrain reuse and duplicate
+Metropolis corner-color reuse with original geometry/collision preserved;
+loading-only job admission and fixed-schedule executor remain controlled
+experiments pending measurements. RFU-PERF-01..05 are new stable open requirements.
+Pinned dependencies remain unchanged; parent coordinates the requested0.20
+migration separately. Verification and paired results are recorded in
+`testing/issue25-performance/REPORT.md`; broad performance gates remain open.
+
+## 2026-11-10 — CI diagnostics and explicit roadmap encoding (ADR140)
+
+Preserve the900-update/240sleeping-body gate while adding failure-only per-owner
+and1800-update observations for a pre-existing Ubuntu CI failure not reproduced
+locally. No rig or physics changes. Fix Windows locale-dependent roadmap reads
+with explicit UTF-8 and correct issue25 Part01/16 summary counts exposed by the
+complete roadmap test. All five checks pass under an ASCII locale; Rust diagnostic
+compilation/CI and root-cause resolution remain pending.
+
+## 2026-11-11 — Controlled repeats, defaults and bounded natural-sleep verification (ADR140)
+
+Detected a replacement indexer, rejected two attempts and downgraded earlier
+pairs to exploratory evidence. Verified/pidfd-paused parent2060 for eight fresh
+cold-asset/reverse-warm runs, then restored it in finally. Loading/frame gains
+repeat with exact census/support parity; retain the terminal audit61ms sample
+and separate it from a common gameplay cohort. Both rigs recover on both maps.
+Select measured single-dispatch/eight-loading-job defaults with controls intact;
+add actual lab executor reporting and terminal verification spans. CI establishes
+bounded late natural sleep, so preserve15s stability and require all240sleeping
+by30s on the same fixture for both executors, without physical tuning. Final
+rebuilt checks and merge remain pending.
+
+## 2026-11-11 — Final executor parity and source-frozen verification (ADR140)
+
+All18lab scenarios match exactly across explicit single/multi executors after
+excluding only executor label/wall time. Final598workspace tests, strict Clippy,
+format, provenance audit and Python evidence/roadmap checks pass. Same-fixture
+pileups first naturally sleep all240bodies at update877 in both executors.
+Terminal survey markers now flush partial raw windows and normal shutdown drains
+the bounded writer; final release is frozen with exact source/tree/binary hashes.
+Default-only four recovery/two survey checks pass with zero dropped logs and
+retained terminal audits; final publication/merge follows required checks.
+Broad RFU-PERF gates remain open; no physics/dependency migration is included.

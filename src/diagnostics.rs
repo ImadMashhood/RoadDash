@@ -1,9 +1,13 @@
 //! Bounded local diagnostics. No telemetry is transmitted.
+pub mod loading;
 mod perf;
 use crate::runtime::{SimSet, SimulationClock};
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 use std::{collections::VecDeque, time::Instant};
+/// Native survey verification writes files after its gameplay measurement ends.
+#[derive(Resource)]
+pub(crate) struct FixtureComplete;
 #[derive(Resource)]
 pub struct Metrics {
     last_frame: Instant,
@@ -187,7 +191,7 @@ impl Plugin for RoadDiagnosticsPlugin {
             .init_resource::<perf::PerfLog>()
             .init_resource::<perf::RenderTimes>()
             .add_systems(First, frame_begin)
-            .add_systems(Last, perf::sample)
+            .add_systems(Last, (perf::sample, loading::milestones))
             .add_systems(FixedFirst, begin)
             .add_systems(
                 FixedUpdate,
@@ -215,6 +219,9 @@ impl Plugin for RoadDiagnosticsPlugin {
             )
             .add_systems(Update, frame);
         perf::install_render(app);
+        if std::env::var("ROADDASH_GPU_PROFILE").as_deref() == Ok("1") {
+            app.add_plugins(bevy::render::diagnostic::RenderDiagnosticsPlugin);
+        }
         #[cfg(feature = "devtools")]
         app.add_systems(Startup, setup);
     }

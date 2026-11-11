@@ -1,0 +1,8 @@
+{
+  "source_commit": "77dbe1a71636f2c48d424e801008f320547cd713",
+  "source_tree": "74ab30af3955d1c84da76a9e862abb89cf3a2a61",
+  "compiled_checkout": "/home/imad/Documents/ChatGPT/RoadDash-issue-25",
+  "workspace_clean_at_build_start": true,
+  "binary_sha256": "fc1212a3423e25bf0996b2648c77080e816145c2f6b7ea550fbc3340fcc86d0d",
+  "equivalent_published_commit": "81d9a38c1e6c35bb900216ae02ba5411b8967ae7"
+}

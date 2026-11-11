@@ -66,6 +66,9 @@ impl Queue {
     pub fn material_ready(&self, id: AssetId<StandardMaterial>) -> bool {
         self.done.contains(&id)
     }
+    pub(crate) fn loading_evidence(&self) -> serde_json::Value {
+        serde_json::json!({"pending":self.pending.len(),"jobs":self.jobs.len(),"done":self.done.len()})
+    }
     pub fn settled(&self) -> bool {
         self.jobs.is_empty() && self.pending.is_empty() && self.stable >= 2
     }
@@ -122,7 +125,24 @@ pub fn update(
     mut image_events: MessageReader<AssetEvent<Image>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
     mut images: ResMut<Assets<Image>>,
+    screen: Option<Res<State<crate::runtime::AppScreen>>>,
 ) {
+    // Measured loading-only admission; background worker count is unchanged.
+    // Retain the two-job gameplay budget and cap requested load admission at eight.
+    let job_limit = if screen.as_ref().is_some_and(|s| {
+        matches!(
+            s.get(),
+            crate::runtime::AppScreen::Boot | crate::runtime::AppScreen::Loading
+        )
+    }) {
+        std::env::var("ROADDASH_LOAD_JOBS")
+            .ok()
+            .and_then(|v| v.parse::<usize>().ok())
+            .unwrap_or(8)
+            .clamp(2, 8)
+    } else {
+        2
+    };
     for event in image_events.read() {
         if let AssetEvent::Removed { id } = event {
             queue.sources.remove(id);
@@ -206,7 +226,7 @@ pub fn update(
             queue.pending.remove(&id);
             continue;
         }
-        if queue.jobs.len() >= 2 || queue.inflight.contains(&albedo) {
+        if queue.jobs.len() >= job_limit || queue.inflight.contains(&albedo) {
             continue;
         }
         let Some(image) = images.get(albedo) else {

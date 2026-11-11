@@ -132,6 +132,7 @@ pub fn setup_world(
     server: Option<Res<AssetServer>>,
     mut binds: Option<ResMut<Assets<bevy::mesh::skinning::SkinnedMeshInverseBindposes>>>,
 ) {
+    let _load_span = crate::diagnostics::loading::Span::new("world_setup");
     let swatch = |hex: u32| Color::srgb_u8((hex >> 16) as u8, (hex >> 8) as u8, hex as u8);
     // Unrendered world/physics fixtures have no asset server or GPU skin assets.
     let models = match (

@@ -1,0 +1,26 @@
+LOAD_PROFILE {"elapsed_ms":0.000111,"event":"build_app_begin"}
+2026-11-11T00:05:45.448503Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-11T00:05:45.747080Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadDash-issue-25/output/testing/issue25-quiesced-warm/control/metro-1/logs/performance-843274.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":550.084029,"elapsed_ms":550.2342,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":48.476006000000005,"elapsed_ms":779.013108,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":111.637261,"elapsed_ms":890.758261,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":21.926644,"elapsed_ms":912.8017940000001,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":188.991524,"elapsed_ms":1101.905297,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":23.673923,"elapsed_ms":1125.668958,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":1593.166325,"elapsed_ms":2718.925112,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":697.293809,"elapsed_ms":3416.306164,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":456.608189,"elapsed_ms":3873.003159,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":3143.266484,"elapsed_ms":3873.803015,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":8.66615,"elapsed_ms":3969.770125,"span":"metro_streetscape"}
+LOAD_PROFILE {"duration_ms":95.397204,"elapsed_ms":3969.916218,"span":"metro_farms_civic"}
+LOAD_PROFILE {"duration_ms":96.134101,"elapsed_ms":3970.004163,"span":"metro_world_details"}
+LOAD_PROFILE {"duration_ms":3262.974823,"elapsed_ms":3970.1075459999997,"span":"metro_generation"}
+LOAD_PROFILE {"duration_ms":3353.326457,"elapsed_ms":3970.205249,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":4858.903325,"event":"wait_facade_kit"}
+2026-11-11T00:05:52.235102Z  WARN wgpu_hal::vulkan: Suboptimal present of frame 1
+LOAD_PROFILE {"elapsed_ms":9070.707283000002,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":11341.231789,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":11355.450865,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":11425.592741999999,"event":"first_race_update"}

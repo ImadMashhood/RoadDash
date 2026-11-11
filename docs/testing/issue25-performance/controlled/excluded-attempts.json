@@ -1,0 +1,13 @@
+{
+  "cases": [
+    {
+      "path": "output/testing/issue25-repeat-cold/control/hills-1",
+      "reason": "Stopped after observing active replacement extractor739071; startup incomplete/no valid race sample."
+    },
+    {
+      "path": "output/testing/issue25-isolated-cold/control/hills-1",
+      "reason": "Monitor detected replacement extractor836701; owned game terminated at0.67s, receipt exit-15."
+    }
+  ],
+  "signals": "Neither extractor739071 nor836380 was signaled; both exited before capture. Controlled batch suspended only verified parent2060, restored via pidfd in finally."
+}

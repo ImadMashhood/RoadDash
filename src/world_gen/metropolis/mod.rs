@@ -64,6 +64,7 @@ pub fn spawn(
     art: &Art,
     track: &Track,
 ) {
+    let _load_span = crate::diagnostics::loading::Span::new("metro_generation");
     let m = track.metropolis.as_ref().expect("metropolis content");
     if let Some(server) = server {
         commands.insert_resource(facades::Kit::load(server, track));
@@ -79,6 +80,7 @@ pub fn spawn(
         m,
         track,
     );
+    let _metro_world_details = crate::diagnostics::loading::Span::new("metro_world_details");
     let window = art.metal.clone();
     for (i, j) in m.junctions.iter().enumerate() {
         let street = m.streets.iter().find(|s| s.id == j.street_id).unwrap();
@@ -144,6 +146,7 @@ pub fn spawn(
             }
         }
     }
+    let _metro_farms_civic = crate::diagnostics::loading::Span::new("metro_farms_civic");
     farms::spawn(commands, art, track, &mut census);
     civic::spawn(commands, meshes, materials, art, track, images);
     census.civic_sites = m.civic_sites.len();
@@ -177,6 +180,7 @@ pub fn spawn(
             census.walking_pedestrians += 1;
         }
     }
+    let _metro_streetscape = crate::diagnostics::loading::Span::new("metro_streetscape");
     census.street_props = streetscape::spawn(commands, art, track);
     if let Some(props) = &art.props {
         for (i, car) in m.parked_cars.iter().enumerate() {

@@ -1188,3 +1188,31 @@ range; explicit cloud-off and 150 m shadow controls remain available.
   594tests and both-rig native recovery pass; complete human race/passing balance,
   other hardware/network conditions and60FPS remain open. No blanket guarantee
   that every traffic blockage is eliminated.
+
+## Performance/loading investigation (2026-11-10, ADR140)
+
+RFU-PERF-01..05 track paired Hills/Metropolis loading, runtime CPU/GPU evidence,
+lighting evaluation, generation reuse and content budgets. Initial clean local
+profiling identifies repeated terrain support construction and CPU physics/
+dispatch as candidates; see `testing/issue25-performance/REPORT.md`. Raw frames,
+loading milestones and actual asynchronous GPU pass diagnostics are distinguished
+from window averages and whole-frame presentation. The existing16.7ms p95 target,
+full-race combat/traffic coverage, cold-machine loading and Windows/other hardware
+acceptance remain open. Final combined content/engine measurements are required
+before treating local branch improvements as overall performance acceptance.
+
+- ADR140 verification: unchanged main and initial PR CI showed208/240sleeping
+  bodies at900updates despite all15controllers Resting with tiny residual motion.
+  The same-fixture test retains15s finite/body/resting/anchor and strict low-motion
+  checks, then requires all240naturally sleeping with zero motion by30s, under
+  both explicit executors. Local full598tests pass. No physics coefficients,
+  forced sleep or backend thresholds change; final-head CI remains separate.
+  Original failed CI evidence is retained. Windows repository reads now specify
+  UTF-8; five locale-hostile roadmap checks pass, actual Windows CI remains pending.
+
+- ADR140 measurement: first exploratory pairs missed replacement indexing and are
+  excluded. Eight controlled replacements confirm loading/runtime gains, with
+  exact census/support parity. Both-map/both-rig native recovery and18-case
+  explicit executor lab parity pass. The16.7ms p95/full-course/final combined
+  content/hardware gates stay open; peak CPU memory remains roughly2.1GiB Hills/
+  5.8GiB Metro, and no GPU-memory reduction is claimed.

@@ -25,8 +25,18 @@ pub(super) fn tint(batch: &mut Batch, material: usize, track: &Track) {
     if ![27, 30, 31].contains(&material) {
         return;
     }
+    // The resident grid repeats shared corners per quad. Reuse only identical
+    // input bits; no color/terrain approximation or new material is introduced.
+    let cache_enabled = std::env::var("ROADDASH_TERRAIN_CACHE").as_deref() != Ok("0");
+    let mut cache = std::collections::HashMap::new();
     for (p, color) in batch.p.iter().zip(&mut batch.colors) {
-        let c = ground_tint(Vec2::new(p[0], p[2]), track);
+        let c = if cache_enabled {
+            *cache
+                .entry((p[0].to_bits(), p[2].to_bits()))
+                .or_insert_with(|| ground_tint(Vec2::new(p[0], p[2]), track))
+        } else {
+            ground_tint(Vec2::new(p[0], p[2]), track)
+        };
         *color = [c.x, c.y, c.z, 1.];
     }
 }
@@ -538,6 +548,31 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn duplicate_corner_tint_cache_preserves_exact_source_colors() {
+        let track = Track::metropolis().unwrap();
+        let mut batch = Batch::default();
+        for station in [0., 2700., 3100., 4500., 10000.] {
+            let (p, _) = track.sample_route(0, station, 0.);
+            for lane in [-25., -8., 0., 8., 25.] {
+                let p = p + Vec3::X * lane;
+                batch.quad(
+                    [p, p + Vec3::Z * 8., p + Vec3::splat(8.), p + Vec3::X * 8.],
+                    [[0.; 2]; 4],
+                );
+            }
+        }
+        let expected: Vec<_> = batch
+            .p
+            .iter()
+            .map(|p| {
+                let c = ground_tint(Vec2::new(p[0], p[2]), &track);
+                [c.x, c.y, c.z, 1.]
+            })
+            .collect();
+        tint(&mut batch, 27, &track);
+        assert_eq!(batch.colors, expected);
+    }
     #[test]
     fn crop_undergrowth_stays_below_flattened_wheat_without_shortening_other_grass() {
         for seed in [0., 0.25, 0.5, 0.75, 1.] {

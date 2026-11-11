@@ -18,6 +18,9 @@ pub struct Queue {
     pub unsupported: usize,
 }
 impl Queue {
+    pub(crate) fn loading_evidence(&self) -> serde_json::Value {
+        serde_json::json!({"pending":self.pending.len(),"jobs":self.jobs.len(),"done":self.done.len()})
+    }
     pub fn settled(&self) -> bool {
         self.pending.is_empty() && self.jobs.is_empty()
     }

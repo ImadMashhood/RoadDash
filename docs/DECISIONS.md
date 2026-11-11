@@ -3792,3 +3792,77 @@ queries and accepted physics. AI-QUEUE-02 covers the runtime regression. Close
 the 8 cm exposed terrain seam with a soil render-edge underlap, retaining road,
 sidewalk/building exclusions and independent collision (CITY-CIVIC-01). No
 facade material changes or third-party assets.
+
+
+## ADR140 — Measure course loading and frame distributions before optimization (2026-11-10)
+
+Issue #25 prioritizes both Hills and Metropolis loading/runtime performance.
+Keep the pinned Bevy 0.17.3/Rapier 0.32.0 control while recording opt-in nested
+CPU startup spans, bounded raw-frame samples and supported render diagnostics.
+Readiness is the existing required-asset gate; it does not prove GPU pipelines
+have completed or that every distant detail is resident. Nested spans overlap.
+Do not sum them or label CPU render scheduling as GPU timestamps. Preserve all
+collision, physics, recovery, saves and content while measuring changes.
+
+Primary crates.io registry queries confirm Bevy 0.20.1 (Rust 1.97.1) and
+bevy_rapier3d 0.37.0 with Bevy ^0.20. The requested migration is coordinated
+separately after these branches; this work must not silently mix three releases
+of breaking APIs. Installed Bevy skills are MIT guidance, the game-development
+performance skill package is Apache-2.0 guidance; no source/media is imported.
+Installed 0.17.3 renderer diagnostics source is the API authority for this pass.
+
+ADR140 measured loading follow-up: instrumented Hills construction costs
+29.2 seconds on Ryzen 5 3600 (countryside14.48s, props9.44s, terrain4.63s).
+Memoize exact-bit support vertices only within an immutable borrowed-track
+generation scope; cap131072entries, release at scope exit and retain a same-binary
+ROADDASH_TERRAIN_CACHE=0 control. A different track bypasses the scope; nested
+scopes restore previous state. Skip preliminary terrain heights immediately
+overwritten by the final resident terrain sampler, preserving topology/order.
+No disk cache/version invalidation, approximate heights, moved props, collision
+removal or physical-rig tuning. The GPU sample supports investigating CPU work
+first; it is not a full-course GPU conclusion.
+
+ADR140 runtime experiment: delayed flat CPU sampling reports executor work as a
+major user-cycle consumer, but awaited work/spin can obscure cause. Evaluate
+ROADDASH_FIXED_EXECUTOR=single against the default multi-threaded FixedUpdate
+dispatcher. This changes scheduler dispatch only: retain ordered systems, deferred
+command barriers,60Hz, substeps, collider/rig parameters and Rapier internal
+parallel solving. The default remains unchanged until repeatable timing and
+physical/recovery parity pass; revert the experiment on regression.
+
+ADR140 load-admission experiment: Metropolis source construction takes3.24s
+while required readiness takes10.96s, with thousands of materials. Instrument
+pending/jobs/done queues; evaluate an opt-in eight-job admission ceiling during
+Boot/Loading (ROADDASH_LOAD_JOBS=8), retaining two jobs during gameplay and
+unchanged worker-pool size, derived bytes/fingerprints and readiness gates.
+Do not adopt a higher default without measured queue/load improvement.
+
+ADR140 first isolated matched samples: exact reuse reduces Hills world setup
+29.910→18.595s and Metro3.221→2.366s with unchanged native census/support fields.
+Single fixed dispatch improves raw p95 Hills25.56→20.45ms and Metro28.66→24.76ms;
+eight loading jobs reduce Metro readiness10.132→6.950s. These are one sample per
+configuration, not repeated acceptance. Both configurations pass598 workspace
+tests (one existing ignored soak). Dedicated recovery/cold/reverse-order repeats
+remain before changing dispatch/admission defaults; see issue25 evidence.
+
+ADR140 controlled follow-up: replacement indexing invalidated the first pair's
+full-isolation claim; retain it as exploratory only. Eight new cold-asset/reverse
+warm runs with verified PID2060 paused/restored confirm readiness gains37–39%
+and raw p95 gains13–23%, with unchanged census/support structures. One61.423ms
+Metro event is the exact terminal audit frame; retain it and add explicit fixture
+completion/span markers, plus same-length cohort comparisons across all controls.
+Four both-map/both-rig native recovery cases pass. Select single FixedUpdate
+dispatch and eight loading-only material jobs, preserving explicit multi/two-job
+controls, internal parallel Rapier,60Hz/substeps and two-job gameplay admission.
+Rebuilt18-case explicit paired lab checks pass with exact non-timing equality;
+598workspace tests pass on selected defaults. Final source-frozen native default-only recovery and terminal-log surveys
+pass on both maps; no dropped evidence and no timing claim under build load.
+
+CI on unchanged main and the diagnostic PR shows15resting riders at900updates,
+240finite bodies, anchor error0.00217m, linear0.00639m/s, angular0.13730rad/s, but
+only208sleeping bodies. An independent1800-update diagnostic sleeps all240 with
+zero velocity. Correct the test's hardware-dependent deadline using one fixture:
+retain900-update finite/body/resting/anchor checks and low motion<0.1m/s,<0.5rad/s;
+require all240naturally asleep with zero motion by1800updates, record first sleep
+update, and run both explicit executors. No forces, damping, motors, collision,
+sleep thresholds or accepted physical behavior change. Original failedCI retained.

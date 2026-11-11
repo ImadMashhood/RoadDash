@@ -289,6 +289,8 @@ pub fn spawn(
     m: &Metropolis,
     track: &Track,
 ) -> Census {
+    let _load_span = crate::diagnostics::loading::Span::new("metro_geometry");
+    let mut stage = crate::diagnostics::loading::Span::new("metro_materials");
     let (mut mats, facade) = textures(images, materials, facades);
     let ground_texture = landscape::ground_texture(images);
     mats.push(materials.add(Color::srgb(0.23, 0.24, 0.24)));
@@ -321,6 +323,8 @@ pub fn spawn(
     let catalog =
         rr_content::architecture::Catalog::from_json(crate::world_gen::architecture::CATALOG)
             .unwrap();
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_buildings");
     for b in &m.buildings {
         let vv: Vec<_> = b.shape.vertices().collect();
         let center = vv.iter().map(|p| Vec2::from_array(*p)).sum::<Vec2>() / vv.len() as f32;
@@ -398,6 +402,8 @@ pub fn spawn(
             false,
         );
     }
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_surfaces");
     for surface in &m.surfaces {
         let p = surface.shape.rings[0][0];
         let mat = match surface.kind {
@@ -432,6 +438,8 @@ pub fn spawn(
                 .shape(patch, |x, z| track.terrain_height(x, z) - 0.12, true);
         }
     }
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_fences_terrain");
     let mut fence_posts = std::collections::HashSet::new();
     for field in &m.fields {
         for ring in &field.shape.rings {
@@ -516,6 +524,8 @@ pub fn spawn(
             }
         }
     }
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_paint");
     let mut pavement = PavementHeights::default();
     for ((_, _, material), batch) in &batches {
         if *material == 25 {
@@ -633,6 +643,8 @@ pub fn spawn(
             );
         }
     }
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_mesh_build");
     let mut census = Census {
         buildings: m.buildings.len(),
         physical_routes: 2,
@@ -676,6 +688,8 @@ pub fn spawn(
         }
     }
     census.static_collision_batches = collision_batches.len();
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_collision");
     for ((x, z, role), batch) in collision_batches {
         let origin = Vec3::new(x as f32 * 256., 0., z as f32 * 256.);
         let mut entity = commands.spawn((
@@ -698,6 +712,8 @@ pub fn spawn(
             entity.insert(crate::vehicle::RideableStep);
         }
     }
+    drop(stage);
+    stage = crate::diagnostics::loading::Span::new("metro_details_grass");
     for ((x, z, mat), batch) in details {
         let origin = Vec3::new(x as f32 * 256., 0., z as f32 * 256.);
         census.render_triangles += batch.ix.len();
@@ -716,6 +732,7 @@ pub fn spawn(
     if !track.is_hills() {
         landscape::spawn(commands, meshes, grass, track, &mut census, &mats[27]);
     }
+    drop(stage);
     census
 }
 
