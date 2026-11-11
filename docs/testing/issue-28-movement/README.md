@@ -128,3 +128,28 @@ explicit600-second turning soak stays ignored. Format, strict all-target Clippy,
 locked executable build, provenance audit, five roadmap tests and synchronized
 progress check pass. All12models tests retain trajectory/recovery parity.
 Checks ran at nice15/jobs2/testthreads2; no elapsed-time performance conclusions.
+
+## Civilian integration (main7a63ef18)
+
+Merged civilian overtaking after its615-test and selected/native fleet checks.
+Production movement and the civilian planner share game::drive; both changes
+are retained. Explicit smoke dispatch preserves reverse-review and civilian-survey
+entry points. Removed inherited merge markers in PROGRESS while retaining both
+scope summaries. The combined suite covers movement signs/zero crossings, exact
+model parity, terrain contacts and all civilian pass/obstruction/endpoint tests.
+Paired native recovery is repeated against the combined executable because the
+planner and running controls share a fixed update; the unchanged isolated gait
+fixtures are retained from the ten-case native matrix.
+
+Combined source passes617tests (433game,1preview,57content,126core), with the
+existing600-second vehicle soak and isolated civilian CPU benchmark ignored.
+Strict all-target Clippy, fmt, locked build, audit and five roadmap tests pass.
+No tracked conflict markers remain. Native paired recovery receipt follows.
+
+Combined native recovery passes2/2 (combined-native-receipt.json), both rigs,
+manual interruption/automatic return and remount, with two walking zones and
+no logged ERROR/panic/shader failure. Distances match the earlier fixtures.
+Executable SHA256:68fd87eb326895e3b4f691d5d3196d3c6fda9db475b4878a93fb99bcb3b081a3.
+Reviewed the combined anatomy remount capture; no new pose discontinuity visible.
+Earlier five-terrain/two-reverse/18-case lab receipts remain valid because their
+production paths were preserved. User motion/terrain acceptance remains open.

@@ -287,9 +287,35 @@ pub struct TrafficYield {
     last_elapsed: f32,
     lane_slot: usize,
     start_progress: Option<f32>,
+    passing: rr_core::civilian::Memory,
+    pass_geometry_clear: bool,
+    merge_geometry_clear: bool,
+    pass_geometry_remaining: f32,
 }
 #[derive(Component)]
 pub struct Debris(pub f32);
+
+/// Nominal home/opposing lane in the traffic sampler's own frame.
+fn civilian_lanes(
+    track: &Track,
+    route: usize,
+    station: f32,
+    direction: f32,
+    slot: usize,
+    ratio: f32,
+) -> (f32, f32, f32) {
+    if let Some(m) = &track.metropolis {
+        let sections = &m.street_life.lane_sections;
+        (
+            rr_core::streets::lane_center(sections, route, station, direction > 0., slot),
+            rr_core::streets::lane_center(sections, route, station, direction < 0., 0),
+            rr_core::streets::markings(sections, route, station).0,
+        )
+    } else {
+        let home = ratio * track.half_width(station);
+        (home, -home, 0.)
+    }
+}
 
 pub fn setup_race(
     mut commands: Commands,
@@ -683,13 +709,27 @@ pub fn drive(
     >,
     mut commands: Commands,
     mut profile: ResMut<Profile>,
-    (content, persistence, adapter, handling, weapons, network_inputs): (
+    (
+        content,
+        persistence,
+        adapter,
+        handling,
+        weapons,
+        network_inputs,
+        mut civilian_scratch,
+        mut civilian_timings,
+    ): (
         Res<GameContent>,
         Res<Persistence>,
         Res<crate::vehicle::VehiclePhysicsAdapter>,
         Res<crate::vehicle::Tuning>,
         Res<crate::weapons::WeaponRules>,
         Option<Res<crate::online::AuthorityInputs>>,
+        Local<(
+            Vec<rr_core::civilian::Vehicle>,
+            Vec<rr_core::civilian::Vehicle>,
+        )>,
+        Option<ResMut<civilian_survey::PlanningTimings>>,
     ),
     police: Res<crate::police::Police>,
     mut physics: Query<&mut RapierConfiguration>,
@@ -1732,17 +1772,15 @@ pub fn drive(
             .filter(|(_, r, _, _, _)| !r.police && r.id != 0 && r.progress > player_progress)
             .count();
     }
-    let cars: Vec<_> = traffic
+    let traffic_started = civilian_timings.as_ref().map(|_| std::time::Instant::now());
+    let mut planner_elapsed = std::time::Duration::ZERO;
+    let mut cars: Vec<_> = traffic
         .iter()
         .map(|(entity, c, _, y, _)| {
             let default_bounds = (Vec3::splat(-1.95), Vec3::splat(1.95));
-            let (lo, hi) = if !track.is_hills() {
-                default_bounds
-            } else {
-                shapes.get(entity).map_or(default_bounds, |shape| {
-                    recovery::collider_bounds(&Transform::IDENTITY, shape)
-                })
-            };
+            let (lo, hi) = shapes.get(entity).map_or(default_bounds, |shape| {
+                recovery::collider_bounds(&Transform::IDENTITY, shape)
+            });
             (
                 c.route,
                 c.progress,
@@ -1753,6 +1791,7 @@ pub fn drive(
                 entity,
                 hi.z.max(0.),
                 (-lo.z).max(0.),
+                hi.x.abs().max(lo.x.abs()),
             )
         })
         .collect();
@@ -1773,7 +1812,43 @@ pub fn drive(
     } else {
         vec![]
     };
-    for (entity, mut car, mut transform, mut yielding, disabled) in &mut traffic {
+    let planner_started = civilian_timings.as_ref().map(|_| std::time::Instant::now());
+    cars.sort_by_key(|c| c.6);
+    let (fleet, peers) = &mut *civilian_scratch;
+    fleet.clear();
+    fleet.extend(cars.iter().filter_map(|c| {
+        let Ok((_, car, _, y, _)) = traffic.get(c.6) else {
+            return None;
+        };
+        let ratio = y
+            .lane_ratio
+            .unwrap_or(car.lane / track.half_width(car.progress));
+        let (home, opposite, divider) = civilian_lanes(&track, c.0, c.1, c.4, c.5, ratio);
+        Some(rr_core::civilian::Vehicle {
+            id: c.6.to_bits(),
+            station: c.1,
+            lane: home + (opposite - home) * y.passing.blend - divider,
+            home: home - divider,
+            speed: c.3,
+            cruise: y.cruise.unwrap_or(car.speed),
+            front: c.7,
+            rear: c.8,
+            half_width: c.9,
+            reserved: y.passing.reserved(),
+        })
+    }));
+    if cars.len() != fleet.len() {
+        cars.retain(|c| fleet.iter().any(|v| v.id == c.6.to_bits()));
+    }
+    if let Some(started) = planner_started {
+        planner_elapsed += started.elapsed();
+    }
+    for index in 0..cars.len() {
+        let Ok((entity, mut car, mut transform, mut yielding, disabled)) =
+            traffic.get_mut(cars[index].6)
+        else {
+            continue;
+        };
         let old_position = transform.translation;
         let cruise = *yielding.cruise.get_or_insert(car.speed);
         if race.elapsed < yielding.last_elapsed {
@@ -1782,6 +1857,10 @@ pub fn drive(
             }
             car.speed = cruise;
             yielding.honk_remaining = 0.0;
+            yielding.passing = default();
+            yielding.pass_geometry_remaining = 0.;
+            yielding.pass_geometry_clear = false;
+            yielding.merge_geometry_clear = false;
         }
         yielding.last_elapsed = race.elapsed;
         if active {
@@ -1800,10 +1879,32 @@ pub fn drive(
                         t.progress,
                     )
                 })
-                .filter(|t| t.downed && (t.lane - car.lane).abs() < 1.8)
+                .filter(|t| {
+                    if !t.downed {
+                        return false;
+                    }
+                    if !yielding.passing.reserved() {
+                        return (t.lane - car.lane).abs() < 1.8;
+                    }
+                    // A returning pass must yield to a downed person in the
+                    // home lane too, before its moving envelope reaches them.
+                    let ratio = yielding
+                        .lane_ratio
+                        .unwrap_or(car.lane / track.half_width(car.progress));
+                    let (home, opposite, _) = civilian_lanes(
+                        &track,
+                        car.route,
+                        t.progress,
+                        direction,
+                        yielding.lane_slot,
+                        ratio,
+                    );
+                    let lane = t.lane - track.street_offset(car.route, t.progress);
+                    lane >= home.min(opposite) - 1.8 && lane <= home.max(opposite) + 1.8
+                })
                 .filter_map(|t| {
                     let gap = (t.progress - car.progress) * direction;
-                    if track.is_hills() {
+                    if track.is_hills() || yielding.passing.reserved() {
                         rr_core::traffic::occupied_gap(gap, front, rear)
                     } else {
                         (0.0..80.0).contains(&gap).then_some(gap)
@@ -1811,7 +1912,168 @@ pub fn drive(
                 })
                 .min_by(f32::total_cmp);
             let mut desired = rr_core::traffic::yielding_speed(cruise, gap);
-            if let Some(m) = &track.metropolis {
+            if track.is_hills() {
+                let now = track.sample_route(car.route, car.progress, car.lane).1;
+                let ahead = track
+                    .sample_route(car.route, car.progress + direction * 12., car.lane)
+                    .1;
+                desired = desired.min(rr_core::traffic::curve_speed(
+                    cruise,
+                    now.angle_between(ahead),
+                    12.,
+                ));
+            }
+            if track.metropolis.is_some() || track.is_hills() {
+                let planner_started = civilian_timings.as_ref().map(|_| std::time::Instant::now());
+                peers.clear();
+                peers.extend(
+                    fleet
+                        .iter()
+                        .enumerate()
+                        .filter(|(other, _)| {
+                            *other != index
+                                && track.same_corridor(
+                                    car.route,
+                                    car.progress,
+                                    cars[*other].0,
+                                    cars[*other].1,
+                                )
+                        })
+                        .map(|(_, v)| *v),
+                );
+                let ratio = *yielding
+                    .lane_ratio
+                    .get_or_insert(car.lane / track.half_width(car.progress));
+                let (home, opposite, divider) = civilian_lanes(
+                    &track,
+                    car.route,
+                    car.progress,
+                    direction,
+                    yielding.lane_slot,
+                    ratio,
+                );
+                let future = civilian_lanes(
+                    &track,
+                    car.route,
+                    car.progress + direction * 300.,
+                    direction,
+                    yielding.lane_slot,
+                    ratio,
+                );
+                yielding.pass_geometry_remaining = (yielding.pass_geometry_remaining - dt).max(0.);
+                if yielding.passing.needs_clearance() && yielding.pass_geometry_remaining == 0. {
+                    yielding.pass_geometry_remaining = 0.2;
+                    let swept_clear = |returning: bool| {
+                        let Ok(ctx) = context.single() else {
+                            return false;
+                        };
+                        let Ok(shape) = shapes.get(entity) else {
+                            return false;
+                        };
+                        let predicate = |e| !ground.contains(e);
+                        let mut previous = transform.translation;
+                        for step in 1..=12 {
+                            let t = step as f32 * 0.5;
+                            let station =
+                                car.progress + direction * desired.max(car.speed.abs()) * t;
+                            let (h, o, _) = civilian_lanes(
+                                &track,
+                                car.route,
+                                station,
+                                direction,
+                                yielding.lane_slot,
+                                ratio,
+                            );
+                            let blend = if returning {
+                                (yielding.passing.blend - t / 3.).max(0.)
+                            } else {
+                                (yielding.passing.blend + t / 3.).min(1.)
+                            };
+                            let lane = h + (o - h) * blend;
+                            let width = track.metropolis.as_ref().map_or_else(
+                                || track.half_width(station),
+                                |m| {
+                                    rr_core::streets::markings(
+                                        &m.street_life.lane_sections,
+                                        car.route,
+                                        station,
+                                    )
+                                    .2
+                                },
+                            );
+                            if lane.abs() + fleet[index].half_width + 0.3 > width {
+                                return false;
+                            }
+                            let (next, q) = track.street_sample(car.route, station, lane);
+                            let delta = next - previous;
+                            let filter = QueryFilter {
+                                flags: QueryFilterFlags::EXCLUDE_DYNAMIC
+                                    | QueryFilterFlags::EXCLUDE_KINEMATIC,
+                                ..default()
+                            }
+                            .exclude_sensors()
+                            .predicate(&predicate);
+                            let rotation = q * if direction < 0. {
+                                Quat::from_rotation_y(std::f32::consts::PI)
+                            } else {
+                                Quat::IDENTITY
+                            };
+                            if ctx
+                                .cast_shape(
+                                    previous,
+                                    rotation,
+                                    delta.normalize_or_zero(),
+                                    shape.raw.as_ref(),
+                                    ShapeCastOptions {
+                                        max_time_of_impact: delta.length(),
+                                        ..default()
+                                    },
+                                    filter,
+                                )
+                                .is_some()
+                            {
+                                return false;
+                            }
+                            previous = next;
+                        }
+                        true
+                    };
+                    let depart = swept_clear(false);
+                    let merge = swept_clear(true);
+                    yielding.pass_geometry_clear = depart;
+                    yielding.merge_geometry_clear = merge;
+                }
+                let permitted = gap.is_none()
+                    && yielding.pass_geometry_clear
+                    && (future.0 - future.2 - home + divider).abs() < 0.5;
+                let clearance = rr_core::civilian::Clearance {
+                    depart: permitted,
+                    merge: yielding.merge_geometry_clear && gap.is_none_or(|g| g >= 5.),
+                    forward_distance: if track.definition.closed {
+                        f32::INFINITY
+                    } else if direction > 0. {
+                        track.length - car.progress
+                    } else {
+                        car.progress
+                    },
+                };
+                let plan = yielding.passing.step(
+                    fleet[index],
+                    peers,
+                    opposite - divider,
+                    clearance,
+                    desired,
+                    dt,
+                );
+                desired = desired.min(plan.speed);
+                fleet[index].reserved = yielding.passing.reserved();
+                if let Some(started) = planner_started {
+                    planner_elapsed += started.elapsed();
+                }
+            }
+            if let Some(m) = &track.metropolis
+                && !yielding.passing.reserved()
+            {
                 let lead = cars
                     .iter()
                     .filter(|c| {
@@ -1838,17 +2100,9 @@ pub fn drive(
                 desired = desired.min(rr_core::streets::following_speed(cruise, lead));
             }
             if track.is_hills() {
-                let now = track.sample_route(car.route, car.progress, car.lane).1;
-                let ahead = track
-                    .sample_route(car.route, car.progress + direction * 12., car.lane)
-                    .1;
-                desired = desired.min(rr_core::traffic::curve_speed(
-                    cruise,
-                    now.angle_between(ahead),
-                    12.,
-                ));
                 for lead in cars.iter().filter(|c| {
-                    c.6 != entity
+                    !yielding.passing.reserved()
+                        && c.6 != entity
                         && c.4 == direction
                         && track.same_corridor(car.route, car.progress, c.0, c.1)
                         && (c.2 - car.lane).abs() < 2.5
@@ -1877,26 +2131,26 @@ pub fn drive(
             if !track.definition.closed {
                 if car.progress > track.length + 80.0 {
                     car.progress = if yielding.city_only { 3250. } else { -80. };
+                    yielding.passing = default();
                 }
                 if car.progress < if yielding.city_only { 3250. } else { -80. } {
                     car.progress = track.length + 80.0;
+                    yielding.passing = default();
                 }
             }
         }
-        if let Some(m) = &track.metropolis {
-            car.lane = rr_core::streets::lane_center(
-                &m.street_life.lane_sections,
-                car.route,
-                car.progress,
-                cruise > 0.,
-                yielding.lane_slot,
-            );
-        } else {
-            let ratio = *yielding
-                .lane_ratio
-                .get_or_insert(car.lane / track.half_width(car.progress));
-            car.lane = ratio * track.half_width(car.progress);
-        }
+        let ratio = *yielding
+            .lane_ratio
+            .get_or_insert(car.lane / track.half_width(car.progress));
+        let (home, opposite, _) = civilian_lanes(
+            &track,
+            car.route,
+            car.progress,
+            cruise.signum(),
+            yielding.lane_slot,
+            ratio,
+        );
+        car.lane = home + (opposite - home) * yielding.passing.blend;
         let (p, q) = track.street_sample(car.route, car.progress, car.lane);
         if track.metropolis.is_some() {
             car.lane = track.lane_at(car.route, car.progress, p);
@@ -1923,6 +2177,12 @@ pub fn drive(
         if old_position.distance(p) > 5. {
             crate::environment::teleport_kinematic(&mut commands, entity, *transform);
         }
+    }
+    if active && let (Some(started), Some(timings)) = (traffic_started, civilian_timings.as_mut()) {
+        timings.record(
+            planner_elapsed.as_secs_f64() * 1000.,
+            started.elapsed().as_secs_f64() * 1000.,
+        );
     }
 }
 
@@ -4602,6 +4862,28 @@ pub(crate) mod tests {
                 })
             })
             .unwrap();
+        // Preserve this following/pause fixture by making the opposing lane
+        // legitimately unavailable; unobstructed overtakes have separate tests.
+        let (p, q) = app
+            .world()
+            .resource::<Track>()
+            .street_sample(0, 6150., -3.1);
+        app.world_mut().spawn((
+            Traffic {
+                route: 0,
+                progress: 6150.,
+                lane: -3.1,
+                speed: -18.,
+            },
+            TrafficYield {
+                cruise: Some(-18.),
+                ..default()
+            },
+            Transform::from_translation(p)
+                .with_rotation(q * Quat::from_rotation_y(std::f32::consts::PI)),
+            RigidBody::KinematicPositionBased,
+            Collider::cuboid(0.95, 0.9, 1.95),
+        ));
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         let mut minimum_gap = f32::INFINITY;
         for _ in 0..360 {
@@ -4642,5 +4924,11 @@ mod traffic_stall_tests;
 pub(crate) mod traffic_stall_survey;
 
 #[cfg(test)]
+#[path = "civilian_tests.rs"]
+mod civilian_tests;
+#[cfg(test)]
 #[path = "hills_bridge_exit_tests.rs"]
 mod hills_bridge_exit_tests;
+
+#[path = "civilian_survey.rs"]
+pub(crate) mod civilian_survey;

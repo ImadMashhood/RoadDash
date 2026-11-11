@@ -1,0 +1,2 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27)
+    Finished `release` profile [optimized] target(s) in 2m 54s

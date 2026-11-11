@@ -3,15 +3,18 @@
     "cargo fmt --all --check": "passed",
     "cargo clippy --workspace --locked --all-targets -- -D warnings": "passed",
     "cargo test --workspace --locked -- --test-threads=2": {
-      "passed": 600,
-      "ignored": 1
+      "passed": 617,
+      "ignored": 2
     },
     "cargo build --locked": "passed",
     "python3 tools/audit.py": "passed",
     "python3 tools/test_roadmap.py": "5 passed",
     "python3 tools/sync_progress.py --check": "passed"
   },
-  "ignored": "vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks (existing explicit opt-in soak)",
+  "ignored": [
+    "vehicle::tests::ten_minute_aggressive_turning_soak_and_numeric_benchmarks",
+    "civilian::benchmark::civilian_planner_cost"
+  ],
   "limits": "Native10/10 passes; human terrain/feel, broad hardware and query-cost timing remain open.",
   "frozen_binary_sha256": "f7c110983245d2076c8054cdad348c81cba9f97c22e4949cfd8dcf9af32372a1",
   "capture_drain_followup": {
@@ -20,5 +23,10 @@
     "latest_all_target_lint_and_workspace_suite": "passed after76d4fe15 integration and named SystemParam grouping:600passed,1existing ignored",
     "native_matrix": "10/10 passed; native-receipt.json"
   },
-  "integrated_base": "76d4fe154baa169bbbf19e163cb0c0868d18d0c4"
+  "integrated_base": "7a63ef185282db0d949f1ebc1c13607062328e09",
+  "civilian_integration": {
+    "workspace": "617passed,2explicitignored",
+    "fmt_clippy_build_audit_roadmap": "passed",
+    "native_recovery": "2/2passed; combined-native-receipt.json"
+  }
 }

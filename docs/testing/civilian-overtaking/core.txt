@@ -1,0 +1,19 @@
+   Compiling rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadDash-issue-27/crates/rr_core)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2.98s
+     Running unittests src/lib.rs (target/debug/deps/rr_core-2eedc0a263b28bc0)
+
+running 11 tests
+test civilian::benchmark::civilian_planner_cost ... ignored, isolated release CPU microbenchmark; not a GPU/frame acceptance gate
+test civilian::tests::horizon_includes_acceleration_from_a_stopped_following_queue ... ok
+test civilian::tests::equal_cruise_launch_queue_does_not_start_a_spurious_overtake ... ok
+test civilian::tests::partial_departure_returns_immediately_but_occupied_merge_holds_clearance ... ok
+test civilian::tests::pass_requires_open_motor_vehicle_horizon_and_merge_room ... ok
+test civilian::tests::persistent_same_class_stall_can_be_passed_but_accelerating_leader_resets_delay ... ok
+test civilian::tests::reservation_blocks_competitor_until_merge_finishes ... ok
+test crash::tests::civilian_transfer_dissipates_instead_of_duplicating_energy ... ok
+test civilian::tests::zero_speed_yield_preserves_direction_and_can_return_from_pass ... ok
+test civilian::motion_tests::new_oncoming_vehicle_mid_pass_aborts_without_overlap_and_eventually_retries ... ok
+test civilian::motion_tests::two_followers_eventually_pass_tractor_and_long_trailer_without_overlap ... ok
+
+test result: ok. 10 passed; 0 failed; 1 ignored; 0 measured; 114 filtered out; finished in 0.01s
+
