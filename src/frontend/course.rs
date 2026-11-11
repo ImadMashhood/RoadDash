@@ -29,6 +29,7 @@ pub(crate) fn map_launch_arguments(args: impl IntoIterator<Item = OsString>) -> 
                 Some(
                     "--hills"
                         | "--hills-survey"
+                        | "--wildlife-survey"
                         | "--hills-polish-survey"
                         | "--hills-revision-survey"
                         | "--metro-survey"

@@ -69,7 +69,8 @@ fn farm_prop_plan(track: &Track, p: Vec3, q: Quat) -> Vec<FarmProp> {
             }
             let mut c = p + q * local;
             if super::bridge::reserved(track, c, radius)
-                || super::mounted::reserved(track, c, radius)
+                || (super::mounted::reserved(track, c, radius)
+                    || super::wildlife::reserved(track, c, radius))
                 || (0..2).any(|route| {
                     let (station, _, d) = track.project_route(route, c, 0.);
                     d < track.half_width(station) + radius + 5.
@@ -329,7 +330,8 @@ fn grass_positions(
                     continue;
                 };
                 if super::bridge::reserved(track, p, 1.1)
-                    || super::mounted::reserved(track, p, 1.1)
+                    || (super::mounted::reserved(track, p, 1.1)
+                        || super::wildlife::reserved(track, p, 1.1))
                     || !field_clear(p, farms)
                 {
                     continue;
@@ -518,7 +520,7 @@ pub(super) fn spawn(
     let mut farms = vec![];
     for (index, (p, q)) in farm_sites(track).into_iter().enumerate() {
         assert!(
-            !super::mounted::reserved(track, p, 35.),
+            !(super::mounted::reserved(track, p, 35.) || super::wildlife::reserved(track, p, 35.)),
             "farm must clear mounted patrol"
         );
         // Only the barn needs a small foundation; fields and stock follow the hillside.
@@ -686,7 +688,8 @@ pub(super) fn spawn(
                         continue;
                     };
                     if super::bridge::reserved(track, p, 5.)
-                        || super::mounted::reserved(track, p, 5.)
+                        || (super::mounted::reserved(track, p, 5.)
+                            || super::wildlife::reserved(track, p, 5.))
                         || !field_clear(p, &farms)
                     {
                         continue;

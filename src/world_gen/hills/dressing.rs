@@ -73,7 +73,8 @@ fn placements(track: &Track) -> Vec<Placement> {
                     continue;
                 };
                 if super::bridge::reserved(track, p, radius)
-                    || super::mounted::reserved(track, p, radius)
+                    || (super::mounted::reserved(track, p, radius)
+                        || super::wildlife::reserved(track, p, radius))
                     || farms.iter().any(|(center, q)| {
                         let local = q.inverse() * (p - *center);
                         local.x.abs() < 35. + radius && local.z.abs() < 95. + radius

@@ -12,6 +12,7 @@ pub mod mounted;
 mod props;
 pub mod river;
 mod terrain_cache;
+pub mod wildlife;
 pub mod woodland;
 use crate::{track::Track, world::Art};
 use bevy::prelude::*;
@@ -91,6 +92,10 @@ pub fn spawn(
     {
         let _span = crate::diagnostics::loading::Span::new("hills_mounted");
         mounted::spawn(commands, meshes, materials, track);
+    }
+    {
+        let _span = crate::diagnostics::loading::Span::new("hills_wildlife");
+        wildlife::spawn(commands, meshes, materials, track);
     }
     census.mounted_pairs = mounted::COUNT;
     {

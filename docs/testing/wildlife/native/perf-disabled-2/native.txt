@@ -1,0 +1,27 @@
+2026-11-11T07:52:20.451189Z  WARN wgpu_hal::vulkan::instance: Unable to find extension: VK_EXT_physical_device_drm
+2026-11-11T07:52:20.703413Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-1383328.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+	Command being timed: "env ROADDASH_WILDLIFE_PERF=1 ROADDASH_WILDLIFE=0 target/release/road-dash --wildlife-survey"
+	User time (seconds): 68.82
+	System time (seconds): 9.67
+	Percent of CPU this job got: 173%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:45.30
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3335316
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 376250
+	Voluntary context switches: 621456
+	Involuntary context switches: 495267
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 48
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

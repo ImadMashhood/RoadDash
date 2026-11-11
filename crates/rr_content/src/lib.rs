@@ -186,3 +186,5 @@ pub mod destruction;
 
 pub mod weapon_models;
 pub mod weapons;
+
+pub mod wildlife;

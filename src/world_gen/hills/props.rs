@@ -219,7 +219,9 @@ fn frontage_site(
     for x in [-half_width, 0., half_width] {
         for z in [front, 0., back] {
             let point = p + q * Vec3::new(x, 0., z);
-            if super::mounted::reserved(track, point, 1.) {
+            if super::mounted::reserved(track, point, 1.)
+                || super::wildlife::reserved(track, point, 1.)
+            {
                 return None;
             }
             for branch in 0..2 {
@@ -976,7 +978,10 @@ fn central_ranches(
         let q = Quat::from_rotation_y(f.x.atan2(f.z));
         // A compact 20-by-30 m central parcel can fit between retained storefronts.
         let radius = 19.;
-        if !clear(occupied, p, radius) || super::mounted::reserved(track, p, radius + 3.) {
+        if !clear(occupied, p, radius)
+            || (super::mounted::reserved(track, p, radius + 3.)
+                || super::wildlife::reserved(track, p, radius + 3.))
+        {
             continue;
         }
         if (0..2).any(|route| {
@@ -1179,7 +1184,8 @@ fn median_courtyards(
             let kind = (index + usize::from(across > 0.)) % 3;
             let radius = if kind == 0 { 3.2 } else { 5.2 };
             if !clear(occupied, p, radius)
-                || super::mounted::reserved(track, p, radius + 3.)
+                || (super::mounted::reserved(track, p, radius + 3.)
+                    || super::wildlife::reserved(track, p, radius + 3.))
                 || (0..2).any(|route| {
                     let (s, _, d) = track.project_route(route, p, station as f32);
                     d < track.half_width(s) + radius + 3.
@@ -1382,7 +1388,8 @@ fn outer_fields(
             let q = q * Quat::from_rotation_y(((index % 5) as f32 - 2.) * 0.055);
             let whole_field_road_clear =
                 field_road_bound(track, p, station as f32, maximum_half_width);
-            let trees_allowed = !super::mounted::reserved(track, p, 70.);
+            let trees_allowed = !(super::mounted::reserved(track, p, 70.)
+                || super::wildlife::reserved(track, p, 70.));
             let mut clearance_cache = std::collections::HashMap::<(u32, u32), bool>::new();
             let mut height_cache = std::collections::HashMap::<(u32, u32), f32>::new();
             let mut height = |w: Vec3| {
@@ -1417,7 +1424,8 @@ fn outer_fields(
                             .entry((w.x.to_bits(), w.z.to_bits()))
                             .or_insert_with(|| {
                                 !clear(occupied, *w, 4.)
-                                    || super::mounted::reserved(track, *w, 5.)
+                                    || (super::mounted::reserved(track, *w, 5.)
+                                        || super::wildlife::reserved(track, *w, 5.))
                                     || (!whole_field_road_clear
                                         && (0..2).any(|r| {
                                             let (s, _, d) =
@@ -1529,7 +1537,10 @@ fn town_infill(
                 let Some((p, q)) = site(track, route, station as f32, lane, radius) else {
                     continue;
                 };
-                if !clear(occupied, p, radius) || super::mounted::reserved(track, p, radius + 3.) {
+                if !clear(occupied, p, radius)
+                    || (super::mounted::reserved(track, p, radius + 3.)
+                        || super::wildlife::reserved(track, p, radius + 3.))
+                {
                     continue;
                 }
                 let ground = |x: f32, z: f32| {
@@ -1853,7 +1864,10 @@ fn town_infill(
                 let Some((p, q)) = site(track, route, station as f32, lane, 1.2) else {
                     continue;
                 };
-                if !clear(occupied, p, 1.2) || super::mounted::reserved(track, p, 2.) {
+                if !clear(occupied, p, 1.2)
+                    || (super::mounted::reserved(track, p, 2.)
+                        || super::wildlife::reserved(track, p, 2.))
+                {
                     continue;
                 }
                 let mut m = Model::default();

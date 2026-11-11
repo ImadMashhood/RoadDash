@@ -4143,3 +4143,21 @@ outer backlots. This makes driving-height shapes legible without a new entity
 per prop or physics-timing change.
 RFU-WORLD-01 through07 remain open pending visual/full-course/performance gates;
 sand classification/blending is coordinated with issue29 and wildlife with32.
+
+## ADR147 — Bounded off-road wild herds (2026-11-10)
+
+Issue32 adds original wild horses and bison as presentation-only scenery. They
+never cross roads and have no Rapier bodies, contacts, damage or recovery effects.
+Existing cows, saddled horses and mounted cowboys retain their physical behavior.
+Reserve the entire swept herd envelope from new dressing; validate both roads,
+terrain and resident scenery. A player deliberately leaving the road can pass
+through these scenic animals; physical wildlife encounters need a separate request.
+
+Use deterministic race-clock group paths with individual formation offsets,
+walking/grazing speed variation, terrain grounding and original procedural meshes.
+Bound populations, active near gaits and distance detail; cull distant herds without
+per-animal path/terrain work. Startup owns all entities/assets. Shared mesh handles
+permit batching; no new dependencies, physical rig changes or imported media.
+The installed procedural-gen, level-design, game-ai and performance-optimization
+skills supply engine-neutral guidance; Bevy skill version0.20 is explicitly not
+applied to the pinned0.17.3 APIs (migration belongs to issue37).

@@ -1,0 +1,17 @@
+{
+  "captures": 0,
+  "complete": true,
+  "contact_policy": "scenic-only; no road crossings or colliders",
+  "enabled": false,
+  "frames": 1100,
+  "gpu_timing": false,
+  "max_active_animals": 0,
+  "max_animated_limbs": 0,
+  "max_visible_meshes": 0,
+  "movement_m": 0.0,
+  "population": 0,
+  "wall_median_ms": 17.300925000000003,
+  "wall_p95_ms": 19.552164,
+  "wildlife_cpu_median_us": 0.631,
+  "wildlife_cpu_p95_us": 0.972
+}

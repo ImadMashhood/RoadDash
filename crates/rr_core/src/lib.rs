@@ -301,6 +301,7 @@ pub mod destruction;
 pub mod rival_ai;
 
 pub mod weapons;
+pub mod wildlife;
 
 pub mod elevation;
 
