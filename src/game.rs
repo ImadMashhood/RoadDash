@@ -1196,10 +1196,16 @@ pub fn drive(
                 let rider_queue = riders.iter().any(|other| {
                     rr_core::traffic_avoidance::slow_queue_ahead(lane, race_pace, *other)
                 });
+                let clean_same_line_flee = ai_clean_same_line_flee(
+                    r.combat_mind.decision,
+                    chase.is_some(),
+                    chase_goal.map(|(goal, _)| goal),
+                    r.lane,
+                );
                 if !preliminary.avoiding
                     && !r.ai_pass.active()
                     && !rider_queue
-                    && chase_goal.is_none()
+                    && (chase_goal.is_none() || clean_same_line_flee)
                     && passing_line.is_none()
                     && race.elapsed >= r.ai_static_guard_until
                     && (bounds.0..=bounds.1).contains(&desired)
@@ -1215,7 +1221,8 @@ pub fn drive(
                 let progress = r.progress;
                 let route = r.route;
                 let speed = r.speed;
-                let static_rejected = std::cell::Cell::new(false);
+                let relevant_static_rejected = std::cell::Cell::new(false);
+                let committed = r.ai_pass.committed_lane();
                 let drivable = |goal: f32, pace: f32| {
                     let Ok(ctx) = context.single() else {
                         return false;
@@ -1276,7 +1283,9 @@ pub fn drive(
                             )
                             .is_some()
                         {
-                            static_rejected.set(true);
+                            if ai_static_guard_relevant(goal, lane, desired, committed) {
+                                relevant_static_rejected.set(true);
+                            }
                             return false;
                         }
                         previous = next;
@@ -1291,7 +1300,7 @@ pub fn drive(
                     bounds,
                 };
                 let plan = r.ai_pass.plan(input, &cars, drivable);
-                if static_rejected.get() {
+                if relevant_static_rejected.get() {
                     // Continue checking the nearby fixed obstacle after a combat
                     // or passing request expires; clean cruising may resume once
                     // geometry is clear for two seconds of real plans.
@@ -2593,6 +2602,31 @@ pub fn camera_occlusion(
     }
 }
 
+fn ai_clean_same_line_flee(
+    decision: rr_core::rival_ai::Decision,
+    attacker_near: bool,
+    goal: Option<f32>,
+    current: f32,
+) -> bool {
+    decision == rr_core::rival_ai::Decision::Flee
+        && !attacker_near
+        && goal.is_some_and(|lane| (lane - current).abs() <= 0.5)
+}
+
+// Only rejected lines that the rider is using or explicitly requesting need
+// another two seconds of resident-geometry sweeps. Speculative rejected
+// alternatives must not keep the expensive planner alive indefinitely.
+fn ai_static_guard_relevant(
+    rejected: f32,
+    current: f32,
+    desired: f32,
+    committed: Option<f32>,
+) -> bool {
+    (rejected - current).abs() <= 0.5
+        || (rejected - desired).abs() <= 0.5
+        || committed.is_some_and(|held| (rejected - held).abs() <= 0.5)
+}
+
 // Rival bounds include both sides of the road, walkable sidewalk and a
 // narrow outer clearance. Static swept shapes decide whether each candidate
 // is actually usable; there is no right-side or oncoming-lane permission flag.
@@ -2625,6 +2659,53 @@ pub(crate) fn ai_free_bounds(track: &Track, route: usize, progress: f32) -> (f32
 pub(crate) mod tests {
     use super::*;
     use crate::track::ROAD_HALF;
+    #[test]
+    fn clean_same_line_flee_uses_clear_traffic_path_without_losing_speed_intent() {
+        use rr_core::pursuit::Target;
+        use rr_core::rival_ai::{Decision, Mind, Response};
+        let mut mind = Mind::new(1);
+        while mind.struck_by(0) != Response::Flee {}
+        let me = Target {
+            id: 1,
+            progress: 100.,
+            lane: 2.,
+            speed: 20.,
+            downed: false,
+        };
+        let (goal, bonus) = mind.drive(me, None, 40.).unwrap();
+        assert_eq!(bonus, 44.);
+        assert!(ai_clean_same_line_flee(
+            mind.decision,
+            false,
+            Some(goal),
+            me.lane
+        ));
+        assert!(!ai_clean_same_line_flee(
+            Decision::Flee,
+            true,
+            Some(goal),
+            me.lane
+        ));
+        assert!(!ai_clean_same_line_flee(
+            Decision::Flee,
+            false,
+            Some(goal + 2.4),
+            me.lane
+        ));
+        assert!(!ai_clean_same_line_flee(
+            Decision::Race,
+            false,
+            Some(goal),
+            me.lane
+        ));
+    }
+    #[test]
+    fn static_guard_tracks_requested_or_committed_lines_only() {
+        assert!(ai_static_guard_relevant(2.1, 2., -3., None));
+        assert!(ai_static_guard_relevant(-3.1, 2., -3., None));
+        assert!(ai_static_guard_relevant(-4.1, 2., -3., Some(-4.)));
+        assert!(!ai_static_guard_relevant(4.8, 2., -3., Some(-4.)));
+    }
     #[test]
     fn metropolis_free_corridor_never_erases_current_road() {
         let t = Track::metropolis().unwrap();

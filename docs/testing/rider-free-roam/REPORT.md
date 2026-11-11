@@ -22,6 +22,10 @@ The final narrowed [native trace](native-narrow/trace.txt) and [sampled decision
 
 The headless [paired ragdoll lab](ragdoll-lab.json) completed all 18 baseline/biomechanical scenario records with finite state. This is a recovery control receipt, not a native rider remount or human balance result.
 
+## PR #61 hot-path follow-up
+
+Review identified two avoidable full Rapier sweep paths. A flee response with no nearby attacker still returns a same-line goal and the +4m/s speed intent, so the clear, unqueued preliminary plan can now return directly. The two-second static guard now refreshes only when the rejected shape sweep concerns the current line, explicitly desired line or committed pass; rejected speculative alternatives do not keep the full planner active. This changes planner scheduling, not the physical collision policy or flee speed cap. Focused clean-flee/guard tests, the 40m physical wall and the Metropolis stopped-leader test pass. The final follow-up source passes 463 game-library, 59 content and 149 core tests (one game and one core ignored), strict Clippy, locked build, formatting, roadmap sync/five tests and declaration audit (205 runtime records). No frame-time gain is claimed without a quiet matched native comparison; the earlier native behavior receipts predate this scheduling-only follow-up.
+
 ## Provenance
 
 Read local game-ai skill, repository architecture/checklist/progress/known-issues, relevant frozen blueprint and existing issue26 trace. No third-party AI code, media or dependency was added. Existing historical role tests/requirements remain documented as superseded by ADR159 rather than erased.
