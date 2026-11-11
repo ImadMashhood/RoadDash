@@ -7,6 +7,8 @@ missing features, architectural debt and unverified platforms.
 
 - RFU-MOVE-05/06, RFU-FX-01–03 and RFU-CITY-01–04: running-hand correction, biome/city effects and further Metropolis crowd/sidewalk/prop density are new open requests with no implementation acceptance yet. See issues #41–#43.
 
+- Issue40 candidate B: sparse facade visibility synchronization preserves Hills/Metropolis structural surveys, but matched warm repeats score0.99605 and one Hills case has an unexplained89.716ms frame. It is rejected for performance selection; no60FPS/full-race/hardware gate is closed. See testing/issue40-render/REPORT.md.
+
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.

@@ -1,0 +1,8 @@
+{
+  "binary_sha256": "eea2ebf729488acf5c59c6bce8d29244a51fc35f0512fe8770403c5492ebc68e",
+  "source_head": "e623c9616148d1fc51bb81e1ce3441701d95dbbe",
+  "source_tracked_diff_sha256": "8b915fcf414f7bc22197d5d45fb00c7762d10d2f0b8e0f25a464495cdc306720",
+  "build": "private target copied release dependency cache from issue40 CPU baseline, then cargo clean -p rr_core -p rr_content -p road-dash --release; cargo build --release --locked -j 2, followed by final source-only rebuild",
+  "build_profile": "release",
+  "note": "Source includes removal of unused marker field and updated source provenance; no external dependency migration."
+}

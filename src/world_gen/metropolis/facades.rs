@@ -111,13 +111,12 @@ pub(super) fn dimensions(width: f32, height: f32, design: &Design) -> (usize, f3
 struct Group {
     entities: Vec<Entity>,
     weight: f32,
+    synchronized_weight: f32,
     wanted: bool,
     triangles: usize,
 }
 #[derive(Component)]
-pub struct AuthoredMesh {
-    face: usize,
-}
+pub struct AuthoredMesh;
 #[derive(Resource)]
 pub struct Kit {
     designs: Vec<Design>,
@@ -457,7 +456,7 @@ pub fn update(
                     commands
                         .spawn((
                             Name::new(format!("authored {} / polygon face {i}", FAMILIES[style])),
-                            AuthoredMesh { face: i },
+                            AuthoredMesh,
                             Mesh3d(primitive.mesh.clone()),
                             MeshMaterial3d(primitive.material.clone()),
                             t,
@@ -472,6 +471,7 @@ pub fn update(
             Group {
                 entities,
                 weight: 0.,
+                synchronized_weight: -1.,
                 wanted: true,
                 triangles: cost,
             },
@@ -488,49 +488,58 @@ pub fn update(
 }
 /// Only visibility data changes here, after the actual render camera has propagated.
 pub fn synchronize(
-    kit: Res<Kit>,
+    mut kit: ResMut<Kit>,
     camera: Query<&GlobalTransform, With<Camera3d>>,
-    mut draws: Query<(
-        Entity,
-        &AuthoredMesh,
-        &GlobalTransform,
-        &mut Visibility,
-        Option<&mut bevy::camera::visibility::VisibilityRange>,
-    )>,
+    mut draws: Query<
+        (
+            &GlobalTransform,
+            &mut Visibility,
+            Option<&mut bevy::camera::visibility::VisibilityRange>,
+        ),
+        With<AuthoredMesh>,
+    >,
     mut commands: Commands,
 ) {
     let Ok(camera) = camera.single() else {
         return;
     };
     let p = camera.translation();
-    for (entity, mesh, transform, mut visibility, range) in &mut draws {
-        let w = kit.active.get(&mesh.face).map_or(0., |g| g.weight);
-        visibility.set_if_neq(if w == 0. {
-            Visibility::Hidden
-        } else {
-            Visibility::Inherited
-        });
-        if w == 0. {
+    for group in kit.active.values_mut() {
+        let w = group.weight;
+        if (w == 0. || w == 1.) && w == group.synchronized_weight {
             continue;
         }
-        // Settled detail is fully visible independent of camera distance. Keep a
-        // stable range so thousands of static draws do not become changed render
-        // inputs every frame; only an active fade needs camera-relative margins.
-        let d = if w >= 1. {
-            f32::MAX
-        } else {
-            transform.translation().distance(p)
-        };
-        let r = bevy::camera::visibility::VisibilityRange {
-            start_margin: f32::MIN..f32::MIN,
-            end_margin: (d - (1. - w) * 8.)..(d + w * 8.),
-            use_aabb: false,
-        };
-        if let Some(mut old) = range {
-            old.set_if_neq(r);
-        } else {
-            commands.entity(entity).insert(r);
+        for &entity in &group.entities {
+            let Ok((transform, mut visibility, range)) = draws.get_mut(entity) else {
+                continue;
+            };
+            visibility.set_if_neq(if w == 0. {
+                Visibility::Hidden
+            } else {
+                Visibility::Inherited
+            });
+            if w == 0. {
+                continue;
+            }
+            // Settled detail is camera independent. Only an active fade needs
+            // camera-relative margins each frame.
+            let d = if w >= 1. {
+                f32::MAX
+            } else {
+                transform.translation().distance(p)
+            };
+            let r = bevy::camera::visibility::VisibilityRange {
+                start_margin: f32::MIN..f32::MIN,
+                end_margin: (d - (1. - w) * 8.)..(d + w * 8.),
+                use_aabb: false,
+            };
+            if let Some(mut old) = range {
+                old.set_if_neq(r);
+            } else {
+                commands.entity(entity).insert(r);
+            }
         }
+        group.synchronized_weight = w;
     }
 }
 #[cfg(test)]
@@ -576,6 +585,7 @@ mod tests {
                 Group {
                     entities: vec![],
                     weight: 1.,
+                    synchronized_weight: -1.,
                     wanted: true,
                     triangles: 1,
                 },
@@ -587,12 +597,15 @@ mod tests {
             .id();
         let face = app
             .world_mut()
-            .spawn((
-                AuthoredMesh { face: 0 },
-                GlobalTransform::IDENTITY,
-                Visibility::Hidden,
-            ))
+            .spawn((AuthoredMesh, GlobalTransform::IDENTITY, Visibility::Hidden))
             .id();
+        app.world_mut()
+            .resource_mut::<Kit>()
+            .active
+            .get_mut(&0)
+            .unwrap()
+            .entities
+            .push(face);
         app.add_systems(Update, (synchronize, record_changes).chain());
         app.update();
         app.world_mut()
@@ -716,6 +729,7 @@ mod tests {
                         Group {
                             entities: vec![],
                             weight: 1.,
+                            synchronized_weight: -1.,
                             wanted: true,
                             triangles: 1,
                         },

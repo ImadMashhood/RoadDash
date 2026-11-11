@@ -1,0 +1,159 @@
+{
+  "scope": "Untimed 1440x900 Metro survey RGB screenshot comparison; views 00/01 differ in initial camera orientation and are not same-pose evidence. Later tiny pixel differences may reflect temporal dither. Hills candidate 17-view visual inspection has no matched frozen-baseline image set.",
+  "views": [
+    {
+      "view": "metro-00.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 15.844134,
+      "baseline_png_sha256": "6f805cd8fc58e92486fc388e984e5c500f87ab9c3b26b86ce1ccb286f36c0ba4",
+      "candidate_png_sha256": "a52300097bce6242868390ac9fb8c7100dd053af9e719130f5b1e8d2688a1efa"
+    },
+    {
+      "view": "metro-01.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 17.268509,
+      "baseline_png_sha256": "e952f05df2b6d6df38a72cafecc43ebe07bbd988d7b7134745cc6bd9cecf25e8",
+      "candidate_png_sha256": "65d563c1167ae3c15611727ecf396697fd629217ce1882b15cb8504a69debdd2"
+    },
+    {
+      "view": "metro-02.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 1.2e-05,
+      "baseline_png_sha256": "b5b89e0699a4a904f010778741263ba52b7988ffc797c6cdaff0282b451d7e1d",
+      "candidate_png_sha256": "6fa3c11b76571e393af14414a1155b3758cfabfe551a5bc5101eeae43cbcaa32"
+    },
+    {
+      "view": "metro-03.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 1.4e-05,
+      "baseline_png_sha256": "34367e045bb433f0596e1f52b3953f55aa5aebb824993793f8664105b3c63447",
+      "candidate_png_sha256": "b478aee50f8589eeb6ed3c1b3f27f13fdb15ad099a0257673d096b7bfbfe6da8"
+    },
+    {
+      "view": "metro-04.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 0.005968,
+      "baseline_png_sha256": "eef5257d3d709705cab7633678f1db9adba762515a46682ff10b3bdbbd616f80",
+      "candidate_png_sha256": "206964bc7dbbf5bcd46ef7b7a9e3910a0479b971a7dba7f97f76c89db1728beb"
+    },
+    {
+      "view": "metro-05.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 2.7e-05,
+      "baseline_png_sha256": "a45195ae0ff069e0d6eac32ab098b89662c94efac8264295b45527eabab71d61",
+      "candidate_png_sha256": "30c4b6c6273fe9fb8415b948e5bee9b11b1641a554bc9cb461aa2a140b30151c"
+    },
+    {
+      "view": "metro-06.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 0.006931,
+      "baseline_png_sha256": "2a6a5faa302b28bbde1666458b61bbabf23a04ac10170828bb4dc7f70abb1f24",
+      "candidate_png_sha256": "7cd93663ca7e592f515b5bf759fdfdd5ca75c3cce631d34b7315e6d03ca80042"
+    },
+    {
+      "view": "metro-07.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 3.4e-05,
+      "baseline_png_sha256": "8d939574efd21c7b0d03ac1ec0575e25ea335241fbbb88ac6c2fab991c2eaefd",
+      "candidate_png_sha256": "f09e4eabafd01d2d86b337520f53a51f51b3813b4d0e8afa2197c5e590fef304"
+    },
+    {
+      "view": "metro-08.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": true,
+      "mean_absolute_channel_difference": 0.0,
+      "baseline_png_sha256": "67f847cc3f2dd4f28c24e2a3c751a065d5b2dfda97bdfefd398ce1f44bc3cab5",
+      "candidate_png_sha256": "67f847cc3f2dd4f28c24e2a3c751a065d5b2dfda97bdfefd398ce1f44bc3cab5"
+    },
+    {
+      "view": "metro-09.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 0.016089,
+      "baseline_png_sha256": "30b758ac9d4e607e5ba6df5a0871cea80e323995084d4a92ef1248b453c5fadf",
+      "candidate_png_sha256": "0b4d69d59f3c758f4fd5d23a0b8b77d8ad260ad57089a9407800e76facc7318b"
+    },
+    {
+      "view": "metro-10.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": true,
+      "mean_absolute_channel_difference": 0.0,
+      "baseline_png_sha256": "5b91f3422deb396ed91e18911e5560e69fc78552439cb9733d8ad1bc1358b997",
+      "candidate_png_sha256": "5b91f3422deb396ed91e18911e5560e69fc78552439cb9733d8ad1bc1358b997"
+    },
+    {
+      "view": "metro-11.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 0.000141,
+      "baseline_png_sha256": "c62c958847dd3081df19d2819f65bc2647024772b3b14c5f8acc0db7a948982f",
+      "candidate_png_sha256": "48c4707a72059f99268f42375cc2c5b6458d7cd7e6c3c71e9c307260fe6ae28d"
+    },
+    {
+      "view": "metro-12.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": true,
+      "mean_absolute_channel_difference": 0.0,
+      "baseline_png_sha256": "53ff403897f40040b4e3982d27a0813e34761a0a826c5d05eb19e4bfc8b36361",
+      "candidate_png_sha256": "53ff403897f40040b4e3982d27a0813e34761a0a826c5d05eb19e4bfc8b36361"
+    },
+    {
+      "view": "metro-13.png",
+      "size": [
+        1440,
+        900
+      ],
+      "pixels_equal": false,
+      "mean_absolute_channel_difference": 1.1e-05,
+      "baseline_png_sha256": "f561ccbd8a0c556adf3a89c699f61603e1c88b4456769aeca0e09be7b69ea210",
+      "candidate_png_sha256": "d9e50a80a876a79feaac93bea7215e4751401cca86ae8651c65003e01d5d7478"
+    }
+  ]
+}
