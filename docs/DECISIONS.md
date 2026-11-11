@@ -4122,3 +4122,24 @@ strict checks/builds and an eight-run both-map native quality matrix. Street
 flocks appear in raised Metropolis views while low canyon views remain blocked
 by roofs; user visual acceptance remains open. Single-run frame differences
 are mixed and do not justify a speed claim. See testing/metropolis-atmosphere/REPORT.md.
+## ADR146 — Hills woodland, western landforms and raised canyon bed (2026-11-10)
+
+Issue31 requests richer Hills without sacrificing the performance priority.
+Retain current Bevy0.17.3/Rapier0.32 pins; the installed0.20 skills supply only
+version-independent design guidance until the separately approved migration.
+Extend woodland with low-polygon spatial batches and resident compound trunk
+collision. Use deterministic clustered placement and existing farm/bridge/path
+reservations. Add western mesas beyond existing settlement lots, preserving
+road profiles and both branches. Raise the physical canyon bed and its shallow
+water together by12m; retain open bridge edges and a deep fall, with no new
+water collider or physical-rig tuning. Reuse original procedural assets only.
+The riding-height western review found bare aprons between buildings; enlarge
+storefront displays within the already guarded frontage lots, batch them into
+each building mesh and add matching static collision instead of introducing a
+new street-side spawn budget. Add one of three larger street-facing groups only
+when its sampled outer edge clears both road branches and mounted paths. Keep
+matching collision in the storefront compound; add low plants to reserved
+outer backlots. This makes driving-height shapes legible without a new entity
+per prop or physics-timing change.
+RFU-WORLD-01 through07 remain open pending visual/full-course/performance gates;
+sand classification/blending is coordinated with issue29 and wildlife with32.

@@ -313,3 +313,5 @@ pub mod crops;
 pub mod online;
 
 pub mod pedestrian_crossing;
+
+pub mod landscape;

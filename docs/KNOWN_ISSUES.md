@@ -1274,3 +1274,18 @@ street captures show small flocks; low canyon views remain roof-occluded.
 Single-pass toggle frame differences are mixed and Metropolis exceeds16.7ms.
 RFU-SKY-01..04 remain open for user art, full-course/GPU/hardware and broader
 performance acceptance. See testing/metropolis-atmosphere/REPORT.md.
+## Issue31 / ADR146 world follow-up (2026-11-10)
+
+Distant woodland, western landforms and raised canyon bed are under technical
+and native review. Render batches reduce draw submissions but add resident
+mesh and compound-collision memory; no performance improvement is claimed.
+The final e776 combined Hills native run passes six functional cases; its 224
+frontage groups and 164 backlot plants add compound shapes without new collider
+entities. Valley world-survey still exits1 at17.94ms p95 (16.7ms gate), after
+15 sections and657 roots. Earlier unchanged Valley misses at18.597ms and
+19.208ms are recorded above; this mixed-source result is not an isolated
+Hills cost measurement. Full evidence: testing/issue31-world/REPORT.md.
+The river remains a bounded shallow presentation reach, not a flowing physical
+water volume. Raising the bed12m intentionally shortens the canyon fall while
+preserving the deck and both physical rigs. Full-course human art, wildlife/sand
+integration and combined release/hardware performance gates remain open.
