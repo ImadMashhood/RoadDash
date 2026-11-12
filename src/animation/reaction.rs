@@ -9,11 +9,14 @@ pub(super) fn apply(mut pose: Pose, hit: motion::HitReaction, now: f32) -> Pose 
     // Positive local X impact travels right in author space; negative Z roll
     // carries the upper body in that direction. Kick folds the trunk more;
     // punch gives the head a sharper response. Existing IK keeps grips/pegs.
-    let roll = -hit.direction * w;
-    let fold = if hit.kicking { 0.13 } else { 0.035 } * w;
+    let roll = -hit.direction * w * 2.2;
+    let fold = if hit.kicking { 0.22 } else { 0.08 } * w;
+    // The fast tuck has little remaining grip reach. Keep its trunk within
+    // that envelope while retaining the stronger head/neck recoil.
+    let trunk = 1.0 - pose.tuck * 0.6;
     for (joint, pitch, bank) in [
-        (2, fold * 0.6, roll * 0.075),
-        (3, fold * 0.4, roll * 0.065),
+        (2, fold * 0.6 * trunk, roll * 0.075 * trunk),
+        (3, fold * 0.4 * trunk, roll * 0.065 * trunk),
         (
             4,
             -fold * 0.3,

@@ -352,6 +352,8 @@ fn visuals(
         }
         *visible = if riders.get(h.owner).is_ok_and(|(r, rec)| {
             r.weapon.is_some()
+                && r.strike
+                    .is_some_and(|s| s.weapon.is_some() && r.attack > 0.0)
                 && rec.stage == RecoveryStage::Riding
                 && rec.stagger.is_none()
                 && h.side == r.weapon_hand
@@ -871,7 +873,46 @@ mod tests {
         }
     }
     #[test]
-    fn held_club_inherits_hidden_owner_and_kicks_keep_weapon_hand() {
+    fn held_weapon_is_visible_only_for_the_active_striking_hand() {
+        use bevy::ecs::system::RunSystemOnce;
+        for hand in [0, 1] {
+            let mut app = App::new();
+            let mut rider = Rider::new(0);
+            rider.weapon = Some(rr_core::weapons::Weapon::Club);
+            rider.weapon_hand = hand;
+            let owner = app.world_mut().spawn((rider, Recovery::default())).id();
+            let weapon = app
+                .world_mut()
+                .spawn((Held { owner, side: hand }, Visibility::Hidden))
+                .id();
+            app.world_mut().run_system_once(visuals).unwrap();
+            assert_eq!(
+                *app.world().get::<Visibility>(weapon).unwrap(),
+                Visibility::Hidden
+            );
+            {
+                let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                let mut strike =
+                    rr_core::motion::StrikeClock::new(rr_core::AttackSide::Right, 1., 0.26);
+                strike.weapon = Some(ability());
+                r.strike = Some(strike);
+                r.attack = 0.8;
+            }
+            app.world_mut().run_system_once(visuals).unwrap();
+            assert_eq!(
+                *app.world().get::<Visibility>(weapon).unwrap(),
+                Visibility::Inherited
+            );
+            app.world_mut().get_mut::<Rider>(owner).unwrap().attack = 0.;
+            app.world_mut().run_system_once(visuals).unwrap();
+            assert_eq!(
+                *app.world().get::<Visibility>(weapon).unwrap(),
+                Visibility::Hidden
+            );
+        }
+    }
+    #[test]
+    fn kicks_keep_inventory_but_hide_the_held_weapon() {
         use bevy::ecs::system::RunSystemOnce;
         let (mut app, owner, _) = fixture(60, -1., 6.0);
         press(&mut app, KeyCode::KeyE);
@@ -888,7 +929,7 @@ mod tests {
         app.world_mut().run_system_once(visuals).unwrap();
         assert_eq!(
             *app.world().get::<Visibility>(child).unwrap(),
-            Visibility::Inherited
+            Visibility::Hidden
         );
         app.world_mut().get_mut::<Rider>(owner).unwrap().weapon = None;
         app.world_mut().run_system_once(visuals).unwrap();

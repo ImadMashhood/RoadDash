@@ -1,0 +1,3 @@
+2026-11-12T21:27:54.967518Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Animation review passed: eleven motions, three views

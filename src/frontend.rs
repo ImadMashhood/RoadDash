@@ -10,6 +10,7 @@ use bevy::{
     asset::LoadState, picking::hover::Hovered, prelude::*, ui::Pressed, ui_widgets::Button,
 };
 use rr_core::frontend::{Action, Course, Effect, Flow, Page, ROSTER};
+mod cinematic;
 mod course;
 mod course_smoke;
 pub(crate) use course::map_launch_arguments;
@@ -476,7 +477,7 @@ fn setup(mut commands: Commands, server: Res<AssetServer>, mut images: ResMut<As
                 justify_content: JustifyContent::Center,
                 ..default()
             },
-            BackgroundColor(Color::BLACK),
+            BackgroundColor(Color::NONE),
             GlobalZIndex(20),
         ))
         .with_children(|p| {
@@ -658,7 +659,14 @@ fn view(
             },
         ))
         .id();
-    commands.entity(image).insert(Backdrop);
+    commands.entity(image).insert((
+        Backdrop,
+        if cinematic::enabled(&front, &race) {
+            Visibility::Hidden
+        } else {
+            Visibility::Inherited
+        },
+    ));
     commands.entity(canvas).add_child(image);
     if !loading && !failed {
         if page == Page::Portrait {
@@ -715,11 +723,11 @@ fn focus(
             || hovered
             || course.is_some_and(|c| front.flow.course == Some(c.0));
         if classic.is_some() {
-            let selected = b.index == front.selected;
-            bg.set_if_neq(BackgroundColor(if hovered {
-                Color::srgba(0.96, 0.40, 0.22, 0.025)
+            let selected = b.index == front.selected || hovered;
+            bg.set_if_neq(BackgroundColor(if selected {
+                Color::srgba(0.24, 0.10, 0.075, 0.82)
             } else {
-                Color::NONE
+                Color::srgba(0.018, 0.035, 0.055, 0.58)
             }));
             border.set_if_neq(BorderColor::all(if selected {
                 layout::ACCENT
@@ -864,10 +872,17 @@ impl Plugin for FrontendPlugin {
                     focus,
                     resize,
                     scene_camera,
+                    cinematic::bikes,
                     mask_online_hud,
                 )
                     .chain()
                     .after(crate::ui::update_ui),
+            )
+            .add_systems(
+                PostUpdate,
+                cinematic::camera
+                    .after(crate::game::camera)
+                    .before(bevy::transform::TransformSystems::Propagate),
             );
     }
 }
@@ -883,12 +898,15 @@ fn mask_online_hud(front: Res<Frontend>, mut hud: Query<&mut Node, With<crate::u
 }
 
 fn scene_camera(
+    front: Res<Frontend>,
     race: Res<Race>,
     panel: Res<SettingsPanel>,
     mut cameras: Query<&mut Camera, With<Camera3d>>,
 ) {
     for mut camera in &mut cameras {
-        let active = !panel.open && !matches!(race.phase, Phase::Garage | Phase::Finished);
+        let active = !panel.open
+            && (cinematic::enabled(&front, &race)
+                || !matches!(race.phase, Phase::Garage | Phase::Finished));
         if camera.is_active != active {
             camera.is_active = active;
         }

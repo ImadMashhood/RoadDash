@@ -594,7 +594,7 @@ mod tests {
     #[test]
     fn contact_prediction_checks_lateral_motion_and_uses_forward_not_display_speed() {
         let me = rider(1, 100., 0., 40.);
-        let target = rider(2, 100.5, 1.8, 44.);
+        let target = rider(2, 100.5, crate::DIRECT_STRIKE_MAX_LATERAL_M - 0.1, 44.);
         let (a, b) = contact_frame(me, target, [[35., 0.], [35., 1.]], 0.25).unwrap();
         assert!(!direct_strike_window(a, b, 0.25));
         let (a, b) = contact_frame(me, target, [[35., 0.], [35., -1.]], 0.25).unwrap();
@@ -620,7 +620,8 @@ mod tests {
             }
         }
         assert!(direct_strike_window(me, rider(2, 100.5, 1.75, 35.), 0.25));
-        assert!(!direct_strike_window(me, rider(2, 101.2, 2.2, 35.), 0.25));
+        assert!(direct_strike_window(me, rider(2, 101.2, 2.2, 35.), 0.25));
+        assert!(!direct_strike_window(me, rider(2, 101.5, 2.5, 35.), 0.25));
     }
     #[test]
     fn strike_admission_predicts_contact_instead_of_swinging_after_a_fast_pass() {

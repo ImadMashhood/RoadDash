@@ -245,6 +245,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "FEEL-DOWNED-01",
         "AI-METRO-01",
         "PERF-START-01",
         "AI-ENGAGE-01",
@@ -342,6 +343,7 @@
     "03": {
       "title": "Animation B \u2014 interpolation, terrain locomotion and active recovery",
       "task_ids": [
+        "FEEL-LEAN-01",
         "RFU-MOVE-05",
         "RFU-MOVE-06",
         "RFU-MOVE-02",
@@ -488,6 +490,8 @@
     "07": {
       "title": "Weapons and complete riding combat",
       "task_ids": [
+        "FEEL-WEAPON-01",
+        "FEEL-HIT-01",
         "V2-07-001",
         "V2-07-002",
         "V2-07-003",
@@ -611,6 +615,7 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "UI-CITY-TOUR-01",
         "RFU-FX-01",
         "RFU-FX-02",
         "RFU-FX-03",

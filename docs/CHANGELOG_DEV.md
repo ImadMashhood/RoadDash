@@ -1,5 +1,25 @@
 # Development history
 
+## 2026-11-12 — Whole-body cornering follow-up (ADR173)
+
+User approves the menu/combat pass and asks for torso/shoulder/arm weight shift.
+Extend FEEL-LEAN-01 with hierarchical body bank, inward tuck rotation and a
+small down/forward settle. Preserve grip/peg contacts, limb lengths, physical
+rigs and player handling. Evidence: testing/menu-combat-polish/BODY_LEAN.md.
+No new IDs, assets or dependencies. GPU driver mismatch is now resolved locally.
+712tests pass with the same two existing failures; strict checks, debug/release
+builds, native animation review and18finite paired lab cases complete.
+
+## 2026-11-12 — Menu and riding-combat polish (ADR173)
+
+User requests city-menu motion, rider turn/knee cues, attack-only weapons,
+readable hits, forgiving combat/downed contacts and double-height downed hops.
+Implementation and regression evidence: testing/menu-combat-polish/REPORT.md.
+Five stable requirements added open; no unrelated roadmap closures or new assets.
+Final711passing tests retain the two existing physics failures; strict checks,
+debug build, audit and18finite paired lab cases complete. Native menu attempt
+times out on software rendering; GPU review remains blocked by the driver mismatch.
+
 ## 2026-11-12 — Metropolis shares approved Hills racing AI (ADR172)
 
 User approves Hills and requests the same race-flow behavior in Metropolis.

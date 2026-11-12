@@ -327,7 +327,7 @@ fn detached_body_contacts_never_script_a_new_mounted_wipeout() {
                     if own {
                         assert_eq!(hop, 0.0);
                     } else {
-                        assert!((2.0..=4.0).contains(&hop));
+                        assert!((2.0..=4.0 * std::f32::consts::SQRT_2).contains(&hop));
                     }
                     assert_eq!(
                         app.world_mut()
@@ -1127,6 +1127,61 @@ fn downed_contact_lift_uses_pre_solver_relative_motion_for_both_bodies() {
                     forward * after
                 );
                 assert_eq!(rider.impact_cooldown, 0.0);
+            }
+        }
+    }
+}
+
+#[test]
+fn downed_margin_catches_near_miss_but_not_remote_or_own_bodies() {
+    use bevy::ecs::system::RunSystemOnce;
+    for kind in [recovery::BodyKind::Wreck, recovery::BodyKind::Ragdoll] {
+        for (side, own, expected) in [
+            (0.68, false, true),
+            (1.2, false, false),
+            (0.68, true, false),
+        ] {
+            let mut app = game::tests::simulation();
+            for _ in 0..3 {
+                app.update();
+            }
+            let owner = app
+                .world_mut()
+                .query_filtered::<Entity, With<Rider>>()
+                .single(app.world())
+                .unwrap();
+            let pose = *app.world().get::<Transform>(owner).unwrap();
+            let foreign = app.world_mut().spawn_empty().id();
+            app.world_mut().spawn((
+                OwnedBody {
+                    owner: if own { owner } else { foreign },
+                    kind,
+                },
+                RigidBody::Fixed,
+                Collider::ball(0.1),
+                Transform::from_translation(
+                    pose.translation + pose.rotation * Vec3::new(side, 0.6, 0.8),
+                ),
+                Velocity::zero(),
+            ));
+            app.world_mut().resource_mut::<Race>().phase = Phase::Countdown;
+            app.update();
+            app.update();
+            let forward = pose.rotation * Vec3::Z;
+            {
+                let mut r = app.world_mut().get_mut::<Rider>(owner).unwrap();
+                r.motion_velocity = forward * 20.;
+                r.impact_cooldown = 0.;
+            }
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            app.world_mut().run_system_once(recovery::impacts).unwrap();
+            let r = app.world().get::<Rider>(owner).unwrap();
+            assert_eq!(r.hop_velocity > 0., expected, "side={side} own={own}");
+            if expected {
+                assert_eq!(app.world().resource::<Race>().message, "RIDE OVER");
+                let first = r.hop_velocity;
+                app.world_mut().run_system_once(recovery::impacts).unwrap();
+                assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, first);
             }
         }
     }

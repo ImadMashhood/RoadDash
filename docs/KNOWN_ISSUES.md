@@ -1,5 +1,15 @@
 # Known issues and remaining acceptance
 
+- ADR173 / UI-CITY-TOUR-01 / FEEL-LEAN-01 / FEEL-WEAPON-01 / FEEL-HIT-01 /
+  FEEL-DOWNED-01: subjective art/feel and broad acceptance remain open.
+  The body-lean follow-up adds native animation and recovery evidence.
+  The prior NVIDIA driver/library mismatch is resolved locally as of the
+  whole-body lean follow-up (RTX3080,620.70.06); earlier blocked attempts remain
+  historical. See BODY_LEAN.md for new native evidence.
+  Energy/obstacle clearance can limit real downed-hop rise below the unobstructed
+  doubled-height target. Menu streaming cost and broad viewport/hardware
+  acceptance remain unmeasured. See testing/menu-combat-polish/REPORT.md.
+
 - AI-METRO-01 / ADR172: both modern maps now select the same approved racing
   planner and real main-car bounds. Physical/headless checks pass. Native
   Metropolis traversal could not be completed: the current machine has loaded

@@ -1680,7 +1680,15 @@ pub fn drive(
             }
             r.side_velocity *= (-dt * 2.5).exp();
             r.lean = r.lean.lerp(
-                rr_core::steering::visual_bank(steer),
+                if is_player {
+                    rr_core::steering::visual_bank(steer)
+                } else {
+                    rr_core::steering::rival_visual_bank(
+                        steer,
+                        track.curvature_route(r.route, r.progress),
+                        r.speed,
+                    )
+                },
                 1.0 - (-dt * 16.0).exp(),
             );
             if on_grass && !dynamic && surface != rr_core::surface::Surface::Sand {

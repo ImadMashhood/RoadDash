@@ -135,22 +135,6 @@ impl Library {
     pub(crate) fn key(&self, id: u16) -> Pose {
         self.keys[&id]
     }
-    fn weapon_ready(&self, mut base: Pose, hand: usize) -> Pose {
-        let ready = self.key(if hand == 1 { 2170 } else { 2160 });
-        let suffix = if hand == 1 { ".R" } else { ".L" };
-        for (i, name) in self.data.names.iter().enumerate() {
-            if name.ends_with(suffix)
-                && ["upper_arm", "forearm", "hand"]
-                    .iter()
-                    .any(|prefix| name.starts_with(prefix))
-            {
-                base.rotations[i] = ready.rotations[i];
-            }
-        }
-        base.held &= !(1 << hand);
-        base.hands[hand] = [1.0, 0.0];
-        base
-    }
     fn clip(&self, name: &str) -> &rr_content::motion::Clip {
         self.data
             .clips
@@ -311,7 +295,7 @@ impl Library {
                 world[1].rotation
                     * (Vec3::Z
                         + if held && planted.is_none() {
-                            Vec3::X * side * 0.28
+                            Vec3::X * side * (0.28 + (-pose.lean * side).max(0.0) * 0.85)
                         } else {
                             Vec3::ZERO
                         })
@@ -344,6 +328,11 @@ impl Library {
 
     fn turn(&self, mut pose: Pose, turn: f32) -> Pose {
         pose.lean = turn.clamp(-1.0, 1.0);
+        pose.root.x -= pose.lean * 0.075;
+        // Settle slightly down/forward into the turn so the outside hand can
+        // retain its grip while the shoulders move across the bike.
+        pose.root.y -= pose.lean.abs() * 0.06;
+        pose.root.z += pose.lean.abs() * 0.06;
         let neutral = self.key(2020);
         let target = self.key(if turn < 0.0 { 2900 } else { 2901 });
         for i in 0..20 {
@@ -351,6 +340,15 @@ impl Library {
             pose.rotations[i] =
                 (pose.rotations[i] * Quat::IDENTITY.slerp(delta, turn.abs().min(1.0))).normalize();
         }
+        // Tilt the complete seated body at the pelvis, so chest, shoulders and
+        // upper arms travel together. The existing two-link fitting lets elbows
+        // follow that shift while hands/feet stay on their grips/pegs. Tucked
+        // arms have less reach available, so reduce the added body bank there.
+        let body_bank = pose.lean * 0.12 * (1.0 - pose.tuck * 0.45);
+        pose.rotations[1] = (Quat::from_rotation_z(body_bank)
+            * Quat::from_rotation_y(-pose.lean * pose.tuck * 0.08)
+            * pose.rotations[1])
+            .normalize();
         pose
     }
 }
@@ -544,11 +542,6 @@ fn update(
                         .blend(lib.key(2040), a.accel),
                     r.lean / 0.65,
                 );
-                let base = if r.weapon.is_some() {
-                    lib.weapon_ready(base, r.weapon_hand)
-                } else {
-                    base
-                };
                 if r.attack_serial != a.serial {
                     a.serial = r.attack_serial;
                     if r.attack > 0.0 {
@@ -962,6 +955,92 @@ mod tests {
 mod correction_tests {
     use super::*;
     #[test]
+    fn whole_body_bank_moves_shoulders_and_arms_but_keeps_contacts() {
+        let lib = Library::default();
+        for key in [2020, 2030, 2040] {
+            for side in [-1.0, 1.0] {
+                for amount in [0.0, 0.25, 0.5, 1.0] {
+                    let base = lib.key(key);
+                    let pose = lib.turn(base, side * amount);
+                    let mut old = pose;
+                    old.rotations[1] = base.rotations[1];
+                    let before = lib.world_pose(old);
+                    let after = lib.world_pose(pose);
+                    if amount == 1.0 {
+                        for shoulder in [7, 11] {
+                            assert!(
+                                (after[shoulder].translation.x - before[shoulder].translation.x)
+                                    * side
+                                    < if key == 2030 { -0.01 } else { -0.025 },
+                                "key={key} shoulder={shoulder}"
+                            );
+                        }
+                        for elbow in [8, 12] {
+                            assert!(
+                                after[elbow].translation.distance(before[elbow].translation)
+                                    > if key == 2030 { 0.005 } else { 0.01 },
+                                "key={key} elbow={elbow}"
+                            );
+                        }
+                    }
+                    for hit in [
+                        None,
+                        Some(motion::HitReaction::new(0., side, false)),
+                        Some(motion::HitReaction::new(0., side, true)),
+                    ] {
+                        let shown = lib
+                            .world_pose(hit.map_or(pose, |hit| reaction::apply(pose, hit, 0.05)));
+                        for limb in &lib.data.limbs {
+                            let tip =
+                                shown[limb.end].transform_point(Vec3::from_array(limb.offset));
+                            assert!(
+                                tip.distance(Vec3::from_array(limb.target)) < 0.006,
+                                "key={key} side={side} amount={amount} limb={} hit={hit:?} error={}",
+                                limb.bit,
+                                tip.distance(Vec3::from_array(limb.target))
+                            );
+                            for (a, b) in [(limb.upper, limb.lower), (limb.lower, limb.end)] {
+                                assert!(
+                                    (shown[a].translation.distance(shown[b].translation)
+                                        - before[a].translation.distance(before[b].translation))
+                                    .abs()
+                                        < 0.00001
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #[test]
+    fn turning_moves_weight_and_inner_knee_without_releasing_contacts() {
+        let lib = Library::default();
+        let base = lib.key(2020);
+        for side in [-1.0, 1.0] {
+            let turn = lib.turn(base, side);
+            assert!((turn.root.x - base.root.x) * side < -0.07);
+            let mut control = turn;
+            control.lean = 0.;
+            let before = lib.world_pose(control);
+            let after = lib.world_pose(turn);
+            for limb in &lib.data.limbs {
+                let contact = after[limb.end].transform_point(Vec3::from_array(limb.offset));
+                assert!(contact.distance(Vec3::from_array(limb.target)) < 0.006);
+                if limb.bit >= 2 {
+                    let leg_side = Vec3::from_array(lib.data.offsets[limb.upper]).x.signum();
+                    if leg_side * side < 0. {
+                        assert!(
+                            (after[limb.lower].translation.x - before[limb.lower].translation.x)
+                                * leg_side
+                                > 0.02
+                        );
+                    }
+                }
+            }
+        }
+    }
+    #[test]
     fn seated_knee_bend_plane_points_slightly_outward_and_feet_stay_on_pegs() {
         let lib = Library::default();
         for key in [2020, 2030, 2040, 2900, 2901] {
@@ -1118,7 +1197,7 @@ mod hand_tests {
         }
     }
     #[test]
-    fn club_ready_layer_preserves_lean_tuck_and_returns_after_both_attacks() {
+    fn armed_riding_keeps_both_grips_and_returns_after_both_attacks() {
         for speed in [30., 65.] {
             for side in [-1., 1.] {
                 let (mut app, e) = state_app();
@@ -1142,6 +1221,10 @@ mod hand_tests {
                 let lib = app.world().resource::<Library>();
                 assert!(ready.root.distance(unarmed.root) < 1e-6);
                 assert_eq!(ready.lean, unarmed.lean);
+                assert_eq!(ready.held & 3, 3);
+                for (a, b) in ready.rotations.into_iter().zip(unarmed.rotations) {
+                    assert!(a.dot(b).abs() > 0.999999);
+                }
                 assert!((ready.tuck - unarmed.tuck).abs() < 1e-5);
                 for (i, name) in lib.data.names.iter().enumerate() {
                     let arm = name.ends_with(if hand == 1 { ".R" } else { ".L" })

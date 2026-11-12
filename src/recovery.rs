@@ -1278,10 +1278,11 @@ pub fn impacts(
         Query<Option<&crate::environment::Patrol>, With<crate::environment::CrossTraffic>>,
         Query<&crate::npc::Npc>,
     ),
-    (velocities, bike_states, previous): (
+    (velocities, bike_states, previous, rider_entities): (
         Query<&Velocity>,
         Query<&crate::vehicle::BikeState>,
         Query<&PreviousMotion>,
+        Query<Entity, With<Rider>>,
     ),
     (obstacles, ground, breakable): (
         Query<(), With<Obstacle>>,
@@ -1328,6 +1329,55 @@ pub fn impacts(
     for (runner, output) in &controllers {
         for contact in &output.collisions {
             pairs.push((runner, contact.entity));
+        }
+    }
+    // Gameplay-only ride-over margin; physical rig/colliders remain unchanged.
+    // Sweep one fixed step to catch fast passes, with 25 cm extra side/end reach.
+    // Include solid scenery so the aid cannot reach through a wall.
+    if owned
+        .iter()
+        .any(|b| matches!(b.kind, BodyKind::Ragdoll | BodyKind::Wreck))
+        && let Ok(ctx) = context.single()
+    {
+        for owner in &rider_entities {
+            let Ok((r, rec, _)) = riders.get(owner) else {
+                continue;
+            };
+            if rec.stage != RecoveryStage::Riding || r.impact_cooldown > 0.0 {
+                continue;
+            }
+            let Ok(t) = transforms.get(owner) else {
+                continue;
+            };
+            let velocity = bike_states
+                .get(owner)
+                .map_or(r.motion_velocity, |s| s.impact_velocity);
+            let delta = velocity * time.delta_secs();
+            let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                e != owner && !ground.contains(e) && !owned.get(e).is_ok_and(|b| b.owner == owner)
+            };
+            let shape = Collider::cuboid(0.63, 0.65, 1.37);
+            let margin_hit = ctx.cast_shape(
+                t.translation + Vec3::Y * 0.65 - delta,
+                t.rotation,
+                delta,
+                shape.raw.as_ref(),
+                bevy_rapier3d::parry::query::ShapeCastOptions {
+                    max_time_of_impact: 1.0,
+                    stop_at_penetration: true,
+                    ..default()
+                },
+                QueryFilter::default()
+                    .exclude_sensors()
+                    .predicate(&predicate),
+            );
+            if let Some((other, _)) = margin_hit
+                && owned
+                    .get(other)
+                    .is_ok_and(|b| matches!(b.kind, BodyKind::Ragdoll | BodyKind::Wreck))
+            {
+                pairs.push((owner, other));
+            }
         }
     }
     for pair in &mut pairs {
@@ -1809,8 +1859,16 @@ pub fn impacts(
                 if let Ok((mut rider, recovery, _)) = riders.get_mut(owner)
                     && recovery.stage == RecoveryStage::Riding
                     && rider.impact_cooldown <= 0.0
-                    && let Some(up) = rr_core::contact::ride_over_velocity(closing)
+                    && let Some(up) = rr_core::contact::downed_ride_over_velocity(closing)
                 {
+                    if let Ok(t) = transforms.get(owner) {
+                        audio.write(AudioCue::new(Cue::Land, t.translation));
+                    }
+                    if rider.human_controlled() {
+                        race.shake = race.shake.max(0.18);
+                        race.message = "RIDE OVER".into();
+                        race.message_time = 0.7;
+                    }
                     let own_mass = rider.bike_mass + 70.0;
                     rider.hop_velocity = rider.hop_velocity.max(up);
                     rider.motion_velocity = incoming.with_y(incoming.y.max(up));
@@ -1832,7 +1890,7 @@ pub fn impacts(
                             }
                         }
                         let adjusted = Vec3::from_array(
-                            rr_core::contact::ride_over_response(
+                            rr_core::contact::downed_ride_over_response(
                                 incoming.to_array(),
                                 before.to_array(),
                                 after.to_array(),

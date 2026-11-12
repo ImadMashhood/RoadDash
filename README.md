@@ -183,7 +183,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**234 verified tasks complete; 351 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**234 verified tasks complete; 356 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -202,13 +202,13 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 234 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 72 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
-| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
+| [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 48 open |
-| [07](#part-07) | Weapons and complete riding combat | 10 open |
+| [07](#part-07) | Weapons and complete riding combat | 12 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
 | [10](#part-10) | Networking feasibility spike | 10 open |
@@ -216,7 +216,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 11 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 29 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 30 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -700,6 +700,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, twice ballistic rise within existing energy and unchanged upright rear-contact/rig policy; verification: core height/energy tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
+
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](docs/testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
 
@@ -885,6 +887,8 @@ First study every original rider animation category, use sprites as reference ke
 <a id="part-03"></a>
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
+
+- [ ] **FEEL-LEAN-01** Show whole-body inward rider weight, coordinated shoulder/arm lean, inside knee and high-speed rival corner bank. Reason: requested readable turning; part:03; dependencies: V2-03-002 and current contact IK; acceptance: pelvis/torso/shoulders lean together with elbows adapting around held grips, both AI adapters bank through road bends, player steering feel preserved, grips/pegs and chain lengths retained; verification: signed bank, pose/contact, physics differential tests and native visual review. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
 
 - [ ] **RFU-MOVE-05** Set the urgent run hand roll so both thumbs face the travel direction and palms do not stay flat toward the rear. Reason: user visual playtest of issue #28; part:03; dependencies: RFU-MOVE-01 and authoring bind; acceptance: anatomically readable bilateral swing/fist orientation at run speed while stopped pose remains neutral; verification: local hand-axis pose assertions and close native front/side/rear gait frames on flat and uneven ground. Visual pose and scripted captures pass; human approval remains open. [Evidence](docs/testing/issue41-running-hands/REPORT.md), [issue](https://github.com/ImadMashhood/RoadDash/issues/41).
 - [ ] **RFU-MOVE-06** Keep the running hand correction through terrain IK and recovery transitions. Reason: user reports the motion looks awkward on changed elevation; part:03; dependencies: RFU-MOVE-02/05; acceptance: no wrist pops, hand/body disconnection or physics/control change across run, stop, slope and remount; verification: pose continuity, differential rig/recovery tests and native gait review. Scripted uneven animation and paired native physical recovery pass; broad terrain and human review remain open. [Evidence](docs/testing/issue41-running-hands/REPORT.md), [issue](https://github.com/ImadMashhood/RoadDash/issues/41).
@@ -1151,6 +1155,10 @@ Repeat the same pipeline for pedestrians, riders, animals and believable NPC act
 
 ### Part 07 — Weapons and complete riding combat
 
+- [ ] **FEEL-WEAPON-01** Keep both hands on grips and show weapons only during attacks. Reason: user rejects permanent armed ready pose; part:07; dependencies: V2-07-002; acceptance: inventory does not change idle grip pose, attack hand/weapon agree and idle/kick/recovery hide weapon; verification: animation/inventory regression tests and native left/right weapon review. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
+
+- [ ] **FEEL-HIT-01** Make unarmed contacts forgiving and impacts readable to attacker and victim. Reason: user reports tight hitboxes and weak feedback; part:07; dependencies: authoritative strike scheduler and hit reaction; acceptance: bounded expanded body envelope, preserved side/LOS/one-hit rules, flinch/audio/HUD feedback; verification: contact envelope, combat/reaction regressions and native feel review. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
+
 
 
 <!-- DEVELOPMENT_PASS_07 -->
@@ -1315,6 +1323,8 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-15"></a>
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
 
 - [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 - [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: terrain-seated feathered dust pool implemented; centered-chase visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
