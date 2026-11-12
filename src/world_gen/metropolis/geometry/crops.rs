@@ -11,7 +11,7 @@ use bevy::{
     light::NotShadowCaster,
     pbr::{ExtendedMaterial, MaterialExtension},
     prelude::*,
-    render::{render_resource::AsBindGroup, storage::ShaderStorageBuffer},
+    render::{render_resource::AsBindGroup, storage::ShaderBuffer},
     shader::ShaderRef,
 };
 use bevy_rapier3d::prelude::*;
@@ -22,13 +22,13 @@ pub struct Bend {
     #[uniform(100)]
     pub origin: Vec4,
     #[storage(101, read_only)]
-    pub cells: Handle<ShaderStorageBuffer>,
+    pub cells: Handle<ShaderBuffer>,
     #[storage(102, read_only)]
-    pub clock: Handle<ShaderStorageBuffer>,
+    pub clock: Handle<ShaderBuffer>,
 }
 impl MaterialExtension for Bend {
     fn vertex_shader() -> ShaderRef {
-        "shaders/crops.wgsl".into()
+        "shaders/crops.wesl".into()
     }
 }
 #[derive(Component)]
@@ -39,8 +39,8 @@ type CropMaterial = ExtendedMaterial<StandardMaterial, Bend>;
 #[derive(Resource, Default)]
 struct Crops {
     field: Field,
-    buffers: BTreeMap<Key, Handle<ShaderStorageBuffer>>,
-    clock: Handle<ShaderStorageBuffer>,
+    buffers: BTreeMap<Key, Handle<ShaderBuffer>>,
+    clock: Handle<ShaderBuffer>,
     time: f32,
     previous: HashMap<Entity, Transform>,
     uploaded_tile_bytes: u64,
@@ -67,7 +67,7 @@ fn spawn(
     track: Res<Track>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<CropMaterial>>,
-    mut buffers: ResMut<Assets<ShaderStorageBuffer>>,
+    mut buffers: ResMut<Assets<ShaderBuffer>>,
     mut crops: ResMut<Crops>,
     census: Option<ResMut<super::super::Census>>,
 ) {
@@ -342,7 +342,7 @@ mod tests {
             .init_resource::<Crops>()
             .init_resource::<Assets<Mesh>>()
             .init_resource::<Assets<CropMaterial>>()
-            .init_resource::<Assets<ShaderStorageBuffer>>()
+            .init_resource::<Assets<ShaderBuffer>>()
             .add_systems(Update, spawn);
         app.update();
         let crops = app.world().resource::<Crops>();

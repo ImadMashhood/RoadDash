@@ -570,7 +570,7 @@ mod tests {
             })
             .unwrap();
         app.world_mut().run_system_once(update).unwrap();
-        let count = app.world().entities().len();
+        let count = app.world().entities().count_spawned();
         let trailer = app
             .world()
             .get::<HeavyTraffic>(root)
@@ -605,7 +605,7 @@ mod tests {
                 app.world().get::<Collider>(root).unwrap(),
             );
             assert!(lo.z < -13.);
-            assert_eq!(app.world().entities().len(), count);
+            assert_eq!(app.world().entities().count_spawned(), count);
         }
         let before = *app.world().get::<Transform>(trailer).unwrap();
         for _ in 0..8 {

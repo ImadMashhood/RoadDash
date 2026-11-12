@@ -148,8 +148,8 @@ pub fn fixture(enabled: bool, scenario: Scenario) -> App {
                 let owner = commands
                     .spawn((
                         Velocity {
-                            linvel: velocity,
-                            angvel: if matches!(scenario, Scenario::Tumble) {
+                            linear: velocity,
+                            angular: if matches!(scenario, Scenario::Tumble) {
                                 Vec3::X * 2.0
                             } else {
                                 Vec3::ZERO
@@ -184,7 +184,7 @@ pub fn fixture(enabled: bool, scenario: Scenario) -> App {
             Scenario::LimbForce | Scenario::TorsoPush | Scenario::HingeStress
         ) {
             w.entity_mut(e).insert(crate::recovery::CrashEnvelope::new(
-                v.linvel,
+                v.linear,
                 t.translation,
                 t.rotation,
                 Vec3::Z,
@@ -207,7 +207,7 @@ pub fn fixture(enabled: bool, scenario: Scenario) -> App {
                 e,
                 LabInertia {
                     principal: Vec3::new(i.x, i.y, i.z),
-                    frame: Quat::from_xyzw(q.i, q.j, q.k, q.w),
+                    frame: q,
                 },
             ))
         })
@@ -232,10 +232,10 @@ struct LabInertia {
 fn energy(world: &World, e: Entity, t: &Transform, v: &Velocity) -> f64 {
     let m = mass(world, e) as f64;
     let angular = world.get::<LabInertia>(e).map_or(0.0, |p| {
-        let omega = (t.rotation * p.frame).inverse() * v.angvel;
+        let omega = (t.rotation * p.frame).inverse() * v.angular;
         (omega.as_dvec3() * omega.as_dvec3() * p.principal.as_dvec3()).element_sum() * 0.5
     });
-    m * (0.5 * v.linvel.length_squared() as f64 + 9.81 * t.translation.y as f64) + angular
+    m * (0.5 * v.linear.length_squared() as f64 + 9.81 * t.translation.y as f64) + angular
 }
 pub fn measure(enabled: bool, scenario: Scenario, ticks: usize) -> Measurement {
     measure_app(
@@ -254,10 +254,12 @@ fn measure_app(
     mut observe: impl FnMut(usize, &mut App, &Measurement),
 ) -> Measurement {
     let config = app.world().resource::<Settings>().config.clone();
-    let fixed_executor = format!(
-        "{:?}",
-        app.get_schedule(FixedUpdate).unwrap().get_executor_kind()
-    );
+    let fixed_executor = if std::env::var("ROADDASH_FIXED_EXECUTOR").as_deref() == Ok("multi") {
+        "MultiThreaded"
+    } else {
+        "SingleThreaded"
+    }
+    .to_string();
     let w = app.world_mut();
     let initial: Vec<_> = w
         .query::<(Entity, &Transform, &Velocity, &OwnedBody)>()
@@ -267,13 +269,13 @@ fn measure_app(
     let mass_total = initial.iter().map(|(e, _, _)| mass(w, *e)).sum::<f32>();
     let momentum = initial
         .iter()
-        .map(|(e, _, v)| v.linvel * mass(w, *e))
+        .map(|(e, _, v)| v.linear * mass(w, *e))
         .sum::<Vec3>();
     let expected = initial
         .iter()
         .map(|(e, _, _)| {
             let o = w.get::<OwnedBody>(*e).unwrap();
-            w.get::<Velocity>(o.owner).map_or(Vec3::ZERO, |v| v.linvel) * mass(w, *e)
+            w.get::<Velocity>(o.owner).map_or(Vec3::ZERO, |v| v.linear) * mass(w, *e)
         })
         .sum::<Vec3>();
     let mut result = Measurement {
@@ -345,22 +347,22 @@ fn measure_app(
         for (e, t, v) in records {
             result.finite &= t.translation.is_finite()
                 && t.rotation.is_finite()
-                && v.linvel.is_finite()
-                && v.angvel.is_finite();
-            if v.linvel.length() > result.max_speed_mps {
+                && v.linear.is_finite()
+                && v.angular.is_finite();
+            if v.linear.length() > result.max_speed_mps {
                 result.peak_speed_part = w
                     .get::<Segment>(e)
                     .map_or_else(|| w.get::<Candidate>(e).map_or(0, |c| c.0), |s| s.part);
             }
-            if v.angvel.length() > result.peak_angular_radps {
+            if v.angular.length() > result.peak_angular_radps {
                 result.peak_angular_part = w
                     .get::<Segment>(e)
                     .map_or_else(|| w.get::<Candidate>(e).map_or(0, |c| c.0), |s| s.part);
             }
-            result.max_speed_mps = result.max_speed_mps.max(v.linvel.length());
-            result.peak_angular_radps = result.peak_angular_radps.max(v.angvel.length());
-            result.final_max_speed_mps = result.final_max_speed_mps.max(v.linvel.length());
-            result.final_max_angular_radps = result.final_max_angular_radps.max(v.angvel.length());
+            result.max_speed_mps = result.max_speed_mps.max(v.linear.length());
+            result.peak_angular_radps = result.peak_angular_radps.max(v.angular.length());
+            result.final_max_speed_mps = result.final_max_speed_mps.max(v.linear.length());
+            result.final_max_angular_radps = result.final_max_angular_radps.max(v.angular.length());
             total += energy(w, e, &t, &v);
             if let Some(j) = w.get::<ImpulseJoint>(e) {
                 let p = w.get::<Transform>(j.parent).unwrap();
@@ -410,8 +412,8 @@ fn measure_app(
             let row = owners.entry(owned.owner.to_bits()).or_default();
             row.0 += 1;
             row.1 += usize::from(sleeping.sleeping);
-            row.2 = row.2.max(velocity.linvel.length());
-            row.3 = row.3.max(velocity.angvel.length());
+            row.2 = row.2.max(velocity.linear.length());
+            row.3 = row.3.max(velocity.angular.length());
         }
         println!(
             "BIOMECH_PILEUP_PLATFORM ticks={ticks} os={} arch={} cpus={:?} parallel_physics={}",
@@ -435,12 +437,15 @@ fn measure_app(
 }
 /// Keep the 15-second checkpoint and the eventual sleep deadline on one trajectory.
 #[cfg(test)]
-pub(super) fn pileup_settling(
-    executor: bevy::ecs::schedule::ExecutorKind,
-) -> (Measurement, Measurement, Option<usize>) {
+pub(super) fn pileup_settling(multithreaded: bool) -> (Measurement, Measurement, Option<usize>) {
     let mut app = fixture(true, Scenario::Pileup);
+    use bevy::ecs::schedule::{MultiThreadedExecutor, SingleThreadedExecutor};
     app.edit_schedule(FixedUpdate, |schedule| {
-        schedule.set_executor_kind(executor);
+        if multithreaded {
+            schedule.set_executor(MultiThreadedExecutor::new());
+        } else {
+            schedule.set_executor(SingleThreadedExecutor::new());
+        }
     });
     let mut checkpoint = None;
     let mut first_all_sleep = None;

@@ -364,14 +364,13 @@ pub fn build_app(smoke: bool) -> App {
 /// Apply the same diagnostic dispatch selection to the native app and lab fixtures.
 /// Internal Rapier parallel solving and fixed timing are configured independently.
 pub(crate) fn configure_fixed_executor(app: &mut App) {
-    use bevy::ecs::schedule::ExecutorKind;
-    let executor = if std::env::var("ROADDASH_FIXED_EXECUTOR").as_deref() == Ok("multi") {
-        ExecutorKind::MultiThreaded
-    } else {
-        ExecutorKind::SingleThreaded
-    };
+    use bevy::ecs::schedule::{MultiThreadedExecutor, SingleThreadedExecutor};
     app.edit_schedule(FixedUpdate, |schedule| {
-        schedule.set_executor_kind(executor);
+        if std::env::var("ROADDASH_FIXED_EXECUTOR").as_deref() == Ok("multi") {
+            schedule.set_executor(MultiThreadedExecutor::new());
+        } else {
+            schedule.set_executor(SingleThreadedExecutor::new());
+        }
     });
 }
 

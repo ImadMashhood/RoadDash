@@ -26,6 +26,12 @@ pub struct TerrainLod(pub bool);
 #[derive(Component)]
 pub struct Cow;
 #[derive(Component)]
+pub struct CowLeg {
+    leg: usize,
+    lower: bool,
+    rest: Vec3,
+}
+#[derive(Component)]
 pub struct HazardZone {
     pub kind: PropKind,
     pub radius: f32,
@@ -628,7 +634,9 @@ pub fn build(
                 );
             }
             PropKind::Pedestrian => spawn_pedestrian(commands, art, p, q, d),
-            PropKind::Cow => spawn_cow(commands, art, p.with_y(track.terrain_height(p.x, p.z)), q),
+            PropKind::Cow => {
+                spawn_cow(commands, art, p.with_y(track.terrain_height(p.x, p.z)), q);
+            }
             PropKind::Crossing => {
                 if layout.is_none() {
                     block(
@@ -690,7 +698,7 @@ pub fn build(
         collision_triangles,
     });
 }
-pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
+pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) -> Entity {
     let root = commands
         .spawn((
             Transform::from_translation(p).with_rotation(q),
@@ -717,10 +725,18 @@ pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
         }
         let drivers: Vec<_> = frames
             .into_iter()
-            .map(|p| {
-                commands
-                    .spawn((Transform::from_translation(p), Visibility::default()))
-                    .id()
+            .enumerate()
+            .map(|(index, p)| {
+                let mut driver =
+                    commands.spawn((Transform::from_translation(p), Visibility::default()));
+                if index >= 2 {
+                    driver.insert(CowLeg {
+                        leg: (index - 2) / 2,
+                        lower: (index - 2) % 2 == 1,
+                        rest: p,
+                    });
+                }
+                driver.id()
             })
             .collect();
         commands
@@ -733,7 +749,7 @@ pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
             crate::npc::NpcKind::Cow,
             Transform::from_translation(p).with_rotation(q),
         ));
-        return;
+        return root;
     }
     let mut parts = vec![
         world::part(
@@ -770,6 +786,7 @@ pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) {
         Transform::from_translation(p).with_rotation(q),
     ));
     crate::runtime::attach_visuals(commands, root, &parts);
+    root
 }
 pub(crate) fn spawn_pedestrian(commands: &mut Commands, art: &Art, p: Vec3, q: Quat, seed: f32) {
     spawn_pedestrian_patrol(commands, art, p, q, seed, 12.);
@@ -791,8 +808,10 @@ pub(crate) fn spawn_pedestrian_patrol(
             Collider::compound(vec![(
                 Vec3::Y * 1.15,
                 Quat::IDENTITY,
-                Collider::capsule_y(0.8, 0.27),
+                Collider::capsule_y(0.82, 0.40),
             )]),
+            Ccd::enabled(),
+            ActiveCollisionTypes::all(),
             Pedestrian,
             Obstacle,
             Patrol {
@@ -925,8 +944,9 @@ pub fn inspector(
         );
     }
     let (min, max) = track.bounds;
-    gizmos.cuboid(
-        Transform::from_translation((min + max) * 0.5).with_scale((max - min).max(Vec3::ONE)),
+    gizmos.primitive_3d(
+        &Cuboid::from_size((max - min).max(Vec3::ONE)),
+        Isometry3d::from_translation((min + max) * 0.5),
         Color::srgb(0.6, 0.4, 1.0),
     );
     for gate in track
@@ -975,6 +995,38 @@ pub fn animate_civilians(
             t.translation = limb.pivot + turn * (limb.rest.translation - limb.pivot);
             t.rotation = turn * limb.rest.rotation;
         }
+    }
+}
+/// Presentation-only four-beat walk for the existing skinned crossing cattle.
+pub fn animate_cow_legs(
+    race: Res<Race>,
+    parents: Query<&Patrol>,
+    npcs: Query<&crate::npc::Npc>,
+    mut legs: Query<(&CowLeg, &ChildOf, &mut Transform)>,
+) {
+    for (leg, parent, mut t) in &mut legs {
+        let moving = parents.get(parent.parent()).ok().filter(|_| {
+            npcs.get(parent.parent()).is_ok_and(|npc| npc.active()) && race.phase == Phase::Racing
+        });
+        let angle = moving.map_or(0., |path| {
+            let phase = race.elapsed * path.speed * 2.2
+                + [
+                    0.,
+                    std::f32::consts::PI,
+                    1.5 * std::f32::consts::PI,
+                    0.5 * std::f32::consts::PI,
+                ][leg.leg];
+            let swing = phase.sin();
+            if leg.lower {
+                -0.42 * swing.max(0.)
+            } else {
+                0.25 * swing
+            }
+        });
+        let pivot = Vec3::new(leg.rest.x, 0.85, leg.rest.z);
+        let turn = Quat::from_rotation_x(angle);
+        t.translation = pivot + turn * (leg.rest - pivot);
+        t.rotation = turn;
     }
 }
 
@@ -1072,14 +1124,19 @@ pub(crate) fn teleport_kinematic(commands: &mut Commands, entity: Entity, pose: 
             if let Some(handle) = set.entity2body().get(&entity).copied()
                 && let Some(body) = set.bodies.get_mut(handle)
             {
-                let p = bevy_rapier3d::na::Isometry3::from_parts(
-                    pose.translation.into(),
-                    pose.rotation.into(),
+                let p = bevy_rapier3d::rapier::math::Pose3::from_parts(
+                    pose.translation.to_array().into(),
+                    bevy_rapier3d::rapier::math::Rot3::from_xyzw(
+                        pose.rotation.x,
+                        pose.rotation.y,
+                        pose.rotation.z,
+                        pose.rotation.w,
+                    ),
                 );
                 body.set_position(p, true);
                 body.set_next_kinematic_position(p);
-                body.set_linvel(Vec3::ZERO.into(), true);
-                body.set_angvel(Vec3::ZERO.into(), true);
+                body.set_linvel(Vec3::ZERO, true);
+                body.set_angvel(Vec3::ZERO, true);
             }
         }
     });

@@ -65,7 +65,7 @@ fn main() {
             finishing_capture: false,
         })
         .insert_resource(ClearColor(Color::srgb(0.065, 0.075, 0.09)))
-        .insert_resource(AmbientLight {
+        .insert_resource(GlobalAmbientLight {
             brightness: 700.0,
             ..default()
         })
@@ -94,7 +94,7 @@ fn setup(mut commands: Commands) {
     commands.spawn((
         DirectionalLight {
             illuminance: 14000.0,
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             ..default()
         },
         Transform::from_xyz(5.0, 8.0, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
@@ -102,7 +102,7 @@ fn setup(mut commands: Commands) {
     commands.spawn((
         Text::default(),
         TextFont {
-            font_size: 18.0,
+            font_size: FontSize::Px(18.0),
             ..default()
         },
         Node {
@@ -164,8 +164,8 @@ fn show(
         commands.entity(entity).despawn();
     }
     let prop = &v.catalog.records[v.index];
-    let scene: Handle<Scene> = server.load(format!("{}#Scene0", prop.lods[v.lod].file));
-    commands.spawn((SceneRoot(scene), Model));
+    let scene: Handle<WorldAsset> = server.load(format!("{}#Scene0", prop.lods[v.lod].file));
+    commands.spawn((WorldAssetRoot(scene), Model));
     for mut label in &mut labels {
         label.0 = format!(
             "{} | {}\nLOD {}: {} triangles | {}/{}\nPresentation models · original club ability unchanged · grip origin: zero, axis: +Y\nArrows: asset · 1/2/3: LOD · Q/E: orbit · +/-: zoom",
@@ -200,7 +200,7 @@ fn capture(
     mut commands: Commands,
     mut v: ResMut<Viewer>,
     server: Res<AssetServer>,
-    models: Query<&SceneRoot, With<Model>>,
+    models: Query<&WorldAssetRoot, With<Model>>,
     mut exit: MessageWriter<AppExit>,
 ) {
     v.frames += 1;

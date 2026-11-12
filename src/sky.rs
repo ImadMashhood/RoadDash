@@ -303,9 +303,9 @@ pub fn install(
 ) {
     let Some(mut images) = images else { return };
     let hills = track.as_ref().is_some_and(|t| t.is_hills());
-    let cloud_map = track
-        .as_ref()
-        .is_some_and(|t| t.is_hills() || t.metropolis.is_some());
+    let cloud_map = track.as_ref().is_some_and(|t| {
+        t.is_hills() || t.metropolis.is_some() || t.definition.id.as_str() == "valley-run-01"
+    });
     let analytic_sun = meshes.is_some() && solar_materials.is_some();
     let volumetric = cloud_map
         && crate::world_gen::hills::clouds::enabled()
@@ -405,7 +405,7 @@ pub fn install(
     );
     let diffuse = images.add(diffuse_image);
     let specular = images.add(specular_image);
-    commands.insert_resource(AmbientLight {
+    commands.insert_resource(GlobalAmbientLight {
         color: Color::srgb_from_array(c.ambient_color_srgb),
         brightness: if legacy {
             c.ambient_nits
@@ -422,7 +422,7 @@ pub fn install(
     for entity in &cameras {
         commands.entity(entity).insert((
             Skybox {
-                image: display_cube.clone(),
+                image: Some(display_cube.clone()),
                 // Cancel only the built-in exposure multiplier: pixels already
                 // encode the selected exposed/tonemapped display-linear result.
                 brightness: 1.0
@@ -589,7 +589,7 @@ mod tests {
             .world_mut()
             .spawn((
                 DirectionalLight {
-                    shadows_enabled: true,
+                    shadow_maps_enabled: true,
                     shadow_depth_bias: 0.07,
                     ..default()
                 },
@@ -610,11 +610,11 @@ mod tests {
             tonemapping(&c)
         );
         assert_eq!(
-            world.resource::<AmbientLight>().color,
+            world.resource::<GlobalAmbientLight>().color,
             Color::srgb_from_array(c.ambient_color_srgb)
         );
         assert_eq!(
-            world.resource::<AmbientLight>().brightness,
+            world.resource::<GlobalAmbientLight>().brightness,
             c.ambient_nits * if legacy { 1.0 } else { 0.35 }
         );
         assert_eq!(
@@ -624,7 +624,7 @@ mod tests {
         let actual = world.get::<DirectionalLight>(light).unwrap();
         assert_eq!(actual.color, Color::srgb_from_array(c.sun_color_srgb));
         assert_eq!(actual.illuminance, c.sun_lux);
-        assert!(actual.shadows_enabled);
+        assert!(actual.shadow_maps_enabled);
         assert_eq!(actual.shadow_depth_bias, 0.07);
         assert!(
             world
@@ -670,11 +670,13 @@ mod tests {
             );
         }
         assert_ne!(
-            world.get::<Skybox>(camera).unwrap().image,
-            world
-                .get::<EnvironmentMapLight>(camera)
-                .unwrap()
-                .specular_map
+            world.get::<Skybox>(camera).unwrap().image.as_ref(),
+            Some(
+                &world
+                    .get::<EnvironmentMapLight>(camera)
+                    .unwrap()
+                    .specular_map
+            )
         );
     }
     #[test]

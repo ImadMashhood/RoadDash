@@ -52,7 +52,7 @@ pub fn setup(
         .expect("real re-entry gap");
     let s = (pair[0].end + pair[1].start) * 0.5;
     let ctx = context.single().expect("native physics");
-    let is_ground = |e| ground.contains(e);
+    let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
     let sample = |lane| {
         let p = track.sample(s, lane).0;
         let (_, toi) = ctx
@@ -104,7 +104,7 @@ pub fn walk(
     if delta.length() < 0.25 {
         state.reached += 1;
     }
-    let down = rr_core::recovery::foot_downward_speed(output.is_some_and(|o| o.grounded));
+    let down = crate::recovery::runner_downward_speed(output.is_some_and(|o| o.grounded));
     controller.translation = Some(delta.clamp_length_max(3. / 60.) - Vec3::Y * (down / 60.));
     assert!(
         state.ticks < 1800,

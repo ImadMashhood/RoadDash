@@ -1,6 +1,6 @@
 //! Shared GPU glove morphs and visual sockets. No physics components or mesh writes per frame.
 use super::*;
-use bevy::mesh::morph::{MeshMorphWeights, MorphAttributes, MorphTargetImage};
+use bevy::mesh::morph::{MeshMorphWeights, MorphAttributes};
 use rr_content::hand_contacts::HandContacts;
 
 #[derive(Component, Clone, Copy, Debug)]
@@ -51,8 +51,7 @@ pub(super) fn targets(
     bind: &[Transform; 16],
     seated: bool,
     tuning: &HandContacts,
-    images: &mut Assets<Image>,
-) -> Option<Handle<Image>> {
+) -> Option<Vec<MorphAttributes>> {
     let positions = mesh.attribute(Mesh::ATTRIBUTE_POSITION)?.as_float3()?;
     let normals = mesh.attribute(Mesh::ATTRIBUTE_NORMAL)?.as_float3()?;
     let VertexAttributeValues::Uint16x4(joints) = mesh.attribute(Mesh::ATTRIBUTE_JOINT_INDEX)?
@@ -110,27 +109,20 @@ pub(super) fn targets(
                         position: (f.transform_point(folded) - p) * influence,
                         normal: (world_q * n - n) * influence,
                         tangent: (world_q * t - t) * influence,
+                        ..default()
                     }
                 })
                 .collect()
         })
         .collect();
-    Some(
-        images.add(
-            MorphTargetImage::new(
-                targets.into_iter().map(Vec::into_iter),
-                positions.len(),
-                RenderAssetUsages::default(),
-            )
-            .expect("bounded four-target glove mesh")
-            .0,
-        ),
-    )
+    Some(targets.into_iter().flatten().collect())
 }
 pub(super) fn attach(commands: &mut Commands, mesh: Entity, root: Entity) {
     commands.entity(mesh).insert((
         GloveShape(root),
-        MeshMorphWeights::new(vec![0.0; 4]).unwrap(),
+        MeshMorphWeights::Value {
+            weights: vec![0.0; 4],
+        },
     ));
 }
 pub(super) fn sockets(
@@ -203,12 +195,9 @@ pub(super) fn animate(
                     .hands
             })
             .unwrap_or([[0.0; 2]; 2]);
-        weights.weights_mut().copy_from_slice(&[
-            value[0][0],
-            value[0][1],
-            value[1][0],
-            value[1][1],
-        ]);
+        if let MeshMorphWeights::Value { weights } = &mut *weights {
+            weights.copy_from_slice(&[value[0][0], value[0][1], value[1][0], value[1][1]]);
+        }
     }
 }
 #[cfg(test)]

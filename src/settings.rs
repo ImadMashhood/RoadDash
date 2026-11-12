@@ -8,7 +8,7 @@ fn yes() -> bool {
     true
 }
 use crate::controls::{BindingFile, Bindings, pad_button};
-use bevy::prelude::*;
+use bevy::{prelude::*, ui::Pressed, ui_widgets::Button};
 use serde::{Deserialize, Serialize};
 use std::{
     collections::BTreeMap,
@@ -275,13 +275,13 @@ pub struct SettingsRow(pub usize);
 pub fn panel_input(
     keys: Res<ButtonInput<KeyCode>>,
     pads: Query<(Entity, &Gamepad)>,
-    clicks: Query<(&Interaction, &SettingsRow), (With<Button>, Changed<Interaction>)>,
+    clicks: Query<&SettingsRow, (With<Button>, Added<Pressed>)>,
     mut panel: ResMut<SettingsPanel>,
     mut prefs: ResMut<Preferences>,
     mut bindings: ResMut<Bindings>,
     mut race: ResMut<crate::game::Race>,
     mut controls: ResMut<crate::controls::Controls>,
-    actions: Query<(&Interaction, &SettingsAction), (With<Button>, Changed<Interaction>)>,
+    actions: Query<&SettingsAction, (With<Button>, Added<Pressed>)>,
     mut muted: Option<ResMut<crate::sound::Muted>>,
 ) {
     let pad = pads.iter().min_by_key(|(e, _)| e.to_bits()).map(|(_, p)| p);
@@ -290,9 +290,7 @@ pub fn panel_input(
         || edge(GamepadButton::Mode)
         || (!panel.rebinding && edge(GamepadButton::LeftTrigger));
     let clicked = if panel.open {
-        actions
-            .iter()
-            .find_map(|(i, a)| (*i == Interaction::Pressed).then_some(*a))
+        actions.iter().copied().next()
     } else {
         None
     };
@@ -427,8 +425,8 @@ pub fn panel_input(
         delta = 1;
     }
     let mut activate = keys.just_pressed(KeyCode::Enter) || edge(GamepadButton::South);
-    for (i, row) in &clicks {
-        if *i == Interaction::Pressed && clicked.is_none() {
+    for row in &clicks {
+        if clicked.is_none() {
             panel.selected = row.0;
             activate = true;
         }
@@ -609,10 +607,7 @@ mod menu_tests {
         app.update();
     }
     fn click(app: &mut App, action: SettingsAction) {
-        let e = app
-            .world_mut()
-            .spawn((Button, Interaction::Pressed, action))
-            .id();
+        let e = app.world_mut().spawn((Button, Pressed, action)).id();
         app.update();
         app.world_mut().despawn(e);
         app.update();

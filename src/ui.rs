@@ -2,7 +2,7 @@ use crate::{
     game::{Phase, Profile, Race, Rider},
     track::{LAPS, Track},
 };
-use bevy::prelude::*;
+use bevy::{prelude::*, ui::Pressed, ui_widgets::Button};
 
 const INK: Color = Color::srgb(0.025, 0.045, 0.06);
 const MINT: Color = Color::srgb(0.14, 0.89, 0.74);
@@ -31,7 +31,7 @@ fn label(
         .spawn((
             Text::new(text),
             TextFont {
-                font_size: size,
+                font_size: FontSize::Px(size),
                 ..default()
             },
             TextColor(color),
@@ -88,7 +88,7 @@ pub fn setup_ui(
         .spawn((
             Text::new("000"),
             TextFont {
-                font_size: 80.0,
+                font_size: FontSize::Px(80.0),
                 ..default()
             },
             TextColor(WHITE),
@@ -106,7 +106,7 @@ pub fn setup_ui(
         .spawn((
             Text::new("KM/H   /   6-SPEED"),
             TextFont {
-                font_size: 13.0,
+                font_size: FontSize::Px(13.0),
                 ..default()
             },
             TextColor(MINT),
@@ -123,7 +123,7 @@ pub fn setup_ui(
         .spawn((
             Text::new(""),
             TextFont {
-                font_size: 16.0,
+                font_size: FontSize::Px(16.0),
                 ..default()
             },
             TextColor(WHITE),
@@ -141,7 +141,7 @@ pub fn setup_ui(
         .spawn((
             Text::new("WASD  RIDE     NITRO  DISABLED     MOUSE  PUNCH   SPACE  KICK   E PICKUP / Q DROP     C  CAMERA     ESC  PAUSE     M  MUTE"),
             TextFont {
-                font_size: 12.0,
+                font_size: FontSize::Px(12.0),
                 ..default()
             },
             TextColor(MUTED),
@@ -158,11 +158,11 @@ pub fn setup_ui(
         .spawn((
             Text::new(""),
             TextFont {
-                font_size: 24.0,
+                font_size: FontSize::Px(24.0),
                 ..default()
             },
             TextColor(MINT),
-            TextLayout::new_with_justify(Justify::Center),
+            TextLayout::justify(Justify::Center),
             Node {
                 position_type: PositionType::Absolute,
                 top: percent(20),
@@ -181,10 +181,10 @@ pub fn setup_ui(
                 top: px(24),
                 width: px(218),
                 height: px(272),
+                border_radius: BorderRadius::all(px(12)),
                 ..default()
             },
             BackgroundColor(INK.with_alpha(0.83)),
-            BorderRadius::all(px(12)),
         ))
         .id();
     let mut dots = vec![];
@@ -225,12 +225,12 @@ pub fn setup_ui(
                         position_type: PositionType::Absolute,
                         width: px(if id == 0 { 8 } else { 5 }),
                         height: px(if id == 0 { 8 } else { 5 }),
+                        border_radius: BorderRadius::all(px(5)),
                         ..default()
                     },
                     BackgroundColor(crate::world::shirt_color(
                         content.0.riders[id].palette_index,
                     )),
-                    BorderRadius::all(px(5)),
                     MapDot(id),
                 ))
                 .id(),
@@ -291,10 +291,10 @@ pub fn setup_ui(
                 height: px(62),
                 justify_content: JustifyContent::Center,
                 align_items: AlignItems::Center,
+                border_radius: BorderRadius::all(px(4)),
                 ..default()
             },
             BackgroundColor(MINT),
-            BorderRadius::all(px(4)),
             StartButton,
         ))
         .id();
@@ -302,7 +302,7 @@ pub fn setup_ui(
         .spawn((
             Text::new("ENTER / RIDE OUT"),
             TextFont {
-                font_size: 21.0,
+                font_size: FontSize::Px(21.0),
                 ..default()
             },
             TextColor(INK),
@@ -448,13 +448,11 @@ pub struct MenuAction(pub bool);
 
 /// Run before input so mouse activation follows the same menu actions.
 pub fn buttons(
-    buttons: Query<&Interaction, (Changed<Interaction>, With<StartButton>)>,
+    buttons: Query<Entity, (Added<Pressed>, With<StartButton>)>,
     mut action: ResMut<MenuAction>,
 ) {
-    for interaction in &buttons {
-        if *interaction == Interaction::Pressed {
-            action.0 = true;
-        }
+    if !buttons.is_empty() {
+        action.0 = true;
     }
 }
 

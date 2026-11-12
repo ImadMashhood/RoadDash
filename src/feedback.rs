@@ -9,7 +9,7 @@ pub fn setup(mut commands: Commands) {
         Traction,
         Text::new(""),
         TextFont {
-            font_size: 15.0,
+            font_size: FontSize::Px(15.0),
             ..default()
         },
         TextColor(Color::srgb(1.0, 0.75, 0.3)),

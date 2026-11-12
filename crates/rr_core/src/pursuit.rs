@@ -1,5 +1,26 @@
 //! Pure rider relationships and bounded racing/following/fighting decisions.
 use serde::{Deserialize, Serialize};
+/// Arcade corner budgets for rival lookahead and the physical bike torque cap.
+/// The slightly higher current-point budget lets a rider finish a turn without
+/// dropping drive force earlier than the lookahead planner requested.
+pub const RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2: f32 = 14.0;
+pub const RACE_CURRENT_LATERAL_ACCEL_MPS2: f32 = 16.0;
+/// Absolute unboosted rival ceiling; player and police have separate limits.
+pub const RIVAL_TOP_SPEED_MPS: f32 = 155.0 / 3.6;
+pub fn rival_race_pace(profile: Profile, character_pace: f32, player_top_mps: f32) -> f32 {
+    (profile.race_pace(player_top_mps) * character_pace).min(RIVAL_TOP_SPEED_MPS)
+}
+/// Grid launch asks for full drive whenever the safety planner allows throttle.
+pub fn rival_throttle_amount(elapsed: f32, speed: f32, target: f32) -> f32 {
+    if elapsed < 5.0 {
+        1.0
+    } else {
+        ((target - speed) * 0.25 + 0.35).clamp(0.0, 1.0)
+    }
+}
+pub fn race_corner_speed(curvature: f32, lateral_accel_mps2: f32) -> f32 {
+    (lateral_accel_mps2 / curvature.abs().max(0.0001)).sqrt()
+}
 #[derive(Clone, Copy, Debug, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Profile {
@@ -223,5 +244,35 @@ mod pace_tests {
         p.cruise_units = 104.0;
         assert!((p.race_pace(55.0) - 58.3).abs() < 0.001);
         assert_eq!(p.cruise_mps(), 104.0 * 0.44704);
+    }
+    #[test]
+    fn racing_corner_budget_is_faster_but_still_bounded_on_tight_turns() {
+        let old = (10.0_f32 / 0.02).sqrt();
+        let revised = race_corner_speed(0.02, RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2);
+        assert!(revised > old && revised < 30.0);
+        assert!(race_corner_speed(0.02, RACE_CURRENT_LATERAL_ACCEL_MPS2) > revised);
+        assert!(race_corner_speed(0.0, RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2).is_finite());
+    }
+    #[test]
+    fn rivals_have_an_absolute_155_kmh_ceiling_without_rubber_banding() {
+        let profile = Profile {
+            cruise_units: 104.,
+            minimum_units: 70.,
+            personality: 0,
+            kick_roll: 2,
+            reach: 3.,
+            strength: 4.,
+            stamina: 300.,
+            weight_lb: 180.,
+            relationships: [0.; 10],
+            hit_reaction: 0.,
+            calm_per_second: 0.,
+        };
+        let top = 55.;
+        assert!((rival_race_pace(profile, 1.2, top) - RIVAL_TOP_SPEED_MPS).abs() < 0.001);
+        assert!(rival_race_pace(profile, 0.8, top) <= RIVAL_TOP_SPEED_MPS);
+        assert_eq!(rival_throttle_amount(0.0, 0.0, 2.0), 1.0);
+        assert_eq!(rival_throttle_amount(4.99, 20.0, 21.0), 1.0);
+        assert!(rival_throttle_amount(5.0, 20.0, 21.0) < 1.0);
     }
 }

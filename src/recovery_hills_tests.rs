@@ -84,7 +84,7 @@ fn return_across_verge(gap_side: Option<i8>, midrun: bool) {
     let wreck_pose = Transform::from_translation(p).with_rotation(q2);
     let start = app.world_mut().run_system_once(move |context: ReadRapierContext, ground: Query<(),With<world::Ground>>| {
         let ctx=context.single().unwrap();
-        let is_ground=|e| ground.contains(e);
+        let is_ground=|e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
         let (_,toi)=ctx.cast_ray(sampled_start+Vec3::Y*30.,-Vec3::Y,60.,true,QueryFilter::default().predicate(&is_ground)).expect("actual recovery support");
         let start=sampled_start.with_y(sampled_start.y+30.-toi+0.98);
         eprintln!("recovery gap {gap_side:?} at {station}: analytic_start={:?} collision_start={start:?}",sampled_start+Vec3::Y*0.98);

@@ -62,7 +62,7 @@ fn assert_real_fall(app: &mut App, owner: Entity, deck: f32, q: Quat, side: f32)
         t.translation.y > deck - 2.,
         "must detach at deck height, not teleport to floor"
     );
-    let v = app.world().get::<Velocity>(wreck).unwrap().linvel;
+    let v = app.world().get::<Velocity>(wreck).unwrap().linear;
     assert!(
         v.y < 0.5,
         "deck support correction must not launch upward: {v:?}"
@@ -83,7 +83,7 @@ fn assert_real_fall(app: &mut App, owner: Entity, deck: f32, q: Quat, side: f32)
         }
     }
     let final_wreck = app.world().get::<Transform>(wreck).unwrap();
-    let final_velocity = app.world().get::<Velocity>(wreck).unwrap().linvel;
+    let final_velocity = app.world().get::<Velocity>(wreck).unwrap().linear;
     assert!(
         final_wreck.translation.y < earlier_wreck_height - 8. && final_velocity.y < -8.,
         "wreck must continue falling after structural contact: {:?}, {final_velocity:?}, earlier height {earlier_wreck_height}",

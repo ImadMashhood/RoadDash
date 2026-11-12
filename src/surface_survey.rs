@@ -71,7 +71,7 @@ pub fn run(
         let station = if track.is_hills() { 11000. } else { 1200. };
         let lane = if state.case == 0 { 0. } else { 10. };
         let (mut p, q) = track.street_sample(0, station, lane);
-        let is_ground = |e| ground.contains(e);
+        let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
         let (_, toi) = context
             .single()
             .unwrap()

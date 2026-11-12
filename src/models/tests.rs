@@ -209,8 +209,8 @@ fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory()
                         "distal rotation {part} at {tick}"
                     );
                     assert!(
-                        va.linvel.distance(vb.linvel) < 0.0001
-                            && va.angvel.distance(vb.angvel) < 0.0001,
+                        va.linear.distance(vb.linear) < 0.0001
+                            && va.angular.distance(vb.angular) < 0.0001,
                         "distal velocity {part} at {tick}"
                     );
                 }
@@ -231,8 +231,8 @@ fn authored_skin_does_not_change_any_ragdoll_body_joint_or_180_tick_trajectory()
                     "body rotation changed at tick {tick}"
                 );
                 assert!(
-                    va.linvel.distance(vb.linvel) < 0.0001
-                        && va.angvel.distance(vb.angvel) < 0.0001,
+                    va.linear.distance(vb.linear) < 0.0001
+                        && va.angular.distance(vb.angular) < 0.0001,
                     "momentum changed at {tick}"
                 );
                 assert_eq!(ta.scale, tb.scale);
@@ -481,14 +481,11 @@ fn glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices() {
     let mut bytes = 0;
     for part in &models.parts {
         let mesh = meshes.get(&part.mesh).unwrap();
-        let Some(handle) = mesh.morph_targets() else {
+        let Some(targets) = mesh.morph_targets() else {
             continue;
         };
         count += 1;
-        let image = images.get(handle).unwrap();
-        let data = image.data.as_ref().unwrap();
-        bytes += data.len();
-        assert_eq!(image.texture_descriptor.size.depth_or_array_layers, 4);
+        bytes += std::mem::size_of_val(targets.as_slice());
         let VertexAttributeValues::Uint16x4(joints) =
             mesh.attribute(Mesh::ATTRIBUTE_JOINT_INDEX).unwrap()
         else {
@@ -499,18 +496,17 @@ fn glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices() {
         else {
             panic!()
         };
-        let layer = data.len() / 4;
+        let vertex_count = joints.len();
+        assert_eq!(targets.len(), vertex_count * 4);
         let mut moved = [0; 4];
         for (target, moved) in moved.iter_mut().enumerate() {
             let hand = if target < 2 { 13 } else { 12 };
             for (i, joints) in joints.iter().enumerate() {
-                let start = layer * target + i * 36;
-                let values: Vec<f32> = data[start..start + 36]
-                    .chunks_exact(4)
-                    .map(|b| f32::from_le_bytes(b.try_into().unwrap()))
-                    .collect();
-                assert!(values.iter().all(|v| v.is_finite()));
-                let displacement = Vec3::new(values[0], values[1], values[2]);
+                let morph = &targets[target * vertex_count + i];
+                assert!(morph.position.is_finite());
+                assert!(morph.normal.is_finite());
+                assert!(morph.tangent.is_finite());
+                let displacement = morph.position;
                 assert!(displacement.length() < 0.25);
                 if displacement.length() > 0.00001 {
                     *moved += 1;
@@ -528,7 +524,7 @@ fn glove_morphs_are_shared_bounded_and_never_deform_non_hand_vertices() {
     assert_eq!(count, 2, "one shared glove-morph surface per authored bind");
     assert!(
         bytes < 16 * 1024 * 1024,
-        "unexpected morph texture growth: {bytes}"
+        "unexpected morph buffer growth: {bytes}"
     );
     println!("shared glove targets: {count} surfaces, {bytes} bytes");
 }

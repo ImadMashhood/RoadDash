@@ -74,7 +74,7 @@ fn every_building_and_start_grid_has_real_collision_and_recovery_clearance() {
             site.id
         );
     }
-    let floor = |e| world.get::<Ground>(e).is_some();
+    let floor = |e, _: &bevy_rapier3d::rapier::geometry::Collider| world.get::<Ground>(e).is_some();
     for station in [
         -240.0, -164.0, -20.0, 0.0, 50.0, 100.0, 1200.0, 3500.0, 5290.0, 5300.0, 5350.0,
     ] {

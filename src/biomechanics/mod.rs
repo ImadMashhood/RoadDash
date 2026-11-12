@@ -294,15 +294,15 @@ pub(crate) fn initialize(world: &mut World) {
             .get::<Velocity>(root)
             .copied()
             .unwrap_or_default()
-            .linvel;
+            .linear;
         let omega = world
             .get::<EjectionAngular>(owner)
             .map(|w| w.0)
             .filter(|w| w.is_finite())
             .unwrap_or_else(|| {
                 world.get::<Velocity>(owner).map_or(Vec3::ZERO, |v| {
-                    if v.angvel.is_finite() {
-                        v.angvel
+                    if v.angular.is_finite() {
+                        v.angular
                     } else {
                         Vec3::ZERO
                     }
@@ -342,8 +342,8 @@ pub(crate) fn initialize(world: &mut World) {
         for (i, &e) in entities.iter().enumerate() {
             let t = poses[i];
             let v = Velocity {
-                linvel: velocity + omega.cross(t.translation - com),
-                angvel: omega,
+                linear: velocity + omega.cross(t.translation - com),
+                angular: omega,
             };
             world.entity_mut(e).insert((
                 Segment { part: i },
@@ -388,7 +388,7 @@ pub(crate) fn initialize(world: &mut World) {
             if let Some(envelope) = inherited_envelope {
                 world.entity_mut(e).insert(
                     crate::recovery::CrashEnvelope::new(
-                        v.linvel,
+                        v.linear,
                         t.translation,
                         t.rotation,
                         q * Vec3::Z,
@@ -421,7 +421,7 @@ pub(crate) fn initialize(world: &mut World) {
         ));
         if let Some(wreck) = world.get::<Recovery>(owner).and_then(|r| r.wreck) {
             if let Some(mut v) = world.get_mut::<Velocity>(wreck) {
-                v.angvel = omega;
+                v.angular = omega;
             }
             if let Some(mut envelope) = world.get_mut::<crate::recovery::CrashEnvelope>(wreck) {
                 *envelope = envelope.with_angular_velocity(omega);

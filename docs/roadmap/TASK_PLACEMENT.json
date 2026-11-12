@@ -1,11 +1,12 @@
 {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RFU-RESEARCH-01",
         "RFU-MOVE-04",
         "RFU-MOVE-03",
         "CITY-ACTIVITY-02",
@@ -239,6 +240,29 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "RFU-ENGINE-01",
+        "RFU-ENGINE-02",
+        "RFU-ENGINE-03",
+        "RFU-RACE-03",
+        "RFU-RACE-04",
+        "RFU-RENDER-01",
+        "RFU-COMBAT-02",
+        "RFU-NPC-02",
+        "RFU-SKY-05",
+        "RFU-HILLS-02",
+        "RFU-HILLS-03",
+        "RFU-MOUNT-01",
+        "RFU-MOUNT-02",
+        "RFU-MOUNT-03",
+        "RFU-WILD-06",
+        "RFU-RIVER-02",
+        "RFU-GROUND-01",
+        "RFU-GROUND-02",
+        "RFU-GROUND-03",
+        "RFU-HILLS-04",
+        "RFU-HILLS-05",
+        "RFU-TRAFFIC-03",
+        "RFU-HILLS-06",
         "RFU-SURF-01",
         "RFU-SURF-02",
         "RFU-SURF-03",

@@ -1,5 +1,62 @@
 # Development progress
 
+Integrated Bevy 0.20.1 feedback candidate (2026-11-11): mounted animals,
+opening/slow-heavy Hills cars, stronger rival launch, 155 km/h physical rival
+limit, rear-rider visibility, original ground grit, terrain-matched stable dust
+and half-density Hills city walkers are combined on an isolated branch. The
+original-game AI research is complete without reference code intake. The
+passing planner keeps an uncapped clear-road horizon so the 155 km/h motor
+limit does not reintroduce rider queues. Strict Clippy, format, audit, roadmap
+and progress checks pass; the final workspace test rerun has 467 passing
+RoadDash library tests and the same two Bevy/Rapier parity failures. Native
+art, full-race balance, matched performance and engine integration remain
+open. Checklist: 229 verified / 347 open. See ADR164–167 and the feedback
+reports.
+
+Hills animal follow-up (2026-11-11): RFU-MOUNT-01..03 / ADR165 add four-hoof
+terrain and crossing-road seating, skinned crossing-cow gait, mounted/static
+horse quadruped knockdown, separate mounted-cowboy ragdoll and three desert
+patrols. Source/checklist/audit checks pass; focused compile and native checks
+are pending unified integration. Checklist: 228 verified / 341 open. See
+[animal report](testing/feedback-animals/REPORT.md). Human art and performance
+gates remain open.
+
+Bevy 0.20.1 playtest feedback candidate (2026-11-11): eleven new open Part 01
+requirements cover rival pace, fighters, pedestrian contact, clouds, Hills
+city/mounted/herd/river/late-course content and grass/sand/dust presentation.
+The first implementation is on an isolated branch; full-course human review,
+matched frame/GPU costs and the existing high-speed ragdoll and static-collider
+parity gates remain open. Checklist: 228 verified / 345 open. See ADR163–166.
+
+Issue #37 visual/pace playtest follow-up (2026-11-11): Bevy 0.20's renderer
+retains every distinct visibility range for the run and warned after 65,535
+camera-relative fade values. The isolated candidate now uses a finite shared
+fade palette and logs visibility-range churn, rider pace and per-frame timing
+to a persistent launcher directory. Native Metropolis split and Hills surveys
+show road, riders, terrain and buildings; both-map smokes and surveys no longer
+emit the range-exhaustion warning. A moderate rival corner budget improved
+sampled AI progress in a 3,600-frame held-throttle survey without the crash
+seen in the aggressive trial. The synthetic player stopped at station 486 in
+all three settings, so it does not establish human race balance. Full-course
+human visual/pace review, matched performance and the two existing physics
+parity failures remain open. Details: testing/issue37-bevy20/REPORT.md and
+ADR161/162. Checklist remains 228 verified / 327 open.
+
+Issue #37 integrated playtest (2026-11-11): merged current main `6d51d85d`
+into the isolated Bevy 0.20.1 branch so the latest free-roam rival AI, incident
+combat and other main content are present. A locked all-target compile and 460
+library tests pass; two library tests still fail for high-speed ragdoll joint
+parity and static-collider trajectory divergence. The previous predictive
+traffic clearance failure passes on this combined source. README and progress
+counts/index now reflect the merged RFU-AI and RFU-ENGINE requirements (228
+verified / 327 open). A separate-save release launcher is supplied for user
+playtesting. The exact release binary passed four native Metropolis/Hills ×
+current/baseline-rig smoke tests with audio and two remounts each; strict
+Clippy and both locked builds pass. The full no-fail-fast suite has 669 passes,
+two known physics-parity failures and two ignored tests. Broader gates are recorded in
+testing/issue37-bevy20/REPORT.md. No engine requirement is closed.
+
+Issue #37 / ADR149 (2026-11-11): user requested Bevy 0.20. Exact Bevy 0.20.1/Rapier adapter 0.37/Rust 1.97.1 pins and the 0.17→0.20 API port build on the isolated branch; Apache-2.0 CPAL 0.17.3 carries the prior ALSA underrun recovery. Strict all-target Clippy and 12 targeted model/physics differential tests pass; first full workspace suite failed 6/457 lib tests; post-adapter rerun failed 3/457 (high-speed rig, static-chunk trajectory and predictive traffic clearance). The entity-count and Hills width issues have focused fixes. ADR160 adapts grounded runner descent to Rapier 0.36: focused original-contact/Hills tests, native guardrail crossing, and native Hills current and eleven-body baseline remount smokes pass. High-speed ragdoll solver parity remains a hard merge blocker after five paired lab modes; Rapier exposes no supported per-body opt-out for the changed automatic fixed-collider CCD. Debug and production-feature native Metropolis smokes also passed glTF scene loading, audio initialization and remounts, but native runs warned about more than 65,535 distinct `VisibilityRange`s; other maps/LOD, Windows and measured performance gates remain open. RFU-ENGINE-01..03 record exact pins, cross-version port and a paired RoadDash performance gate. The isolated codex/issue-37-bevy-020 worktree retains main as old-engine control; no performance claim or task closure. Current checklist: 228 verified / 324 open.
 Issue26 PR61 review follow-up (2026-11-11): a proposed clean same-line flee fast path was withdrawn because it could bypass resident-static vetting. All flee requests retain the full geometry planner. Resident-geometry guard refresh is limited to rejected current, desired or committed lines; rejected speculative alternatives no longer extend full Rapier sweeps. The strengthened 40m physical wall fixture uses a real nearby attacker, requires a static rejection of the requested sidewalk line, and passes traversal; guard and Metropolis stopped-leader tests also pass. This is an unmeasured planner hot-path reduction; full race, human and quiet performance gates remain open. Details: testing/rider-free-roam/REPORT.md.
 
 Issue26 policy revision / ADR159 (2026-11-11): user removes rider right-side limits and permanent racer/killer roles. RFU-AI-09..11 track full road/sidewalk/clear-verge paths, opportunistic close strikes and deterministic per-hit fight-or-flee. Isolated codex/rider-free-roam starts from the main old-policy control. No gates closed; 228 verified / 324 open.
@@ -429,6 +486,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **RFU-RESEARCH-01** Investigate original Road Rash rival AI without changing RoadDash behavior from reference code. Reason: user asks whether original rivals rubber-band and how they overtake; part:00; dependencies: public manual and source identification; acceptance: distinguish 1991 Genesis from the inspected 1996 Windows port, explain evidence and uncertainty about catch-up, and import no reference code/media; verification: [dated source inspection and direct links](research/road-rash-ai-1996.md). Verified: the 1996 port has gap-dependent desired-speed assistance, while the 1991 Genesis algorithm remains unconfirmed.
 
 - [x] **RFU-MOVE-03** Reverse steering turns heading left for D and right for A. Reason: issue #28 reports wrong reverse heading; part: 01; dependencies: REVERSE-01/P03-019; acceptance: both Dynamic and Assisted paths, symmetric inputs, continuous zero crossing and unchanged forward handling; verification: integrated vehicle tests and native reverse/forward review. [Evidence](testing/issue-28-movement/README.md).
 
@@ -887,6 +946,52 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [x] **RFU-AI-07** Define combat, passing, avoidance and race-progress priorities. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: explicit radius, eligibility, target/side hysteresis and forward preference; verification: [rules, physical regressions and native decision receipts](testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **RFU-ENGINE-01** Pin a compatible Bevy 0.20.1, bevy_rapier3d 0.37.0 and Rust 1.97.1 toolchain. Reason: user requests the 0.20 upgrade and current 0.17.3 APIs cannot use its rendering improvements; part: 01; dependencies: ADR149 and an isolated old-engine control; acceptance: exact dependency/lockfile/feature/CI pins, native audio backend accounted for, and Linux/Windows compilation gates; verification: locked feature matrix, strict workspace checks, native launch and CI.
+
+- [ ] **RFU-ENGINE-02** Port rendering, scenes, UI, shaders, assets and the fixed physics adapter to Bevy 0.20. Reason: 0.18–0.20 have breaking APIs and Rapier solver changes; part: 01; dependencies: RFU-ENGINE-01; acceptance: all existing maps, facade lifecycle, save/control/audio/recovery paths and the accepted velocity-muscle/default and eleven-body baseline rigs work without intentional physics retuning; verification: strict tests/build, all-map native/LOD/survey checks and paired recovery/NPC regressions.
+
+- [ ] **RFU-ENGINE-03** Establish whether the upgraded engine improves RoadDash performance before replacing the baseline. Reason: upstream renderer benchmarks do not measure this game and physics remains a material CPU cost; part: 01; dependencies: RFU-ENGINE-02 and frozen old-engine controls; acceptance: matched cold-load and warm-frame CPU/GPU measurements for Hills and Metropolis, visual parity and no material regression; verification: recorded native comparison, hardware and human review.
+
+- [ ] **RFU-RACE-03** Make first place catchable while giving rivals a stronger, safe grid launch. Reason: latest Hills playtest reaches seventh quickly but cannot reliably catch the lead pack; part:01; dependencies: shared vehicle physics, RFU-AI-09 and race setup; acceptance: full-course human race balance and safe launch without collision or launch queues, no positional rubber band; verification: matched native launch/finish receipts and human race review. The earlier player-relative 5 km/h ceiling is superseded by RFU-RACE-04.
+
+- [ ] **RFU-RACE-04** Use full launch throttle and a 155 km/h rival ceiling. Reason: player reaches seventh almost immediately while front rivals remain hard to catch; part:01; dependencies: RFU-RACE-03, shared vehicle adapter and safety planner; acceptance: each rival requests 100% throttle for the first five racing seconds whenever drive is permitted, rival physical and AI speed ceilings agree at 155 km/h, player/police limits and safety braking stay intact; verification: pure cap/intent tests, dynamic grid fixture, native launch and full-race review.
+
+- [ ] **RFU-RENDER-01** Keep following rivals visible near the chase camera. Reason: close trailing riders sometimes disappear behind the player; part:01; dependencies: RIDE-01 and camera presentation; acceptance: riders more than 1.4 m from the camera remain rendered while direct camera overlap can still be hidden, with collision/combat unchanged; verification: camera-distance regression, native rear-grid and moving-follower review, measured render budget.
+
+- [ ] **RFU-COMBAT-02** Assign five persistent fighters that pursue the next nonfighter ahead, drop downed targets immediately, and make all other rivals retaliate after confirmed contact. Reason: too few fights are visible; part:01; dependencies: RFU-AI-09, contact events and roster reset; acceptance: exact five identities, forward nonfighter targeting only, no speed-matching stop loop, deterministic response/restart and physically confirmed attacks; verification: pure decision tests, native fight/contact counts and full-race queue review. This supersedes the RFU-AI-10/11 role-free and 50/50 proposals without deleting their history.
+
+- [ ] **RFU-NPC-02** Make drive-through contact with walking pedestrians dependable. Reason: rider sometimes visually passes through a walker without a hit; part:01; dependencies: NPC kinematic collider and Rapier event path; acceptance: body-sized contact, high-speed sweep coverage and one knockdown per physical hit while sidewalk near misses stay misses; verification: physical crossing/contact fixtures and native drive-through review.
+
+- [ ] **RFU-SKY-05** Put more spatial cloud banks into Hills, Metropolis and Valley. Reason: clouds look too sparse or remain in the flat backdrop; part:01; dependencies: shared WESL cloud material and RFU-SKY-04 budget; acceptance: moving-camera parallax and route-wide coverage with frustum-limited cost; verification: bank/height tests, three-map native views and matched release GPU/frame measurements.
+
+- [ ] **RFU-HILLS-02** Populate the imported Hills city kilometre with more walking pedestrians and varied curb props. Reason: this city section feels empty; part:01; dependencies: city-slice translation, walkable sidewalk polygons and NPC contacts; acceptance: supported non-overlapping furnishing, active walkers/crossings, unchanged source buildings and clear access; verification: source/placement census, physical walking/crossing and native street views.
+
+- [ ] **RFU-HILLS-03** Add mounted pedestrians who visibly cross western-town streets. Reason: five off-road mounts miss the requested street activity; part:01; dependencies: mounted kinematic contact, town frontage reservations and route timing; acceptance: several grounded deterministic crossings with solid contact and clear storefronts; verification: full-path geometry/collision checks, native crossing views and both-rig recovery.
+
+- [ ] **RFU-MOUNT-01** Ground mounted hooves and animate walking cattle. Reason: mounted horses sink into Hills terrain and crossing cows look stiff; part:01; dependencies:HILLS-05, resident terrain triangles and existing cow skin drivers; acceptance: four-hoof terrain/road support through patrols and visible four-beat cow leg movement without changing physical rigs; verification: path/hoof/animation tests and native close motion review. Partial: [animal follow-up](testing/feedback-animals/REPORT.md); visual acceptance remains open.
+
+- [ ] **RFU-MOUNT-02** Make impacted horses, cows and mounted cowboys fall physically. Reason: the mounted horse/cowboy currently remains upright after impact; part:01; dependencies:HILLS-05, NPC contact/knockdown and accepted rider recovery; acceptance: confirmed solid impacts create quadruped and separate cowboy ragdolls with bounded cleanup and no rider-rig change; verification: contact/lifecycle tests and both-rig native recovery. Partial: [animal follow-up](testing/feedback-animals/REPORT.md); close art review remains open.
+
+- [ ] **RFU-MOUNT-03** Add mounted cowboys in the later Hills desert. Reason: mounted life disappears after the western town; part:01; dependencies:HILLS-05 and reserved clear patrol envelopes; acceptance: several grounded moving desert patrols, no static or road overlap and unchanged existing crossings; verification: route/clearance census and native later-course views. Partial: [animal follow-up](testing/feedback-animals/REPORT.md); full-course art review remains open.
+
+- [ ] **RFU-WILD-06** Bring herds into view and give later Hills animal groups real road crossings. Reason: scenic herds are too remote and never create roadside encounters; part:01; dependencies: RFU-WILD-01..04, cow knockdown and traffic interaction; acceptance: bounded visible groups, solid timed crossing hazards, no static prop overlap and no new per-frame herd allocation; verification: authored swept paths, native contacts, both-rig recovery and matched cost. This supersedes RFU-WILD-04's off-road-only policy for authored crossing groups.
+
+- [ ] **RFU-RIVER-02** Raise the bridge river surface to roughly halfway up the canyon. Reason: bed-level water is barely visible; part:01; dependencies: resident canyon and bridge geometry; acceptance: broad bank-intersecting water below deck with no hidden physical support plane or changed fall physics; verification: geometry/collision tests and native bridge/under-bridge views.
+
+- [ ] **RFU-GROUND-01** Make grass visually denser in Metropolis and Hills without breaking paths or the frame budget. Reason: open ground looks bare; part:01; dependencies: visual-only grass batches and RFU-ENGINE-03; acceptance: thicker near blades and longer readable Hills verge with unchanged collision and bounded batches; verification: generated geometry/census, native near/far views and matched release frame cost.
+
+- [ ] **RFU-GROUND-02** Improve desert sand shading and animate restrained, sand-coloured translucent dust without onset popping. Reason: flat sand and abrupt opaque dust reduce visual quality; part:01; dependencies: Hills authored sand surface and fixed dust pool; acceptance: smooth terrain colour variation, fading/rotating drift, lower alpha, no paved-road emission and no late meshes; verification: pure alpha/placement tests, temporal native views and matched frame cost.
+
+- [ ] **RFU-GROUND-03** Give Hills western and desert terrain finer original surface detail and dust that matches local sand, keeps a stable footprint and fades into view and behind the player. Reason: flat sand, a mismatched plume tint and expanding dust distract from riding; part:01; dependencies: RFU-GROUND-02, resident ground mesh and fixed dust pool; acceptance: deterministic repeated detail uses no imported media or extra terrain draws, dust samples the ground palette at emission, remains fixed size and fades with time/rear distance; verification: texture/palette and alpha tests, temporal native western/desert views and matched frame cost. Partial: procedural texture and bounded dust update integrated; visual/performance review open.
+
+- [ ] **RFU-HILLS-04** Improve the later Hills course pacing beyond the western town. Reason: the last half lacks memorable encounters and landmarks; part:01; dependencies: RFU-WILD-06, RFU-GROUND-02, Hills dressing and traffic; acceptance: distinct roadside beats through the desert without blocking the route or losing performance; verification: full-course human ride, station-by-station scene survey and matched release cost.
+
+- [ ] **RFU-HILLS-05** Halve imported Hills city pedestrian density for the next playtest. Reason: latest feedback says the city pedestrian population pops too much; part:01; dependencies: RFU-HILLS-02 and source city slice placement; acceptance: retain a deterministic alternating half of authored city walkers while keeping crossings and collision for retained walkers, without changing Metropolis; verification: exact city pedestrian census, native street traversal and full-course balance review. This latest density request supersedes the earlier Hills-city count target in RFU-HILLS-02; confirm whether visible spawn distance also needs tuning.
+
+- [ ] **RFU-TRAFFIC-03** Make ordinary civilian cars encounter and pass slower Hills tractors and semitrailers. Reason: sparse same-direction starts leave cars trailing heavy vehicles without visible overtakes; part:01; dependencies: RFU-TRAF-01–04, HILLS-09 and solid traffic collision; acceptance: collision-clear starts lead to physical opposing-lane passes when oncoming motor traffic permits, with no teleport or collision exemption; verification: core horizon/abort rules, physical car/heavy and oncoming fixtures, native Hills fleet survey and human traffic review.
+
+- [ ] **RFU-HILLS-06** Add moving cars near 0.5 km in the imported Hills city opening. Reason: the city approach feels empty; part:01; dependencies: Hills city street sampler and existing traffic/network/reset identities; acceptance: several supported and clearly spaced ordinary cars around 0.5 km with both travel directions and unchanged collision/saves/reset; verification: exact spawn census, pavement clearance, native opening view and moving-traffic regression.
 
 - [ ] **RFU-AI-09** Let rival riders choose any usable line across road, sidewalk and a narrow clear verge near buildings. Reason: an outbound lane gate still makes queues pile up; part: 01; dependencies: AI-QUEUE-02, physical road/sidewalk geometry; acceptance: no racer right-side restriction, no building/solid overlap, bidirectional and branch-aware passing with traffic collision checks; verification: pure planner and physical/native blocked-lane cases on Hills and Metropolis.
 

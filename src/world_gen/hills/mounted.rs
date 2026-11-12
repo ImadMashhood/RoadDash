@@ -6,18 +6,27 @@ use crate::{game::Race, world::Obstacle};
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 
-pub const COUNT: usize = 5;
+pub const COUNT: usize = 11;
+const CROSSING_START: usize = 5;
+const CROSSING_END: usize = 8;
 const SITES: [(usize, f32, f32); COUNT] = [
     (0, 5520., 39.),
     (1, 6300., -110.),
     (0, 6860., 110.),
     (1, 7000., -110.),
     (0, 8460., 39.),
+    (0, 6060., 0.),
+    (1, 6820., 0.),
+    (0, 7740., 0.),
+    (0, 9550., 42.),
+    (0, 10600., -46.),
+    (0, 11600., 40.),
 ];
 #[derive(Component)]
 pub struct Mounted {
     pub index: usize,
     last_elapsed: f32,
+    cowboy_parts: Vec<Entity>,
 }
 #[derive(Component)]
 pub struct MountedLimb {
@@ -37,7 +46,13 @@ pub(super) fn reserved(track: &Track, point: Vec3, radius: f32) -> bool {
     (0..COUNT).any(|i| {
         let (p, q) = center(track, i);
         let local = q.inverse() * (point - p);
-        local.x.abs() < 9. + radius && local.z.abs() < 17. + radius
+        local.x.abs()
+            < (if (CROSSING_START..CROSSING_END).contains(&i) {
+                18.
+            } else {
+                9.
+            } + radius)
+            && local.z.abs() < 17. + radius
     })
 }
 fn phase(index: usize, elapsed: f32) -> f32 {
@@ -47,12 +62,31 @@ fn phase(index: usize, elapsed: f32) -> f32 {
 /// not accumulate a different route phase. Road/shoulder collision is unchanged.
 pub fn pose(track: &Track, index: usize, elapsed: f32) -> Transform {
     let (center, frame) = center(track, index);
+    if (CROSSING_START..CROSSING_END).contains(&index) {
+        // Pause at each side before a brisk, deterministic street crossing.
+        // Both network peers evaluate the same absolute-clock position.
+        let cycle = (elapsed.max(0.) * 0.04 + index as f32 * 0.17).rem_euclid(1.);
+        let (across, direction) = if cycle < 0.2 {
+            (-14., 1.)
+        } else if cycle < 0.45 {
+            (-14. + (cycle - 0.2) / 0.25 * 28., 1.)
+        } else if cycle < 0.7 {
+            (14., -1.)
+        } else {
+            (14. - (cycle - 0.7) / 0.3 * 28., -1.)
+        };
+        let mut p = center + frame * Vec3::new(across, 0., 0.);
+        let heading = frame * Vec3::X * direction;
+        let rotation = Quat::from_rotation_y(heading.x.atan2(heading.z));
+        p.y = grounded_height(track, p, rotation, index);
+        return Transform::from_translation(p).with_rotation(rotation);
+    }
     let a = phase(index, elapsed);
     let mut p = center + frame * Vec3::new(6. * a.cos(), 0., 14. * a.sin());
-    p.y = super::geometry::ground_height(track, p.x, p.z);
     let direction = frame * Vec3::new(-6. * a.sin(), 0., 14. * a.cos());
-    Transform::from_translation(p)
-        .with_rotation(Quat::from_rotation_y(direction.x.atan2(direction.z)))
+    let rotation = Quat::from_rotation_y(direction.x.atan2(direction.z));
+    p.y = grounded_height(track, p, rotation, index);
+    Transform::from_translation(p).with_rotation(rotation)
 }
 fn leg_rotation(index: usize, leg: usize, lower: bool, elapsed: f32) -> Quat {
     // Four-beat walking order. Knees flex during swing; planted legs extend.
@@ -68,6 +102,28 @@ fn leg_rotation(index: usize, leg: usize, lower: bool, elapsed: f32) -> Quat {
     } else {
         0.25 * stride
     })
+}
+fn surface_height(track: &Track, x: f32, z: f32, index: usize) -> f32 {
+    let mut height = super::geometry::ground_height(track, x, z);
+    if (CROSSING_START..CROSSING_END).contains(&index) {
+        let route = SITES[index].0;
+        let (station, _, distance) = track.project_route(route, Vec3::new(x, height, z), 0.);
+        if distance < track.half_width(station) {
+            height = height.max(track.sample_route(route, station, 0.).0.y);
+        }
+    }
+    height
+}
+fn grounded_height(track: &Track, position: Vec3, rotation: Quat, index: usize) -> f32 {
+    // The feet have to clear the rendered triangles at all four hoof positions.
+    (0..4)
+        .map(|leg| {
+            let x = if leg % 2 == 0 { -0.29 } else { 0.29 };
+            let z = if leg < 2 { 0.64 } else { -0.64 };
+            let hoof = position + rotation * Vec3::new(x, 0., z);
+            surface_height(track, hoof.x, hoof.z, index) - 0.03
+        })
+        .fold(f32::NEG_INFINITY, f32::max)
 }
 fn body(index: usize) -> Model {
     let mut m = Model::default();
@@ -234,7 +290,9 @@ pub fn spawn(
                 Mounted {
                     index,
                     last_elapsed: 0.,
+                    cowboy_parts: Vec::new(),
                 },
+                crate::npc::Npc::new(crate::npc::NpcKind::Cow, pose(track, index, 0.)),
                 HillsHorse,
                 HillsCowboy,
                 HillsSolid,
@@ -261,6 +319,7 @@ pub fn spawn(
                     ),
                 ]),
                 Friction::coefficient(0.65),
+                ActiveEvents::COLLISION_EVENTS,
             ))
             .id();
         for leg in 0..4 {
@@ -335,10 +394,16 @@ pub fn update(
     mut commands: Commands,
     race: Res<Race>,
     track: Res<Track>,
-    mut roots: Query<(Entity, &mut Mounted, &mut Transform), Without<MountedLimb>>,
+    mut roots: Query<
+        (Entity, &mut Mounted, &crate::npc::Npc, &mut Transform),
+        Without<MountedLimb>,
+    >,
     mut limbs: Query<(&MountedLimb, &mut Transform), Without<Mounted>>,
 ) {
-    for (entity, mut mounted, mut transform) in &mut roots {
+    for (entity, mut mounted, npc, mut transform) in &mut roots {
+        if !npc.active() {
+            continue;
+        }
         let next = pose(&track, mounted.index, race.elapsed);
         if race.elapsed < mounted.last_elapsed {
             crate::environment::teleport_kinematic(&mut commands, entity, next);
@@ -348,6 +413,38 @@ pub fn update(
     }
     for (limb, mut transform) in &mut limbs {
         transform.rotation = leg_rotation(limb.index, limb.leg, limb.lower, race.elapsed);
+    }
+}
+/// The horse uses the existing quadruped knockdown; its rider gets a separate
+/// eleven-part NPC body and returns only when the horse's occupancy check passes.
+pub fn sync_cowboy_ragdolls(
+    mut commands: Commands,
+    art: Res<crate::world::Art>,
+    mut mounts: Query<(Entity, &mut Mounted, &crate::npc::Npc, &Transform)>,
+    velocities: Query<&Velocity>,
+) {
+    for (entity, mut mounted, npc, transform) in &mut mounts {
+        if npc.active() {
+            for part in mounted.cowboy_parts.drain(..) {
+                commands.entity(part).despawn();
+            }
+        } else if mounted.cowboy_parts.is_empty() {
+            let velocity = npc
+                .parts
+                .first()
+                .and_then(|part| velocities.get(*part).ok())
+                .map_or(Vec3::ZERO, |v| v.linear);
+            mounted.cowboy_parts = crate::recovery::humanoid_with_prop(
+                &mut commands,
+                &art,
+                entity,
+                4,
+                transform.translation + Vec3::Y * 0.53,
+                transform.rotation,
+                velocity,
+                None,
+            );
+        }
     }
 }
 #[cfg(test)]
@@ -361,18 +458,14 @@ mod tests {
                 let t = pose(&track, i, tick as f32 / 8.);
                 assert!(reserved(&track, t.translation, 0.));
                 assert!(
-                    (t.translation.y
-                        - super::super::geometry::ground_height(
-                            &track,
-                            t.translation.x,
-                            t.translation.z
-                        ))
-                    .abs()
+                    (t.translation.y - grounded_height(&track, t.translation, t.rotation, i)).abs()
                         < 0.001
                 );
-                assert!(track.scenery_fits(t.translation, 2., 3.));
+                if !(CROSSING_START..CROSSING_END).contains(&i) {
+                    assert!(track.scenery_fits(t.translation, 2., 3.));
+                }
                 let next = pose(&track, i, tick as f32 / 8. + 1. / 60.);
-                assert!(next.translation.distance(t.translation) < 0.03);
+                assert!(next.translation.distance(t.translation) < 0.10);
             }
         }
     }
@@ -389,7 +482,9 @@ mod tests {
                     Mounted {
                         index: 2,
                         last_elapsed: 0.,
+                        cowboy_parts: Vec::new(),
                     },
+                    crate::npc::Npc::new(crate::npc::NpcKind::Cow, Transform::default()),
                     Transform::default(),
                 ))
                 .id();
@@ -430,5 +525,66 @@ mod tests {
         host.world_mut().resource_mut::<Race>().elapsed = 0.;
         host.world_mut().run_schedule(FixedUpdate);
         assert_eq!(*host.world().get::<Transform>(root).unwrap(), start);
+    }
+    #[test]
+    fn mounted_hit_creates_quadruped_and_cowboy_bodies_then_cleans_up() {
+        let mut app = crate::game::tests::simulation();
+        app.world_mut().resource_mut::<Race>().phase = crate::game::Phase::Racing;
+        let transform = Transform::from_xyz(5000., 8., 5000.);
+        let mount = app
+            .world_mut()
+            .spawn((
+                Mounted {
+                    index: 0,
+                    last_elapsed: 0.,
+                    cowboy_parts: Vec::new(),
+                },
+                crate::npc::Npc::new(crate::npc::NpcKind::Cow, transform),
+                transform,
+                Visibility::Visible,
+                RigidBody::KinematicPositionBased,
+                Collider::cuboid(0.5, 1., 1.),
+            ))
+            .id();
+        app.world_mut()
+            .write_message(crate::combat::NpcHit(mount, Vec3::X * 12., false));
+        app.update();
+        assert_eq!(
+            app.world()
+                .get::<crate::npc::Npc>(mount)
+                .unwrap()
+                .parts
+                .len(),
+            10
+        );
+        assert_eq!(
+            app.world()
+                .get::<Mounted>(mount)
+                .unwrap()
+                .cowboy_parts
+                .len(),
+            11
+        );
+        assert_eq!(
+            *app.world().get::<Visibility>(mount).unwrap(),
+            Visibility::Hidden
+        );
+        app.world_mut()
+            .get_mut::<crate::npc::Npc>(mount)
+            .unwrap()
+            .elapsed = 19.;
+        app.update();
+        assert!(app.world().get::<crate::npc::Npc>(mount).unwrap().active());
+        assert!(
+            app.world()
+                .get::<Mounted>(mount)
+                .unwrap()
+                .cowboy_parts
+                .is_empty()
+        );
+        assert_eq!(
+            *app.world().get::<Visibility>(mount).unwrap(),
+            Visibility::Visible
+        );
     }
 }

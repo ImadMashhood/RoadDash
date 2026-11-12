@@ -13,11 +13,18 @@ use bevy_rapier3d::prelude::*;
 pub const DUST_CAPACITY: usize = 96;
 pub const BIRD_COUNT: usize = 24;
 const EMISSION_INTERVAL: f32 = 0.08;
+fn dust_alpha(age: f32, life: f32, behind_m: f32) -> f32 {
+    let ease = |x: f32| x * x * (3. - 2. * x);
+    0.17 * ease((age / 0.25).clamp(0., 1.))
+        * ease(((life - age) / 0.35).clamp(0., 1.))
+        * ease(((24. - behind_m) / 15.).clamp(0., 1.))
+}
 #[derive(Component)]
 pub struct DustPuff {
     pub age: f32,
     life: f32,
     drift: Vec3,
+    tint: Vec3,
 }
 #[derive(Component)]
 pub struct Bird {
@@ -193,7 +200,7 @@ pub fn spawn(
         let quad = meshes.add(Rectangle::new(1., 1.));
         for _ in 0..DUST_CAPACITY {
             let material = materials.add(StandardMaterial {
-                base_color: Color::srgba(0.88, 0.76, 0.56, 0.),
+                base_color: Color::srgba(0.76, 0.61, 0.38, 0.),
                 base_color_texture: texture.clone(),
                 alpha_mode: AlphaMode::Blend,
                 unlit: true,
@@ -212,6 +219,7 @@ pub fn spawn(
                     age: 2.,
                     life: 1.6,
                     drift: Vec3::ZERO,
+                    tint: Vec3::new(0.76, 0.61, 0.38),
                 },
             ));
         }
@@ -421,11 +429,15 @@ pub fn animate(
     if dust.is_empty() {
         return;
     }
+    let player_pose = vehicles
+        .iter()
+        .find(|(_, rider, _, _)| rider.is_some_and(|r| r.id == 0))
+        .map(|(pose, _, _, _)| *pose);
     let mut emissions = Vec::new();
     if state.emission_clock >= EMISSION_INTERVAL {
         state.emission_clock %= EMISSION_INTERVAL;
         if let Ok(context) = physics.single() {
-            let is_ground = |e| ground.contains(e);
+            let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
             let mut near: Vec<_> = vehicles
                 .iter()
                 .filter(|(t, r, _, _)| {
@@ -471,6 +483,7 @@ pub fn animate(
                     emissions.push((
                         p,
                         -t.rotation * Vec3::Z * speed.signum() * 0.8 + Vec3::new(0.7, 0.7, 0.2),
+                        super::geometry::sand_color(s, p.x, p.z),
                     ));
                 }
             }
@@ -481,21 +494,31 @@ pub fn animate(
     for (mut puff, mut t, mut visibility, material) in &mut dust {
         puff.age += dt;
         if puff.age >= puff.life
-            && let Some((p, drift)) = next.next()
+            && let Some((p, drift, tint)) = next.next()
         {
             puff.age = 0.;
             puff.drift = drift;
+            puff.tint = tint;
             t.translation = p;
             state.emitted += 1;
         }
         if puff.age < puff.life {
             active += 1;
-            t.translation += puff.drift * dt;
+            t.translation += puff.drift * dt * (1. - 0.4 * puff.age / puff.life);
             t.rotation = camera.rotation;
-            t.scale = Vec3::splat(0.8 + puff.age * 1.6);
+            t.scale = Vec3::splat(1.8);
             *visibility = Visibility::Inherited;
-            if let Some(m) = materials.get_mut(&material.0) {
-                m.base_color.set_alpha(0.38 * (1. - puff.age / puff.life));
+            if let Some(mut m) = materials.get_mut(&material.0) {
+                let behind_m = player_pose.map_or(0., |player| {
+                    let forward = (player.rotation * Vec3::Z).with_y(0.).normalize_or_zero();
+                    (player.translation - t.translation).dot(forward)
+                });
+                m.base_color = Color::srgba(
+                    puff.tint.x,
+                    puff.tint.y,
+                    puff.tint.z,
+                    dust_alpha(puff.age, puff.life, behind_m),
+                );
             }
         } else {
             *visibility = Visibility::Hidden;
@@ -506,6 +529,16 @@ pub fn animate(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn translucent_sand_dust_eases_in_and_out_without_a_first_frame_pop() {
+        assert_eq!(dust_alpha(0., 1.6, 0.), 0.);
+        assert!(dust_alpha(0.05, 1.6, 0.) < 0.02);
+        assert!((0.16..=0.17).contains(&dust_alpha(0.6, 1.6, 0.)));
+        assert!(dust_alpha(1.5, 1.6, 0.) < 0.04);
+        assert!(dust_alpha(0.6, 1.6, 20.) < 0.04);
+        assert_eq!(dust_alpha(0.6, 1.6, 24.), 0.);
+        assert_eq!(dust_alpha(1.6, 1.6, 0.), 0.);
+    }
     #[test]
     fn bird_range_uses_final_propagated_parented_camera_while_paused() {
         use bevy::camera::visibility::{VisibleEntityRanges, check_visibility_ranges};
@@ -676,6 +709,7 @@ mod tests {
                     age: 0.3,
                     life: 1.6,
                     drift: Vec3::ONE,
+                    tint: Vec3::new(0.76, 0.61, 0.38),
                 },
                 Visibility::Inherited,
             ))
@@ -712,14 +746,14 @@ mod tests {
             app.world().get::<Transform>(bird).unwrap().translation,
             Vec3::ONE
         );
-        let count = app.world().entities().len();
+        let count = app.world().entities().count_spawned();
         {
             let mut r = app.world_mut().resource_mut::<crate::game::Race>();
             r.phase = crate::game::Phase::Countdown;
             r.elapsed = 0.;
         }
         app.update();
-        assert_eq!(app.world().entities().len(), count);
+        assert_eq!(app.world().entities().count_spawned(), count);
         assert_eq!(app.world().resource::<Atmosphere>().emitted, 0);
         assert_eq!(app.world().resource::<Atmosphere>().elapsed, 0.);
         assert_eq!(

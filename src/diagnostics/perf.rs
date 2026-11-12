@@ -1,6 +1,8 @@
 //! Bounded asynchronous evidence: no frame-time disk waits; drain queued records at shutdown.
 use super::*;
+use bevy::camera::visibility::VisibilityRange;
 use std::{
+    collections::HashSet,
     io::{BufWriter, Write},
     sync::mpsc::{SyncSender, TrySendError},
 };
@@ -20,6 +22,8 @@ pub(super) struct PerfLog {
     raw_frames: Option<Vec<f64>>,
     raw_racing_frames: Vec<f64>,
     previous_frame: Instant,
+    visibility_ranges_seen: Option<HashSet<VisibilityRange>>,
+    visibility_range_changes: u64,
 }
 impl Default for PerfLog {
     fn default() -> Self {
@@ -90,6 +94,10 @@ impl Default for PerfLog {
                 .then(|| Vec::with_capacity(4096)),
             raw_racing_frames: Vec::new(),
             previous_frame: Instant::now(),
+            visibility_ranges_seen: (std::env::var("ROADDASH_VISIBILITY_LOG").as_deref()
+                == Ok("1"))
+            .then(HashSet::new),
+            visibility_range_changes: 0,
         }
     }
 }
@@ -134,6 +142,11 @@ pub(super) fn sample(
     context: ReadRapierContext,
     diagnostics: Option<Res<bevy::diagnostic::DiagnosticsStore>>,
     fixture_complete: Option<Res<super::FixtureComplete>>,
+    visibility_ranges: (
+        Query<&VisibilityRange>,
+        Query<&VisibilityRange, Changed<VisibilityRange>>,
+        Query<(), With<crate::world_gen::architecture::render::TemporalFade>>,
+    ),
     loading: (
         Option<Res<crate::material_detail::Queue>>,
         Option<Res<crate::tangent_detail::Queue>>,
@@ -141,6 +154,16 @@ pub(super) fn sample(
 ) {
     if log.sender.is_none() {
         return;
+    }
+    if let Some(seen) = log.visibility_ranges_seen.as_mut() {
+        let mut changes = 0;
+        for range in &visibility_ranges.1 {
+            changes += 1;
+            if seen.len() <= u16::MAX as usize {
+                seen.insert(range.clone());
+            }
+        }
+        log.visibility_range_changes += changes;
     }
     let racing = fixture_complete.is_none()
         && race
@@ -192,13 +215,25 @@ pub(super) fn sample(
             "rigid_bodies": ctx.rigidbody_set.bodies.len(),
             "backend_colliders": ctx.colliders.colliders.len(),
             "contact_pairs": ctx.simulation.narrow_phase.contact_pairs().count(),
-            "contact_manifolds": ctx.simulation.narrow_phase.contact_pairs().map(|p| p.manifolds.len()).sum::<usize>(),
+            "contact_manifolds": ctx.simulation.narrow_phase.contact_pairs().map(|p| p.manifolds().len()).sum::<usize>(),
             "awake_dynamic_bodies": ctx.rigidbody_set.bodies.iter().filter(|(_, b)| b.is_dynamic() && !b.is_sleeping() && b.is_enabled()).count(),
             "impulse_joints": ctx.joints.impulse_joints.len(),
             "note": "instantaneous graph census, not per-substep timing or GPU profiling"
         })
     });
     let player = riders.iter().find(|r| r.id == 0);
+    let rider_pace: Vec<_> = riders
+        .iter()
+        .filter(|r| !r.police)
+        .map(|r| {
+            serde_json::json!({
+                "id":r.id,"route":r.route,"progress_m":r.progress,"speed_mps":r.speed,
+                "lane_m":r.lane,"finished":r.finished,"throttle":r.drive_intent.throttle,
+                "brake":r.drive_intent.brake,"plan_speed_mps":r.ai_plan.map(|p|p.speed),
+                "plan_avoiding":r.ai_plan.map(|p|p.avoiding)
+            })
+        })
+        .collect();
     let render_diagnostics: std::collections::BTreeMap<_, _> = diagnostics
         .as_ref()
         .into_iter()
@@ -206,12 +241,26 @@ pub(super) fn sample(
         .filter(|d| d.path().as_str().starts_with("render/"))
         .filter_map(|d| d.value().map(|v| (d.path().as_str().to_owned(), v)))
         .collect();
-    let value = serde_json::json!({"schema_version":1,"loading_queues":{"materials":loading.0.as_ref().map(|q|q.loading_evidence()),"tangents":loading.1.as_ref().map(|q|q.loading_evidence())},"raw_frame_ms":log.raw_frames,"raw_racing_frame_ms":log.raw_frames.as_ref().map(|_| &log.raw_racing_frames),"raw_frame_samples_dropped":log.raw_frames.as_ref().map(|raw| log.frames.saturating_sub(raw.len() as u64)),"render_diagnostics_latest":render_diagnostics,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"requested_fixed_executor":std::env::var("ROADDASH_FIXED_EXECUTOR").unwrap_or_else(|_| "single".into()),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
+    let mut value = serde_json::json!({"schema_version":1,"loading_queues":{"materials":loading.0.as_ref().map(|q|q.loading_evidence()),"tangents":loading.1.as_ref().map(|q|q.loading_evidence())},"raw_frame_ms":log.raw_frames,"raw_racing_frame_ms":log.raw_frames.as_ref().map(|_| &log.raw_racing_frames),"raw_frame_samples_dropped":log.raw_frames.as_ref().map(|raw| log.frames.saturating_sub(raw.len() as u64)),"render_diagnostics_latest":render_diagnostics,"window_wall_ms_per_frame":window_wall_ms,"physics_backend":backend,"parallel_physics":cfg!(feature="parallel_physics"),"requested_fixed_executor":std::env::var("ROADDASH_FIXED_EXECUTOR").unwrap_or_else(|_| "single".into()),"available_cpu_threads":log.cpu_threads,"requested_rayon_threads":std::env::var("RAYON_NUM_THREADS").ok(),"last_render_extract_ms":render.0[0].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"last_render_schedule_ms":render.0[1].load(std::sync::atomic::Ordering::Relaxed)as f64/1e6,"elapsed_s":clock.ticks as f64/60.,"frames":log.frames,"wall_average_ms":metrics.average_ms,"wall_p95_ms":metrics.p95_ms,
  "fixed_steps":log.steps,"fixed_gameplay_ms_per_frame":log.game_ms/frames,"physics_ms_per_frame":log.physics_ms/frames,"physics_sync_ms_per_frame":log.physics_phases_ms[0]/frames,"physics_step_ms_per_frame":log.physics_phases_ms[1]/frames,"physics_writeback_ms_per_frame":log.physics_phases_ms[2]/frames,"main_world_ms_per_frame":log.main_ms/frames,
  "entities":metrics.entities,"colliders":metrics.colliders,"dynamic_bodies":bodies.iter().filter(|(b,d)|**b==RigidBody::Dynamic&&d.is_none()).count(),
  "mesh_entities":views.iter().count(),"visible_mesh_entities":views.iter().filter(|v|v.get()).count(),"mesh_assets":meshes.map_or(0,|a|a.len()),"material_assets":materials.map_or(0,|a|a.len()),
  "camera_xyz":cameras.iter().next().map(|t|t.translation().to_array()),"player_progress_m":player.map(|r|r.progress),"player_route":player.map(|r|r.route),"racing":racing,"fixture_complete":fixture_complete.is_some(),"dropped_log_samples":log.dropped,
  "measurement":"wall/CPU timing; main excludes render extraction and GPU; render fields are latest CPU/wait spans, may overlap main and are not GPU timestamps; system paging counters are global, not per-game; memory values retain proc units"});
+    value["rider_pace"] = serde_json::json!(rider_pace);
+    value["visibility_range_distinct_seen"] =
+        serde_json::json!(log.visibility_ranges_seen.as_ref().map(HashSet::len));
+    value["visibility_range_changes"] = serde_json::json!(log.visibility_range_changes);
+    value["visibility_range_entities"] = serde_json::json!(
+        log.visibility_ranges_seen
+            .as_ref()
+            .map(|_| visibility_ranges.0.iter().count())
+    );
+    value["temporal_fade_entities"] = serde_json::json!(
+        log.visibility_ranges_seen
+            .as_ref()
+            .map(|_| visibility_ranges.2.iter().count())
+    );
     if let Some(tx) = &log.sender {
         match tx.try_send(value) {
             Ok(()) => {}
@@ -233,6 +282,7 @@ pub(super) fn sample(
     log.physics_phases_ms = [0.; 3];
     log.main_ms = 0.;
     log.steps = 0;
+    log.visibility_range_changes = 0;
 }
 #[cfg(test)]
 mod tests {

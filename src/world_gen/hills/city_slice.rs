@@ -13,6 +13,7 @@ pub struct CitySlice {
     pub buildings: usize,
     pub surfaces: usize,
     pub street_props: usize,
+    pub pedestrians: usize,
     pub source_building_ids: Vec<String>,
 }
 
@@ -86,6 +87,15 @@ fn clipped(shape: &Shape, lo: Vec2, hi: Vec2) -> Option<Shape> {
     (!result.triangles.is_empty()).then_some(result)
 }
 
+fn triangle_contains([a, b, c]: [Vec2; 3], point: Vec2) -> bool {
+    let signs = [
+        (b - a).perp_dot(point - a),
+        (c - b).perp_dot(point - b),
+        (a - c).perp_dot(point - c),
+    ];
+    signs.iter().all(|s| *s >= -0.001) || signs.iter().all(|s| *s <= 0.001)
+}
+
 fn content() -> Metropolis {
     let _load_span = crate::diagnostics::loading::Span::new("hills_city_source");
     let source = Track::metropolis().expect("approved Metropolis source");
@@ -134,6 +144,54 @@ fn content() -> Metropolis {
     for p in &mut m.street_props {
         p.position = shift(p.position);
     }
+    let sidewalks: Vec<[Vec2; 3]> = m
+        .surfaces
+        .iter()
+        .filter(|surface| surface.kind == 1)
+        .flat_map(|surface| {
+            let vertices: Vec<_> = surface.shape.vertices().map(Vec2::from_array).collect();
+            surface
+                .shape
+                .triangles
+                .iter()
+                .map(move |triangle| triangle.map(|i| vertices[i as usize]))
+                .collect::<Vec<_>>()
+        })
+        .collect();
+    // Reuse the source curb furnishing sites, then add small original catalog
+    // props only where the translated sidewalk polygon still supports them.
+    let anchors = m.street_props.clone();
+    for (index, anchor) in anchors.iter().enumerate().step_by(5) {
+        if !matches!(anchor.kind.as_str(), "street_lamp" | "broadleaf" | "bench") {
+            continue;
+        }
+        let forward = Vec2::new(anchor.heading.sin(), anchor.heading.cos());
+        let candidate = Vec2::from_array(anchor.position) + forward * 3.6;
+        if !sidewalks
+            .iter()
+            .any(|triangle| triangle_contains(*triangle, candidate))
+            || m.street_props
+                .iter()
+                .any(|prop| Vec2::from_array(prop.position).distance(candidate) < 2.6)
+            || m.pedestrians
+                .iter()
+                .any(|walker| Vec2::from_array(shift(walker.position)).distance(candidate) < 1.5)
+        {
+            continue;
+        }
+        let (kind, size) = if index.is_multiple_of(2) {
+            ("flower_planter", [1.15, 0.7, 0.65])
+        } else {
+            ("street_bin", [0.5, 1.0, 0.5])
+        };
+        m.street_props.push(rr_content::metropolis::StreetProp {
+            id: format!("hills-city-curb-{index}"),
+            kind: kind.into(),
+            position: candidate.to_array(),
+            heading: anchor.heading,
+            size,
+        });
+    }
     m.parked_cars.retain(|p| near(p.position, 150.));
     for p in &mut m.parked_cars {
         p.position = shift(p.position);
@@ -144,7 +202,24 @@ fn content() -> Metropolis {
     }
     m.fields.clear();
     m.civic_sites.clear();
-    m.pedestrians.clear();
+    m.pedestrians
+        .retain(|p| near(p.position, 125.) && (10500. ..=11750.).contains(&p.station));
+    // The imported source corridor is intentionally calmer than Metropolis:
+    // retain exactly alternating authored walkers, including their crossings.
+    let mut walker_index = 0;
+    m.pedestrians.retain(|_| {
+        let keep = walker_index % 2 == 0;
+        walker_index += 1;
+        keep
+    });
+    for walker in &mut m.pedestrians {
+        walker.position = shift(walker.position);
+        walker.station -= 10500.;
+        walker.crossing_end = walker
+            .crossing_end
+            .filter(|end| near(*end, 125.))
+            .map(shift);
+    }
     m.streets.clear();
     for section in &mut m.street_life.lane_sections {
         section.start -= 10500.;
@@ -188,6 +263,36 @@ pub fn spawn(
         ));
     }
     let props = metropolis::streetscape::spawn_props(commands, art, track, &m.street_props);
+    if art.props.is_some() {
+        for (index, walker) in m.pedestrians.iter().enumerate() {
+            let p = Vec3::new(
+                walker.position[0],
+                track.terrain_height(walker.position[0], walker.position[1]) + 0.15,
+                walker.position[1],
+            );
+            let entity = crate::environment::spawn_pedestrian_patrol(
+                commands,
+                art,
+                p,
+                Quat::from_rotation_y(walker.heading),
+                walker.station,
+                walker.extent,
+            );
+            commands
+                .entity(entity)
+                .insert(Name::new(format!("Hills city {}", walker.id)));
+            if let Some(end) = walker.crossing_end {
+                commands.entity(entity).insert((
+                    metropolis::pedestrians::CrossingWalker::new(
+                        p,
+                        Vec3::new(end[0], 0., end[1]),
+                        index,
+                    ),
+                    bevy_rapier3d::prelude::Velocity::zero(),
+                ));
+            }
+        }
+    }
     if let Some(catalog) = &art.props {
         use bevy_rapier3d::prelude::*;
         for (index, car) in m.parked_cars.iter().enumerate() {
@@ -221,6 +326,11 @@ pub fn spawn(
         buildings: m.buildings.len(),
         surfaces: m.surfaces.len(),
         street_props: props,
+        pedestrians: if art.props.is_some() {
+            m.pedestrians.len()
+        } else {
+            0
+        },
         source_building_ids: m.buildings.into_iter().map(|b| b.id).collect(),
     });
 }
@@ -234,6 +344,15 @@ mod tests {
         let m = content();
         assert!(m.buildings.len() > 100 && m.buildings.len() < 2000);
         assert!(m.surfaces.len() > 100 && !m.street_props.is_empty());
+        assert!(
+            m.pedestrians.len() >= 8,
+            "imported Hills city remains populated"
+        );
+        assert!(
+            m.pedestrians
+                .iter()
+                .all(|p| (0. ..=1250.).contains(&p.station))
+        );
         let origin = Track::hills_city_source_origin();
         for b in &m.buildings {
             let original = source

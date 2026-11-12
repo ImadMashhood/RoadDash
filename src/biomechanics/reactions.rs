@@ -40,7 +40,7 @@ pub fn roll(
             if o.owner == owner.owner {
                 mass += m.mass;
                 center += t.transform_point(m.local_center_of_mass) * m.mass;
-                momentum += v.linvel * m.mass;
+                momentum += v.linear * m.mass;
             }
         }
         if mass < 1.0 {
@@ -64,10 +64,10 @@ pub fn roll(
             let dv = w.cross(t.transform_point(m.local_center_of_mass) - center);
             let frame = (t.rotation * m.principal_inertia_local_frame).inverse();
             let dw = frame * w;
-            let old = frame * v.angvel;
+            let old = frame * v.angular;
             quadratic += 0.5
                 * (m.mass * dv.length_squared() + (m.principal_inertia * dw * dw).element_sum());
-            linear += m.mass * v.linvel.dot(dv) + (m.principal_inertia * old * dw).element_sum();
+            linear += m.mass * v.linear.dot(dv) + (m.principal_inertia * old * dw).element_sum();
         }
         let budget = 0.5 * mass * speed * speed * tuning.0.roll_energy_fraction;
         let scale = if quadratic > 1e-6 {
@@ -83,8 +83,8 @@ pub fn roll(
             if o.owner != owner.owner {
                 continue;
             }
-            v.linvel += w.cross(t.transform_point(m.local_center_of_mass) - center) * scale + brake;
-            v.angvel += w * scale;
+            v.linear += w.cross(t.transform_point(m.local_center_of_mass) - center) * scale + brake;
+            v.angular += w * scale;
         }
     }
 }

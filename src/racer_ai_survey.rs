@@ -11,6 +11,21 @@ pub(crate) fn install(app: &mut App) {
     app.insert_resource(bevy::winit::WinitSettings::continuous())
         .init_resource::<Survey>()
         .add_systems(PostUpdate, run.after(super::camera));
+    if std::env::var("ROADDASH_AI_SURVEY_HOLD_W").as_deref() == Ok("1") {
+        app.add_systems(
+            FixedUpdate,
+            hold_w.before(super::drive).after(crate::recovery::recover),
+        );
+    }
+}
+fn hold_w(mut controls: ResMut<crate::controls::Controls>, race: Res<Race>) {
+    if race.phase == Phase::Racing {
+        controls.buffer.held = rr_core::VehicleIntent {
+            throttle: true,
+            throttle_amount: 1.0,
+            ..default()
+        };
+    }
 }
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 fn run(
@@ -52,7 +67,7 @@ fn run(
     }
     if state.frame == 1 {
         for (_, mut rider, _) in &mut riders {
-            if rider.id == 0 {
+            if rider.id == 0 && std::env::var("ROADDASH_AI_SURVEY_HOLD_W").as_deref() != Ok("1") {
                 rider.networked = true;
                 rider.remote_human = false;
             }
@@ -132,6 +147,7 @@ fn run(
             .collect();
         let report = serde_json::json!({"frames":state.frame, "elapsed":race.elapsed,"finished_ids":finished,
             "completed":completed,"samples":state.rows,
+            "hold_w_player":std::env::var("ROADDASH_AI_SURVEY_HOLD_W").as_deref()==Ok("1"),
             "synthetic_segment":segment,"segment_passed":segment_passed,
             "limits":"Scripted native race; no human balance or broad hardware certification."});
         std::fs::write(

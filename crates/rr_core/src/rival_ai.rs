@@ -15,6 +15,12 @@ pub enum Decision {
     Flee,
 }
 
+/// Five authored aggressors spread through the fourteen-rider grid.
+pub const FIGHTERS: [usize; 5] = [1, 4, 7, 10, 13];
+pub fn is_fighter(id: usize) -> bool {
+    FIGHTERS.contains(&id)
+}
+
 #[derive(Clone, Debug)]
 pub struct Mind {
     id: usize,
@@ -49,7 +55,7 @@ impl Mind {
             ^ (self.incident as u64).wrapping_mul(0xbf58_476d_1ce4_e5b9);
         roll = (roll ^ (roll >> 30)).wrapping_mul(0xbf58_476d_1ce4_e5b9);
         roll = (roll ^ (roll >> 27)).wrapping_mul(0x94d0_49bb_1331_11eb);
-        let response = if (roll ^ (roll >> 31)) & 1 == 0 {
+        let response = if !is_fighter(self.id) || (roll ^ (roll >> 31)) & 1 == 0 {
             Response::Fight
         } else {
             Response::Flee
@@ -75,8 +81,14 @@ impl Mind {
         self.target
     }
 
-    pub fn can_fight(&self, _target: usize) -> bool {
-        self.response() != Some(Response::Flee)
+    pub fn can_fight(&self, target: usize) -> bool {
+        if is_fighter(self.id) {
+            !is_fighter(target) && self.response() != Some(Response::Flee)
+        } else {
+            self.response.is_some_and(|(attacker, response, _)| {
+                attacker == target && response == Response::Fight
+            })
+        }
     }
 
     pub fn cooldown(&self, base: f32) -> f32 {
@@ -103,27 +115,30 @@ impl Mind {
                     .copied()
             });
         }
-        let attacker = self
-            .response
-            .and_then(|(id, response, _)| (response == Response::Fight).then_some(id));
-        targets
-            .iter()
-            .filter(|t| {
-                t.id != me.id
-                    && !t.downed
-                    && distance(me, **t) <= 4.0
-                    && (t.progress >= me.progress - 2.0)
+        if is_fighter(self.id) {
+            // The next nonfighter ahead is the only proactive target. A downed
+            // rider is immediately ineligible, so the next place takes over.
+            targets
+                .iter()
+                .filter(|t| {
+                    !is_fighter(t.id)
+                        && !t.downed
+                        && (0.0..30.0).contains(&(t.progress - me.progress))
+                        && (t.lane - me.lane).abs() < 10.0
+                })
+                .min_by(|a, b| a.progress.total_cmp(&b.progress).then(a.id.cmp(&b.id)))
+                .copied()
+        } else {
+            // Nonfighters defend themselves against the confirmed attacker only.
+            self.response.and_then(|(attacker, response, _)| {
+                (response == Response::Fight).then(|| {
+                    targets
+                        .iter()
+                        .find(|t| t.id == attacker && !t.downed && distance(me, **t) <= 4.0)
+                        .copied()
+                })?
             })
-            .min_by(|a, b| {
-                let a_key = (Some(a.id) != attacker, distance(me, **a));
-                let b_key = (Some(b.id) != attacker, distance(me, **b));
-                a_key
-                    .0
-                    .cmp(&b_key.0)
-                    .then(a_key.1.total_cmp(&b_key.1))
-                    .then(a.id.cmp(&b.id))
-            })
-            .copied()
+        }
     }
 
     /// Contact intent changes lateral line only. No target can reduce race pace.
@@ -198,38 +213,49 @@ mod tests {
         }
     }
     #[test]
-    fn every_rider_races_at_own_pace_and_only_notices_close_targets() {
+    fn five_fighters_select_the_next_nonfighter_ahead_and_clear_downed_targets() {
+        assert_eq!(FIGHTERS.len(), 5);
         for id in 1..15 {
             let mut mind = Mind::new(id);
             let me = rider(id, 100., 0., 20.);
-            assert!(
-                mind.choose(10., me, &[rider(30, 120., 0., 0.)], 4.)
-                    .is_none()
+            let mut next = rider(30, 102., 1., 20.);
+            let farther = rider(31, 110., -1., 20.);
+            let fellow = rider(4, 101., 0., 20.);
+            let chosen = mind.choose(10., me, &[farther, fellow, next], 4.);
+            assert_eq!(chosen.map(|t| t.id), is_fighter(id).then_some(30));
+            next.downed = true;
+            assert_eq!(
+                mind.choose(10., me, &[farther, fellow, next], 4.)
+                    .map(|t| t.id),
+                is_fighter(id).then_some(31)
             );
             assert!(mind.drive(me, None, 35.).is_none());
             assert_eq!(mind.desired_speed, 35.);
-            let near = rider(30, 102., 1., 0.);
-            let goal = mind.choose(10., me, &[near], 4.);
-            assert_eq!(mind.drive(me, goal, 35.).unwrap().1, 35.);
-            assert_eq!(mind.decision, Decision::NearbyStrike);
+            assert_eq!(mind.can_fight(30), is_fighter(id));
         }
     }
     #[test]
-    fn confirmed_incidents_make_reproducible_fair_coin_choices() {
-        let mut mind = Mind::new(2);
+    fn nonfighters_always_fight_back_and_fighters_keep_reproducible_incident_coin() {
+        let mut defender = Mind::new(2);
+        for _ in 0..100 {
+            assert_eq!(defender.struck_by(1), Response::Fight);
+            assert!(defender.can_fight(1));
+            assert!(!defender.can_fight(3));
+        }
+        let mut mind = Mind::new(1);
         let mut fights = 0;
         let mut flees = 0;
         for _ in 0..1000 {
-            match mind.struck_by(3) {
+            match mind.struck_by(2) {
                 Response::Fight => fights += 1,
                 Response::Flee => flees += 1,
             }
         }
         assert!((450..=550).contains(&fights), "fight/flee {fights}/{flees}");
         assert_eq!(fights + flees, 1000);
-        let mut replay = Mind::new(2);
+        let mut replay = Mind::new(1);
         for _ in 0..1000 {
-            replay.struck_by(3);
+            replay.struck_by(2);
         }
         assert_eq!(replay.response(), mind.response());
     }

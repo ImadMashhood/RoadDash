@@ -1,5 +1,69 @@
 # Architecture decisions
 
+## ADR164 — 2026-11-11 — Hills civilian encounter starts and city opening cars
+
+The current Hills fleet has 24 ordinary cars across 12.5 km; only every third
+index travels in the forward lane, so most same-direction car/heavy pairs start
+too far apart for a short playtest to show an overtake. Keep ADR142's fixed-step
+Follow/Pass/Abort/Merge safety policy, continuous lane travel, static pavement
+sweep, solid colliders and oncoming motor-vehicle veto. Move two existing Hills
+cars to clear starts 100 m behind the 450 m semi and 2,750 m tractor. Add six
+ordinary moving cars at 500–850 m, spaced 70 m apart through the imported city
+opening. Preserve existing traffic IDs 0–37 and append IDs 38–43 for network and
+reset stability. Metropolis and Valley allocations remain unchanged. This is
+authored encounter placement, not a passing incentive or physics change.
+
+Alternatives considered: boosting civilian speed, forcing a pass state, or
+teleporting traffic into view. Those would bypass the existing safety decision
+or create visible discontinuities. The new fleet still needs native full-course
+and human traffic review; additional actors may affect Hills frame cost.
+
+## ADR166 — 2026-11-11 — Rival launch, absolute pace and rear camera visibility
+
+The playtest reports a weak grid launch, an almost immediate climb to seventh,
+and following riders disappearing near the chase camera. Inspection found that
+the AI-only opening torque boost is multiplied by a speed-error throttle request,
+while the former rival ceiling was relative to the player's top speed. Set the
+rival ceiling to 155 km/h in the pure pace rule used by both fixed AI and physical
+bike limits. The first five race seconds request full throttle for rivals; corner,
+traffic, backing and recovery brakes still decide whether drive is permitted.
+Player and police requests/limits remain separate. This does not add a position
+catch-up rule or change the accepted chassis, ragdoll or traffic physics.
+The passing planner retains each rider's uncapped clear-road target as its
+lookahead reference while the motor and kinematic fallback enforce 155 km/h.
+Using 155 km/h for both caused two established physical queue regressions:
+riders settled behind a stationary human or crawling bike. Both fixtures pass
+after separating planning horizon from the actual speed limit.
+
+The existing camera-occlusion sphere hid any rival within 3 m of the chase
+camera, including a visible follower behind the player. Narrow direct overlap
+to 1.4 m; render visibility alone changes. A larger blind zone and exempting
+all followers were rejected because either loses nearby riders or permits a
+helmet to fill the camera. Pure pace/launch and camera-distance tests cover the
+contract; native grid views, full race balance and matched frame cost remain
+acceptance gates. No external code, assets or dependencies were used.
+
+## ADR-163 — 2026-11-11 — Playtest pace, fighter roles and Hills presentation
+
+Problem: the Bevy 0.20.1 playtest reports a lead pack that is hard to catch, a weak
+rival launch, sparse fights and Hills/Valley scenery gaps. Selected: cap rival
+unboosted race pace 5 km/h below the player's bike, add a bounded AI-only launch
+torque boost outside escape, and assign five stable fighter IDs. Police retain
+their separate pursuit and bike-speed limits. Fighters only
+seek a live nonfighter ahead; other racers retaliate against their confirmed
+attacker. Combat intent changes lateral line without slowing race pace. Preserve
+the physical rider controller, recovery and eleven-body baseline.
+
+For presentation, extend the existing spatial-cloud material to Valley with
+additional frustum-culled banks, reuse authored Hills/Metropolis assets and
+collision for street life, add original timed animal crossings, broaden the
+existing canyon river without a collider, and vary existing grass/sand/dust
+geometry. No new media or dependencies. Alternatives considered: positional
+rubber band, generic crowd spawning, always-active herd physics and a water
+support plane. These would obscure race balance, threaten authored geometry or
+change fall behavior. Human pace/visual acceptance and matched GPU/frame cost
+remain open; the current branch is an experimental 0.20.1 playtest candidate.
+
 ## ADR-001 - 2026-10-30 - Retain compatible engine and physics pins
 
 Problem: blueprint proposes Bevy 0.20.1/Avian 0.8/Enhanced Input 0.27, while the
@@ -4245,6 +4309,64 @@ Metropolis physics and render scheduling separately. See
 testing/issue25-projection/REPORT.md. No third-party code/media or dependency
 migration was introduced; prior lightmap discussion remains evaluation only.
 
+## ADR149 — Isolate and measure the Bevy 0.20 upgrade (2026-11-11)
+
+The user requests Bevy 0.20 and performance improvement. Bevy 0.20.1 requires
+Rust 1.97.1; bevy_rapier3d 0.37.0 targets Bevy 0.20. Both can be pinned,
+but migration crosses 0.18, 0.19 and 0.20 API changes: WESL shaders, world
+serialization scenes, text/UI, assets, scheduling, ambient light and audio.
+Rapier's newer solver/CCD/sleep behavior may change the accepted physical feel.
+
+Selected: use codex/issue-37-bevy-020 as an isolated migration and retain the
+old-engine main commit as the comparison control. Record pins and port compile
+errors without tuning the physical rig to make tests pass. Keep the exact 60 Hz
+fixed/input/interpolation contracts, all map content, velocity muscles and
+--ragdoll-baseline. The obsolete vendored CPAL 0.15 patch must be evaluated
+against the newer backend, with native playback checks. Only replace the
+baseline after locked checks, native scene/physics/audio/input/saves regression
+and matched Hills/Metropolis loading/frame measurements. Upstream Bevy renderer
+benchmarks are motivation, not a RoadDash performance result. Keep the 16.7 ms
+gate and RFU-ENGINE-01..03 open until their own acceptance is measured.
+
+Sources: https://bevy.org/news/bevy-0-19/ ;
+https://bevy.org/news/bevy-0-20/ ;
+https://bevy.org/learn/migration-guides/0-17-to-0-18/ ;
+https://bevy.org/learn/migration-guides/0-18-to-0-19/ ;
+https://bevy.org/learn/migration-guides/0-19-to-0-20/ ;
+https://docs.rs/crate/bevy_rapier3d/0.37.0 . CPAL 0.17.3 Apache-2.0 source was vendored with the existing narrow ALSA recovery change; no proprietary source or media was copied.
+
+## ADR160 — Adapt grounded runner input to Rapier 0.36 ground snap (2026-11-11)
+
+The isolated Bevy 0.20 candidate's depleted original-contact recovery stalled
+on a flat ground collider. The runner requested about 0.1 m of horizontal
+movement per tick, but Rapier's character controller applied almost none and
+reported only the fixed ground collider. The wreck was stationary about 46 m
+away; the failure was not a mount-speed gate, obstacle lane policy or scripted
+recovery stop. The old 0.5 m/s grounded downward adhesion remains valid in the
+old-engine control, but it drives this newer character controller into a
+ground-contact shape cast that blocks horizontal travel.
+
+For this migration candidate, use the controller's own `snap_to_ground` for
+supported runner motion and request zero additional vertical descent when its
+previous output reports grounded. Keep the authored 5 m/s airborne descent,
+capsule, offset, autostep, 60 Hz cadence, remount conditions and all ragdoll/
+wreck physics unchanged. Share the adapter with the physical guardrail survey
+so its runner input matches production. The focused original-contact test and
+three Hills physical return tests pass with the adapter; paired native Hills
+recovery also passes in both rigs. The separate high-speed solver blocker
+remains open. This does not revise the old-engine `rr_core` movement
+rule or authorize global contact/joint retuning.
+
+ADR149 follow-up (2026-11-11): four paired lab modes isolated Rapier 0.35's
+automatic fixed-collider CCD and changed solver-iteration meaning. Mapping
+AdditionalSolverIterations(8) to AdditionalPgsIterations(8), disabling CCD
+context-wide, and removing biomechanical SoftCcd each failed at least one
+accepted high-speed/static-wall or eleven-body baseline gate. Rapier 0.36 has
+no supported per-body opt-out for its automatic fixed-collider CCD, and its
+contact filter cannot distinguish CCD from discrete contacts. The isolated
+Bevy 0.20 branch remains unmerged; do not transfer experimental switches to
+production or weaken the established parity thresholds. Measurements and
+versioned sources: testing/issue37-bevy20/REPORT.md.
 ## ADR159 — Free rival lines and incident-based combat (2026-11-11)
 
 The rider queue persists after outbound-refuge and oncoming-pass refinements.
@@ -4261,3 +4383,49 @@ police and civilian traffic convention. Preserve a frozen old-policy control
 and verify the same pileup station and native full-race behavior; no queue or
 performance claim until the comparison is run. RFU-AI-09..11 remain open until
 their gates pass. No external AI code or media was imported.
+
+## ADR161 — Bound Bevy 0.20 temporal visibility ranges (2026-11-11)
+
+Bevy 0.20's render `VisibilityRange` registry retains distinct values for the
+whole process and has a 65,535-slot index. RoadDash generated camera-relative
+floating fade ranges every frame, exhausting that index in native playtests.
+Use a shared, distance-dependent quantized palette for temporal architecture
+and facade fades, with exact settled ranges. Preserve opposing dither branches,
+final propagated camera positions, collision and ready-scene lifecycle. Update
+components only when their palette value changes. The quantization trades
+sub-meter fade precision for a finite range vocabulary; both-map native
+smokes and camera surveys now complete without the warning. Human continuous
+play and GPU correctness remain separate acceptance gates. The optional
+visibility logger estimates range churn and does not itself prove performance.
+
+## ADR162 — Moderate rival corner pace for Bevy 0.20 playtest (2026-11-11)
+
+The player can hold full throttle without the rival-only corner speed caps.
+Raise the rival lookahead lateral-acceleration budget from 10 to 14 m/s² and
+the current-point torque budget from 12 to 16 m/s², keeping finite curvature
+caps and the existing physical controller. A stronger 16/18 trial advanced the
+median rider but caused a sampled rider crash; it was rejected. In matched
+3,600-frame Metropolis surveys the moderate trial increased median AI progress
+at about 55 s from 2,379 to 2,414 m, while the formerly stopped rider 13
+advanced beyond 2,600 m and rider 9 stayed riding. The synthetic held-W player
+stalled at station 486 in both control and trials. This is a provisional pace
+tune, not proof of human race balance or pileup elimination; RFU-AI-01/02
+remain open. Preserve the free-roam route planner, collision, rig and saves.
+
+## ADR165 — Mounted and cattle impact presentation (2026-11-11)
+
+Use the established NPC quadruped knockdown for Hills horses and retain its
+existing masses, joints, solver settings and recovery occupancy rule. A mounted
+horse carries an NPC target; a separate eleven-part NPC cowboy body follows a
+confirmed horse knockdown and is removed with the horse's respawn. The horse
+path remains deterministic on the race clock; four hoof samples seat its root
+above resident terrain or crossing road triangles. Animate skinned cattle leg
+drivers only while their existing patrol moves. Three later-course patrols use
+the existing reserved-envelope system. Keep player and accepted baseline rigs,
+controls, collision thresholds, saves and scenic non-contact herds unchanged.
+The procedural ragdoll visual is provisional; close art and native impact review
+remain required under RFU-MOUNT-01..03.
+
+## ADR167 — Original Hills sand detail, matched dust and reduced city crowd (2026-11-11)
+
+Keep the resident Hills terrain geometry and collision unchanged. Multiply its existing world-colour strata by one deterministic 64×64 repeating grayscale grit texture, generated at startup and shared by terrain material; use world-space UVs so neighboring chunks do not seam. Sample the same western/desert sand palette when each existing pooled dust quad emits. Hold its footprint fixed, lower opacity, fade in by age and fade out after it passes behind the player. This retains the fixed 96-puff pool and avoids late mesh spawning or external texture rights. The imported Hills city slice retains alternating authored walkers to halve that section's population; Metropolis pedestrians remain unchanged. The phrase "peds pop" may also refer to visibility onset, so native review and user clarification remain open. No frame-time gain is claimed from these art changes.

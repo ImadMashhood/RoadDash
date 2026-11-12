@@ -75,11 +75,11 @@ fn player_and_ai_use_80_kmh_entry_for_both_120_40_car_directions() {
             assert_eq!(samples.len(), 12);
             for v in samples {
                 assert!(
-                    (v.linvel.dot(forward) * 3.6 - 80.0).abs() < 0.001,
+                    (v.linear.dot(forward) * 3.6 - 80.0).abs() < 0.001,
                     "id={id} direction={direction}: {v:?}"
                 );
-                assert!(v.angvel.length() < 0.001, "scripted spin {v:?}");
-                assert!(v.linvel.y <= 0.001, "scripted launch {v:?}");
+                assert!(v.angular.length() < 0.001, "scripted spin {v:?}");
+                assert!(v.linear.y <= 0.001, "scripted launch {v:?}");
             }
             assert_eq!(
                 app.world().get::<Recovery>(owner).unwrap().stage,
@@ -117,7 +117,11 @@ fn neutral_mounted_heading_ignores_repeated_contact_spin_at_each_render_rate() {
             .to_euler(EulerRot::YXZ)
             .0;
         for _ in 0..fps {
-            app.world_mut().get_mut::<Velocity>(owner).unwrap().angvel.y = 15.0;
+            app.world_mut()
+                .get_mut::<Velocity>(owner)
+                .unwrap()
+                .angular
+                .y = 15.0;
             app.update();
             let now = app
                 .world()
@@ -146,8 +150,8 @@ fn crash_envelope_dissipates_solver_energy_and_reverse_com_without_launching() {
             ReadMassProperties::default(),
             Transform::from_xyz(x, 20.0, 0.0),
             Velocity {
-                linvel: Vec3::new(0.0, 70.0, -40.0),
-                angvel: Vec3::splat(30.0),
+                linear: Vec3::new(0.0, 70.0, -40.0),
+                angular: Vec3::splat(30.0),
             },
             OwnedBody {
                 owner,
@@ -174,12 +178,12 @@ fn crash_envelope_dissipates_solver_energy_and_reverse_com_without_launching() {
             if body.owner != owner {
                 continue;
             }
-            let omega = (t.rotation * m.principal_inertia_local_frame).inverse() * v.angvel;
-            energy += m.mass * v.linvel.length_squared()
+            let omega = (t.rotation * m.principal_inertia_local_frame).inverse() * v.angular;
+            energy += m.mass * v.linear.length_squared()
                 + (m.principal_inertia * omega * omega).element_sum();
             budget += m.mass * (400.0 + 2.0 * 9.81 * (20.0 - t.translation.y));
-            momentum += v.linvel * m.mass;
-            assert!(v.linvel.is_finite() && v.angvel.is_finite());
+            momentum += v.linear * m.mass;
+            assert!(v.linear.is_finite() && v.angular.is_finite());
         }
         assert!(
             energy <= budget.max(0.0) + 0.1,
@@ -219,7 +223,7 @@ fn real_rear_and_oncoming_car_contacts_detach_without_reverse_rider_travel() {
             .unwrap();
         let t = *app.world().get::<Transform>(owner).unwrap();
         let forward = (t.rotation * Vec3::Z).with_y(0.0).normalize();
-        app.world_mut().get_mut::<Velocity>(owner).unwrap().linvel = forward * (120.0 / 3.6);
+        app.world_mut().get_mut::<Velocity>(owner).unwrap().linear = forward * (120.0 / 3.6);
         let r = app.world().get::<Rider>(owner).unwrap();
         let progress = r.progress + 5.0;
         let lane = r.lane;
@@ -381,7 +385,7 @@ fn actual_dynamic_wreck_contacts_hop_and_move_the_target_without_ejection() {
             r.motion_velocity = forward * 25.0;
             r.immunity = 0.0;
         }
-        app.world_mut().get_mut::<Velocity>(owner).unwrap().linvel = forward * 25.0;
+        app.world_mut().get_mut::<Velocity>(owner).unwrap().linear = forward * 25.0;
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         let mut rise = 0.0_f32;
         for _ in 0..90 {
@@ -573,7 +577,7 @@ fn rear_contact_threshold_and_mass_weighted_push_do_not_add_vertical_speed() {
 struct MountedContact(Entity, Vec3, f32, bool);
 fn capture_mounted(mut capture: ResMut<MountedContact>, riders: Query<(&Recovery, &Velocity)>) {
     if let Ok((recovery, v)) = riders.get(capture.0) {
-        capture.2 = v.linvel.dot(capture.1);
+        capture.2 = v.linear.dot(capture.1);
         capture.3 = recovery.stage == RecoveryStage::Riding;
     }
 }
@@ -955,7 +959,7 @@ fn solid_contacts_interrupt_both_stagger_phases_without_launch_or_baseline_chang
                     let entry = &app.world().resource::<Entry>().0;
                     assert!(!entry.is_empty());
                     for v in entry {
-                        assert!(v.linvel.distance(incoming) < 0.001, "{v:?}");
+                        assert!(v.linear.distance(incoming) < 0.001, "{v:?}");
                     }
                 }
             }
@@ -994,7 +998,7 @@ fn measured_solid_car_height_trajectories_keep_passive_control_and_finite_recove
                     r.speed = 100. / 3.6;
                     r.motion_velocity = forward * (100. / 3.6);
                 }
-                app.world_mut().get_mut::<Velocity>(owner).unwrap().linvel = forward * (100. / 3.6);
+                app.world_mut().get_mut::<Velocity>(owner).unwrap().linear = forward * (100. / 3.6);
                 let r = app.world().get::<Rider>(owner).unwrap();
                 let (progress, lane) = (r.progress + 5., r.lane);
                 let (p, q) = app
@@ -1034,7 +1038,7 @@ fn measured_solid_car_height_trajectories_keep_passive_control_and_finite_recove
                         let pose = app.world().get::<Transform>(torso).unwrap();
                         let velocity = app.world().get::<Velocity>(torso).unwrap();
                         assert!(pose.translation.is_finite() && pose.rotation.is_finite());
-                        assert!(velocity.linvel.is_finite() && velocity.angvel.is_finite());
+                        assert!(velocity.linear.is_finite() && velocity.angular.is_finite());
                         let car = app.world().get::<Transform>(object).unwrap();
                         let relative = pose.translation - car.translation;
                         max_height = max_height.max(relative.y);
@@ -1119,7 +1123,7 @@ fn downed_contact_lift_uses_pre_solver_relative_motion_for_both_bodies() {
             );
             if !lifts {
                 assert_eq!(
-                    app.world().get::<Velocity>(target).unwrap().linvel,
+                    app.world().get::<Velocity>(target).unwrap().linear,
                     forward * after
                 );
                 assert_eq!(rider.impact_cooldown, 0.0);

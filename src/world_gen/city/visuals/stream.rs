@@ -26,10 +26,15 @@ pub(super) struct Cache {
     used: BTreeMap<(bool, usize, usize), u64>,
     tick: u64,
 }
-fn root(commands: &mut Commands, owner: Entity, handle: Handle<Scene>, hidden: bool) -> Entity {
+fn root(
+    commands: &mut Commands,
+    owner: Entity,
+    handle: Handle<WorldAsset>,
+    hidden: bool,
+) -> Entity {
     let e = commands
         .spawn((
-            SceneRoot(handle),
+            WorldAssetRoot(handle),
             Transform::IDENTITY,
             if hidden {
                 Visibility::Hidden
@@ -47,7 +52,7 @@ pub(super) fn spawn(
     commands: &mut Commands,
     name: String,
     b: BuildingInstance,
-    scene: Handle<Scene>,
+    scene: Handle<WorldAsset>,
     transform: Transform,
 ) {
     let owner = commands
@@ -62,7 +67,7 @@ pub(super) fn spawn(
     });
 }
 fn scene_ready(
-    event: On<bevy::scene::SceneInstanceReady>,
+    event: On<bevy::world_serialization::WorldInstanceReady>,
     groups: Query<&Group>,
     children: Query<&Children>,
     meshes: Query<(), With<Mesh3d>>,
@@ -89,7 +94,7 @@ impl ModelCatalog {
         server: &AssetServer,
         key: (bool, usize, usize),
         pinned: &BTreeSet<(bool, usize, usize)>,
-    ) -> Option<Handle<Scene>> {
+    ) -> Option<Handle<WorldAsset>> {
         let (proof, kind, lod) = key;
         if lod < 2 && !self.cache.used.contains_key(&key) {
             if self.cache.used.len() >= CACHE {
@@ -141,8 +146,8 @@ pub fn update_lod(
     server: Res<AssetServer>,
     cameras: Query<&Transform, With<Camera3d>>,
     mut buildings: Query<(Entity, &Transform, &mut BuildingInstance, &mut Instance)>,
-    instances: Query<&bevy::scene::SceneInstance>,
-    spawner: Res<bevy::scene::SceneSpawner>,
+    instances: Query<&bevy::world_serialization::WorldInstance>,
+    spawner: Res<bevy::world_serialization::WorldInstanceSpawner>,
     children: Query<&Children>,
     parts: Query<(&Mesh3d, &MeshMaterial3d<StandardMaterial>)>,
     materials: Res<Assets<StandardMaterial>>,

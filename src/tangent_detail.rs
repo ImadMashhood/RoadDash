@@ -84,7 +84,7 @@ pub fn update(
         if let Some(results) = block_on(future::poll_once(&mut queue.jobs[i].task)) {
             queue.jobs.swap_remove(i);
             for (id, result) in results {
-                if let Some(mesh) = meshes.get_mut(id) {
+                if let Some(mut mesh) = meshes.get_mut(id) {
                     if let Some(tangents) = result {
                         mesh.insert_attribute(Mesh::ATTRIBUTE_TANGENT, tangents);
                         queue.generated += 1;

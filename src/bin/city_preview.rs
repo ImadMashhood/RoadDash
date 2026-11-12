@@ -55,7 +55,7 @@ fn main() {
             survey: args.iter().any(|a| a == "--catalog-survey"),
         })
         .insert_resource(ClearColor(Color::srgb(0.43, 0.53, 0.62)))
-        .insert_resource(AmbientLight { color: Color::srgb(0.83,0.88,1.0), brightness: 800.0, ..default() })
+        .insert_resource(GlobalAmbientLight { color: Color::srgb(0.83,0.88,1.0), brightness: 800.0, ..default() })
         .init_resource::<road_dash::material_detail::Queue>()
         .init_resource::<road_dash::tangent_detail::Queue>()
         .init_resource::<CaptureFrame>()
@@ -110,12 +110,12 @@ fn setup(
         scene.length_m
     );
     commands.spawn((Text::new("ACTUAL 3D GLB MODELS | 100 facade designs / 146 catalog assets / 3 LODs | 5: gallery, PgUp/PgDn: page | WASD + right mouse to inspect"),
-        TextFont { font_size: 15.0, ..default() }, TextColor(Color::WHITE),
+        TextFont { font_size: FontSize::Px(15.0), ..default() }, TextColor(Color::WHITE),
         Node { position_type: PositionType::Absolute, left: px(12), top: px(10), ..default() }));
     commands.spawn((
         DirectionalLight {
             illuminance: 16000.0,
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             ..default()
         },
         bevy::light::CascadeShadowConfigBuilder {

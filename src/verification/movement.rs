@@ -84,7 +84,7 @@ pub(crate) fn review(
             velocity
                 .as_ref()
                 .expect("dynamic velocity")
-                .linvel
+                .linear
                 .dot(t.rotation * Vec3::Z)
         } else {
             r.speed

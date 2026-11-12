@@ -289,7 +289,20 @@ fn dynamic_grid_can_launch_without_ai_sideswipe_or_melee_knockouts() {
     app.world_mut()
         .resource_mut::<ButtonInput<KeyCode>>()
         .press(KeyCode::KeyW);
-    for _ in 0..120 {
+    app.update();
+    {
+        let world = app.world_mut();
+        for rider in world.query::<&Rider>().iter(world) {
+            if rider.id != 0 {
+                assert_eq!(
+                    rider.drive_intent.throttle_amount, 1.0,
+                    "rider {}",
+                    rider.id
+                );
+            }
+        }
+    }
+    for _ in 1..120 {
         app.update();
     }
     assert!(
@@ -706,12 +719,12 @@ fn supported_bike_recovers_from_contact_yaw_without_changing_steering_bank() {
         .query_filtered::<Entity, With<Rider>>()
         .single(app.world())
         .unwrap();
-    app.world_mut().get_mut::<Velocity>(e).unwrap().angvel.y = 8.0;
+    app.world_mut().get_mut::<Velocity>(e).unwrap().angular.y = 8.0;
     for _ in 0..30 {
         app.update();
     }
     let v = app.world().get::<Velocity>(e).unwrap();
-    assert!(v.angvel.y.abs() < 1.3);
+    assert!(v.angular.y.abs() < 1.3);
     assert!(app.world().get::<BikeState>(e).unwrap().lean.abs() < 0.01);
     assert_eq!(
         app.world().get::<Recovery>(e).unwrap().stage,
@@ -819,7 +832,7 @@ fn dynamic_bike_physically_traverses_a_solid_low_wreck() {
             .world()
             .get::<Velocity>(wreck)
             .unwrap()
-            .linvel
+            .linear
             .with_y(0.0)
             .length()
             > 0.01;
@@ -1053,7 +1066,7 @@ fn ai_backing_intent_uses_the_existing_reverse_adapter() {
             .sample_route(r.route, r.progress, 0.)
             .1
             * Vec3::Z;
-        minimum = minimum.min(v.linvel.dot(forward));
+        minimum = minimum.min(v.linear.dot(forward));
     }
     assert!(minimum < -0.5, "AI never backed up: {minimum}");
     assert!(minimum >= -rr_core::reverse::MAX_SPEED - 0.5);
@@ -1089,7 +1102,7 @@ fn crossing_recycle_has_no_140_metre_kinematic_velocity() {
     app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
     for _ in 0..5 {
         app.update();
-        let v = app.world().get::<Velocity>(e).unwrap().linvel.length();
+        let v = app.world().get::<Velocity>(e).unwrap().linear.length();
         assert!(v < 20., "recycle produced contact speed {v}");
     }
     assert!(app.world().get::<Transform>(e).unwrap().translation.x < 40.);
@@ -1332,7 +1345,7 @@ fn sand_penalty_compares_real_adapters_and_exits_without_velocity_clamps() {
                 .query_filtered::<(&Transform, &Velocity), With<Rider>>()
                 .single(world)
                 .unwrap();
-            velocity.linvel.dot(pose.rotation * Vec3::Z)
+            velocity.linear.dot(pose.rotation * Vec3::Z)
         } else {
             surface_speed(&mut app)
         };
@@ -1377,7 +1390,7 @@ fn sand_coasting_and_ai_traversal_use_live_shared_adapter_rules() {
             let (mut rider, pose, velocity) = q.single_mut(world).unwrap();
             rider.speed = 30.;
             if let Some(mut velocity) = velocity {
-                velocity.linvel = pose.rotation * Vec3::Z * 30.;
+                velocity.linear = pose.rotation * Vec3::Z * 30.;
             }
             for _ in 0..60 {
                 app.update();

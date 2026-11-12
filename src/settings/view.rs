@@ -19,11 +19,11 @@ fn text(c: &mut Commands, fonts: &Fonts, value: &str, size: f32, color: Color) -
         Text::new(value),
         TextFont {
             font: if size >= 28. {
-                fonts.1.clone()
+                fonts.1.clone().into()
             } else {
-                fonts.0.clone()
+                fonts.0.clone().into()
             },
-            font_size: size,
+            font_size: FontSize::Px(size),
             ..default()
         },
         TextColor(color),
@@ -355,8 +355,8 @@ pub fn display(
         .clamp(0.7, 2.5);
     for (size, mut f) in &mut fonts {
         let s = size.0 * scale;
-        if f.font_size != s {
-            f.font_size = s;
+        if f.font_size != FontSize::Px(s) {
+            f.font_size = FontSize::Px(s);
         }
     }
     for (row, mut n, mut border) in &mut cards {

@@ -1,6 +1,106 @@
 use super::*;
 
 #[test]
+fn hills_opening_cars_have_clear_spawns_and_slow_leader_encounters() {
+    let track = Track::hills().unwrap();
+    assert_eq!(HILLS_HEAVY_END + HILLS_OPENING_CARS, 44);
+    assert_eq!(hills_car_start(0), Some(350.));
+    assert_eq!(hills_car_start(3), Some(2650.));
+    assert_eq!(crate::heavy_traffic::selection(24).unwrap().1, 450.);
+    assert_eq!(crate::heavy_traffic::selection(33).unwrap().1, 2750.);
+    let starts: Vec<_> = (HILLS_HEAVY_END..HILLS_HEAVY_END + HILLS_OPENING_CARS)
+        .map(|i| hills_car_start(i).unwrap())
+        .collect();
+    assert_eq!(starts, [500., 570., 640., 710., 780., 850.]);
+    for &station in &starts {
+        let lane = (track.half_width(station) * 0.48).min(3.1);
+        let (a, _) = track.street_sample(0, station, lane);
+        let (b, _) = track.street_sample(0, station + 70., lane);
+        assert!(a.distance(b) > 8., "opening car envelopes overlap");
+    }
+    assert!(starts[0] - crate::heavy_traffic::selection(24).unwrap().1 > 20.);
+    assert!(crate::heavy_traffic::selection(33).unwrap().1 - hills_car_start(3).unwrap() > 20.);
+}
+
+#[test]
+fn hills_oncoming_motor_car_vetoes_a_physical_semi_pass_until_clear() {
+    let mut app = tests::simulation();
+    app.insert_resource(Track::hills().unwrap());
+    let riders: Vec<_> = app
+        .world_mut()
+        .query_filtered::<Entity, With<Rider>>()
+        .iter(app.world())
+        .collect();
+    for rider in riders {
+        app.world_mut().despawn(rider);
+    }
+    let mut ids = Vec::new();
+    for (progress, speed, rear) in [
+        (5900_f32, 18_f32, 1.95_f32),
+        (5935., 12., 13.4),
+        (6030., -18., 1.95),
+    ] {
+        let track = app.world().resource::<Track>();
+        let direction = speed.signum();
+        let ratio = direction * 3.1 / track.half_width(progress);
+        let (lane, _, _) = civilian_lanes(track, 0, progress, direction, 0, ratio);
+        let (p, q) = track.street_sample(0, progress, lane);
+        ids.push(
+            app.world_mut()
+                .spawn((
+                    Traffic {
+                        route: 0,
+                        progress,
+                        lane,
+                        speed,
+                    },
+                    TrafficYield {
+                        cruise: Some(speed),
+                        lane_ratio: Some(ratio),
+                        ..default()
+                    },
+                    Transform::from_translation(p).with_rotation(q),
+                    RigidBody::KinematicPositionBased,
+                    Collider::compound(vec![(
+                        Vec3::new(0., 0.95, (1.95 - rear) * 0.5),
+                        Quat::IDENTITY,
+                        Collider::cuboid(0.95, 0.9, (1.95 + rear) * 0.5),
+                    )]),
+                ))
+                .id(),
+        );
+    }
+    app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+    for _ in 0..90 {
+        app.update();
+        assert_eq!(
+            app.world()
+                .get::<TrafficYield>(ids[0])
+                .unwrap()
+                .passing
+                .phase,
+            rr_core::civilian::Phase::Follow,
+            "car claimed the oncoming lane before opposing traffic cleared"
+        );
+    }
+    // The opposing car moves naturally through the encounter; after it has
+    // passed, the same solid car/semi pair may claim the oncoming lane.
+    let mut passed = false;
+    for _ in 0..1500 {
+        app.update();
+        let passing = &app.world().get::<TrafficYield>(ids[0]).unwrap().passing;
+        passed |= passing.blend > 0.9;
+        if passed {
+            break;
+        }
+    }
+    assert!(passed, "car did not resume the physical semi pass");
+    for id in ids {
+        assert!(app.world().get::<Collider>(id).is_some());
+    }
+}
+
+#[test]
 fn civilian_passes_slow_vehicle_in_both_course_directions_with_ground_support() {
     for hills in [false, true] {
         for direction in [-1., 1.] {

@@ -49,10 +49,12 @@ impl Identity {
             .iter()
             .map(|m| {
                 let srgb = m.kind == "albedo";
-                let image = server.load_with_settings(
-                    format!("architecture://far_facades/{}", m.path),
-                    move |s: &mut bevy::image::ImageLoaderSettings| s.is_srgb = srgb,
-                );
+                let image = server
+                    .load_builder()
+                    .with_settings(move |s: &mut bevy::image::ImageLoaderSettings| {
+                        s.is_srgb = srgb;
+                    })
+                    .load(format!("architecture://far_facades/{}", m.path));
                 (m.kind.clone(), m.level, image)
             })
             .collect();
@@ -186,7 +188,7 @@ pub fn prepare(
         });
         handles.push(images.add(image));
     }
-    let material = materials
+    let mut material = materials
         .get_mut(&identity.material)
         .expect("facade material");
     material.base_color_texture = Some(handles[0].clone());

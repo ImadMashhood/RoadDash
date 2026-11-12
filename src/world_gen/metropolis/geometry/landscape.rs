@@ -424,10 +424,10 @@ fn shoulders(
     triangles
 }
 fn tuft_height(seed: f32, crop: usize) -> f32 {
-    (0.38 + seed * 0.48)
+    (0.43 + seed * 0.52)
         * match crop {
-            1 => 0.22,
-            2 => 0.65,
+            1 => 0.18,
+            2 => 0.72,
             _ => 1.,
         }
 }
@@ -457,13 +457,14 @@ pub(super) fn spawn(
             let h = height * (0.72 + 0.28 * (angle * 2.7).sin().abs());
             let mid = root + Vec3::Y * h * 0.55 + axis * 0.045;
             let tip = root + Vec3::Y * h + axis * 0.16;
+            let base_width = if t.crop == 1 { 0.014 } else { 0.029 };
             let k = batch.p.len() as u32;
             batch.p.extend(
                 [
-                    root - across * 0.014,
-                    root + across * 0.014,
-                    mid - across * 0.010,
-                    mid + across * 0.010,
+                    root - across * base_width,
+                    root + across * base_width,
+                    mid - across * base_width * 0.72,
+                    mid + across * base_width * 0.72,
                     tip,
                 ]
                 .map(|p| p.to_array()),
@@ -577,8 +578,8 @@ mod tests {
     fn crop_undergrowth_stays_below_flattened_wheat_without_shortening_other_grass() {
         for seed in [0., 0.25, 0.5, 0.75, 1.] {
             assert!(tuft_height(seed, 1) < 0.2);
-            assert_eq!(tuft_height(seed, 0), 0.38 + seed * 0.48);
-            assert_eq!(tuft_height(seed, 2), (0.38 + seed * 0.48) * 0.65);
+            assert_eq!(tuft_height(seed, 0), 0.43 + seed * 0.52);
+            assert_eq!(tuft_height(seed, 2), (0.43 + seed * 0.52) * 0.72);
         }
     }
     #[test]

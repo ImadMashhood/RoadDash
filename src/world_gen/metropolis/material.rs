@@ -15,7 +15,7 @@ pub struct FacadeAtlas {
 }
 impl MaterialExtension for FacadeAtlas {
     fn fragment_shader() -> ShaderRef {
-        "shaders/metropolis_facade.wgsl".into()
+        "shaders/metropolis_facade.wesl".into()
     }
 }
 pub type FacadeMaterial = ExtendedMaterial<StandardMaterial, FacadeAtlas>;

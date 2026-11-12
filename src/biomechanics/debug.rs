@@ -38,7 +38,11 @@ pub(super) fn draw(
         let spec = specs[s.part];
         let color = Color::srgba(0.1, 0.8, 1.0, 0.8);
         if spec.parent.is_none() || spec.size.y < spec.size.z {
-            g.cuboid(t.with_scale(spec.size), color);
+            g.primitive_3d(
+                &Cuboid::from_size(spec.size),
+                Isometry3d::new(t.translation, t.rotation),
+                color,
+            );
         } else {
             let r = spec.size.x.min(spec.size.z) * 0.45;
             g.primitive_3d(
@@ -99,7 +103,7 @@ pub(super) fn draw(
                 m.activation,
                 coordinates(p.rotation.inverse() * t.rotation),
                 coordinates(m.target),
-                p.rotation.inverse() * (v.angvel - parent_velocity.angvel),
+                p.rotation.inverse() * (v.angular - parent_velocity.angular),
                 a.distance(b)
             );
         }

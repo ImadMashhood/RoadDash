@@ -126,7 +126,7 @@ pub fn run(
     if frame == 400 {
         let context = physics.single().expect("mounted survey physics context");
         let target = mount_entity.unwrap();
-        let only_mount = |e| e == target;
+        let only_mount = |e, _: &bevy_rapier3d::rapier::geometry::Collider| e == target;
         state.mounted_collision_hit = context
             .cast_ray(
                 mount + Vec3::Y * 1.35 + Vec3::X * 5.,

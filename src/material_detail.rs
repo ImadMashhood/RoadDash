@@ -211,7 +211,7 @@ pub fn update(
         if let Some(source) = queue.sources.get(&albedo) {
             let maps = source.and_then(|key| queue.ready.get(&key)).cloned();
             if let Some(maps) = maps
-                && let Some(material) = materials.get_mut(id)
+                && let Some(mut material) = materials.get_mut(id)
             {
                 if material.normal_map_texture.is_none() {
                     material.normal_map_texture = Some(maps.normal);
@@ -287,20 +287,20 @@ pub fn paving(
     )>,
 ) {
     let Some(server) = server else { return };
-    let texture = server.load_with_settings(
-        "architecture://materials/concrete_albedo.png",
-        |settings: &mut bevy::image::ImageLoaderSettings| {
+    let texture = server
+        .load_builder()
+        .with_settings(|settings: &mut bevy::image::ImageLoaderSettings| {
             settings.sampler =
                 bevy::image::ImageSampler::Descriptor(bevy::image::ImageSamplerDescriptor {
                     address_mode_u: bevy::image::ImageAddressMode::Repeat,
                     address_mode_v: bevy::image::ImageAddressMode::Repeat,
                     ..bevy::image::ImageSamplerDescriptor::linear()
                 });
-        },
-    );
+        })
+        .load("architecture://materials/concrete_albedo.png");
     for (surface, handle) in &walks {
         if matches!(surface.0, "sidewalk" | "grid_walk")
-            && let Some(material) = materials.get_mut(&handle.0)
+            && let Some(mut material) = materials.get_mut(&handle.0)
         {
             material.base_color = Color::srgb(0.88, 0.87, 0.84);
             material.base_color_texture = Some(texture.clone());

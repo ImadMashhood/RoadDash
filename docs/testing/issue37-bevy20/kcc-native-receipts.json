@@ -1,0 +1,74 @@
+{
+  "gaps": {
+    "case": "gaps",
+    "completed": true,
+    "exit_code": 0,
+    "errors": false,
+    "binary_sha256": "e4497f981b2b8d607997283265d9382c005716ed3c9e481ff7cee58e8e834d93",
+    "functional_only": true,
+    "elapsed_seconds": 31.148213386535645,
+    "physical_foot_crossings": 2,
+    "grounded_ticks": 312,
+    "screenshots": 4
+  },
+  "west-current": {
+    "case": "west-current",
+    "completed": true,
+    "exit_code": 0,
+    "errors": false,
+    "binary_sha256": "e4497f981b2b8d607997283265d9382c005716ed3c9e481ff7cee58e8e834d93",
+    "functional_only": true,
+    "elapsed_seconds": 50.63651752471924,
+    "fixed_recovery_stages": [
+      true,
+      true,
+      true
+    ],
+    "exceptional_recovery": {
+      "counts_first_and_hill": [
+        0,
+        0
+      ],
+      "extended_hills_fixture": true,
+      "penalties_seconds": [
+        0.0,
+        0.0
+      ],
+      "stationary_seconds": [
+        0.0,
+        0.0
+      ],
+      "unassisted_both": true
+    }
+  },
+  "west-baseline": {
+    "case": "west-baseline",
+    "completed": true,
+    "exit_code": 0,
+    "errors": false,
+    "binary_sha256": "e4497f981b2b8d607997283265d9382c005716ed3c9e481ff7cee58e8e834d93",
+    "functional_only": true,
+    "elapsed_seconds": 41.824296712875366,
+    "fixed_recovery_stages": [
+      true,
+      true,
+      true
+    ],
+    "exceptional_recovery": {
+      "counts_first_and_hill": [
+        0,
+        0
+      ],
+      "extended_hills_fixture": true,
+      "penalties_seconds": [
+        0.0,
+        0.0
+      ],
+      "stationary_seconds": [
+        0.0,
+        0.0
+      ],
+      "unassisted_both": true
+    }
+  }
+}

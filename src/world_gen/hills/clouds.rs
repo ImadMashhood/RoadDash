@@ -3,7 +3,6 @@
 use crate::track::Track;
 use bevy::{
     asset::RenderAssetUsages,
-    camera::visibility::NoFrustumCulling,
     image::{ImageSampler, ImageSamplerDescriptor},
     light::NotShadowCaster,
     prelude::*,
@@ -11,7 +10,7 @@ use bevy::{
     shader::ShaderRef,
 };
 
-pub const BANKS: usize = 8;
+pub const BANKS: usize = 14;
 pub const STEPS: u32 = 12;
 pub const RESOLUTION: usize = 48;
 #[derive(Component)]
@@ -69,7 +68,7 @@ fn noise(p: Vec3) -> f32 {
 fn density(uv: Vec3) -> f32 {
     // A union of genuinely three-dimensional rising lobes, not a noise slab.
     // The shared field has a compact, uneven silhouette with a broad base and
-    // distinct taller turrets; rotating/scaling it yields eight spatial clouds.
+    // distinct taller turrets; rotating/scaling it yields spatial cloud banks.
     let mut envelope = 0.0_f32;
     for (center, radius) in [
         (Vec3::new(0.50, 0.28, 0.50), Vec3::new(0.40, 0.19, 0.32)),
@@ -92,7 +91,13 @@ fn density(uv: Vec3) -> f32 {
 fn cloud_transform(track: &Track, index: usize) -> Transform {
     let station = index as f32 * track.length / (BANKS - 1) as f32;
     let (p, q) = track.sample_route(0, station, 0.);
-    let side = if index.is_multiple_of(2) { -260. } else { 320. };
+    let side = if index.is_multiple_of(3) {
+        0.
+    } else if index.is_multiple_of(2) {
+        -190.
+    } else {
+        210.
+    };
     let p = p + q * Vec3::X * side;
     let size = match index % 4 {
         0 => Vec3::new(850., 380., 650.),
@@ -100,9 +105,8 @@ fn cloud_transform(track: &Track, index: usize) -> Transform {
         2 => Vec3::new(760., 400., 620.),
         _ => Vec3::new(950., 440., 780.),
     };
-    // Keep the whole cloud above the highest road, so hills never cut into its
-    // low face. Metropolis and shorter legacy courses need no 12.5 km constant.
-    Transform::from_xyz(p.x, track.bounds.1.y + 470. + (index % 3) as f32 * 55., p.z)
+    // Put some banks over the route, with the low face still above road and roof.
+    Transform::from_xyz(p.x, track.bounds.1.y + 360. + (index % 3) as f32 * 45., p.z)
         .with_scale(size)
         .with_rotation(Quat::from_rotation_y(index as f32 * 0.73))
 }
@@ -147,7 +151,7 @@ pub struct CloudMaterial {
 }
 impl Material for CloudMaterial {
     fn fragment_shader() -> ShaderRef {
-        "shaders/hills_clouds.wgsl".into()
+        "shaders/hills_clouds.wesl".into()
     }
     fn alpha_mode(&self) -> AlphaMode {
         AlphaMode::Blend
@@ -183,10 +187,7 @@ pub fn spawn(
         commands.spawn((
             Name::new(format!("Spatial cumulus cloud {i}")),
             HillsCloud,
-            // Sky volumes remain separate world-space meshes outside the ordinary
-            // scenery culling radius. Bevy's infinite reverse-Z projection keeps
-            // distant clouds visible; no global scenery distance is increased.
-            NoFrustumCulling,
+            // Normal frustum culling bounds the extra banks' pixel cost.
             Mesh3d(cube.clone()),
             MeshMaterial3d(material),
             transform,
@@ -251,15 +252,15 @@ mod tests {
             for i in 0..BANKS {
                 let t = cloud_transform(&track, i);
                 assert!(t.translation.is_finite() && t.rotation.is_finite());
-                assert!(t.translation.y - t.scale.y * 0.5 > track.bounds.1.y + 200.);
+                assert!(t.translation.y - t.scale.y * 0.5 > track.bounds.1.y + 120.);
                 assert!(t.scale.y / t.scale.x > 0.4);
                 assert!(t.scale.x <= 1050. && t.scale.y <= 460. && t.scale.z <= 780.);
                 let station = i as f32 * track.length / (BANKS - 1) as f32;
                 let expected = track.sample_route(0, station, 0.).0;
-                assert!((t.translation - expected).xz().length() <= 321.);
+                assert!((t.translation - expected).xz().length() <= 211.);
             }
         }
-        assert_eq!(BANKS, 8);
+        assert_eq!(BANKS, 14);
         assert_eq!(RESOLUTION.pow(3), 110592);
     }
 }

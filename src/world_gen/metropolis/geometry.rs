@@ -1149,8 +1149,10 @@ mod tests {
             (end - start).dot(-lateral)
         );
         if legacy_down {
+            // Rapier's contact trajectory changed across the engine migration, but
+            // the control still fails to reach the road and stalls for long periods.
             assert!(
-                (end - start).dot(-lateral) < 10. && worst_stall > 120,
+                reached_frame.is_none() && worst_stall > 120,
                 "old unconditional down-drive control must reproduce the rim trap"
             );
         } else if wall {
@@ -1381,11 +1383,23 @@ mod tests {
         let (control, with_fixed) = static_contact_trace(true);
         let (optimized, without_fixed) = static_contact_trace(false);
         assert_eq!((with_fixed, without_fixed), (3, 1));
+        let mut max_translation_m = 0.0_f32;
+        let mut max_rotation_rad = 0.0_f32;
+        let mut max_linear_mps = 0.0_f32;
+        let mut max_angular_radps = 0.0_f32;
         for ((a, av), (b, bv)) in control.iter().zip(optimized) {
-            assert!(a.translation.abs_diff_eq(b.translation, 0.001));
-            assert!(a.rotation.abs_diff_eq(b.rotation, 0.001));
-            assert!(av.linvel.abs_diff_eq(bv.linvel, 0.001));
-            assert!(av.angvel.abs_diff_eq(bv.angvel, 0.001));
+            max_translation_m = max_translation_m.max(a.translation.distance(b.translation));
+            max_rotation_rad =
+                max_rotation_rad.max(2.0 * a.rotation.dot(b.rotation).abs().clamp(0.0, 1.0).acos());
+            max_linear_mps = max_linear_mps.max(av.linear.distance(bv.linear));
+            max_angular_radps = max_angular_radps.max(av.angular.distance(bv.angular));
         }
+        assert!(
+            max_translation_m < 0.001
+                && max_rotation_rad < 0.001
+                && max_linear_mps < 0.001
+                && max_angular_radps < 0.001,
+            "static collider trajectory divergence: translation={max_translation_m:.6}m rotation={max_rotation_rad:.6}rad linear={max_linear_mps:.6}m/s angular={max_angular_radps:.6}rad/s"
+        );
     }
 }

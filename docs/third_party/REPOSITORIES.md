@@ -1215,3 +1215,23 @@ Fedora perf7.3.3 RPM was downloaded and extracted under/tmp only for local CPU
 sampling; no package source/binary is redistributed. User-cycle flat sampling
 works; callchain/DWARF sampling was denied by host policy, which was preserved.
 Zero-lost flat samples support hypotheses, not full function-call attribution.
+
+## 2026-11-11 — Bevy 0.20 migration investigation (ADR149, issue #37)
+
+Inspected official Bevy 0.18, 0.19 and 0.20 release/migration guides
+(https://bevy.org/learn/migration-guides/0-17-to-0-18/,
+https://bevy.org/learn/migration-guides/0-18-to-0-19/,
+https://bevy.org/learn/migration-guides/0-19-to-0-20/), the crates.io Bevy
+0.20.1 manifest (Rust 1.97.1), and bevy_rapier3d 0.37.0 manifest (Bevy 0.20).
+Bevy source is MIT OR Apache-2.0; Rapier adapter source is Apache-2.0. Their
+API guidance was applied to RoadDash-owned code, without copying Bevy or Rapier
+reference implementations or media. Upstream renderer benchmarks are not a
+RoadDash frame-time measurement.
+
+R11 CPAL follow-up: inspected crates.io CPAL 0.17.3 and its Apache-2.0 license
+(https://github.com/RustAudio/cpal/blob/v0.17.3/LICENSE). Bevy 0.20 resolves
+Rodio 0.22.2 and CPAL 0.17.3. CPAL still routes an ALSA poll POLLERR to the
+error callback before its existing XRUN recovery; the old 0.15.3 patch would
+be unused. Vendored the 0.17.3 crate under `vendor/cpal-0.17.3` with its license
+and ported only the poll-level XRUN/suspend recovery and error backoff. This is
+adapted Apache-2.0 source. Native audio and device-loss validation are open.
