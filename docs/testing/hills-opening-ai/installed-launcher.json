@@ -1,0 +1,6 @@
+{
+  "path": "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+  "binary_sha256": "d2979c3148102b196e3c06e9ed74af7537df1b1c31aa0458d42fe425d5d668cd",
+  "backup": "/home/imad/Documents/ChatGPT/RoadRash/output/testing/rival-race-pressure/previous-launcher-binary",
+  "command": "./play-bevy20.sh --hills"
+}

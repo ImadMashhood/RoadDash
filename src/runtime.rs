@@ -130,6 +130,21 @@ fn tick(mut clock: ResMut<SimulationClock>, race: Res<Race>) {
 fn boot(mut next: ResMut<NextState<AppScreen>>) {
     next.set(AppScreen::Loading);
 }
+#[derive(Default)]
+struct SceneWarmup {
+    meshes: usize,
+    stable: u8,
+}
+impl SceneWarmup {
+    fn observe(&mut self, meshes: usize) -> bool {
+        if meshes != self.meshes {
+            self.meshes = meshes;
+            self.stable = 0;
+        }
+        self.stable = self.stable.saturating_add(1);
+        self.stable >= 8
+    }
+}
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 fn loaded(
     content: Res<crate::content::GameContent>,
@@ -145,15 +160,16 @@ fn loaded(
     server: Option<Res<AssetServer>>,
     metro: Option<Res<crate::world_gen::metropolis::facades::Kit>>,
     mut last_wait: Local<Option<&'static str>>,
-    props: Query<
+    roots: Query<(
         &WorldAssetRoot,
-        Or<(
-            With<crate::props::PropVisual>,
-            With<crate::props::ActorBinding>,
-        )>,
-    >,
+        Option<&bevy::world_serialization::WorldInstance>,
+    )>,
+    spawner: Option<Res<bevy::world_serialization::WorldInstanceSpawner>>,
+    render_meshes: Query<(), With<Mesh3d>>,
+    mut warmup: Local<SceneWarmup>,
 ) {
     let mut waiting = |reason| {
+        warmup.stable = 0;
         if *last_wait != Some(reason) {
             crate::diagnostics::loading::mark(reason);
             *last_wait = Some(reason);
@@ -194,7 +210,7 @@ fn loaded(
         return;
     }
     if let Some(server) = &server {
-        for scene in &props {
+        for (scene, instance) in &roots {
             if let Some(bevy::asset::LoadState::Failed(error)) = server.get_load_state(scene.id()) {
                 panic!("Required prop mesh failed to load: {error}");
             }
@@ -202,7 +218,17 @@ fn loaded(
                 waiting("wait_props");
                 return;
             }
+            if let Some(spawner) = spawner.as_ref()
+                && !instance.is_some_and(|i| spawner.instance_is_ready(**i))
+            {
+                waiting("wait_scene_instances");
+                return;
+            }
         }
+    }
+    if server.is_some() && !warmup.observe(render_meshes.iter().len()) {
+        crate::diagnostics::loading::mark("wait_scene_settle");
+        return;
     }
     content.0.validate().expect("validated game content");
     crate::diagnostics::loading::mark("required_assets_ready");
@@ -525,5 +551,24 @@ impl Plugin for RoadAudioPlugin {
         app.init_resource::<crate::sound::Muted>()
             .add_systems(Startup, crate::sound::setup.in_set(StartupSet::Audio))
             .add_systems(Update, crate::sound::update);
+    }
+}
+
+#[cfg(test)]
+mod startup_warmup_tests {
+    use super::*;
+    #[test]
+    fn late_mesh_expansion_restarts_the_loading_settle_window() {
+        let mut warm = SceneWarmup::default();
+        for _ in 0..6 {
+            assert!(!warm.observe(100));
+        }
+        assert!(!warm.observe(1000));
+        for _ in 0..6 {
+            assert!(!warm.observe(1000));
+        }
+        assert!(warm.observe(1000));
+        warm.stable = 0; // A pending instance/material resets readiness.
+        assert!(!warm.observe(1000));
     }
 }

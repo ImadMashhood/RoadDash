@@ -1,0 +1,129 @@
+[
+  {
+    "name": "weave-cache-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 2.1987123489379883
+  },
+  {
+    "name": "weave-cache-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.4070916175842285
+  },
+  {
+    "name": "weave-cache-workspace-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit_code": 101,
+    "elapsed_seconds": 417.9188642501831
+  },
+  {
+    "name": "weave-cache-release-build",
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 417.9206233024597
+  },
+  {
+    "name": "weave-cache-domain-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "rr_core",
+      "-p",
+      "rr_content"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 28.60086989402771
+  },
+  {
+    "name": "weave-cache-debug-build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 24.667593717575073
+  },
+  {
+    "name": "native-cache-0",
+    "command": [
+      "python3",
+      "tools/run_racer_ai_checks.py",
+      "--binary",
+      "/home/imad/Documents/ChatGPT/RoadRash/output/testing/hills-weaving-startup/road-dash-weave-cache",
+      "--case",
+      "race",
+      "--track",
+      "hills",
+      "--frames",
+      "3600",
+      "--label",
+      "weave-cache-0"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 89.40446472167969
+  },
+  {
+    "name": "native-cache-1",
+    "command": [
+      "python3",
+      "tools/run_racer_ai_checks.py",
+      "--binary",
+      "/home/imad/Documents/ChatGPT/RoadRash/output/testing/hills-weaving-startup/road-dash-weave-cache",
+      "--case",
+      "race",
+      "--track",
+      "hills",
+      "--frames",
+      "3600",
+      "--label",
+      "weave-cache-1"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 88.18400597572327
+  },
+  {
+    "name": "native-recovery",
+    "command": [
+      "python3",
+      "tools/run_racer_ai_checks.py",
+      "--binary",
+      "/home/imad/Documents/ChatGPT/RoadRash/output/testing/hills-weaving-startup/road-dash-weave-cache",
+      "--case",
+      "recovery",
+      "--track",
+      "hills",
+      "--label",
+      "weave-cache-recovery"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 38.49417448043823
+  }
+]

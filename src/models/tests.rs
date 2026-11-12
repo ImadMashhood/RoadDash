@@ -748,7 +748,11 @@ fn patrol_presentation_is_exclusive_and_persists_on_wrecks_without_physics() {
             );
         }
     }
-    // Actual officer factory selects the reserved identity, never a roster swatch.
+    // Explicit opt-in: ordinary playtests temporarily omit police. This fixture
+    // still verifies the real officer factory and reserved visual identity.
+    app.world_mut()
+        .resource_mut::<crate::police::Police>()
+        .deployment_enabled = true;
     app.world_mut()
         .run_system_once(crate::police::setup)
         .unwrap();

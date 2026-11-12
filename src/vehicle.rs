@@ -298,10 +298,11 @@ pub fn forces(
             limit.min(r.ai_profile.cruise_mps())
         } else {
             limit
-                .min(rr_core::pursuit::rival_race_pace(
+                .min(rr_core::pursuit::rival_drive_ceiling(
                     r.ai_profile,
                     rr_core::cast::character(r.id).map_or(1., |c| c.pace),
                     p.top_speed,
+                    r.combat_mind.motor_request(p.top_speed),
                 ))
                 .min(rr_core::pursuit::race_corner_speed(
                     track.curvature_route(r.route, r.progress),

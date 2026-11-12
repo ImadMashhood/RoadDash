@@ -1,0 +1,7 @@
+2026-11-12T04:32:49.537986Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/rival-pace-combat/police-optin-contract/performance/performance-2133739.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+Police native: normal input speeding / warning / pursuit / escape scenario
+Police native: temporary solid LOS barrier behind moving player; wait for real loss/search/escape
+Police native: stopped crash; preserve falling/getup before foot arrest
+Police native: physical foot chase and safe arrest observed; no race/save payout

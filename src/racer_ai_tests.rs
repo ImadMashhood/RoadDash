@@ -517,3 +517,477 @@ fn racer_avoids_actual_incoming_civilian_lane_change() {
     assert!(minimum > 2.);
     assert!(r.progress > 1500. && r.speed > 5.);
 }
+
+/// A long, unobstructed physical straight isolates engine drive from curves,
+/// player mistakes and civilian planner safety braking.
+fn straight_simulation() -> App {
+    let mut app = simulation();
+    let mut definition = app.world().resource::<Track>().definition.clone();
+    definition.closed = false;
+    definition.control_points.truncate(4);
+    for (i, p) in definition.control_points.iter_mut().enumerate() {
+        p.position = [0., 0.1, i as f32 * 2000.];
+        p.bank_degrees = 0.;
+        p.half_width = 8.;
+    }
+    definition.checkpoints.last_mut().unwrap().fraction = 1.;
+    app.insert_resource(Track::from_definition(definition).unwrap());
+    app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+    let world = app.world_mut();
+    let riders: Vec<_> = world
+        .query_filtered::<Entity, With<Rider>>()
+        .iter(world)
+        .collect();
+    for entity in riders {
+        world.despawn(entity);
+    }
+    let floors: Vec<_> = world
+        .query_filtered::<Entity, With<world::Ground>>()
+        .iter(world)
+        .collect();
+    for entity in floors {
+        world
+            .entity_mut(entity)
+            .insert(Collider::cuboid(10000., 0.5, 10000.));
+    }
+    world.resource_mut::<Race>().phase = Phase::Racing;
+    world.resource_mut::<Race>().elapsed = 10.;
+    app
+}
+
+fn straight_rider(app: &mut App, id: usize, station: f32, lane: f32) -> Entity {
+    let mut rider = Rider::new(id);
+    rider.progress = station;
+    rider.lane = lane;
+    let (p, q) = app.world().resource::<Track>().sample(station, lane);
+    app.world_mut()
+        .spawn((
+            rider,
+            Transform::from_translation(p).with_rotation(q),
+            Visibility::Visible,
+            recovery::bike_body(),
+        ))
+        .id()
+}
+
+#[test]
+fn physical_rival_reaches_competitive_unboosted_pace_at_all_render_rates() {
+    let mut rival_speeds = vec![];
+    for fps in [30, 60, 120] {
+        let mut speeds = vec![];
+        for id in [0, 3] {
+            let mut app = straight_simulation();
+            app.insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+                std::time::Duration::from_secs_f64(1. / fps as f64),
+            ));
+            let owner = straight_rider(&mut app, id, 200., 2.);
+            if id == 0 {
+                app.world_mut()
+                    .resource_mut::<ButtonInput<KeyCode>>()
+                    .press(KeyCode::KeyW);
+            }
+            for _ in 0..fps * 20 {
+                app.update();
+            }
+            let r = app.world().get::<Rider>(owner).unwrap();
+            println!(
+                "AI-PACE fps={fps} id={id} speed={} progress={} throttle={}",
+                r.speed,
+                r.progress,
+                r.drive_intent.throttle_strength()
+            );
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            assert!(r.progress > 650. && r.speed > 40. && r.speed <= 55.);
+            speeds.push(r.speed);
+        }
+        assert!(speeds[1] >= speeds[0] * 0.90, "rival/player {speeds:?}");
+        rival_speeds.push(speeds[1]);
+    }
+    assert!(
+        rival_speeds
+            .iter()
+            .all(|speed| (speed - rival_speeds[0]).abs() < 0.5)
+    );
+}
+
+#[test]
+fn physical_fighter_starts_and_lands_an_authored_strike_without_injected_attack_events() {
+    for (weapon, initial_serial) in [
+        (Some(rr_core::weapons::Weapon::Chain), 0),
+        (None, 0),
+        (None, 1),
+    ] {
+        let mut app = straight_simulation();
+        let owner = straight_rider(&mut app, 1, 200., 2.);
+        let victim = straight_rider(&mut app, 2, 200.4, 3.8);
+        // Let the ordinary adapter attach both solid chassis before seeding a moving
+        // encounter. No attack/contact messages or hit counters are injected.
+        app.update();
+        for entity in [owner, victim] {
+            let q = app.world().get::<Transform>(entity).unwrap().rotation;
+            let velocity = q * Vec3::Z * 38.;
+            let mut r = app.world_mut().get_mut::<Rider>(entity).unwrap();
+            r.speed = 38.;
+            r.motion_velocity = velocity;
+            r.immunity = 0.;
+            if entity == owner {
+                r.weapon = weapon;
+                // Select both real unarmed action phases without injecting intents.
+                r.attack_serial = initial_serial;
+            }
+            let mut state = app
+                .world_mut()
+                .get_mut::<crate::vehicle::BikeState>(entity)
+                .unwrap();
+            state.velocity = velocity;
+            state.impact_velocity = velocity;
+            state.was_riding = true;
+            app.world_mut().get_mut::<Velocity>(entity).unwrap().linear = velocity;
+        }
+        let mut attempts = 0;
+        let mut confirmed = false;
+        for _ in 0..240 {
+            app.update();
+            let r = app.world().get::<Rider>(owner).unwrap();
+            attempts = attempts.max(r.attack_serial.saturating_sub(initial_serial));
+            let v = app.world().get::<Rider>(victim).unwrap();
+            confirmed |= v.hits.count > 0 || v.hit_reaction.is_some();
+            if confirmed {
+                break;
+            }
+        }
+        let r = app.world().get::<Rider>(owner).unwrap();
+        let v = app.world().get::<Rider>(victim).unwrap();
+        println!(
+            "AI-ENGAGE weapon={weapon:?} initial_serial={initial_serial} attempts={attempts} confirmed={confirmed} gap={} lane={} speeds={}/{} decisions={:?}/{:?}",
+            v.progress - r.progress,
+            v.lane - r.lane,
+            r.speed,
+            v.speed,
+            r.combat_mind.decision,
+            v.combat_mind.decision
+        );
+        assert!(attempts > 0 && confirmed);
+        assert!(r.progress > 200. && v.progress > 200. && r.speed > 20. && v.speed > 20.);
+        assert!(v.combat_mind.incident_count() > 0);
+        if weapon.is_none() {
+            assert_eq!(v.hit_reaction.unwrap().kicking, initial_serial == 0);
+            assert_eq!(v.hits.count > 0, initial_serial != 0);
+        }
+    }
+}
+
+#[test]
+fn launch_grid_holds_its_line_and_accelerates_without_police() {
+    // Use the real alternating authoring grids, not a synthetic single-file
+    // compression that legitimately needs avoidance as acceleration differs.
+    for source in [Track::metropolis().unwrap(), Track::hills().unwrap()] {
+        let spawns = source.definition.spawns;
+        let mut app = straight_simulation();
+        app.world_mut().resource_mut::<Race>().elapsed = 0.;
+        let mut owners = vec![];
+        for (id, spawn) in spawns.iter().enumerate().skip(1) {
+            owners.push(straight_rider(
+                &mut app,
+                id,
+                600. + spawn.distance,
+                spawn.lane,
+            ));
+        }
+        let mut max_displacement = 0_f32;
+        let mut max_steer = 0_f32;
+        let mut rollout_drift = 0_f32;
+        let mut rollout_steer = 0_f32;
+        for _ in 0..180 {
+            app.update();
+            for owner in &owners {
+                let r = app.world().get::<Rider>(*owner).unwrap();
+                max_displacement = max_displacement.max((r.lane - spawns[r.id].lane).abs());
+                if max_steer <= 0.15 && r.drive_intent.steer.abs() > 0.15 {
+                    println!(
+                        "AI-LAUNCH first-steer id={} elapsed={} speed={} lane={} plan={:?}",
+                        r.id,
+                        app.world().resource::<Race>().elapsed,
+                        r.speed,
+                        r.lane,
+                        r.ai_plan
+                    );
+                }
+                max_steer = max_steer.max(r.drive_intent.steer.abs());
+                if app.world().resource::<Race>().elapsed <= 1.5 {
+                    rollout_drift = rollout_drift.max((r.lane - spawns[r.id].lane).abs());
+                    rollout_steer = rollout_steer.max(r.drive_intent.steer.abs());
+                }
+                assert_eq!(r.health, 100.);
+                assert_eq!(
+                    app.world().get::<Recovery>(*owner).unwrap().stage,
+                    RecoveryStage::Riding
+                );
+            }
+        }
+        println!("AI-LAUNCH maximum_lane_drift={max_displacement} maximum_steer={max_steer}");
+        // Initial rollout stays calm; a real closing-speed hazard may request
+        // a gradual pass once moving. Never force zero steering through it.
+        assert!(rollout_drift < 0.4 && rollout_steer < 0.15);
+        assert!(max_displacement < 1.0 && max_steer < 0.35);
+        for owner in owners {
+            let r = app.world().get::<Rider>(owner).unwrap();
+            assert!(
+                r.speed > 20.,
+                "id={} speed={} plan={:?}",
+                r.id,
+                r.speed,
+                r.ai_plan
+            );
+        }
+    }
+}
+
+#[test]
+fn disabled_police_setup_and_retry_leave_no_officer_or_patrol_hud() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = simulation();
+    app.world_mut()
+        .resource_mut::<crate::police::Police>()
+        .deployment_enabled = false;
+    app.world_mut()
+        .run_system_once(crate::police::setup)
+        .unwrap();
+    for _ in 0..5 {
+        app.update();
+    }
+    app.world_mut()
+        .resource_mut::<ButtonInput<KeyCode>>()
+        .press(KeyCode::KeyR);
+    for _ in 0..5 {
+        app.update();
+    }
+    let world = app.world_mut();
+    assert!(world.query::<&Rider>().iter(world).all(|r| !r.police));
+    assert!(world.resource::<crate::police::Police>().hud().is_empty());
+    assert!(
+        !world
+            .resource::<crate::police::Police>()
+            .mind
+            .state
+            .wanted()
+    );
+}
+
+#[test]
+fn physical_fighter_closes_twenty_metres_and_lands_a_hit_with_normal_engine_force() {
+    for (gap, lane_a, lane_b, speed) in [(20., 2., 3.8, 40.), (4., -3., 2., 25.)] {
+        let mut app = straight_simulation();
+        let owner = straight_rider(&mut app, 10, 200., lane_a);
+        let victim = straight_rider(&mut app, 14, 200. + gap, lane_b);
+        app.update();
+        for entity in [owner, victim] {
+            let q = app.world().get::<Transform>(entity).unwrap().rotation;
+            let velocity = q * Vec3::Z * speed;
+            let mut r = app.world_mut().get_mut::<Rider>(entity).unwrap();
+            r.speed = speed;
+            r.motion_velocity = velocity;
+            r.immunity = 0.;
+            if entity == owner {
+                r.weapon = Some(rr_core::weapons::Weapon::Chain);
+            }
+            let mut state = app
+                .world_mut()
+                .get_mut::<crate::vehicle::BikeState>(entity)
+                .unwrap();
+            state.velocity = velocity;
+            state.impact_velocity = velocity;
+            state.was_riding = true;
+            app.world_mut().get_mut::<Velocity>(entity).unwrap().linear = velocity;
+        }
+        let mut confirmed = false;
+        for _ in 0..1200 {
+            app.update();
+            let v = app.world().get::<Rider>(victim).unwrap();
+            confirmed |= v.hits.count > 0 || v.hit_reaction.is_some();
+            if confirmed {
+                break;
+            }
+        }
+        let r = app.world().get::<Rider>(owner).unwrap();
+        let v = app.world().get::<Rider>(victim).unwrap();
+        println!(
+            "AI-CATCHUP attack_serial={} confirmed={confirmed} gap={} speeds={}/{}",
+            r.attack_serial,
+            v.progress - r.progress,
+            r.speed,
+            v.speed
+        );
+        assert!(confirmed && r.attack_serial > 0);
+        assert!(r.speed > 12. && v.speed > 12. && r.speed <= 55.);
+    }
+}
+
+#[test]
+fn opted_in_officer_remains_solid_traffic_without_becoming_a_rival_combat_target() {
+    let mut app = straight_simulation();
+    let fighter = straight_rider(&mut app, 10, 200., 2.);
+    let officer = straight_rider(&mut app, crate::police::OFFICER_ID, 202., 3.8);
+    let rival = straight_rider(&mut app, 14, 218., -2.);
+    app.update();
+    for entity in [fighter, officer, rival] {
+        let q = app.world().get::<Transform>(entity).unwrap().rotation;
+        let velocity = q * Vec3::Z * 25.;
+        let mut r = app.world_mut().get_mut::<Rider>(entity).unwrap();
+        r.speed = 25.;
+        r.motion_velocity = velocity;
+        let mut state = app
+            .world_mut()
+            .get_mut::<crate::vehicle::BikeState>(entity)
+            .unwrap();
+        state.velocity = velocity;
+        state.was_riding = true;
+        app.world_mut().get_mut::<Velocity>(entity).unwrap().linear = velocity;
+    }
+    for _ in 0..10 {
+        app.update();
+    }
+    assert_eq!(
+        app.world()
+            .get::<Rider>(fighter)
+            .unwrap()
+            .combat_mind
+            .target_id(),
+        Some(14)
+    );
+    assert!(app.world().get::<Collider>(officer).is_some());
+    assert!(app.world().get::<RigidBody>(officer).is_some());
+}
+
+#[test]
+fn launch_checks_a_stationary_rider_before_using_the_clear_road_fast_path() {
+    let mut app = straight_simulation();
+    app.world_mut().resource_mut::<Race>().elapsed = 0.;
+    let owner = straight_rider(&mut app, 10, 200., 2.);
+    let blocker = straight_rider(&mut app, 0, 204., 2.);
+    for _ in 0..5 {
+        app.update();
+        let r = app.world().get::<Rider>(owner).unwrap();
+        assert!(r.ai_plan.is_some_and(|p| p.avoiding));
+        assert!(!r.drive_intent.throttle);
+        assert_eq!(r.health, 100.);
+    }
+    assert!(app.world().get::<Collider>(blocker).is_some());
+    assert!(app.world().get::<Rider>(owner).unwrap().speed < 0.5);
+}
+
+#[test]
+fn hills_rival_physically_clears_two_solid_oncoming_cars() {
+    #[derive(Component)]
+    struct Counterflow {
+        station: f32,
+        lane: f32,
+    }
+    fn move_cars(
+        track: Res<Track>,
+        mut cars: Query<(&mut Counterflow, &mut Transform, &mut Velocity)>,
+    ) {
+        for (mut car, mut pose, mut velocity) in &mut cars {
+            car.station -= 13. / 60.;
+            let (p, q) = track.sample(car.station, car.lane);
+            *pose = Transform::from_translation(p)
+                .with_rotation(q * Quat::from_rotation_y(std::f32::consts::PI));
+            velocity.linear = q * Vec3::Z * -13.;
+        }
+    }
+    let mut app = straight_simulation();
+    let hills = Track::hills().unwrap();
+    let mut vertices = vec![];
+    for station in (-300..=1000).step_by(5) {
+        for lane in [-10., 10.] {
+            vertices.push(hills.sample(station as f32, lane).0);
+        }
+    }
+    let mut triangles = vec![];
+    for i in 0..vertices.len() / 2 - 1 {
+        let a = (i * 2) as u32;
+        triangles.extend([[a, a + 2, a + 1], [a + 1, a + 2, a + 3]]);
+    }
+    app.insert_resource(hills);
+    let world = app.world_mut();
+    let floors: Vec<_> = world
+        .query_filtered::<Entity, With<world::Ground>>()
+        .iter(world)
+        .collect();
+    for floor in floors {
+        world.entity_mut(floor).insert((
+            Collider::trimesh(vertices.clone(), triangles.clone()).unwrap(),
+            Transform::IDENTITY,
+        ));
+    }
+    let owner = straight_rider(&mut app, 3, -100., -1.8);
+    let mut cars = vec![];
+    for (station, lane) in [(160., -1.8), (180., 1.8)] {
+        let (p, q) = app.world().resource::<Track>().sample(station, lane);
+        cars.push(
+            app.world_mut()
+                .spawn((
+                    Counterflow { station, lane },
+                    crate::environment::CrossTraffic,
+                    Transform::from_translation(p)
+                        .with_rotation(q * Quat::from_rotation_y(std::f32::consts::PI)),
+                    Velocity::linear(q * Vec3::Z * -13.),
+                    RigidBody::KinematicPositionBased,
+                    Collider::compound(vec![(
+                        Vec3::Y * 0.95,
+                        Quat::IDENTITY,
+                        Collider::cuboid(0.95, 0.9, 1.95),
+                    )]),
+                    ActiveEvents::COLLISION_EVENTS,
+                ))
+                .id(),
+        );
+    }
+    app.add_systems(FixedUpdate, move_cars.before(drive));
+    app.update();
+    let (_, q) = app.world().resource::<Track>().sample(-100., -1.8);
+    let velocity = q * Vec3::Z * 35.;
+    {
+        let mut rider = app.world_mut().get_mut::<Rider>(owner).unwrap();
+        rider.speed = 35.;
+        rider.motion_velocity = velocity;
+        rider.attack = 1000.;
+    }
+    {
+        let mut state = app
+            .world_mut()
+            .get_mut::<crate::vehicle::BikeState>(owner)
+            .unwrap();
+        state.velocity = velocity;
+        state.impact_velocity = velocity;
+        state.was_riding = true;
+    }
+    app.world_mut().get_mut::<Velocity>(owner).unwrap().linear = velocity;
+    let mut passed = false;
+    let mut max_bank = 0_f32;
+    for _ in 0..600 {
+        app.update();
+        let r = app.world().get::<Rider>(owner).unwrap();
+        max_bank = max_bank.max(r.drive_intent.steer.abs());
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().stage,
+            RecoveryStage::Riding
+        );
+        assert_eq!(r.health, 100.);
+        passed = cars
+            .iter()
+            .all(|car| r.progress > app.world().get::<Counterflow>(*car).unwrap().station + 15.);
+        if passed {
+            break;
+        }
+    }
+    let r = app.world().get::<Rider>(owner).unwrap();
+    println!(
+        "HILLS-PAIR passed={passed} progress={} speed={} lane={} max_bank={max_bank}",
+        r.progress, r.speed, r.lane
+    );
+    assert!(passed && r.speed > 25. && max_bank > 0.01);
+}

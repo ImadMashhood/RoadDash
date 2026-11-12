@@ -1,0 +1,149 @@
+{
+  "control": {
+    "bins": [
+      {
+        "elapsed": 14.9832763671875,
+        "frame": 1080,
+        "median_progress_m": 343.91595458984375,
+        "median_kmh": 132.11858139038088,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 29.983047485351562,
+        "frame": 1980,
+        "median_progress_m": 627.7079162597656,
+        "median_kmh": 53.942335510253905,
+        "stopped": [
+          5,
+          7,
+          10
+        ],
+        "recovering": []
+      },
+      {
+        "elapsed": 44.982818603515625,
+        "frame": 2880,
+        "median_progress_m": 835.7346496582031,
+        "median_kmh": 69.52699127197266,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 59.98258972167969,
+        "frame": 3780,
+        "median_progress_m": 1370.6004638671875,
+        "median_kmh": 144.70563812255858,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 89.98807525634766,
+        "frame": 5580,
+        "median_progress_m": 2671.3416748046875,
+        "median_kmh": 142.01487350463867,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 116.99384307861328,
+        "frame": 7200,
+        "median_progress_m": 3661.1766357421875,
+        "median_kmh": 130.13313903808594,
+        "stopped": [],
+        "recovering": []
+      }
+    ],
+    "stopped_rider_samples": 7,
+    "median_opening_kmh": 114.83668899536133,
+    "first_sample_past_city": {
+      "1": 41.98286437988281,
+      "2": 35.98295593261719,
+      "3": 50.98272705078125,
+      "4": 41.98286437988281,
+      "5": 71.9842300415039,
+      "6": 41.98286437988281,
+      "7": 74.98487091064453,
+      "8": 44.982818603515625,
+      "9": 74.98487091064453,
+      "10": 74.98487091064453,
+      "11": 62.9825439453125,
+      "12": 68.98358917236328,
+      "13": 68.98358917236328,
+      "14": 65.98294830322266
+    }
+  },
+  "candidate": {
+    "bins": [
+      {
+        "elapsed": 14.9832763671875,
+        "frame": 1080,
+        "median_progress_m": 387.85032653808594,
+        "median_kmh": 154.88706665039064,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 29.983047485351562,
+        "frame": 1980,
+        "median_progress_m": 1038.4718017578125,
+        "median_kmh": 159.97394943237305,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 44.982818603515625,
+        "frame": 2880,
+        "median_progress_m": 1661.7034912109375,
+        "median_kmh": 154.13678283691405,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 59.98258972167969,
+        "frame": 3780,
+        "median_progress_m": 2312.450439453125,
+        "median_kmh": 147.23703918457034,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 89.98807525634766,
+        "frame": 5580,
+        "median_progress_m": 3418.091796875,
+        "median_kmh": 130.21408081054688,
+        "stopped": [],
+        "recovering": []
+      },
+      {
+        "elapsed": 116.99384307861328,
+        "frame": 7200,
+        "median_progress_m": 4422.57666015625,
+        "median_kmh": 128.49754257202147,
+        "stopped": [],
+        "recovering": [
+          3
+        ]
+      }
+    ],
+    "stopped_rider_samples": 0,
+    "median_opening_kmh": 155.80735702514647,
+    "first_sample_past_city": {
+      "1": 38.98291015625,
+      "2": 35.98295593261719,
+      "3": 41.98286437988281,
+      "4": 56.982635498046875,
+      "5": 41.98286437988281,
+      "6": 38.98291015625,
+      "7": 50.98272705078125,
+      "8": 38.98291015625,
+      "9": 41.98286437988281,
+      "10": 41.98286437988281,
+      "11": 41.98286437988281,
+      "12": 44.982818603515625,
+      "13": 41.98286437988281,
+      "14": 41.98286437988281
+    }
+  },
+  "limits": "Matched scripted all-AI race samples. Not literal W human control, full-race completion, human challenge or a performance benchmark."
+}

@@ -16,6 +16,9 @@ pub const OFFICER_ID: usize = 15;
 #[derive(Resource)]
 pub struct Police {
     pub rules: rr_core::police::Rules,
+    pub present: bool,
+    /// Launch-only opt-in while police traffic flow is under investigation.
+    pub deployment_enabled: bool,
     pub mind: Mind,
     pub target: Option<(Target, Vec3)>,
     pub foot_goal: Option<Vec3>,
@@ -35,6 +38,9 @@ impl Default for Police {
     fn default() -> Self {
         Self {
             rules: rr_content::police::builtin(),
+            present: false,
+            deployment_enabled: std::env::var("ROADDASH_POLICE").as_deref() == Ok("1")
+                || std::env::args().any(|arg| arg == "--police-smoke"),
             mind: default(),
             target: None,
             foot_goal: None,
@@ -56,7 +62,11 @@ impl Police {
     pub fn hud(&self) -> String {
         match self.mind.state {
             State::Patrol | State::Return => {
-                format!("POLICE / LIMIT {:.0} KM/H", self.rules.speed_limit * 3.6)
+                if self.present {
+                    format!("POLICE / LIMIT {:.0} KM/H", self.rules.speed_limit * 3.6)
+                } else {
+                    String::new()
+                }
             }
             State::Warning => format!(
                 "POLICE WARNING / COMPLY IN {:.1}s / SLOW DOWN & STOP FIGHTING",
@@ -115,7 +125,10 @@ impl Police {
         )
     }
 }
-pub fn setup(mut commands: Commands, art: Res<Art>, track: Res<Track>) {
+pub fn setup(mut commands: Commands, art: Res<Art>, track: Res<Track>, police: Res<Police>) {
+    if !police.deployment_enabled {
+        return;
+    }
     let mut r = Rider::new(OFFICER_ID);
     r.palette_index = crate::models::OFFICER_PALETTE;
     r.progress = track.length * rr_content::police::builtin().patrol_fraction;
@@ -162,8 +175,11 @@ pub fn think(
         return;
     };
     let Some((officer, cr, crec, ct)) = riders.iter().find(|(_, r, _, _)| r.police) else {
+        police.present = false;
+        police.target = None;
         return;
     };
+    police.present = true;
     if !matches!(crec.stage, RecoveryStage::Running | RecoveryStage::Mounting) {
         police.intentional_foot = false;
     }

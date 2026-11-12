@@ -50,15 +50,32 @@ pub struct Plan {
 #[cfg(test)]
 const CLEARANCE: f32 = 2.1;
 
+/// Local same-direction race flow needs time to complete a lane change, not
+/// an empty lane all the way to the terminal-speed forecast seven seconds out.
+/// Recomputed every fixed tick. Crossing/oncoming forecasts are never shortened.
+pub fn local_flow_horizon(speed: f32) -> f32 {
+    (3.5 + speed.abs() / 40.).clamp(3.5, 5.)
+}
+
 // Conservative lane-change envelope: allow steering to unwind before lateral travel.
 pub fn lane_at(from: f32, to: f32, speed: f32, t: f32) -> f32 {
     let rate = 0.65 * (speed / 4.).clamp(0.05, 1.);
     from + (to - from) * (1.0 - (-rate * (t - 0.4).max(0.0)).exp())
 }
 fn clear(from: f32, to: f32, speed: f32, car: Car, horizon: f32) -> bool {
+    clear_with_padding(from, to, speed, car, horizon, 1.3)
+}
+fn clear_with_padding(
+    from: f32,
+    to: f32,
+    speed: f32,
+    car: Car,
+    horizon: f32,
+    padding: f32,
+) -> bool {
     let closing = speed - car.speed;
     let length = car.half_length + 3.55;
-    let clearance = car.half_width + 1.3;
+    let clearance = car.half_width + padding;
     let (start, end) = if closing.abs() < 0.01 {
         if car.gap.abs() >= length {
             return true;
@@ -94,6 +111,36 @@ fn clear(from: f32, to: f32, speed: f32, car: Car, horizon: f32) -> bool {
     }
     low > clearance || high < -clearance
 }
+// A front bike may leave an already-overlapping comfort envelope at walking
+// speed. Its stationary follower stays behind and separation only increases;
+// actual colliders/CCD still resolve contact. Never grant this to cars, an
+// oncoming body, a leader ahead, or a faster following rider.
+fn clear_local(from: f32, to: f32, speed: f32, car: Car, horizon: f32, local: bool) -> bool {
+    // A steady oncoming lane uses the bike's 0.38m half-width plus
+    // 0.27m clearance, rather than an extra 1.3m that erases usable gaps.
+    // Keep the full time horizon; crossing motion retains the wider margin.
+    let padding = if local && car.speed < 0. && car.lateral_speed.abs() <= 0.25 {
+        0.65
+    } else {
+        1.3
+    };
+    if clear_with_padding(from, to, speed, car, horizon, padding) {
+        return true;
+    }
+    let side = from - car.lane;
+    local
+        && speed <= 4.5
+        && car.half_width <= 0.5
+        && car.half_length <= 1.3
+        && car.speed >= 0.
+        && car.speed <= speed + 0.25
+        && (-(car.half_length + 3.55)..-0.5).contains(&car.gap)
+        && side.abs() >= 0.5
+        && side * (to - from) > 0.
+        && side * car.lateral_speed <= 0.
+        && (lane_at(from, to, speed, horizon) - car.lane_at(horizon)).abs() > side.abs() + 0.1
+}
+
 fn crossing_conflict(lane: f32, home: f32, speed: f32, cars: &[Car]) -> bool {
     cars.iter()
         .any(|c| c.lateral_speed.abs() > 0.25 && !clear(lane, home, speed, *c, 12.))
@@ -281,6 +328,32 @@ impl Memory {
         cars: &[Car],
         drivable: impl Fn(f32, f32) -> bool,
     ) -> Plan {
+        self.plan_local(input, cars, None, drivable)
+    }
+
+    /// Replan local same-direction flow sooner on dense streets. Oncoming and
+    /// crossing traffic always retain the full forecast; no contact is exempted.
+    pub fn plan_local(
+        &mut self,
+        input: Request,
+        cars: &[Car],
+        local_horizon: Option<f32>,
+        drivable: impl Fn(f32, f32) -> bool,
+    ) -> Plan {
+        self.plan_local_ordered(input, cars, local_horizon, true, drivable)
+    }
+
+    /// Same deterministic cost order as exhaustive selection, with optional
+    /// short-circuiting after the cheapest safe/static-clear lane. The reference
+    /// path remains available for matched verification.
+    pub fn plan_local_ordered(
+        &mut self,
+        input: Request,
+        cars: &[Car],
+        local_horizon: Option<f32>,
+        ordered: bool,
+        drivable: impl Fn(f32, f32) -> bool,
+    ) -> Plan {
         let Request {
             lane,
             speed,
@@ -314,12 +387,29 @@ impl Memory {
             }
         }
         let requested = self.pass.map_or(desired, |(held, _)| held);
-        let horizon = (2.5 + speed / 12.0).clamp(6.0, 7.0);
+        let full_horizon = (2.5 + speed / 12.0).clamp(6.0, 7.0);
+        let horizon = |car: Car| {
+            if car.speed < 0. || car.lateral_speed.abs() > 0.25 {
+                full_horizon
+            } else {
+                local_horizon
+                    .unwrap_or(full_horizon)
+                    .clamp(3.5, full_horizon)
+            }
+        };
         let safe = |to, pace| {
             cars.iter().all(|c| {
-                clear(lane, to, pace, *c, horizon)
-                    && clear(lane, to, speed.max(1.), *c, horizon)
-                    && ((to - lane).abs() <= 0.5 || clear(to, to, pace, *c, horizon))
+                clear_local(lane, to, pace, *c, horizon(*c), local_horizon.is_some())
+                    && clear_local(
+                        lane,
+                        to,
+                        speed.max(1.),
+                        *c,
+                        horizon(*c),
+                        local_horizon.is_some(),
+                    )
+                    && ((to - lane).abs() <= 0.5
+                        || clear_local(to, to, pace, *c, horizon(*c), local_horizon.is_some()))
             })
         };
         // Evaluate intended acceleration too: a matched-speed follower otherwise
@@ -335,39 +425,68 @@ impl Memory {
             };
         }
         let desired = requested.clamp(bounds.0, bounds.1);
-        let candidates: Vec<_> = [desired, lane.clamp(bounds.0, bounds.1), bounds.0, bounds.1]
+        let mut candidates: Vec<_> = [desired, lane.clamp(bounds.0, bounds.1), bounds.0, bounds.1]
             .into_iter()
             .chain(cars.iter().flat_map(|car| {
-                let clearance = car.half_width + 1.55;
+                let clearance = car.half_width
+                    + if local_horizon.is_some()
+                        && car.speed < 0.
+                        && car.lateral_speed.abs() <= 0.25
+                    {
+                        0.85
+                    } else {
+                        1.55
+                    };
                 [car.lane - clearance, car.lane + clearance]
             }))
             .filter(|x| *x >= bounds.0 && *x <= bounds.1)
             .collect();
+        if local_horizon.is_some() {
+            candidates.push((bounds.0 + bounds.1) * 0.5);
+            // Distant cars in the same lane differ by sub-millimetre projection
+            // jitter. Do not repeat an entire world sweep for each duplicate.
+            candidates.sort_by(f32::total_cmp);
+            candidates.dedup_by(|a, b| (*a - *b).abs() < 0.025);
+        }
+        let compare = |a: &f32, b: &f32| {
+            let cost = |x: f32| (x - desired).abs() + 0.35 * (x - lane).abs();
+            cost(*a).total_cmp(&cost(*b)).then(a.total_cmp(b))
+        };
+        let ordered = ordered && local_horizon.is_some();
+        if ordered {
+            candidates.sort_by(compare);
+        }
         // A queued bike can physically steer at walking pace. The old mandatory
         // 8m/s prediction rejected all close passes, even with empty adjacent road.
-        for trial in [pace, speed.max(4.).min(pace), 4., 2., 1.] {
+        // A safe current-speed plan must not become a permanent governor.
+        // Try a modest acceleration forecast before falling back to matching.
+        let step = if local_horizon.is_some() {
+            (speed + 4.).min(pace)
+        } else {
+            pace
+        };
+        for trial in [pace, step, speed.max(4.).min(pace), 4., 2., 1.] {
             if (trial < speed - 0.25 && !static_blocked) || trial > pace {
                 continue;
             }
-            let goal = candidates
-                .iter()
-                .copied()
-                .filter(|to| {
-                    safe(*to, trial)
-                        && (trial >= pace
-                            || cars
-                                .iter()
-                                // Do not settle into a nearby blocked line, but
-                                // do not let distant full-cruise speculation veto
-                                // a lateral walking-speed escape that is replanned.
-                                .filter(|c| (to - lane).abs() <= 0.5 || c.gap.abs() < 60.)
-                                .all(|c| clear(*to, *to, pace, *c, horizon)))
-                        && drivable(*to, trial)
-                })
-                .min_by(|a, b| {
-                    let cost = |x: f32| (x - desired).abs() + 0.35 * (x - lane).abs();
-                    cost(*a).total_cmp(&cost(*b)).then(a.total_cmp(b))
-                });
+            let allowed = |to: &f32| {
+                safe(*to, trial)
+                    && (trial >= pace
+                        || local_horizon.is_some()
+                        || cars
+                            .iter()
+                            // Do not settle into a nearby blocked line, but
+                            // do not let distant full-cruise speculation veto
+                            // a lateral walking-speed escape that is replanned.
+                            .filter(|c| (to - lane).abs() <= 0.5 || c.gap.abs() < 60.)
+                            .all(|c| clear(*to, *to, pace, *c, horizon(*c))))
+                    && drivable(*to, trial)
+            };
+            let goal = if ordered {
+                candidates.iter().copied().find(&allowed)
+            } else {
+                candidates.iter().copied().filter(&allowed).min_by(compare)
+            };
             if let Some(goal) = goal {
                 if (goal - lane).abs() > 0.5 && self.pass.is_none() {
                     self.pass = Some((goal, lane));
@@ -384,8 +503,8 @@ impl Memory {
         let mut limit = cruise;
         for car in cars {
             if car.gap < -(car.half_length + 3.55)
-                || (clear(lane, lane, pace, *car, horizon)
-                    && clear(lane, lane, speed.max(1.), *car, horizon))
+                || (clear(lane, lane, pace, *car, horizon(*car))
+                    && clear(lane, lane, speed.max(1.), *car, horizon(*car)))
             {
                 continue;
             }
@@ -428,6 +547,194 @@ mod tests {
             half_length: 1.95,
         }
     }
+    #[test]
+    fn ordered_lane_search_matches_exhaustive_choice_with_fewer_static_queries() {
+        let request = Request {
+            lane: 2.,
+            speed: 30.,
+            desired: 2.,
+            cruise: 40.,
+            bounds: (-7., 7.),
+        };
+        let cars = [car(35., 2., 12.), car(200., -3., 18.), car(210., 3.2, 18.)];
+        let reference_calls = std::cell::Cell::new(0);
+        let ordered_calls = std::cell::Cell::new(0);
+        let a = Memory::default().plan_local_ordered(request, &cars, Some(4.), false, |_, _| {
+            reference_calls.set(reference_calls.get() + 1);
+            true
+        });
+        let b = Memory::default().plan_local_ordered(request, &cars, Some(4.), true, |_, _| {
+            ordered_calls.set(ordered_calls.get() + 1);
+            true
+        });
+        assert_eq!((a.lane, a.speed, a.avoiding), (b.lane, b.speed, b.avoiding));
+        assert!(
+            ordered_calls.get() < reference_calls.get(),
+            "{}/{}",
+            ordered_calls.get(),
+            reference_calls.get()
+        );
+    }
+
+    #[test]
+    fn paired_oncoming_cars_admit_a_real_middle_or_sidewalk_gap_but_not_a_closed_one() {
+        let request = Request {
+            lane: -1.8,
+            speed: 40.,
+            desired: 0.,
+            cruise: 45.,
+            bounds: (-8.05, 8.05),
+        };
+        let cars = [car(260., -1.8, -13.), car(280., 1.8, -13.)];
+        let middle = Memory::default().plan_local(
+            request,
+            &cars,
+            Some(local_flow_horizon(40.)),
+            |goal, _| goal.abs() < 0.2,
+        );
+        assert!(middle.lane.abs() < 0.2 && middle.speed == 45., "{middle:?}");
+        let outer = Memory::default().plan_local(
+            request,
+            &cars,
+            Some(local_flow_horizon(40.)),
+            |goal, _| goal > 6.3,
+        );
+        assert!(outer.lane > 6.3 && outer.speed == 45., "{outer:?}");
+        let closed = Memory::default().plan_local(request, &cars, Some(4.), |_, _| false);
+        assert_eq!(closed.speed, 0.);
+        // Cars too close together cannot be passed through their actual bodies.
+        let tight = [car(260., -1.3, -13.), car(280., 1.3, -13.)];
+        let stop =
+            Memory::default().plan_local(request, &tight, Some(4.), |goal, _| goal.abs() < 0.2);
+        assert!(stop.speed < 40., "{stop:?}");
+        let late = [car(15., -1.8, -13.), car(20., 1.8, -13.)];
+        assert!(
+            Memory::default()
+                .plan_local(request, &late, Some(4.), |goal, _| goal.abs() < 0.2)
+                .speed
+                < 40.
+        );
+    }
+
+    #[test]
+    fn local_flow_accelerates_incrementally_instead_of_latching_current_speed() {
+        let request = Request {
+            lane: 2.,
+            speed: 32.,
+            desired: 2.,
+            cruise: 50.,
+            bounds: (1.9, 2.1),
+        };
+        let leader = car(32., 2., 32.);
+        let old = Memory::default().plan(request, &[leader], |_, _| true);
+        let next = Memory::default().plan_local(
+            request,
+            &[leader],
+            Some(local_flow_horizon(32.)),
+            |_, _| true,
+        );
+        assert!(next.speed > old.speed, "{old:?} {next:?}");
+        assert!(next.speed > 32. && next.speed <= 36., "{next:?}");
+        assert!(clear(
+            2.,
+            next.lane,
+            next.speed,
+            leader,
+            local_flow_horizon(32.)
+        ));
+    }
+
+    #[test]
+    fn stopped_front_bike_can_separate_from_a_close_follower_without_contact_exemptions() {
+        // Captured Hills650m pair: front at652.43/-0.85, follower650.64/-1.58.
+        let follower = Car {
+            half_width: 0.36,
+            half_length: 1.05,
+            ..car(-1.79, -1.58, 0.)
+        };
+        let request = Request {
+            lane: -0.85,
+            speed: 0.,
+            desired: -2.72,
+            cruise: 59.,
+            bounds: (-6.85, 6.85),
+        };
+        let plan = Memory::default().plan_local(
+            request,
+            &[follower],
+            Some(local_flow_horizon(0.)),
+            |_, _| true,
+        );
+        assert!(
+            plan.speed > 0. && plan.speed <= 4.5 && plan.lane > request.lane,
+            "{plan:?}"
+        );
+        for danger in [
+            Car {
+                gap: 1.79,
+                ..follower
+            },
+            Car {
+                speed: -1.,
+                ..follower
+            },
+            Car {
+                speed: 12.,
+                ..follower
+            },
+            Car {
+                half_width: 0.95,
+                ..follower
+            },
+        ] {
+            assert!(!clear_local(-0.85, 0.2, 4., danger, 4., true), "{danger:?}");
+        }
+        assert!(!clear_local(-0.85, -2., 4., follower, 4., true));
+        let wall = Memory::default().plan_local(request, &[follower], Some(4.), |_, _| false);
+        assert_eq!(wall.speed, 0.);
+    }
+
+    #[test]
+    fn local_flow_ignores_distant_future_occupancy_but_retains_real_hazards() {
+        let request = Request {
+            lane: 2.,
+            speed: 40.,
+            desired: 2.,
+            cruise: 50.,
+            bounds: (1.8, 2.2),
+        };
+        let distant = car(250., 2., 0.);
+        let conservative = Memory::default().plan(request, &[distant], |_, _| true);
+        let local = Memory::default().plan_local(
+            request,
+            &[distant],
+            Some(local_flow_horizon(40.)),
+            |_, _| true,
+        );
+        assert!(conservative.avoiding);
+        assert!(!local.avoiding && local.speed == 50.);
+        for hazard in [
+            car(35., 2., 18.),
+            car(250., 2., -13.),
+            Car {
+                lateral_speed: 1.,
+                ..car(220., -3., 0.)
+            },
+        ] {
+            let full = Memory::default().plan(request, &[hazard], |_, _| true);
+            let local = Memory::default().plan_local(
+                request,
+                &[hazard],
+                Some(local_flow_horizon(40.)),
+                |_, _| true,
+            );
+            assert!(local.avoiding, "{hazard:?} {local:?}");
+            assert!(local.speed <= full.speed, "{hazard:?} {full:?} {local:?}");
+        }
+        let wall = Memory::default().plan_local(request, &[], Some(4.), |_, _| false);
+        assert_eq!(wall.speed, 0.);
+    }
+
     #[test]
     fn committed_lane_endpoint_remains_occupied_after_transition() {
         let moving = Car {

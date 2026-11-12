@@ -1,5 +1,30 @@
 # Known issues and remaining acceptance
 
+- AI-HILLS-02 / PERF-START-01 (ADR170/171): paired oncoming-gap behavior is
+  verified; startup/performance remains a partial pass. Later native A/B
+  trajectories diverge, so full-run timing is not an equivalent-scene benchmark. Initial scene-instance and
+  mesh readiness are gated before the menu; synchronous Hills world generation
+  still takes seconds and is not made asynchronous by this pass. RFU-PERF-01/02/04
+  retain cold loading, GPU, sustained frame budget and target-hardware coverage.
+  See [the focused report](testing/hills-weaving-startup/REPORT.md).
+
+- RFU-RACE-03 / AI-11: AI-HILLS-01 corrects the traced opening speed latch and
+  padded-pair queue (native30s median160km/h, no first-minute stopped riding
+  samples), but human fourth-place/challenge and full-course queue/rejoin
+  coverage remain open. Literal hold-W control hits the first wall and cannot
+  close human difficulty acceptance. See testing/hills-opening-ai/REPORT.md.
+
+- AI-PACE-01 / AI-ENGAGE-01 / ADR168: the latest rival pass replaces the
+  historical155km/h clamp with bike-class limits and sustained drive, and adds
+  bounded moving exchanges/contact prediction. Pure and physical scenarios
+  pass, but the final Metropolis two-minute sample still has only two attack
+  attempts and zero confirmed contacts. AI-ENGAGE-01 remains open. Native/full
+  regression evidence is recorded in
+  [the pace/combat report](testing/rival-pace-combat/REPORT.md). Full-course
+  human difficulty, fight frequency and crowded traffic balance remain open
+  under RFU-RACE-03, RFU-COMBAT-02 and AI-11. Existing Bevy/Rapier high-speed
+  ragdoll and static-collider parity failures are separate unresolved gates.
+
 - RFU-TRAFFIC-03 / RFU-HILLS-06: Hills now starts two ordinary cars behind slow
   heavy vehicles and adds six moving city-opening cars at 500–850 m. Existing
   opposing-vehicle clearance, physical collisions and retry/network identities
@@ -9,7 +34,8 @@
 
 - RFU-RACE-03/04 and RFU-RENDER-01: the isolated Bevy 0.20.1 candidate requests full opening
   rival throttle, caps rival pace at 155 km/h and narrows the chase-camera
-  overlap hide zone. Safety planning can still brake a crowded grid, and human
+  overlap hide zone. The155km/h part is superseded by ADR168/AI-PACE-01.
+  Safety planning can still brake a crowded grid, and human
   full-race balance, moving-follower visuals and matched render-frame budget
   remain open. See ADR166 and testing/race-launch-visibility/REPORT.md.
 

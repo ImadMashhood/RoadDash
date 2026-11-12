@@ -194,10 +194,13 @@ pub fn bike_contact_severity(closing_mps: f32, longitudinal: bool) -> ContactSev
         ContactSeverity::Nudge
     }
 }
+pub const DIRECT_STRIKE_MIN_LATERAL_M: f32 = 0.65;
+pub const DIRECT_STRIKE_MAX_LATERAL_M: f32 = 1.9;
+pub const DIRECT_STRIKE_MAX_LONGITUDINAL_M: f32 = 0.9;
 pub fn direct_strike_geometry(lateral: f32, longitudinal: f32, height: f32, side: f32) -> bool {
-    (0.65..=1.9).contains(&lateral.abs())
+    (DIRECT_STRIKE_MIN_LATERAL_M..=DIRECT_STRIKE_MAX_LATERAL_M).contains(&lateral.abs())
         && lateral * side > 0.0
-        && longitudinal.abs() <= 0.9
+        && longitudinal.abs() <= DIRECT_STRIKE_MAX_LONGITUDINAL_M
         && height.abs() <= 0.9
 }
 #[cfg(test)]

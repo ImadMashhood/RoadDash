@@ -1,0 +1,74 @@
+[
+  {
+    "name": "contract-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 2.2086145877838135
+  },
+  {
+    "name": "contract-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 20.909939765930176
+  },
+  {
+    "name": "contract-workspace-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit_code": 101,
+    "elapsed_seconds": 468.75281596183777
+  },
+  {
+    "name": "contract-release-build",
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 468.7618691921234
+  },
+  {
+    "name": "contract-domain-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "rr_core",
+      "-p",
+      "rr_content"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 34.19396781921387
+  },
+  {
+    "name": "contract-debug-build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 23.3332941532135
+  }
+]

@@ -1,0 +1,5 @@
+2026-11-12T04:28:53.603659Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/rival-contract-race-hills/performance/performance-2120381.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+Racer AI native race receipt: frames=7200 completed=false
+2026-11-12T04:31:30.578872Z  WARN bevy_render::view::window::screenshot: Unknown window for screenshot, skipping: 71v0

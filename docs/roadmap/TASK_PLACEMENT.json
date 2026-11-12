@@ -1,11 +1,16 @@
 {
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "canonical_source": "README.md",
   "rule": "Verified tasks in Part 00; unfinished tasks in their current execution phase. Historical ID prefixes are retained.",
   "parts": {
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "AI-HILLS-02",
+        "AI-HILLS-01",
+        "AI-PACE-01",
+        "AI-LAUNCH-01",
+        "POLICE-PAUSE-01",
         "RFU-RESEARCH-01",
         "RFU-MOVE-04",
         "RFU-MOVE-03",
@@ -240,6 +245,8 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "PERF-START-01",
+        "AI-ENGAGE-01",
         "RFU-ENGINE-01",
         "RFU-ENGINE-02",
         "RFU-ENGINE-03",
@@ -495,6 +502,7 @@
     "08": {
       "title": "Police, pursuit and arrest/escape loop",
       "task_ids": [
+        "POLICE-REINTRO-01",
         "POLICE-ART-01",
         "V2-08-001",
         "V2-08-002",

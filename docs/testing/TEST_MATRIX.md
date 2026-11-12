@@ -5,6 +5,11 @@ unrun platform results with assumptions from a successful local build.
 
 | ID | Scenario | Verification |
 | --- | --- | --- |
+| T-HILLS-WEAVE | Real paired-oncoming gaps, blocked routes, startup and exact query cache | Domain gap/tight/late/wall cases, real physical two-car fixture, cache lifetime/identity, scene expansion reset, matched native cache A/B and recovery; [evidence](hills-weaving-startup/REPORT.md) |
+| T-HILLS-OPEN | Hills same-direction flow with near/static/oncoming/crossing safety | Pure local/default comparisons, unchanged physical regression suite and matched native opening rows; [evidence](hills-opening-ai/REPORT.md); human difficulty remains separate |
+| T-RIVAL-PACE | Sustained drive, class governor and local engine headroom | Pure pace/controller tests and physical20m catch-up/contact; 30/60/120Hz straightaway; [ADR168 receipts](rival-pace-combat/REPORT.md) |
+| T-RIVAL-CONTACT | Authored contact prediction and actual unarmed/weapon hits | Shared reach, signed forward/lateral projection, side-cross rejection; physical AI-generated chain/punch/kick and 20m catch-up/lateral alignment; [evidence](rival-pace-combat/REPORT.md) |
+| T-RIVAL-LAUNCH | Real14-rider grids, blocked lane and police isolation | Metropolis/Hills authored spawn layouts on real dynamic chassis; no gratuitous drift, actual acceleration, no spawn/retry officer; native two-map census; [evidence](rival-pace-combat/REPORT.md) |
 | T-CORE | IDs, edge buffering, award rules | rr_core tests, no renderer/physics dependency |
 | T-CONTENT | version, finite tuning, colors, references, duplicates | rr_content tests; --validate-content success/failure |
 | T-INPUT | remapped/unknown/duplicate bindings; zero-tick frame press | controls tests and attack_press_survives_a_render_frame_without_a_fixed_tick |

@@ -1,0 +1,45 @@
+{
+  "control": {
+    "samples": 62,
+    "fixed_ticks": 2715,
+    "render_frames": 2715,
+    "mean_main_cpu_ms_per_frame": 22.086050287882486,
+    "median_window_wall_ms": 23.4538395,
+    "median_window_main_ms": 22.497543334960938,
+    "drive_ms_per_tick": 6.2205338861878445,
+    "static_ms_per_tick": 5.3020443141804785,
+    "static_casts_per_tick": 2451.4003683241253,
+    "requests_per_tick": 147.39189686924493,
+    "cache_hits_per_tick": 0.0,
+    "entity_range": [
+      38869,
+      39519
+    ]
+  },
+  "optimized": {
+    "samples": 52,
+    "fixed_ticks": 2685,
+    "render_frames": 2685,
+    "mean_main_cpu_ms_per_frame": 18.571358813919833,
+    "median_window_wall_ms": 19.694090215686273,
+    "median_window_main_ms": 18.680004119873047,
+    "drive_ms_per_tick": 1.6387303769087525,
+    "static_ms_per_tick": 0.9634151996275606,
+    "static_casts_per_tick": 321.3169459962756,
+    "requests_per_tick": 28.063314711359403,
+    "cache_hits_per_tick": 7.339664804469273,
+    "entity_range": [
+      39102,
+      39626
+    ]
+  },
+  "matched_state_rows": 300,
+  "max_state_delta": {
+    "progress": 751.8731689453125,
+    "lane": 337.1907391548157,
+    "speed": 48.741817474365234
+  },
+  "different_plans": 226,
+  "different_recovery_states": 19,
+  "limits": "One same-binary quiet Linux A/B opening pair; 5\u201350 race seconds, aggregated fixed-tick/window CPU measurements. No GPU, hardware60FPS or cold-boot certification. Full raw streams retained locally."
+}

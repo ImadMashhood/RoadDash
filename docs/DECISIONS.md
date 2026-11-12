@@ -4429,3 +4429,248 @@ remain required under RFU-MOUNT-01..03.
 ## ADR167 — Original Hills sand detail, matched dust and reduced city crowd (2026-11-11)
 
 Keep the resident Hills terrain geometry and collision unchanged. Multiply its existing world-colour strata by one deterministic 64×64 repeating grayscale grit texture, generated at startup and shared by terrain material; use world-space UVs so neighboring chunks do not seam. Sample the same western/desert sand palette when each existing pooled dust quad emits. Hold its footprint fixed, lower opacity, fade in by age and fade out after it passes behind the player. This retains the fixed 96-puff pool and avoids late mesh spawning or external texture rights. The imported Hills city slice retains alternating authored walkers to halve that section's population; Metropolis pedestrians remain unchanged. The phrase "peds pop" may also refer to visibility onset, so native review and user clarification remain open. No frame-time gain is claimed from these art changes.
+
+## ADR168 — Sustained rival drive and bounded moving combat (2026-11-11)
+
+Problem: a 155 km/h ceiling and a drive request tapering toward 35 percent
+compound the existing engine torque taper; proactive fighters discard their
+opponent as soon as they pass it. Alternatives: positional rubber-banding,
+stronger artificial engine force, all-rider aggression, or a focused controller
+correction. Select the controller correction: full throttle below goal, normal
+unboosted bike-class limits, existing roster pace weights, and nearby catch-up
+through ordinary drive. Player and police forces remain unchanged. The passing
+planner retains its existing clear-road horizon and every safety override.
+
+Keep five proactive fighters and exact-attacker retaliation. Retain eligible
+moving targets from 8 m behind to 40 m ahead, acquire ahead within30m and4.5m lateral reach, match
+speed within 6 m for at most 4 s, then race for 2 s. The duel floor is12 m/s; targets under8 m/s are passed rather than followed.
+The earlier85-percent floor was rejected after native surveys showed fighters
+rushing past moving opponents on slower sections. The4s exchange clock begins on the first admitted attack, preserving time
+for physical alignment. Subsequent strikes and separation never reset it. Release an old passing destination once within8m of
+a selected moving target, then run the full traffic/static safety planner again.
+A 3 m/s approach surplus remains bounded by the selected bike class. An active
+local target unlocks the normal full-class motor ceiling, otherwise a higher
+throttle goal can remain trapped behind the lower cruising governor. Admission
+predicts longitudinal contact using the existing authored strike clock, a
+6 m/s relative-speed bound and existing reach. Actual contacts/damage still
+use the original collision/LOS pipeline; no hits are synthesized.
+
+Reference R01 at 20fb4c0ac154378902132f6eb41a5e09804ebeaa informs full-drive
+speed control and separate racing/follow/fight intent. No license grant was
+verified and no source/assets were copied. We do not import its player-gap
+speed assistance or claim original-game parity. Tradeoff: moving exchanges
+can briefly trade race pace for a fight; timeout/floor and stopped-target
+rejection protect forward flow. Full-course human balance remains open.
+No dependency/content schema/save migration. Roll back this focused commit
+if playtesting rejects the controller; preserve historical ADR166/cap evidence.
+
+### ADR168 follow-up — Police isolation and launch forecast
+
+The user observed a stopped field during the first native candidate and asked
+to remove police temporarily. The trace includes fighters acquiring the slow
+resident officer; this is a suspected contributor, not proof of every stop.
+Keep the complete police subsystem, but default its existing Police resource deployment switch off.
+`ROADDASH_POLICE=1` opts in; `--police-smoke` automatically opts in so its
+isolated verification remains functional. Suppress the inactive patrol HUD.
+Reintroduction is deferred under POLICE-REINTRO-01, not automatic.
+
+A separate launch defect uses terminal cruise to forecast past stationary grid
+leaders, prematurely entering committed passes. During the first5s retain
+starting lanes and plan at min(goal, actual speed+0.5 m/s), with real car/rider
+velocities, actual-speed clearance, static sweeps and emergency avoidance
+still active. This forecast does not cap throttle or engine drive. Restore the
+ordinary planner after5s. Alternatives rejected: disabling rider collisions,
+pretending leaders already move at terminal speed, or forcing steering to zero
+through an actual hazard. Add physical14-rider launch and real-blocker tests.
+
+
+Keep the deployment flag in the existing Police resource rather than allocating
+a new Bevy resource entity. The first separate-resource trial changed fixture
+entity ordering and exceeded the accepted post-remount presentation comparison.
+The actual officer factory test explicitly opts in; its purpose is to test
+patrol skinning rather than the default deployment policy. No physics tolerance,
+body, motor, solver or recovery constant is changed. Native survey counters read
+existing attack serials and confirmed incident counts; they do not create hits.
+
+
+Native contact follow-up: keep police in ordinary physical traffic and passing
+proxies, but exclude them from the separate rival combat target list, including
+when deployment is explicitly enabled. An officer is not a race opponent;
+player attacks and police pursuit remain available. The small fixed-size target
+scratch array does not allocate. A dynamic fixture verifies that a fighter
+selects the next rival rather than the adjacent officer and that the officer's
+rigid body/collider remain present. Restrict proactive acquisition to4.5m
+lateral reach instead of chasing across the whole avenue for a marginally
+nearer longitudinal neighbor. Existing targets may still be retained during a
+small lateral drift while the physical planner aligns them.
+
+
+Final launch safety review: include real rider proxies in the preliminary
+launch planner before the clear-road shortcut, and avoid adding them twice
+when the full planner is required. Otherwise a bounded launch forecast can
+skip an already occupied rider lane. The physical stationary-rider fixture
+requires actual braking from the first tick. The real-grid rollout stays calm
+through1.5s; later genuine closing-speed avoidance is allowed and bounded,
+rather than forcing zero steering through a slower leader. On Hills a pass
+begins around2.2s at21.24m/s, with0.83m total lateral travel over3s; this is not
+the earlier stationary sideways launch. Keep full acceleration/health checks.
+
+
+ADR168 contact correction: share the actual unarmed 0.9m longitudinal / 1.9m
+lateral limits with AI admission (the old AI-only 1.6m / 2.5m bounds admitted
+unreachable swings). Predict signed forward and relative lateral motion at
+the authored contact frame, rejecting side crossings. Keep contact LOS/height,
+damage and physical reach unchanged. Add real chain, unarmed kick and punch
+fixtures rather than accepting a chain-only test as unarmed evidence.
+
+
+## ADR169 — Hills local traffic forecast (2026-11-12)
+
+Problem: the user reports reaching fourth during the Hills opening by holding
+throttle. The previous straightaway cap test does not demonstrate race
+challenge. Prior native Hills rows show many low-speed/avoiding decisions in
+the opening fleet near600m. The shared traffic planner requires same-direction
+lanes clear at terminal pace six to seven seconds ahead; distant occupancy can
+veto usable local flow. A literal new hold-W control hits the first bend's wall
+and never reproduces fourth: retain that limitation, not a false balance pass.
+User playtest logs show sustained40–50m/s through the opening when driven.
+
+Evaluate a Hills-only local forecast of3.5–5s for same-direction traffic,
+computed from actual speed and replanned every60Hz tick. Keep full6–7s
+forecasts for oncoming and moving crossing proxies, current-speed plus
+requested-pace clearance, static shape sweeps, committed passing memory,
+real collisions and engine/corner limits. Metropolis/Valley/civilian callers
+retain the existing default. No stronger engine, invisible catch-up, changed
+player handling, road geometry, police restoration or physical rig tuning.
+
+Alternatives: arbitrarily raise all speeds, remove traffic, disable contact,
+shorten every forecast, or change player handling; rejected because they do
+not isolate the reported traffic-flow loss. Tradeoff: same-direction traffic
+is reconsidered sooner instead of reserving a long empty corridor. Verify
+near blockers, distant same-lane occupancy, oncoming/crossing hazards, walls,
+physical regressions and matched native Hills opening samples before adoption.
+Rollback is the focused local-plan caller and optional-horizon overload; the
+default planner and ADR168 pace/physics controls remain available.
+No dependency/repository/media intake; this adapts the existing original planner.
+
+
+ADR169 traced follow-up: the first local-horizon candidate still stalls at
+650m. Its live performance log retained the failure even though the window
+ended before the final survey. Tighten the harness: clean process exit without
+the requested survey window, early real finish or successful explicit segment
+is an incomplete run, not a pass. Preserve the interrupted race/recovery
+receipts; add isolated fake-process tests for these exit gates.
+
+The targeted opening trace shows a clear-road target51.7m/s but selected plans
+around32–34m/s; no corner braking is active there. Partial-speed candidates
+were required to prove immediate terminal-speed lane occupancy too, preventing
+safe incremental acceleration. On Hills use the selected trial's predicted
+motion (including measured current speed and destination clearance), try a
+4m/s increment, and re-evaluate next fixed tick. Default map policy stays intact.
+
+At652.43m, rider5 and rider11 at650.64m are parked inside each other's padded
+comfort margins. Even the front rider's increasing-separation path is rejected
+at t=0. Add only a walking-speed (<=4.5m/s) departure for narrow bike proxies
+behind the moving rider, with nonnegative/slower follower speed, at least0.5m
+lateral separation, an away-side goal, no inward neighbor velocity and increasing
+predicted separation. Leaders ahead, faster rear traffic, cars, oncoming motion,
+inward moves and static obstructions retain rejection. Collider/CCD/contact
+rules remain untouched. Test the captured pair plus unsafe variants and native
+flow before adopting; this is a comfort-envelope correction, not ghost traffic.
+
+Routine performance records now include race time, plan lane, effective input,
+combat intent and escape/static-guard state so an interrupted playtest remains
+diagnosable. Opt-in opening traces additionally name static sweep hits. No
+per-frame log dump in ordinary play; existing bounded asynchronous sampling
+and rotation remain in use.
+
+
+ADR169 final adoption: release d2979c31 passes33 pure traffic scenarios, the
+full unchanged physical/model suite (two historical physics failures retained),
+7200-frame native Hills and both zero-error recovery pickups. Matched30s median
+rival speed54→160km/h; stopped Riding samples in the first minute7→0; median
+1.5km exit64.48→41.98s. The final stationary4.4km rider is GettingUp after a
+crash, not a riding queue. Adopt the local Hills policy; broad full-course/human
+challenge and combat gates remain open. No global physics/speed/traffic-content
+change. Verified release installed for the ordinary Hills launcher.
+
+
+## ADR170 — Hills city gap selection (2026-11-12)
+
+Problem: paired oncoming cars trigger following/braking even when the city has
+physical space through the middle or a clear sidewalk. Alternatives: ignore
+cars, teleport between lanes, boost speed, or preserve contact while measuring
+usable gaps. Select the last: Hills local planning admits a steady oncoming
+lane with the actual0.38m bike half-width plus0.27m clearance (0.65m padding),
+instead of the generic1.3m comfort padding. Full6–7s oncoming forecasts remain;
+laterally moving crossing traffic keeps its wider buffer. Add road-centre
+candidates and include the existing2.7m city sidewalk band in the imported Hills
+kilometre. Static swept geometry still rejects buildings, trees and closed paths.
+
+Sort/deduplicate Hills candidate lanes within2.5cm to avoid dozens of equivalent
+sweeps for cars whose projected lanes differ by floating point jitter. Other
+maps retain their existing candidate/clearance policy. Tradeoff: more assertive
+use of physically sufficient gaps, with full-horizon current/requested-speed
+checks and actual colliders/CCD retained. Test paired centre/sidewalk passages,
+a genuinely too-small gap, late approaches, walls and real solid cars. No engine,
+physics, actor population, asset or dependency changes. Rollback is the focused
+local padding/candidate branch and Hills sidewalk width. Broad human fairness
+and full-course high-speed risk remain separate gates.
+
+## ADR171 — Initial scene readiness and exact static-sweep reuse (2026-11-12)
+
+Measured source: user playtest performance-2400160. Entities expand15774→39284
+during loading, then stay near39000 while fixed gameplay work rises above200ms
+per render frame. The startup log records5.4s world setup and required assets
+ready at8.71s. This is CPU evidence, not GPU attribution. Do not blame all later
+hitches on entity count alone.
+
+Static candidate checks repeat identical goals at several trial speeds, while
+the actual static forecast is capped to the same current speed. Reuse exact
+(goal bits, forecast-speed bits) results only within one rider's immutable-world
+snapshot; clear for every rider and every fixed tick. Bound the cache to256
+entries. Keep all dynamic traffic checks and physical contacts live. A launch
+ROADDASH_AI_STATIC_CACHE=0 control permits measured same-binary A/B comparisons;
+logical trajectories must agree. Record actual requests/hits/casts/static and
+drive CPU time through the existing diagnostic resource, without introducing
+new entity resources or per-frame file IO.
+
+Asset files ready do not imply instantiated scene children. Loading now checks
+WorldInstanceSpawner.instance_is_ready for every resident WorldAssetRoot and
+waits eight unchanged mesh-count frames after required materials/tangents are
+settled. Keep headless/no-AssetServer behavior and existing failure reporting.
+Installed Bevy0.20.1 API inspected locally; no library code copied. Tradeoff:
+slightly later menu readiness, completing scene expansion before racing.
+Synchronous Hills generation itself remains under RFU-PERF-01/04; this does not
+claim a nonblocking full-world loader or hardware60FPS. No content/collision is
+removed. Roll back readiness and runtime-local cache independently if native
+or regression evidence rejects either change.
+
+
+ADR171 measured refinement: the initial cache-only A/B has identical300 sampled
+actor states/plans, but main-world medians22.61/22.48ms are within variation.
+Static work still dominates drive CPU. The exhaustive min-cost selector sweeps
+all safe lanes even after finding its eventual winner. Sort by the identical
+cost/lane tie-break first, then stop at the first safe lane on Hills; keep the
+exhaustive path under ROADDASH_AI_STATIC_CACHE=0 alongside disabled reuse for
+same-binary reference runs. Pure ordered/reference selection must match and
+perform fewer static queries. This is the primary optimization under test;
+do not report the cache-only trial as a meaningful frame-rate improvement.
+
+ADR171 search-order correction: a trial exposed that speculative static queries
+mutated the next-tick avoidance guard. Exhaustive and first-safe searches then
+selected different subsequent behavior despite identical cost ordering. Make
+static probes pure apart from instrumentation/cache; determine the guard from
+explicit current, requested and committed routes after selection, independently
+of the candidate enumeration. Retain that geometry guard and remeasure both
+paths. Preserve the rejected trial evidence; its CPU gain cannot certify
+behavioral equivalence.
+
+ADR171 final evidence:701 Rust tests pass plus10000 seeded sequential planner
+comparisons; two pre-existing physics parity failures persist. Both map recovery
+smokes pass. At5–12 race seconds,45 sampled states/plans match and static casts
+fall4081→729/tick. Later cross-mode trajectories diverge, while a same-mode
+optimized repeat matches225 sampled rows. Do not attribute that difference to
+normal timing without evidence or claim full integrated equivalence. Keep
+PERF-START-01 and sustained/hardware performance gates open; retain final raw
+streams and failed trials. AI-HILLS-02's specific physical passage is verified.

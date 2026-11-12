@@ -1,0 +1,74 @@
+[
+  {
+    "name": "hills-separation-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 2.2654311656951904
+  },
+  {
+    "name": "hills-separation-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 18.635527849197388
+  },
+  {
+    "name": "hills-separation-workspace-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit_code": 101,
+    "elapsed_seconds": 417.5189256668091
+  },
+  {
+    "name": "hills-separation-release-build",
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 417.5208246707916
+  },
+  {
+    "name": "hills-separation-domain-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "rr_core",
+      "-p",
+      "rr_content"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 28.30639910697937
+  },
+  {
+    "name": "hills-separation-debug-build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 27.880712747573853
+  }
+]

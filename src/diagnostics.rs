@@ -10,6 +10,7 @@ use std::{collections::VecDeque, time::Instant};
 pub(crate) struct FixtureComplete;
 #[derive(Resource)]
 pub struct Metrics {
+    pub ai_work: crate::ai_work::Counters,
     last_frame: Instant,
     frame_start: Instant,
     frame_gameplay_ms: f32,
@@ -33,6 +34,7 @@ pub struct Metrics {
 impl Default for Metrics {
     fn default() -> Self {
         Self {
+            ai_work: default(),
             last_frame: Instant::now(),
             frame_start: Instant::now(),
             frame_gameplay_ms: 0.,
@@ -180,6 +182,7 @@ fn frame(
 pub struct RoadDiagnosticsPlugin;
 fn frame_begin(mut metrics: ResMut<Metrics>) {
     metrics.frame_start = Instant::now();
+    metrics.ai_work = default();
     metrics.frame_gameplay_ms = 0.;
     metrics.frame_physics_ms = 0.;
     metrics.frame_physics_phases_ms = [0.; 3];

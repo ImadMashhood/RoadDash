@@ -1,0 +1,5 @@
+2026-11-12T16:31:09.865867Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/hills-flow-recovery/performance/performance-2347835.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+AI roster verified: fourteen rivals, five fighters
+Audio output initialized: 4 playback sinks

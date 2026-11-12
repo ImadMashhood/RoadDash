@@ -1,0 +1,10 @@
+   Compiling cpal v0.17.3 (/home/imad/Documents/ChatGPT/RoadRash/vendor/cpal-0.17.3)
+    Checking rr_core v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_core)
+    Checking rodio v0.22.2
+    Checking bevy_audio v0.20.1
+    Checking rr_content v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash/crates/rr_content)
+    Checking bevy_internal v0.20.1
+    Checking bevy v0.20.1
+    Checking bevy_rapier3d v0.37.0
+    Checking road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `dev` profile [optimized + debuginfo] target(s) in 20.80s

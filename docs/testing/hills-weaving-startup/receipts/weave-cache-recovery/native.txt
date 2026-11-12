@@ -1,0 +1,55 @@
+LOAD_PROFILE {"elapsed_ms":0.00011,"event":"build_app_begin"}
+2026-11-12T18:49:38.182933Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/weave-cache-recovery/performance/performance-2421717.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":407.47484000000003,"elapsed_ms":407.612757,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":1426.223724,"elapsed_ms":1983.316275,"span":"hills_terrain"}
+LOAD_PROFILE {"duration_ms":1497.261949,"elapsed_ms":1989.509566,"span":"hills_geometry"}
+LOAD_PROFILE {"duration_ms":0.614409,"elapsed_ms":1990.241234,"span":"hills_bridge"}
+LOAD_PROFILE {"duration_ms":5.430295,"elapsed_ms":1995.7807320000002,"span":"hills_river"}
+LOAD_PROFILE {"duration_ms":246.293335,"elapsed_ms":2242.1816790000003,"span":"hills_props"}
+LOAD_PROFILE {"duration_ms":2518.183386,"elapsed_ms":4760.481462,"span":"hills_countryside"}
+LOAD_PROFILE {"duration_ms":194.76564399999998,"elapsed_ms":4955.413647,"span":"hills_woodland"}
+LOAD_PROFILE {"duration_ms":202.889544,"elapsed_ms":5158.45731,"span":"hills_dressing"}
+LOAD_PROFILE {"duration_ms":5.596505,"elapsed_ms":5164.200279,"span":"hills_mounted"}
+LOAD_PROFILE {"duration_ms":529.849639,"elapsed_ms":5694.193005,"span":"hills_wildlife"}
+LOAD_PROFILE {"duration_ms":0.172022,"elapsed_ms":5694.498196,"span":"hills_atmosphere"}
+TERRAIN_CACHE {"hits":930716,"limit":131072,"misses":37036,"vertices":37036}
+LOAD_PROFILE {"duration_ms":5202.489697,"elapsed_ms":5694.736251,"span":"hills_generation"}
+LOAD_PROFILE {"duration_ms":23.916372000000003,"elapsed_ms":5718.760865,"span":"hills_city_source"}
+LOAD_PROFILE {"duration_ms":36.207715,"elapsed_ms":5755.116256,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":9.455641,"elapsed_ms":5764.7108769999995,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":19.820883000000002,"elapsed_ms":5784.647266,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":0.000341,"elapsed_ms":5784.783100000001,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":1.1035730000000001,"elapsed_ms":5786.004634,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":1.58839,"elapsed_ms":5787.732495,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":3.202448,"elapsed_ms":5791.056992,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":0.571208,"elapsed_ms":5791.742223,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":73.08470200000001,"elapsed_ms":5791.992611,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":5388.127200999999,"elapsed_ms":5798.725361,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":6418.263469,"event":"wait_facade_kit"}
+LOAD_PROFILE {"elapsed_ms":8272.810117,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":8614.291004,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8623.564645,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8632.994187,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8647.887196,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8660.129778,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8669.86371,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8679.317618000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8687.293922,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8695.803554999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8706.627033,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8716.18191,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8726.474136,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8736.263251,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8747.371632,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8758.030353,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8769.118106,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8780.14213,"event":"required_assets_ready"}
+AI roster verified: fourteen rivals, five fighters
+LOAD_PROFILE {"elapsed_ms":8798.106822,"event":"main_menu_update"}
+Audio output initialized: 4 playback sinks
+LOAD_PROFILE {"elapsed_ms":10032.744619000001,"event":"first_race_update"}
+Native remount 1: pickup error 0.0000 m
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Hills route 0 -> city/town/hills -> crash recovery -> results fixture; exceptional rescues [0, 0]
