@@ -41,10 +41,10 @@ pub struct StreetActors<'w, 's> {
         's,
         (
             &'static crate::props::PropVisual,
-            Option<&'static bevy::scene::SceneInstance>,
+            Option<&'static bevy::world_serialization::WorldInstance>,
         ),
     >,
-    spawner: Res<'w, bevy::scene::SceneSpawner>,
+    spawner: Res<'w, bevy::world_serialization::WorldInstanceSpawner>,
 }
 #[allow(clippy::too_many_arguments)]
 pub fn run(

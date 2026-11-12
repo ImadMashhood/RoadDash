@@ -328,9 +328,15 @@ pub fn prepare(
                     if triangles == 0 {
                         continue;
                     }
+                    let gltf_material = p.material.as_ref().expect("authored kit material");
+                    let path = gltf_material.path().expect("authored kit material path");
+                    let label = path.label().expect("authored kit material label");
+                    // The GLTF primitive now points to authoring material data.
+                    // PBR registers the rendered StandardMaterial at /std.
+                    let material = server.load(path.clone().with_label(format!("{label}/std")));
                     let primitive = Primitive {
                         mesh: p.mesh.clone(),
-                        material: p.material.clone().expect("authored kit material"),
+                        material,
                         triangles,
                     };
                     let e = commands
@@ -521,10 +527,14 @@ pub fn synchronize(
         } else {
             transform.translation().distance(p)
         };
-        let r = bevy::camera::visibility::VisibilityRange {
-            start_margin: f32::MIN..f32::MIN,
-            end_margin: (d - (1. - w) * 8.)..(d + w * 8.),
-            use_aabb: false,
+        let r = if w >= 1. {
+            bevy::camera::visibility::VisibilityRange {
+                start_margin: f32::MIN..f32::MIN,
+                end_margin: f32::MAX..f32::MAX,
+                use_aabb: false,
+            }
+        } else {
+            crate::world_gen::architecture::render::fade_range(d, w, false)
         };
         if let Some(mut old) = range {
             old.set_if_neq(r);

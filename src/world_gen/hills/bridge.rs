@@ -465,8 +465,10 @@ pub(super) mod tests {
                       ground: Query<(), With<Ground>>,
                       obstacles: Query<(), (With<Obstacle>, Without<Ground>)>| {
                     let ctx = context.single().unwrap();
-                    let supports = |e| ground.contains(e);
-                    let sides = |e| obstacles.contains(e);
+                    let supports =
+                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
+                    let sides =
+                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| obstacles.contains(e);
                     for &(station, center, outside) in &samples {
                         let (_, road) = ctx
                             .cast_ray(

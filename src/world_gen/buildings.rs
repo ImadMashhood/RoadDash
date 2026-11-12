@@ -126,9 +126,8 @@ pub fn spawn(
                 materials.add(StandardMaterial {
                     base_color: Color::WHITE,
                     base_color_texture: server.map(|s| {
-                        s.load_with_settings(
-                            format!("architecture://materials/{}_albedo.png", design.masonry),
-                            |settings: &mut bevy::image::ImageLoaderSettings| {
+                        s.load_builder()
+                            .with_settings(|settings: &mut bevy::image::ImageLoaderSettings| {
                                 settings.sampler = bevy::image::ImageSampler::Descriptor(
                                     bevy::image::ImageSamplerDescriptor {
                                         address_mode_u: bevy::image::ImageAddressMode::Repeat,
@@ -136,8 +135,11 @@ pub fn spawn(
                                         ..default()
                                     },
                                 );
-                            },
-                        )
+                            })
+                            .load(format!(
+                                "architecture://materials/{}_albedo.png",
+                                design.masonry
+                            ))
                     }),
                     uv_transform: bevy::math::Affine2::from_scale(Vec2::splat(4.0)),
                     perceptual_roughness: 0.86,

@@ -221,7 +221,7 @@ pub fn think(
     }
     let start = std::time::Instant::now();
     let direction = pp - cp;
-    let predicate = |e| {
+    let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
         e != officer
             && e != player
             && !owned
@@ -425,7 +425,7 @@ pub fn dismount(
                 continue;
             }
             let mut blocked = false;
-            ctx.intersect_shape(point, Quat::IDENTITY, shape.raw.as_ref(), filter, |_| {
+            ctx.intersect_shape(point, Quat::IDENTITY, shape.raw.as_ref(), filter, |_, _| {
                 blocked = true;
                 false
             });

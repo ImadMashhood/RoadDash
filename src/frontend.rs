@@ -6,7 +6,9 @@ use crate::{
     settings::SettingsPanel,
     track::Track,
 };
-use bevy::{asset::LoadState, prelude::*};
+use bevy::{
+    asset::LoadState, picking::hover::Hovered, prelude::*, ui::Pressed, ui_widgets::Button,
+};
 use rr_core::frontend::{Action, Course, Effect, Flow, Page, ROSTER};
 mod course;
 mod course_smoke;
@@ -103,7 +105,7 @@ struct MenuButton {
     action: Action,
 }
 #[derive(Component)]
-struct FontSize(f32);
+struct BaseFontSize(f32);
 #[derive(Resource, Default)]
 struct View {
     key: Option<(Page, usize, bool, bool, bool, String)>,
@@ -189,7 +191,7 @@ fn input(
     state: Option<Res<State<AppScreen>>>,
     keys: Res<ButtonInput<KeyCode>>,
     pads: Query<(Entity, &Gamepad)>,
-    clicks: Query<(&Interaction, &MenuButton), Changed<Interaction>>,
+    clicks: Query<&MenuButton, Added<Pressed>>,
     time: Res<Time<Real>>,
     mut menu: ResMut<crate::ui::MenuAction>,
     mut exit: MessageWriter<AppExit>,
@@ -234,9 +236,7 @@ fn input(
             {
                 front.selected = 1 - front.selected.min(1);
             }
-            let click = clicks
-                .iter()
-                .find_map(|(i, b)| (*i == Interaction::Pressed).then_some(b.action));
+            let click = clicks.iter().map(|b| b.action).next();
             let action = front.pending.take().or(click).or_else(|| {
                 if edge(GamepadButton::East) {
                     Some(Action::Continue)
@@ -375,9 +375,7 @@ fn input(
             }
         }
     }
-    let click = clicks
-        .iter()
-        .find_map(|(i, b)| (*i == Interaction::Pressed).then_some(b.action));
+    let click = clicks.iter().map(|b| b.action).next();
     let action = front.pending.take().or(click).or_else(|| {
         if (if editing {
             keys.just_pressed(KeyCode::Escape)
@@ -504,11 +502,11 @@ fn text(
         .spawn((
             Text::new(value),
             TextFont {
-                font_size: size,
+                font_size: FontSize::Px(size),
                 ..default()
             },
             TextColor(color),
-            FontSize(size),
+            BaseFontSize(size),
             node,
         ))
         .id()
@@ -702,7 +700,7 @@ fn focus(
     front: Res<Frontend>,
     mut buttons: Query<(
         &MenuButton,
-        &Interaction,
+        Option<&Hovered>,
         &mut BackgroundColor,
         &mut BorderColor,
         Option<&layout::MenuChoice>,
@@ -712,12 +710,13 @@ fn focus(
     mut labels: Query<&mut TextColor>,
 ) {
     for (b, i, mut bg, mut border, classic, course, children) in &mut buttons {
+        let hovered = i.is_some_and(|h| h.get());
         let selected = b.index == front.selected
-            || *i == Interaction::Hovered
+            || hovered
             || course.is_some_and(|c| front.flow.course == Some(c.0));
         if classic.is_some() {
             let selected = b.index == front.selected;
-            bg.set_if_neq(BackgroundColor(if *i == Interaction::Hovered {
+            bg.set_if_neq(BackgroundColor(if hovered {
                 Color::srgba(0.96, 0.40, 0.22, 0.025)
             } else {
                 Color::NONE
@@ -754,7 +753,7 @@ fn resize(
     art: Res<Art>,
     mut backdrops: Query<(&ImageNode, &mut Node), (With<Backdrop>, Without<Canvas>)>,
     mut canvas: Query<&mut Node, (With<Canvas>, Without<Backdrop>)>,
-    mut fonts: Query<(&FontSize, &mut TextFont)>,
+    mut fonts: Query<(&BaseFontSize, &mut TextFont)>,
     mut cameras: Query<(&Camera, &mut Projection), With<UiCamera>>,
 ) {
     let Ok(window) = windows.single() else { return };
@@ -817,20 +816,20 @@ fn resize(
             } else {
                 (width / 1440.).min(height / 810.)
             };
-        if font.font_size != size {
-            font.font_size = size;
+        if font.font_size != FontSize::Px(size) {
+            font.font_size = FontSize::Px(size);
         }
     }
 }
-fn typography(art: Res<Art>, mut labels: Query<(&FontSize, &mut TextFont)>) {
+fn typography(art: Res<Art>, mut labels: Query<(&BaseFontSize, &mut TextFont)>) {
     for (base, mut font) in &mut labels {
         let face = if base.0 >= 40.0 {
             &art.heading_font
         } else {
             &art.body_font
         };
-        if font.font != *face {
-            font.font = face.clone();
+        if font.font != face.clone().into() {
+            font.font = face.clone().into();
         }
     }
 }
@@ -925,7 +924,7 @@ mod tests {
         let button = app
             .world_mut()
             .spawn((
-                Interaction::Pressed,
+                Pressed,
                 MenuButton {
                     index: 1,
                     action: Action::SelectCourse(Course::Hills),
@@ -1223,7 +1222,7 @@ mod tests {
                     index: 1,
                     action: Action::Street,
                 },
-                Interaction::Pressed,
+                Pressed,
             ))
             .id();
         app.update();

@@ -116,7 +116,9 @@ pub fn schedule(
                 })
                 .chain(
                     npcs.iter()
-                        .filter(|(_, n, _)| n.active() && r.can_fight(usize::MAX))
+                        .filter(|(_, n, _)| {
+                            n.active() && (r.human_controlled() || r.can_fight(usize::MAX))
+                        })
                         .map(|(e, _, t)| (e, t.translation)),
                 )
                 .filter_map(|(e, p)| {
@@ -297,7 +299,7 @@ pub fn melee(
                 return;
             }
             let clear = context.single().is_ok_and(|ctx| {
-                let predicate = |e| {
+                let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
                     e != entity
                         && !owned.get(e).is_ok_and(|b| {
                             b.owner == entity && b.kind == recovery::BodyKind::Runner
@@ -346,7 +348,7 @@ pub fn melee(
             }
         }
         for (e, n, t) in &npcs {
-            if n.active() && (player || (!police_attacker && mind.can_fight(usize::MAX))) {
+            if n.active() && player {
                 consider(
                     e,
                     t.translation
@@ -375,7 +377,7 @@ pub fn melee(
                     p.translation + Vec3::Y * 0.25
                 });
             let delta = p - eye;
-            let predicate = |e| {
+            let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
                 e != observer
                     && e != attacker
                     && e != target
@@ -443,7 +445,7 @@ pub fn melee(
             if kicking {
                 let push = right * (p - origin).dot(right).signum() * kick_strength;
                 if let Ok(mut velocity) = velocities.get_mut(target) {
-                    velocity.linvel += push;
+                    velocity.linear += push;
                 }
                 r.side_velocity += (p - origin).dot(right).signum() * kick_strength;
                 r.motion_velocity += push;
@@ -560,7 +562,7 @@ mod tests {
                 let victim = app.world().get::<Rider>(target).unwrap();
                 assert_eq!(victim.hits.count, if kicking { 0 } else { 1 });
                 assert!(
-                    (app.world().get::<Velocity>(target).unwrap().linvel
+                    (app.world().get::<Velocity>(target).unwrap().linear
                         - if kicking {
                             right * side * 8.0
                         } else {
@@ -879,7 +881,7 @@ mod tests {
             app.world_mut().run_system_once(melee).unwrap();
             assert_eq!(app.world().get::<Rider>(owner).unwrap().attack_side, side);
             assert_eq!(
-                app.world().get::<Velocity>(target).unwrap().linvel,
+                app.world().get::<Velocity>(target).unwrap().linear,
                 Vec3::ZERO
             );
             assert_eq!(app.world().get::<Rider>(target).unwrap().health, 100.0);
@@ -923,13 +925,13 @@ mod tests {
                 app.world()
                     .get::<Velocity>(targets[0])
                     .unwrap()
-                    .linvel
+                    .linear
                     .dot(right)
                     * side
                     > 7.9
             );
             assert_eq!(
-                app.world().get::<Velocity>(targets[1]).unwrap().linvel,
+                app.world().get::<Velocity>(targets[1]).unwrap().linear,
                 Vec3::ZERO
             );
             assert_eq!(app.world().get::<Rider>(targets[0]).unwrap().health, 100.0);
@@ -957,7 +959,7 @@ mod tests {
         let attacker = app
             .world_mut()
             .spawn((
-                Rider::new(2),
+                Rider::new(1),
                 Transform::from_translation(pose.translation - right * 1.4)
                     .with_rotation(pose.rotation),
                 Visibility::Visible,

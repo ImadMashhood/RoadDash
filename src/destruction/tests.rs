@@ -43,7 +43,7 @@ fn reset_restores_prop_body_and_damage() {
     assert_eq!(*entity.get::<Transform>().unwrap(), original);
     assert_eq!(*entity.get::<RigidBody>().unwrap(), RigidBody::Fixed);
     assert!(entity.get::<Loose>().is_none());
-    assert_eq!(entity.get::<Velocity>().unwrap().linvel, Vec3::ZERO);
+    assert_eq!(entity.get::<Velocity>().unwrap().linear, Vec3::ZERO);
     assert!(app.world().entity(visual).get::<FrozenVisual>().is_none());
 }
 

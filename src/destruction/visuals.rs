@@ -11,7 +11,10 @@ pub(super) struct Damaged;
 #[derive(Component)]
 pub(super) struct Ready;
 
-pub(super) fn ready(event: On<bevy::scene::SceneInstanceReady>, mut commands: Commands) {
+pub(super) fn ready(
+    event: On<bevy::world_serialization::WorldInstanceReady>,
+    mut commands: Commands,
+) {
     commands.entity(event.entity).insert(Ready);
 }
 

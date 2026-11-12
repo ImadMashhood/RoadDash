@@ -31,7 +31,7 @@ impl PropArt {
             server: Some(server.clone()),
         })
     }
-    fn scene(&self, path: String) -> Handle<Scene> {
+    fn scene(&self, path: String) -> Handle<WorldAsset> {
         self.server
             .as_ref()
             .map(|s| s.load(path))
@@ -75,7 +75,7 @@ impl PropArt {
                     lod: 2,
                     family,
                 },
-                SceneRoot(self.scene(path)),
+                WorldAssetRoot(self.scene(path)),
                 transform,
                 Visibility::default(),
             ))
@@ -122,7 +122,7 @@ impl PropArt {
         commands
             .spawn((
                 Name::new(format!("prop actor skin {}", prop.name)),
-                SceneRoot(self.scene(format!("props://{}#Scene0", prop.skin_files[0]))),
+                WorldAssetRoot(self.scene(format!("props://{}#Scene0", prop.skin_files[0]))),
                 Transform::IDENTITY,
                 Visibility::default(),
                 ActorBinding {
@@ -156,7 +156,7 @@ impl ActorBinding {
     }
 }
 #[derive(Resource, Default)]
-struct SceneCache(HashMap<String, Handle<Scene>>);
+struct SceneCache(HashMap<String, Handle<WorldAsset>>);
 #[derive(Resource, Default)]
 pub struct PropStats {
     pub rendered: usize,
@@ -170,7 +170,7 @@ fn lods(
     mut props: Query<(
         &GlobalTransform,
         &mut PropVisual,
-        &mut SceneRoot,
+        &mut WorldAssetRoot,
         &mut Visibility,
         Option<&crate::destruction::FrozenVisual>,
     )>,
@@ -299,7 +299,7 @@ fn actor_lods(
     mut actors: Query<(
         &GlobalTransform,
         &mut ActorBinding,
-        &mut SceneRoot,
+        &mut WorldAssetRoot,
         &mut Visibility,
     )>,
 ) {

@@ -807,7 +807,7 @@ mod tests {
                 .get::<Rider>(target)
                 .unwrap()
                 .combat_mind
-                .can_fight(10)
+                .can_fight(0)
         );
     }
     #[test]

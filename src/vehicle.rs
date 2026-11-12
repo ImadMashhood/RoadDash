@@ -159,7 +159,7 @@ pub fn forces(
         &mut bikes
     {
         *force = default();
-        state.impact_velocity = v.linvel;
+        state.impact_velocity = v.linear;
         if recovery.stage != RecoveryStage::Riding
             || race.phase != Phase::Racing
             || r.finished.is_some()
@@ -169,7 +169,7 @@ pub fn forces(
             state.was_riding = false;
             continue;
         }
-        r.motion_angular_velocity = v.angvel;
+        r.motion_angular_velocity = v.angular;
         *body = RigidBody::Dynamic;
         let p = &tuning.presets[tuning.selected];
         let rider_mass = if r.id == 0 {
@@ -198,7 +198,7 @@ pub fn forces(
         };
         let up = road * Vec3::Y;
         let right = forward.cross(up).normalize();
-        let signed_speed = v.linvel.dot(forward);
+        let signed_speed = v.linear.dot(forward);
         let speed = signed_speed.abs();
         let input = r.drive_intent;
         let player = r.human_controlled();
@@ -229,7 +229,7 @@ pub fn forces(
         };
         for (i, z) in [-0.78, 0.78].into_iter().enumerate() {
             let origin = t.translation + t.rotation * Vec3::new(0.0, 0.9, z);
-            let predicate = |hit| {
+            let predicate = |hit, _: &bevy_rapier3d::rapier::geometry::Collider| {
                 ground.contains(hit)
                     || supports.get(hit).is_ok_and(|(pose, shape, owned)| {
                         if owned.is_some_and(|o| {
@@ -257,8 +257,8 @@ pub fn forces(
                 }
                 let compression = 0.9 - hit.time_of_impact;
                 let contact = origin - Vec3::Y * hit.time_of_impact;
-                let point_velocity = v.linvel
-                    + v.angvel
+                let point_velocity = v.linear
+                    + v.angular
                         .cross(contact - (t.translation + t.rotation * Vec3::Y * 0.55));
                 let f = ((p.dry_mass + rider_mass) * 9.81 * 0.5 + p.spring * compression
                     - p.damper * point_velocity.dot(hit.normal))
@@ -294,14 +294,19 @@ pub fn forces(
         let limit = if nitro { p.nitro_speed } else { p.top_speed };
         let limit = if player {
             limit
+        } else if r.police {
+            limit.min(r.ai_profile.cruise_mps())
         } else {
             limit
-                .min(
-                    rr_core::cast::character(r.id).map_or(r.ai_profile.cruise_mps(), |c| {
-                        r.ai_profile.race_pace(p.top_speed) * c.pace
-                    }),
-                )
-                .min((12.0 / track.curvature_route(r.route, r.progress).abs().max(0.0001)).sqrt())
+                .min(rr_core::pursuit::rival_race_pace(
+                    r.ai_profile,
+                    rr_core::cast::character(r.id).map_or(1., |c| c.pace),
+                    p.top_speed,
+                ))
+                .min(rr_core::pursuit::race_corner_speed(
+                    track.curvature_route(r.route, r.progress),
+                    rr_core::pursuit::RACE_CURRENT_LATERAL_ACCEL_MPS2,
+                ))
         };
         let surface = track.surface_route(r.route, r.progress, r.lane);
         let limit = surface.speed_limit(limit);
@@ -314,6 +319,11 @@ pub fn forces(
             p.torque_nm
                 * surface.drive_scale()
                 * input.throttle_strength()
+                * if !player && race.elapsed < 5.0 && speed < 30.0 && !r.ai_escape.active() {
+                    1.35
+                } else {
+                    1.0
+                }
                 * torque_curve
                 * gears[gear]
                 * 3.2
@@ -325,12 +335,12 @@ pub fn forces(
         };
         let longitudinal = engine
             - if brake {
-                (v.linvel.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
+                (v.linear.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
                     -(p.dry_mass + rider_mass) * 10.0,
                     (p.dry_mass + rider_mass) * 10.0,
                 ) * if at_end { 1.0 } else { input.brake_strength() }
             } else if !throttle {
-                (v.linvel.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
+                (v.linear.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
                     -(p.dry_mass + rider_mass) * 1.8,
                     (p.dry_mass + rider_mass) * 1.8,
                 )
@@ -352,7 +362,7 @@ pub fn forces(
         let steering_side =
             (steer * (1.8 + speed * 0.085) * p.turn_response).clamp(-speed * 0.675, speed * 0.675);
         let desired_side = steering_side + r.side_velocity;
-        let lateral = ((desired_side - v.linvel.dot(right)) * 3.0
+        let lateral = ((desired_side - v.linear.dot(right)) * 3.0
             - if player {
                 0.0
             } else {
@@ -365,7 +375,7 @@ pub fn forces(
         state.grip_force = grip;
         state.surface_mu = p.grip * surface.traction();
         state.applied_tire_force = applied;
-        state.slip_angle = v.linvel.dot(right).atan2(speed.max(0.5));
+        state.slip_angle = v.linear.dot(right).atan2(speed.max(0.5));
         state.slip = if requested.length() > 1.0 {
             (1.0 - grip / requested.length()).clamp(0.0, 1.0)
         } else {
@@ -381,7 +391,7 @@ pub fn forces(
                 )
                 * (p.dry_mass + rider_mass);
         }
-        force.force -= v.linvel * speed * p.drag;
+        force.force -= v.linear * speed * p.drag;
         let current_up = t.rotation * Vec3::Y;
         let upright_axis = if current_up.dot(normal) < -0.5
             && current_up.cross(normal).length_squared() < 0.01
@@ -392,7 +402,7 @@ pub fn forces(
             current_up.cross(normal)
         };
         force.torque += upright_axis * (p.dry_mass + rider_mass) * 28.0
-            - Vec3::new(v.angvel.x, 0.0, v.angvel.z) * (p.dry_mass + rider_mass) * 5.5;
+            - Vec3::new(v.angular.x, 0.0, v.angular.z) * (p.dry_mass + rider_mass) * 5.5;
         let heading = (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
         let target = r
             .ai_escape
@@ -416,7 +426,7 @@ pub fn forces(
             0.0
         };
         state.yaw_rate += (desired - state.yaw_rate) * (1.0 - (-dt * 12.0).exp());
-        v.angvel.y = 0.0;
+        v.angular.y = 0.0;
         t.rotation = Quat::from_rotation_y(state.yaw_rate * dt) * t.rotation;
         state.yaw = (t.rotation * Vec3::Z).x.atan2((t.rotation * Vec3::Z).z);
         // Positive roll leans toward camera-right (-local X).
@@ -461,12 +471,12 @@ pub fn readback(
                 .observe_route(&track, route, state.position, t.translation, previous, d);
             r.progress = d;
             r.lane = lane;
-            r.speed = v.linvel.with_y(0.0).length();
-            r.motion_velocity = v.linvel;
+            r.speed = v.linear.with_y(0.0).length();
+            r.motion_velocity = v.linear;
             r.lean = state.lean;
         }
         state.position = t.translation;
-        state.velocity = v.linvel;
+        state.velocity = v.linear;
         state.yaw = (t.rotation * Vec3::Z).x.atan2((t.rotation * Vec3::Z).z);
         state.damage = 100.0 - r.health;
     }
@@ -479,9 +489,14 @@ pub(crate) fn remount_at(commands: &mut Commands, owner: Entity, pose: Transform
             if let Some(handle) = set.entity2body().get(&owner).copied()
                 && let Some(body) = set.bodies.get_mut(handle)
             {
-                let location = bevy_rapier3d::na::Isometry3::from_parts(
-                    pose.translation.into(),
-                    pose.rotation.into(),
+                let location = bevy_rapier3d::rapier::math::Pose3::from_parts(
+                    pose.translation.to_array().into(),
+                    bevy_rapier3d::rapier::math::Rot3::from_xyzw(
+                        pose.rotation.x,
+                        pose.rotation.y,
+                        pose.rotation.z,
+                        pose.rotation.w,
+                    ),
                 );
                 body.set_body_type(
                     bevy_rapier3d::rapier::dynamics::RigidBodyType::KinematicPositionBased,
@@ -489,8 +504,8 @@ pub(crate) fn remount_at(commands: &mut Commands, owner: Entity, pose: Transform
                 );
                 body.set_position(location, true);
                 body.set_next_kinematic_position(location);
-                body.set_linvel(Vec3::ZERO.into(), true);
-                body.set_angvel(Vec3::ZERO.into(), true);
+                body.set_linvel(Vec3::ZERO, true);
+                body.set_angvel(Vec3::ZERO, true);
                 body.reset_forces(true);
                 body.reset_torques(true);
             }

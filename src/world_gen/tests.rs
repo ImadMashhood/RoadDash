@@ -58,7 +58,9 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
         joints,
     };
     // Every infill has physical volume, not just a facade hiding an empty gap.
-    let infill = |e| world.get::<super::frontage::PartyWallInfill>(e).is_some();
+    let infill = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+        world.get::<super::frontage::PartyWallInfill>(e).is_some()
+    };
     for join in &layout.frontages {
         let center = join
             .corners
@@ -79,7 +81,9 @@ fn every_foundation_is_supported_and_roads_junctions_and_chunk_seams_are_solid()
             join.owners
         );
     }
-    let ground = |e| world.get::<crate::world::Ground>(e).is_some();
+    let ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+        world.get::<crate::world::Ground>(e).is_some()
+    };
     let ray = |p: Vec3| {
         context
             .cast_ray(
@@ -390,7 +394,7 @@ fn exceptional_recovery_rescue_clears_motion_and_applies_one_visible_penalty() {
             < 0.1,
         "stale walking motion survived rescue"
     );
-    assert!(app.world().get::<Velocity>(wreck).unwrap().linvel.length() < 0.1);
+    assert!(app.world().get::<Velocity>(wreck).unwrap().linear.length() < 0.1);
     for _ in 0..3 {
         app.update();
     }
@@ -460,7 +464,9 @@ fn street_trees_leave_walking_space_and_have_solid_trunks() {
         joints,
         rigidbody_set,
     };
-    let tree = |e| world.get::<streetscape::StreetTree>(e).is_some();
+    let tree = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+        world.get::<streetscape::StreetTree>(e).is_some()
+    };
     for (d, p) in sites {
         assert!(!layout.settings.junction_at(d, 12.0));
         let (_, q) = track.sample(d, 0.0);
@@ -582,7 +588,9 @@ fn expanded_grid_puts_player_last_with_twelve_metre_gaps_and_solid_road() {
         );
         let (d, lane, _) = track.project(p, spawn.distance);
         assert!((d - spawn.distance).abs() < 0.1 && (lane - spawn.lane).abs() < 0.1);
-        let ground = |e| world.get::<crate::world::Ground>(e).is_some();
+        let ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+            world.get::<crate::world::Ground>(e).is_some()
+        };
         let (_, distance) = ctx
             .cast_ray(
                 p + Vec3::Y * 2.0,

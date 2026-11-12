@@ -250,7 +250,7 @@ pub fn run(
         {
             state.lowest = state.lowest.min(t.translation.y);
             if let Some(v) = velocity.as_deref() {
-                state.maximum_downward_speed = state.maximum_downward_speed.max(-v.linvel.y);
+                state.maximum_downward_speed = state.maximum_downward_speed.max(-v.linear.y);
             }
             if follow.is_none_or(|p| t.translation.y < p.y) {
                 follow = Some(t.translation);
@@ -436,7 +436,7 @@ pub fn run(
             );
         }
         let ctx = physics.single().unwrap();
-        let is_ground = |e| ground.contains(e);
+        let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
         let mut error = 0f32;
         let mut probes = 0;
         for route in 0..2 {

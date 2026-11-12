@@ -216,7 +216,7 @@ pub fn spawn(
         let p = p.with_y(track.terrain_height(p.x, p.z));
         if let Some(server) = server {
             commands.spawn((
-                SceneRoot(server.load("architecture://models/BARN12_lod1.glb#Scene0")),
+                WorldAssetRoot(server.load("architecture://models/BARN12_lod1.glb#Scene0")),
                 Transform::from_translation(p).with_rotation(q),
                 Visibility::default(),
             ));
@@ -281,7 +281,7 @@ pub fn crossing_traffic(
         }
         let mut p = path.center + path.axis * cross.distance;
         p.y = track.terrain_height(p.x, p.z) + 0.025;
-        velocity.linvel = if dt > 0. && pose.translation.distance(p) < 5. {
+        velocity.linear = if dt > 0. && pose.translation.distance(p) < 5. {
             (p - pose.translation) / dt
         } else {
             Vec3::ZERO

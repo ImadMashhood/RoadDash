@@ -58,8 +58,8 @@ fn ejection_seed_preserves_com_momentum_and_existing_angular_velocity() {
         let ColliderMassProperties::Mass(m) = m else {
             panic!("explicit mass")
         };
-        momentum += v.linvel * m;
-        assert_eq!(v.angvel, Vec3::X * 2.0);
+        momentum += v.linear * m;
+        assert_eq!(v.angular, Vec3::X * 2.0);
     }
     assert!(momentum.distance(Vec3::Z * 18.0 * 70.0) < 0.001);
 }
@@ -93,9 +93,8 @@ fn wall_impact_and_high_speed_ejection_remain_bounded() {
 }
 #[test]
 fn fifteen_crashes_have_bounded_entities_and_can_sleep() {
-    use bevy::ecs::schedule::ExecutorKind;
-    for executor in [ExecutorKind::MultiThreaded, ExecutorKind::SingleThreaded] {
-        let (at_900, at_1800, first_sleep) = lab::pileup_settling(executor);
+    for multithreaded in [true, false] {
+        let (at_900, at_1800, first_sleep) = lab::pileup_settling(multithreaded);
         println!("BIOMECH_PILEUP_900 {at_900:?}");
         println!("BIOMECH_PILEUP_1800 {at_1800:?} first_all_sleep_update={first_sleep:?}");
         // Both platforms must already be stable/resting at the original checkpoint.
@@ -158,7 +157,7 @@ fn pose_motor_holds_a_configurable_elbow_target_and_yields_to_external_torque() 
     app.update();
     let velocity = app.world().get::<Velocity>(e).unwrap();
     assert!(
-        velocity.angvel.length() > 0.05,
+        velocity.angular.length() > 0.05,
         "joint must remain physical"
     );
 }
@@ -252,7 +251,7 @@ fn real_ejection_keeps_preimpact_spin_even_after_the_hidden_chassis_is_stopped()
         16
     );
     for (_, v) in records {
-        assert!(v.angvel.distance(Vec3::Y * 0.8) < 0.00001);
+        assert!(v.angular.distance(Vec3::Y * 0.8) < 0.00001);
     }
 }
 #[test]
@@ -519,12 +518,12 @@ fn grounded_roll_converts_existing_energy_once_in_forward_and_side_directions() 
                 .query_filtered::<(&Transform, &ReadMassProperties, &Velocity), With<Segment>>()
                 .iter(app.world())
             {
-                let w = (t.rotation * m.principal_inertia_local_frame).inverse() * v.angvel;
+                let w = (t.rotation * m.principal_inertia_local_frame).inverse() * v.angular;
                 energy += 0.5
-                    * (m.mass * v.linvel.length_squared()
+                    * (m.mass * v.linear.length_squared()
                         + (m.principal_inertia * w * w).element_sum());
-                momentum += m.mass * v.linvel;
-                angular += v.angvel;
+                momentum += m.mass * v.linear;
+                angular += v.angular;
             }
             (energy, momentum, angular)
         }
@@ -589,8 +588,8 @@ fn roll_assistance_needs_support_and_does_not_change_the_baseline() {
     }
     app.world_mut().run_system_once(reactions::roll).unwrap();
     for v in app.world_mut().query::<&Velocity>().iter(app.world()) {
-        assert_eq!(v.linvel, Vec3::Z * 8.0);
-        assert_eq!(v.angvel, Vec3::ZERO);
+        assert_eq!(v.linear, Vec3::Z * 8.0);
+        assert_eq!(v.angular, Vec3::ZERO);
     }
 }
 
@@ -616,8 +615,8 @@ fn frontal_leg_release_uses_limited_motors_without_a_velocity_impulse() {
     app.world_mut().run_system_once(muscles::update).unwrap();
     for (e, v) in before {
         let now = app.world().get::<Velocity>(e).unwrap();
-        assert_eq!(v.linvel, now.linvel);
-        assert_eq!(v.angvel, now.angvel);
+        assert_eq!(v.linear, now.linear);
+        assert_eq!(v.angular, now.angular);
     }
     for (s, m) in app
         .world_mut()

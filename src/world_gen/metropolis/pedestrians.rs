@@ -97,7 +97,7 @@ pub fn update(
                 w.completed = 0;
                 w.started = 0;
             }
-            velocity.linvel = Vec3::ZERO;
+            velocity.linear = Vec3::ZERO;
             continue;
         }
         let (start, end) = if w.returning {
@@ -116,7 +116,7 @@ pub fn update(
             // Cooldown, global admission and distance are cheap. Forecast motion only
             // when this walker could actually step off the curb this fixed tick.
             if !rules::may_start(race.elapsed, w.ready_at, clock.next, active, nearby, true) {
-                velocity.linvel = Vec3::ZERO;
+                velocity.linear = Vec3::ZERO;
                 continue;
             }
             let clear = traffic.iter().all(|(t, v, r, car, recovery)| {
@@ -134,7 +134,7 @@ pub fn update(
                 )
             });
             if !rules::may_start(race.elapsed, w.ready_at, clock.next, active, nearby, clear) {
-                velocity.linvel = Vec3::ZERO;
+                velocity.linear = Vec3::ZERO;
                 continue;
             }
             w.active = true;
@@ -147,15 +147,16 @@ pub fn update(
         let direction = delta.normalize_or_zero();
         let next = transform.translation
             + direction * (rules::WALK_SPEED * time.delta_secs()).min(distance);
-        let predicate = |entity| ground.contains(entity);
+        let predicate =
+            |entity, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(entity);
         let filter = QueryFilter::only_fixed().predicate(&predicate);
         let origin = next.with_y(track.terrain_height(next.x, next.z) + 3.);
         let Some((_, toi)) = context.cast_ray(origin, Vec3::NEG_Y, 6., true, filter) else {
-            velocity.linvel = Vec3::ZERO;
+            velocity.linear = Vec3::ZERO;
             continue;
         };
         let next = next.with_y(origin.y - toi + 0.015);
-        velocity.linvel = (next - transform.translation) / time.delta_secs();
+        velocity.linear = (next - transform.translation) / time.delta_secs();
         transform.translation = next;
         transform.rotation = Quat::from_rotation_y(direction.x.atan2(direction.z));
         if distance <= rules::WALK_SPEED * time.delta_secs() {
@@ -164,7 +165,7 @@ pub fn update(
             w.returning = !w.returning;
             w.ready_at = race.elapsed + rules::REST_SECONDS;
             active = active.saturating_sub(1);
-            velocity.linvel = Vec3::ZERO;
+            velocity.linear = Vec3::ZERO;
         }
     }
 }
@@ -176,7 +177,7 @@ fn forecast_velocity(
     car: Option<&Traffic>,
 ) -> Vec3 {
     car.map_or_else(
-        || velocity.map_or(Vec3::ZERO, |v| v.linvel),
+        || velocity.map_or(Vec3::ZERO, |v| v.linear),
         |c| track.street_sample(c.route, c.progress, c.lane).1 * Vec3::Z * c.speed,
     )
 }
@@ -337,7 +338,7 @@ mod tests {
             "no teleport: {max_step}"
         );
         assert!(min_y.is_finite());
-        assert_eq!(app.world().get::<Velocity>(e).unwrap().linvel, Vec3::ZERO);
+        assert_eq!(app.world().get::<Velocity>(e).unwrap().linear, Vec3::ZERO);
         let track = app.world().resource::<Track>();
         assert!(
             (last.y - track.terrain_height(last.x, last.z) - 0.155).abs() < 0.015,

@@ -1,14 +1,15 @@
 // Original bounded cloud raymarch: one shared 3D density texture, twelve steps.
-#import bevy_pbr::{forward_io::VertexOutput, mesh_view_bindings::view}
-#import bevy_core_pipeline::tonemapping::tone_mapping
+import bevy_pbr::render::forward_io::VertexOutput;
+import bevy_pbr::render::mesh_view_bindings::view;
+@if(TONEMAP_IN_SHADER) import bevy_core_pipeline::tonemapping::tone_mapping;
 struct Settings {
     local_from_world: mat4x4<f32>,
     sun_direction: vec4<f32>,
     radiance: vec4<f32>,
 };
-@group(#{MATERIAL_BIND_GROUP}) @binding(0) var<uniform> cloud: Settings;
-@group(#{MATERIAL_BIND_GROUP}) @binding(1) var density_texture: texture_3d<f32>;
-@group(#{MATERIAL_BIND_GROUP}) @binding(2) var density_sampler: sampler;
+@group(constants::MATERIAL_BIND_GROUP) @binding(0) var<uniform> cloud: Settings;
+@group(constants::MATERIAL_BIND_GROUP) @binding(1) var density_texture: texture_3d<f32>;
+@group(constants::MATERIAL_BIND_GROUP) @binding(2) var density_sampler: sampler;
 @fragment
 fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
     let direction = normalize(input.world_position.xyz - view.world_position);
@@ -51,8 +52,8 @@ fn fragment(input: VertexOutput) -> @location(0) vec4<f32> {
     if alpha < 0.002 { discard; }
     // Match the scene's existing exposure/tonemap; never change its sun or shadows.
     var result = vec4(colour / max(accumulated_alpha, 0.0001) * cloud.radiance.x * view.exposure, alpha);
-#ifdef TONEMAP_IN_SHADER
+    @if(TONEMAP_IN_SHADER) {
     result = tone_mapping(result, view.color_grading);
-#endif
+    }
     return result;
 }

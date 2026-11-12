@@ -134,7 +134,7 @@ fn setup(
         .insert((Wall, RigidBody::Fixed, Collider::cuboid(8.0, 1.0, 0.6)));
     commands.insert_resource(art);
     commands.insert_resource(ClearColor(Color::srgb(0.12, 0.16, 0.20)));
-    commands.insert_resource(AmbientLight {
+    commands.insert_resource(GlobalAmbientLight {
         brightness: 450.0,
         ..default()
     });
@@ -146,7 +146,7 @@ fn setup(
     commands.spawn((
         DirectionalLight {
             illuminance: 18000.0,
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             ..default()
         },
         Transform::from_xyz(5.0, 8.0, -4.0).looking_at(Vec3::ZERO, Vec3::Y),
@@ -155,7 +155,7 @@ fn setup(
         Hud,
         Text::new("Ragdoll lab loading"),
         TextFont {
-            font_size: 17.0,
+            font_size: FontSize::Px(17.0),
             ..default()
         },
         Node {
@@ -272,8 +272,8 @@ fn controls(
             let owner = commands
                 .spawn((
                     Velocity {
-                        linvel: velocity,
-                        angvel: omega,
+                        linear: velocity,
+                        angular: omega,
                     },
                     ImpactSeverity(0.4),
                 ))

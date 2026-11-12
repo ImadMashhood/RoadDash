@@ -1,8 +1,10 @@
-#import bevy_pbr::{forward_io::{VertexOutput, FragmentOutput}, pbr_fragment::pbr_input_from_standard_material, pbr_functions::{apply_pbr_lighting, main_pass_post_lighting_processing}}
-@group(#{MATERIAL_BIND_GROUP}) @binding(100) var facade_atlas: texture_2d<f32>;
-@group(#{MATERIAL_BIND_GROUP}) @binding(101) var facade_sampler: sampler;
+import bevy_pbr::render::forward_io::{VertexOutput, FragmentOutput};
+import bevy_pbr::render::pbr_fragment::pbr_input_from_standard_material;
+import bevy_pbr::render::pbr_functions::{apply_pbr_lighting, main_pass_post_lighting_processing};
+@group(constants::MATERIAL_BIND_GROUP) @binding(100) var facade_atlas: texture_2d<f32>;
+@group(constants::MATERIAL_BIND_GROUP) @binding(101) var facade_sampler: sampler;
 
-@group(#{MATERIAL_BIND_GROUP}) @binding(102) var facade_packed: texture_2d<f32>;
+@group(constants::MATERIAL_BIND_GROUP) @binding(102) var facade_packed: texture_2d<f32>;
 
 @fragment
 fn fragment(input: VertexOutput, @builtin(front_facing) front: bool) -> FragmentOutput {

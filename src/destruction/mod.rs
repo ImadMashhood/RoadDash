@@ -139,7 +139,7 @@ pub fn register(
         commands
             .spawn((
                 Name::new(format!("broken prop {}", source.id)),
-                SceneRoot(scene),
+                WorldAssetRoot(scene),
                 Transform::from_translation(offset).with_scale(scale),
                 Visibility::Hidden,
                 visuals::Damaged,
@@ -181,9 +181,9 @@ pub fn register(
 fn remember(mut commands: Commands, bodies: Query<(Entity, &Velocity, Option<&mut Before>)>) {
     for (e, v, before) in bodies {
         if let Some(mut b) = before {
-            b.0 = v.linvel;
+            b.0 = v.linear;
         } else {
-            commands.entity(e).insert(Before(v.linvel));
+            commands.entity(e).insert(Before(v.linear));
         }
     }
 }
@@ -260,7 +260,7 @@ fn impacts(
         } else {
             b.map(|v| v.0)
                 .or_else(|| p.map(|v| v.0))
-                .or_else(|| v.map(|v| v.linvel))
+                .or_else(|| v.map(|v| v.linear))
                 .unwrap_or_default()
         }
     };
@@ -279,7 +279,7 @@ fn impacts(
             let center = (lo + hi) * 0.5;
             let half = ((hi - lo) * 0.5 - Vec3::splat(0.015)).max(Vec3::splat(0.02));
             let hull = Collider::cuboid(half.x, half.y, half.z);
-            let pred = |other| {
+            let pred = |other, _: &bevy_rapier3d::rapier::geometry::Collider| {
                 !ground.contains(other)
                     && !sources.get(other).is_ok_and(|s| {
                         owned.is_some_and(|o| {
@@ -508,15 +508,20 @@ fn reset(
             if let Some(handle) = set.entity2body().get(&e).copied()
                 && let Some(body) = set.bodies.get_mut(handle)
             {
-                let location = bevy_rapier3d::na::Isometry3::from_parts(
-                    p.original.translation.into(),
-                    p.original.rotation.into(),
+                let location = bevy_rapier3d::rapier::math::Pose3::from_parts(
+                    p.original.translation.to_array().into(),
+                    bevy_rapier3d::rapier::math::Rot3::from_xyzw(
+                        p.original.rotation.x,
+                        p.original.rotation.y,
+                        p.original.rotation.z,
+                        p.original.rotation.w,
+                    ),
                 );
                 body.set_body_type(bevy_rapier3d::rapier::dynamics::RigidBodyType::Fixed, true);
                 body.set_position(location, true);
                 body.set_next_kinematic_position(location);
-                body.set_linvel(Vec3::ZERO.into(), true);
-                body.set_angvel(Vec3::ZERO.into(), true);
+                body.set_linvel(Vec3::ZERO, true);
+                body.set_angvel(Vec3::ZERO, true);
                 body.reset_forces(true);
                 body.reset_torques(true);
             }
@@ -549,8 +554,8 @@ fn settle(
     for (e, v, mut loose) in &mut loose {
         loose.age += time.delta_secs();
         if loose.age >= tuning.0.settle_after_s
-            && v.linvel.length_squared() < 0.16
-            && v.angvel.length_squared() < 0.04
+            && v.linear.length_squared() < 0.16
+            && v.angular.length_squared() < 0.04
             && context.single().is_ok_and(|ctx| {
                 ctx.contact_pairs_with(e)
                     .any(|p| p.has_any_active_contact())

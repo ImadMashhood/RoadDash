@@ -1,21 +1,23 @@
 // Original analytic sun. Two triangles, zero textures, no extra lights or bloom.
-#import bevy_pbr::{forward_io::Vertex, mesh_view_bindings::view}
-#import bevy_core_pipeline::tonemapping::tone_mapping
+import bevy_pbr::render::forward_io::{Vertex, decompress_vertex};
+import bevy_pbr::render::mesh_view_bindings::view;
+@if(TONEMAP_IN_SHADER) import bevy_core_pipeline::tonemapping::tone_mapping;
 struct SolarSettings {
     direction_radius: vec4<f32>,
     range_radiance: vec4<f32>,
 };
-@group(#{MATERIAL_BIND_GROUP}) @binding(0) var<uniform> solar: SolarSettings;
+@group(constants::MATERIAL_BIND_GROUP) @binding(0) var<uniform> solar: SolarSettings;
 struct SolarVertex {
     @builtin(position) position: vec4<f32>,
     @location(0) radius: vec2<f32>,
 };
 @vertex
 fn vertex(input: Vertex) -> SolarVertex {
+    let local = decompress_vertex(input, input.instance_index);
     let direction = solar.direction_radius.xyz;
     let right = normalize(cross(direction, vec3(0.0, 1.0, 0.0)));
     let up = normalize(cross(right, direction));
-    let radius = input.position.xy * 2.0 * solar.range_radiance.w;
+    let radius = local.position.xy * 2.0 * solar.range_radiance.w;
     // The final extracted render view is authoritative for this presentation.
     // No propagated transform latency and no game/body transform is written.
     let world = view.world_position + solar.range_radiance.x * (
@@ -38,8 +40,8 @@ fn fragment(input: SolarVertex) -> @location(0) vec4<f32> {
     let radiance = mix(vec3(1.0, 0.73, 0.39) * solar.range_radiance.z,
         core_colour * solar.range_radiance.y, core);
     var result = vec4(radiance * view.exposure, alpha);
-#ifdef TONEMAP_IN_SHADER
+    @if(TONEMAP_IN_SHADER) {
     result = tone_mapping(result, view.color_grading);
-#endif
+    }
     return result;
 }

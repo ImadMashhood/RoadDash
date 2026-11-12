@@ -257,7 +257,11 @@ impl Track {
     }
     pub fn half_width(&self, d: f32) -> f32 {
         let (i, t) = self.segment(d);
-        self.widths[i].lerp(self.widths[i + 1], t)
+        let a = self.widths[i];
+        let b = self.widths[i + 1];
+        // Preserve an authored constant-width interval exactly. Newer glam
+        // interpolation can round a == b by one ULP at interior samples.
+        if a == b { a } else { a.lerp(b, t) }
     }
     pub fn sector(&self, d: f32) -> Sector {
         self.sectors[self.segment(d).0]

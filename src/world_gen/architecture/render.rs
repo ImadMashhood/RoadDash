@@ -83,7 +83,7 @@ impl Fallback {
     }
 }
 struct Cached {
-    scenes: [Handle<Scene>; 3],
+    scenes: [Handle<WorldAsset>; 3],
     used: u64,
 }
 #[derive(Resource, Default)]
@@ -141,7 +141,7 @@ impl Streaming {
         design: usize,
         lod: usize,
         pinned: &BTreeSet<(usize, usize)>,
-    ) -> Option<[Handle<Scene>; 3]> {
+    ) -> Option<[Handle<WorldAsset>; 3]> {
         let key = (design, lod);
         if !self.cache.contains_key(&key) && self.cache.len() >= 48 {
             let victim = self
@@ -192,8 +192,8 @@ pub fn update(
     server: Res<AssetServer>,
     cameras: Query<&Transform, With<Camera3d>>,
     mut stream: ResMut<Streaming>,
-    instances: Query<&bevy::scene::SceneInstance>,
-    spawner: Res<bevy::scene::SceneSpawner>,
+    instances: Query<&bevy::world_serialization::WorldInstance>,
+    spawner: Res<bevy::world_serialization::WorldInstanceSpawner>,
     descendants: Query<&Children>,
     render_meshes: Query<(&Mesh3d, &MeshMaterial3d<StandardMaterial>)>,
     materials: Res<Assets<StandardMaterial>>,
@@ -534,7 +534,7 @@ pub fn update(
             for panel in panels {
                 let child = commands
                     .spawn((
-                        SceneRoot(scenes[panel.band].clone()),
+                        WorldAssetRoot(scenes[panel.band].clone()),
                         panel.transform,
                         Visibility::Hidden,
                         FacadeRoot {
@@ -615,7 +615,7 @@ pub struct TemporalFade {
     pub(crate) incoming: bool,
 }
 fn scene_ready(
-    event: On<bevy::scene::SceneInstanceReady>,
+    event: On<bevy::world_serialization::WorldInstanceReady>,
     children: Query<&Children>,
     meshes: Query<(), With<Mesh3d>>,
     roots: Query<&FacadeRoot>,
@@ -644,13 +644,28 @@ fn scene_ready(
     }
 }
 /// Encode time opacity in Bevy's existing dithered-LOD shader, without cloning materials.
-fn fade_range(
+pub(crate) fn fade_range(
     distance: f32,
     weight: f32,
     incoming: bool,
 ) -> bevy::camera::visibility::VisibilityRange {
+    // Bevy 0.20 keeps every distinct GPU visibility range for the app lifetime,
+    // even after its mesh despawns. Camera-relative floats would exhaust its
+    // 16-bit range index during a drive. Bound the palette while keeping the
+    // near-camera dither within 0.25 m / one sixteenth of opacity.
+    let distance = distance.clamp(0.0, 100_000.0);
+    let (origin, step, opacity_steps) = if distance <= 512.0 {
+        (0.0, 0.5, 16.0)
+    } else if distance <= 2_048.0 {
+        (512.0, 8.0, 8.0)
+    } else if distance <= 20_000.0 {
+        (2_048.0, 32.0, 4.0)
+    } else {
+        (20_000.0, 128.0, 4.0)
+    };
+    let distance = origin + ((distance - origin) / step).round() * step;
     let width = 8.0;
-    let alpha = weight.clamp(0.0, 1.0);
+    let alpha = (weight.clamp(0.0, 1.0) * opacity_steps).round() / opacity_steps;
     if incoming {
         bevy::camera::visibility::VisibilityRange {
             start_margin: (distance - alpha * width)..(distance + (1.0 - alpha) * width),
@@ -680,11 +695,11 @@ pub fn synchronize_fades(
         return;
     };
     for (global, fade, mut range) in &mut parts {
-        *range = fade_range(
+        range.set_if_neq(fade_range(
             global.translation().distance(camera.translation()),
             fade.weight,
             fade.incoming,
-        );
+        ));
     }
 }
 #[allow(clippy::type_complexity)]
@@ -808,6 +823,28 @@ pub fn fade(
 #[cfg(test)]
 mod fade_tests {
     use super::*;
+    #[test]
+    fn camera_relative_fades_use_a_bounded_gpu_range_palette() {
+        let mut ranges = std::collections::HashSet::new();
+        for (start, end, step, opacity_steps) in [
+            (0.0_f32, 512.0_f32, 0.5_f32, 16_u32),
+            (512.0, 2_048.0, 8.0, 8),
+            (2_048.0, 20_000.0, 32.0, 4),
+            (20_000.0, 100_000.0, 128.0, 4),
+        ] {
+            for bucket in 0..=((end - start) / step).ceil() as u32 {
+                let distance = (start + bucket as f32 * step).min(end);
+                for opacity in 0..=opacity_steps {
+                    let weight = opacity as f32 / opacity_steps as f32;
+                    ranges.insert(fade_range(distance, weight, true));
+                    ranges.insert(fade_range(distance, weight, false));
+                }
+            }
+        }
+        // Leave headroom for static content ranges below Bevy's 65,535 slots.
+        assert!(ranges.len() < 60_000, "{} temporal ranges", ranges.len());
+        assert!(fade_range(99.1, 0.25, true) == fade_range(99.2, 0.25, true));
+    }
     fn level(r: &bevy::camera::visibility::VisibilityRange, d: f32) -> i32 {
         if d >= r.end_margin.start {
             ((d - r.end_margin.start) / (r.end_margin.end - r.end_margin.start) * 16.0)

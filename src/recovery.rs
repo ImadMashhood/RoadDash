@@ -87,6 +87,18 @@ pub(crate) fn runner_controller() -> KinematicCharacterController {
     }
 }
 
+/// Rapier 0.36 snaps a grounded capsule to its support. Adding the old 0.5 m/s
+/// grounded adhesion to the requested translation can push the capsule into
+/// that support and leave the shape cast with no horizontal travel. Keep the
+/// authored airborne descent and let the controller provide grounded adhesion.
+pub(crate) fn runner_downward_speed(grounded: bool) -> f32 {
+    if grounded {
+        0.0
+    } else {
+        rr_core::recovery::foot_downward_speed(false)
+    }
+}
+
 pub fn bike_body() -> impl Bundle {
     (
         RigidBody::KinematicPositionBased,
@@ -121,7 +133,7 @@ fn detached_origin(
         return origin + rotation * Vec3::X * 1.25;
     };
     let shape = Collider::cuboid(0.65, 1.1, 0.45);
-    let predicate = |e| Some(e) != old_runner;
+    let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| Some(e) != old_runner;
     let filter = QueryFilter::default()
         .exclude_rigid_body(owner)
         .exclude_sensors()
@@ -145,7 +157,7 @@ fn detached_origin(
             rotation,
             shape.raw.as_ref(),
             filter,
-            |_| {
+            |_, _| {
                 blocked = true;
                 false
             },
@@ -238,8 +250,8 @@ pub fn humanoid_with_prop(
                 RigidBody::Dynamic,
                 Collider::cuboid(size.x * 0.5, size.y * 0.5, size.z * 0.5),
                 Velocity {
-                    linvel: velocity,
-                    angvel: Vec3::ZERO,
+                    linear: velocity,
+                    angular: Vec3::ZERO,
                 },
                 ColliderMassProperties::Mass(match i {
                     0 => 14.0,
@@ -417,8 +429,8 @@ fn crash_with_response(
             )]),
             ColliderMassProperties::Mass(rider.bike_mass),
             Velocity {
-                linvel: momentum,
-                angvel: Vec3::ZERO,
+                linear: momentum,
+                angular: Vec3::ZERO,
             },
             Ccd::enabled(),
             Restitution::coefficient(0.25),
@@ -482,8 +494,8 @@ fn crash_with_response(
     ));
     if original.is_some() {
         commands.entity(wreck).insert(Velocity {
-            linvel: momentum,
-            angvel: Vec3::ZERO,
+            linear: momentum,
+            angular: Vec3::ZERO,
         });
     }
     recovery.torso = Some(bodies[0]);
@@ -590,7 +602,7 @@ pub fn recover(
         };
         let wreck_pose = *wreck_transform;
         let wreck_pos = wreck_pose.translation;
-        let wreck_speed = wreck_velocity.map_or(0.0, |v| v.linvel.length());
+        let wreck_speed = wreck_velocity.map_or(0.0, |v| v.linear.length());
         let (_, road_rotation) = track.sample_route(rider.route, rider.progress, rider.lane);
         match recovery.stage {
             RecoveryStage::Falling => {
@@ -601,7 +613,7 @@ pub fn recover(
                     continue;
                 };
                 let torso_pos = torso_transform.translation;
-                let settled = velocity.is_some_and(|v| v.linvel.length() < 3.0);
+                let settled = velocity.is_some_and(|v| v.linear.length() < 3.0);
                 if recovery.elapsed < 1.8 || (!settled && recovery.elapsed < 7.0) {
                     continue;
                 }
@@ -794,7 +806,7 @@ pub fn recover(
                         let from = Vec3::new(a[0], track.terrain_height(a[0], a[1]) + 0.98, a[1]);
                         let to = Vec3::new(b[0], track.terrain_height(b[0], b[1]) + 0.98, b[1]);
                         let delta = to - from;
-                        let predicate = |e| {
+                        let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
                             e != runner
                                 && e != wreck
                                 && !(pursuit
@@ -859,8 +871,10 @@ pub fn recover(
                     {
                         recovery.walk_live_retry = 1.5;
                         walk_plan_budget -= 1;
-                        let is_ground = |e| nav_ground.contains(e);
-                        let obstacle = |e| {
+                        let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                            nav_ground.contains(e)
+                        };
+                        let obstacle = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
                             e != runner
                                 && e != wreck
                                 && !nav_ground.contains(e)
@@ -1035,8 +1049,9 @@ pub fn recover(
                         && movement.length_squared() > 0.001
                         && let Ok(context) = context.single()
                     {
-                        let predicate =
-                            |e| (!pursuit || Some(e) != pursuit_body) && (pursuit || e != wreck);
+                        let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                            (!pursuit || Some(e) != pursuit_body) && (pursuit || e != wreck)
+                        };
                         let filter = QueryFilter::default()
                             .exclude_collider(runner)
                             .predicate(&predicate);
@@ -1080,7 +1095,7 @@ pub fn recover(
                         let grounded = controller_outputs
                             .get(runner)
                             .is_ok_and(|output| output.grounded);
-                        let down = rr_core::recovery::foot_downward_speed(grounded);
+                        let down = runner_downward_speed(grounded);
                         controller.translation =
                             Some((movement * config.walk_speed - Vec3::Y * down) * dt);
                     }
@@ -1099,7 +1114,7 @@ pub fn recover(
                     t.rotation = t.rotation.slerp(rotation, (dt * 8.0).min(1.0));
                     // Keep the pickup's horizontal position and existing support
                     // height. Do not pull a bike on a roof/curb down to terrain.
-                    let support = |e| {
+                    let support = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
                         e != owner && Some(e) != recovery.runner && !recovery.parts.contains(&e)
                     };
                     let floor = context
@@ -1436,7 +1451,7 @@ pub fn impacts(
                         // sample. A solver push/bounce can otherwise hide a real
                         // approach or turn a gentle touch into a scripted lift.
                         let target_velocity = previous.get(other).map_or_else(
-                            |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel),
+                            |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linear),
                             |v| v.0,
                         );
                         let closing = (velocity - target_velocity).dot(direction).max(0.0);
@@ -1458,7 +1473,7 @@ pub fn impacts(
                         .with_y(0.0)
                         .normalize_or_zero();
                     let other_velocity = controllers.get(other).map_or_else(
-                        |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel),
+                        |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linear),
                         |(_, out)| out.effective_translation / time.delta_secs(),
                     );
                     let closing = (velocity - other_velocity).dot(normal).max(0.0);
@@ -1502,7 +1517,7 @@ pub fn impacts(
                                     .normalize_or_zero()
                             });
                         let target_velocity =
-                            velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel);
+                            velocities.get(other).map_or(Vec3::ZERO, |v| v.linear);
                         let closing = (velocity - target_velocity).dot(normal).max(0.0);
                         let shared = rr_core::contact::shared_normal_speed(
                             velocity.dot(normal),
@@ -1536,7 +1551,7 @@ pub fn impacts(
                     } else if let Ok(Some(path)) = cross_cars.get(other) {
                         t.rotation * Vec3::Z * path.speed
                     } else {
-                        velocities.get(other).map_or(Vec3::ZERO, |v| v.linvel)
+                        velocities.get(other).map_or(Vec3::ZERO, |v| v.linear)
                     }
                 });
                 let Ok(b) = transforms.get(other) else {
@@ -1681,7 +1696,7 @@ pub fn impacts(
                         && o.owner != body.owner
                         && velocities
                             .get(object)
-                            .is_ok_and(|v| v.linvel.length() > 3.0)
+                            .is_ok_and(|v| v.linear.length() > 3.0)
                 });
                 let object_velocity = velocities.get(object).map_or_else(
                     |_| {
@@ -1695,7 +1710,7 @@ pub fn impacts(
                             }
                         })
                     },
-                    |v| v.linvel,
+                    |v| v.linear,
                 );
                 if (is_car && object_velocity.length() > 3.0) || is_other_wreck {
                     // A solid moving object may knock the runner down; do not add
@@ -1785,7 +1800,7 @@ pub fn impacts(
                     }
                     commands.queue(move |world: &mut World| {
                         if let Some(mut velocity) = world.get_mut::<Velocity>(hit.owner) {
-                            velocity.linvel = resolved;
+                            velocity.linear = resolved;
                         }
                     });
                 }
@@ -1812,8 +1827,8 @@ pub fn impacts(
                             let delta =
                                 incoming.with_y(0.0).normalize_or_zero() * (closing * 0.2).min(3.0);
                             if let Some(mut velocity) = world.get_mut::<Velocity>(target) {
-                                velocity.linvel += delta;
-                                after = velocity.linvel;
+                                velocity.linear += delta;
+                                after = velocity.linear;
                             }
                         }
                         let adjusted = Vec3::from_array(
@@ -1828,7 +1843,7 @@ pub fn impacts(
                             .unwrap_or(incoming.to_array()),
                         );
                         if let Some(mut velocity) = world.get_mut::<Velocity>(owner) {
-                            velocity.linvel = adjusted;
+                            velocity.linear = adjusted;
                         }
                         if let Some(mut rider) = world.get_mut::<Rider>(owner) {
                             rider.speed = adjusted.with_y(0.0).length();
@@ -2061,11 +2076,12 @@ pub(crate) fn constrain_crash_energy(
         }
         let group = groups.entry(owner.owner).or_default();
         group.mass += mass.mass as f64;
-        group.momentum += velocity.linvel.as_dvec3() * mass.mass as f64;
+        group.momentum += velocity.linear.as_dvec3() * mass.mass as f64;
         group.forward = envelope.forward;
         group.allow_reverse |= envelope.allow_reverse;
-        let angular = (t.rotation * mass.principal_inertia_local_frame).inverse() * velocity.angvel;
-        group.kinetic += mass.mass as f64 * velocity.linvel.as_dvec3().length_squared()
+        let angular =
+            (t.rotation * mass.principal_inertia_local_frame).inverse() * velocity.angular;
+        group.kinetic += mass.mass as f64 * velocity.linear.as_dvec3().length_squared()
             + (mass.principal_inertia.as_dvec3() * angular.as_dvec3() * angular.as_dvec3())
                 .element_sum();
         let initial_height =
@@ -2096,7 +2112,7 @@ pub(crate) fn constrain_crash_energy(
         // Remove only backwards centre-of-mass motion; individual limbs can still
         // swing backwards relative to their connected body.
         if biomechanical.is_none() || backward < -0.05 {
-            velocity.linvel -= group.forward * backward as f32;
+            velocity.linear -= group.forward * backward as f32;
         }
         let kinetic = (group.kinetic - group.mass * backward * backward).max(0.0);
         let scale = if kinetic > group.available.max(0.0) {
@@ -2105,8 +2121,8 @@ pub(crate) fn constrain_crash_energy(
             1.0
         };
         if biomechanical.is_none() || scale < 0.999999 {
-            velocity.linvel *= scale as f32;
-            velocity.angvel *= scale as f32;
+            velocity.linear *= scale as f32;
+            velocity.angular *= scale as f32;
         }
     }
 }
@@ -2119,6 +2135,6 @@ mod tests;
 pub struct PreviousMotion(pub Vec3);
 pub fn remember_owned_motion(mut bodies: Query<(&Velocity, &mut PreviousMotion), With<OwnedBody>>) {
     for (v, mut before) in &mut bodies {
-        before.0 = v.linvel;
+        before.0 = v.linear;
     }
 }

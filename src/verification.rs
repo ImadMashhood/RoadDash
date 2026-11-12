@@ -120,7 +120,8 @@ pub fn observe_smoke_recovery(
             let ctx = context.single().expect("native physics context");
             let (centre, rotation) = track.street_sample(rider.route, rider.progress, 0.);
             let shape = Collider::capsule_y(0.65, 0.28);
-            let supports = |entity| ground.contains(entity);
+            let supports =
+                |entity, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(entity);
             let mut placement = None;
             for side in [-1., 1.] {
                 for along in [0., -3., 3., -6., 6.] {
@@ -155,7 +156,7 @@ pub fn observe_smoke_recovery(
                         QueryFilter::default()
                             .exclude_collider(runner)
                             .exclude_rigid_body(owner),
-                        |_| {
+                        |_, _| {
                             blocked = true;
                             false
                         },
@@ -207,7 +208,7 @@ pub fn observe_smoke_recovery(
             let speed = recovery
                 .wreck
                 .and_then(|e| velocities.get(e).ok())
-                .map(|v| (v.linvel, v.angvel));
+                .map(|v| (v.linear, v.angular));
             let output = recovery.runner.and_then(|e| controller_outputs.get(e).ok());
             let contacts: Vec<_> = output
                 .into_iter()
@@ -226,7 +227,9 @@ pub fn observe_smoke_recovery(
                 let direction = (p + q * Vec3::Y * 0.85 - from)
                     .with_y(0.)
                     .normalize_or_zero();
-                let predicate = |e| Some(e) != recovery.runner && Some(e) != recovery.wreck;
+                let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                    Some(e) != recovery.runner && Some(e) != recovery.wreck
+                };
                 context
                     .single()
                     .ok()?
@@ -621,7 +624,7 @@ pub(crate) fn smoke_test(
             .filter(|(r, _, _, _)| !r.police && r.id != 0)
             .count();
         assert_eq!(rivals, 14);
-        println!("AI roster verified: fourteen role-free rivals");
+        println!("AI roster verified: fourteen rivals, five fighters");
     }
     if std::env::var("ROADDASH_VERIFY_REPAIRS").as_deref() == Ok("1") {
         if state.frame == 25 {
@@ -702,7 +705,7 @@ pub(crate) fn smoke_test(
                         let speed = velocity
                             .as_ref()
                             .expect("dynamic chassis")
-                            .linvel
+                            .linear
                             .dot(t.rotation * Vec3::Z);
                         assert!(
                             speed < -0.3 && speed > -3.5,

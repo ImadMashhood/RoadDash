@@ -143,11 +143,11 @@ pub(super) fn update(
             frame * Mat3::from_diagonal(mass.principal_inertia.recip()) * frame.transpose();
         let rig = scratch.entry(owner.owner).or_default();
         rig.mass += mass.mass;
-        rig.momentum += v.linvel * mass.mass;
+        rig.momentum += v.linear * mass.mass;
         rig.parts[segment.part] = Some(Body {
             entity,
             pose: *pose,
-            omega: v.angvel,
+            omega: v.angular,
             inverse,
             target: muscle.map_or(Quat::IDENTITY, |m| m.target),
         });
@@ -290,7 +290,7 @@ pub(super) fn update(
                     Quat::from_axis_angle(axis, desired_rate * dt) * root.pose.rotation;
                 let mut blocked = false;
                 if let Some(context) = &context {
-                    let predicate = |e| {
+                    let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
                         !rig.parts.iter().flatten().any(|b| b.entity == e)
                             && !rig.support_surfaces.contains(&e)
                     };
@@ -301,7 +301,7 @@ pub(super) fn update(
                         QueryFilter::default()
                             .exclude_sensors()
                             .predicate(&predicate),
-                        |_| {
+                        |_, _| {
                             blocked = true;
                             false
                         },
@@ -336,9 +336,9 @@ pub(super) fn update(
                                 if delta.length_squared() > 1e-10
                                     && let Ok(mut v) = velocities.get_mut(body.entity)
                                 {
-                                    v.angvel += delta;
+                                    v.angular += delta;
                                     if let Some(record) = rig.parts[part].as_mut() {
-                                        record.omega = v.angvel;
+                                        record.omega = v.angular;
                                     }
                                     budget = (budget - result.positive_work).max(0.0);
                                     pilot.state.work = (pilot.state.work + result.positive_work)
@@ -425,13 +425,13 @@ pub(super) fn update(
             }
             // Exact reciprocal angular impulses. Linear COM velocities are untouched.
             if let Ok([mut cv, mut pv]) = velocities.get_many_mut([child.entity, parent.entity]) {
-                cv.angvel += dc;
-                pv.angvel += dp;
+                cv.angular += dc;
+                pv.angular += dp;
                 if let Some(b) = rig.parts[part].as_mut() {
-                    b.omega = cv.angvel;
+                    b.omega = cv.angular;
                 }
                 if let Some(b) = rig.parts[parent_index].as_mut() {
-                    b.omega = pv.angvel;
+                    b.omega = pv.angular;
                 }
                 budget = (budget - result.positive_work).max(0.0);
                 pilot.state.work =
@@ -488,11 +488,11 @@ mod tests {
             .query_filtered::<(Entity, &Transform, &ReadMassProperties, &Velocity), With<Segment>>()
             .iter(app.world())
         {
-            linear.insert(e, v.linvel);
+            linear.insert(e, v.linear);
             let frame = Mat3::from_quat(t.rotation * m.principal_inertia_local_frame);
             let inertia = frame * Mat3::from_diagonal(m.principal_inertia) * frame.transpose();
-            momentum += inertia * v.angvel;
-            energy += f64::from(0.5 * v.angvel.dot(inertia * v.angvel));
+            momentum += inertia * v.angular;
+            energy += f64::from(0.5 * v.angular.dot(inertia * v.angular));
         }
         let impulses = app
             .world_mut()
@@ -638,7 +638,7 @@ mod tests {
                 assert!(p.state.work <= 180.00001 && p.state.attempts <= 2);
             }
             for v in app.world_mut().query::<&Velocity>().iter(app.world()) {
-                assert!(v.linvel.is_finite() && v.angvel.is_finite());
+                assert!(v.linear.is_finite() && v.angular.is_finite());
             }
         }
         println!(

@@ -3,8 +3,8 @@ use bevy::prelude::*;
 use rr_core::weapons::Weapon;
 #[derive(Resource, Default)]
 pub(crate) struct Selection {
-    scenes: Vec<(Weapon, Handle<Scene>)>,
-    override_scene: Option<Handle<Scene>>,
+    scenes: Vec<(Weapon, Handle<WorldAsset>)>,
+    override_scene: Option<Handle<WorldAsset>>,
 }
 pub(crate) fn load(mut commands: Commands, assets: Option<Res<AssetServer>>) {
     let Some(assets) = assets else { return };
@@ -85,12 +85,12 @@ pub(crate) fn apply(
         let Some(scene) = scene else { continue };
         let skin = commands
             .spawn((
-                SceneRoot(scene.clone()),
+                WorldAssetRoot(scene.clone()),
                 Transform::default(),
                 Visibility::Inherited,
             ))
             .observe(
-                move |ready: On<bevy::scene::SceneInstanceReady>,
+                move |ready: On<bevy::world_serialization::WorldInstanceReady>,
                       current: Query<&Skin>,
                       mut commands: Commands| {
                     if current.get(root).is_ok_and(|s| s.entity == ready.entity) {

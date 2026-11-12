@@ -38,7 +38,7 @@ impl BevyPhysicsHooks for ReleaseHooks<'_, '_> {
                 return None;
             }
         }
-        Some(SolverFlags::COMPUTE_IMPULSES)
+        Some(SolverFlags::COMPUTE_RIGID_IMPULSES)
     }
 }
 pub fn prepare(
@@ -74,7 +74,7 @@ pub fn prepare(
             if grace.remaining < 0.60
                 && let Ok(context) = context.single()
             {
-                let predicate = |e| e == grace.wreck;
+                let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| e == grace.wreck;
                 for (pose, collider, body) in &shapes {
                     if body.owner == entity && body.kind == BodyKind::Ragdoll {
                         checked = true;
@@ -83,7 +83,7 @@ pub fn prepare(
                             pose.rotation,
                             collider.raw.as_ref(),
                             QueryFilter::default().predicate(&predicate),
-                            |_| {
+                            |_, _| {
                                 overlapping = true;
                                 false
                             },
@@ -140,7 +140,7 @@ pub fn stagger(
         let right = Vec3::from_array(stagger.right);
         let error = (t.translation - Vec3::from_array(stagger.origin.unwrap())).dot(right);
         let lateral = velocity
-            .map_or(rider.motion_velocity, |v| v.linvel)
+            .map_or(rider.motion_velocity, |v| v.linear)
             .dot(right);
         let (steer, release) = stagger.advance(time.delta_secs(), error, lateral);
         rider.drive_intent.steer = steer;
@@ -190,7 +190,7 @@ fn comparison_label(mut commands: Commands) {
             "{METHOD}\nF8 combat stagger | F9 frontal release | F10 set 20/60/120/200 km/h"
         )),
         TextFont {
-            font_size: 18.0,
+            font_size: bevy::text::FontSize::Px(18.0),
             ..default()
         },
         TextColor(Color::srgb(1.0, 0.85, 0.25)),
@@ -246,7 +246,7 @@ fn comparison(
         c.next_speed = (c.next_speed + 1) % 4;
         let forward = (t.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
         let v = forward * (kmh / 3.6);
-        velocity.linvel = v;
+        velocity.linear = v;
         rider.speed = kmh / 3.6;
         rider.motion_velocity = v;
         race.message = format!("{METHOD} / {kmh:.0} KM/H");

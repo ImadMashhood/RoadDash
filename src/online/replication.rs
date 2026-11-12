@@ -390,7 +390,10 @@ pub(super) fn receive(world: &mut World) {
                         if let Some(handle) = set.entity2body().get(&entity).copied()
                             && let Some(body) = set.bodies.get_mut(handle)
                         {
-                            let iso = bevy_rapier3d::na::Isometry3::from_parts(p.into(), q.into());
+                            let iso = bevy_rapier3d::rapier::math::Pose3::from_parts(
+                                p.to_array().into(),
+                                bevy_rapier3d::rapier::math::Rot3::from_xyzw(q.x, q.y, q.z, q.w),
+                            );
                             body.set_position(iso, true);
                             body.set_next_kinematic_position(iso);
                         }

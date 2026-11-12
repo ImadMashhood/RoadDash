@@ -807,9 +807,15 @@ fn horse(
             Collider::cuboid(0.38, 1.2, 1.25),
         )]),
     );
-    commands
-        .entity(e)
-        .insert((HillsHorse, Name::new("Hills original saddled horse")));
+    commands.entity(e).insert((
+        HillsHorse,
+        Name::new("Hills original saddled horse"),
+        crate::npc::Npc::new(
+            crate::npc::NpcKind::Cow,
+            Transform::from_translation(p).with_rotation(q),
+        ),
+        ActiveEvents::COLLISION_EVENTS,
+    ));
 }
 /// Coherent backlots occupy the spaces between and behind the two main streets.
 /// Each is one batched mesh/compound collider; no geometry appears in update.
@@ -1973,7 +1979,11 @@ pub(super) fn spawn(
                 occupied.push((p, 17.));
                 crate::environment::spawn_cow(commands, art, p, q);
                 census.cows += 1;
-                horse(commands, meshes, &material, p + q * Vec3::Z * 8., q, i);
+                let mut horse_position = p + q * Vec3::Z * 8.;
+                horse_position.y =
+                    super::geometry::ground_height(track, horse_position.x, horse_position.z)
+                        + 0.02;
+                horse(commands, meshes, &material, horse_position, q, i);
                 census.horses += 1;
                 // Timber paddocks have openings and keep stock far from the boardwalk.
                 let mut m = Model::default();
@@ -2262,9 +2272,14 @@ mod tests {
             .map(|(entity, t, c, _)| {
                 let mut shape = c.clone();
                 shape.set_scale(t.scale, 12);
-                let iso = bevy_rapier3d::na::Isometry3::from_parts(
-                    t.translation.into(),
-                    t.rotation.into(),
+                let iso = bevy_rapier3d::rapier::math::Pose3::from_parts(
+                    t.translation.to_array().into(),
+                    bevy_rapier3d::rapier::math::Rot3::from_xyzw(
+                        t.rotation.x,
+                        t.rotation.y,
+                        t.rotation.z,
+                        t.rotation.w,
+                    ),
                 );
                 (entity, shape.raw.compute_aabb(&iso))
             })

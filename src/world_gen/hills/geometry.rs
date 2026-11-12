@@ -120,6 +120,59 @@ pub(super) fn ground_height(track: &Track, x: f32, z: f32) -> f32 {
         d + (c - d) * (1. - t.x) + (b - d) * (1. - t.y)
     }
 }
+/// The same authored sand palette drives terrain vertices and wheel dust.
+pub(super) fn sand_color(station: f32, x: f32, z: f32) -> Vec3 {
+    let base = if station < 8500. {
+        Vec3::new(0.69, 0.51, 0.29)
+    } else {
+        Vec3::new(0.76, 0.61, 0.38)
+    };
+    let dune = (x * 0.019 + z * 0.013).sin() * (z * 0.026 - x * 0.009).sin();
+    let grit = (x * 0.071 - z * 0.058).sin() * 0.25;
+    let tint = dune * 0.055 + grit * 0.022;
+    base + Vec3::new(tint, tint * 0.78, tint * 0.52)
+}
+/// A small original, tileable grit field adds close-up sand detail without
+/// additional draw calls or runtime texture uploads.
+fn terrain_grit() -> Image {
+    use bevy::{
+        asset::RenderAssetUsages,
+        image::{ImageAddressMode, ImageSampler, ImageSamplerDescriptor},
+        render::render_resource::{Extent3d, TextureDimension, TextureFormat},
+    };
+    const SIZE: usize = 64;
+    let mut pixels = Vec::with_capacity(SIZE * SIZE * 4);
+    for y in 0..SIZE {
+        for x in 0..SIZE {
+            let a = std::f32::consts::TAU * x as f32 / SIZE as f32;
+            let b = std::f32::consts::TAU * y as f32 / SIZE as f32;
+            let value = (0.94
+                + 0.035 * (a * 2.).sin() * (b * 3.).cos()
+                + 0.018 * (a * 9. + b * 7.).sin()
+                + 0.012 * (a * 17. - b * 15.).cos())
+            .clamp(0.86, 1.0);
+            let channel = (value * 255.) as u8;
+            pixels.extend([channel, channel, channel, 255]);
+        }
+    }
+    let mut image = Image::new(
+        Extent3d {
+            width: SIZE as u32,
+            height: SIZE as u32,
+            depth_or_array_layers: 1,
+        },
+        TextureDimension::D2,
+        pixels,
+        TextureFormat::Rgba8UnormSrgb,
+        RenderAssetUsages::default(),
+    );
+    image.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
+        address_mode_u: ImageAddressMode::Repeat,
+        address_mode_v: ImageAddressMode::Repeat,
+        ..ImageSamplerDescriptor::linear()
+    });
+    image
+}
 // Two original palette rows: sand and meadow. U is cross-shoulder distance,
 // so the gravel edge ends within3.5m; UVs change only, not mesh or collision.
 fn shoulder_material(images: Option<&mut Assets<Image>>) -> StandardMaterial {
@@ -182,12 +235,13 @@ pub(super) fn spawn(
     art: &Art,
     track: &Track,
     census: &mut Census,
-    images: Option<&mut Assets<Image>>,
+    mut images: Option<&mut Assets<Image>>,
 ) {
     let mut rail_ground = super::guardrails::GroundSamples::default();
     let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
-    let shoulder = materials.add(shoulder_material(images));
+    let shoulder = materials.add(shoulder_material(images.as_deref_mut()));
     let terrain_material = materials.add(StandardMaterial {
+        base_color_texture: images.map(|images| images.add(terrain_grit())),
         perceptual_roughness: 1.,
         ..default()
     });
@@ -298,15 +352,17 @@ pub(super) fn spawn(
             let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &ix);
             render.insert_attribute(
+                Mesh::ATTRIBUTE_UV_0,
+                v.iter()
+                    .map(|p| [p.x * 0.18, p.z * 0.18])
+                    .collect::<Vec<_>>(),
+            );
+            render.insert_attribute(
                 Mesh::ATTRIBUTE_COLOR,
                 v.iter()
                     .map(|p| {
                         let (station, _) = track.nearby_station(p.x, p.z);
-                        let sand = if station < 8500. {
-                            Vec3::new(0.69, 0.51, 0.29)
-                        } else {
-                            Vec3::new(0.76, 0.61, 0.38)
-                        };
+                        let sand = sand_color(station, p.x, p.z);
                         let base = sand.lerp(
                             Vec3::new(0.32, 0.37, 0.19),
                             rr_core::surface::hills_meadow_weight(station),
@@ -338,6 +394,19 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn ground_grit_has_bounded_detail_and_sand_palette_covers_town_and_dunes() {
+        let image = terrain_grit();
+        let bytes = image.data.unwrap();
+        assert_eq!(bytes.len(), 64 * 64 * 4);
+        let values: Vec<_> = bytes.chunks_exact(4).map(|pixel| pixel[0]).collect();
+        assert!(values.iter().min().is_some_and(|v| *v >= 219));
+        assert!(values.iter().max().is_some_and(|v| *v >= 250));
+        assert!(*values.iter().max().unwrap() - *values.iter().min().unwrap() > 18);
+        let town = sand_color(7000., 125., 90.);
+        let dunes = sand_color(10000., 125., 90.);
+        assert!(dunes.x > town.x && dunes.y > town.y && dunes.z > town.z);
+    }
     #[test]
     fn direct_grid_sampling_preserves_resident_mesh_vertices_and_triangles() {
         let track = Track::hills().unwrap();

@@ -1,5 +1,29 @@
 # Development history
 
+## 2026-11-11 — Rival launch and camera visibility candidate
+
+In the isolated Bevy 0.20.1 race-feedback worktree, set an absolute 155 km/h
+rival pace ceiling, request full throttle for each rival during the first five
+racing seconds subject to existing brake/avoidance gates, and narrow camera
+overlap hiding from 3 m to 1.4 m. Added pure, dynamic-grid and camera-distance
+regressions. RFU-RACE-04 and RFU-RENDER-01 remain open for native/human and
+performance acceptance; the prior player-relative cap in RFU-RACE-03 is
+superseded. Evidence: testing/race-launch-visibility/REPORT.md and ADR166.
+
+
+## 2026-11-11 — Bevy 0.20.1 playtest feedback candidate (ADR163)
+
+On the isolated engine branch, used the user's persistent Hills frame/rider
+trace and source census to focus race launch/lead pace, fighter selection,
+pedestrian contact and Hills/Valley presentation. Added stable open README IDs
+for each new acceptance gate. The first implementation reuses bounded cloud,
+dust, herd and city-slice systems, with no new media or dependency. The work
+remains a candidate pending human feel and matched performance evidence. The
+final locked workspace run has 462 game passes and only the two pre-existing
+Rapier parity failures; strict Clippy, debug/release builds, audit and native
+Metropolis/Hills recovery smokes pass. Valley native atmosphere capture shows
+14 volumetric banks. The two prior engine physics parity gates remain open.
+
 ## 2026-11-11 — Hills projection loading pass (ADR157)
 
 After the four issue40 candidates did not establish a frame-time winner,
@@ -2161,3 +2185,7 @@ evidence, or acceptance status changed.
 Committed representative paired native dust and City Run curb-steam frames to
 the issue42 report after PR50, so the accepted first-pass form can be reviewed
 from the repository. Temporal art and GPU/frame gates remain open.
+
+## 2026-11-11 — Hills follow-up integration candidate
+
+Combined isolated Bevy 0.20.1 branches for mounted animal support/impact presentation, stronger rival launch and rear-camera visibility, and civilian heavy-vehicle encounters with an early Hills city fleet. Added original procedural desert ground grit, terrain-matched dust with a fixed footprint and rear fade, and halved the imported Hills city walker subset per latest feedback. The original Road Rash AI investigation remains research-only. See testing/feedback-sand-crowd/REPORT.md and research/road-rash-ai-1996.md. Full integrated verification and native art/balance review are recorded separately; the engine parity blockers remain open.

@@ -7,18 +7,18 @@ use bevy::{
         Extract, ExtractSchedule, Render, RenderApp, RenderSystems,
         render_asset::{RenderAssets, prepare_assets},
         renderer::RenderQueue,
-        storage::GpuShaderStorageBuffer,
+        storage::GpuShaderBuffer,
     },
 };
 #[derive(Resource, Default)]
 pub(super) struct Writes {
     pub epoch: u64,
-    pub data: Vec<(AssetId<ShaderStorageBuffer>, Vec<u8>)>,
+    pub data: Vec<(AssetId<ShaderBuffer>, Vec<u8>)>,
 }
 #[derive(Resource, Default)]
 struct Pending {
     epoch: u64,
-    data: HashMap<AssetId<ShaderStorageBuffer>, Vec<u8>>,
+    data: HashMap<AssetId<ShaderBuffer>, Vec<u8>>,
 }
 pub(super) fn install(app: &mut App) {
     app.init_resource::<Writes>();
@@ -30,7 +30,7 @@ pub(super) fn install(app: &mut App) {
                 Render,
                 flush
                     .in_set(RenderSystems::PrepareAssets)
-                    .after(prepare_assets::<GpuShaderStorageBuffer>),
+                    .after(prepare_assets::<GpuShaderBuffer>),
             );
     }
 }
@@ -45,7 +45,7 @@ fn extract(writes: Extract<Res<Writes>>, mut pending: ResMut<Pending>) {
 }
 fn flush(
     mut pending: ResMut<Pending>,
-    buffers: Res<RenderAssets<GpuShaderStorageBuffer>>,
+    buffers: Res<RenderAssets<GpuShaderBuffer>>,
     queue: Res<RenderQueue>,
 ) {
     pending.data.retain(|id, bytes| {
@@ -59,8 +59,8 @@ fn flush(
 pub(super) fn bytes(values: impl IntoIterator<Item = f32>) -> Vec<u8> {
     values.into_iter().flat_map(f32::to_le_bytes).collect()
 }
-pub(super) fn buffer(values: Vec<Vec4>) -> ShaderStorageBuffer {
-    let mut buffer = ShaderStorageBuffer::from(values);
-    buffer.buffer_description.usage |= bevy::render::render_resource::BufferUsages::COPY_DST;
-    buffer
+pub(super) fn buffer(values: Vec<Vec4>) -> ShaderBuffer {
+    // ShaderBuffer already includes COPY_DST; retain the stable GPU allocation
+    // while the sparse write queue updates only changed crop tiles.
+    ShaderBuffer::from(values)
 }

@@ -27,10 +27,9 @@ impl Plant {
 fn support_frame(ctx: &RapierContext<'_>, entity: Entity) -> Option<Transform> {
     let handle = ctx.colliders.entity2collider().get(&entity)?;
     let p = ctx.colliders.colliders.get(*handle)?.position();
-    let q = p.rotation.quaternion();
     Some(
         Transform::from_translation(Vec3::new(p.translation.x, p.translation.y, p.translation.z))
-            .with_rotation(Quat::from_xyzw(q.i, q.j, q.k, q.w)),
+            .with_rotation(p.rotation),
     )
 }
 #[allow(clippy::too_many_arguments)]

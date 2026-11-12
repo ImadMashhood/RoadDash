@@ -22,8 +22,11 @@ impl Plugin for BuildingSceneTypesPlugin {
             .register_type::<Mesh3d>()
             .register_type::<MeshMaterial3d<StandardMaterial>>()
             .register_type::<bevy::camera::primitives::Aabb>()
+            .register_type::<bevy::camera::visibility::DynamicSkinnedMeshBounds>()
+            .register_type::<bevy::camera::visibility::NoFrustumCulling>()
             .register_type::<bevy::gltf::GltfExtras>()
             .register_type::<bevy::gltf::GltfSceneExtras>()
+            .register_type::<bevy::gltf::GltfSceneName>()
             .register_type::<bevy::gltf::GltfMeshExtras>()
             .register_type::<bevy::gltf::GltfMaterialExtras>()
             .register_type::<bevy::gltf::GltfMeshName>()
@@ -47,9 +50,9 @@ struct Design {
 pub use rr_content::city::BuildingLot as Lot;
 #[derive(Resource)]
 pub struct ModelCatalog {
-    pub scenes: Vec<[Option<Handle<Scene>>; 3]>,
+    pub scenes: Vec<[Option<Handle<WorldAsset>>; 3]>,
     ids: Vec<String>,
-    front_scenes: Vec<[Option<Handle<Scene>>; 3]>,
+    front_scenes: Vec<[Option<Handle<WorldAsset>>; 3]>,
     pub facade_designs: usize,
     pub instances: usize,
     cache: stream::Cache,
@@ -116,7 +119,7 @@ pub fn spawn(commands: &mut Commands, server: &AssetServer, lots: &[Lot], galler
     ))
     .expect("valid catalog designs");
     let ids: Vec<String> = designs.designs.iter().map(|d| d.id.clone()).collect();
-    let mut scenes: Vec<[Option<Handle<Scene>>; 3]> =
+    let mut scenes: Vec<[Option<Handle<WorldAsset>>; 3]> =
         ids.iter().map(|_| [None, None, None]).collect();
     let mut front_scenes = scenes.clone();
     for lot in lots {
@@ -293,9 +296,11 @@ mod tests {
             Mesh3d::default(),
             MeshMaterial3d::<StandardMaterial>::default(),
             bevy::gltf::GltfMeshName("Building geometry".into()),
+            bevy::gltf::GltfSceneName("Building scene".into()),
             bevy::camera::primitives::Aabb::default(),
+            bevy::camera::visibility::DynamicSkinnedMeshBounds,
         ));
-        let scene = Scene::new(source);
+        let scene = WorldAsset::new(source);
         let registry = app.world().resource::<AppTypeRegistry>().clone();
         let mut map = bevy::ecs::entity::EntityHashMap::default();
         assert!(

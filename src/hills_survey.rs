@@ -133,7 +133,7 @@ pub fn run(
     }
     if state.frame > period * VIEWS.len() as u32 + 20 && state.screenshots == VIEWS.len() {
         let context = physics.single().expect("Hills physics context");
-        let is_ground = |e| ground.contains(e);
+        let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
         let mut maximum_error = 0f32;
         let mut probes = 0;
         for route in 0..2 {

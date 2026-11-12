@@ -214,12 +214,12 @@ fn setup(
     commands.spawn((
         DirectionalLight {
             illuminance: 18000.0,
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             ..default()
         },
         Transform::from_xyz(4.0, 8.0, -3.0).looking_at(Vec3::ZERO, Vec3::Y),
     ));
-    commands.insert_resource(AmbientLight {
+    commands.insert_resource(GlobalAmbientLight {
         color: Color::WHITE,
         brightness: 300.0,
         ..default()
@@ -236,7 +236,7 @@ fn setup(
                     PointLight {
                         intensity: 700.0,
                         range: 2.0,
-                        shadows_enabled: false,
+                        shadow_maps_enabled: false,
                         ..default()
                     },
                     Transform::default(),
@@ -247,7 +247,7 @@ fn setup(
         Label,
         Text::new("Loading rider"),
         TextFont {
-            font_size: 20.0,
+            font_size: FontSize::Px(20.0),
             ..default()
         },
         Node {
@@ -430,7 +430,9 @@ fn review(
             }
         }
         for weights in &review_queries.gloves {
-            let w = weights.weights();
+            let bevy::mesh::morph::MeshMorphWeights::Value { weights: w } = weights else {
+                continue;
+            };
             state.seen_shapes[0] |= state.mode >= 8 && w.iter().all(|w| w.abs() < 0.001);
             state.seen_shapes[1] |= state.mode < 4 && w[0] > 0.95 && w[2] > 0.95;
             state.seen_shapes[2] |= state.mode == 4 && w[1] > 0.95 && w[2] > 0.95;

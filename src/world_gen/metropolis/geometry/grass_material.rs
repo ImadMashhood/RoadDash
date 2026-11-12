@@ -12,7 +12,7 @@ pub struct GrassWind {
 }
 impl MaterialExtension for GrassWind {
     fn vertex_shader() -> ShaderRef {
-        "shaders/grass_wind.wgsl".into()
+        "shaders/grass_wind.wesl".into()
     }
 }
 pub type GrassMaterial = ExtendedMaterial<StandardMaterial, GrassWind>;

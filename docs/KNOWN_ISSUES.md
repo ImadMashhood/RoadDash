@@ -1,5 +1,44 @@
 # Known issues and remaining acceptance
 
+- RFU-TRAFFIC-03 / RFU-HILLS-06: Hills now starts two ordinary cars behind slow
+  heavy vehicles and adds six moving city-opening cars at 500–850 m. Existing
+  opposing-vehicle clearance, physical collisions and retry/network identities
+  remain in force. Native full-fleet overtaking, opening street appearance,
+  human road-risk balance and matched Hills frame cost remain open. See ADR164
+  and testing/hills-civilian-feedback/REPORT.md.
+
+- RFU-RACE-03/04 and RFU-RENDER-01: the isolated Bevy 0.20.1 candidate requests full opening
+  rival throttle, caps rival pace at 155 km/h and narrows the chase-camera
+  overlap hide zone. Safety planning can still brake a crowded grid, and human
+  full-race balance, moving-follower visuals and matched render-frame budget
+  remain open. See ADR166 and testing/race-launch-visibility/REPORT.md.
+
+- RFU-RACE-03, RFU-COMBAT-02, RFU-NPC-02, RFU-SKY-05, RFU-HILLS-02..04,
+  RFU-WILD-06, RFU-RIVER-02 and RFU-GROUND-01/02: the 2026-11-11 playtest
+  follow-up has a bounded implementation candidate on the isolated Bevy 0.20.1
+  branch. Full-course human race/fight/landscape review, three-map cloud and
+  bridge views, drive-through contacts, and matched release GPU/frame costs
+  remain open. The Bevy/Rapier high-speed ragdoll and static-collider parity
+  failures still block engine-branch integration; see ADR163 and the issue37
+  playtest report.
+
+- RFU-ENGINE-02/03 and RFU-AI-01: a finite fade range palette removes the
+  observed Bevy 0.20 renderer range-exhaustion warning in both-map native
+  smokes/surveys. Split/Hills survey captures contain roads, riders and terrain,
+  but a continuous human ride through the reported disappearance location and
+  matched frame-time comparison remain open. The moderate rival corner budget
+  improves a bounded AI survey; held-W synthetic player motion stalled at
+  station 486 in both control and candidates, so the user's easy-win complaint
+  remains open. Persistent frame and rider logs are enabled by `play-bevy20.sh`.
+  See testing/issue37-bevy20/REPORT.md and ADR161/162.
+
+- RFU-ENGINE-01..03 current-main playtest: Bevy 0.20.1 candidate now contains
+  the latest rival AI and content. The combined 460-pass library run still
+  fails high-speed ragdoll joint parity and static-collider trajectory parity;
+  predictive traffic clearance passes. This is an experimental playable build,
+  not an accepted replacement for main. See testing/issue37-bevy20/REPORT.md.
+
+- RFU-ENGINE-01..03: Bevy 0.20 migration is isolated on issue #37. Rapier 0.36 high-speed biomechanical ejection exceeded established anchor/limit bounds (0.166 m/0.190 rad versus old 0.0039 m/0.0094 rad); exact old solver defaults and three lab-only CCD/PGS/SoftCcd variants did not restore paired parity; Rapier exposes no supported per-body automatic fixed-CCD opt-out, so this is a merge blocker. Depleted original-contact recovery's ground-contact stall is fixed by a narrow grounded KCC adapter; focused recovery tests and paired Hills west native smokes pass with zero exceptional rescues. Static-collider trajectory parity failed too (peak translation divergence 1.611 m), and a focused predictive traffic clearance test measured 1.681 m against its >2 m gate. Debug and production-feature native Metropolis smokes passed glTF scene loading, audio initialization and two remounts, but native runs emitted a >65,535 distinct `VisibilityRange`s warning that may affect culling/crossfades; other maps/LOD, matched Hills/Metropolis performance and Windows hardware remain open. See ADR149/160 and testing/issue37-bevy20/REPORT.md; upstream render results are not RoadDash FPS evidence.
 - RFU-AI-09..11: user-directed free rider lines and role-free incident combat pass pure/physical tests and a bounded 7,500-frame Metropolis survey without sampled sub-1m/s Riding stops through stations 3,000–3,200. The prior same-seed survey exposed temporary stops at 3,105/3,146; a narrowed low-speed lateral escape rule cleared that window, but full-race/all-map pileup elimination, human balance, sidewalk/building clearance beyond the tested wall, and quiet native performance acceptance remain open. ADR159 and testing/rider-free-roam/REPORT.md record the policy and receipts.
 
 - RFU-SURF-01/02/03: integrated sand behavior and four exact-binary native cases pass; human feel, steep-uphill reverse and broader hardware/performance acceptance remain open; see testing/sand-speed/REPORT.md. Metropolis contains soil/gravel, not authored sand.
@@ -48,8 +87,9 @@ missing features, architectural debt and unverified platforms.
   scripted smoke is not a production benchmark or a real gamepad test.
 - P01-SPLIT: workspace has real core/content boundaries and subsystem plugins;
   game.rs still combines vehicle/AI/combat/race; listen-host networking is implemented, with production gates open.
-- P01-MIGRATE: newer Bevy/Avian/Enhanced Input manifests are compatible with each
-  other, not this baseline. Coordinated migration with its regressions is pending.
+- P01-MIGRATE: the isolated Bevy 0.20.1/Rapier 0.37 candidate compiles as a
+  library; native parity, all-target checks and measured performance are pending.
+  Avian and Enhanced Input remain proposals, not installed dependencies.
 - P04: native gamepad/analog input, key/button rebinding and persisted comfort are
   implemented. Physical-controller finish/reconnect matrix, subjective 120–144 Hz
   jitter/readability and external tester acceptance remain open. Stick axes are
@@ -1303,3 +1343,12 @@ The river remains a bounded shallow presentation reach, not a flowing physical
 water volume. Raising the bed12m intentionally shortens the canyon fall while
 preserving the deck and both physical rigs. Full-course human art, wildlife/sand
 integration and combined release/hardware performance gates remain open.
+
+- RFU-MOUNT-01..03 / ADR165: Hills horse footing, cattle gait, mounted impact
+  and later-course patrols have an integrated candidate. The existing generic
+  quadruped and human ragdoll meshes do not yet match the authored horse and
+  cowboy silhouette in close fall views. Native visual/contact acceptance and
+  broad performance/hardware review remain open; see
+  testing/feedback-animals/REPORT.md.
+
+- RFU-GROUND-03 / RFU-HILLS-05: the Bevy 0.20 candidate now has procedural terrain grit, local sand-tinted fixed-size dust, and half as many imported Hills city walkers. Texture repetition, fade timing, walking encounters, and whether "peds pop" means spawn distance need native user review. Matched release frame/GPU cost is unmeasured; see ADR167 and testing/feedback-sand-crowd/REPORT.md.

@@ -162,7 +162,7 @@ pub fn install(
         if road.is_none() && !surface.is_some_and(|s| matches!(s.0, "junction" | "grid_road")) {
             continue;
         }
-        if let Some(mesh) = meshes.get_mut(&handle.0) {
+        if let Some(mut mesh) = meshes.get_mut(&handle.0) {
             if let Some(VertexAttributeValues::Float32x3(p)) =
                 mesh.attribute(Mesh::ATTRIBUTE_POSITION)
             {

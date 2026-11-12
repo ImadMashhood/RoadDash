@@ -102,6 +102,7 @@ pub fn spawn(
     {
         let _span = crate::diagnostics::loading::Span::new("hills_wildlife");
         wildlife::spawn(commands, meshes, materials, track);
+        wildlife::spawn_crossing_cattle(commands, art, track);
     }
     census.mounted_pairs = mounted::COUNT;
     {

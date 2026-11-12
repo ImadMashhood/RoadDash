@@ -178,7 +178,7 @@ pub fn setup_world(
         colors: (0..15).map(|i| materials.add(shirt_color(i))).collect(),
     };
     commands.insert_resource(ClearColor(Color::srgb(0.39, 0.62, 0.72)));
-    commands.insert_resource(AmbientLight {
+    commands.insert_resource(GlobalAmbientLight {
         color: Color::srgb(0.96, 0.98, 1.0),
         brightness: if track.city_surface.is_some() {
             2500.0
@@ -199,7 +199,7 @@ pub fn setup_world(
             } else {
                 25000.0
             },
-            shadows_enabled: true,
+            shadow_maps_enabled: true,
             // Bevy scales normal bias by cascade texel size. Its generic 1.8
             // pushes road receivers away from wheel/foot/foundation contacts.
             // Keep depth bias (acne protection), map size and caster policy.
@@ -662,7 +662,7 @@ mod tests {
             .query::<(&DirectionalLight, &bevy::light::CascadeShadowConfig)>()
             .single(app.world())
             .unwrap();
-        assert!(light.shadows_enabled);
+        assert!(light.shadow_maps_enabled);
         assert_eq!(light.shadow_normal_bias, 1.5);
         assert_eq!(
             light.shadow_depth_bias,

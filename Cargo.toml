@@ -21,8 +21,8 @@ debug_physics = ["bevy_rapier3d/debug-render-3d"]
 [dependencies]
 rr_core = { path = "crates/rr_core" }
 rr_content = { path = "crates/rr_content" }
-bevy = { version = "=0.17.3", default-features = false, features = ["std", "async_executor", "multi_threaded", "bevy_asset", "bevy_audio", "wav", "bevy_color", "bevy_core_pipeline", "bevy_gizmos", "bevy_gilrs", "bevy_gltf", "bevy_log", "bevy_pbr", "bevy_render", "bevy_scene", "bevy_state", "bevy_text", "bevy_ui", "bevy_ui_render", "bevy_window", "bevy_winit", "default_font", "png", "zstd_rust", "x11"] }
-bevy_rapier3d = { version = "=0.32.0", default-features = false, features = ["dim3", "simd-stable"] }
+bevy = { version = "=0.20.1", default-features = false, features = ["std", "async_executor", "multi_threaded", "bevy_asset", "bevy_audio", "wav", "bevy_color", "bevy_core_pipeline", "bevy_gizmos", "bevy_gizmos_render", "bevy_gilrs", "bevy_gltf", "bevy_log", "bevy_pbr", "bevy_render", "bevy_scene", "bevy_state", "bevy_text", "bevy_ui", "bevy_ui_widgets", "bevy_picking", "ui_picking", "bevy_ui_render", "bevy_window", "bevy_winit", "default_font", "png", "zstd_rust", "x11"] }
+bevy_rapier3d = { version = "=0.37.0", default-features = false, features = ["dim3"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 getrandom = "=0.3.4"
@@ -37,6 +37,7 @@ opt-level = 1
 [profile.dev.package."*"]
 opt-level = 3
 
-# Recover ALSA poll-level underruns on PipeWire in Bevy 0.17's audio backend.
+
+# Recover ALSA poll-level underruns on PipeWire in Bevy 0.20's audio backend.
 [patch.crates-io]
-cpal = { path = "vendor/cpal" }
+cpal = { path = "vendor/cpal-0.17.3" }

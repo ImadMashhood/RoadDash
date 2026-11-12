@@ -22,10 +22,10 @@ pub struct SolarMaterial {
 }
 impl Material for SolarMaterial {
     fn vertex_shader() -> ShaderRef {
-        "shaders/solar_disc.wgsl".into()
+        "shaders/solar_disc.wesl".into()
     }
     fn fragment_shader() -> ShaderRef {
-        "shaders/solar_disc.wgsl".into()
+        "shaders/solar_disc.wesl".into()
     }
     fn alpha_mode(&self) -> AlphaMode {
         AlphaMode::Blend

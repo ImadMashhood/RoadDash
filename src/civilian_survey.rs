@@ -137,9 +137,14 @@ fn run(
     let (_, lead, _, lead_pose, _) = cars.get(state.selected[1]).unwrap();
     if tick > 120 {
         let iso = |t: &Transform| {
-            bevy_rapier3d::rapier::math::Isometry::from_parts(
-                t.translation.into(),
-                t.rotation.into(),
+            bevy_rapier3d::rapier::math::Pose3::from_parts(
+                t.translation.to_array().into(),
+                bevy_rapier3d::rapier::math::Rot3::from_xyzw(
+                    t.rotation.x,
+                    t.rotation.y,
+                    t.rotation.z,
+                    t.rotation.w,
+                ),
             )
         };
         let overlap = bevy_rapier3d::parry::query::intersection_test(
@@ -150,7 +155,7 @@ fn run(
         )
         .expect("supported production shapes");
         assert!(
-            !overlap,
+            !overlap.intersecting,
             "native civilian collider overlap case={case} tick={tick}"
         );
         let (home, opposite, _) = civilian_lanes(

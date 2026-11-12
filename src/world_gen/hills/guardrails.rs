@@ -311,8 +311,10 @@ mod tests {
                       rails: Query<(), RailFilter>,
                       track: Res<Track>| {
                     let ctx = context.single().unwrap();
-                    let is_ground = |e| ground.contains(e);
-                    let is_rail = |e| rails.contains(e);
+                    let is_ground =
+                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
+                    let is_rail =
+                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| rails.contains(e);
                     for post in &posts {
                         let p = post.translation;
                         let (_, toi) = ctx
@@ -463,7 +465,8 @@ mod legacy_tests {
                       ground: Query<(), With<crate::world::Ground>>,
                       layout: Res<crate::world_gen::layout::WorldLayout>| {
                     let ctx = context.single().unwrap();
-                    let is_ground = |e| ground.contains(e);
+                    let is_ground =
+                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
                     for post in &posts {
                         assert!(
                             layout.scenery_allowed(post.translation, 0.2),

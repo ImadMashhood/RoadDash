@@ -68,7 +68,7 @@ impl AuthoredModels {
         meshes: &mut Assets<Mesh>,
         materials: &mut Assets<StandardMaterial>,
         binds: &mut Assets<SkinnedMeshInverseBindposes>,
-        images: &mut Assets<Image>,
+        _images: &mut Assets<Image>,
         server: Option<&AssetServer>,
     ) -> Self {
         let bindings = rr_content::riding_model::Bindings::from_json(include_str!(
@@ -88,16 +88,18 @@ impl AuthoredModels {
         let base = server.map(|s| s.load("textures/rider-base.png"));
         let officer_base = server.map(|s| s.load("textures/officer-base.png"));
         let normal = server.map(|s| {
-            s.load_with_settings(
-                "textures/rider-normal.png",
-                |settings: &mut bevy::image::ImageLoaderSettings| settings.is_srgb = false,
-            )
+            s.load_builder()
+                .with_settings(|settings: &mut bevy::image::ImageLoaderSettings| {
+                    settings.is_srgb = false;
+                })
+                .load("textures/rider-normal.png")
         });
         let roughness = server.map(|s| {
-            s.load_with_settings(
-                "textures/rider-roughness.png",
-                |settings: &mut bevy::image::ImageLoaderSettings| settings.is_srgb = false,
-            )
+            s.load_builder()
+                .with_settings(|settings: &mut bevy::image::ImageLoaderSettings| {
+                    settings.is_srgb = false;
+                })
+                .load("textures/rider-roughness.png")
         });
         let hand_contacts = hands::config();
         let mut parts = Vec::new();
@@ -168,13 +170,7 @@ impl AuthoredModels {
                 } else {
                     &standing_frames
                 };
-                hands::targets(
-                    &mesh,
-                    frames,
-                    data.group == "seated",
-                    &hand_contacts,
-                    images,
-                )
+                hands::targets(&mesh, frames, data.group == "seated", &hand_contacts)
             } else {
                 None
             };

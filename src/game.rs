@@ -335,6 +335,21 @@ fn civilian_lanes(
     }
 }
 
+const HILLS_OPENING_CARS: usize = 6;
+const HILLS_BASE_CARS: usize = 24;
+const HILLS_HEAVY_END: usize =
+    HILLS_BASE_CARS + crate::heavy_traffic::SEMIS + crate::heavy_traffic::TRACTORS;
+fn hills_car_start(index: usize) -> Option<f32> {
+    match index {
+        0 => Some(350.),  // follows the 450 m semi
+        3 => Some(2650.), // follows the 2750 m tractor
+        i if (HILLS_HEAVY_END..HILLS_HEAVY_END + HILLS_OPENING_CARS).contains(&i) => {
+            Some(500. + (i - HILLS_HEAVY_END) as f32 * 70.)
+        }
+        _ => None,
+    }
+}
+
 pub fn setup_race(
     mut commands: Commands,
     art: Res<Art>,
@@ -367,7 +382,7 @@ pub fn setup_race(
         ));
     }
     let car_count = if track.is_hills() {
-        24 + crate::heavy_traffic::SEMIS + crate::heavy_traffic::TRACTORS
+        HILLS_HEAVY_END + HILLS_OPENING_CARS
     } else {
         track
             .metropolis
@@ -381,6 +396,8 @@ pub fn setup_race(
             .then(|| crate::heavy_traffic::selection(i))
             .flatten();
         let progress = if let Some((_, station)) = heavy {
+            station
+        } else if let Some(station) = hills_car_start(i).filter(|_| track.is_hills()) {
             station
         } else if city_only {
             3400. + (i - 64) as f32 * (track.length - 3600.) / (car_count - 64).max(1) as f32
@@ -652,16 +669,20 @@ pub fn input(
                 if let Some(handle) = set.entity2body().get(&entity).copied()
                     && let Some(body) = set.bodies.get_mut(handle)
                 {
-                    let location =
-                        bevy_rapier3d::na::Isometry3::from_parts(position.into(), rotation.into());
+                    let location = bevy_rapier3d::rapier::math::Pose3::from_parts(
+                        position.to_array().into(),
+                        bevy_rapier3d::rapier::math::Rot3::from_xyzw(
+                            rotation.x, rotation.y, rotation.z, rotation.w,
+                        ),
+                    );
                     body.set_body_type(
                         bevy_rapier3d::rapier::dynamics::RigidBodyType::KinematicPositionBased,
                         true,
                     );
                     body.set_position(location, true);
                     body.set_next_kinematic_position(location);
-                    body.set_linvel(Vec3::ZERO.into(), true);
-                    body.set_angvel(Vec3::ZERO.into(), true);
+                    body.set_linvel(Vec3::ZERO, true);
+                    body.set_angvel(Vec3::ZERO, true);
                     body.reset_forces(true);
                     body.reset_torques(true);
                 }
@@ -903,8 +924,15 @@ pub fn drive(
             let profile = r.ai_profile;
             r.combat_mind.tick(dt);
             let character = rr_core::cast::character(r.id);
-            let race_pace =
-                profile.race_pace(tuning.top_speed_mps) * character.map_or(1., |c| c.pace);
+            let race_pace = if r.police {
+                profile.race_pace(tuning.top_speed_mps) * character.map_or(1., |c| c.pace)
+            } else {
+                // Keep the planner's passing horizon based on the rider's
+                // intended clear-road pace. The physical motor is capped
+                // separately at 155 km/h; shrinking this planning horizon
+                // makes a slow queue appear safe to follow indefinitely.
+                profile.race_pace(tuning.top_speed_mps) * character.map_or(1., |c| c.pace)
+            };
             rr_core::pursuit::calm(&mut r.relationships, profile, dt);
             r.fight_stamina = (r.fight_stamina + 120.0 * dt).min(profile.stamina);
             let me = rr_core::pursuit::Target {
@@ -1000,7 +1028,13 @@ pub fn drive(
             let target = if is_player {
                 top
             } else {
-                top.min((10.0 / curve.max(0.0001)).sqrt().max(12.))
+                top.min(
+                    rr_core::pursuit::race_corner_speed(
+                        curve,
+                        rr_core::pursuit::RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2,
+                    )
+                    .max(12.),
+                )
             };
             let surface = track.surface_route(r.route, r.progress, r.lane);
             let on_grass = (r.lane - track.street_offset(r.route, r.progress)).abs()
@@ -1118,7 +1152,7 @@ pub fn drive(
                     let world_velocity = if crossing.is_some() {
                         // Crossing's fixed mover measures actual displacement, including
                         // junction yielding; intended path speed would predict a held car moving.
-                        velocity.map_or(Vec3::ZERO, |v| v.linvel)
+                        velocity.map_or(Vec3::ZERO, |v| v.linear)
                     } else if disabled.is_some() {
                         Vec3::ZERO
                     } else if let Some(path) = path {
@@ -1132,7 +1166,7 @@ pub fn drive(
                                 -1.0
                             }
                     } else {
-                        velocity.map_or(Vec3::ZERO, |v| v.linvel)
+                        velocity.map_or(Vec3::ZERO, |v| v.linear)
                     };
                     let x = pose.rotation * Vec3::X;
                     let z = pose.rotation * Vec3::Z;
@@ -1222,7 +1256,7 @@ pub fn drive(
                         return false;
                     };
                     let predicate =
-                        |e| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
+                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
                     let mut previous = transform.translation + Vec3::Y * 0.85;
                     let probe = Collider::ball(0.65);
                     // A broad lane change or sidewalk excursion needs the full
@@ -1316,8 +1350,9 @@ pub fn drive(
             let rear_clear = !is_player
                 && (r.speed < 1. || r.ai_drive.reversing())
                 && context.single().is_ok_and(|ctx| {
-                    let predicate =
-                        |e| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
+                    let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                        !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity)
+                    };
                     ctx.cast_shape(
                         transform.translation + Vec3::Y * 0.8,
                         transform.rotation,
@@ -1406,6 +1441,9 @@ pub fn drive(
             }
             if !dynamic {
                 r.speed += surface.rolling_acceleration(r.speed, dt) * dt;
+                if !is_player && !r.police {
+                    r.speed = r.speed.min(rr_core::pursuit::RIVAL_TOP_SPEED_MPS);
+                }
             }
             if boost {
                 r.nitro = (r.nitro - dt * 25.0).max(0.0);
@@ -1461,8 +1499,11 @@ pub fn drive(
                         } else {
                             chase_goal.map_or(target, |(_, speed)| speed)
                         };
-                        ((speed - r.speed) * 0.25 + if r.police { 0.0 } else { 0.35 })
-                            .clamp(0.0, 1.0)
+                        if r.police {
+                            ((speed - r.speed) * 0.25).clamp(0.0, 1.0)
+                        } else {
+                            rr_core::pursuit::rival_throttle_amount(race.elapsed, r.speed, speed)
+                        }
                     }
                 },
                 brake_amount: if is_player {
@@ -1486,8 +1527,9 @@ pub fn drive(
                 && !backing
                 && let Ok(ctx) = context.single()
             {
-                let predicate =
-                    |e| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
+                let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                    !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity)
+                };
                 let clear = |a: Vec2, b: Vec2| {
                     let from = Vec3::new(a.x, track.terrain_height(a.x, a.y) + 0.85, a.y);
                     let to = Vec3::new(b.x, track.terrain_height(b.x, b.y) + 0.85, b.y);
@@ -1729,7 +1771,7 @@ pub fn drive(
         {
             // Bound controller movement against real geometry, including very slow
             // lateral steering, rather than letting kinematic bikes pass through it.
-            let predicate = |other| {
+            let predicate = |other, _: &bevy_rapier3d::rapier::geometry::Collider| {
                 !ground.contains(other) && !owned.get(other).is_ok_and(|body| body.owner == entity)
             };
             // Dynamic debris is pushed by Rapier contacts; only immovable or
@@ -1796,7 +1838,8 @@ pub fn drive(
             && recovery.stage == RecoveryStage::Riding
             && let Ok(ctx) = context.single()
         {
-            let is_ground = |other| ground.contains(other);
+            let is_ground =
+                |other, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(other);
             // Sweep solids above first: a blocked move must not fall through a
             // hanger or wall. Query below the deck plane, independent of hops.
             let supported = ctx
@@ -1865,7 +1908,8 @@ pub fn drive(
         }
         if !dynamic || !active {
             if let Ok(ctx) = context.single() {
-                let predicate = |e| ground.contains(e);
+                let predicate =
+                    |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
                 if let Some((_, hit)) = ctx.cast_ray_and_get_normal(
                     destination + Vec3::Y * 0.7,
                     -Vec3::Y,
@@ -2094,7 +2138,8 @@ pub fn drive(
                         let Ok(shape) = shapes.get(entity) else {
                             return false;
                         };
-                        let predicate = |e| !ground.contains(e);
+                        let predicate =
+                            |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e);
                         let mut previous = transform.translation;
                         for step in 1..=12 {
                             let t = step as f32 * 0.5;
@@ -2512,8 +2557,9 @@ pub fn camera(
         // Prevent the camera itself from passing through solid scenery.
         if let Ok(context) = context.single() {
             let delta = position - focus;
-            let predicate =
-                |e| riders.get(e).is_err() && owned.get(e).is_err() && !actors.contains(e);
+            let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                riders.get(e).is_err() && owned.get(e).is_err() && !actors.contains(e)
+            };
             let filter = QueryFilter::from(
                 QueryFilterFlags::EXCLUDE_DYNAMIC | QueryFilterFlags::EXCLUDE_KINEMATIC,
             )
@@ -2573,8 +2619,12 @@ pub fn camera(
     }
 }
 
-/// Avoid a nearby rival's helmet filling the chase camera on a packed grid.
+/// Avoid a rival's helmet filling the chase camera on a packed grid.
 /// This only hides the mesh; combat and collision rules remain active.
+const CAMERA_OCCLUSION_RADIUS_M: f32 = 1.4;
+fn rival_obscures_camera(camera: Vec3, rival: Vec3) -> bool {
+    camera.distance(rival + Vec3::Y * 1.3) < CAMERA_OCCLUSION_RADIUS_M
+}
 pub fn camera_occlusion(
     state: Option<Res<crate::online::NetState>>,
     camera: Query<&Transform, With<ChaseCamera>>,
@@ -2586,10 +2636,7 @@ pub fn camera_occlusion(
     let local_slot = state.as_ref().map_or(0, |s| s.local_slot);
     for (rider, transform, mut visibility) in &mut riders {
         if rider.id != local_slot
-            && camera
-                .translation
-                .distance(transform.translation + Vec3::Y * 1.3)
-                < 3.0
+            && rival_obscures_camera(camera.translation, transform.translation)
         {
             *visibility = Visibility::Hidden;
         }
@@ -2642,6 +2689,13 @@ pub(crate) fn ai_free_bounds(track: &Track, route: usize, progress: f32) -> (f32
 pub(crate) mod tests {
     use super::*;
     use crate::track::ROAD_HALF;
+    #[test]
+    fn following_riders_remain_visible_outside_the_camera_contact_zone() {
+        let camera = Vec3::new(0.0, 2.0, -6.0);
+        assert!(rival_obscures_camera(camera, Vec3::new(0.0, 0.7, -5.0)));
+        assert!(!rival_obscures_camera(camera, Vec3::new(0.0, 0.7, -3.8)));
+        assert!(!rival_obscures_camera(camera, Vec3::new(2.0, 0.7, -5.0)));
+    }
     #[test]
     fn static_guard_tracks_requested_or_committed_lines_only() {
         assert!(ai_static_guard_relevant(2.1, 2., -3., None));
@@ -2993,7 +3047,7 @@ pub(crate) mod tests {
             FixedUpdate,
             (|mut snapshot: ResMut<Detached>, bodies: Query<(&recovery::OwnedBody, &Velocity)>| {
                 if snapshot.0.is_empty() {
-                    snapshot.0.extend(bodies.iter().map(|(_, v)| v.linvel));
+                    snapshot.0.extend(bodies.iter().map(|(_, v)| v.linear));
                 }
             })
             .after(crate::runtime::SimSet::Gameplay)
@@ -3097,7 +3151,7 @@ pub(crate) mod tests {
                         set.entity2body()
                             .get(&owner)
                             .and_then(|h| set.bodies.get(*h))
-                            .map(|body| Vec3::from(*body.translation()))
+                            .map(|body| body.translation())
                     })
                     .unwrap()
             };
@@ -3109,7 +3163,7 @@ pub(crate) mod tests {
             assert_eq!(h.previous.translation, start);
             assert_eq!(h.current.translation, start);
             assert!(
-                app.world().get::<Velocity>(owner).unwrap().linvel.length() < 0.01,
+                app.world().get::<Velocity>(owner).unwrap().linear.length() < 0.01,
                 "retry retained travelling velocity"
             );
             assert!(!app.world().get::<BikeState>(owner).unwrap().was_riding);
@@ -4001,7 +4055,7 @@ pub(crate) mod tests {
         assert_eq!(app.world().resource::<Profile>().races, 1);
         // RoadInputPlugin already wires the menu button before input.
         app.world_mut()
-            .spawn((crate::ui::StartButton, Interaction::Pressed));
+            .spawn((crate::ui::StartButton, bevy::ui::Pressed));
         step(&mut app, 1);
         assert!(app.world().resource::<Race>().phase == Phase::Countdown);
     }
@@ -4259,7 +4313,7 @@ pub(crate) mod tests {
             assert!(app.world().get_entity(runner).is_err());
             let torso = app.world().get::<Recovery>(owner).unwrap().torso.unwrap();
             assert!(
-                app.world().get::<Velocity>(torso).unwrap().linvel.length() < 100.0,
+                app.world().get::<Velocity>(torso).unwrap().linear.length() < 100.0,
                 "repeat knockdown inherited stale riding velocity"
             );
             step(&mut app, 5);
@@ -4447,7 +4501,7 @@ pub(crate) mod tests {
                     .count(),
                 0
             );
-            let count = app.world().entities().len();
+            let count = app.world().entities().count_spawned();
             if let Some(expected) = stable_count {
                 assert_eq!(count, expected, "reset leaked entities");
             } else {
@@ -4541,7 +4595,7 @@ pub(crate) mod tests {
                         snapshot.0.extend(
                             bodies
                                 .iter()
-                                .map(|(body, v, t)| (body.kind, v.linvel, t.translation)),
+                                .map(|(body, v, t)| (body.kind, v.linear, t.translation)),
                         );
                     }
                 })
@@ -4832,7 +4886,7 @@ pub(crate) mod tests {
             let world = app.world_mut();
             for (t, v) in world.query::<(&Transform, &Velocity)>().iter(world) {
                 assert!(
-                    t.translation.is_finite() && t.rotation.is_finite() && v.linvel.is_finite()
+                    t.translation.is_finite() && t.rotation.is_finite() && v.linear.is_finite()
                 );
                 assert!(t.translation.y > -0.5, "terrain clipping in drop {cycle}");
             }
@@ -5048,7 +5102,7 @@ pub(crate) mod tests {
                 app.world()
                     .get::<Velocity>(wreck)
                     .unwrap()
-                    .linvel
+                    .linear
                     .distance(original::velocity(expected.bike, reference_frame))
                     < 0.002
             );
@@ -5059,7 +5113,7 @@ pub(crate) mod tests {
                     app.world()
                         .get::<Velocity>(*part)
                         .unwrap()
-                        .linvel
+                        .linear
                         .distance(original::velocity(expected.rider.unwrap(), reference_frame))
                         < 0.002
                 );
@@ -5071,9 +5125,60 @@ pub(crate) mod tests {
                     break;
                 }
             }
-            assert_eq!(
-                app.world().get::<Recovery>(owner).unwrap().stage,
-                RecoveryStage::Riding
+            let state = app.world().get::<Recovery>(owner).unwrap();
+            let runner_pose = state
+                .runner
+                .and_then(|e| app.world().get::<Transform>(e).map(|t| t.translation));
+            let wreck_pose = state
+                .wreck
+                .and_then(|e| app.world().get::<Transform>(e).map(|t| t.translation));
+            let wreck_speed = state
+                .wreck
+                .and_then(|e| app.world().get::<Velocity>(e).map(|v| v.linear.length()));
+            let movement = state.runner.and_then(|e| {
+                app.world()
+                    .get::<KinematicCharacterControllerOutput>(e)
+                    .map(|output| {
+                        (
+                            output.desired_translation,
+                            output.effective_translation,
+                            output.grounded,
+                            output
+                                .collisions
+                                .iter()
+                                .map(|c| {
+                                    let entity = c.entity;
+                                    (
+                                        entity,
+                                        app.world().get::<world::Ground>(entity).is_some(),
+                                        app.world().get::<recovery::OwnedBody>(entity).map(|o| {
+                                            (
+                                                o.kind == recovery::BodyKind::Ragdoll,
+                                                o.owner == owner,
+                                            )
+                                        }),
+                                        app.world().get::<Transform>(entity).map(|t| t.translation),
+                                    )
+                                })
+                                .collect::<Vec<_>>(),
+                        )
+                    })
+            });
+            let requested = state.runner.and_then(|e| {
+                app.world()
+                    .get::<KinematicCharacterController>(e)
+                    .and_then(|c| c.translation)
+            });
+            assert!(
+                state.stage == RecoveryStage::Riding,
+                "depleted={depleted} stage={:?} elapsed={} runner={runner_pose:?} wreck={wreck_pose:?} speed={wreck_speed:?} path_len={} goal={:?} stationary={} walk_distance={} progress={} movement={movement:?} requested={requested:?}",
+                state.stage,
+                state.elapsed,
+                state.walk_path.len(),
+                state.walk_goal,
+                state.walk_watch.stationary_seconds(),
+                state.walk_distance,
+                app.world().get::<Rider>(owner).unwrap().progress,
             );
             assert_eq!(
                 app.world().get::<Rider>(owner).unwrap().original_condition,

@@ -211,7 +211,7 @@ pub fn knockdowns(
                 } else if let Some(r) = rider {
                     r.motion_velocity
                 } else if let Some(v) = v {
-                    v.linvel
+                    v.linear
                 } else if let Some(car) = car {
                     t.rotation * Vec3::Z * car.speed.abs()
                 } else {
@@ -304,7 +304,7 @@ pub fn knockdowns(
                     },
                     if npc.kind == NpcKind::Cow { 0.6 } else { 0.3 },
                 );
-                let predicate = |other| {
+                let predicate = |other, _: &bevy_rapier3d::rapier::geometry::Collider| {
                     !ground.contains(other)
                         && !owned.get(other).is_ok_and(|body| body.owner == entity)
                 };
@@ -323,7 +323,7 @@ pub fn knockdowns(
                         .exclude_rigid_body(entity)
                         .exclude_sensors()
                         .predicate(&predicate),
-                    |_| {
+                    |_, _| {
                         occupied = true;
                         false
                     },
@@ -435,8 +435,8 @@ mod tests {
             for (&a, &b) in aa.iter().zip(&bb) {
                 let va = old.world().get::<Velocity>(a).unwrap();
                 let vb = new.world().get::<Velocity>(b).unwrap();
-                assert!(va.linvel.distance(vb.linvel) < 0.0001);
-                assert!(va.angvel.distance(vb.angvel) < 0.0001);
+                assert!(va.linear.distance(vb.linear) < 0.0001);
+                assert!(va.angular.distance(vb.angular) < 0.0001);
             }
             // Entity/archetype allocation changes contact ordering. Do not demand
             // bitwise equality of chaotic contact trajectories across two ECS worlds.
@@ -450,8 +450,8 @@ mod tests {
                             assert!(t.translation.y > -2.0 && t.translation.y < 20.0);
                         }
                         if let Some(v) = app.world().get::<Velocity>(part) {
-                            assert!(v.linvel.is_finite() && v.angvel.is_finite());
-                            assert!(v.linvel.length() < 50.0 && v.angvel.length() < 100.0);
+                            assert!(v.linear.is_finite() && v.angular.is_finite());
+                            assert!(v.linear.length() < 50.0 && v.angular.length() < 100.0);
                         }
                     }
                 }

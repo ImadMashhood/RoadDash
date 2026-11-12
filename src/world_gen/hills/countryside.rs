@@ -780,9 +780,9 @@ pub(super) fn spawn(
             for (p, seed) in placements {
                 for blade in 0..3 {
                     let angle = seed * std::f32::consts::TAU + blade as f32 * 2.1;
-                    let side = Vec3::new(angle.cos(), 0., angle.sin()) * 0.10;
+                    let side = Vec3::new(angle.cos(), 0., angle.sin()) * 0.14;
                     let bend = Vec3::new(angle.sin(), 0., angle.cos()) * 0.16;
-                    let h = 0.32 + seed * 0.34;
+                    let h = 0.39 + seed * 0.41;
                     let k = vertices.len() as u32;
                     vertices.extend([
                         p - side - origin,
@@ -810,7 +810,7 @@ pub(super) fn spawn(
                 NotShadowCaster,
                 VisibilityRange {
                     start_margin: 0.0..0.0,
-                    end_margin: 90.0..125.0,
+                    end_margin: 170.0..240.0,
                     use_aabb: false,
                 },
             ));

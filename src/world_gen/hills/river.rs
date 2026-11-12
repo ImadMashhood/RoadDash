@@ -12,9 +12,10 @@ use bevy::{
 };
 
 const HALF_LENGTH: f32 = 160.;
-const SEGMENTS: usize = 160;
+const SEGMENTS: usize = 320;
 const LANES: usize = 12;
 const WATER_LIFT: f32 = 0.18;
+const WATER_HEIGHT_FRACTION: f32 = 0.5;
 #[derive(Component)]
 pub struct CanyonWater;
 #[derive(Component)]
@@ -61,7 +62,7 @@ fn edge_fade(along: f32) -> f32 {
     let t = ((HALF_LENGTH - along.abs()) / 22.).clamp(0., 1.);
     t * t * (3. - 2. * t)
 }
-fn channel(track: &Track, along: f32) -> (Vec3, Vec3, f32) {
+fn channel(track: &Track, along: f32, level: f32) -> (Vec3, Vec3, [f32; 2]) {
     let (p, q) = bridge::deck_sample(track, bridge::CENTER, 0.);
     let across = (q * Vec3::X).with_y(0.).normalize();
     let forward = (q * Vec3::Z).with_y(0.).normalize();
@@ -71,8 +72,18 @@ fn channel(track: &Track, along: f32) -> (Vec3, Vec3, f32) {
     let normal = tangent.cross(Vec3::Y).normalize();
     let mut c = p + across * along + forward * offset;
     c.y = geometry::ground_height(track, c.x, c.z);
-    let half_width = (8.5 + 1.4 * (along / 43.).cos()) * (0.2 + 0.8 * edge_fade(along));
-    (c, normal, half_width)
+    // Locate the two real canyon banks at this water level. The broad surface
+    // intersects the terrain instead of hovering as a narrow ribbon in midair.
+    let shore = |side: f32| {
+        (1..=16)
+            .map(|step| step as f32 * 8.)
+            .find(|distance| {
+                let p = c + normal * side * *distance;
+                geometry::ground_height(track, p.x, p.z) >= level
+            })
+            .unwrap_or(128.)
+    };
+    (c, normal, [shore(-1.), shore(1.)])
 }
 fn plan(track: &Track) -> (Strip, Strip, RiverCensus) {
     let mut water = Strip::new();
@@ -82,21 +93,24 @@ fn plan(track: &Track) -> (Strip, Strip, RiverCensus) {
     let mut width = 0f32;
     let mut previous: Option<Vec3> = None;
     let deck = bridge::deck_sample(track, bridge::CENTER, 0.).0.y;
+    let center = bridge::deck_sample(track, bridge::CENTER, 0.).0;
+    let bed = geometry::ground_height(track, center.x, center.z);
+    let water_level = bed + (deck - bed) * WATER_HEIGHT_FRACTION + WATER_LIFT;
     let mut clearance = f32::INFINITY;
     for i in 0..=SEGMENTS {
         let along = -HALF_LENGTH + i as f32 * (2. * HALF_LENGTH / SEGMENTS as f32);
-        let (p, normal, half) = channel(track, along);
+        let (p, normal, shores) = channel(track, along, water_level);
         if let Some(old) = previous {
             let distance = p.xz().distance(old.xz());
             grade = grade.max((p.y - old.y).abs() / distance);
             length += p.distance(old);
         }
         previous = Some(p);
-        width = width.max(half * 2.);
+        width = width.max(shores[0] + shores[1]);
         for lane in 0..=LANES {
             let u = lane as f32 / LANES as f32;
-            let mut v = p + normal * half * (u * 2. - 1.);
-            v.y = geometry::ground_height(track, v.x, v.z) + WATER_LIFT;
+            let mut v = p + normal * (-shores[0] + u * (shores[0] + shores[1]));
+            v.y = water_level;
             clearance = clearance.min(deck - v.y);
             water.vertices.push(v);
             water.uv.push([u * 2., along / 11.]);
@@ -110,7 +124,8 @@ fn plan(track: &Track) -> (Strip, Strip, RiverCensus) {
         }
         for side in [-1., 1.] {
             for outside in [false, true] {
-                let mut v = p + normal * side * (half + if outside { 3.5 } else { -0.4 });
+                let half = if side < 0. { shores[0] } else { shores[1] };
+                let mut v = p + normal * side * (half + if outside { 0.35 } else { -0.15 });
                 v.y = geometry::ground_height(track, v.x, v.z) + 0.035;
                 banks.vertices.push(v);
                 banks.uv.push([if outside { 1. } else { 0. }, along / 6.]);
@@ -159,7 +174,7 @@ fn plan(track: &Track) -> (Strip, Strip, RiverCensus) {
         bank_triangles: banks.triangles.len(),
         maximum_width_m: width,
         maximum_longitudinal_grade: grade,
-        surface_lift_m: WATER_LIFT,
+        surface_lift_m: water_level - bed,
         minimum_deck_clearance_m: clearance,
     };
     (water, banks, census)
@@ -261,7 +276,7 @@ pub fn animate(
         return;
     };
     flow.phase = (flow.phase + time.delta_secs().min(0.1) * 0.09).rem_euclid(1.);
-    if let Some(material) = materials.get_mut(&flow.material) {
+    if let Some(mut material) = materials.get_mut(&flow.material) {
         material.uv_transform = Affine2::from_translation(Vec2::new(0., flow.phase));
     }
 }
@@ -269,34 +284,43 @@ pub fn animate(
 mod tests {
     use super::*;
     #[test]
-    fn river_reach_stays_on_gentle_resident_bed_beneath_bridge() {
+    fn river_reach_fills_half_the_canyon_without_a_hidden_support_plane() {
         let track = Track::hills().unwrap();
         let (water, banks, census) = plan(&track);
         assert!((320. ..350.).contains(&census.length_m));
-        assert!((18. ..21.).contains(&census.maximum_width_m));
+        assert!((30. ..=256.).contains(&census.maximum_width_m));
         assert!(
             census.maximum_longitudinal_grade < 0.18,
             "river grade {}",
             census.maximum_longitudinal_grade
         );
-        assert!(census.minimum_deck_clearance_m > 65.);
+        assert!(census.minimum_deck_clearance_m > 25.);
+        assert!(census.surface_lift_m > 25.);
         assert_eq!(census.water_triangles, SEGMENTS * LANES * 2);
         assert_eq!(census.bank_triangles, SEGMENTS * 4);
-        for (strip, lift) in [(&water, WATER_LIFT), (&banks, 0.035)] {
-            for vertex in &strip.vertices {
-                let ground = geometry::ground_height(&track, vertex.x, vertex.z);
-                assert!((vertex.y - ground - lift).abs() < 0.001);
+        let water_height = water.vertices[0].y;
+        for vertex in &water.vertices {
+            assert!((vertex.y - water_height).abs() < 0.001);
+        }
+        for (strip, is_bank) in [(&water, false), (&banks, true)] {
+            if is_bank {
+                for vertex in &strip.vertices {
+                    let ground = geometry::ground_height(&track, vertex.x, vertex.z);
+                    assert!((vertex.y - ground - 0.035).abs() < 0.001);
+                }
             }
             for triangle in &strip.triangles {
                 let [a, b, c] = triangle.map(|i| strip.vertices[i as usize]);
                 assert!((b - a).cross(c - a).y > 0.);
-                let center = (a + b + c) / 3.;
-                let ground = geometry::ground_height(&track, center.x, center.z);
-                assert!(
-                    (center.y - ground - lift).abs() < 0.10,
-                    "triangle terrain error {}",
-                    center.y - ground - lift
-                );
+                if is_bank {
+                    let center = (a + b + c) / 3.;
+                    let ground = geometry::ground_height(&track, center.x, center.z);
+                    assert!(
+                        (center.y - ground - 0.035).abs() < 1.0,
+                        "bank triangle error {} at {center:?}",
+                        center.y - ground - 0.035
+                    );
+                }
             }
         }
     }

@@ -37,8 +37,8 @@ pub(super) fn update(
     let context = context.single().ok();
     for (e, o, v, part) in &segments {
         let stats = scratch.entry(o.owner).or_default();
-        stats.speed = stats.speed.max(v.linvel.length());
-        stats.angular = stats.angular.max(v.angvel.length());
+        stats.speed = stats.speed.max(v.linear.length());
+        stats.angular = stats.angular.max(v.angular.length());
         if let Some(context) = &context {
             for pair in context.contact_pairs_with(e) {
                 let other = if pair.collider1() == Some(e) {

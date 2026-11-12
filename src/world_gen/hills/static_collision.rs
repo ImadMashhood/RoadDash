@@ -146,7 +146,7 @@ mod physical_equivalence {
             .world_mut()
             .run_system_once(move |context: ReadRapierContext| {
                 let context = context.single().unwrap();
-                let filter = |e| e == floor;
+                let filter = |e, _: &bevy_rapier3d::rapier::geometry::Collider| e == floor;
                 let distance = context
                     .cast_ray(
                         Vec3::new(0., 4., 0.),
@@ -157,7 +157,7 @@ mod physical_equivalence {
                     )
                     .unwrap()
                     .1;
-                let filter = |e| e == wall;
+                let filter = |e, _: &bevy_rapier3d::rapier::geometry::Collider| e == wall;
                 let wall_hit = context
                     .cast_ray(
                         Vec3::new(0., 2., 0.),

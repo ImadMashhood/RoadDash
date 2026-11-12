@@ -146,7 +146,7 @@ fn loaded(
     metro: Option<Res<crate::world_gen::metropolis::facades::Kit>>,
     mut last_wait: Local<Option<&'static str>>,
     props: Query<
-        &SceneRoot,
+        &WorldAssetRoot,
         Or<(
             With<crate::props::PropVisual>,
             With<crate::props::ActorBinding>,
@@ -300,6 +300,7 @@ impl Plugin for RoadSimulationPlugin {
                     crate::combat::schedule,
                     crate::combat::melee,
                     crate::npc::knockdowns,
+                    crate::world_gen::hills::mounted::sync_cowboy_ragdolls,
                     crate::police::think,
                     crate::police::dismount,
                     crate::environment::patrol,
@@ -506,6 +507,7 @@ impl Plugin for RoadPresentationPlugin {
                     world::animate_riders,
                     world::animate_runners,
                     crate::environment::animate_civilians,
+                    crate::environment::animate_cow_legs,
                     game::camera_occlusion,
                     crate::ui::update_ui,
                 )

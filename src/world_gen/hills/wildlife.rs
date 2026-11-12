@@ -1,6 +1,8 @@
 //! Bounded, non-contact off-road herds. No authoritative physics transforms.
 use super::{Track, props::Model};
+use crate::world::Art;
 use bevy::prelude::*;
+use bevy_rapier3d::prelude::*;
 use rr_core::wildlife::{self as rules, Species};
 const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
     (0, 2050., 75.),
@@ -11,6 +13,8 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
     (0, 10800., -80.),
 ];
 const SAMPLES: usize = 128;
+const CROSSING_STATIONS: [f32; 2] = [9200., 11050.];
+const CROSSING_MEMBERS: usize = 4;
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
 #[derive(Component)]
@@ -18,6 +22,8 @@ pub struct WildAnimal {
     pub herd: usize,
     pub member: usize,
 }
+#[derive(Component)]
+pub struct CrossingCow;
 #[derive(Resource, Default)]
 pub struct Wildlife {
     pub herds: Vec<Herd>,
@@ -53,7 +59,51 @@ pub(super) fn reserved(track: &Track, point: Vec3, radius: f32) -> bool {
         let (p, q) = center(track, h);
         let l = q.inverse() * (point - p);
         l.x.abs() < rules::HALF_WIDTH + radius && l.z.abs() < rules::HALF_LENGTH + radius
+    }) || CROSSING_STATIONS.iter().any(|&station| {
+        let (p, q) = track.sample_route(0, station, 0.);
+        let l = q.inverse() * (point - p);
+        l.x.abs() < 31. + radius && l.z.abs() < 24. + radius
     })
+}
+/// Small solid cattle herds cross the later desert road. Unlike the distant
+/// scenic bison/horse, these use the existing cow NPC contact and knockdown rig.
+pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) {
+    if std::env::var("ROADDASH_WILDLIFE").as_deref() == Ok("0") {
+        return;
+    }
+    for (group, &station) in CROSSING_STATIONS.iter().enumerate() {
+        for member in 0..CROSSING_MEMBERS {
+            let (center, q) = track.sample_route(0, station + member as f32 * 3.7, 0.);
+            let axis = (q * Vec3::X).with_y(0.).normalize();
+            let center = center + q * Vec3::Z * (member as f32 - 1.5) * 2.0;
+            let phase = member as f32 * 0.18;
+            let start = center + axis * ((phase - 1.) * 26.);
+            let p = start.with_y(super::geometry::ground_height(track, start.x, start.z));
+            let entity = crate::environment::spawn_cow(
+                commands,
+                art,
+                p,
+                Quat::from_rotation_y(axis.x.atan2(axis.z)),
+            );
+            commands.entity(entity).insert((
+                Name::new(format!(
+                    "Hills crossing cattle herd {group} member {member}"
+                )),
+                CrossingCow,
+                RigidBody::KinematicPositionBased,
+                ActiveCollisionTypes::all(),
+                crate::world::Obstacle,
+                crate::environment::Patrol {
+                    center,
+                    axis,
+                    extent: 26.,
+                    speed: 2.8,
+                    phase,
+                    one_way: false,
+                },
+            ));
+        }
+    }
 }
 pub(crate) fn ground_point(track: &Track, h: usize, m: usize, a: f32) -> Vec3 {
     let (p, q) = center(track, h);
