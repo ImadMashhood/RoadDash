@@ -4709,3 +4709,42 @@ passing. Source/physical checks and locked builds pass; two pre-existing physics
 parity failures remain. AI-METRO-01 stays unchecked pending GPU/user verification.
 The user explicitly authorizes publication/merge of the approved behavior; keep
 these limitations visible instead of silently closing the native gate.
+
+
+## ADR173 — Menu, turning and contact feedback polish (2026-11-12)
+
+The user explicitly requests a live tinted city menu, body/knee turning,
+visible high-speed AI bank, hands on grips until weapon strikes, stronger hit
+feedback, forgiving melee/downed contact and twice the downed-object jump.
+Reuse the existing rendered map, camera and original motorcycle meshes for a
+bounded three-bike menu tour; display actors have no simulation identity/body.
+Retain specialized portrait/art screens and existing actions. Anti-nausea freezes
+tour movement. No new dependencies, assets, remote research or borrowed code.
+
+Rival bank includes road curvature because lane-centering input alone misses
+road-following turns; update both adapters and preserve the player's bank rule.
+Inward root displacement and inner knee IK are render-only. Remove perpetual
+weapon-ready layering and gate held meshes on weapon attacks. Amplify the existing
+confirmed-hit layer/audio/HUD pipeline instead of adding simulation hit-stop.
+
+Expand unarmed body-envelope acceptance modestly with existing side/LOS/contact
+clock checks; do not accept all nearby whole-bike overlaps. Add a swept gameplay
+margin for downed bodies/wrecks without changing physical rig colliders. Scale
+downed lift speed by sqrt(2) and its speed-dependent cap likewise, spending the
+existing energy budget; leave pedestrian and upright rear-hit policies intact.
+This is the user's targeted contact authorization, not broader physics tuning.
+All five new checklist entries remain open pending native/user acceptance.
+
+
+ADR173 follow-up — whole-body cornering (2026-11-12): user approves the prior
+presentation and requests more body/shoulder/arm weight shift. Extend FEEL-LEAN-01,
+not the physics scope. Add up to0.12rad pelvis bank, reduced in the fast tuck;
+add up to0.08rad inward tuck yaw so a near-horizontal torso also shifts sideways.
+Keep the7.5cm inward seat shift and add a6cm down/forward settle at full turn to
+preserve outside-arm reach. Hierarchical pelvis rotation carries chest, shoulders
+and arms together; existing two-link contact fitting retains grip/peg anchors
+and anatomical lengths. Input smoothing and render interpolation remain unchanged.
+An initial upright-only roll pulled an outside hand off its grip; the settle and
+tuck-specific rotation pass the combined bank/impact contact test. No new assets,
+dependencies, rigs or task IDs. User's local GPU now reports matching620.70.06;
+the earlier software-rendering blocker is historical for this machine.

@@ -1,0 +1,4 @@
+2026-11-12T21:06:57.878716Z  WARN bevy_render::renderer: The selected adapter is using a driver that only supports software rendering. This is likely to be very slow. See https://bevy.org/learn/errors/b0006/
+2026-11-12T21:06:58.042765Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-108218.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)

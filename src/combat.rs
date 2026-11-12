@@ -440,6 +440,10 @@ pub fn melee(
                 police.mind.interrupt_arrest();
                 police.contact_block_until = race.elapsed + 0.25;
             }
+            if r.human_controlled() {
+                race.message = if kicking { "KICKED!" } else { "HIT!" }.into();
+                race.message_time = 0.85;
+            }
             r.combat_mind.struck_by(attacker_id);
             let column = rr_core::pursuit::personality(attacker_id);
             r.relationships[column] =

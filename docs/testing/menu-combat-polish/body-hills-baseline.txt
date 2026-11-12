@@ -1,0 +1,8 @@
+2026-11-12T21:32:12.442385Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /tmp/roaddash-performance/performance-22177.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+AI roster verified: fourteen rivals, five fighters
+Audio output initialized: 4 playback sinks
+Native remount 1: pickup error 0.0000 m
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Hills route 0 -> city/town/hills -> crash recovery -> results fixture; exceptional rescues [0, 0]

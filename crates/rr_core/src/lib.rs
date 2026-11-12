@@ -194,18 +194,30 @@ pub fn bike_contact_severity(closing_mps: f32, longitudinal: bool) -> ContactSev
         ContactSeverity::Nudge
     }
 }
-pub const DIRECT_STRIKE_MIN_LATERAL_M: f32 = 0.65;
-pub const DIRECT_STRIKE_MAX_LATERAL_M: f32 = 1.9;
-pub const DIRECT_STRIKE_MAX_LONGITUDINAL_M: f32 = 0.9;
+/// Forgiving rider-volume envelope measured between rider anchors. Contact phase,
+/// side, heading and occlusion are checked separately by the authoritative caller.
+pub const DIRECT_STRIKE_MIN_LATERAL_M: f32 = 0.30;
+pub const DIRECT_STRIKE_MAX_LATERAL_M: f32 = 2.25;
+pub const DIRECT_STRIKE_MAX_LONGITUDINAL_M: f32 = 1.3;
 pub fn direct_strike_geometry(lateral: f32, longitudinal: f32, height: f32, side: f32) -> bool {
     (DIRECT_STRIKE_MIN_LATERAL_M..=DIRECT_STRIKE_MAX_LATERAL_M).contains(&lateral.abs())
         && lateral * side > 0.0
         && longitudinal.abs() <= DIRECT_STRIKE_MAX_LONGITUDINAL_M
-        && height.abs() <= 0.9
+        && height.abs() <= 1.15
 }
 #[cfg(test)]
 mod combat_rule_tests {
     use super::*;
+    #[test]
+    fn generous_rider_envelope_preserves_side_and_remote_misses() {
+        for side in [-1., 1.] {
+            assert!(direct_strike_geometry(side * 2.15, 1.2, 1.0, side));
+            assert!(direct_strike_geometry(side * 0.4, -1.2, -1.0, side));
+            assert!(!direct_strike_geometry(side * 2.8, 0., 0., side));
+            assert!(!direct_strike_geometry(side * 1.8, 0., 0., -side));
+            assert!(!direct_strike_geometry(side * 1.8, 1.9, 0., side));
+        }
+    }
     #[test]
     fn successive_hits_expire_by_gap_not_total_duration() {
         let mut c = HitChain::default();

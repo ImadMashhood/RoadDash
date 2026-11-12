@@ -1,5 +1,23 @@
 # Development progress
 
+2026-11-12 whole-body lean follow-up (ADR173 / FEEL-LEAN-01): user approves
+the prior presentation and requests shoulder/arm participation. Hierarchical
+pelvis bank, tuck yaw and down/forward settle implemented with held-contact
+checks. No task closures or new IDs;234 verified /356 open.712tests pass with
+the same two existing physics failures; strict checks, debug/release builds,
+native animation review, four both-map/rig recovery smokes and18finite paired
+lab cases complete. GPU is now
+available (RTX3080, driver620.70.06). Evidence:
+testing/menu-combat-polish/BODY_LEAN.md.
+
+2026-11-12 menu/combat polish (ADR173): five new open requirements;
+234 verified /356 open. Live city tour, turning presentation, attack-only weapons,
+stronger hit feedback and forgiving downed/melee contacts implemented. Native
+GPU/user acceptance remains open due to NVIDIA driver/library mismatch.
+711 tests pass; two pre-existing physics failures remain. Strict checks/build/audit
+and all18finite paired lab cases complete; native menu attempt times out on software
+rendering. See testing/menu-combat-polish/REPORT.md for verification evidence.
+
 2026-11-12 Metropolis race-flow follow-up (ADR172): AI-METRO-01 added open;
 234 verified/351 open. Share the approved Hills planner and real car bounds,
 retain split-aware geometry. Physical tests/builds pass; native graphics validation
@@ -994,6 +1012,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, twice ballistic rise within existing energy and unchanged upright rear-contact/rig policy; verification: core height/energy tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
+
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
 - [ ] **PERF-START-01** Bound repeated AI static work and finish initial scene expansion before play. Reason: startup expands the world and subsequent CPU hitches coincide with repeated collision forecasts; part:01; dependencies: existing loading/readiness, AI forecasts and performance logs; acceptance: exact per-rider/per-tick static-query reuse, no stale safety results, complete scene instances/materials plus settled mesh frames before menu, matched cache-enabled/disabled work/timing and authoritative-state comparison, native recovery and checks; partial: early sampled states match with fewer casts; later native trajectories diverge, so sustained matched profiling stays open; verification: [source-matched profiler receipts](testing/hills-weaving-startup/REPORT.md). Full nonblocking generation, GPU and broad hardware/loading gates remain RFU-PERF-01/02/04.
@@ -1175,6 +1195,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **ARCH-006** Define evidence/classic-reference/new-design/rights/QA catalog fields; keep original-source observations distinct from new stats/unlocks/visuals.
 
 ### Part 03 — Animation B — interpolation, terrain locomotion and active recovery
+
+- [ ] **FEEL-LEAN-01** Show whole-body inward rider weight, coordinated shoulder/arm lean, inside knee and high-speed rival corner bank. Reason: requested readable turning; part:03; dependencies: V2-03-002 and current contact IK; acceptance: pelvis/torso/shoulders lean together with elbows adapting around held grips, both AI adapters bank through road bends, player steering feel preserved, grips/pegs and chain lengths retained; verification: signed bank, pose/contact, physics differential tests and native visual review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **RFU-MOVE-05** Set the urgent run hand roll so both thumbs face the travel direction and palms do not stay flat toward the rear. Reason: user visual playtest of issue #28; part:03; dependencies: RFU-MOVE-01 and authoring bind; acceptance: anatomically readable bilateral swing/fist orientation at run speed while stopped pose remains neutral; verification: local hand-axis pose assertions and close native front/side/rear gait frames on flat and uneven ground. Visual pose and scripted captures pass; human approval remains open. [Evidence](testing/issue41-running-hands/REPORT.md), [issue](https://github.com/ImadMashhood/RoadDash/issues/41).
 
@@ -1436,6 +1458,10 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 07 — Weapons and complete riding combat
 
+- [ ] **FEEL-WEAPON-01** Keep both hands on grips and show weapons only during attacks. Reason: user rejects permanent armed ready pose; part:07; dependencies: V2-07-002; acceptance: inventory does not change idle grip pose, attack hand/weapon agree and idle/kick/recovery hide weapon; verification: animation/inventory regression tests and native left/right weapon review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
+
+- [ ] **FEEL-HIT-01** Make unarmed contacts forgiving and impacts readable to attacker and victim. Reason: user reports tight hitboxes and weak feedback; part:07; dependencies: authoritative strike scheduler and hit reaction; acceptance: bounded expanded body envelope, preserved side/LOS/one-hit rules, flinch/audio/HUD feedback; verification: contact envelope, combat/reaction regressions and native feel review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
+
 - [ ] **V2-07-001** Research weapon behavior and define original data/assets. Partial: pinned R01 study, original Club/Chain/Whip/RollingPin/BaseballBat sources/GLBs and validated schema2 family reach/stamina/cooldown, with schema1 compatibility (ADR085/100); full specialist behavior/art and acceptance remain open.
 
 - [ ] **V2-07-002** Integrate weapon animations, contacts and outcomes. Partial: five typed inventory/pickup/drop families, frozen family contact rules and ready model fallback now integrate with existing side clips/recovery (ADR100); distinct/flexible attack motion, holster/equip art and acceptance remain open.
@@ -1617,6 +1643,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
