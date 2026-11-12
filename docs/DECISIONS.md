@@ -4674,3 +4674,38 @@ optimized repeat matches225 sampled rows. Do not attribute that difference to
 normal timing without evidence or claim full integrated equivalence. Keep
 PERF-START-01 and sustained/hardware performance gates open; retain final raw
 streams and failed trials. AI-HILLS-02's specific physical passage is verified.
+
+## ADR172 — Shared modern-course rival traffic flow (2026-11-12)
+
+The user approves the Hills behavior and explicitly requests the same racing AI
+in Metropolis. Rival pace, personalities, combat, launch discipline and queue
+backoff already share code. Remaining differences are Hills-only local-flow
+selection and actual main-car collider measurements. Enable these for Hills OR
+Metropolis via one explicit policy helper, retaining legacy handling/Valley as
+controls. This activates local same-direction horizons, physical steady-oncoming
+gaps, centre/sidewalk candidates, candidate deduplication and ordered safe search
+on both modern maps. No separate Metropolis AI fork or duplicated tunables.
+
+Keep Metropolis street-relative offsets, split/rejoin corridor checks, geometry
+sweeps, full oncoming/crossing horizons, actual collisions, player handling and
+physical rigs. Alternatives: relax every map, copy Hills traffic/geometry, or
+create a second AI controller. Those would broaden scope or drift. Test the same
+real paired-car fixture at Hills start and Metropolis3250/10400m, plus native
+Metropolis traversal/recovery. No new dependencies/assets/reference code.
+Rollback is the two shared-policy call sites. Broad full-course fairness and
+sustained performance stay separate; ADR171 cross-mode replay gate stays open.
+
+ADR172 verification: the physical Metropolis fixture must use production main
+Traffic cars on street reservations. A first synthetic CrossTraffic-on-race-line
+variant at10400m fails: curved world-axis motion acquires projected lateral
+velocity and correctly retains the wider crossing buffer. Preserve that failed
+scaffold evidence and replace it with actual marked-lane Traffic for main-car
+verification. Retain the original Hills CrossTraffic regression separately.
+
+Native verification is currently blocked by the machine's NVIDIA driver/library
+mismatch (loaded615.78.08, NVML620.70). Bevy explicitly selects software rendering;
+the7200-frame Metropolis attempt is stopped at countdown and not counted as
+passing. Source/physical checks and locked builds pass; two pre-existing physics
+parity failures remain. AI-METRO-01 stays unchecked pending GPU/user verification.
+The user explicitly authorizes publication/merge of the approved behavior; keep
+these limitations visible instead of silently closing the native gate.

@@ -1,0 +1,22 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 49s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadDash-worktrees/issue-37-bevy-020/target/debug/deps/road_dash-ec68478b4d8be410)
+
+running 1 test
+ONCOMING-PAIR start=3250 passed=true progress=3473.7483 speed=42.55319 lane=3.420422 max_bank=0.67015547
+
+thread 'game::racer_ai_tests::metropolis_rival_physically_clears_two_solid_oncoming_cars' (15425) panicked at src/racer_ai_tests.rs:986:9:
+assertion `left == right` failed
+  left: Falling
+ right: Riding
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test game::racer_ai_tests::metropolis_rival_physically_clears_two_solid_oncoming_cars ... FAILED
+
+failures:
+
+failures:
+    game::racer_ai_tests::metropolis_rival_physically_clears_two_solid_oncoming_cars
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 481 filtered out; finished in 0.73s
+
+error: test failed, to rerun pass `--lib`

@@ -881,6 +881,18 @@ fn launch_checks_a_stationary_rider_before_using_the_clear_road_fast_path() {
 
 #[test]
 fn hills_rival_physically_clears_two_solid_oncoming_cars() {
+    physical_oncoming_pair(Track::hills().unwrap(), -100.);
+}
+
+#[test]
+fn metropolis_rival_physically_clears_two_solid_oncoming_cars() {
+    // City entry approaching the split, and the dense city shared with Hills.
+    for start in [3250., 10400.] {
+        physical_oncoming_pair(Track::metropolis().unwrap(), start);
+    }
+}
+
+fn physical_oncoming_pair(track: Track, start: f32) {
     #[derive(Component)]
     struct Counterflow {
         station: f32,
@@ -899,11 +911,10 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
         }
     }
     let mut app = straight_simulation();
-    let hills = Track::hills().unwrap();
     let mut vertices = vec![];
-    for station in (-300..=1000).step_by(5) {
+    for station in ((start as i32 - 200)..=(start as i32 + 1100)).step_by(5) {
         for lane in [-10., 10.] {
-            vertices.push(hills.sample(station as f32, lane).0);
+            vertices.push(track.sample(station as f32, lane).0);
         }
     }
     let mut triangles = vec![];
@@ -911,7 +922,8 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
         let a = (i * 2) as u32;
         triangles.extend([[a, a + 2, a + 1], [a + 1, a + 2, a + 3]]);
     }
-    app.insert_resource(hills);
+    let main_traffic = track.metropolis.is_some();
+    app.insert_resource(track);
     let world = app.world_mut();
     let floors: Vec<_> = world
         .query_filtered::<Entity, With<world::Ground>>()
@@ -923,10 +935,26 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
             Transform::IDENTITY,
         ));
     }
-    let owner = straight_rider(&mut app, 3, -100., -1.8);
+    // Start the Metropolis bike in the occupied incoming lane so this is a
+    // real avoidance encounter, rather than simply cruising the empty side.
+    let rider_lane = if main_traffic { 1.8 } else { -1.8 };
+    let owner = straight_rider(&mut app, 3, start, rider_lane);
     let mut cars = vec![];
-    for (station, lane) in [(160., -1.8), (180., 1.8)] {
-        let (p, q) = app.world().resource::<Track>().sample(station, lane);
+    for (slot, (station, fallback_lane)) in [(start + 260., -1.8), (start + 280., 1.8)]
+        .into_iter()
+        .enumerate()
+    {
+        let track = app.world().resource::<Track>();
+        let lane = if let Some(m) = &track.metropolis {
+            rr_core::streets::lane_center(&m.street_life.lane_sections, 0, station, false, slot)
+        } else {
+            fallback_lane
+        };
+        let (p, q) = if main_traffic {
+            track.street_sample(0, station, lane)
+        } else {
+            track.sample(station, lane)
+        };
         cars.push(
             app.world_mut()
                 .spawn((
@@ -945,16 +973,36 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
                 ))
                 .id(),
         );
+        if main_traffic {
+            // Metropolis main cars follow the real street reservation, not a
+            // fixed world-axis CrossTraffic path through the curved race line.
+            app.world_mut()
+                .entity_mut(*cars.last().unwrap())
+                .remove::<(Counterflow, crate::environment::CrossTraffic)>()
+                .insert((
+                    Traffic {
+                        route: 0,
+                        progress: station,
+                        lane,
+                        speed: -13.,
+                    },
+                    TrafficYield {
+                        lane_slot: slot,
+                        ..default()
+                    },
+                ));
+        }
     }
     app.add_systems(FixedUpdate, move_cars.before(drive));
     app.update();
-    let (_, q) = app.world().resource::<Track>().sample(-100., -1.8);
+    let (_, q) = app.world().resource::<Track>().sample(start, rider_lane);
     let velocity = q * Vec3::Z * 35.;
     {
         let mut rider = app.world_mut().get_mut::<Rider>(owner).unwrap();
         rider.speed = 35.;
         rider.motion_velocity = velocity;
         rider.attack = 1000.;
+        rider.ai_trace_next = Some(0.);
     }
     {
         let mut state = app
@@ -974,19 +1022,33 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
         max_bank = max_bank.max(r.drive_intent.steer.abs());
         assert_eq!(
             app.world().get::<Recovery>(owner).unwrap().stage,
-            RecoveryStage::Riding
+            RecoveryStage::Riding,
+            "start={start} station={} speed={} lane={} health={} plan={:?} cars={:?}",
+            r.progress,
+            r.speed,
+            r.lane,
+            r.health,
+            r.ai_plan,
+            cars.iter()
+                .map(|e| app.world().get::<Transform>(*e).unwrap().translation)
+                .collect::<Vec<_>>()
         );
         assert_eq!(r.health, 100.);
-        passed = cars
-            .iter()
-            .all(|car| r.progress > app.world().get::<Counterflow>(*car).unwrap().station + 15.);
+        passed = cars.iter().all(|car| {
+            r.progress
+                > if main_traffic {
+                    app.world().get::<Traffic>(*car).unwrap().progress
+                } else {
+                    app.world().get::<Counterflow>(*car).unwrap().station
+                } + 15.
+        });
         if passed {
             break;
         }
     }
     let r = app.world().get::<Rider>(owner).unwrap();
     println!(
-        "HILLS-PAIR passed={passed} progress={} speed={} lane={} max_bank={max_bank}",
+        "ONCOMING-PAIR start={start} passed={passed} progress={} speed={} lane={} max_bank={max_bank}",
         r.progress, r.speed, r.lane
     );
     assert!(passed && r.speed > 25. && max_bank > 0.01);

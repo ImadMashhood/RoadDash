@@ -1,5 +1,16 @@
 # Development history
 
+## 2026-11-12 — Metropolis shares approved Hills racing AI (ADR172)
+
+User approves Hills and requests the same race-flow behavior in Metropolis.
+Enable the shared local-flow policy and measured main-car bounds for both maps;
+preserve their route geometry and legacy controls. Add physical Metropolis city
+entry/dense-city paired-car cases. 703 Rust tests pass, two existing physics
+failures remain. Native rendered traversal is blocked by NVIDIA615.78.08 kernel
+versus620.70 NVML; Bevy selects software rendering. AI-METRO-01 remains partial
+pending native/user verification; no extra
+assets, dependencies or physics tuning. See testing/metropolis-race-flow/REPORT.md.
+
 ## 2026-11-12 — Hills weaving and startup profiling (ADR170/171)
 
 Investigate paired oncoming traffic and startup lag using the latest user log.

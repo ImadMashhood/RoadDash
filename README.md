@@ -183,7 +183,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**234 verified tasks complete; 350 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**234 verified tasks complete; 351 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -202,7 +202,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 234 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 71 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 72 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 31 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
@@ -699,6 +699,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 </details>
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](docs/testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
 
 - [ ] **PERF-START-01** Bound repeated AI static work and finish initial scene expansion before play. Reason: startup expands the world and subsequent CPU hitches coincide with repeated collision forecasts; part:01; dependencies: existing loading/readiness, AI forecasts and performance logs; acceptance: exact per-rider/per-tick static-query reuse, no stale safety results, complete scene instances/materials plus settled mesh frames before menu, matched cache-enabled/disabled work/timing and authoritative-state comparison, native recovery and checks; partial: early sampled states match with fewer casts; later native trajectories diverge, so sustained matched profiling stays open; verification: [source-matched profiler receipts](docs/testing/hills-weaving-startup/REPORT.md). Full nonblocking generation, GPU and broad hardware/loading gates remain RFU-PERF-01/02/04.

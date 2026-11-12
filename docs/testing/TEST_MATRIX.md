@@ -5,6 +5,7 @@ unrun platform results with assumptions from a successful local build.
 
 | ID | Scenario | Verification |
 | --- | --- | --- |
+| T-METRO-FLOW | Same approved race-flow policy on Hills and Metropolis | Policy parity, real two-oncoming-car tests at3250/10400m, native city split traversal/recovery, full checks; [evidence](metropolis-race-flow/REPORT.md) |
 | T-HILLS-WEAVE | Real paired-oncoming gaps, blocked routes, startup and exact query cache | Domain gap/tight/late/wall cases, real physical two-car fixture, cache lifetime/identity, scene expansion reset, matched native cache A/B and recovery; [evidence](hills-weaving-startup/REPORT.md) |
 | T-HILLS-OPEN | Hills same-direction flow with near/static/oncoming/crossing safety | Pure local/default comparisons, unchanged physical regression suite and matched native opening rows; [evidence](hills-opening-ai/REPORT.md); human difficulty remains separate |
 | T-RIVAL-PACE | Sustained drive, class governor and local engine headroom | Pure pace/controller tests and physical20m catch-up/contact; 30/60/120Hz straightaway; [ADR168 receipts](rival-pace-combat/REPORT.md) |

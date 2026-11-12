@@ -1,5 +1,11 @@
 # Development progress
 
+2026-11-12 Metropolis race-flow follow-up (ADR172): AI-METRO-01 added open;
+234 verified/351 open. Share the approved Hills planner and real car bounds,
+retain split-aware geometry. Physical tests/builds pass; native graphics validation
+is blocked by the current NVIDIA driver/library mismatch. AI-METRO-01 stays open.
+
+
 2026-11-12 Hills weaving/startup follow-up (ADR170/171): AI-HILLS-02 verified;
 234 complete/350 open. PERF-START-01 remains partial: ordered safe-lane search,
 exact static reuse, scene-instance/mesh readiness and profiler counters implemented.
@@ -987,6 +993,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [x] **RFU-AI-07** Define combat, passing, avoidance and race-progress priorities. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: explicit radius, eligibility, target/side hysteresis and forward preference; verification: [rules, physical regressions and native decision receipts](testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
 - [ ] **PERF-START-01** Bound repeated AI static work and finish initial scene expansion before play. Reason: startup expands the world and subsequent CPU hitches coincide with repeated collision forecasts; part:01; dependencies: existing loading/readiness, AI forecasts and performance logs; acceptance: exact per-rider/per-tick static-query reuse, no stale safety results, complete scene instances/materials plus settled mesh frames before menu, matched cache-enabled/disabled work/timing and authoritative-state comparison, native recovery and checks; partial: early sampled states match with fewer casts; later native trajectories diverge, so sustained matched profiling stays open; verification: [source-matched profiler receipts](testing/hills-weaving-startup/REPORT.md). Full nonblocking generation, GPU and broad hardware/loading gates remain RFU-PERF-01/02/04.
 

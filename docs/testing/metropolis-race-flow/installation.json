@@ -1,0 +1,9 @@
+{
+  "binary": "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+  "sha256": "29c8c599fb5334a27ccbc1f6cb86cf58bdc3689d2d6649b06a450b29b3b97e9c",
+  "source_receipt": "metro-flow-source.json",
+  "prior_binary": "/home/imad/Documents/ChatGPT/RoadRash/output/testing/metropolis-race-flow/road-dash-before-metropolis",
+  "default_map": "Metropolis",
+  "hills_command": "./play-bevy20.sh --hills",
+  "native_gate": "NVIDIA driver/library mismatch; software renderer, no successful new native receipt."
+}

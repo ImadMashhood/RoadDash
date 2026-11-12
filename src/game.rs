@@ -1146,7 +1146,7 @@ pub fn drive(
                             return None;
                         }
                         let default_bounds = (Vec3::ZERO, Vec3::new(0.95, 0.9, 1.95));
-                        let (center, half) = if !track.is_hills() {
+                        let (center, half) = if !ai_uses_local_flow(&track) {
                             default_bounds
                         } else {
                             shapes.get(entity).map_or(default_bounds, |shape| {
@@ -1277,7 +1277,7 @@ pub fn drive(
                 // Include riders before the cheap clear-road path, without
                 // pretending a stationary rider is already accelerating.
                 if launching { cars.extend_from_slice(&riders); }
-                let local_horizon = track.is_hills().then(|| rr_core::traffic_avoidance::local_flow_horizon(r.speed));
+                let local_horizon = ai_uses_local_flow(&track).then(|| rr_core::traffic_avoidance::local_flow_horizon(r.speed));
                 let preliminary = rr_core::traffic_avoidance::Memory::default().plan_local(
                     rr_core::traffic_avoidance::Request {
                         lane, speed: r.speed, desired, cruise: planning_pace, bounds,
@@ -2747,6 +2747,12 @@ fn ai_static_guard_blocked(
     blocked(current) || blocked(desired) || committed.is_some_and(blocked)
 }
 
+// Both modern courses share the approved race-flow policy. Geometry and route
+// coordinates remain map-specific; legacy Valley retains its comparison policy.
+fn ai_uses_local_flow(track: &Track) -> bool {
+    track.is_hills() || track.metropolis.is_some()
+}
+
 // Rival bounds include both sides of the road, walkable sidewalk and a
 // narrow outer clearance. Static swept shapes decide whether each candidate
 // is actually usable; there is no right-side or oncoming-lane permission flag.
@@ -2787,6 +2793,14 @@ pub(crate) mod tests {
         assert!(rival_obscures_camera(camera, Vec3::new(0.0, 0.7, -5.0)));
         assert!(!rival_obscures_camera(camera, Vec3::new(0.0, 0.7, -3.8)));
         assert!(!rival_obscures_camera(camera, Vec3::new(2.0, 0.7, -5.0)));
+    }
+    #[test]
+    fn metropolis_and_hills_share_race_flow_while_legacy_valley_is_preserved() {
+        assert!(ai_uses_local_flow(&Track::hills().unwrap()));
+        assert!(ai_uses_local_flow(&Track::metropolis().unwrap()));
+        assert!(!ai_uses_local_flow(
+            &Track::from_json(include_str!("../content/tracks/valley.json")).unwrap()
+        ));
     }
     #[test]
     fn static_guard_tracks_requested_or_committed_lines_only() {

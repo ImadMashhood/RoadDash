@@ -1,5 +1,14 @@
 # Known issues and remaining acceptance
 
+- AI-METRO-01 / ADR172: both modern maps now select the same approved racing
+  planner and real main-car bounds. Physical/headless checks pass. Native
+  Metropolis traversal could not be completed: the current machine has loaded
+  NVIDIA615.78.08 but NVML620.70, so Bevy selects software rendering. The own
+  native7200-frame run was stopped during countdown, not a passed race or
+  recovery. Restore a matching GPU stack, then repeat both-map native checks
+  and human Metropolis traffic/fairness review. No system-driver changes made.
+  See testing/metropolis-race-flow/REPORT.md.
+
 - AI-HILLS-02 / PERF-START-01 (ADR170/171): paired oncoming-gap behavior is
   verified; startup/performance remains a partial pass. Later native A/B
   trajectories diverge, so full-run timing is not an equivalent-scene benchmark. Initial scene-instance and
