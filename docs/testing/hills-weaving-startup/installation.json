@@ -1,0 +1,8 @@
+{
+  "installed": "/home/imad/Documents/ChatGPT/RoadRash/target/release/road-dash",
+  "binary_sha256": "03bb0bec36416343cac1719e3230b17304010812e7b0011b5ddbb61325f791b5",
+  "source_receipt": "weave-final-source.json",
+  "backup": "/home/imad/Documents/ChatGPT/RoadRash/output/testing/hills-weaving-startup/road-dash-before-weaving",
+  "launch": "./play-bevy20.sh --hills",
+  "limits": "Local installation, not pushed or merged."
+}

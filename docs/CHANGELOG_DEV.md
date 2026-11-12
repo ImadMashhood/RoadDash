@@ -1,5 +1,69 @@
 # Development history
 
+## 2026-11-12 — Metropolis shares approved Hills racing AI (ADR172)
+
+User approves Hills and requests the same race-flow behavior in Metropolis.
+Enable the shared local-flow policy and measured main-car bounds for both maps;
+preserve their route geometry and legacy controls. Add physical Metropolis city
+entry/dense-city paired-car cases. 703 Rust tests pass, two existing physics
+failures remain. Native rendered traversal is blocked by NVIDIA615.78.08 kernel
+versus620.70 NVML; Bevy selects software rendering. AI-METRO-01 remains partial
+pending native/user verification; no extra
+assets, dependencies or physics tuning. See testing/metropolis-race-flow/REPORT.md.
+
+## 2026-11-12 — Hills weaving and startup profiling (ADR170/171)
+
+Investigate paired oncoming traffic and startup lag using the latest user log.
+Implement a Hills-only physical gap/sidewalk candidate pass, exact bounded
+per-rider/tick static forecast reuse with A/B counters, and scene-instance plus
+mesh-settle readiness. No actors, hazards or accepted physical rigs removed.
+AI-HILLS-02 verified; PERF-START-01 partial. 701 Rust tests pass; two existing
+physics parity failures remain. 10,000 seeded ordered/reference decisions match.
+Early native sampled states match with static casts4081→729/tick; later native
+trajectories diverge, so sustained performance remains open. Both-routes recovery
+evidence is recorded separately;
+see testing/hills-weaving-startup/REPORT.md.
+
+## 2026-11-12 — Hills opening traffic-flow investigation (ADR169)
+
+User clarifies easy fourth place happens during the Hills start. Investigate
+low-speed traffic decisions, distinguish a literal hold-W wall-stuck control
+from a human-driven opening, and evaluate local same-direction forecasting
+without shrinking oncoming/crossing checks. Metropolis/Valley, player handling,
+traffic content and physical rigs remain unchanged. The first horizon-only trial fails to remove the650m queue; capture its zero-speed
+plans and add incremental-speed and increasing-separation comfort departure
+regressions. Tighten native receipt gates and add four fake-process tests.
+Final AI-HILLS-01 verified: matched opening30s median54→160km/h, stopped
+riding samples7→0, median1.5km exit64.48→41.98s. Native7200-frame Hills and
+both zero-error pickups pass;696 Rust tests pass, two known physics failures
+remain. Broad human difficulty/combat gates stay open. The later stationary
+4.4km sample is GettingUp, not a new riding queue. See testing/hills-opening-ai/REPORT.md.
+
+## 2026-11-11 — Rival pace/combat and police-isolated launch (ADR168)
+
+Update from default main19839421 on codex/rival-pace-combat. Study pinned
+arkits/road-rash race/follow/fight speed control without source or media intake.
+Replace the historical155km/h clamp with bike-class limits and full drive
+below goal. Retain moving opponents through overtakes, bound exchanges and
+predict authored strike timing. Active local pursuit may use the normal
+unboosted class ceiling through ordinary engine force. A physical20m catch-up
+now ends in a confirmed AI strike; no attack/contact events are injected.
+
+At the user's follow-up, disable resident police by default and hide the
+inactive patrol HUD; retain ROADDASH_POLICE=1 and --police-smoke opt-ins. Keep
+launch lanes and use a bounded current-speed forecast rather than terminal
+cruise for the first5s. Real alternating14-rider grid tests bound opening drift
+while accelerating; actual-blocker and physical queue passing remain
+covered. Keep existing physics/model/recovery comparisons strict. Final full
+checks/native results are in testing/rival-pace-combat/REPORT.md. Roadmap IDs:
+AI-PACE-01, AI-ENGAGE-01, AI-LAUNCH-01, POLICE-PAUSE-01; deferred restoration:
+POLICE-REINTRO-01. Three narrow tasks verified; AI-ENGAGE-01 stays open:
+physical unarmed/weapon fixtures pass but ordinary two-minute samples have
+only two/one attempts and zero confirmed incidents. Native both-map runtime,
+recovery and optional police checks pass. Locked builds/fmt/Clippy/audit and
+219 core/content tests pass; 474 main tests pass with the same two known
+physics failures and one ignored. Full human difficulty/traffic/fight acceptance stays open.
+
 ## 2026-11-11 — Rival launch and camera visibility candidate
 
 In the isolated Bevy 0.20.1 race-feedback worktree, set an absolute 155 km/h

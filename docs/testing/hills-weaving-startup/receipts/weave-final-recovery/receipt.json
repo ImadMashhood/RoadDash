@@ -1,0 +1,16 @@
+{
+  "survey_finished": false,
+  "recorded_frames": null,
+  "case": "recovery",
+  "track": "hills",
+  "synthetic_segment": false,
+  "segment_passed": null,
+  "binary_sha256": "03bb0bec36416343cac1719e3230b17304010812e7b0011b5ddbb61325f791b5",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": true,
+  "requested_frames": null,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 33.77117323875427,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

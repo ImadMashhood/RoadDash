@@ -3,6 +3,7 @@ pub mod online;
 mod police;
 pub mod wildlife_survey;
 
+pub mod ai_work;
 pub mod animation;
 pub mod atmosphere_survey;
 pub mod biomechanics;

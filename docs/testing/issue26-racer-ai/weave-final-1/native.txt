@@ -1,0 +1,50 @@
+LOAD_PROFILE {"elapsed_ms":0.000141,"event":"build_app_begin"}
+2026-11-12T19:17:57.964631Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/weave-final-1/performance/performance-2454233.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":527.952947,"elapsed_ms":528.131762,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":1490.02991,"elapsed_ms":2162.7774839999997,"span":"hills_terrain"}
+LOAD_PROFILE {"duration_ms":1554.77305,"elapsed_ms":2168.854038,"span":"hills_geometry"}
+LOAD_PROFILE {"duration_ms":0.612485,"elapsed_ms":2169.588231,"span":"hills_bridge"}
+LOAD_PROFILE {"duration_ms":5.305701,"elapsed_ms":2174.996624,"span":"hills_river"}
+LOAD_PROFILE {"duration_ms":251.433152,"elapsed_ms":2426.5364959999997,"span":"hills_props"}
+LOAD_PROFILE {"duration_ms":2642.727164,"elapsed_ms":5069.413780999999,"span":"hills_countryside"}
+LOAD_PROFILE {"duration_ms":195.27380399999998,"elapsed_ms":5264.813991000001,"span":"hills_woodland"}
+LOAD_PROFILE {"duration_ms":207.07425099999998,"elapsed_ms":5472.037391,"span":"hills_dressing"}
+LOAD_PROFILE {"duration_ms":5.4161790000000005,"elapsed_ms":5477.604421,"span":"hills_mounted"}
+LOAD_PROFILE {"duration_ms":533.0142420000001,"elapsed_ms":6010.742485,"span":"hills_wildlife"}
+LOAD_PROFILE {"duration_ms":0.22509099999999999,"elapsed_ms":6011.141511,"span":"hills_atmosphere"}
+TERRAIN_CACHE {"hits":930716,"limit":131072,"misses":37036,"vertices":37036}
+LOAD_PROFILE {"duration_ms":5397.3587609999995,"elapsed_ms":6011.438546,"span":"hills_generation"}
+LOAD_PROFILE {"duration_ms":26.535352000000003,"elapsed_ms":6038.085827,"span":"hills_city_source"}
+LOAD_PROFILE {"duration_ms":36.041137,"elapsed_ms":6074.312782,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":9.437028,"elapsed_ms":6083.886353999999,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":20.516727,"elapsed_ms":6104.5215419999995,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":0.00022,"elapsed_ms":6104.640795,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":1.0984639999999999,"elapsed_ms":6105.8327739999995,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":1.613838,"elapsed_ms":6107.5563170000005,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":3.407452,"elapsed_ms":6111.070068,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":0.547464,"elapsed_ms":6111.728299,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":73.678189,"elapsed_ms":6111.949202,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":5588.435727,"elapsed_ms":6119.463544,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":6759.012186,"event":"wait_facade_kit"}
+LOAD_PROFILE {"elapsed_ms":8482.162843999999,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":8830.987438999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8843.701825,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8856.454923,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8867.278964000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8877.893053,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8888.080984,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8897.478438,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8909.429726999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8919.363393,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8928.062390000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8939.51716,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8951.213342,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8962.865050999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8975.596739,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8986.87496,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":9006.047822999999,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":9030.81045,"event":"first_race_update"}
+Racer AI native race receipt: frames=3600 completed=false
+2026-11-12T19:19:16.129776Z  WARN bevy_render::view::window::screenshot: Unknown window for screenshot, skipping: 71v0

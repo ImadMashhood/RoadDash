@@ -757,6 +757,9 @@ pub fn drive(
         network_inputs,
         mut civilian_scratch,
         mut civilian_timings,
+        strike_timings,
+        work,
+        mut metrics,
     ): (
         Res<GameContent>,
         Res<Persistence>,
@@ -769,12 +772,15 @@ pub fn drive(
             Vec<rr_core::civilian::Vehicle>,
         )>,
         Option<ResMut<civilian_survey::PlanningTimings>>,
+        Res<crate::combat::StrikeTimings>,
+        Local<crate::ai_work::Work>,
+        Option<ResMut<crate::diagnostics::Metrics>>,
     ),
     police: Res<crate::police::Police>,
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
-    (ground, owned, poses, shapes, crossing_cars): (
+    (ground, owned, poses, shapes, crossing_cars, names): (
         Query<(), With<world::Ground>>,
         Query<&recovery::OwnedBody>,
         Query<&GlobalTransform>,
@@ -793,6 +799,7 @@ pub fn drive(
                 Without<Rider>,
             ),
         >,
+        Query<&Name>,
     ),
     (mut swept, mut attacks): (
         MessageWriter<recovery::SweptContact>,
@@ -807,6 +814,8 @@ pub fn drive(
     if race.phase == Phase::Paused || race.phase == Phase::Finished {
         return;
     }
+    let drive_started = std::time::Instant::now();
+    work.begin_tick();
     let dt = time.delta_secs();
     let dynamic = *adapter == crate::vehicle::VehiclePhysicsAdapter::Dynamic;
     let player_intent = controls.buffer.held;
@@ -929,7 +938,7 @@ pub fn drive(
             } else {
                 // Keep the planner's passing horizon based on the rider's
                 // intended clear-road pace. The physical motor is capped
-                // separately at 155 km/h; shrinking this planning horizon
+                // separately at the bike-class ceiling; shrinking this horizon
                 // makes a slow queue appear safe to follow indefinitely.
                 profile.race_pace(tuning.top_speed_mps) * character.map_or(1., |c| c.pace)
             };
@@ -967,6 +976,16 @@ pub fn drive(
                     t.progress = r.progress + wrapped_gap(t.progress - r.progress, track.length);
                 }
             }
+            // Police stay physical traffic, but are not race opponents. A slow
+            // patrol must not divert every nearby fighter into an endless duel.
+            let mut fight_targets = combat_targets;
+            let mut fight_count = 0;
+            for t in &combat_targets[..eligible_count] {
+                if t.id != crate::police::OFFICER_ID {
+                    fight_targets[fight_count] = *t;
+                    fight_count += 1;
+                }
+            }
             let chase = if r.police {
                 police
                     .target
@@ -978,7 +997,7 @@ pub fn drive(
                 r.combat_mind.choose(
                     race.elapsed,
                     me,
-                    &combat_targets[..eligible_count],
+                    &fight_targets[..fight_count],
                     profile.reach,
                 )
             };
@@ -989,6 +1008,12 @@ pub fn drive(
             } else {
                 r.combat_mind.drive(me, chase, race_pace)
             };
+            if !is_player && !r.police && r.combat_mind.take_lane_handoff(me, chase) {
+                // A completed pass can otherwise keep the fighter several lanes
+                // away. Release only its memory; all real safety sweeps below
+                // still validate the requested encounter line from scratch.
+                r.ai_pass = default();
+            }
             let mut throttle = if let Some((_, speed)) = police_goal {
                 r.speed < speed - 0.05
             } else if is_player {
@@ -1048,6 +1073,18 @@ pub fn drive(
             let trace_ai = r.ai_trace_next.is_some_and(|next| race.elapsed >= next);
             if trace_ai {
                 r.ai_trace_next = Some(race.elapsed + 0.5);
+                println!(
+                    "RFU_AI_SPEED id={} elapsed={} station={} speed={} curve={} race_pace={} top={} target={} corner_braking={}",
+                    r.id,
+                    race.elapsed,
+                    r.progress,
+                    r.speed,
+                    curve,
+                    race_pace,
+                    top,
+                    target,
+                    corner_braking
+                );
             }
             let mut queue_launch_deficit = 0.0_f32;
             let traffic_plan = (!is_player).then(|| {
@@ -1070,12 +1107,23 @@ pub fn drive(
                 // Spread default racing lines across the paved road without
                 // changing the legacy first-racer's escape direction.
                 let racing_lines = [-0.8, 0.7, -0.4, 0.0, 0.4];
-                let passing_line =
-                    rr_core::rival_ai::passing_lane(me, &combat_targets[..eligible_count]);
-                let desired = chase_goal
-                    .map(|(lane, _)| lane)
-                    .or(passing_line)
-                    .unwrap_or(offset + roam * racing_lines[r.id % racing_lines.len()]);
+                let launching = !r.police && race.elapsed < 5.;
+                let planning_pace = if launching {
+                    rr_core::rival_ai::planning_pace(race.elapsed, r.speed, target)
+                } else {
+                    target
+                };
+                let passing_line = if launching {
+                    None
+                } else {
+                    rr_core::rival_ai::passing_lane(me, &combat_targets[..eligible_count])
+                };
+                let desired = if launching {
+                    r.lane
+                } else {
+                    chase_goal.map(|(lane, _)| lane).or(passing_line)
+                        .unwrap_or(offset + roam * racing_lines[r.id % racing_lines.len()])
+                };
                 // Explicit pass, combat and flee lines may use a clear sidewalk.
                 // Clamp only to the full physical corridor; static sweeps reject
                 // solid buildings or props inside it.
@@ -1098,7 +1146,7 @@ pub fn drive(
                             return None;
                         }
                         let default_bounds = (Vec3::ZERO, Vec3::new(0.95, 0.9, 1.95));
-                        let (center, half) = if !track.is_hills() {
+                        let (center, half) = if !ai_uses_local_flow(&track) {
                             default_bounds
                         } else {
                             shapes.get(entity).map_or(default_bounds, |shape| {
@@ -1225,10 +1273,19 @@ pub fn drive(
                     plan.lane += offset;
                     plan
                 };
-                let preliminary =
-                    rr_core::traffic_avoidance::plan(lane, r.speed, desired, target, bounds, &cars);
+                // A calm grid must still see an actually occupied launch lane.
+                // Include riders before the cheap clear-road path, without
+                // pretending a stationary rider is already accelerating.
+                if launching { cars.extend_from_slice(&riders); }
+                let local_horizon = ai_uses_local_flow(&track).then(|| rr_core::traffic_avoidance::local_flow_horizon(r.speed));
+                let preliminary = rr_core::traffic_avoidance::Memory::default().plan_local(
+                    rr_core::traffic_avoidance::Request {
+                        lane, speed: r.speed, desired, cruise: planning_pace, bounds,
+                    },
+                    &cars, local_horizon, |_, _| true,
+                );
                 let rider_queue = riders.iter().any(|other| {
-                    rr_core::traffic_avoidance::slow_queue_ahead(lane, race_pace, *other)
+                    rr_core::traffic_avoidance::slow_queue_ahead(lane, if launching { planning_pace } else { race_pace }, *other)
                 });
                 if !preliminary.avoiding
                     && !r.ai_pass.active()
@@ -1245,13 +1302,16 @@ pub fn drive(
                 }
                 // Once passing, include every upright racer, including rear and
                 // fast alongside traffic, not just the slow queue's leaders.
-                cars.extend(riders);
+                if !launching { cars.extend(riders); }
+                let trace_id = r.id;
                 let progress = r.progress;
                 let route = r.route;
                 let speed = r.speed;
-                let relevant_static_rejected = std::cell::Cell::new(false);
                 let committed = r.ai_pass.committed_lane();
+                work.begin_rider();
                 let drivable = |goal: f32, pace: f32| {
+                    let forecast_speed = pace.min(speed.max(4.));
+                    work.static_clear(goal, forecast_speed, |cast_count| {
                     let Ok(ctx) = context.single() else {
                         return false;
                     };
@@ -1269,7 +1329,6 @@ pub fn drive(
                     // At a lower current speed the bike has more time to move
                     // laterally before reaching a fixed wall. Forecast that
                     // conservative approach instead of only the cruise request.
-                    let forecast_speed = pace.min(speed.max(4.));
                     // Static geometry is checked along the actual curved road,
                     // not a straight chord through a sidewalk/building at a bend.
                     for step in 1..=steps {
@@ -1297,7 +1356,8 @@ pub fn drive(
                         .exclude_rigid_body(entity)
                         .exclude_sensors()
                         .predicate(&predicate);
-                        if ctx
+                        cast_count.set(cast_count.get() + 1);
+                        if let Some((hit_entity, hit)) = ctx
                             .cast_shape(
                                 previous,
                                 Quat::IDENTITY,
@@ -1309,26 +1369,26 @@ pub fn drive(
                                 },
                                 filter,
                             )
-                            .is_some()
                         {
-                            if ai_static_guard_relevant(goal, lane, desired, committed) {
-                                relevant_static_rejected.set(true);
+                            if trace_ai {
+                                println!("RFU_AI_STATIC id={} station={} speed={} goal={} pace={} step={} hit={:?} name={:?} toi={} position={:?}", trace_id, progress, speed, goal, pace, step, hit_entity, names.get(hit_entity).ok().map(Name::as_str), hit.time_of_impact, poses.get(hit_entity).ok().map(GlobalTransform::translation));
                             }
                             return false;
                         }
                         previous = next;
                     }
                     true
+                    })
                 };
                 let input = rr_core::traffic_avoidance::Request {
                     lane,
                     speed,
                     desired,
-                    cruise: target,
+                    cruise: planning_pace,
                     bounds,
                 };
-                let plan = r.ai_pass.plan(input, &cars, drivable);
-                if relevant_static_rejected.get() {
+                let plan = r.ai_pass.plan_local_ordered(input, &cars, local_horizon, work.optimized(), drivable);
+                if ai_static_guard_blocked(lane, desired, committed, |goal| !drivable(goal, planning_pace)) {
                     // Continue checking the nearby fixed obstacle after a combat
                     // or passing request expires; clean cruising may resume once
                     // geometry is clear for two seconds of real plans.
@@ -1442,7 +1502,12 @@ pub fn drive(
             if !dynamic {
                 r.speed += surface.rolling_acceleration(r.speed, dt) * dt;
                 if !is_player && !r.police {
-                    r.speed = r.speed.min(rr_core::pursuit::RIVAL_TOP_SPEED_MPS);
+                    r.speed = r.speed.min(rr_core::pursuit::rival_drive_ceiling(
+                        profile,
+                        character.map_or(1., |c| c.pace),
+                        tuning.top_speed_mps,
+                        r.combat_mind.motor_request(tuning.top_speed_mps),
+                    ));
                 }
             }
             if boost {
@@ -1656,19 +1721,40 @@ pub fn drive(
             {
                 chase
                     .filter(|t| {
-                        r.can_fight(t.id)
-                            && !t.downed
-                            && r.weapon.map_or_else(
-                                || {
-                                    (t.progress - r.progress).abs() < 1.6
-                                        && (t.lane - r.lane).abs() < 2.5
-                                },
-                                |w| {
-                                    let ability = weapons.get(w);
-                                    (t.progress - r.progress).abs() <= ability.longitudinal_reach
-                                        && (t.lane - r.lane).abs() <= ability.lateral_reach
-                                },
-                            )
+                        r.can_fight(t.id) && !t.downed && {
+                            let kick = r.weapon.is_none()
+                                && r.attack_serial.is_multiple_of(
+                                    if character.is_some_and(|c| c.kick) {
+                                        2
+                                    } else {
+                                        profile.kick_roll
+                                    },
+                                );
+                            let ability = r.weapon.map(|w| weapons.get(w));
+                            let windup = strike_timings.contact_after(kick, ability);
+                            let velocities = [
+                                rider_frames
+                                    .get(&r.id)
+                                    .map_or([me.speed, 0.0], |f| [f.2, f.1]),
+                                rider_frames
+                                    .get(&t.id)
+                                    .map_or([t.speed, 0.0], |f| [f.2, f.1]),
+                            ];
+                            rr_core::rival_ai::contact_frame(me, *t, velocities, windup)
+                                .is_some_and(|(me, target)| {
+                                    if let Some(ability) = ability {
+                                        rr_core::rival_ai::strike_window(
+                                            me,
+                                            target,
+                                            windup,
+                                            ability.longitudinal_reach,
+                                            ability.lateral_reach,
+                                        )
+                                    } else {
+                                        rr_core::rival_ai::direct_strike_window(me, target, windup)
+                                    }
+                                })
+                        }
                     })
                     .map(|t| {
                         if r.weapon.is_none()
@@ -1708,6 +1794,9 @@ pub fn drive(
                     r.combat_mind.cooldown(profile.attack_cooldown())
                 };
                 r.attack_serial = r.attack_serial.wrapping_add(1);
+                if !is_player && !r.police {
+                    r.combat_mind.strike_started();
+                }
                 if r.weapon.is_some() && attack_side != rr_core::AttackSide::Kick {
                     r.fight_stamina -= weapons
                         .get(r.weapon.unwrap_or(rr_core::weapons::Weapon::Club))
@@ -1933,6 +2022,9 @@ pub fn drive(
                 )) * Quat::from_rotation_z(r.lean.clamp(-0.6, 0.6))
                     * Quat::from_rotation_x(-r.hop_velocity * 0.025);
         }
+    }
+    if let Some(metrics) = metrics.as_mut() {
+        metrics.ai_work.merge(work.finish(drive_started));
     }
     if active && race.phase != Phase::Finished {
         race.place = 1 + riders
@@ -2643,18 +2735,22 @@ pub fn camera_occlusion(
     }
 }
 
-// Only rejected lines that the rider is using or explicitly requesting need
-// another two seconds of resident-geometry sweeps. Speculative rejected
-// alternatives must not keep the expensive planner alive indefinitely.
-fn ai_static_guard_relevant(
-    rejected: f32,
+// Inspect these explicit routes independently of candidate search order. Rejected
+// speculative alternatives must not change next tick's guard or exhaustively
+// querying candidates would alter behavior compared with first-safe selection.
+fn ai_static_guard_blocked(
     current: f32,
     desired: f32,
     committed: Option<f32>,
+    blocked: impl Fn(f32) -> bool,
 ) -> bool {
-    (rejected - current).abs() <= 0.5
-        || (rejected - desired).abs() <= 0.5
-        || committed.is_some_and(|held| (rejected - held).abs() <= 0.5)
+    blocked(current) || blocked(desired) || committed.is_some_and(blocked)
+}
+
+// Both modern courses share the approved race-flow policy. Geometry and route
+// coordinates remain map-specific; legacy Valley retains its comparison policy.
+fn ai_uses_local_flow(track: &Track) -> bool {
+    track.is_hills() || track.metropolis.is_some()
 }
 
 // Rival bounds include both sides of the road, walkable sidewalk and a
@@ -2674,7 +2770,9 @@ pub(crate) fn ai_free_bounds(track: &Track, route: usize, progress: f32) -> (f32
                 })
         })
         .fold(f32::MAX, f32::min);
-    let sidewalk_and_clearance = if track.metropolis.is_some() {
+    let sidewalk_and_clearance = if track.metropolis.is_some()
+        || (track.is_hills() && (-300. ..1000.).contains(&progress))
+    {
         2.7
     } else if let Some(city) = &track.city_surface {
         city.sidewalk_width_m + 0.3
@@ -2697,11 +2795,19 @@ pub(crate) mod tests {
         assert!(!rival_obscures_camera(camera, Vec3::new(2.0, 0.7, -5.0)));
     }
     #[test]
+    fn metropolis_and_hills_share_race_flow_while_legacy_valley_is_preserved() {
+        assert!(ai_uses_local_flow(&Track::hills().unwrap()));
+        assert!(ai_uses_local_flow(&Track::metropolis().unwrap()));
+        assert!(!ai_uses_local_flow(
+            &Track::from_json(include_str!("../content/tracks/valley.json")).unwrap()
+        ));
+    }
+    #[test]
     fn static_guard_tracks_requested_or_committed_lines_only() {
-        assert!(ai_static_guard_relevant(2.1, 2., -3., None));
-        assert!(ai_static_guard_relevant(-3.1, 2., -3., None));
-        assert!(ai_static_guard_relevant(-4.1, 2., -3., Some(-4.)));
-        assert!(!ai_static_guard_relevant(4.8, 2., -3., Some(-4.)));
+        assert!(ai_static_guard_blocked(2., -3., None, |x| x == 2.));
+        assert!(ai_static_guard_blocked(2., -3., None, |x| x == -3.));
+        assert!(ai_static_guard_blocked(2., -3., Some(-4.), |x| x == -4.));
+        assert!(!ai_static_guard_blocked(2., -3., Some(-4.), |x| x == 4.8));
     }
     #[test]
     fn metropolis_free_corridor_never_erases_current_road() {

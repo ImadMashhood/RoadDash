@@ -49,7 +49,7 @@ legal signoff. Full asset rights remain separate.
 - Relevant inspected material: Official fixed-step example, asset/font source, Camera/States APIs
 - Verified license evidence: MIT OR Apache-2.0; https://github.com/bevyengine/bevy/blob/v0.17.3/LICENSE-MIT
 - Reuse/media boundary: Permissive code with retained notices; Fira font separately OFL; no unverified LUT media
-- Compatibility: Exact installed 0.17.3 pinned; 0.20.1 exists but migration not performed
+- Compatibility at the 2026-10-30 baseline: 0.17.3 pinned. Current workspace is 0.20.1; see ADR149 and the dated migration notes below.
 - Maintenance/risk: Maintained upstream; old pinned line has known renderer ordering constraints
 - Decision and actual incorporation: Retain dependency; independent fixed-step/plugin implementation; no example code copied verbatim
 
@@ -1235,3 +1235,32 @@ error callback before its existing XRUN recovery; the old 0.15.3 patch would
 be unused. Vendored the 0.17.3 crate under `vendor/cpal-0.17.3` with its license
 and ported only the poll-level XRUN/suspend recovery and error backoff. This is
 adapted Apache-2.0 source. Native audio and device-loss validation are open.
+
+## R01 — Rival speed and fight-controller follow-up (2026-11-11)
+
+- Repository/author: [arkits/road-rash](https://github.com/arkits/road-rash), arkits.
+- Exact inspected commit: `20fb4c0ac154378902132f6eb41a5e09804ebeaa` (2026-11-08).
+- Purpose/material: C++/SDL3 1996 Windows port; `src/race.cpp` ai_replan,
+  ai_speed_steer, ai_state_shadow, ai_state_fight, ai_fight_range and attack
+  scheduling; `src/bike.cpp` table intake. Useful to Part01 pace/engagement.
+- License evidence: no root license/reuse grant verified at the pinned
+  [tree](https://github.com/arkits/road-rash/tree/20fb4c0ac154378902132f6eb41a5e09804ebeaa).
+  Public source is not permission to copy. Retail media have separate rights.
+- Compatibility: reference only; not a Rust/Bevy dependency, no compatibility
+  promise. Upstream appears active; behavioral parity claims not reproduced.
+- Decision: **REFERENCE ONLY**, study full-drive target-speed control and
+  separate race/follow/fight intentions. Implement independent Rust rules;
+  reject positional rubber-banding for this pass. No source or assets imported.
+- Actual observations, tuning and limits: [investigation](../testing/rival-pace-combat/RESEARCH.md), ADR168.
+
+
+### R08 follow-up — Installed scene readiness API (2026-11-12)
+
+Inspected the installed Bevy0.20.1 registry source
+`bevy_world_serialization/src/world_asset_spawner.rs` and the existing RoadDash
+architecture streamer's WorldInstance/WorldInstanceSpawner.instance_is_ready
+usage. Classification remains DEPENDENCY; existing MIT OR Apache-2.0 intake,
+license URL https://github.com/bevyengine/bevy/blob/v0.20.1/LICENSE-MIT . Use the
+API to distinguish ready asset files from instantiated scene children before
+menu/race entry (ADR171). No source copied, no dependency migration, no media.
+The original0.17.3 row is historical and does not describe the current lockfile.

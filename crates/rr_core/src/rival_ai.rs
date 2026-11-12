@@ -10,9 +10,21 @@ pub enum Response {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Decision {
     Race,
+    Approach,
     NearbyStrike,
     Retaliate,
     Flee,
+}
+
+/// At launch forecast a small speed increment, not instant terminal velocity.
+/// Actual speed, real obstacle velocities and the existing safety tests remain
+/// in the planner. This is a forecast only; it does not limit engine throttle.
+pub fn planning_pace(elapsed: f32, speed: f32, cruise: f32) -> f32 {
+    if elapsed < 5. {
+        cruise.min(speed.max(0.) + 0.5)
+    } else {
+        cruise
+    }
 }
 
 /// Five authored aggressors spread through the fourteen-rider grid.
@@ -28,6 +40,9 @@ pub struct Mind {
     response: Option<(usize, Response, f32)>,
     target: Option<usize>,
     side: f32,
+    exchange_age: f32,
+    race_window: f32,
+    lane_handoff: bool,
     pub decision: Decision,
     pub desired_speed: f32,
 }
@@ -40,6 +55,9 @@ impl Mind {
             response: None,
             target: None,
             side: 1.,
+            exchange_age: 0.,
+            race_window: 0.,
+            lane_handoff: false,
             decision: Decision::Race,
             desired_speed: 0.,
         }
@@ -65,6 +83,16 @@ impl Mind {
     }
 
     pub fn tick(&mut self, dt: f32) {
+        self.race_window = (self.race_window - dt.max(0.)).max(0.);
+        if self.exchange_age > 0. {
+            self.exchange_age += dt.max(0.);
+            if self.exchange_age >= 4. {
+                self.target = None;
+                self.exchange_age = 0.;
+                self.race_window = 2.;
+                self.decision = Decision::Race;
+            }
+        }
         if let Some((_, _, life)) = &mut self.response {
             *life -= dt.max(0.);
             if *life <= 0. {
@@ -73,12 +101,56 @@ impl Mind {
         }
     }
 
+    /// Confirmed combat incidents received since spawn/retry, including kicks.
+    /// Diagnostic readers must not substitute this for contact validation.
+    pub fn incident_count(&self) -> u32 {
+        self.incident
+    }
+
     pub fn response(&self) -> Option<Response> {
         self.response.map(|(_, response, _)| response)
     }
 
     pub fn target_id(&self) -> Option<usize> {
         self.target
+    }
+
+    /// A local pursuit needs available engine headroom, not merely a higher
+    /// throttle goal behind the same lower cruising governor. No extra torque,
+    /// position-based assistance or speed beyond the bike class is granted.
+    pub fn motor_request(&self, bike_top: f32) -> f32 {
+        if self.target.is_some() {
+            bike_top
+        } else {
+            self.desired_speed
+        }
+    }
+
+    /// Release a stale passing destination once when entering a nearby moving
+    /// encounter. The adapter must run its complete safety planner again.
+    pub fn take_lane_handoff(&mut self, me: Target, target: Option<Target>) -> bool {
+        if !self.lane_handoff
+            && target.is_some_and(|t| {
+                self.target == Some(t.id)
+                    && !t.downed
+                    && t.speed >= 8.
+                    && (t.progress - me.progress).abs() <= 8.
+            })
+        {
+            self.lane_handoff = true;
+            true
+        } else {
+            false
+        }
+    }
+
+    /// The actual attack scheduler starts the bounded exchange, not an
+    /// approximate road-space distance several bike lengths before contact.
+    /// Repeated attacks never extend the same four-second window.
+    pub fn strike_started(&mut self) {
+        if self.target.is_some() && self.exchange_age == 0. {
+            self.exchange_age = f32::EPSILON;
+        }
     }
 
     pub fn can_fight(&self, target: usize) -> bool {
@@ -104,7 +176,7 @@ impl Mind {
         targets: &[Target],
         _reach: f32,
     ) -> Option<Target> {
-        if elapsed < 8. {
+        if elapsed < 8. || self.race_window > 0. {
             return None;
         }
         if self.response() == Some(Response::Flee) {
@@ -115,6 +187,20 @@ impl Mind {
                     .copied()
             });
         }
+        // Keep a moving opponent through the overtake instead of dropping the
+        // target exactly when the two riders finally reach striking distance.
+        if let Some(id) = self.target
+            && let Some(target) = targets.iter().find(|t| {
+                t.id == id
+                    && self.can_fight(id)
+                    && !t.downed
+                    && t.speed >= 8.
+                    && (-8.0..40.0).contains(&(t.progress - me.progress))
+                    && (t.lane - me.lane).abs() < 10.
+            })
+        {
+            return Some(*target);
+        }
         if is_fighter(self.id) {
             // The next nonfighter ahead is the only proactive target. A downed
             // rider is immediately ineligible, so the next place takes over.
@@ -123,8 +209,9 @@ impl Mind {
                 .filter(|t| {
                     !is_fighter(t.id)
                         && !t.downed
+                        && t.speed >= 8.
                         && (0.0..30.0).contains(&(t.progress - me.progress))
-                        && (t.lane - me.lane).abs() < 10.0
+                        && (t.lane - me.lane).abs() <= 4.5
                 })
                 .min_by(|a, b| a.progress.total_cmp(&b.progress).then(a.id.cmp(&b.id)))
                 .copied()
@@ -134,18 +221,25 @@ impl Mind {
                 (response == Response::Fight).then(|| {
                     targets
                         .iter()
-                        .find(|t| t.id == attacker && !t.downed && distance(me, **t) <= 4.0)
+                        .find(|t| {
+                            t.id == attacker
+                                && !t.downed
+                                && t.speed >= 8.
+                                && distance(me, **t) <= 12.0
+                        })
                         .copied()
                 })?
             })
         }
     }
 
-    /// Contact intent changes lateral line only. No target can reduce race pace.
+    /// Bounded moving exchanges use speed matching, then release back to racing.
+    /// Slow/stopped targets never hold a queue of riders in a combat follow.
     pub fn drive(&mut self, me: Target, target: Option<Target>, cruise: f32) -> Option<(f32, f32)> {
         self.desired_speed = cruise;
         if self.response() == Some(Response::Flee) {
             self.target = None;
+            self.exchange_age = 0.;
             self.decision = Decision::Flee;
             self.desired_speed = cruise + 4.;
             let lane = target.map_or(me.lane, |attacker| {
@@ -156,9 +250,18 @@ impl Mind {
         let Some(target) = target else {
             self.target = None;
             self.decision = Decision::Race;
+            self.exchange_age = 0.;
             return None;
         };
+        if target.speed < 8. {
+            self.target = None;
+            self.exchange_age = 0.;
+            self.decision = Decision::Race;
+            return None;
+        }
         if self.target != Some(target.id) {
+            self.exchange_age = 0.;
+            self.lane_handoff = false;
             self.target = Some(target.id);
             self.side =
                 if me.lane > target.lane || (me.lane == target.lane && me.id.is_multiple_of(2)) {
@@ -167,13 +270,79 @@ impl Mind {
                     -1.
                 };
         }
-        self.decision = if self.response().is_some_and(|r| r == Response::Fight) {
+        let gap = target.progress - me.progress;
+        self.desired_speed = if gap.abs() <= 6. {
+            (target.speed + (gap * 1.2).clamp(-2., 3.)).max(12.)
+        } else {
+            cruise.max(target.speed + 3.)
+        };
+        // Do not spend the short fight window while still crossing the road or
+        // shedding approach speed. Those are alignment, not a melee exchange.
+        self.decision = if gap.abs() > 6.
+            || (target.lane - me.lane).abs() > crate::DIRECT_STRIKE_MAX_LATERAL_M
+            || (target.speed - me.speed).abs() > 6.
+        {
+            Decision::Approach
+        } else if self.response().is_some_and(|r| r == Response::Fight) {
             Decision::Retaliate
         } else {
             Decision::NearbyStrike
         };
-        Some((target.lane + self.side * 1.8, cruise))
+        Some((target.lane + self.side * 1.75, self.desired_speed))
     }
+}
+
+/// Start an existing strike only if its contact frame is likely to meet the
+/// opponent. This does not enlarge the actual combat collider or award a hit.
+pub fn strike_window(
+    me: Target,
+    target: Target,
+    windup: f32,
+    longitudinal: f32,
+    lateral: f32,
+) -> bool {
+    let gap = target.progress - me.progress;
+    let relative = target.speed - me.speed;
+    let travel = relative * windup.max(0.);
+    !target.downed
+        && relative.abs() <= 6.
+        && (target.lane - me.lane).abs() >= 1.2
+        && (target.lane - me.lane).abs() <= lateral
+        && gap.abs() <= longitudinal + travel.abs().min(3.)
+        && (gap + travel).abs() <= longitudinal
+}
+
+/// Express a candidate in the attacker-relative lateral frame at contact.
+/// Velocities are [forward, lateral] metres/second from the physical bodies,
+/// not unsigned display speeds. Crossing sides during windup invalidates a hit.
+pub fn contact_frame(
+    mut me: Target,
+    mut target: Target,
+    velocities: [[f32; 2]; 2],
+    windup: f32,
+) -> Option<(Target, Target)> {
+    let side = target.lane - me.lane;
+    target.lane += (velocities[1][1] - velocities[0][1]) * windup.max(0.);
+    if side * (target.lane - me.lane) <= 0. {
+        return None;
+    }
+    me.speed = velocities[0][0];
+    target.speed = velocities[1][0];
+    Some((me, target))
+}
+
+/// Predict the same horizontal volume used by real unarmed hit validation.
+/// Height and line-of-sight still belong to the actual contact resolver.
+pub fn direct_strike_window(me: Target, target: Target, windup: f32) -> bool {
+    let lateral = target.lane - me.lane;
+    let longitudinal = target.progress - me.progress + (target.speed - me.speed) * windup.max(0.);
+    strike_window(
+        me,
+        target,
+        windup,
+        crate::DIRECT_STRIKE_MAX_LONGITUDINAL_M,
+        crate::DIRECT_STRIKE_MAX_LATERAL_M,
+    ) && crate::direct_strike_geometry(lateral, longitudinal, 0., lateral.signum())
 }
 
 fn distance(a: Target, b: Target) -> f32 {
@@ -235,6 +404,19 @@ mod tests {
         }
     }
     #[test]
+    fn proactive_selection_prefers_the_next_reachable_lane_not_the_far_side_of_the_road() {
+        let mind = Mind::new(1);
+        let me = rider(1, 100., 0., 35.);
+        let across_avenue = rider(2, 101., 8., 35.);
+        let adjacent = rider(3, 106., 2., 35.);
+        assert_eq!(
+            mind.choose(20., me, &[across_avenue, adjacent], 4.)
+                .unwrap()
+                .id,
+            3
+        );
+    }
+    #[test]
     fn nonfighters_always_fight_back_and_fighters_keep_reproducible_incident_coin() {
         let mut defender = Mind::new(2);
         for _ in 0..100 {
@@ -273,7 +455,181 @@ mod tests {
         assert!(mind.can_fight(2));
         while mind.struck_by(2) != Response::Fight {}
         assert_eq!(mind.choose(12., me, &[attacker], 4.).unwrap().id, 2);
-        assert_eq!(mind.drive(me, Some(attacker), 36.).unwrap().1, 36.);
+        let pace = mind.drive(me, Some(attacker), 36.).unwrap().1;
+        assert!((25. ..=28.).contains(&pace));
+    }
+    #[test]
+    fn launch_forecast_holds_a_spaced_grid_but_still_detects_a_real_blocker() {
+        use crate::traffic_avoidance::{Car, Memory, Request};
+        let mut passing = Memory::default();
+        for speed in [0., 5., 15., 25.] {
+            let leader = Car {
+                gap: 20.,
+                lane: 2.,
+                speed,
+                lateral_speed: 0.,
+                lateral_goal: None,
+                half_width: 0.36,
+                half_length: 1.05,
+            };
+            let input = Request {
+                lane: 2.,
+                speed,
+                desired: 2.,
+                cruise: planning_pace(2., speed, 55.),
+                bounds: (-6., 6.),
+            };
+            let plan = passing.plan(input, &[leader], |_, _| true);
+            assert!(!plan.avoiding && plan.lane == 2., "{plan:?}");
+        }
+        let blocker = Car {
+            gap: 12.,
+            lane: 2.,
+            speed: 0.,
+            lateral_speed: 0.,
+            lateral_goal: None,
+            half_width: 0.95,
+            half_length: 1.95,
+        };
+        let plan = passing.plan(
+            Request {
+                lane: 2.,
+                speed: 15.,
+                desired: 2.,
+                cruise: planning_pace(2., 15., 55.),
+                bounds: (-6., 6.),
+            },
+            &[blocker],
+            |_, _| true,
+        );
+        assert!(plan.avoiding);
+        assert_eq!(planning_pace(6., 15., 55.), 55.);
+    }
+    #[test]
+    fn moving_exchange_retains_a_passed_target_then_returns_to_racing() {
+        let mut mind = Mind::new(1);
+        let me = rider(1, 100., 0., 40.);
+        let mut other = rider(2, 102., 1.8, 40.);
+        assert!(mind.choose(7., me, &[other], 4.).is_none());
+        mind.drive(me, Some(other), 42.);
+        other.progress = 99.;
+        assert_eq!(mind.choose(10., me, &[other], 4.).unwrap().id, 2);
+        assert!(mind.drive(me, Some(other), 42.).unwrap().1 < 42.);
+        mind.strike_started();
+        mind.tick(4.1);
+        assert!(mind.choose(15., me, &[other], 4.).is_none());
+        mind.tick(2.1);
+        other.progress = 102.;
+        other.downed = true;
+        assert!(mind.choose(17., me, &[other], 4.).is_none());
+        other.downed = false;
+        other.speed = 0.;
+        assert!(mind.choose(17., me, &[other], 4.).is_none());
+        assert!(mind.drive(me, Some(other), 42.).is_none());
+    }
+    #[test]
+    fn nearby_catchup_is_bounded_and_never_follows_a_stopped_opponent() {
+        let mut mind = Mind::new(1);
+        let me = rider(1, 100., 0., 40.);
+        assert_eq!(
+            mind.drive(me, Some(rider(2, 120., 1.8, 42.)), 40.)
+                .unwrap()
+                .1,
+            45.
+        );
+        assert_eq!(mind.decision, Decision::Approach);
+        assert_eq!(mind.motor_request(55.), 55.);
+        assert!(
+            mind.drive(me, Some(rider(2, 102., 1.8, 8.)), 40.)
+                .unwrap()
+                .1
+                >= 12.
+        );
+        assert!(mind.drive(me, Some(rider(2, 102., 1.8, 0.)), 40.).is_none());
+    }
+    #[test]
+    fn alignment_does_not_spend_exchange_time_and_moving_opponents_can_be_matched() {
+        let mut mind = Mind::new(1);
+        let mut me = rider(1, 100., -4., 25.);
+        let mut other = rider(2, 102., 4., 25.);
+        mind.drive(me, Some(other), 50.);
+        assert_eq!(mind.decision, Decision::Approach);
+        mind.tick(5.);
+        assert_eq!(mind.choose(20., me, &[other], 4.).unwrap().id, 2);
+        other.lane = -2.25;
+        mind.drive(me, Some(other), 50.);
+        assert_eq!(mind.decision, Decision::NearbyStrike);
+        mind.strike_started();
+        mind.tick(2.);
+        mind.strike_started();
+        other.lane = 4.;
+        mind.drive(me, Some(other), 50.);
+        assert_eq!(mind.decision, Decision::Approach);
+        mind.tick(2.1);
+        assert!(mind.choose(20., me, &[other], 4.).is_none());
+        for speed in [10., 25., 40.] {
+            let mut mind = Mind::new(1);
+            me.speed = speed;
+            other.speed = speed;
+            other.progress = me.progress;
+            let desired = mind.drive(me, Some(other), 50.).unwrap().1;
+            assert!(desired >= 12. && (desired - speed).abs() <= 2.);
+        }
+    }
+    #[test]
+    fn moving_exchange_requests_one_safe_lane_replan_per_target() {
+        let mut mind = Mind::new(1);
+        let me = rider(1, 100., 0., 25.);
+        let mut other = rider(2, 120., 2., 25.);
+        mind.drive(me, Some(other), 40.);
+        assert!(!mind.take_lane_handoff(me, Some(other)));
+        other.progress = 104.;
+        mind.drive(me, Some(other), 40.);
+        assert!(mind.take_lane_handoff(me, Some(other)));
+        assert!(!mind.take_lane_handoff(me, Some(other)));
+        mind.drive(me, None, 40.);
+        mind.drive(me, Some(other), 40.);
+        assert!(mind.take_lane_handoff(me, Some(other)));
+    }
+    #[test]
+    fn contact_prediction_checks_lateral_motion_and_uses_forward_not_display_speed() {
+        let me = rider(1, 100., 0., 40.);
+        let target = rider(2, 100.5, 1.8, 44.);
+        let (a, b) = contact_frame(me, target, [[35., 0.], [35., 1.]], 0.25).unwrap();
+        assert!(!direct_strike_window(a, b, 0.25));
+        let (a, b) = contact_frame(me, target, [[35., 0.], [35., -1.]], 0.25).unwrap();
+        assert!(direct_strike_window(a, b, 0.25));
+        assert!(
+            contact_frame(me, rider(2, 100.5, 0.1, 35.), [[35., 0.], [35., -1.]], 0.25).is_none()
+        );
+    }
+    #[test]
+    fn unarmed_windup_admission_never_exceeds_the_actual_direct_hit_volume() {
+        let me = rider(1, 100., 0., 35.);
+        for lateral in [1.2, 1.75, 2.2] {
+            for gap in [0., 0.8, 1.2] {
+                let target = rider(2, me.progress + gap, lateral, me.speed);
+                if direct_strike_window(me, target, 0.25) {
+                    assert!(crate::direct_strike_geometry(
+                        lateral,
+                        gap,
+                        0.,
+                        lateral.signum()
+                    ));
+                }
+            }
+        }
+        assert!(direct_strike_window(me, rider(2, 100.5, 1.75, 35.), 0.25));
+        assert!(!direct_strike_window(me, rider(2, 101.2, 2.2, 35.), 0.25));
+    }
+    #[test]
+    fn strike_admission_predicts_contact_instead_of_swinging_after_a_fast_pass() {
+        let me = rider(1, 100., 0., 40.);
+        assert!(strike_window(me, rider(2, 102., 1.8, 37.), 0.3, 1.6, 2.5));
+        assert!(!strike_window(me, rider(2, 100., 1.8, 50.), 0.3, 1.6, 2.5));
+        assert!(!strike_window(me, rider(2, 100., 4., 40.), 0.3, 1.6, 2.5));
+        assert!(!strike_window(me, rider(2, 100., 0., 40.), 0.3, 1.6, 2.5));
+        assert!(!strike_window(me, rider(2, 102., 1.8, 43.), 0.3, 1.6, 2.5));
     }
     #[test]
     fn close_chain_keeps_a_racing_leader() {

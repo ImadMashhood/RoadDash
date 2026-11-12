@@ -13,6 +13,7 @@ pub(super) struct PerfLog {
     cpu_threads: usize,
     last: Instant,
     frames: u64,
+    ai_work: crate::ai_work::Counters,
     game_ms: f32,
     physics_ms: f32,
     physics_phases_ms: [f32; 3],
@@ -84,6 +85,7 @@ impl Default for PerfLog {
             cpu_threads: std::thread::available_parallelism().map_or(1, usize::from),
             last: Instant::now(),
             frames: 0,
+            ai_work: default(),
             game_ms: 0.,
             physics_ms: 0.,
             physics_phases_ms: [0.; 3],
@@ -181,6 +183,7 @@ pub(super) fn sample(
         }
     }
     log.frames += 1;
+    log.ai_work.merge(metrics.ai_work);
     log.game_ms += metrics.frame_gameplay_ms;
     log.physics_ms += metrics.frame_physics_ms;
     for (sum, phase) in log
@@ -230,7 +233,14 @@ pub(super) fn sample(
                 "id":r.id,"route":r.route,"progress_m":r.progress,"speed_mps":r.speed,
                 "lane_m":r.lane,"finished":r.finished,"throttle":r.drive_intent.throttle,
                 "brake":r.drive_intent.brake,"plan_speed_mps":r.ai_plan.map(|p|p.speed),
-                "plan_avoiding":r.ai_plan.map(|p|p.avoiding)
+                "plan_avoiding":r.ai_plan.map(|p|p.avoiding),
+                "plan_lane_m":r.ai_plan.map(|p|p.lane),
+                "combat_decision":format!("{:?}",r.combat_mind.decision),
+                "combat_target":r.combat_mind.target_id(),
+                "effective_throttle":r.drive_intent.throttle_strength(),
+                "effective_brake":r.drive_intent.brake_strength(),
+                "escape_active":r.ai_escape.active(),"escape_reverse":r.ai_escape.reverse,
+                "static_guard_until_s":r.ai_static_guard_until
             })
         })
         .collect();
@@ -247,7 +257,9 @@ pub(super) fn sample(
  "mesh_entities":views.iter().count(),"visible_mesh_entities":views.iter().filter(|v|v.get()).count(),"mesh_assets":meshes.map_or(0,|a|a.len()),"material_assets":materials.map_or(0,|a|a.len()),
  "camera_xyz":cameras.iter().next().map(|t|t.translation().to_array()),"player_progress_m":player.map(|r|r.progress),"player_route":player.map(|r|r.route),"racing":racing,"fixture_complete":fixture_complete.is_some(),"dropped_log_samples":log.dropped,
  "measurement":"wall/CPU timing; main excludes render extraction and GPU; render fields are latest CPU/wait spans, may overlap main and are not GPU timestamps; system paging counters are global, not per-game; memory values retain proc units"});
+    value["ai_work_window"] = serde_json::json!(log.ai_work);
     value["rider_pace"] = serde_json::json!(rider_pace);
+    value["race_elapsed_s"] = serde_json::json!(race.as_ref().map(|r| r.elapsed));
     value["visibility_range_distinct_seen"] =
         serde_json::json!(log.visibility_ranges_seen.as_ref().map(HashSet::len));
     value["visibility_range_changes"] = serde_json::json!(log.visibility_range_changes);
@@ -277,6 +289,7 @@ pub(super) fn sample(
     }
     log.raw_racing_frames.clear();
     log.frames = 0;
+    log.ai_work = default();
     log.game_ms = 0.;
     log.physics_ms = 0.;
     log.physics_phases_ms = [0.; 3];

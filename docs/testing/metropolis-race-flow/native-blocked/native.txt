@@ -1,0 +1,32 @@
+LOAD_PROFILE {"elapsed_ms":0.00016,"event":"build_app_begin"}
+2026-11-12T20:25:56.344054Z  WARN bevy_render::renderer: The selected adapter is using a driver that only supports software rendering. This is likely to be very slow. See https://bevy.org/learn/errors/b0006/
+2026-11-12T20:25:56.594646Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/metro-flow-1/performance/performance-45450.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":811.368447,"elapsed_ms":811.527735,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":52.649017,"elapsed_ms":1116.992647,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":123.328252,"elapsed_ms":1240.4837340000001,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":24.335368,"elapsed_ms":1264.983079,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":265.639886,"elapsed_ms":1530.779898,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":29.123202,"elapsed_ms":1560.0646230000002,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":849.729375,"elapsed_ms":2409.988482,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":646.775397,"elapsed_ms":3056.905613,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":604.372861,"elapsed_ms":3661.425719,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":2598.733959,"elapsed_ms":3663.077458,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":13.767015,"elapsed_ms":3815.8625869999996,"span":"metro_streetscape"}
+LOAD_PROFILE {"duration_ms":152.108935,"elapsed_ms":3816.070306,"span":"metro_farms_civic"}
+LOAD_PROFILE {"duration_ms":152.94056,"elapsed_ms":3816.173689,"span":"metro_world_details"}
+LOAD_PROFILE {"duration_ms":2785.038903,"elapsed_ms":3816.282984,"span":"metro_generation"}
+LOAD_PROFILE {"duration_ms":2944.454021,"elapsed_ms":3816.7796420000004,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":5126.824361,"event":"wait_facade_kit"}
+LOAD_PROFILE {"elapsed_ms":11523.985793,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":23507.284083000002,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":23644.883874000003,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":23763.231643000003,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":23911.895766,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":24018.01713,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":24209.13771,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":24322.326119999998,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":24458.826205,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":24698.561988,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":24899.088667,"event":"first_race_update"}

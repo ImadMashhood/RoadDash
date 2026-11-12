@@ -5,17 +5,28 @@ use serde::{Deserialize, Serialize};
 /// dropping drive force earlier than the lookahead planner requested.
 pub const RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2: f32 = 14.0;
 pub const RACE_CURRENT_LATERAL_ACCEL_MPS2: f32 = 16.0;
-/// Absolute unboosted rival ceiling; player and police have separate limits.
-pub const RIVAL_TOP_SPEED_MPS: f32 = 155.0 / 3.6;
+/// Rival differences stay inside the selected unboosted bike class. Race place
+/// never enters this calculation: nearby combat uses ordinary engine drive.
 pub fn rival_race_pace(profile: Profile, character_pace: f32, player_top_mps: f32) -> f32 {
-    (profile.race_pace(player_top_mps) * character_pace).min(RIVAL_TOP_SPEED_MPS)
+    (profile.race_pace(player_top_mps) * character_pace).min(player_top_mps)
 }
-/// Grid launch asks for full drive whenever the safety planner allows throttle.
+pub fn rival_drive_ceiling(
+    profile: Profile,
+    character_pace: f32,
+    bike_top: f32,
+    requested: f32,
+) -> f32 {
+    rival_race_pace(profile, character_pace, bike_top)
+        .max(requested)
+        .min(bike_top)
+}
+/// As in the reference speed controller, drive fully below the requested pace.
+/// Braking, obstacles and corner limits independently gate this request.
 pub fn rival_throttle_amount(elapsed: f32, speed: f32, target: f32) -> f32 {
-    if elapsed < 5.0 {
+    if elapsed < 5.0 || speed <= target {
         1.0
     } else {
-        ((target - speed) * 0.25 + 0.35).clamp(0.0, 1.0)
+        0.0
     }
 }
 pub fn race_corner_speed(curvature: f32, lateral_accel_mps2: f32) -> f32 {
@@ -254,7 +265,7 @@ mod pace_tests {
         assert!(race_corner_speed(0.0, RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2).is_finite());
     }
     #[test]
-    fn rivals_have_an_absolute_155_kmh_ceiling_without_rubber_banding() {
+    fn rivals_use_the_bike_class_ceiling_and_full_drive_without_rubber_banding() {
         let profile = Profile {
             cruise_units: 104.,
             minimum_units: 70.,
@@ -269,10 +280,12 @@ mod pace_tests {
             calm_per_second: 0.,
         };
         let top = 55.;
-        assert!((rival_race_pace(profile, 1.2, top) - RIVAL_TOP_SPEED_MPS).abs() < 0.001);
-        assert!(rival_race_pace(profile, 0.8, top) <= RIVAL_TOP_SPEED_MPS);
+        assert!((rival_race_pace(profile, 1.2, top) - top).abs() < 0.001);
+        assert!(rival_race_pace(profile, 0.8, top) < top);
         assert_eq!(rival_throttle_amount(0.0, 0.0, 2.0), 1.0);
         assert_eq!(rival_throttle_amount(4.99, 20.0, 21.0), 1.0);
-        assert!(rival_throttle_amount(5.0, 20.0, 21.0) < 1.0);
+        assert_eq!(rival_throttle_amount(50.0, 20.0, 21.0), 1.0);
+        assert_eq!(rival_throttle_amount(50.0, 22.0, 21.0), 0.0);
+        assert_eq!(rival_drive_ceiling(profile, 0.8, top, 70.), top);
     }
 }

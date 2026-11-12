@@ -1,0 +1,16 @@
+{
+  "survey_finished": false,
+  "recorded_frames": null,
+  "case": "race",
+  "track": "metro",
+  "synthetic_segment": false,
+  "segment_passed": null,
+  "binary_sha256": "29c8c599fb5334a27ccbc1f6cb86cf58bdc3689d2d6649b06a450b29b3b97e9c",
+  "exit_code": -15,
+  "render_errors": false,
+  "completed": false,
+  "requested_frames": 7200,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 256.98353385925293,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

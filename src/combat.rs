@@ -42,6 +42,20 @@ pub struct StrikeContact(
 
 #[derive(Resource)]
 pub struct StrikeTimings([f32; 2]);
+impl StrikeTimings {
+    pub fn contact_after(&self, kick: bool, weapon: Option<rr_core::weapons::Ability>) -> f32 {
+        rr_core::motion::StrikeClock::new(
+            if kick {
+                rr_core::AttackSide::Kick
+            } else {
+                rr_core::AttackSide::Right
+            },
+            1.,
+            weapon.map_or(self.0[usize::from(kick)], |w| w.source_contact),
+        )
+        .contact
+    }
+}
 impl Default for StrikeTimings {
     fn default() -> Self {
         let lib =

@@ -1,0 +1,7 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 35.79508399963379,
+  "binary_sha256": "6940cc790b4f2ea8025805edeae3a14f72b10e906be17b157de4597aa816b025",
+  "explicit_env": "ROADDASH_POLICE=0",
+  "explicit_flag": "--police-smoke"
+}

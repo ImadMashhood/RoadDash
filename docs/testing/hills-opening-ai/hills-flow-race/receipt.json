@@ -1,0 +1,14 @@
+{
+  "case": "race",
+  "track": "hills",
+  "synthetic_segment": false,
+  "segment_passed": null,
+  "binary_sha256": "16b83b7cb6c9a5da1d37a5f7e43832762415e502a08eb374449ea9370c9c6adb",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": false,
+  "requested_frames": 7200,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 60.267449617385864,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

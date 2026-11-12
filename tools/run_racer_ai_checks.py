@@ -50,7 +50,8 @@ report = json.loads(receipt_path.read_text()) if args.case == 'race' and receipt
 # A real recorded slot-zero finish is authoritative even in those raw receipts.
 completed = (report.get('completed', False) or 0 in report.get('finished_ids', [])) if args.case == 'race' else 'Render smoke test passed:' in log
 segment_passed = report.get('segment_passed', False) if args.segment else None
-receipt = dict(case=args.case, track=args.track, synthetic_segment=args.segment, segment_passed=segment_passed, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
+survey_finished = bool(report) and (completed or segment_passed or report.get('frames', 0) >= args.frames)
+receipt = dict(survey_finished=survey_finished, recorded_frames=report.get('frames'), case=args.case, track=args.track, synthetic_segment=args.segment, segment_passed=segment_passed, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
                exit_code=result.returncode, render_errors=errors, completed=completed,
                requested_frames=args.frames if args.case == 'race' else None,
                recorded_finished_ids=report.get('finished_ids', []),
@@ -59,5 +60,5 @@ receipt = dict(case=args.case, track=args.track, synthetic_segment=args.segment,
 (folder/'receipt.json').write_text(json.dumps(receipt, indent=2)+'\n')
 print(json.dumps(receipt), flush=True)
 required_result = segment_passed if args.segment else completed
-if result.returncode or errors or ((args.segment or args.case != 'race' or args.require_complete) and not required_result):
+if (args.case == 'race' and not survey_finished) or result.returncode or errors or ((args.segment or args.case != 'race' or args.require_complete) and not required_result):
     raise SystemExit(1)

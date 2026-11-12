@@ -1,0 +1,85 @@
+   Compiling road-dash v0.1.0 (/home/imad/Documents/ChatGPT/RoadRash)
+    Finished `test` profile [optimized + debuginfo] target(s) in 2m 43s
+     Running unittests src/lib.rs (/home/imad/Documents/ChatGPT/RoadDash-worktrees/issue-37-bevy-020/target/debug/deps/road_dash-ec68478b4d8be410)
+
+running 1 test
+RFU_AI_SPEED id=3 elapsed=10.033333 station=3250 speed=35 curve=0.0014272584 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=10.033333 station=3250 lane=-1.1726348 speed=35 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[]
+RFU_AI_CONTROL elapsed=10.033333 station=3250 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=10.549992 station=3268.8486 speed=37.786663 curve=0.0014272584 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=10.549992 station=3268.8486 lane=-1.2366544 speed=37.786663 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[]
+RFU_AI_CONTROL elapsed=10.549992 station=3268.8486 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=11.06665 station=3289.0527 speed=40.09339 curve=0.0014272584 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=11.06665 station=3289.0527 lane=-0.12638628 speed=40.09339 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[]
+RFU_AI_CONTROL elapsed=11.06665 station=3289.0527 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=11.583309 station=3310.2036 speed=41.585342 curve=0.0031297922 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=11.583309 station=3310.2036 lane=0.17236054 speed=41.585342 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[]
+RFU_AI_CONTROL elapsed=11.583309 station=3310.2036 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=12.099968 station=3332.0735 speed=42.912052 curve=0.0031644925 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=12.099968 station=3332.0735 lane=-0.23391324 speed=42.912052 desired=0 bounds=(-5.05, 5.049999) rider_queue=false launch_deficit=0 preliminary=Plan { lane: -5.05, speed: 54.64735, avoiding: true } final=Plan { lane: -5.05, speed: 54.64735, avoiding: true } home=Some(-0.23391324) main_proxies=0 crossing_proxies=2 proxies=[Car { gap: 151.2915, lane: 5.5644913, speed: -12.911365, lateral_speed: -1.4985328, lateral_goal: None, half_width: 1.1684451, half_length: 2.0462291 }, Car { gap: 170.80132, lane: 11.649664, speed: -12.886794, lateral_speed: -1.6995242, lateral_goal: None, half_width: 1.196773, half_length: 2.0572305 }]
+RFU_AI_CONTROL elapsed=12.099968 station=3332.0735 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=12.616627 station=3354.1863 speed=44.072937 curve=0.0031644925 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=12.616627 station=3354.1863 lane=-0.8886206 speed=44.072937 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 121.8929, lane: 8.06134, speed: -12.878137, lateral_speed: -1.7600416, lateral_goal: None, half_width: 1.205256, half_length: 2.0603602 }, Car { gap: 141.25429, lane: 14.583956, speed: -12.833633, lateral_speed: -2.0629344, lateral_goal: None, half_width: 1.2473993, half_length: 2.0758169 }]
+RFU_AI_CONTROL elapsed=12.616627 station=3354.1863 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=13.1332855 station=3375.257 speed=45.052834 curve=0.0031423662 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=13.1332855 station=3375.257 lane=-0.2935769 speed=45.052834 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 91.54535, lane: 13.616746, speed: -12.758655, lateral_speed: -2.4821122, lateral_goal: None, half_width: 1.3048339, half_length: 2.0952134 }, Car { gap: 110.54562, lane: 21.10668, speed: -12.717719, lateral_speed: -2.6857219, lateral_goal: None, half_width: 1.3323579, half_length: 2.103949 }]
+RFU_AI_CONTROL elapsed=13.1332855 station=3375.257 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=13.649944 station=3396.7463 speed=45.862774 curve=0.0029982415 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=13.649944 station=3396.7463 lane=-0.78374213 speed=45.862774 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 60.590824, lane: 15.730651, speed: -12.62758, lateral_speed: -3.0795188, lateral_goal: None, half_width: 1.3848784, half_length: 2.1192195 }, Car { gap: 79.209114, lane: 24.139229, speed: -12.576809, lateral_speed: -3.282195, lateral_goal: None, half_width: 1.4115424, half_length: 2.12641 }]
+RFU_AI_CONTROL elapsed=13.649944 station=3396.7463 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=14.166603 station=3418.5527 speed=46.517696 curve=0.0029033814 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=14.166603 station=3418.5527 lane=-0.15162206 speed=46.517696 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 29.5864, lane: 16.096756, speed: -12.53864, lateral_speed: -3.4229805, lateral_goal: None, half_width: 1.4299107, half_length: 2.1309855 }, Car { gap: 47.95871, lane: 25.042606, speed: -12.481767, lateral_speed: -3.6262417, lateral_goal: None, half_width: 1.4562159, half_length: 2.137303 }]
+RFU_AI_CONTROL elapsed=14.166603 station=3418.5527 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=14.683262 station=3440.1208 speed=44.943657 curve=0.002792947 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=14.683262 station=3440.1208 lane=0.9352429 speed=44.943657 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: -1.3249049, lane: 15.3012905, speed: -12.376071, lateral_speed: -3.9701433, lateral_goal: None, half_width: 1.5001161, half_length: 2.1465974 }, Car { gap: 16.608349, lane: 25.082502, speed: -12.274498, lateral_speed: -4.2756143, lateral_goal: None, half_width: 1.5384727, half_length: 2.1536748 }]
+RFU_AI_CONTROL elapsed=14.683262 station=3440.1208 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=15.199921 station=3460.8452 speed=43.46261 curve=0.0025785407 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=15.199921 station=3460.8452 lane=1.9894637 speed=43.46261 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[]
+RFU_AI_CONTROL elapsed=15.199921 station=3460.8452 effective_throttle=1 effective_brake=0 escape=false reverse=false
+ONCOMING-PAIR start=3250 passed=true progress=3473.7483 speed=42.55319 lane=3.420422 max_bank=0.67015547
+RFU_AI_SPEED id=3 elapsed=10.033333 station=10400 speed=35 curve=0.0017410488 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=10.033333 station=10400 lane=-2.5888393 speed=35 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 256.73874, lane: 33.545574, speed: -12.545125, lateral_speed: -3.4078476, lateral_goal: None, half_width: 1.4279536, half_length: 2.1308086 }, Car { gap: 275.02386, lane: 42.42335, speed: -12.493662, lateral_speed: -3.591898, lateral_goal: None, half_width: 1.4518008, half_length: 2.1365392 }]
+RFU_AI_CONTROL elapsed=10.033333 station=10400 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=10.549992 station=10418.841 speed=38.057434 curve=0.0018448645 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=10.549992 station=10418.841 lane=-2.282654 speed=38.057434 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 232.07776, lane: 26.052948, speed: -12.644499, lateral_speed: -3.0183482, lateral_goal: None, half_width: 1.3767903, half_length: 2.1172504 }, Car { gap: 250.60245, lane: 34.411697, speed: -12.572656, lateral_speed: -3.3047853, lateral_goal: None, half_width: 1.4145067, half_length: 2.1274066 }]
+RFU_AI_CONTROL elapsed=10.549992 station=10418.841 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=11.06665 station=10439.152 speed=40.46377 curve=0.001987725 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=11.06665 station=10439.152 lane=-1.2237827 speed=40.46377 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 205.74379, lane: 19.919079, speed: -12.708656, lateral_speed: -2.7356596, lateral_goal: None, half_width: 1.3390754, half_length: 2.1062157 }, Car { gap: 224.4864, lane: 27.762115, speed: -12.664852, lateral_speed: -2.9317229, lateral_goal: None, half_width: 1.3652847, half_length: 2.1139731 }]
+RFU_AI_CONTROL elapsed=11.06665 station=10439.152 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=11.583309 station=10460.48 speed=42.091194 curve=0.0016481895 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=11.583309 station=10460.48 lane=-0.021388307 speed=42.091194 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 178.18001, lane: 15.341924, speed: -12.783348, lateral_speed: -2.3621953, lateral_goal: None, half_width: 1.2885138, half_length: 2.0901275 }, Car { gap: 197.13138, lane: 22.68611, speed: -12.742304, lateral_speed: -2.5743506, lateral_goal: None, half_width: 1.3173385, half_length: 2.0994747 }]
+RFU_AI_CONTROL elapsed=11.583309 station=10460.48 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=12.099968 station=10482.604 speed=43.515366 curve=0.0017487603 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=12.099968 station=10482.604 lane=-0.49867842 speed=43.515366 preliminary=Plan { lane: 0.0, speed: 54.64735, avoiding: false } proxies=[Car { gap: 149.70474, lane: 9.905073, speed: -12.848292, lateral_speed: -1.9787474, lateral_goal: None, half_width: 1.2357422, half_length: 2.0718472 }, Car { gap: 168.8609, lane: 16.716593, speed: -12.813918, lateral_speed: -2.1902697, lateral_goal: None, half_width: 1.2649592, half_length: 2.0821488 }]
+RFU_AI_CONTROL elapsed=12.099968 station=10482.604 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=12.616627 station=10505.431 speed=44.729767 curve=0.0016035788 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=12.616627 station=10505.431 lane=-0.82513756 speed=44.729767 desired=0 bounds=(-8.05, 8.05) rider_queue=false launch_deficit=0 preliminary=Plan { lane: -8.05, speed: 54.64735, avoiding: true } final=Plan { lane: -8.05, speed: 54.64735, avoiding: true } home=Some(-0.82513756) main_proxies=0 crossing_proxies=2 proxies=[Car { gap: 120.46722, lane: 4.2960134, speed: -12.903908, lateral_speed: -1.5758481, lateral_goal: None, half_width: 1.1793714, half_length: 2.050746 }, Car { gap: 139.84163, lane: 10.395083, speed: -12.876166, lateral_speed: -1.7883425, lateral_goal: None, half_width: 1.209219, half_length: 2.0621138 }]
+RFU_AI_CONTROL elapsed=12.616627 station=10505.431 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=13.1332855 station=10528.815 speed=45.739002 curve=0.0016035788 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=13.1332855 station=10528.815 lane=-0.8907127 speed=45.739002 desired=0 bounds=(-8.05, 8.050001) rider_queue=false launch_deficit=0 preliminary=Plan { lane: -8.05, speed: 54.64735, avoiding: true } final=Plan { lane: -8.05, speed: 54.64735, avoiding: true } home=Some(-0.8907127) main_proxies=0 crossing_proxies=2 proxies=[Car { gap: 90.46465, lane: 1.5403576, speed: -12.94392, lateral_speed: -1.2038338, lateral_goal: None, half_width: 1.126493, half_length: 2.029562 }, Car { gap: 110.0034, lane: 7.123394, speed: -12.923138, lateral_speed: -1.409416, lateral_goal: None, half_width: 1.1558124, half_length: 2.0414684 }]
+RFU_AI_CONTROL elapsed=13.1332855 station=10528.815 effective_throttle=1 effective_brake=0 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=13.649944 station=10552.613 speed=45.58484 curve=0.0016035788 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=13.649944 station=10552.613 lane=-0.923506 speed=45.58484 desired=0 bounds=(-8.05, 8.05) rider_queue=false launch_deficit=0 preliminary=Plan { lane: -0.923506, speed: 0.0, avoiding: true } final=Plan { lane: -0.923506, speed: 0.0, avoiding: true } home=Some(-0.90740997) main_proxies=0 crossing_proxies=2 proxies=[Car { gap: 59.978436, lane: -0.42259526, speed: -12.980746, lateral_speed: -0.7033644, lateral_goal: None, half_width: 1.0541133, half_length: 1.9985124 }, Car { gap: 79.71148, lane: 4.469734, speed: -12.966528, lateral_speed: -0.9291191, lateral_goal: None, half_width: 1.0869383, half_length: 2.0128775 }]
+RFU_AI_CONTROL elapsed=13.649944 station=10552.613 effective_throttle=0 effective_brake=1 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=14.166603 station=10574.413 speed=39.002464 curve=0.0015638744 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=14.166603 station=10574.413 lane=-1.98822 speed=39.002464 desired=0 bounds=(-8.05, 8.050001) rider_queue=false launch_deficit=0 preliminary=Plan { lane: -1.98822, speed: 0.0, avoiding: true } final=Plan { lane: -1.98822, speed: 0.0, avoiding: true } home=Some(-0.90740997) main_proxies=0 crossing_proxies=2 proxies=[Car { gap: 31.433006, lane: -1.9183805, speed: -12.994924, lateral_speed: -0.35578442, lateral_goal: None, half_width: 1.0030118, half_length: 1.9752384 }, Car { gap: 51.272484, lane: 2.494651, speed: -12.981284, lateral_speed: -0.6930566, lateral_goal: None, half_width: 1.0526073, half_length: 1.9978399 }]
+RFU_AI_CONTROL elapsed=14.166603 station=10574.413 effective_throttle=0 effective_brake=1 escape=false reverse=false
+RFU_AI_SPEED id=3 elapsed=14.683262 station=10592.917 speed=32.80003 curve=0.0014344332 race_pace=54.64735 top=54.64735 target=54.64735 corner_braking=false
+RFU_AI_PLANNER id=3 elapsed=14.683262 station=10592.917 lane=-2.571097 speed=32.80003 desired=0 bounds=(-8.05, 8.05) rider_queue=false launch_deficit=0 preliminary=Plan { lane: -2.571097, speed: 0.0, avoiding: true } final=Plan { lane: -2.571097, speed: 0.0, avoiding: true } home=Some(-0.90740997) main_proxies=0 crossing_proxies=2 proxies=[Car { gap: 6.1788235, lane: -2.876865, speed: -12.99933, lateral_speed: -0.10974312, lateral_goal: None, half_width: 0.9664277, half_length: 1.9579194 }, Car { gap: 26.114874, lane: 1.0341806, speed: -12.995254, lateral_speed: -0.34304142, lateral_goal: None, half_width: 1.0011253, half_length: 1.9743568 }]
+RFU_AI_CONTROL elapsed=14.683262 station=10592.917 effective_throttle=0 effective_brake=1 escape=false reverse=false
+
+thread 'game::racer_ai_tests::metropolis_rival_physically_clears_two_solid_oncoming_cars' (18855) panicked at src/racer_ai_tests.rs:987:9:
+assertion `left == right` failed: start=10400 station=10595.228 speed=0 lane=-1.4775486 health=0 plan=Some(Plan { lane: -1.476354, speed: 0.0, avoiding: true }) cars=[Vec3(575.6647, 74.1179, 7092.6353), Vec3(565.9424, 74.00741, 7110.47)]
+  left: Falling
+ right: Riding
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+test game::racer_ai_tests::metropolis_rival_physically_clears_two_solid_oncoming_cars ... FAILED
+
+failures:
+
+failures:
+    game::racer_ai_tests::metropolis_rival_physically_clears_two_solid_oncoming_cars
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 481 filtered out; finished in 0.74s
+
+error: test failed, to rerun pass `--lib`

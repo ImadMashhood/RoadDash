@@ -1,0 +1,1 @@
+Full screenshots and performance JSONL remain in ignored local `output/testing/rival-pace-combat/final-native-raw/rival-contract-recovery-metro/`. Compact receipts/logs and selected frames are retained here.

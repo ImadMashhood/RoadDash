@@ -1,0 +1,14 @@
+{
+  "case": "race",
+  "track": "metro",
+  "synthetic_segment": false,
+  "segment_passed": null,
+  "binary_sha256": "a7351d8ffaa70d36040eb3e3dbb78e2a60e24f71e3d32c7bd91cec8be6f22667",
+  "exit_code": 0,
+  "render_errors": false,
+  "completed": false,
+  "requested_frames": 3600,
+  "recorded_finished_ids": [],
+  "elapsed_seconds": 90.7570230960846,
+  "limits": "Functional scripted Linux receipt, not an isolated frame-time benchmark or human approval."
+}

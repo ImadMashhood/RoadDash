@@ -1,0 +1,43 @@
+LOAD_PROFILE {"elapsed_ms":0.00017999999999999998,"event":"build_app_begin"}
+2026-11-12T19:01:31.441414Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/weave-ordered-0/performance/performance-2429437.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":683.3399890000001,"elapsed_ms":683.5076220000001,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":1493.814196,"elapsed_ms":2301.75267,"span":"hills_terrain"}
+LOAD_PROFILE {"duration_ms":1557.108324,"elapsed_ms":2307.650319,"span":"hills_geometry"}
+LOAD_PROFILE {"duration_ms":0.592878,"elapsed_ms":2308.3448679999997,"span":"hills_bridge"}
+LOAD_PROFILE {"duration_ms":5.163386,"elapsed_ms":2313.6030299999998,"span":"hills_river"}
+LOAD_PROFILE {"duration_ms":238.557757,"elapsed_ms":2552.256636,"span":"hills_props"}
+LOAD_PROFILE {"duration_ms":2474.0005699999997,"elapsed_ms":5026.374285,"span":"hills_countryside"}
+LOAD_PROFILE {"duration_ms":191.972914,"elapsed_ms":5218.472364,"span":"hills_woodland"}
+LOAD_PROFILE {"duration_ms":203.206842,"elapsed_ms":5421.802025,"span":"hills_dressing"}
+LOAD_PROFILE {"duration_ms":5.3213799999999996,"elapsed_ms":5427.256595,"span":"hills_mounted"}
+LOAD_PROFILE {"duration_ms":537.8229749999999,"elapsed_ms":5965.214373,"span":"hills_wildlife"}
+LOAD_PROFILE {"duration_ms":0.172172,"elapsed_ms":5965.503704,"span":"hills_atmosphere"}
+TERRAIN_CACHE {"hits":930716,"limit":131072,"misses":37036,"vertices":37036}
+LOAD_PROFILE {"duration_ms":5215.166481,"elapsed_ms":5965.707495000001,"span":"hills_generation"}
+LOAD_PROFILE {"duration_ms":24.172090999999998,"elapsed_ms":5989.975606,"span":"hills_city_source"}
+LOAD_PROFILE {"duration_ms":36.634877,"elapsed_ms":6026.748941,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":9.328454,"elapsed_ms":6036.222946999999,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":24.448227,"elapsed_ms":6060.827106,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":0.000561,"elapsed_ms":6060.975764,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":1.114394,"elapsed_ms":6062.216023,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":1.632182,"elapsed_ms":6063.9731489999995,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":3.2344679999999997,"elapsed_ms":6067.334044,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":0.590734,"elapsed_ms":6068.055402999999,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":78.174224,"elapsed_ms":6068.287816999999,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":5389.566695,"elapsed_ms":6075.505685,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":6733.563526,"event":"wait_facade_kit"}
+LOAD_PROFILE {"elapsed_ms":8636.63367,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":9085.731161,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9096.388571,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9107.426762,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9118.386145,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9127.056278,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9137.403628,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9146.380063,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":9156.730899,"event":"required_assets_ready"}
+LOAD_PROFILE {"elapsed_ms":9177.012776,"event":"main_menu_update"}
+LOAD_PROFILE {"elapsed_ms":9204.585947,"event":"first_race_update"}
+Racer AI native race receipt: frames=3600 completed=false
+2026-11-12T19:03:01.203968Z  WARN bevy_render::view::window::screenshot: Unknown window for screenshot, skipping: 71v0

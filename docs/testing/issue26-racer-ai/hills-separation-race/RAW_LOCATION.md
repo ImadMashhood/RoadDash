@@ -1,0 +1,1 @@
+Full screenshot set and performance JSONL retained locally in ignored `output/testing/rival-race-pressure/final-native-raw/hills-separation-race/`. This folder retains receipts, console and selected frames.

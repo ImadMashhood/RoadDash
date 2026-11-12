@@ -1,0 +1,36 @@
+LOAD_PROFILE {"elapsed_ms":0.00011,"event":"build_app_begin"}
+2026-11-12T19:21:51.998830Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/weave-final-recovery-metro/performance/performance-2465732.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":420.019613,"elapsed_ms":420.165666,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":39.782461999999995,"elapsed_ms":575.6139860000001,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":102.712146,"elapsed_ms":678.476593,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":19.086289999999998,"elapsed_ms":697.704118,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":188.392624,"elapsed_ms":886.238537,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":21.456833000000003,"elapsed_ms":907.815975,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":662.092166,"elapsed_ms":1570.0710949999998,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":572.4338799999999,"elapsed_ms":2142.636351,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":462.266673,"elapsed_ms":2605.0543470000002,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":2070.121924,"elapsed_ms":2605.952827,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":10.568802999999999,"elapsed_ms":2701.804514,"span":"metro_streetscape"}
+LOAD_PROFILE {"duration_ms":95.226528,"elapsed_ms":2701.9716369999996,"span":"metro_farms_civic"}
+LOAD_PROFILE {"duration_ms":96.038937,"elapsed_ms":2702.109384,"span":"metro_world_details"}
+LOAD_PROFILE {"duration_ms":2185.381642,"elapsed_ms":2702.239918,"span":"metro_generation"}
+LOAD_PROFILE {"duration_ms":2279.0788310000003,"elapsed_ms":2702.362227,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":3602.353761,"event":"wait_facade_kit"}
+LOAD_PROFILE {"elapsed_ms":6394.383852,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":7259.946837,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7267.168651999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7273.9178520000005,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7280.041253,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7286.344529,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7293.754997,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7301.098849,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":7308.840536,"event":"required_assets_ready"}
+AI roster verified: fourteen rivals, five fighters
+LOAD_PROFILE {"elapsed_ms":7322.031592,"event":"main_menu_update"}
+Audio output initialized: 4 playback sinks
+LOAD_PROFILE {"elapsed_ms":8291.357288000001,"event":"first_race_update"}
+Native remount 1: pickup error 0.0000 m
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Metropolis route 0 -> farm/city crashes -> both recoveries -> results fixture

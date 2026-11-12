@@ -1,0 +1,80 @@
+LOAD_PROFILE {"elapsed_ms":0.00009999999999999999,"event":"build_app_begin"}
+2026-11-12T19:19:17.349241Z  WARN gilrs::gamepad: No mapping found for UUID 03000000-03a1-0000-0500-000011010000
+	Default mapping will be used.
+Performance log: /home/imad/Documents/ChatGPT/RoadRash/docs/testing/issue26-racer-ai/weave-final-recovery/performance/performance-2459159.jsonl (1-second samples; CPU/wall timing, not GPU timestamps)
+LOAD_PROFILE {"duration_ms":400.304363,"elapsed_ms":400.450175,"span":"build_app"}
+LOAD_PROFILE {"duration_ms":1397.424346,"elapsed_ms":1933.506304,"span":"hills_terrain"}
+LOAD_PROFILE {"duration_ms":1462.187063,"elapsed_ms":1939.473223,"span":"hills_geometry"}
+LOAD_PROFILE {"duration_ms":0.600894,"elapsed_ms":1940.181637,"span":"hills_bridge"}
+LOAD_PROFILE {"duration_ms":5.190265999999999,"elapsed_ms":1945.471129,"span":"hills_river"}
+LOAD_PROFILE {"duration_ms":235.01506999999998,"elapsed_ms":2180.612956,"span":"hills_props"}
+LOAD_PROFILE {"duration_ms":2510.012647,"elapsed_ms":4690.771726,"span":"hills_countryside"}
+LOAD_PROFILE {"duration_ms":193.64782399999999,"elapsed_ms":4884.544363,"span":"hills_woodland"}
+LOAD_PROFILE {"duration_ms":203.120026,"elapsed_ms":5087.800724,"span":"hills_dressing"}
+LOAD_PROFILE {"duration_ms":5.1089839999999995,"elapsed_ms":5093.06607,"span":"hills_mounted"}
+LOAD_PROFILE {"duration_ms":528.927249,"elapsed_ms":5622.145544,"span":"hills_wildlife"}
+LOAD_PROFILE {"duration_ms":0.194814,"elapsed_ms":5622.487353,"span":"hills_atmosphere"}
+TERRAIN_CACHE {"hits":930716,"limit":131072,"misses":37036,"vertices":37036}
+LOAD_PROFILE {"duration_ms":5145.475727,"elapsed_ms":5622.759883,"span":"hills_generation"}
+LOAD_PROFILE {"duration_ms":26.253494,"elapsed_ms":5649.134113,"span":"hills_city_source"}
+LOAD_PROFILE {"duration_ms":35.719766,"elapsed_ms":5684.996536,"span":"metro_materials"}
+LOAD_PROFILE {"duration_ms":9.660405,"elapsed_ms":5694.814434999999,"span":"metro_buildings"}
+LOAD_PROFILE {"duration_ms":19.546992999999997,"elapsed_ms":5714.482796,"span":"metro_surfaces"}
+LOAD_PROFILE {"duration_ms":0.000401,"elapsed_ms":5714.593032,"span":"metro_fences_terrain"}
+LOAD_PROFILE {"duration_ms":1.100108,"elapsed_ms":5715.804486999999,"span":"metro_paint"}
+LOAD_PROFILE {"duration_ms":1.546111,"elapsed_ms":5717.463469,"span":"metro_mesh_build"}
+LOAD_PROFILE {"duration_ms":3.3766540000000003,"elapsed_ms":5720.951342,"span":"metro_collision"}
+LOAD_PROFILE {"duration_ms":0.569275,"elapsed_ms":5721.642214,"span":"metro_details_grass"}
+LOAD_PROFILE {"duration_ms":72.59988200000001,"elapsed_ms":5721.875961000001,"span":"metro_geometry"}
+LOAD_PROFILE {"duration_ms":5325.053219,"elapsed_ms":5729.734966999999,"span":"world_setup"}
+LOAD_PROFILE {"elapsed_ms":6356.684368,"event":"wait_facade_kit"}
+LOAD_PROFILE {"elapsed_ms":8387.533595,"event":"wait_material_tangents"}
+LOAD_PROFILE {"elapsed_ms":8451.482981,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8458.474726,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8465.429772,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8473.207647000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8482.378655999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8492.737427,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8501.043310000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8509.18276,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8516.729613000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8525.415746,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8535.435553,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8544.148998,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8551.284341,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8558.849548,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8566.025216,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8573.840069999998,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8584.164296,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8593.966717000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8602.530341,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8610.793654000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8619.262911,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8628.646258,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8638.846493,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8648.777213000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8656.363689999998,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8663.666677,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8671.254095,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8678.868935,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8688.359232,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8698.682507000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8708.051357,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8717.495758000001,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8727.590665,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8738.272691,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8748.184055,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8760.807671,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8769.40569,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8778.676356,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8787.463007,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8796.063199,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8805.144290999999,"event":"wait_scene_settle"}
+LOAD_PROFILE {"elapsed_ms":8813.142879,"event":"required_assets_ready"}
+AI roster verified: fourteen rivals, five fighters
+LOAD_PROFILE {"elapsed_ms":8827.483205,"event":"main_menu_update"}
+Audio output initialized: 4 playback sinks
+LOAD_PROFILE {"elapsed_ms":10017.049876,"event":"first_race_update"}
+Native remount 1: pickup error 0.0000 m
+Native remount 2: pickup error 0.0000 m
+Render smoke test passed: Hills route 0 -> city/town/hills -> crash recovery -> results fixture; exceptional rescues [0, 0]

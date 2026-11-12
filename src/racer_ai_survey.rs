@@ -65,6 +65,13 @@ fn run(
             }
         }
     }
+    if std::env::var_os("ROADDASH_AI_TRACE_OPENING").is_some() {
+        for (_, mut rider, _) in &mut riders {
+            if matches!(rider.id, 0 | 5 | 11) && (-200.0..=800.0).contains(&rider.progress) {
+                rider.ai_trace_next.get_or_insert(race.elapsed);
+            }
+        }
+    }
     if state.frame == 1 {
         for (_, mut rider, _) in &mut riders {
             if rider.id == 0 && std::env::var("ROADDASH_AI_SURVEY_HOLD_W").as_deref() != Ok("1") {
@@ -110,6 +117,8 @@ fn run(
             "progress":r.progress, "lane":r.lane, "speed":r.speed, "finished":r.finished,
             "decision":format!("{:?}", r.combat_mind.decision), "target":r.combat_mind.target_id(),
             "combat_desired_speed":r.combat_mind.desired_speed,
+            "attack_serial":r.attack_serial, "hit_chain":r.hits.count,
+            "confirmed_incidents":r.combat_mind.incident_count(),
             "plan":r.ai_plan.map(|p| serde_json::json!({"lane":p.lane,"speed":p.speed,"avoiding":p.avoiding})),
             "passing":r.ai_pass.active(), "recovery":format!("{:?}", recovery.stage),
             "throttle":r.drive_intent.throttle_amount, "brake":r.drive_intent.brake_amount,

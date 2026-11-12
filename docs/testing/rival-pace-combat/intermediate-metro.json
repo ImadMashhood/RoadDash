@@ -1,0 +1,113 @@
+{
+  "control": {
+    "matched_frame": 3600,
+    "elapsed": 56.982635498046875,
+    "rider_count": 14,
+    "peak_sampled_standing_riders_after_launch": 0,
+    "opening_median_speed_kmh": 43.05503883361816,
+    "median_speed_kmh": 144.27577056884766,
+    "median_progress_m": 2381.00439453125,
+    "standing_riders": [],
+    "recovering_riders": [],
+    "max_attack_serial_by_rider": null,
+    "max_confirmed_incidents_by_recipient": null,
+    "attack_lower_bound": null,
+    "contact_lower_bound": null
+  },
+  "candidate": {
+    "matched_frame": 3600,
+    "elapsed": 56.982635498046875,
+    "rider_count": 14,
+    "peak_sampled_standing_riders_after_launch": 2,
+    "opening_median_speed_kmh": 101.0586009979248,
+    "median_speed_kmh": 173.82854003906252,
+    "median_progress_m": 2712.243896484375,
+    "standing_riders": [],
+    "recovering_riders": [
+      8
+    ],
+    "max_attack_serial_by_rider": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0
+    },
+    "max_confirmed_incidents_by_recipient": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0
+    },
+    "attack_lower_bound": 1,
+    "contact_lower_bound": 0
+  },
+  "candidate_extended": {
+    "matched_frame": 7200,
+    "elapsed": 116.99384307861328,
+    "rider_count": 14,
+    "peak_sampled_standing_riders_after_launch": 2,
+    "opening_median_speed_kmh": 101.0586009979248,
+    "median_speed_kmh": 117.40835151672363,
+    "median_progress_m": 4016.9510498046875,
+    "standing_riders": [],
+    "recovering_riders": [
+      2,
+      6
+    ],
+    "max_attack_serial_by_rider": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 1,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0
+    },
+    "max_confirmed_incidents_by_recipient": {
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 0,
+      "7": 0,
+      "8": 0,
+      "9": 0,
+      "10": 0,
+      "11": 0,
+      "12": 0,
+      "13": 0,
+      "14": 0
+    },
+    "attack_lower_bound": 1,
+    "contact_lower_bound": 0
+  },
+  "limits": "Periodic scripted samples, not full-race/human balance or a frame-time benchmark. Missing counters remain null. Counter maxima are lower bounds; contacts are counted by recipient, not attributed to an attacker. Police/slot-zero excluded."
+}

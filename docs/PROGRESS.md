@@ -1,5 +1,42 @@
 # Development progress
 
+2026-11-12 Metropolis race-flow follow-up (ADR172): AI-METRO-01 added open;
+234 verified/351 open. Share the approved Hills planner and real car bounds,
+retain split-aware geometry. Physical tests/builds pass; native graphics validation
+is blocked by the current NVIDIA driver/library mismatch. AI-METRO-01 stays open.
+
+
+2026-11-12 Hills weaving/startup follow-up (ADR170/171): AI-HILLS-02 verified;
+234 complete/350 open. PERF-START-01 remains partial: ordered safe-lane search,
+exact static reuse, scene-instance/mesh readiness and profiler counters implemented.
+Physical paired-car encounter and 10,000 seeded selection comparisons pass.
+Early matched sampled states show fewer static casts; later native trajectories
+diverge. Sustained matched/hardware performance and synchronous generation remain
+open. See testing/hills-weaving-startup/REPORT.md.
+
+2026-11-12 Hills opening correction (ADR169): AI-HILLS-01 verified;233 complete
+/349 open. Safe incremental acceleration and front-bike departure from an
+already overlapping follower comfort margin replace the speed latch/queue.
+Matched30s median rival speed54→160km/h; first-minute stopped riding samples
+7→0; median1.5km exit64.48→41.98s. Locked builds/fmt/Clippy and696 Rust tests
+pass, with two existing physics failures and two ignored; native Hills sample
+and both recoveries pass. Human fourth-place/challenge, full-course difficulty
+and combat frequency remain RFU-RACE-03/AI-11/AI-ENGAGE-01. Literal W control
+hits the first wall and is not a difficulty acceptance test. See
+[Hills report](testing/hills-opening-ai/REPORT.md).
+
+2026-11-11 rival pace/launch correction (ADR168): updated from default main
+19839421 on codex/rival-pace-combat. Police temporarily disabled; calmer grid
+forecast preserves real obstacle checks and full acceleration. AI-PACE-01,
+AI-LAUNCH-01 and POLICE-PAUSE-01 verified (232 complete /349 open). Locked
+builds/fmt/Clippy/domain/model checks pass; 474 main tests pass with the same
+two existing physics failures. Both-map native samples run without errors;
+median rival pace at the matched one-minute frame is173/154km/h vs144/132.
+AI-ENGAGE-01 remains open: physical AI-generated chain/punch/kick/catch-up
+fixtures pass, but ordinary-map samples still have sparse attacks and no
+confirmed contacts. Full-race challenge, queues and combat balance need further
+work. See testing/rival-pace-combat/REPORT.md; historical entries follow.
+
 Integrated Bevy 0.20.1 feedback candidate (2026-11-11): mounted animals,
 opening/slow-heavy Hills cars, stronger rival launch, 155 km/h physical rival
 limit, rear-rider visibility, original ground grit, terrain-matched stable dust
@@ -487,6 +524,16 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **AI-HILLS-02** Use physical city gaps around paired oncoming cars. Reason: rivals brake instead of weaving through a usable middle or clear sidewalk; original part:01; verified in Part00; dependencies: AI-HILLS-01, physical forecasts and static sweeps; acceptance: early reachable middle/sidewalk choices with actual bike clearance, blocked/tight/late routes still brake, real two-car physical encounter and regressions pass; verification: [gap and startup report](testing/hills-weaving-startup/REPORT.md). Human full-course risk/fairness remains AI-11.
+
+- [x] **AI-HILLS-01** Correct overly conservative Hills opening traffic flow. Reason: user can reach fourth during the start with little driving effort; part:01; dependencies: AI-PACE-01, AI-LAUNCH-01 and real predictive traffic/static clearance; acceptance: same-direction local planning admits safe incremental acceleration and walking-speed departure from a close follower comfort envelope, oncoming/crossing and near hazards stay protected, full physical regressions and matched native Hills opening evidence pass; verification: [Hills investigation and receipts](testing/hills-opening-ai/REPORT.md). Literal hold-W control hits the first wall; human fourth-place/challenge acceptance remains RFU-RACE-03 and AI-11.
+
+- [x] **AI-PACE-01** Restore sustained competitive rival drive. Reason: the 155 km/h clamp and partial throttle make the field too slow; part: 01; dependencies: RFU-RACE-03/04, shared bike adapter and traffic planner; acceptance: original-reference speed-control study, full drive below goal, shared unboosted class ceiling with profile variation, unchanged player/police and safety gates, competitive physical straightaway at 30/60/120 Hz plus native two-map comparison; verification: [pace/combat investigation and receipts](testing/rival-pace-combat/REPORT.md). Human race difficulty remains RFU-RACE-03 and AI-11.
+
+- [x] **AI-LAUNCH-01** Keep a clear accelerating grid in its initial lanes. Reason: forecasting terminal velocity at rest triggers premature passing and slow sideways motion; part: 01; dependencies: AI-PACE-01 and predictive traffic/static sweeps; acceptance: first-five-second planning uses a bounded current-speed forecast while preserving full engine drive, spaced14-rider physical grid accelerates without unnecessary steering, real stationary blockers still trigger avoidance; verification: pure forecast/blocker test, dynamic grid drift/speed fixture and both-map native opening traces in [pace/combat report](testing/rival-pace-combat/REPORT.md).
+
+- [x] **POLICE-PAUSE-01** Temporarily remove the resident officer from ordinary races. Reason: user observes a stopping field and requests isolating police; part: 01; dependencies: existing police setup/lifecycle; acceptance: default deployment off, no resident officer/collider/patrol HUD on fresh race or retry, preserved opt-in subsystem and police smoke; verification: setup/retry test, both-map native rider census and opt-in police smoke in [pace/combat report](testing/rival-pace-combat/REPORT.md). This is isolation, not proof that police caused every queue.
+
 - [x] **RFU-RESEARCH-01** Investigate original Road Rash rival AI without changing RoadDash behavior from reference code. Reason: user asks whether original rivals rubber-band and how they overtake; part:00; dependencies: public manual and source identification; acceptance: distinguish 1991 Genesis from the inspected 1996 Windows port, explain evidence and uncertainty about catch-up, and import no reference code/media; verification: [dated source inspection and direct links](research/road-rash-ai-1996.md). Verified: the 1996 port has gap-dependent desired-speed assistance, while the 1991 Genesis algorithm remains unconfirmed.
 
 - [x] **RFU-MOVE-03** Reverse steering turns heading left for D and right for A. Reason: issue #28 reports wrong reverse heading; part: 01; dependencies: REVERSE-01/P03-019; acceptance: both Dynamic and Assisted paths, symmetric inputs, continuous zero crossing and unchanged forward handling; verification: integrated vehicle tests and native reverse/forward review. [Evidence](testing/issue-28-movement/README.md).
@@ -947,6 +994,12 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
+
+- [ ] **PERF-START-01** Bound repeated AI static work and finish initial scene expansion before play. Reason: startup expands the world and subsequent CPU hitches coincide with repeated collision forecasts; part:01; dependencies: existing loading/readiness, AI forecasts and performance logs; acceptance: exact per-rider/per-tick static-query reuse, no stale safety results, complete scene instances/materials plus settled mesh frames before menu, matched cache-enabled/disabled work/timing and authoritative-state comparison, native recovery and checks; partial: early sampled states match with fewer casts; later native trajectories diverge, so sustained matched profiling stays open; verification: [source-matched profiler receipts](testing/hills-weaving-startup/REPORT.md). Full nonblocking generation, GPU and broad hardware/loading gates remain RFU-PERF-01/02/04.
+
+- [ ] **AI-ENGAGE-01** Retain moving melee opponents and predict timed strike contact. Reason: fighters drop a target when overtaking and swing without allowing for windup; part: 01; dependencies: RFU-COMBAT-02, shared strike clock and traffic safety; acceptance: acquire reachable neighboring-lane opponents, finish lateral/speed alignment before a short moving exchange, safely hand off stale passing intent once, bounded catch-up using real drive, timed return to racing, downed/stopped-target rejection, authored contact-time admission and an actual20m physical catch-up ending in an AI-generated confirmed hit; verification: domain, physical pair/queue/contact tests and native sampled attack counters in [pace/combat report](testing/rival-pace-combat/REPORT.md). Physical fixtures pass, but native two-minute runs still record only two/one attempts and zero confirmed contacts; ordinary-map engagement remains unverified. Full-course fight balance and human review remain RFU-COMBAT-02/AI-11.
+
 - [ ] **RFU-ENGINE-01** Pin a compatible Bevy 0.20.1, bevy_rapier3d 0.37.0 and Rust 1.97.1 toolchain. Reason: user requests the 0.20 upgrade and current 0.17.3 APIs cannot use its rendering improvements; part: 01; dependencies: ADR149 and an isolated old-engine control; acceptance: exact dependency/lockfile/feature/CI pins, native audio backend accounted for, and Linux/Windows compilation gates; verification: locked feature matrix, strict workspace checks, native launch and CI.
 
 - [ ] **RFU-ENGINE-02** Port rendering, scenes, UI, shaders, assets and the fixed physics adapter to Bevy 0.20. Reason: 0.18–0.20 have breaking APIs and Rapier solver changes; part: 01; dependencies: RFU-ENGINE-01; acceptance: all existing maps, facade lifecycle, save/control/audio/recovery paths and the accepted velocity-muscle/default and eleven-body baseline rigs work without intentional physics retuning; verification: strict tests/build, all-map native/LOD/survey checks and paired recovery/NPC regressions.
@@ -955,11 +1008,11 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 - [ ] **RFU-RACE-03** Make first place catchable while giving rivals a stronger, safe grid launch. Reason: latest Hills playtest reaches seventh quickly but cannot reliably catch the lead pack; part:01; dependencies: shared vehicle physics, RFU-AI-09 and race setup; acceptance: full-course human race balance and safe launch without collision or launch queues, no positional rubber band; verification: matched native launch/finish receipts and human race review. The earlier player-relative 5 km/h ceiling is superseded by RFU-RACE-04.
 
-- [ ] **RFU-RACE-04** Use full launch throttle and a 155 km/h rival ceiling. Reason: player reaches seventh almost immediately while front rivals remain hard to catch; part:01; dependencies: RFU-RACE-03, shared vehicle adapter and safety planner; acceptance: each rival requests 100% throttle for the first five racing seconds whenever drive is permitted, rival physical and AI speed ceilings agree at 155 km/h, player/police limits and safety braking stay intact; verification: pure cap/intent tests, dynamic grid fixture, native launch and full-race review.
+- [ ] **RFU-RACE-04** Use full launch throttle and a 155 km/h rival ceiling. Reason: player reaches seventh almost immediately while front rivals remain hard to catch; part:01; dependencies: RFU-RACE-03, shared vehicle adapter and safety planner; acceptance: each rival requests 100% throttle for the first five racing seconds whenever drive is permitted, rival physical and AI speed ceilings agree at 155 km/h, player/police limits and safety braking stay intact; verification: pure cap/intent tests, dynamic grid fixture, native launch and full-race review. Historical 155 km/h ceiling superseded by the latest user request and AI-PACE-01; retain the safe full-throttle launch, but use the bike-class ceiling.
 
 - [ ] **RFU-RENDER-01** Keep following rivals visible near the chase camera. Reason: close trailing riders sometimes disappear behind the player; part:01; dependencies: RIDE-01 and camera presentation; acceptance: riders more than 1.4 m from the camera remain rendered while direct camera overlap can still be hidden, with collision/combat unchanged; verification: camera-distance regression, native rear-grid and moving-follower review, measured render budget.
 
-- [ ] **RFU-COMBAT-02** Assign five persistent fighters that pursue the next nonfighter ahead, drop downed targets immediately, and make all other rivals retaliate after confirmed contact. Reason: too few fights are visible; part:01; dependencies: RFU-AI-09, contact events and roster reset; acceptance: exact five identities, forward nonfighter targeting only, no speed-matching stop loop, deterministic response/restart and physically confirmed attacks; verification: pure decision tests, native fight/contact counts and full-race queue review. This supersedes the RFU-AI-10/11 role-free and 50/50 proposals without deleting their history.
+- [ ] **RFU-COMBAT-02** Assign five persistent fighters that pursue the next nonfighter ahead, drop downed targets immediately, and make all other rivals retaliate after confirmed contact. Reason: too few fights are visible; part:01; dependencies: RFU-AI-09, contact events and roster reset; acceptance: exact five identities, acquire the next moving nonfighter ahead within reachable neighboring lanes and retain it through a short nearby overtake (AI-ENGAGE-01), no speed-matching stop loop, deterministic response/restart and physically confirmed attacks; verification: pure decision tests, native fight/contact counts and full-race queue review. This supersedes the RFU-AI-10/11 role-free and 50/50 proposals without deleting their history.
 
 - [ ] **RFU-NPC-02** Make drive-through contact with walking pedestrians dependable. Reason: rider sometimes visually passes through a walker without a hit; part:01; dependencies: NPC kinematic collider and Rapier event path; acceptance: body-sized contact, high-speed sweep coverage and one knockdown per physical hit while sidewalk near misses stay misses; verification: physical crossing/contact fixtures and native drive-through review.
 
@@ -1404,6 +1457,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 - [ ] **P05-008** **Exit gate:** three minutes of enjoyable punch/kick combat without weapons, with timing and hit validation evidence.
 
 ### Part 08 — Police, pursuit and arrest/escape loop
+
+- [ ] **POLICE-REINTRO-01** Validate police/rival traffic flow before restoring default deployment. Reason: police are temporarily disabled at the user's request after a stopping-field report; part: 08; dependencies: POLICE-PAUSE-01, AI-LAUNCH-01 and existing pursuit/arrest implementation; acceptance: slow/stopped/pursuing officer creates no persistent rider queue or invalid melee pursuit, full-course traffic/racing/recovery and human challenge review pass, default deployment is restored only when requested; verification: deterministic officer/rival encounters plus opt-in full-race native traces and human review.
 
 - [ ] **POLICE-ART-01** Give the officer a distinct uniform texture and custom police motorcycle. Reason: user wants identifiable police presentation; part: 08; dependencies: COP-01, current rider/bike assets; acceptance: original readable officer/bike identity at gameplay distance, preserved rider/bike physical rigs and pursuit/arrest/recovery behavior; verification: model parity, police native captures and pursuit/recovery tests.
 

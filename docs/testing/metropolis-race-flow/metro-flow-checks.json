@@ -1,0 +1,93 @@
+[
+  {
+    "name": "metro-flow-fmt",
+    "command": [
+      "cargo",
+      "fmt",
+      "--all",
+      "--check"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 2.2970733642578125
+  },
+  {
+    "name": "metro-flow-clippy",
+    "command": [
+      "cargo",
+      "clippy",
+      "--workspace",
+      "--locked",
+      "--all-targets",
+      "--",
+      "-D",
+      "warnings"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 145.65466356277466
+  },
+  {
+    "name": "metro-flow-workspace-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--workspace",
+      "--locked"
+    ],
+    "exit_code": 101,
+    "elapsed_seconds": 284.1492762565613
+  },
+  {
+    "name": "metro-flow-release-build",
+    "command": [
+      "cargo",
+      "build",
+      "--release",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 284.150990486145
+  },
+  {
+    "name": "metro-flow-domain-tests",
+    "command": [
+      "cargo",
+      "test",
+      "--locked",
+      "-p",
+      "rr_core",
+      "-p",
+      "rr_content"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 1.1456630229949951
+  },
+  {
+    "name": "metro-flow-debug-build",
+    "command": [
+      "cargo",
+      "build",
+      "--locked"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 28.416314601898193
+  },
+  {
+    "name": "native-cache-1",
+    "command": [
+      "python3",
+      "tools/run_racer_ai_checks.py",
+      "--binary",
+      "/home/imad/Documents/ChatGPT/RoadRash/output/testing/metropolis-race-flow/road-dash-metro-flow",
+      "--case",
+      "race",
+      "--track",
+      "metro",
+      "--frames",
+      "7200",
+      "--label",
+      "metro-flow-1"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 257.0369951725006
+  }
+]

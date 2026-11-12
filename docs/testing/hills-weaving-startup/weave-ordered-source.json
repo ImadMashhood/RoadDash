@@ -1,0 +1,22 @@
+{
+  "binary_sha256": "f65044aeff8b8756662828eff95c9a975a21621ea1560af4cf72f8dae0818492",
+  "sources": {
+    "src/ai_work.rs": "36e8aceaf947926ee879680749128bae0de61867a3d742d9b23bb2a9854af5c5",
+    "src/runtime.rs": "b421db3d918145f5e5f281e6935b2a70a1abad1e088cdefc1d689713dd31c03a",
+    "src/lib.rs": "4acdb49f0f24729a5dea44bfb7aa9d63f4da9bad208c8932ac3c828e214013fd",
+    "src/diagnostics.rs": "7937a863eaf5409545ddffed196828b3a4898466d15fd4a400fcc7ae2f5f2268",
+    "crates/rr_core/src/traffic_avoidance.rs": "bcc9d5c76161e3d2f55439a63fc10ce7f35d5cfbc203a5907093e732446df80c",
+    "crates/rr_core/src/lib.rs": "24848f5718a509a5b5d4d6ba372452026d313e6e79bfc767866d25679dc7a6ad",
+    "crates/rr_core/src/pursuit.rs": "fe627045194b422b1260717d40bbb832f0afa4c70370f517a3fb8c88c2b29c1c",
+    "crates/rr_core/src/rival_ai.rs": "e763fff5a8b6964e28f3fe8c40082110c20ba57300005a733ba0f4c0ff3ade83",
+    "src/game.rs": "313e85c780c9987f7056ee7c73602df95d85c2def133c75c6637d317cf28386c",
+    "src/vehicle.rs": "348d10e1c2bef60e27f12b966c3734b931487369d14e775e449a94d081f76727",
+    "src/diagnostics/perf.rs": "33cbe7fa7936780a9af331402ea68068999b12a211b1417559ee7484fab17df6",
+    "tools/run_racer_ai_checks.py": "8fd1dbdb67327db821a52847ae25ba655d0dd0e2989b7865f5402ebaba153d6a",
+    "src/combat.rs": "15d64231a22c2714a98537a6edd4083b8df26be36a326673346541a032a050e7",
+    "src/racer_ai_survey.rs": "91d3a77aeaa7f9f2e011ae1fd09912706a302aa4c0d5a5b61bcbc6aaa57b4148",
+    "src/racer_ai_tests.rs": "795d61d9449d78d7413ee8057042f909395dd68ace4096424022747456132666",
+    "src/police.rs": "bdac85d850063fb21aa02d07cdc6409e2c63957adca9f783ea3cc53dd33123e5",
+    "src/models/tests.rs": "e95228b5db828fe24c9ae6d3f5d60404f18af1c9497108c0803496cf345db567"
+  }
+}

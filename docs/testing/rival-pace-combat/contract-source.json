@@ -1,0 +1,15 @@
+{
+  "binary_sha256": "6940cc790b4f2ea8025805edeae3a14f72b10e906be17b157de4597aa816b025",
+  "sources": {
+    "crates/rr_core/src/lib.rs": "24848f5718a509a5b5d4d6ba372452026d313e6e79bfc767866d25679dc7a6ad",
+    "crates/rr_core/src/pursuit.rs": "fe627045194b422b1260717d40bbb832f0afa4c70370f517a3fb8c88c2b29c1c",
+    "crates/rr_core/src/rival_ai.rs": "e763fff5a8b6964e28f3fe8c40082110c20ba57300005a733ba0f4c0ff3ade83",
+    "src/game.rs": "b0b6b888480afe7d3cfd4744dcc91424c39f71bcf7eece76ea42ea551eef59d6",
+    "src/vehicle.rs": "348d10e1c2bef60e27f12b966c3734b931487369d14e775e449a94d081f76727",
+    "src/combat.rs": "15d64231a22c2714a98537a6edd4083b8df26be36a326673346541a032a050e7",
+    "src/racer_ai_survey.rs": "f39e2be2769f24a9f85d1d2d8437ce699e330a7daeaa495d4b7c7c96df80725d",
+    "src/racer_ai_tests.rs": "bb23b4409eca4331f6a56e1f1bfb1e25bfca0bba05cd6bc9baf8f269e3aa8f58",
+    "src/police.rs": "bdac85d850063fb21aa02d07cdc6409e2c63957adca9f783ea3cc53dd33123e5",
+    "src/models/tests.rs": "e95228b5db828fe24c9ae6d3f5d60404f18af1c9497108c0803496cf345db567"
+  }
+}
