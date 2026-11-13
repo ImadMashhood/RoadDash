@@ -74,3 +74,9 @@ CPU time was 25.56 → 25.30 ms. The median sampled opaque 3D GPU pass was
 did not improve in this pair. The two native racer receipts were byte-identical,
 including the sampled rider decisions and states. Whole-course performance and 60 FPS remain
 open under PERF-08.
+
+The native Hills recovery smoke with the softer grade passed both remounts
+and reached results with zero exceptional rescues. Locked development and
+release builds, formatting, strict Clippy, provenance and roadmap sync
+passed. The workspace test run reported the two known Rapier parity
+failures in high-speed wall ejection and Metropolis static-chunk trajectories.
