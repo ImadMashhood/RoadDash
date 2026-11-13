@@ -330,8 +330,9 @@ fn profile(hills: bool) -> rr_content::world_art::Config {
 }
 fn depth_profile(c: &mut rr_content::world_art::Config, hills: bool) {
     c.tonemapping = rr_content::world_art::ToneMapping::SomewhatBoringDisplayTransform;
-    // Offset the brighter midtone response while preserving highlight rolloff.
-    c.exposure_ev100 += 0.35;
+    // The extra tenth of a stop offsets about a quarter of the analytic
+    // curve’s difference from Reinhard around upper daylight midtones.
+    c.exposure_ev100 += 0.45;
     if hills {
         c.sun_direction = [-0.91, 0.41, -0.13];
         c.fog_density_per_m = 0.0009;

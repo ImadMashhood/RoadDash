@@ -1,6 +1,7 @@
 //! Per-rider, per-fixed-tick reuse of immutable-world collision forecasts.
 use std::{
     cell::{Cell, RefCell},
+    collections::HashSet,
     time::Instant,
 };
 
@@ -30,6 +31,7 @@ struct Entry {
 pub struct Work {
     cache: RefCell<Vec<Entry>>,
     counters: RefCell<Counters>,
+    segments: RefCell<HashSet<[u32; 6]>>,
     enabled: bool,
 }
 impl Default for Work {
@@ -37,6 +39,7 @@ impl Default for Work {
         Self {
             cache: RefCell::new(Vec::with_capacity(128)),
             counters: RefCell::default(),
+            segments: RefCell::new(HashSet::with_capacity(256)),
             enabled: std::env::var("ROADDASH_AI_STATIC_CACHE").as_deref() != Ok("0"),
         }
     }
@@ -51,6 +54,7 @@ impl Work {
     /// Flush on every rider: owner, origin, road frame and static world must match.
     pub fn begin_rider(&self) {
         self.cache.borrow_mut().clear();
+        self.segments.borrow_mut().clear();
     }
     pub fn static_clear(
         &self,
@@ -84,6 +88,28 @@ impl Work {
         }
         clear
     }
+    /// Reuse a clear segment only for the exact same endpoints and rider.
+    /// Blocked segments are queried again to retain hit diagnostics.
+    pub fn segment_clear(
+        &self,
+        from: bevy::prelude::Vec3,
+        to: bevy::prelude::Vec3,
+        solve: impl FnOnce() -> bool,
+    ) -> bool {
+        if !self.enabled {
+            return solve();
+        }
+        let key = [from.x, from.y, from.z, to.x, to.y, to.z].map(f32::to_bits);
+        if self.segments.borrow().contains(&key) {
+            return true;
+        }
+        let clear = solve();
+        if clear && self.segments.borrow().len() < 512 {
+            self.segments.borrow_mut().insert(key);
+        }
+        clear
+    }
+
     pub fn finish(&self, start: Instant) -> Counters {
         let mut c = *self.counters.borrow();
         c.drive_ms = start.elapsed().as_secs_f64() * 1000.;
@@ -93,6 +119,22 @@ impl Work {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use bevy::prelude::Vec3;
+
+    #[test]
+    fn clear_segments_are_reused_only_for_exact_endpoints_and_the_current_rider() {
+        let work = Work {
+            enabled: true,
+            ..Work::default()
+        };
+        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, || true));
+        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, || panic!("duplicate sphere cast")));
+        assert!(!work.segment_clear(Vec3::X, Vec3::ZERO, || false));
+        assert!(work.segment_clear(Vec3::X, Vec3::ZERO, || true));
+        work.begin_rider();
+        assert!(!work.segment_clear(Vec3::ZERO, Vec3::X, || false));
+    }
+
     #[test]
     fn exact_static_results_are_reused_only_within_one_rider_snapshot() {
         let work = Work {

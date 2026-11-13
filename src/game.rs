@@ -1323,42 +1323,11 @@ pub fn drive(
                 let drivable = |goal: f32, pace: f32| {
                     let forecast_speed = pace.min(speed.max(4.));
                     work.static_clear(goal, forecast_speed, |cast_count| {
-                    let Ok(ctx) = context.single() else {
-                        return false;
-                    };
-                    let predicate =
-                        |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
-                    let mut previous = transform.translation + Vec3::Y * 0.85;
-                    let probe = Collider::ball(0.65);
-                    // A broad lane change or sidewalk excursion needs the full
-                    // sweep even though both sides now lie inside free bounds.
-                    let steps = if goal.abs() > width - 0.65 || (goal - lane).abs() > 2.5 {
-                        24
-                    } else {
-                        12
-                    };
-                    // At a lower current speed the bike has more time to move
-                    // laterally before reaching a fixed wall. Forecast that
-                    // conservative approach instead of only the cruise request.
-                    // Static geometry is checked along the actual curved road,
-                    // not a straight chord through a sidewalk/building at a bend.
-                    for step in 1..=steps {
-                        let t = step as f32 * 0.5;
-                        let station = (progress + forecast_speed * t).min(track.length);
-                        // The bike's bank and steering force take time to unwind.
-                        // Keep the static sweep inside a reachable lateral envelope;
-                        // the traffic proxy's faster idealized lane transition can
-                        // otherwise predict clearing a wall while the physical bike
-                        // is still beside it.
-                        let lateral = lane
-                            + (goal - lane).clamp(
-                                -0.6 * (t - 0.4).max(0.),
-                                0.6 * (t - 0.4).max(0.),
-                            )
-                            + track.street_offset(route, station);
-                        let (position, _) = track.sample_route(route, station, lateral);
-                        let next = position + Vec3::Y * 0.85;
-                        let delta = next - previous;
+                        let Ok(ctx) = context.single() else {
+                            return false;
+                        };
+                        let predicate =
+                            |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
                         let filter = QueryFilter {
                             flags: QueryFilterFlags::EXCLUDE_DYNAMIC
                                 | QueryFilterFlags::EXCLUDE_KINEMATIC,
@@ -1367,28 +1336,64 @@ pub fn drive(
                         .exclude_rigid_body(entity)
                         .exclude_sensors()
                         .predicate(&predicate);
-                        cast_count.set(cast_count.get() + 1);
-                        if let Some((hit_entity, hit)) = ctx
-                            .cast_shape(
-                                previous,
-                                Quat::IDENTITY,
-                                delta.normalize_or_zero(),
-                                probe.raw.as_ref(),
-                                ShapeCastOptions {
-                                    max_time_of_impact: delta.length(),
-                                    ..default()
-                                },
-                                filter,
-                            )
-                        {
-                            if trace_ai {
-                                println!("RFU_AI_STATIC id={} station={} speed={} goal={} pace={} step={} hit={:?} name={:?} toi={} position={:?}", trace_id, progress, speed, goal, pace, step, hit_entity, names.get(hit_entity).ok().map(Name::as_str), hit.time_of_impact, poses.get(hit_entity).ok().map(GlobalTransform::translation));
+                        let mut previous = transform.translation + Vec3::Y * 0.85;
+                        let probe = Collider::ball(0.65);
+                        // A broad lane change or sidewalk excursion needs the full
+                        // sweep even though both sides now lie inside free bounds.
+                        let steps = if goal.abs() > width - 0.65 || (goal - lane).abs() > 2.5 {
+                            24
+                        } else {
+                            12
+                        };
+                        // At a lower current speed the bike has more time to move
+                        // laterally before reaching a fixed wall. Forecast that
+                        // conservative approach instead of only the cruise request.
+                        // Static geometry is checked along the actual curved road,
+                        // not a straight chord through a sidewalk/building at a bend.
+                        for step in 1..=steps {
+                            let t = step as f32 * 0.5;
+                            let station = (progress + forecast_speed * t).min(track.length);
+                            // The bike's bank and steering force take time to unwind.
+                            // Keep the static sweep inside a reachable lateral envelope;
+                            // the traffic proxy's faster idealized lane transition can
+                            // otherwise predict clearing a wall while the physical bike
+                            // is still beside it.
+                            let lateral = lane
+                                + (goal - lane).clamp(
+                                    -0.6 * (t - 0.4).max(0.),
+                                    0.6 * (t - 0.4).max(0.),
+                                )
+                                + track.street_offset(route, station);
+                            let (position, _) = track.sample_route(route, station, lateral);
+                            let next = position + Vec3::Y * 0.85;
+                            if !work.segment_clear(previous, next, || {
+                                let delta = next - previous;
+                                cast_count.set(cast_count.get() + 1);
+                                if let Some((hit_entity, hit)) = ctx
+                                    .cast_shape(
+                                        previous,
+                                        Quat::IDENTITY,
+                                        delta.normalize_or_zero(),
+                                        probe.raw.as_ref(),
+                                        ShapeCastOptions {
+                                            max_time_of_impact: delta.length(),
+                                            ..default()
+                                        },
+                                        filter,
+                                    )
+                                {
+                                    if trace_ai {
+                                        println!("RFU_AI_STATIC id={} station={} speed={} goal={} pace={} step={} hit={:?} name={:?} toi={} position={:?}", trace_id, progress, speed, goal, pace, step, hit_entity, names.get(hit_entity).ok().map(Name::as_str), hit.time_of_impact, poses.get(hit_entity).ok().map(GlobalTransform::translation));
+                                    }
+                                    return false;
+                                }
+                                true
+                            }) {
+                                return false;
                             }
-                            return false;
+                            previous = next;
                         }
-                        previous = next;
-                    }
-                    true
+                        true
                     })
                 };
                 let input = rr_core::traffic_avoidance::Request {

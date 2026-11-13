@@ -4850,3 +4850,11 @@ Generate course-specific distant silhouettes in the display cube while
 retaining the existing sky radiance for environment lighting. Increase
 Hills grass and woodland through the existing reserved placement and batch
 paths. [Implementation and evidence](testing/scenic-horizon/REPORT.md).
+
+## ADR187 — Softer daylight grade and exact AI probe reuse (2026-11-13)
+
+Soften the opt-in curve toward Reinhard and use the same pre-tone grade on
+the camera and procedural display sky. Cache clear static sphere casts
+for exact endpoints within one rider planning pass. Keep blocked casts
+available for hit diagnostics and use the existing AI cache fallback
+switch. [Evidence](testing/visual-depth/REPORT.md).

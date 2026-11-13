@@ -47,3 +47,30 @@ describe the rendering paths.
   checks passed. The game library recorded 490 passing tests, one ignored,
   and the two known Rapier failures. Core and content passed 228 tests with
   one ignored.
+
+## Softer grade and Hills profiling
+
+The opt-in grade uses an additional 0.10 EV of camera exposure compensation.
+At neutral scene values around 1.8–1.9 after baseline exposure, this moves
+the highlight response about a quarter of the way toward baseline Reinhard.
+The amount varies with luminance and color. The scene and display sky use
+the same exposure. Hills sun angle and fog density retain the depth profile
+values.
+
+An initial Hills playtest recorded about 50–57 ms per frame while racing.
+The frame logs showed substantial main-world, fixed gameplay and physics
+time. AI forecasts issued roughly 40,000–46,000 static sphere casts per
+60 fixed ticks. Identical clear segments now share their result within a
+rider’s fixed-tick planning pass. Blocked casts retain their hit diagnostics.
+The existing `ROADDASH_AI_STATIC_CACHE=0` switch bypasses both caches.
+
+The local before/after release pair ran sequentially with the compiler idle,
+the same Hills launch fixture, default lighting, and GPU diagnostics enabled.
+Both ran for 1,050 rendered frames. During race seconds 6–13, static casts
+fell from 708 to 627 per fixed tick (11%). Median wall-frame time was
+26.45 → 26.82 ms and P95 was 30.07 → 30.20 ms. Median sampled main-world
+CPU time was 25.56 → 25.30 ms. The median sampled opaque 3D GPU pass was
+2.70 → 2.22 ms. The GPU number describes one pass. Overall frame pacing
+did not improve in this pair. The two native racer receipts were byte-identical,
+including the sampled rider decisions and states. Whole-course performance and 60 FPS remain
+open under PERF-08.

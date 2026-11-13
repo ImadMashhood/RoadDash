@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Softer daylight grade and Hills profiling (ADR187)
+
+- Softened the optional daylight curve and reused exact clear AI collision probes within each rider’s planning pass.
+
 ## 2026-11-13 — Scenic skybox horizons (ADR186)
 
 - Added distant skyline and ridge layers and denser Hills meadow and woodland.
