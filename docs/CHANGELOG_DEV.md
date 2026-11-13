@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Normal rivals and recorded race audio (ADR195)
+
+- Added saved offline Normal and Hard presets and replaced synthesized race effects with sourced samples. Crashes and distinct rider and bike runovers play from the contact point.
+
 ## 2026-11-13 — Western main street and AI lean (ADR194)
 
 - Added a left-right bend after the Hills town merge and bounded rival lean at low speed and during reversals.

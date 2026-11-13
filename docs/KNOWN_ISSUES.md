@@ -1,9 +1,12 @@
 # Known issues and remaining acceptance
 
+- AI-NORMAL-01 / AUDIO-IMPACT-01: Full-course human comeback and headphone
+  acceptance of the new recorded impact mix remain open.
+
 - AUDIO-009 / ADR180: network rider load is estimated from replicated speed.
   Headphone balance and multiplayer audio mix need a listening pass.
 
-- AUDIO-008 / ADR179: the 689 cc player voice uses simulated dyno captures.
+- AUDIO-008 / ADR179: the optional 689 cc twin voice uses simulated dyno captures.
   Closed throttle above 7,500 RPM uses the top coast sample. Full-course mix
   and loop audibility still need listening review.
 

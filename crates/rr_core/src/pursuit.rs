@@ -5,6 +5,24 @@ use serde::{Deserialize, Serialize};
 /// dropping drive force earlier than the lookahead planner requested.
 pub const RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2: f32 = 14.0;
 pub const RACE_CURRENT_LATERAL_ACCEL_MPS2: f32 = 16.0;
+/// Offline pace presets. Hard retains the shipped control behavior.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum RivalDifficulty {
+    Normal,
+    #[default]
+    Hard,
+}
+
+impl RivalDifficulty {
+    pub fn adjust_pace(self, pace: f32) -> f32 {
+        match self {
+            Self::Normal => pace * 0.88,
+            Self::Hard => pace,
+        }
+    }
+}
+
 /// Rival differences stay inside the selected unboosted bike class. Race place
 /// never enters this calculation: nearby combat uses ordinary engine drive.
 pub fn rival_race_pace(profile: Profile, character_pace: f32, player_top_mps: f32) -> f32 {

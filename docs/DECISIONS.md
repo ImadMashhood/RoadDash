@@ -4912,3 +4912,15 @@ Add a shared left-right bend to the flat Hills main street after the merge.
 Scale rival visual bank by speed and bound its rate in both adapters.
 Keep authored checkpoints and the player's steering response.
 [Implementation and evidence](testing/western-bends/REPORT.md).
+
+## ADR195 — Offline rival difficulty and recorded race audio (2026-11-13)
+
+Default offline races to Normal with a 12% lower rival pace budget. Retain
+the previous pace as Hard and keep it for online sessions. Capture the saved
+choice at start and retry. Recovery physics and the player bike stay the same.
+
+Use CC0 sound sources for impact, race cues and ambience. Default to the
+existing recorded street engine and retain the prior twin for comparison.
+Emit crash and runover sounds from confirmed world-space contacts. Preserve
+online event IDs and use a compatible fallback for older receivers.
+[Implementation and evidence](testing/normal-impact-audio/REPORT.md).

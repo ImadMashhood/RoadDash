@@ -131,6 +131,8 @@ Preferences save under `$XDG_CONFIG_HOME/roaddash/settings.json` (fallback
 `~/.config/roaddash/settings.json`) or `%APPDATA%/roaddash/settings.json` on Windows.
 Override with `ROADDASH_SETTINGS`; unknown/corrupt files are preserved read-only.
 Keyboard JSON through `ROADDASH_BINDINGS` still overrides the loaded keyboard map.
+Offline rivals default to Normal. Open F2 → Rider Gear → Rival difficulty to
+select Hard for the next race or retry.
 
 Open **Voice Settings** in the online lobby or race menu. Nearby riders can
 hear each other during online countdowns and races. Voice activation is the
@@ -172,7 +174,7 @@ full native trajectory/caller parity remains CRASHREF-004.
 - Equal-speed motorcycle contact and gentle side taps transfer momentum; fast rear/side impacts cause measured knockoffs. NPC hits can produce separate human or quadruped ragdolls.
 - Crash entry uses measured approach velocities and explicit vehicle/civilian speed-loss rules, without scripted upward launch or spawn spin. The separated rider and wreck fall independently. Mounted yaw follows steering input; contacts can translate the bike without steering it.
 - The recovery camera follows the ragdoll and then the running rider. A collision-aware character controller handles the run back and remount at the bike’s actual location.
-- Synthesized engine RPM, wind, nitro, braking, impact, landing, punch, footstep, countdown, and finish audio. M mutes the mixer.
+- Recorded engine, ambience, impacts and race cues. M mutes the mixer. [Source credits](docs/third_party/IMPACT_RECORDINGS.md).
 - Full-footprint scenery checks keep props clear; collision rays verify terrain does not cover banked road lanes.
 - Garage/start menu, countdown, pause/restart, leaderboard, speedometer, live course map, and results.
 - Persistent race count, wins, credits, and personal-best time.
@@ -196,7 +198,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**246 verified tasks complete; 359 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**246 verified tasks complete; 361 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -215,9 +217,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 246 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 74 open |
 | [00](#part-00) | Completed and verified foundations | 246 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 74 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
@@ -231,7 +233,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 12 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 30 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 31 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -498,7 +500,7 @@ Everything checked off lives here, grouped by the original system. These are ver
 <details>
 <summary>Audio acquisition, event inventory, and mix acceptance — 1 verified task</summary>
 
-- [x] **AUDIO-014** Exclude proprietary original Road Rash music, voices, and sound files from the current build; current effects are synthesized in [sound](src/sound.rs).
+- [x] **AUDIO-014** Exclude proprietary original Road Rash music, voices, and sound files from the current build; replacement sources are credited in the [recording ledger](docs/third_party/IMPACT_RECORDINGS.md).
 
 </details>
 
@@ -819,6 +821,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 <!-- DEVELOPMENT_PASS_01 -->
 <details>
 <summary>Reviewed development pass — 29 open requirements retained (expand)</summary>
+
+- [ ] **AI-NORMAL-01** Validate the Normal comeback window and the preserved Hard preset. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Normal and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](docs/testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AI-11** Review full-race role-free rider balance with human playtests. Reason: the new nearby-strike and incident fight-or-flee policy supersedes permanent racer/killer roles but does not yet establish fair aggression; part: 01; dependencies: RFU-AI-09/10/11 and historical AI-10; acceptance: completed races on both branches with visible free-line overtaking, readable nearby threats, practical escapes/recovery, no unavoidable spawn pileup and user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
@@ -1421,6 +1425,7 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 - [ ] **AUDIO-009** Put the listener at the chase camera and emitters on bikes, police, cattle, and landmarks; test stereo/rolloff, opponent minimum volume, and distinct distance/gear cues. Partial: ADR180 adds spatial bike voices with Doppler, distance falloff and wreck idle.
 - [ ] **AUDIO-010** Blend town/farm/cliff/coast ambience; visible livestock/tractors must match their sounds; keep music on a separate licensed, duckable, streamer-safe bus.
 - [ ] **AUDIO-011** Evaluate Kira only if needed; if chosen, avoid running conflicting default Bevy audio and Kira backends.
+- [ ] **AUDIO-IMPACT-01** Verify the recorded impact mix and contact placement. Reason: the synthesized impacts lack weight and audible location; part: 15; dependencies: AUDIO-004, AUDIO-005 and AUDIO-009; acceptance: licensed distinct impact and runover sounds, one-shot at the confirmed contact, stereo readability next to and behind the player and usable loudness in a pack; verification: contact and wire regressions, native smoke and headphone playtest in the [audio report](docs/testing/normal-impact-audio/REPORT.md).
 - [ ] **AUDIO-012** Validate no loop clicks/gaps/clipping from idle to redline, distinguishable location ambiences, and no doubled combat/crash sound after prediction correction.
 - [ ] **AUDIO-013** Persist master/engine/SFX/ambience/music sliders and input/audio options; caption critical non-speech cues and validate source release permissions. Partial: ADR104 persists master volume/mute with absolute live loop/one-shot gain and existing bindings/comfort; independent buses, captions and full audible/hardware acceptance remain open.
 
@@ -1487,7 +1492,7 @@ Source layout:
 - `src/vehicle.rs`, `content/handling.json`: dynamic chassis, suspension, drivetrain, grip, presets and telemetry.
 - `src/combat.rs`, `src/npc.rs`: direct-hit chains, actor knockdowns and bounded lifecycle.
 - `src/recovery.rs`: articulated crashes, physical impacts, on-foot recovery, and remounting.
-- `src/sound.rs`: in-memory PCM synthesis, sound cues, engine loops, and mute control.
+- `src/sound.rs`: recorded effects and ambience, positional cues, engine voices and mute control.
 - `src/ui.rs`: garage, HUD, minimap, and results.
 - `src/verification.rs`: scripted render smoke check.
 

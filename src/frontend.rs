@@ -1174,6 +1174,14 @@ mod tests {
         }
         assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
         assert!(!app.world().resource::<Controls>().start);
+        assert_eq!(
+            app.world().resource::<Race>().rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Normal
+        );
+        app.world_mut()
+            .resource_mut::<crate::settings::Preferences>()
+            .file
+            .rival_difficulty = rr_core::pursuit::RivalDifficulty::Hard;
         app.world_mut().resource_mut::<Race>().phase = Phase::Finished;
         app.update();
         assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Results);
@@ -1182,6 +1190,10 @@ mod tests {
             app.update();
         }
         assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
+        assert_eq!(
+            app.world().resource::<Race>().rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Hard
+        );
     }
     #[test]
     fn results_restart_edge_retries_finish_and_bust_once_through_starting() {

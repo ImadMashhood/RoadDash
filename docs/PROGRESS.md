@@ -1,5 +1,9 @@
 # Development progress
 
+2026-11-13 Normal rivals and recorded race audio (ADR195): AI-NORMAL-01 and
+AUDIO-IMPACT-01 added open. 246 verified / 361 open. See the
+[implementation and evidence](testing/normal-impact-audio/REPORT.md).
+
 2026-11-12 whole-body lean follow-up (ADR173 / FEEL-LEAN-01): user approves
 the prior presentation and requests shoulder/arm participation. Hierarchical
 pelvis bank, tuck yaw and down/forward settle implemented with held-contact
@@ -788,7 +792,7 @@ pending terrain and crossing verification gates.
 
 - [x] **P16-002** Build and run a local Linux release; smoke-check garage -> riding -> crash -> get up -> run -> remount -> results with active audio. Evidence: [verification script](../src/verification.rs).
 
-- [x] **AUDIO-014** Exclude proprietary original Road Rash music, voices, and sound files from the current build; current effects are synthesized in [sound](../src/sound.rs).
+- [x] **AUDIO-014** Exclude proprietary original Road Rash music, voices, and sound files from the current build; replacement sources are credited in the [recording ledger](third_party/IMPACT_RECORDINGS.md).
 
 - [x] **CITY-01** Add side-road grids and denser urban blocks; compare road/sidewalk/frontage proportions against the verified original disc. Evidence: [city/combat verification](testing/CITY_COMBAT.md), 657 solid buildings, native city captures and 9.56 ms p95 survey.
 
@@ -1145,6 +1149,8 @@ pending terrain and crossing verification gates.
 - [ ] **CAST-AI-01** Use the approved portrait cast for race names, description-based equipment and distinct driving/combat traits. Reason: dossiers and race opponents were disconnected; part: 01; dependencies: AI-12, WEAPON-MODELS-01; acceptance: stable save IDs, fourteen distinct active opponents with matching dossier names/loadouts, bounded lane decisions, safe reverse recovery and obstacle-aware mounted/on-foot escapes; verification: cast/core tests, real dynamic reverse fixtures and native races; human balance remains open.
 
 - [ ] **FOOT-SPAWN-01** Validate collision-clear get-up origins without moving legitimate rooftop/car-supported riders. Reason: production GettingUp uses a centre support ray without building-interior/capsule-volume validation; an invalid native setup demonstrated a fully enclosed start, but ordinary-crash incidence is unverified; part: 01; dependencies: shared recovery, world navigation and FOOT-004; acceptance: reproduce actual invalid production placement, retain safe original origins, bound any nearby stand-up search, preserve roof/car support and solid walls, and explicitly handle deep invalid states without silent wreck teleport or indefinite recovery; verification: real-world closed-envelope/near-wall/roof/car and crash/run/remount tests. Deferred inspection finding from [road/walkability evidence](testing/roads-walkability/README.md); no placement/rescue policy changed in this pass.
+
+- [ ] **AI-NORMAL-01** Validate the Normal comeback window and the preserved Hard preset. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Normal and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AI-11** Review full-race role-free rider balance with human playtests. Reason: the new nearby-strike and incident fight-or-flee policy supersedes permanent racer/killer roles but does not yet establish fair aggression; part: 01; dependencies: RFU-AI-09/10/11 and historical AI-10; acceptance: completed races on both branches with visible free-line overtaking, readable nearby threats, practical escapes/recovery, no unavoidable spawn pileup and user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
@@ -1751,6 +1757,8 @@ pending terrain and crossing verification gates.
 - [ ] **AUDIO-010** Blend town/farm/cliff/coast ambience; visible livestock/tractors must match their sounds; keep music on a separate licensed, duckable, streamer-safe bus.
 
 - [ ] **AUDIO-011** Evaluate Kira only if needed; if chosen, avoid running conflicting default Bevy audio and Kira backends.
+
+- [ ] **AUDIO-IMPACT-01** Verify the recorded impact mix and contact placement. Reason: the synthesized impacts lack weight and audible location; part: 15; dependencies: AUDIO-004, AUDIO-005 and AUDIO-009; acceptance: licensed distinct impact and runover sounds, one-shot at the confirmed contact, stereo readability next to and behind the player and usable loudness in a pack; verification: contact and wire regressions, native smoke and headphone playtest in the [audio report](testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AUDIO-012** Validate no loop clicks/gaps/clipping from idle to redline, distinguishable location ambiences, and no doubled combat/crash sound after prediction correction.
 

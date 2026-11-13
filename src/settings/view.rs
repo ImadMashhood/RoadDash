@@ -255,6 +255,7 @@ fn caption(row: usize) -> &'static str {
         44 => "Standings",
         45 => "Base suit",
         46 => "Helmet model",
+        47 => "Rival difficulty",
         _ => "",
     }
 }
@@ -330,6 +331,11 @@ fn value(
         44 => on(prefs.file.show_standings).into(),
         45 => prefs.file.gear.suit.name().into(),
         46 => prefs.file.gear.helmet.name().into(),
+        47 => match prefs.file.rival_difficulty {
+            rr_core::pursuit::RivalDifficulty::Normal => "Normal",
+            rr_core::pursuit::RivalDifficulty::Hard => "Hard",
+        }
+        .into(),
         41 => target()
             .and_then(|p| online.map(|o| on(o.voice_muted(p.slot))))
             .unwrap_or("—")
@@ -469,7 +475,9 @@ pub fn display(
             Section::Audio => "Adjust the overall mix or individual game sounds.",
             Section::Display => "Window size applies in windowed mode. VSync reduces tearing.",
             Section::Accessibility => "Choose speed units, HUD elements and menu motion.",
-            Section::Gear => "Base suit sets your offline grid slot at the next start. Choose a helmet separately.",
+            Section::Gear => {
+                "Base suit and rival difficulty apply at your next offline race start."
+            }
             Section::Voice => {
                 "Nearby racers can hear your microphone when enabled. Uses system devices."
             }

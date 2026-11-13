@@ -571,6 +571,75 @@ fn straight_rider(app: &mut App, id: usize, station: f32, lane: f32) -> Entity {
 }
 
 #[test]
+fn normal_pace_recovers_more_ground_after_one_early_crash() {
+    use rr_core::pursuit::RivalDifficulty::{Hard, Normal};
+    let mut gaps = Vec::new();
+    for difficulty in [Hard, Normal] {
+        let mut app = straight_simulation();
+        app.world_mut().resource_mut::<Race>().rival_difficulty = difficulty;
+        let player = straight_rider(&mut app, 0, 200., -4.);
+        let rival = straight_rider(&mut app, 3, 220., 4.);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        let gap = |app: &App| {
+            app.world().get::<Rider>(rival).unwrap().progress
+                - app.world().get::<Rider>(player).unwrap().progress
+        };
+        for _ in 0..600 {
+            app.update();
+        }
+        let before = gap(&app);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .release(KeyCode::KeyW);
+        app.world_mut().get_mut::<Rider>(player).unwrap().health = 0.;
+        let mut saw_crash = false;
+        let mut remount = None;
+        for tick in 0..2400 {
+            app.update();
+            let stage = app.world().get::<Recovery>(player).unwrap().stage;
+            saw_crash |= stage == RecoveryStage::Falling;
+            if saw_crash && stage == RecoveryStage::Riding {
+                remount = Some((tick, gap(&app)));
+                break;
+            }
+        }
+        let recovery = app.world().get::<Recovery>(player).unwrap();
+        assert!(
+            remount.is_some(),
+            "{difficulty:?} failed to remount: saw crash {saw_crash}, stage {:?}",
+            recovery.stage,
+        );
+        let (tick, on_remount) = remount.unwrap();
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..1800 {
+            app.update();
+        }
+        let after = gap(&app);
+        for _ in 0..1800 {
+            app.update();
+        }
+        let later = gap(&app);
+        let player_state = app.world().get::<Rider>(player).unwrap();
+        let rival_state = app.world().get::<Rider>(rival).unwrap();
+        println!(
+            "NORMAL-PACE {difficulty:?}: before {before:.1}m, remount {:.2}s gap {on_remount:.1}m, +30s {after:.1}m, +60s {later:.1}m; player at {:.1}m lane {:.1}m speed {:.1}m/s, rival speed {:.1}m/s",
+            tick as f32 / 60.,
+            player_state.progress,
+            player_state.lane,
+            player_state.speed,
+            rival_state.speed,
+        );
+        gaps.push((on_remount, after, later));
+    }
+    assert!(gaps[1].0 - gaps[1].1 > gaps[0].0 - gaps[0].1 + 60.);
+    assert!(gaps[1].2 < gaps[1].1);
+}
+
+#[test]
 fn physical_rival_reaches_competitive_unboosted_pace_at_all_render_rates() {
     let mut rival_speeds = vec![];
     for fps in [30, 60, 120] {

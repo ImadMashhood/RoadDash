@@ -1,4 +1,4 @@
-//! Original synthesized PCM sounds, embedded in memory (no asset downloads).
+//! Recorded gameplay audio, loops and world-space cue playback.
 mod bike_audio;
 mod engine;
 mod engine_signal;
@@ -9,7 +9,7 @@ use crate::{
     recovery::{Recovery, RecoveryStage},
 };
 use bevy::{audio::Volume, prelude::*};
-use std::{f32::consts::TAU, sync::Arc};
+use std::sync::Arc;
 
 #[derive(Clone, Copy, serde::Serialize, serde::Deserialize)]
 pub enum Cue {
@@ -27,6 +27,8 @@ pub enum Cue {
     AirBrake,
     GravelStep,
     Steam,
+    Runover,
+    RunoverBike,
 }
 #[derive(Message, Clone, Copy)]
 pub struct AudioCue {
@@ -52,6 +54,8 @@ pub struct Sounds {
     finish: Handle<AudioSource>,
     whiff: Handle<AudioSource>,
     bike_strike: Handle<AudioSource>,
+    runover: Handle<AudioSource>,
+    runover_bike: Handle<AudioSource>,
     pass_by: Handle<AudioSource>,
     air_brake: Handle<AudioSource>,
     gravel_step: [Handle<AudioSource>; 2],
@@ -72,88 +76,6 @@ pub enum LoopSound {
     Brake,
     LooseSurface,
     Ambience(usize),
-}
-
-/// Deterministic 16-bit mono WAV. The first/last sample of loops is zero.
-fn wave(duration: f32, kind: u8) -> AudioSource {
-    const RATE: u32 = 22050;
-    let count = (duration * RATE as f32) as u32;
-    let mut bytes = Vec::with_capacity(44 + count as usize * 2);
-    bytes.extend_from_slice(b"RIFF");
-    bytes.extend_from_slice(&(36 + count * 2).to_le_bytes());
-    bytes.extend_from_slice(b"WAVEfmt ");
-    bytes.extend_from_slice(&16u32.to_le_bytes());
-    bytes.extend_from_slice(&1u16.to_le_bytes());
-    bytes.extend_from_slice(&1u16.to_le_bytes());
-    bytes.extend_from_slice(&RATE.to_le_bytes());
-    bytes.extend_from_slice(&(RATE * 2).to_le_bytes());
-    bytes.extend_from_slice(&2u16.to_le_bytes());
-    bytes.extend_from_slice(&16u16.to_le_bytes());
-    bytes.extend_from_slice(b"data");
-    bytes.extend_from_slice(&(count * 2).to_le_bytes());
-    let mut state = 1234567u32;
-    let mut filtered = 0.0;
-    for i in 0..count {
-        let t = i as f32 / RATE as f32;
-        state = state.wrapping_mul(1664525).wrapping_add(1013904223);
-        let noise = (state >> 8) as f32 / 8388608.0 - 1.0;
-        filtered = filtered * 0.92 + noise * 0.08;
-        let decay = (-t * if kind == 4 { 5.0 } else { 15.0 }).exp();
-        let value = match kind {
-            15 => filtered * (0.38 + 0.21 * (TAU * t * 0.5).cos()),
-            17 => {
-                filtered * 0.27
-                    + (TAU * (1560. * t + 1.2 * (TAU * 3. * t).sin())).sin()
-                        * (0.013 * (TAU * t * 0.75).sin().max(0.).powi(7))
-            }
-            18 => {
-                (filtered * 0.68 + (TAU * 72. * t).sin() * 0.024)
-                    * (0.62 + 0.19 * (TAU * t * 0.5).sin())
-            }
-            16 => (noise * 0.3 + filtered * 0.6) * (-4. * t).exp(),
-            14 => (noise * 0.27 + (TAU * 431. * t).sin() * (TAU * 251. * t).sin() * 0.38) * decay,
-            13 => (TAU * (600.0 * t + 25.0 * (TAU * 3.0 * t).sin())).sin() * 0.28,
-            12 => (noise * 0.65 + filtered * 0.6) * (-t * 18.).exp(),
-            0 => {
-                // Engine firing pulses and harmonics at a loop-safe base RPM.
-                let phase = TAU * 60.0 * t;
-                ((phase.sin() + 0.45 * (phase * 2.0).sin() + 0.22 * (phase * 4.0).sin()) * 0.35
-                    + noise * 0.035)
-                    * 0.75
-            }
-            1 => filtered * 1.5,
-            2 => noise * 0.16 + (TAU * 430.0 * t).sin() * 0.12,
-            3 => {
-                ((TAU * (730.0 * t + 35.0 * (TAU * 9.0 * t).sin())).sin() * 0.2 + noise * 0.12)
-                    * 0.6
-            }
-            4 => (noise * 0.7 + (TAU * 67.0 * t).sin() * 0.45) * decay,
-            5 => (noise * 0.3 + (TAU * 110.0 * t).sin() * 0.6) * decay,
-            11 => {
-                ((TAU * 340.0 * t).sin() + (TAU * 420.0 * t).sin())
-                    * 0.25
-                    * (t * 25.0).min(1.0)
-                    * ((0.5 - t) * 20.0).clamp(0.0, 1.0)
-            }
-            10 => {
-                (noise * 0.32 + (TAU * (82.0 * t - 35.0 * t * t)).sin() * 0.65) * (-t * 18.0).exp()
-            }
-            6 => (filtered * 2.0 + (TAU * 75.0 * t).sin() * 0.3) * decay,
-            7 => filtered * 3.0 * decay,
-            8 => (TAU * 880.0 * t).sin() * 0.35,
-            _ => {
-                let note = [523.25, 659.25, 783.99, 1046.5][((t / 0.17) as usize).min(3)];
-                (TAU * note * t).sin() * 0.3 * (-t * 1.8).exp()
-            }
-        };
-        let fade = (t * 300.0).min(1.0) * ((duration - t) * 300.0).min(1.0);
-        // Quantize explicitly; WAV data must contain signed 16-bit samples.
-        bytes
-            .extend_from_slice(&(((value * fade).clamp(-1.0, 1.0) * 30000.0) as i16).to_le_bytes());
-    }
-    AudioSource {
-        bytes: Arc::from(bytes),
-    }
 }
 
 fn recording(bytes: &'static [u8]) -> AudioSource {
@@ -203,7 +125,11 @@ pub(crate) fn register_engine(app: &mut App) {
     app.add_audio_source::<engine::EngineSource>();
 }
 
-pub(crate) fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSource>>) {
+pub(crate) fn setup(
+    mut commands: Commands,
+    mut sources: ResMut<Assets<AudioSource>>,
+    asset_server: Res<AssetServer>,
+) {
     let rev = include_bytes!("../assets/audio/demo/rev.wav");
     if std::env::var_os("ROADDASH_ENGINE_LEGACY").is_some() {
         let idle = include_bytes!("../assets/audio/demo/idle.wav");
@@ -224,8 +150,11 @@ pub(crate) fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSour
         }
     }
     for (source, marker) in [
-        (wave(1., 1), LoopSound::Wind),
-        (wave(1., 2), LoopSound::Nitro),
+        (
+            loop_recording(include_bytes!("../assets/audio/recorded/wind.wav"), 0., 7.),
+            LoopSound::Wind,
+        ),
+        (loop_recording(rev, 1.35, 0.65), LoopSound::Nitro),
         (
             recording(include_bytes!("../assets/audio/demo/skid.wav")),
             LoopSound::Brake,
@@ -234,9 +163,22 @@ pub(crate) fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSour
             loop_recording(include_bytes!("../assets/audio/demo/gravel.wav"), 0.2, 1.8),
             LoopSound::LooseSurface,
         ),
-        (wave(4., 17), LoopSound::Ambience(0)),
-        (wave(4., 15), LoopSound::Ambience(1)),
-        (wave(4., 18), LoopSound::Ambience(2)),
+        (
+            loop_recording(include_bytes!("../assets/audio/recorded/city.wav"), 0., 12.),
+            LoopSound::Ambience(0),
+        ),
+        (
+            loop_recording(include_bytes!("../assets/audio/recorded/farm.wav"), 0., 12.),
+            LoopSound::Ambience(1),
+        ),
+        (
+            loop_recording(
+                include_bytes!("../assets/audio/recorded/desert.wav"),
+                0.,
+                12.,
+            ),
+            LoopSound::Ambience(2),
+        ),
     ] {
         commands.spawn((
             AudioPlayer::new(sources.add(source)),
@@ -245,22 +187,20 @@ pub(crate) fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSour
         ));
     }
     commands.insert_resource(Sounds {
-        siren: sources.add(wave(0.8, 13)),
-        crash: sources.add(wave(0.7, 4)),
-        breaking: sources.add(wave(0.3, 12)),
-        punch: sources.add(recording(include_bytes!("../assets/audio/demo/punch.wav"))),
-        kick: sources.add(wave(0.24, 10)),
-        honk: sources.add(wave(0.5, 11)),
-        land: sources.add(wave(0.3, 6)),
-        footstep: sources.add(wave(0.15, 7)),
-        beep: sources.add(wave(0.13, 8)),
-        finish: sources.add(wave(0.85, 9)),
-        whiff: sources.add(loop_recording(
-            include_bytes!("../assets/audio/demo/fabric.wav"),
-            0.02,
-            0.20,
-        )),
-        bike_strike: sources.add(wave(0.22, 14)),
+        siren: asset_server.load("audio/recorded/siren.wav"),
+        crash: asset_server.load("audio/impacts/crash.wav"),
+        breaking: asset_server.load("audio/impacts/weapon.wav"),
+        punch: asset_server.load("audio/impacts/punch.wav"),
+        kick: asset_server.load("audio/impacts/kick.wav"),
+        honk: asset_server.load("audio/recorded/horn.wav"),
+        land: asset_server.load("audio/impacts/land.wav"),
+        footstep: asset_server.load("audio/impacts/footstep.wav"),
+        beep: asset_server.load("audio/recorded/countdown.wav"),
+        finish: asset_server.load("audio/recorded/finish.wav"),
+        whiff: asset_server.load("audio/impacts/whiff.wav"),
+        bike_strike: asset_server.load("audio/impacts/weapon.wav"),
+        runover: asset_server.load("audio/impacts/runover.wav"),
+        runover_bike: asset_server.load("audio/impacts/runover_bike.wav"),
         pass_by: sources.add(recording(include_bytes!("../assets/audio/demo/rev.wav"))),
         air_brake: sources.add(recording(include_bytes!(
             "../assets/audio/demo/air_brake.wav"
@@ -272,7 +212,7 @@ pub(crate) fn setup(mut commands: Commands, mut sources: ResMut<Assets<AudioSour
                 0.24,
             ))
         }),
-        steam: sources.add(wave(0.72, 16)),
+        steam: asset_server.load("audio/recorded/steam.wav"),
     });
 }
 
@@ -293,6 +233,7 @@ pub(crate) fn update(
     mut last_phase: Local<Option<Phase>>,
     online: Option<Res<crate::online::NetState>>,
     track: Res<crate::track::Track>,
+    listener: Query<&Transform, With<bevy::audio::SpatialListener>>,
 ) {
     let Some((player, recovery, player_transform)) = riders
         .iter()
@@ -403,9 +344,14 @@ pub(crate) fn update(
             sink.play();
         }
     }
+    let listener_position = listener
+        .single()
+        .map_or(player_transform.translation, |transform| {
+            transform.translation
+        });
     for cue in cues.read() {
         // Keep distant AI impacts quiet instead of filling the mix with eight riders.
-        let distance = cue.position.distance(player_transform.translation);
+        let distance = cue.position.distance(listener_position);
         let gain = (1.0 / (1.0 + distance * 0.09)).clamp(0.0, 1.0);
         let handle = match cue.kind {
             Cue::Siren => &sounds.siren,
@@ -422,16 +368,25 @@ pub(crate) fn update(
             Cue::AirBrake => &sounds.air_brake,
             Cue::GravelStep => &sounds.gravel_step[(race.elapsed * 9.) as usize % 2],
             Cue::Steam => &sounds.steam,
+            Cue::Runover => &sounds.runover,
+            Cue::RunoverBike => &sounds.runover_bike,
         };
+        let (base_gain, scale) = match cue.kind {
+            Cue::Crash | Cue::RunoverBike => (0.95, 0.12),
+            Cue::Kick | Cue::Runover => (0.75, 0.12),
+            Cue::Punch | Cue::BikeStrike | Cue::Break => (0.65, 0.12),
+            _ => (0.55, 0.25),
+        };
+        let gain = gain * base_gain;
         if !muted.0 && race.phase == Phase::Racing && distance < 120. {
             commands.spawn((
                 AudioPlayer::new(handle.clone()),
                 PlaybackSettings::DESPAWN
-                    .with_volume(Volume::Linear(mix_gain(0.55 * gain, effects, muted.0)))
+                    .with_volume(Volume::Linear(mix_gain(gain, effects, muted.0)))
                     .with_spatial(true)
-                    .with_spatial_scale(bevy::audio::SpatialScale(Vec3::splat(0.25))),
+                    .with_spatial_scale(bevy::audio::SpatialScale(Vec3::splat(scale))),
                 Transform::from_translation(cue.position),
-                CueGain(0.55 * gain),
+                CueGain(gain),
             ));
         }
     }
@@ -532,17 +487,14 @@ mod tests {
         }
     }
     #[test]
-    fn generated_audio_is_valid_pcm_and_not_silent() {
-        for kind in 0..=13 {
-            let source = wave(0.25, kind);
-            assert_eq!(&source.bytes[0..4], b"RIFF");
-            assert_eq!(&source.bytes[8..12], b"WAVE");
-            assert_eq!(&source.bytes[36..40], b"data");
-            assert_eq!(
-                u32::from_le_bytes(source.bytes[40..44].try_into().unwrap()) as usize,
-                source.bytes.len() - 44
-            );
-            assert!(source.bytes[44..].iter().any(|v| *v != 0));
-        }
+    fn recorded_wind_loop_decodes_with_audio() {
+        use bevy::audio::Decodable;
+        let source = loop_recording(include_bytes!("../assets/audio/recorded/wind.wav"), 0., 7.);
+        assert!(
+            source
+                .decoder()
+                .take(24_000)
+                .any(|sample| sample.abs() > 0.01)
+        );
     }
 }

@@ -14,6 +14,10 @@ use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
 };
+fn normal_rivals() -> rr_core::pursuit::RivalDifficulty {
+    rr_core::pursuit::RivalDifficulty::Normal
+}
+
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PreferencesFile {
@@ -23,6 +27,8 @@ pub struct PreferencesFile {
     pub mix: AudioMix,
     #[serde(default)]
     pub gear: crate::models::gear::Gear,
+    #[serde(default = "normal_rivals")]
+    pub rival_difficulty: rr_core::pursuit::RivalDifficulty,
     #[serde(default)]
     pub window_size: WindowSize,
     #[serde(default)]
@@ -95,6 +101,7 @@ impl Default for PreferencesFile {
             voice: default(),
             mix: default(),
             gear: default(),
+            rival_difficulty: normal_rivals(),
             window_size: default(),
             imperial_speed: false,
             static_menu: false,
@@ -326,7 +333,7 @@ impl Section {
             Self::Display => &[23, 24, 31, 42],
             Self::Accessibility => &[32, 33, 43, 44],
             Self::Voice => &[34, 35, 36, 37, 38, 39, 40, 41],
-            Self::Gear => &[45, 46],
+            Self::Gear => &[45, 46, 47],
         }
     }
 }
@@ -362,7 +369,7 @@ impl SettingsPanel {
         self.selected = Section::Voice.rows()[0];
     }
 }
-pub const ROWS: usize = 47;
+pub const ROWS: usize = 48;
 pub const ACTIONS: [&str; 12] = [
     "throttle",
     "brake",
@@ -656,6 +663,13 @@ pub fn panel_input(
                 prefs.file.gear.helmet =
                     helmets[cycle(prefs.file.gear.helmet as usize, helmets.len(), d)];
             }
+            47 => {
+                use rr_core::pursuit::RivalDifficulty;
+                prefs.file.rival_difficulty = match prefs.file.rival_difficulty {
+                    RivalDifficulty::Normal => RivalDifficulty::Hard,
+                    RivalDifficulty::Hard => RivalDifficulty::Normal,
+                };
+            }
             9 => {
                 prefs.status = match prefs.save() {
                     Ok(()) => "Settings saved".into(),
@@ -805,6 +819,7 @@ mod tests {
         prefs.file.audio_muted = true;
         prefs.file.fullscreen = true;
         prefs.file.vsync = false;
+        prefs.file.rival_difficulty = rr_core::pursuit::RivalDifficulty::Hard;
         prefs.file.comfort.fov_degrees = 88.0;
         prefs.file.comfort.anti_nausea = true;
         prefs
@@ -824,6 +839,7 @@ mod tests {
         );
         assert_eq!(loaded.file.comfort, prefs.file.comfort);
         assert_eq!(loaded.file.gear, prefs.file.gear);
+        assert_eq!(loaded.file.rival_difficulty, prefs.file.rival_difficulty);
         assert_eq!(loaded.file.controller["nitro"], "RightTrigger");
         let original = "{\"schema_version\":99}";
         std::fs::write(&path, original).unwrap();
@@ -874,6 +890,7 @@ mod menu_tests {
             "imperial_speed",
             "static_menu",
             "gear",
+            "rival_difficulty",
             "shadows",
             "show_minimap",
             "show_standings",
@@ -887,6 +904,10 @@ mod menu_tests {
         assert_eq!(p.voice.mode, crate::online::voice::Mode::Activation);
         assert!(p.shadows && !p.static_menu && !p.imperial_speed);
         assert_eq!(p.gear, default());
+        assert_eq!(
+            p.rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Normal
+        );
         assert_eq!((p.mix.engine, p.mix.ambience, p.mix.effects), (1., 1., 1.));
         let mut p = p;
         p.master_volume = f32::NAN;
@@ -907,6 +928,11 @@ mod menu_tests {
         click(&mut app, SettingsAction::Tab(Section::Gear));
         click(&mut app, SettingsAction::Adjust(45, 1));
         click(&mut app, SettingsAction::Adjust(46, -1));
+        click(&mut app, SettingsAction::Adjust(47, 1));
+        assert_eq!(
+            app.world().resource::<Preferences>().file.rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Hard,
+        );
         assert_eq!(
             app.world().resource::<Preferences>().file.gear,
             crate::models::gear::Gear {

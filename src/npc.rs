@@ -192,7 +192,7 @@ pub fn knockdowns(
         return;
     }
     let dt = time.delta_secs();
-    let mut requests: Vec<_> = hits.read().map(|h| (h.0, h.1, h.2)).collect();
+    let mut requests: Vec<_> = hits.read().map(|h| (h.0, h.1, h.2, false)).collect();
     for (a, b) in events
         .read()
         .filter_map(|e| match e {
@@ -230,13 +230,14 @@ pub fn knockdowns(
                         target,
                         velocity * rr_core::crash::shared_speed_fraction(source_mass, target_mass),
                         false,
+                        rider.is_none(),
                     ));
                 }
             }
         }
     }
     let mut active = npcs.iter().filter(|(_, n, _, _)| !n.active()).count();
-    for (entity, velocity, direct) in requests {
+    for (entity, velocity, direct, traffic_impact) in requests {
         let Ok((_, mut npc, t, mut visible)) = npcs.get_mut(entity) else {
             continue;
         };
@@ -267,10 +268,16 @@ pub fn knockdowns(
                     appearance,
                 ),
             };
-            audio.write(crate::sound::AudioCue::new(
-                crate::sound::Cue::Crash,
-                t.translation,
-            ));
+            let cue = if direct || npc.kind == NpcKind::Cow {
+                Some(crate::sound::Cue::Land)
+            } else if traffic_impact {
+                Some(crate::sound::Cue::Runover)
+            } else {
+                None
+            };
+            if let Some(cue) = cue {
+                audio.write(crate::sound::AudioCue::new(cue, t.translation));
+            }
             *visible = Visibility::Hidden;
             commands.entity(entity).insert(ColliderDisabled);
             active += 1;

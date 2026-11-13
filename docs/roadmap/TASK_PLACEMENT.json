@@ -301,6 +301,7 @@
         "AI-QUEUE-02",
         "CAST-AI-01",
         "FOOT-SPAWN-01",
+        "AI-NORMAL-01",
         "AI-11",
         "CRASHREF-004",
         "V2-01-005",
@@ -658,6 +659,7 @@
         "AUDIO-009",
         "AUDIO-010",
         "AUDIO-011",
+        "AUDIO-IMPACT-01",
         "AUDIO-012",
         "AUDIO-013"
       ]

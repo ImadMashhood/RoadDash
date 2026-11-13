@@ -20,6 +20,7 @@ pub use rr_core::Phase;
 
 #[derive(Resource)]
 pub struct Race {
+    pub rival_difficulty: rr_core::pursuit::RivalDifficulty,
     pub arrested: bool,
     pub phase: Phase,
     pub countdown: f32,
@@ -35,6 +36,7 @@ pub struct Race {
 impl Default for Race {
     fn default() -> Self {
         Self {
+            rival_difficulty: default(),
             arrested: false,
             phase: Phase::Garage,
             countdown: 3.0,
@@ -648,6 +650,9 @@ pub fn input(
         let mode = race.camera_mode;
         *race = Race::default();
         race.camera_mode = mode;
+        if !online_active {
+            race.rival_difficulty = preferences.file.rival_difficulty;
+        }
         race.phase = Phase::Countdown;
         controls.buffer.clear_edges();
         controls.look = Vec2::ZERO;
@@ -1073,6 +1078,11 @@ pub fn drive(
                 }
             } else {
                 chase_goal.map_or(race_pace, |(_, speed)| speed)
+            };
+            let top = if !is_player && !r.police {
+                race.rival_difficulty.adjust_pace(top)
+            } else {
+                top
             };
             let curve = [0., 0.6, 1.1, 1.6]
                 .into_iter()
@@ -1539,11 +1549,13 @@ pub fn drive(
             if !dynamic {
                 r.speed += surface.rolling_acceleration(r.speed, dt) * dt;
                 if !is_player && !r.police {
-                    r.speed = r.speed.min(rr_core::pursuit::rival_drive_ceiling(
-                        profile,
-                        character.map_or(1., |c| c.pace),
-                        tuning.top_speed_mps,
-                        r.combat_mind.motor_request(tuning.top_speed_mps),
+                    r.speed = r.speed.min(race.rival_difficulty.adjust_pace(
+                        rr_core::pursuit::rival_drive_ceiling(
+                            profile,
+                            character.map_or(1., |c| c.pace),
+                            tuning.top_speed_mps,
+                            r.combat_mind.motor_request(tuning.top_speed_mps),
+                        ),
                     ));
                 }
             }
@@ -1891,7 +1903,6 @@ pub fn drive(
                     &context,
                 );
                 *visibility = Visibility::Hidden;
-                audio.write(AudioCue::new(Cue::Crash, origin));
                 if is_player {
                     race.shake = 1.0;
                     race.message = "WIPED OUT / GETTING BACK UP".into();
@@ -2027,7 +2038,6 @@ pub fn drive(
                 transform.translation = destination;
                 transform.rotation = q;
                 *visibility = Visibility::Hidden;
-                audio.write(AudioCue::new(Cue::Crash, destination));
                 if r.human_controlled() {
                     race.shake = 1.;
                     race.message = "OFF THE BRIDGE / GETTING BACK UP".into();

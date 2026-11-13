@@ -501,10 +501,10 @@ pub(crate) fn melee(
             rider.attack_side = (p - origin).dot(right).signum();
         }
         audio.write(AudioCue::new(
-            if bike_hit {
-                Cue::BikeStrike
-            } else if kicking {
+            if kicking {
                 Cue::Kick
+            } else if bike_hit || weapon.is_some() {
+                Cue::BikeStrike
             } else {
                 Cue::Punch
             },
@@ -606,7 +606,6 @@ pub(crate) fn melee(
                     );
                     *visible = Visibility::Hidden;
                 }
-                audio.write(AudioCue::new(Cue::Crash, t.translation));
                 if player {
                     commands.queue(move |world: &mut World| {
                         if let Some(mut r) = world.get_mut::<Rider>(attacker) {
@@ -668,8 +667,21 @@ mod tests {
                 } else {
                     rr_core::AttackSide::Right
                 };
+                let mut sounds = app
+                    .world()
+                    .resource::<Messages<AudioCue>>()
+                    .get_cursor_current();
                 app.world_mut().write_message(AttackAttempt(owner, action));
                 app.world_mut().run_system_once(melee).unwrap();
+                let mut contacts = sounds.read(app.world().resource::<Messages<AudioCue>>());
+                let contact = contacts.next().unwrap();
+                assert!(matches!(
+                    (kicking, contact.kind),
+                    (false, Cue::Punch) | (true, Cue::Kick)
+                ));
+                let target_position = app.world().get::<Transform>(target).unwrap().translation;
+                assert!(contact.position.distance(target_position + Vec3::Y * 1.45) < 1e-5);
+                assert!(contacts.next().is_none());
                 let hit = app
                     .world()
                     .get::<Rider>(target)
