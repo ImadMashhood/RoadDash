@@ -4889,3 +4889,11 @@ Build the eyeport into both replacement shells and fit each visor to its
 opening. Give Apex a compact full-face chin bar and Rally an extended chin
 guard with a swept peak. Render every named suit on the shared game mesh
 for review. [Native renders](testing/rider-gear/REPORT.md#helmet-redesign-and-full-suit-sheet).
+
+## ADR192 — Full rider colorways and faceted helmets
+
+Give the main leather and accent panels independent palette tints based
+on the local Windows City reference sheet. Lift the existing rider albedo
+for the leather region so the secondary colors read while retaining seams.
+Use flat normals and fewer shell segments for Apex and Rally.
+[Updated previews](testing/rider-gear/REPORT.md#two-color-leather-and-faceted-helmets).

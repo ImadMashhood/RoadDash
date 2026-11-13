@@ -77,3 +77,18 @@ visible in the resulting image. The Rally Hills recovery fixture passed both
 remounts and reached results with zero exceptional rescues. Locked builds,
 strict Clippy, formatting, roadmap and asset checks passed. Workspace
 tests retained the two known Rapier failures.
+
+## Two-color leather and faceted helmets
+
+The updated [suit sheet](suit-colorways.png) shows both color regions. The
+secondary leather follows the locally inspected Windows City remap sheet,
+including red and white on Player, gold and black on Cydney Bass, and green
+and blue on Hog. The RGB values are hand-matched approximations. The leather
+albedo is derived from RoadDash's own atlas with its original UVs. Regenerate
+it with `python3 tools/build_rider_leather.py`. The retail reference stays
+outside the repository.
+
+The updated [helmet sheet](helmet-redesign.png) shows the 20-segment,
+flat-shaded Apex and Rally shells and visors. The eyeports, chin guards and
+Rally peak are retained in the lower-poly geometry. Their materials use
+broader highlights to match the existing rider better.

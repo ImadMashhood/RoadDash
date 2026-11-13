@@ -89,6 +89,7 @@ impl AuthoredModels {
         let decoded =
             rr_content::riding_model::decode(BUNDLE).expect("validated authored visual bundle");
         let base = server.map(|s| s.load("textures/rider-base.png"));
+        let leather = server.map(|s| s.load("textures/rider-leather.png"));
         let officer_base = server.map(|s| s.load("textures/officer-base.png"));
         let normal = server.map(|s| {
             s.load_builder()
@@ -182,23 +183,30 @@ impl AuthoredModels {
                 mesh.set_morph_targets(targets);
             }
             let region = &data.material.region;
-            let variants = if matches!(region.as_str(), "shirt" | "helmet" | "paint") {
-                15
-            } else {
-                1
-            };
+            let painted_leather = skinned && region == "body" && !has_glove;
+            let variants =
+                if painted_leather || matches!(region.as_str(), "shirt" | "helmet" | "paint") {
+                    15
+                } else {
+                    1
+                };
             let mut palette = Vec::new();
             for color in 0..variants {
                 let tint = match region.as_str() {
-                    "shirt" => world::shirt_color(color),
+                    "shirt" => swatch(gear::PANELS[color]),
                     "helmet" => swatch(world::HELMET_COLORS[color]),
                     "paint" => swatch(world::BIKE_COLORS[color]),
+                    _ if painted_leather => swatch(gear::LEATHER[color]),
                     _ => Color::WHITE,
                 };
                 let mat = if skinned {
                     StandardMaterial {
                         base_color: tint,
-                        base_color_texture: base.clone(),
+                        base_color_texture: if painted_leather {
+                            leather.clone()
+                        } else {
+                            base.clone()
+                        },
                         normal_map_texture: normal.clone(),
                         metallic_roughness_texture: roughness.clone(),
                         metallic: if region == "visor" { 0.9 } else { 0.12 },
@@ -259,7 +267,7 @@ impl AuthoredModels {
                     .map(|helmet| gear::HelmetModel::build(meshes, materials, head, helmet))
             }),
             hand_contacts,
-            textures: [base, normal, roughness, officer_base]
+            textures: [base, leather, normal, roughness, officer_base]
                 .into_iter()
                 .flatten()
                 .collect(),

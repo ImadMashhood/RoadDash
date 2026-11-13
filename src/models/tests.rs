@@ -856,7 +856,7 @@ fn local_gear_swaps_mesh_and_material_handles_through_recovery() {
                 }
             }
         }
-        assert_eq!(changed_suit, if suit == Suit::Player { 0 } else { 3 });
+        assert_eq!(changed_suit, if suit == Suit::Player { 0 } else { 6 });
         assert_eq!(
             changed_helmet,
             if helmet == Helmet::Classic { 0 } else { 6 }

@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Two-color leather and faceted helmets (ADR192)
+
+- Colored the main leather separately across the City roster and matched the replacement helmets to the faceted rider style.
+
 ## 2026-11-13 — Helmet shapes and suit sheet (ADR191)
 
 - Reworked the Apex and Rally shells and rendered all fifteen rider colorways.

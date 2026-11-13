@@ -94,6 +94,17 @@ pub(super) struct HelmetModel {
     pub visor_material: Handle<StandardMaterial>,
 }
 
+// Secondary leather colors observed in the same order as the City roster.
+pub(super) const PANELS: [u32; 15] = [
+    0xe5e2d7, 0xb6ab3a, 0x25272c, 0x333bbf, 0x98235f, 0x42bb54, 0xe9e8e2, 0xaeb7c8, 0x7985a9,
+    0x24262b, 0xccccd3, 0xd7b64d, 0x419ecf, 0xb22c28, 0xd2b74b,
+];
+
+pub(super) const LEATHER: [u32; 15] = [
+    0xc22d27, 0x973481, 0xbc9b32, 0x339e3f, 0x74829c, 0x237a38, 0x343943, 0x293fa9, 0x783524,
+    0x393d43, 0x8032ac, 0x308138, 0x47a02f, 0x313640, 0x8a3bb4,
+];
+
 #[derive(Default)]
 struct HelmetGeometry {
     positions: Vec<Vec3>,
@@ -117,7 +128,6 @@ impl HelmetGeometry {
     }
 
     fn mesh(self, head: Transform) -> Mesh {
-        let count = self.positions.len();
         let mut mesh = Mesh::new(
             PrimitiveTopology::TriangleList,
             RenderAssetUsages::default(),
@@ -130,7 +140,9 @@ impl HelmetGeometry {
                 .collect::<Vec<_>>(),
         );
         mesh.insert_indices(Indices::U32(self.indices));
-        mesh.compute_smooth_normals();
+        mesh.duplicate_vertices();
+        mesh.compute_flat_normals();
+        let count = mesh.count_vertices();
         mesh.insert_attribute(
             Mesh::ATTRIBUTE_JOINT_INDEX,
             VertexAttributeValues::Uint16x4(vec![[1, 0, 0, 0]; count]),
@@ -147,10 +159,10 @@ impl HelmetModel {
         head: Transform,
         helmet: Helmet,
     ) -> Self {
-        const STEPS: u32 = 80;
+        const STEPS: u32 = 20;
         const FRONT: u32 = STEPS / 2;
         let rally = helmet == Helmet::Rally;
-        let eye = if rally { 16 } else { 18 };
+        let eye = if rally { 4 } else { 5 };
         let rings = if rally {
             [
                 (-0.021, 0.110, 0.120, -0.004),
@@ -245,10 +257,10 @@ impl HelmetModel {
         }
         if rally {
             // A swept visor peak, with a raised middle and tapered side mounts.
-            for step in FRONT - 15..FRONT + 15 {
+            for step in FRONT - 4..FRONT + 4 {
                 let edge = |step| {
                     let mount = point(5, step);
-                    let t = (step as f32 - FRONT as f32) / 15.;
+                    let t = (step as f32 - FRONT as f32) / 4.;
                     let reach = (1. - t * t).max(0.);
                     let tip =
                         mount + Vec3::new(0.010 * t, 0.027 * reach - 0.007, 0.104 * reach + 0.008);
@@ -262,7 +274,7 @@ impl HelmetModel {
             }
         }
         // Intake grilles follow the front contour instead of floating on a flat plane.
-        for step in FRONT - 5..FRONT + 5 {
+        for step in FRONT - 1..FRONT + 1 {
             let vent = |step, height| point(2, step).lerp(point(3, step), height) + Vec3::Z * 0.003;
             lens_geometry.quad([
                 vent(step, 0.31),
@@ -278,14 +290,14 @@ impl HelmetModel {
             visor,
             shell_material: materials.add(StandardMaterial {
                 base_color: swatch(if rally { 0xdce0e4 } else { 0x20242b }),
-                metallic: 0.15,
-                perceptual_roughness: if rally { 0.52 } else { 0.29 },
+                metallic: 0.0,
+                perceptual_roughness: if rally { 0.69 } else { 0.58 },
                 ..default()
             }),
             visor_material: materials.add(StandardMaterial {
                 base_color: swatch(if rally { 0x49352a } else { 0x203947 }),
-                metallic: 0.84,
-                perceptual_roughness: 0.21,
+                metallic: 0.36,
+                perceptual_roughness: 0.39,
                 ..default()
             }),
         }
