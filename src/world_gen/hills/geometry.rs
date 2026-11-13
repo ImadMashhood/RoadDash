@@ -173,6 +173,37 @@ fn terrain_grit() -> Image {
     });
     image
 }
+/// Mipped blocks read as coarse ground detail nearby and average out at speed.
+fn meadow_detail() -> Image {
+    let mut pixels = Vec::with_capacity(64 * 64 * 4);
+    for y in 0..64_u32 {
+        for x in 0..64_u32 {
+            let block = |x: u32, y: u32| {
+                let key = x.wrapping_mul(374_761_393) ^ y.wrapping_mul(668_265_263);
+                ((key ^ (key >> 13)).wrapping_mul(1_274_126_177) >> 26) as u8
+            };
+            let tone = 191 + block(x / 3, y / 2) * 3 / 4 + block(x, y) / 4;
+            pixels.extend([tone, tone, tone, 255]);
+        }
+    }
+    crate::road_detail::image(pixels, 64, true)
+}
+
+fn hill_color(p: Vec3, station: f32, face_up: f32, canyon: f32) -> Vec3 {
+    let meadow = rr_core::surface::hills_meadow_weight(station);
+    let patches = (p.x * 0.062 + p.z * 0.019).sin() * (p.z * 0.077).sin();
+    let flecks = (p.x * 0.29 - p.z * 0.17).sin() * (p.z * 0.21).cos();
+    let grass =
+        Vec3::new(0.40, 0.49, 0.20) + Vec3::new(0.075, 0.070, 0.028) * (patches + flecks * 0.30);
+    let base = sand_color(station, p.x, p.z).lerp(grass, meadow);
+
+    let strata = (p.y * 0.85 + p.x * 0.12 + p.z * 0.05).sin();
+    let stone = Vec3::new(0.61, 0.52, 0.44)
+        + Vec3::new(0.079, 0.072, 0.068) * (strata * 0.72 + flecks * 0.28);
+    let cut = ((0.82 + patches * 0.035 - face_up) / 0.13).clamp(0., 1.);
+    base.lerp(stone, (cut * meadow).max(canyon))
+}
+
 // Two original palette rows: sand and meadow. U is cross-shoulder distance,
 // so the gravel edge ends within3.5m; UVs change only, not mesh or collision.
 fn shoulder_material(images: Option<&mut Assets<Image>>) -> StandardMaterial {
@@ -241,7 +272,14 @@ pub(super) fn spawn(
     let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
     let shoulder = materials.add(shoulder_material(images.as_deref_mut()));
     let terrain_material = materials.add(StandardMaterial {
-        base_color_texture: images.map(|images| images.add(terrain_grit())),
+        base_color_texture: images
+            .as_deref_mut()
+            .map(|images| images.add(terrain_grit())),
+        perceptual_roughness: 1.,
+        ..default()
+    });
+    let meadow_material = materials.add(StandardMaterial {
+        base_color_texture: images.map(|images| images.add(meadow_detail())),
         perceptual_roughness: 1.,
         ..default()
     });
@@ -357,28 +395,33 @@ pub(super) fn spawn(
                     .map(|p| [p.x * 0.18, p.z * 0.18])
                     .collect::<Vec<_>>(),
             );
-            render.insert_attribute(
-                Mesh::ATTRIBUTE_COLOR,
-                v.iter()
-                    .map(|p| {
-                        let (station, _) = track.nearby_station(p.x, p.z);
-                        let sand = sand_color(station, p.x, p.z);
-                        let base = sand.lerp(
-                            Vec3::new(0.32, 0.37, 0.19),
-                            rr_core::surface::hills_meadow_weight(station),
-                        );
-                        let strata = (p.y * 0.42).sin() * 0.045;
-                        let rock = Vec3::new(0.57 + strata, 0.36 + strata, 0.20 + strata);
-                        let c = base.lerp(rock, track.hills_canyon_weight(p.x, p.z));
-                        let linear = Color::srgb(c.x, c.y, c.z).to_linear();
-                        [linear.red, linear.green, linear.blue, linear.alpha]
-                    })
-                    .collect::<Vec<_>>(),
-            );
+            let Some(bevy::mesh::VertexAttributeValues::Float32x3(normals)) =
+                render.attribute(Mesh::ATTRIBUTE_NORMAL)
+            else {
+                unreachable!("terrain mesh has computed normals");
+            };
+            let colors = v
+                .iter()
+                .zip(normals)
+                .map(|(p, normal)| {
+                    let (station, _) = track.nearby_station(p.x, p.z);
+                    let color =
+                        hill_color(*p, station, normal[1], track.hills_canyon_weight(p.x, p.z));
+                    let linear = Color::srgb(color.x, color.y, color.z).to_linear();
+                    [linear.red, linear.green, linear.blue, linear.alpha]
+                })
+                .collect::<Vec<_>>();
+            render.insert_attribute(Mesh::ATTRIBUTE_COLOR, colors);
+            let (station, _) = track.nearby_station(origin.x, origin.z);
+            let material = if station < 5500. {
+                &meadow_material
+            } else {
+                &terrain_material
+            };
             surface(
                 commands,
                 meshes,
-                terrain_material.clone(),
+                material.clone(),
                 v,
                 ix,
                 false,

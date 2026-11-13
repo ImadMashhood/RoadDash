@@ -526,6 +526,7 @@ pub fn setup_race(
     let (p, q) = track.sample(track.grid_station(spawn.distance), spawn.lane);
     commands.spawn((
         Camera3d::default(),
+        bevy::audio::SpatialListener::new(0.35),
         bevy::core_pipeline::tonemapping::Tonemapping::Reinhard,
         Exposure { ev100: 13.0 },
         ChaseCamera,
@@ -1001,12 +1002,22 @@ pub fn drive(
                     profile.reach,
                 )
             };
+            let chase =
+                if !is_player && !r.police && r.combat_mind.interrupt_exchange(me.speed, chase) {
+                    r.strike = None;
+                    r.attack = 0.;
+                    None
+                } else {
+                    chase
+                };
             let chase_goal = if r.police {
                 police_goal
             } else if is_player {
                 None
             } else {
-                r.combat_mind.drive(me, chase, race_pace)
+                let spacing = if r.weapon.is_some() { 1.75 } else { 1.05 };
+                r.combat_mind
+                    .drive_with_spacing(me, chase, race_pace, spacing)
             };
             if !is_player && !r.police && r.combat_mind.take_lane_handoff(me, chase) {
                 // A completed pass can otherwise keep the fighter several lanes
@@ -1713,11 +1724,22 @@ pub fn drive(
                     suspended_bridge_pose = Some((center - rotation * Vec3::X * r.lane, rotation));
                 }
             }
+            let hazard =
+                traffic_plan.is_some_and(|plan| plan.avoiding && plan.speed + 3. < me.speed);
+            let chase = if !is_player && !r.police && hazard {
+                if r.combat_mind.interrupt_exchange(me.speed, None) {
+                    r.strike = None;
+                    r.attack = 0.;
+                }
+                None
+            } else {
+                chase
+            };
             // Human and AI share damage and cooldown rules. Attack only one side at once.
             let attack_side = if is_player {
                 player_attack
             } else if race.elapsed > 8.0
-                && r.speed > 6.0
+                && r.speed > if r.police { 6. } else { 40. / 3.6 }
                 && r.fight_stamina
                     >= if r.weapon.is_some() {
                         weapons
@@ -1759,7 +1781,13 @@ pub fn drive(
                                             ability.lateral_reach,
                                         )
                                     } else {
-                                        rr_core::rival_ai::direct_strike_window(me, target, windup)
+                                        rr_core::rival_ai::strike_window(
+                                            me,
+                                            target,
+                                            windup,
+                                            if kick { 1.25 } else { 0.58 },
+                                            if kick { 1.55 } else { 1.20 },
+                                        ) && (target.lane - me.lane).abs() >= 1.05
                                     }
                                 })
                         }
@@ -1803,7 +1831,7 @@ pub fn drive(
                 };
                 r.attack_serial = r.attack_serial.wrapping_add(1);
                 if !is_player && !r.police {
-                    r.combat_mind.strike_started();
+                    r.combat_mind.strike_started(me.speed);
                 }
                 if r.weapon.is_some() && attack_side != rr_core::AttackSide::Kick {
                     r.fight_stamina -= weapons
@@ -4075,14 +4103,14 @@ pub(crate) mod tests {
                 for mut r in q.iter_mut(app.world_mut()) {
                     r.attack = 0.0;
                     r.progress = -8.0;
-                    r.lane = if r.id == 0 { -2.0 } else { -3.7 };
+                    r.lane = if r.id == 0 { -2.0 } else { -2.97 };
                     r.speed = 0.0;
                 }
             }
             let mut keys = app.world_mut().resource_mut::<ButtonInput<KeyCode>>();
             keys.release(KeyCode::KeyJ);
             keys.press(KeyCode::KeyJ);
-            step(&mut app, 12);
+            step(&mut app, 15);
             assert!((app.world().get::<Rider>(rival_id).unwrap().health - expected).abs() < 0.001);
             step(&mut app, 20);
         }

@@ -4748,3 +4748,81 @@ An initial upright-only roll pulled an outside hand off its grip; the settle and
 tuck-specific rotation pass the combined bank/impact contact test. No new assets,
 dependencies, rigs or task IDs. User's local GPU now reports matching620.70.06;
 the earlier software-rendering blocker is historical for this machine.
+
+## ADR174 — Demo settings and proximity voice (2026-11-12)
+
+Use the protected preferences file and existing editor. Add controls backed by
+the live mixer, window, HUD and menu. Voice activation is the default transmit
+mode. Microphone transmission requires explicit opt-in and a focused online
+race window. Use the existing vendored CPAL backend with the OS default input
+and output. Route bounded mono speech frames over the admitted
+listen-host connection and derive distance from host-owned rider positions.
+Bump the wire protocol because older peers cannot interpret voice messages.
+Voice frames share the existing TCP transport, with best-effort admission when
+the socket backs up. Transport confidentiality and Internet voice latency are
+open release gates. No external game media or code was imported.
+
+## ADR175 — Moving combat contacts and demo sound (2026-11-13)
+
+Fixed simulation samples authored strike limb poses and tests moving rider and
+bike contact during a bounded animation window. Each strike resolves once.
+AI exchanges end on completion or at either requested speed cutoff. Surface
+effects and audio use existing contact and surface data. Ship only recorded
+assets whose terms permit redistribution with this repository.
+
+## ADR176 — RPM engine audio audition (2026-11-13)
+
+Prototype original inline-four synthesis through Bevy's existing mixer.
+Crank speed controls continuous firing phase, load controls exhaust brightness
+and amplitude, and upshifts briefly unload the exhaust while following the
+existing gearbox RPM. Keep the recorded-loop control available via
+ROADDASH_ENGINE_LEGACY. Wreckfest's public audio guide informed the comparison.
+The prototype contains no Wreckfest samples, code or middleware.
+
+## ADR177 — Recorded street engine audition (2026-11-13)
+
+Evaluate distinct street-recorded pull textures in the existing continuous
+audio source. Blend by gearbox RPM, soften them under closed throttle and
+duck torque during an upshift. The clip is a 75 cc roadside recording and its
+RPM is uncalibrated. Keep the original synthesized voice selectable for A/B
+listening. The Freesound BMW preview was inaccessible (HTTP 403).
+
+## ADR178 — 689 cc parallel-twin player audio (2026-11-13)
+
+Use offline Crankwave renders of the approved 270-degree parallel twin for the
+default player voice. Capture held RPM at two throttle settings. Interpolate
+RPM and load in the existing Bevy audio source and use the live gearbox for
+upshift cuts. Engine model parameters beyond bore, stroke, compression and
+crank geometry are audition estimates. Crankwave remains an authoring tool.
+
+## ADR179 — Original Engine Simulator twin audio (2026-11-13)
+
+Supersede the ADR178 authoring choice with the original Engine Simulator
+v0.1.11a running under Proton. Capture the custom 689 cc parallel twin
+from the simulator output, and use the existing continuous Bevy source
+for sample playback. RoadDash's gearbox remains the source of RPM and shifts.
+
+## ADR180 — Spatial bike engines (2026-11-13)
+
+Use a continuous stereo-positioned voice per nearby bike. Attenuate by camera
+distance and derive Doppler from radial velocities. Move the voice to the
+live wreck at idle during recovery and back to the mounted chassis on remount.
+Replace the canned rival pass-by trigger with moving engine voices.
+
+## ADR181 — Sustain the engine note through throttle release (2026-11-13)
+
+Keep a filtered portion of the same phase-aligned exhaust sample at rolling
+RPM when throttle closes. Smooth lift-off independently of the faster
+upshift cut. Fade that portion out near idle.
+
+## ADR182 — Six-slot offline map picker (2026-11-13)
+
+Use a three-column, two-row grid with Metropolis and Hills as the interactive
+cards. Reserve four blank cells outside navigation. Keep legacy course
+identifiers and launch paths available for existing callers.
+
+## ADR183 — Hills road and terrain art (2026-11-13)
+
+Use coarser original asphalt aggregate, mottled grass and exposed stone
+on steep meadow faces. Keep the resident terrain and collision topology
+and the existing desert surface palette.

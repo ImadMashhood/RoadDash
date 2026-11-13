@@ -76,6 +76,8 @@ impl LobbyView {
 #[derive(Resource)]
 pub struct Online {
     pub status: String,
+    pub voice_status: String,
+    pub(crate) voice_mutes: BTreeMap<usize, String>,
     pub endpoint: String,
     pub name: String,
     pub phase: OnlinePhase,
@@ -87,6 +89,8 @@ impl Default for Online {
     fn default() -> Self {
         Self {
             status: String::new(),
+            voice_status: String::new(),
+            voice_mutes: BTreeMap::new(),
             endpoint: std::env::var("ROADDASH_SERVER").unwrap_or_else(|_| "0.0.0.0:47654".into()),
             name: std::env::var("ROADDASH_PLAYER_NAME").unwrap_or_else(|_| "Rider".into()),
             phase: OnlinePhase::Offline,
@@ -97,12 +101,37 @@ impl Default for Online {
     }
 }
 
+impl Online {
+    pub fn voice_muted(&self, slot: usize) -> bool {
+        self.voice_mutes.get(&slot).is_some_and(|name| {
+            self.lobby.as_ref().is_some_and(|l| {
+                l.players
+                    .iter()
+                    .any(|p| p.slot == slot && !p.bot && p.name == *name)
+            })
+        })
+    }
+
+    pub fn toggle_voice_mute(&mut self, slot: usize) {
+        if self.voice_muted(slot) {
+            self.voice_mutes.remove(&slot);
+        } else if let Some(player) = self
+            .lobby
+            .as_ref()
+            .and_then(|l| l.players.iter().find(|p| p.slot == slot && !p.bot))
+        {
+            self.voice_mutes.insert(slot, player.name.clone());
+        }
+    }
+}
+
 mod audio;
 pub mod discovery;
 mod matchmaking;
 mod nat;
 pub mod replication;
 pub mod verification;
+pub(crate) mod voice;
 mod wire;
 mod world_state;
 use rr_core::online::{Input, PROTOCOL, RACERS};
@@ -122,6 +151,7 @@ enum ClientMessage {
         secret: String,
     },
     Input(Input),
+    Voice(voice::Packet),
     Leave,
     Probe {
         protocol: u32,
@@ -140,6 +170,11 @@ enum ServerMessage {
         phase: OnlinePhase,
     },
     Snapshot(replication::Snapshot),
+    Voice {
+        speaker: usize,
+        gain: u8,
+        packet: voice::Packet,
+    },
     Reload {
         map: OnlineMap,
         code: String,
@@ -151,6 +186,46 @@ enum ServerMessage {
         available: bool,
     },
 }
+#[derive(Serialize)]
+enum VoiceRelay<'a> {
+    Voice {
+        speaker: usize,
+        gain: u8,
+        packet: &'a voice::Packet,
+    },
+}
+
+fn voice_gain(positions: &[Option<Vec3>; RACERS], speaker: usize, listener: usize) -> u8 {
+    if speaker == listener {
+        return 0;
+    }
+    positions[speaker]
+        .zip(positions[listener])
+        .map_or(0, |(speaker, listener)| {
+            rr_core::online::proximity_voice_gain(speaker.distance(listener))
+        })
+}
+
+fn relay_voice(
+    guests: &mut [Guest],
+    positions: &[Option<Vec3>; RACERS],
+    speaker: usize,
+    packet: &voice::Packet,
+) {
+    for guest in guests {
+        if let Some(slot) = guest.slot {
+            let gain = voice_gain(positions, speaker, slot);
+            if gain > 0 {
+                guest.peer.send_ephemeral(&VoiceRelay::Voice {
+                    speaker,
+                    gain,
+                    packet,
+                });
+            }
+        }
+    }
+}
+
 struct Guest {
     peer: Peer,
     slot: Option<usize>,
@@ -158,6 +233,7 @@ struct Guest {
     seen: Instant,
     rate_start: Instant,
     rate: u32,
+    voice_rate: u32,
     sequence: u64,
 }
 struct Host {
@@ -229,6 +305,7 @@ impl Plugin for OnlinePlugin {
         };
         app.insert_resource(state)
             .insert_resource(online)
+            .insert_non_send(voice::Voice::default())
             .init_resource::<NetState>()
             .init_resource::<AuthorityInputs>()
             .init_resource::<discovery::Discovery>()
@@ -488,6 +565,16 @@ fn lobby(host: &Host, name: &str, host_view: bool) -> LobbyView {
             .collect(),
     }
 }
+#[derive(bevy::ecs::system::SystemParam)]
+struct VoiceIo<'w, 's> {
+    poses: Query<'w, 's, &'static Transform>,
+    windows: Query<'w, 's, &'static Window, With<bevy::window::PrimaryWindow>>,
+    keys: Res<'w, ButtonInput<KeyCode>>,
+    prefs: Option<Res<'w, crate::settings::Preferences>>,
+    panel: Option<Res<'w, crate::settings::SettingsPanel>>,
+    audio: NonSendMut<'w, voice::Voice>,
+}
+
 #[allow(clippy::too_many_arguments)]
 fn pump(
     mut online: ResMut<Online>,
@@ -497,7 +584,12 @@ fn pump(
     mut controls: ResMut<crate::controls::Controls>,
     track: Res<crate::track::Track>,
     screen: Res<State<crate::runtime::AppScreen>>,
-    mut riders: Query<&mut crate::game::Rider>,
+    mut riders: Query<(
+        &mut crate::game::Rider,
+        &Transform,
+        &crate::recovery::Recovery,
+    )>,
+    mut voice: VoiceIo,
     mut exit: MessageWriter<AppExit>,
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut commands: Commands,
@@ -529,6 +621,17 @@ fn pump(
     }
     while let Some(action) = online.actions.pop_front() {
         online.error = None;
+        if matches!(
+            action,
+            OnlineAction::Host { .. }
+                | OnlineAction::Join { .. }
+                | OnlineAction::QuickPlay
+                | OnlineAction::Leave
+        ) {
+            *voice.audio = default();
+            online.voice_mutes.clear();
+            online.voice_status.clear();
+        }
         match action {
             OnlineAction::Leave => {
                 discovery.stop();
@@ -547,7 +650,7 @@ fn pump(
                 online.phase = OnlinePhase::Offline;
                 online.lobby = None;
                 race.phase = crate::game::Phase::Garage;
-                for mut r in &mut riders {
+                for (mut r, _, _) in &mut riders {
                     r.networked = false;
                     r.remote_human = false;
                 }
@@ -700,6 +803,48 @@ fn pump(
     let mut slot = None;
     let mut launch = false;
     let mut welcomed = false;
+    let active_voice = online.lobby.is_some()
+        && matches!(online.phase, OnlinePhase::Countdown | OnlinePhase::Racing);
+    let voice_prefs = voice.prefs.as_ref().map(|p| &p.file.voice);
+    let listening = active_voice && voice_prefs.is_some_and(|v| v.enabled);
+    let focused = voice.windows.single().is_ok_and(|window| window.focused);
+    let transmitting = listening
+        && focused
+        && !voice.panel.as_ref().is_some_and(|p| p.open)
+        && voice_prefs.is_some_and(|v| v.microphone);
+    let gain = voice
+        .prefs
+        .as_ref()
+        .filter(|p| !p.file.audio_muted)
+        .map_or(0., |p| p.file.voice.volume * p.file.master_volume);
+    let push = voice.prefs.as_ref().is_some_and(|p| {
+        p.file.voice_key_available(&p.file.voice.push_key)
+            && crate::controls::key_code(&p.file.voice.push_key)
+                .is_some_and(|key| voice.keys.pressed(key))
+    });
+    voice.audio.configure(transmitting, listening, gain);
+    let outgoing = voice_prefs.map_or_else(Vec::new, |v| voice.audio.outgoing(v, push));
+    let mut positions = [None; RACERS];
+    if active_voice && matches!(state.connection, Connection::Host(_)) {
+        for (rider, transform, recovery) in &riders {
+            if let Some(position) = positions.get_mut(rider.id) {
+                *position = Some(
+                    recovery
+                        .runner
+                        .or(recovery.torso)
+                        .and_then(|e| voice.poses.get(e).ok())
+                        .unwrap_or(transform)
+                        .translation,
+                );
+            }
+        }
+    }
+    for slot in 0..RACERS {
+        if online.voice_muted(slot) {
+            voice.audio.clear_slot(slot);
+        }
+    }
+    let local_slot = state.local_slot;
     match &mut state.connection {
         Connection::None => {}
         Connection::Discover(search) => {
@@ -767,6 +912,18 @@ fn pump(
                                     failure = Some("Host sent an invalid game snapshot".into());
                                 }
                             }
+                            ServerMessage::Voice {
+                                speaker,
+                                gain,
+                                packet,
+                            } => {
+                                if listening
+                                    && speaker != local_slot
+                                    && !online.voice_muted(speaker)
+                                {
+                                    voice.audio.hear(speaker, gain, &packet);
+                                }
+                            }
                             ServerMessage::Error(e) => failure = Some(e),
                             ServerMessage::Offer { .. } => {}
                             ServerMessage::Reload { map, code: _ } => {
@@ -822,6 +979,9 @@ fn pump(
                 controls.restart = false;
                 controls.start = false;
             }
+            for packet in outgoing {
+                client.peer.send_ephemeral(&ClientMessage::Voice(packet));
+            }
         }
         Connection::Host(host) => {
             if host.started && race.phase == crate::game::Phase::Paused {
@@ -870,6 +1030,7 @@ fn pump(
                                 seen: Instant::now(),
                                 rate_start: Instant::now(),
                                 rate: 0,
+                                voice_rate: 0,
                                 sequence: 0,
                             });
                         }
@@ -907,6 +1068,7 @@ fn pump(
                 OnlinePhase::Lobby
             };
             let view = lobby(host, &online.name, false);
+            let mut speech: Vec<_> = outgoing.into_iter().map(|packet| (0, packet)).collect();
             host.guests.retain_mut(|guest| {
                 if guest.seen.elapsed() > Duration::from_secs(10) {
                     if let Some(s) = guest.slot {
@@ -917,6 +1079,7 @@ fn pump(
                 if guest.rate_start.elapsed() > Duration::from_secs(1) {
                     guest.rate_start = Instant::now();
                     guest.rate = 0;
+                    guest.voice_rate = 0;
                 }
                 let Ok(messages) = guest.peer.receive::<ClientMessage>(4096) else {
                     if let Some(s) = guest.slot {
@@ -942,7 +1105,7 @@ fn pump(
                                 nonce,
                                 available: host.public
                                     && occupied.len() < 14
-                                    && riders.iter().any(|r| {
+                                    && riders.iter().any(|(r, _, _)| {
                                         r.id > 0
                                             && r.id < RACERS
                                             && !occupied.contains(&r.id)
@@ -962,7 +1125,9 @@ fn pump(
                         {
                             let available = (1..RACERS).find(|s| {
                                 !occupied.contains(s)
-                                    && riders.iter().any(|r| r.id == *s && r.finished.is_none())
+                                    && riders
+                                        .iter()
+                                        .any(|(r, _, _)| r.id == *s && r.finished.is_none())
                             });
                             let Some(s) = available else {
                                 let _ = guest.peer.send(&ServerMessage::Error(
@@ -1000,6 +1165,16 @@ fn pump(
                             previous.pickup = pickup;
                             previous.drop = drop;
                         }
+                        ClientMessage::Voice(packet) if guest.slot.is_some() => {
+                            guest.voice_rate += 1;
+                            if active_voice
+                                && guest.voice_rate <= 32
+                                && let Some(slot) = guest.slot
+                                && packet.samples().is_some()
+                            {
+                                speech.push((slot, packet));
+                            }
+                        }
                         ClientMessage::Leave => {
                             if let Some(s) = guest.slot {
                                 inputs.0.remove(&s);
@@ -1016,10 +1191,20 @@ fn pump(
                 }
                 true
             });
+            for (speaker, packet) in speech {
+                if speaker != 0 && !host.guests.iter().any(|g| g.slot == Some(speaker)) {
+                    continue;
+                }
+                if listening && !online.voice_muted(speaker) {
+                    let gain = voice_gain(&positions, speaker, 0);
+                    voice.audio.hear(speaker, gain, &packet);
+                }
+                relay_voice(&mut host.guests, &positions, speaker, &packet);
+            }
             inputs
                 .0
                 .retain(|slot, _| host.guests.iter().any(|g| g.slot == Some(*slot)));
-            for mut rider in &mut riders {
+            for (mut rider, _, _) in &mut riders {
                 if rider.id < RACERS {
                     rider.networked = true;
                     rider.remote_human = rider.id == 0 || inputs.0.contains_key(&rider.id);
@@ -1073,6 +1258,8 @@ fn pump(
         online.actions.push_back(action);
     }
     if let Some(error) = failure {
+        *voice.audio = default();
+        online.voice_mutes.clear();
         state.connection = Connection::None;
         commands.queue(replication::clear_remote);
         state.local_slot = 0;
@@ -1090,6 +1277,7 @@ fn pump(
         online.lobby = None;
         race.phase = crate::game::Phase::Garage;
     }
+    online.voice_status = voice.audio.status(transmitting, online.lobby.as_ref());
 }
 fn publish(world: &mut World) {
     replication::publish(world);
@@ -1132,6 +1320,61 @@ fn prepare_host(state: &mut NetState, online: &mut Online) {
 #[cfg(test)]
 mod admission_tests {
     use super::*;
+    #[test]
+    fn proximity_voice_reaches_only_a_nearby_admitted_peer_over_the_race_wire() {
+        let listener = TcpListener::bind("127.0.0.1:0").unwrap();
+        let mut guests = Vec::new();
+        let mut clients = Vec::new();
+        for slot in [Some(1), Some(2), Some(3), None] {
+            clients.push(
+                Peer::new(TcpStream::connect(listener.local_addr().unwrap()).unwrap()).unwrap(),
+            );
+            guests.push(Guest {
+                peer: Peer::new(listener.accept().unwrap().0).unwrap(),
+                slot,
+                name: String::new(),
+                seen: Instant::now(),
+                rate_start: Instant::now(),
+                rate: 0,
+                voice_rate: 0,
+                sequence: 0,
+            });
+        }
+        let mut positions = [None; RACERS];
+        positions[1] = Some(Vec3::ZERO);
+        positions[2] = Some(Vec3::X * 25.);
+        positions[3] = Some(Vec3::X * 75.);
+        let packet = voice::Packet::from_samples([0.25; voice::SAMPLES]);
+        relay_voice(&mut guests, &positions, 1, &packet);
+        let deadline = Instant::now() + Duration::from_secs(1);
+        loop {
+            let messages = clients[1].receive::<ServerMessage>(4096).unwrap();
+            if let [
+                ServerMessage::Voice {
+                    speaker,
+                    gain,
+                    packet,
+                },
+            ] = messages.as_slice()
+            {
+                assert_eq!(*speaker, 1);
+                assert!((0..255).contains(gain));
+                assert!((packet.samples().unwrap()[0] - 0.25).abs() < 0.01);
+                break;
+            }
+            assert!(messages.is_empty() && Instant::now() < deadline);
+            std::thread::yield_now();
+        }
+        for index in [0, 2, 3] {
+            assert!(
+                clients[index]
+                    .receive::<ServerMessage>(4096)
+                    .unwrap()
+                    .is_empty()
+            );
+        }
+    }
+
     #[test]
     fn failed_quickplay_candidates_fall_back_then_host() {
         let mut state = NetState {

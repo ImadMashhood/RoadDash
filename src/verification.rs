@@ -391,7 +391,10 @@ pub fn observe_smoke_strike(
             capture(&mut commands, "30-strike-windup");
         }
         if !state.strike_contact && !clock.pending() {
-            assert!(clock.age >= clock.contact && clock.age < clock.contact + 1.0 / 60.0 + 1e-5);
+            assert!(
+                clock.age >= clock.contact_window().0
+                    && clock.age <= clock.contact_window().1 + 2.0 / 60.0
+            );
             state.strike_contact = true;
             println!(
                 "Native buffered strike contact: age={:.6} contact={:.6} side={}",
@@ -458,7 +461,7 @@ pub(crate) fn smoke_test(
     mut contacts: ResMut<Messages<bevy_rapier3d::prelude::CollisionEvent>>,
     mut sweeps: ResMut<Messages<crate::recovery::SweptContact>>,
     bodies: Query<&Transform, Without<Rider>>,
-    (telemetry, mut panel, pads, prefs, screen, art, clubs): (
+    (telemetry, mut panel, pads, prefs, screen, art, clubs, bike_audio): (
         Res<crate::vehicle::VehicleTelemetry>,
         ResMut<crate::settings::SettingsPanel>,
         Query<&Gamepad>,
@@ -470,6 +473,14 @@ pub(crate) fn smoke_test(
             Query<(), With<crate::weapons::Pickup>>,
             Query<&InheritedVisibility, With<crate::weapons::ClubPart>>,
         ),
+        Query<
+            (
+                &crate::sound::BikeEmitter,
+                &Transform,
+                &bevy::audio::SpatialAudioSink,
+            ),
+            Without<Rider>,
+        >,
     ),
 ) {
     if matches!(
@@ -754,6 +765,15 @@ pub(crate) fn smoke_test(
                     .any(|s| !s.is_paused() && s.volume().to_linear() > 0.0),
                 "no racing audio playing"
             );
+            assert!(
+                bike_audio
+                    .iter()
+                    .filter(|(_, _, sink)| { !sink.is_paused() && sink.volume().to_linear() > 0.0 })
+                    .count()
+                    > 1,
+                "nearby bikes have no audible spatial engine sinks"
+            );
+            println!("Native spatial bike engines audible during racing");
             capture(&mut commands, "02-racing");
         }
         260 => {
@@ -791,7 +811,26 @@ pub(crate) fn smoke_test(
             }
             keys.release(KeyCode::KeyW);
         }
-        280 => capture(&mut commands, "03-crash"),
+        280 => {
+            let wreck = riders
+                .iter()
+                .find(|(r, _, _, _)| r.id == 0)
+                .and_then(|(_, recovery, _, _)| recovery.wreck)
+                .and_then(|entity| bodies.get(entity).ok())
+                .expect("local crash must have a wreck");
+            let wreck_engine = wreck.translation + wreck.rotation * Vec3::Y * 0.45;
+            assert!(
+                bike_audio.iter().any(|(emitter, position, sink)| {
+                    riders.get(emitter.0).is_ok_and(|(r, _, _, _)| r.id == 0)
+                        && position.translation.distance(wreck_engine) < 3.
+                        && !sink.is_paused()
+                        && sink.volume().to_linear() > 0.
+                }),
+                "local engine did not stay audible at the wreck"
+            );
+            println!("Native local bike engine remained audible at the wreck");
+            capture(&mut commands, "03-crash");
+        }
         _ => {}
     }
     for (mut rider, recovery, mut transform, mut velocity) in &mut riders {

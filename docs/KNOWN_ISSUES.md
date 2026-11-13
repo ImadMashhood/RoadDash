@@ -1,5 +1,23 @@
 # Known issues and remaining acceptance
 
+- AUDIO-009 / ADR180: network rider load is estimated from replicated speed.
+  Headphone balance and multiplayer audio mix need a listening pass.
+
+- AUDIO-008 / ADR179: the 689 cc player voice uses simulated dyno captures.
+  Closed throttle above 7,500 RPM uses the top coast sample. Full-course mix
+  and loop audibility still need listening review.
+
+- ADR175 demo combat/audio: natural exchange frequency and audible mix still
+  need human full-course review. Limb volumes approximate the animated mesh,
+  and recorded rev bands use one donor engine. Both online peers need protocol 4.
+
+- DEMO-VOICE-01 / ADR174: protocol 3 voice uses the existing unencrypted TCP
+  session. Packet loss can delay speech and the game stream. Full WAN latency,
+  bandwidth at capacity, microphone/headset compatibility, echo, encrypted
+  transport and moderation beyond local mute remain public-release gates.
+- DEMO-SETTINGS-01: wider visual and controller acceptance, graphics presets,
+  captions and color-vision options remain open. See testing/demo-settings-voice/REPORT.md.
+
 - ADR173 / UI-CITY-TOUR-01 / FEEL-LEAN-01 / FEEL-WEAPON-01 / FEEL-HIT-01 /
   FEEL-DOWNED-01: subjective art/feel and broad acceptance remain open.
   The body-lean follow-up adds native animation and recovery evidence.

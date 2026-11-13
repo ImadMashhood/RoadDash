@@ -236,12 +236,46 @@ fn caption(row: usize) -> &'static str {
         25 => "Mute all audio",
         26 => "Pick up weapon",
         27 => "Drop weapon",
+        28 => "Engine volume",
+        29 => "Wind volume",
+        30 => "Effects volume",
+        31 => "Window size",
+        32 => "Speed units",
+        33 => "Menu motion",
+        34 => "Proximity chat",
+        35 => "Microphone",
+        36 => "Input mode",
+        37 => "Activation level",
+        38 => "Voice volume",
+        39 => "Push-to-talk key",
+        40 => "Select rider",
+        41 => "Mute rider",
+        42 => "World shadows",
+        43 => "Minimap",
+        44 => "Standings",
         _ => "",
     }
 }
-fn value(row: usize, panel: &SettingsPanel, prefs: &Preferences) -> String {
+fn value(
+    row: usize,
+    panel: &SettingsPanel,
+    prefs: &Preferences,
+    online: Option<&crate::online::Online>,
+) -> String {
     let c = &prefs.file.comfort;
     let on = |b| if b { "On" } else { "Off" };
+    let percent = |gain: f32| format!("{:.0}%", gain * 100.);
+    let voice = &prefs.file.voice;
+    let target = || {
+        panel.voice_target.and_then(|slot| {
+            online?
+                .lobby
+                .as_ref()?
+                .players
+                .iter()
+                .find(|p| !p.bot && p.slot == slot)
+        })
+    };
     match row {
         0 => format!("{:.0}°", c.fov_degrees),
         1 => format!("{:.0}", c.smoothing),
@@ -262,6 +296,40 @@ fn value(row: usize, panel: &SettingsPanel, prefs: &Preferences) -> String {
         23 => on(prefs.file.vsync).into(),
         24 => on(prefs.file.fullscreen).into(),
         25 => on(prefs.file.audio_muted).into(),
+        28 => percent(prefs.file.mix.engine),
+        29 => percent(prefs.file.mix.ambience),
+        30 => percent(prefs.file.mix.effects),
+        31 => prefs
+            .file
+            .window_size
+            .dimensions()
+            .map_or_else(|| "Automatic".into(), |(w, h)| format!("{w} × {h}")),
+        32 => if prefs.file.imperial_speed {
+            "mph"
+        } else {
+            "km/h"
+        }
+        .into(),
+        33 => on(!prefs.file.static_menu).into(),
+        34 => on(voice.enabled).into(),
+        35 => on(voice.microphone).into(),
+        36 => match voice.mode {
+            crate::online::voice::Mode::Activation => "Voice activation",
+            crate::online::voice::Mode::PushToTalk => "Push-to-talk",
+        }
+        .into(),
+        37 => format!("{:.1}%", voice.threshold * 100.),
+        38 => percent(voice.volume),
+        39 if !prefs.file.voice_key_available(&voice.push_key) => "Choose a free key".into(),
+        39 => pretty_binding(&voice.push_key),
+        40 => target().map_or_else(|| "Select".into(), |p| p.name.clone()),
+        42 => on(prefs.file.shadows).into(),
+        43 => on(prefs.file.show_minimap).into(),
+        44 => on(prefs.file.show_standings).into(),
+        41 => target()
+            .and_then(|p| online.map(|o| on(o.voice_muted(p.slot))))
+            .unwrap_or("—")
+            .into(),
         _ => {
             let Some(action) = binding_action(row) else {
                 return String::new();
@@ -297,6 +365,7 @@ fn value(row: usize, panel: &SettingsPanel, prefs: &Preferences) -> String {
 pub fn display(
     panel: Res<SettingsPanel>,
     prefs: Res<Preferences>,
+    online: Option<Res<crate::online::Online>>,
     mut root: Query<&mut Node, With<SettingsRoot>>,
     mut labels: Query<(&SettingsRow, &mut Text)>,
     mut cards: Query<
@@ -382,7 +451,7 @@ pub fn display(
         }));
     }
     for (row, mut t) in &mut labels {
-        t.set_if_neq(Text::new(value(row.0, &panel, &prefs)));
+        t.set_if_neq(Text::new(value(row.0, &panel, &prefs, online.as_deref())));
     }
     for mut t in &mut title {
         t.set_if_neq(Text::new(panel.section.name()));
@@ -393,12 +462,20 @@ pub fn display(
             Section::Controls => {
                 "Tab switches device. Kick: Space; mouse buttons also punch. RB: next category."
             }
-            Section::Audio => "Master volume affects current engines, ambience and impact effects.",
-            Section::Display => "Fullscreen uses desktop resolution. VSync reduces screen tearing.",
+            Section::Audio => "Adjust the overall mix or individual game sounds.",
+            Section::Display => "Window size applies in windowed mode. VSync reduces tearing.",
+            Section::Accessibility => "Choose speed units, HUD elements and menu motion.",
+            Section::Voice => {
+                "Nearby racers can hear your microphone when enabled. Uses system devices."
+            }
         }));
     }
     for mut t in &mut footer {
-        let status = if prefs.status.is_empty() {
+        let status = if panel.section == Section::Voice
+            && let Some(online) = online.as_ref().filter(|o| !o.voice_status.is_empty())
+        {
+            &online.voice_status
+        } else if prefs.status.is_empty() {
             "Changes apply immediately."
         } else {
             &prefs.status

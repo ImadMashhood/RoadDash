@@ -41,6 +41,7 @@ pub struct Mind {
     target: Option<usize>,
     side: f32,
     exchange_age: f32,
+    exchange_speed: f32,
     race_window: f32,
     lane_handoff: bool,
     pub decision: Decision,
@@ -56,6 +57,7 @@ impl Mind {
             target: None,
             side: 1.,
             exchange_age: 0.,
+            exchange_speed: 0.,
             race_window: 0.,
             lane_handoff: false,
             decision: Decision::Race,
@@ -87,10 +89,7 @@ impl Mind {
         if self.exchange_age > 0. {
             self.exchange_age += dt.max(0.);
             if self.exchange_age >= 4. {
-                self.target = None;
-                self.exchange_age = 0.;
-                self.race_window = 2.;
-                self.decision = Decision::Race;
+                self.finish_exchange();
             }
         }
         if let Some((_, _, life)) = &mut self.response {
@@ -147,9 +146,31 @@ impl Mind {
     /// The actual attack scheduler starts the bounded exchange, not an
     /// approximate road-space distance several bike lengths before contact.
     /// Repeated attacks never extend the same four-second window.
-    pub fn strike_started(&mut self) {
+    pub fn strike_started(&mut self, speed: f32) {
         if self.target.is_some() && self.exchange_age == 0. {
             self.exchange_age = f32::EPSILON;
+            self.exchange_speed = speed;
+        }
+    }
+
+    pub fn finish_exchange(&mut self) {
+        self.target = None;
+        self.exchange_age = 0.;
+        self.race_window = 2.;
+        self.decision = Decision::Race;
+    }
+
+    pub fn interrupt_exchange(&mut self, speed: f32, target: Option<Target>) -> bool {
+        const LIMIT: f32 = 40. / 3.6;
+        if self.exchange_age > 0.
+            && (speed <= LIMIT
+                || self.exchange_speed - speed >= LIMIT - 1e-4
+                || target.map(|t| t.id) != self.target)
+        {
+            self.finish_exchange();
+            true
+        } else {
+            false
         }
     }
 
@@ -236,6 +257,16 @@ impl Mind {
     /// Bounded moving exchanges use speed matching, then release back to racing.
     /// Slow/stopped targets never hold a queue of riders in a combat follow.
     pub fn drive(&mut self, me: Target, target: Option<Target>, cruise: f32) -> Option<(f32, f32)> {
+        self.drive_with_spacing(me, target, cruise, 1.75)
+    }
+
+    pub fn drive_with_spacing(
+        &mut self,
+        me: Target,
+        target: Option<Target>,
+        cruise: f32,
+        spacing: f32,
+    ) -> Option<(f32, f32)> {
         self.desired_speed = cruise;
         if self.response() == Some(Response::Flee) {
             self.target = None;
@@ -288,7 +319,7 @@ impl Mind {
         } else {
             Decision::NearbyStrike
         };
-        Some((target.lane + self.side * 1.75, self.desired_speed))
+        Some((target.lane + self.side * spacing, self.desired_speed))
     }
 }
 
@@ -306,7 +337,7 @@ pub fn strike_window(
     let travel = relative * windup.max(0.);
     !target.downed
         && relative.abs() <= 6.
-        && (target.lane - me.lane).abs() >= 1.2
+        && (target.lane - me.lane).abs() >= 1.0
         && (target.lane - me.lane).abs() <= lateral
         && gap.abs() <= longitudinal + travel.abs().min(3.)
         && (gap + travel).abs() <= longitudinal
@@ -381,6 +412,20 @@ mod tests {
             downed: false,
         }
     }
+    #[test]
+    fn speed_loss_or_floor_releases_an_exchange_and_blocks_immediate_retarget() {
+        for (start, keep, release) in [(120., 81., 79.9), (65., 41., 40.)] {
+            let mut mind = Mind::new(1);
+            let me = rider(1, 100., 0., start / 3.6);
+            let target = rider(2, 101., 1.7, 30.);
+            mind.drive(me, Some(target), 42.);
+            mind.strike_started(me.speed);
+            assert!(!mind.interrupt_exchange(keep / 3.6, Some(target)));
+            assert!(mind.interrupt_exchange(release / 3.6, Some(target)));
+            assert!(mind.choose(20., me, &[target], 4.).is_none());
+        }
+    }
+
     #[test]
     fn five_fighters_select_the_next_nonfighter_ahead_and_clear_downed_targets() {
         assert_eq!(FIGHTERS.len(), 5);
@@ -515,7 +560,7 @@ mod tests {
         other.progress = 99.;
         assert_eq!(mind.choose(10., me, &[other], 4.).unwrap().id, 2);
         assert!(mind.drive(me, Some(other), 42.).unwrap().1 < 42.);
-        mind.strike_started();
+        mind.strike_started(me.speed);
         mind.tick(4.1);
         assert!(mind.choose(15., me, &[other], 4.).is_none());
         mind.tick(2.1);
@@ -559,9 +604,9 @@ mod tests {
         other.lane = -2.25;
         mind.drive(me, Some(other), 50.);
         assert_eq!(mind.decision, Decision::NearbyStrike);
-        mind.strike_started();
+        mind.strike_started(me.speed);
         mind.tick(2.);
-        mind.strike_started();
+        mind.strike_started(me.speed);
         other.lane = 4.;
         mind.drive(me, Some(other), 50.);
         assert_eq!(mind.decision, Decision::Approach);

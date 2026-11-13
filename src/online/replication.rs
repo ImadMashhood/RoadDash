@@ -315,8 +315,14 @@ pub struct NetworkPose {
     received: Instant,
 }
 impl NetworkPose {
+    const BLEND_SECONDS: f32 = 0.05;
+
+    pub(crate) fn presentation_velocity(&self) -> Vec3 {
+        (self.to.translation - self.from.translation) / Self::BLEND_SECONDS
+    }
+
     pub(crate) fn shown(&self) -> Transform {
-        let alpha = (self.received.elapsed().as_secs_f32() / 0.05).clamp(0., 1.);
+        let alpha = (self.received.elapsed().as_secs_f32() / Self::BLEND_SECONDS).clamp(0., 1.);
         Transform {
             translation: self.from.translation.lerp(self.to.translation, alpha),
             rotation: self.from.rotation.slerp(self.to.rotation, alpha),
@@ -713,6 +719,7 @@ mod tests {
             seen: Instant::now(),
             rate_start: Instant::now(),
             rate: 0,
+            voice_rate: 0,
             sequence: 0,
         });
         world.insert_resource(NetState {

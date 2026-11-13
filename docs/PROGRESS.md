@@ -538,6 +538,20 @@ Measured vehicle-contact observations and bounded combat obstacle interruption a
 
 The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continues under V2-03-003. Quick Play must join an available host with measured RTT <=250ms or become host, fill with bots and count down 15seconds. Players use different internet connections and the user does not want to operate a directory. Discovery and NAT reachability remain distinct unresolved integration gates; no live internet matchmaking claim. Native host authority, UI and visual gait work proceed in isolated worktrees. No task is closed by this entry.
 
+## 2026-11-12 — Demo settings and proximity voice
+
+ADR174 integrates demo settings and opt-in microphone capture with voice
+activation selected by default. Voice uses host-owned proximity during online
+countdowns and races. Demo settings and voice acceptance remain tracked under
+DEMO-SETTINGS-01 and DEMO-VOICE-01. See [comparison and receipts](testing/demo-settings-voice/REPORT.md).
+
+## 2026-11-13 — Demo combat, roadside effects and audio
+
+ADR175 integrates strike windows, AI speed exits, wheel spray and recorded
+race sound. DEMO-FIGHT-01, DEMO-STRIKE-01 and DEMO-ROAD-FX-01 remain open
+for full-course gameplay and sound review. See
+[implementation and evidence](testing/demo-combat-effects-audio/REPORT.md).
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
@@ -1012,6 +1026,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **DEMO-FIGHT-01** End AI exchanges on completion, a 40 km/h speed loss, the 40 km/h speed floor, or loss of safe contact. Reason: fighters should resume the race when a duel breaks down; part:01; dependencies: AI-ENGAGE-01; acceptance: captured entry speed, cooldown and natural in-race exchanges; verification: fixed rules and physical race fixtures. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
+
 - [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, twice ballistic rise within existing energy and unchanged upright rear-contact/rig policy; verification: core height/energy tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
@@ -1056,7 +1072,7 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 - [ ] **RFU-GROUND-02** Improve desert sand shading and animate restrained, sand-coloured translucent dust without onset popping. Reason: flat sand and abrupt opaque dust reduce visual quality; part:01; dependencies: Hills authored sand surface and fixed dust pool; acceptance: smooth terrain colour variation, fading/rotating drift, lower alpha, no paved-road emission and no late meshes; verification: pure alpha/placement tests, temporal native views and matched frame cost.
 
-- [ ] **RFU-GROUND-03** Give Hills western and desert terrain finer original surface detail and dust that matches local sand, keeps a stable footprint and fades into view and behind the player. Reason: flat sand, a mismatched plume tint and expanding dust distract from riding; part:01; dependencies: RFU-GROUND-02, resident ground mesh and fixed dust pool; acceptance: deterministic repeated detail uses no imported media or extra terrain draws, dust samples the ground palette at emission, remains fixed size and fades with time/rear distance; verification: texture/palette and alpha tests, temporal native western/desert views and matched frame cost. Partial: procedural texture and bounded dust update integrated; visual/performance review open.
+- [ ] **RFU-GROUND-03** Give Hills western and desert terrain finer original surface detail and dust that matches local sand, keeps a stable footprint and fades into view and behind the player. Reason: flat sand, a mismatched plume tint and expanding dust distract from riding; part:01; dependencies: RFU-GROUND-02, resident ground mesh and fixed dust pool; acceptance: deterministic repeated detail uses no imported media or extra terrain draws, dust samples the ground palette at emission, remains fixed size and fades with time/rear distance; verification: texture/palette and alpha tests, temporal native western/desert views and matched frame cost. Partial: procedural texture and bounded dust update integrated; visual/performance review open. ADR183 adds coarser road aggregate, mottled meadow and rock on steep Hills faces.
 
 - [ ] **RFU-HILLS-04** Improve the later Hills course pacing beyond the western town. Reason: the last half lacks memorable encounters and landmarks; part:01; dependencies: RFU-WILD-06, RFU-GROUND-02, Hills dressing and traffic; acceptance: distinct roadside beats through the desert without blocking the route or losing performance; verification: full-course human ride, station-by-station scene survey and matched release cost.
 
@@ -1458,6 +1474,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 07 — Weapons and complete riding combat
 
+- [ ] **DEMO-STRIKE-01** Register limb contact with the moving bike or rider throughout the active strike animation. Reason: the single strike instant misses late touches; part:07; dependencies: authored motion and authoritative simulation; acceptance: moving bike/body tests, one hit, obstruction and host ownership; verification: fixed-rate and native playtests. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
+
 - [ ] **FEEL-WEAPON-01** Keep both hands on grips and show weapons only during attacks. Reason: user rejects permanent armed ready pose; part:07; dependencies: V2-07-002; acceptance: inventory does not change idle grip pose, attack hand/weapon agree and idle/kick/recovery hide weapon; verification: animation/inventory regression tests and native left/right weapon review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **FEEL-HIT-01** Make unarmed contacts forgiving and impacts readable to attacker and victim. Reason: user reports tight hitboxes and weak feedback; part:07; dependencies: authoritative strike scheduler and hit reaction; acceptance: bounded expanded body envelope, preserved side/LOS/one-hit rules, flinch/audio/HUD feedback; verification: contact envelope, combat/reaction regressions and native feel review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
@@ -1600,6 +1618,8 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 13 — Authoritative online races and lobbies
 
+- [ ] **DEMO-VOICE-01** Add proximity voice to player-hosted online races. Reason: players need to talk to nearby riders during the demo; part:13; dependencies: ONLINE-PLAY-01, protected preferences and native audio devices; acceptance: voice activation default with explicit microphone enable, proximity attenuation, push-to-talk, voice volume, player mute, live status and host-authored routing; verification: bounded packet and TCP routing tests, native audio and separate-network playtests. [Demo evidence and remaining release gates](testing/demo-settings-voice/REPORT.md).
+
 - [ ] **ONLINE-PLAY-01** Implement player-hosted races with Host/Join codes, public/private custom lobbies and map selection, and Quick Play joining an available measured RTT <=250ms lobby or becoming host otherwise. Reason: explicit user request for real multiplayer across different internet connections without operating a separate lobby server; part: 13; dependencies: fixed input/authority separation, discovery and host reachability; acceptance: 15-second Quick Play countdown, randomized grid, bots replaced by joining humans, synchronized movement/combat/foot/recovery/results and honest disconnect/error handling; verification: domain/protocol tests, multi-process native races, separate-network discovery/connectivity and latency tests. In progress; LAN discovery alone does not satisfy internet acceptance.
 
 - [ ] **P13-001** Add join/lobby/ready/bike selection, synchronized starts, disconnect handling, reconnect policy, and consistent results.
@@ -1644,6 +1664,10 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 ### Part 15 — Presentation, audio, UI and accessibility
 
+- [ ] **DEMO-ROAD-FX-01** Add surface-driven tire spray, location cues and recorded race sound. Reason: make surfaces, speed and impacts readable; part:15; dependencies: P15-003, wheel contact and mixer; acceptance: four engine bands, different surfaces, readable impacts and audible route identity; verification: provenance, native capture and human audio/visual tuning. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
+
+- [ ] **DEMO-SETTINGS-01** Extend the functional settings menu for the demo. Reason: comparison with shipped racing and multiplayer games identifies missing player controls; part:15; dependencies: SETTINGS-01 and existing audio/display/HUD/menu adapters; acceptance: saved engine/wind/effects levels, window size/shadows, speed units, optional minimap/standings and reduced menu motion; verification: legacy settings, live keyboard/save/reload and native viewport walkthrough. [Comparison and evidence](testing/demo-settings-voice/REPORT.md).
+
 - [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
@@ -1654,7 +1678,7 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 - [ ] **RFU-FX-04** Add a restrained original effect to Valley so every existing map has distinct air movement. Reason: issue #42 requests visual effects on every map, including Valley; part:15; dependencies: RFU-FX-01–03 and Valley route/content; acceptance: quality-controlled, off-road air motes remain legible and presentation-only across the full route; verification: native Valley before/after and temporal views, original source audit and CPU/GPU frame comparison. Partial: fixed-budget motes are implemented; native visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
-- [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: two prominent course choices, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.
+- [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: six offline map slots with Metropolis and Hills selectable and four blank reserved slots, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.
 
 - [ ] **SHADOW-RANGE-01** Extend readable city shadow coverage. Reason: user requests shadows farther through the city; part:15; dependencies:P15-004 and existing facade lifecycle; acceptance: broader bounded cascade coverage with preserved close contacts, no collision or facade-LOD regression, measured cost and a baseline comparison; verification: cascade policy tests, native city near/far views and matched timing.
 
@@ -1692,9 +1716,9 @@ The user authorized ONLINE-PLAY-01 and UI-RETRO-BG-01; walking animation continu
 
 - [ ] **AUDIO-007** Police/UI inventory (~4): near/far sirens, checkpoint, menu/finish cues; keep audible threat/readability priorities.
 
-- [ ] **AUDIO-008** Implement an `AudioService` boundary with 3-4 seamless engine RPM/load bands, envelope crossfades, actual gear/transmission transients, and modest pitch changes.
+- [ ] **AUDIO-008** Implement an `AudioService` boundary with 3-4 seamless engine RPM/load bands, envelope crossfades, actual gear/transmission transients, and modest pitch changes. Partial: ADR179 adds the Engine Simulator 689 cc twin with six RPM anchors, closed-throttle layers and gearbox-driven cuts. ADR181 sustains the exhaust note through throttle release. Full-course mix acceptance remains open.
 
-- [ ] **AUDIO-009** Put the listener at the chase camera and emitters on bikes, police, cattle, and landmarks; test stereo/rolloff, opponent minimum volume, and distinct distance/gear cues.
+- [ ] **AUDIO-009** Put the listener at the chase camera and emitters on bikes, police, cattle, and landmarks; test stereo/rolloff, opponent minimum volume, and distinct distance/gear cues. Partial: ADR180 adds spatial bike voices with Doppler, distance falloff and wreck idle.
 
 - [ ] **AUDIO-010** Blend town/farm/cliff/coast ambience; visible livestock/tractors must match their sounds; keep music on a separate licensed, duckable, streamer-safe bus.
 

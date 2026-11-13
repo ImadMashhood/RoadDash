@@ -1,0 +1,151 @@
+import "engine_sim.mr"
+
+units units()
+impulse_response_library ir_lib()
+
+private node twin_wires {
+    output first: ignition_wire();
+    output second: ignition_wire();
+}
+
+private node road_twin {
+    alias output __out: engine;
+    engine engine(
+        name: "RoadDash 689 cc 270-degree Twin",
+        starter_torque: 45 * units.lb_ft,
+        starter_speed: 650 * units.rpm,
+        redline: 10000 * units.rpm,
+        throttle_gamma: 1.7,
+        hf_gain: 0.01,
+        noise: 0.24,
+        jitter: 0.1,
+        simulation_frequency: 24000
+    )
+    twin_wires wires()
+    label stroke(68.6 * units.mm)
+    label rod_length(102 * units.mm)
+    label piston_height(25 * units.mm)
+    label second_fire(270 * units.deg)
+    crankshaft crank(
+        throw: stroke / 2,
+        flywheel_mass: 5 * units.lb,
+        mass: 8 * units.lb,
+        friction_torque: 4 * units.lb_ft,
+        moment_of_inertia: 0.055,
+        position_x: 0,
+        position_y: 0,
+        tdc: 90 * units.deg
+    )
+    rod_journal first(angle: 0 * units.deg)
+    rod_journal second(angle: second_fire)
+    crank.add_rod_journal(first).add_rod_journal(second)
+
+    piston_parameters pistons(
+        mass: 360 * units.g,
+        compression_height: piston_height,
+        wrist_pin_position: 0,
+        displacement: 0
+    )
+    connecting_rod_parameters rods(
+        mass: 310 * units.g,
+        moment_of_inertia: 0.0016,
+        center_of_mass: 0,
+        length: rod_length
+    )
+    cylinder_bank_parameters bank_parameters(
+        bore: 80 * units.mm,
+        deck_height: stroke / 2 + rod_length + piston_height
+    )
+    intake intake(
+        plenum_volume: 2.5 * units.L,
+        plenum_cross_section_area: 13 * units.cm2,
+        intake_flow_rate: k_carb(280),
+        runner_flow_rate: k_carb(230),
+        runner_length: 110 * units.mm,
+        idle_flow_rate: k_carb(0),
+        idle_throttle_plate_position: 0.995
+    )
+    exhaust_system_parameters exhaust_parameters(
+        outlet_flow_rate: k_carb(360),
+        primary_tube_length: 450 * units.mm,
+        primary_flow_rate: k_carb(250),
+        velocity_decay: 1,
+        volume: 2.2 * units.L
+    )
+    exhaust_system exhaust(
+        exhaust_parameters,
+        audio_volume: 0.8,
+        impulse_response: ir_lib.minimal_muffling_02
+    )
+    cylinder_bank bank(bank_parameters, angle: 0 * units.deg)
+    bank
+        .add_cylinder(
+            piston: piston(pistons, blowby: k_28inH2O(0.03)),
+            connecting_rod: connecting_rod(rods),
+            rod_journal: first,
+            intake: intake,
+            exhaust_system: exhaust,
+            ignition_wire: wires.first
+        )
+        .add_cylinder(
+            piston: piston(pistons, blowby: k_28inH2O(0.03)),
+            connecting_rod: connecting_rod(rods),
+            rod_journal: second,
+            intake: intake,
+            exhaust_system: exhaust,
+            ignition_wire: wires.second
+        )
+    harmonic_cam_lobe intake_lobe(
+        duration_at_50_thou: 222 * units.deg, gamma: 1.12,
+        lift: 8.4 * units.mm, steps: 100
+    )
+    harmonic_cam_lobe exhaust_lobe(
+        duration_at_50_thou: 216 * units.deg, gamma: 1.12,
+        lift: 7.8 * units.mm, steps: 100
+    )
+    camshaft_parameters cam_parameters(advance: 0 * units.deg, base_radius: 12.7 * units.mm)
+    camshaft intake_cam(cam_parameters, lobe_profile: intake_lobe)
+    camshaft exhaust_cam(cam_parameters, lobe_profile: exhaust_lobe)
+    intake_cam.add_lobe(470 * units.deg).add_lobe(740 * units.deg)
+    exhaust_cam.add_lobe(250 * units.deg).add_lobe(520 * units.deg)
+    bank.set_cylinder_head(generic_small_engine_head(
+        chamber_volume: 32.84 * units.cc,
+        intake_camshaft: intake_cam,
+        exhaust_camshaft: exhaust_cam
+    ))
+    engine.add_cylinder_bank(bank).add_crankshaft(crank)
+
+    function advance(1500 * units.rpm)
+    advance.add_sample(0 * units.rpm, 12 * units.deg)
+           .add_sample(1500 * units.rpm, 18 * units.deg)
+           .add_sample(3000 * units.rpm, 25 * units.deg)
+           .add_sample(6000 * units.rpm, 32 * units.deg)
+           .add_sample(10000 * units.rpm, 31 * units.deg)
+    ignition_module ignition(
+        timing_curve: advance,
+        rev_limit: 10300 * units.rpm,
+        limiter_duration: 0.05
+    )
+    ignition.connect_wire(wires.first, 0 * units.deg).connect_wire(wires.second, second_fire)
+    engine.add_ignition_module(ignition)
+}
+
+private node road_transmission {
+    alias output __out: gearbox;
+    transmission gearbox(max_clutch_torque: 120 * units.lb_ft)
+    gearbox.add_gear(2.846).add_gear(2.125).add_gear(1.632)
+           .add_gear(1.300).add_gear(1.091).add_gear(0.964)
+}
+
+public node main {
+    set_engine(road_twin())
+    set_transmission(road_transmission())
+    set_vehicle(vehicle(
+        mass: 260 * units.kg,
+        drag_coefficient: 0.6,
+        cross_sectional_area: 0.65 * units.m * units.m,
+        diff_ratio: 4.2,
+        tire_radius: 310 * units.mm,
+        rolling_resistance: 36 * units.N
+    ))
+}

@@ -71,7 +71,7 @@ impl Plugin for PropDestructionPlugin {
                     .chain()
                     .after(crate::game::drive)
                     .after(crate::combat::schedule)
-                    .before(crate::combat::melee)
+                    .after(crate::combat::melee)
                     .in_set(SimSet::Gameplay),
             )
             .add_systems(
@@ -225,9 +225,10 @@ fn impacts(
         MessageReader<crate::combat::AttackAttempt>,
         MessageReader<crate::combat::StrikeContact>,
         Query<&crate::recovery::Recovery>,
+        Res<Time<Fixed>>,
     ),
 ) {
-    let (mut attacks, mut contacts_at_key, recoveries) = strikes;
+    let (mut attacks, mut contacts_at_key, recoveries, fixed) = strikes;
     let mut pairs: Vec<_> = events
         .read()
         .filter_map(|e| {
@@ -326,7 +327,14 @@ fn impacts(
         let Ok((_, t, _, _, _, _, Some(rider), _, _)) = sources.get(attacker) else {
             continue;
         };
-        if rider.finished.is_some() {
+        if rider.finished.is_some()
+            || (chosen_side.is_some()
+                && rider.strike.is_none_or(|clock| {
+                    !clock.pending()
+                        || clock.age < clock.contact
+                        || clock.age - fixed.delta_secs() >= clock.contact
+                }))
+        {
             continue;
         }
         let origin = t.translation + Vec3::Y * 1.45;
@@ -380,6 +388,15 @@ fn impacts(
             })
             .min_by(|a, b| a.1.total_cmp(&b.1));
         if let Some((target, _)) = target {
+            if chosen_side.is_some() {
+                commands.queue(move |world: &mut World| {
+                    if let Some(mut rider) = world.get_mut::<crate::game::Rider>(attacker)
+                        && let Some(clock) = rider.strike.as_mut()
+                    {
+                        clock.consume();
+                    }
+                });
+            }
             strikes.insert((attacker, target), if kicking { 350. } else { 140. });
             pairs.push((attacker, target));
         }

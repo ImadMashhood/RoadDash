@@ -654,7 +654,7 @@ fn physical_fighter_starts_and_lands_an_authored_strike_without_injected_attack_
             let r = app.world().get::<Rider>(owner).unwrap();
             attempts = attempts.max(r.attack_serial.saturating_sub(initial_serial));
             let v = app.world().get::<Rider>(victim).unwrap();
-            confirmed |= v.hits.count > 0 || v.hit_reaction.is_some();
+            confirmed |= v.combat_mind.incident_count() > 0;
             if confirmed {
                 break;
             }
@@ -673,8 +673,10 @@ fn physical_fighter_starts_and_lands_an_authored_strike_without_injected_attack_
         assert!(attempts > 0 && confirmed);
         assert!(r.progress > 200. && v.progress > 200. && r.speed > 20. && v.speed > 20.);
         assert!(v.combat_mind.incident_count() > 0);
-        if weapon.is_none() {
-            assert_eq!(v.hit_reaction.unwrap().kicking, initial_serial == 0);
+        if weapon.is_none()
+            && let Some(reaction) = v.hit_reaction
+        {
+            assert_eq!(reaction.kicking, initial_serial == 0);
             assert_eq!(v.hits.count > 0, initial_serial != 0);
         }
     }
@@ -807,7 +809,7 @@ fn physical_fighter_closes_twenty_metres_and_lands_a_hit_with_normal_engine_forc
         for _ in 0..1200 {
             app.update();
             let v = app.world().get::<Rider>(victim).unwrap();
-            confirmed |= v.hits.count > 0 || v.hit_reaction.is_some();
+            confirmed |= v.combat_mind.incident_count() > 0;
             if confirmed {
                 break;
             }

@@ -34,9 +34,10 @@ fn pixels() -> [Vec<u8>; 3] {
             let tar = (y as f32 - (270.0 + 8.0 * (x as f32 * 0.021).sin())).abs() < 0.8
                 && x > 80
                 && x < 215;
-            let value = (79.0 + grit * 17.0 + macro_tone
+            let value = (70.0 + grit * 17.0 + grain(x / 8, y / 11) * 13.0 + macro_tone
                 - if tar { 10.0 } else { 0.0 }
-                - if patch { 5.0 } else { 0.0 }) as u8;
+                - if patch { 5.0 } else { 0.0 })
+            .min(100.) as u8;
             data[0].extend([value, value.saturating_add(2), value.saturating_add(3), 255]);
             let dx = height((x + 1) % SIDE, y) - height((x + SIDE - 1) % SIDE, y);
             let dy = height(x, (y + 1) % SIDE) - height(x, (y + SIDE - 1) % SIDE);

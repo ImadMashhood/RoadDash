@@ -1,0 +1,11 @@
+{
+  "categories": 6,
+  "imperial_speed_reloaded": true,
+  "limits": "Scripted native keyboard and persistence. Voice hardware and controller approval are separate.",
+  "master_volume": 0.949999988079071,
+  "microphone_enabled": false,
+  "profile_credits": 0,
+  "push_to_talk_reloaded": true,
+  "real_keyboard_category_adjust_save": true,
+  "vsync_reloaded": true
+}

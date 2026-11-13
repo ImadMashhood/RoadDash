@@ -1,0 +1,19 @@
+{
+  "bike_displacement_m": 57.17610549926758,
+  "birds": 24,
+  "captures_completed": 7,
+  "dressing": {
+    "cacti": 169,
+    "deadwood": 16,
+    "giant_boulders": 43,
+    "rocks": 96
+  },
+  "dust_capacity": 96,
+  "dust_emitted": 43,
+  "limits": "Scripted active evidence; not a human full race, target GPU benchmark or production animal AI/ejection certification.",
+  "maximum_active_dust": 21,
+  "mounted_collision_hit": true,
+  "mounted_displacement_m": 13.038288116455078,
+  "mounted_pairs": 11,
+  "pause_frames_verified": 81
+}

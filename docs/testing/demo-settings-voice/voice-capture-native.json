@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "quiet_frames_transmitted": 0,
+  "active_nonzero_frames_received": 10,
+  "maximum_received_rms": 0.1400386838400945,
+  "native_host": true,
+  "limits": "Linux CPAL capture from isolated synthetic PipeWire input. Raw loopback listener. No hardware mic or WAN claim."
+}

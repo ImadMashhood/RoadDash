@@ -1,5 +1,46 @@
 # Development history
 
+## 2026-11-13 — Six-slot offline map picker (ADR182)
+
+Show Metropolis and Hills in a three-column, two-row grid with four blank slots.
+
+## 2026-11-13 — Spatial bike engines (ADR180)
+
+Nearby bikes have positional engines with distance falloff and Doppler.
+Engine audio follows the bike through knockoff, recovery and remount.
+
+## 2026-11-13 — Custom parallel-twin engine audio (ADR179)
+
+Captured the 689 cc, 270-degree twin from Engine Simulator v0.1.11a under
+Proton and made it the player engine voice. Use `ROADDASH_ENGINE_STREET=1`
+for the roadside sample audition.
+
+## 2026-11-13 — Recorded street engine candidate (ADR177)
+
+Try three recorded textures in the live gearbox-driven audio path. Set
+`ROADDASH_ENGINE_SYNTH=1` to compare the original procedural voice or
+`ROADDASH_ENGINE_LEGACY=1` for the earlier recorded rev loops.
+
+## 2026-11-13 — RPM engine audio audition (ADR176)
+
+Add an original inline-four engine voice and retain the recorded-loop A/B
+control. AUDIO-008 remains open for listening acceptance.
+
+## 2026-11-13 — Demo combat, effects and audio (ADR175)
+
+Add moving strike contact, speed-based AI disengage, rear-wheel spray and
+recorded audio. Register seven CC0 assets and advance the session to protocol 4.
+Track DEMO-FIGHT-01, DEMO-STRIKE-01 and DEMO-ROAD-FX-01.
+
+## 2026-11-12 — Demo settings and proximity voice (ADR174)
+
+Extend the settings menu with live mix, display, HUD and menu motion controls.
+Add bounded host-routed proximity voice with voice activation selected by
+default, explicit microphone enable, push-to-talk, and local rider mute. The
+wire and discovery protocols are now version 3. No third-party media added.
+Track DEMO-VOICE-01 and DEMO-SETTINGS-01 in the live checklist. See
+[comparison, verification and limits](testing/demo-settings-voice/REPORT.md).
+
 ## 2026-11-12 — Whole-body cornering follow-up (ADR173)
 
 User approves the menu/combat pass and asks for torso/shoulder/arm weight shift.
@@ -2273,3 +2314,8 @@ from the repository. Temporal art and GPU/frame gates remain open.
 ## 2026-11-11 — Hills follow-up integration candidate
 
 Combined isolated Bevy 0.20.1 branches for mounted animal support/impact presentation, stronger rival launch and rear-camera visibility, and civilian heavy-vehicle encounters with an early Hills city fleet. Added original procedural desert ground grit, terrain-matched dust with a fixed footprint and rear fade, and halved the imported Hills city walker subset per latest feedback. The original Road Rash AI investigation remains research-only. See testing/feedback-sand-crowd/REPORT.md and research/road-rash-ai-1996.md. Full integrated verification and native art/balance review are recorded separately; the engine parity blockers remain open.
+
+## 2026-11-13 — Hills terrain art (ADR183)
+
+Coarsen road aggregate and add mottled meadow shading and exposed rock on
+steep Hills faces. The native Hills survey captured eleven views.

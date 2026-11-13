@@ -5,6 +5,21 @@ use std::{ffi::OsString, process::Command};
 #[derive(Component)]
 pub(super) struct CourseCard(pub Course);
 
+pub(super) const SELECTABLE: [Course; 2] = [Course::Metropolis, Course::Hills];
+const SLOT_COUNT: usize = 6;
+
+#[derive(Component)]
+pub(super) struct ReservedCourseSlot;
+
+fn slot_area(index: usize) -> Node {
+    area([
+        5. + (index % 3) as f32 * 30.5,
+        22. + (index / 3) as f32 * 29.,
+        29.,
+        26.,
+    ])
+}
+
 pub(super) fn loaded(track: &Track) -> Option<Course> {
     if track.is_hills() {
         Some(Course::Hills)
@@ -217,7 +232,12 @@ pub(super) fn render(
     art: &Art,
 ) {
     let paper = layout::PAPER;
-    let selected = front.flow.course.or_else(|| loaded(track));
+    let selected = front
+        .flow
+        .course
+        .or_else(|| loaded(track))
+        .filter(|course| SELECTABLE.contains(course))
+        .unwrap_or(Course::Metropolis);
     let panel = commands
         .spawn((
             area([0., 0., 100., 100.]),
@@ -243,16 +263,12 @@ pub(super) fn render(
     );
     for (index, (course, distance, route)) in [
         (Course::Metropolis, "11 KM", "FARMLAND  /  CITY STREETS"),
-        (
-            Course::Hills,
-            "12.5 KM",
-            "CITY  /  HILLS  /  WESTERN TOWN  /  DUNES",
-        ),
+        (Course::Hills, "12.5 KM", "CITY  /  HILLS  /  DUNES"),
     ]
     .into_iter()
     .enumerate()
     {
-        let mut node = area([5. + index as f32 * 46., 22., 44., 43.]);
+        let mut node = slot_area(index);
         node.border = UiRect::all(px(3.));
         node.overflow = Overflow::clip();
         let card = commands
@@ -286,7 +302,7 @@ pub(super) fn render(
             commands,
             card,
             course.label(),
-            34.,
+            26.,
             [4., 65., 74., 13.],
             paper,
         );
@@ -294,8 +310,8 @@ pub(super) fn render(
             commands,
             card,
             distance,
-            20.,
-            [77., 68., 22., 10.],
+            16.,
+            [76., 68., 23., 10.],
             layout::ACCENT,
         );
         label(
@@ -306,7 +322,7 @@ pub(super) fn render(
             [4., 83., 94., 10.],
             paper.with_alpha(0.8),
         );
-        if selected == Some(course) {
+        if selected == course {
             let tag = commands
                 .spawn((area([4., 5., 30., 10.]), BackgroundColor(layout::ACCENT)))
                 .id();
@@ -322,36 +338,29 @@ pub(super) fn render(
         }
         commands.entity(canvas).add_child(card);
     }
-    let rows = entries(Page::Courses);
-    for index in 2..4 {
-        let c = Course::ALL[index];
-        let row = entry(
-            format!(
-                "{}{}",
-                if selected == Some(c) {
-                    "SELECTED / "
-                } else {
-                    "LEGACY / "
-                },
-                c.label()
-            ),
-            Action::SelectCourse(c),
-        );
-        layout::button(
-            commands,
-            canvas,
-            index,
-            &row,
-            [5. + (index - 2) as f32 * 46., 68., 44., 8.],
-            false,
-        );
+    for index in SELECTABLE.len()..SLOT_COUNT {
+        let mut node = slot_area(index);
+        node.border = UiRect::all(px(1.));
+        let slot = commands
+            .spawn((
+                ReservedCourseSlot,
+                node,
+                BackgroundColor(Color::srgba(0.045, 0.055, 0.062, 0.85)),
+                BorderColor::all(Color::srgba(0.36, 0.42, 0.46, 0.34)),
+            ))
+            .id();
+        commands.entity(canvas).add_child(slot);
     }
-    let ride = entry(
-        format!("RIDE {}", selected.map_or("THIS ROAD", Course::label)),
-        Action::Ride,
+    let ride = entry(format!("RIDE {}", selected.label()), Action::Ride);
+    layout::button(commands, canvas, 2, &ride, [5., 81., 65., 10.], false);
+    layout::button(
+        commands,
+        canvas,
+        3,
+        &entry("BACK", Action::Back),
+        [74., 81., 21., 10.],
+        false,
     );
-    layout::button(commands, canvas, 4, &ride, [5., 81., 65., 10.], false);
-    layout::button(commands, canvas, 5, &rows[5], [74., 81., 21., 10.], false);
     label(
         commands,
         canvas,

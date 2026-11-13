@@ -245,6 +245,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "DEMO-FIGHT-01",
         "FEEL-DOWNED-01",
         "AI-METRO-01",
         "PERF-START-01",
@@ -490,6 +491,7 @@
     "07": {
       "title": "Weapons and complete riding combat",
       "task_ids": [
+        "DEMO-STRIKE-01",
         "FEEL-WEAPON-01",
         "FEEL-HIT-01",
         "V2-07-001",
@@ -585,6 +587,7 @@
     "13": {
       "title": "Authoritative online races and lobbies",
       "task_ids": [
+        "DEMO-VOICE-01",
         "ONLINE-PLAY-01",
         "P13-001",
         "P13-002",
@@ -615,6 +618,8 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "DEMO-ROAD-FX-01",
+        "DEMO-SETTINGS-01",
         "UI-CITY-TOUR-01",
         "RFU-FX-01",
         "RFU-FX-02",
