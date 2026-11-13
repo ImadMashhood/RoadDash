@@ -55,3 +55,7 @@ source. No new third-party assets or dependencies were introduced.
   the removed flat color strip. The selected Hills card uses the same build.
   The final Hills survey produced all 15 route views before its time limit.
   The earlier survey with the same route and NPC changes exited successfully.
+- The [City Run LOD rerun](city-lod.json) passed with 429 direct crossfades and
+  the existing 48-entry cache and 8-transition caps. Both focused tangent
+  tests passed after the fix. The final terrain workspace run recorded 489
+  passing game tests, one ignored and the same two known Rapier failures.
