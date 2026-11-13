@@ -13,3 +13,13 @@ environment lighting remain independent of the backdrop.
 
 The art is generated from RoadDash's procedural sky and placement code. No
 external textures or models are used.
+
+The native [Hills view](hills.jpg) shows layered ridges beyond the playable
+slopes. The [Metropolis farm approach](metropolis.jpg) shows the skyline
+through the horizon haze. The focused skybox and woodland tests, formatting,
+strict Clippy, locked build, provenance audit and roadmap checks passed.
+Matched performance remains open.
+
+The base integration on local main passed the six-slot course handoff and
+the Hills recovery smoke with spatial bike engines, both remounts and zero
+exceptional rescues.
