@@ -36,3 +36,14 @@ describe the rendering paths.
 - The [Metropolis recovery fixture](metro-recovery.json) passed with both
   switches enabled on the rebuilt binary. It reached results after both
   remounts. An earlier contact-shadow survey also rendered all views.
+- Both final Metropolis survey runs exited successfully. The [street pair](metro-contact.jpg)
+  shows contact shadows off on the left and on on the right. The difference
+  is subtle at street scale and is strongest on lit details.
+- One sequential same-binary debug survey pair measured **28.76 → 29.55 ms**
+  mean and **33.24 → 36.25 ms** P95 wall-frame time. Both exceeded 16.7 ms.
+  This is a local wall-clock observation. Repeated release runs and GPU timing
+  remain open.
+- Formatting, strict Clippy, locked build, provenance, roadmap and facade
+  checks passed. The game library recorded 490 passing tests, one ignored,
+  and the two known Rapier failures. Core and content passed 228 tests with
+  one ignored.
