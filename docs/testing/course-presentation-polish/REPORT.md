@@ -59,3 +59,8 @@ source. No new third-party assets or dependencies were introduced.
   the existing 48-entry cache and 8-transition caps. Both focused tangent
   tests passed after the fix. The final terrain workspace run recorded 489
   passing game tests, one ignored and the same two known Rapier failures.
+- The [Valley world survey rerun](valley-survey.json) completed its captures
+  and reported 657 building roots, 42 fields and nine junctions. It exited 1
+  because its 36.77 ms city wall-frame P95 exceeded the 16.7 ms target.
+  Concurrent local workloads were present, so this result is not a matched
+  estimate of the grass change's cost.
