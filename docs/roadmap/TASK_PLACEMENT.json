@@ -446,6 +446,7 @@
     "06": {
       "title": "World C — NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "SCENIC-HORIZON-01",
         "COURSE-TERRAIN-01",
         "COURSE-CROSSING-01",
         "RFU-WILD-01",

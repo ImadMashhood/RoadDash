@@ -317,7 +317,7 @@ fn grass_positions(
                     .wrapping_mul(97)
                     .wrapping_add(row * 31)
                     .wrapping_add(u32::from(side > 0.) * 17);
-                if noise(seed) < 0.18 + 0.16 * (s * 0.023 + row as f32 * 0.7).sin() {
+                if noise(seed) < 0.12 + 0.16 * (s * 0.023 + row as f32 * 0.7).sin() {
                     continue;
                 }
                 let lane = side

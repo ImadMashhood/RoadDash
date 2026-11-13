@@ -36,7 +36,7 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
                     // Correlated clearings break up the rows; jitter breaks the grid.
                     let s = start as f32 + i as f32 * 16. + noise(seed) * 13.;
                     if s > 5200.
-                        || noise(seed + 1) < 0.28 + 0.19 * (s * 0.019 + row as f32 * 0.8).sin()
+                        || noise(seed + 1) < 0.21 + 0.19 * (s * 0.019 + row as f32 * 0.8).sin()
                     {
                         continue;
                     }

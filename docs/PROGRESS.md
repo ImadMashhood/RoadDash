@@ -1400,6 +1400,8 @@ pending terrain and crossing verification gates.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](testing/scenic-horizon/REPORT.md).
+
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](testing/course-presentation-polish/REPORT.md).
 
 - [ ] **COURSE-CROSSING-01** Ground Hills cowboys, expand the Hills herds and increase pedestrian crossings on all four courses. Reason: partially buried mounts and sparse crossings; part:06; dependencies: RFU-HILLS-05, RFU-WILD-06 and shared pedestrian admission; acceptance: half the previous Hills city walker count rounded up, retained crossings, more staged walkers on each course, mounted shoulder clearance and five farm cows per parcel/six cattle per crossing herd; verification: authored census, support tests and native route walkthrough. [Evidence](testing/course-presentation-polish/REPORT.md).

@@ -126,6 +126,7 @@ fn display_colour(rgb: Vec3, c: &rr_content::world_art::Config) -> Vec3 {
     let srgb = Color::linear_rgb(mapped.x, mapped.y, mapped.z).to_srgba();
     Vec3::new(srgb.red, srgb.green, srgb.blue)
 }
+#[cfg(test)]
 fn sky_colour(d: Vec3, c: &rr_content::world_art::Config) -> Vec3 {
     display_colour(sky_radiance(d, c), c)
 }
@@ -172,6 +173,43 @@ fn sky_radiance_with_disc(d: Vec3, c: &rr_content::world_art::Config, disc: bool
         base = base.lerp(Vec3::new(1.0, 0.98, 0.90), smooth(0.9996, 0.9999, solar));
     }
     base.clamp(Vec3::ZERO, Vec3::ONE)
+}
+/// Distant silhouettes affect the displayed sky only. Fog and IBL use the
+/// original horizon radiance so scenery never tints the course lighting.
+fn horizon_scenery(d: Vec3, sky: Vec3, horizon: Vec3, urban: bool) -> Vec3 {
+    if d.y <= 0. || d.y >= 0.15 {
+        return sky;
+    }
+    let horizontal = d.with_y(0.).normalize_or_zero();
+    let angle = horizontal.z.atan2(horizontal.x);
+    let sector = (angle / std::f32::consts::TAU).rem_euclid(1.);
+    let base_fade = smooth(0., 0.015, d.y);
+    let mut result = sky;
+    for layer in 0..2 {
+        let n = layer as f32;
+        let p = horizontal * (5. + n * 3.) + Vec3::splat(n * 11.);
+        let ridge = 0.018 + noise(p) * 0.057 + noise(p * 2.3) * 0.018;
+        let (height, tint) = if urban {
+            let columns = if layer == 0 { 116. } else { 73. };
+            let column = sector * columns + n * 0.37;
+            let cell = column.floor().rem_euclid(columns);
+            let height = 0.016 + noise(Vec3::new(cell * 1.37, n, 4.)) * (0.065 - n * 0.02);
+            let gap = smooth(0.39, 0.49, (column.fract() - 0.5).abs());
+            (
+                height * (1. - gap.powi(8) * 0.55),
+                Vec3::new(0.38, 0.46, 0.54),
+            )
+        } else {
+            let tree_line = noise(horizontal * 112. + Vec3::splat(7.)) * 0.007;
+            (
+                ridge * (1. - n * 0.3) + tree_line * n,
+                Vec3::new(0.30, 0.40, 0.44),
+            )
+        };
+        let coverage = base_fade * (1. - smooth(height - 0.004, height + 0.004, d.y));
+        result = result.lerp(horizon.lerp(tint, 0.24 + n * 0.17), coverage);
+    }
+    result
 }
 fn cubemap(size: usize, coverage: f32, diffuse: bool, sun_direction: Vec3, horizon: Vec3) -> Image {
     cube_from(size, |d| {
@@ -367,17 +405,21 @@ pub fn install(
         });
     }
     let started = std::time::Instant::now();
+    let scenic_horizon =
+        track.is_some() && std::env::var("ROADDASH_SCENIC_HORIZON").as_deref() != Ok("0");
+    let urban = track
+        .as_ref()
+        .is_some_and(|track| track.metropolis.is_some() || track.city_surface.is_some());
     let display_cube = cube_from(c.sky_resolution as usize, |d| {
         // Bevy skybox sampling reverses Z; author in world directions.
         let d = d * Vec3::new(1.0, 1.0, -1.0);
-        if analytic_sun {
-            display_colour(
-                sky_radiance_with_disc(d, &display_profile, false),
-                &display_profile,
-            )
+        let rgb = sky_radiance_with_disc(d, &display_profile, !analytic_sun);
+        let rgb = if scenic_horizon {
+            horizon_scenery(d, rgb, Vec3::from_array(c.horizon_color_srgb), urban)
         } else {
-            sky_colour(d, &display_profile)
-        }
+            rgb
+        };
+        display_colour(rgb, &display_profile)
     });
     info!(
         "Sky display cube: {} bytes, generated in {:.3}ms; separate analytic sun and bounded spatial clouds",
@@ -477,6 +519,20 @@ pub fn install(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn horizon_scenery_keeps_the_fog_edge_and_high_sky_clear() {
+        let sky = Vec3::new(0.7, 0.8, 0.9);
+        for urban in [false, true] {
+            for direction in [Vec3::X, Vec3::NEG_Y, Vec3::Y] {
+                assert_eq!(horizon_scenery(direction, sky, sky, urban), sky);
+            }
+            assert_ne!(
+                horizon_scenery(Vec3::new(1., 0.022, 0.).normalize(), sky, sky, urban),
+                sky
+            );
+        }
+    }
+
     #[test]
     fn depth_profile_preserves_city_sun_and_keeps_hills_haze_out_of_the_near_road() {
         let mut city = profile(false);

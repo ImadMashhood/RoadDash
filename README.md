@@ -196,7 +196,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**242 verified tasks complete; 358 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**242 verified tasks complete; 359 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -222,7 +222,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 48 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 49 open |
 | [07](#part-07) | Weapons and complete riding combat | 12 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -1100,6 +1100,8 @@ Repeat the reference → original textures/models → procedural placement → c
 <a id="part-06"></a>
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](docs/testing/scenic-horizon/REPORT.md).
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
 

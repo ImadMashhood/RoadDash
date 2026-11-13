@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Scenic skybox horizons (ADR186)
+
+- Added distant skyline and ridge layers and denser Hills meadow and woodland.
+
 ## 2026-11-13 — Six-slot offline map picker (ADR182)
 
 Show Metropolis and Hills in a three-column, two-row grid with four blank slots.

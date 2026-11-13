@@ -4843,3 +4843,10 @@ Offer independent opt-in startup comparisons for the display curve/Hills
 daylight and camera contact shadows. Pilot storefront depth through the
 existing BUSS4 geometry and source finishes. Rebake model-derived proxies
 with the authored finishes. [Evidence](testing/visual-depth/REPORT.md).
+
+## ADR186 — Scenic skybox horizons (2026-11-13)
+
+Generate course-specific distant silhouettes in the display cube while
+retaining the existing sky radiance for environment lighting. Increase
+Hills grass and woodland through the existing reserved placement and batch
+paths. [Implementation and evidence](testing/scenic-horizon/REPORT.md).
