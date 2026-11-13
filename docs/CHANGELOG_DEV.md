@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Hills cattle and Western town scenes (ADR196)
+
+- Aligned crossing cattle with travel, added two herds, and staged three brawls and two shootouts in Western town.
+
 ## 2026-11-13 — Normal rivals and recorded race audio (ADR195)
 
 - Added saved offline Normal and Hard presets and replaced synthesized race effects with sourced samples. Crashes and distinct rider and bike runovers play from the contact point.

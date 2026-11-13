@@ -4924,3 +4924,12 @@ existing recorded street engine and retain the prior twin for comparison.
 Emit crash and runover sounds from confirmed world-space contacts. Preserve
 online event IDs and use a compatible fallback for older receivers.
 [Implementation and evidence](testing/normal-impact-audio/REPORT.md).
+
+## ADR196 — Hills cattle formations and Western town scenes (2026-11-13)
+
+Share one crossing clock per cattle herd and align its +X model and collider
+with actual travel. Add an earlier and a later crossing using the existing
+civilian contact system. Stage three local brawls and two shootouts on the
+Western town main street with pedestrian collisions and presentation-only
+strike and gunfire effects.
+[Implementation and evidence](testing/hills-encounters/REPORT.md).

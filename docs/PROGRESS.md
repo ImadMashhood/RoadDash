@@ -1,5 +1,9 @@
 # Development progress
 
+2026-11-13 Hills cattle and Western town encounters (ADR196): HILLS-CATTLE-01
+and HILLS-TOWN-01 added open. 246 verified / 363 open.
+[Implementation and evidence](testing/hills-encounters/REPORT.md).
+
 2026-11-13 Normal rivals and recorded race audio (ADR195): AI-NORMAL-01 and
 AUDIO-IMPACT-01 added open. 246 verified / 361 open. See the
 [implementation and evidence](testing/normal-impact-audio/REPORT.md).
@@ -1417,6 +1421,10 @@ pending terrain and crossing verification gates.
 - [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](testing/scenic-horizon/REPORT.md).
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](testing/course-presentation-polish/REPORT.md).
+
+- [ ] **HILLS-CATTLE-01** Correct the Hills crossing herd formation and heading and add an earlier and later herd. Reason: the original cattle slide sideways in one row; part: 06; dependencies: COURSE-CROSSING-01 and cow patrols; acceptance: four groups of six, two rows of three, correct heading in both directions, usable ground and road contact; verification: formation test, native smoke and race-speed review in the [Hills encounters report](testing/hills-encounters/REPORT.md).
+
+- [ ] **HILLS-TOWN-01** Stage three brawls and two shootouts in Western town. Reason: add activity to the shared main street; part: 06; dependencies: HILLS-03 and pedestrian rigs; acceptance: two roadside brawls and one in the road, two roadside shootouts, alternating actions with localized sound and readable poses; verification: scene fixture, native smoke and race-speed review in the [Hills encounters report](testing/hills-encounters/REPORT.md).
 
 - [ ] **COURSE-CROSSING-01** Ground Hills cowboys, expand the Hills herds and increase pedestrian crossings on all four courses. Reason: partially buried mounts and sparse crossings; part:06; dependencies: RFU-HILLS-05, RFU-WILD-06 and shared pedestrian admission; acceptance: half the previous Hills city walker count rounded up, retained crossings, more staged walkers on each course, mounted shoulder clearance and five farm cows per parcel/six cattle per crossing herd; verification: authored census, support tests and native route walkthrough. [Evidence](testing/course-presentation-polish/REPORT.md).
 

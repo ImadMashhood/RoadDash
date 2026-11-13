@@ -1,5 +1,8 @@
 # Known issues and remaining acceptance
 
+- HILLS-TOWN-01: Human review of scene readability and traffic interaction
+  at full race speed remains open.
+
 - AI-NORMAL-01 / AUDIO-IMPACT-01: Full-course human comeback and headphone
   acceptance of the new recorded impact mix remain open.
 

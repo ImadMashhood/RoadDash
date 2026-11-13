@@ -992,8 +992,12 @@ pub fn patrol(
         } else {
             -1.0
         };
-        t.rotation =
-            Quat::from_rotation_y((path.axis.x * direction).atan2(path.axis.z * direction));
+        let heading = path.axis * direction;
+        t.rotation = if crossing_cow {
+            crate::world_gen::hills::wildlife::cattle_heading(heading)
+        } else {
+            Quat::from_rotation_y(heading.x.atan2(heading.z))
+        };
     }
 }
 pub fn inspector(
@@ -1065,11 +1069,11 @@ pub fn inspector(
     }
 }
 
-pub fn animate_civilians(
+pub(crate) fn animate_civilians(
     time: Res<Time>,
     race: Res<Race>,
     visuals: Query<&crate::runtime::VisualRoot>,
-    npcs: Query<&crate::npc::Npc>,
+    npcs: Query<&crate::npc::Npc, Without<crate::world_gen::hills::encounters::Participant>>,
     mut limbs: Query<(&PedestrianLimb, &ChildOf, &mut Transform)>,
 ) {
     for (limb, parent, mut t) in &mut limbs {
@@ -1113,7 +1117,7 @@ pub fn animate_cow_legs(
             }
         });
         let pivot = Vec3::new(leg.rest.x, 0.85, leg.rest.z);
-        let turn = Quat::from_rotation_x(angle);
+        let turn = Quat::from_rotation_z(angle);
         t.translation = pivot + turn * (leg.rest - pivot);
         t.rotation = turn;
     }

@@ -13,7 +13,7 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
     (0, 10800., -80.),
 ];
 const SAMPLES: usize = 128;
-const CROSSING_STATIONS: [f32; 2] = [9200., 11050.];
+const CROSSING_STATIONS: [f32; 4] = [8870., 9200., 11050., 11800.];
 const CROSSING_MEMBERS: usize = 6;
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
@@ -73,19 +73,10 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
     }
     for (group, &station) in CROSSING_STATIONS.iter().enumerate() {
         for member in 0..CROSSING_MEMBERS {
-            let (center, q) = track.sample_route(0, station + member as f32 * 3.7, 0.);
-            let axis = (q * Vec3::X).with_y(0.).normalize();
-            let center =
-                center + q * Vec3::Z * (member as f32 - (CROSSING_MEMBERS - 1) as f32 * 0.5) * 2.0;
-            let phase = member as f32 * 0.18;
-            let start = center + axis * ((phase - 1.) * 26.);
+            let (center, axis, phase) = cattle_path(track, station, member);
+            let start = center + axis * ((phase - 1.) * 24.);
             let p = start.with_y(super::geometry::crossing_support(track, 0, start, station));
-            let entity = crate::environment::spawn_cow(
-                commands,
-                art,
-                p,
-                Quat::from_rotation_y(axis.x.atan2(axis.z)),
-            );
+            let entity = crate::environment::spawn_cow(commands, art, p, cattle_heading(axis));
             commands.entity(entity).insert((
                 Name::new(format!(
                     "Hills crossing cattle herd {group} member {member}"
@@ -97,7 +88,7 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
                 crate::environment::Patrol {
                     center,
                     axis,
-                    extent: 26.,
+                    extent: 24.,
                     speed: 2.8,
                     phase,
                     one_way: false,
@@ -106,6 +97,23 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
         }
     }
 }
+fn cattle_path(track: &Track, station: f32, member: usize) -> (Vec3, Vec3, f32) {
+    let (point, frame) = track.sample_route(0, station, 0.);
+    let axis = (frame * Vec3::X).with_y(0.).normalize();
+    let road = axis.cross(Vec3::Y);
+    let column = (member % 3) as f32 - 1.;
+    let row = (member / 3) as f32 - 0.5;
+    (
+        point + road * (column * 2.5) + axis * (row * 4.),
+        axis,
+        0.12,
+    )
+}
+
+pub(crate) fn cattle_heading(direction: Vec3) -> Quat {
+    Quat::from_rotation_y((-direction.z).atan2(direction.x))
+}
+
 pub(crate) fn ground_point(track: &Track, h: usize, m: usize, a: f32) -> Vec3 {
     let (p, q) = center(track, h);
     let [x, z] = rules::local(h, m, a);
@@ -462,6 +470,27 @@ pub fn animate(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn cattle_keep_two_rows_and_face_each_travel_direction() {
+        let track = Track::hills().unwrap();
+        assert_eq!(CROSSING_STATIONS.len(), 4);
+        for station in CROSSING_STATIONS {
+            let paths =
+                std::array::from_fn::<_, CROSSING_MEMBERS, _>(|i| cattle_path(&track, station, i));
+            let (first, axis, phase) = paths[0];
+            for column in 0..3 {
+                let (a, _, first_phase) = paths[column];
+                let (b, _, second_phase) = paths[column + 3];
+                assert!((b - a - axis * 4.).length() < 0.002);
+                assert!(((a - first).dot(axis)).abs() < 0.002);
+                assert_eq!((first_phase, second_phase), (phase, phase));
+            }
+            for heading in [axis, -axis] {
+                assert!((cattle_heading(heading) * Vec3::X).dot(heading) > 0.999);
+            }
+        }
+    }
+
     #[test]
     fn swept_herds_clear_roads_and_ground_paths_are_finite() {
         let track = Track::hills().unwrap();

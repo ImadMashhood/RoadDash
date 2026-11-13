@@ -198,7 +198,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**246 verified tasks complete; 361 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**246 verified tasks complete; 363 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -224,7 +224,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 49 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 51 open |
 | [07](#part-07) | Weapons and complete riding combat | 12 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -1117,6 +1117,8 @@ Repeat the reference → original textures/models → procedural placement → c
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
 
+- [ ] **HILLS-CATTLE-01** Correct the Hills crossing herd formation and heading and add an earlier and later herd. Reason: the original cattle slide sideways in one row; part: 06; dependencies: COURSE-CROSSING-01 and cow patrols; acceptance: four groups of six, two rows of three, correct heading in both directions, usable ground and road contact; verification: formation test, native smoke and race-speed review in the [Hills encounters report](docs/testing/hills-encounters/REPORT.md).
+- [ ] **HILLS-TOWN-01** Stage three brawls and two shootouts in Western town. Reason: add activity to the shared main street; part: 06; dependencies: HILLS-03 and pedestrian rigs; acceptance: two roadside brawls and one in the road, two roadside shootouts, alternating actions with localized sound and readable poses; verification: scene fixture, native smoke and race-speed review in the [Hills encounters report](docs/testing/hills-encounters/REPORT.md).
 - [ ] **COURSE-CROSSING-01** Ground Hills cowboys, expand the Hills herds and increase pedestrian crossings on all four courses. Reason: partially buried mounts and sparse crossings; part:06; dependencies: RFU-HILLS-05, RFU-WILD-06 and shared pedestrian admission; acceptance: half the previous Hills city walker count rounded up, retained crossings, more staged walkers on each course, mounted shoulder clearance and five farm cows per parcel/six cattle per crossing herd; verification: authored census, support tests and native route walkthrough. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
 
 - [ ] **RFU-WILD-01** Add coherent moving wild horse herds to Hills. Reason: issue32 requests life beyond traffic; part:06; dependencies:HILLS-01, RFU-WILD-03/04; acceptance: distinct off-road regional herds, terrain-grounded continuous gait/group movement and no nearby frozen actors or population popping; verification: whole-path clearance/coherence tests and native near/mid/far/traversal motion captures. Partial integrated evidence: [issue #32 wildlife report](docs/testing/wildlife/REPORT.md); remaining acceptance gates stay open.

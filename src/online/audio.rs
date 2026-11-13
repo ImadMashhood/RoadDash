@@ -53,7 +53,9 @@ pub(super) fn collect(
     state: Res<NetState>,
 ) {
     for cue in messages.read() {
-        if matches!(state.connection, Connection::Host(_)) {
+        if matches!(state.connection, Connection::Host(_))
+            && !matches!(cue.kind, Cue::TownShot | Cue::TownPunch)
+        {
             events.serial += 1;
             let id = events.serial;
             events.pending.push_back(Event::new(id, *cue));

@@ -6,6 +6,7 @@ pub use countryside::HillsFarm;
 pub mod bridge;
 mod countryside;
 pub mod dressing;
+pub(crate) mod encounters;
 mod geometry;
 pub mod guardrails;
 pub mod mounted;
@@ -88,6 +89,7 @@ pub fn spawn(
     {
         let _span = crate::diagnostics::loading::Span::new("hills_props");
         props::spawn(commands, meshes, materials, art, track, &mut census);
+        encounters::spawn(commands, meshes, materials, art, track);
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_countryside");

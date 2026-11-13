@@ -29,6 +29,8 @@ pub enum Cue {
     Steam,
     Runover,
     RunoverBike,
+    TownShot,
+    TownPunch,
 }
 #[derive(Message, Clone, Copy)]
 pub struct AudioCue {
@@ -56,6 +58,7 @@ pub struct Sounds {
     bike_strike: Handle<AudioSource>,
     runover: Handle<AudioSource>,
     runover_bike: Handle<AudioSource>,
+    town_shot: Handle<AudioSource>,
     pass_by: Handle<AudioSource>,
     air_brake: Handle<AudioSource>,
     gravel_step: [Handle<AudioSource>; 2],
@@ -201,6 +204,7 @@ pub(crate) fn setup(
         bike_strike: asset_server.load("audio/impacts/weapon.wav"),
         runover: asset_server.load("audio/impacts/runover.wav"),
         runover_bike: asset_server.load("audio/impacts/runover_bike.wav"),
+        town_shot: asset_server.load("audio/impacts/town-shot.wav"),
         pass_by: sources.add(recording(include_bytes!("../assets/audio/demo/rev.wav"))),
         air_brake: sources.add(recording(include_bytes!(
             "../assets/audio/demo/air_brake.wav"
@@ -357,7 +361,7 @@ pub(crate) fn update(
             Cue::Siren => &sounds.siren,
             Cue::Crash => &sounds.crash,
             Cue::Break => &sounds.breaking,
-            Cue::Punch => &sounds.punch,
+            Cue::Punch | Cue::TownPunch => &sounds.punch,
             Cue::Kick => &sounds.kick,
             Cue::Honk => &sounds.honk,
             Cue::Land => &sounds.land,
@@ -370,11 +374,13 @@ pub(crate) fn update(
             Cue::Steam => &sounds.steam,
             Cue::Runover => &sounds.runover,
             Cue::RunoverBike => &sounds.runover_bike,
+            Cue::TownShot => &sounds.town_shot,
         };
         let (base_gain, scale) = match cue.kind {
             Cue::Crash | Cue::RunoverBike => (0.95, 0.12),
+            Cue::TownShot => (0.75, 0.035),
             Cue::Kick | Cue::Runover => (0.75, 0.12),
-            Cue::Punch | Cue::BikeStrike | Cue::Break => (0.65, 0.12),
+            Cue::Punch | Cue::TownPunch | Cue::BikeStrike | Cue::Break => (0.65, 0.12),
             _ => (0.55, 0.25),
         };
         let gain = gain * base_gain;

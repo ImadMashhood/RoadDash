@@ -534,6 +534,7 @@ impl Plugin for RoadPresentationPlugin {
                     world::animate_riders,
                     world::animate_runners,
                     crate::environment::animate_civilians,
+                    crate::world_gen::hills::encounters::animate,
                     crate::environment::animate_cow_legs,
                     game::camera_occlusion,
                     crate::ui::update_ui,
