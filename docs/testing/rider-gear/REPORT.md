@@ -28,3 +28,6 @@ restoration, separate AI appearance, unchanged suit mesh, recovery cleanup,
 and differential physical body trajectories. The settings tests exercise
 the gear tab, selection controls and settings serialization. Formatting,
 strict Clippy, the release build, the asset audit and roadmap tests passed.
+The final locked development build passed. The final workspace run recorded
+724 passing tests, two ignored and the known Rapier failures in wall
+ejection and static-chunk trajectories.
