@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Western main street and AI lean (ADR194)
+
+- Added a left-right bend after the Hills town merge and bounded rival lean at low speed and during reversals.
+
 ## 2026-11-13 — Rider roster and grid swaps (ADR193)
 
 - Renamed the City roster and added a one-for-one offline grid and palette swap when selecting a rival base suit.

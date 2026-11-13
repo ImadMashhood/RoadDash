@@ -1716,18 +1716,20 @@ pub fn drive(
                     * dt;
             }
             r.side_velocity *= (-dt * 2.5).exp();
-            r.lean = r.lean.lerp(
-                if is_player {
-                    rr_core::steering::visual_bank(steer)
-                } else {
-                    rr_core::steering::rival_visual_bank(
-                        steer,
-                        track.curvature_route(r.route, r.progress),
-                        r.speed,
-                    )
-                },
-                1.0 - (-dt * 16.0).exp(),
-            );
+            r.lean = if is_player {
+                r.lean.lerp(
+                    rr_core::steering::visual_bank(steer),
+                    1.0 - (-dt * 16.0).exp(),
+                )
+            } else {
+                rr_core::steering::step_rival_bank(
+                    r.lean,
+                    steer,
+                    track.curvature_route(r.route, r.progress),
+                    r.speed,
+                    dt,
+                )
+            };
             if on_grass && !dynamic && surface != rr_core::surface::Surface::Sand {
                 r.speed = r.speed.signum() * (r.speed.abs() - dt * 1.8).max(0.0);
             }

@@ -268,6 +268,22 @@ mod tests {
         assert!(t.same_corridor(0, 7800., 1, 7800.));
     }
     #[test]
+    fn western_main_street_bends_both_ways_after_the_merge() {
+        let track = Track::hills().unwrap();
+        let baseline = track.sample_route(0, 7450., 0.).0.x;
+        let mut offsets = Vec::new();
+        for station in (7450..8450).step_by(25) {
+            let station = station as f32;
+            let west = track.sample_route(0, station, 0.).0;
+            let east = track.sample_route(1, station, 0.).0;
+            assert!(west.distance(east) < 0.001);
+            assert!((west.y - 70.).abs() < 0.001);
+            offsets.push(west.x - baseline);
+        }
+        assert!(offsets.iter().any(|x| *x > 25.));
+        assert!(offsets.iter().any(|x| *x < -25.));
+    }
+    #[test]
     fn both_hills_routes_project_and_complete_physical_gates() {
         let t = Track::hills().unwrap();
         for route in 0..2 {

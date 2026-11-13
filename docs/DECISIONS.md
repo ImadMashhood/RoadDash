@@ -4905,3 +4905,10 @@ palette and authored grid placement. Apply the exchange on offline race
 start or retry. Keep previous custom names as source comments for possible
 reuse. Classic shares the base palette and custom helmets retain their
 materials. [Rider gear](testing/rider-gear/REPORT.md#named-roster-and-offline-grid-swaps).
+
+## ADR194 — Western main street bends and bounded AI bank
+
+Add a shared left-right bend to the flat Hills main street after the merge.
+Scale rival visual bank by speed and bound its rate in both adapters.
+Keep authored checkpoints and the player's steering response.
+[Implementation and evidence](testing/western-bends/REPORT.md).

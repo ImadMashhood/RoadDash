@@ -196,7 +196,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**245 verified tasks complete; 359 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**246 verified tasks complete; 359 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -214,9 +214,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 245 verified complete |
+| [00](#part-00) | Completed and verified foundations | 246 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
-| [00](#part-00) | Completed and verified foundations | 245 verified complete |
+| [00](#part-00) | Completed and verified foundations | 246 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
@@ -239,7 +239,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 ### Part 00 — Completed and verified foundations
 
 <details>
-<summary>Recent verification audit — 11 completed tasks</summary>
+<summary>Recent verification audit — 12 completed tasks</summary>
+
+- [x] **HILLS-BEND-01** Curve the western main street and smooth low-speed AI lean. Reason: the merged western street was straight and slow rivals snapped into hard bank; part:06; dependencies: HILLS-01 and rival steering; acceptance: shared left-right road bend, flat town interior, bounded slow bank and gradual reversal in both adapters; verification: route and bank tests, native Hills revision survey and recovery smoke. [Evidence](docs/testing/western-bends/REPORT.md).
 
 - [x] **GEAR-03** Rename the City roster and exchange offline grid slots on base suit selection. Reason: the player should be able to equip each named rider without duplicating their starting position or palette; part:12; dependencies: GEAR-02 and authored grid slots; acceptance: short race names, preserved palettes and slots, one-for-one exchange on start and retry, Classic palette matching and independent custom helmet finishes; verification: roster permutation, offline retry and gear material tests. [Evidence](docs/testing/rider-gear/REPORT.md#named-roster-and-offline-grid-swaps).
 
@@ -1167,7 +1169,7 @@ Repeat the reference → original textures/models → procedural placement → c
 
 - [ ] **HILLS-06** Enrich Hills with original cacti, tree variation, rocks/deadwood and western street details. Reason: user grants agents room for environmental polish; part:06; dependencies:HILLS-03; acceptance: biome-specific original/reused assets, road-clear supported placement, bounded detail independent of solid collision and readable town/dunes; verification: actual-placement/support tests, provenance and native close/wide views. Final art and target-hardware performance remain open. Partial: implemented and technically checked in [Hills polish evidence](docs/testing/hills-polish/README.md); final human acceptance remains open.
 
-- [ ] **HILLS-01** Add a separate12.5km Hills course with city opening, winding elevated hills, flat western town and dune finish. Reason: user map request/reference on2026-11-10; part:06; dependencies: existing track, road/terrain collision and race systems; acceptance: selectable course, strong supported relief/guardrails, preserved legacy maps/default, complete race/checkpoints/retry and both physical rigs; verification: route/content tests, locked regression suite and native Hills survey/recovery. Human full-course feel and hardware review remain open.
+- [ ] **HILLS-01** Add a separate12.5km Hills course with city opening, winding elevated hills, flat western town and dune finish. Reason: user map request/reference on2026-11-10; part:06; dependencies: existing track, road/terrain collision and race systems; acceptance: selectable course, strong supported relief/guardrails, preserved legacy maps/default, complete race/checkpoints/retry and both physical rigs; verification: route/content tests, locked regression suite and native Hills survey/recovery. Human full-course feel and hardware review remain open. [Western main street bend and AI bank](docs/testing/western-bends/REPORT.md).
 
 - [ ] **HILLS-02** Split Hills at town entry and rejoin inside the town before its exit. Reason: user's explicit correction to the reference diagram; part:06; dependencies:HILLS-01 and existing branch navigation; acceptance: fork around5.5km, merge around7.4km with town continuing to8.5km, two supported race corridors, correct AI/traffic/minimap/checkpoints and no shortcut wins; verification: route projection/choice/gate tests and native both-branch coverage.
 

@@ -433,20 +433,22 @@ pub fn forces(
         // Positive roll leans toward camera-right (-local X).
         // Preserve player steering bank. Rivals also bank for the road-following
         // turn that their lane-centering input does not represent.
-        let target_lean = if speed > 0.5 {
-            if r.human_controlled() {
+        if r.human_controlled() {
+            let target = if speed > 0.5 {
                 rr_core::steering::visual_bank(steer)
             } else {
-                rr_core::steering::rival_visual_bank(
-                    steer,
-                    track.curvature_route(r.route, r.progress),
-                    speed,
-                )
-            }
+                0.0
+            };
+            state.lean += (target - state.lean) * (1.0 - (-dt * 16.0).exp());
         } else {
-            0.0
-        };
-        state.lean += (target_lean - state.lean) * (1.0 - (-dt * 16.0).exp());
+            state.lean = rr_core::steering::step_rival_bank(
+                state.lean,
+                steer,
+                track.curvature_route(r.route, r.progress),
+                speed,
+                dt,
+            );
+        }
         state.wheel_spin = (state.wheel_spin + speed / 0.4 * dt) % std::f32::consts::TAU;
     }
 }
