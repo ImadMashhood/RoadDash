@@ -43,7 +43,6 @@ struct Part {
     officer_hidden: bool,
     group: String,
     gear: Option<gear::PartKind>,
-    suit_materials: Option<[Handle<StandardMaterial>; 2]>,
     rest: Transform,
     glove: bool,
 }
@@ -90,8 +89,6 @@ impl AuthoredModels {
         let decoded =
             rr_content::riding_model::decode(BUNDLE).expect("validated authored visual bundle");
         let base = server.map(|s| s.load("textures/rider-base.png"));
-        let suits = ["ember", "glacier"]
-            .map(|name| server.map(|s| s.load(format!("textures/rider-suit-{name}.png"))));
         let officer_base = server.map(|s| s.load("textures/officer-base.png"));
         let normal = server.map(|s| {
             s.load_builder()
@@ -246,16 +243,6 @@ impl AuthoredModels {
                     "visor" => gear::PartKind::Visor,
                     _ => gear::PartKind::Suit,
                 }),
-                suit_materials: (skinned && matches!(region.as_str(), "shirt" | "body")).then(
-                    || {
-                        suits.each_ref().map(|texture| {
-                            let mut material = materials.get(&palette[0]).unwrap().clone();
-                            material.base_color = Color::WHITE;
-                            material.base_color_texture = texture.clone();
-                            materials.add(material)
-                        })
-                    },
-                ),
                 officer_hidden: data.name.contains("Smoked windscreen"),
                 mesh: meshes.add(mesh),
                 materials: palette,
@@ -274,7 +261,6 @@ impl AuthoredModels {
             hand_contacts,
             textures: [base, normal, roughness, officer_base]
                 .into_iter()
-                .chain(suits)
                 .flatten()
                 .collect(),
             standing_bind: binds.add(SkinnedMeshInverseBindposes::from(
@@ -302,6 +288,37 @@ impl AuthoredModels {
             self.standing_frames,
             Some(physical),
         ))
+    }
+    /// The same standing shell and visor used by the rider, centered for inspection.
+    pub fn helmet_display(
+        &self,
+        meshes: &mut Assets<Mesh>,
+        helmet: gear::Helmet,
+    ) -> [(Mesh3d, MeshMaterial3d<StandardMaterial>); 2] {
+        let parts = match helmet {
+            gear::Helmet::Classic => [gear::PartKind::Shell, gear::PartKind::Visor].map(|kind| {
+                let part = self
+                    .parts
+                    .iter()
+                    .find(|p| p.group == "standing" && p.gear == Some(kind))
+                    .expect("classic helmet shell and visor");
+                (&part.mesh, &part.materials[0])
+            }),
+            gear::Helmet::Apex | gear::Helmet::Rally => {
+                let model = &self.helmets[0][helmet as usize - 1];
+                [
+                    (&model.shell, &model.shell_material),
+                    (&model.visor, &model.visor_material),
+                ]
+            }
+        };
+        parts.map(|(mesh, material)| {
+            let mut mesh = meshes.get(mesh).expect("resident helmet mesh").clone();
+            mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
+            mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
+            mesh.translate_by(-self.standing_frames[1].translation - Vec3::Y * 0.16);
+            (Mesh3d(meshes.add(mesh)), MeshMaterial3d(material.clone()))
+        })
     }
     pub fn ready(&self, server: &AssetServer) -> bool {
         self.textures.iter().all(|h| {

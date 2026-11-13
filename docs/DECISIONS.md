@@ -4874,3 +4874,11 @@ original suit mesh and UV layout with two authored alternate albedo
 textures. Bind Apex and Rally shells and visors to the existing animated
 head and swap renderer assets on the local rider through recovery.
 [Implementation and evidence](testing/rider-gear/REPORT.md).
+
+## ADR190 — Windows City roster gear colorways
+
+Expose the fifteen existing rider palettes with the original names.
+Use the shared suit atlas and existing materials, and bind the Classic
+helmet shell tint to the selected palette. Use black Apex and white Rally
+shells. Accept the previous saved suit IDs as aliases.
+[Helmet comparison and verification](testing/rider-gear/REPORT.md#original-roster-colors).

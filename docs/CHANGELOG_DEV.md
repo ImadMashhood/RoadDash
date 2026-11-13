@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Original roster gear colorways (ADR190)
+
+- Exposed fifteen named Windows City suit colorways, recolored the helmets and added an isolated comparison renderer.
+
 ## 2026-11-13 — Rider gear (ADR189)
 
 - Added Ember and Glacier suit finishes and independent Apex and Rally helmet models to the local Rider Gear settings.

@@ -5,9 +5,24 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "snake_case")]
 pub enum Suit {
     #[default]
-    Classic,
-    Ember,
-    Glacier,
+    #[serde(alias = "classic")]
+    Player,
+    #[serde(alias = "ember")]
+    Mike,
+    Cydney,
+    Jim,
+    Pearl,
+    Jon,
+    Rhonda,
+    Bose,
+    #[serde(alias = "glacier")]
+    Axle,
+    Eric,
+    Buzz,
+    Druid,
+    Hog,
+    Serge,
+    Slash,
 }
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
@@ -20,9 +35,41 @@ pub enum Helmet {
 }
 
 impl Suit {
-    pub const ALL: [Self; 3] = [Self::Classic, Self::Ember, Self::Glacier];
+    pub const ALL: [Self; 15] = [
+        Self::Player,
+        Self::Mike,
+        Self::Cydney,
+        Self::Jim,
+        Self::Pearl,
+        Self::Jon,
+        Self::Rhonda,
+        Self::Bose,
+        Self::Axle,
+        Self::Eric,
+        Self::Buzz,
+        Self::Druid,
+        Self::Hog,
+        Self::Serge,
+        Self::Slash,
+    ];
     pub fn name(self) -> &'static str {
-        ["Classic", "Ember", "Glacier"][self as usize]
+        [
+            "Player",
+            "Teflon Mike",
+            "Cydney Bass",
+            "Slim Jim",
+            "Pearl McKurdy",
+            "Milwaukee Jon",
+            "Rhonda Rash",
+            "Bose Jefferson",
+            "Axle",
+            "Eric",
+            "Buzz",
+            "Druid",
+            "Hog",
+            "Serge",
+            "Slash",
+        ][self as usize]
     }
 }
 
@@ -121,13 +168,13 @@ impl HelmetModel {
             shell,
             visor,
             shell_material: materials.add(StandardMaterial {
-                base_color: swatch(if rally { 0xe7cfaa } else { 0x22363f }),
+                base_color: swatch(if rally { 0xf0efeb } else { 0x191b21 }),
                 metallic: 0.30,
                 perceptual_roughness: if rally { 0.52 } else { 0.29 },
                 ..default()
             }),
             visor_material: materials.add(StandardMaterial {
-                base_color: swatch(if rally { 0x402722 } else { 0x11384d }),
+                base_color: swatch(if rally { 0x47372b } else { 0x162738 }),
                 metallic: 0.84,
                 perceptual_roughness: 0.21,
                 ..default()
@@ -136,7 +183,7 @@ impl HelmetModel {
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub(super) enum PartKind {
     Suit,
     Shell,
@@ -200,14 +247,9 @@ pub(super) fn apply(
             let (new_mesh, new_material) = match (&original.gear, helmet) {
                 (Some(PartKind::Shell), Some(helmet)) => (&helmet.shell, &helmet.shell_material),
                 (Some(PartKind::Visor), Some(helmet)) => (&helmet.visor, &helmet.visor_material),
-                (Some(PartKind::Suit), _) if gear.suit != Suit::Classic => (
+                (Some(PartKind::Suit | PartKind::Shell), _) if gear.suit != Suit::Player => (
                     &original.mesh,
-                    original
-                        .suit_materials
-                        .as_ref()
-                        .map_or(original_material, |materials| {
-                            &materials[gear.suit as usize - 1]
-                        }),
+                    &original.materials[gear.suit as usize % original.materials.len()],
                 ),
                 _ => (&original.mesh, original_material),
             };

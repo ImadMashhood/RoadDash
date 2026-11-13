@@ -798,7 +798,7 @@ mod tests {
         let path = root.join("settings.json");
         let mut prefs = Preferences::load(path.clone());
         prefs.file.gear = crate::models::gear::Gear {
-            suit: crate::models::gear::Suit::Glacier,
+            suit: crate::models::gear::Suit::Axle,
             helmet: crate::models::gear::Helmet::Rally,
         };
         prefs.file.master_volume = 0.4;
@@ -910,7 +910,7 @@ mod menu_tests {
         assert_eq!(
             app.world().resource::<Preferences>().file.gear,
             crate::models::gear::Gear {
-                suit: crate::models::gear::Suit::Ember,
+                suit: crate::models::gear::Suit::Mike,
                 helmet: crate::models::gear::Helmet::Rally,
             }
         );

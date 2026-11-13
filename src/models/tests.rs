@@ -820,12 +820,15 @@ fn local_gear_swaps_mesh_and_material_handles_through_recovery() {
         .collect();
     assert_eq!(originals.len(), 20);
 
-    for helmet in [Helmet::Apex, Helmet::Rally, Helmet::Classic] {
-        let suit = if helmet == Helmet::Classic {
-            Suit::Classic
-        } else {
-            Suit::Glacier
-        };
+    for (suit, helmet) in Suit::ALL
+        .into_iter()
+        .map(|suit| (suit, Helmet::Classic))
+        .chain([
+            (Suit::Axle, Helmet::Apex),
+            (Suit::Axle, Helmet::Rally),
+            (Suit::Player, Helmet::Classic),
+        ])
+    {
         let selected = Gear { suit, helmet };
         world
             .resource_mut::<crate::settings::Preferences>()
@@ -835,6 +838,7 @@ fn local_gear_swaps_mesh_and_material_handles_through_recovery() {
         let models = world.resource::<world::Art>().models.as_ref().unwrap();
         let mut changed_suit = 0;
         let mut changed_helmet = 0;
+        let mut changed_helmet_color = 0;
         for (entity, index, mesh, material) in &originals {
             let kind = models.parts[*index].gear.unwrap();
             let current_mesh = world.get::<Mesh3d>(*entity).unwrap();
@@ -847,17 +851,22 @@ fn local_gear_swaps_mesh_and_material_handles_through_recovery() {
                     changed_suit += usize::from(current_material != material);
                 }
                 _ => {
-                    assert_eq!(current_mesh != mesh, current_material != material);
                     changed_helmet += usize::from(current_mesh != mesh);
+                    changed_helmet_color += usize::from(current_material != material);
                 }
             }
         }
+        assert_eq!(changed_suit, if suit == Suit::Player { 0 } else { 3 });
         assert_eq!(
-            (changed_suit, changed_helmet),
-            if helmet == Helmet::Classic {
-                (0, 0)
-            } else {
-                (9, 6)
+            changed_helmet,
+            if helmet == Helmet::Classic { 0 } else { 6 }
+        );
+        assert_eq!(
+            changed_helmet_color,
+            match (helmet, suit) {
+                (Helmet::Classic, Suit::Player) => 0,
+                (Helmet::Classic, _) => 3,
+                _ => 6,
             }
         );
     }

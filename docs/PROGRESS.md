@@ -564,6 +564,8 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **GEAR-02** Expose the original Windows City roster’s fifteen named suit colorways and compare the three helmet models. Reason: user requests the original color variations and isolated helmet renders; part:12; dependencies: GEAR-01 and reference-informed rider palettes; acceptance: all fifteen colors on the existing suit, Classic helmet coordinated with the selected colorway, black Apex and white Rally, saved IDs supported and helmet-only renders; verification: gear selection regression and native preview. [Evidence](testing/rider-gear/REPORT.md#original-roster-colors).
+
 - [x] **GEAR-01** Add independently selectable player suit finishes and helmet meshes. Reason: establish the first equippable cosmetics for career mode; part:12; dependencies: authored rider UV atlas and preferences; acceptance: two new textures on the existing suit, two new helmet models, live local selection and saved defaults, with render-only gear through recovery; verification: settings and skin-swap tests and native recovery captures. [Evidence](testing/rider-gear/REPORT.md).
 
 - [x] **UI-FLYOVER-01** Show the live looping 3D flyover behind the entry menus. Reason: the entry screen shows an opaque background; part:15; dependencies: UI-CITY-TOUR-01 and existing course/camera lifecycle; acceptance: visible map and camera movement, seamless repeat, static-menu setting honored and race camera restored on entry; verification: camera loop fixture and native frontend walkthrough. [Evidence](testing/course-presentation-polish/REPORT.md).
