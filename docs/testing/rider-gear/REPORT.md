@@ -92,3 +92,25 @@ The updated [helmet sheet](helmet-redesign.png) shows the 20-segment,
 flat-shaded Apex and Rally shells and visors. The eyeports, chin guards and
 Rally peak are retained in the lower-poly geometry. Their materials use
 broader highlights to match the existing rider better.
+
+## Named roster and offline grid swaps
+
+The fourteen replacements follow the existing roster order. Each keeps its
+authored palette and grid entry. Full names appear in Rider Gear and the
+portrait gallery. The HUD and online bot labels use short names. Previous
+custom names are kept in a comment in the cast definition for possible reuse.
+
+Selecting a rival in Settings → Rider Gear → Base suit exchanges that
+rival's roster assignment and starting position with the default Player
+assignment at the next offline start or retry. Controller ownership stays
+with the player. Returning to Player restores the default grid. Online
+races retain the host's grid assignment and use the local gear preference
+for presentation. Classic follows the equipped palette and Apex and Rally
+keep their individual materials.
+
+[The updated suit sheet](suit-colorways.png) labels all fifteen palettes.
+All fifteen grid permutations, the Metropolis retry swap and the helmet
+material regression passed. The Hills release smoke passed both remounts
+with zero exceptional rescues. It logged two audio buffer underruns.
+Locked builds, strict Clippy, formatting, roadmap and asset audit passed.
+The workspace suite reported the two known Rapier failures.

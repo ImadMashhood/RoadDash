@@ -253,7 +253,7 @@ fn caption(row: usize) -> &'static str {
         42 => "World shadows",
         43 => "Minimap",
         44 => "Standings",
-        45 => "Suit finish",
+        45 => "Base suit",
         46 => "Helmet model",
         _ => "",
     }
@@ -469,7 +469,7 @@ pub fn display(
             Section::Audio => "Adjust the overall mix or individual game sounds.",
             Section::Display => "Window size applies in windowed mode. VSync reduces tearing.",
             Section::Accessibility => "Choose speed units, HUD elements and menu motion.",
-            Section::Gear => "Choose your suit finish and helmet model.",
+            Section::Gear => "Base suit sets your offline grid slot at the next start. Choose a helmet separately.",
             Section::Voice => {
                 "Nearby racers can hear your microphone when enabled. Uses system devices."
             }

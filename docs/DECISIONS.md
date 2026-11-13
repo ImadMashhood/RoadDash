@@ -4897,3 +4897,11 @@ on the local Windows City reference sheet. Lift the existing rider albedo
 for the leather region so the secondary colors read while retaining seams.
 Use flat normals and fewer shell segments for Apex and Rally.
 [Updated previews](testing/rider-gear/REPORT.md#two-color-leather-and-faceted-helmets).
+
+## ADR193 — Named rider roster and offline grid exchange
+
+Keep controller IDs stable and use a separate roster slot for names,
+palette and authored grid placement. Apply the exchange on offline race
+start or retry. Keep previous custom names as source comments for possible
+reuse. Classic shares the base palette and custom helmets retain their
+materials. [Rider gear](testing/rider-gear/REPORT.md#named-roster-and-offline-grid-swaps).

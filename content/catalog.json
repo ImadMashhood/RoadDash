@@ -36,37 +36,37 @@
     },
     {
       "id": "rider-mike",
-      "display_name": "Yamakha",
+      "display_name": "Teflon Bowl",
       "bike_id": "prototype-bike-01",
       "palette_index": 1
     },
     {
       "id": "rider-cydney",
-      "display_name": "Tyrone White",
+      "display_name": "Cindy Trout",
       "bike_id": "prototype-bike-01",
       "palette_index": 2
     },
     {
       "id": "rider-jim",
-      "display_name": "Esteban Gonzalez",
+      "display_name": "Jack Links",
       "bike_id": "prototype-bike-01",
       "palette_index": 3
     },
     {
       "id": "rider-pearl",
-      "display_name": "Osama bin Countryistani",
+      "display_name": "Diamond O’Shea",
       "bike_id": "prototype-bike-01",
       "palette_index": 4
     },
     {
       "id": "rider-jon",
-      "display_name": "Naveen Gowda Nambiar",
+      "display_name": "Minneapolis Jim",
       "bike_id": "prototype-bike-01",
       "palette_index": 5
     },
     {
       "id": "rider-rhonda",
-      "display_name": "Ellen Windyke",
+      "display_name": "Rachel Hives",
       "bike_id": "prototype-bike-01",
       "palette_index": 6
     },
@@ -78,25 +78,25 @@
     },
     {
       "id": "rider-axle",
-      "display_name": "Pee Pi Long",
+      "display_name": "Chain",
       "bike_id": "prototype-bike-01",
       "palette_index": 8
     },
     {
       "id": "rider-eric",
-      "display_name": "Hog",
+      "display_name": "Aaron",
       "bike_id": "prototype-bike-01",
       "palette_index": 9
     },
     {
       "id": "rider-buzz",
-      "display_name": "Cleetus Mayballs",
+      "display_name": "Fly",
       "bike_id": "prototype-bike-01",
       "palette_index": 10
     },
     {
       "id": "rider-druid",
-      "display_name": "Abeyomi",
+      "display_name": "Sage",
       "bike_id": "prototype-bike-01",
       "palette_index": 11
     },
@@ -108,13 +108,13 @@
     },
     {
       "id": "rider-serge",
-      "display_name": "Anastasia Jakmiova",
+      "display_name": "Sargent",
       "bike_id": "prototype-bike-01",
       "palette_index": 13
     },
     {
       "id": "rider-slash",
-      "display_name": "Dolph Hiller",
+      "display_name": "Hack",
       "bike_id": "prototype-bike-01",
       "palette_index": 14
     }

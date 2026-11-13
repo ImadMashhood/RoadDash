@@ -194,6 +194,7 @@ pub struct Rider {
     pub drive_intent: rr_core::VehicleIntent,
     pub bike_mass: f32,
     pub palette_index: usize,
+    pub roster_slot: usize,
     pub steering: rr_core::steering::SteeringMemory,
     pub raw_steer: f32,
     pub ai_profile: rr_core::pursuit::Profile,
@@ -262,6 +263,7 @@ impl Rider {
             drive_intent: default(),
             bike_mass: 170.0,
             palette_index: id,
+            roster_slot: id,
             steering: default(),
             raw_steer: 0.0,
             ai_profile: rr_content::rivals::profile(id),
@@ -350,6 +352,18 @@ fn hills_car_start(index: usize) -> Option<f32> {
     }
 }
 
+fn assign_roster(rider: &mut Rider, track: &Track, content: &GameContent, selection: usize) {
+    rider.roster_slot = rr_core::cast::roster_slot(rider.id, selection);
+    if let Some(character) = content.0.riders.get(rider.roster_slot) {
+        rider.palette_index = character.palette_index;
+    }
+    if let Some(spawn) = track.definition.spawns.get(rider.roster_slot) {
+        rider.route = rider.roster_slot % 2;
+        rider.progress = track.grid_station(spawn.distance);
+        rider.lane = spawn.lane;
+    }
+}
+
 pub fn setup_race(
     mut commands: Commands,
     art: Res<Art>,
@@ -359,11 +373,7 @@ pub fn setup_race(
     commands.insert_resource(Profile::load());
     for id in 0..NAMES.len() {
         let mut rider = Rider::new(id);
-        rider.palette_index = content.0.riders[id].palette_index;
-        if let Some(spawn) = track.definition.spawns.get(id) {
-            rider.progress = track.grid_station(spawn.distance);
-            rider.lane = spawn.lane;
-        }
+        assign_roster(&mut rider, &track, &content, 0);
         let (p, q) = track.sample_route(rider.route, rider.progress, rider.lane);
         let root = world::bike(
             &mut commands,
@@ -371,13 +381,14 @@ pub fn setup_race(
             content.0.riders[id].palette_index,
             true,
         );
+        let character = &content.0.riders[rider.roster_slot];
         commands.entity(root).insert((
             rider,
             Transform::from_translation(p).with_rotation(q),
             recovery::bike_body(),
             ContentIdentity {
-                rider: content.0.riders[id].id.clone(),
-                bike: content.0.riders[id].bike_id.clone(),
+                rider: character.id.clone(),
+                bike: character.bike_id.clone(),
             },
         ));
     }
@@ -563,6 +574,7 @@ pub fn input(
     mut body_sets: Query<&mut RapierRigidBodySet>,
     frontend: Option<Res<crate::frontend::Frontend>>,
     mut grid_weapons: ResMut<crate::weapons::GridWeapons>,
+    (preferences, content): (Res<crate::settings::Preferences>, Res<GameContent>),
     (online, network): (
         Option<Res<crate::online::Online>>,
         Option<Res<crate::online::NetState>>,
@@ -650,15 +662,24 @@ pub fn input(
             if rider.police {
                 rider.combat_mind.struck_by(0);
             }
-            rider.palette_index = palette;
-            if let Some(spawn) = track.definition.spawns.get(rider.id) {
-                rider.progress = track.grid_station(spawn.distance);
-                rider.lane = spawn.lane;
-            }
             if rider.police {
+                rider.palette_index = palette;
                 rider.progress = track.length * rr_content::police::builtin().patrol_fraction;
                 rider.route = 0;
                 rider.lane = 2.0;
+            } else {
+                let selected = if online_active {
+                    0
+                } else {
+                    preferences.file.gear.suit as usize
+                };
+                assign_roster(&mut rider, &track, &content, selected);
+                if let Some(character) = content.0.riders.get(rider.roster_slot) {
+                    commands.entity(entity).insert(ContentIdentity {
+                        rider: character.id.clone(),
+                        bike: character.bike_id.clone(),
+                    });
+                }
             }
             *recovery = Recovery::default();
             let (position, rotation) = track.sample_route(rider.route, rider.progress, rider.lane);
@@ -5118,6 +5139,42 @@ pub(crate) mod tests {
             app.world_mut().run_schedule(FixedUpdate);
         }
         assert_eq!(app.world().resource::<Profile>().races, 1);
+    }
+    #[test]
+    fn offline_base_suit_swaps_grid_and_palettes_on_retry() {
+        use crate::models::gear::Suit;
+        let mut app = simulation();
+        step(&mut app, 3);
+        app.insert_resource(Track::metropolis().unwrap());
+        app.world_mut().spawn((Rider::new(8), Transform::IDENTITY));
+        for (suit, expected) in [
+            (Suit::Axle, [(0, 8), (8, 0)]),
+            (Suit::Player, [(0, 0), (8, 8)]),
+        ] {
+            app.world_mut()
+                .resource_mut::<crate::settings::Preferences>()
+                .file
+                .gear
+                .suit = suit;
+            app.world_mut().resource_mut::<Race>().phase = Phase::Finished;
+            app.world_mut().resource_mut::<crate::ui::MenuAction>().0 = true;
+            step(&mut app, 1);
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Countdown);
+            let world = app.world_mut();
+            let mut riders = world.query::<&Rider>();
+            let track = world.resource::<Track>();
+            for (controller, slot) in expected {
+                let rider = riders
+                    .iter(world)
+                    .find(|rider| rider.id == controller)
+                    .unwrap();
+                let spawn = &track.definition.spawns[slot];
+                assert_eq!(rider.roster_slot, slot);
+                assert_eq!(rider.palette_index, slot);
+                assert_eq!(rider.progress, track.grid_station(spawn.distance));
+                assert_eq!(rider.lane, spawn.lane);
+            }
+        }
     }
     #[test]
     fn metropolis_retry_restores_shifted_grid_and_clears_finish_credit() {

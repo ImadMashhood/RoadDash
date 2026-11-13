@@ -347,7 +347,6 @@ pub fn setup_ui(
 pub fn update_ui(
     race: Res<Race>,
     profile: Res<Profile>,
-    content: Res<crate::content::GameContent>,
     screen: Option<Res<State<crate::runtime::AppScreen>>>,
     track: Res<Track>,
     riders: Query<&Rider>,
@@ -362,7 +361,7 @@ pub fn update_ui(
             Or<(With<Hud>, With<Overlay>, With<OptionalHud>)>,
         ),
     >,
-    mut dots: Query<(&MapDot, &mut Node)>,
+    mut dots: Query<(&MapDot, &mut Node, &mut BackgroundColor)>,
     panel: Res<crate::settings::SettingsPanel>,
     police: Res<crate::police::Police>,
     frontend: Option<Res<crate::frontend::Frontend>>,
@@ -434,7 +433,12 @@ pub fn update_ui(
                 for (i, r) in sorted.iter().enumerate() {
                     let marker = if r.id == local_slot { ">" } else { " " };
                     let role=if r.id==local_slot{"YOU"}else{"RIVAL"};
-                    s.push_str(&format!("{marker} {}  {:5} [{role}]\n", i + 1, content.0.riders[r.id].display_name));
+                    let name = if r.roster_slot == 0 && r.id != local_slot {
+                        rr_core::cast::FULL_NAMES[0]
+                    } else {
+                        crate::game::NAMES[r.roster_slot]
+                    };
+                    s.push_str(&format!("{marker} {}  {name:5} [{role}]\n", i + 1));
                 }
                 s
             },
@@ -484,8 +488,9 @@ pub fn update_ui(
         };
         text.set_if_neq(Text::new(next));
     }
-    for (dot, mut node) in &mut dots {
+    for (dot, mut node, mut color) in &mut dots {
         if let Some(r) = riders.iter().find(|r| r.id == dot.0) {
+            color.set_if_neq(BackgroundColor(crate::world::shirt_color(r.palette_index)));
             let (x, y) = map_point(&track, track.sample_route(r.route, r.progress, 0.0).0);
             node.left = px(x - 2.0);
             node.top = px(y - 2.0);

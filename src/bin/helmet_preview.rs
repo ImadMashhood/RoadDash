@@ -92,6 +92,7 @@ fn setup(
         ));
     }
     if preview.suits {
+        let font: Handle<Font> = server.load("ui/fonts/Jost-700-Bold.ttf");
         let parts = models.suit_display(&mut meshes);
         for (index, suit) in Suit::ALL.into_iter().enumerate() {
             let column = index % 5;
@@ -108,6 +109,7 @@ fn setup(
             commands.spawn((
                 Text::new(suit.name()),
                 TextFont {
+                    font: font.clone().into(),
                     font_size: FontSize::Px(25.),
                     ..default()
                 },

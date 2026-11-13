@@ -521,7 +521,7 @@ struct ConnectedRig {
     bind: [Transform; 16],
     seated: bool,
     gear_parts: Vec<(Entity, usize, usize)>,
-    gear: gear::Gear,
+    gear: (Option<usize>, gear::Helmet),
 }
 const RIG_ORDER: [usize; 11] = [2, 0, 1, 3, 4, 5, 6, 7, 8, 9, 10];
 /// Source-anatomy forward kinematics: driver rotations, never disconnected driver translations.

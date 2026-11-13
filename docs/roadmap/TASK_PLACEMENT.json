@@ -6,6 +6,7 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "GEAR-03",
         "GEAR-02",
         "GEAR-01",
         "UI-FLYOVER-01",

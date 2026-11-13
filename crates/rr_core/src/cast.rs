@@ -44,6 +44,8 @@ pub const CAST: [Character; 14] = [
 pub fn character(id: usize) -> Option<Character> {
     id.checked_sub(1).and_then(|i| CAST.get(i)).copied()
 }
+// Previous custom roster, kept for review if we bring these names back.
+/*
 pub const NAMES: [&str; 15] = [
     "YOU",
     "Yamakha",
@@ -61,6 +63,41 @@ pub const NAMES: [&str; 15] = [
     "Anastasia Jakmiova",
     "Dolph Hiller",
 ];
+*/
+pub const NAMES: [&str; 15] = [
+    "YOU", "Teflon", "Cindy", "Jack", "Diamond", "Jim", "Rachel", "Beats", "Chain", "Aaron", "Fly",
+    "Sage", "Hog", "Sargent", "Hack",
+];
+
+pub const FULL_NAMES: [&str; 15] = [
+    "Player",
+    "Teflon Bowl",
+    "Cindy Trout",
+    "Jack Links",
+    "Diamond O’Shea",
+    "Minneapolis Jim",
+    "Rachel Hives",
+    "Beats Adams",
+    "Chain",
+    "Aaron",
+    "Fly",
+    "Sage",
+    "Hog",
+    "Sargent",
+    "Hack",
+];
+
+/// A player's controller stays in slot zero while the selected identity
+/// and the default Player identity exchange their authored grid positions.
+pub fn roster_slot(control_slot: usize, selection: usize) -> usize {
+    if control_slot == 0 {
+        selection
+    } else if control_slot == selection {
+        0
+    } else {
+        control_slot
+    }
+}
 
 /// Fixed-tick obstruction recovery; never teleports or reverses into an occupied gap.
 #[derive(Clone, Debug, Default)]
@@ -129,9 +166,22 @@ impl DriveMemory {
 mod tests {
     use super::*;
     #[test]
+    fn every_suit_swaps_exactly_one_pair_without_duplicating_grid_slots() {
+        for selection in 0..NAMES.len() {
+            let slots: Vec<_> = (0..NAMES.len())
+                .map(|id| roster_slot(id, selection))
+                .collect();
+            assert_eq!(slots[0], selection);
+            assert_eq!(slots[selection], 0);
+            let mut ordered = slots;
+            ordered.sort_unstable();
+            assert_eq!(ordered, (0..NAMES.len()).collect::<Vec<_>>());
+        }
+    }
+    #[test]
     fn portrait_names_and_loadouts_match_dossiers() {
         for (i, c) in CAST.iter().enumerate() {
-            assert_eq!(NAMES[i + 1], crate::frontend::ROSTER[c.portrait].name);
+            assert_eq!(FULL_NAMES[i + 1], crate::frontend::ROSTER[c.portrait].name);
         }
         assert_eq!(CAST[3].weapon, Some(Weapon::Whip));
         assert_eq!(CAST[10].weapon, Some(Weapon::BaseballBat));

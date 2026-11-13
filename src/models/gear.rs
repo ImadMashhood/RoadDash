@@ -53,23 +53,7 @@ impl Suit {
         Self::Slash,
     ];
     pub fn name(self) -> &'static str {
-        [
-            "Player",
-            "Teflon Mike",
-            "Cydney Bass",
-            "Slim Jim",
-            "Pearl McKurdy",
-            "Milwaukee Jon",
-            "Rhonda Rash",
-            "Bose Jefferson",
-            "Axle",
-            "Eric",
-            "Buzz",
-            "Druid",
-            "Hog",
-            "Serge",
-            "Slash",
-        ][self as usize]
+        rr_core::cast::FULL_NAMES[self as usize]
     }
 }
 
@@ -315,7 +299,11 @@ pub(super) enum PartKind {
 pub(super) fn apply(
     art: Option<Res<world::Art>>,
     preferences: Option<Res<crate::settings::Preferences>>,
-    network: Option<Res<crate::online::NetState>>,
+    (network, online, race): (
+        Option<Res<crate::online::NetState>>,
+        Option<Res<crate::online::Online>>,
+        Option<Res<crate::game::Race>>,
+    ),
     mut rigs: Query<(
         &mut ConnectedRig,
         Option<&crate::animation::Binding>,
@@ -335,9 +323,7 @@ pub(super) fn apply(
     };
     let local_slot = network.as_ref().map_or(0, |state| state.local_slot);
     for (mut rig, binding, ragdoll) in &mut rigs {
-        if rig.gear_parts.is_empty()
-            || (preferences.file.gear == Gear::default() && rig.gear == Gear::default())
-        {
+        if rig.gear_parts.is_empty() {
             continue;
         }
         let owner = match binding {
@@ -345,15 +331,26 @@ pub(super) fn apply(
             Some(Binding::Runner(runner)) => owners.get(*runner).ok().map(|body| body.owner),
             None => ragdoll.map(|body| body.0),
         };
-        let gear = if owner
-            .and_then(|entity| riders.get(entity).ok())
-            .is_some_and(|rider| rider.id == local_slot && !rider.police)
-        {
-            preferences.file.gear
+        let rider = owner.and_then(|entity| riders.get(entity).ok());
+        let local = rider.is_some_and(|rider| rider.id == local_slot && !rider.police);
+        let helmet = if local {
+            preferences.file.gear.helmet
         } else {
-            Gear::default()
+            Helmet::Classic
         };
-        if gear == rig.gear {
+        let preview = race
+            .as_ref()
+            .is_none_or(|race| race.phase == crate::game::Phase::Garage)
+            || online.as_ref().is_some_and(|online| online.lobby.is_some());
+        let palette_override = if local && preview {
+            (preferences.file.gear.suit != Suit::Player)
+                .then_some(preferences.file.gear.suit as usize)
+                .or_else(|| rider.map(|rider| rider.palette_index))
+        } else {
+            rider.map(|rider| rider.palette_index)
+        };
+        let appearance = (palette_override, helmet);
+        if rig.gear == appearance {
             continue;
         }
         for &(entity, index, palette) in &rig.gear_parts {
@@ -361,22 +358,19 @@ pub(super) fn apply(
                 continue;
             };
             let original = &models.parts[index];
-            let helmet = (gear.helmet != Helmet::Classic).then(|| {
-                &models.helmets[usize::from(original.group == "seated")][gear.helmet as usize - 1]
+            let helmet = (helmet != Helmet::Classic).then(|| {
+                &models.helmets[usize::from(original.group == "seated")][helmet as usize - 1]
             });
-            let original_material = &original.materials[palette];
+            let palette = palette_override.unwrap_or(palette);
+            let original_material = &original.materials[palette % original.materials.len()];
             let (new_mesh, new_material) = match (&original.gear, helmet) {
                 (Some(PartKind::Shell), Some(helmet)) => (&helmet.shell, &helmet.shell_material),
                 (Some(PartKind::Visor), Some(helmet)) => (&helmet.visor, &helmet.visor_material),
-                (Some(PartKind::Suit | PartKind::Shell), _) if gear.suit != Suit::Player => (
-                    &original.mesh,
-                    &original.materials[gear.suit as usize % original.materials.len()],
-                ),
                 _ => (&original.mesh, original_material),
             };
             mesh.set_if_neq(Mesh3d(new_mesh.clone()));
             material.set_if_neq(MeshMaterial3d(new_material.clone()));
         }
-        rig.gear = gear;
+        rig.gear = appearance;
     }
 }

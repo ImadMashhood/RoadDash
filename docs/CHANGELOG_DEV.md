@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Rider roster and grid swaps (ADR193)
+
+- Renamed the City roster and added a one-for-one offline grid and palette swap when selecting a rival base suit.
+
 ## 2026-11-13 — Two-color leather and faceted helmets (ADR192)
 
 - Colored the main leather separately across the City roster and matched the replacement helmets to the faceted rider style.
