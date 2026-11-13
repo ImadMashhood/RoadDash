@@ -104,15 +104,12 @@ fn leg_rotation(index: usize, leg: usize, lower: bool, elapsed: f32) -> Quat {
     })
 }
 fn surface_height(track: &Track, x: f32, z: f32, index: usize) -> f32 {
-    let mut height = super::geometry::ground_height(track, x, z);
     if (CROSSING_START..CROSSING_END).contains(&index) {
-        let route = SITES[index].0;
-        let (station, _, distance) = track.project_route(route, Vec3::new(x, height, z), 0.);
-        if distance < track.half_width(station) {
-            height = height.max(track.sample_route(route, station, 0.).0.y);
-        }
+        let (route, station, _) = SITES[index];
+        super::geometry::crossing_support(track, route, Vec3::new(x, 0., z), station)
+    } else {
+        super::geometry::ground_height(track, x, z)
     }
-    height
 }
 fn grounded_height(track: &Track, position: Vec3, rotation: Quat, index: usize) -> f32 {
     // The feet have to clear the rendered triangles at all four hoof positions.

@@ -16,6 +16,7 @@ pub struct CrossingWalker {
     pub started: u32,
     ready_at: f32,
     returning: bool,
+    check_clearance: bool,
 }
 impl CrossingWalker {
     pub fn new(start: Vec3, end: Vec3, index: usize) -> Self {
@@ -27,9 +28,36 @@ impl CrossingWalker {
             started: 0,
             ready_at: 8. + (index % 8) as f32 * 3.,
             returning: false,
+            check_clearance: false,
         }
     }
 }
+/// Stage additional walkers on opposite sides of a supported road.
+pub(crate) fn spawn_road_crossing(
+    commands: &mut Commands,
+    art: &crate::world::Art,
+    track: &Track,
+    station: f32,
+    lane: f32,
+    index: usize,
+) {
+    let (mut start, frame) = track.sample_route(0, station, lane);
+    let (mut end, _) = track.sample_route(0, station, -lane);
+    if track.is_hills() {
+        start.y = crate::world_gen::hills::crossing_support(track, start) + 0.015;
+        end.y = crate::world_gen::hills::crossing_support(track, end) + 0.015;
+    }
+    let entity =
+        crate::environment::spawn_pedestrian_patrol(commands, art, start, frame, station, 4.);
+    let mut crossing = CrossingWalker::new(start, end, index);
+    crossing.check_clearance = true;
+    commands.entity(entity).insert((
+        Name::new("Roadside crossing pedestrian"),
+        crossing,
+        Velocity::zero(),
+    ));
+}
+
 #[derive(Default)]
 pub struct ReleaseClock {
     previous: f32,
@@ -42,6 +70,7 @@ pub fn update(
     track: Res<Track>,
     context: ReadRapierContext,
     ground: Query<(), With<crate::world::Ground>>,
+    obstacles: Query<(), (With<crate::world::Obstacle>, Without<crate::world::Ground>)>,
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut clock: Local<ReleaseClock>,
     mut walkers: Query<
@@ -105,6 +134,15 @@ pub fn update(
         } else {
             (w.start, w.end)
         };
+        let predicate =
+            |entity, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(entity);
+        let filter = QueryFilter::only_fixed().predicate(&predicate);
+        let support = |point: Vec3| {
+            let origin = point.with_y(point.y.max(track.terrain_height(point.x, point.z)) + 2.5);
+            context
+                .cast_ray(origin, Vec3::NEG_Y, 7., true, filter)
+                .map(|(_, toi)| origin.y - toi + 0.015)
+        };
         if !w.active {
             let nearby = cameras
                 .iter()
@@ -113,6 +151,12 @@ pub fn update(
                     r.is_some_and(|r| r.id == 0 || r.remote_human)
                         && t.translation.xz().distance(start.xz()) < 300.
                 });
+            if nearby
+                && w.check_clearance
+                && let Some(y) = support(transform.translation)
+            {
+                transform.translation.y = y;
+            }
             // Cooldown, global admission and distance are cheap. Forecast motion only
             // when this walker could actually step off the curb this fixed tick.
             if !rules::may_start(race.elapsed, w.ready_at, clock.next, active, nearby, true) {
@@ -137,6 +181,35 @@ pub fn update(
                 velocity.linear = Vec3::ZERO;
                 continue;
             }
+            if w.check_clearance {
+                let is_obstacle = |entity, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                    obstacles.contains(entity)
+                };
+                let obstacle_filter = QueryFilter::only_fixed().predicate(&is_obstacle);
+                let samples = (start.xz().distance(end.xz()) / 0.75).ceil() as u32;
+                let clear = (0..=samples).all(|i| {
+                    let p = start.lerp(end, i as f32 / samples as f32);
+                    support(p).is_some_and(|y| {
+                        let mut blocked = false;
+                        context.intersect_shape(
+                            p.with_y(y + 0.95),
+                            Quat::IDENTITY,
+                            &Collider::capsule_y(0.55, 0.4),
+                            obstacle_filter,
+                            |_, _| {
+                                blocked = true;
+                                false
+                            },
+                        );
+                        !blocked
+                    })
+                });
+                if !clear {
+                    w.ready_at = race.elapsed + rules::REST_SECONDS;
+                    continue;
+                }
+                w.check_clearance = false;
+            }
             w.active = true;
             w.started += 1;
             active += 1;
@@ -147,15 +220,11 @@ pub fn update(
         let direction = delta.normalize_or_zero();
         let next = transform.translation
             + direction * (rules::WALK_SPEED * time.delta_secs()).min(distance);
-        let predicate =
-            |entity, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(entity);
-        let filter = QueryFilter::only_fixed().predicate(&predicate);
-        let origin = next.with_y(track.terrain_height(next.x, next.z) + 3.);
-        let Some((_, toi)) = context.cast_ray(origin, Vec3::NEG_Y, 6., true, filter) else {
+        let Some(y) = support(next) else {
             velocity.linear = Vec3::ZERO;
             continue;
         };
-        let next = next.with_y(origin.y - toi + 0.015);
+        let next = next.with_y(y);
         velocity.linear = (next - transform.translation) / time.delta_secs();
         transform.translation = next;
         transform.rotation = Quat::from_rotation_y(direction.x.atan2(direction.z));

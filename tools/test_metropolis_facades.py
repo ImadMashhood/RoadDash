@@ -78,7 +78,7 @@ class Facades(unittest.TestCase):
                 offset+=len(data)
         self.assertEqual(offset,len(raw))
         self.assertEqual(offset,len(packed_raw))
-        shader=(ROOT/'assets/shaders/metropolis_facade.wgsl').read_text()
+        shader=(ROOT/'assets/shaders/metropolis_facade.wesl').read_text()
         self.assertIn('tile % 8u',shader);self.assertIn('tile / 8u',shader)
         self.assertIn('1024.0, 1152.0',shader)
         self.assertIn('textureSampleGrad(facade_packed, facade_sampler, uv, dx, dy)',shader)

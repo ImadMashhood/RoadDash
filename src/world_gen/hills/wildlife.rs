@@ -14,7 +14,7 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
 ];
 const SAMPLES: usize = 128;
 const CROSSING_STATIONS: [f32; 2] = [9200., 11050.];
-const CROSSING_MEMBERS: usize = 4;
+const CROSSING_MEMBERS: usize = 6;
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
 #[derive(Component)]
@@ -62,7 +62,7 @@ pub(super) fn reserved(track: &Track, point: Vec3, radius: f32) -> bool {
     }) || CROSSING_STATIONS.iter().any(|&station| {
         let (p, q) = track.sample_route(0, station, 0.);
         let l = q.inverse() * (point - p);
-        l.x.abs() < 31. + radius && l.z.abs() < 24. + radius
+        l.x.abs() < 31. + radius && l.z.abs() < 32. + radius
     })
 }
 /// Small solid cattle herds cross the later desert road. Unlike the distant
@@ -75,10 +75,11 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
         for member in 0..CROSSING_MEMBERS {
             let (center, q) = track.sample_route(0, station + member as f32 * 3.7, 0.);
             let axis = (q * Vec3::X).with_y(0.).normalize();
-            let center = center + q * Vec3::Z * (member as f32 - 1.5) * 2.0;
+            let center =
+                center + q * Vec3::Z * (member as f32 - (CROSSING_MEMBERS - 1) as f32 * 0.5) * 2.0;
             let phase = member as f32 * 0.18;
             let start = center + axis * ((phase - 1.) * 26.);
-            let p = start.with_y(super::geometry::ground_height(track, start.x, start.z));
+            let p = start.with_y(super::geometry::crossing_support(track, 0, start, station));
             let entity = crate::environment::spawn_cow(
                 commands,
                 art,

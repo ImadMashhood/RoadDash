@@ -238,11 +238,11 @@ fn placements(track: &Track) -> Vec<Tuft> {
                 // Denser near the road, clustered openings farther into the fields.
                 if seed
                     > (if spacing < 1. {
-                        0.84
+                        0.94
                     } else if lane.abs() < 18. {
                         0.96
                     } else {
-                        0.30 + 0.40 * patch
+                        0.40 + 0.40 * patch
                     })
                 {
                     continue;
@@ -292,10 +292,10 @@ fn placements(track: &Track) -> Vec<Tuft> {
         let hi = lawns
             .iter()
             .fold(Vec2::splat(f32::NEG_INFINITY), |a, f| a.max(f.hi));
-        for x in (lo.x.floor() as i32..hi.x.ceil() as i32).step_by(3) {
-            for z in (lo.y.floor() as i32..hi.y.ceil() as i32).step_by(3) {
+        for x in (lo.x.floor() as i32..hi.x.ceil() as i32).step_by(2) {
+            for z in (lo.y.floor() as i32..hi.y.ceil() as i32).step_by(2) {
                 let p = Vec2::new(x as f32 + noise(x, z, 21), z as f32 + noise(x, z, 42));
-                if noise(x, z, 9) > 0.65
+                if noise(x, z, 9) > 0.72
                     || !lawns.iter().any(|f| f.contains(p))
                     || paving.iter().any(|f| f.overlaps(p, 0.8))
                     || ![Vec2::X, -Vec2::X, Vec2::Y, -Vec2::Y]

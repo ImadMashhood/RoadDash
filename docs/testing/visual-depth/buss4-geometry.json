@@ -1,0 +1,51 @@
+{
+  "material_policy_sha256": "39440cf5bcc8f1928f754076e5a52b68f0b4b34ff706e62ade324fd6fab5d021",
+  "families": [
+    "BUSS4"
+  ],
+  "geometry_preserved": true,
+  "records": [
+    {
+      "path": "art/buildings/mesh_assets/front_modules/BUSS4_lod0.glb",
+      "before_sha256": "5c4f565ad4acda089e981672f111f293ec5354ceaa80d13773dd0e4a2184ca57",
+      "after_sha256": "875d318ed0b4583a96f18c2f440458b05eeaf080194607f0174f3c02beefeea7",
+      "unchanged_binary_sha256": "b2a4cfd7c6ff2b6e9e6d1d093238d7960fff63658c7011de13ea45dbb7bfbb25",
+      "unchanged_geometry_json_sha256": "7701d25c40031c063548e119180299520569fa77990fc66b07101cbc5f3b0f26"
+    },
+    {
+      "path": "art/buildings/mesh_assets/storey_kit/BUSS4_lod0.glb",
+      "before_sha256": "1b084df2f717a96f6426446d51790aeb990880aa9488811c9c6191d1e14a9c7d",
+      "after_sha256": "38a53e21b29aa0f73428cfcaf9e9972b8165e93f5c261b5266582da85b8d9f0d",
+      "unchanged_binary_sha256": "62093ab88f9b95c5bc1b201dcd4dbe126281c035e09fb500d3a32298470409af",
+      "unchanged_geometry_json_sha256": "6c33edd460992d52b4519b6cb4bf3f9e5a52879f50bdd5c9830938c675e21e58"
+    },
+    {
+      "path": "art/buildings/mesh_assets/front_modules/BUSS4_lod1.glb",
+      "before_sha256": "41e0bc30a7fe0673ce9c27f1c542f5aa100f7bc6e4bad77c8d7b565a448532f6",
+      "after_sha256": "52d6ef36f1fa0ce4d70496fe3741d029beb57b4c706eb5c7efdee7d66bfdc824",
+      "unchanged_binary_sha256": "9c12c7dbd7b1a3bccc3f05f4c43388e93a72e426a310ae725524aa8d9e74d700",
+      "unchanged_geometry_json_sha256": "95cb09f372dfad80c426e7ededa01bb70bdffc35713da28bed81538be22d5b7c"
+    },
+    {
+      "path": "art/buildings/mesh_assets/storey_kit/BUSS4_lod1.glb",
+      "before_sha256": "612d6c0c369c2258b5c4a054af92376c0fa1a413909624f808f3af6c1ffe51b6",
+      "after_sha256": "5f565859c894c3a61dc5cee26ad2a20826af78bcb05022270f7260e1f610a33e",
+      "unchanged_binary_sha256": "6b509d00c5d59c879c3085159f6759aa8244340d216f18a9fd93c1de3d454790",
+      "unchanged_geometry_json_sha256": "f03964de5e5bc894f328c4f84a8a342a33321cc0ab5c3c0bb06f268d4f41602a"
+    },
+    {
+      "path": "art/buildings/mesh_assets/front_modules/BUSS4_lod2.glb",
+      "before_sha256": "d7c0d5074aefa7849003e254053f17c9a65686da81b635b32c43fbf0c576abdf",
+      "after_sha256": "74970ceebd382724a9361d4c13f4c9688abf8830431fb5509d0c27a8c8760fa1",
+      "unchanged_binary_sha256": "283443969c132839233a1fcbfacb7e79e78772cc5ebf7318cbfb9abda9e5563c",
+      "unchanged_geometry_json_sha256": "d943b75c8d52abb86d4a98d2dc6fdcd3083319bdac3e01ba0d1abf996ec55230"
+    },
+    {
+      "path": "art/buildings/mesh_assets/storey_kit/BUSS4_lod2.glb",
+      "before_sha256": "22da8bdbde4d37b5419096e15d8964844d0c8912bc5193d185810ee6d0fe99a8",
+      "after_sha256": "c8b74d09bf9fa0025c35584d216844031e905f884a30b9e26c7527c07f743311",
+      "unchanged_binary_sha256": "30b827dcdc3128de7201c1e32784401d11ca61a1d4624db5803b471c9e238c8e",
+      "unchanged_geometry_json_sha256": "ffb592288ee2aaf065c5fbd62e25fa268f87b953f8c397aefe50fa61a5eef675"
+    }
+  ]
+}

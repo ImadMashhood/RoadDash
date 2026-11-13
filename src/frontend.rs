@@ -599,7 +599,7 @@ fn view(
 ) {
     let active = front.online_pause || matches!(race.phase, Phase::Garage | Phase::Finished);
     let (mut root, mut background) = root.single_mut().expect("frontend root");
-    *background = BackgroundColor(if front.online_pause {
+    *background = BackgroundColor(if front.online_pause || cinematic::enabled(&front, &race) {
         Color::NONE
     } else {
         Color::BLACK

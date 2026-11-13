@@ -4826,3 +4826,20 @@ identifiers and launch paths available for existing callers.
 Use coarser original asphalt aggregate, mottled grass and exposed stone
 on steep meadow faces. Keep the resident terrain and collision topology
 and the existing desert surface palette.
+
+## ADR184 — Live menu backdrop and course polish (2026-11-13)
+
+Composite the live camera beneath existing frontend gradients on cinematic
+pages. Use continuous Hills terrain normals across tiles and mipmapped grit
+without changing collision geometry. Keep vegetation render-only. Stage
+additional pedestrian crossings through the shared host admission rules and
+author Metropolis crossings from the approved source with a crossing-only
+rebake. Ground Hills mounted crossings on the road and shoulder profile.
+[Implementation and evidence](testing/course-presentation-polish/REPORT.md).
+
+## ADR185 — Visual depth pilot (2026-11-13)
+
+Offer independent opt-in startup comparisons for the display curve/Hills
+daylight and camera contact shadows. Pilot storefront depth through the
+existing BUSS4 geometry and source finishes. Rebake model-derived proxies
+with the authored finishes. [Evidence](testing/visual-depth/REPORT.md).

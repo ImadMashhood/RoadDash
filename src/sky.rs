@@ -290,6 +290,16 @@ fn profile(hills: bool) -> rr_content::world_art::Config {
     }
     c
 }
+fn depth_profile(c: &mut rr_content::world_art::Config, hills: bool) {
+    c.tonemapping = rr_content::world_art::ToneMapping::SomewhatBoringDisplayTransform;
+    // Offset the brighter midtone response while preserving highlight rolloff.
+    c.exposure_ev100 += 0.35;
+    if hills {
+        c.sun_direction = [-0.91, 0.41, -0.13];
+        c.fog_density_per_m = 0.0009;
+    }
+}
+
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub fn install(
     mut commands: Commands,
@@ -311,7 +321,11 @@ pub fn install(
         && crate::world_gen::hills::clouds::enabled()
         && meshes.is_some()
         && cloud_materials.is_some();
-    let c = profile(hills);
+    let mut c = profile(hills);
+    if std::env::var("ROADDASH_DEPTH_LIGHTING").as_deref() == Ok("1") {
+        depth_profile(&mut c, hills);
+    }
+    let contact_shadows = std::env::var("ROADDASH_CONTACT_SHADOWS").as_deref() == Ok("1");
     if hills {
         commands.insert_resource(HillsLighting {
             cloud_coverage: c.cloud_coverage,
@@ -417,9 +431,17 @@ pub fn install(
     for (mut light, mut transform) in &mut lights {
         light.color = Color::srgb_from_array(c.sun_color_srgb);
         light.illuminance = c.sun_lux;
+        light.contact_shadows_enabled = contact_shadows && light.shadow_maps_enabled;
         *transform = Transform::from_translation(sun(&c) * 1000.0).looking_at(Vec3::ZERO, Vec3::Y);
     }
     for entity in &cameras {
+        if contact_shadows {
+            commands.entity(entity).insert(bevy::pbr::ContactShadows {
+                linear_steps: 8,
+                length: 0.45,
+                ..default()
+            });
+        }
         commands.entity(entity).insert((
             Skybox {
                 image: Some(display_cube.clone()),
@@ -455,6 +477,20 @@ pub fn install(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn depth_profile_preserves_city_sun_and_keeps_hills_haze_out_of_the_near_road() {
+        let mut city = profile(false);
+        let city_sun = city.sun_direction;
+        depth_profile(&mut city, false);
+        assert_eq!(city.sun_direction, city_sun);
+        let mut hills = profile(true);
+        let baseline = hills.clone();
+        depth_profile(&mut hills, true);
+        assert!(sun(&hills).y < sun(&baseline).y);
+        let fog = |distance: f32| 1. - (-(distance * hills.fog_density_per_m).powi(2)).exp();
+        assert!(fog(50.) < 0.005 && fog(500.) > 0.15);
+    }
+
     #[test]
     fn hills_light_clouds_and_fog_share_one_fixed_sun_profile() {
         let base = profile(false);
@@ -580,7 +616,10 @@ mod tests {
     }
     #[test]
     fn installation_applies_one_lighting_profile_without_changing_shadow_policy() {
-        let c = rr_content::world_art::Config::from_json(JSON).unwrap();
+        let mut c = profile(false);
+        if std::env::var("ROADDASH_DEPTH_LIGHTING").as_deref() == Ok("1") {
+            depth_profile(&mut c, false);
+        }
         let mut app = App::new();
         app.init_resource::<Assets<Image>>()
             .add_systems(Startup, install);

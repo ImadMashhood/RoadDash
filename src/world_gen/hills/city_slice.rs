@@ -204,14 +204,6 @@ fn content() -> Metropolis {
     m.civic_sites.clear();
     m.pedestrians
         .retain(|p| near(p.position, 125.) && (10500. ..=11750.).contains(&p.station));
-    // The imported source corridor is intentionally calmer than Metropolis:
-    // retain exactly alternating authored walkers, including their crossings.
-    let mut walker_index = 0;
-    m.pedestrians.retain(|_| {
-        let keep = walker_index % 2 == 0;
-        walker_index += 1;
-        keep
-    });
     for walker in &mut m.pedestrians {
         walker.position = shift(walker.position);
         walker.station -= 10500.;
@@ -220,6 +212,26 @@ fn content() -> Metropolis {
             .filter(|end| near(*end, 125.))
             .map(shift);
     }
+    // Keep every supported crossing, then halve the previous Hills population with
+    // evenly distributed ordinary patrols in authored order.
+    let target = m.pedestrians.len().div_ceil(4);
+    let crossings = m
+        .pedestrians
+        .iter()
+        .filter(|p| p.crossing_end.is_some())
+        .count();
+    let ordinary = m.pedestrians.len() - crossings;
+    let keep = target.saturating_sub(crossings);
+    let mut crossing_index = 0;
+    let mut index = 0;
+    m.pedestrians.retain(|walker| {
+        if walker.crossing_end.is_some() {
+            crossing_index += 1;
+            return crossing_index <= target;
+        }
+        index += 1;
+        index * keep / ordinary > (index - 1) * keep / ordinary
+    });
     m.streets.clear();
     for section in &mut m.street_life.lane_sections {
         section.start -= 10500.;

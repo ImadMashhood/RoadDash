@@ -26,6 +26,18 @@ Try three recorded textures in the live gearbox-driven audio path. Set
 Add an original inline-four engine voice and retain the recorded-loop A/B
 control. AUDIO-008 remains open for listening acceptance.
 
+## 2026-11-13 — Visual depth pilot (ADR185)
+
+- Added opt-in contact shadows and daylight grading, and rebaked the BUSS4 facade finishes through the near/far pipeline.
+
+## 2026-11-13 — Course presentation polish (ADR184)
+
+- Restored the live entry-menu camera and polished Hills terrain transitions.
+- Added meadow coverage, adjusted Hills population and herds, and expanded
+  pedestrian crossings on all courses.
+- Audited the live checklist and collapsed verified entries. Reconciled the
+  pending demo/menu merge before building the integrated changes.
+
 ## 2026-11-13 — Demo combat, effects and audio (ADR175)
 
 Add moving strike contact, speed-based AI disengage, rear-wheel spray and

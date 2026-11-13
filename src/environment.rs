@@ -149,6 +149,14 @@ pub fn build(
     let brick = materials.add(Color::srgb(0.48, 0.25, 0.17));
     let concrete = materials.add(Color::srgb(0.45, 0.48, 0.48));
     let window = materials.add(Color::srgb(0.19, 0.36, 0.43));
+    let meadow_blades = layout.map(|_| {
+        materials.add(StandardMaterial {
+            base_color: Color::srgb(0.31, 0.42, 0.16),
+            perceptual_roughness: 1.,
+            cull_mode: None,
+            ..default()
+        })
+    });
     let mut rail_ground = crate::world_gen::hills::guardrails::GroundSamples::default();
     let mut render_triangles = 0;
     let mut collision_triangles = 0;
@@ -235,6 +243,11 @@ pub fn build(
                         .collect::<Vec<_>>(),
                 );
             }
+            if let (Some(material), Some(layout)) = (&meadow_blades, layout) {
+                valley_grass(
+                    commands, meshes, track, layout, center, &vertices, &indices, material,
+                );
+            }
             let terrain = commands
                 .spawn((
                     Mesh3d(meshes.add(terrain_mesh)),
@@ -297,6 +310,19 @@ pub fn build(
     }
     if let Some(layout) = layout {
         crate::world_gen::surfaces::spawn(commands, meshes, materials, track, layout);
+        for (index, station) in (2850..4850).step_by(240).enumerate() {
+            let station = station as f32;
+            if !layout.settings.junction_at(station, 6.) {
+                crate::world_gen::metropolis::pedestrians::spawn_road_crossing(
+                    commands,
+                    art,
+                    track,
+                    station,
+                    track.half_width(station) + layout.settings.sidewalk_width_m * 0.5,
+                    index,
+                );
+            }
+        }
     }
     crate::world_gen::hills::guardrails::spawn_legacy(commands, art, track, &rail_ground, layout);
     let cone = meshes.add(Cone::new(1.0, 1.0).mesh().resolution(7));
@@ -698,6 +724,61 @@ pub fn build(
         collision_triangles,
     });
 }
+#[allow(clippy::too_many_arguments)]
+fn valley_grass(
+    commands: &mut Commands,
+    meshes: &mut Assets<Mesh>,
+    track: &Track,
+    layout: &crate::world_gen::layout::WorldLayout,
+    center: Vec3,
+    terrain: &[Vec3],
+    triangles: &[[u32; 3]],
+    material: &Handle<StandardMaterial>,
+) {
+    let mut vertices = Vec::new();
+    let mut indices = Vec::new();
+    for tri in triangles.iter().step_by(2) {
+        let [a, b, c] = tri.map(|i| terrain[i as usize]);
+        let p = a * 0.46 + b * 0.33 + c * 0.21;
+        let (station, lane) = track.nearby_station(p.x, p.z);
+        if !matches!(track.sector(station), Sector::Farms | Sector::Hills)
+            || lane.abs() < track.half_width(station) + track.definition.verge_width + 3.
+            || lane.abs() > 72.
+            || layout
+                .road_reservations
+                .iter()
+                .chain(&layout.access_reservations)
+                .any(|r| r.contains(p.xz(), 0.5))
+            || layout.blockers().any(|r| r.contains(p.xz(), 0.5))
+            || (b - a).cross(c - a).normalize_or_zero().y < 0.75
+        {
+            continue;
+        }
+        let p = p - center;
+        let seed = (p.x * 1.7 + p.z * 3.1).sin();
+        let base = vertices.len() as u32;
+        let tip = p + Vec3::new(seed * 0.14, 0.36 + seed.abs() * 0.20, 0.06);
+        for side in [Vec3::X * 0.16, Vec3::Z * 0.16] {
+            vertices.extend([p - side, p + side, tip]);
+        }
+        indices.extend([[base, base + 1, base + 2], [base + 3, base + 4, base + 5]]);
+    }
+    if !indices.is_empty() {
+        commands.spawn((
+            Name::new("Valley meadow grass"),
+            Mesh3d(meshes.add(mesh(&vertices, &indices))),
+            MeshMaterial3d(material.clone()),
+            Transform::from_translation(center),
+            bevy::light::NotShadowCaster,
+            bevy::camera::visibility::VisibilityRange {
+                start_margin: 0. ..0.,
+                end_margin: 160. ..230.,
+                use_aabb: false,
+            },
+        ));
+    }
+}
+
 pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) -> Entity {
     let root = commands
         .spawn((
@@ -868,7 +949,13 @@ pub fn patrol(
     race: Res<Race>,
     track: Res<Track>,
     mut actors: Query<
-        (&Patrol, &mut Transform, Option<&CrossTraffic>),
+        (
+            &Patrol,
+            &mut Transform,
+            Option<&CrossTraffic>,
+            Has<crate::world_gen::hills::HillsCowboy>,
+            Has<crate::world_gen::hills::wildlife::CrossingCow>,
+        ),
         (
             Without<ColliderDisabled>,
             Without<crate::world_gen::metropolis::Crossing>,
@@ -879,7 +966,7 @@ pub fn patrol(
     if race.phase != Phase::Racing {
         return;
     }
-    for (path, mut t, car) in &mut actors {
+    for (path, mut t, car, cowboy, crossing_cow) in &mut actors {
         let phase = (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.0);
         let f = if path.one_way {
             phase.rem_euclid(2.0) - 1.0
@@ -890,7 +977,9 @@ pub fn patrol(
         };
         let p = path.center + path.axis * f * path.extent;
         t.translation = p;
-        if car.is_none() {
+        if cowboy || crossing_cow {
+            t.translation.y = crate::world_gen::hills::crossing_support(&track, p) + 0.015;
+        } else if car.is_none() {
             t.translation.y = track.terrain_height(p.x, p.z)
                 + if track.earthworks.is_some() {
                     0.04

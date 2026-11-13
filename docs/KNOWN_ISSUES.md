@@ -7,6 +7,19 @@
   Closed throttle above 7,500 RPM uses the top coast sample. Full-course mix
   and loop audibility still need listening review.
 
+## Visual depth pilot (ADR185)
+
+The optional contact-shadow pass only reinforces direct light and adds a depth
+prepass. Fully shaded storefronts still need local ambient occlusion or more
+authored depth. The BUSS4 finish pilot leaves the physical recess redesign and
+production performance review open.
+
+## Course presentation polish (ADR184)
+
+Matched frame-cost measurements and full-course human review remain open.
+Added pedestrian paths wait for nearby riders, clearance and a traffic gap.
+The existing Bevy 0.20 Rapier parity failures remain tracked independently.
+
 - ADR175 demo combat/audio: natural exchange frequency and audible mix still
   need human full-course review. Limb volumes approximate the animated mesh,
   and recorded rev bands use one donor engine. Both online peers need protocol 4.
