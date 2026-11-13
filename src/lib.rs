@@ -72,7 +72,10 @@ pub fn build_app(smoke: bool) -> App {
         biomechanics::Settings::selected().expect("valid ragdoll arguments/configuration"),
     );
     biomechanics::install_debug(&mut app);
-    if !smoke {
+    if !smoke
+        || (std::env::args().any(|arg| arg == "--smoke-test")
+            && std::env::var_os("ROADDASH_SETTINGS").is_some())
+    {
         app.insert_resource(settings::Preferences::load(settings::Preferences::path()));
     }
     app.insert_resource(

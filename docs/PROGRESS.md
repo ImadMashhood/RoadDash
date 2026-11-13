@@ -564,6 +564,8 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **GEAR-01** Add independently selectable player suit finishes and helmet meshes. Reason: establish the first equippable cosmetics for career mode; part:12; dependencies: authored rider UV atlas and preferences; acceptance: two new textures on the existing suit, two new helmet models, live local selection and saved defaults, with render-only gear through recovery; verification: settings and skin-swap tests and native recovery captures. [Evidence](testing/rider-gear/REPORT.md).
+
 - [x] **UI-FLYOVER-01** Show the live looping 3D flyover behind the entry menus. Reason: the entry screen shows an opaque background; part:15; dependencies: UI-CITY-TOUR-01 and existing course/camera lifecycle; acceptance: visible map and camera movement, seamless repeat, static-menu setting honored and race camera restored on entry; verification: camera loop fixture and native frontend walkthrough. [Evidence](testing/course-presentation-polish/REPORT.md).
 
 - [x] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: six offline map slots with Metropolis and Hills selectable and four blank reserved slots, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough. [Six-slot walkthrough](testing/demo-combat-effects-audio/REPORT.md#six-slot-map-picker).

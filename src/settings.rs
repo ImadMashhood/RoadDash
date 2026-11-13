@@ -22,6 +22,8 @@ pub struct PreferencesFile {
     #[serde(default)]
     pub mix: AudioMix,
     #[serde(default)]
+    pub gear: crate::models::gear::Gear,
+    #[serde(default)]
     pub window_size: WindowSize,
     #[serde(default)]
     pub imperial_speed: bool,
@@ -92,6 +94,7 @@ impl Default for PreferencesFile {
             schema_version: 1,
             voice: default(),
             mix: default(),
+            gear: default(),
             window_size: default(),
             imperial_speed: false,
             static_menu: false,
@@ -292,15 +295,17 @@ pub enum Section {
     Display,
     Accessibility,
     Voice,
+    Gear,
 }
 impl Section {
-    pub const ALL: [Self; 6] = [
+    pub const ALL: [Self; 7] = [
         Self::Camera,
         Self::Controls,
         Self::Audio,
         Self::Display,
         Self::Accessibility,
         Self::Voice,
+        Self::Gear,
     ];
     pub fn name(self) -> &'static str {
         match self {
@@ -310,6 +315,7 @@ impl Section {
             Self::Display => "Display",
             Self::Accessibility => "Accessibility",
             Self::Voice => "Voice Chat",
+            Self::Gear => "Rider Gear",
         }
     }
     pub fn rows(self) -> &'static [usize] {
@@ -320,6 +326,7 @@ impl Section {
             Self::Display => &[23, 24, 31, 42],
             Self::Accessibility => &[32, 33, 43, 44],
             Self::Voice => &[34, 35, 36, 37, 38, 39, 40, 41],
+            Self::Gear => &[45, 46],
         }
     }
 }
@@ -355,7 +362,7 @@ impl SettingsPanel {
         self.selected = Section::Voice.rows()[0];
     }
 }
-pub const ROWS: usize = 45;
+pub const ROWS: usize = 47;
 pub const ACTIONS: [&str; 12] = [
     "throttle",
     "brake",
@@ -640,6 +647,15 @@ pub fn panel_input(
             42 => prefs.file.shadows = !prefs.file.shadows,
             43 => prefs.file.show_minimap = !prefs.file.show_minimap,
             44 => prefs.file.show_standings = !prefs.file.show_standings,
+            45 => {
+                let suits = crate::models::gear::Suit::ALL;
+                prefs.file.gear.suit = suits[cycle(prefs.file.gear.suit as usize, suits.len(), d)];
+            }
+            46 => {
+                let helmets = crate::models::gear::Helmet::ALL;
+                prefs.file.gear.helmet =
+                    helmets[cycle(prefs.file.gear.helmet as usize, helmets.len(), d)];
+            }
             9 => {
                 prefs.status = match prefs.save() {
                     Ok(()) => "Settings saved".into(),
@@ -781,6 +797,10 @@ mod tests {
         std::fs::create_dir_all(&root).unwrap();
         let path = root.join("settings.json");
         let mut prefs = Preferences::load(path.clone());
+        prefs.file.gear = crate::models::gear::Gear {
+            suit: crate::models::gear::Suit::Glacier,
+            helmet: crate::models::gear::Helmet::Rally,
+        };
         prefs.file.master_volume = 0.4;
         prefs.file.audio_muted = true;
         prefs.file.fullscreen = true;
@@ -803,6 +823,7 @@ mod tests {
             (0.4, true, true, false)
         );
         assert_eq!(loaded.file.comfort, prefs.file.comfort);
+        assert_eq!(loaded.file.gear, prefs.file.gear);
         assert_eq!(loaded.file.controller["nitro"], "RightTrigger");
         let original = "{\"schema_version\":99}";
         std::fs::write(&path, original).unwrap();
@@ -852,6 +873,7 @@ mod menu_tests {
             "window_size",
             "imperial_speed",
             "static_menu",
+            "gear",
             "shadows",
             "show_minimap",
             "show_standings",
@@ -864,6 +886,7 @@ mod menu_tests {
         assert!(p.voice.enabled && !p.voice.microphone);
         assert_eq!(p.voice.mode, crate::online::voice::Mode::Activation);
         assert!(p.shadows && !p.static_menu && !p.imperial_speed);
+        assert_eq!(p.gear, default());
         assert_eq!((p.mix.engine, p.mix.ambience, p.mix.effects), (1., 1., 1.));
         let mut p = p;
         p.master_volume = f32::NAN;
@@ -880,6 +903,16 @@ mod menu_tests {
         assert_eq!(
             app.world().resource::<crate::game::Race>().phase,
             crate::game::Phase::Paused
+        );
+        click(&mut app, SettingsAction::Tab(Section::Gear));
+        click(&mut app, SettingsAction::Adjust(45, 1));
+        click(&mut app, SettingsAction::Adjust(46, -1));
+        assert_eq!(
+            app.world().resource::<Preferences>().file.gear,
+            crate::models::gear::Gear {
+                suit: crate::models::gear::Suit::Ember,
+                helmet: crate::models::gear::Helmet::Rally,
+            }
         );
         click(&mut app, SettingsAction::Tab(Section::Audio));
         assert_eq!(app.world().resource::<SettingsPanel>().selected, 22);

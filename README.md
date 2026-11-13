@@ -196,7 +196,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**242 verified tasks complete; 359 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**243 verified tasks complete; 359 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -214,9 +214,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 242 verified complete |
+| [00](#part-00) | Completed and verified foundations | 243 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
-| [00](#part-00) | Completed and verified foundations | 242 verified complete |
+| [00](#part-00) | Completed and verified foundations | 243 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
@@ -239,7 +239,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 ### Part 00 — Completed and verified foundations
 
 <details>
-<summary>Recent verification audit — 8 completed tasks</summary>
+<summary>Recent verification audit — 9 completed tasks</summary>
+
+- [x] **GEAR-01** Add independently selectable player suit finishes and helmet meshes. Reason: establish the first equippable cosmetics for career mode; part:12; dependencies: authored rider UV atlas and preferences; acceptance: two new textures on the existing suit, two new helmet models, live local selection and saved defaults, with render-only gear through recovery; verification: settings and skin-swap tests and native recovery captures. [Evidence](docs/testing/rider-gear/REPORT.md).
 
 - [x] **UI-FLYOVER-01** Show the live looping 3D flyover behind the entry menus. Reason: the entry screen shows an opaque background; part:15; dependencies: UI-CITY-TOUR-01 and existing course/camera lifecycle; acceptance: visible map and camera movement, seamless repeat, static-menu setting honored and race camera restored on entry; verification: camera loop fixture and native frontend walkthrough. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
 

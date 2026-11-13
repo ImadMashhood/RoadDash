@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Rider gear (ADR189)
+
+- Added Ember and Glacier suit finishes and independent Apex and Rally helmet models to the local Rider Gear settings.
+
 ## 2026-11-13 — Hills frame profiling (ADR188)
 
 - Reduced repeated lane-clearance math and reused exact Hills terrain vertices for mounted hoof support.

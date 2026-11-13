@@ -4866,3 +4866,11 @@ Keep the existing interior checks for moving crossings. Reuse exact terrain
 vertices across mounted updates while the Track is unchanged and share
 the terrain sample across both branches for crossing actors.
 [Native measurements](testing/visual-depth/REPORT.md#hills-frame-profiling).
+
+## ADR189 — Independent rider suit and helmet slots (2026-11-13)
+
+Store stable local gear IDs in existing versioned preferences. Use the
+original suit mesh and UV layout with two authored alternate albedo
+textures. Bind Apex and Rally shells and visors to the existing animated
+head and swap renderer assets on the local rider through recovery.
+[Implementation and evidence](testing/rider-gear/REPORT.md).

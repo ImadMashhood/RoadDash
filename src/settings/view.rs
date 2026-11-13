@@ -253,6 +253,8 @@ fn caption(row: usize) -> &'static str {
         42 => "World shadows",
         43 => "Minimap",
         44 => "Standings",
+        45 => "Suit finish",
+        46 => "Helmet model",
         _ => "",
     }
 }
@@ -326,6 +328,8 @@ fn value(
         42 => on(prefs.file.shadows).into(),
         43 => on(prefs.file.show_minimap).into(),
         44 => on(prefs.file.show_standings).into(),
+        45 => prefs.file.gear.suit.name().into(),
+        46 => prefs.file.gear.helmet.name().into(),
         41 => target()
             .and_then(|p| online.map(|o| on(o.voice_muted(p.slot))))
             .unwrap_or("—")
@@ -465,6 +469,7 @@ pub fn display(
             Section::Audio => "Adjust the overall mix or individual game sounds.",
             Section::Display => "Window size applies in windowed mode. VSync reduces tearing.",
             Section::Accessibility => "Choose speed units, HUD elements and menu motion.",
+            Section::Gear => "Choose your suit finish and helmet model.",
             Section::Voice => {
                 "Nearby racers can hear your microphone when enabled. Uses system devices."
             }
