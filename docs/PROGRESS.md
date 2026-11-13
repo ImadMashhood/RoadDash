@@ -1300,6 +1300,8 @@ pending terrain and crossing verification gates.
 
 ### Part 04 — World A — facade study, original textures and procedural buildings
 
+- [ ] **VIS-DEPTH-02** Evaluate a deeper Metropolis storefront pilot. Reason: repeated shaded frontage reads flat; part:04; dependencies: MAT-03 and existing storey kit; acceptance: distinguish glass, cavity and trim across near/far detail and evaluate stronger recess geometry on a representative block; verification: material parity, regenerated atlas and native street comparison. [Evidence](testing/visual-depth/REPORT.md).
+
 - [ ] **ELEVATION-01** Make Metropolis elevation moderately more pronounced. Reason: user requests stronger terrain relief; part: 04; dependencies: METRO-01, LAYOUT-03 and shared elevation/support; acceptance: 20–25% greater longitudinal relief, smooth grades below4%, exact planar/identity/lane preservation, support and recovery on both branches; verification: [authoring/preservation/support receipts](testing/next-elevation/README.md), integrated native survey/recovery and user feel review.
 
 - [ ] **CITY-WIDTH-01** Preview a narrower Metropolis retaining all race-road frontage and removing about half of non-frontage blocks. Reason: the city is overbuilt laterally; part: 04; dependencies: METRO-01, CITY-CIVIC-01; acceptance: actual-source before/after map, explicit whole-block IDs/counts, both race branches and civic sites retained; runtime deletion is pending map selection; verification: read-only geometry/count audit, then source bake/navigation/recovery and measured native performance if implemented. [Proposal](testing/civic-greenery/README.md).
@@ -1683,6 +1685,8 @@ pending terrain and crossing verification gates.
 - [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **VIS-DEPTH-01** Evaluate contact shadows and a depth-oriented daylight grade. Reason: weak grounding and distance separation; part:15; dependencies: SKY-01 and P15-004; acceptance: readable shadows and hazards, coherent sky/fog and bounded cost; verification: matched Hills and Metropolis native views and frame measurements. [Evidence](testing/visual-depth/REPORT.md).
 
 - [ ] **DEMO-ROAD-FX-01** Add surface-driven tire spray, location cues and recorded race sound. Reason: make surfaces, speed and impacts readable; part:15; dependencies: P15-003, wheel contact and mixer; acceptance: four engine bands, different surfaces, readable impacts and audible route identity; verification: provenance, native capture and human audio/visual tuning. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
 

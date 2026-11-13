@@ -4779,3 +4779,10 @@ additional pedestrian crossings through the shared host admission rules and
 author Metropolis crossings from the approved source with a crossing-only
 rebake. Ground Hills mounted crossings on the road and shoulder profile.
 [Implementation and evidence](testing/course-presentation-polish/REPORT.md).
+
+## ADR177 — Visual depth pilot (2026-11-13)
+
+Offer independent opt-in startup comparisons for the display curve/Hills
+daylight and camera contact shadows. Pilot storefront depth through the
+existing BUSS4 geometry and source finishes. Rebake model-derived proxies
+with the authored finishes. [Evidence](testing/visual-depth/REPORT.md).

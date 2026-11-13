@@ -695,6 +695,13 @@ pub fn apply_preferences(
     mut applied_size: Local<WindowSize>,
     mut automatic_size: Local<Option<Vec2>>,
     mut sun: Query<&mut DirectionalLight, With<crate::world::CourseSun>>,
+    contact_shadows: Query<
+        (),
+        (
+            With<crate::game::ChaseCamera>,
+            With<bevy::pbr::ContactShadows>,
+        ),
+    >,
 ) {
     if let Some(ref mut m) = muted {
         if !*initialized {
@@ -708,6 +715,10 @@ pub fn apply_preferences(
         return;
     }
     for mut light in &mut sun {
+        let contact_enabled = prefs.file.shadows && !contact_shadows.is_empty();
+        if light.contact_shadows_enabled != contact_enabled {
+            light.contact_shadows_enabled = contact_enabled;
+        }
         if light.shadow_maps_enabled != prefs.file.shadows {
             light.shadow_maps_enabled = prefs.file.shadows;
         }

@@ -114,8 +114,8 @@
           "file": "BUSS4_lod0.glb",
           "lod": 0,
           "triangles": 36312,
-          "bytes": 5878004,
-          "sha256": "5c4f565ad4acda089e981672f111f293ec5354ceaa80d13773dd0e4a2184ca57",
+          "bytes": 5878012,
+          "sha256": "875d318ed0b4583a96f18c2f440458b05eeaf080194607f0174f3c02beefeea7",
           "source_sha256": "3fabfcd564f112cb441fbaf5abaa4c11f3176563bfc9a70acdd1563df511f773",
           "minimum_local_depth_m": -0.6
         },
@@ -123,8 +123,8 @@
           "file": "BUSS4_lod1.glb",
           "lod": 1,
           "triangles": 12636,
-          "bytes": 2853928,
-          "sha256": "41e0bc30a7fe0673ce9c27f1c542f5aa100f7bc6e4bad77c8d7b565a448532f6",
+          "bytes": 2853936,
+          "sha256": "52d6ef36f1fa0ce4d70496fe3741d029beb57b4c706eb5c7efdee7d66bfdc824",
           "source_sha256": "27c8153ff9f7f0e3935554b9d841bf62ce6f3b8b31abf2ee1397a10397d1efbb",
           "minimum_local_depth_m": -0.6
         },
@@ -132,8 +132,8 @@
           "file": "BUSS4_lod2.glb",
           "lod": 2,
           "triangles": 536,
-          "bytes": 2231388,
-          "sha256": "d7c0d5074aefa7849003e254053f17c9a65686da81b635b32c43fbf0c576abdf",
+          "bytes": 2231396,
+          "sha256": "74970ceebd382724a9361d4c13f4c9688abf8830431fb5509d0c27a8c8760fa1",
           "source_sha256": "93108a4a23e098dc3e429f2065ae5f3e404ad4e50b78f61316af21742ed1ae49",
           "minimum_local_depth_m": -0.6
         }

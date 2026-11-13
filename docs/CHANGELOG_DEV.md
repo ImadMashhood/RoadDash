@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Visual depth pilot (ADR177)
+
+- Added opt-in contact shadows and daylight grading, and rebaked the BUSS4 facade finishes through the near/far pipeline.
+
 ## 2026-11-13 — Course presentation polish (ADR176)
 
 - Restored the live entry-menu camera and polished Hills terrain transitions.

@@ -6,7 +6,7 @@
   "tile_size": 128,
   "gutter": 16,
   "mip_levels": 5,
-  "source_manifest_sha256": "34544871f5c7824e7faea26810232631b292aa7cc8cd41e1bcf69b417d4c6759",
+  "source_manifest_sha256": "936e08ae334ceb78ff6c4f39991313f6525d4b2c33c56a42d17f481031ad3501",
   "generator_sha256": "ef46024d5dc6694e6f481c1c62ab1730c96c05517f71f71f417ac1de9c48838d",
   "records": [
     {
@@ -246,7 +246,7 @@
     {
       "design": "BUSS4",
       "band": 0,
-      "source_sha256": "22da8bdbde4d37b5419096e15d8964844d0c8912bc5193d185810ee6d0fe99a8",
+      "source_sha256": "c8b74d09bf9fa0025c35584d216844031e905f884a30b9e26c7527c07f743311",
       "bounds": {
         "min": [
           -1.7200000286102295,
@@ -272,7 +272,7 @@
     {
       "design": "BUSS4",
       "band": 1,
-      "source_sha256": "22da8bdbde4d37b5419096e15d8964844d0c8912bc5193d185810ee6d0fe99a8",
+      "source_sha256": "c8b74d09bf9fa0025c35584d216844031e905f884a30b9e26c7527c07f743311",
       "bounds": {
         "min": [
           -1.6600000858306885,
@@ -298,7 +298,7 @@
     {
       "design": "BUSS4",
       "band": 2,
-      "source_sha256": "22da8bdbde4d37b5419096e15d8964844d0c8912bc5193d185810ee6d0fe99a8",
+      "source_sha256": "c8b74d09bf9fa0025c35584d216844031e905f884a30b9e26c7527c07f743311",
       "bounds": {
         "min": [
           -1.8900001049041748,
@@ -9973,7 +9973,7 @@
       "kind": "albedo",
       "level": 0,
       "path": "albedo-mip0.png",
-      "sha256": "e02c997df0fbfc65c59a1d61e3b40b21b15a4668c331fbd4eae1368db7b6471d",
+      "sha256": "8a2deee6cce811df56ceed18409866e0c39e81c5a262534882ca4c503ea9d37c",
       "width": 2048,
       "height": 4096
     },
@@ -9981,7 +9981,7 @@
       "kind": "albedo",
       "level": 1,
       "path": "albedo-mip1.png",
-      "sha256": "fce2c8908a0655769cc745579d27d7b73a1cfd0278e22cb36b8f98c813142638",
+      "sha256": "0812ab72194c4e0b05fca2e48a323bd71da816fbc0c1933187a202de1b85ab18",
       "width": 1024,
       "height": 2048
     },
@@ -9989,7 +9989,7 @@
       "kind": "albedo",
       "level": 2,
       "path": "albedo-mip2.png",
-      "sha256": "a82fca9f139e2b5c751257bc41b546071acbccf94953c98e0ac7416dd6c7c018",
+      "sha256": "da3ca33bb5114ee19e4d4c812985f46d4c12a6529a20268c688c7b8a43ca8497",
       "width": 512,
       "height": 1024
     },
@@ -9997,7 +9997,7 @@
       "kind": "albedo",
       "level": 3,
       "path": "albedo-mip3.png",
-      "sha256": "83bc190bf6a7fc3912b238ea821d0a2d2d44c425cd2ddbd26fc668d44731ee35",
+      "sha256": "42706cfbb0202adde2686f429a3d561e7f77484394ba220dedbd5b7f7b18323e",
       "width": 256,
       "height": 512
     },
@@ -10005,7 +10005,7 @@
       "kind": "albedo",
       "level": 4,
       "path": "albedo-mip4.png",
-      "sha256": "4a0f81f7659907dfdaabbf8c62077c79fa781923b12b5b588d340b59e1181e21",
+      "sha256": "de357cc9cbd6a77b5aa46c51a0113381fce12bc0969c0525ae056e1aec0e66f5",
       "width": 128,
       "height": 256
     },
@@ -10053,7 +10053,7 @@
       "kind": "packed",
       "level": 0,
       "path": "packed-mip0.png",
-      "sha256": "0b8078f4ef83fff18c1650792f90cdf4943a844d3c5d2fd9336d7344aae4f001",
+      "sha256": "a3d822a16dd089f11ed931cb1b4eb293eb55ec3ecf6d0004d3bf433e17f2b69d",
       "width": 2048,
       "height": 4096
     },
@@ -10061,7 +10061,7 @@
       "kind": "packed",
       "level": 1,
       "path": "packed-mip1.png",
-      "sha256": "d5100db6ee14053ffc4352a40660951bbe20c2313dfc5b08551191e7dbbc2ddc",
+      "sha256": "dacd748e612b57bd11be1690a8330e8d16341c06b7e7b4a03ffdcbc9323ed9a6",
       "width": 1024,
       "height": 2048
     },
@@ -10069,7 +10069,7 @@
       "kind": "packed",
       "level": 2,
       "path": "packed-mip2.png",
-      "sha256": "25fb39babd1d9884afc845a7285018eaf7682d8577bf1a0a34a1821dbc8d9a5f",
+      "sha256": "5b4456d54406d00a0ac8f8995b8fe2b7205ef8cbd7f896fc00870cff70e095dc",
       "width": 512,
       "height": 1024
     },
@@ -10077,7 +10077,7 @@
       "kind": "packed",
       "level": 3,
       "path": "packed-mip3.png",
-      "sha256": "294581f865cfd15da6b5fa7b3894bd0e8cc9a277e6f281bd1d1624349d86da7b",
+      "sha256": "312af43d8079cc36d14566af85b574450365438a2e90a72d7a54b53b42e1bab6",
       "width": 256,
       "height": 512
     },
@@ -10085,7 +10085,7 @@
       "kind": "packed",
       "level": 4,
       "path": "packed-mip4.png",
-      "sha256": "1b0465e247ae3ff8623184b0a15318e62ebdc142979f96b601e2609e1ee2a751",
+      "sha256": "2d894c776417abd4b814d56aec83ec2929a0a1b45a3be04ec2fa319753dfffe7",
       "width": 128,
       "height": 256
     }

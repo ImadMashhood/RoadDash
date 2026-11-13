@@ -89,6 +89,10 @@ limits](docs/testing/issue25-projection/REPORT.md) keep Metropolis on its
 original route scan and leave the 16.7 ms frame target open.
 Atmosphere controls: `ROADDASH_CLOUDS=full` (default, 12 steps), `low` (6 steps), or `off` (baked sky fallback). The existing `ROADDASH_HILLS_CLOUDS=0` alias still works unless the new control is set. `ROADDASH_BIRDS=0` disables birds independently in Hills and Metropolis. These startup controls do not change sun, shadows, collision or physics. Review with `--atmosphere-survey` (add `--hills` for Hills); `ROADDASH_ATMOSPHERE_PERF=1` suppresses screenshots during timing.
 
+Try the [visual depth pilot](docs/testing/visual-depth/REPORT.md) with
+`ROADDASH_DEPTH_LIGHTING=1` for the daylight grade and Hills haze, and
+`ROADDASH_CONTACT_SHADOWS=1` for short contact shadows.
+
 ## Controls
 
 | Key | Action |
@@ -192,7 +196,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**242 verified tasks complete; 356 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**242 verified tasks complete; 358 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -214,7 +218,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 73 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
-| [04](#part-04) | World A — facade study, original textures and procedural buildings | 33 open |
+| [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
 | [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 48 open |
 | [07](#part-07) | Weapons and complete riding combat | 12 open |
@@ -225,7 +229,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 12 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 29 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 30 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -987,6 +991,8 @@ Continue here after the animation gates: buildings → props → NPCs → sky/la
 
 ### Part 04 — World A — facade study, original textures and procedural buildings
 
+- [ ] **VIS-DEPTH-02** Evaluate a deeper Metropolis storefront pilot. Reason: repeated shaded frontage reads flat; part:04; dependencies: MAT-03 and existing storey kit; acceptance: distinguish glass, cavity and trim across near/far detail and evaluate stronger recess geometry on a representative block; verification: material parity, regenerated atlas and native street comparison. [Evidence](docs/testing/visual-depth/REPORT.md).
+
 - [ ] **ELEVATION-01** Make Metropolis elevation moderately more pronounced. Reason: user requests stronger terrain relief; part: 04; dependencies: METRO-01, LAYOUT-03 and shared elevation/support; acceptance: 20–25% greater longitudinal relief, smooth grades below4%, exact planar/identity/lane preservation, support and recovery on both branches; verification: [authoring/preservation/support receipts](docs/testing/next-elevation/README.md), integrated native survey/recovery and user feel review.
 
 - [ ] **CITY-WIDTH-01** Preview a narrower Metropolis retaining all race-road frontage and removing about half of non-frontage blocks. Reason: the city is overbuilt laterally; part: 04; dependencies: METRO-01, CITY-CIVIC-01; acceptance: actual-source before/after map, explicit whole-block IDs/counts, both race branches and civic sites retained; runtime deletion is pending map selection; verification: read-only geometry/count audit, then source bake/navigation/recovery and measured native performance if implemented. [Proposal](docs/testing/civic-greenery/README.md).
@@ -1360,6 +1366,8 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-15"></a>
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **VIS-DEPTH-01** Evaluate contact shadows and a depth-oriented daylight grade. Reason: weak grounding and distance separation; part:15; dependencies: SKY-01 and P15-004; acceptance: readable shadows and hazards, coherent sky/fog and bounded cost; verification: matched Hills and Metropolis native views and frame measurements. [Evidence](docs/testing/visual-depth/REPORT.md).
 
 - [ ] **DEMO-ROAD-FX-01** Add surface-driven tire spray, location cues and recorded race sound. Reason: make surfaces, speed and impacts readable; part:15; dependencies: P15-003, wheel contact and mixer; acceptance: four engine bands, different surfaces, readable impacts and audible route identity; verification: provenance, native capture and human audio/visual tuning. [Implementation and verification](docs/testing/demo-combat-effects-audio/REPORT.md).
 

@@ -1,5 +1,12 @@
 # Known issues and remaining acceptance
 
+## Visual depth pilot (ADR177)
+
+The optional contact-shadow pass only reinforces direct light and adds a depth
+prepass. Fully shaded storefronts still need local ambient occlusion or more
+authored depth. The BUSS4 finish pilot leaves the physical recess redesign and
+production performance review open.
+
 ## Course presentation polish (ADR176)
 
 Matched frame-cost measurements and full-course human review remain open.
