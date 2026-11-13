@@ -98,3 +98,9 @@ frames P95 moved from 29.02 to 28.21 ms. Median sampled fixed gameplay
 during seconds 6–13 moved from 9.62 to 9.25 ms. The sampled main world
 was still about 24 ms and the opaque 3D GPU pass about 2.6 ms. This is
 one local pair. Whole-race and 60 FPS verification remain open.
+
+Locked development and release builds, strict Clippy, formatting, provenance
+and roadmap sync passed. The native Hills recovery smoke passed with the
+softer grade, two remounts, and zero exceptional rescues on the longer retry.
+The workspace suite passed 723 tests with two ignored and the two known
+Rapier failures in wall ejection and static-chunk trajectories.
