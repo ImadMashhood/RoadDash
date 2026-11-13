@@ -5,6 +5,7 @@ use crate::{
     sound::{AudioCue, Cue},
     world::Art,
 };
+mod contact;
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
 /// Only intentional police foot chase extends the existing mounted target set.
@@ -68,7 +69,7 @@ impl Default for StrikeTimings {
     }
 }
 
-/// Resolve the side once at windup, then emit one contact at the visible key.
+/// Resolve the side at windup and evaluate contact until the strike hits or expires.
 /// Rider-owned clocks reset with the rider; interrupted/recovered riders cannot retain hits.
 #[allow(clippy::too_many_arguments)]
 pub fn schedule(
@@ -82,6 +83,7 @@ pub fn schedule(
     mut contacts: MessageWriter<StrikeContact>,
     positions: Query<&Transform, Without<Rider>>,
     police: Option<Res<crate::police::Police>>,
+    mut audio: MessageWriter<AudioCue>,
 ) {
     if race.phase == Phase::Paused {
         intents.clear();
@@ -114,7 +116,9 @@ pub fn schedule(
                 .iter()
                 .filter(|(e, other, state, pose)| {
                     *e != owner
-                        && (r.human_controlled() || r.can_fight(other.id))
+                        && (r.human_controlled()
+                            || (r.can_fight(other.id)
+                                && r.combat_mind.target_id().is_none_or(|id| id == other.id)))
                         && target_pose(other, state, pose, &positions, police_foot).is_some()
                         && state.stagger.is_none()
                         && other.immunity <= 0.0
@@ -170,7 +174,7 @@ pub fn schedule(
             }
         }
     }
-    for (e, mut r, rec, _) in &mut riders {
+    for (e, mut r, rec, pose) in &mut riders {
         if rec.stage != RecoveryStage::Riding
             || rec.stagger.is_some()
             || r.finished.is_some()
@@ -182,17 +186,31 @@ pub fn schedule(
             r.strike = None;
             continue;
         }
-        if let Some(clock) = r.strike.as_mut()
-            && clock.advance(time.delta_secs())
-        {
-            contacts.write(StrikeContact(e, clock.action, clock.side));
+        if let Some(mut clock) = r.strike {
+            let dt = time.delta_secs();
+            clock.step(dt);
+            let (start, end) = clock.contact_window();
+            if clock.pending() && clock.age >= start && clock.age - dt <= end {
+                contacts.write(StrikeContact(e, clock.action, clock.side));
+            } else if clock.pending() && clock.age > end {
+                clock.consume();
+                audio.write(AudioCue::new(Cue::Whiff, pose.translation + Vec3::Y));
+            }
+            if !r.human_controlled()
+                && !r.police
+                && clock.age >= end + 0.08
+                && r.combat_mind.target_id().is_some()
+            {
+                r.combat_mind.finish_exchange();
+            }
+            r.strike = Some(clock);
         }
     }
 }
 #[derive(Message)]
 pub struct NpcHit(pub Entity, pub Vec3, pub bool);
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
-pub fn melee(
+pub(crate) fn melee(
     mut attempts: MessageReader<AttackAttempt>,
     mut contacts: MessageReader<StrikeContact>,
     mut commands: Commands,
@@ -213,6 +231,12 @@ pub fn melee(
     positions: Query<&Transform, Without<Rider>>,
     owned: Query<&crate::recovery::OwnedBody>,
     mut audio: MessageWriter<AudioCue>,
+    (library, histories, animators, fixed): (
+        Res<crate::animation::Library>,
+        Query<&crate::runtime::PoseHistory>,
+        Query<&crate::animation::Animator>,
+        Res<Time<Fixed>>,
+    ),
 ) {
     if race.phase != Phase::Racing {
         attempts.clear();
@@ -247,6 +271,12 @@ pub fn melee(
         {
             continue;
         }
+        if chosen_side.is_some() && rider.strike.is_none_or(|clock| !clock.pending()) {
+            continue;
+        }
+        let strike = rider.strike;
+        let lean = rider.lean;
+        let attacker_pose = *t;
         let weapon = chosen_side.and_then(|_| rider.strike.and_then(|s| s.weapon));
         let kicking = matches!(action, rr_core::AttackSide::Kick);
         let player = rider.human_controlled();
@@ -290,52 +320,70 @@ pub fn melee(
                 rider.attack_side = direction.signum();
             }
         }
-        let mut nearest: Option<(Entity, f32, Vec3, bool)> = None;
-        let mut consider = |entity: Entity, p: Vec3, is_npc: bool| {
-            let delta = p - origin;
-            let lateral = delta.dot(right);
-            let longitudinal = delta.dot(forward);
-            if !weapon.map_or_else(
-                || {
-                    rr_core::direct_strike_geometry(
-                        lateral,
-                        longitudinal,
-                        delta.y,
-                        if kicking && chosen_side.is_none() {
-                            lateral.signum()
-                        } else {
-                            side
+        let sweep = chosen_side.and(strike).map(|clock| {
+            contact::Sweep::new(
+                &library,
+                clock,
+                lean,
+                histories
+                    .get(attacker)
+                    .map_or(attacker_pose, |h| contact::previous(h, attacker_pose)),
+                attacker_pose,
+                fixed.delta_secs(),
+            )
+        });
+        let mut nearest: Option<(Entity, f32, Vec3, bool, bool)> = None;
+        let mut consider =
+            |entity: Entity, p: Vec3, is_npc: bool, model_hit: Option<(Vec3, bool)>| {
+                let (p, bike_hit) = model_hit.unwrap_or((p, false));
+                let delta = p - origin;
+                let lateral = delta.dot(right);
+                let longitudinal = delta.dot(forward);
+                if model_hit.is_none()
+                    && !weapon.map_or_else(
+                        || {
+                            rr_core::direct_strike_geometry(
+                                lateral,
+                                longitudinal,
+                                delta.y,
+                                if kicking && chosen_side.is_none() {
+                                    lateral.signum()
+                                } else {
+                                    side
+                                },
+                            )
                         },
+                        |a| a.reaches(lateral, longitudinal, delta.y, side),
                     )
-                },
-                |a| a.reaches(lateral, longitudinal, delta.y, side),
-            ) {
-                return;
-            }
-            let clear = context.single().is_ok_and(|ctx| {
-                let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
-                    e != entity
-                        && !owned.get(e).is_ok_and(|b| {
-                            b.owner == entity && b.kind == recovery::BodyKind::Runner
-                        })
-                };
-                ctx.cast_ray(
-                    origin,
-                    delta.normalize_or_zero(),
-                    delta.length(),
-                    true,
-                    QueryFilter::default()
-                        .exclude_rigid_body(attacker)
-                        .exclude_sensors()
-                        .predicate(&predicate),
-                )
-                .is_none()
-            });
-            if clear && nearest.is_none_or(|(_, distance, _, _)| delta.length_squared() < distance)
-            {
-                nearest = Some((entity, delta.length_squared(), p, is_npc));
-            }
-        };
+                {
+                    return;
+                }
+                let clear = context.single().is_ok_and(|ctx| {
+                    let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                        e != entity
+                            && !owned.get(e).is_ok_and(|b| {
+                                b.owner == entity && b.kind == recovery::BodyKind::Runner
+                            })
+                    };
+                    ctx.cast_ray(
+                        origin,
+                        delta.normalize_or_zero(),
+                        delta.length(),
+                        true,
+                        QueryFilter::default()
+                            .exclude_rigid_body(attacker)
+                            .exclude_sensors()
+                            .predicate(&predicate),
+                    )
+                    .is_none()
+                });
+                if clear
+                    && nearest
+                        .is_none_or(|(_, distance, _, _, _)| delta.length_squared() < distance)
+                {
+                    nearest = Some((entity, delta.length_squared(), p, is_npc, bike_hit));
+                }
+            };
         for (e, r, s, t, _) in &riders {
             if e != attacker
                 && (player
@@ -348,9 +396,33 @@ pub fn melee(
                 && s.stagger.is_none()
                 && r.immunity <= 0.0
                 && r.finished.is_none()
-                && ((r.police && police_foot && s.stage == RecoveryStage::Running)
+                && (chosen_side.is_some()
+                    || (r.police && police_foot && s.stage == RecoveryStage::Running)
                     || (t.rotation * Vec3::Z).dot(forward) > 0.7)
             {
+                let model_hit = if let Some(sweep) = sweep.as_ref()
+                    && s.stage == RecoveryStage::Riding
+                {
+                    let frames = animators.get(e).ok().filter(|a| a.ready).map_or_else(
+                        || library.seated_frames(r.lean),
+                        |a| library.world_pose(a.current),
+                    );
+                    let hit = sweep.hit(
+                        histories.get(e).map_or(*t, |h| contact::previous(h, *t)),
+                        *t,
+                        &frames,
+                    );
+                    if hit.is_none()
+                        && !strike.is_some_and(|clock| {
+                            clock.weapon.is_some() && clock.age >= clock.contact
+                        })
+                    {
+                        continue;
+                    }
+                    hit
+                } else {
+                    None
+                };
                 consider(
                     e,
                     target_pose(r, s, t, &positions, police_foot)
@@ -358,11 +430,12 @@ pub fn melee(
                         .translation
                         + Vec3::Y * 1.45,
                     false,
+                    model_hit,
                 );
             }
         }
         for (e, n, t) in &npcs {
-            if n.active() && player {
+            if n.active() && player && strike.is_none_or(|s| s.age >= s.contact) {
                 consider(
                     e,
                     t.translation
@@ -373,12 +446,19 @@ pub fn melee(
                                 1.3
                             },
                     true,
+                    None,
                 );
             }
         }
-        let Some((target, _, p, is_npc)) = nearest else {
+        let Some((target, _, p, is_npc, bike_hit)) = nearest else {
             continue;
         };
+        if chosen_side.is_some()
+            && let Ok((_, mut rider, _, _, _)) = riders.get_mut(attacker)
+            && let Some(clock) = rider.strike.as_mut()
+        {
+            clock.consume();
+        }
         if player
             && let Some(ref mut police) = police
             && race.elapsed >= police.rules.launch_grace
@@ -421,7 +501,13 @@ pub fn melee(
             rider.attack_side = (p - origin).dot(right).signum();
         }
         audio.write(AudioCue::new(
-            if kicking { Cue::Kick } else { Cue::Punch },
+            if bike_hit {
+                Cue::BikeStrike
+            } else if kicking {
+                Cue::Kick
+            } else {
+                Cue::Punch
+            },
             p,
         ));
         if player || riders.get(target).is_ok_and(|(_, r, _, _, _)| r.id == 0) {
@@ -439,6 +525,21 @@ pub fn melee(
             {
                 police.mind.interrupt_arrest();
                 police.contact_block_until = race.elapsed + 0.25;
+            }
+            if bike_hit {
+                let direction = (t.translation - origin).dot(right).signum();
+                let push = right * direction * if kicking { kick_strength } else { 1.5 };
+                if let Ok(mut velocity) = velocities.get_mut(target) {
+                    velocity.linear += push;
+                }
+                r.side_velocity += direction * push.length();
+                r.motion_velocity += push;
+                r.combat_mind.struck_by(attacker_id);
+                if player {
+                    race.message = "BIKE HIT".into();
+                    race.message_time = 0.75;
+                }
+                continue;
             }
             if r.human_controlled() {
                 race.message = if kicking { "KICKED!" } else { "HIT!" }.into();

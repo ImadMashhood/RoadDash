@@ -1103,7 +1103,20 @@ pub fn recover(
                         && (recovery.walk_distance / (config.stride_length * 0.5)) as u32
                             != previous_step
                     {
-                        audio.write(AudioCue::new(Cue::Footstep, transform.translation));
+                        let lane =
+                            track.lane_at(rider.route, rider.progress, transform.translation);
+                        let surface = track.surface_route(rider.route, rider.progress, lane);
+                        let cue = if matches!(
+                            surface,
+                            rr_core::surface::Surface::Sand
+                                | rr_core::surface::Surface::Gravel
+                                | rr_core::surface::Surface::Dirt
+                        ) {
+                            Cue::GravelStep
+                        } else {
+                            Cue::Footstep
+                        };
+                        audio.write(AudioCue::new(cue, transform.translation));
                     }
                 }
             }

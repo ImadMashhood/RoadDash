@@ -142,6 +142,32 @@ impl Library {
             .find(|c| c.name == name)
             .expect("required visual clip")
     }
+    pub(crate) fn strike_frames(
+        &self,
+        strike: motion::StrikeClock,
+        age: f32,
+        lean: f32,
+    ) -> [Transform; 20] {
+        let name = match (
+            strike.weapon.is_some(),
+            strike.action == rr_core::AttackSide::Kick,
+            strike.side > 0.,
+        ) {
+            (true, _, true) => "club_right",
+            (true, _, false) => "club_left",
+            (_, true, true) => "kick_right",
+            (_, true, false) => "kick_left",
+            (_, false, true) => "punch_right",
+            (_, false, false) => "punch_left",
+        };
+        let time =
+            ((age - motion::ATTACK_ENTER) * motion::ATTACK_PLAYBACK).clamp(0., self.duration(name));
+        self.world_pose(self.turn(self.sample(name, time), lean / 0.65))
+    }
+
+    pub(crate) fn seated_frames(&self, lean: f32) -> [Transform; 20] {
+        self.world_pose(self.turn(self.key(2020), lean / 0.65))
+    }
     fn duration(&self, name: &str) -> f32 {
         self.clip(name).durations.iter().sum()
     }
@@ -567,7 +593,7 @@ fn update(
                     }
                 }
                 let mut pose = base;
-                if rec.stagger.is_some() {
+                if rec.stagger.is_some() || (r.attack <= 0. && r.strike.is_none()) {
                     a.attack = None;
                 }
                 if let Some(attack) = a.attack.as_mut() {

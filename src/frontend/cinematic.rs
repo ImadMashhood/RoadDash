@@ -42,7 +42,7 @@ pub(super) fn bikes(
         *initialized = true;
     }
     let active = enabled(&front, &race);
-    let seconds = if prefs.file.comfort.anti_nausea {
+    let seconds = if prefs.file.static_menu || prefs.file.comfort.anti_nausea {
         0.0
     } else {
         time.elapsed_secs()
@@ -74,7 +74,7 @@ pub(super) fn camera(
     if !enabled(&front, &race) {
         return;
     }
-    let seconds = if prefs.file.comfort.anti_nausea {
+    let seconds = if prefs.file.static_menu || prefs.file.comfort.anti_nausea {
         0.0
     } else {
         time.elapsed_secs()

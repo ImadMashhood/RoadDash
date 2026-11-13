@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "input_frames": 35,
+  "peak_output_sample": 5111,
+  "non_silent_10ms_windows": 29,
+  "limits": "Synthetic loopback frames played by native Linux CPAL into an isolated PipeWire sink. No hardware headset or WAN claim."
+}

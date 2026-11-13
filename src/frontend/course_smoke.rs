@@ -55,6 +55,7 @@ fn run(
     mut commands: Commands,
     mut exit: MessageWriter<AppExit>,
     buttons: Query<(&MenuButton, &ComputedNode)>,
+    reserved: Query<&ComputedNode, With<course::ReservedCourseSlot>>,
 ) {
     check.frames += 1;
     assert!(
@@ -93,7 +94,13 @@ fn run(
         }
         (0, 2) => {
             assert_eq!(front.flow.page, Page::Courses);
-            assert_eq!(buttons.iter().count(), 6);
+            assert_eq!(buttons.iter().count(), 4);
+            assert_eq!(reserved.iter().count(), 4);
+            assert!(reserved.iter().all(|node| node.size().min_element() > 0.));
+            assert!(buttons.iter().all(|(button, _)| match button.action {
+                Action::SelectCourse(course) => course::SELECTABLE.contains(&course),
+                _ => true,
+            }));
             assert!(
                 buttons
                     .iter()
@@ -202,7 +209,7 @@ fn run(
             }
             if check.wait > 30 {
                 std::fs::write("screenshots/course-selector-report.json",serde_json::to_vec_pretty(&serde_json::json!({
-                    "verified":true,"featured_courses":["Metropolis","Hills"],"legacy_courses":["Valley Run","City Run"],
+                    "verified":true,"featured_courses":["Metropolis","Hills"],"reserved_slots":4,
                     "loaded_sequence":["Metropolis","Hills","Metropolis"],"same_course_retry_without_reload":true,
                     "return_to_menu":true,"profile_credits_preserved":true,"live_portrait_preferences_handling_preserved":true,"screenshots":6,
                     "limits":"Native menu actions and world handoff; legacy map handoffs covered by command/identity tests, not a full driven race."

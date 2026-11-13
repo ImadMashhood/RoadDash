@@ -97,8 +97,20 @@ fn run(
             (68, KeyCode::ArrowRight, false),
             (76, KeyCode::ArrowRight, true),
             (78, KeyCode::ArrowRight, false),
-            (90, KeyCode::F2, true),
-            (92, KeyCode::F2, false),
+            (84, KeyCode::PageDown, true),
+            (86, KeyCode::PageDown, false),
+            (94, KeyCode::ArrowRight, true),
+            (96, KeyCode::ArrowRight, false),
+            (104, KeyCode::PageDown, true),
+            (106, KeyCode::PageDown, false),
+            (114, KeyCode::ArrowDown, true),
+            (116, KeyCode::ArrowDown, false),
+            (124, KeyCode::ArrowDown, true),
+            (126, KeyCode::ArrowDown, false),
+            (134, KeyCode::ArrowRight, true),
+            (136, KeyCode::ArrowRight, false),
+            (150, KeyCode::F2, true),
+            (152, KeyCode::F2, false),
         ] {
             if t == frame {
                 crate::verification::smoke_key(&mut commands, key, down);
@@ -124,6 +136,9 @@ fn run(
             42 => Some("audio"),
             50 => Some("audio-adjusted"),
             64 => Some("display"),
+            100 => Some("accessibility"),
+            112 => Some("voice-default"),
+            144 => Some("voice-push-to-talk"),
             _ => None,
         };
         if let Some(name) = capture {
@@ -131,13 +146,34 @@ fn run(
                 .spawn(Screenshot::primary_window())
                 .observe(save_to_disk(format!("screenshots/settings-{name}.png")));
         }
-        if t == 100 {
+        if t == 160 {
             assert!(!panel.open);
             let saved = crate::settings::Preferences::load("settings-native.json".into());
             assert!((saved.file.master_volume - 0.95).abs() < 0.001);
             assert!(saved.file.vsync);
             assert!(!saved.read_only);
-            std::fs::write("screenshots/settings-report.json",serde_json::to_string_pretty(&serde_json::json!({"categories":4,"master_volume":saved.file.master_volume,"vsync_reloaded":saved.file.vsync,"real_keyboard_category_adjust_save":true,"profile_credits":profile.credits,"limits":"Native keyboard/screenshot/persist proof; no human audible,driverlatency or physicalcontroller approval"})).unwrap()).unwrap();
+            assert!(saved.file.imperial_speed);
+            assert!(!saved.file.voice.microphone);
+            assert_eq!(
+                saved.file.voice.mode,
+                crate::online::voice::Mode::PushToTalk
+            );
+            let report = serde_json::json!({
+                "categories": crate::settings::Section::ALL.len(),
+                "master_volume": saved.file.master_volume,
+                "vsync_reloaded": saved.file.vsync,
+                "imperial_speed_reloaded": saved.file.imperial_speed,
+                "push_to_talk_reloaded": saved.file.voice.mode == crate::online::voice::Mode::PushToTalk,
+                "microphone_enabled": saved.file.voice.microphone,
+                "real_keyboard_category_adjust_save": true,
+                "profile_credits": profile.credits,
+                "limits": "Scripted native keyboard and persistence. Voice hardware and controller approval are separate."
+            });
+            std::fs::write(
+                "screenshots/settings-report.json",
+                serde_json::to_string_pretty(&report).unwrap(),
+            )
+            .unwrap();
             windows.single_mut().unwrap().resolution.set(1440., 900.);
             s.stage = 9;
             s.wait = 0;
@@ -279,12 +315,11 @@ fn run(
                     .iter()
                     .all(|r| r.id != 0 && !r.police && grid.armed.contains(&r.id))
             );
-            assert_eq!(
+            assert!(!held.is_empty(), "held weapon visuals must be ready");
+            assert!(
                 held.iter()
-                    .filter(|(_, v)| **v == Visibility::Inherited)
-                    .count(),
-                equipped.len(),
-                "all starting dossier weapons must be rendered"
+                    .all(|(_, visibility)| *visibility == Visibility::Hidden),
+                "starting weapons must stay holstered until an armed strike"
             );
             commands
                 .spawn(Screenshot::primary_window())

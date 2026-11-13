@@ -102,6 +102,7 @@ pub(super) fn entries(front: &Frontend, online: Option<&Online>) -> Option<Vec<E
                             "WAITING FOR HOST"
                         })
                     },
+                    entry("VOICE SETTINGS", A::Settings),
                     entry("LEAVE LOBBY", A::Back),
                 ]
             } else {
@@ -474,6 +475,7 @@ pub(super) fn render_pause(commands: &mut Commands, canvas: Entity, online: Opti
         ),
         &[
             entry("RESUME", Action::Continue),
+            entry("VOICE SETTINGS", Action::Settings),
             entry("LEAVE RACE", Action::Back),
         ],
     );

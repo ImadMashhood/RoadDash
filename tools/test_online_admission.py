@@ -3,6 +3,8 @@
 import argparse, hashlib, json, os, select, socket, struct, subprocess, time, zlib
 from pathlib import Path
 
+PROTOCOL = 4
+
 class Peer:
     def __init__(self, endpoint):
         self.socket = socket.create_connection(endpoint, timeout=2)
@@ -69,17 +71,17 @@ def main(args):
             assert process.poll() is None, 'Host stopped before readiness'
             time.sleep(.05)
         assert code and len(code)==36
-        def connect(secret=code[10:], protocol=2):
+        def connect(secret=code[10:], protocol=PROTOCOL):
             peer = Peer(endpoint); peers.append(peer)
             peer.send({'Hello': {'protocol':protocol, 'name':'Admission fixture', 'secret':secret}})
             return peer
-        for name, secret, protocol in [('wrong-secret','A'*26,2),('wrong-protocol',code[10:],999)]:
+        for name, secret, protocol in [('wrong-secret','A'*26,PROTOCOL),('old-protocol',code[10:],PROTOCOL-1)]:
             peer = connect(secret, protocol); replies=[]; deadline=time.monotonic()+2
             while not peer.closed and time.monotonic()<deadline:
                 replies += peer.poll(); time.sleep(.01)
             assert peer.closed and not any('Welcome' in m for m in replies), name
             events.append(name+' rejected'); peer.close()
-        peer=Peer(endpoint); peers.append(peer); peer.send({'Probe':{'protocol':2,'nonce':42}})
+        peer=Peer(endpoint); peers.append(peer); peer.send({'Probe':{'protocol':PROTOCOL,'nonce':42}})
         replies=[]; deadline=time.monotonic()+2
         while not peer.closed and time.monotonic()<deadline:
             replies += peer.poll(); time.sleep(.01)

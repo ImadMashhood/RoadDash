@@ -11,6 +11,8 @@ const MUTED: Color = Color::srgb(0.54, 0.65, 0.68);
 #[derive(Component)]
 pub struct Hud;
 #[derive(Component)]
+pub struct OptionalHud(bool);
+#[derive(Component)]
 pub struct Overlay;
 #[derive(Component)]
 pub struct Readout(pub u8);
@@ -79,7 +81,9 @@ pub fn setup_ui(
         58.0,
     ));
     let standings = label(&mut commands, "", 17.0, WHITE, 34.0, 116.0);
-    commands.entity(standings).insert(Readout(0));
+    commands
+        .entity(standings)
+        .insert((Readout(0), OptionalHud(false)));
     kids.push(standings);
     let lap = label(&mut commands, "", 17.0, WHITE, 34.0, 84.0);
     commands.entity(lap).insert(Readout(1));
@@ -105,6 +109,7 @@ pub fn setup_ui(
     let units = commands
         .spawn((
             Text::new("KM/H   /   6-SPEED"),
+            Readout(12),
             TextFont {
                 font_size: FontSize::Px(13.0),
                 ..default()
@@ -119,6 +124,25 @@ pub fn setup_ui(
         ))
         .id();
     kids.push(units);
+    let voice = commands
+        .spawn((
+            Text::default(),
+            TextFont {
+                font_size: FontSize::Px(14.),
+                ..default()
+            },
+            TextColor(MINT),
+            Readout(13),
+            Node {
+                position_type: PositionType::Absolute,
+                left: px(34.),
+                bottom: px(50.),
+                max_width: percent(60.),
+                ..default()
+            },
+        ))
+        .id();
+    kids.push(voice);
     let status = commands
         .spawn((
             Text::new(""),
@@ -185,6 +209,7 @@ pub fn setup_ui(
                 ..default()
             },
             BackgroundColor(INK.with_alpha(0.83)),
+            OptionalHud(true),
         ))
         .id();
     let mut dots = vec![];
@@ -330,12 +355,22 @@ pub fn update_ui(
     positions: Query<&Transform>,
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut readouts: Query<(&Readout, &mut Text)>,
-    mut nodes: Query<(&mut Node, Option<&Hud>, Option<&Overlay>), Without<MapDot>>,
+    mut nodes: Query<
+        (&mut Node, Has<Hud>, Has<Overlay>, Option<&OptionalHud>),
+        (
+            Without<MapDot>,
+            Or<(With<Hud>, With<Overlay>, With<OptionalHud>)>,
+        ),
+    >,
     mut dots: Query<(&MapDot, &mut Node)>,
     panel: Res<crate::settings::SettingsPanel>,
     police: Res<crate::police::Police>,
     frontend: Option<Res<crate::frontend::Frontend>>,
-    online: Option<Res<crate::online::NetState>>,
+    (online, online_ui, prefs): (
+        Option<Res<crate::online::NetState>>,
+        Option<Res<crate::online::Online>>,
+        Res<crate::settings::Preferences>,
+    ),
 ) {
     let local_slot = online.as_ref().map_or(0, |s| s.local_slot);
     let Some(player) = riders.iter().find(|r| r.id == local_slot) else {
@@ -353,15 +388,30 @@ pub fn update_ui(
         .map(|(_, recovery)| recovery.stage)
         .unwrap_or_default();
     let menu = matches!(race.phase, Phase::Garage | Phase::Paused | Phase::Finished);
-    for (mut node, hud, overlay) in &mut nodes {
-        if hud.is_some() {
+    for (mut node, hud, overlay, optional) in &mut nodes {
+        if let Some(element) = optional {
+            let visible = if element.0 {
+                prefs.file.show_minimap
+            } else {
+                prefs.file.show_standings
+            };
+            let display = if visible {
+                Display::Flex
+            } else {
+                Display::None
+            };
+            if node.display != display {
+                node.display = display;
+            }
+        }
+        if hud {
             node.display = if menu || panel.open {
                 Display::None
             } else {
                 Display::Flex
             };
         }
-        if overlay.is_some() {
+        if overlay {
             node.display =
                 if menu && !panel.open && !frontend.as_ref().is_some_and(|f| f.owns(race.phase)) {
                     Display::Flex
@@ -391,7 +441,12 @@ pub fn update_ui(
             1 if track.metropolis.is_some() => format!("ROUTE {:03}%  {:02}:{:05.2}",(track.race_interval().fraction(player.progress)*100.) as u32,(race.elapsed/60.) as u32,race.elapsed%60.),
             1 if !track.definition.closed => format!("ROUTE {:03}%  GATE {}/{}  {:02}:{:05.2}",(player.progress/track.length*100.0).clamp(0.0,100.0) as u32,player.gates.next,track.definition.checkpoints.len()-1,(race.elapsed/60.0) as u32,race.elapsed%60.0),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
-            2 => format!("{:03}", (player.speed * 3.6) as u32),
+            2 => {
+                let multiplier = if prefs.file.imperial_speed { 2.236_936 } else { 3.6 };
+                format!("{:03}", (player.speed * multiplier) as u32)
+            }
+            12 => if prefs.file.imperial_speed { "MPH   /   6-SPEED" } else { "KM/H   /   6-SPEED" }.into(),
+            13 => online_ui.as_ref().map_or_else(String::new, |o| o.voice_status.clone()),
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + &player.weapon.map_or_else(|| "\nUNARMED".to_owned(), |w| format!("\n{} EQUIPPED", w.label())) + &format!("\n{}", police.hud()),
             4 if track.metropolis.is_some() && player.progress>=track.race_interval().finish && player.finished.is_none() => "ROUTE INCOMPLETE / R TO RETRY".into(),
             4 if !track.definition.closed && track.metropolis.is_none() && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),

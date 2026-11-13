@@ -139,7 +139,7 @@ fn entries(page: Page) -> Vec<Entry> {
             entry("BIKE SHOP", A::Garage),
             entry("RACE", A::Courses),
         ],
-        Page::Courses => Course::ALL
+        Page::Courses => course::SELECTABLE
             .into_iter()
             .map(|c| entry(c.label(), A::SelectCourse(c)))
             .chain([entry("RIDE SELECTED ROAD", A::Ride), entry("BACK", A::Back)])
@@ -209,7 +209,7 @@ fn input(
     }
     let online_race = online.as_ref().is_some_and(|o| o.lobby.is_some())
         && matches!(race.phase, Phase::Racing | Phase::Countdown);
-    if online_race && !panel.open {
+    if online_race && !panel.open && !controls.suppress_frame {
         let pad = pads.iter().min_by_key(|(e, _)| e.to_bits()).map(|(_, p)| p);
         let edge = |b| pad.is_some_and(|p| p.just_pressed(b));
         if std::mem::take(&mut controls.pause)
@@ -230,22 +230,21 @@ fn input(
             controls.camera = false;
             controls.restart = false;
             menu.0 = false;
-            if keys.just_pressed(KeyCode::ArrowUp)
-                || keys.just_pressed(KeyCode::ArrowDown)
-                || edge(GamepadButton::DPadUp)
-                || edge(GamepadButton::DPadDown)
-            {
-                front.selected = 1 - front.selected.min(1);
+            if keys.just_pressed(KeyCode::ArrowUp) || edge(GamepadButton::DPadUp) {
+                front.selected = (front.selected + 2) % 3;
+            }
+            if keys.just_pressed(KeyCode::ArrowDown) || edge(GamepadButton::DPadDown) {
+                front.selected = (front.selected + 1) % 3;
             }
             let click = clicks.iter().map(|b| b.action).next();
             let action = front.pending.take().or(click).or_else(|| {
                 if edge(GamepadButton::East) {
                     Some(Action::Continue)
                 } else if start {
-                    Some(if front.selected == 0 {
-                        Action::Continue
-                    } else {
-                        Action::Back
+                    Some(match front.selected {
+                        0 => Action::Continue,
+                        1 => Action::Settings,
+                        _ => Action::Back,
                     })
                 } else {
                     None
@@ -253,6 +252,7 @@ fn input(
             });
             match action {
                 Some(Action::Continue) => front.online_pause = false,
+                Some(Action::Settings) => panel.open_voice(),
                 Some(Action::Back) => {
                     if let Some(online) = online.as_deref_mut() {
                         online.actions.push_back(crate::online::OnlineAction::Leave);
@@ -398,7 +398,20 @@ fn input(
         }
     });
     if let Some(action) = action {
+        if action == Action::Settings && front.flow.page == Page::Lobby {
+            panel.open_voice();
+            return;
+        }
         let was = front.flow.page;
+        if was == Page::Courses
+            && let Action::SelectCourse(selected) = action
+            && !course::SELECTABLE.contains(&selected)
+        {
+            return;
+        }
+        if was == Page::Courses && action == Action::Ride && front.flow.course.is_none() {
+            front.flow.course = Some(Course::Metropolis);
+        }
         if online_menu::dispatch(&mut front, online.as_deref_mut(), action) {
             return;
         }
@@ -425,6 +438,14 @@ fn input(
             Effect::None => {}
         }
         if was != front.flow.page {
+            if front.flow.page == Page::Courses
+                && !front
+                    .flow
+                    .course
+                    .is_some_and(|course| course::SELECTABLE.contains(&course))
+            {
+                front.flow.course = Some(Course::Metropolis);
+            }
             front.selected = if front.flow.page == Page::Bar {
                 front.flow.portrait
             } else {
@@ -762,18 +783,8 @@ fn resize(
     mut backdrops: Query<(&ImageNode, &mut Node), (With<Backdrop>, Without<Canvas>)>,
     mut canvas: Query<&mut Node, (With<Canvas>, Without<Backdrop>)>,
     mut fonts: Query<(&BaseFontSize, &mut TextFont)>,
-    mut cameras: Query<(&Camera, &mut Projection), With<UiCamera>>,
 ) {
     let Ok(window) = windows.single() else { return };
-    // Bevy 0.17 refreshes camera targets on native resize messages or projection
-    // changes. A programmatic Window resolution change can precede that message.
-    // Refresh the projection when sizes disagree, retaining the full automatic
-    // viewport so render-surface resize does not leave an oversized scissor rect.
-    for (camera, mut projection) in &mut cameras {
-        if camera.physical_target_size() != Some(window.resolution.physical_size()) {
-            projection.set_changed();
-        }
-    }
     let gallery = matches!(front.flow.page, Page::Bar | Page::Portrait);
     let width = if gallery {
         window.width().min(window.height() * 4. / 3.)
@@ -880,9 +891,12 @@ impl Plugin for FrontendPlugin {
             )
             .add_systems(
                 PostUpdate,
-                cinematic::camera
-                    .after(crate::game::camera)
-                    .before(bevy::transform::TransformSystems::Propagate),
+                (
+                    cinematic::camera
+                        .after(crate::game::camera)
+                        .before(bevy::transform::TransformSystems::Propagate),
+                    sync_window_camera_targets.before(bevy::camera::CameraUpdateSystems),
+                ),
             );
     }
 }
@@ -893,6 +907,25 @@ fn mask_online_hud(front: Res<Frontend>, mut hud: Query<&mut Node, With<crate::u
     if front.online_pause {
         for mut node in &mut hud {
             node.display = Display::None;
+        }
+    }
+}
+
+fn sync_window_camera_targets(
+    primary: Query<Entity, With<bevy::window::PrimaryWindow>>,
+    windows: Query<&Window>,
+    mut cameras: Query<(&Camera, &bevy::camera::RenderTarget, &mut Projection)>,
+) {
+    // Programmatic window sizes can reach render extraction before the OS resize event.
+    // Refresh each window camera before Bevy computes its color and depth targets.
+    let primary = primary.single().ok();
+    for (camera, target, mut projection) in &mut cameras {
+        if let Some(bevy::camera::NormalizedRenderTarget::Window(target)) =
+            target.normalize(primary)
+            && let Ok(window) = windows.get(target.entity())
+            && camera.physical_target_size() != Some(window.resolution.physical_size())
+        {
+            projection.set_changed();
         }
     }
 }
@@ -982,7 +1015,7 @@ mod tests {
         action(&mut app, Action::Courses);
         assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Courses);
         assert_eq!(app.world().resource::<Race>().phase, Phase::Garage);
-        for selected in Course::ALL {
+        for selected in course::SELECTABLE {
             action(&mut app, Action::SelectCourse(selected));
             assert_eq!(
                 app.world().resource::<Frontend>().flow.course,
@@ -1015,6 +1048,14 @@ mod tests {
             assert!(app.world().resource::<Frontend>().online_pause);
             assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
             assert!(!app.world().resource::<Controls>().pause);
+            action(&mut app, Action::Settings);
+            assert!(app.world().resource::<SettingsPanel>().open);
+            assert_eq!(
+                app.world().resource::<SettingsPanel>().section,
+                crate::settings::Section::Voice
+            );
+            assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
+            app.world_mut().resource_mut::<SettingsPanel>().open = false;
             action(&mut app, Action::Continue);
             assert!(!app.world().resource::<Frontend>().online_pause);
             assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
@@ -1121,6 +1162,13 @@ mod tests {
         assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Courses);
         assert_eq!(app.world().resource::<Race>().phase, Phase::Garage);
         action(&mut app, Action::Ride);
+        if course::loaded(app.world().resource::<Track>()) != Some(Course::Metropolis) {
+            assert_eq!(
+                app.world().resource::<Frontend>().course_load,
+                Some(Course::Metropolis)
+            );
+            return;
+        }
         for _ in 0..20 {
             app.update();
         }
