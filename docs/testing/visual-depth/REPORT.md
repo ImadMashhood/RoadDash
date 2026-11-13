@@ -80,3 +80,21 @@ and reached results with zero exceptional rescues. Locked development and
 release builds, formatting, strict Clippy, provenance and roadmap sync
 passed. The workspace test run reported the two known Rapier parity
 failures in high-speed wall ejection and Metropolis static-chunk trajectories.
+
+## Hills frame profiling
+
+Local Linux stack sampling caught the racer planner in predictive
+lane clearance. Steady lateral traffic uses the interval endpoints and
+moving traffic retains the interior checks. The mounted update retains
+exact terrain vertices in a bounded cache, invalidated when the Track
+resource changes. Pedestrians and cows sample common ground once before
+checking each road branch.
+
+Sequential 1,100-frame release runs used isolated settings and saves,
+default presentation, and GPU diagnostics. Both racer receipts were
+byte-identical. In race seconds 6–13, P95 wall time fell from 29.51 to
+28.30 ms and median time from 25.36 to 25.01 ms. Over all logged racing
+frames P95 moved from 29.02 to 28.21 ms. Median sampled fixed gameplay
+during seconds 6–13 moved from 9.62 to 9.25 ms. The sampled main world
+was still about 24 ms and the opaque 3D GPU pass about 2.6 ms. This is
+one local pair. Whole-race and 60 FPS verification remain open.

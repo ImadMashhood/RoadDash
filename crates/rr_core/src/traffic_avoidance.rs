@@ -89,24 +89,36 @@ fn clear_with_padding(
     if start > end || end < 0.0 || start > horizon {
         return true;
     }
+    // With no lateral motion, the relative lane is monotonic over the entire
+    // overlap interval. Its two endpoints cover the delay and every interior
+    // time without evaluating the same exponential repeatedly.
+    if car.lateral_speed == 0.0 {
+        let a = lane_at(from, to, speed, start) - car.lane;
+        let b = lane_at(from, to, speed, end) - car.lane;
+        return a.min(b) > clearance || a.max(b) < -clearance;
+    }
     // Relative lateral motion is exponential rider convergence minus linear car
     // travel until its committed endpoint. Check endpoints, both motion kinks and
     // the one possible extremum before the car settles;
     // endpoint-only snapshots can miss a car crossing the whole lane in this interval.
     let relative = |t| lane_at(from, to, speed, t) - car.lane_at(t);
-    let mut low = relative(start).min(relative(end));
-    let mut high = relative(start).max(relative(end));
+    let a = relative(start);
+    let b = relative(end);
+    let mut low = a.min(b);
+    let mut high = a.max(b);
     let rate = 0.65 * (speed / 4.).clamp(0.05, 1.);
+    let stop = car.lateral_stop();
     let ratio = car.lateral_speed / ((to - from) * rate);
     let extremum = if ratio > 0.0 {
         0.4 - ratio.ln() / rate
     } else {
         -1.0
     };
-    for t in [0.4, car.lateral_stop(), extremum] {
-        if t >= start && t <= end && (t != extremum || (t >= 0.4 && t <= car.lateral_stop())) {
-            low = low.min(relative(t));
-            high = high.max(relative(t));
+    for t in [0.4, stop, extremum] {
+        if t >= start && t <= end && (t != extremum || (t >= 0.4 && t <= stop)) {
+            let value = relative(t);
+            low = low.min(value);
+            high = high.max(value);
         }
     }
     low > clearance || high < -clearance
@@ -398,18 +410,13 @@ impl Memory {
             }
         };
         let safe = |to, pace| {
+            let current = speed.max(1.);
             cars.iter().all(|c| {
-                clear_local(lane, to, pace, *c, horizon(*c), local_horizon.is_some())
-                    && clear_local(
-                        lane,
-                        to,
-                        speed.max(1.),
-                        *c,
-                        horizon(*c),
-                        local_horizon.is_some(),
-                    )
-                    && ((to - lane).abs() <= 0.5
-                        || clear_local(to, to, pace, *c, horizon(*c), local_horizon.is_some()))
+                let horizon = horizon(*c);
+                let local = local_horizon.is_some();
+                clear_local(lane, to, pace, *c, horizon, local)
+                    && (pace == current || clear_local(lane, to, current, *c, horizon, local))
+                    && ((to - lane).abs() <= 0.5 || clear_local(to, to, pace, *c, horizon, local))
             })
         };
         // Evaluate intended acceleration too: a matched-speed follower otherwise

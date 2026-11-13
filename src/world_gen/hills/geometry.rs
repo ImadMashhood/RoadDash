@@ -122,27 +122,30 @@ pub(super) fn ground_height(track: &Track, x: f32, z: f32) -> f32 {
 }
 pub(super) fn crossing_support(track: &Track, route: usize, p: Vec3, near: f32) -> f32 {
     let ground = ground_height(track, p.x, p.z);
+    ground.max(crossing_road_support(track, route, p, near))
+}
+
+pub(super) fn crossing_road_support(track: &Track, route: usize, p: Vec3, near: f32) -> f32 {
     let (station, _, distance) = track.project_route(route, p, near);
     if distance >= 30. || (route == 0 && bridge::on_deck(station)) {
-        return ground;
+        return f32::NEG_INFINITY;
     }
     let (center, frame) = track.sample_route(route, station, 0.);
     let side = ((center - p).dot((frame * Vec3::X).with_y(0.))).signum();
     let half = track.half_width(station);
     let (inner, iq) = track.sample_route(route, station, side * half);
-    let (outer, oq) = track.sample_route(route, station, side * 30.);
     let width = center.xz().distance(inner.xz());
-    let height = if distance <= width {
+    if distance <= width {
         let (road, q) = track.sample_route(route, station, side * half * distance / width);
         (road + q * Vec3::Y * 0.025).y
     } else {
+        let (outer, oq) = track.sample_route(route, station, side * 30.);
         let outer_width = center.xz().distance(outer.xz());
         let weight = ((distance - width) / (outer_width - width)).clamp(0., 1.);
         (inner - iq * Vec3::Y * 0.08)
             .y
             .lerp((outer - oq * Vec3::Y * 0.08).y, weight)
-    };
-    ground.max(height)
+    }
 }
 
 /// The same authored sand palette drives terrain vertices and wheel dust.

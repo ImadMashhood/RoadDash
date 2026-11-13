@@ -4858,3 +4858,11 @@ the camera and procedural display sky. Cache clear static sphere casts
 for exact endpoints within one rider planning pass. Keep blocked casts
 available for hit diagnostics and use the existing AI cache fallback
 switch. [Evidence](testing/visual-depth/REPORT.md).
+
+## ADR188 — Reduce repeated clearance and hoof support work (2026-11-13)
+
+Evaluate the lane-clearance interval endpoints for steady lateral traffic.
+Keep the existing interior checks for moving crossings. Reuse exact terrain
+vertices across mounted updates while the Track is unchanged and share
+the terrain sample across both branches for crossing actors.
+[Native measurements](testing/visual-depth/REPORT.md#hills-frame-profiling).

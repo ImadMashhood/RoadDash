@@ -387,7 +387,7 @@ pub fn spawn(
 }
 /// Schedule in FixedUpdate after Gameplay and before PhysicsSet::SyncBackend.
 /// This also runs for guests, whose race elapsed is supplied by host snapshots.
-pub fn update(
+pub(crate) fn update(
     mut commands: Commands,
     race: Res<Race>,
     track: Res<Track>,
@@ -396,18 +396,21 @@ pub fn update(
         Without<MountedLimb>,
     >,
     mut limbs: Query<(&MountedLimb, &mut Transform), Without<Mounted>>,
+    mut support: Local<super::terrain_cache::RuntimeCache>,
 ) {
-    for (entity, mut mounted, npc, mut transform) in &mut roots {
-        if !npc.active() {
-            continue;
+    support.sample(&track, track.is_changed(), || {
+        for (entity, mut mounted, npc, mut transform) in &mut roots {
+            if !npc.active() {
+                continue;
+            }
+            let next = pose(&track, mounted.index, race.elapsed);
+            if race.elapsed < mounted.last_elapsed {
+                crate::environment::teleport_kinematic(&mut commands, entity, next);
+            }
+            *transform = next;
+            mounted.last_elapsed = race.elapsed;
         }
-        let next = pose(&track, mounted.index, race.elapsed);
-        if race.elapsed < mounted.last_elapsed {
-            crate::environment::teleport_kinematic(&mut commands, entity, next);
-        }
-        *transform = next;
-        mounted.last_elapsed = race.elapsed;
-    }
+    });
     for (limb, mut transform) in &mut limbs {
         transform.rotation = leg_rotation(limb.index, limb.leg, limb.lower, race.elapsed);
     }

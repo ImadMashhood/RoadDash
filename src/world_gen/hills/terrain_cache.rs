@@ -1,5 +1,5 @@
-//! Scoped memoization of exact terrain vertices during immutable Hills generation.
-//! Never retained by the simulation; cache keys preserve float bits, not rounded positions.
+//! Scoped memoization of exact terrain vertices for immutable Hills geometry.
+//! Cache keys preserve float bits, including for recurring mounted hoof support.
 use crate::track::Track;
 use bevy::prelude::*;
 use std::{cell::RefCell, collections::HashMap, marker::PhantomData, rc::Rc};
@@ -16,6 +16,28 @@ thread_local! {
 pub(super) struct Scope<'a> {
     previous: Option<Cache>,
     _track: PhantomData<(&'a Track, Rc<()>)>,
+}
+
+#[derive(Default)]
+pub struct RuntimeCache(Option<Cache>);
+
+impl RuntimeCache {
+    pub fn sample<R>(&mut self, track: &Track, changed: bool, sample: impl FnOnce() -> R) -> R {
+        let id = std::ptr::from_ref(track) as usize;
+        if changed || self.0.as_ref().is_some_and(|cache| cache.track != id) {
+            self.0 = None;
+        }
+        let current = self.0.take().unwrap_or_else(|| Cache {
+            track: id,
+            vertices: HashMap::new(),
+            hits: 0,
+            misses: 0,
+        });
+        let previous = CACHE.with(|slot| slot.replace(Some(current)));
+        let value = sample();
+        self.0 = CACHE.with(|slot| slot.replace(previous));
+        value
+    }
 }
 impl<'a> Scope<'a> {
     pub fn new(track: &'a Track) -> Self {

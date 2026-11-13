@@ -11,7 +11,7 @@ pub mod guardrails;
 pub mod mounted;
 mod props;
 pub mod river;
-mod terrain_cache;
+pub(crate) mod terrain_cache;
 pub mod wildlife;
 pub mod woodland;
 use crate::{track::Track, world::Art};
@@ -24,8 +24,8 @@ pub(crate) fn rendered_ground_height(track: &Track, x: f32, z: f32) -> f32 {
 
 pub(crate) fn crossing_support(track: &Track, p: Vec3) -> f32 {
     (0..2)
-        .map(|route| geometry::crossing_support(track, route, p, 0.))
-        .fold(f32::NEG_INFINITY, f32::max)
+        .map(|route| geometry::crossing_road_support(track, route, p, 0.))
+        .fold(geometry::ground_height(track, p.x, p.z), f32::max)
 }
 
 #[derive(Component)]

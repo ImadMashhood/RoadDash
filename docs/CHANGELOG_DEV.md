@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Hills frame profiling (ADR188)
+
+- Reduced repeated lane-clearance math and reused exact Hills terrain vertices for mounted hoof support.
+
 ## 2026-11-13 — Softer daylight grade and Hills profiling (ADR187)
 
 - Softened the optional daylight curve and reused exact clear AI collision probes within each rider’s planning pass.
