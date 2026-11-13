@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Two Hills cattle crossings (ADR197)
+
+- Kept the two crossings shown in the encounter captures.
+
 ## 2026-11-13 — Hills cattle and Western town scenes (ADR196)
 
 - Aligned crossing cattle with travel, added two herds, and staged three brawls and two shootouts in Western town.

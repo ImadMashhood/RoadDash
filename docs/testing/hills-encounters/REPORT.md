@@ -1,7 +1,7 @@
 # Hills cattle crossings and Western town encounters
 
-The existing cattle crossings at 9.20 km and 11.05 km now use two rows of
-three. New crossings at 8.87 km and 11.80 km use the same formation. Members
+Hills has two cattle crossings at 8.87 km and 11.80 km. Each herd has two rows
+of three. Members
 share a crossing clock and follow the existing support and cow knockdown
 paths. The cow model and collider face local +X, so patrol yaw aligns that
 axis with the current direction of travel. The gait swings in the matching
@@ -21,7 +21,7 @@ The town brawls reuse the existing punch recording.
 
 ## Verification
 
-The focused tests passed for four six-cow formations, both travel headings,
+The original focused tests passed for six-cow formations, both travel headings,
 five paired encounters, four attached muzzle flashes, and local punch and
 gunshot cues. Formatting, strict Clippy, locked debug/release builds, asset
 audit and roadmap synchronization passed. The workspace suite reported
@@ -33,3 +33,7 @@ Native Hills smoke passed in debug and release. The release run initialized
 seven playback sinks and completed both remounts with zero exceptional
 rescues. The automated checks cover the scene mechanics. Race-speed visual
 readability and traffic interaction remain open on the live checklist.
+
+The two-crossing follow-up passed the focused formation test, strict Clippy,
+locked builds, asset and roadmap checks, and the Hills release smoke. The
+workspace suite retained the two existing Rapier failures listed above.

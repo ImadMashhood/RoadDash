@@ -4933,3 +4933,8 @@ civilian contact system. Stage three local brawls and two shootouts on the
 Western town main street with pedestrian collisions and presentation-only
 strike and gunfire effects.
 [Implementation and evidence](testing/hills-encounters/REPORT.md).
+
+## ADR197 — Two Hills cattle crossings (2026-11-13)
+
+Retain the earlier and later cattle crossings at 8.87 and 11.80 km. Remove
+the two intermediate crossings and their placement reservations.

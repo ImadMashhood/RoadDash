@@ -13,7 +13,7 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
     (0, 10800., -80.),
 ];
 const SAMPLES: usize = 128;
-const CROSSING_STATIONS: [f32; 4] = [8870., 9200., 11050., 11800.];
+const CROSSING_STATIONS: [f32; 2] = [8870., 11800.];
 const CROSSING_MEMBERS: usize = 6;
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
@@ -473,7 +473,7 @@ mod tests {
     #[test]
     fn cattle_keep_two_rows_and_face_each_travel_direction() {
         let track = Track::hills().unwrap();
-        assert_eq!(CROSSING_STATIONS.len(), 4);
+        assert_eq!(CROSSING_STATIONS, [8870., 11800.]);
         for station in CROSSING_STATIONS {
             let paths =
                 std::array::from_fn::<_, CROSSING_MEMBERS, _>(|i| cattle_path(&track, station, i));
