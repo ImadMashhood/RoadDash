@@ -58,3 +58,22 @@ The Hills smoke with Axle and Classic passed both remounts and reached
 results with zero exceptional rescues. The model regression exercised
 all fifteen Classic colorways and both replacement meshes. Locked builds,
 strict Clippy, formatting, roadmap checks and the asset audit passed.
+
+## Helmet redesign and full suit sheet
+
+[All 15 suit colorways](suit-colorways.png) are shown on the production rider
+mesh with matching Classic helmet colors. [Revised helmet comparison](helmet-redesign.png)
+shows Classic, Apex and Rally from the same two angles. Apex has a shaped chin
+bar, curved eyeport and intake. Rally has a longer chin guard and swept peak.
+Both replacement meshes continue to follow the standing and seated head bind.
+
+Run `cargo run --release --locked --bin helmet_preview -- --suits /absolute/path/suits.png`
+to regenerate the suit sheet. Omit `--suits` and pass an output path to render
+the helmet comparison.
+
+Both sheets were captured and inspected. The suit viewer logged Bevy
+mesh-bind-group warnings during capture; all fifteen labeled riders are
+visible in the resulting image. The Rally Hills recovery fixture passed both
+remounts and reached results with zero exceptional rescues. Locked builds,
+strict Clippy, formatting, roadmap and asset checks passed. Workspace
+tests retained the two known Rapier failures.

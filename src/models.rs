@@ -320,6 +320,26 @@ impl AuthoredModels {
             (Mesh3d(meshes.add(mesh)), MeshMaterial3d(material.clone()))
         })
     }
+    pub fn suit_display(
+        &self,
+        meshes: &mut Assets<Mesh>,
+    ) -> Vec<(Mesh3d, [MeshMaterial3d<StandardMaterial>; 15])> {
+        self.parts
+            .iter()
+            .filter(|part| part.group == "standing")
+            .map(|part| {
+                let mut mesh = meshes.get(&part.mesh).expect("resident rider mesh").clone();
+                mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
+                mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
+                (
+                    Mesh3d(meshes.add(mesh)),
+                    std::array::from_fn(|palette| {
+                        MeshMaterial3d(part.materials[palette % part.materials.len()].clone())
+                    }),
+                )
+            })
+            .collect()
+    }
     pub fn ready(&self, server: &AssetServer) -> bool {
         self.textures.iter().all(|h| {
             if let Some(bevy::asset::LoadState::Failed(error)) = server.get_load_state(h.id()) {

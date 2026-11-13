@@ -4882,3 +4882,10 @@ Use the shared suit atlas and existing materials, and bind the Classic
 helmet shell tint to the selected palette. Use black Apex and white Rally
 shells. Accept the previous saved suit IDs as aliases.
 [Helmet comparison and verification](testing/rider-gear/REPORT.md#original-roster-colors).
+
+## ADR191 — Helmet eyeports and Rally peak
+
+Build the eyeport into both replacement shells and fit each visor to its
+opening. Give Apex a compact full-face chin bar and Rally an extended chin
+guard with a swept peak. Render every named suit on the shared game mesh
+for review. [Native renders](testing/rider-gear/REPORT.md#helmet-redesign-and-full-suit-sheet).

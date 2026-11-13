@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-13 — Helmet shapes and suit sheet (ADR191)
+
+- Reworked the Apex and Rally shells and rendered all fifteen rider colorways.
+
 ## 2026-11-13 — Original roster gear colorways (ADR190)
 
 - Exposed fifteen named Windows City suit colorways, recolored the helmets and added an isolated comparison renderer.

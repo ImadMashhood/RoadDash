@@ -94,6 +94,52 @@ pub(super) struct HelmetModel {
     pub visor_material: Handle<StandardMaterial>,
 }
 
+#[derive(Default)]
+struct HelmetGeometry {
+    positions: Vec<Vec3>,
+    indices: Vec<u32>,
+    vertices: std::collections::HashMap<[u32; 3], u32>,
+}
+
+impl HelmetGeometry {
+    fn quad(&mut self, points: [Vec3; 4]) {
+        let [a, b, c, d] = points.map(|point| {
+            *self
+                .vertices
+                .entry(point.to_array().map(f32::to_bits))
+                .or_insert_with(|| {
+                    let index = self.positions.len() as u32;
+                    self.positions.push(point);
+                    index
+                })
+        });
+        self.indices.extend([a, b, c, a, c, d]);
+    }
+
+    fn mesh(self, head: Transform) -> Mesh {
+        let count = self.positions.len();
+        let mut mesh = Mesh::new(
+            PrimitiveTopology::TriangleList,
+            RenderAssetUsages::default(),
+        );
+        mesh.insert_attribute(
+            Mesh::ATTRIBUTE_POSITION,
+            self.positions
+                .into_iter()
+                .map(|point| head.transform_point(point).to_array())
+                .collect::<Vec<_>>(),
+        );
+        mesh.insert_indices(Indices::U32(self.indices));
+        mesh.compute_smooth_normals();
+        mesh.insert_attribute(
+            Mesh::ATTRIBUTE_JOINT_INDEX,
+            VertexAttributeValues::Uint16x4(vec![[1, 0, 0, 0]; count]),
+        );
+        mesh.insert_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT, vec![[1., 0., 0., 0.]; count]);
+        mesh
+    }
+}
+
 impl HelmetModel {
     pub fn build(
         meshes: &mut Assets<Mesh>,
@@ -101,80 +147,143 @@ impl HelmetModel {
         head: Transform,
         helmet: Helmet,
     ) -> Self {
+        const STEPS: u32 = 80;
+        const FRONT: u32 = STEPS / 2;
         let rally = helmet == Helmet::Rally;
+        let eye = if rally { 16 } else { 18 };
         let rings = if rally {
             [
-                (0.005, 0.108, 0.133, 0.054),
-                (0.057, 0.161, 0.176, 0.066),
-                (0.161, 0.195, 0.190, 0.026),
-                (0.228, 0.200, 0.200, 0.031),
-                (0.292, 0.168, 0.173, 0.001),
-                (0.345, 0.111, 0.117, -0.008),
-                (0.368, 0.002, 0.002, -0.012),
+                (-0.021, 0.110, 0.120, -0.004),
+                (0.018, 0.146, 0.177, 0.031),
+                (0.062, 0.162, 0.213, 0.043),
+                (0.119, 0.176, 0.210, 0.044),
+                (0.235, 0.197, 0.168, 0.020),
+                (0.269, 0.194, 0.173, 0.008),
+                (0.310, 0.174, 0.155, -0.010),
+                (0.342, 0.135, 0.123, -0.020),
+                (0.365, 0.078, 0.070, -0.027),
+                (0.374, 0.001, 0.001, -0.028),
             ]
         } else {
             [
-                (-0.009, 0.109, 0.132, 0.012),
-                (0.042, 0.157, 0.171, 0.025),
-                (0.140, 0.194, 0.193, 0.020),
-                (0.220, 0.197, 0.192, 0.003),
-                (0.286, 0.151, 0.153, -0.015),
-                (0.331, 0.095, 0.103, -0.021),
-                (0.355, 0.002, 0.002, -0.027),
+                (-0.024, 0.112, 0.126, -0.016),
+                (0.010, 0.153, 0.161, 0.009),
+                (0.051, 0.176, 0.187, 0.024),
+                (0.119, 0.189, 0.198, 0.023),
+                (0.230, 0.190, 0.174, 0.015),
+                (0.268, 0.183, 0.175, 0.001),
+                (0.308, 0.161, 0.151, -0.014),
+                (0.338, 0.126, 0.117, -0.020),
+                (0.357, 0.068, 0.064, -0.023),
+                (0.363, 0.001, 0.001, -0.024),
             ]
         };
-        let point = |ring: usize, theta: f32, offset: f32| {
+        let point = |ring: usize, step: u32| {
             let (height, width, depth, shift) = rings[ring];
+            let theta = (step as f32 / STEPS as f32 * 2. - 1.) * std::f32::consts::PI;
             let (sin, cos) = theta.sin_cos();
-            let profile = if rally { 0.80 } else { 0.93 };
-            Vec3::new(
-                sin.signum() * sin.abs().powf(profile) * (width + offset),
-                height,
-                shift + cos.signum() * cos.abs().powf(profile) * (depth + offset),
-            )
+            let front = cos.max(0.);
+            let lift = match ring {
+                2 => -0.015 * front,
+                3 => 0.017 * (1. - front),
+                4 => 0.021 * front,
+                _ => 0.,
+            };
+            Vec3::new(sin * width, height + lift, shift + cos * depth)
         };
-        let surface = |rows: std::ops::RangeInclusive<usize>, steps: u32, arc: f32, offset| {
-            let mut positions = Vec::new();
-            let mut indices = Vec::new();
-            for (row, ring) in rows.enumerate() {
-                for step in 0..=steps {
-                    let theta = arc * (2. * step as f32 / steps as f32 - 1.);
-                    positions.push(head.transform_point(point(ring, theta, offset)).to_array());
-                    if row > 0 && step > 0 {
-                        let d = row as u32 * (steps + 1) + step;
-                        let a = d - steps - 2;
-                        indices.extend([a, a + 1, d, a, d, d - 1]);
+        let mut shell_geometry = HelmetGeometry::default();
+        let mut lens_geometry = HelmetGeometry::default();
+        // Split the shell at the eyeport. The lens occupies the opening and
+        // follows the curved brow and chin edges, with a narrow painted rim.
+        for ring in 0..rings.len() - 1 {
+            for step in 0..STEPS {
+                let corners = [
+                    point(ring, step),
+                    point(ring, step + 1),
+                    point(ring + 1, step + 1),
+                    point(ring + 1, step),
+                ];
+                if ring != 3 || !(FRONT - eye..FRONT + eye).contains(&step) {
+                    shell_geometry.quad(corners);
+                } else {
+                    let lower_left = corners[0].lerp(corners[3], 0.09);
+                    let lower_right = corners[1].lerp(corners[2], 0.09);
+                    let upper_left = corners[3].lerp(corners[0], 0.08);
+                    let upper_right = corners[2].lerp(corners[1], 0.08);
+                    let trim = Vec3::Z * 0.005;
+                    lens_geometry
+                        .quad([lower_left, lower_right, upper_right, upper_left].map(|p| p + trim));
+                    shell_geometry.quad([
+                        corners[0],
+                        corners[1],
+                        lower_right + trim,
+                        lower_left + trim,
+                    ]);
+                    shell_geometry.quad([
+                        upper_left + trim,
+                        upper_right + trim,
+                        corners[2],
+                        corners[3],
+                    ]);
+                    if step == FRONT - eye {
+                        shell_geometry.quad([
+                            corners[0],
+                            lower_left + trim,
+                            upper_left + trim,
+                            corners[3],
+                        ]);
+                    } else if step + 1 == FRONT + eye {
+                        shell_geometry.quad([
+                            lower_right + trim,
+                            corners[1],
+                            corners[2],
+                            upper_right + trim,
+                        ]);
                     }
                 }
             }
-            let count = positions.len();
-            let mut mesh = Mesh::new(
-                PrimitiveTopology::TriangleList,
-                RenderAssetUsages::default(),
-            );
-            mesh.insert_attribute(Mesh::ATTRIBUTE_POSITION, positions);
-            mesh.insert_indices(Indices::U32(indices));
-            mesh.compute_smooth_normals();
-            mesh.insert_attribute(
-                Mesh::ATTRIBUTE_JOINT_INDEX,
-                VertexAttributeValues::Uint16x4(vec![[1, 0, 0, 0]; count]),
-            );
-            mesh.insert_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT, vec![[1., 0., 0., 0.]; count]);
-            mesh
-        };
-        let shell = meshes.add(surface(0..=6, 40, std::f32::consts::PI, 0.));
-        let visor = meshes.add(surface(2..=3, 20, if rally { 0.98 } else { 1.35 }, 0.010));
+        }
+        if rally {
+            // A swept visor peak, with a raised middle and tapered side mounts.
+            for step in FRONT - 15..FRONT + 15 {
+                let edge = |step| {
+                    let mount = point(5, step);
+                    let t = (step as f32 - FRONT as f32) / 15.;
+                    let reach = (1. - t * t).max(0.);
+                    let tip =
+                        mount + Vec3::new(0.010 * t, 0.027 * reach - 0.007, 0.104 * reach + 0.008);
+                    (mount, tip)
+                };
+                let (a, b) = edge(step);
+                let (c, d) = edge(step + 1);
+                shell_geometry.quad([a, b, d, c]);
+                shell_geometry.quad([a, c, d - Vec3::Y * 0.008, b - Vec3::Y * 0.008]);
+                lens_geometry.quad([b, b - Vec3::Y * 0.008, d - Vec3::Y * 0.008, d]);
+            }
+        }
+        // Intake grilles follow the front contour instead of floating on a flat plane.
+        for step in FRONT - 5..FRONT + 5 {
+            let vent = |step, height| point(2, step).lerp(point(3, step), height) + Vec3::Z * 0.003;
+            lens_geometry.quad([
+                vent(step, 0.31),
+                vent(step + 1, 0.31),
+                vent(step + 1, 0.59),
+                vent(step, 0.59),
+            ]);
+        }
+        let shell = meshes.add(shell_geometry.mesh(head));
+        let visor = meshes.add(lens_geometry.mesh(head));
         Self {
             shell,
             visor,
             shell_material: materials.add(StandardMaterial {
-                base_color: swatch(if rally { 0xf0efeb } else { 0x191b21 }),
-                metallic: 0.30,
+                base_color: swatch(if rally { 0xdce0e4 } else { 0x20242b }),
+                metallic: 0.15,
                 perceptual_roughness: if rally { 0.52 } else { 0.29 },
                 ..default()
             }),
             visor_material: materials.add(StandardMaterial {
-                base_color: swatch(if rally { 0x47372b } else { 0x162738 }),
+                base_color: swatch(if rally { 0x49352a } else { 0x203947 }),
                 metallic: 0.84,
                 perceptual_roughness: 0.21,
                 ..default()
