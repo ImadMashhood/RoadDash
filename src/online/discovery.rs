@@ -16,9 +16,9 @@ use std::{
     time::{Duration, Instant},
 };
 
-// SHA1("road-dash/public-listen-host/protocol-2"); this is not a content hash.
+// SHA1("road-dash/public-listen-host/protocol-4"); this is not a content hash.
 const NAMESPACE: [u8; 20] = [
-    49, 32, 70, 101, 12, 250, 202, 120, 19, 135, 10, 101, 102, 89, 180, 169, 157, 224, 36, 121,
+    198, 255, 58, 172, 10, 254, 153, 236, 65, 218, 222, 41, 206, 54, 202, 126, 164, 247, 61, 43,
 ];
 const LIMIT: usize = 64;
 const LOOKUP_TIME: Duration = Duration::from_secs(12);

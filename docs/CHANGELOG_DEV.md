@@ -1,5 +1,40 @@
 # Development history
 
+## 2026-11-13 — Demo combat, effects and audio (ADR175)
+
+Add moving strike contact, speed-based AI disengage, rear-wheel spray and
+recorded audio. Register seven CC0 assets and advance the session to protocol 4.
+Track DEMO-FIGHT-01, DEMO-STRIKE-01 and DEMO-ROAD-FX-01.
+
+## 2026-11-12 — Demo settings and proximity voice (ADR174)
+
+Extend the settings menu with live mix, display, HUD and menu motion controls.
+Add bounded host-routed proximity voice with voice activation selected by
+default, explicit microphone enable, push-to-talk, and local rider mute. The
+wire and discovery protocols are now version 3. No third-party media added.
+Track DEMO-VOICE-01 and DEMO-SETTINGS-01 in the live checklist. See
+[comparison, verification and limits](testing/demo-settings-voice/REPORT.md).
+
+## 2026-11-12 — Whole-body cornering follow-up (ADR173)
+
+User approves the menu/combat pass and asks for torso/shoulder/arm weight shift.
+Extend FEEL-LEAN-01 with hierarchical body bank, inward tuck rotation and a
+small down/forward settle. Preserve grip/peg contacts, limb lengths, physical
+rigs and player handling. Evidence: testing/menu-combat-polish/BODY_LEAN.md.
+No new IDs, assets or dependencies. GPU driver mismatch is now resolved locally.
+712tests pass with the same two existing failures; strict checks, debug/release
+builds, native animation review and18finite paired lab cases complete.
+
+## 2026-11-12 — Menu and riding-combat polish (ADR173)
+
+User requests city-menu motion, rider turn/knee cues, attack-only weapons,
+readable hits, forgiving combat/downed contacts and double-height downed hops.
+Implementation and regression evidence: testing/menu-combat-polish/REPORT.md.
+Five stable requirements added open; no unrelated roadmap closures or new assets.
+Final711passing tests retain the two existing physics failures; strict checks,
+debug build, audit and18finite paired lab cases complete. Native menu attempt
+times out on software rendering; GPU review remains blocked by the driver mismatch.
+
 ## 2026-11-12 — Metropolis shares approved Hills racing AI (ADR172)
 
 User approves Hills and requests the same race-flow behavior in Metropolis.

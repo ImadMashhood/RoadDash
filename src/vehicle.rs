@@ -431,10 +431,18 @@ pub fn forces(
         t.rotation = Quat::from_rotation_y(state.yaw_rate * dt) * t.rotation;
         state.yaw = (t.rotation * Vec3::Z).x.atan2((t.rotation * Vec3::Z).z);
         // Positive roll leans toward camera-right (-local X).
-        // Reference bank is tied to accumulated steering force, not a separate
-        // body-only animation. Its documented limit/base ratio is 46 / 74.
+        // Preserve player steering bank. Rivals also bank for the road-following
+        // turn that their lane-centering input does not represent.
         let target_lean = if speed > 0.5 {
-            rr_core::steering::visual_bank(steer)
+            if r.human_controlled() {
+                rr_core::steering::visual_bank(steer)
+            } else {
+                rr_core::steering::rival_visual_bank(
+                    steer,
+                    track.curvature_route(r.route, r.progress),
+                    speed,
+                )
+            }
         } else {
             0.0
         };
@@ -589,7 +597,8 @@ pub fn visuals(
     mut wheels: Query<(&WheelVisual, &ChildOf, &mut Transform), With<WheelVisual>>,
 ) {
     // Remove chassis roll from presentation before applying steering bank. Road
-    // curvature/ground banking must not make an unsteered character lean.
+    // curvature/ground banking must not lean an unsteered player. Rival road
+    // bank is supplied explicitly by the presentation policy above.
     for (root, mut t) in &mut roots {
         let pose = bikes
             .get(root.owner)

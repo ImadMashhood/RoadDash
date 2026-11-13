@@ -25,6 +25,7 @@ pub struct DustPuff {
     life: f32,
     drift: Vec3,
     tint: Vec3,
+    size: f32,
 }
 #[derive(Component)]
 pub struct Bird {
@@ -195,10 +196,10 @@ pub fn spawn(
         return;
     }
     commands.insert_resource(Atmosphere::default());
-    if track.is_hills() {
+    if crate::map_fx::quality() > 0 {
         let texture = images.map(|images| images.add(sprite()));
         let quad = meshes.add(Rectangle::new(1., 1.));
-        for _ in 0..DUST_CAPACITY {
+        for _ in 0..(DUST_CAPACITY * crate::map_fx::quality() / 2) {
             let material = materials.add(StandardMaterial {
                 base_color: Color::srgba(0.76, 0.61, 0.38, 0.),
                 base_color_texture: texture.clone(),
@@ -220,6 +221,7 @@ pub fn spawn(
                     life: 1.6,
                     drift: Vec3::ZERO,
                     tint: Vec3::new(0.76, 0.61, 0.38),
+                    size: 1.8,
                 },
             ));
         }
@@ -407,6 +409,9 @@ pub fn animate(
         // Only 24 analytic poses, independent of camera hierarchy/teleports.
         // Final-camera range dithering limits draw work without stale poses.
         *t = bird_pose(bird, elapsed);
+        let approach =
+            (1. - camera.translation.xz().distance(bird.center.xz()) / 34.).clamp(0., 1.);
+        t.translation.y += approach * approach * 4.0;
         state.animated_birds += 1;
     }
     for (wing, mut t, parent) in &mut wings {
@@ -425,7 +430,7 @@ pub fn animate(
             wing.side * ((elapsed * 7. + wing.phase).sin() * 0.48 * beat + 0.12),
         );
     }
-    // Metropolis reuses birds only: no dust assets, contact queries or emissions.
+    // Disabling map FX skips all tire emission queries.
     if dust.is_empty() {
         return;
     }
@@ -456,6 +461,40 @@ pub fn animate(
                     || car.map_or((0, 0.), |c| (c.route, c.progress)),
                     |r| (r.route, r.progress),
                 );
+                if let Some(rider) = r {
+                    let rear = t.transform_point(Vec3::new(0., 0.15, -0.78));
+                    let surface = track.surface_route(route, s, track.lane_at(route, s, rear));
+                    let strength = crate::map_fx::wheel_spray(
+                        surface,
+                        speed,
+                        rider.drive_intent.throttle_strength(),
+                        bike,
+                    );
+                    if strength > 0.05
+                        && let Some((_, ground_gap)) = context.cast_ray(
+                            rear + Vec3::Y,
+                            Vec3::NEG_Y,
+                            1.6,
+                            true,
+                            QueryFilter::default().predicate(&is_ground),
+                        )
+                    {
+                        use rr_core::surface::Surface;
+                        let tint = match surface {
+                            Surface::Grass => Vec3::new(0.43, 0.52, 0.26),
+                            Surface::Sand => super::geometry::sand_color(s, rear.x, rear.z),
+                            _ => Vec3::new(0.60, 0.47, 0.32),
+                        };
+                        emissions.push((
+                            rear + Vec3::Y * (1.1 - ground_gap),
+                            t.rotation
+                                * Vec3::new(0.3, 0.35 + strength * 0.8, -0.9 - strength * 2.),
+                            tint,
+                            0.36 + strength * 1.25,
+                        ));
+                    }
+                    continue;
+                }
                 let a = track.lane_at(route, s, t.translation);
                 let b = track.lane_at(1 - route.min(1), s, t.translation);
                 let l = if a.abs() < b.abs() { a } else { b };
@@ -484,6 +523,7 @@ pub fn animate(
                         p,
                         -t.rotation * Vec3::Z * speed.signum() * 0.8 + Vec3::new(0.7, 0.7, 0.2),
                         super::geometry::sand_color(s, p.x, p.z),
+                        1.8,
                     ));
                 }
             }
@@ -494,11 +534,12 @@ pub fn animate(
     for (mut puff, mut t, mut visibility, material) in &mut dust {
         puff.age += dt;
         if puff.age >= puff.life
-            && let Some((p, drift, tint)) = next.next()
+            && let Some((p, drift, tint, size)) = next.next()
         {
             puff.age = 0.;
             puff.drift = drift;
             puff.tint = tint;
+            puff.size = size;
             t.translation = p;
             state.emitted += 1;
         }
@@ -506,7 +547,7 @@ pub fn animate(
             active += 1;
             t.translation += puff.drift * dt * (1. - 0.4 * puff.age / puff.life);
             t.rotation = camera.rotation;
-            t.scale = Vec3::splat(1.8);
+            t.scale = Vec3::splat(puff.size * (0.7 + 0.55 * puff.age / puff.life));
             *visibility = Visibility::Inherited;
             if let Some(mut m) = materials.get_mut(&material.0) {
                 let behind_m = player_pose.map_or(0., |player| {
@@ -622,9 +663,8 @@ mod tests {
         }
     }
     #[test]
-    fn both_maps_share_bounded_bird_meshes_but_only_hills_allocates_dust() {
+    fn both_maps_share_bounded_bird_meshes_and_dust() {
         for track in [Track::metropolis().unwrap(), Track::hills().unwrap()] {
-            let hills = track.is_hills();
             let mut app = App::new();
             app.insert_resource(track)
                 .init_resource::<Assets<Mesh>>()
@@ -652,7 +692,7 @@ mod tests {
                     .query_filtered::<Entity, With<DustPuff>>()
                     .iter(world)
                     .count(),
-                if hills { DUST_CAPACITY } else { 0 }
+                DUST_CAPACITY * crate::map_fx::quality() / 2
             );
             assert_eq!(
                 world
@@ -710,6 +750,7 @@ mod tests {
                     life: 1.6,
                     drift: Vec3::ONE,
                     tint: Vec3::new(0.76, 0.61, 0.38),
+                    size: 1.8,
                 },
                 Visibility::Inherited,
             ))

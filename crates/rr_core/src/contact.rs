@@ -27,6 +27,11 @@ pub const LOW_HEIGHT_M: f32 = 0.8;
 pub fn ride_over_velocity(closing: f32) -> Option<f32> {
     (closing.is_finite() && closing >= 3.0).then(|| (2.8 + closing * 0.035).min(4.0))
 }
+/// Twice the unobstructed downed-body/wreck hop height (v squared / 2g).
+/// Pedestrian response and upright rear-bike policy remain separate.
+pub fn downed_ride_over_velocity(closing: f32) -> Option<f32> {
+    ride_over_velocity(closing).map(|v| v * std::f32::consts::SQRT_2)
+}
 /// User-selected upright rear-hit knockoff threshold (SI units).
 pub const REAR_KNOCKOFF_MPS: f32 = 60.0 / 3.6;
 /// Perfectly inelastic normal-speed exchange: preserves pair momentum, dissipates energy.
@@ -180,6 +185,44 @@ pub fn ride_over_response(
     target_mass: f32,
     requested_up: f32,
 ) -> Option<[f32; 3]> {
+    ride_over_response_with_fraction(
+        entry,
+        target_before,
+        target_after,
+        own_mass,
+        target_mass,
+        requested_up,
+        0.3,
+    )
+}
+/// Downed-object hop spends existing energy, with twice the old vertical allocation.
+pub fn downed_ride_over_response(
+    entry: [f32; 3],
+    target_before: [f32; 3],
+    target_after: [f32; 3],
+    own_mass: f32,
+    target_mass: f32,
+    requested_up: f32,
+) -> Option<[f32; 3]> {
+    ride_over_response_with_fraction(
+        entry,
+        target_before,
+        target_after,
+        own_mass,
+        target_mass,
+        requested_up,
+        0.3 * std::f32::consts::SQRT_2,
+    )
+}
+fn ride_over_response_with_fraction(
+    entry: [f32; 3],
+    target_before: [f32; 3],
+    target_after: [f32; 3],
+    own_mass: f32,
+    target_mass: f32,
+    requested_up: f32,
+    rise_fraction: f32,
+) -> Option<[f32; 3]> {
     if entry
         .into_iter()
         .chain(target_before)
@@ -207,7 +250,7 @@ pub fn ride_over_response(
         out[0] -= entry[0] * backwards;
         out[2] -= entry[2] * backwards;
     }
-    let up = entry[1].max(requested_up.min(forward2.sqrt() * 0.3));
+    let up = entry[1].max(requested_up.min(forward2.sqrt() * rise_fraction));
     out[1] = up.min(remaining.sqrt());
     let horizontal = out[0] * out[0] + out[2] * out[2];
     let available = (remaining - out[1] * out[1]).max(0.0);
@@ -282,5 +325,36 @@ mod measured_vehicle_tests {
         assert!(interrupts_stagger(1.));
         assert!(!vehicle_wipeout(1.));
         assert!(!wipeout(Class::Tall, 1.));
+    }
+}
+
+#[cfg(test)]
+mod polish_tests {
+    use super::*;
+    #[test]
+    fn downed_hop_doubles_height_without_adding_energy() {
+        for speed in [3.0, 8.0, 20.0, 60.0] {
+            let old = ride_over_response(
+                [0., 0., speed],
+                [0.; 3],
+                [0.; 3],
+                240.,
+                0.,
+                ride_over_velocity(speed).unwrap(),
+            )
+            .unwrap();
+            let new = downed_ride_over_response(
+                [0., 0., speed],
+                [0.; 3],
+                [0.; 3],
+                240.,
+                0.,
+                downed_ride_over_velocity(speed).unwrap(),
+            )
+            .unwrap();
+            assert!((new[1] * new[1] / (old[1] * old[1]) - 2.).abs() < 1e-5);
+            assert!(new.iter().map(|v| v * v).sum::<f32>() <= speed * speed + 0.001);
+        }
+        assert!(downed_ride_over_velocity(2.9).is_none());
     }
 }

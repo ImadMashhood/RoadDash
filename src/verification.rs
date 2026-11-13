@@ -391,7 +391,10 @@ pub fn observe_smoke_strike(
             capture(&mut commands, "30-strike-windup");
         }
         if !state.strike_contact && !clock.pending() {
-            assert!(clock.age >= clock.contact && clock.age < clock.contact + 1.0 / 60.0 + 1e-5);
+            assert!(
+                clock.age >= clock.contact_window().0
+                    && clock.age <= clock.contact_window().1 + 2.0 / 60.0
+            );
             state.strike_contact = true;
             println!(
                 "Native buffered strike contact: age={:.6} contact={:.6} side={}",

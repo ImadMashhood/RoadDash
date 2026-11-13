@@ -1,5 +1,26 @@
 # Known issues and remaining acceptance
 
+- ADR175 demo combat/audio: natural exchange frequency and audible mix still
+  need human full-course review. Limb volumes approximate the animated mesh,
+  and recorded rev bands use one donor engine. Both online peers need protocol 4.
+
+- DEMO-VOICE-01 / ADR174: protocol 3 voice uses the existing unencrypted TCP
+  session. Packet loss can delay speech and the game stream. Full WAN latency,
+  bandwidth at capacity, microphone/headset compatibility, echo, encrypted
+  transport and moderation beyond local mute remain public-release gates.
+- DEMO-SETTINGS-01: wider visual and controller acceptance, graphics presets,
+  captions and color-vision options remain open. See testing/demo-settings-voice/REPORT.md.
+
+- ADR173 / UI-CITY-TOUR-01 / FEEL-LEAN-01 / FEEL-WEAPON-01 / FEEL-HIT-01 /
+  FEEL-DOWNED-01: subjective art/feel and broad acceptance remain open.
+  The body-lean follow-up adds native animation and recovery evidence.
+  The prior NVIDIA driver/library mismatch is resolved locally as of the
+  whole-body lean follow-up (RTX3080,620.70.06); earlier blocked attempts remain
+  historical. See BODY_LEAN.md for new native evidence.
+  Energy/obstacle clearance can limit real downed-hop rise below the unobstructed
+  doubled-height target. Menu streaming cost and broad viewport/hardware
+  acceptance remain unmeasured. See testing/menu-combat-polish/REPORT.md.
+
 - AI-METRO-01 / ADR172: both modern maps now select the same approved racing
   planner and real main-car bounds. Physical/headless checks pass. Native
   Metropolis traversal could not be completed: the current machine has loaded

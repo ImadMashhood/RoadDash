@@ -115,6 +115,9 @@ pub struct SceneryFootprint {
     pub radius: f32,
 }
 
+#[derive(Component)]
+pub struct CourseSun;
+
 #[allow(clippy::too_many_arguments)]
 pub fn setup_world(
     mut commands: Commands,
@@ -193,6 +196,7 @@ pub fn setup_world(
     );
     commands.insert_resource(shadow_budget);
     commands.spawn((
+        CourseSun,
         DirectionalLight {
             illuminance: if track.city_surface.is_some() {
                 16000.0

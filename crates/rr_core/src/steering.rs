@@ -171,3 +171,24 @@ mod pose_tests {
         assert_eq!(super::visual_bank(2.0), 0.65);
     }
 }
+
+/// Presentation only: lane steering omits the road-following turn of assisted AI.
+pub fn rival_visual_bank(steer: f32, curvature: f32, speed: f32) -> f32 {
+    if !curvature.is_finite() || !speed.is_finite() {
+        return visual_bank(steer);
+    }
+    (visual_bank(steer) - (curvature * speed * speed / 9.81).atan()).clamp(-0.65, 0.65)
+}
+
+#[cfg(test)]
+mod rival_bank_tests {
+    #[test]
+    fn road_following_banks_symmetrically_at_speed_and_is_bounded() {
+        use super::rival_visual_bank as bank;
+        assert_eq!(bank(0., 0., 60.), 0.);
+        assert!(bank(0., 0.004, 50.) < -0.5);
+        assert_eq!(bank(0., 0.004, 50.), -bank(0., -0.004, 50.));
+        assert_eq!(bank(0., 0.004, 0.), 0.);
+        assert!(bank(-1., 1., 200.).abs() <= 0.65);
+    }
+}

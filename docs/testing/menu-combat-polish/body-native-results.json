@@ -1,0 +1,22 @@
+[
+  {
+    "case": "metro-current",
+    "exit_code": 0,
+    "seconds": 119.3
+  },
+  {
+    "case": "metro-baseline",
+    "exit_code": 0,
+    "seconds": 42.9
+  },
+  {
+    "case": "hills-current",
+    "exit_code": 0,
+    "seconds": 41.05
+  },
+  {
+    "case": "hills-baseline",
+    "exit_code": 0,
+    "seconds": 41.7
+  }
+]

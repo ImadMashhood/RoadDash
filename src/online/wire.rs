@@ -65,6 +65,12 @@ impl Peer {
     pub fn send<T: Serialize>(&mut self, value: &T) -> io::Result<()> {
         self.send_frame(encode(value, false)?)
     }
+    pub fn send_ephemeral<T: Serialize>(&mut self, value: &T) {
+        // Never add speech behind already queued gameplay data.
+        if self.outgoing.is_empty() {
+            let _ = self.send(value);
+        }
+    }
     pub fn send_frame(&mut self, frame: Arc<[u8]>) -> io::Result<()> {
         if self.outgoing.len() >= 8 {
             return Err(io::Error::other("peer output backlog"));

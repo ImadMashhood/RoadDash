@@ -128,6 +128,18 @@ impl StrikeClock {
     pub fn pending(self) -> bool {
         !self.fired
     }
+    pub fn contact_window(self) -> (f32, f32) {
+        (self.contact - 0.055, self.contact + 0.10)
+    }
+
+    pub fn step(&mut self, dt: f32) {
+        self.age += dt.max(0.);
+    }
+
+    pub fn consume(&mut self) {
+        self.fired = true;
+    }
+
     /// Returns true exactly once, including when a coarse tick crosses contact.
     pub fn advance(&mut self, dt: f32) -> bool {
         self.age += dt.max(0.0);

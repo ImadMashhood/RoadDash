@@ -10,6 +10,25 @@ use bevy::{
     render::render_resource::{Extent3d, TextureDimension, TextureFormat},
 };
 
+use rr_core::surface::Surface;
+
+pub(crate) fn wheel_spray(
+    surface: Surface,
+    speed: f32,
+    load: f32,
+    bike: Option<&crate::vehicle::BikeState>,
+) -> f32 {
+    if !matches!(
+        surface,
+        Surface::Sand | Surface::Dirt | Surface::Gravel | Surface::Grass
+    ) || bike.is_some_and(|bike| !bike.grounded[0])
+    {
+        return 0.;
+    }
+    let slip = bike.map_or(0., |bike| bike.slip.abs().max(bike.slip_angle.abs()));
+    ((speed.abs() - 2.) / 16.).clamp(0., 1.) * (0.23 + 0.27 * load + 0.5 * slip.clamp(0., 1.))
+}
+
 const SAND_COUNT: usize = 48;
 const HEAT_COUNT: usize = 16;
 const STEAM_COUNT: usize = 16;

@@ -31,13 +31,13 @@ pub(super) fn render(
     loading: bool,
 ) {
     // Native continuous gradients: no hard bars or banded stacks of rectangles.
-    let shade = |alpha| Color::srgba(0.012, 0.012, 0.02, alpha);
+    let shade = |alpha| Color::srgba(0.015, 0.035, 0.065, alpha);
     let mut gradients = vec![
         LinearGradient {
             angle: LinearGradient::TO_BOTTOM,
             stops: vec![
                 ColorStop::new(shade(0.6), percent(0.)),
-                ColorStop::new(shade(0.), percent(38.)),
+                ColorStop::new(shade(0.24), percent(38.)),
             ],
             ..default()
         },
@@ -127,6 +127,7 @@ pub(super) fn render(
             UiRect::top(px(1.))
         };
         n.padding = UiRect::axes(px(22.), px(8.));
+        n.border_radius = BorderRadius::all(px(8.));
         let button = commands
             .spawn((
                 n,

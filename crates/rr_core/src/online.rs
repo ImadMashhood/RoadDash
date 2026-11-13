@@ -2,7 +2,17 @@
 use crate::{AttackSide, VehicleIntent};
 use serde::{Deserialize, Serialize};
 pub const RACERS: usize = 15;
-pub const PROTOCOL: u32 = 2;
+pub const PROTOCOL: u32 = 4;
+/// Voice chat fades out over 55 meters of world-space separation.
+pub fn proximity_voice_gain(distance: f32) -> u8 {
+    const RANGE_METERS: f32 = 55.;
+    if distance.is_finite() && distance >= 0. {
+        ((1. - distance / RANGE_METERS).clamp(0., 1.) * 255.).round() as u8
+    } else {
+        0
+    }
+}
+
 #[derive(Clone, Copy, Debug, Default, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Input {

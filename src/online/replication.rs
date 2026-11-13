@@ -713,6 +713,7 @@ mod tests {
             seen: Instant::now(),
             rate_start: Instant::now(),
             rate: 0,
+            voice_rate: 0,
             sequence: 0,
         });
         world.insert_resource(NetState {

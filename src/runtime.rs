@@ -262,6 +262,7 @@ impl Plugin for RoadSimulationPlugin {
             .init_resource::<Race>()
             .init_resource::<crate::police::Police>()
             .init_resource::<crate::combat::StrikeTimings>()
+            .init_resource::<crate::animation::Library>()
             .init_resource::<crate::weapons::WeaponRules>()
             .init_resource::<crate::weapons::GridWeapons>()
             .init_resource::<game::Profile>()
@@ -550,7 +551,10 @@ impl Plugin for RoadAudioPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<crate::sound::Muted>()
             .add_systems(Startup, crate::sound::setup.in_set(StartupSet::Audio))
-            .add_systems(Update, crate::sound::update);
+            .add_systems(
+                Update,
+                (crate::sound::roadside, crate::sound::update).chain(),
+            );
     }
 }
 

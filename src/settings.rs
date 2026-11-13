@@ -17,6 +17,22 @@ use std::{
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PreferencesFile {
+    #[serde(default)]
+    pub(crate) voice: crate::online::voice::Preferences,
+    #[serde(default)]
+    pub mix: AudioMix,
+    #[serde(default)]
+    pub window_size: WindowSize,
+    #[serde(default)]
+    pub imperial_speed: bool,
+    #[serde(default)]
+    pub static_menu: bool,
+    #[serde(default = "yes")]
+    pub shadows: bool,
+    #[serde(default = "yes")]
+    pub show_minimap: bool,
+    #[serde(default = "yes")]
+    pub show_standings: bool,
     pub schema_version: u32,
     #[serde(default = "full_volume")]
     pub master_volume: f32,
@@ -30,10 +46,58 @@ pub struct PreferencesFile {
     pub keyboard: BindingFile,
     pub controller: BTreeMap<String, String>,
 }
+#[derive(Clone, Serialize, Deserialize)]
+#[serde(default, deny_unknown_fields)]
+pub struct AudioMix {
+    pub engine: f32,
+    pub ambience: f32,
+    pub effects: f32,
+}
+
+impl Default for AudioMix {
+    fn default() -> Self {
+        Self {
+            engine: 1.,
+            ambience: 1.,
+            effects: 1.,
+        }
+    }
+}
+
+#[derive(Clone, Copy, Default, PartialEq, Eq, Serialize, Deserialize)]
+pub enum WindowSize {
+    #[default]
+    Automatic,
+    Hd,
+    FullHd,
+    Qhd,
+}
+
+impl WindowSize {
+    const ALL: [Self; 4] = [Self::Automatic, Self::Hd, Self::FullHd, Self::Qhd];
+
+    fn dimensions(self) -> Option<(u32, u32)> {
+        match self {
+            Self::Automatic => None,
+            Self::Hd => Some((1280, 720)),
+            Self::FullHd => Some((1920, 1080)),
+            Self::Qhd => Some((2560, 1440)),
+        }
+    }
+}
+
 impl Default for PreferencesFile {
     fn default() -> Self {
         Self {
             schema_version: 1,
+            voice: default(),
+            mix: default(),
+            window_size: default(),
+            imperial_speed: false,
+            static_menu: false,
+            shadows: true,
+            show_minimap: true,
+            show_standings: true,
             master_volume: 1.,
             audio_muted: false,
             fullscreen: false,
@@ -61,6 +125,17 @@ impl Default for PreferencesFile {
     }
 }
 impl PreferencesFile {
+    pub(crate) fn voice_key_available(&self, key: &str) -> bool {
+        !self
+            .keyboard
+            .actions
+            .values()
+            .flatten()
+            .any(|bound| bound == key)
+            && (key != "KeyE" || self.keyboard.actions.contains_key("pickup"))
+            && (key != "KeyQ" || self.keyboard.actions.contains_key("drop"))
+    }
+
     pub fn parse(json: &str) -> Result<Self, String> {
         let p: Self = serde_json::from_str(json).map_err(|e| e.to_string())?;
         p.validate()?;
@@ -72,6 +147,15 @@ impl PreferencesFile {
         }
         if !self.master_volume.is_finite() || !(0. ..=1.).contains(&self.master_volume) {
             return Err("invalid master volume".into());
+        }
+        if !self.voice.validate() {
+            return Err("invalid voice settings".into());
+        }
+        if [self.mix.engine, self.mix.ambience, self.mix.effects]
+            .into_iter()
+            .any(|gain| !(0. ..=1.).contains(&gain))
+        {
+            return Err("invalid audio mix".into());
         }
         self.comfort.validate()?;
         Bindings::parse(&serde_json::to_string(&self.keyboard).map_err(|e| e.to_string())?)?;
@@ -206,23 +290,36 @@ pub enum Section {
     Controls,
     Audio,
     Display,
+    Accessibility,
+    Voice,
 }
 impl Section {
-    pub const ALL: [Self; 4] = [Self::Camera, Self::Controls, Self::Audio, Self::Display];
+    pub const ALL: [Self; 6] = [
+        Self::Camera,
+        Self::Controls,
+        Self::Audio,
+        Self::Display,
+        Self::Accessibility,
+        Self::Voice,
+    ];
     pub fn name(self) -> &'static str {
         match self {
             Self::Camera => "Camera",
             Self::Controls => "Controls",
             Self::Audio => "Audio",
             Self::Display => "Display",
+            Self::Accessibility => "Accessibility",
+            Self::Voice => "Voice Chat",
         }
     }
     pub fn rows(self) -> &'static [usize] {
         match self {
             Self::Camera => &[0, 1, 2, 3, 4, 5, 8],
             Self::Controls => &[6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 27],
-            Self::Audio => &[22, 25],
-            Self::Display => &[23, 24],
+            Self::Audio => &[22, 25, 28, 29, 30],
+            Self::Display => &[23, 24, 31, 42],
+            Self::Accessibility => &[32, 33, 43, 44],
+            Self::Voice => &[34, 35, 36, 37, 38, 39, 40, 41],
         }
     }
 }
@@ -248,9 +345,17 @@ pub struct SettingsPanel {
     pub selected: usize,
     pub rebinding: bool,
     pub controller: bool,
+    voice_target: Option<usize>,
     resume: Option<crate::game::Phase>,
 }
-pub const ROWS: usize = 28;
+impl SettingsPanel {
+    pub(crate) fn open_voice(&mut self) {
+        self.open = true;
+        self.section = Section::Voice;
+        self.selected = Section::Voice.rows()[0];
+    }
+}
+pub const ROWS: usize = 45;
 pub const ACTIONS: [&str; 12] = [
     "throttle",
     "brake",
@@ -278,6 +383,8 @@ pub fn panel_input(
     clicks: Query<&SettingsRow, (With<Button>, Added<Pressed>)>,
     mut panel: ResMut<SettingsPanel>,
     mut prefs: ResMut<Preferences>,
+    mut online: Option<ResMut<crate::online::Online>>,
+    net: Option<Res<crate::online::NetState>>,
     mut bindings: ResMut<Bindings>,
     mut race: ResMut<crate::game::Race>,
     mut controls: ResMut<crate::controls::Controls>,
@@ -324,10 +431,11 @@ pub fn panel_input(
             panel.open = false;
             panel.rebinding = false;
         } else {
-            panel.resume = if matches!(
-                race.phase,
-                crate::game::Phase::Racing | crate::game::Phase::Countdown
-            ) {
+            panel.resume = if !online.as_ref().is_some_and(|o| o.lobby.is_some())
+                && matches!(
+                    race.phase,
+                    crate::game::Phase::Racing | crate::game::Phase::Countdown
+                ) {
                 Some(race.phase)
             } else {
                 None
@@ -395,7 +503,8 @@ pub fn panel_input(
                 .iter()
                 .position(|s| *s == panel.section)
                 .unwrap();
-            Some(Section::ALL[(i + if previous_tab { 3 } else { 1 }) % 4])
+            let count = Section::ALL.len();
+            Some(Section::ALL[(i + if previous_tab { count - 1 } else { 1 }) % count])
         }
         _ => None,
     };
@@ -465,6 +574,72 @@ pub fn panel_input(
                     m.0 = prefs.file.audio_muted;
                 }
             }
+            28 => adjust_gain(&mut prefs.file.mix.engine, d),
+            29 => adjust_gain(&mut prefs.file.mix.ambience, d),
+            30 => adjust_gain(&mut prefs.file.mix.effects, d),
+            31 => {
+                let sizes = WindowSize::ALL;
+                let current = sizes
+                    .iter()
+                    .position(|s| *s == prefs.file.window_size)
+                    .unwrap_or(0);
+                prefs.file.window_size = sizes[cycle(current, sizes.len(), d)];
+            }
+            32 => prefs.file.imperial_speed = !prefs.file.imperial_speed,
+            33 => prefs.file.static_menu = !prefs.file.static_menu,
+            34 => prefs.file.voice.enabled = !prefs.file.voice.enabled,
+            35 => prefs.file.voice.microphone = !prefs.file.voice.microphone,
+            36 => {
+                use crate::online::voice::Mode;
+                prefs.file.voice.mode = match prefs.file.voice.mode {
+                    Mode::Activation => Mode::PushToTalk,
+                    Mode::PushToTalk => Mode::Activation,
+                };
+            }
+            37 => {
+                let threshold = &mut prefs.file.voice.threshold;
+                *threshold = (*threshold + 0.005 * d).clamp(0.005, 0.25);
+            }
+            38 => adjust_gain(&mut prefs.file.voice.volume, d),
+            39 => {
+                let available: Vec<_> = ('A'..='Z')
+                    .map(|letter| format!("Key{letter}"))
+                    .filter(|key| prefs.file.voice_key_available(key))
+                    .collect();
+                if let Some(index) = available
+                    .iter()
+                    .position(|key| key == &prefs.file.voice.push_key)
+                {
+                    prefs.file.voice.push_key = available[cycle(index, available.len(), d)].clone();
+                } else if let Some(key) = available.first() {
+                    prefs.file.voice.push_key = key.clone();
+                }
+            }
+            40 => {
+                let slots: Vec<_> = online
+                    .as_ref()
+                    .and_then(|o| o.lobby.as_ref())
+                    .into_iter()
+                    .flat_map(|l| &l.players)
+                    .filter(|p| !p.bot && net.as_ref().is_some_and(|n| n.local_slot != p.slot))
+                    .map(|p| p.slot)
+                    .collect();
+                panel.voice_target = if let Some(index) =
+                    slots.iter().position(|s| Some(*s) == panel.voice_target)
+                {
+                    Some(slots[cycle(index, slots.len(), d)])
+                } else {
+                    slots.first().copied()
+                };
+            }
+            41 => {
+                if let Some((online, slot)) = online.as_deref_mut().zip(panel.voice_target) {
+                    online.toggle_voice_mute(slot);
+                }
+            }
+            42 => prefs.file.shadows = !prefs.file.shadows,
+            43 => prefs.file.show_minimap = !prefs.file.show_minimap,
+            44 => prefs.file.show_standings = !prefs.file.show_standings,
             9 => {
                 prefs.status = match prefs.save() {
                     Ok(()) => "Settings saved".into(),
@@ -502,12 +677,24 @@ pub(super) fn pretty_binding(value: &str) -> String {
         .join(" / ")
 }
 /// Apply only supported window options; preserve the explicit legacy survey mode.
+fn cycle(index: usize, count: usize, direction: f32) -> usize {
+    (index + if direction < 0. { count - 1 } else { 1 }) % count
+}
+
+fn adjust_gain(gain: &mut f32, direction: f32) {
+    *gain = (*gain + direction * 0.05).clamp(0., 1.);
+}
+
+#[allow(clippy::too_many_arguments)]
 pub fn apply_preferences(
     mut prefs: ResMut<Preferences>,
     mut windows: Query<&mut Window>,
     mut muted: Option<ResMut<crate::sound::Muted>>,
     mut initialized: Local<bool>,
     mut windowed_size: Local<Option<Vec2>>,
+    mut applied_size: Local<WindowSize>,
+    mut automatic_size: Local<Option<Vec2>>,
+    mut sun: Query<&mut DirectionalLight, With<crate::world::CourseSun>>,
 ) {
     if let Some(ref mut m) = muted {
         if !*initialized {
@@ -517,7 +704,15 @@ pub fn apply_preferences(
         }
     }
     *initialized = true;
-    if !prefs.is_changed() || std::env::args().any(|a| a == "--world-survey") {
+    if std::env::args().any(|a| a == "--world-survey") {
+        return;
+    }
+    for mut light in &mut sun {
+        if light.shadow_maps_enabled != prefs.file.shadows {
+            light.shadow_maps_enabled = prefs.file.shadows;
+        }
+    }
+    if !prefs.is_changed() {
         return;
     }
     for mut w in &mut windows {
@@ -531,11 +726,32 @@ pub fn apply_preferences(
         } else {
             bevy::window::PresentMode::AutoNoVsync
         };
+        if !prefs.file.fullscreen && (*applied_size != prefs.file.window_size || w.mode != mode) {
+            if *applied_size == prefs.file.window_size {
+                if let Some(size) = *windowed_size {
+                    w.resolution.set(size.x, size.y);
+                }
+            } else if let Some((width, height)) = prefs.file.window_size.dimensions() {
+                if *applied_size == WindowSize::Automatic {
+                    *automatic_size = if w.mode == mode {
+                        Some(Vec2::new(w.width(), w.height()))
+                    } else {
+                        *windowed_size
+                    };
+                }
+                w.resolution.set(width as f32, height as f32);
+            } else if let Some(size) = if *applied_size == WindowSize::Automatic {
+                *windowed_size
+            } else {
+                automatic_size.take()
+            } {
+                w.resolution.set(size.x, size.y);
+            }
+            *applied_size = prefs.file.window_size;
+        }
         if w.mode != mode {
             if prefs.file.fullscreen {
                 *windowed_size = Some(Vec2::new(w.width(), w.height()));
-            } else if let Some(size) = windowed_size.take() {
-                w.resolution.set(size.x, size.y);
             }
             w.mode = mode;
         }
@@ -615,12 +831,29 @@ mod menu_tests {
     #[test]
     fn old_schema_defaults_new_fields_and_rejects_invalid_volume() {
         let mut v = serde_json::to_value(PreferencesFile::default()).unwrap();
-        for k in ["master_volume", "audio_muted", "fullscreen", "vsync"] {
+        for k in [
+            "master_volume",
+            "audio_muted",
+            "fullscreen",
+            "vsync",
+            "voice",
+            "mix",
+            "window_size",
+            "imperial_speed",
+            "static_menu",
+            "shadows",
+            "show_minimap",
+            "show_standings",
+        ] {
             v.as_object_mut().unwrap().remove(k);
         }
         let p = PreferencesFile::parse(&v.to_string()).unwrap();
         assert_eq!(p.master_volume, 1.);
         assert!(!p.audio_muted && p.vsync && !p.fullscreen);
+        assert!(p.voice.enabled && !p.voice.microphone);
+        assert_eq!(p.voice.mode, crate::online::voice::Mode::Activation);
+        assert!(p.shadows && !p.static_menu && !p.imperial_speed);
+        assert_eq!((p.mix.engine, p.mix.ambience, p.mix.effects), (1., 1., 1.));
         let mut p = p;
         p.master_volume = f32::NAN;
         assert!(p.validate().is_err());
@@ -641,6 +874,8 @@ mod menu_tests {
         assert_eq!(app.world().resource::<SettingsPanel>().selected, 22);
         click(&mut app, SettingsAction::Adjust(22, -1));
         assert!((app.world().resource::<Preferences>().file.master_volume - 0.95).abs() < 0.001);
+        click(&mut app, SettingsAction::Adjust(28, -1));
+        assert!((app.world().resource::<Preferences>().file.mix.engine - 0.95).abs() < 0.001);
         click(&mut app, SettingsAction::Adjust(25, 1));
         assert!(app.world().resource::<crate::sound::Muted>().0);
         click(&mut app, SettingsAction::Tab(Section::Display));
@@ -661,6 +896,18 @@ mod menu_tests {
         let window = app.world().get::<Window>(w).unwrap();
         assert_eq!(window.mode, bevy::window::WindowMode::Windowed);
         assert_eq!((window.width(), window.height()), (1280., 720.));
+        click(&mut app, SettingsAction::Adjust(31, -1));
+        let window = app.world().get::<Window>(w).unwrap();
+        assert_eq!((window.width(), window.height()), (2560., 1440.));
+        click(&mut app, SettingsAction::Adjust(31, 1));
+        let window = app.world().get::<Window>(w).unwrap();
+        assert_eq!((window.width(), window.height()), (1280., 720.));
+        click(&mut app, SettingsAction::Tab(Section::Voice));
+        click(&mut app, SettingsAction::Adjust(35, 1));
+        click(&mut app, SettingsAction::Adjust(36, 1));
+        let voice = &app.world().resource::<Preferences>().file.voice;
+        assert!(voice.microphone);
+        assert_eq!(voice.mode, crate::online::voice::Mode::PushToTalk);
         click(&mut app, SettingsAction::Close);
         assert!(!app.world().resource::<SettingsPanel>().open);
         assert_eq!(

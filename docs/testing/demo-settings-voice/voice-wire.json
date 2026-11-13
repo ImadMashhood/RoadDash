@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "speaker_slot": 1,
+  "listener_slot": 2,
+  "gain": 229,
+  "valid_frames": 1,
+  "malformed_discarded": true,
+  "self_echo": false,
+  "limitations": "Actual headless host pump with synthetic silence over loopback TCP. No microphone or audible voice quality test."
+}
