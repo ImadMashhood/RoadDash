@@ -4769,3 +4769,13 @@ bike contact during a bounded animation window. Each strike resolves once.
 AI exchanges end on completion or at either requested speed cutoff. Surface
 effects and audio use existing contact and surface data. Ship only recorded
 assets whose terms permit redistribution with this repository.
+
+## ADR176 — Live menu backdrop and course polish (2026-11-13)
+
+Composite the live camera beneath existing frontend gradients on cinematic
+pages. Use continuous Hills terrain normals across tiles and mipmapped grit
+without changing collision geometry. Keep vegetation render-only. Stage
+additional pedestrian crossings through the shared host admission rules and
+author Metropolis crossings from the approved source with a crossing-only
+rebake. Ground Hills mounted crossings on the road and shoulder profile.
+[Implementation and evidence](testing/course-presentation-polish/REPORT.md).

@@ -309,8 +309,8 @@ fn grass_positions(
     farms: &[(Vec3, Quat)],
 ) -> Vec<(Vec3, f32)> {
     let mut out = vec![];
-    for i in 0..((end - start) / 1.6) as u32 {
-        let s = start + i as f32 * 1.6;
+    for i in 0..((end - start) / 1.3) as u32 {
+        let s = start + i as f32 * 1.3;
         for side in [-1., 1.] {
             for row in 0..24_u32 {
                 let seed = (s as u32)
@@ -325,7 +325,7 @@ fn grass_positions(
                         + row as f32 * 4.0
                         + noise(seed + 1) * 3.);
                 let Some((p, _)) =
-                    super::props::site(track, 0, s + noise(seed + 2) * 1.5, lane, 1.1)
+                    super::props::site(track, 0, s + noise(seed + 2) * 1.25, lane, 1.1)
                 else {
                     continue;
                 };
@@ -631,7 +631,7 @@ pub(super) fn spawn(
                 ));
             }
         }
-        for z in [-12., 0., 12.] {
+        for z in [-18., -9., 0., 9., 18.] {
             let mut cow = p + q * Vec3::new(-14., 0., z);
             cow.y = super::geometry::ground_height(track, cow.x, cow.z);
             crate::environment::spawn_cow(commands, art, cow, q);

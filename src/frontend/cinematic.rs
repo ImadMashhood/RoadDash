@@ -13,12 +13,11 @@ pub(super) fn enabled(front: &Frontend, race: &Race) -> bool {
 }
 fn station(track: &Track, seconds: f32) -> f32 {
     let start = if track.metropolis.is_some() {
-        9_250.0
+        9_250.
     } else {
-        120.0
+        120.
     };
-    // A slow out-and-back camera path avoids hard loop cuts.
-    start + 140.0 * (1.0 - (seconds * 0.025).cos())
+    start + 95. * (1. - (seconds * 0.09).cos())
 }
 #[allow(clippy::too_many_arguments)]
 pub(super) fn bikes(
@@ -80,17 +79,31 @@ pub(super) fn camera(
         time.elapsed_secs()
     };
     let d = station(&track, seconds);
-    let (p, q) = track.street_sample(0, d, 0.0);
-    let (target, _) = track.street_sample(0, d + 24.0, 0.0);
+    let phase = seconds * 0.09;
+    let (p, q) = track.street_sample(0, d, 0.);
+    let forward = (q * Vec3::Z).with_y(0.).normalize_or_zero();
+    let right = Vec3::Y.cross(forward);
+    let (target, _) = track.street_sample(0, d + 28., 0.);
+    let eye =
+        p - forward * 17. + right * (5. * phase.sin()) + Vec3::Y * (10. + 3. * (1. - phase.cos()));
     for mut t in &mut cameras {
-        *t = Transform::from_translation(p + q * Vec3::new(2.8, 4.2, -9.0))
-            .looking_at(target + Vec3::Y * 1.2, Vec3::Y);
+        *t = Transform::from_translation(eye).looking_at(target + Vec3::Y * 2., Vec3::Y);
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn flight_station_moves_and_returns_to_its_start() {
+        for track in [Track::metropolis().unwrap(), Track::hills().unwrap()] {
+            let start = station(&track, 0.);
+            let period = std::f32::consts::TAU / 0.09;
+            assert!(station(&track, period * 0.5) > start + 180.);
+            assert!((station(&track, period) - start).abs() < 0.001);
+        }
+    }
+
     #[test]
     fn menu_tour_is_presentation_only_and_hides_on_race_entry() {
         let mut app = crate::game::tests::simulation();

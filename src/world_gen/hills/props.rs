@@ -2247,7 +2247,7 @@ mod tests {
             census.trees > 200
                 && census.grass_tufts > 10000
                 && census.farms == 6
-                && census.farm_cows == 18
+                && census.farm_cows == 30
         );
         assert!(census.cowboys > 3 && census.trucks > 3);
         assert!(

@@ -1,5 +1,11 @@
 # Known issues and remaining acceptance
 
+## Course presentation polish (ADR176)
+
+Matched frame-cost measurements and full-course human review remain open.
+Added pedestrian paths wait for nearby riders, clearance and a traffic gap.
+The existing Bevy 0.20 Rapier parity failures remain tracked independently.
+
 - ADR175 demo combat/audio: natural exchange frequency and audible mix still
   need human full-course review. Limb volumes approximate the animated mesh,
   and recorded rev bands use one donor engine. Both online peers need protocol 4.

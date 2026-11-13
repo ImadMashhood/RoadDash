@@ -192,6 +192,16 @@ pub fn spawn(
             );
         }
     }
+    for (index, station) in (208..5300).step_by(400).enumerate() {
+        crate::world_gen::metropolis::pedestrians::spawn_road_crossing(
+            commands,
+            art,
+            track,
+            station as f32,
+            (plan.config.road_width_m + plan.config.sidewalk_width_m) * 0.5,
+            index,
+        );
+    }
     info!(
         "CITY5300: {} complete buildings; {} blocks; {} solid bodies; {} facade IDs",
         plan.lots.len(),

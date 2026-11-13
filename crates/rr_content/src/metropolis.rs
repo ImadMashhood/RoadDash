@@ -333,7 +333,7 @@ impl Metropolis {
                 .iter()
                 .filter(|p| p.crossing_end.is_some())
                 .count()
-                > 24
+                > 40
             || self.pedestrians.iter().any(|p| {
                 p.crossing_end.is_some_and(|end| {
                     !end.iter().all(|v| v.is_finite())
@@ -624,7 +624,7 @@ mod tests {
                 .iter()
                 .filter(|p| p.crossing_end.is_some())
                 .count(),
-            13
+            16
         );
         let i = m
             .pedestrians

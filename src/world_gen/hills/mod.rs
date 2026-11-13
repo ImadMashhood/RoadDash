@@ -22,6 +22,12 @@ pub(crate) fn rendered_ground_height(track: &Track, x: f32, z: f32) -> f32 {
     geometry::ground_height(track, x, z)
 }
 
+pub(crate) fn crossing_support(track: &Track, p: Vec3) -> f32 {
+    (0..2)
+        .map(|route| geometry::crossing_support(track, route, p, 0.))
+        .fold(f32::NEG_INFINITY, f32::max)
+}
+
 #[derive(Component)]
 pub struct HillsSolid;
 #[derive(Component)]
@@ -108,6 +114,17 @@ pub fn spawn(
     {
         let _span = crate::diagnostics::loading::Span::new("hills_atmosphere");
         atmosphere::spawn(commands, meshes, materials, track, images);
+    }
+    for (index, station) in [
+        1260., 1840., 2740., 3910., 5740., 8130., 8770., 10030., 11910.,
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let lane = track.half_width(station) + 3.;
+        crate::world_gen::metropolis::pedestrians::spawn_road_crossing(
+            commands, art, track, station, lane, index,
+        );
     }
     commands.insert_resource(census);
 }

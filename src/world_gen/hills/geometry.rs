@@ -120,13 +120,35 @@ pub(super) fn ground_height(track: &Track, x: f32, z: f32) -> f32 {
         d + (c - d) * (1. - t.x) + (b - d) * (1. - t.y)
     }
 }
+pub(super) fn crossing_support(track: &Track, route: usize, p: Vec3, near: f32) -> f32 {
+    let ground = ground_height(track, p.x, p.z);
+    let (station, _, distance) = track.project_route(route, p, near);
+    if distance >= 30. || (route == 0 && bridge::on_deck(station)) {
+        return ground;
+    }
+    let (center, frame) = track.sample_route(route, station, 0.);
+    let side = ((center - p).dot((frame * Vec3::X).with_y(0.))).signum();
+    let half = track.half_width(station);
+    let (inner, iq) = track.sample_route(route, station, side * half);
+    let (outer, oq) = track.sample_route(route, station, side * 30.);
+    let width = center.xz().distance(inner.xz());
+    let height = if distance <= width {
+        let (road, q) = track.sample_route(route, station, side * half * distance / width);
+        (road + q * Vec3::Y * 0.025).y
+    } else {
+        let outer_width = center.xz().distance(outer.xz());
+        let weight = ((distance - width) / (outer_width - width)).clamp(0., 1.);
+        (inner - iq * Vec3::Y * 0.08)
+            .y
+            .lerp((outer - oq * Vec3::Y * 0.08).y, weight)
+    };
+    ground.max(height)
+}
+
 /// The same authored sand palette drives terrain vertices and wheel dust.
 pub(super) fn sand_color(station: f32, x: f32, z: f32) -> Vec3 {
-    let base = if station < 8500. {
-        Vec3::new(0.69, 0.51, 0.29)
-    } else {
-        Vec3::new(0.76, 0.61, 0.38)
-    };
+    let t = ((station - 8250.) / 500.).clamp(0., 1.);
+    let base = Vec3::new(0.69, 0.51, 0.29).lerp(Vec3::new(0.76, 0.61, 0.38), t * t * (3. - 2. * t));
     let dune = (x * 0.019 + z * 0.013).sin() * (z * 0.026 - x * 0.009).sin();
     let grit = (x * 0.071 - z * 0.058).sin() * 0.25;
     let tint = dune * 0.055 + grit * 0.022;
@@ -135,11 +157,6 @@ pub(super) fn sand_color(station: f32, x: f32, z: f32) -> Vec3 {
 /// A small original, tileable grit field adds close-up sand detail without
 /// additional draw calls or runtime texture uploads.
 fn terrain_grit() -> Image {
-    use bevy::{
-        asset::RenderAssetUsages,
-        image::{ImageAddressMode, ImageSampler, ImageSamplerDescriptor},
-        render::render_resource::{Extent3d, TextureDimension, TextureFormat},
-    };
     const SIZE: usize = 64;
     let mut pixels = Vec::with_capacity(SIZE * SIZE * 4);
     for y in 0..SIZE {
@@ -155,78 +172,23 @@ fn terrain_grit() -> Image {
             pixels.extend([channel, channel, channel, 255]);
         }
     }
-    let mut image = Image::new(
-        Extent3d {
-            width: SIZE as u32,
-            height: SIZE as u32,
-            depth_or_array_layers: 1,
-        },
-        TextureDimension::D2,
-        pixels,
-        TextureFormat::Rgba8UnormSrgb,
-        RenderAssetUsages::default(),
-    );
-    image.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
-        address_mode_u: ImageAddressMode::Repeat,
-        address_mode_v: ImageAddressMode::Repeat,
-        ..ImageSamplerDescriptor::linear()
-    });
-    image
+    crate::road_detail::image(pixels, SIZE, true)
 }
-// Two original palette rows: sand and meadow. U is cross-shoulder distance,
-// so the gravel edge ends within3.5m; UVs change only, not mesh or collision.
-fn shoulder_material(images: Option<&mut Assets<Image>>) -> StandardMaterial {
-    use bevy::{
-        asset::RenderAssetUsages,
-        image::{ImageAddressMode, ImageSampler, ImageSamplerDescriptor},
-        render::render_resource::{Extent3d, TextureDimension, TextureFormat},
-    };
-    let Some(images) = images else {
-        return StandardMaterial {
-            base_color: Color::srgb(0.32, 0.37, 0.19),
-            ..default()
-        };
-    };
-    let sand = Vec3::new(0.69, 0.51, 0.29);
-    let grass = Vec3::new(0.32, 0.37, 0.19);
-    let mut pixels = Vec::new();
-    for row in 0..2 {
-        for x in 0..128 {
-            let weight = ((x as f32 / 127. - 0.035) / 0.11).clamp(0., 1.);
-            let c = if row == 0 {
-                sand
-            } else {
-                sand.lerp(grass, weight)
-            };
-            pixels.extend([
-                (c.x * 255.) as u8,
-                (c.y * 255.) as u8,
-                (c.z * 255.) as u8,
-                255,
-            ]);
-        }
-    }
-    let mut image = Image::new(
-        Extent3d {
-            width: 128,
-            height: 2,
-            depth_or_array_layers: 1,
-        },
-        TextureDimension::D2,
-        pixels,
-        TextureFormat::Rgba8UnormSrgb,
-        RenderAssetUsages::default(),
-    );
-    image.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
-        address_mode_u: ImageAddressMode::ClampToEdge,
-        address_mode_v: ImageAddressMode::ClampToEdge,
-        ..ImageSamplerDescriptor::linear()
-    });
-    StandardMaterial {
-        base_color_texture: Some(images.add(image)),
-        perceptual_roughness: 1.,
-        ..default()
-    }
+fn terrain_color(track: &Track, p: Vec3) -> [f32; 4] {
+    let (station, _) = track.nearby_station(p.x, p.z);
+    let t = rr_core::surface::hills_meadow_weight(station);
+    let base =
+        sand_color(station, p.x, p.z).lerp(Vec3::new(0.32, 0.37, 0.19), t * t * (3. - 2. * t));
+    let strata = (p.y * 0.42).sin() * 0.045;
+    let rock = Vec3::new(0.57 + strata, 0.36 + strata, 0.20 + strata);
+    let c = base.lerp(rock, track.hills_canyon_weight(p.x, p.z));
+    Color::srgb(c.x, c.y, c.z).to_linear().to_f32_array()
+}
+fn terrain_normal(track: &Track, p: Vec3) -> [f32; 3] {
+    const STEP: f32 = 8.;
+    let dx = terrain_vertex(track, p.x + STEP, p.z).y - terrain_vertex(track, p.x - STEP, p.z).y;
+    let dz = terrain_vertex(track, p.x, p.z + STEP).y - terrain_vertex(track, p.x, p.z - STEP).y;
+    Vec3::new(-dx, 2. * STEP, -dz).normalize().to_array()
 }
 pub(super) fn spawn(
     commands: &mut Commands,
@@ -235,11 +197,10 @@ pub(super) fn spawn(
     art: &Art,
     track: &Track,
     census: &mut Census,
-    mut images: Option<&mut Assets<Image>>,
+    images: Option<&mut Assets<Image>>,
 ) {
     let mut rail_ground = super::guardrails::GroundSamples::default();
     let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
-    let shoulder = materials.add(shoulder_material(images.as_deref_mut()));
     let terrain_material = materials.add(StandardMaterial {
         base_color_texture: images.map(|images| images.add(terrain_grit())),
         perceptual_roughness: 1.,
@@ -281,21 +242,40 @@ pub(super) fn spawn(
             let origin = v[v.len() / 2];
             let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
             let mut render = crate::environment::mesh(&local, &ix);
-            let rows = v.len() / 4;
             render.insert_attribute(
                 Mesh::ATTRIBUTE_UV_0,
-                (0..rows)
-                    .flat_map(|i| {
-                        let station = a + (b - a) * i as f32 / (rows - 1) as f32;
-                        let green = rr_core::surface::hills_meadow_weight(station);
-                        [1., 0., 0., 1.].map(|u| [u, 0.25 + green * 0.5])
+                v.iter()
+                    .map(|p| [p.x * 0.18, p.z * 0.18])
+                    .collect::<Vec<_>>(),
+            );
+            render.insert_attribute(
+                Mesh::ATTRIBUTE_COLOR,
+                v.iter()
+                    .enumerate()
+                    .map(|(i, &p)| {
+                        if matches!(i % 4, 0 | 3) {
+                            terrain_color(track, p.with_y(ground_height(track, p.x, p.z)))
+                        } else {
+                            let (station, _) = track.nearby_station(p.x, p.z);
+                            let c = sand_color(station, p.x, p.z) * 0.92;
+                            Color::srgb(c.x, c.y, c.z).to_linear().to_f32_array()
+                        }
                     })
                     .collect::<Vec<_>>(),
             );
+            if let Some(bevy::mesh::VertexAttributeValues::Float32x3(normals)) =
+                render.attribute_mut(Mesh::ATTRIBUTE_NORMAL)
+            {
+                for (i, (normal, &p)) in normals.iter_mut().zip(&v).enumerate() {
+                    if matches!(i % 4, 0 | 3) {
+                        *normal = terrain_normal(track, p);
+                    }
+                }
+            }
             surface(
                 commands,
                 meshes,
-                shoulder.clone(),
+                terrain_material.clone(),
                 v,
                 ix,
                 false,
@@ -357,22 +337,18 @@ pub(super) fn spawn(
                     .map(|p| [p.x * 0.18, p.z * 0.18])
                     .collect::<Vec<_>>(),
             );
+            // Sample both sides of every vertex, including chunk boundaries.
+            // Adjacent tiles then light their shared edge with identical normals.
+            render.insert_attribute(
+                Mesh::ATTRIBUTE_NORMAL,
+                v.iter()
+                    .map(|&p| terrain_normal(track, p))
+                    .collect::<Vec<_>>(),
+            );
             render.insert_attribute(
                 Mesh::ATTRIBUTE_COLOR,
                 v.iter()
-                    .map(|p| {
-                        let (station, _) = track.nearby_station(p.x, p.z);
-                        let sand = sand_color(station, p.x, p.z);
-                        let base = sand.lerp(
-                            Vec3::new(0.32, 0.37, 0.19),
-                            rr_core::surface::hills_meadow_weight(station),
-                        );
-                        let strata = (p.y * 0.42).sin() * 0.045;
-                        let rock = Vec3::new(0.57 + strata, 0.36 + strata, 0.20 + strata);
-                        let c = base.lerp(rock, track.hills_canyon_weight(p.x, p.z));
-                        let linear = Color::srgb(c.x, c.y, c.z).to_linear();
-                        [linear.red, linear.green, linear.blue, linear.alpha]
-                    })
+                    .map(|&p| terrain_color(track, p))
                     .collect::<Vec<_>>(),
             );
             surface(
@@ -395,11 +371,33 @@ pub(super) fn spawn(
 mod tests {
     use super::*;
     #[test]
+    fn mounted_crossing_support_clears_recessed_shoulders() {
+        let track = Track::hills().unwrap();
+        for (route, station) in [(0, 6060.), (1, 6820.), (0, 7740.)] {
+            let (vertices, indices) = shoulders(&track, route, station - 2., station + 2.);
+            let mut shoulders = super::super::guardrails::GroundSamples::default();
+            shoulders.add(&vertices, &indices);
+            for lane in [-13., -10., 10., 13.] {
+                let (p, _) = track.sample_route(route, station, lane);
+                let expected = shoulders.height(&track, p);
+                let support = crossing_support(&track, route, p, station);
+                assert!(
+                    (support - expected).abs() < 0.12,
+                    "{route} {station} {lane}"
+                );
+            }
+        }
+    }
+
+    #[test]
     fn ground_grit_has_bounded_detail_and_sand_palette_covers_town_and_dunes() {
         let image = terrain_grit();
         let bytes = image.data.unwrap();
-        assert_eq!(bytes.len(), 64 * 64 * 4);
-        let values: Vec<_> = bytes.chunks_exact(4).map(|pixel| pixel[0]).collect();
+        assert_eq!(image.texture_descriptor.mip_level_count, 7);
+        let values: Vec<_> = bytes[..64 * 64 * 4]
+            .chunks_exact(4)
+            .map(|pixel| pixel[0])
+            .collect();
         assert!(values.iter().min().is_some_and(|v| *v >= 219));
         assert!(values.iter().max().is_some_and(|v| *v >= 250));
         assert!(*values.iter().max().unwrap() - *values.iter().min().unwrap() > 18);

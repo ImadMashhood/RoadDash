@@ -1,5 +1,13 @@
 # Development history
 
+## 2026-11-13 — Course presentation polish (ADR176)
+
+- Restored the live entry-menu camera and polished Hills terrain transitions.
+- Added meadow coverage, adjusted Hills population and herds, and expanded
+  pedestrian crossings on all courses.
+- Audited the live checklist and collapsed verified entries. Reconciled the
+  pending demo/menu merge before building the integrated changes.
+
 ## 2026-11-13 — Demo combat, effects and audio (ADR175)
 
 Add moving strike contact, speed-based AI disengage, rear-wheel spray and

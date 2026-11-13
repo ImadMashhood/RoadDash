@@ -86,8 +86,12 @@ pub fn update(
             for (id, result) in results {
                 if let Some(mut mesh) = meshes.get_mut(id) {
                     if let Some(tangents) = result {
-                        mesh.insert_attribute(Mesh::ATTRIBUTE_TANGENT, tangents);
-                        queue.generated += 1;
+                        if mesh
+                            .try_insert_attribute(Mesh::ATTRIBUTE_TANGENT, tangents)
+                            .is_ok()
+                        {
+                            queue.generated += 1;
+                        }
                     } else {
                         queue.unsupported += 1;
                     }
@@ -107,9 +111,15 @@ pub fn update(
             }
             queue.done.insert(id);
             let Some(mesh) = meshes.get(id) else { continue };
-            if mesh.contains_attribute(Mesh::ATTRIBUTE_TANGENT)
-                || !mesh.contains_attribute(Mesh::ATTRIBUTE_UV_0)
-                || !mesh.contains_attribute(Mesh::ATTRIBUTE_NORMAL)
+            // Streamed render-only meshes can drop CPU data before this job runs.
+            if !matches!(
+                mesh.try_contains_attribute(Mesh::ATTRIBUTE_TANGENT),
+                Ok(false)
+            ) || !matches!(mesh.try_contains_attribute(Mesh::ATTRIBUTE_UV_0), Ok(true))
+                || !matches!(
+                    mesh.try_contains_attribute(Mesh::ATTRIBUTE_NORMAL),
+                    Ok(true)
+                )
             {
                 continue;
             }

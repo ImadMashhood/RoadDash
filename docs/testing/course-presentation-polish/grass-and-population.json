@@ -1,0 +1,13 @@
+{
+  "hills": {
+    "city_pedestrians": 14,
+    "grass_tufts": 111779,
+    "grass_batches": 64,
+    "farm_cows": 30
+  },
+  "metropolis": {
+    "grass_tufts": 75516,
+    "grass_batches": 478,
+    "grass_triangles": 1359288
+  }
+}

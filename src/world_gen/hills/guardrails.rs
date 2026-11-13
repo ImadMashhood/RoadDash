@@ -41,7 +41,7 @@ impl GroundSamples {
                 .collect(),
         });
     }
-    fn height(&self, track: &Track, p: Vec3) -> f32 {
+    pub(super) fn height(&self, track: &Track, p: Vec3) -> f32 {
         let mut height = if track.is_hills() {
             geometry::ground_height(track, p.x, p.z)
         } else {
