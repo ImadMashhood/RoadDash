@@ -49,10 +49,12 @@ impl Decodable for EngineSource {
             control: self.0.clone(),
             voice: if std::env::var_os("ROADDASH_ENGINE_SYNTH").is_some() {
                 Voice::Synth(EngineSignal::default())
-            } else if std::env::var_os("ROADDASH_ENGINE_TWIN").is_some() {
-                Voice::Twin(TwinEngine::default())
-            } else {
+            } else if std::env::var_os("ROADDASH_ENGINE_TWIN").is_none()
+                && std::env::var_os("ROADDASH_ENGINE_STREET").is_some()
+            {
                 Voice::Street(StreetEngine::default())
+            } else {
+                Voice::Twin(TwinEngine::default())
             },
         }
     }

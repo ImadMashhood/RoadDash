@@ -30,4 +30,4 @@ These CC0 Freesound previews were trimmed, gain-adjusted and converted to mono 2
 | `farm.wav` | [billgrip](https://freesound.org/people/billgrip/sounds/490850/) | [HQ MP3](https://cdn.freesound.org/previews/490/490850_2147090-hq.mp3) | 4–16 |
 | `desert.wav` | [PLukx](https://freesound.org/people/PLukx/sounds/256125/) | [HQ MP3](https://cdn.freesound.org/previews/256/256125_1944550-hq.mp3) | 3–15 |
 
-The siren source credits MultiMax2121 for the original recording. Nitro uses the existing egomassive rev recording. The default bike engine uses the existing [75 cm³ motorcycle acceleration](https://bigsoundbank.com/75-cm3-motorcycle-acceleration-s0603.html) recordings by Joseph SARDIN.
+The siren source credits MultiMax2121 for the original recording. Nitro uses the existing egomassive rev recording. The optional street voice uses the existing [75 cm³ motorcycle acceleration](https://bigsoundbank.com/75-cm3-motorcycle-acceleration-s0603.html) recordings by Joseph SARDIN.

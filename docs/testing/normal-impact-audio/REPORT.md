@@ -4,7 +4,7 @@ Normal is the default for offline races. Choose Hard under F2 → Rider Gear →
 
 Confirmed crashes emit a one-shot at their world-space contact. Physical collisions use a solver contact when available, with a collider-surface fallback for assisted contacts. Confirmed melee knockoffs use the defender-side impact. The chase camera is the stereo listener. Rider and wreck runovers have distinct samples. Online audio keeps the existing event IDs and uses an optional runover discriminator with a compatible legacy cue.
 
-The default engine uses the existing street motorcycle samples, driven by RoadDash RPM, load and shifts. The prior twin remains available through `ROADDASH_ENGINE_TWIN=1`. Wind, ambience, race cues, and one-shots use source recordings. [Source ledger and edit details](../../third_party/IMPACT_RECORDINGS.md).
+The 689 cc parallel twin is the default engine voice, driven by RoadDash RPM, load and shifts. Set `ROADDASH_ENGINE_STREET=1` to audition the street motorcycle samples. Wind, ambience, race cues, and one-shots use source recordings. [Source ledger and edit details](../../third_party/IMPACT_RECORDINGS.md).
 
 Full-course human comeback and headphone mix acceptance remain open.
 

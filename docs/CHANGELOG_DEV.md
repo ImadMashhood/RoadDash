@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-14 — Parallel-twin engine restored (ADR198)
+
+- Restored the 689 cc parallel twin as the default motorcycle voice.
+
 ## 2026-11-13 — Two Hills cattle crossings (ADR197)
 
 - Kept the two crossings shown in the encounter captures.

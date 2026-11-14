@@ -4938,3 +4938,9 @@ strike and gunfire effects.
 
 Retain the earlier and later cattle crossings at 8.87 and 11.80 km. Remove
 the two intermediate crossings and their placement reservations.
+
+## ADR198 — Restore the parallel-twin engine voice (2026-11-14)
+
+Restore the ADR179 parallel twin as the default at the user’s request.
+Keep the sourced street voice available for comparison via
+`ROADDASH_ENGINE_STREET=1` and retain the recorded impact and ambience mix.
