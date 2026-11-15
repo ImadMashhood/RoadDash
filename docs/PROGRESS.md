@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-14 race polish follow-up (ADR199): Two requirements verified and two remain open.
+248 verified / 365 open. [Implementation and evidence](testing/race-polish-followup/REPORT.md).
+
 2026-11-13 Hills cattle and Western town encounters (ADR196): HILLS-CATTLE-01
 and HILLS-TOWN-01 added open. 246 verified / 363 open.
 [Implementation and evidence](testing/hills-encounters/REPORT.md).
@@ -572,6 +575,10 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **RACE-FINISH-01** Move each built-in point-to-point finish one kilometre earlier. Reason: shorten the races while retaining the physical roads; part: 01; dependencies: existing race intervals and ordered gates; acceptance: earlier finish on each course, retained split and shortcut checks; verification: route traversal tests and native smoke in the [race polish report](testing/race-polish-followup/REPORT.md).
+
+- [x] **RACE-RIDEOVER-01** Pass through soft targets with a hop and no contact speed loss, and pass a slow rider when a lane is clear. Reason: riders lose speed on soft impacts and rivals queue behind the player; part: 01; dependencies: existing crash, contact classification and passing planner; acceptance: preserve horizontal entry velocity, move targets, keep solid hazards, and pass the braking player when a safe line exists; verification: physical contact and passing regressions in the [race polish report](testing/race-polish-followup/REPORT.md).
+
 - [x] **HILLS-BEND-01** Curve the western main street and smooth low-speed AI lean. Reason: the merged western street was straight and slow rivals snapped into hard bank; part:06; dependencies: HILLS-01 and rival steering; acceptance: shared left-right road bend, flat town interior, bounded slow bank and gradual reversal in both adapters; verification: route and bank tests, native Hills revision survey and recovery smoke. [Evidence](testing/western-bends/REPORT.md).
 
 - [x] **GEAR-03** Rename the City roster and exchange offline grid slots on base suit selection. Reason: the player should be able to equip each named rider without duplicating their starting position or palette; part:12; dependencies: GEAR-02 and authored grid slots; acceptance: short race names, preserved palettes and slots, one-for-one exchange on start and retry, Classic palette matching and independent custom helmet finishes; verification: roster permutation, offline retry and gear material tests. [Evidence](testing/rider-gear/REPORT.md#named-roster-and-offline-grid-swaps).
@@ -1066,7 +1073,7 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
-- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, twice ballistic rise within existing energy and unchanged upright rear-contact/rig policy; verification: core height/energy tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
+- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, bounded arcade hop with preserved horizontal speed per ADR199 and unchanged upright rear-contact/rig policy; verification: core hop-height tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
@@ -1422,6 +1429,8 @@ pending terrain and crossing verification gates.
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](testing/course-presentation-polish/REPORT.md).
 
+- [ ] **HILLS-POLISH-02** Improve Hills bridge approach, grass and mounted movement. Reason: repair the visible bridge seam and improve roadside presentation; part: 06; dependencies: HILLS-01 and HILLS-CATTLE-01; acceptance: closed visual join, bounded grass, slower cattle, animated mounted cowboy legs and measured cost; verification: geometry checks and native review in the [race polish report](testing/race-polish-followup/REPORT.md).
+
 - [ ] **HILLS-CATTLE-01** Correct the Hills cattle formation and heading at two crossing sites. Reason: the original cattle slide sideways in one row; part: 06; dependencies: COURSE-CROSSING-01 and cow patrols; acceptance: two groups of six, two rows of three, correct heading in both directions, usable ground and road contact; verification: formation test, native smoke and race-speed review in the [Hills encounters report](testing/hills-encounters/REPORT.md).
 
 - [ ] **HILLS-TOWN-01** Stage three brawls and two shootouts in Western town. Reason: add activity to the shared main street; part: 06; dependencies: HILLS-03 and pedestrian rigs; acceptance: two roadside brawls and one in the road, two roadside shootouts, alternating actions with localized sound and readable poses; verification: scene fixture, native smoke and race-speed review in the [Hills encounters report](testing/hills-encounters/REPORT.md).
@@ -1765,6 +1774,8 @@ pending terrain and crossing verification gates.
 - [ ] **AUDIO-010** Blend town/farm/cliff/coast ambience; visible livestock/tractors must match their sounds; keep music on a separate licensed, duckable, streamer-safe bus.
 
 - [ ] **AUDIO-011** Evaluate Kira only if needed; if chosen, avoid running conflicting default Bevy audio and Kira backends.
+
+- [ ] **RACE-MIX-HUD-01** Replace the race HUD, soften wind, and add low-RPM traffic audio. Reason: keep race information readable and the traffic mix distinct; part: 15; dependencies: grouped settings and spatial audio; acceptance: speed and nearby-rival readouts, softer wind and spatial car and heavy vehicle voices; verification: HUD and audio checks plus human race review in the [race polish report](testing/race-polish-followup/REPORT.md).
 
 - [ ] **AUDIO-IMPACT-01** Verify the recorded impact mix and contact placement. Reason: the synthesized impacts lack weight and audible location; part: 15; dependencies: AUDIO-004, AUDIO-005 and AUDIO-009; acceptance: licensed distinct impact and runover sounds, one-shot at the confirmed contact, stereo readability next to and behind the player and usable loudness in a pack; verification: contact and wire regressions, native smoke and headphone playtest in the [audio report](testing/normal-impact-audio/REPORT.md).
 

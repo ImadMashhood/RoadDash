@@ -351,7 +351,13 @@ impl Plugin for RoadSimulationPlugin {
                     .after(SimSet::Gameplay)
                     .before(PhysicsSet::SyncBackend),
             )
-            .add_systems(Update, crate::world_gen::hills::river::animate)
+            .add_systems(
+                Update,
+                (
+                    crate::world_gen::hills::river::animate,
+                    crate::world_gen::hills::mounted::animate_rider_legs,
+                ),
+            )
             .add_systems(
                 PostUpdate,
                 crate::map_fx::animate
@@ -555,7 +561,7 @@ impl Plugin for RoadAudioPlugin {
             .add_systems(Startup, crate::sound::setup.in_set(StartupSet::Audio))
             .add_systems(
                 PostUpdate,
-                crate::sound::update_bikes
+                (crate::sound::update_bikes, crate::sound::update_traffic)
                     .after(game::camera)
                     .before(bevy::transform::TransformSystems::Propagate),
             )

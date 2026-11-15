@@ -12,7 +12,7 @@ fn foot_scene(distance: f32, bike_offset: f32) -> (App, Entity, Entity, Entity, 
         .unwrap();
     let track = app.world().resource::<Track>();
     let d = if distance < 0.0 {
-        track.length + distance
+        track.race_interval().finish + distance
     } else {
         distance
     };
@@ -261,7 +261,7 @@ fn actual_crash_five_meters_before_finish_allows_a_manual_foot_finish() {
         let (p, last) = {
             let t = app.world().resource::<Track>();
             (
-                t.sample(t.length - 5.0, 0.0).0,
+                t.sample(t.race_interval().finish - 5.0, 0.0).0,
                 t.definition.checkpoints.len() - 1,
             )
         };

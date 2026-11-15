@@ -302,17 +302,21 @@ pub(super) fn field_clear(p: Vec3, farms: &[(Vec3, Quat)]) -> bool {
         local.x.abs() > 35. || local.z.abs() > 95.
     })
 }
+const GRASS_SPACING: f32 = 1.1;
+const GRASS_ROWS: u32 = 24;
+const DENSE_GRASS_ROWS: u32 = 6;
+
 fn grass_positions(
     track: &Track,
     start: f32,
     end: f32,
     farms: &[(Vec3, Quat)],
-) -> Vec<(Vec3, f32)> {
+) -> Vec<(Vec3, f32, u32)> {
     let mut out = vec![];
-    for i in 0..((end - start) / 1.3) as u32 {
-        let s = start + i as f32 * 1.3;
+    for i in 0..((end - start) / GRASS_SPACING) as u32 {
+        let s = start + i as f32 * GRASS_SPACING;
         for side in [-1., 1.] {
-            for row in 0..24_u32 {
+            for row in 0..GRASS_ROWS {
                 let seed = (s as u32)
                     .wrapping_mul(97)
                     .wrapping_add(row * 31)
@@ -320,12 +324,15 @@ fn grass_positions(
                 if noise(seed) < 0.12 + 0.16 * (s * 0.023 + row as f32 * 0.7).sin() {
                     continue;
                 }
-                let lane = side
-                    * (if s >= 8000. { 100. } else { 18. }
-                        + row as f32 * 4.0
-                        + noise(seed + 1) * 3.);
+                let verge = if s >= 8000. { 42. } else { 12. };
+                let spread = if row < 12 {
+                    row as f32 * 1.7
+                } else {
+                    24. + (row - 12) as f32 * 6.6
+                };
+                let lane = side * (verge + spread + noise(seed + 1) * 1.6);
                 let Some((p, _)) =
-                    super::props::site(track, 0, s + noise(seed + 2) * 1.25, lane, 1.1)
+                    super::props::site(track, 0, s + noise(seed + 2) * GRASS_SPACING, lane, 1.1)
                 else {
                     continue;
                 };
@@ -336,7 +343,7 @@ fn grass_positions(
                 {
                     continue;
                 }
-                out.push((p, noise(seed + 3)));
+                out.push((p, noise(seed + 3), 2 + u32::from(row < DENSE_GRASS_ROWS)));
             }
         }
     }
@@ -777,10 +784,10 @@ pub(super) fn spawn(
             let mut vertices = vec![];
             let mut indices = vec![];
             let mut colors = vec![];
-            for (p, seed) in placements {
-                for blade in 0..3 {
+            for (p, seed, blades) in placements {
+                for blade in 0..blades {
                     let angle = seed * std::f32::consts::TAU + blade as f32 * 2.1;
-                    let side = Vec3::new(angle.cos(), 0., angle.sin()) * 0.14;
+                    let side = Vec3::new(angle.cos(), 0., angle.sin()) * (0.19 + seed * 0.03);
                     let bend = Vec3::new(angle.sin(), 0., angle.cos()) * 0.16;
                     let h = 0.39 + seed * 0.41;
                     let k = vertices.len() as u32;
@@ -823,6 +830,24 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn denser_grass_keeps_near_and_far_rows_under_the_old_triangle_ceiling() {
+        let track = Track::hills().unwrap();
+        let placements = grass_positions(&track, 1500., 1564., &[]);
+        let old_batch_triangle_ceiling = (64. / 1.3) as usize * 2 * 24 * 3;
+        let triangles: usize = placements
+            .iter()
+            .map(|(_, _, blades)| *blades as usize)
+            .sum();
+        assert!(triangles < old_batch_triangle_ceiling);
+        assert!(placements.iter().any(|(_, _, blades)| *blades == 3));
+        assert!(placements.iter().any(|(_, _, blades)| *blades == 2));
+        for (point, _, _) in placements {
+            let (station, _, distance) = track.project_route(0, point, 1500.);
+            assert!(distance >= track.half_width(station) + 4.1);
+        }
+    }
+
     #[test]
     fn reused_metropolis_farm_props_are_bounded_supported_and_road_clear() {
         let track = Track::hills().unwrap();

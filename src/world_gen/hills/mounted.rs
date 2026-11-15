@@ -34,6 +34,12 @@ pub struct MountedLimb {
     leg: usize,
     lower: bool,
 }
+#[derive(Component)]
+pub struct MountedRiderLimb {
+    index: usize,
+    side: f32,
+    lower: bool,
+}
 fn center(track: &Track, index: usize) -> (Vec3, Quat) {
     let (route, station, lane) = SITES[index];
     let (mut p, q) = track.sample_route(route, station, 0.);
@@ -58,6 +64,9 @@ pub(super) fn reserved(track: &Track, point: Vec3, radius: f32) -> bool {
 fn phase(index: usize, elapsed: f32) -> f32 {
     elapsed.max(0.) * 0.08 + index as f32 * 1.17
 }
+fn crossing_cycle(index: usize, elapsed: f32) -> f32 {
+    (elapsed.max(0.) * 0.04 + index as f32 * 0.17).rem_euclid(1.)
+}
 /// Absolute-clock evaluation means pause, restart and a late-joining guest do
 /// not accumulate a different route phase. Road/shoulder collision is unchanged.
 pub fn pose(track: &Track, index: usize, elapsed: f32) -> Transform {
@@ -65,7 +74,7 @@ pub fn pose(track: &Track, index: usize, elapsed: f32) -> Transform {
     if (CROSSING_START..CROSSING_END).contains(&index) {
         // Pause at each side before a brisk, deterministic street crossing.
         // Both network peers evaluate the same absolute-clock position.
-        let cycle = (elapsed.max(0.) * 0.04 + index as f32 * 0.17).rem_euclid(1.);
+        let cycle = crossing_cycle(index, elapsed);
         let (across, direction) = if cycle < 0.2 {
             (-14., 1.)
         } else if cycle < 0.45 {
@@ -102,6 +111,18 @@ fn leg_rotation(index: usize, leg: usize, lower: bool, elapsed: f32) -> Quat {
     } else {
         0.25 * stride
     })
+}
+fn rider_leg_rotation(index: usize, side: f32, lower: bool, elapsed: f32) -> Quat {
+    let weight = if (CROSSING_START..CROSSING_END).contains(&index) {
+        let cycle = crossing_cycle(index, elapsed);
+        // Blend the motion in and out as the horse leaves or reaches the verge.
+        let walk = |start: f32, end: f32| ((cycle - start).min(end - cycle) * 50.).clamp(0., 1.);
+        walk(0.2, 0.45).max(walk(0.7, 1.))
+    } else {
+        1.
+    };
+    let sway = (elapsed.max(0.) * 5.8 + index as f32).sin() * side * weight;
+    Quat::from_rotation_x(sway * if lower { -0.22 } else { 0.12 })
 }
 fn surface_height(track: &Track, x: f32, z: f32, index: usize) -> f32 {
     if (CROSSING_START..CROSSING_END).contains(&index) {
@@ -189,7 +210,6 @@ fn body(index: usize) -> Model {
     } else {
         [0.18, 0.36, 0.46]
     };
-    let denim = [0.13, 0.18, 0.24];
     let skin = [0.66, 0.43, 0.28];
     m.ellipsoid(
         Vec3::new(0., 2.08, -0.13),
@@ -230,17 +250,6 @@ fn body(index: usize) -> Model {
         );
     }
     for side in [-1., 1.] {
-        let hip = Vec3::new(side * 0.16, 1.85, -0.1);
-        let knee = Vec3::new(side * 0.48, 1.52, 0.23);
-        let ankle = Vec3::new(side * 0.46, 1.02, 0.12);
-        m.rod(hip, knee, 0.12, denim);
-        m.rod(knee, ankle, 0.095, denim);
-        m.ellipsoid(
-            ankle + Vec3::new(0., -0.02, 0.10),
-            Vec3::new(0.12, 0.09, 0.22),
-            leather,
-            0.,
-        );
         m.rod(
             Vec3::new(side * 0.27, 2.31, -0.1),
             Vec3::new(side * 0.33, 2.08, 0.15),
@@ -279,6 +288,29 @@ pub fn spawn(
         base_color: Color::WHITE,
         perceptual_roughness: 0.88,
         ..default()
+    });
+    let rider_legs = [-1., 1.].map(|side| {
+        let hip = Vec3::new(side * 0.16, 1.85, -0.1);
+        let knee = Vec3::new(side * 0.48, 1.52, 0.23);
+        let ankle = Vec3::new(side * 0.46, 1.02, 0.12);
+        let denim = [0.13, 0.18, 0.24];
+        let mut thigh = Model::default();
+        thigh.rod(Vec3::ZERO, knee - hip, 0.12, denim);
+        let mut shin = Model::default();
+        shin.rod(Vec3::ZERO, ankle - knee, 0.095, denim);
+        shin.ellipsoid(
+            ankle - knee + Vec3::new(0., -0.02, 0.10),
+            Vec3::new(0.12, 0.09, 0.22),
+            [0.30, 0.17, 0.08],
+            0.,
+        );
+        (
+            side,
+            hip,
+            knee - hip,
+            meshes.add(thigh.mesh()),
+            meshes.add(shin.mesh()),
+        )
     });
     for index in 0..COUNT {
         let root = commands
@@ -319,6 +351,34 @@ pub fn spawn(
                 ActiveEvents::COLLISION_EVENTS,
             ))
             .id();
+        for (side, hip, knee, thigh, shin) in &rider_legs {
+            let thigh = commands
+                .spawn((
+                    MountedRiderLimb {
+                        index,
+                        side: *side,
+                        lower: false,
+                    },
+                    Mesh3d(thigh.clone()),
+                    MeshMaterial3d(material.clone()),
+                    Transform::from_translation(*hip)
+                        .with_rotation(rider_leg_rotation(index, *side, false, 0.)),
+                    ChildOf(root),
+                ))
+                .id();
+            commands.spawn((
+                MountedRiderLimb {
+                    index,
+                    side: *side,
+                    lower: true,
+                },
+                Mesh3d(shin.clone()),
+                MeshMaterial3d(material.clone()),
+                Transform::from_translation(*knee)
+                    .with_rotation(rider_leg_rotation(index, *side, true, 0.)),
+                ChildOf(thigh),
+            ));
+        }
         for leg in 0..4 {
             let side = if leg % 2 == 0 { -1. } else { 1. };
             let z = if leg < 2 { 0.64 } else { -0.64 };
@@ -415,6 +475,14 @@ pub(crate) fn update(
         transform.rotation = leg_rotation(limb.index, limb.leg, limb.lower, race.elapsed);
     }
 }
+pub(crate) fn animate_rider_legs(
+    race: Res<Race>,
+    mut limbs: Query<(&MountedRiderLimb, &mut Transform)>,
+) {
+    for (limb, mut transform) in &mut limbs {
+        transform.rotation = rider_leg_rotation(limb.index, limb.side, limb.lower, race.elapsed);
+    }
+}
 /// The horse uses the existing quadruped knockdown; its rider gets a separate
 /// eleven-part NPC body and returns only when the horse's occupancy check passes.
 pub fn sync_cowboy_ragdolls(
@@ -450,6 +518,20 @@ pub fn sync_cowboy_ragdolls(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn rider_legs_flex_in_opposition_and_stop_during_crossing_waits() {
+        let first = rider_leg_rotation(0, 1., false, 0.27);
+        let opposite = rider_leg_rotation(0, -1., false, 0.27);
+        let shin = rider_leg_rotation(0, 1., true, 0.27);
+        assert!(first.angle_between(Quat::IDENTITY) > 0.1);
+        assert!(first.angle_between(opposite.inverse()) < 0.001);
+        assert!(shin.angle_between(first) > 0.3);
+        let crossing = CROSSING_START;
+        let wait = (1.1 - crossing as f32 * 0.17) / 0.04;
+        assert_eq!(rider_leg_rotation(crossing, 1., true, wait), Quat::IDENTITY);
+    }
+
     #[test]
     fn mounted_patrols_stay_grounded_clear_of_both_roads_and_inside_reserved_envelopes() {
         let track = Track::hills().unwrap();

@@ -582,7 +582,7 @@ fn capture_mounted(mut capture: ResMut<MountedContact>, riders: Query<(&Recovery
     }
 }
 #[test]
-fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
+fn pedestrian_runner_and_wreck_contacts_apply_vertical_only_chassis_response() {
     use crate::sound::{AudioCue, Cue};
     for kind in ["pedestrian", "runner", "wreck"] {
         let mut app = game::tests::simulation();
@@ -608,7 +608,7 @@ fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
                 impact_velocity: forward * 30.0,
                 ..default()
             },
-            Velocity::zero(),
+            Velocity::linear(forward * 30.0),
         ));
         let point = pose.translation + forward * 2.5;
         let mut walking_owner = None;
@@ -694,7 +694,11 @@ fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
         assert!(runovers[0].position.distance(point) < 2.0, "{kind}");
         let result = app.world().resource::<MountedContact>();
         assert!(result.3, "{kind} ejected rider");
-        assert!(result.2 > 20.0, "{kind} stopped bike: {}", result.2);
+        assert!(
+            (result.2 - 30.).abs() < 0.5,
+            "{kind} changed forward speed: {}",
+            result.2
+        );
         assert!(
             app.world().get::<Rider>(owner).unwrap().hop_velocity > 0.0,
             "{kind} missed ride-over lift"

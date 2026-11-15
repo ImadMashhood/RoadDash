@@ -4944,3 +4944,16 @@ the two intermediate crossings and their placement reservations.
 Restore the ADR179 parallel twin as the default at the user’s request.
 Keep the sourced street voice available for comparison via
 `ROADDASH_ENGINE_STREET=1` and retain the recorded impact and ambience mix.
+
+## ADR199 — Shorter race windows and race feedback (2026-11-14)
+
+Move active point-to-point finishes one kilometre earlier with unchanged
+physical routes and skip gates outside the active window. Replace the map and
+standings with speed, race position and the closest signed rival gap. Keep
+legacy settings readable and attenuate the existing wind recording. Suppress
+solver response on mounted bike contacts with soft targets and apply bounded
+knockdown or target momentum and vertical hop through gameplay. This replaces
+the earlier requirement to fund the hop from the attacking bike’s horizontal
+kinetic energy. Admit predicted moving leaders to the existing safe passing
+planner earlier.
+[Implementation and evidence](testing/race-polish-followup/REPORT.md).

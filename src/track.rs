@@ -41,10 +41,31 @@ impl Track {
         } else {
             rr_core::race::RaceInterval {
                 start: 0.,
-                finish: self.length,
+                finish: self.length
+                    - if matches!(
+                        self.definition.id.as_str(),
+                        "hills-01" | "valley-run-01" | "city-run-5300"
+                    ) {
+                        1000.
+                    } else {
+                        0.
+                    },
             }
         }
     }
+    pub fn gate_station(&self, index: usize) -> Option<f32> {
+        let gate = self.definition.checkpoints.get(index)?;
+        let station = gate.fraction * self.length;
+        let finish = self.race_interval().finish;
+        if self.definition.closed {
+            Some(station)
+        } else if index + 1 == self.definition.checkpoints.len() {
+            Some(finish)
+        } else {
+            (station < finish).then_some(station)
+        }
+    }
+
     pub fn grid_station(&self, offset: f32) -> f32 {
         self.race_interval().grid_station(offset)
     }
@@ -574,13 +595,14 @@ impl GateProgress {
         if after <= before || after - before > 30.0 {
             return;
         }
-        let gate = &track.definition.checkpoints[self.next];
-        let base =
-            if track.metropolis.is_some() && self.next + 1 == track.definition.checkpoints.len() {
-                track.race_interval().finish
-            } else {
-                gate.fraction * track.length
-            };
+        while self.next + 1 < track.definition.checkpoints.len()
+            && track.gate_station(self.next).is_none()
+        {
+            self.next += 1;
+        }
+        let Some(base) = track.gate_station(self.next) else {
+            return;
+        };
         let target = if track.definition.closed {
             base + ((before - base) / track.length).ceil() * track.length
         } else {
@@ -855,6 +877,34 @@ mod tests {
             }
         }
     }
+    #[test]
+    fn built_in_point_to_point_finishes_move_back_without_rebaking_roads() {
+        for track in [
+            Track::hills().unwrap(),
+            Track::from_json(include_str!("../content/tracks/valley.json")).unwrap(),
+            Track::from_json(include_str!("../content/tracks/city5300.json")).unwrap(),
+        ] {
+            let finish = track.race_interval().finish;
+            assert_eq!(finish, track.length - 1000.);
+            let mut gates = GateProgress::default();
+            let mut start = 0.;
+            while start < finish {
+                let end = (start + 5.).min(finish);
+                gates.observe(
+                    &track,
+                    track.sample(start, 0.).0,
+                    track.sample(end, 0.).0,
+                    start,
+                    end,
+                );
+                assert_eq!(gates.completed_laps, u32::from(end == finish));
+                start = end;
+            }
+        }
+        let circuit = Track::default();
+        assert_eq!(circuit.race_interval().finish, circuit.length);
+    }
+
     #[test]
     fn ordered_physical_gates_allow_a_full_race_and_reject_shortcuts_reverse_and_verge_misses() {
         let track = Track::from_json(include_str!("../content/tracks/valley.json")).unwrap();

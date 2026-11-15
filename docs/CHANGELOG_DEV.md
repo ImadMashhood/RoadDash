@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-14 — Race polish follow-up (ADR199)
+
+- Shortened the built-in point-to-point races by one kilometre and replaced the race map and standings with a speedometer and signed nearby gap.
+- Reduced wind gain, added simulated low-RPM traffic voices, revised soft-target hits and early passing, and refined Hills roadside scenery.
+
 ## 2026-11-14 — Parallel-twin engine restored (ADR198)
 
 - Restored the 689 cc parallel twin as the default motorcycle voice.

@@ -193,6 +193,35 @@ pub fn slow_queue_ahead(lane: f32, cruise: f32, rider: Car) -> bool {
         && rider.speed < cruise - 3.
         && (rider.lane - lane).abs() < rider.half_width + 1.3
 }
+/// Start evaluating a pass while a rider is still moving when either of our
+/// racing lines closes into them within the same horizon used for planning.
+pub fn leader_blocks_line(input: Request, rider: Car, local_horizon: Option<f32>) -> bool {
+    if rider.gap <= 0. {
+        return false;
+    }
+    let pace = input.cruise.max(input.speed).max(1.);
+    let horizon = forecast_horizon(input.speed, rider, local_horizon);
+    [input.lane, input.desired].into_iter().any(|line| {
+        !clear_local(
+            input.lane,
+            line,
+            pace,
+            rider,
+            horizon,
+            local_horizon.is_some(),
+        )
+    })
+}
+
+fn forecast_horizon(speed: f32, car: Car, local_horizon: Option<f32>) -> f32 {
+    let full = (2.5 + speed / 12.0).clamp(6.0, 7.0);
+    if car.speed < 0. || car.lateral_speed.abs() > 0.25 {
+        full
+    } else {
+        local_horizon.unwrap_or(full).clamp(3.5, full)
+    }
+}
+
 /// Filter resting contact-solver jitter without discarding meaningful backing.
 pub fn rider_forward_speed(speed: f32) -> f32 {
     if speed.abs() < 0.1 { 0. } else { speed }
@@ -399,16 +428,7 @@ impl Memory {
             }
         }
         let requested = self.pass.map_or(desired, |(held, _)| held);
-        let full_horizon = (2.5 + speed / 12.0).clamp(6.0, 7.0);
-        let horizon = |car: Car| {
-            if car.speed < 0. || car.lateral_speed.abs() > 0.25 {
-                full_horizon
-            } else {
-                local_horizon
-                    .unwrap_or(full_horizon)
-                    .clamp(3.5, full_horizon)
-            }
-        };
+        let horizon = |car| forecast_horizon(speed, car, local_horizon);
         let safe = |to, pace| {
             let current = speed.max(1.);
             cars.iter().all(|c| {
@@ -778,6 +798,55 @@ mod tests {
         };
         assert_eq!(reversing.lane_at(12.), -20.);
     }
+    #[test]
+    fn moving_leader_enters_planner_before_the_close_pass_window() {
+        let request = Request {
+            lane: 1.,
+            speed: 35.,
+            desired: 1.,
+            cruise: 43.,
+            bounds: (-6., 6.),
+        };
+        let player = Car {
+            half_width: 0.36,
+            half_length: 1.05,
+            ..car(28., 1., 35.)
+        };
+        assert!(!slow_queue_ahead(request.lane, request.cruise, player));
+        for horizon in [None, Some(local_flow_horizon(request.speed))] {
+            assert!(leader_blocks_line(request, player, horizon));
+            assert!(!leader_blocks_line(
+                request,
+                Car {
+                    lane: -3.,
+                    ..player
+                },
+                horizon
+            ));
+            assert!(!leader_blocks_line(
+                request,
+                Car {
+                    speed: 43.,
+                    ..player
+                },
+                horizon
+            ));
+            assert!(!leader_blocks_line(
+                request,
+                Car {
+                    gap: -28.,
+                    ..player
+                },
+                horizon
+            ));
+            let plan = Memory::default().plan_local(request, &[player], horizon, |_, _| true);
+            assert!(
+                plan.avoiding && (plan.lane - request.lane).abs() > 1.7,
+                "{plan:?}"
+            );
+        }
+    }
+
     #[test]
     fn slow_rider_queue_is_a_hazard_without_car_traffic() {
         let rider = Car {

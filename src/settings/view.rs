@@ -251,8 +251,6 @@ fn caption(row: usize) -> &'static str {
         40 => "Select rider",
         41 => "Mute rider",
         42 => "World shadows",
-        43 => "Minimap",
-        44 => "Standings",
         45 => "Base suit",
         46 => "Helmet model",
         47 => "Rival difficulty",
@@ -327,8 +325,6 @@ fn value(
         39 => pretty_binding(&voice.push_key),
         40 => target().map_or_else(|| "Select".into(), |p| p.name.clone()),
         42 => on(prefs.file.shadows).into(),
-        43 => on(prefs.file.show_minimap).into(),
-        44 => on(prefs.file.show_standings).into(),
         45 => prefs.file.gear.suit.name().into(),
         46 => prefs.file.gear.helmet.name().into(),
         47 => match prefs.file.rival_difficulty {

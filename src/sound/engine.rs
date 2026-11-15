@@ -11,14 +11,16 @@ use bevy::{
     prelude::*,
 };
 
-use super::engine_signal::{EngineSignal, RATE, StreetEngine, TwinEngine};
+use super::engine_signal::{
+    EngineSignal, RATE, StreetEngine, TrafficEngine, TrafficEngineKind, TwinEngine,
+};
 
 #[derive(Clone, Default)]
 pub(crate) struct EngineControl(Arc<AtomicU32>);
 
 impl EngineControl {
     pub(crate) fn update(&self, rpm: f32, throttle: f32, gear: usize) {
-        let rpm = rpm.round().clamp(1200., 10500.) as u32;
+        let rpm = rpm.round().clamp(650., 10500.) as u32;
         let load = (throttle.clamp(0., 1.) * 255.).round() as u32;
         self.0.store(
             rpm | (load << 14) | ((gear.min(5) as u32) << 22),
@@ -28,10 +30,14 @@ impl EngineControl {
 }
 
 #[derive(Asset, TypePath)]
-pub(crate) struct EngineSource(pub(crate) EngineControl);
+pub(crate) struct EngineSource(
+    pub(crate) EngineControl,
+    pub(crate) Option<TrafficEngineKind>,
+);
 
 enum Voice {
     Twin(TwinEngine),
+    Traffic(TrafficEngine),
     Street(StreetEngine),
     Synth(EngineSignal),
 }
@@ -47,7 +53,9 @@ impl Decodable for EngineSource {
     fn decoder(&self) -> Decoder {
         Decoder {
             control: self.0.clone(),
-            voice: if std::env::var_os("ROADDASH_ENGINE_SYNTH").is_some() {
+            voice: if let Some(kind) = self.1 {
+                Voice::Traffic(TrafficEngine::new(kind))
+            } else if std::env::var_os("ROADDASH_ENGINE_SYNTH").is_some() {
                 Voice::Synth(EngineSignal::default())
             } else if std::env::var_os("ROADDASH_ENGINE_TWIN").is_none()
                 && std::env::var_os("ROADDASH_ENGINE_STREET").is_some()
@@ -70,6 +78,7 @@ impl Iterator for Decoder {
         let gear = (state >> 22) as usize;
         Some(match &mut self.voice {
             Voice::Twin(voice) => voice.sample(rpm, throttle, gear),
+            Voice::Traffic(voice) => voice.sample(rpm, throttle),
             Voice::Street(voice) => voice.sample(rpm, throttle, gear),
             Voice::Synth(voice) => voice.sample(rpm, throttle, gear),
         })

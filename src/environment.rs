@@ -209,6 +209,15 @@ pub fn build(
     let margin = if layout.is_some() { 400.0 } else { 200.0 };
     let nx = ((max.x - min.x + margin * 2.0) / tile).ceil() as usize;
     let nz = ((max.z - min.z + margin * 2.0) / tile).ceil() as usize;
+    let terrain_plan = layout.map(|layout| {
+        let plan = crate::world_gen::WorldPlan::from_json(
+            crate::world_gen::WORLD_JSON,
+            crate::world_gen::ARCHETYPES_JSON,
+            track,
+        )
+        .expect("terrain plan");
+        (plan, layout)
+    });
     for tx in 0..nx {
         for tz in 0..nz {
             let origin = Vec2::new(
@@ -226,20 +235,12 @@ pub fn build(
             let center = Vec3::new(origin.x + tile * 0.5, 0.0, origin.y + tile * 0.5);
             let local_vertices: Vec<_> = vertices.iter().map(|p| *p - center).collect();
             let mut terrain_mesh = mesh(&local_vertices, &indices);
-            if let Some(layout) = layout {
-                let plan = crate::world_gen::WorldPlan::from_json(
-                    crate::world_gen::WORLD_JSON,
-                    crate::world_gen::ARCHETYPES_JSON,
-                    track,
-                )
-                .expect("terrain plan");
+            if let Some((plan, layout)) = &terrain_plan {
                 terrain_mesh.insert_attribute(
                     Mesh::ATTRIBUTE_COLOR,
                     vertices
                         .iter()
-                        .map(|p| {
-                            crate::world_gen::surfaces::terrain_color(&plan, layout, track, *p)
-                        })
+                        .map(|p| crate::world_gen::surfaces::terrain_color(plan, layout, track, *p))
                         .collect::<Vec<_>>(),
                 );
             }
@@ -688,8 +689,10 @@ pub fn build(
             }
         }
     }
-    for (i, gate) in track.definition.checkpoints.iter().enumerate() {
-        let (p, q) = track.sample(gate.fraction * track.length, 0.0);
+    for (i, station) in (0..track.definition.checkpoints.len())
+        .filter_map(|i| track.gate_station(i).map(|station| (i, station)))
+    {
+        let (p, q) = track.sample(station, 0.0);
         for side in [-1.0, 1.0] {
             block(
                 commands,
@@ -699,8 +702,7 @@ pub fn build(
                 } else {
                     yellow.clone()
                 },
-                p + q * Vec3::X * side * (track.half_width(gate.fraction * track.length) + 1.0)
-                    + Vec3::Y * 2.0,
+                p + q * Vec3::X * side * (track.half_width(station) + 1.0) + Vec3::Y * 2.0,
                 Vec3::new(0.2, 4.0, 0.2),
                 q,
                 true,
@@ -737,13 +739,14 @@ fn valley_grass(
 ) {
     let mut vertices = Vec::new();
     let mut indices = Vec::new();
-    for tri in triangles.iter().step_by(2) {
+    for (index, tri) in triangles.iter().enumerate() {
         let [a, b, c] = tri.map(|i| terrain[i as usize]);
         let p = a * 0.46 + b * 0.33 + c * 0.21;
         let (station, lane) = track.nearby_station(p.x, p.z);
         if !matches!(track.sector(station), Sector::Farms | Sector::Hills)
             || lane.abs() < track.half_width(station) + track.definition.verge_width + 3.
             || lane.abs() > 72.
+            || (index % 2 == 1 && lane.abs() > 32.)
             || layout
                 .road_reservations
                 .iter()
@@ -1042,13 +1045,8 @@ pub fn inspector(
         Isometry3d::from_translation((min + max) * 0.5),
         Color::srgb(0.6, 0.4, 1.0),
     );
-    for gate in track
-        .definition
-        .checkpoints
-        .iter()
-        .filter(|_| track.metropolis.is_none())
-    {
-        let (p, q) = track.sample(gate.fraction * track.length, 0.0);
+    for station in (0..track.definition.checkpoints.len()).filter_map(|i| track.gate_station(i)) {
+        let (p, q) = track.sample(station, 0.0);
         gizmos.line(
             p - q * Vec3::X * 12.0 + Vec3::Y * 2.0,
             p + q * Vec3::X * 12.0 + Vec3::Y * 2.0,

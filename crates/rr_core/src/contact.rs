@@ -22,13 +22,13 @@ pub fn classify(low: bool, contained: bool, tall: bool) -> Class {
 /// Conservative modern low-obstacle calibration. Fallen rider/bike state is
 /// classified separately; only actually low geometry is suspension support.
 pub const LOW_HEIGHT_M: f32 = 0.8;
-/// An arcade ride-over hop, explicitly requested for rear/downed-bike contacts.
+/// Vertical-only arcade lift on a standing civilian or recovering rider.
 /// No launch for parking-speed touches; cap the unobstructed rise below 0.85 m.
 pub fn ride_over_velocity(closing: f32) -> Option<f32> {
     (closing.is_finite() && closing >= 3.0).then(|| (2.8 + closing * 0.035).min(4.0))
 }
-/// Twice the unobstructed downed-body/wreck hop height (v squared / 2g).
-/// Pedestrian response and upright rear-bike policy remain separate.
+/// Downed bodies and wrecks get twice the standing target's hop height
+/// in an unobstructed arc (v squared / 2g).
 pub fn downed_ride_over_velocity(closing: f32) -> Option<f32> {
     ride_over_velocity(closing).map(|v| v * std::f32::consts::SQRT_2)
 }
@@ -175,115 +175,6 @@ mod rear_tests {
     }
 }
 
-/// Ride-over response after target momentum transfer. Extra lift spends available
-/// pair linear kinetic energy; it cannot act as a free horizontal speed or energy source.
-pub fn ride_over_response(
-    entry: [f32; 3],
-    target_before: [f32; 3],
-    target_after: [f32; 3],
-    own_mass: f32,
-    target_mass: f32,
-    requested_up: f32,
-) -> Option<[f32; 3]> {
-    ride_over_response_with_fraction(
-        entry,
-        target_before,
-        target_after,
-        own_mass,
-        target_mass,
-        requested_up,
-        0.3,
-    )
-}
-/// Downed-object hop spends existing energy, with twice the old vertical allocation.
-pub fn downed_ride_over_response(
-    entry: [f32; 3],
-    target_before: [f32; 3],
-    target_after: [f32; 3],
-    own_mass: f32,
-    target_mass: f32,
-    requested_up: f32,
-) -> Option<[f32; 3]> {
-    ride_over_response_with_fraction(
-        entry,
-        target_before,
-        target_after,
-        own_mass,
-        target_mass,
-        requested_up,
-        0.3 * std::f32::consts::SQRT_2,
-    )
-}
-fn ride_over_response_with_fraction(
-    entry: [f32; 3],
-    target_before: [f32; 3],
-    target_after: [f32; 3],
-    own_mass: f32,
-    target_mass: f32,
-    requested_up: f32,
-    rise_fraction: f32,
-) -> Option<[f32; 3]> {
-    if entry
-        .into_iter()
-        .chain(target_before)
-        .chain(target_after)
-        .chain([own_mass, target_mass, requested_up])
-        .any(|v| !v.is_finite())
-        || own_mass <= 0.0
-        || target_mass < 0.0
-        || requested_up < 0.0
-    {
-        return None;
-    }
-    let energy = |v: [f32; 3]| v.into_iter().map(|x| x * x).sum::<f32>();
-    let remaining = ((own_mass * energy(entry) + target_mass * energy(target_before)
-        - target_mass * energy(target_after))
-        / own_mass)
-        .max(0.0);
-    let mut out = entry;
-    for axis in [0, 2] {
-        out[axis] -= (target_after[axis] - target_before[axis]) * target_mass / own_mass;
-    }
-    let forward2 = entry[0] * entry[0] + entry[2] * entry[2];
-    if forward2 > 0.0001 {
-        let backwards = (out[0] * entry[0] + out[2] * entry[2]).min(0.0) / forward2;
-        out[0] -= entry[0] * backwards;
-        out[2] -= entry[2] * backwards;
-    }
-    let up = entry[1].max(requested_up.min(forward2.sqrt() * rise_fraction));
-    out[1] = up.min(remaining.sqrt());
-    let horizontal = out[0] * out[0] + out[2] * out[2];
-    let available = (remaining - out[1] * out[1]).max(0.0);
-    if horizontal > available && horizontal > 0.0 {
-        let factor = (available / horizontal).sqrt();
-        out[0] *= factor;
-        out[2] *= factor;
-    }
-    Some(out)
-}
-#[cfg(test)]
-mod ride_over_energy {
-    use super::*;
-    #[test]
-    fn lift_and_target_push_stay_inside_pair_energy_and_forward_direction() {
-        for speed in [3.0, 10.0, 30.0, 65.0] {
-            for mass in [0.0, 20.0, 70.0, 170.0] {
-                let before = [0.0, 0.0, 0.0];
-                let after = [0.0, 0.0, if mass > 0.0 { speed * 0.35 } else { 0.0 }];
-                let entry = [0.0, 0.0, speed];
-                let out = ride_over_response(entry, before, after, 240.0, mass, 3.8).unwrap();
-                let e = |v: [f32; 3]| v.into_iter().map(|x| x * x).sum::<f32>();
-                assert!(240.0 * e(out) + mass * e(after) <= 240.0 * e(entry) + 0.1);
-                assert!(out[2] >= 0.0 && out[1] >= 0.0);
-            }
-        }
-        assert!(
-            ride_over_response([f32::NAN, 0.0, 0.0], [0.0; 3], [0.0; 3], 240.0, 20.0, 3.0)
-                .is_none()
-        );
-    }
-}
-
 #[cfg(test)]
 mod measured_vehicle_tests {
     use super::*;
@@ -332,28 +223,11 @@ mod measured_vehicle_tests {
 mod polish_tests {
     use super::*;
     #[test]
-    fn downed_hop_doubles_height_without_adding_energy() {
+    fn downed_hop_doubles_height_with_a_bounded_vertical_response() {
         for speed in [3.0, 8.0, 20.0, 60.0] {
-            let old = ride_over_response(
-                [0., 0., speed],
-                [0.; 3],
-                [0.; 3],
-                240.,
-                0.,
-                ride_over_velocity(speed).unwrap(),
-            )
-            .unwrap();
-            let new = downed_ride_over_response(
-                [0., 0., speed],
-                [0.; 3],
-                [0.; 3],
-                240.,
-                0.,
-                downed_ride_over_velocity(speed).unwrap(),
-            )
-            .unwrap();
-            assert!((new[1] * new[1] / (old[1] * old[1]) - 2.).abs() < 1e-5);
-            assert!(new.iter().map(|v| v * v).sum::<f32>() <= speed * speed + 0.001);
+            let upright = ride_over_velocity(speed).unwrap();
+            let downed = downed_ride_over_velocity(speed).unwrap();
+            assert!((downed.powi(2) / upright.powi(2) - 2.).abs() < 1e-5);
         }
         assert!(downed_ride_over_velocity(2.9).is_none());
     }

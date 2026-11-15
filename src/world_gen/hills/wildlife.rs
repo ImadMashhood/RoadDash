@@ -13,8 +13,9 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
     (0, 10800., -80.),
 ];
 const SAMPLES: usize = 128;
-const CROSSING_STATIONS: [f32; 2] = [8870., 11800.];
+const CROSSING_STATIONS: [f32; 2] = [8870., 11250.];
 const CROSSING_MEMBERS: usize = 6;
+const CROSSING_SPEED: f32 = 1.35;
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
 #[derive(Component)]
@@ -89,7 +90,7 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
                     center,
                     axis,
                     extent: 24.,
-                    speed: 2.8,
+                    speed: CROSSING_SPEED,
                     phase,
                     one_way: false,
                 },
@@ -473,7 +474,7 @@ mod tests {
     #[test]
     fn cattle_keep_two_rows_and_face_each_travel_direction() {
         let track = Track::hills().unwrap();
-        assert_eq!(CROSSING_STATIONS, [8870., 11800.]);
+        assert_eq!(CROSSING_STATIONS, [8870., 11250.]);
         for station in CROSSING_STATIONS {
             let paths =
                 std::array::from_fn::<_, CROSSING_MEMBERS, _>(|i| cattle_path(&track, station, i));

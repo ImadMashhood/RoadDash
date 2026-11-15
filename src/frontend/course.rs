@@ -262,8 +262,8 @@ pub(super) fn render(
         paper,
     );
     for (index, (course, distance, route)) in [
-        (Course::Metropolis, "11 KM", "FARMLAND  /  CITY STREETS"),
-        (Course::Hills, "12.5 KM", "CITY  /  HILLS  /  DUNES"),
+        (Course::Metropolis, "10 KM", "FARMLAND  /  CITY STREETS"),
+        (Course::Hills, "11.5 KM", "CITY  /  HILLS  /  DUNES"),
     ]
     .into_iter()
     .enumerate()

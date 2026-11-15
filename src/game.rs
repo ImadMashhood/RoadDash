@@ -162,7 +162,7 @@ fn save_path() -> std::path::PathBuf {
 }
 
 #[derive(Component)]
-#[require(Recovery, crate::animation::Animator)]
+#[require(Recovery, crate::animation::Animator, ActiveHooks = ActiveHooks::FILTER_CONTACT_PAIRS)]
 pub struct Rider {
     pub online_busted: bool,
     pub online_takedowns: u32,
@@ -491,6 +491,9 @@ pub fn setup_race(
         }
         if let Some(props) = &art.props {
             let visual = props.vehicle(&mut commands, i);
+            if crate::props::vehicle_is_pickup(i) {
+                commands.entity(root).insert(crate::sound::PickupEngine);
+            }
             crate::runtime::attach_visuals(&mut commands, root, &[visual]);
             continue;
         }
@@ -807,7 +810,7 @@ pub fn drive(
     mut physics: Query<&mut RapierConfiguration>,
     mut audio: MessageWriter<AudioCue>,
     context: ReadRapierContext,
-    (ground, owned, poses, shapes, crossing_cars, names): (
+    (ground, owned, poses, shapes, crossing_cars, names, soft_targets): (
         Query<(), With<world::Ground>>,
         Query<&recovery::OwnedBody>,
         Query<&GlobalTransform>,
@@ -827,6 +830,7 @@ pub fn drive(
             ),
         >,
         Query<&Name>,
+        recovery::RideOverTargets,
     ),
     (mut swept, mut attacks): (
         MessageWriter<recovery::SweptContact>,
@@ -1320,14 +1324,19 @@ pub fn drive(
                 // pretending a stationary rider is already accelerating.
                 if launching { cars.extend_from_slice(&riders); }
                 let local_horizon = ai_uses_local_flow(&track).then(|| rr_core::traffic_avoidance::local_flow_horizon(r.speed));
-                let preliminary = rr_core::traffic_avoidance::Memory::default().plan_local(
-                    rr_core::traffic_avoidance::Request {
-                        lane, speed: r.speed, desired, cruise: planning_pace, bounds,
-                    },
-                    &cars, local_horizon, |_, _| true,
-                );
+                let input = rr_core::traffic_avoidance::Request {
+                    lane,
+                    speed: r.speed,
+                    desired,
+                    cruise: planning_pace,
+                    bounds,
+                };
+                let preliminary = rr_core::traffic_avoidance::Memory::default()
+                    .plan_local(input, &cars, local_horizon, |_, _| true);
+                let queue_pace = if launching { planning_pace } else { race_pace };
                 let rider_queue = riders.iter().any(|other| {
-                    rr_core::traffic_avoidance::slow_queue_ahead(lane, if launching { planning_pace } else { race_pace }, *other)
+                    rr_core::traffic_avoidance::slow_queue_ahead(lane, queue_pace, *other)
+                        || (!launching && rr_core::traffic_avoidance::leader_blocks_line(input, *other, local_horizon))
                 });
                 if !preliminary.avoiding
                     && !r.ai_pass.active()
@@ -1358,7 +1367,9 @@ pub fn drive(
                             return false;
                         };
                         let predicate =
-                            |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e) && owned.get(e).map_or(true, |o| o.owner != entity);
+                            |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e)
+                                && !soft_targets.contains(entity, e)
+                                && owned.get(e).map_or(true, |o| o.owner != entity);
                         let filter = QueryFilter {
                             flags: QueryFilterFlags::EXCLUDE_DYNAMIC
                                 | QueryFilterFlags::EXCLUDE_KINEMATIC,
@@ -1426,13 +1437,6 @@ pub fn drive(
                         }
                         true
                     })
-                };
-                let input = rr_core::traffic_avoidance::Request {
-                    lane,
-                    speed,
-                    desired,
-                    cruise: planning_pace,
-                    bounds,
                 };
                 let plan = r.ai_pass.plan_local_ordered(input, &cars, local_horizon, work.optimized(), drivable);
                 if ai_static_guard_blocked(lane, desired, committed, |goal| !drivable(goal, planning_pace)) {
@@ -1936,7 +1940,9 @@ pub fn drive(
             // Bound controller movement against real geometry, including very slow
             // lateral steering, rather than letting kinematic bikes pass through it.
             let predicate = |other, _: &bevy_rapier3d::rapier::geometry::Collider| {
-                !ground.contains(other) && !owned.get(other).is_ok_and(|body| body.owner == entity)
+                !ground.contains(other)
+                    && !soft_targets.contains(entity, other)
+                    && !owned.get(other).is_ok_and(|body| body.owner == entity)
             };
             // Dynamic debris is pushed by Rapier contacts; only immovable or
             // controller-driven geometry must bound this controller's sweep.
@@ -3978,6 +3984,112 @@ pub(crate) mod tests {
             );
         }
     }
+    #[test]
+    fn rival_drives_around_player_braking_to_stop_when_next_lane_is_open() {
+        let mut app = simulation();
+        let mut definition = app.world().resource::<Track>().definition.clone();
+        definition.closed = false;
+        definition.checkpoints.last_mut().unwrap().fraction = 1.;
+        for (index, point) in definition.control_points.iter_mut().enumerate() {
+            point.position = [0., 0.1, index as f32 * 100.];
+            point.half_width = 6.5;
+        }
+        app.insert_resource(Track::from_definition(definition).unwrap());
+        app.insert_resource(crate::vehicle::VehiclePhysicsAdapter::Dynamic);
+        app.update();
+        let player = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let mut rival = Rider::new(2);
+        rival.route = 0;
+        rival.progress = 24.;
+        rival.lane = 1.;
+        rival.speed = 45.;
+        let rival = app
+            .world_mut()
+            .spawn((
+                rival,
+                Transform::default(),
+                Visibility::Visible,
+                recovery::bike_body(),
+            ))
+            .id();
+        app.update();
+        for (entity, station, speed) in [(player, 53., 45.), (rival, 24., 45.)] {
+            let (point, heading) = app.world().resource::<Track>().sample(station, 1.);
+            let motion = heading * Vec3::Z * speed;
+            let mut body = app.world_mut().entity_mut(entity);
+            body.insert((
+                Transform::from_translation(point).with_rotation(heading),
+                Velocity::linear(motion),
+            ));
+            let mut rider = body.get_mut::<Rider>().unwrap();
+            rider.progress = station;
+            rider.lane = 1.;
+            rider.speed = speed;
+            rider.motion_velocity = motion;
+        }
+        {
+            let mut race = app.world_mut().resource_mut::<Race>();
+            race.phase = Phase::Racing;
+            race.elapsed = 12.;
+            race.rival_difficulty = rr_core::pursuit::RivalDifficulty::Hard;
+        }
+        app.update();
+        let decision = app.world().get::<Rider>(rival).unwrap().ai_plan.unwrap();
+        assert!(
+            decision.avoiding && (decision.lane - 1.).abs() > 1.7,
+            "{decision:?}"
+        );
+
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyS);
+        let mut lateral_clearance = 0.0_f32;
+        let mut stopped = false;
+        for _ in 0..480 {
+            app.update();
+            let lead = app.world().get::<Rider>(player).unwrap();
+            let follower = app.world().get::<Rider>(rival).unwrap();
+            for entity in [player, rival] {
+                assert_eq!(
+                    app.world().get::<Recovery>(entity).unwrap().stage,
+                    RecoveryStage::Riding
+                );
+            }
+            if (lead.progress - follower.progress).abs() < 4. {
+                lateral_clearance = lateral_clearance.max((lead.lane - follower.lane).abs());
+            }
+            if !stopped && lead.speed < 0.5 {
+                stopped = true;
+                app.world_mut()
+                    .resource_mut::<ButtonInput<KeyCode>>()
+                    .release(KeyCode::KeyS);
+            }
+        }
+        let lead = app.world().get::<Rider>(player).unwrap();
+        let follower = app.world().get::<Rider>(rival).unwrap();
+        assert!(
+            stopped && lead.speed.abs() < 2.,
+            "player did not slow: {}",
+            lead.speed
+        );
+        assert!(
+            follower.progress > lead.progress + 12. && follower.speed > 5.,
+            "rival followed to a stop: player={}/{} rival={}/{}",
+            lead.progress,
+            lead.speed,
+            follower.progress,
+            follower.speed
+        );
+        assert!(
+            lateral_clearance > 1.2,
+            "rival passed within {lateral_clearance} m"
+        );
+    }
+
     pub(crate) fn simulation() -> App {
         let mut app = App::new();
         app.add_plugins((
@@ -5028,30 +5140,6 @@ pub(crate) mod tests {
         assert!(p.x < -1.0 && p.y < 9.5, "wreck stuck on slope: {p:?}");
     }
     #[test]
-    fn a_cow_causes_a_momentum_limited_crash_without_a_launch() {
-        let mut app = simulation();
-        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
-        let (p, q) = app.world().resource::<Track>().sample(-5.5, -2.0);
-        app.world_mut().spawn((
-            crate::environment::Cow,
-            RigidBody::Fixed,
-            Collider::compound(vec![(
-                Vec3::Y,
-                Quat::IDENTITY,
-                Collider::cuboid(0.6, 0.7, 1.0),
-            )]),
-            Transform::from_translation(p).with_rotation(q),
-            ActiveEvents::COLLISION_EVENTS,
-        ));
-        {
-            let mut query = app.world_mut().query::<&mut Rider>();
-            query.single_mut(app.world_mut()).unwrap().speed = 22.0;
-        }
-        step(&mut app, 4);
-        assert_eq!(player(&mut app).hop_velocity, 0.0);
-        assert!(player(&mut app).crashed > 0.0);
-    }
-    #[test]
     fn one_hundred_high_speed_drops_keep_joint_anchors_and_hinge_axes_stable() {
         let mut app = simulation();
         for cycle in 0..100 {
@@ -5223,14 +5311,14 @@ pub(crate) mod tests {
     fn missing_a_gate_stops_at_the_open_finish_without_payout_and_retry_resets_gates() {
         let mut app = simulation();
         let track = Track::from_json(include_str!("../content/tracks/valley.json")).unwrap();
-        let length = track.length;
-        let (p, q) = track.sample(length - 4.0, 0.0);
+        let finish = track.race_interval().finish;
+        let (p, q) = track.sample(finish - 4.0, 0.0);
         app.insert_resource(track);
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
         {
             let mut query = app.world_mut().query::<(&mut Rider, &mut Transform)>();
             let (mut r, mut t) = query.single_mut(app.world_mut()).unwrap();
-            r.progress = length - 4.0;
+            r.progress = finish - 4.0;
             r.lane = 0.0;
             r.speed = 20.0;
             *t = Transform::from_translation(p).with_rotation(q);
@@ -5239,7 +5327,7 @@ pub(crate) mod tests {
             .resource_mut::<ButtonInput<KeyCode>>()
             .press(KeyCode::KeyW);
         step(&mut app, 120);
-        assert_eq!(player(&mut app).progress, length);
+        assert_eq!(player(&mut app).progress, finish);
         assert_eq!(player(&mut app).finished, None);
         assert_eq!(app.world().resource::<Profile>().races, 0);
         app.world_mut()

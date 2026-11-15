@@ -331,7 +331,7 @@ impl Section {
             Self::Controls => &[6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 27],
             Self::Audio => &[22, 25, 28, 29, 30],
             Self::Display => &[23, 24, 31, 42],
-            Self::Accessibility => &[32, 33, 43, 44],
+            Self::Accessibility => &[32, 33],
             Self::Voice => &[34, 35, 36, 37, 38, 39, 40, 41],
             Self::Gear => &[45, 46, 47],
         }
@@ -652,8 +652,6 @@ pub fn panel_input(
                 }
             }
             42 => prefs.file.shadows = !prefs.file.shadows,
-            43 => prefs.file.show_minimap = !prefs.file.show_minimap,
-            44 => prefs.file.show_standings = !prefs.file.show_standings,
             45 => {
                 let suits = crate::models::gear::Suit::ALL;
                 prefs.file.gear.suit = suits[cycle(prefs.file.gear.suit as usize, suits.len(), d)];

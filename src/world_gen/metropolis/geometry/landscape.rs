@@ -242,7 +242,7 @@ fn placements(track: &Track) -> Vec<Tuft> {
                     } else if lane.abs() < 18. {
                         0.96
                     } else {
-                        0.40 + 0.40 * patch
+                        0.45 + 0.40 * patch
                     })
                 {
                     continue;

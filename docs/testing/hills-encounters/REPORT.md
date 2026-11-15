@@ -1,6 +1,6 @@
 # Hills cattle crossings and Western town encounters
 
-Hills has two cattle crossings at 8.87 km and 11.80 km. Each herd has two rows
+Hills has two cattle crossings at 8.87 km and 11.25 km. Each herd has two rows
 of three. Members
 share a crossing clock and follow the existing support and cow knockdown
 paths. The cow model and collider face local +X, so patrol yaw aligns that

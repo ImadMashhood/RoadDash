@@ -139,6 +139,7 @@ pub fn forces(
     context: ReadRapierContext,
     ground: Query<(), With<Ground>>,
     supports: Query<(&Transform, &Collider, Option<&crate::recovery::OwnedBody>), Without<Rider>>,
+    soft_targets: crate::recovery::RideOverTargets,
     mut bikes: Query<(
         Entity,
         &mut Rider,
@@ -202,7 +203,7 @@ pub fn forces(
         let speed = signed_speed.abs();
         let input = r.drive_intent;
         let player = r.human_controlled();
-        let at_end = !track.definition.closed && r.progress >= track.race_interval().finish - 0.1;
+        let at_end = !track.definition.closed && r.progress >= track.race_interval().finish;
         let throttle = input.throttle && !at_end;
         let brake = input.brake || at_end;
         let nitro =
@@ -232,9 +233,7 @@ pub fn forces(
             let predicate = |hit, _: &bevy_rapier3d::rapier::geometry::Collider| {
                 ground.contains(hit)
                     || supports.get(hit).is_ok_and(|(pose, shape, owned)| {
-                        if owned.is_some_and(|o| {
-                            o.owner == e || o.kind == crate::recovery::BodyKind::Runner
-                        }) {
+                        if soft_targets.contains(e, hit) || owned.is_some_and(|o| o.owner == e) {
                             return false;
                         }
                         let (lo, hi) = crate::recovery::collider_bounds(pose, shape);

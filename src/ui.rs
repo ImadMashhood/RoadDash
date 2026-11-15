@@ -11,13 +11,13 @@ const MUTED: Color = Color::srgb(0.54, 0.65, 0.68);
 #[derive(Component)]
 pub struct Hud;
 #[derive(Component)]
-pub struct OptionalHud(bool);
-#[derive(Component)]
 pub struct Overlay;
 #[derive(Component)]
 pub struct Readout(pub u8);
 #[derive(Component)]
-pub struct MapDot(pub usize);
+pub(crate) struct RivalArrow;
+#[derive(Component)]
+pub(crate) struct SpeedFill;
 #[derive(Component)]
 pub struct StartButton;
 
@@ -46,20 +46,7 @@ fn label(
         ))
         .id()
 }
-fn map_point(track: &Track, p: Vec3) -> (f32, f32) {
-    let (min, max) = track.bounds;
-    let scale = (180.0 / (max.x - min.x)).min(200.0 / (max.z - min.z));
-    (
-        108.0 + (p.x - (min.x + max.x) * 0.5) * scale,
-        126.0 - (p.z - (min.z + max.z) * 0.5) * scale,
-    )
-}
-
-pub fn setup_ui(
-    mut commands: Commands,
-    track: Res<Track>,
-    content: Res<crate::content::GameContent>,
-) {
+pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
     let hud = commands
         .spawn((
             Node {
@@ -80,11 +67,64 @@ pub fn setup_ui(
         33.0,
         58.0,
     ));
-    let standings = label(&mut commands, "", 17.0, WHITE, 34.0, 116.0);
-    commands
-        .entity(standings)
-        .insert((Readout(0), OptionalHud(false)));
-    kids.push(standings);
+    kids.push(
+        commands
+            .spawn((
+                Text::default(),
+                TextFont {
+                    font_size: FontSize::Px(31.),
+                    ..default()
+                },
+                TextColor(WHITE),
+                Node {
+                    position_type: PositionType::Absolute,
+                    left: px(34),
+                    bottom: px(95),
+                    ..default()
+                },
+                Readout(0),
+            ))
+            .id(),
+    );
+    let rival = commands
+        .spawn((
+            Node {
+                position_type: PositionType::Absolute,
+                left: px(34),
+                bottom: px(64),
+                align_items: AlignItems::Center,
+                column_gap: px(10),
+                ..default()
+            },
+            children![
+                (
+                    Text::default(),
+                    TextFont {
+                        font_size: FontSize::Px(19.),
+                        ..default()
+                    },
+                    TextColor(WHITE),
+                    Readout(5)
+                ),
+                (
+                    Node {
+                        width: px(10),
+                        height: px(10),
+                        border: UiRect {
+                            left: px(3),
+                            top: px(3),
+                            ..default()
+                        },
+                        display: Display::None,
+                        ..default()
+                    },
+                    BorderColor::all(Color::NONE),
+                    RivalArrow,
+                )
+            ],
+        ))
+        .id();
+    kids.push(rival);
     let lap = label(&mut commands, "", 17.0, WHITE, 34.0, 84.0);
     commands.entity(lap).insert(Readout(1));
     kids.push(lap);
@@ -154,7 +194,7 @@ pub fn setup_ui(
             Node {
                 position_type: PositionType::Absolute,
                 left: px(34),
-                bottom: px(64),
+                top: px(118),
                 ..default()
             },
             Readout(3),
@@ -197,77 +237,32 @@ pub fn setup_ui(
         ))
         .id();
     kids.push(message);
-    let map = commands
+    let meter = commands
         .spawn((
             Node {
                 position_type: PositionType::Absolute,
-                right: px(28),
-                top: px(24),
-                width: px(218),
-                height: px(272),
-                border_radius: BorderRadius::all(px(12)),
+                bottom: px(50),
+                right: px(38),
+                width: px(152),
+                height: px(5),
                 ..default()
             },
             BackgroundColor(INK.with_alpha(0.83)),
-            OptionalHud(true),
         ))
         .id();
-    let mut dots = vec![];
-    let mut map_points = track.points.clone();
-    if let Some(m) = &track.metropolis {
-        map_points.extend(m.paths[1].points.iter().map(|p| Vec3::from_array(*p)));
-    }
-    if track.is_hills() {
-        map_points.extend(
-            (5500..=7400)
-                .step_by(5)
-                .map(|s| track.sample_route(1, s as f32, 0.).0),
-        );
-    }
-    for p in map_points.iter().step_by(4) {
-        let (x, y) = map_point(&track, *p);
-        dots.push(
-            commands
-                .spawn((
-                    Node {
-                        position_type: PositionType::Absolute,
-                        left: px(x),
-                        top: px(y),
-                        width: px(3),
-                        height: px(3),
-                        ..default()
-                    },
-                    BackgroundColor(MUTED.with_alpha(0.65)),
-                ))
-                .id(),
-        );
-    }
-    for id in (0..crate::game::NAMES.len()).rev() {
-        dots.push(
-            commands
-                .spawn((
-                    Node {
-                        position_type: PositionType::Absolute,
-                        width: px(if id == 0 { 8 } else { 5 }),
-                        height: px(if id == 0 { 8 } else { 5 }),
-                        border_radius: BorderRadius::all(px(5)),
-                        ..default()
-                    },
-                    BackgroundColor(crate::world::shirt_color(
-                        content.0.riders[id].palette_index,
-                    )),
-                    MapDot(id),
-                ))
-                .id(),
-        );
-    }
-    dots.push(label(&mut commands, "COURSE / 01", 12.0, MINT, 14.0, 12.0));
-    dots.push(label(&mut commands, "", 12.0, MUTED, 14.0, 248.0));
-    if let Some(last) = dots.last() {
-        commands.entity(*last).insert(Readout(5));
-    }
-    commands.entity(map).add_children(&dots);
-    kids.push(map);
+    let fill = commands
+        .spawn((
+            Node {
+                width: percent(0),
+                height: percent(100),
+                ..default()
+            },
+            BackgroundColor(MINT),
+            SpeedFill,
+        ))
+        .id();
+    commands.entity(meter).add_child(fill);
+    kids.push(meter);
     commands.entity(hud).add_children(&kids);
 
     let overlay = commands
@@ -344,7 +339,7 @@ pub fn setup_ui(
 }
 
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
-pub fn update_ui(
+pub(crate) fn update_ui(
     race: Res<Race>,
     profile: Res<Profile>,
     screen: Option<Res<State<crate::runtime::AppScreen>>>,
@@ -355,13 +350,18 @@ pub fn update_ui(
     cameras: Query<&GlobalTransform, With<Camera3d>>,
     mut readouts: Query<(&Readout, &mut Text)>,
     mut nodes: Query<
-        (&mut Node, Has<Hud>, Has<Overlay>, Option<&OptionalHud>),
+        (&mut Node, Has<Hud>, Has<Overlay>),
         (
-            Without<MapDot>,
-            Or<(With<Hud>, With<Overlay>, With<OptionalHud>)>,
+            Or<(With<Hud>, With<Overlay>)>,
+            Without<RivalArrow>,
+            Without<SpeedFill>,
         ),
     >,
-    mut dots: Query<(&MapDot, &mut Node, &mut BackgroundColor)>,
+    mut arrows: Query<
+        (&mut Node, &mut BorderColor, &mut UiTransform),
+        (With<RivalArrow>, Without<SpeedFill>),
+    >,
+    mut speed_fills: Query<&mut Node, (With<SpeedFill>, Without<RivalArrow>)>,
     panel: Res<crate::settings::SettingsPanel>,
     police: Res<crate::police::Police>,
     frontend: Option<Res<crate::frontend::Frontend>>,
@@ -387,22 +387,7 @@ pub fn update_ui(
         .map(|(_, recovery)| recovery.stage)
         .unwrap_or_default();
     let menu = matches!(race.phase, Phase::Garage | Phase::Paused | Phase::Finished);
-    for (mut node, hud, overlay, optional) in &mut nodes {
-        if let Some(element) = optional {
-            let visible = if element.0 {
-                prefs.file.show_minimap
-            } else {
-                prefs.file.show_standings
-            };
-            let display = if visible {
-                Display::Flex
-            } else {
-                Display::None
-            };
-            if node.display != display {
-                node.display = display;
-            }
-        }
+    for (mut node, hud, overlay) in &mut nodes {
         if hud {
             node.display = if menu || panel.open {
                 Display::None
@@ -419,31 +404,51 @@ pub fn update_ui(
                 };
         }
     }
-    let mut sorted: Vec<_> = riders.iter().filter(|r| !r.police).collect();
-    sorted.sort_by(|a, b| {
-        a.online_busted
-            .cmp(&b.online_busted)
-            .then_with(|| b.progress.total_cmp(&a.progress))
-    });
-    let position = sorted.iter().position(|r| r.id == local_slot).unwrap_or(7) + 1;
+    let position = 1 + riders
+        .iter()
+        .filter(|r| {
+            !r.police
+                && r.id != local_slot
+                && ((!r.online_busted && player.online_busted)
+                    || (r.online_busted == player.online_busted && r.progress > player.progress))
+        })
+        .count();
+    let count = riders.iter().filter(|r| !r.police).count();
+    let nearest = nearest_rival(player, riders.iter());
+    for (mut node, mut color, mut transform) in &mut arrows {
+        let display = if nearest.is_some() {
+            Display::Flex
+        } else {
+            Display::None
+        };
+        if node.display != display {
+            node.display = display;
+        }
+        if let Some((_, delta)) = nearest {
+            let ahead = delta >= 0.;
+            let tint = if ahead {
+                Color::srgb(1., 0.22, 0.20)
+            } else {
+                Color::srgb(0.29, 0.94, 0.35)
+            };
+            color.set_if_neq(BorderColor::all(tint));
+            transform.set_if_neq(UiTransform::from_rotation(Rot2::radians(if ahead {
+                45_f32.to_radians()
+            } else {
+                225_f32.to_radians()
+            })));
+        }
+    }
+    for mut fill in &mut speed_fills {
+        let width = percent(100. * (player.speed / 75.).clamp(0., 1.));
+        if fill.width != width {
+            fill.width = width;
+        }
+    }
     for (field, mut text) in &mut readouts {
         let next = match field.0 {
-            0 => {
-                let mut s = format!("P{position:02} / 15\n\n");
-                for (i, r) in sorted.iter().enumerate() {
-                    let marker = if r.id == local_slot { ">" } else { " " };
-                    let role=if r.id==local_slot{"YOU"}else{"RIVAL"};
-                    let name = if r.roster_slot == 0 && r.id != local_slot {
-                        rr_core::cast::FULL_NAMES[0]
-                    } else {
-                        crate::game::NAMES[r.roster_slot]
-                    };
-                    s.push_str(&format!("{marker} {}  {name:5} [{role}]\n", i + 1));
-                }
-                s
-            },
-            1 if track.metropolis.is_some() => format!("ROUTE {:03}%  {:02}:{:05.2}",(track.race_interval().fraction(player.progress)*100.) as u32,(race.elapsed/60.) as u32,race.elapsed%60.),
-            1 if !track.definition.closed => format!("ROUTE {:03}%  GATE {}/{}  {:02}:{:05.2}",(player.progress/track.length*100.0).clamp(0.0,100.0) as u32,player.gates.next,track.definition.checkpoints.len()-1,(race.elapsed/60.0) as u32,race.elapsed%60.0),
+            0 => format!("P{position:02} / {count:02}"),
+            1 if !track.definition.closed => format!("ROUTE {:03}%  {:02}:{:05.2}",(track.race_interval().fraction(player.progress)*100.) as u32,(race.elapsed/60.) as u32,race.elapsed%60.),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => {
                 let multiplier = if prefs.file.imperial_speed { 2.236_936 } else { 3.6 };
@@ -453,7 +458,7 @@ pub fn update_ui(
             13 => online_ui.as_ref().map_or_else(String::new, |o| o.voice_status.clone()),
             3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + &player.weapon.map_or_else(|| "\nUNARMED".to_owned(), |w| format!("\n{} EQUIPPED", w.label())) + &format!("\n{}", police.hud()),
             4 if track.metropolis.is_some() && player.progress>=track.race_interval().finish && player.finished.is_none() => "ROUTE INCOMPLETE / R TO RETRY".into(),
-            4 if !track.definition.closed && track.metropolis.is_none() && player.progress>=track.length && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
+            4 if !track.definition.closed && track.metropolis.is_none() && player.progress>=track.race_interval().finish && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
             4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
             4 if recoveries.iter().any(|(r,s)|r.id==0 && s.stage==crate::recovery::RecoveryStage::Running) => {
                 let hint = recoveries.iter().find(|(r,_)|r.id==0).and_then(|(_,s)|s.runner.zip(s.wreck))
@@ -468,7 +473,10 @@ pub fn update_ui(
                 format!("{hint} / WASD MOVE / ENTER MOUNT")
             },
             4 => if race.phase == Phase::Countdown { format!("{}", race.countdown.ceil() as u32) } else if player.crashed > 0.0 { match recovery { crate::recovery::RecoveryStage::Falling => "WIPED OUT / WAIT FOR THE LANDING", crate::recovery::RecoveryStage::GettingUp => "GETTING BACK UP", crate::recovery::RecoveryStage::Running => "GET BACK TO THE BIKE", crate::recovery::RecoveryStage::Mounting => "BACK IN THE SADDLE", _ => "" }.into() } else if race.message_time > 0.0 { race.message.clone() } else { String::new() },
-            5 => format!("{:.2} KM / {}",track.race_interval().length()/1000.0,if track.definition.closed {"CIRCUIT"} else {"POINT TO POINT"}),
+            5 => nearest.map_or_else(String::new, |(rival, gap)| {
+                let name = if rival.roster_slot == 0 { rr_core::cast::FULL_NAMES[0] } else { crate::game::NAMES[rival.roster_slot] };
+                format!("{name}  {:.0} m", gap.abs())
+            }),
             6 if loading => "PREPARING THE ROAD".into(),
             7 if loading => "Getting your bike ready...".into(),
             8 if loading => "LOADING...".into(),
@@ -488,19 +496,21 @@ pub fn update_ui(
         };
         text.set_if_neq(Text::new(next));
     }
-    for (dot, mut node, mut color) in &mut dots {
-        if let Some(r) = riders.iter().find(|r| r.id == dot.0) {
-            color.set_if_neq(BackgroundColor(crate::world::shirt_color(r.palette_index)));
-            let (x, y) = map_point(&track, track.sample_route(r.route, r.progress, 0.0).0);
-            node.left = px(x - 2.0);
-            node.top = px(y - 2.0);
-        }
-    }
 }
 
 fn bar(amount: f32) -> String {
     let filled = (amount.clamp(0.0, 100.0) / 10.0).round() as usize;
     format!("{}{}", "|".repeat(filled), ".".repeat(10 - filled))
+}
+
+fn nearest_rival<'a>(
+    player: &Rider,
+    riders: impl Iterator<Item = &'a Rider>,
+) -> Option<(&'a Rider, f32)> {
+    riders
+        .filter(|rider| rider.id != player.id && !rider.police && !rider.online_busted)
+        .map(|rider| (rider, rider.progress - player.progress))
+        .min_by(|(a, da), (b, db)| da.abs().total_cmp(&db.abs()).then_with(|| a.id.cmp(&b.id)))
 }
 
 #[derive(Resource, Default)]
@@ -517,31 +527,69 @@ pub fn buttons(
 }
 
 #[cfg(test)]
-mod map_tests {
+mod tests {
     use super::*;
+
     #[test]
-    fn every_racer_dot_uses_the_same_palette_as_their_shirt() {
-        let mut app = App::new();
-        app.add_plugins(MinimalPlugins)
-            .init_resource::<Track>()
-            .init_resource::<crate::content::GameContent>()
-            .init_resource::<Assets<Mesh>>()
-            .init_resource::<Assets<StandardMaterial>>()
-            .add_systems(Startup, (crate::world::setup_world, setup_ui).chain());
-        app.update();
+    fn race_hud_updates_speed_position_and_arrow_in_the_same_frame() {
+        use bevy::ecs::system::RunSystemOnce;
+        let mut app = crate::game::tests::simulation();
         let world = app.world_mut();
-        let content = world.resource::<crate::content::GameContent>();
-        let expected: Vec<_> = content
-            .0
-            .riders
-            .iter()
-            .map(|r| crate::world::shirt_color(r.palette_index))
-            .collect();
-        let mut count = 0;
-        for (dot, color) in world.query::<(&MapDot, &BackgroundColor)>().iter(world) {
-            assert_eq!(color.0, expected[dot.0]);
-            count += 1;
+        world.resource_mut::<Race>().phase = Phase::Racing;
+        world
+            .resource_mut::<crate::settings::Preferences>()
+            .file
+            .imperial_speed = false;
+        let mut player = world.query::<&mut Rider>().single_mut(world).unwrap();
+        player.progress = 500.;
+        player.speed = 25.;
+        let mut rival = Rider::new(1);
+        rival.progress = 530.;
+        let entity = world.spawn(rival).id();
+        world.run_system_once(setup_ui).unwrap();
+        for (progress, position, rotation) in [(530., "P02 / 02", 45_f32), (470., "P01 / 02", 225.)]
+        {
+            world.get_mut::<Rider>(entity).unwrap().progress = progress;
+            world.run_system_once(update_ui).unwrap();
+            let mut readouts = world.query::<(&Readout, &Text)>();
+            assert!(
+                readouts
+                    .iter(world)
+                    .any(|(id, text)| id.0 == 0 && text.0 == position)
+            );
+            assert!(
+                readouts
+                    .iter(world)
+                    .any(|(id, text)| id.0 == 2 && text.0 == "090")
+            );
+            assert!(
+                readouts
+                    .iter(world)
+                    .any(|(id, text)| id.0 == 5 && text.0.ends_with("30 m"))
+            );
+            let mut arrows = world.query_filtered::<&UiTransform, With<RivalArrow>>();
+            assert_eq!(
+                *arrows.single(world).unwrap(),
+                UiTransform::from_rotation(Rot2::radians(rotation.to_radians())),
+            );
         }
-        assert_eq!(count, 15);
+    }
+
+    #[test]
+    fn nearest_rival_keeps_the_signed_gap_and_excludes_police() {
+        let mut player = Rider::new(0);
+        player.progress = 500.;
+        let mut ahead = Rider::new(1);
+        ahead.progress = 550.;
+        let mut behind = Rider::new(2);
+        behind.progress = 470.;
+        let mut officer = Rider::new(3);
+        officer.police = true;
+        officer.progress = 501.;
+        let closest =
+            nearest_rival(&player, [&player, &ahead, &behind, &officer].into_iter()).unwrap();
+        assert_eq!((closest.0.id, closest.1), (2, -30.));
+        let closest = nearest_rival(&player, [&ahead].into_iter()).unwrap();
+        assert_eq!((closest.0.id, closest.1), (1, 50.));
     }
 }

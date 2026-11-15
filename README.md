@@ -1,6 +1,6 @@
 # ROAD / DASH
 
-A native Rust + Bevy motorcycle combat racer. Race an 11 km interval of the preserved 12 km farm-to-city Metropolis map, with one split and rejoin against fourteen rivals, dodge two-way traffic, throw punches and kicks, and fight for a clean pass. Player nitrous and default police deployment are temporarily disabled. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, using measured approach velocity and gravity.
+A native Rust + Bevy motorcycle combat racer. Race a 10 km interval of the preserved 12 km farm-to-city Metropolis map, with one split and rejoin against fourteen rivals, dodge two-way traffic, throw punches and kicks, and fight for a clean pass. Player nitrous and default police deployment are temporarily disabled. Crashes separate the rider into a jointed Rapier ragdoll and a tumbling motorcycle, using measured approach velocity and gravity.
 
 This is the first playable foundation of a modern remake, with original procedural 3D scenery and models. It is inspired by Road Rash's racing/combat loop and the [arkits native port](https://github.com/arkits/road-rash). It does not contain that repository's code, sprites, music, or original game data. Metropolis is now the default. The legacy maps remain available with `ROADDASH_TRACK=valley cargo run --release` and `ROADDASH_TRACK=city cargo run --release`. [Implementation, native views and remaining gates](docs/testing/metropolis/README.md).
 
@@ -176,7 +176,7 @@ full native trajectory/caller parity remains CRASHREF-004.
 - The recovery camera follows the ragdoll and then the running rider. A collision-aware character controller handles the run back and remount at the bike’s actual location.
 - Recorded engine, ambience, impacts and race cues. M mutes the mixer. [Source credits](docs/third_party/IMPACT_RECORDINGS.md).
 - Full-footprint scenery checks keep props clear; collision rays verify terrain does not cover banked road lanes.
-- Garage/start menu, countdown, pause/restart, leaderboard, speedometer, live course map, and results.
+- Garage/start menu, countdown, pause/restart, race position, nearest-rival gap, speedometer, and results.
 - Persistent race count, wins, credits, and personal-best time.
 
 ![City graybox](docs/testing/part-04/08-city.jpg)
@@ -198,7 +198,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**246 verified tasks complete; 363 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**248 verified tasks complete; 365 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -216,15 +216,15 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 246 verified complete |
+| [00](#part-00) | Completed and verified foundations | 248 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 74 open |
-| [00](#part-00) | Completed and verified foundations | 246 verified complete |
+| [00](#part-00) | Completed and verified foundations | 248 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 74 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 51 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 52 open |
 | [07](#part-07) | Weapons and complete riding combat | 12 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -233,7 +233,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 12 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 31 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 32 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -241,7 +241,11 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 ### Part 00 — Completed and verified foundations
 
 <details>
-<summary>Recent verification audit — 12 completed tasks</summary>
+<summary>Recent verification audit — 14 completed tasks</summary>
+
+- [x] **RACE-FINISH-01** Move each built-in point-to-point finish one kilometre earlier. Reason: shorten the races while retaining the physical roads; part: 01; dependencies: existing race intervals and ordered gates; acceptance: earlier finish on each course, retained split and shortcut checks; verification: route traversal tests and native smoke in the [race polish report](docs/testing/race-polish-followup/REPORT.md).
+
+- [x] **RACE-RIDEOVER-01** Pass through soft targets with a hop and no contact speed loss, and pass a slow rider when a lane is clear. Reason: riders lose speed on soft impacts and rivals queue behind the player; part: 01; dependencies: existing crash, contact classification and passing planner; acceptance: preserve horizontal entry velocity, move targets, keep solid hazards, and pass the braking player when a safe line exists; verification: physical contact and passing regressions in the [race polish report](docs/testing/race-polish-followup/REPORT.md).
 
 - [x] **HILLS-BEND-01** Curve the western main street and smooth low-speed AI lean. Reason: the merged western street was straight and slow rivals snapped into hard bank; part:06; dependencies: HILLS-01 and rival steering; acceptance: shared left-right road bend, flat town interior, bounded slow bank and gradual reversal in both adapters; verification: route and bank tests, native Hills revision survey and recovery smoke. [Evidence](docs/testing/western-bends/REPORT.md).
 
@@ -752,7 +756,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
 
-- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, twice ballistic rise within existing energy and unchanged upright rear-contact/rig policy; verification: core height/energy tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
+- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, bounded arcade hop with preserved horizontal speed per ADR199 and unchanged upright rear-contact/rig policy; verification: core hop-height tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
 
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](docs/testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
@@ -1117,6 +1121,8 @@ Repeat the reference → original textures/models → procedural placement → c
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
 
+- [ ] **HILLS-POLISH-02** Improve Hills bridge approach, grass and mounted movement. Reason: repair the visible bridge seam and improve roadside presentation; part: 06; dependencies: HILLS-01 and HILLS-CATTLE-01; acceptance: closed visual join, bounded grass, slower cattle, animated mounted cowboy legs and measured cost; verification: geometry checks and native review in the [race polish report](docs/testing/race-polish-followup/REPORT.md).
+
 - [ ] **HILLS-CATTLE-01** Correct the Hills cattle formation and heading at two crossing sites. Reason: the original cattle slide sideways in one row; part: 06; dependencies: COURSE-CROSSING-01 and cow patrols; acceptance: two groups of six, two rows of three, correct heading in both directions, usable ground and road contact; verification: formation test, native smoke and race-speed review in the [Hills encounters report](docs/testing/hills-encounters/REPORT.md).
 - [ ] **HILLS-TOWN-01** Stage three brawls and two shootouts in Western town. Reason: add activity to the shared main street; part: 06; dependencies: HILLS-03 and pedestrian rigs; acceptance: two roadside brawls and one in the road, two roadside shootouts, alternating actions with localized sound and readable poses; verification: scene fixture, native smoke and race-speed review in the [Hills encounters report](docs/testing/hills-encounters/REPORT.md).
 - [ ] **COURSE-CROSSING-01** Ground Hills cowboys, expand the Hills herds and increase pedestrian crossings on all four courses. Reason: partially buried mounts and sparse crossings; part:06; dependencies: RFU-HILLS-05, RFU-WILD-06 and shared pedestrian admission; acceptance: half the previous Hills city walker count rounded up, retained crossings, more staged walkers on each course, mounted shoulder clearance and five farm cows per parcel/six cattle per crossing herd; verification: authored census, support tests and native route walkthrough. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
@@ -1427,6 +1433,8 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 - [ ] **AUDIO-009** Put the listener at the chase camera and emitters on bikes, police, cattle, and landmarks; test stereo/rolloff, opponent minimum volume, and distinct distance/gear cues. Partial: ADR180 adds spatial bike voices with Doppler, distance falloff and wreck idle.
 - [ ] **AUDIO-010** Blend town/farm/cliff/coast ambience; visible livestock/tractors must match their sounds; keep music on a separate licensed, duckable, streamer-safe bus.
 - [ ] **AUDIO-011** Evaluate Kira only if needed; if chosen, avoid running conflicting default Bevy audio and Kira backends.
+- [ ] **RACE-MIX-HUD-01** Replace the race HUD, soften wind, and add low-RPM traffic audio. Reason: keep race information readable and the traffic mix distinct; part: 15; dependencies: grouped settings and spatial audio; acceptance: speed and nearby-rival readouts, softer wind and spatial car and heavy vehicle voices; verification: HUD and audio checks plus human race review in the [race polish report](docs/testing/race-polish-followup/REPORT.md).
+
 - [ ] **AUDIO-IMPACT-01** Verify the recorded impact mix and contact placement. Reason: the synthesized impacts lack weight and audible location; part: 15; dependencies: AUDIO-004, AUDIO-005 and AUDIO-009; acceptance: licensed distinct impact and runover sounds, one-shot at the confirmed contact, stereo readability next to and behind the player and usable loudness in a pack; verification: contact and wire regressions, native smoke and headphone playtest in the [audio report](docs/testing/normal-impact-audio/REPORT.md).
 - [ ] **AUDIO-012** Validate no loop clicks/gaps/clipping from idle to redline, distinguishable location ambiences, and no doubled combat/crash sound after prediction correction.
 - [ ] **AUDIO-013** Persist master/engine/SFX/ambience/music sliders and input/audio options; caption critical non-speech cues and validate source release permissions. Partial: ADR104 persists master volume/mute with absolute live loop/one-shot gain and existing bindings/comfort; independent buses, captions and full audible/hardware acceptance remain open.

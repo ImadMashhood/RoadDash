@@ -130,6 +130,9 @@ pub fn spawn(
                     .id();
                 if let Some(props) = &art.props {
                     let visual = props.vehicle(commands, i);
+                    if crate::props::vehicle_is_pickup(i) {
+                        commands.entity(root).insert(crate::sound::PickupEngine);
+                    }
                     crate::runtime::attach_visuals(commands, root, &[visual]);
                 } else {
                     let child = crate::world::part(

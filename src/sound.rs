@@ -2,7 +2,9 @@
 mod bike_audio;
 mod engine;
 mod engine_signal;
+mod traffic_audio;
 pub(crate) use bike_audio::{BikeEmitter, update_bikes};
+pub(crate) use traffic_audio::{PickupEngine, update_traffic};
 
 use crate::{
     game::{Phase, Race, Rider},
@@ -310,7 +312,7 @@ pub(crate) fn update(
                 }
                 LoopSound::LooseSurface => loose * 0.24,
                 LoopSound::Ambience(_) => 0.,
-                LoopSound::Wind => (player.speed / 75.0).powi(2) * 0.35,
+                LoopSound::Wind => (player.speed / 60.0).clamp(0.0, 1.0).powi(2) * 0.18,
                 LoopSound::Nitro => {
                     if boost && player.nitro > 0.0 && player.speed > 2.0 {
                         0.20
@@ -493,14 +495,10 @@ mod tests {
         }
     }
     #[test]
-    fn recorded_wind_loop_decodes_with_audio() {
+    fn recorded_wind_loop_decodes_with_headroom() {
         use bevy::audio::Decodable;
         let source = loop_recording(include_bytes!("../assets/audio/recorded/wind.wav"), 0., 7.);
-        assert!(
-            source
-                .decoder()
-                .take(24_000)
-                .any(|sample| sample.abs() > 0.01)
-        );
+        let peak = source.decoder().map(f32::abs).fold(0., f32::max);
+        assert!((0.01..0.40).contains(&peak), "wind peak is {peak}");
     }
 }

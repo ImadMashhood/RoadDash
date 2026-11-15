@@ -106,8 +106,7 @@ impl PropArt {
         )
     }
     pub fn vehicle(&self, commands: &mut Commands, seed: usize) -> Entity {
-        let models = ["hatchback", "sedan", "sports_car", "taxi", "van", "pickup"];
-        let p = self.choose(models[seed % models.len()], seed / models.len());
+        let p = self.choose(vehicle_kind(seed), seed / TRAFFIC_VEHICLE_MODELS.len());
         self.fitted(
             commands,
             p,
@@ -536,4 +535,15 @@ pub fn dress_city(commands: &mut Commands, art: &PropArt, city: &rr_content::cit
             .id();
         commands.entity(owner).add_child(visual);
     }
+}
+
+const TRAFFIC_VEHICLE_MODELS: [&str; 6] =
+    ["hatchback", "sedan", "sports_car", "taxi", "van", "pickup"];
+
+fn vehicle_kind(seed: usize) -> &'static str {
+    TRAFFIC_VEHICLE_MODELS[seed % TRAFFIC_VEHICLE_MODELS.len()]
+}
+
+pub(crate) fn vehicle_is_pickup(seed: usize) -> bool {
+    vehicle_kind(seed) == "pickup"
 }

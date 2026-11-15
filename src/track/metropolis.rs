@@ -286,7 +286,7 @@ mod tests {
         assert_eq!(t.length, 12000.);
         assert_eq!(t.points.len(), m.paths[0].points.len());
         assert_eq!(t.distances, m.paths[0].progress);
-        assert_eq!(t.race_interval().length(), 11000.);
+        assert_eq!(t.race_interval().length(), 10000.);
         for route in 0..2 {
             for spawn in &t.definition.spawns {
                 let station = t.grid_station(spawn.distance);
@@ -297,7 +297,7 @@ mod tests {
                 assert!((lane - spawn.lane).abs() < 0.05);
             }
             let mut g = GateProgress::default();
-            for d in (500..11500).step_by(5) {
+            for d in (500..10500).step_by(5) {
                 let a = d as f32;
                 g.observe_route(
                     &t,
@@ -307,7 +307,7 @@ mod tests {
                     a,
                     a + 5.,
                 );
-                assert_eq!(g.completed_laps, u32::from(d == 11495));
+                assert_eq!(g.completed_laps, u32::from(d == 10495));
             }
             // Crossing the old physical endpoint cannot produce another result.
             g.observe_route(
@@ -320,7 +320,7 @@ mod tests {
             );
             assert_eq!(g.completed_laps, 1);
             // Neither direct finish travel nor backwards crossing is a win.
-            for (a, b) in [(11496., 11504.), (11504., 11496.), (500., 11504.)] {
+            for (a, b) in [(10496., 10504.), (10504., 10496.), (500., 10504.)] {
                 let mut fresh = GateProgress::default();
                 fresh.observe_route(
                     &t,

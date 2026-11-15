@@ -6,6 +6,8 @@
     "00": {
       "title": "Completed and verified foundations",
       "task_ids": [
+        "RACE-FINISH-01",
+        "RACE-RIDEOVER-01",
         "HILLS-BEND-01",
         "GEAR-03",
         "GEAR-02",
@@ -453,6 +455,7 @@
       "task_ids": [
         "SCENIC-HORIZON-01",
         "COURSE-TERRAIN-01",
+        "HILLS-POLISH-02",
         "HILLS-CATTLE-01",
         "HILLS-TOWN-01",
         "COURSE-CROSSING-01",
@@ -661,6 +664,7 @@
         "AUDIO-009",
         "AUDIO-010",
         "AUDIO-011",
+        "RACE-MIX-HUD-01",
         "AUDIO-IMPACT-01",
         "AUDIO-012",
         "AUDIO-013"

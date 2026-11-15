@@ -958,7 +958,7 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
 #[test]
 fn metropolis_rival_physically_clears_two_solid_oncoming_cars() {
     // City entry approaching the split, and the dense city shared with Hills.
-    for start in [3250., 10400.] {
+    for start in [3250., 10000.] {
         physical_oncoming_pair(Track::metropolis().unwrap(), start);
     }
 }

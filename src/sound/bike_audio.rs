@@ -48,7 +48,7 @@ fn spatial_gain(distance: f32) -> f32 {
     tail * tail / (1. + (distance / 13.).powi(2))
 }
 
-fn doppler(offset: Vec3, source_velocity: Vec3, listener_velocity: Vec3) -> f32 {
+pub(crate) fn doppler(offset: Vec3, source_velocity: Vec3, listener_velocity: Vec3) -> f32 {
     let direction = offset.normalize_or_zero();
     let radial = |velocity: Vec3| velocity.dot(direction).clamp(-105., 105.);
     ((343. + radial(listener_velocity)) / (343. + radial(source_velocity))).clamp(0.65, 1.5)
@@ -182,7 +182,7 @@ pub(crate) fn update_bikes(
         };
         let voice = state.voices.entry(entity).or_insert_with(|| {
             let control = EngineControl::default();
-            let source = assets.add(EngineSource(control.clone()));
+            let source = assets.add(EngineSource(control.clone(), None));
             let emitter = commands
                 .spawn((
                     BikeEmitter(entity),

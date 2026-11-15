@@ -1,5 +1,9 @@
 # Known issues and remaining acceptance
 
+- RACE-MIX-HUD-01 and HILLS-POLISH-02: Headphone and race-speed review,
+  including the far bridge underside, and a matched frame-time comparison
+  remain open after the race polish follow-up.
+
 - HILLS-TOWN-01: Human review of scene readability and traffic interaction
   at full race speed remains open.
 
