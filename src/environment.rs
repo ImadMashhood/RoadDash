@@ -689,37 +689,6 @@ pub fn build(
             }
         }
     }
-    for (i, station) in (0..track.definition.checkpoints.len())
-        .filter_map(|i| track.gate_station(i).map(|station| (i, station)))
-    {
-        let (p, q) = track.sample(station, 0.0);
-        for side in [-1.0, 1.0] {
-            block(
-                commands,
-                art,
-                if i == 0 {
-                    art.white.clone()
-                } else {
-                    yellow.clone()
-                },
-                p + q * Vec3::X * side * (track.half_width(station) + 1.0) + Vec3::Y * 2.0,
-                Vec3::new(0.2, 4.0, 0.2),
-                q,
-                true,
-            );
-        }
-        if i == 0 {
-            block(
-                commands,
-                art,
-                art.dark.clone(),
-                p + Vec3::Y * 5.0,
-                Vec3::new(16.0, 0.7, 0.5),
-                q,
-                true,
-            );
-        }
-    }
     commands.insert_resource(TrackInspector {
         visible: false,
         render_triangles,
@@ -958,6 +927,7 @@ pub fn patrol(
             Option<&CrossTraffic>,
             Has<crate::world_gen::hills::HillsCowboy>,
             Has<crate::world_gen::hills::wildlife::CrossingCow>,
+            Option<&crate::world_gen::hills::wildlife::CrossingGround>,
         ),
         (
             Without<ColliderDisabled>,
@@ -969,7 +939,7 @@ pub fn patrol(
     if race.phase != Phase::Racing {
         return;
     }
-    for (path, mut t, car, cowboy, crossing_cow) in &mut actors {
+    for (path, mut t, car, cowboy, crossing_cow, crossing_ground) in &mut actors {
         let phase = (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.0);
         let f = if path.one_way {
             phase.rem_euclid(2.0) - 1.0
@@ -980,7 +950,9 @@ pub fn patrol(
         };
         let p = path.center + path.axis * f * path.extent;
         t.translation = p;
-        if cowboy || crossing_cow {
+        if let Some(ground) = crossing_ground {
+            t.translation.y = ground.at(f) + 0.015;
+        } else if cowboy || crossing_cow {
             t.translation.y = crate::world_gen::hills::crossing_support(&track, p) + 0.015;
         } else if car.is_none() {
             t.translation.y = track.terrain_height(p.x, p.z)
@@ -1045,14 +1017,6 @@ pub fn inspector(
         Isometry3d::from_translation((min + max) * 0.5),
         Color::srgb(0.6, 0.4, 1.0),
     );
-    for station in (0..track.definition.checkpoints.len()).filter_map(|i| track.gate_station(i)) {
-        let (p, q) = track.sample(station, 0.0);
-        gizmos.line(
-            p - q * Vec3::X * 12.0 + Vec3::Y * 2.0,
-            p + q * Vec3::X * 12.0 + Vec3::Y * 2.0,
-            Color::srgb(1.0, 0.2, 0.2),
-        );
-    }
     for spawn in &track.definition.spawns {
         gizmos.sphere(
             Isometry3d::from_translation(

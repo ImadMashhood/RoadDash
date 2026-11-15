@@ -454,6 +454,45 @@ fn analog_trigger_values_reach_the_chassis_force_model() {
 }
 
 #[test]
+fn finished_bikes_brake_to_a_solid_stop() {
+    for adapter in [
+        VehiclePhysicsAdapter::Dynamic,
+        VehiclePhysicsAdapter::Assisted,
+    ] {
+        let mut app = app(1, 60);
+        app.insert_resource(adapter);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..240 {
+            app.update();
+        }
+        let world = app.world_mut();
+        let rider = world
+            .query_filtered::<Entity, With<Rider>>()
+            .single(world)
+            .unwrap();
+        let initial = world.get::<Rider>(rider).unwrap().speed;
+        let initial_position = world.get::<Transform>(rider).unwrap().translation;
+        assert!(initial > 16.);
+        world.get_mut::<Rider>(rider).unwrap().finished = Some(4.);
+        app.update();
+        assert!(app.world().get::<Rider>(rider).unwrap().speed > initial - 2.);
+        for _ in 0..300 {
+            app.update();
+        }
+        let world = app.world();
+        assert!(
+            world.get::<Rider>(rider).unwrap().speed < 0.3,
+            "{adapter:?}"
+        );
+        assert!(initial_position.distance(world.get::<Transform>(rider).unwrap().translation) > 8.);
+        assert!(world.get::<Collider>(rider).is_some());
+        assert!(world.get::<ColliderDisabled>(rider).is_none());
+    }
+}
+
+#[test]
 fn herd_cattle_knock_fast_approaches_off_both_adapters() {
     use crate::{
         npc::{Npc, NpcKind},
@@ -1532,7 +1571,11 @@ fn sand_coasting_and_ai_traversal_use_live_shared_adapter_rules() {
         }
         let world = app.world_mut();
         let rider = world.query::<&Rider>().single(world).unwrap();
-        assert!(rider.speed > 2. && rider.speed < 18. && rider.crashed == 0.);
+        assert!(
+            rider.speed > 2.
+                && rider.speed < Surface::Sand.speed_limit(f32::INFINITY)
+                && rider.crashed == 0.
+        );
     }
 }
 

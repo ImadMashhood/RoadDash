@@ -24,6 +24,9 @@ pub struct Counters {
     pub shared_scans: u64,
     pub shared_clear_segments: u64,
     pub shared_scan_ms: f64,
+    pub plan_searches: u64,
+    pub plan_reuses: u64,
+    pub immediate_replans: u64,
 }
 impl Counters {
     pub fn merge(&mut self, other: Self) {
@@ -36,6 +39,9 @@ impl Counters {
         self.shared_scans += other.shared_scans;
         self.shared_clear_segments += other.shared_clear_segments;
         self.shared_scan_ms += other.shared_scan_ms;
+        self.plan_searches += other.plan_searches;
+        self.plan_reuses += other.plan_reuses;
+        self.immediate_replans += other.immediate_replans;
     }
 }
 const CELL_M: f32 = 2.;
@@ -218,6 +224,61 @@ impl StaticOccupancy {
     }
 }
 
+/// Conservative width envelopes baked once from the authored Hills spline.
+#[derive(Default)]
+pub struct HillsCorridors {
+    first: f32,
+    widths: Vec<f32>,
+}
+impl HillsCorridors {
+    const STEP: f32 = 8.;
+    pub(crate) fn bake(track: &crate::track::Track) -> Self {
+        let first = track.distances[0].min(-300.);
+        let count = ((track.length - first) / Self::STEP).ceil() as usize + 1;
+        let widths = (0..count)
+            .map(|index| {
+                let from = first + index as f32 * Self::STEP;
+                let to = (from + Self::STEP + 120.).min(track.length - 0.01);
+                // The spline width interpolates linearly between the resident stations.
+                let range = track.distances.partition_point(|s| *s < from)
+                    ..track.distances.partition_point(|s| *s < to);
+                let mut width = track.half_width(from).min(track.half_width(to));
+                if let Some(stations) = track.distances.get(range) {
+                    for &station in stations {
+                        width = width.min(track.half_width(station));
+                    }
+                }
+                width
+            })
+            .collect();
+        Self { first, widths }
+    }
+
+    pub(crate) fn bounds(&self, progress: f32, center: f32) -> Option<(f32, f32)> {
+        let index = (progress - self.first) / Self::STEP;
+        if index < 0. {
+            return None;
+        }
+        let width = *self.widths.get(index.floor() as usize)?;
+        let verge = if (-300. ..1000.).contains(&progress) {
+            2.7
+        } else {
+            1.5
+        };
+        let half = width + verge - 0.65;
+        Some((center - half, center + half))
+    }
+}
+
+#[derive(Clone, Copy)]
+pub(crate) struct HeldPlan {
+    pub tick: u64,
+    pub route: usize,
+    pub station: f32,
+    pub requested: f32,
+    pub plan: rr_core::traffic_avoidance::Plan,
+}
+
 #[derive(Clone, Copy)]
 struct Entry {
     goal: u32,
@@ -231,6 +292,7 @@ pub struct Work {
     enabled: bool,
     reuse_blocked: bool,
     shared_enabled: bool,
+    replan_period: u64,
     shared_attempted: Cell<bool>,
     shared_current: Cell<bool>,
     shared: RefCell<StaticOccupancy>,
@@ -244,6 +306,11 @@ impl Default for Work {
             enabled: std::env::var("ROADDASH_AI_STATIC_CACHE").as_deref() != Ok("0"),
             reuse_blocked: std::env::var("ROADDASH_AI_BLOCKED_CACHE").as_deref() != Ok("0"),
             shared_enabled: std::env::var("ROADDASH_AI_SHARED_SCAN").as_deref() != Ok("0"),
+            replan_period: match std::env::var("ROADDASH_AI_REPLAN_HZ").as_deref() {
+                Ok("60") => 1,
+                Ok("20") => 3,
+                _ => 6,
+            },
             shared_attempted: Cell::new(false),
             shared_current: Cell::new(false),
             shared: RefCell::new(StaticOccupancy::default()),
@@ -286,6 +353,19 @@ impl Work {
             self.counters.borrow_mut().shared_clear_segments += 1;
         }
         clear
+    }
+
+    pub(crate) fn allows_reuse(&self, tick: u64, rider: usize, last_tick: u64) -> bool {
+        self.replan_period > 1
+            && !(tick + rider as u64).is_multiple_of(self.replan_period)
+            && tick.saturating_sub(last_tick) < self.replan_period
+    }
+
+    pub(crate) fn record_replan(&self, reused: bool, immediate: bool) {
+        let mut counters = self.counters.borrow_mut();
+        counters.plan_reuses += u64::from(reused);
+        counters.plan_searches += u64::from(!reused);
+        counters.immediate_replans += u64::from(immediate);
     }
 
     /// Flush on every rider: owner, origin, road frame and static world must match.
@@ -363,6 +443,37 @@ impl Work {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn scheduled_plan_searches_are_staggered_at_ten_or_twenty_hertz() {
+        for period in [3, 6] {
+            let work = Work {
+                replan_period: period,
+                ..Work::default()
+            };
+            for tick in 60..120 {
+                let due = (1..=12)
+                    .filter(|&id| !work.allows_reuse(tick, id, tick - 1))
+                    .count();
+                assert_eq!(due, 12 / period as usize);
+            }
+            assert!(!work.allows_reuse(100, 0, 100 - period));
+        }
+    }
+
+    #[test]
+    fn hills_corridor_envelope_is_conservative_at_representative_stations() {
+        let track = crate::track::Track::hills().unwrap();
+        let baked = HillsCorridors::bake(&track);
+        for station in (-300..track.length as i32).step_by(7) {
+            let station = station as f32;
+            let center = track.street_offset(0, station);
+            let nominal = crate::game::ai_free_bounds(&track, 0, station);
+            let bounds = baked.bounds(station, center).unwrap();
+            assert!(bounds.0 >= nominal.0 - 0.001);
+            assert!(bounds.1 <= nominal.1 + 0.001);
+        }
+    }
 
     #[test]
     fn shared_scan_runs_once_and_only_certifies_covered_empty_space() {

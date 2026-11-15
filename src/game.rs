@@ -24,6 +24,7 @@ pub struct Race {
     pub arrested: bool,
     pub player_wasted: Option<(rr_core::race::WasteCause, f32)>,
     pub continued: bool,
+    pub player_finish_runout: Option<f32>,
     pub race_in_progress: bool,
     pub phase: Phase,
     pub countdown: f32,
@@ -43,6 +44,7 @@ impl Default for Race {
             arrested: false,
             player_wasted: None,
             continued: false,
+            player_finish_runout: None,
             race_in_progress: false,
             phase: Phase::Garage,
             countdown: 3.0,
@@ -213,6 +215,7 @@ pub struct Rider {
     pub ai_drive: rr_core::cast::DriveMemory,
     pub ai_pass: rr_core::traffic_avoidance::Memory,
     pub ai_plan: Option<rr_core::traffic_avoidance::Plan>,
+    ai_held_plan: Option<crate::ai_work::HeldPlan>,
     pub ai_static_guard_until: f32,
     pub(crate) ai_trace_next: Option<f32>,
     pub ai_escape: rr_core::escape::Memory,
@@ -302,6 +305,7 @@ impl Rider {
             ai_drive: default(),
             ai_pass: default(),
             ai_plan: None,
+            ai_held_plan: None,
             ai_static_guard_until: 0.,
             ai_trace_next: None,
             ai_escape: default(),
@@ -811,6 +815,8 @@ pub fn drive(
         mut civilian_timings,
         strike_timings,
         work,
+        mut hills_corridors,
+        clock,
         mut metrics,
     ): (
         Res<GameContent>,
@@ -826,6 +832,8 @@ pub fn drive(
         Option<ResMut<civilian_survey::PlanningTimings>>,
         Res<crate::combat::StrikeTimings>,
         Local<crate::ai_work::Work>,
+        Local<Option<crate::ai_work::HillsCorridors>>,
+        Res<crate::runtime::SimulationClock>,
         Option<ResMut<crate::diagnostics::Metrics>>,
     ),
     police: Res<crate::police::Police>,
@@ -844,9 +852,13 @@ pub fn drive(
                 Option<&Velocity>,
                 Option<&crate::world_gen::metropolis::Crossing>,
                 Option<&ColliderDisabled>,
+                Has<crate::world_gen::hills::wildlife::CrossingCow>,
             ),
             (
-                With<crate::environment::CrossTraffic>,
+                Or<(
+                    With<crate::environment::CrossTraffic>,
+                    With<crate::world_gen::hills::wildlife::CrossingCow>,
+                )>,
                 Without<Traffic>,
                 Without<Rider>,
             ),
@@ -890,6 +902,9 @@ pub fn drive(
     race.shake = (race.shake - dt * 2.0).max(0.0);
     // One broad-phase envelope for the field. Segments outside it still receive
     // the original exact sweep, including on split routes and unusual tracks.
+    if track.is_hills() && (hills_corridors.is_none() || track.is_changed()) {
+        *hills_corridors = Some(crate::ai_work::HillsCorridors::bake(&track));
+    }
     let scan_bounds = active
         .then(|| {
             riders.iter().fold(
@@ -941,13 +956,16 @@ pub fn drive(
                     r.route,
                     r.motion_velocity.dot(road * Vec3::NEG_X),
                     forward_speed,
+                    r.finished.is_some(),
                 ),
             )
         })
         .collect();
     let targets: Vec<_> = riders
         .iter()
-        .filter(|(_, r, _, _, _)| r.racing())
+        .filter(|(_, r, state, _, _)| {
+            r.racing() || (r.finished.is_some() && state.stage == RecoveryStage::Riding)
+        })
         .map(|(_, r, state, t, _)| {
             let downed = state.stage != RecoveryStage::Riding;
             let (progress, lane, _) = if downed {
@@ -974,12 +992,135 @@ pub fn drive(
         .collect();
     let player_progress = snapshots.iter().find(|s| s.1 == 0).map_or(0.0, |s| s.2);
 
+    // Resolve world geometry and route frames once for the whole rider field.
+    let local_flow = ai_uses_local_flow(&track);
+    let traffic_snapshot: Vec<_> = if active {
+        traffic
+            .iter()
+            .map(|(entity, car, body, yielding, _)| {
+                let default_bounds = (Vec3::ZERO, Vec3::new(0.95, 0.9, 1.95));
+                let (center, half) = if local_flow {
+                    shapes.get(entity).map_or(default_bounds, |shape| {
+                        let (lo, hi) = recovery::collider_bounds(&Transform::IDENTITY, shape);
+                        ((lo + hi) * 0.5, (hi - lo) * 0.5)
+                    })
+                } else {
+                    default_bounds
+                };
+                let longitudinal_offset = if center.z.abs() > 0.001 {
+                    let road_forward =
+                        track.sample_route(car.route, car.progress, car.lane).1 * Vec3::Z;
+                    center.z
+                        * if (body.rotation * Vec3::Z).dot(road_forward) >= 0. {
+                            1.
+                        } else {
+                            -1.
+                        }
+                } else {
+                    0.
+                };
+                let proxy = rr_core::traffic_avoidance::Car {
+                    gap: 0.,
+                    lane: track.lane_at(car.route, car.progress, body.transform_point(center))
+                        - track.street_offset(car.route, car.progress),
+                    speed: car.speed,
+                    lateral_speed: yielding.lateral_speed,
+                    lateral_goal: yielding.lateral_goal,
+                    half_width: half.x,
+                    half_length: half.z,
+                };
+                (car.route, car.progress, longitudinal_offset, proxy)
+            })
+            .collect()
+    } else {
+        Vec::new()
+    };
+    let crossing_snapshot: Vec<_> = if active {
+        crossing_cars
+            .iter()
+            .map(|(pose, path, velocity, crossing, disabled, cattle)| {
+                let world_velocity = if crossing.is_some() {
+                    // The city crossing mover reports its actual displacement during a yield.
+                    velocity.map_or(Vec3::ZERO, |v| v.linear)
+                } else if disabled.is_some() {
+                    Vec3::ZERO
+                } else if let Some(path) = path {
+                    let phase =
+                        (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.);
+                    path.axis * path.speed * if path.one_way || phase < 2. { 1. } else { -1. }
+                } else {
+                    velocity.map_or(Vec3::ZERO, |v| v.linear)
+                };
+                let half = if cattle {
+                    Vec2::new(1.1, 0.5)
+                } else {
+                    Vec2::new(0.95, 1.95)
+                };
+                (*pose, world_velocity, half)
+            })
+            .collect()
+    } else {
+        Vec::new()
+    };
+
     let mut escape_budget = 1usize;
     for (entity, mut r, mut recovery, mut transform, mut visibility) in &mut riders {
         if !r.racing() {
+            if active && !dynamic && r.finished.is_some() && recovery.stage == RecoveryStage::Riding
+            {
+                let speed = r.speed;
+                r.speed = (speed - crate::vehicle::FINISH_BRAKE_MPS2 * dt).max(0.);
+                if speed > 0. {
+                    let step = speed * dt;
+                    let station = if track.definition.closed {
+                        r.progress + step
+                    } else {
+                        (r.progress + step).min(track.length)
+                    };
+                    let (destination, heading) = track.sample_route(r.route, station, r.lane);
+                    let delta = destination - transform.translation;
+                    r.motion_velocity = heading * Vec3::Z * speed;
+                    let contact = context.single().ok().and_then(|ctx| {
+                        let relevant = |other, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                            !ground.contains(other)
+                                && !soft_targets.contains(entity, other)
+                                && !owned.get(other).is_ok_and(|body| body.owner == entity)
+                        };
+                        ctx.cast_shape(
+                            transform.translation + Vec3::Y * 0.85,
+                            transform.rotation,
+                            delta,
+                            &bevy_rapier3d::parry::shape::Cuboid::new(Vec3::new(0.38, 0.65, 1.12)),
+                            ShapeCastOptions {
+                                max_time_of_impact: 1.,
+                                stop_at_penetration: false,
+                                ..default()
+                            },
+                            QueryFilter::exclude_dynamic()
+                                .exclude_rigid_body(entity)
+                                .exclude_sensors()
+                                .predicate(&relevant),
+                        )
+                    });
+                    if let Some((other, hit)) = contact {
+                        transform.translation += delta * hit.time_of_impact.clamp(0., 1.);
+                        (r.progress, r.lane, _) =
+                            track.project_route(r.route, transform.translation, r.progress);
+                        r.speed = 0.;
+                        swept.write(recovery::SweptContact(entity, other));
+                    } else {
+                        transform.translation = destination;
+                        transform.rotation = heading;
+                        r.progress = station;
+                    }
+                } else {
+                    r.motion_velocity = Vec3::ZERO;
+                }
+            }
             continue;
         }
         if recovery.stage != RecoveryStage::Riding {
+            r.ai_held_plan = None;
             *visibility = Visibility::Hidden;
             continue;
         }
@@ -1062,7 +1203,9 @@ pub fn drive(
             let mut fight_targets = combat_targets;
             let mut fight_count = 0;
             for t in &combat_targets[..eligible_count] {
-                if t.id != crate::police::OFFICER_ID {
+                if t.id != crate::police::OFFICER_ID
+                    && !rider_frames.get(&t.id).is_some_and(|frame| frame.3)
+                {
                     fight_targets[fight_count] = *t;
                     fight_count += 1;
                 }
@@ -1202,7 +1345,9 @@ pub fn drive(
                     });
                 // Civilian traffic keeps its convention. Rivals may use the
                 // whole physical corridor, including clear sidewalk space.
-                let bounds = ai_free_bounds(&track, r.route, r.progress);
+                let bounds = hills_corridors.as_ref().filter(|_| track.is_hills())
+                    .and_then(|baked| baked.bounds(r.progress, offset))
+                    .unwrap_or_else(|| ai_free_bounds(&track, r.route, r.progress));
                 let roam = (width - 0.9).clamp(0.0, 3.4);
                 // Spread default racing lines across the paved road without
                 // changing the legacy first-racer's escape direction.
@@ -1229,93 +1374,29 @@ pub fn drive(
                 // solid buildings or props inside it.
                 let desired = desired.clamp(bounds.0, bounds.1);
 
-                let mut cars: Vec<_> = traffic
+                let mut cars: Vec<_> = traffic_snapshot
                     .iter()
-                    .filter_map(|(entity, car, body, yielding, _)| {
-                        if !track.same_corridor(r.route, r.progress, car.route, car.progress) {
+                    .filter_map(|&(route, station, longitudinal_offset, proxy)| {
+                        if !track.same_corridor(r.route, r.progress, route, station) {
                             return None;
                         }
-                        let coarse_gap = car.progress - r.progress;
-                        let coarse_gap = if track.definition.closed {
-                            (coarse_gap + track.length * 0.5).rem_euclid(track.length)
-                                - track.length * 0.5
-                        } else {
-                            coarse_gap
-                        };
-                        if coarse_gap.abs() > 1520. {
-                            return None;
-                        }
-                        let default_bounds = (Vec3::ZERO, Vec3::new(0.95, 0.9, 1.95));
-                        let (center, half) = if !ai_uses_local_flow(&track) {
-                            default_bounds
-                        } else {
-                            shapes.get(entity).map_or(default_bounds, |shape| {
-                                let (lo, hi) =
-                                    recovery::collider_bounds(&Transform::IDENTITY, shape);
-                                ((lo + hi) * 0.5, (hi - lo) * 0.5)
-                            })
-                        };
-                        let offset = if center.z.abs() > 0.001 {
-                            let road_forward =
-                                track.sample_route(car.route, car.progress, car.lane).1 * Vec3::Z;
-                            center.z
-                                * if (body.rotation * Vec3::Z).dot(road_forward) >= 0. {
-                                    1.
-                                } else {
-                                    -1.
-                                }
-                        } else {
-                            0.
-                        };
-                        let mut gap = car.progress - r.progress + offset;
-                        if track.definition.closed {
-                            gap = (gap + track.length * 0.5).rem_euclid(track.length)
-                                - track.length * 0.5;
-                        }
-                        (gap.abs() < 1500.0).then(|| rr_core::traffic_avoidance::Car {
-                            gap,
-                            // Read placed geometry, including street reservation offsets.
-                            lane: track.lane_at(
-                                car.route,
-                                car.progress,
-                                body.transform_point(center),
-                            ) - track.street_offset(car.route, car.progress),
-                            speed: car.speed,
-                            lateral_speed: yielding.lateral_speed,
-                            lateral_goal: yielding.lateral_goal,
-                            half_width: half.x,
-                            half_length: half.z,
-                        })
+                        let coarse_gap = station - r.progress;
+                        let coarse = if track.definition.closed { wrapped_gap(coarse_gap, track.length) } else { coarse_gap };
+                        if coarse.abs() > 1520. { return None; }
+                        let gap = coarse_gap + longitudinal_offset;
+                        let gap = if track.definition.closed { wrapped_gap(gap, track.length) } else { gap };
+                        (gap.abs() < 1500.).then_some(rr_core::traffic_avoidance::Car { gap, ..proxy })
                     })
                     .collect();
                 let main_proxy_count = cars.len();
                 let (_, road) = track.sample_route(r.route, r.progress, r.lane);
                 let forward = (road * Vec3::Z).with_y(0.0).normalize();
                 let lateral = (road * Vec3::NEG_X).with_y(0.0).normalize();
-                for (pose, path, velocity, crossing, disabled) in &crossing_cars {
+                for (pose, world_velocity, half) in &crossing_snapshot {
                     let delta = pose.translation - transform.translation;
                     if delta.xz().length_squared() > 350.0_f32.powi(2) || delta.y.abs() > 4.0 {
                         continue;
                     }
-                    let world_velocity = if crossing.is_some() {
-                        // Crossing's fixed mover measures actual displacement, including
-                        // junction yielding; intended path speed would predict a held car moving.
-                        velocity.map_or(Vec3::ZERO, |v| v.linear)
-                    } else if disabled.is_some() {
-                        Vec3::ZERO
-                    } else if let Some(path) = path {
-                        let phase =
-                            (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.0);
-                        path.axis
-                            * path.speed
-                            * if path.one_way || phase < 2.0 {
-                                1.0
-                            } else {
-                                -1.0
-                            }
-                    } else {
-                        velocity.map_or(Vec3::ZERO, |v| v.linear)
-                    };
                     let x = pose.rotation * Vec3::X;
                     let z = pose.rotation * Vec3::Z;
                     cars.push(rr_core::traffic_avoidance::Car {
@@ -1324,8 +1405,8 @@ pub fn drive(
                         speed: world_velocity.dot(forward),
                         lateral_speed: world_velocity.dot(lateral),
                         lateral_goal: None,
-                        half_width: x.dot(lateral).abs() * 0.95 + z.dot(lateral).abs() * 1.95,
-                        half_length: x.dot(forward).abs() * 0.95 + z.dot(forward).abs() * 1.95,
+                        half_width: x.dot(lateral).abs() * half.x + z.dot(lateral).abs() * half.y,
+                        half_length: x.dot(forward).abs() * half.x + z.dot(forward).abs() * half.y,
                     });
                 }
                 let crossing_proxy_count = cars.len() - main_proxy_count;
@@ -1392,6 +1473,25 @@ pub fn drive(
                     cruise: planning_pace,
                     bounds,
                 };
+                let staggered = track.is_hills() && !r.networked && !r.police && !trace_ai;
+                let held = r.ai_held_plan.filter(|old| {
+                    staggered && work.allows_reuse(clock.ticks, r.id, old.tick)
+                    && old.route == r.route && (r.progress - old.station).abs() < 12.
+                    && (desired - old.requested).abs() < 0.75
+                });
+                if let Some(old) = held {
+                    if !launching {
+                        cars.extend_from_slice(&riders);
+                    }
+                    if let Some(plan) = rr_core::traffic_avoidance::retained_plan(
+                        input, old.plan, &cars, local_horizon,
+                    ) {
+                        work.record_replan(true, false);
+                        return in_race_frame(plan);
+                    }
+                    if !launching { cars.truncate(main_proxy_count + crossing_proxy_count); }
+                }
+                work.record_replan(false, held.is_some());
                 let preliminary = rr_core::traffic_avoidance::Memory::default()
                     .plan_local(input, &cars, local_horizon, |_, _| true);
                 let queue_pace = if launching { planning_pace } else { race_pace };
@@ -1410,6 +1510,10 @@ pub fn drive(
                     if trace_ai {
                         println!("RFU_AI_PLANNER id={} elapsed={} station={} lane={} speed={} preliminary={preliminary:?} proxies={cars:?}", r.id, race.elapsed, r.progress, lane, r.speed);
                     }
+                    r.ai_held_plan = staggered.then_some(crate::ai_work::HeldPlan {
+                        tick: clock.ticks, route: r.route, station: r.progress,
+                        requested: desired, plan: preliminary,
+                    });
                     return in_race_frame(preliminary);
                 }
                 // Once passing, include every upright racer, including rear and
@@ -1523,6 +1627,10 @@ pub fn drive(
                 if trace_ai {
                     println!("RFU_AI_PLANNER id={} elapsed={} station={} lane={} speed={} desired={} bounds={bounds:?} rider_queue={} launch_deficit={} preliminary={preliminary:?} final={plan:?} home={:?} main_proxies={} crossing_proxies={} proxies={cars:?}", r.id, race.elapsed, progress, lane, speed, desired, rider_queue, queue_launch_deficit, r.ai_pass.home_lane(), main_proxy_count, crossing_proxy_count);
                 }
+                r.ai_held_plan = staggered.then_some(crate::ai_work::HeldPlan {
+                    tick: clock.ticks, route: r.route, station: r.progress,
+                    requested: desired, plan,
+                });
                 in_race_frame(plan)
             });
             r.ai_plan = traffic_plan;
@@ -1833,9 +1941,19 @@ pub fn drive(
             if !dynamic {
                 r.progress += r.speed * dt;
             }
-            if !dynamic && !track.definition.closed && r.progress >= track.race_interval().finish {
-                r.progress = track.race_interval().finish;
-                r.speed = 0.0;
+            if !dynamic && !track.definition.closed {
+                let unarmed = track.uses_timing_lines() && !r.gates.timing_armed(&track);
+                let limit = if unarmed {
+                    track.race_interval().finish
+                } else {
+                    track.length
+                };
+                if r.progress >= limit {
+                    r.progress = limit;
+                    if unarmed {
+                        r.speed = 0.;
+                    }
+                }
             }
             if !dynamic
                 && track.is_hills()
@@ -2136,7 +2254,7 @@ pub fn drive(
         if active && recovery.stage == RecoveryStage::Riding {
             let progress = r.progress;
             let route = r.route;
-            r.gates.observe_route(
+            r.gates.observe_race(
                 &track,
                 route,
                 previous_position,
@@ -2152,8 +2270,8 @@ pub fn drive(
                     persistence.0,
                     1 + snapshots.iter().filter(|s| s.1 != 0 && s.6).count(),
                     false,
+                    track.uses_timing_lines(),
                 );
-                commands.entity(entity).insert(ColliderDisabled);
             }
         }
         if !dynamic || !active {
@@ -2192,7 +2310,12 @@ pub fn drive(
             .iter()
             .any(|(_, r, _, _, _)| !r.police && r.id != 0 && r.racing());
     }
-    if active && race.phase != Phase::Finished && race.player_wasted.is_none() && !race.continued {
+    if active
+        && race.phase != Phase::Finished
+        && race.player_wasted.is_none()
+        && race.player_finish_runout.is_none()
+        && !race.continued
+    {
         race.place = 1 + riders
             .iter()
             .filter(|(_, r, _, _, _)| {
@@ -2632,7 +2755,7 @@ pub fn drive(
     }
 }
 
-/// One racer-level completion path for bike and on-foot gate crossings.
+/// One racer-level completion path for bike and on-foot timing crossings.
 pub(crate) fn finish_rider(
     rider: &mut Rider,
     race: &mut Race,
@@ -2640,6 +2763,7 @@ pub(crate) fn finish_rider(
     persist: bool,
     place: usize,
     on_foot: bool,
+    runout: bool,
 ) -> bool {
     if rider.police
         || (race.arrested && !rider.networked)
@@ -2650,6 +2774,13 @@ pub(crate) fn finish_rider(
     }
     rider.finished = Some(race.elapsed);
     rider.finished_on_foot = on_foot;
+    rider.drive_intent = rr_core::VehicleIntent {
+        brake: true,
+        brake_amount: 1.,
+        ..default()
+    };
+    rider.side_velocity = 0.;
+    rider.raw_steer = 0.;
     if rider.id == 0 {
         race.place = place;
     }
@@ -2667,7 +2798,11 @@ pub(crate) fn finish_rider(
         if persist {
             profile.save();
         }
-        race.phase = Phase::Finished;
+        if runout && !on_foot {
+            race.player_finish_runout = Some(race.elapsed + 8.);
+        } else {
+            race.phase = Phase::Finished;
+        }
     }
     true
 }
@@ -4528,35 +4663,39 @@ pub(crate) mod tests {
     }
     #[test]
     fn fast_rear_contact_ragdolls_victim_without_hopping_the_attacker() {
-        let mut app = simulation();
-        app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
-        {
-            let mut q = app.world_mut().query::<&mut Rider>();
-            q.single_mut(app.world_mut()).unwrap().speed = 22.0;
+        for finish in [None, Some(4.)] {
+            let mut app = simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            {
+                let mut q = app.world_mut().query::<&mut Rider>();
+                q.single_mut(app.world_mut()).unwrap().speed = 22.0;
+            }
+            let mut victim = Rider::new(1);
+            victim.progress = -6.0;
+            victim.lane = -2.0;
+            victim.finished = finish;
+            let (p, q) = app
+                .world()
+                .resource::<Track>()
+                .sample(victim.progress, victim.lane);
+            let victim = app
+                .world_mut()
+                .spawn((
+                    victim,
+                    Transform::from_translation(p).with_rotation(q),
+                    Visibility::default(),
+                    recovery::bike_body(),
+                ))
+                .id();
+            step(&mut app, 2);
+            assert_eq!(
+                app.world().get::<Recovery>(victim).unwrap().stage,
+                RecoveryStage::Falling
+            );
+            assert_eq!(player(&mut app).hop_velocity, 0.0);
+            assert_eq!(player(&mut app).crashed, 0.0);
+            assert_eq!(app.world().get::<Rider>(victim).unwrap().finished, finish);
         }
-        let mut victim = Rider::new(1);
-        victim.progress = -6.0;
-        victim.lane = -2.0;
-        let (p, q) = app
-            .world()
-            .resource::<Track>()
-            .sample(victim.progress, victim.lane);
-        let victim = app
-            .world_mut()
-            .spawn((
-                victim,
-                Transform::from_translation(p).with_rotation(q),
-                Visibility::default(),
-                recovery::bike_body(),
-            ))
-            .id();
-        step(&mut app, 2);
-        assert_eq!(
-            app.world().get::<Recovery>(victim).unwrap().stage,
-            RecoveryStage::Falling
-        );
-        assert_eq!(player(&mut app).hop_velocity, 0.0);
-        assert_eq!(player(&mut app).crashed, 0.0);
     }
 
     #[test]
@@ -5324,7 +5463,7 @@ pub(crate) mod tests {
         }
     }
     #[test]
-    fn point_to_point_driving_crosses_every_gate_and_awards_one_result() {
+    fn point_to_point_driving_crosses_timing_lines_and_awards_one_result() {
         let mut app = simulation();
         app.insert_resource(
             Track::from_json(include_str!("../content/tracks/valley.json")).unwrap(),
@@ -5343,6 +5482,7 @@ pub(crate) mod tests {
         app.world_mut()
             .resource_mut::<Time<Fixed>>()
             .advance_by(std::time::Duration::from_secs_f64(1.0 / 60.0));
+        let mut saw_runout = false;
         for _ in 0..10000 {
             let (d, lane, speed) = {
                 let r = player(&mut app);
@@ -5357,6 +5497,14 @@ pub(crate) mod tests {
                 ..default()
             };
             app.world_mut().run_schedule(FixedUpdate);
+            if app
+                .world()
+                .resource::<Race>()
+                .player_finish_runout
+                .is_some()
+            {
+                saw_runout |= player(&mut app).speed > 2.;
+            }
             if app.world().resource::<Race>().phase == Phase::Finished {
                 break;
             }
@@ -5371,6 +5519,8 @@ pub(crate) mod tests {
             Phase::Finished,
             "{details}"
         );
+        assert!(saw_runout);
+        assert!(player(&mut app).speed <= 0.5);
         assert_eq!(player(&mut app).gates.completed_laps, 1);
         assert_eq!(app.world().resource::<Profile>().races, 1);
         for _ in 0..60 {
@@ -5446,7 +5596,7 @@ pub(crate) mod tests {
         assert_eq!(r.gates.completed_laps, 0);
     }
     #[test]
-    fn missing_a_gate_stops_at_the_open_finish_without_payout_and_retry_resets_gates() {
+    fn missing_the_start_stops_at_the_open_finish_without_payout_and_retry_resets_timing() {
         let mut app = simulation();
         let track = Track::from_json(include_str!("../content/tracks/valley.json")).unwrap();
         let finish = track.race_interval().finish;

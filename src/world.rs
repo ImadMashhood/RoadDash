@@ -249,6 +249,7 @@ pub fn setup_world(
             &track,
         );
     }
+    crate::course_lines::spawn(&mut commands, &mut meshes, &mut materials, &track, &art);
     if track.is_hills() {
         crate::world_gen::hills::spawn(
             &mut commands,

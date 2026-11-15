@@ -197,7 +197,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**248 verified tasks complete; 375 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**251 verified tasks complete; 376 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -215,10 +215,10 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 77 open |
-| [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 77 open |
+| [00](#part-00) | Completed and verified foundations | 251 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 78 open |
+| [00](#part-00) | Completed and verified foundations | 251 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 78 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
@@ -240,7 +240,13 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 ### Part 00 — Completed and verified foundations
 
 <details>
-<summary>Recent verification audit — 14 completed tasks</summary>
+<summary>Recent verification audit — 17 completed tasks</summary>
+
+- [x] **AI-HILLS-CADENCE-01** Reduce expensive Hills passing searches while preserving physical passing. Reason: repeated scans consume fixed-tick time and stopped riders form queues; part: 01; dependencies: AI-SHARED-SCAN-01 and RACE-RIDEOVER-01; acceptance: safe two-rival pass, fixed-rate hazard response and reproducible 60/20/10 Hz native measurements; verification: physical regressions and native paired survey. [Evidence](docs/testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **HILLS-HERD-02** Place two slower, drivable, staggered 4×5 cattle crossings. Reason: the previous formation was too small and regular; part: 06; dependencies: HILLS-POLISH-02 and solid herd contacts; acceptance: two groups of 20, safe individual gaps, ground support, whole-road traversal; verification: Hills wildlife and both collision adapters. [Evidence](docs/testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Initial implementation](docs/testing/race-performance-hard-world/REPORT.md). [Verification](docs/testing/hills-race-polish-and-planning/REPORT.md).
 
 - [x] **RACE-FINISH-01** Move each built-in point-to-point finish one kilometre earlier. Reason: shorten the races while retaining the physical roads; part: 01; dependencies: existing race intervals and ordered gates; acceptance: earlier finish on each course, retained split and shortcut checks; verification: route traversal tests and native smoke in the [race polish report](docs/testing/race-polish-followup/REPORT.md).
 
@@ -754,6 +760,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **RACE-TIMING-LINES-01** Use decorated timing lines and preserve solid braking run-out. Reason: intermediate gates invalidated Hills finishes and completed bikes ghosted; part: 01; dependencies: RACE-FINISH-01 and current finish awards; acceptance: each built-in point-to-point course finishes from either valid route after crossing the start, with retained time, place and solid bike braking; verification: timing, rear contact and native smoke. [Evidence](docs/testing/hills-race-polish-and-planning/REPORT.md).
+
 - [ ] **AI-SHARED-SCAN-01** Share static obstacle discovery across the race field. Reason: the busy Hills forecast makes hundreds of obstacle sweeps per fixed tick; part: 01; dependencies: RFU-AI-01 and PERF-08; acceptance: one shared discovery scan per active tick with conservative clearance and fewer exact casts; verification: geometry, physical queue and native matched reports. [Evidence](docs/testing/shared-rival-obstacles/REPORT.md).
 
 
@@ -1123,7 +1131,7 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
-- [ ] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
+- [ ] **HILLS-SURFACE-POLISH-01** Refine player dust, sand slowdown and bridge shoulders. Reason: local tire dust disappeared and the deck shoulders showed exposed geometry; part: 06; dependencies: HILLS-POLISH-02 and the tire plume pool; acceptance: local dust in crowded scenes, gentler sand, closed abutment geometry and a close-up visual review; verification: pool, surface and bridge regressions plus native image review. [Evidence](docs/testing/hills-race-polish-and-planning/REPORT.md).
 
 - [ ] **HILLS-MEADOW-01** Blend Hills city terrain and tuft density into the first open meadow. Reason: grass starts abruptly; part: 06; dependencies: HILLS-03 and existing terrain support; acceptance: coherent gradient at driving height; verification: coverage and native transition views. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
 

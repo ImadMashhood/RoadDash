@@ -83,6 +83,36 @@ fn shoulders(track: &Track, route: usize, a: f32, b: f32) -> (Vec<Vec3>, Vec<[u3
     (v, ix)
 }
 
+/// Close the visible cut face where each shoulder meets the canyon. The road
+/// ribbon and shoulder collider still use their original physical topology.
+fn cap_bridge_shoulders(
+    track: &Track,
+    edge: &[Vec3],
+    entry: bool,
+    vertices: &mut Vec<Vec3>,
+    triangles: &mut Vec<[u32; 3]>,
+) {
+    const SEGMENTS: u32 = 12;
+    for (outer, inner) in [(edge[0], edge[1]), (edge[2], edge[3])] {
+        let first = vertices.len() as u32;
+        for step in 0..=SEGMENTS {
+            let top = outer.lerp(inner, step as f32 / SEGMENTS as f32);
+            let terrain = ground_height(track, top.x, top.z);
+            vertices.extend([top, top.with_y(top.y.min(terrain) - 0.15)]);
+            if step < SEGMENTS {
+                let i = first + step * 2;
+                let mut strip = [[i, i + 1, i + 2], [i + 2, i + 1, i + 3]];
+                if entry {
+                    for triangle in &mut strip {
+                        triangle.swap(1, 2);
+                    }
+                }
+                triangles.extend(strip);
+            }
+        }
+    }
+}
+
 fn terrain_vertex(track: &Track, x: f32, z: f32) -> Vec3 {
     super::terrain_cache::vertex(track, x, z, || terrain_vertex_uncached(track, x, z))
 }
@@ -274,20 +304,49 @@ pub(super) fn spawn(
                 rail_ground.add(&v, &ix);
             }
             let origin = v[v.len() / 2];
-            let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
-            let mut render = crate::environment::mesh(&local, &ix);
+            let mut render_vertices = std::borrow::Cow::Borrowed(v.as_slice());
+            let mut render_triangles = std::borrow::Cow::Borrowed(ix.as_slice());
+            let mut cap_uv_direction = Vec2::ZERO;
+            if route == 0 && (a == bridge::END || b == bridge::START) {
+                let edge = if a == bridge::END {
+                    &v[..4]
+                } else {
+                    &v[v.len() - 4..]
+                };
+                cap_uv_direction = (edge[3] - edge[0]).xz().perp().normalize_or_zero();
+                cap_bridge_shoulders(
+                    track,
+                    edge,
+                    b == bridge::START,
+                    render_vertices.to_mut(),
+                    render_triangles.to_mut(),
+                );
+            }
+            let local: Vec<_> = render_vertices.iter().map(|p| *p - origin).collect();
+            let mut render = crate::environment::mesh(&local, &render_triangles);
             render.insert_attribute(
                 Mesh::ATTRIBUTE_UV_0,
-                v.iter()
-                    .map(|p| [p.x * 0.18, p.z * 0.18])
+                render_vertices
+                    .iter()
+                    .enumerate()
+                    .map(|(i, p)| {
+                        // Carry the shoulder UV over the lip, then unwrap down the cut face.
+                        let drop = if i >= v.len() && !(i - v.len()).is_multiple_of(2) {
+                            p.y - render_vertices[i - 1].y
+                        } else {
+                            0.
+                        };
+                        ((p.xz() + cap_uv_direction * drop) * 0.18).to_array()
+                    })
                     .collect::<Vec<_>>(),
             );
             render.insert_attribute(
                 Mesh::ATTRIBUTE_COLOR,
-                v.iter()
+                render_vertices
+                    .iter()
                     .enumerate()
                     .map(|(i, &p)| {
-                        if matches!(i % 4, 0 | 3) {
+                        if i >= v.len() || matches!(i % 4, 0 | 3) {
                             terrain_color(
                                 track,
                                 p.with_y(ground_height(track, p.x, p.z)),
@@ -404,6 +463,40 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn bridge_retaining_faces_join_the_exact_shoulder_lips_and_face_the_span() {
+        let track = Track::hills().unwrap();
+        for (station, entry) in [(bridge::START, true), (bridge::END, false)] {
+            let (physical, _) = if entry {
+                shoulders(&track, 0, station - 1.25, station)
+            } else {
+                shoulders(&track, 0, station, station + 1.25)
+            };
+            let edge = if entry {
+                &physical[4..]
+            } else {
+                &physical[..4]
+            };
+            let mut vertices = Vec::new();
+            let mut triangles = Vec::new();
+            cap_bridge_shoulders(&track, edge, entry, &mut vertices, &mut triangles);
+            assert_eq!(triangles.len(), 48);
+            assert_eq!(
+                [vertices[0], vertices[24], vertices[26], vertices[50]].as_slice(),
+                edge
+            );
+            let forward = track.sample(station, 0.).1 * Vec3::Z;
+            for triangle in triangles {
+                let [a, b, c] = triangle.map(|i| vertices[i as usize]);
+                let towards_span = if entry { forward } else { -forward };
+                assert!((b - a).cross(c - a).dot(towards_span) > 0.);
+            }
+            for pair in vertices.chunks_exact(2) {
+                assert!(pair[1].y <= ground_height(&track, pair[0].x, pair[0].z) - 0.149);
+            }
+        }
+    }
+
     #[test]
     fn city_exit_is_neutral_at_the_boundary_and_greens_gradually() {
         let mut previous = 0.;

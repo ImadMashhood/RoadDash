@@ -130,6 +130,8 @@ pub fn attach(
         ));
     }
 }
+pub(crate) const FINISH_BRAKE_MPS2: f32 = 10.;
+
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub fn forces(
     time: Res<Time<Fixed>>,
@@ -161,7 +163,16 @@ pub fn forces(
     {
         *force = default();
         state.impact_velocity = v.linear;
-        if recovery.stage != RecoveryStage::Riding || race.phase != Phase::Racing || !r.racing() {
+        let finished = r.finished.is_some();
+        // The results menu pauses Rapier. Keep the field's momentum for
+        // Keep Race Running, including the run-out of the rider who finished.
+        if race.phase == Phase::Finished {
+            continue;
+        }
+        if recovery.stage != RecoveryStage::Riding
+            || race.phase != Phase::Racing
+            || r.wasted.is_some()
+        {
             *body = RigidBody::KinematicPositionBased;
             *v = Velocity::zero();
             state.was_riding = false;
@@ -200,7 +211,8 @@ pub fn forces(
         let speed = signed_speed.abs();
         let input = r.drive_intent;
         let player = r.human_controlled();
-        let at_end = !track.definition.closed && r.progress >= track.race_interval().finish;
+        let at_end =
+            finished || (!track.definition.closed && r.progress >= track.race_interval().finish);
         let throttle = input.throttle && !at_end;
         let brake = input.brake || at_end;
         let nitro =
@@ -339,8 +351,8 @@ pub fn forces(
         let longitudinal = engine
             - if brake {
                 (v.linear.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
-                    -(p.dry_mass + rider_mass) * 10.0,
-                    (p.dry_mass + rider_mass) * 10.0,
+                    -(p.dry_mass + rider_mass) * FINISH_BRAKE_MPS2,
+                    (p.dry_mass + rider_mass) * FINISH_BRAKE_MPS2,
                 ) * if at_end { 1.0 } else { input.brake_strength() }
             } else if !throttle {
                 (v.linear.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
@@ -470,7 +482,10 @@ pub fn readback(
             let (_, pitch, roll) = t.rotation.to_euler(EulerRot::YXZ);
             t.rotation = Quat::from_euler(EulerRot::YXZ, state.yaw, pitch, roll);
         }
-        if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing && r.racing() {
+        if recovery.stage == RecoveryStage::Riding
+            && race.phase == Phase::Racing
+            && r.wasted.is_none()
+        {
             let previous = r.progress;
             r.route = track.choose_route(r.route, previous, t.translation, r.human_controlled());
             let (d, lane, _) = track.project_route(r.route, t.translation, previous);
@@ -480,8 +495,10 @@ pub fn readback(
                 d.min(track.length)
             };
             let route = r.route;
-            r.gates
-                .observe_route(&track, route, state.position, t.translation, previous, d);
+            if r.racing() {
+                r.gates
+                    .observe_race(&track, route, state.position, t.translation, previous, d);
+            }
             r.progress = d;
             r.lane = lane;
             r.speed = v.linear.with_y(0.0).length();

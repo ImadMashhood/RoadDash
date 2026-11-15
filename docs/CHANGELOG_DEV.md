@@ -1,5 +1,11 @@
 # Development history
 
+## 2026-11-15 — Hills race timing, scenery contact and rival planning (ADR203)
+
+- Added decorated start and finish timing lines with solid braking run-out.
+- Spread the Hills planning work across fixed ticks and retained immediate hazard reaction.
+- Widened both cattle crossings and refined local dust, sand drag and bridge transitions.
+
 ## 2026-11-15 — Shared rival obstacle scan
 
 - Share a conservative occupancy snapshot across static AI lane forecasts and retain exact casts where occupancy is uncertain.

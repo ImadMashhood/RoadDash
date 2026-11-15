@@ -82,12 +82,16 @@ fn hanger_foot(track: &Track, station: f32, side: f32) -> Vec3 {
 }
 fn deck_skin_section(track: &Track, station: f32) -> [Vec3; 6] {
     let inland = (START - station).max(station - END).max(0.);
-    let bearing = inland / ABUTMENT_LENGTH;
+    let bearing = (inland / ABUTMENT_LENGTH).clamp(0., 1.);
+    // Taper the visible steel lip into the landward shoulder. Beyond the
+    // portal it becomes a narrow vertical edge below the asphalt.
+    let apron = (inland / 2.5).clamp(0., 1.);
+    let apron = apron * apron * (3. - 2. * apron);
     let [(left_road, left_lip), (right_road, right_lip)] = [-1., 1.].map(|side| {
         let half = track.half_width(station);
         let (road, q) = track.sample(station, side * half);
-        let widening = (HALF_DECK - half).max(0.1).lerp(0.1, bearing);
-        let lip = road - q * Vec3::X * side * widening - Vec3::Y * 0.105;
+        let widening = (HALF_DECK - half).max(0.1) * (1. - apron);
+        let lip = road - q * Vec3::X * side * widening - Vec3::Y * (0.105 + 0.15 * apron);
         (road + q * Vec3::Y * 0.025, lip)
     });
     let [bottom_left, bottom_right] = [left_lip, right_lip].map(|top| {

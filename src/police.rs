@@ -975,6 +975,7 @@ mod tests {
             &mut profile,
             false,
             1,
+            false,
             false
         ));
         assert!(r.finished.is_none());
@@ -988,6 +989,7 @@ mod tests {
             &mut profile,
             false,
             1,
+            false,
             false
         ));
     }

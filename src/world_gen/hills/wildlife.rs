@@ -1,4 +1,4 @@
-//! Bounded, non-contact off-road herds. No authoritative physics transforms.
+//! Scenic off-road herds and solid Hills cattle crossings.
 use super::{Track, props::Model};
 use crate::world::Art;
 use bevy::prelude::*;
@@ -14,17 +14,18 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
 ];
 const SAMPLES: usize = 128;
 const CROSSING_STATIONS: [f32; 2] = [8870., 11250.];
-const CROSSING_MEMBERS: usize = 6;
+const CROSSING_ROWS: usize = 4;
+const CROSSING_COLUMNS: usize = 5;
+const CROSSING_MEMBERS: usize = CROSSING_ROWS * CROSSING_COLUMNS;
 const CROSSING_SPEED: f32 = 0.88;
-const CROSSING_EXTENT: f32 = 11.;
-const CROSSING_OFFSETS: [(f32, f32); CROSSING_MEMBERS] = [
-    (-3.2, -2.0),
-    (-0.15, -1.1),
-    (2.85, -2.6),
-    (-2.0, 2.7),
-    (0.95, 1.6),
-    (4.35, 2.4),
-];
+const CROSSING_EXTENT: f32 = 20.;
+const ROW_ACROSS: [f32; CROSSING_ROWS] = [-9.6, -3.6, 2.7, 9.5];
+const ROW_STAGGER: [f32; CROSSING_ROWS] = [-1.9, 1.8, -1.0, 2.25];
+const COLUMN_ALONG: [f32; CROSSING_COLUMNS] = [-13.2, -6.6, 0.4, 7.5, 14.1];
+const COLUMN_SKEW: [f32; CROSSING_COLUMNS] = [-0.3, 0.15, 0.45, -0.2, 0.3];
+const CROSSING_RESERVED_ACROSS: f32 = CROSSING_EXTENT + 11.2;
+const CROSSING_RESERVED_ALONG: f32 = 32.;
+const SUPPORT_INTERVALS: usize = 160;
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
 #[derive(Component)]
@@ -34,6 +35,24 @@ pub struct WildAnimal {
 }
 #[derive(Component)]
 pub struct CrossingCow;
+/// Support at 0.25 m intervals along the fixed crossing path. Building this
+/// once keeps terrain and road projection out of the 40-cow fixed-tick loop.
+#[derive(Component)]
+pub struct CrossingGround([f32; SUPPORT_INTERVALS + 1]);
+impl CrossingGround {
+    fn from_path(track: &Track, station: f32, center: Vec3, axis: Vec3) -> Self {
+        Self(std::array::from_fn(|i| {
+            let offset = (2. * i as f32 / SUPPORT_INTERVALS as f32 - 1.) * CROSSING_EXTENT;
+            super::geometry::crossing_support(track, 0, center + axis * offset, station)
+        }))
+    }
+    pub(crate) fn at(&self, fraction: f32) -> f32 {
+        let distance = (fraction.clamp(-1., 1.) + 1.) * 0.5 * SUPPORT_INTERVALS as f32;
+        let i = (distance as usize).min(SUPPORT_INTERVALS - 1);
+        self.0[i].lerp(self.0[i + 1], distance - i as f32)
+    }
+}
+
 #[derive(Resource, Default)]
 pub struct Wildlife {
     pub herds: Vec<Herd>,
@@ -71,12 +90,13 @@ pub(super) fn reserved(track: &Track, point: Vec3, radius: f32) -> bool {
         l.x.abs() < rules::HALF_WIDTH + radius && l.z.abs() < rules::HALF_LENGTH + radius
     }) || CROSSING_STATIONS.iter().any(|&station| {
         let (p, q) = track.sample_route(0, station, 0.);
-        let l = q.inverse() * (point - p);
-        l.x.abs() < 31. + radius && l.z.abs() < 32. + radius
+        let across = (q * Vec3::X).with_y(0.).normalize();
+        let delta = point - p;
+        delta.dot(across).abs() < CROSSING_RESERVED_ACROSS + radius
+            && delta.dot(across.cross(Vec3::Y)).abs() < CROSSING_RESERVED_ALONG + radius
     })
 }
-/// Small solid cattle herds cross the later desert road. The crossing cattle
-/// retain their patrol as a solid hazard for mounted racers.
+/// Solid cattle cross in staggered rows with space for a mounted racer.
 pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) {
     if std::env::var("ROADDASH_WILDLIFE").as_deref() == Ok("0") {
         return;
@@ -84,14 +104,16 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
     for (group, &station) in CROSSING_STATIONS.iter().enumerate() {
         for member in 0..CROSSING_MEMBERS {
             let (center, axis, phase) = cattle_path(track, station, member);
+            let ground = CrossingGround::from_path(track, station, center, axis);
             let start = center + axis * ((phase - 1.) * CROSSING_EXTENT);
-            let p = start.with_y(super::geometry::crossing_support(track, 0, start, station));
+            let p = start.with_y(ground.at(phase - 1.) + 0.015);
             let entity = crate::environment::spawn_cow(commands, art, p, cattle_heading(axis));
             commands.entity(entity).insert((
                 Name::new(format!(
                     "Hills crossing cattle herd {group} member {member}"
                 )),
                 CrossingCow,
+                ground,
                 RigidBody::KinematicPositionBased,
                 ActiveCollisionTypes::all(),
                 crate::world::Obstacle,
@@ -111,7 +133,11 @@ fn cattle_path(track: &Track, station: f32, member: usize) -> (Vec3, Vec3, f32) 
     let (point, frame) = track.sample_route(0, station, 0.);
     let axis = (frame * Vec3::X).with_y(0.).normalize();
     let road = axis.cross(Vec3::Y);
-    let (along_road, along_crossing) = CROSSING_OFFSETS[member];
+    let row = member / CROSSING_COLUMNS;
+    let column = member % CROSSING_COLUMNS;
+    let along_road = COLUMN_ALONG[column] + ROW_STAGGER[row];
+    let row_sign = if row.is_multiple_of(2) { 1. } else { -1. };
+    let along_crossing = ROW_ACROSS[row] + row_sign * COLUMN_SKEW[column];
     (
         point + road * along_road + axis * along_crossing,
         axis,
@@ -484,32 +510,101 @@ pub fn animate(
 mod tests {
     use super::*;
     #[test]
-    fn cattle_stagger_the_rows_and_cover_the_centre_of_the_race_lane() {
+    fn cattle_crossings_keep_a_way_through_each_formation() {
         let track = Track::hills().unwrap();
         assert_eq!(CROSSING_STATIONS, [8870., 11250.]);
+        assert_eq!(
+            (CROSSING_ROWS, CROSSING_COLUMNS, CROSSING_MEMBERS),
+            (4, 5, 20)
+        );
         for station in CROSSING_STATIONS {
             let paths =
                 std::array::from_fn::<_, CROSSING_MEMBERS, _>(|i| cattle_path(&track, station, i));
             let (point, _) = track.sample_route(0, station, 0.);
             let (_, axis, phase) = paths[0];
-            for (i, (center, _, phase_i)) in paths.iter().copied().enumerate() {
-                assert_eq!(phase_i, phase);
-                let stagger = (center - point).dot(axis);
-                assert_eq!(stagger.is_sign_positive(), i >= 3);
-                let start = center + axis * ((phase - 1.) * CROSSING_EXTENT);
-                let time_to_middle = -(start - point).dot(axis) / CROSSING_SPEED;
-                assert!((0. ..10.).contains(&time_to_middle.max(0.)));
+            let along = axis.cross(Vec3::Y);
+            let span = |row| {
+                let members = &paths[row * CROSSING_COLUMNS..(row + 1) * CROSSING_COLUMNS];
+                members
+                    .iter()
+                    .map(|(center, _, _)| (*center - point).dot(axis))
+                    .fold((f32::INFINITY, f32::NEG_INFINITY), |(lo, hi), x| {
+                        (lo.min(x), hi.max(x))
+                    })
+            };
+            for row in 0..CROSSING_ROWS - 1 {
+                let (_, hi) = span(row);
+                let (lo, _) = span(row + 1);
+                // Cow collider is 2.2 m along the crossing axis.
+                assert!(lo - hi - 2.2 > 2.8);
+                let stagger =
+                    paths[(row + 1) * CROSSING_COLUMNS].0 - paths[row * CROSSING_COLUMNS].0;
+                assert!(stagger.dot(along).abs() >= 2.75);
+            }
+
+            // Sample lanes across the authored bend. One complete lane fits
+            // past every row even as the formation crosses it or turns back.
+            let lane_spans: Vec<_> = (-24..=24)
+                .map(|i| i as f32 * 0.25)
+                .filter(|lane| lane.abs() + 0.75 <= track.half_width(station))
+                .map(|lane| {
+                    (-20..=20)
+                        .map(|step| {
+                            (track.sample_route(0, station + step as f32, lane).0 - point).dot(axis)
+                        })
+                        .fold((f32::INFINITY, f32::NEG_INFINITY), |(lo, hi), x| {
+                            (lo.min(x), hi.max(x))
+                        })
+                })
+                .collect();
+            for step in 0..=80 {
+                let offset = step as f32 * 0.5 - CROSSING_EXTENT;
                 assert!(
-                    paths
+                    lane_spans
                         .iter()
-                        .skip(i + 1)
-                        .all(|(other, _, _)| center.distance(*other) > 2.4)
+                        .any(|&(lo, hi)| paths.iter().all(|(center, _, _)| {
+                            let x = (*center - point).dot(axis) + offset;
+                            x + 1.85 < lo || x - 1.85 > hi
+                        })),
+                    "blocked riding line at {station} m, crossing offset {offset} m"
                 );
+            }
+
+            for (center, path_axis, path_phase) in paths {
+                assert_eq!((path_axis, path_phase), (axis, phase));
+                for direction in [-1., 1.] {
+                    assert!(reserved(
+                        &track,
+                        center + axis * direction * CROSSING_EXTENT,
+                        0.
+                    ));
+                }
             }
             for heading in [axis, -axis] {
                 assert!((cattle_heading(heading) * Vec3::X).dot(heading) > 0.999);
             }
         }
+    }
+
+    #[test]
+    fn crossing_ground_cache_follows_resident_support() {
+        let track = Track::hills().unwrap();
+        let _cache = super::super::terrain_cache::Scope::new(&track);
+        let mut max_error = 0.0_f32;
+        for station in CROSSING_STATIONS {
+            for member in 0..CROSSING_MEMBERS {
+                let (center, axis, _) = cattle_path(&track, station, member);
+                let ground = CrossingGround::from_path(&track, station, center, axis);
+                for step in 0..SUPPORT_INTERVALS {
+                    let fraction = 2. * (step as f32 + 0.5) / SUPPORT_INTERVALS as f32 - 1.;
+                    let p = center + axis * fraction * CROSSING_EXTENT;
+                    let exact = super::super::geometry::crossing_support(&track, 0, p, station);
+                    max_error = max_error.max((ground.at(fraction) - exact).abs());
+                }
+            }
+        }
+        println!("maximum crossing height interpolation error {max_error:.3} m");
+        assert!(max_error < 0.2);
     }
 
     #[test]

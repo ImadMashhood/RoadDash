@@ -219,11 +219,11 @@ fn bike_and_foot_finish_attempts_share_exactly_one_award() {
     let mut p = crate::game::Profile::default();
     let n = p.races;
     assert!(crate::game::finish_rider(
-        &mut r, &mut race, &mut p, false, 1, true
+        &mut r, &mut race, &mut p, false, 1, true, false
     ));
     let credits = p.credits;
     assert!(!crate::game::finish_rider(
-        &mut r, &mut race, &mut p, false, 1, false
+        &mut r, &mut race, &mut p, false, 1, false, false
     ));
     assert_eq!(p.races, n + 1);
     assert_eq!(p.credits, credits);

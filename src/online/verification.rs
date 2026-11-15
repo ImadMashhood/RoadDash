@@ -399,6 +399,7 @@ mod tests {
             &mut profile,
             false,
             1,
+            false,
             false
         ));
         assert_eq!(host.finished, Some(100.));
@@ -414,6 +415,7 @@ mod tests {
             &mut profile,
             false,
             2,
+            false,
             false
         ));
         assert_eq!(race.phase, crate::game::Phase::Racing);
@@ -425,6 +427,7 @@ mod tests {
             &mut profile,
             false,
             1,
+            false,
             false
         ));
     }

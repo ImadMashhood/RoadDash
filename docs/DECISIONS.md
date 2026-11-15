@@ -4988,3 +4988,17 @@ grid as long as the scanned set, shapes, poses and region match. Mesh
 hierarchies supply tighter bounds than whole city-block colliders. Preserve exact sweeps
 for occupied or uncovered cells and keep fixed-rate motion and contact.
 [Implementation and evidence](testing/shared-rival-obstacles/REPORT.md).
+
+
+## ADR203 — Physical timing lines and staggered Hills passing (2026-11-15)
+
+Built-in point-to-point races arm timing at the start and record results at
+the finish. Keep directional, lane and height checks on both planes. The
+decorations have no collision. A recorded finisher remains a solid chassis
+and uses service braking while the race runs. Preserve its timestamp and
+place while the local results screen waits for the braking run-out.
+
+Reuse shared route corridors and traffic forecasts, and stagger expensive
+non-emergency searches across the fixed loop. Keep imminent-hazard checks
+and motion at the fixed rate.
+[Implementation and verification](testing/hills-race-polish-and-planning/REPORT.md).

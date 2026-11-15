@@ -474,8 +474,8 @@ pub(crate) fn update_ui(
                 format!("{condition}\nNITRO DISABLED\n{weapon}\n{}", police.hud())
             },
             4 if player.wasted.is_some() => "WASTED".into(),
-            4 if track.metropolis.is_some() && player.progress>=track.race_interval().finish && player.finished.is_none() => "ROUTE INCOMPLETE / R TO RETRY".into(),
-            4 if !track.definition.closed && track.metropolis.is_none() && player.progress>=track.race_interval().finish && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
+            4 if race.player_finish_runout.is_some() => "FINISHED / BRAKING".into(),
+            4 if !track.definition.closed && player.progress>=track.race_interval().finish && player.finished.is_none() => "ROUTE INCOMPLETE / R TO RETRY".into(),
             4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
             4 if recoveries.iter().any(|(r,s)|r.id==0 && s.stage==crate::recovery::RecoveryStage::Running) => {
                 let hint = recoveries.iter().find(|(r,_)|r.id==0).and_then(|(_,s)|s.runner.zip(s.wreck))
@@ -501,11 +501,14 @@ pub(crate) fn update_ui(
             7 if race.arrested => "You were caught after a sustained police pursuit.\n\nNo payout. Press Enter for a fresh grid.".into(),
             6 => match race.phase { Phase::Paused => "TAKE A BREATHER".into(), Phase::Finished => format!("FINISHED / P{} OF 15", race.place), _ => track.definition.name.clone() },
             7 => match race.phase {
-                Phase::Finished => format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (race.elapsed / 60.0) as u32, race.elapsed % 60.0, race.takedowns, race.earned),
+                Phase::Finished => {
+                    let elapsed = player.finished.unwrap_or(race.elapsed);
+                    format!("TIME  {:02}:{:05.2}     TAKEDOWNS  {}\n\n+{} CREDITS\nPress Enter to race again.", (elapsed / 60.0) as u32, elapsed % 60.0, race.takedowns, race.earned)
+                },
                 Phase::Paused => "Race paused.\n\nPress Esc to get back on the road.\nPress R for a fresh grid.\nF2 / controller LB: comfort & controls.".into(),
                 _ if track.is_hills()=>"Fifteen riders. City to winding hills.\n\nChoose either western town street.\nRejoin inside town; finish in the dunes.\nF2 / controller LB: comfort & controls.".into(),
                 _ if track.metropolis.is_some()=>"Fifteen riders. Farms to downtown.\n\nChoose Old Market or Station Avenue.\nRace to the finish in the city.\nF2 / controller LB: comfort & controls.".into(),
-                _ => "Eight riders. Farmland to city to hills.\n\nPass every gate. Dodge cross traffic.\nFight your way to the summit.\nF2 / controller LB: comfort & controls.".into(),
+                _ => "Follow the course from start to finish.\n\nWatch for cross traffic and other riders.\nF2 / controller LB: comfort & controls.".into(),
             },
             8 => if race.phase == Phase::Paused { "ESC / BACK TO IT".into() } else { "ENTER / RIDE OUT".into() },
             9 => format!("GARAGE   /   {} CREDITS   /   {} WINS IN {} RACES", profile.credits, profile.wins, profile.races),

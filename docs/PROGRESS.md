@@ -1,5 +1,12 @@
 # Development progress
 
+2026-11-15 Hills timing, presentation and rival planning (ADR203): verified
+HILLS-HERD-01, HILLS-HERD-02 and AI-HILLS-CADENCE-01. RACE-TIMING-LINES-01 and
+HILLS-SURFACE-POLISH-01 are open. 251 verified / 376 open. The matched
+launch measured AI drive time at 1.914 ms/tick at 60 Hz and 0.914 ms/tick at
+10 Hz. The stopped-player Hills fixture clears both rivals without contact.
+[Implementation and evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
 2026-11-15 shared static rival obstacle discovery (ADR202): AI-SHARED-SCAN-01
 added open. 248 verified / 375 open. The final Hills A/B matched rider outputs
 and reduced precise casts in the sampled busy interval. Timing remains open.
@@ -593,6 +600,12 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **AI-HILLS-CADENCE-01** Reduce expensive Hills passing searches while preserving physical passing. Reason: repeated scans consume fixed-tick time and stopped riders form queues; part: 01; dependencies: AI-SHARED-SCAN-01 and RACE-RIDEOVER-01; acceptance: safe two-rival pass, fixed-rate hazard response and reproducible 60/20/10 Hz native measurements; verification: physical regressions and native paired survey. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **HILLS-HERD-02** Place two slower, drivable, staggered 4×5 cattle crossings. Reason: the previous formation was too small and regular; part: 06; dependencies: HILLS-POLISH-02 and solid herd contacts; acceptance: two groups of 20, safe individual gaps, ground support, whole-road traversal; verification: Hills wildlife and both collision adapters. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Initial implementation](testing/race-performance-hard-world/REPORT.md). [Verification](testing/hills-race-polish-and-planning/REPORT.md).
+
 - [x] **RACE-FINISH-01** Move each built-in point-to-point finish one kilometre earlier. Reason: shorten the races while retaining the physical roads; part: 01; dependencies: existing race intervals and ordered gates; acceptance: earlier finish on each course, retained split and shortcut checks; verification: route traversal tests and native smoke in the [race polish report](testing/race-polish-followup/REPORT.md).
 
 - [x] **RACE-RIDEOVER-01** Pass through soft targets with a hop and no contact speed loss, and pass a slow rider when a lane is clear. Reason: riders lose speed on soft impacts and rivals queue behind the player; part: 01; dependencies: existing crash, contact classification and passing planner; acceptance: preserve horizontal entry velocity, move targets, keep solid hazards, and pass the braking player when a safe line exists; verification: physical contact and passing regressions in the [race polish report](testing/race-polish-followup/REPORT.md).
@@ -1091,6 +1104,8 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **RACE-TIMING-LINES-01** Use decorated timing lines and preserve solid braking run-out. Reason: intermediate gates invalidated Hills finishes and completed bikes ghosted; part: 01; dependencies: RACE-FINISH-01 and current finish awards; acceptance: each built-in point-to-point course finishes from either valid route after crossing the start, with retained time, place and solid bike braking; verification: timing, rear contact and native smoke. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
 - [ ] **AI-SHARED-SCAN-01** Share static obstacle discovery across the race field. Reason: the busy Hills forecast makes hundreds of obstacle sweeps per fixed tick; part: 01; dependencies: RFU-AI-01 and PERF-08; acceptance: one shared discovery scan per active tick with conservative clearance and fewer exact casts; verification: geometry, physical queue and native matched reports. [Evidence](testing/shared-rival-obstacles/REPORT.md).
 
 - [ ] **AI-HARD-01** Preserve the former Normal rival pace as Medium and offer a faster Hard. Reason: Medium race ended with a 16-second lead; part: 01; dependencies: AI-NORMAL-01 and normal race controls; acceptance: saved preference migration and a competitive Hard field; verification: settings, bounded corner and matched human finish tests. [Evidence](testing/race-performance-hard-world/REPORT.md).
@@ -1449,7 +1464,7 @@ pending terrain and crossing verification gates.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
-- [ ] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Evidence](testing/race-performance-hard-world/REPORT.md).
+- [ ] **HILLS-SURFACE-POLISH-01** Refine player dust, sand slowdown and bridge shoulders. Reason: local tire dust disappeared and the deck shoulders showed exposed geometry; part: 06; dependencies: HILLS-POLISH-02 and the tire plume pool; acceptance: local dust in crowded scenes, gentler sand, closed abutment geometry and a close-up visual review; verification: pool, surface and bridge regressions plus native image review. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
 
 - [ ] **HILLS-MEADOW-01** Blend Hills city terrain and tuft density into the first open meadow. Reason: grass starts abruptly; part: 06; dependencies: HILLS-03 and existing terrain support; acceptance: coherent gradient at driving height; verification: coverage and native transition views. [Evidence](testing/race-performance-hard-world/REPORT.md).
 

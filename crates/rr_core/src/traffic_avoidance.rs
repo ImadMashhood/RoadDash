@@ -259,6 +259,65 @@ pub fn plan(
     )
 }
 
+/// Validate one previously selected line against the current moving obstacles.
+pub fn retained_plan(
+    input: Request,
+    mut plan: Plan,
+    cars: &[Car],
+    local_horizon: Option<f32>,
+) -> Option<Plan> {
+    if plan.lane < input.bounds.0 || plan.lane > input.bounds.1 {
+        return None;
+    }
+    plan.speed = plan.speed.min(input.cruise);
+    if plan.speed <= 0.05 && input.speed <= 0.65 && (plan.lane - input.lane).abs() < 0.5 {
+        // Retain a stationary yield unless a moving body will reach the bike.
+        // The stationary leader that caused the yield can remain in its envelope.
+        return cars
+            .iter()
+            .filter(|car| car.speed.abs() > 0.65 || car.lateral_speed.abs() > 0.25)
+            .all(|car| {
+                clear_local(
+                    input.lane,
+                    plan.lane,
+                    input.speed,
+                    *car,
+                    forecast_horizon(input.speed, *car, local_horizon),
+                    local_horizon.is_some(),
+                )
+            })
+            .then_some(plan);
+    }
+    traffic_line_clear(
+        input.lane,
+        plan.lane,
+        input.speed,
+        plan.speed,
+        cars,
+        local_horizon,
+    )
+    .then_some(plan)
+}
+
+fn traffic_line_clear(
+    from: f32,
+    to: f32,
+    speed: f32,
+    pace: f32,
+    cars: &[Car],
+    local_horizon: Option<f32>,
+) -> bool {
+    let current = speed.max(1.);
+    let pace = pace.max(1.);
+    cars.iter().all(|car| {
+        let horizon = forecast_horizon(speed, *car, local_horizon);
+        let local = local_horizon.is_some();
+        clear_local(from, to, pace, *car, horizon, local)
+            && (pace == current || clear_local(from, to, current, *car, horizon, local))
+            && ((to - from).abs() <= 0.5 || clear_local(to, to, pace, *car, horizon, local))
+    })
+}
+
 /// Fixed-tick passing commitment. Safety is re-evaluated every tick; memory never
 /// grants a lane reservation or an exemption from collision.
 #[derive(Clone, Copy, Debug, Default)]
@@ -429,16 +488,7 @@ impl Memory {
         }
         let requested = self.pass.map_or(desired, |(held, _)| held);
         let horizon = |car| forecast_horizon(speed, car, local_horizon);
-        let safe = |to, pace| {
-            let current = speed.max(1.);
-            cars.iter().all(|c| {
-                let horizon = horizon(*c);
-                let local = local_horizon.is_some();
-                clear_local(lane, to, pace, *c, horizon, local)
-                    && (pace == current || clear_local(lane, to, current, *c, horizon, local))
-                    && ((to - lane).abs() <= 0.5 || clear_local(to, to, pace, *c, horizon, local))
-            })
-        };
+        let safe = |to, pace| traffic_line_clear(lane, to, speed, pace, cars, local_horizon);
         // Evaluate intended acceleration too: a matched-speed follower otherwise
         // sees no hazard, accelerates into its leader, brakes, and repeats forever.
         let pace = cruise.max(speed).max(1.);
@@ -574,6 +624,48 @@ mod tests {
             half_length: 1.95,
         }
     }
+    #[test]
+    fn retained_plan_reacts_to_a_new_crossing_between_full_searches() {
+        let input = Request {
+            lane: 2.,
+            speed: 20.,
+            desired: 2.,
+            cruise: 30.,
+            bounds: (-6., 6.),
+        };
+        let plan = Plan {
+            lane: 2.,
+            speed: 30.,
+            avoiding: false,
+        };
+        let crossing = Car {
+            lateral_speed: 4.,
+            ..car(15., -1., 0.)
+        };
+        assert!(retained_plan(input, plan, &[], Some(3.)).is_some());
+        assert!(retained_plan(input, plan, &[crossing], Some(3.)).is_none());
+    }
+
+    #[test]
+    fn retained_yield_reacts_to_a_vehicle_approaching_the_stopped_bike() {
+        let request = Request {
+            lane: 2.,
+            speed: 0.,
+            desired: 2.,
+            cruise: 30.,
+            bounds: (-6., 6.),
+        };
+        let stopped = Plan {
+            lane: 2.,
+            speed: 0.,
+            avoiding: true,
+        };
+        let lead = car(3., 2., 0.);
+        assert!(retained_plan(request, stopped, &[lead], Some(3.)).is_some());
+        let approach = car(-12., 2., 9.);
+        assert!(retained_plan(request, stopped, &[lead, approach], Some(3.)).is_none());
+    }
+
     #[test]
     fn ordered_lane_search_matches_exhaustive_choice_with_fewer_static_queries() {
         let request = Request {

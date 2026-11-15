@@ -53,6 +53,14 @@ impl Track {
             }
         }
     }
+    pub fn uses_timing_lines(&self) -> bool {
+        self.metropolis.is_some()
+            || matches!(
+                self.definition.id.as_str(),
+                "hills-01" | "valley-run-01" | "city-run-5300"
+            )
+    }
+
     pub fn gate_station(&self, index: usize) -> Option<f32> {
         let gate = self.definition.checkpoints.get(index)?;
         let station = gate.fraction * self.length;
@@ -583,6 +591,44 @@ impl GateProgress {
     pub fn observe(&mut self, track: &Track, from: Vec3, to: Vec3, before: f32, after: f32) {
         self.observe_route(track, 0, from, to, before, after);
     }
+    pub fn timing_armed(&self, track: &Track) -> bool {
+        self.next + 1 == track.definition.checkpoints.len()
+    }
+
+    pub fn observe_race(
+        &mut self,
+        track: &Track,
+        route: usize,
+        from: Vec3,
+        to: Vec3,
+        before: f32,
+        after: f32,
+    ) {
+        if !track.uses_timing_lines() {
+            self.observe_route(track, route, from, to, before, after);
+            return;
+        }
+        if after <= before || after - before > 30. || from.distance_squared(to) > 900. {
+            return;
+        }
+        let finish_index = track.definition.checkpoints.len() - 1;
+        let interval = track.race_interval();
+        let armed = self.timing_armed(track);
+        let target = if armed {
+            interval.finish
+        } else {
+            interval.start
+        };
+        if before <= target && after >= target && Self::crosses_line(track, route, from, to, target)
+        {
+            if armed {
+                self.completed_laps = 1;
+            } else {
+                self.next = finish_index;
+            }
+        }
+    }
+
     pub fn observe_route(
         &mut self,
         track: &Track,
@@ -611,18 +657,7 @@ impl GateProgress {
         if before > target || after < target {
             return;
         }
-        let (p, q) = track.sample_route(route, target, 0.0);
-        let forward = q * Vec3::Z;
-        let a = (from - p).dot(forward);
-        let b = (to - p).dot(forward);
-        if a > 0.1 || b < -0.1 || b - a < 0.0001 {
-            return;
-        }
-        let point = from.lerp(to, (-a / (b - a)).clamp(0.0, 1.0));
-        if (point - p).dot(q * Vec3::X).abs()
-            > track.half_width(target) + track.definition.verge_width
-            || (point - p).dot(q * Vec3::Y).abs() > 4.0
-        {
+        if !Self::crosses_line(track, route, from, to, target) {
             return;
         }
         if !track.definition.closed && self.next + 1 == track.definition.checkpoints.len() {
@@ -634,11 +669,57 @@ impl GateProgress {
             self.next = (self.next + 1) % track.definition.checkpoints.len();
         }
     }
+
+    fn crosses_line(track: &Track, route: usize, from: Vec3, to: Vec3, target: f32) -> bool {
+        let (p, q) = track.sample_route(route, target, 0.0);
+        let forward = q * Vec3::Z;
+        let a = (from - p).dot(forward);
+        let b = (to - p).dot(forward);
+        if a > 0.1 || b < -0.1 || b - a < 0.0001 {
+            return false;
+        }
+        let point = from.lerp(to, (-a / (b - a)).clamp(0.0, 1.0));
+        if (point - p).dot(q * Vec3::X).abs()
+            > track.half_width(target) + track.definition.verge_width
+            || (point - p).dot(q * Vec3::Y).abs() > 4.0
+        {
+            return false;
+        }
+        true
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn hills_finishes_on_either_route_without_intermediate_gates() {
+        let track = Track::hills().unwrap();
+        let interval = track.race_interval();
+        for route in 0..=1 {
+            let mut timing = GateProgress::default();
+            let cross = |timing: &mut GateProgress, station, lane, direction: f32| {
+                let before = station - direction;
+                let after = station + direction;
+                timing.observe_race(
+                    &track,
+                    route,
+                    track.sample_route(route, before, lane).0,
+                    track.sample_route(route, after, lane).0,
+                    before,
+                    after,
+                );
+            };
+            cross(&mut timing, interval.finish, 5.5, 1.);
+            assert_eq!(timing.completed_laps, 0);
+            cross(&mut timing, interval.start, -2., 1.);
+            cross(&mut timing, interval.finish, 5.5, -1.);
+            assert_eq!(timing.completed_laps, 0);
+            cross(&mut timing, interval.finish, 5.5, 1.);
+            assert_eq!(timing.completed_laps, 1);
+        }
+    }
+
     // The pre-index algorithm is retained as a test oracle for progress, lane,
     // and distance bits across near hints and far/off-road points.
     fn full_scan(track: &Track, point: Vec3, near: f32) -> (f32, f32, f32) {

@@ -620,13 +620,31 @@ pub(crate) fn race_outcomes(
             }
         }
     }
+    if active
+        && race.player_finish_runout.is_some_and(|deadline| {
+            race.elapsed >= deadline
+                || riders.iter().any(|(_, rider, recovery, _, _)| {
+                    rider.id == 0 && (rider.speed <= 0.5 || recovery.stage != RecoveryStage::Riding)
+                })
+        })
+    {
+        race.player_finish_runout = None;
+        race.phase = Phase::Finished;
+    }
     if race.phase == Phase::Finished || race.player_wasted.is_some() || race.continued {
         race.race_in_progress = riders
             .iter()
             .any(|(_, r, _, _, _)| !r.police && r.id != 0 && r.racing());
     }
+    let settling_finisher = race.continued
+        && !race.race_in_progress
+        && riders.iter().any(|(_, rider, recovery, _, _)| {
+            recovery.stage == RecoveryStage::Riding
+                && rider.speed > 0.5
+                && rider.finished.is_some_and(|at| race.elapsed - at < 8.)
+        });
     if active
-        && (race.continued && !race.race_in_progress
+        && (race.continued && !race.race_in_progress && !settling_finisher
             || !race.continued
                 && race
                     .player_wasted
@@ -840,7 +858,7 @@ pub fn recover(
                 let (progress, lane, _) =
                     track.project_route(rider.route, transform.translation, rider.progress);
                 let route = rider.route;
-                rider.gates.observe_route(
+                rider.gates.observe_race(
                     &track,
                     route,
                     previous - Vec3::Y * 0.95,
@@ -857,6 +875,7 @@ pub fn recover(
                     persistence.0,
                     1 + finishers,
                     true,
+                    false,
                 ) {
                     recovery.foot.mode = rr_core::recovery::FootMode::Finished;
                     if let Some(mut c) = controller {
@@ -1573,7 +1592,7 @@ pub fn impacts(
             let Ok((rider, recovery, _)) = riders.get(bike) else {
                 continue;
             };
-            if recovery.stage != RecoveryStage::Riding || !rider.racing() {
+            if recovery.stage != RecoveryStage::Riding || rider.wasted.is_some() {
                 continue;
             }
             let velocity = bike_states
@@ -1582,7 +1601,7 @@ pub fn impacts(
             let speed = velocity.length();
             if let Ok((other_rider, other_recovery, _)) = riders.get(other) {
                 if other_recovery.stage != RecoveryStage::Riding
-                    || !other_rider.racing()
+                    || other_rider.wasted.is_some()
                     || bike.to_bits() > other.to_bits()
                 {
                     continue;

@@ -1,5 +1,11 @@
 # Known issues and remaining acceptance
 
+- AI-HILLS-CADENCE-01: The planner work budget and whole-frame performance
+  are measured separately. End-to-end fluidity still needs a matched native
+  display and representative Hills race, including the heavy Western segment.
+- HILLS-SURFACE-POLISH-01: The bridge shoulder geometry is covered by a
+  regression test. Keep detailed race-speed visual review open.
+
 - RACE-MIX-HUD-01 and HILLS-POLISH-02: Headphone and race-speed review,
   including the far bridge underside, and a matched frame-time comparison
   remain open after the race polish follow-up.

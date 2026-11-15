@@ -962,6 +962,66 @@ fn launch_checks_a_stationary_rider_before_using_the_clear_road_fast_path() {
 }
 
 #[test]
+fn hills_two_close_rivals_pass_a_stationary_player_without_contact() {
+    let start = 1100.;
+    let mut app = straight_simulation();
+    install_course_support(&mut app, Track::hills().unwrap(), start);
+    let player = straight_rider(&mut app, 0, start, 2.);
+    let followers = [
+        straight_rider(&mut app, 1, start - 2.74, 1.45),
+        straight_rider(&mut app, 2, start - 7.44, 1.45),
+    ];
+    for owner in followers {
+        app.world_mut().get_mut::<Rider>(owner).unwrap().attack = 1000.;
+    }
+    let mut passed = None;
+    let mut retained = false;
+    let mut minimum = f32::MAX;
+    for tick in 0..720 {
+        app.update();
+        let human = app.world().get::<Rider>(player).unwrap();
+        assert!(human.speed.abs() < 0.5);
+        assert_eq!(human.health, 100.);
+        assert_eq!(
+            app.world().get::<Recovery>(player).unwrap().stage,
+            RecoveryStage::Riding
+        );
+        let player_position = app.world().get::<Transform>(player).unwrap().translation;
+        for owner in followers {
+            let position = app.world().get::<Transform>(owner).unwrap().translation;
+            minimum = minimum.min(position.xz().distance(player_position.xz()));
+            let rider = app.world().get::<Rider>(owner).unwrap();
+            assert_eq!(rider.health, 100.);
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            retained |= rider.ai_held_plan.is_some_and(|plan| {
+                plan.tick + 1
+                    < app
+                        .world()
+                        .resource::<crate::runtime::SimulationClock>()
+                        .ticks
+            });
+        }
+        if followers.into_iter().all(|owner| {
+            let rider = app.world().get::<Rider>(owner).unwrap();
+            rider.progress > human.progress + 30. && rider.speed > 5.
+        }) {
+            passed = Some(tick);
+            break;
+        }
+    }
+    println!("Hills stopped-player pass ticks: {passed:?}");
+    assert!(passed.is_some());
+    assert!(minimum > 1.2, "rival passed within {minimum} m");
+    assert_eq!(
+        retained,
+        std::env::var("ROADDASH_AI_REPLAN_HZ").as_deref() != Ok("60")
+    );
+}
+
+#[test]
 fn hills_rival_physically_clears_two_solid_oncoming_cars() {
     physical_oncoming_pair(Track::hills().unwrap(), -100.);
 }
@@ -971,6 +1031,32 @@ fn metropolis_rival_physically_clears_two_solid_oncoming_cars() {
     // City entry approaching the split, and the dense city shared with Hills.
     for start in [3250., 10000.] {
         physical_oncoming_pair(Track::metropolis().unwrap(), start);
+    }
+}
+
+fn install_course_support(app: &mut App, track: Track, start: f32) {
+    let mut vertices = vec![];
+    for station in ((start as i32 - 200)..=(start as i32 + 1100)).step_by(5) {
+        for lane in [-10., 10.] {
+            vertices.push(track.sample(station as f32, lane).0);
+        }
+    }
+    let mut triangles = vec![];
+    for i in 0..vertices.len() / 2 - 1 {
+        let a = (i * 2) as u32;
+        triangles.extend([[a, a + 2, a + 1], [a + 1, a + 2, a + 3]]);
+    }
+    app.insert_resource(track);
+    let world = app.world_mut();
+    let floors: Vec<_> = world
+        .query_filtered::<Entity, With<world::Ground>>()
+        .iter(world)
+        .collect();
+    for floor in floors {
+        world.entity_mut(floor).insert((
+            Collider::trimesh(vertices.clone(), triangles.clone()).unwrap(),
+            Transform::IDENTITY,
+        ));
     }
 }
 
@@ -993,30 +1079,8 @@ fn physical_oncoming_pair(track: Track, start: f32) {
         }
     }
     let mut app = straight_simulation();
-    let mut vertices = vec![];
-    for station in ((start as i32 - 200)..=(start as i32 + 1100)).step_by(5) {
-        for lane in [-10., 10.] {
-            vertices.push(track.sample(station as f32, lane).0);
-        }
-    }
-    let mut triangles = vec![];
-    for i in 0..vertices.len() / 2 - 1 {
-        let a = (i * 2) as u32;
-        triangles.extend([[a, a + 2, a + 1], [a + 1, a + 2, a + 3]]);
-    }
     let main_traffic = track.metropolis.is_some();
-    app.insert_resource(track);
-    let world = app.world_mut();
-    let floors: Vec<_> = world
-        .query_filtered::<Entity, With<world::Ground>>()
-        .iter(world)
-        .collect();
-    for floor in floors {
-        world.entity_mut(floor).insert((
-            Collider::trimesh(vertices.clone(), triangles.clone()).unwrap(),
-            Transform::IDENTITY,
-        ));
-    }
+    install_course_support(&mut app, track, start);
     // Start the Metropolis bike in the occupied incoming lane so this is a
     // real avoidance encounter, rather than simply cruising the empty side.
     let rider_lane = if main_traffic { 1.8 } else { -1.8 };

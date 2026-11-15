@@ -253,7 +253,10 @@
         "RFU-AI-03",
         "RFU-AI-04",
         "RFU-AI-05",
-        "RFU-AI-07"
+        "RFU-AI-07",
+        "HILLS-HERD-02",
+        "AI-HILLS-CADENCE-01",
+        "HILLS-HERD-01"
       ]
     },
     "01": {
@@ -335,7 +338,8 @@
         "P04-008",
         "P04-009",
         "P04-014",
-        "P06-006"
+        "P06-006",
+        "RACE-TIMING-LINES-01"
       ]
     },
     "02": {
@@ -456,7 +460,6 @@
     "06": {
       "title": "World C — NPCs first, then sky/terrain/landscape art",
       "task_ids": [
-        "HILLS-HERD-01",
         "HILLS-MEADOW-01",
         "SCENERY-LOD-01",
         "RFU-HILLS-WOODLAND-01",
@@ -511,7 +514,8 @@
         "V2-06-007",
         "V2-06-008",
         "ENV-008",
-        "P08-005"
+        "P08-005",
+        "HILLS-SURFACE-POLISH-01"
       ]
     },
     "07": {

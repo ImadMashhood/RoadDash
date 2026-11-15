@@ -10,6 +10,7 @@ pub mod biomechanics;
 pub mod combat;
 pub mod content;
 pub mod controls;
+mod course_lines;
 pub mod crash_behavior;
 pub mod destruction;
 pub mod diagnostics;
