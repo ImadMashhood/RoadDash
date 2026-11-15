@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-15 — Shared rival obstacle scan
+
+- Share a conservative occupancy snapshot across static AI lane forecasts and retain exact casts where occupancy is uncertain.
+
 ## 2026-11-15 — Race performance, difficulty and world follow-up
 
 - Preserved Medium pace and made Hard faster through bends. Added independent authored weapon condition damage.

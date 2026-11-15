@@ -259,6 +259,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "AI-SHARED-SCAN-01",
         "AI-HARD-01",
         "RFU-RACE-HEALTH-01",
         "FEEL-DOWNED-01",

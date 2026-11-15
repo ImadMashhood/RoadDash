@@ -197,7 +197,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**248 verified tasks complete; 374 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**248 verified tasks complete; 375 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -216,9 +216,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 76 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 77 open |
 | [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 76 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 77 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
@@ -753,6 +753,9 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 </details>
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **AI-SHARED-SCAN-01** Share static obstacle discovery across the race field. Reason: the busy Hills forecast makes hundreds of obstacle sweeps per fixed tick; part: 01; dependencies: RFU-AI-01 and PERF-08; acceptance: one shared discovery scan per active tick with conservative clearance and fewer exact casts; verification: geometry, physical queue and native matched reports. [Evidence](docs/testing/shared-rival-obstacles/REPORT.md).
+
 
 - [ ] **AI-HARD-01** Preserve the former Normal rival pace as Medium and offer a faster Hard. Reason: Medium race ended with a 16-second lead; part: 01; dependencies: AI-NORMAL-01 and normal race controls; acceptance: saved preference migration and a competitive Hard field; verification: settings, bounded corner and matched human finish tests. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
 

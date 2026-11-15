@@ -888,6 +888,31 @@ pub fn drive(
     }
     race.message_time = (race.message_time - dt).max(0.0);
     race.shake = (race.shake - dt * 2.0).max(0.0);
+    // One broad-phase envelope for the field. Segments outside it still receive
+    // the original exact sweep, including on split routes and unusual tracks.
+    let scan_bounds = active
+        .then(|| {
+            riders.iter().fold(
+                None,
+                |bounds: Option<(Vec3, Vec3)>, (_, rider, recovery, pose, _)| {
+                    if rider.human_controlled()
+                        || !rider.racing()
+                        || recovery.stage != RecoveryStage::Riding
+                    {
+                        return bounds;
+                    }
+                    let reach = Vec3::new(1., 0.5, 1.) * (rider.speed.max(4.) * 12. + 26.);
+                    let min = pose.translation - reach;
+                    let max = pose.translation + reach;
+                    Some(bounds.map_or((min, max), |(lo, hi)| (lo.min(min), hi.max(max))))
+                },
+            )
+        })
+        .flatten()
+        .map(|(min, max)| bevy::shape::Aabb3d {
+            min: min.into(),
+            max: max.into(),
+        });
     let snapshots: Vec<(Entity, usize, f32, f32, f32, bool, bool)> = riders
         .iter()
         .map(|(e, r, _, _, _)| {
@@ -1402,6 +1427,19 @@ pub fn drive(
                         let Ok(ctx) = context.single() else {
                             return false;
                         };
+                        if !trace_ai {
+                            work.prepare_shared(|| scan_bounds, |bounds, scene| {
+                                let relevant = |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e);
+                                let filter = QueryFilter {
+                                    flags: QueryFilterFlags::EXCLUDE_DYNAMIC
+                                        | QueryFilterFlags::EXCLUDE_KINEMATIC,
+                                    ..default()
+                                }.exclude_sensors().predicate(&relevant);
+                                ctx.with_query_pipeline(filter, |pipeline| {
+                                    scene.refresh(bounds, pipeline.intersect_aabb_conservative(bounds))
+                                })
+                            });
+                        }
                         let predicate =
                             |e, _: &bevy_rapier3d::rapier::geometry::Collider| !ground.contains(e)
                                 && !soft_targets.contains(entity, e)
@@ -1445,6 +1483,9 @@ pub fn drive(
                                 let (position, _) = track.sample_route(route, station, lateral);
                                 let next = position + Vec3::Y * 0.85;
                                 if !work.segment_clear(previous, next, trace_ai, || {
+                                    if !trace_ai && work.shared_clear(previous, next) {
+                                        return true;
+                                    }
                                     let delta = next - previous;
                                     cast_count.set(cast_count.get() + 1);
                                     if let Some((hit_entity, hit)) = pipeline.cast_shape(

@@ -4979,3 +4979,12 @@ cows in the existing mounted ride-over path. Fade horizontal sand plumes with
 opacity and reuse a bounded pool for rear-wheel kickback. Keep scenery LOD and
 collision independent.
 [Implementation and evidence](testing/race-performance-hard-world/REPORT.md).
+
+## ADR202 — Shared static obstacle discovery per simulation tick (2026-11-15)
+
+Share a conservative snapshot for static passing forecasts. Build it lazily
+from one Rapier broad-phase lookup each tick that needs it. Reuse the bounded
+grid as long as the scanned set, shapes, poses and region match. Mesh
+hierarchies supply tighter bounds than whole city-block colliders. Preserve exact sweeps
+for occupied or uncovered cells and keep fixed-rate motion and contact.
+[Implementation and evidence](testing/shared-rival-obstacles/REPORT.md).

@@ -1,5 +1,10 @@
 # Development progress
 
+2026-11-15 shared static rival obstacle discovery (ADR202): AI-SHARED-SCAN-01
+added open. 248 verified / 375 open. The final Hills A/B matched rider outputs
+and reduced precise casts in the sampled busy interval. Timing remains open.
+[Implementation and evidence](testing/shared-rival-obstacles/REPORT.md).
+
 2026-11-15 race performance, difficulty and world follow-up (ADR201): 248 verified
 / 374 open. AI-HARD-01, HILLS-HERD-01, HILLS-MEADOW-01, SCENERY-LOD-01,
 COMBAT-CONDITION-01 and FX-SAND-PLUME-01 added open. The final workspace pass
@@ -1085,6 +1090,8 @@ pending terrain and crossing verification gates.
 - [x] **RFU-AI-07** Define combat, passing, avoidance and race-progress priorities. Reason: issue26 follow-up reports stopped racer/killer queues; part: 01 (NPC/combat06/07 integration); dependencies: AI-10, AI-QUEUE-02, shared vehicle controls and performance baseline; acceptance: explicit radius, eligibility, target/side hysteresis and forward preference; verification: [rules, physical regressions and native decision receipts](testing/issue26-racer-ai/REPORT.md). Verified: deterministic targeting/hysteresis, equal-station ordering, moving-speed intent and physical pair/chain regressions; 647 integrated workspace tests and strict code/build/audit gates pass. Broader gameplay balance remains RFU-AI-01/02/06 and AI-11.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
+
+- [ ] **AI-SHARED-SCAN-01** Share static obstacle discovery across the race field. Reason: the busy Hills forecast makes hundreds of obstacle sweeps per fixed tick; part: 01; dependencies: RFU-AI-01 and PERF-08; acceptance: one shared discovery scan per active tick with conservative clearance and fewer exact casts; verification: geometry, physical queue and native matched reports. [Evidence](testing/shared-rival-obstacles/REPORT.md).
 
 - [ ] **AI-HARD-01** Preserve the former Normal rival pace as Medium and offer a faster Hard. Reason: Medium race ended with a 16-second lead; part: 01; dependencies: AI-NORMAL-01 and normal race controls; acceptance: saved preference migration and a competitive Hard field; verification: settings, bounded corner and matched human finish tests. [Evidence](testing/race-performance-hard-world/REPORT.md).
 

@@ -1457,3 +1457,9 @@ and Hard finish margins remain open. Verify temporary frame spikes separately
 from steady pacing. Review the new grassy city transition, both cattle
 encounters and the dust in a human race. The two existing Rapier test failures
 remain tracked. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+## Shared rival obstacle scan (2026-11-15 / ADR202)
+
+Static discovery uses at most one scan per active tick. Precise sweeps still
+depend on obstacle density. Full-course timing and any future cap on exact
+sweeps stay open under AI-SHARED-SCAN-01 and PERF-08.

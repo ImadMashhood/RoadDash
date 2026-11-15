@@ -1,4 +1,12 @@
 //! Per-rider, per-fixed-tick reuse of immutable-world collision forecasts.
+use bevy::{
+    prelude::{Entity, IVec2, Vec2, Vec3},
+    shape::Aabb3d,
+};
+use bevy_rapier3d::{
+    parry::shape::SharedShape,
+    rapier::{geometry::Collider, math::Pose},
+};
 use std::{
     cell::{Cell, RefCell},
     collections::HashMap,
@@ -13,6 +21,9 @@ pub struct Counters {
     pub static_cache_hits: u64,
     pub static_casts: u64,
     pub static_blocked_cache_hits: u64,
+    pub shared_scans: u64,
+    pub shared_clear_segments: u64,
+    pub shared_scan_ms: f64,
 }
 impl Counters {
     pub fn merge(&mut self, other: Self) {
@@ -22,8 +33,191 @@ impl Counters {
         self.static_cache_hits += other.static_cache_hits;
         self.static_casts += other.static_casts;
         self.static_blocked_cache_hits += other.static_blocked_cache_hits;
+        self.shared_scans += other.shared_scans;
+        self.shared_clear_segments += other.shared_clear_segments;
+        self.shared_scan_ms += other.shared_scan_ms;
     }
 }
+const CELL_M: f32 = 2.;
+const MAX_CELLS: usize = 1024 * 1024;
+const SWEEP_PADDING: f32 = 0.66;
+const SCAN_SNAP_M: f32 = 64.;
+
+struct Solid {
+    entity: Entity,
+    shape: SharedShape,
+    pose: Pose,
+}
+impl Solid {
+    fn matches(&self, other: &Self) -> bool {
+        self.entity == other.entity
+            && self.pose == other.pose
+            && std::sync::Arc::ptr_eq(&self.shape.0, &other.shape.0)
+    }
+}
+
+#[derive(Default)]
+pub(crate) struct StaticOccupancy {
+    bounds: Option<Aabb3d>,
+    base: IVec2,
+    width: usize,
+    heights: Vec<[f32; 2]>,
+    solids: Vec<Solid>,
+    scan: Vec<Solid>,
+}
+
+impl StaticOccupancy {
+    fn cell(p: Vec3) -> IVec2 {
+        (Vec2::new(p.x, p.z) / CELL_M).floor().as_ivec2()
+    }
+
+    fn layout(bounds: Aabb3d) -> Option<(IVec2, usize, usize)> {
+        let base = Self::cell(bounds.min.into());
+        let size = Self::cell(bounds.max.into()) - base + IVec2::ONE;
+        if size.x <= 0 || size.y <= 0 {
+            return None;
+        }
+        let cells = (size.x as usize).checked_mul(size.y as usize)?;
+        (cells <= MAX_CELLS).then_some((base, size.x as usize, cells))
+    }
+
+    fn reset(&mut self, bounds: Aabb3d) -> bool {
+        let Some((base, width, cells)) = Self::layout(bounds) else {
+            return false;
+        };
+        self.bounds = Some(bounds);
+        self.base = base;
+        self.width = width;
+        let empty = [f32::INFINITY, f32::NEG_INFINITY];
+        self.heights.resize(cells, empty);
+        self.heights.fill(empty);
+        true
+    }
+
+    fn covering_bounds(&self, requested: Aabb3d) -> Aabb3d {
+        if let Some(bounds) = self.bounds
+            && bounds.min.cmple(requested.min).all()
+            && bounds.max.cmpge(requested.max).all()
+        {
+            return bounds;
+        }
+        Aabb3d {
+            min: (requested.min / SCAN_SNAP_M).floor() * SCAN_SNAP_M,
+            max: (requested.max / SCAN_SNAP_M).ceil() * SCAN_SNAP_M,
+        }
+    }
+
+    pub(crate) fn refresh<'a>(
+        &mut self,
+        bounds: Aabb3d,
+        colliders: impl Iterator<Item = (Entity, &'a Collider)>,
+    ) -> bool {
+        self.scan.clear();
+        self.scan.extend(colliders.map(|(entity, collider)| Solid {
+            entity,
+            shape: collider.shared_shape().clone(),
+            pose: *collider.position(),
+        }));
+        self.scan.sort_unstable_by_key(|solid| solid.entity);
+        let same_region = self
+            .bounds
+            .is_some_and(|previous| bounds.min == previous.min && bounds.max == previous.max);
+        if same_region
+            && self.solids.len() == self.scan.len()
+            && self
+                .solids
+                .iter()
+                .zip(&self.scan)
+                .all(|(a, b)| a.matches(b))
+        {
+            return true;
+        }
+        if !self.reset(bounds) {
+            return false;
+        }
+        let current = std::mem::take(&mut self.scan);
+        for solid in &current {
+            self.mark_shape(solid.shape.as_ref(), &solid.pose);
+        }
+        self.scan = std::mem::replace(&mut self.solids, current);
+        true
+    }
+
+    fn mark_shape(&mut self, shape: &dyn bevy_rapier3d::parry::shape::Shape, pose: &Pose) {
+        use bevy_rapier3d::parry::partitioning::TraversalAction;
+        if let Some(mesh) = shape.as_trimesh() {
+            let Some(bounds) = self.bounds else { return };
+            // Cut the mesh hierarchy at small spatial groups. Its full AABB
+            // can cover many streets that have no solid triangles in them.
+            mesh.bvh().traverse(|node| {
+                let aabb = node.aabb().transform_by(pose);
+                if aabb.maxs.cmplt(bounds.min.into()).any()
+                    || aabb.mins.cmpgt(bounds.max.into()).any()
+                {
+                    return TraversalAction::Prune;
+                }
+                let extent = aabb.extents();
+                if node.is_leaf() || extent.x.max(extent.z) <= 6. {
+                    self.mark(aabb.mins, aabb.maxs);
+                    TraversalAction::Prune
+                } else {
+                    TraversalAction::Continue
+                }
+            });
+        } else if let Some(compound) = shape.as_compound() {
+            for (part_pose, part) in compound.shapes() {
+                let aabb = part.compute_aabb(&(*pose * *part_pose));
+                self.mark(aabb.mins, aabb.maxs);
+            }
+        } else {
+            let aabb = shape.compute_aabb(pose);
+            self.mark(aabb.mins, aabb.maxs);
+        }
+    }
+
+    pub(crate) fn mark(&mut self, min: Vec3, max: Vec3) {
+        let Some(bounds) = self.bounds else { return };
+        let min = min.max(bounds.min.into());
+        let max = max.min(bounds.max.into());
+        if min.cmpgt(max).any() {
+            return;
+        }
+        let lo = Self::cell(min) - self.base;
+        let hi = Self::cell(max) - self.base;
+        for z in lo.y..=hi.y {
+            let row = z as usize * self.width;
+            for x in lo.x..=hi.x {
+                let range = &mut self.heights[row + x as usize];
+                range[0] = range[0].min(min.y);
+                range[1] = range[1].max(max.y);
+            }
+        }
+    }
+
+    fn clear(&self, from: Vec3, to: Vec3) -> bool {
+        let Some(bounds) = self.bounds else {
+            return false;
+        };
+        let min = from.min(to) - Vec3::splat(SWEEP_PADDING);
+        let max = from.max(to) + Vec3::splat(SWEEP_PADDING);
+        if min.cmplt(bounds.min.into()).any() || max.cmpgt(bounds.max.into()).any() {
+            return false;
+        }
+        let lo = Self::cell(min) - self.base;
+        let hi = Self::cell(max) - self.base;
+        for z in lo.y..=hi.y {
+            let row = z as usize * self.width;
+            for x in lo.x..=hi.x {
+                let [bottom, top] = self.heights[row + x as usize];
+                if max.y >= bottom && min.y <= top {
+                    return false;
+                }
+            }
+        }
+        true
+    }
+}
+
 #[derive(Clone, Copy)]
 struct Entry {
     goal: u32,
@@ -36,6 +230,10 @@ pub struct Work {
     segments: RefCell<HashMap<[u32; 6], bool>>,
     enabled: bool,
     reuse_blocked: bool,
+    shared_enabled: bool,
+    shared_attempted: Cell<bool>,
+    shared_current: Cell<bool>,
+    shared: RefCell<StaticOccupancy>,
 }
 impl Default for Work {
     fn default() -> Self {
@@ -45,6 +243,10 @@ impl Default for Work {
             segments: RefCell::new(HashMap::with_capacity(256)),
             enabled: std::env::var("ROADDASH_AI_STATIC_CACHE").as_deref() != Ok("0"),
             reuse_blocked: std::env::var("ROADDASH_AI_BLOCKED_CACHE").as_deref() != Ok("0"),
+            shared_enabled: std::env::var("ROADDASH_AI_SHARED_SCAN").as_deref() != Ok("0"),
+            shared_attempted: Cell::new(false),
+            shared_current: Cell::new(false),
+            shared: RefCell::new(StaticOccupancy::default()),
         }
     }
 }
@@ -54,7 +256,38 @@ impl Work {
     }
     pub fn begin_tick(&self) {
         *self.counters.borrow_mut() = Counters::default();
+        self.shared_attempted.set(false);
+        self.shared_current.set(false);
     }
+    pub(crate) fn prepare_shared(
+        &self,
+        bounds: impl FnOnce() -> Option<Aabb3d>,
+        scan: impl FnOnce(Aabb3d, &mut StaticOccupancy) -> bool,
+    ) {
+        if !self.shared_enabled || self.shared_attempted.replace(true) {
+            return;
+        }
+        let Some(bounds) = bounds() else { return };
+        let start = Instant::now();
+        let mut shared = self.shared.borrow_mut();
+        let bounds = shared.covering_bounds(bounds);
+        if StaticOccupancy::layout(bounds).is_none() {
+            return;
+        }
+        self.shared_current.set(scan(bounds, &mut shared));
+        let mut counters = self.counters.borrow_mut();
+        counters.shared_scans += 1;
+        counters.shared_scan_ms += start.elapsed().as_secs_f64() * 1000.;
+    }
+
+    pub(crate) fn shared_clear(&self, from: Vec3, to: Vec3) -> bool {
+        let clear = self.shared_current.get() && self.shared.borrow().clear(from, to);
+        if clear {
+            self.counters.borrow_mut().shared_clear_segments += 1;
+        }
+        clear
+    }
+
     /// Flush on every rider: owner, origin, road frame and static world must match.
     pub fn begin_rider(&self) {
         self.cache.borrow_mut().clear();
@@ -130,7 +363,87 @@ impl Work {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use bevy::prelude::Vec3;
+
+    #[test]
+    fn shared_scan_runs_once_and_only_certifies_covered_empty_space() {
+        let work = Work {
+            shared_enabled: true,
+            ..Work::default()
+        };
+        let bounds = Aabb3d {
+            min: Vec3::splat(-12.).into(),
+            max: Vec3::splat(12.).into(),
+        };
+        work.begin_tick();
+        work.prepare_shared(
+            || Some(bounds),
+            |bounds, scene| {
+                assert!(scene.reset(bounds));
+                scene.mark(Vec3::new(0., -1., 0.), Vec3::new(2., 4., 2.));
+                true
+            },
+        );
+        work.begin_rider();
+        work.prepare_shared(|| Some(bounds), |_, _| panic!("second world scan"));
+        assert!(work.shared_clear(Vec3::new(-9., 0., -8.), Vec3::new(-5., 0., -8.)));
+        assert!(!work.shared_clear(Vec3::new(-2., 0., 1.), Vec3::new(5., 0., 1.)));
+        assert!(!work.shared_clear(Vec3::new(63., 0., 0.), Vec3::new(64., 0., 0.)));
+        assert_eq!(work.counters.borrow().shared_scans, 1);
+        work.begin_tick();
+        assert!(!work.shared_clear(Vec3::new(-9., 0., -8.), Vec3::new(-5., 0., -8.)));
+    }
+
+    #[test]
+    fn refresh_tracks_static_shape_replacement_and_height_separation() {
+        use bevy_rapier3d::rapier::geometry::ColliderBuilder;
+        let mut world = bevy::prelude::World::new();
+        let entity = world.spawn_empty().id();
+        let bounds = Aabb3d {
+            min: Vec3::splat(-32.).into(),
+            max: Vec3::splat(32.).into(),
+        };
+        let mut occupancy = StaticOccupancy::default();
+        let collider = ColliderBuilder::cuboid(1., 1., 1.).build();
+        let bridge = ColliderBuilder::cuboid(1., 1., 1.)
+            .translation(Vec3::Y * 8.)
+            .build();
+        let (from, to) = (Vec3::X * -2., Vec3::X * 2.);
+        assert!(occupancy.refresh(bounds, [(entity, &collider)].into_iter()));
+        assert!(!occupancy.clear(from, to));
+        assert!(occupancy.refresh(bounds, [(entity, &bridge)].into_iter()));
+        assert!(occupancy.clear(from, to));
+        assert!(occupancy.refresh(bounds, std::iter::empty()));
+        assert!(occupancy.clear(from + Vec3::Y * 8., to + Vec3::Y * 8.));
+    }
+
+    #[test]
+    fn batched_mesh_marks_both_solids_and_leaves_the_road_gap_clear() {
+        use bevy_rapier3d::rapier::geometry::ColliderBuilder;
+        let mut occupancy = StaticOccupancy::default();
+        assert!(occupancy.reset(Aabb3d {
+            min: Vec3::splat(-40.).into(),
+            max: Vec3::splat(40.).into(),
+        }));
+        let collider = ColliderBuilder::trimesh(
+            vec![
+                Vec3::new(-25., 0., 0.),
+                Vec3::new(-24., 0., 2.),
+                Vec3::new(-22., 2., 0.),
+                Vec3::new(20., 0., 0.),
+                Vec3::new(22., 0., 2.),
+                Vec3::new(24., 2., 0.),
+            ],
+            vec![[0, 1, 2], [3, 4, 5]],
+        )
+        .unwrap()
+        .translation(Vec3::new(0., 0., 8.))
+        .build();
+        occupancy.mark_shape(collider.shape(), collider.position());
+        let clear = |x| occupancy.clear(Vec3::new(x, 1., 6.), Vec3::new(x, 1., 10.));
+        assert!(clear(0.));
+        assert!(!clear(-24.));
+        assert!(!clear(22.));
+    }
 
     #[test]
     fn blocked_sweeps_are_reused_only_for_an_exact_untraced_segment_in_that_snapshot() {
