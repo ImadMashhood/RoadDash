@@ -291,7 +291,7 @@ pub(super) fn farm_sites(track: &Track) -> Vec<(Vec3, Quat)> {
     }
     sites
 }
-fn noise(n: u32) -> f32 {
+pub(super) fn noise(n: u32) -> f32 {
     let n = n.wrapping_mul(747796405).wrapping_add(2891336453);
     let n = ((n >> ((n >> 28) + 4)) ^ n).wrapping_mul(277803737);
     ((n >> 22) ^ n) as f32 / u32::MAX as f32

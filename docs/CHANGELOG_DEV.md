@@ -1,5 +1,11 @@
 # Development history
 
+## 2026-11-15 — Hills herd spacing, sand pace and verge escape (ADR204)
+
+- Widened both solid cattle formations and varied the offsets per cow.
+- Raised the sand speed limit and reduced rolling resistance.
+- Routed stalled opening-city rivals toward pavement and added recovery state to race logs.
+
 ## 2026-11-15 — Hills race timing, scenery contact and rival planning (ADR203)
 
 - Added decorated start and finish timing lines with solid braking run-out.

@@ -1857,9 +1857,11 @@ pub fn drive(
                     )
                     .is_none()
                 };
-                let (goal, _) = track.sample_route(
+                let goal = rival_escape_goal(
+                    &track,
                     r.route,
-                    (r.progress + 22.).min(track.length),
+                    r.progress,
+                    r.lane,
                     traffic_plan.map_or(0., |plan| plan.lane),
                 );
                 let position = transform.translation.xz();
@@ -3063,6 +3065,26 @@ fn ai_static_guard_blocked(
     blocked(current) || blocked(desired) || committed.is_some_and(blocked)
 }
 
+fn rival_escape_goal(
+    track: &Track,
+    route: usize,
+    progress: f32,
+    lane: f32,
+    plan_lane: f32,
+) -> Vec3 {
+    let ahead = (progress + 22.).min(track.length);
+    let street = track.street_offset(route, progress);
+    let off_hills_city_road = track.is_hills()
+        && (-300. ..1000.).contains(&progress)
+        && (lane - street).abs() > track.half_width(progress) + 0.35;
+    let goal_lane = if off_hills_city_road {
+        track.street_offset(route, ahead)
+    } else {
+        plan_lane
+    };
+    track.sample_route(route, ahead, goal_lane).0
+}
+
 // Both modern courses share the approved race-flow policy. Geometry and route
 // coordinates remain map-specific; legacy Valley retains its comparison policy.
 fn ai_uses_local_flow(track: &Track) -> bool {
@@ -3118,6 +3140,40 @@ pub(crate) mod tests {
             &Track::from_json(include_str!("../content/tracks/valley.json")).unwrap()
         ));
     }
+    #[test]
+    fn stalled_hills_city_rival_has_an_escape_goal_inside_the_carriageway() {
+        let track = Track::hills().unwrap();
+        let station = 831.19;
+        let lane = 8.62;
+        let blocked_plan_lane = 8.05;
+        let ahead = station + 22.;
+        let (start, _) = track.sample_route(0, station, lane);
+        let (blocked_goal, _) = track.sample_route(0, ahead, blocked_plan_lane);
+        let goal = rival_escape_goal(&track, 0, station, lane, blocked_plan_lane);
+        let (street, _) = track.street_sample(0, ahead, 0.);
+        assert!(goal.xz().distance(street.xz()) < 0.05);
+
+        // A solid fixture around the old sidewalk goal prevents every path
+        // from terminating there. The paved target lets escape run normally.
+        let blocked = blocked_goal.xz();
+        let clear = |from: [f32; 2], to: [f32; 2]| {
+            let from = Vec2::from_array(from);
+            let to = Vec2::from_array(to);
+            let step = to - from;
+            let t = ((blocked - from).dot(step) / step.length_squared()).clamp(0., 1.);
+            (from + step * t).distance(blocked) > 2.
+        };
+        assert!(rr_core::escape::route(start.xz().to_array(), blocked.to_array(), clear).is_none());
+        assert_eq!(
+            rr_core::escape::route(start.xz().to_array(), goal.xz().to_array(), clear),
+            Some(vec![goal.xz().to_array()])
+        );
+        assert_eq!(
+            rival_escape_goal(&track, 0, station, 0., blocked_plan_lane),
+            blocked_goal
+        );
+    }
+
     #[test]
     fn static_guard_tracks_requested_or_committed_lines_only() {
         assert!(ai_static_guard_blocked(2., -3., None, |x| x == 2.));

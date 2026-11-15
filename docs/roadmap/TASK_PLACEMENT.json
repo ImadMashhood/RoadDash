@@ -256,7 +256,8 @@
         "RFU-AI-07",
         "HILLS-HERD-02",
         "AI-HILLS-CADENCE-01",
-        "HILLS-HERD-01"
+        "HILLS-HERD-01",
+        "HILLS-SAND-PACE-01"
       ]
     },
     "01": {
@@ -339,7 +340,8 @@
         "P04-009",
         "P04-014",
         "P06-006",
-        "RACE-TIMING-LINES-01"
+        "RACE-TIMING-LINES-01",
+        "HILLS-VERGE-ESCAPE-01"
       ]
     },
     "02": {
@@ -515,7 +517,8 @@
         "V2-06-008",
         "ENV-008",
         "P08-005",
-        "HILLS-SURFACE-POLISH-01"
+        "HILLS-SURFACE-POLISH-01",
+        "HILLS-HERD-03"
       ]
     },
     "07": {

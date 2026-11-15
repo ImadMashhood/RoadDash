@@ -1,5 +1,10 @@
 # Development progress
 
+2026-11-15 Hills herd, sand and city verge (ADR204): HILLS-HERD-03
+and HILLS-VERGE-ESCAPE-01 are open. HILLS-SAND-PACE-01 verified in both riding
+adapters. 252 verified / 378 open.
+[Implementation and log evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
 2026-11-15 Hills timing, presentation and rival planning (ADR203): verified
 HILLS-HERD-01, HILLS-HERD-02 and AI-HILLS-CADENCE-01. RACE-TIMING-LINES-01 and
 HILLS-SURFACE-POLISH-01 are open. 251 verified / 376 open. The matched
@@ -600,6 +605,8 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **HILLS-SAND-PACE-01** Raise usable Hills sand speed. Reason: sand slows riders more than requested; part: 06; dependencies: HILLS-SURFACE-POLISH-01 and shared surface policy; acceptance: higher terminal sand speed and retained sand coast, traction penalty, entry and reverse behavior in both adapters; verification: shared surface and real adapter tests. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
 - [x] **AI-HILLS-CADENCE-01** Reduce expensive Hills passing searches while preserving physical passing. Reason: repeated scans consume fixed-tick time and stopped riders form queues; part: 01; dependencies: AI-SHARED-SCAN-01 and RACE-RIDEOVER-01; acceptance: safe two-rival pass, fixed-rate hazard response and reproducible 60/20/10 Hz native measurements; verification: physical regressions and native paired survey. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
 
 - [x] **HILLS-HERD-02** Place two slower, drivable, staggered 4×5 cattle crossings. Reason: the previous formation was too small and regular; part: 06; dependencies: HILLS-POLISH-02 and solid herd contacts; acceptance: two groups of 20, safe individual gaps, ground support, whole-road traversal; verification: Hills wildlife and both collision adapters. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
@@ -1104,6 +1111,8 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **HILLS-VERGE-ESCAPE-01** Recover Hills rivals stalled outside the opening city carriageway. Reason: Diamond stopped near 831 m with a zero-speed sidewalk plan; part: 01; dependencies: AI-HILLS-CADENCE-01 and swept escape; acceptance: reachable paved escape goal under a blocked sidewalk target and a native replay of the reported stop; verification: authored-track fixture and native replay. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
 - [ ] **RACE-TIMING-LINES-01** Use decorated timing lines and preserve solid braking run-out. Reason: intermediate gates invalidated Hills finishes and completed bikes ghosted; part: 01; dependencies: RACE-FINISH-01 and current finish awards; acceptance: each built-in point-to-point course finishes from either valid route after crossing the start, with retained time, place and solid bike braking; verification: timing, rear contact and native smoke. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
 
 - [ ] **AI-SHARED-SCAN-01** Share static obstacle discovery across the race field. Reason: the busy Hills forecast makes hundreds of obstacle sweeps per fixed tick; part: 01; dependencies: RFU-AI-01 and PERF-08; acceptance: one shared discovery scan per active tick with conservative clearance and fewer exact casts; verification: geometry, physical queue and native matched reports. [Evidence](testing/shared-rival-obstacles/REPORT.md).
@@ -1463,6 +1472,8 @@ pending terrain and crossing verification gates.
 - [ ] **ENV-004** E3: place memorable landmarks plus interactive fences, cows, cars, rocks, and tractors; make encounters readable rather than unavoidable surprise spawns.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **HILLS-HERD-03** Widen and vary both Hills herd formations. Reason: full-field riders spend long periods near the crossings at low speed; part: 06; dependencies: HILLS-HERD-02; acceptance: both 20-cow crossings remain solid with driveable gaps and fewer native queues; verification: synchronized formation, physical contact and matched race logs. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
 
 - [ ] **HILLS-SURFACE-POLISH-01** Refine player dust, sand slowdown and bridge shoulders. Reason: local tire dust disappeared and the deck shoulders showed exposed geometry; part: 06; dependencies: HILLS-POLISH-02 and the tire plume pool; acceptance: local dust in crowded scenes, gentler sand, closed abutment geometry and a close-up visual review; verification: pool, surface and bridge regressions plus native image review. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
 

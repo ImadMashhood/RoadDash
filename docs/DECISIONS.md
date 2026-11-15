@@ -5002,3 +5002,13 @@ Reuse shared route corridors and traffic forecasts, and stagger expensive
 non-emergency searches across the fixed loop. Keep imminent-hazard checks
 and motion at the fixed rate.
 [Implementation and verification](testing/hills-race-polish-and-planning/REPORT.md).
+
+
+## ADR204 — Wider cattle paths and paved Hills city escape targets (2026-11-15)
+
+Seed independent position offsets per cow, with spacing bounded through
+the synchronized turns. Keep both crossings solid and retain cached
+support. Ease sand rolling resistance and the powered speed limit in the
+shared surface policy. Give an off-carriageway rival in the opening city a
+paved escape target, retaining the existing swept clearance checks.
+[Evidence](testing/hills-herd-verge-tuning/REPORT.md).

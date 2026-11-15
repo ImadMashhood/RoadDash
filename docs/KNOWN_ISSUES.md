@@ -1,5 +1,8 @@
 # Known issues and remaining acceptance
 
+- HILLS-HERD-03 and HILLS-VERGE-ESCAPE-01: Full-field queue times at both
+  crossings and a replay of Diamond’s exact stop still need native evidence.
+
 - AI-HILLS-CADENCE-01: The planner work budget and whole-frame performance
   are measured separately. End-to-end fluidity still needs a matched native
   display and representative Hills race, including the heavy Western segment.
