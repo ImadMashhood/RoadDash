@@ -57,6 +57,7 @@ impl Course {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Action {
     Continue,
+    ContinueRace,
     Thrash,
     Online,
     Host,

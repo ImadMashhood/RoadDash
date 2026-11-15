@@ -22,6 +22,9 @@ pub use rr_core::Phase;
 pub struct Race {
     pub rival_difficulty: rr_core::pursuit::RivalDifficulty,
     pub arrested: bool,
+    pub player_wasted: Option<(rr_core::race::WasteCause, f32)>,
+    pub continued: bool,
+    pub race_in_progress: bool,
     pub phase: Phase,
     pub countdown: f32,
     pub elapsed: f32,
@@ -38,6 +41,9 @@ impl Default for Race {
         Self {
             rival_difficulty: default(),
             arrested: false,
+            player_wasted: None,
+            continued: false,
+            race_in_progress: false,
             phase: Phase::Garage,
             countdown: 3.0,
             elapsed: 0.0,
@@ -175,6 +181,8 @@ pub struct Rider {
     pub lane: f32,
     pub speed: f32,
     pub health: f32,
+    pub race_health: rr_core::race::RaceHealth,
+    pub wasted: Option<rr_core::race::WasteCause>,
     pub original_condition: rr_core::original_crash::Condition,
     pub nitro: f32,
     pub crashed: f32,
@@ -224,6 +232,18 @@ impl Rider {
         }
     }
 
+    pub fn racing(&self) -> bool {
+        self.finished.is_none() && self.wasted.is_none()
+    }
+    pub(crate) fn race_rank(&self) -> rr_core::race::RaceRank {
+        rr_core::race::RaceRank {
+            grid_id: self.id,
+            laps: self.gates.completed_laps,
+            progress: self.progress,
+            finish: self.finished,
+            wasted: self.wasted.is_some(),
+        }
+    }
     pub fn human_controlled(&self) -> bool {
         if self.networked {
             self.remote_human
@@ -244,6 +264,8 @@ impl Rider {
             lane: if id.is_multiple_of(2) { -2.0 } else { 2.0 },
             speed: 0.0,
             health: 100.0,
+            race_health: default(),
+            wasted: None,
             original_condition: crate::original_crash::initial_condition(),
             nitro: 100.0,
             crashed: 0.0,
@@ -875,7 +897,7 @@ pub fn drive(
                 r.progress,
                 r.lane,
                 r.speed,
-                r.crashed > 0.0,
+                r.crashed > 0.0 || r.wasted.is_some(),
                 r.finished.is_some(),
             )
         })
@@ -900,7 +922,7 @@ pub fn drive(
         .collect();
     let targets: Vec<_> = riders
         .iter()
-        .filter(|(_, r, _, _, _)| r.finished.is_none())
+        .filter(|(_, r, _, _, _)| r.racing())
         .map(|(_, r, state, t, _)| {
             let downed = state.stage != RecoveryStage::Riding;
             let (progress, lane, _) = if downed {
@@ -929,6 +951,9 @@ pub fn drive(
 
     let mut escape_budget = 1usize;
     for (entity, mut r, mut recovery, mut transform, mut visibility) in &mut riders {
+        if !r.racing() {
+            continue;
+        }
         if recovery.stage != RecoveryStage::Riding {
             *visibility = Visibility::Hidden;
             continue;
@@ -937,7 +962,7 @@ pub fn drive(
         let previous_progress = r.progress;
         let previous_position = transform.translation;
         let mut suspended_bridge_pose = None;
-        if active && r.finished.is_none() {
+        if active {
             r.immunity = (r.immunity - dt).max(0.0);
             r.impact_cooldown = (r.impact_cooldown - dt).max(0.0);
             if r.hop_height > 0.0 || r.hop_velocity > 0.0 {
@@ -1133,6 +1158,7 @@ pub fn drive(
                 );
             }
             let mut queue_launch_deficit = 0.0_f32;
+            let mut quick_player_queue = false;
             let traffic_plan = (!is_player).then(|| {
                 let offset = track.street_offset(r.route, r.progress);
                 let width = track
@@ -1286,8 +1312,10 @@ pub fn drive(
                         } else {
                             other.progress - r.progress
                         };
-                        (other.id != r.id && !other.downed && gap.abs() < 200.0).then_some(
-                            rr_core::traffic_avoidance::Car {
+                        if other.id == r.id || other.downed || gap.abs() >= 200.0 {
+                            return None;
+                        }
+                        let proxy = rr_core::traffic_avoidance::Car {
                                 gap,
                                 lane: other.lane
                                     - track.street_offset(
@@ -1303,8 +1331,13 @@ pub fn drive(
                                 lateral_goal: None,
                                 half_width: 0.36,
                                 half_length: 1.05,
-                            },
-                        )
+                        };
+                        if other.id == 0 && width >= 4.5
+                            && rr_core::traffic_avoidance::queue_launch_deficit(r.lane - offset, proxy) > 0.
+                        {
+                            quick_player_queue = true;
+                        }
+                        Some(proxy)
                     })
                     .collect();
                 // Keep persistent passing memory in street-centred coordinates,
@@ -1494,8 +1527,14 @@ pub fn drive(
                     stalled_speed,
                     race.elapsed > 5. && target > 4. && throttle,
                     rear_clear,
-                    race.elapsed > 5. && reposition_queue,
-                    queue_launch_deficit > 0.,
+                    (race.elapsed > 5. && reposition_queue).then_some(if quick_player_queue {
+                        0.45
+                    } else {
+                        2.5
+                    }),
+                    queue_launch_deficit > 0.
+                        && (!quick_player_queue
+                            || traffic_plan.is_none_or(|p| !p.avoiding || p.speed < 1.)),
                 );
             if backing {
                 r.ai_escape = default();
@@ -2063,7 +2102,7 @@ pub fn drive(
                 previous_progress,
                 progress,
             );
-            if !r.police && r.gates.completed_laps >= LAPS && r.finished.is_none() {
+            if !r.police && r.gates.completed_laps >= LAPS && r.racing() {
                 finish_rider(
                     &mut r,
                     &mut race,
@@ -2106,10 +2145,17 @@ pub fn drive(
     if let Some(metrics) = metrics.as_mut() {
         metrics.ai_work.merge(work.finish(drive_started));
     }
-    if active && race.phase != Phase::Finished {
+    if active && race.phase == Phase::Finished {
+        race.race_in_progress = riders
+            .iter()
+            .any(|(_, r, _, _, _)| !r.police && r.id != 0 && r.racing());
+    }
+    if active && race.phase != Phase::Finished && race.player_wasted.is_none() && !race.continued {
         race.place = 1 + riders
             .iter()
-            .filter(|(_, r, _, _, _)| !r.police && r.id != 0 && r.progress > player_progress)
+            .filter(|(_, r, _, _, _)| {
+                !r.police && r.id != 0 && r.wasted.is_none() && r.progress > player_progress
+            })
             .count();
     }
     let traffic_started = civilian_timings.as_ref().map(|_| std::time::Instant::now());
@@ -2555,7 +2601,7 @@ pub(crate) fn finish_rider(
 ) -> bool {
     if rider.police
         || (race.arrested && !rider.networked)
-        || rider.finished.is_some()
+        || !rider.racing()
         || rider.gates.completed_laps < LAPS
     {
         return false;
@@ -2582,6 +2628,12 @@ pub(crate) fn finish_rider(
         race.phase = Phase::Finished;
     }
     true
+}
+
+pub(crate) fn spectated_rider<'a>(riders: impl Iterator<Item = &'a Rider>) -> Option<&'a Rider> {
+    riders
+        .filter(|r| !r.police && r.racing())
+        .min_by(|a, b| a.race_rank().standings_cmp(b.race_rank()))
 }
 
 pub fn wrapped_gap(gap: f32, length: f32) -> f32 {
@@ -2623,10 +2675,17 @@ pub fn camera(
     online: Option<Res<crate::online::NetState>>,
     network_poses: Query<&crate::online::replication::NetworkPose>,
 ) {
-    let Some((player_entity, player, recovery)) = riders
+    let local = riders
         .iter()
-        .find(|(_, r, _)| r.id == online.as_ref().map_or(0, |s| s.local_slot))
-    else {
+        .find(|(_, r, _)| r.id == online.as_ref().map_or(0, |s| s.local_slot));
+    let followed = if race.continued && race.phase == Phase::Racing {
+        spectated_rider(riders.iter().map(|(_, r, _)| r))
+            .and_then(|leader| riders.iter().find(|(_, r, _)| r.id == leader.id))
+            .or(local)
+    } else {
+        local
+    };
+    let Some((player_entity, player, recovery)) = followed else {
         return;
     };
     if race.phase == Phase::Paused {
@@ -4149,6 +4208,43 @@ pub(crate) mod tests {
             .find(|r| r.id == 0)
             .unwrap()
     }
+    #[test]
+    fn exhausted_bike_and_rider_each_end_the_race_and_reset_on_restart() {
+        use rr_core::race::WasteCause;
+        for cause in [WasteCause::Bike, WasteCause::Rider] {
+            let mut app = simulation();
+            app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+            let mut query = app.world_mut().query::<(Entity, &Rider)>();
+            let entity = query.iter(app.world()).find(|(_, r)| r.id == 0).unwrap().0;
+            let mut rider = app.world_mut().get_mut::<Rider>(entity).unwrap();
+            match cause {
+                WasteCause::Bike => rider.race_health.damage(100., 0.),
+                WasteCause::Rider => rider.race_health.damage(0., 100.),
+                WasteCause::River => unreachable!(),
+            }
+            step(&mut app, 65);
+            let race = app.world().resource::<Race>();
+            assert_eq!(race.phase, Phase::Finished);
+            assert_eq!(race.player_wasted.map(|(cause, _)| cause), Some(cause));
+            assert_eq!(race.earned, 0);
+            assert_eq!(player(&mut app).wasted, Some(cause));
+            assert_eq!(
+                app.world().get::<Recovery>(entity).unwrap().stage,
+                RecoveryStage::Falling
+            );
+            app.world_mut()
+                .resource_mut::<ButtonInput<KeyCode>>()
+                .press(KeyCode::KeyR);
+            step(&mut app, 1);
+            let rider = player(&mut app);
+            assert_eq!(rider.wasted, None);
+            assert_eq!(
+                (rider.race_health.bike, rider.race_health.rider),
+                (100., 100.)
+            );
+        }
+    }
+
     #[test]
     fn countdown_throttle_nitro_and_pause() {
         let mut app = simulation();

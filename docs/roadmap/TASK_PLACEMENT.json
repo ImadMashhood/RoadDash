@@ -259,6 +259,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "RFU-RACE-HEALTH-01",
         "FEEL-DOWNED-01",
         "AI-METRO-01",
         "PERF-START-01",
@@ -453,6 +454,7 @@
     "06": {
       "title": "World C — NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "RFU-HILLS-WOODLAND-01",
         "SCENIC-HORIZON-01",
         "COURSE-TERRAIN-01",
         "HILLS-POLISH-02",
@@ -636,6 +638,7 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "RFU-RACE-RESULTS-01",
         "DEMO-ROAD-FX-01",
         "VIS-DEPTH-01",
         "UI-CITY-TOUR-01",

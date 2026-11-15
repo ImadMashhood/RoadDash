@@ -102,7 +102,7 @@ pub fn schedule(
         let Ok((_, r, rec, t)) = riders.get(owner) else {
             continue;
         };
-        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
+        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || !r.racing() {
             continue;
         }
         if r.strike.is_some_and(|clock| clock.pending()) {
@@ -122,7 +122,7 @@ pub fn schedule(
                         && target_pose(other, state, pose, &positions, police_foot).is_some()
                         && state.stagger.is_none()
                         && other.immunity <= 0.0
-                        && other.finished.is_none()
+                        && other.racing()
                 })
                 .map(|(e, r, rec, t)| {
                     (
@@ -177,12 +177,12 @@ pub fn schedule(
     for (e, mut r, rec, pose) in &mut riders {
         if rec.stage != RecoveryStage::Riding
             || rec.stagger.is_some()
-            || r.finished.is_some()
+            || !r.racing()
             || r.hit_reaction.is_some_and(|hit| !hit.active(race.elapsed))
         {
             r.hit_reaction = None;
         }
-        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
+        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || !r.racing() {
             r.strike = None;
             continue;
         }
@@ -265,10 +265,7 @@ pub(crate) fn melee(
         let Ok((_, rider, state, t, _)) = riders.get(attacker) else {
             continue;
         };
-        if state.stage != RecoveryStage::Riding
-            || state.stagger.is_some()
-            || rider.finished.is_some()
-        {
+        if state.stage != RecoveryStage::Riding || state.stagger.is_some() || !rider.racing() {
             continue;
         }
         if chosen_side.is_some() && rider.strike.is_none_or(|clock| !clock.pending()) {
@@ -395,7 +392,7 @@ pub(crate) fn melee(
                 && target_pose(r, s, t, &positions, police_foot).is_some()
                 && s.stagger.is_none()
                 && r.immunity <= 0.0
-                && r.finished.is_none()
+                && r.racing()
                 && (chosen_side.is_some()
                     || (r.police && police_foot && s.stage == RecoveryStage::Running)
                     || (t.rotation * Vec3::Z).dot(forward) > 0.7)
@@ -534,6 +531,9 @@ pub(crate) fn melee(
                 }
                 r.side_velocity += direction * push.length();
                 r.motion_velocity += push;
+                if !r.police && !r.networked {
+                    r.race_health.damage(if kicking { 9. } else { 5. }, 0.);
+                }
                 r.combat_mind.struck_by(attacker_id);
                 if player {
                     race.message = "BIKE HIT".into();
@@ -560,6 +560,9 @@ pub(crate) fn melee(
             }
             if kicking && foot {
                 continue;
+            }
+            if !r.police && !r.networked {
+                r.race_health.damage(0., if kicking { 5. } else { 9. });
             }
             if kicking {
                 let push = right * (p - origin).dot(right).signum() * kick_strength;

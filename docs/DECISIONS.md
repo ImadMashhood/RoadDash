@@ -4957,3 +4957,14 @@ the earlier requirement to fund the hop from the attacking bike’s horizontal
 kinetic energy. Admit predicted moving leaders to the existing safe passing
 planner earlier.
 [Implementation and evidence](testing/race-polish-followup/REPORT.md).
+
+## ADR200 — Close passing, distant woodland and offline race elimination (2026-11-14)
+
+Limit the reduced backoff delay to a confirmed close queue and give a viable
+forward escape line control again. Add low-detail Hills trees in shared,
+non-solid mesh batches outside the physical woodland. Keep cumulative condition
+separate from temporary hit-chain health. Retire offline racers when either
+condition reaches zero or a body reaches the visible river surface. Keep the
+canyon floor and existing ragdoll, profile and network contracts. Reuse results
+as the pause point before optional live spectating.
+[Implementation and evidence](testing/hills-race-outcomes/REPORT.md).

@@ -21,6 +21,7 @@ pub fn eligible(player: Transform, camera: Transform, point: Vec3) -> bool {
     )
 }
 pub fn classify(
+    track: Res<crate::track::Track>,
     cameras: Query<&Transform, (With<Camera3d>, Without<Rider>)>,
     mut riders: Query<(&Rider, &Transform, &mut Recovery)>,
 ) {
@@ -30,7 +31,11 @@ pub fn classify(
         .map(|(_, t, _)| *t);
     let camera = cameras.single().ok().copied();
     for (r, t, mut rec) in &mut riders {
-        rec.defer_allowed = !r.police
+        // Keep physical falls near the river so water contact can eliminate a rival.
+        let over_canyon =
+            track.is_hills() && (r.progress - crate::world_gen::hills::bridge::CENTER).abs() < 180.;
+        rec.defer_allowed = !over_canyon
+            && !r.police
             && !r.human_controlled()
             && rec.stage == RecoveryStage::Riding
             && player

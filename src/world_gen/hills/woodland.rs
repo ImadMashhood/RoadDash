@@ -12,6 +12,8 @@ pub struct WoodlandCensus {
     pub trees: usize,
     pub batches: usize,
     pub triangles: usize,
+    pub backdrop_trees: usize,
+    pub backdrop_batches: usize,
 }
 #[derive(Clone, Copy)]
 struct Tree {
@@ -76,6 +78,57 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
     }
     batches
 }
+const BACKDROP_TILE: f32 = 160.;
+const BACKDROP_ROWS: u32 = 10;
+
+fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
+    let min = track.bounds.0.xz() - Vec2::splat(320.);
+    let max = track.bounds.1.xz() + Vec2::splat(320.);
+    let size = ((max - min) / BACKDROP_TILE).ceil().as_uvec2();
+    let spacing = BACKDROP_TILE / BACKDROP_ROWS as f32;
+    let mut batches = Vec::new();
+    for x in 0..size.x {
+        for z in 0..size.y {
+            let base = min + Vec2::new(x as f32, z as f32) * BACKDROP_TILE;
+            let mut trees = Vec::new();
+            for i in 0..BACKDROP_ROWS {
+                for j in 0..BACKDROP_ROWS {
+                    let seed = (x * 1259 + z * 6739 + i * 73 + j * 919).wrapping_add(7919);
+                    let offset = Vec2::new(i as f32 + noise(seed), j as f32 + noise(seed + 1));
+                    let surface = base + offset * spacing;
+                    if noise(seed + 2)
+                        < 0.24 + 0.20 * (surface.x * 0.021 + (surface.y * 0.012).sin()).sin()
+                    {
+                        continue;
+                    }
+                    let p = Vec3::new(surface.x, 0., surface.y);
+                    let (s, _, distance) = track.project(p, 0.);
+                    if !(1250. ..5300.).contains(&s)
+                        || !(325. ..820.).contains(&distance)
+                        || track
+                            .hills_branch
+                            .as_ref()
+                            .is_some_and(|branch| !branch.scenery_fits(p, 5., 140.))
+                    {
+                        continue;
+                    }
+                    let y = geometry::ground_height(track, p.x, p.z);
+                    trees.push(Tree {
+                        p: p.with_y(y - 0.5),
+                        height: 8. + noise(seed + 7) * 9.,
+                        seed,
+                    });
+                }
+            }
+            if !trees.is_empty() {
+                let center = base + Vec2::splat(BACKDROP_TILE * 0.5);
+                batches.push((Vec3::new(center.x, trees[0].p.y, center.y), trees));
+            }
+        }
+    }
+    batches
+}
+
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -137,11 +190,67 @@ pub fn spawn(
         ));
         census.batches += 1;
     }
+    for (origin, trees) in backdrop(track) {
+        let mut model = Model::default();
+        census.backdrop_trees += trees.len();
+        census.backdrop_batches += 1;
+        census.trees += trees.len();
+        census.batches += 1;
+        census.triangles += trees.len() * 12;
+        for tree in trees {
+            let p = tree.p - origin;
+            let tint = noise(tree.seed + 5);
+            let green = [0.095 + 0.06 * tint, 0.17 + 0.12 * tint, 0.075 + 0.06 * tint];
+            model.open_crown(p, tree.height * 0.25, tree.height * 0.77, green);
+            model.open_crown(
+                p + Vec3::Y * tree.height * 0.34,
+                tree.height * 0.18,
+                tree.height * 0.66,
+                green.map(|value| value * 1.14),
+            );
+        }
+        commands.spawn((
+            Mesh3d(meshes.add(model.mesh())),
+            MeshMaterial3d(material.clone()),
+            Transform::from_translation(origin),
+            WoodlandBatch,
+            NotShadowCaster,
+            VisibilityRange {
+                start_margin: 0. ..0.,
+                end_margin: 1250. ..1550.,
+                use_aabb: true,
+            },
+        ));
+    }
     commands.insert_resource(census);
 }
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn backdrop_places_thousands_of_grounded_trees_with_bounded_geometry() {
+        let track = Track::hills().unwrap();
+        let batches = backdrop(&track);
+        let count: usize = batches.iter().map(|(_, trees)| trees.len()).sum();
+        println!(
+            "Hills backdrop: {count} trees, {} batches, {} triangles",
+            batches.len(),
+            count * 12
+        );
+        assert!((3000..=9000).contains(&count));
+        assert!(batches.len() <= 160);
+        for (_, trees) in &batches {
+            assert!(trees.len() <= (BACKDROP_ROWS * BACKDROP_ROWS) as usize);
+            for tree in trees {
+                assert!(track.scenery_fits(tree.p, 5., 140.));
+                assert!(
+                    (geometry::ground_height(&track, tree.p.x, tree.p.z) - tree.p.y - 0.5).abs()
+                        < 0.001
+                );
+            }
+        }
+    }
+
     #[test]
     fn distant_woodland_has_supported_clear_placed_geometry_and_bounded_batches() {
         let track = Track::hills().unwrap();

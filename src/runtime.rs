@@ -321,6 +321,7 @@ impl Plugin for RoadSimulationPlugin {
                 (
                     crate::offscreen_crash::classify,
                     recovery::impacts,
+                    recovery::race_outcomes,
                     recovery::recover,
                     crate::weapons::inventory,
                     game::drive,

@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-14 — Hills woodland and offline race outcomes (ADR200)
+
+- Shortened the backoff decision for close stopped queues and added batched trees across distant Hills slopes.
+- Added cumulative bike and rider damage, terminal river wipeouts with a recorded spatial splash and standings with restart and spectating.
+
 ## 2026-11-14 — Race polish follow-up (ADR199)
 
 - Shortened the built-in point-to-point races by one kilometre and replaced the race map and standings with a speedometer and signed nearby gap.

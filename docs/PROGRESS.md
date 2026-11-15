@@ -1,5 +1,11 @@
 # Development progress
 
+2026-11-14 Hills woodland and race outcomes (ADR200): 248 verified / 368 open.
+RFU-RACE-HEALTH-01, RFU-HILLS-WOODLAND-01 and RFU-RACE-RESULTS-01 added open.
+745 tests pass with two existing Rapier failures. Locked builds, strict linting,
+asset audit, native Hills/Metropolis smoke and paired Hills captures complete.
+[Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
 2026-11-14 race polish follow-up (ADR199): Two requirements verified and two remain open.
 248 verified / 365 open. [Implementation and evidence](testing/race-polish-followup/REPORT.md).
 
@@ -1073,6 +1079,8 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **RFU-RACE-HEALTH-01** Track bike and rider condition and handle Hills river wipeouts. Reason: repeated damage and river crashes need a terminal outcome; part: 01; dependencies: recoverable combat, crash rig and Hills river; acceptance: independent condition, restart reset, positioned splash and wasted outcome; verification: health, water contact and native review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
 - [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, bounded arcade hop with preserved horizontal speed per ADR199 and unchanged upright rear-contact/rig policy; verification: core hop-height tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
@@ -1425,6 +1433,8 @@ pending terrain and crossing verification gates.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **RFU-HILLS-WOODLAND-01** Populate distant Hills slopes with batched woodland. Reason: sparse distant ridgelines in the Hills playtest; part: 06; dependencies: Hills terrain, route projection and existing woodland; acceptance: thousands of grounded distant trees with bounded render geometry and unchanged collision count; verification: placement tests, native screenshots and paired GPU frame timing. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
 - [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](testing/scenic-horizon/REPORT.md).
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](testing/course-presentation-polish/REPORT.md).
@@ -1718,6 +1728,8 @@ pending terrain and crossing verification gates.
 - [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **RFU-RACE-RESULTS-01** Show all offline race standings and allow observing the remaining racers. Reason: players want current order, restart or continuation after finishing or being wasted; part: 15; dependencies: RFU-RACE-HEALTH-01 and frontend race flow; acceptance: correct sorted rows and red wasted strike, deterministic restart and no duplicate awards; verification: standings, lifecycle and native screen review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
 
 - [ ] **VIS-DEPTH-01** Evaluate contact shadows and a depth-oriented daylight grade. Reason: weak grounding and distance separation; part:15; dependencies: SKY-01 and P15-004; acceptance: readable shadows and hazards, coherent sky/fog and bounded cost; verification: matched Hills and Metropolis native views and frame measurements. The optional grade has been softened toward the baseline daylight curve. [Evidence](testing/visual-depth/REPORT.md).
 

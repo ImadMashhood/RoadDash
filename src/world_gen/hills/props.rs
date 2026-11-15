@@ -135,6 +135,17 @@ impl Model {
             self.indices.extend([[k + 1, b, a], [k, a, b]]);
         }
     }
+    pub(super) fn open_crown(&mut self, base: Vec3, radius: f32, height: f32, color: [f32; 3]) {
+        let tip = self.vertices.len() as u32;
+        self.vertices.push(base + Vec3::Y * height);
+        for i in 0..6 {
+            let angle = i as f32 * std::f32::consts::TAU / 6.;
+            self.vertices
+                .push(base + Vec3::new(angle.cos(), 0., angle.sin()) * radius);
+            self.indices.push([tip, tip + 1 + (i + 1) % 6, tip + 1 + i]);
+        }
+        self.colors.extend([[color[0], color[1], color[2], 1.]; 7]);
+    }
     pub(super) fn hull(&self) -> Collider {
         Collider::convex_hull(&self.vertices).expect("original scenery convex hull")
     }

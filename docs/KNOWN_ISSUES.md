@@ -1439,3 +1439,12 @@ integration and combined release/hardware performance gates remain open.
   testing/feedback-animals/REPORT.md.
 
 - RFU-GROUND-03 / RFU-HILLS-05: the Bevy 0.20 candidate now has procedural terrain grit, local sand-tinted fixed-size dust, and half as many imported Hills city walkers. Texture repetition, fade timing, walking encounters, and whether "peds pop" means spawn distance need native user review. Matched release frame/GPU cost is unmeasured; see ADR167 and testing/feedback-sand-crowd/REPORT.md.
+
+## Hills race-outcome follow-up (2026-11-14 / ADR200)
+
+The close-queue regression covers the reported gap and a clear passing
+corridor. Full-route traffic combinations remain under RFU-AI-01. The new
+woodland has a measured geometry budget. Target-hardware frame timing and
+visual review remain RFU-HILLS-WOODLAND-01. Offline elimination and standings
+are implemented under RFU-RACE-HEALTH-01 and RFU-RACE-RESULTS-01. Balance across
+full human races and network adoption remain open.

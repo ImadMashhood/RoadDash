@@ -117,7 +117,7 @@ impl DriveMemory {
         self.backing > 0.
     }
     pub fn step(&mut self, dt: f32, speed: f32, wants_progress: bool, rear_clear: bool) -> bool {
-        self.step_with_queue(dt, speed, wants_progress, rear_clear, false, false)
+        self.step_with_queue(dt, speed, wants_progress, rear_clear, None, false)
     }
     /// Preserve the ordinary short unsticking pulse. A compressed queue instead
     /// keeps a bounded launch-space goal, terminating as soon as it is satisfied.
@@ -127,7 +127,7 @@ impl DriveMemory {
         speed: f32,
         wants_progress: bool,
         rear_clear: bool,
-        request_queue: bool,
+        queue_wait_seconds: Option<f32>,
         needs_space: bool,
     ) -> bool {
         self.cooldown = (self.cooldown - dt).max(0.);
@@ -140,14 +140,15 @@ impl DriveMemory {
             self.stalled = 0.;
             return self.reversing();
         }
-        self.stalled = if speed.abs() < 0.65 && (wants_progress || request_queue) {
+        self.stalled = if speed.abs() < 0.65 && (wants_progress || queue_wait_seconds.is_some()) {
             self.stalled + dt
         } else {
             0.
         };
-        if self.stalled > 2.5 && rear_clear && self.cooldown == 0. {
-            self.queue_reposition = request_queue;
-            self.backing = if request_queue { 4.5 } else { 1.25 };
+        let wait = queue_wait_seconds.unwrap_or(2.5);
+        if self.stalled > wait && rear_clear && self.cooldown == 0. {
+            self.queue_reposition = queue_wait_seconds.is_some();
+            self.backing = if self.queue_reposition { 4.5 } else { 1.25 };
             self.cooldown = 6.;
             self.stalled = 0.;
         }
@@ -190,24 +191,24 @@ mod tests {
     fn queue_backoff_holds_goal_but_stops_for_space_rear_obstruction_and_time_bound() {
         for stop_for_gap in [false, true] {
             let mut m = DriveMemory::default();
-            for _ in 0..151 {
-                m.step_with_queue(1. / 60., 0., false, true, true, true);
+            for _ in 0..28 {
+                m.step_with_queue(1. / 60., 0., false, true, Some(0.45), true);
             }
             assert!(m.reversing());
             for _ in 0..120 {
-                assert!(m.step_with_queue(1. / 60., -2., false, true, false, true));
+                assert!(m.step_with_queue(1. / 60., -2., false, true, None, true));
             }
-            assert!(!m.step_with_queue(1. / 60., -2., false, stop_for_gap, false, !stop_for_gap));
+            assert!(!m.step_with_queue(1. / 60., -2., false, stop_for_gap, None, !stop_for_gap));
             for _ in 0..120 {
-                assert!(!m.step_with_queue(1. / 60., 0., false, true, true, true));
+                assert!(!m.step_with_queue(1. / 60., 0., false, true, Some(0.45), true));
             }
         }
         let mut m = DriveMemory::default();
-        for _ in 0..151 {
-            m.step_with_queue(1. / 60., 0., false, true, true, true);
+        for _ in 0..28 {
+            m.step_with_queue(1. / 60., 0., false, true, Some(0.45), true);
         }
         let mut ticks = 0;
-        while m.step_with_queue(1. / 60., -2., false, true, false, true) {
+        while m.step_with_queue(1. / 60., -2., false, true, None, true) {
             ticks += 1;
             assert!(ticks <= 270);
         }

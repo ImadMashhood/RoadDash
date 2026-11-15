@@ -33,6 +33,7 @@ pub enum Cue {
     RunoverBike,
     TownShot,
     TownPunch,
+    RiverSplash,
 }
 #[derive(Message, Clone, Copy)]
 pub struct AudioCue {
@@ -48,6 +49,7 @@ impl AudioCue {
 pub struct Sounds {
     siren: Handle<AudioSource>,
     crash: Handle<AudioSource>,
+    river_splash: Handle<AudioSource>,
     breaking: Handle<AudioSource>,
     punch: Handle<AudioSource>,
     kick: Handle<AudioSource>,
@@ -194,6 +196,7 @@ pub(crate) fn setup(
     commands.insert_resource(Sounds {
         siren: asset_server.load("audio/recorded/siren.wav"),
         crash: asset_server.load("audio/impacts/crash.wav"),
+        river_splash: asset_server.load("audio/impacts/river-splash.wav"),
         breaking: asset_server.load("audio/impacts/weapon.wav"),
         punch: asset_server.load("audio/impacts/punch.wav"),
         kick: asset_server.load("audio/impacts/kick.wav"),
@@ -362,6 +365,7 @@ pub(crate) fn update(
         let handle = match cue.kind {
             Cue::Siren => &sounds.siren,
             Cue::Crash => &sounds.crash,
+            Cue::RiverSplash => &sounds.river_splash,
             Cue::Break => &sounds.breaking,
             Cue::Punch | Cue::TownPunch => &sounds.punch,
             Cue::Kick => &sounds.kick,
@@ -379,7 +383,7 @@ pub(crate) fn update(
             Cue::TownShot => &sounds.town_shot,
         };
         let (base_gain, scale) = match cue.kind {
-            Cue::Crash | Cue::RunoverBike => (0.95, 0.12),
+            Cue::Crash | Cue::RunoverBike | Cue::RiverSplash => (0.95, 0.12),
             Cue::TownShot => (0.75, 0.035),
             Cue::Kick | Cue::Runover => (0.75, 0.12),
             Cue::Punch | Cue::TownPunch | Cue::BikeStrike | Cue::Break => (0.65, 0.12),
@@ -410,7 +414,12 @@ pub(crate) fn update(
             CueGain(0.35),
         ));
     }
-    if race.phase == Phase::Finished && *last_phase != Some(Phase::Finished) && !muted.0 {
+    if race.phase == Phase::Finished
+        && *last_phase != Some(Phase::Finished)
+        && race.player_wasted.is_none()
+        && !race.continued
+        && !muted.0
+    {
         commands.spawn((
             AudioPlayer::new(if race.arrested {
                 sounds.siren.clone()

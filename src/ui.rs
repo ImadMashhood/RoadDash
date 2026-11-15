@@ -372,9 +372,14 @@ pub(crate) fn update_ui(
     ),
 ) {
     let local_slot = online.as_ref().map_or(0, |s| s.local_slot);
-    let Some(player) = riders.iter().find(|r| r.id == local_slot) else {
-        return;
+    let local = riders.iter().find(|r| r.id == local_slot);
+    let spectating = race.continued && race.phase == Phase::Racing;
+    let followed = if spectating {
+        crate::game::spectated_rider(riders.iter()).or(local)
+    } else {
+        local
     };
+    let Some(player) = followed else { return };
     let loading = screen.as_ref().is_some_and(|s| {
         matches!(
             s.get(),
@@ -408,7 +413,8 @@ pub(crate) fn update_ui(
         .iter()
         .filter(|r| {
             !r.police
-                && r.id != local_slot
+                && r.id != player.id
+                && r.wasted.is_none()
                 && ((!r.online_busted && player.online_busted)
                     || (r.online_busted == player.online_busted && r.progress > player.progress))
         })
@@ -448,6 +454,7 @@ pub(crate) fn update_ui(
     for (field, mut text) in &mut readouts {
         let next = match field.0 {
             0 => format!("P{position:02} / {count:02}"),
+            1 if spectating => format!("SPECTATING {}  /  ESC STANDINGS", crate::game::NAMES[player.roster_slot]),
             1 if !track.definition.closed => format!("ROUTE {:03}%  {:02}:{:05.2}",(track.race_interval().fraction(player.progress)*100.) as u32,(race.elapsed/60.) as u32,race.elapsed%60.),
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => {
@@ -456,7 +463,17 @@ pub(crate) fn update_ui(
             }
             12 => if prefs.file.imperial_speed { "MPH   /   6-SPEED" } else { "KM/H   /   6-SPEED" }.into(),
             13 => online_ui.as_ref().map_or_else(String::new, |o| o.voice_status.clone()),
-            3 => format!("ARMOR  {}  {:3.0}%\nNITRO DISABLED", bar(player.health), player.health.max(0.0)) + &player.weapon.map_or_else(|| "\nUNARMED".to_owned(), |w| format!("\n{} EQUIPPED", w.label())) + &format!("\n{}", police.hud()),
+            3 => {
+                let condition = if player.networked {
+                    format!("ARMOR  {}  {:3.0}%", bar(player.health), player.health.max(0.0))
+                } else {
+                    let health = player.race_health;
+                    format!("BIKE   {}  {:3.0}%\nRIDER  {}  {:3.0}%", bar(health.bike), health.bike, bar(health.rider), health.rider)
+                };
+                let weapon = player.weapon.map_or("UNARMED".to_owned(), |weapon| format!("{} EQUIPPED", weapon.label()));
+                format!("{condition}\nNITRO DISABLED\n{weapon}\n{}", police.hud())
+            },
+            4 if player.wasted.is_some() => "WASTED".into(),
             4 if track.metropolis.is_some() && player.progress>=track.race_interval().finish && player.finished.is_none() => "ROUTE INCOMPLETE / R TO RETRY".into(),
             4 if !track.definition.closed && track.metropolis.is_none() && player.progress>=track.race_interval().finish && player.finished.is_none() => format!("MISSED GATE {} / R TO RETRY",player.gates.next),
             4 if player.finished_on_foot => "FINISHED ON FOOT".into(),
@@ -508,7 +525,9 @@ fn nearest_rival<'a>(
     riders: impl Iterator<Item = &'a Rider>,
 ) -> Option<(&'a Rider, f32)> {
     riders
-        .filter(|rider| rider.id != player.id && !rider.police && !rider.online_busted)
+        .filter(|rider| {
+            rider.id != player.id && !rider.police && !rider.online_busted && rider.wasted.is_none()
+        })
         .map(|rider| (rider, rider.progress - player.progress))
         .min_by(|(a, da), (b, db)| da.abs().total_cmp(&db.abs()).then_with(|| a.id.cmp(&b.id)))
 }

@@ -243,6 +243,7 @@ fn rider_physically_passes_in_opposite_lane_and_returns() {
 fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
     for (count, width, compressed) in [
         (1, 6.5, false),
+        (1, 6.5, true),
         (3, 6.5, false),
         (3, 3.0, false),
         (3, 3.0, true),
@@ -277,15 +278,18 @@ fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
                 ..default()
             },
         ));
+        let close_pair = count == 1 && compressed;
         let mut followers = Vec::new();
         for id in 1..=count {
             let mut r = Rider::new(id);
-            r.progress = if compressed {
+            r.progress = if close_pair {
+                97.26
+            } else if compressed {
                 100. - id as f32 * 4.7
             } else {
                 65. - id as f32 * 15.
             };
-            r.lane = lane;
+            r.lane = if close_pair { lane - 0.55 } else { lane };
             r.speed = if compressed { 0. } else { 20. };
             r.attack = 1000.; // Driving fixture; keep all physical bodies and contacts.
             let (p, q) = app.world().resource::<Track>().sample(r.progress, r.lane);
@@ -379,6 +383,13 @@ fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
         );
         assert!(progress.iter().all(|p| *p > parked.progress + 30.));
         assert!(longest.iter().all(|ticks| *ticks < 300));
+        if close_pair {
+            assert!(longest[0] <= 45, "stopped for {} ticks", longest[0]);
+            assert!(
+                elapsed_ticks <= 480,
+                "close pass took {elapsed_ticks} ticks"
+            );
+        }
         if compressed {
             assert!(reverse_pulses.iter().all(|count| *count > 0 && *count <= 2));
         } else {

@@ -368,6 +368,11 @@ fn crash_with_response(
     if recovery.deferred.is_some() {
         return;
     }
+    if !rider.police && !rider.networked && rider.racing() {
+        rider
+            .race_health
+            .crash(rider.speed.abs().max(rider.motion_velocity.length()));
+    }
     commands.write_message(AudioCue::new(Cue::Crash, contact));
     if crate::offscreen_crash::start(commands, owner, rider, recovery, origin) {
         return;
@@ -536,6 +541,100 @@ fn crash_with_response(
     commands.entity(owner).insert(ColliderDisabled);
 }
 
+pub(crate) fn race_outcomes(
+    mut commands: Commands,
+    mut race: ResMut<Race>,
+    (art, track, river): (
+        Res<Art>,
+        Res<Track>,
+        Option<Res<crate::world_gen::hills::river::RiverSurface>>,
+    ),
+    context: ReadRapierContext,
+    mut riders: Query<(
+        Entity,
+        &mut Rider,
+        &mut Recovery,
+        &Transform,
+        &mut Visibility,
+    )>,
+    bodies: Query<&Transform, Without<Rider>>,
+) {
+    let active = race.phase == Phase::Racing;
+    if !active && race.phase != Phase::Finished {
+        return;
+    }
+    if active {
+        let river = river.as_deref().filter(|_| track.is_hills());
+        for (entity, mut rider, mut recovery, pose, mut visibility) in &mut riders {
+            if rider.police || rider.networked || !rider.racing() {
+                continue;
+            }
+            let splash = river.and_then(|river| {
+                if recovery.stage == RecoveryStage::Riding {
+                    return river.contact(pose.translation);
+                }
+                [recovery.torso, recovery.runner, recovery.wreck]
+                    .into_iter()
+                    .flatten()
+                    .filter_map(|body| bodies.get(body).ok())
+                    .find_map(|body| river.contact(body.translation))
+            });
+            let cause = splash
+                .map(|_| rr_core::race::WasteCause::River)
+                .or_else(|| rider.race_health.cause());
+            let Some(cause) = cause else { continue };
+            if recovery.stage == RecoveryStage::Riding || recovery.runner.is_some() {
+                recovery.defer_allowed = false;
+                let crash_pose = recovery
+                    .runner
+                    .and_then(|runner| bodies.get(runner).ok())
+                    .unwrap_or(pose);
+                crash(
+                    &mut commands,
+                    &art,
+                    entity,
+                    &mut rider,
+                    &mut recovery,
+                    crash_pose.translation,
+                    crash_pose.rotation,
+                    Vec3::ZERO,
+                    &context,
+                );
+            }
+            rider.wasted = Some(cause);
+            rider.speed = 0.;
+            if let Some(contact) = splash {
+                commands.write_message(AudioCue::new(Cue::RiverSplash, contact));
+            }
+            *visibility = Visibility::Hidden;
+            commands.entity(entity).insert(ColliderDisabled);
+            if rider.id == 0 {
+                race.player_wasted = Some((cause, race.elapsed));
+                race.message = "WASTED".into();
+                race.message_time = 2.;
+                race.shake = 0.8;
+            }
+        }
+    }
+    if race.phase == Phase::Finished || race.player_wasted.is_some() || race.continued {
+        race.race_in_progress = riders
+            .iter()
+            .any(|(_, r, _, _, _)| !r.police && r.id != 0 && r.racing());
+    }
+    if active
+        && (race.continued && !race.race_in_progress
+            || !race.continued
+                && race
+                    .player_wasted
+                    .is_some_and(|(_, t)| race.elapsed - t >= 0.9))
+    {
+        race.phase = Phase::Finished;
+        if race.player_wasted.is_some() {
+            race.place = riders.iter().filter(|(_, r, _, _, _)| !r.police).count();
+        }
+    }
+}
+
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn recover(
     mut commands: Commands,
@@ -603,7 +702,7 @@ pub fn recover(
         let remote_input = network_inputs.as_ref().and_then(|n| n.get(rider.id));
         let input = remote_input.map_or(input, |i| Vec2::from_array(i.foot).clamp_length_max(1.));
         let interact = remote_input.map_or(interact, |i| i.interact);
-        if recovery.stage == RecoveryStage::Riding || rider.finished.is_some() {
+        if recovery.stage == RecoveryStage::Riding || !rider.racing() {
             continue;
         }
         *visibility = Visibility::Hidden;
@@ -1373,7 +1472,7 @@ pub fn impacts(
             let Ok((r, rec, _)) = riders.get(owner) else {
                 continue;
             };
-            if rec.stage != RecoveryStage::Riding {
+            if rec.stage != RecoveryStage::Riding || !r.racing() {
                 continue;
             }
             let Ok(t) = transforms.get(owner) else {
@@ -1463,7 +1562,7 @@ pub fn impacts(
             let Ok((rider, recovery, _)) = riders.get(bike) else {
                 continue;
             };
-            if recovery.stage != RecoveryStage::Riding {
+            if recovery.stage != RecoveryStage::Riding || !rider.racing() {
                 continue;
             }
             let velocity = bike_states
@@ -1471,7 +1570,9 @@ pub fn impacts(
                 .map_or(rider.motion_velocity, |s| s.impact_velocity);
             let speed = velocity.length();
             if let Ok((other_rider, other_recovery, _)) = riders.get(other) {
-                if other_recovery.stage != RecoveryStage::Riding || bike.to_bits() > other.to_bits()
+                if other_recovery.stage != RecoveryStage::Riding
+                    || !other_rider.racing()
+                    || bike.to_bits() > other.to_bits()
                 {
                     continue;
                 }

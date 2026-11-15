@@ -198,7 +198,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**248 verified tasks complete; 365 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**248 verified tasks complete; 368 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -217,14 +217,14 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 74 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 75 open |
 | [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 74 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 75 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 52 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 53 open |
 | [07](#part-07) | Weapons and complete riding combat | 12 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -233,7 +233,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 12 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 32 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 33 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -755,6 +755,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **RFU-RACE-HEALTH-01** Track bike and rider condition and handle Hills river wipeouts. Reason: repeated damage and river crashes need a terminal outcome; part: 01; dependencies: recoverable combat, crash rig and Hills river; acceptance: independent condition, restart reset, positioned splash and wasted outcome; verification: health, water contact and native review. [Implementation and evidence](docs/testing/hills-race-outcomes/REPORT.md).
+
 
 - [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, bounded arcade hop with preserved horizontal speed per ADR199 and unchanged upright rear-contact/rig policy; verification: core hop-height tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
 
@@ -1117,6 +1119,8 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **RFU-HILLS-WOODLAND-01** Populate distant Hills slopes with batched woodland. Reason: sparse distant ridgelines in the Hills playtest; part: 06; dependencies: Hills terrain, route projection and existing woodland; acceptance: thousands of grounded distant trees with bounded render geometry and unchanged collision count; verification: placement tests, native screenshots and paired GPU frame timing. [Implementation and evidence](docs/testing/hills-race-outcomes/REPORT.md).
+
 - [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](docs/testing/scenic-horizon/REPORT.md).
 
 - [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](docs/testing/course-presentation-polish/REPORT.md).
@@ -1392,6 +1396,8 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-15"></a>
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **RFU-RACE-RESULTS-01** Show all offline race standings and allow observing the remaining racers. Reason: players want current order, restart or continuation after finishing or being wasted; part: 15; dependencies: RFU-RACE-HEALTH-01 and frontend race flow; acceptance: correct sorted rows and red wasted strike, deterministic restart and no duplicate awards; verification: standings, lifecycle and native screen review. [Implementation and evidence](docs/testing/hills-race-outcomes/REPORT.md).
 
 
 

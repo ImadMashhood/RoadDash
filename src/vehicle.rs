@@ -161,10 +161,7 @@ pub fn forces(
     {
         *force = default();
         state.impact_velocity = v.linear;
-        if recovery.stage != RecoveryStage::Riding
-            || race.phase != Phase::Racing
-            || r.finished.is_some()
-        {
+        if recovery.stage != RecoveryStage::Riding || race.phase != Phase::Racing || !r.racing() {
             *body = RigidBody::KinematicPositionBased;
             *v = Velocity::zero();
             state.was_riding = false;
@@ -470,7 +467,7 @@ pub fn readback(
             let (_, pitch, roll) = t.rotation.to_euler(EulerRot::YXZ);
             t.rotation = Quat::from_euler(EulerRot::YXZ, state.yaw, pitch, roll);
         }
-        if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing {
+        if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing && r.racing() {
             let previous = r.progress;
             r.route = track.choose_route(r.route, previous, t.translation, r.human_controlled());
             let (d, lane, _) = track.project_route(r.route, t.translation, previous);

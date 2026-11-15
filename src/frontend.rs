@@ -19,6 +19,7 @@ mod layout;
 mod online_menu;
 mod online_smoke;
 mod original_art;
+mod results;
 mod smoke;
 pub(crate) use smoke::install as install_smoke;
 
@@ -268,6 +269,10 @@ fn input(
     } else if !online_race {
         front.online_pause = false;
     }
+    if race.continued && race.phase == Phase::Racing && controls.pause && !panel.open {
+        controls.pause = false;
+        race.phase = Phase::Finished;
+    }
     if !matches!(race.phase, Phase::Garage | Phase::Finished) {
         front.released = false;
         front.race_seen = true;
@@ -313,8 +318,13 @@ fn input(
     if let Some(online) = online.as_deref_mut() {
         online_menu::sync(&mut front, online);
     }
-    let rows =
-        online_menu::entries(&front, online.as_deref()).unwrap_or_else(|| entries(front.flow.page));
+    let rows = online_menu::entries(&front, online.as_deref()).unwrap_or_else(|| {
+        if front.flow.page == Page::Results {
+            results::entries(&race)
+        } else {
+            entries(front.flow.page)
+        }
+    });
     front.selected = front.selected.min(rows.len().saturating_sub(1));
     let editing = online_menu::type_code(&mut front, &keys);
     if editing {
@@ -403,6 +413,12 @@ fn input(
             return;
         }
         let was = front.flow.page;
+        if was == Page::Results && action == Action::ContinueRace && results::can_continue(&race) {
+            race.continued = true;
+            race.phase = Phase::Racing;
+            front.race_seen = true;
+            return;
+        }
         if was == Page::Courses
             && let Action::SelectCourse(selected) = action
             && !course::SELECTABLE.contains(&selected)
@@ -596,6 +612,7 @@ fn view(
     mut root: Query<(&mut Node, &mut BackgroundColor), With<Root>>,
     canvas: Query<(Entity, Option<&Children>), With<Canvas>>,
     online: Option<Res<crate::online::Online>>,
+    riders: Query<&crate::game::Rider>,
 ) {
     let active = front.online_pause || matches!(race.phase, Phase::Garage | Phase::Finished);
     let (mut root, mut background) = root.single_mut().expect("frontend root");
@@ -633,11 +650,17 @@ fn view(
         active,
         failed,
         format!(
-            "{}|{:?}|{:?}|{}",
+            "{}|{:?}|{:?}|{}|{:?}",
             online_menu::signature(&front, online.as_deref()),
             front.flow.course,
             front.course_error,
-            front.handoff_started
+            front.handoff_started,
+            (active && front.flow.page == Page::Results).then_some((
+                race.elapsed.to_bits(),
+                race.race_in_progress,
+                race.player_wasted,
+                race.arrested
+            ))
         ),
     );
     if cache.key.as_ref() == Some(&key) {
@@ -707,6 +730,10 @@ fn view(
     }
     if !loading && !failed && page == Page::Courses {
         course::render(&mut commands, canvas, &front, &track, &art);
+        return;
+    }
+    if !loading && !failed && page == Page::Results {
+        results::render(&mut commands, canvas, &race, riders.iter());
         return;
     }
     let value = if failed {
@@ -1195,6 +1222,39 @@ mod tests {
             rr_core::pursuit::RivalDifficulty::Hard
         );
     }
+    #[test]
+    fn keep_race_running_resumes_the_field_and_returns_to_standings() {
+        use crate::game::Rider;
+        use rr_core::race::WasteCause;
+
+        let mut app = app();
+        let rival = app
+            .world_mut()
+            .spawn((
+                Rider::new(1),
+                Transform::default(),
+                Visibility::Visible,
+                crate::recovery::bike_body(),
+            ))
+            .id();
+        {
+            let mut race = app.world_mut().resource_mut::<Race>();
+            race.phase = Phase::Finished;
+            race.player_wasted = Some((WasteCause::Bike, 0.));
+        }
+        app.update();
+        assert!(app.world().resource::<Race>().race_in_progress);
+        action(&mut app, Action::ContinueRace);
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Racing);
+        assert!(app.world().resource::<Race>().continued);
+        app.world_mut().get_mut::<Rider>(rival).unwrap().finished = Some(12.);
+        app.update();
+        assert_eq!(app.world().resource::<Race>().phase, Phase::Finished);
+        assert_eq!(app.world().resource::<Frontend>().flow.page, Page::Results);
+        assert!(!app.world().resource::<Race>().race_in_progress);
+        assert_eq!(app.world().resource::<Race>().earned, 0);
+    }
+
     #[test]
     fn results_restart_edge_retries_finish_and_bust_once_through_starting() {
         for busted in [false, true] {
