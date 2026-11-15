@@ -515,6 +515,7 @@ pub(crate) fn melee(
             continue;
         }
         if let Ok((_, mut r, mut state, t, mut visible)) = riders.get_mut(target) {
+            use rr_core::weapons::ConditionDamage;
             let foot = r.police && police_foot && state.stage == RecoveryStage::Running;
             let hit_pose = target_pose(&r, &state, t, &positions, police_foot).unwrap_or(*t);
             if r.police
@@ -522,6 +523,14 @@ pub(crate) fn melee(
             {
                 police.mind.interrupt_arrest();
                 police.contact_block_until = race.elapsed + 0.25;
+            }
+            if !r.police && !r.networked {
+                let damage = if kicking {
+                    ConditionDamage::KICK
+                } else {
+                    weapon.map_or(ConditionDamage::PUNCH, |ability| ability.condition_damage)
+                };
+                r.race_health.struck(bike_hit, damage);
             }
             if bike_hit {
                 let direction = (t.translation - origin).dot(right).signum();
@@ -531,9 +540,6 @@ pub(crate) fn melee(
                 }
                 r.side_velocity += direction * push.length();
                 r.motion_velocity += push;
-                if !r.police && !r.networked {
-                    r.race_health.damage(if kicking { 9. } else { 5. }, 0.);
-                }
                 r.combat_mind.struck_by(attacker_id);
                 if player {
                     race.message = "BIKE HIT".into();
@@ -560,9 +566,6 @@ pub(crate) fn melee(
             }
             if kicking && foot {
                 continue;
-            }
-            if !r.police && !r.networked {
-                r.race_health.damage(0., if kicking { 5. } else { 9. });
             }
             if kicking {
                 let push = right * (p - origin).dot(right).signum() * kick_strength;
@@ -695,6 +698,8 @@ mod tests {
                 assert_eq!(hit.kicking, kicking);
                 let victim = app.world().get::<Rider>(target).unwrap();
                 assert_eq!(victim.hits.count, if kicking { 0 } else { 1 });
+                assert_eq!(victim.race_health.bike, 100.);
+                assert_eq!(victim.race_health.rider, if kicking { 95. } else { 91. });
                 assert!(
                     (app.world().get::<Velocity>(target).unwrap().linear
                         - if kicking {

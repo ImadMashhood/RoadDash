@@ -273,14 +273,16 @@ pub fn setup_world(
         commands.insert_resource(art);
         return;
     }
-    if track.metropolis.is_some() {
+    if server.is_some() || track.metropolis.is_some() {
         crate::world_gen::hills::atmosphere::spawn(
             &mut commands,
             &mut meshes,
             &mut materials,
             &track,
-            None,
+            images.as_deref_mut(),
         );
+    }
+    if track.metropolis.is_some() {
         crate::world_gen::metropolis::spawn(
             &mut commands,
             &mut meshes,

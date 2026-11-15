@@ -14,6 +14,8 @@ pub struct WoodlandCensus {
     pub triangles: usize,
     pub backdrop_trees: usize,
     pub backdrop_batches: usize,
+    pub middle_batches: usize,
+    pub middle_triangles: usize,
 }
 #[derive(Clone, Copy)]
 struct Tree {
@@ -129,6 +131,17 @@ fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
     batches
 }
 
+fn simpler_tree(model: &mut Model, tree: Tree, origin: Vec3, green: [f32; 3]) {
+    let p = tree.p - origin;
+    model.open_crown(p, tree.height * 0.25, tree.height * 0.77, green);
+    model.open_crown(
+        p + Vec3::Y * tree.height * 0.34,
+        tree.height * 0.18,
+        tree.height * 0.66,
+        green.map(|value| value * 1.14),
+    );
+}
+
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -144,6 +157,7 @@ pub fn spawn(
     for trees in plan(track) {
         let origin = trees[trees.len() / 2].p;
         let mut model = Model::default();
+        let mut middle = Model::default();
         let mut trunks = vec![];
         for tree in trees {
             let p = tree.p - origin;
@@ -153,15 +167,19 @@ pub fn spawn(
                 [0.27, 0.20, 0.12],
             );
             let tint = noise(tree.seed + 5);
+            let green = [0.12 + tint * 0.05, 0.22 + tint * 0.09, 0.09 + tint * 0.04];
             for tier in 0..3 {
                 let base = p + Vec3::Y * tree.height * (0.18 + tier as f32 * 0.22);
                 model.cone(
                     base,
                     tree.height * (0.25 - tier as f32 * 0.045),
                     tree.height * 0.42,
-                    [0.12 + tint * 0.05, 0.22 + tint * 0.09, 0.09 + tint * 0.04],
+                    green,
                 );
             }
+            simpler_tree(&mut middle, tree, origin, green);
+            census.middle_triangles += 12;
+            census.triangles += 12;
             trunks.push((
                 p + Vec3::Y * tree.height * 0.4,
                 Quat::IDENTITY,
@@ -184,11 +202,24 @@ pub fn spawn(
             NotShadowCaster,
             VisibilityRange {
                 start_margin: 0. ..0.,
-                end_margin: 850. ..1100.,
-                use_aabb: true,
+                end_margin: 280. ..340.,
+                use_aabb: false,
             },
         ));
-        census.batches += 1;
+        commands.spawn((
+            Mesh3d(meshes.add(middle.mesh())),
+            MeshMaterial3d(material.clone()),
+            Transform::from_translation(origin),
+            WoodlandBatch,
+            NotShadowCaster,
+            VisibilityRange {
+                start_margin: 280. ..340.,
+                end_margin: 850. ..1100.,
+                use_aabb: false,
+            },
+        ));
+        census.batches += 2;
+        census.middle_batches += 1;
     }
     for (origin, trees) in backdrop(track) {
         let mut model = Model::default();
@@ -198,16 +229,9 @@ pub fn spawn(
         census.batches += 1;
         census.triangles += trees.len() * 12;
         for tree in trees {
-            let p = tree.p - origin;
             let tint = noise(tree.seed + 5);
             let green = [0.095 + 0.06 * tint, 0.17 + 0.12 * tint, 0.075 + 0.06 * tint];
-            model.open_crown(p, tree.height * 0.25, tree.height * 0.77, green);
-            model.open_crown(
-                p + Vec3::Y * tree.height * 0.34,
-                tree.height * 0.18,
-                tree.height * 0.66,
-                green.map(|value| value * 1.14),
-            );
+            simpler_tree(&mut model, tree, origin, green);
         }
         commands.spawn((
             Mesh3d(meshes.add(model.mesh())),

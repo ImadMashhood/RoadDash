@@ -1,7 +1,7 @@
 //! Original sidewalk paving and curbside trees, with a clear pedestrian strip.
 use super::layout::WorldLayout;
 use crate::{track::Track, world::Obstacle};
-use bevy::{camera::visibility::VisibilityRange, prelude::*};
+use bevy::{camera::visibility::VisibilityRange, light::NotShadowCaster, prelude::*};
 use bevy_rapier3d::prelude::*;
 #[derive(Component)]
 pub struct StreetTree;
@@ -108,21 +108,55 @@ pub fn spawn(
         Transform::default(),
     ));
     let trunk = meshes.add(Cylinder::new(0.18, 3.8));
-    let crown = meshes.add(Sphere::new(1.0).mesh().ico(2).unwrap());
+    let crown_parts = [
+        (Vec3::new(0.0, 4.7, 0.0), Vec3::new(1.3, 1.5, 1.3)),
+        (Vec3::new(0.5, 4.5, 0.25), Vec3::splat(1.0)),
+        (Vec3::new(-0.4, 4.5, -0.3), Vec3::splat(1.05)),
+    ];
+    let leaf_colors = [(0.16, 0.31, 0.10), (0.21, 0.37, 0.13), (0.12, 0.27, 0.08)]
+        .map(|(r, g, b)| Color::srgb(r, g, b).to_linear().to_f32_array());
+    let crown_mesh = |resolution, position, scale, color| {
+        let mut mesh = Sphere::new(1.0)
+            .mesh()
+            .ico(resolution)
+            .unwrap()
+            .transformed_by(Transform::from_translation(position).with_scale(scale));
+        mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, vec![color; mesh.count_vertices()]);
+        mesh
+    };
+    let crowns = [0, 1, 2].map(|variant| {
+        let mut parts = crown_parts
+            .into_iter()
+            .enumerate()
+            .map(|(i, (position, scale))| {
+                crown_mesh(
+                    2,
+                    position,
+                    scale,
+                    leaf_colors[(variant + i) % leaf_colors.len()],
+                )
+            });
+        let mut near = parts.next().unwrap();
+        for part in parts {
+            near.merge(&part).expect("uniform crown mesh attributes");
+        }
+        let far = crown_mesh(
+            0,
+            Vec3::Y * 4.68,
+            Vec3::new(1.42, 1.46, 1.34),
+            leaf_colors[variant],
+        );
+        [meshes.add(near), meshes.add(far)]
+    });
+    let foliage = materials.add(StandardMaterial {
+        base_color: Color::WHITE,
+        perceptual_roughness: 0.96,
+        ..default()
+    });
     let cube = meshes.add(Cuboid::new(1.0, 1.0, 1.0));
     let bark = materials.add(Color::srgb(0.24, 0.16, 0.10));
     let soil = materials.add(Color::srgb(0.17, 0.15, 0.12));
     let rim = materials.add(Color::srgb(0.28, 0.29, 0.28));
-    let leaves: Vec<_> = [(0.16, 0.31, 0.10), (0.21, 0.37, 0.13), (0.12, 0.27, 0.08)]
-        .into_iter()
-        .map(|(r, g, b)| {
-            materials.add(StandardMaterial {
-                base_color: Color::srgb(r, g, b),
-                perceptual_roughness: 0.96,
-                ..default()
-            })
-        })
-        .collect();
     for (index, (station, p)) in tree_sites(track, layout).into_iter().enumerate() {
         let (_, q) = track.sample(station, 0.0);
         let root = commands
@@ -175,19 +209,29 @@ pub fn spawn(
                 Vec3::new(sx, 0.024, sz),
             );
         }
-        for (part, offset, scale) in [
-            (0, Vec3::new(0.0, 4.7, 0.0), Vec3::new(1.3, 1.5, 1.3)),
-            (1, Vec3::new(0.5, 4.5, 0.25), Vec3::splat(1.0)),
-            (2, Vec3::new(-0.4, 4.5, -0.3), Vec3::splat(1.05)),
-        ] {
-            child(
-                commands,
-                root,
-                crown.clone(),
-                leaves[(index + part) % leaves.len()].clone(),
-                offset,
-                scale,
-            );
-        }
+        let [near, far] = &crowns[index % crowns.len()];
+        commands.entity(root).with_children(|children| {
+            children.spawn((
+                Mesh3d(near.clone()),
+                MeshMaterial3d(foliage.clone()),
+                Transform::IDENTITY,
+                VisibilityRange {
+                    start_margin: 0. ..0.,
+                    end_margin: 65. ..90.,
+                    use_aabb: false,
+                },
+            ));
+            children.spawn((
+                Mesh3d(far.clone()),
+                MeshMaterial3d(foliage.clone()),
+                Transform::IDENTITY,
+                NotShadowCaster,
+                VisibilityRange {
+                    start_margin: 65. ..90.,
+                    end_margin: 420. ..470.,
+                    use_aabb: false,
+                },
+            ));
+        });
     }
 }

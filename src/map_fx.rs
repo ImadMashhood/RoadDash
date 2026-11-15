@@ -55,6 +55,11 @@ pub struct MapFxSprite {
 #[derive(Resource)]
 pub struct MapFxState;
 
+const SAND_ALPHA_LEVELS: usize = 16;
+
+#[derive(Resource)]
+pub struct SandPlumeMaterials([Handle<StandardMaterial>; SAND_ALPHA_LEVELS]);
+
 /// The environment variable is deliberately read only during construction.
 /// `0` disables all optional overdraw; `low` halves the default sprite count.
 pub fn quality() -> usize {
@@ -223,7 +228,7 @@ pub fn spawn(
     };
     for &kind in kinds {
         let color = match kind {
-            Kind::Sand => Color::srgba(0.61, 0.59, 0.55, 0.78),
+            Kind::Sand => Color::srgba(0.76, 0.57, 0.35, 0.0),
             Kind::Heat => Color::srgba(0.98, 0.94, 0.85, 0.52),
             Kind::Steam => Color::srgba(0.72, 0.76, 0.78, 0.48),
             Kind::Pollen => Color::srgba(0.78, 0.83, 0.61, 0.35),
@@ -233,8 +238,7 @@ pub fn spawn(
             Kind::Heat => heat_texture.clone().unwrap(),
             Kind::Steam | Kind::Pollen => texture.clone(),
         };
-        // One immutable asset per cue avoids a render-asset upload every frame.
-        let material = materials.add(StandardMaterial {
+        let template = StandardMaterial {
             base_color: color,
             base_color_texture: Some(image),
             alpha_mode: AlphaMode::Blend,
@@ -242,7 +246,20 @@ pub fn spawn(
             double_sided: true,
             cull_mode: None,
             ..default()
-        });
+        };
+        let material = if kind == Kind::Sand {
+            let levels = std::array::from_fn(|i| {
+                materials.add(StandardMaterial {
+                    base_color: color.with_alpha(0.70 * i as f32 / (SAND_ALPHA_LEVELS - 1) as f32),
+                    ..template.clone()
+                })
+            });
+            let first = levels[0].clone();
+            commands.insert_resource(SandPlumeMaterials(levels));
+            first
+        } else {
+            materials.add(template)
+        };
         for i in 0..budget(kind, level) {
             let station = match kind {
                 Kind::Sand => {
@@ -313,18 +330,15 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
     let wave = time + phase;
     match kind {
         Kind::Sand => {
-            // Warm dust billows expand and lift at the verge, with occasional
-            // presentation-only drift across the road edge.
-            // The periodic size envelope makes each plume appear and disperse smoothly.
             let cycle = (time * 0.19 + phase * 0.16).fract();
-            let fade = (cycle * (1. - cycle) * 4.).powi(2);
+            let smooth = |t: f32| {
+                let t = t.clamp(0., 1.);
+                t * t * (3. - 2. * t)
+            };
+            let fade = smooth(cycle / 0.23) * smooth((1. - cycle) / 0.35);
             (
-                Vec3::new(
-                    (wave * 0.3).sin() * 3.5,
-                    0.35 + cycle * 1.3,
-                    (cycle - 0.5) * 7.,
-                ),
-                Vec3::new(9.5 + cycle * 4., 5.5 + cycle * 3., 1.),
+                Vec3::new((cycle - 0.5) * 13., 0.35 + cycle * 0.55, (cycle - 0.5) * 4.),
+                Vec3::new(12.5 + cycle * 2., 4.3 + cycle, 1.),
                 0.18 * fade,
             )
         }
@@ -360,12 +374,21 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
 pub fn animate(
     race: Res<Race>,
     camera: Query<&Transform, With<ChaseCamera>>,
-    mut sprites: Query<(&MapFxSprite, &mut Transform, &mut Visibility), Without<ChaseCamera>>,
+    sand: Option<Res<SandPlumeMaterials>>,
+    mut sprites: Query<
+        (
+            &MapFxSprite,
+            &mut Transform,
+            &mut Visibility,
+            &mut MeshMaterial3d<StandardMaterial>,
+        ),
+        Without<ChaseCamera>,
+    >,
 ) {
     let Ok(camera) = camera.single() else { return };
     // Fixed-loop race time gives the same air pose across variable render rates.
     let elapsed = race.elapsed.max(0.);
-    for (sprite, mut transform, mut visibility) in &mut sprites {
+    for (sprite, mut transform, mut visibility, mut material) in &mut sprites {
         let range = match sprite.kind {
             Kind::Sand => 125.,
             Kind::Heat => 115.,
@@ -383,8 +406,18 @@ pub fn animate(
             + sprite.road_rotation * Vec3::new(offset.x, 0., offset.z)
             + Vec3::Y * offset.y;
         transform.rotation = camera.rotation;
-        // Scale the soft sprite at the gust/plume envelope instead of changing
-        // materials, keeping the render asset immutable after world setup.
+        if let Some(sand) = sand.as_ref().filter(|_| sprite.kind == Kind::Sand) {
+            let level =
+                ((alpha / 0.18).clamp(0., 1.) * (SAND_ALPHA_LEVELS - 1) as f32).round() as usize;
+            transform.scale = size;
+            material.set_if_neq(MeshMaterial3d(sand.0[level].clone()));
+            visibility.set_if_neq(if level == 0 {
+                Visibility::Hidden
+            } else {
+                Visibility::Inherited
+            });
+            continue;
+        }
         let peak = match sprite.kind {
             Kind::Sand => 0.18,
             Kind::Heat => 0.18,
@@ -404,6 +437,38 @@ pub fn animate(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn sand_plume_fades_at_fixed_footprint_while_crossing_the_verge() {
+        let mut last_width = 0.;
+        let mut last_x = f32::NEG_INFINITY;
+        for cycle in 0..100 {
+            let (position, size, alpha) = visual(Kind::Sand, cycle as f32 * 0.01 / 0.19, 0.);
+            assert!(size.x >= last_width && size.x >= 12.5);
+            assert!(position.x >= last_x && position.y < 1.);
+            if cycle == 0 || cycle == 99 {
+                assert!(alpha < 0.002);
+            } else if cycle == 50 {
+                assert!(alpha > 0.17);
+            }
+            last_width = size.x;
+            last_x = position.x;
+        }
+    }
+
+    #[test]
+    fn rear_wheel_spray_respects_the_surface_and_ground_contact() {
+        let mut bike = crate::vehicle::BikeState {
+            slip: 0.8,
+            grounded: [true, false],
+            ..default()
+        };
+        assert!(wheel_spray(Surface::Sand, 16., 1., Some(&bike)) > 0.5);
+        assert!(wheel_spray(Surface::Dirt, -16., 1., Some(&bike)) > 0.5);
+        assert_eq!(wheel_spray(Surface::Asphalt, 30., 1., Some(&bike)), 0.);
+        bike.grounded = [false, true];
+        assert_eq!(wheel_spray(Surface::Sand, 30., 1., Some(&bike)), 0.);
+    }
+
     #[test]
     fn fixed_budgets_and_temporal_envelopes() {
         assert_eq!(budget(Kind::Sand, 2), 48);

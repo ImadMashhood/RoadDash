@@ -63,6 +63,14 @@ impl RaceHealth {
         self.rider = (self.rider - rider).max(0.);
     }
 
+    pub fn struck(&mut self, hit_bike: bool, damage: crate::weapons::ConditionDamage) {
+        if hit_bike {
+            self.damage(damage.bike, 0.);
+        } else {
+            self.damage(0., damage.rider);
+        }
+    }
+
     pub fn crash(&mut self, speed_mps: f32) {
         let severity = (speed_mps / 45.).clamp(0., 1.);
         self.damage(9. + 23. * severity, 4. + 12. * severity);

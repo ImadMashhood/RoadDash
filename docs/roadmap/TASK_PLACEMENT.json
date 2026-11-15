@@ -259,6 +259,7 @@
     "01": {
       "title": "Remaining handling, crash response and runtime corrections",
       "task_ids": [
+        "AI-HARD-01",
         "RFU-RACE-HEALTH-01",
         "FEEL-DOWNED-01",
         "AI-METRO-01",
@@ -454,6 +455,9 @@
     "06": {
       "title": "World C — NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "HILLS-HERD-01",
+        "HILLS-MEADOW-01",
+        "SCENERY-LOD-01",
         "RFU-HILLS-WOODLAND-01",
         "SCENIC-HORIZON-01",
         "COURSE-TERRAIN-01",
@@ -512,6 +516,7 @@
     "07": {
       "title": "Weapons and complete riding combat",
       "task_ids": [
+        "COMBAT-CONDITION-01",
         "FEEL-WEAPON-01",
         "FEEL-HIT-01",
         "V2-07-001",
@@ -638,6 +643,7 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "FX-SAND-PLUME-01",
         "RFU-RACE-RESULTS-01",
         "DEMO-ROAD-FX-01",
         "VIS-DEPTH-01",

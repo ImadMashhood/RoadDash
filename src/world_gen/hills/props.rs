@@ -66,11 +66,21 @@ impl Model {
     }
     /// Original radial geometry shared by barrels, cactus limbs and deadwood.
     pub(super) fn rod(&mut self, a: Vec3, b: Vec3, radius: f32, color: [f32; 3]) {
+        self.rod_detail(a, b, radius, color, 12);
+    }
+    pub(super) fn rod_detail(
+        &mut self,
+        a: Vec3,
+        b: Vec3,
+        radius: f32,
+        color: [f32; 3],
+        sides: u32,
+    ) {
         let q = Quat::from_rotation_arc(Vec3::Y, (b - a).normalize());
         let k = self.vertices.len() as u32;
         for center in [a, b] {
-            for i in 0..12_u32 {
-                let angle = i as f32 * std::f32::consts::TAU / 12.;
+            for i in 0..sides {
+                let angle = i as f32 * std::f32::consts::TAU / sides as f32;
                 self.vertices
                     .push(center + q * Vec3::new(angle.cos() * radius, 0., angle.sin() * radius));
                 let shade = if i.is_multiple_of(2) { 1. } else { 0.88 };
@@ -80,22 +90,32 @@ impl Model {
         }
         self.vertices.extend([a, b]);
         self.colors.extend([[color[0], color[1], color[2], 1.]; 2]);
-        for i in 0..12_u32 {
-            let next = (i + 1) % 12;
+        for i in 0..sides {
+            let next = (i + 1) % sides;
             self.indices.extend([
-                [k + i, k + 12 + i, k + next],
-                [k + next, k + 12 + i, k + 12 + next],
-                [k + 24, k + i, k + next],
-                [k + 25, k + 12 + next, k + 12 + i],
+                [k + i, k + sides + i, k + next],
+                [k + next, k + sides + i, k + sides + next],
+                [k + sides * 2, k + i, k + next],
+                [k + sides * 2 + 1, k + sides + next, k + sides + i],
             ]);
         }
     }
     pub(super) fn ellipsoid(&mut self, p: Vec3, radii: Vec3, color: [f32; 3], seed: f32) {
+        self.ellipsoid_detail(p, radii, color, seed, (6, 12));
+    }
+    pub(super) fn ellipsoid_detail(
+        &mut self,
+        p: Vec3,
+        radii: Vec3,
+        color: [f32; 3],
+        seed: f32,
+        (rings, sides): (u32, u32),
+    ) {
         let k = self.vertices.len() as u32;
-        for latitude in 0..=6 {
-            for longitude in 0..12 {
-                let a = latitude as f32 * std::f32::consts::PI / 6.;
-                let b = longitude as f32 * std::f32::consts::TAU / 12.;
+        for latitude in 0..=rings {
+            for longitude in 0..sides {
+                let a = latitude as f32 * std::f32::consts::PI / rings as f32;
+                let b = longitude as f32 * std::f32::consts::TAU / sides as f32;
                 let noise =
                     1. + seed * 0.08 * a.sin() * ((longitude * 19 + latitude * 7) as f32).sin();
                 self.vertices.push(
@@ -106,15 +126,15 @@ impl Model {
                     .push([color[0] * shade, color[1] * shade, color[2] * shade, 1.]);
             }
         }
-        for y in 0..6_u32 {
-            for x in 0..12_u32 {
-                let a = k + y * 12 + x;
-                let b = k + y * 12 + (x + 1) % 12;
+        for y in 0..rings {
+            for x in 0..sides {
+                let a = k + y * sides + x;
+                let b = k + y * sides + (x + 1) % sides;
                 if y > 0 {
-                    self.indices.push([a, b, a + 12]);
+                    self.indices.push([a, b, a + sides]);
                 }
-                if y < 5 {
-                    self.indices.push([b, b + 12, a + 12]);
+                if y < rings - 1 {
+                    self.indices.push([b, b + sides, a + sides]);
                 }
             }
         }

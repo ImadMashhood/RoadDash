@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-15 — Race performance, difficulty and world follow-up
+
+- Preserved Medium pace and made Hard faster through bends. Added independent authored weapon condition damage.
+- Changed Hills crossings to slower staggered solid herds. Blended meadow coverage and added lighter scenery meshes and surface-colored dust.
+
 ## 2026-11-14 — Hills woodland and offline race outcomes (ADR200)
 
 - Shortened the backoff decision for close stopped queues and added batched trees across distant Hills slopes.

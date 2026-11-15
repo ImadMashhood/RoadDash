@@ -1127,7 +1127,10 @@ pub fn drive(
                 top.min(
                     rr_core::pursuit::race_corner_speed(
                         curve,
-                        rr_core::pursuit::RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2,
+                        race.rival_difficulty.corner_budget(
+                            rr_core::pursuit::RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2,
+                            !r.networked && !r.police,
+                        ),
                     )
                     .max(12.),
                 )
@@ -1411,8 +1414,9 @@ pub fn drive(
                         .exclude_rigid_body(entity)
                         .exclude_sensors()
                         .predicate(&predicate);
-                        let mut previous = transform.translation + Vec3::Y * 0.85;
-                        let probe = Collider::ball(0.65);
+                        let origin = transform.translation + Vec3::Y * 0.85;
+                        let radius = 0.65;
+                        let probe = bevy_rapier3d::parry::shape::Ball::new(radius);
                         // A broad lane change or sidewalk excursion needs the full
                         // sweep even though both sides now lie inside free bounds.
                         let steps = if goal.abs() > width - 0.65 || (goal - lane).abs() > 2.5 {
@@ -1425,50 +1429,47 @@ pub fn drive(
                         // conservative approach instead of only the cruise request.
                         // Static geometry is checked along the actual curved road,
                         // not a straight chord through a sidewalk/building at a bend.
-                        for step in 1..=steps {
-                            let t = step as f32 * 0.5;
-                            let station = (progress + forecast_speed * t).min(track.length);
-                            // The bike's bank and steering force take time to unwind.
-                            // Keep the static sweep inside a reachable lateral envelope;
-                            // the traffic proxy's faster idealized lane transition can
-                            // otherwise predict clearing a wall while the physical bike
-                            // is still beside it.
-                            let lateral = lane
-                                + (goal - lane).clamp(
-                                    -0.6 * (t - 0.4).max(0.),
-                                    0.6 * (t - 0.4).max(0.),
-                                )
-                                + track.street_offset(route, station);
-                            let (position, _) = track.sample_route(route, station, lateral);
-                            let next = position + Vec3::Y * 0.85;
-                            if !work.segment_clear(previous, next, || {
-                                let delta = next - previous;
-                                cast_count.set(cast_count.get() + 1);
-                                if let Some((hit_entity, hit)) = ctx
-                                    .cast_shape(
+                        ctx.with_query_pipeline(filter, |pipeline| {
+                            let mut previous = origin;
+                            for step in 1..=steps {
+                                let t = step as f32 * 0.5;
+                                let station = (progress + forecast_speed * t).min(track.length);
+                                // Keep the static sweep inside the bike's reachable lateral
+                                // envelope while its existing steering and lean unwind.
+                                let lateral = lane
+                                    + (goal - lane).clamp(
+                                        -0.6 * (t - 0.4).max(0.),
+                                        0.6 * (t - 0.4).max(0.),
+                                    )
+                                    + track.street_offset(route, station);
+                                let (position, _) = track.sample_route(route, station, lateral);
+                                let next = position + Vec3::Y * 0.85;
+                                if !work.segment_clear(previous, next, trace_ai, || {
+                                    let delta = next - previous;
+                                    cast_count.set(cast_count.get() + 1);
+                                    if let Some((hit_entity, hit)) = pipeline.cast_shape(
                                         previous,
                                         Quat::IDENTITY,
                                         delta.normalize_or_zero(),
-                                        probe.raw.as_ref(),
+                                        &probe,
                                         ShapeCastOptions {
                                             max_time_of_impact: delta.length(),
                                             ..default()
                                         },
-                                        filter,
-                                    )
-                                {
-                                    if trace_ai {
-                                        println!("RFU_AI_STATIC id={} station={} speed={} goal={} pace={} step={} hit={:?} name={:?} toi={} position={:?}", trace_id, progress, speed, goal, pace, step, hit_entity, names.get(hit_entity).ok().map(Name::as_str), hit.time_of_impact, poses.get(hit_entity).ok().map(GlobalTransform::translation));
+                                    ) {
+                                        if trace_ai {
+                                            println!("RFU_AI_STATIC id={} station={} speed={} goal={} pace={} step={} hit={:?} name={:?} toi={} position={:?}", trace_id, progress, speed, goal, pace, step, hit_entity, names.get(hit_entity).ok().map(Name::as_str), hit.time_of_impact, poses.get(hit_entity).ok().map(GlobalTransform::translation));
+                                        }
+                                        return false;
                                     }
+                                    true
+                                }) {
                                     return false;
                                 }
-                                true
-                            }) {
-                                return false;
+                                previous = next;
                             }
-                            previous = next;
-                        }
-                        true
+                            true
+                        })
                     })
                 };
                 let plan = r.ai_pass.plan_local_ordered(input, &cars, local_horizon, work.optimized(), drivable);

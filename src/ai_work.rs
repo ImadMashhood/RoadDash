@@ -1,7 +1,7 @@
 //! Per-rider, per-fixed-tick reuse of immutable-world collision forecasts.
 use std::{
     cell::{Cell, RefCell},
-    collections::HashSet,
+    collections::HashMap,
     time::Instant,
 };
 
@@ -12,6 +12,7 @@ pub struct Counters {
     pub static_requests: u64,
     pub static_cache_hits: u64,
     pub static_casts: u64,
+    pub static_blocked_cache_hits: u64,
 }
 impl Counters {
     pub fn merge(&mut self, other: Self) {
@@ -20,6 +21,7 @@ impl Counters {
         self.static_requests += other.static_requests;
         self.static_cache_hits += other.static_cache_hits;
         self.static_casts += other.static_casts;
+        self.static_blocked_cache_hits += other.static_blocked_cache_hits;
     }
 }
 #[derive(Clone, Copy)]
@@ -31,16 +33,18 @@ struct Entry {
 pub struct Work {
     cache: RefCell<Vec<Entry>>,
     counters: RefCell<Counters>,
-    segments: RefCell<HashSet<[u32; 6]>>,
+    segments: RefCell<HashMap<[u32; 6], bool>>,
     enabled: bool,
+    reuse_blocked: bool,
 }
 impl Default for Work {
     fn default() -> Self {
         Self {
             cache: RefCell::new(Vec::with_capacity(128)),
             counters: RefCell::default(),
-            segments: RefCell::new(HashSet::with_capacity(256)),
+            segments: RefCell::new(HashMap::with_capacity(256)),
             enabled: std::env::var("ROADDASH_AI_STATIC_CACHE").as_deref() != Ok("0"),
+            reuse_blocked: std::env::var("ROADDASH_AI_BLOCKED_CACHE").as_deref() != Ok("0"),
         }
     }
 }
@@ -88,24 +92,31 @@ impl Work {
         }
         clear
     }
-    /// Reuse a clear segment only for the exact same endpoints and rider.
-    /// Blocked segments are queried again to retain hit diagnostics.
+    /// Reuse only an exact sweep within the rider's unchanged static snapshot.
+    /// With tracing on, blocked sweeps still run so every requested hit is reported.
     pub fn segment_clear(
         &self,
         from: bevy::prelude::Vec3,
         to: bevy::prelude::Vec3,
+        tracing: bool,
         solve: impl FnOnce() -> bool,
     ) -> bool {
         if !self.enabled {
             return solve();
         }
         let key = [from.x, from.y, from.z, to.x, to.y, to.z].map(f32::to_bits);
-        if self.segments.borrow().contains(&key) {
-            return true;
+        let store_blocked = self.reuse_blocked && !tracing;
+        if let Some(&clear) = self.segments.borrow().get(&key)
+            && (clear || store_blocked)
+        {
+            if !clear {
+                self.counters.borrow_mut().static_blocked_cache_hits += 1;
+            }
+            return clear;
         }
         let clear = solve();
-        if clear && self.segments.borrow().len() < 512 {
-            self.segments.borrow_mut().insert(key);
+        if (clear || store_blocked) && self.segments.borrow().len() < 512 {
+            self.segments.borrow_mut().insert(key, clear);
         }
         clear
     }
@@ -122,17 +133,37 @@ mod tests {
     use bevy::prelude::Vec3;
 
     #[test]
+    fn blocked_sweeps_are_reused_only_for_an_exact_untraced_segment_in_that_snapshot() {
+        let work = Work {
+            enabled: true,
+            reuse_blocked: true,
+            ..Work::default()
+        };
+        assert!(!work.segment_clear(Vec3::ZERO, Vec3::X, false, || false));
+        assert!(!work.segment_clear(Vec3::ZERO, Vec3::X, false, || panic!(
+            "duplicate blocked cast"
+        )));
+        assert!(!work.segment_clear(Vec3::ZERO, Vec3::X, true, || false));
+        assert!(work.segment_clear(Vec3::X, Vec3::ZERO, false, || true));
+        assert_eq!(work.counters.borrow().static_blocked_cache_hits, 1);
+        work.begin_rider();
+        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, false, || true));
+    }
+
+    #[test]
     fn clear_segments_are_reused_only_for_exact_endpoints_and_the_current_rider() {
         let work = Work {
             enabled: true,
             ..Work::default()
         };
-        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, || true));
-        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, || panic!("duplicate sphere cast")));
-        assert!(!work.segment_clear(Vec3::X, Vec3::ZERO, || false));
-        assert!(work.segment_clear(Vec3::X, Vec3::ZERO, || true));
+        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, true, || true));
+        assert!(work.segment_clear(Vec3::ZERO, Vec3::X, true, || panic!(
+            "duplicate sphere cast"
+        )));
+        assert!(!work.segment_clear(Vec3::X, Vec3::ZERO, true, || false));
+        assert!(work.segment_clear(Vec3::X, Vec3::ZERO, true, || true));
         work.begin_rider();
-        assert!(!work.segment_clear(Vec3::ZERO, Vec3::X, || false));
+        assert!(!work.segment_clear(Vec3::ZERO, Vec3::X, true, || false));
     }
 
     #[test]

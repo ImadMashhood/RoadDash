@@ -328,7 +328,7 @@ fn value(
         45 => prefs.file.gear.suit.name().into(),
         46 => prefs.file.gear.helmet.name().into(),
         47 => match prefs.file.rival_difficulty {
-            rr_core::pursuit::RivalDifficulty::Normal => "Normal",
+            rr_core::pursuit::RivalDifficulty::Medium => "Medium",
             rr_core::pursuit::RivalDifficulty::Hard => "Hard",
         }
         .into(),

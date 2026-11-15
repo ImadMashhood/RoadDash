@@ -177,13 +177,32 @@ fn terrain_grit() -> Image {
     }
     crate::road_detail::image(pixels, SIZE, true)
 }
+// A visual-only ramp picks up grass in patches past the imported urban slice.
+pub(super) fn city_exit_meadow(station: f32, x: f32, z: f32) -> f32 {
+    let progress = ((station - 1000.) / 640.).clamp(0., 1.);
+    if progress == 0. || progress == 1. {
+        return progress;
+    }
+    let footprint = (x * 0.061 + z * 0.039).sin() * (z * 0.094 - x * 0.018).sin();
+    let t = (progress + footprint * progress * (1. - progress) * 0.65).clamp(0., 1.);
+    t * t * (3. - 2. * t)
+}
+
+fn fringe_soil(station: f32, p: Vec3, meadow: f32, patches: f32) -> Vec3 {
+    let sand = sand_color(station, p.x, p.z);
+    let fringe = Vec3::new(0.42, 0.40, 0.34) + Vec3::splat(patches * 0.023);
+    fringe.lerp(sand, meadow)
+}
+
 fn hill_color(p: Vec3, station: f32, face_up: f32, canyon: f32) -> Vec3 {
-    let meadow = rr_core::surface::hills_meadow_weight(station);
+    let exit_meadow = city_exit_meadow(station, p.x, p.z);
+    let meadow = rr_core::surface::hills_meadow_weight(station) * exit_meadow;
     let patches = (p.x * 0.062 + p.z * 0.019).sin() * (p.z * 0.077).sin();
     let flecks = (p.x * 0.29 - p.z * 0.17).sin() * (p.z * 0.21).cos();
     let grass =
         Vec3::new(0.40, 0.49, 0.20) + Vec3::new(0.075, 0.070, 0.028) * (patches + flecks * 0.30);
-    let base = sand_color(station, p.x, p.z).lerp(grass, meadow);
+    let soil = fringe_soil(station, p, exit_meadow, patches);
+    let base = soil.lerp(grass, meadow);
 
     let strata = (p.y * 0.85 + p.x * 0.12 + p.z * 0.05).sin();
     let stone = Vec3::new(0.61, 0.52, 0.44)
@@ -276,7 +295,8 @@ pub(super) fn spawn(
                             )
                         } else {
                             let (station, _) = track.nearby_station(p.x, p.z);
-                            let c = sand_color(station, p.x, p.z) * 0.92;
+                            let meadow = city_exit_meadow(station, p.x, p.z);
+                            let c = fringe_soil(station, p, meadow, 0.) * 0.92;
                             Color::srgb(c.x, c.y, c.z).to_linear().to_f32_array()
                         }
                     })
@@ -384,6 +404,22 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn city_exit_is_neutral_at_the_boundary_and_greens_gradually() {
+        let mut previous = 0.;
+        for station in (1000..=1640).step_by(8) {
+            let cover = city_exit_meadow(station as f32, 320., 130.);
+            assert!(cover >= previous);
+            assert!(cover - previous < 0.03);
+            previous = cover;
+        }
+        assert_eq!(city_exit_meadow(1000., 320., 130.), 0.);
+        assert_eq!(city_exit_meadow(1640., 320., 130.), 1.);
+        let neutral = hill_color(Vec3::ZERO, 1000., 1., 0.);
+        let meadow = hill_color(Vec3::ZERO, 1640., 1., 0.);
+        assert!(neutral.x > neutral.y && meadow.y > meadow.x);
+    }
+
     #[test]
     fn mounted_crossing_support_clears_recessed_shoulders() {
         let track = Track::hills().unwrap();

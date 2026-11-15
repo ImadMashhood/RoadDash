@@ -1448,3 +1448,12 @@ woodland has a measured geometry budget. Target-hardware frame timing and
 visual review remain RFU-HILLS-WOODLAND-01. Offline elimination and standings
 are implemented under RFU-RACE-HEALTH-01 and RFU-RACE-RESULTS-01. Balance across
 full human races and network adoption remain open.
+
+## Race performance, difficulty and world follow-up (2026-11-15 / ADR201)
+
+Local Hills traces show main-world CPU pressure. The AI sweep optimization
+and scenery LODs reduce specific work, while clean full-course frame timing
+and Hard finish margins remain open. Verify temporary frame spikes separately
+from steady pacing. Review the new grassy city transition, both cattle
+encounters and the dust in a human race. The two existing Rapier test failures
+remain tracked. [Evidence](testing/race-performance-hard-world/REPORT.md).

@@ -1,7 +1,7 @@
 //! Independently authored desert/forest detail with resident collision.
 use super::{HillsSolid, props::Model};
 use crate::{track::Track, world::Obstacle};
-use bevy::prelude::*;
+use bevy::{camera::visibility::VisibilityRange, light::NotShadowCaster, prelude::*};
 use bevy_rapier3d::prelude::*;
 
 #[derive(Component)]
@@ -115,8 +115,9 @@ fn placements(track: &Track) -> Vec<Placement> {
     }
     out
 }
-fn cactus(seed: u32) -> (Model, Collider) {
+fn cactus(seed: u32) -> (Model, Model, Collider) {
     let mut m = Model::default();
+    let mut distant = Model::default();
     let mut collision = vec![];
     let h = 2.7 + random(seed) * 2.4;
     let color = [
@@ -133,6 +134,7 @@ fn cactus(seed: u32) -> (Model, Collider) {
     }
     for (a, b, r) in segments {
         m.rod(a, b, r, color);
+        distant.rod_detail(a, b, r, color, 6);
         m.ellipsoid(b, Vec3::splat(r), color, 0.);
         collision.push((Vec3::ZERO, Quat::IDENTITY, Collider::capsule(a, b, r)));
         // Longitudinal ribs stay geometry, with small bright areole marks.
@@ -149,22 +151,22 @@ fn cactus(seed: u32) -> (Model, Collider) {
         [0.64, 0.20, 0.14],
         0.,
     );
-    (m, Collider::compound(collision))
+    (m, distant, Collider::compound(collision))
 }
-fn rock(seed: u32) -> (Model, Collider) {
+fn rock(seed: u32, resolution: (u32, u32)) -> Model {
     let mut m = Model::default();
     // Compact, tall solitary stones fit steeper shelves without shrinking the
     // placement envelope of the original three-boulder clusters.
     if !seed.is_multiple_of(3) {
         let radius = 1.0 + random(seed) * 0.4;
-        m.ellipsoid(
+        m.ellipsoid_detail(
             Vec3::Y * 0.50,
             Vec3::new(radius, 1.25, radius * 0.85),
             [0.51, 0.43, 0.32],
             1.,
+            resolution,
         );
-        let collider = m.hull();
-        return (m, collider);
+        return m;
     }
     for i in 0..3 {
         let seed = seed + i * 47;
@@ -184,41 +186,44 @@ fn rock(seed: u32) -> (Model, Collider) {
             0.38 + random(seed + 2) * 0.10,
             0.29 + random(seed + 4) * 0.08,
         ];
-        m.ellipsoid(p, size, color, 1.);
+        m.ellipsoid_detail(p, size, color, 1., resolution);
     }
-    let collider = m.hull();
-    (m, collider)
+    m
 }
-fn giant_boulder(seed: u32) -> (Model, Collider) {
+fn giant_boulder(seed: u32, resolution: (u32, u32)) -> Model {
     let mut m = Model::default();
     let h = 7. + random(seed) * 5.;
-    m.ellipsoid(
+    m.ellipsoid_detail(
         Vec3::new(0., h * 0.30, 0.),
         Vec3::new(5.8, h, 5.5),
         [0.42, 0.39, 0.32],
         1.,
+        resolution,
     );
-    m.ellipsoid(
+    m.ellipsoid_detail(
         Vec3::new(4.2, 0.5, 2.),
         Vec3::new(3.8, 3.8, 3.),
         [0.50, 0.46, 0.36],
         1.,
+        resolution,
     );
-    m.ellipsoid(
+    m.ellipsoid_detail(
         Vec3::new(-3.5, -0.5, -2.),
         Vec3::new(3.6, 3.2, 3.4),
         [0.37, 0.36, 0.31],
         1.,
+        resolution,
     );
-    let hull = m.hull();
-    (m, hull)
+    m
 }
-fn deadwood(seed: u32) -> (Model, Collider) {
+fn deadwood(seed: u32) -> (Model, Model, Collider) {
     let mut m = Model::default();
+    let mut distant = Model::default();
     let color = [0.39, 0.29, 0.18];
     let a = Vec3::new(-2.5, 0.2, 0.);
     let b = Vec3::new(2.5, 0.45, 0.3);
     m.rod(a, b, 0.28, color);
+    distant.rod_detail(a, b, 0.28, color, 6);
     for (x, z) in [(-1., 1.5), (0.7, -1.3)] {
         m.rod(
             Vec3::new(x, 0.35, 0.),
@@ -235,6 +240,7 @@ fn deadwood(seed: u32) -> (Model, Collider) {
     );
     (
         m,
+        distant,
         Collider::compound(vec![
             (Vec3::ZERO, Quat::IDENTITY, Collider::capsule(a, b, 0.3)),
             (
@@ -263,29 +269,45 @@ pub fn spawn(
     });
     let mut census = DressingCensus::default();
     for p in placements(track) {
-        let (model, collider) = match p.kind {
+        let (model, distant, collider) = match p.kind {
             "cactus" => {
                 census.cacti += 1;
                 cactus(p.seed)
             }
             "boulder" => {
                 census.giant_boulders += 1;
-                giant_boulder(p.seed)
+                let near = giant_boulder(p.seed, (6, 12));
+                let hull = near.hull();
+                (near, giant_boulder(p.seed, (4, 8)), hull)
             }
             "rock" => {
                 census.rocks += 1;
-                rock(p.seed)
+                let near = rock(p.seed, (6, 12));
+                let hull = near.hull();
+                (near, rock(p.seed, (4, 6)), hull)
             }
             _ => {
                 census.deadwood += 1;
                 deadwood(p.seed)
             }
         };
+        let (handoff, horizon) = match p.kind {
+            "boulder" => (155. ..205., 700. ..850.),
+            "rock" => (78. ..110., 300. ..400.),
+            "cactus" => (70. ..100., 340. ..440.),
+            _ => (56. ..85., 240. ..320.),
+        };
+        let transform = Transform::from_translation(p.p).with_rotation(p.q);
         commands.spawn((
             Name::new(format!("Hills original {}", p.kind)),
             Mesh3d(meshes.add(model.mesh())),
             MeshMaterial3d(material.clone()),
-            Transform::from_translation(p.p).with_rotation(p.q),
+            transform,
+            VisibilityRange {
+                start_margin: 0. ..0.,
+                end_margin: handoff.clone(),
+                use_aabb: false,
+            },
             RigidBody::Fixed,
             collider,
             Obstacle,
@@ -295,12 +317,42 @@ pub fn spawn(
                 kind: p.kind,
             },
         ));
+        commands.spawn((
+            Mesh3d(meshes.add(distant.mesh())),
+            MeshMaterial3d(material.clone()),
+            transform,
+            NotShadowCaster,
+            VisibilityRange {
+                start_margin: handoff,
+                end_margin: horizon,
+                use_aabb: false,
+            },
+        ));
     }
     commands.insert_resource(census);
 }
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn distant_dressing_keeps_the_silhouette_at_lower_geometry_cost() {
+        let triangles = |model: Model| model.mesh().indices().unwrap().len() / 3;
+        for seed in [7, 9, 12] {
+            let (near_cactus, far_cactus, _) = cactus(seed);
+            let (near_wood, far_wood, _) = deadwood(seed);
+            for (near, far) in [
+                (giant_boulder(seed, (6, 12)), giant_boulder(seed, (4, 8))),
+                (rock(seed, (6, 12)), rock(seed, (4, 6))),
+                (near_cactus, far_cactus),
+                (near_wood, far_wood),
+            ] {
+                let full = triangles(near);
+                let reduced = triangles(far);
+                assert!(reduced > 0 && reduced * 2 < full, "{full} vs {reduced}");
+            }
+        }
+    }
+
     #[test]
     fn desert_and_forest_details_have_supported_nonoverlapping_road_clear_footprints() {
         let track = Track::hills().unwrap();

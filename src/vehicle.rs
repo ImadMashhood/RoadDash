@@ -305,7 +305,10 @@ pub fn forces(
                 )
                 .min(rr_core::pursuit::race_corner_speed(
                     track.curvature_route(r.route, r.progress),
-                    rr_core::pursuit::RACE_CURRENT_LATERAL_ACCEL_MPS2,
+                    race.rival_difficulty.corner_budget(
+                        rr_core::pursuit::RACE_CURRENT_LATERAL_ACCEL_MPS2,
+                        !r.networked,
+                    ),
                 ))
         };
         let surface = track.surface_route(r.route, r.progress, r.lane);

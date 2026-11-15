@@ -77,9 +77,13 @@ pub struct RideOverTargets<'w, 's> {
     actors: Query<'w, 's, (), With<crate::npc::Npc>>,
     cows: Query<'w, 's, (), With<crate::environment::Cow>>,
     disabled: Query<'w, 's, (), With<ColliderDisabled>>,
+    crossing_cattle: Query<'w, 's, (), With<crate::world_gen::hills::wildlife::CrossingCow>>,
 }
 impl RideOverTargets<'_, '_> {
     pub(crate) fn contains(&self, rider: Entity, target: Entity) -> bool {
+        if self.crossing_cattle.contains(target) {
+            return false;
+        }
         self.bodies
             .get(target)
             .is_ok_and(|body| body.owner != rider)
@@ -1436,26 +1440,33 @@ pub fn impacts(
         })
         .collect();
     pairs.extend(swept.read().map(|c| (c.0, c.1)));
-    // A gentle initial touch can become a hard impact without a second Started
-    // event. Re-evaluate active rider/vehicle contacts using current pre-solver motion.
+    if race.phase != Phase::Racing {
+        return;
+    }
+    // A gentle touch can become a hard impact without a second Started event.
+    // Query each racer adjacency list, since other world pairs cannot enter this policy.
     if let Ok(ctx) = context.single() {
-        for pair in ctx
-            .simulation
-            .contact_pairs(ctx.colliders, ctx.rigidbody_set)
-        {
-            if pair.has_any_active_contact()
-                && let (Some(a), Some(b)) = (pair.collider1(), pair.collider2())
-            {
-                let vehicle = |e| cars.contains(e) || cross_cars.contains(e);
-                if (riders.contains(a) && vehicle(b)) || (riders.contains(b) && vehicle(a)) {
-                    pairs.push((a, b));
+        for rider in &rider_entities {
+            let Ok((actor, recovery, _)) = riders.get(rider) else {
+                continue;
+            };
+            if !actor.racing() || recovery.stage != RecoveryStage::Riding {
+                continue;
+            }
+            for pair in ctx.contact_pairs_with(rider) {
+                let (Some(a), Some(b)) = (pair.collider1(), pair.collider2()) else {
+                    continue;
+                };
+                let other = if a == rider { b } else { a };
+                if pair.has_any_active_contact()
+                    && (cars.contains(other)
+                        || cross_cars.contains(other)
+                        || soft_targets.crossing_cattle.contains(other))
+                {
+                    pairs.push((rider, other));
                 }
             }
         }
-    }
-
-    if race.phase != Phase::Racing {
-        return;
     }
     for (runner, output) in &controllers {
         for contact in &output.collisions {

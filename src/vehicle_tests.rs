@@ -454,6 +454,69 @@ fn analog_trigger_values_reach_the_chassis_force_model() {
 }
 
 #[test]
+fn herd_cattle_knock_fast_approaches_off_both_adapters() {
+    use crate::{
+        npc::{Npc, NpcKind},
+        world_gen::hills::wildlife::CrossingCow,
+    };
+    for adapter in [
+        VehiclePhysicsAdapter::Assisted,
+        VehiclePhysicsAdapter::Dynamic,
+    ] {
+        let mut app = app(1, 60);
+        app.insert_resource(adapter);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..240 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let rider = app.world().get::<Rider>(owner).unwrap();
+        let direction = rider.motion_velocity.with_y(0.).normalize();
+        assert!(
+            rider.speed > rr_core::contact::REAR_KNOCKOFF_MPS,
+            "{adapter:?} approach speed {}",
+            rider.speed
+        );
+        let position = app.world().get::<Transform>(owner).unwrap().translation;
+        let pose = Transform::from_translation((position + direction * 4.).with_y(0.));
+        let cow = app
+            .world_mut()
+            .spawn((
+                CrossingCow,
+                crate::environment::Cow,
+                crate::world::Obstacle,
+                Npc::new(NpcKind::Cow, pose),
+                pose,
+                Visibility::Visible,
+                RigidBody::KinematicPositionBased,
+                ActiveCollisionTypes::all(),
+                ActiveEvents::COLLISION_EVENTS,
+                Collider::compound(vec![(
+                    Vec3::Y * 0.9,
+                    Quat::IDENTITY,
+                    Collider::cuboid(1.1, 0.7, 0.5),
+                )]),
+            ))
+            .id();
+        for _ in 0..24 {
+            app.update();
+        }
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().stage,
+            RecoveryStage::Falling,
+            "{adapter:?}"
+        );
+        assert!(app.world().get::<Npc>(cow).unwrap().active(), "{adapter:?}");
+    }
+}
+
+#[test]
 fn mounted_bikes_jump_soft_targets_without_horizontal_collision_loss() {
     use crate::{
         npc::{Npc, NpcKind},

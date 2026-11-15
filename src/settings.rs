@@ -14,8 +14,8 @@ use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
 };
-fn normal_rivals() -> rr_core::pursuit::RivalDifficulty {
-    rr_core::pursuit::RivalDifficulty::Normal
+fn medium_rivals() -> rr_core::pursuit::RivalDifficulty {
+    rr_core::pursuit::RivalDifficulty::Medium
 }
 
 #[derive(Clone, Serialize, Deserialize)]
@@ -27,7 +27,7 @@ pub struct PreferencesFile {
     pub mix: AudioMix,
     #[serde(default)]
     pub gear: crate::models::gear::Gear,
-    #[serde(default = "normal_rivals")]
+    #[serde(default = "medium_rivals")]
     pub rival_difficulty: rr_core::pursuit::RivalDifficulty,
     #[serde(default)]
     pub window_size: WindowSize,
@@ -101,7 +101,7 @@ impl Default for PreferencesFile {
             voice: default(),
             mix: default(),
             gear: default(),
-            rival_difficulty: normal_rivals(),
+            rival_difficulty: medium_rivals(),
             window_size: default(),
             imperial_speed: false,
             static_menu: false,
@@ -664,8 +664,8 @@ pub fn panel_input(
             47 => {
                 use rr_core::pursuit::RivalDifficulty;
                 prefs.file.rival_difficulty = match prefs.file.rival_difficulty {
-                    RivalDifficulty::Normal => RivalDifficulty::Hard,
-                    RivalDifficulty::Hard => RivalDifficulty::Normal,
+                    RivalDifficulty::Medium => RivalDifficulty::Hard,
+                    RivalDifficulty::Hard => RivalDifficulty::Medium,
                 };
             }
             9 => {
@@ -895,6 +895,17 @@ mod menu_tests {
         ] {
             v.as_object_mut().unwrap().remove(k);
         }
+        v["rival_difficulty"] = serde_json::json!("normal");
+        let legacy = PreferencesFile::parse(&v.to_string()).unwrap();
+        assert_eq!(
+            legacy.rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Medium
+        );
+        assert_eq!(
+            serde_json::to_value(legacy).unwrap()["rival_difficulty"],
+            "medium"
+        );
+        v.as_object_mut().unwrap().remove("rival_difficulty");
         let p = PreferencesFile::parse(&v.to_string()).unwrap();
         assert_eq!(p.master_volume, 1.);
         assert!(!p.audio_muted && p.vsync && !p.fullscreen);
@@ -904,7 +915,7 @@ mod menu_tests {
         assert_eq!(p.gear, default());
         assert_eq!(
             p.rival_difficulty,
-            rr_core::pursuit::RivalDifficulty::Normal
+            rr_core::pursuit::RivalDifficulty::Medium
         );
         assert_eq!((p.mix.engine, p.mix.ambience, p.mix.effects), (1., 1., 1.));
         let mut p = p;

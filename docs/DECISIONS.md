@@ -4968,3 +4968,14 @@ condition reaches zero or a body reaches the visible river surface. Keep the
 canyon floor and existing ragdoll, profile and network contracts. Reuse results
 as the pause point before optional live spectating.
 [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
+## ADR201 — Medium pace, solid cattle crossings and budgeted world detail (2026-11-15)
+
+Preserve the shipped Normal speed policy as Medium and keep the saved value
+readable. Give Hard full bike-class pace and a bounded offline corner advantage.
+Centralize item-specific condition damage for confirmed bike and rider strikes.
+Treat mounted contact with the two Hills crossing herds as solid. Keep regular
+cows in the existing mounted ride-over path. Fade horizontal sand plumes with
+opacity and reuse a bounded pool for rear-wheel kickback. Keep scenery LOD and
+collision independent.
+[Implementation and evidence](testing/race-performance-hard-world/REPORT.md).

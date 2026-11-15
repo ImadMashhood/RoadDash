@@ -131,8 +131,7 @@ Preferences save under `$XDG_CONFIG_HOME/roaddash/settings.json` (fallback
 `~/.config/roaddash/settings.json`) or `%APPDATA%/roaddash/settings.json` on Windows.
 Override with `ROADDASH_SETTINGS`; unknown/corrupt files are preserved read-only.
 Keyboard JSON through `ROADDASH_BINDINGS` still overrides the loaded keyboard map.
-Offline rivals default to Normal. Open F2 → Rider Gear → Rival difficulty to
-select Hard for the next race or retry.
+Offline rivals default to Medium, the former Normal pace. Open F2 → Rider Gear → Rival difficulty to select Hard for the next race or retry.
 
 Open **Voice Settings** in the online lobby or race menu. Nearby riders can
 hear each other during online countdowns and races. Voice activation is the
@@ -198,7 +197,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**248 verified tasks complete; 368 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**248 verified tasks complete; 374 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -217,15 +216,15 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | Part | Work | Status |
 | --- | --- | --- |
 | [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 75 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 76 open |
 | [00](#part-00) | Completed and verified foundations | 248 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 75 open |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 76 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 53 open |
-| [07](#part-07) | Weapons and complete riding combat | 12 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 56 open |
+| [07](#part-07) | Weapons and complete riding combat | 13 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
 | [10](#part-10) | Networking feasibility spike | 10 open |
@@ -233,7 +232,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 12 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 33 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 34 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -755,6 +754,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **AI-HARD-01** Preserve the former Normal rival pace as Medium and offer a faster Hard. Reason: Medium race ended with a 16-second lead; part: 01; dependencies: AI-NORMAL-01 and normal race controls; acceptance: saved preference migration and a competitive Hard field; verification: settings, bounded corner and matched human finish tests. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
+
 - [ ] **RFU-RACE-HEALTH-01** Track bike and rider condition and handle Hills river wipeouts. Reason: repeated damage and river crashes need a terminal outcome; part: 01; dependencies: recoverable combat, crash rig and Hills river; acceptance: independent condition, restart reset, positioned splash and wasted outcome; verification: health, water contact and native review. [Implementation and evidence](docs/testing/hills-race-outcomes/REPORT.md).
 
 
@@ -828,7 +829,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 <details>
 <summary>Reviewed development pass — 29 open requirements retained (expand)</summary>
 
-- [ ] **AI-NORMAL-01** Validate the Normal comeback window and the preserved Hard preset. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Normal and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](docs/testing/normal-impact-audio/REPORT.md).
+- [ ] **AI-NORMAL-01** Validate the Medium comeback window and comparative Hard pace. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Medium and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](docs/testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AI-11** Review full-race role-free rider balance with human playtests. Reason: the new nearby-strike and incident fight-or-flee policy supersedes permanent racer/killer roles but does not yet establish fair aggression; part: 01; dependencies: RFU-AI-09/10/11 and historical AI-10; acceptance: completed races on both branches with visible free-line overtaking, readable nearby threats, practical escapes/recovery, no unavoidable spawn pileup and user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
@@ -1119,6 +1120,12 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **HILLS-MEADOW-01** Blend Hills city terrain and tuft density into the first open meadow. Reason: grass starts abruptly; part: 06; dependencies: HILLS-03 and existing terrain support; acceptance: coherent gradient at driving height; verification: coverage and native transition views. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **SCENERY-LOD-01** Add tiered tree, rock, and small scenery meshes. Reason: expand perceived depth within a stable frame budget; part: 06; dependencies: Hills and city dressing; acceptance: reduced far geometry with resident collision; verification: LOD geometry and representative native captures. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
+
 - [ ] **RFU-HILLS-WOODLAND-01** Populate distant Hills slopes with batched woodland. Reason: sparse distant ridgelines in the Hills playtest; part: 06; dependencies: Hills terrain, route projection and existing woodland; acceptance: thousands of grounded distant trees with bounded render geometry and unchanged collision count; verification: placement tests, native screenshots and paired GPU frame timing. [Implementation and evidence](docs/testing/hills-race-outcomes/REPORT.md).
 
 - [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](docs/testing/scenic-horizon/REPORT.md).
@@ -1224,6 +1231,8 @@ Repeat the same pipeline for pedestrians, riders, animals and believable NPC act
 <a id="part-07"></a>
 
 ### Part 07 — Weapons and complete riding combat
+
+- [ ] **COMBAT-CONDITION-01** Apply authored bike and rider condition damage to confirmed strikes. Reason: set up a tunable combat foundation; part: 07; dependencies: RFU-RACE-HEALTH-01 and active weapon catalog; acceptance: separate targets, compatible content, preserved hit timing; verification: data validation and live confirmed contact. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
 
 
 - [ ] **FEEL-WEAPON-01** Keep both hands on grips and show weapons only during attacks. Reason: user rejects permanent armed ready pose; part:07; dependencies: V2-07-002; acceptance: inventory does not change idle grip pose, attack hand/weapon agree and idle/kick/recovery hide weapon; verification: animation/inventory regression tests and native left/right weapon review. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
@@ -1396,6 +1405,8 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-15"></a>
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
 
 - [ ] **RFU-RACE-RESULTS-01** Show all offline race standings and allow observing the remaining racers. Reason: players want current order, restart or continuation after finishing or being wasted; part: 15; dependencies: RFU-RACE-HEALTH-01 and frontend race flow; acceptance: correct sorted rows and red wasted strike, deterministic restart and no duplicate awards; verification: standings, lifecycle and native screen review. [Implementation and evidence](docs/testing/hills-race-outcomes/REPORT.md).
 

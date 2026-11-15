@@ -1203,7 +1203,7 @@ mod tests {
         assert!(!app.world().resource::<Controls>().start);
         assert_eq!(
             app.world().resource::<Race>().rival_difficulty,
-            rr_core::pursuit::RivalDifficulty::Normal
+            rr_core::pursuit::RivalDifficulty::Medium
         );
         app.world_mut()
             .resource_mut::<crate::settings::Preferences>()

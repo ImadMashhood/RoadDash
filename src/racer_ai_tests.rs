@@ -582,10 +582,10 @@ fn straight_rider(app: &mut App, id: usize, station: f32, lane: f32) -> Entity {
 }
 
 #[test]
-fn normal_pace_recovers_more_ground_after_one_early_crash() {
-    use rr_core::pursuit::RivalDifficulty::{Hard, Normal};
+fn medium_pace_recovers_more_ground_after_one_early_crash() {
+    use rr_core::pursuit::RivalDifficulty::{Hard, Medium};
     let mut gaps = Vec::new();
-    for difficulty in [Hard, Normal] {
+    for difficulty in [Hard, Medium] {
         let mut app = straight_simulation();
         app.world_mut().resource_mut::<Race>().rival_difficulty = difficulty;
         let player = straight_rider(&mut app, 0, 200., -4.);
@@ -637,7 +637,7 @@ fn normal_pace_recovers_more_ground_after_one_early_crash() {
         let player_state = app.world().get::<Rider>(player).unwrap();
         let rival_state = app.world().get::<Rider>(rival).unwrap();
         println!(
-            "NORMAL-PACE {difficulty:?}: before {before:.1}m, remount {:.2}s gap {on_remount:.1}m, +30s {after:.1}m, +60s {later:.1}m; player at {:.1}m lane {:.1}m speed {:.1}m/s, rival speed {:.1}m/s",
+            "RIVAL-PACE {difficulty:?}: before {before:.1}m, remount {:.2}s gap {on_remount:.1}m, +30s {after:.1}m, +60s {later:.1}m; player at {:.1}m lane {:.1}m speed {:.1}m/s, rival speed {:.1}m/s",
             tick as f32 / 60.,
             player_state.progress,
             player_state.lane,

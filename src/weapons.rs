@@ -473,9 +473,17 @@ mod tests {
                         app.world().get::<Rider>(owner).unwrap().attack > expected.cooldown - 0.1
                     );
                     run(&mut app, hz / 2);
+                    let victim = app.world().get::<Rider>(target).unwrap();
+                    let hit = expected.lateral_reach >= distance;
+                    assert_eq!(victim.hits.count, u8::from(hit));
+                    assert_eq!(victim.race_health.bike, 100.);
                     assert_eq!(
-                        app.world().get::<Rider>(target).unwrap().hits.count,
-                        u8::from(expected.lateral_reach >= distance)
+                        victim.race_health.rider,
+                        100. - if hit {
+                            expected.condition_damage.rider
+                        } else {
+                            0.
+                        }
                     );
                     // Separate the rival before drop so a coarse render frame
                     // cannot also give it the newly dropped pickup on a second tick.

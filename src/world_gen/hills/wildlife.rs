@@ -15,7 +15,16 @@ const SITES: [(usize, f32, f32); rules::HERD_COUNT] = [
 const SAMPLES: usize = 128;
 const CROSSING_STATIONS: [f32; 2] = [8870., 11250.];
 const CROSSING_MEMBERS: usize = 6;
-const CROSSING_SPEED: f32 = 1.35;
+const CROSSING_SPEED: f32 = 0.88;
+const CROSSING_EXTENT: f32 = 11.;
+const CROSSING_OFFSETS: [(f32, f32); CROSSING_MEMBERS] = [
+    (-3.2, -2.0),
+    (-0.15, -1.1),
+    (2.85, -2.6),
+    (-2.0, 2.7),
+    (0.95, 1.6),
+    (4.35, 2.4),
+];
 pub const NEAR: f32 = 100.;
 pub const FAR: f32 = 500.;
 #[derive(Component)]
@@ -66,8 +75,8 @@ pub(super) fn reserved(track: &Track, point: Vec3, radius: f32) -> bool {
         l.x.abs() < 31. + radius && l.z.abs() < 32. + radius
     })
 }
-/// Small solid cattle herds cross the later desert road. Unlike the distant
-/// scenic bison/horse, these use the existing cow NPC contact and knockdown rig.
+/// Small solid cattle herds cross the later desert road. The crossing cattle
+/// retain their patrol as a solid hazard for mounted racers.
 pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) {
     if std::env::var("ROADDASH_WILDLIFE").as_deref() == Ok("0") {
         return;
@@ -75,7 +84,7 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
     for (group, &station) in CROSSING_STATIONS.iter().enumerate() {
         for member in 0..CROSSING_MEMBERS {
             let (center, axis, phase) = cattle_path(track, station, member);
-            let start = center + axis * ((phase - 1.) * 24.);
+            let start = center + axis * ((phase - 1.) * CROSSING_EXTENT);
             let p = start.with_y(super::geometry::crossing_support(track, 0, start, station));
             let entity = crate::environment::spawn_cow(commands, art, p, cattle_heading(axis));
             commands.entity(entity).insert((
@@ -89,7 +98,7 @@ pub fn spawn_crossing_cattle(commands: &mut Commands, art: &Art, track: &Track) 
                 crate::environment::Patrol {
                     center,
                     axis,
-                    extent: 24.,
+                    extent: CROSSING_EXTENT,
                     speed: CROSSING_SPEED,
                     phase,
                     one_way: false,
@@ -102,12 +111,15 @@ fn cattle_path(track: &Track, station: f32, member: usize) -> (Vec3, Vec3, f32) 
     let (point, frame) = track.sample_route(0, station, 0.);
     let axis = (frame * Vec3::X).with_y(0.).normalize();
     let road = axis.cross(Vec3::Y);
-    let column = (member % 3) as f32 - 1.;
-    let row = (member / 3) as f32 - 0.5;
+    let (along_road, along_crossing) = CROSSING_OFFSETS[member];
     (
-        point + road * (column * 2.5) + axis * (row * 4.),
+        point + road * along_road + axis * along_crossing,
         axis,
-        0.12,
+        if station == CROSSING_STATIONS[0] {
+            0.74
+        } else {
+            0.94
+        },
     )
 }
 
@@ -472,19 +484,27 @@ pub fn animate(
 mod tests {
     use super::*;
     #[test]
-    fn cattle_keep_two_rows_and_face_each_travel_direction() {
+    fn cattle_stagger_the_rows_and_cover_the_centre_of_the_race_lane() {
         let track = Track::hills().unwrap();
         assert_eq!(CROSSING_STATIONS, [8870., 11250.]);
         for station in CROSSING_STATIONS {
             let paths =
                 std::array::from_fn::<_, CROSSING_MEMBERS, _>(|i| cattle_path(&track, station, i));
-            let (first, axis, phase) = paths[0];
-            for column in 0..3 {
-                let (a, _, first_phase) = paths[column];
-                let (b, _, second_phase) = paths[column + 3];
-                assert!((b - a - axis * 4.).length() < 0.002);
-                assert!(((a - first).dot(axis)).abs() < 0.002);
-                assert_eq!((first_phase, second_phase), (phase, phase));
+            let (point, _) = track.sample_route(0, station, 0.);
+            let (_, axis, phase) = paths[0];
+            for (i, (center, _, phase_i)) in paths.iter().copied().enumerate() {
+                assert_eq!(phase_i, phase);
+                let stagger = (center - point).dot(axis);
+                assert_eq!(stagger.is_sign_positive(), i >= 3);
+                let start = center + axis * ((phase - 1.) * CROSSING_EXTENT);
+                let time_to_middle = -(start - point).dot(axis) / CROSSING_SPEED;
+                assert!((0. ..10.).contains(&time_to_middle.max(0.)));
+                assert!(
+                    paths
+                        .iter()
+                        .skip(i + 1)
+                        .all(|(other, _, _)| center.distance(*other) > 2.4)
+                );
             }
             for heading in [axis, -axis] {
                 assert!((cattle_heading(heading) * Vec3::X).dot(heading) > 0.999);

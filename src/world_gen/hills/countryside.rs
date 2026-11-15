@@ -336,7 +336,8 @@ fn grass_positions(
                 else {
                     continue;
                 };
-                if super::bridge::reserved(track, p, 1.1)
+                if noise(seed + 7) > super::geometry::city_exit_meadow(s, p.x, p.z)
+                    || super::bridge::reserved(track, p, 1.1)
                     || (super::mounted::reserved(track, p, 1.1)
                         || super::wildlife::reserved(track, p, 1.1))
                     || !field_clear(p, farms)
@@ -771,7 +772,7 @@ pub(super) fn spawn(
         perceptual_roughness: 1.,
         ..default()
     });
-    for (start, end) in [(1500_f32, 5350_f32), (8000_f32, 8450_f32)] {
+    for (start, end) in [(1000_f32, 1500_f32), (1500., 5350.), (8000., 8450.)] {
         let mut a = start;
         while a < end {
             let b = (a + 64.).min(end);
@@ -784,6 +785,9 @@ pub(super) fn spawn(
             let mut vertices = vec![];
             let mut indices = vec![];
             let mut colors = vec![];
+            let mut far_vertices = vec![];
+            let mut far_indices = vec![];
+            let mut far_colors = vec![];
             for (p, seed, blades) in placements {
                 for blade in 0..blades {
                     let angle = seed * std::f32::consts::TAU + blade as f32 * 2.1;
@@ -804,6 +808,16 @@ pub(super) fn spawn(
                         1.,
                     ];
                     colors.extend([c; 3]);
+                    if blade == 0 {
+                        let k = far_vertices.len() as u32;
+                        far_vertices.extend([
+                            p - side * 1.45 - origin,
+                            p + side * 1.45 - origin,
+                            p + Vec3::Y * h + bend - origin,
+                        ]);
+                        far_indices.push([k, k + 1, k + 2]);
+                        far_colors.extend([c; 3]);
+                    }
                 }
                 census.grass_tufts += 1;
             }
@@ -817,11 +831,25 @@ pub(super) fn spawn(
                 NotShadowCaster,
                 VisibilityRange {
                     start_margin: 0.0..0.0,
+                    end_margin: 70.0..95.0,
+                    use_aabb: false,
+                },
+            ));
+            let mut far_mesh = crate::environment::mesh(&far_vertices, &far_indices);
+            far_mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, far_colors);
+            commands.spawn((
+                Mesh3d(meshes.add(far_mesh)),
+                MeshMaterial3d(grass_material.clone()),
+                Transform::from_translation(origin),
+                HillsGrass,
+                NotShadowCaster,
+                VisibilityRange {
+                    start_margin: 70.0..95.0,
                     end_margin: 170.0..240.0,
                     use_aabb: false,
                 },
             ));
-            census.grass_batches += 1;
+            census.grass_batches += 2;
             a = b;
         }
     }
@@ -830,6 +858,17 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn city_exit_seeds_sparse_grass_before_the_meadow_fills_in() {
+        let track = Track::hills().unwrap();
+        let early = grass_positions(&track, 1000., 1064., &[]);
+        let middle = grass_positions(&track, 1270., 1334., &[]);
+        let meadow = grass_positions(&track, 1640., 1704., &[]);
+        assert!(!early.is_empty());
+        assert!(early.len() * 3 < middle.len());
+        assert!(middle.len() < meadow.len());
+    }
+
     #[test]
     fn denser_grass_keeps_near_and_far_rows_under_the_old_triangle_ceiling() {
         let track = Track::hills().unwrap();

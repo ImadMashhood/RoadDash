@@ -8,7 +8,8 @@
     "lateral_reach": 2.55,
     "longitudinal_reach": 0.9,
     "pickup_radius": 2.5,
-    "direct_hits": 1
+    "direct_hits": 1,
+    "condition_damage": { "bike": 9.0, "rider": 12.0 }
   },
   "chain": {
     "source_contact": 0.32,
@@ -17,7 +18,8 @@
     "lateral_reach": 2.85,
     "longitudinal_reach": 1.0,
     "pickup_radius": 2.5,
-    "direct_hits": 1
+    "direct_hits": 1,
+    "condition_damage": { "bike": 12.0, "rider": 13.0 }
   },
   "whip": {
     "source_contact": 0.32,
@@ -26,7 +28,8 @@
     "lateral_reach": 3.0,
     "longitudinal_reach": 1.1,
     "pickup_radius": 2.5,
-    "direct_hits": 1
+    "direct_hits": 1,
+    "condition_damage": { "bike": 6.0, "rider": 10.0 }
   },
   "rolling_pin": {
     "source_contact": 0.32,
@@ -35,7 +38,8 @@
     "lateral_reach": 2.1,
     "longitudinal_reach": 0.75,
     "pickup_radius": 2.5,
-    "direct_hits": 1
+    "direct_hits": 1,
+    "condition_damage": { "bike": 7.0, "rider": 11.0 }
   },
   "baseball_bat": {
     "source_contact": 0.32,
@@ -44,6 +48,7 @@
     "lateral_reach": 2.75,
     "longitudinal_reach": 1.0,
     "pickup_radius": 2.5,
-    "direct_hits": 1
+    "direct_hits": 1,
+    "condition_damage": { "bike": 13.0, "rider": 15.0 }
   }
 }

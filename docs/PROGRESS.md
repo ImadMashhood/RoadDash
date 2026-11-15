@@ -1,5 +1,12 @@
 # Development progress
 
+2026-11-15 race performance, difficulty and world follow-up (ADR201): 248 verified
+/ 374 open. AI-HARD-01, HILLS-HERD-01, HILLS-MEADOW-01, SCENERY-LOD-01,
+COMBAT-CONDITION-01 and FX-SAND-PLUME-01 added open. The final workspace pass
+recorded 755 passing tests and two existing Rapier failures. The Hills A/B
+removed 280 repeated collision casts and retained identical racer states.
+[Implementation and evidence](testing/race-performance-hard-world/REPORT.md).
+
 2026-11-14 Hills woodland and race outcomes (ADR200): 248 verified / 368 open.
 RFU-RACE-HEALTH-01, RFU-HILLS-WOODLAND-01 and RFU-RACE-RESULTS-01 added open.
 745 tests pass with two existing Rapier failures. Locked builds, strict linting,
@@ -1079,6 +1086,8 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **AI-HARD-01** Preserve the former Normal rival pace as Medium and offer a faster Hard. Reason: Medium race ended with a 16-second lead; part: 01; dependencies: AI-NORMAL-01 and normal race controls; acceptance: saved preference migration and a competitive Hard field; verification: settings, bounded corner and matched human finish tests. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
 - [ ] **RFU-RACE-HEALTH-01** Track bike and rider condition and handle Hills river wipeouts. Reason: repeated damage and river crashes need a terminal outcome; part: 01; dependencies: recoverable combat, crash rig and Hills river; acceptance: independent condition, restart reset, positioned splash and wasted outcome; verification: health, water contact and native review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
 
 - [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, bounded arcade hop with preserved horizontal speed per ADR199 and unchanged upright rear-contact/rig policy; verification: core hop-height tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
@@ -1169,7 +1178,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **FOOT-SPAWN-01** Validate collision-clear get-up origins without moving legitimate rooftop/car-supported riders. Reason: production GettingUp uses a centre support ray without building-interior/capsule-volume validation; an invalid native setup demonstrated a fully enclosed start, but ordinary-crash incidence is unverified; part: 01; dependencies: shared recovery, world navigation and FOOT-004; acceptance: reproduce actual invalid production placement, retain safe original origins, bound any nearby stand-up search, preserve roof/car support and solid walls, and explicitly handle deep invalid states without silent wreck teleport or indefinite recovery; verification: real-world closed-envelope/near-wall/roof/car and crash/run/remount tests. Deferred inspection finding from [road/walkability evidence](testing/roads-walkability/README.md); no placement/rescue policy changed in this pass.
 
-- [ ] **AI-NORMAL-01** Validate the Normal comeback window and the preserved Hard preset. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Normal and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](testing/normal-impact-audio/REPORT.md).
+- [ ] **AI-NORMAL-01** Validate the Medium comeback window and comparative Hard pace. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Medium and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AI-11** Review full-race role-free rider balance with human playtests. Reason: the new nearby-strike and incident fight-or-flee policy supersedes permanent racer/killer roles but does not yet establish fair aggression; part: 01; dependencies: RFU-AI-09/10/11 and historical AI-10; acceptance: completed races on both branches with visible free-line overtaking, readable nearby threats, practical escapes/recovery, no unavoidable spawn pileup and user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
@@ -1433,6 +1442,12 @@ pending terrain and crossing verification gates.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **HILLS-MEADOW-01** Blend Hills city terrain and tuft density into the first open meadow. Reason: grass starts abruptly; part: 06; dependencies: HILLS-03 and existing terrain support; acceptance: coherent gradient at driving height; verification: coverage and native transition views. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **SCENERY-LOD-01** Add tiered tree, rock, and small scenery meshes. Reason: expand perceived depth within a stable frame budget; part: 06; dependencies: Hills and city dressing; acceptance: reduced far geometry with resident collision; verification: LOD geometry and representative native captures. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
 - [ ] **RFU-HILLS-WOODLAND-01** Populate distant Hills slopes with batched woodland. Reason: sparse distant ridgelines in the Hills playtest; part: 06; dependencies: Hills terrain, route projection and existing woodland; acceptance: thousands of grounded distant trees with bounded render geometry and unchanged collision count; verification: placement tests, native screenshots and paired GPU frame timing. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
 
 - [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](testing/scenic-horizon/REPORT.md).
@@ -1540,6 +1555,8 @@ pending terrain and crossing verification gates.
 - [ ] **P08-005** Add traffic gap keeping, braking, lane changes/intersections, and obstacle rerouting.
 
 ### Part 07 — Weapons and complete riding combat
+
+- [ ] **COMBAT-CONDITION-01** Apply authored bike and rider condition damage to confirmed strikes. Reason: set up a tunable combat foundation; part: 07; dependencies: RFU-RACE-HEALTH-01 and active weapon catalog; acceptance: separate targets, compatible content, preserved hit timing; verification: data validation and live confirmed contact. [Evidence](testing/race-performance-hard-world/REPORT.md).
 
 - [ ] **FEEL-WEAPON-01** Keep both hands on grips and show weapons only during attacks. Reason: user rejects permanent armed ready pose; part:07; dependencies: V2-07-002; acceptance: inventory does not change idle grip pose, attack hand/weapon agree and idle/kick/recovery hide weapon; verification: animation/inventory regression tests and native left/right weapon review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
@@ -1728,6 +1745,8 @@ pending terrain and crossing verification gates.
 - [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. [Evidence](testing/race-performance-hard-world/REPORT.md).
 
 - [ ] **RFU-RACE-RESULTS-01** Show all offline race standings and allow observing the remaining racers. Reason: players want current order, restart or continuation after finishing or being wasted; part: 15; dependencies: RFU-RACE-HEALTH-01 and frontend race flow; acceptance: correct sorted rows and red wasted strike, deterministic restart and no duplicate awards; verification: standings, lifecycle and native screen review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
 

@@ -15,7 +15,7 @@ pub const BIRD_COUNT: usize = 24;
 const EMISSION_INTERVAL: f32 = 0.08;
 fn dust_alpha(age: f32, life: f32, behind_m: f32) -> f32 {
     let ease = |x: f32| x * x * (3. - 2. * x);
-    0.17 * ease((age / 0.25).clamp(0., 1.))
+    0.28 * ease((age / 0.12).clamp(0., 1.))
         * ease(((life - age) / 0.35).clamp(0., 1.))
         * ease(((24. - behind_m) / 15.).clamp(0., 1.))
 }
@@ -192,9 +192,6 @@ pub fn spawn(
     track: &Track,
     images: Option<&mut Assets<Image>>,
 ) {
-    if !track.is_hills() && track.metropolis.is_none() {
-        return;
-    }
     commands.insert_resource(Atmosphere::default());
     if crate::map_fx::quality() > 0 {
         let texture = images.map(|images| images.add(sprite()));
@@ -226,7 +223,7 @@ pub fn spawn(
             ));
         }
     }
-    if !birds_enabled() {
+    if !birds_enabled() || (!track.is_hills() && track.metropolis.is_none()) {
         return;
     }
     let body = meshes.add(Sphere::new(1.).mesh().uv(8, 4));
@@ -447,7 +444,8 @@ pub fn animate(
                 .iter()
                 .filter(|(t, r, _, _)| {
                     t.translation.distance_squared(camera.translation) < 180f32.powi(2)
-                        && r.is_none_or(|r| r.crashed <= 0.)
+                        && (track.is_hills() || r.is_some())
+                        && r.is_none_or(|r| r.racing() && r.crashed <= 0.)
                 })
                 .collect();
             near.sort_by(|a, b| {
@@ -482,17 +480,28 @@ pub fn animate(
                         use rr_core::surface::Surface;
                         let tint = match surface {
                             Surface::Grass => Vec3::new(0.43, 0.52, 0.26),
-                            Surface::Sand => super::geometry::sand_color(s, rear.x, rear.z),
+                            Surface::Sand if track.is_hills() => {
+                                super::geometry::sand_color(s, rear.x, rear.z)
+                            }
+                            Surface::Sand => Vec3::new(0.76, 0.61, 0.38),
                             _ => Vec3::new(0.60, 0.47, 0.32),
                         };
                         emissions.push((
                             rear + Vec3::Y * (1.1 - ground_gap),
                             t.rotation
-                                * Vec3::new(0.3, 0.35 + strength * 0.8, -0.9 - strength * 2.),
+                                * Vec3::new(
+                                    0.35,
+                                    0.30 + strength * 0.65,
+                                    -(1.8 + strength * 4.)
+                                        * rider.motion_velocity.dot(t.rotation * Vec3::Z).signum(),
+                                ),
                             tint,
-                            0.36 + strength * 1.25,
+                            0.60 + strength * 1.8,
                         ));
                     }
+                    continue;
+                }
+                if !track.is_hills() {
                     continue;
                 }
                 let a = track.lane_at(route, s, t.translation);
@@ -547,7 +556,8 @@ pub fn animate(
             active += 1;
             t.translation += puff.drift * dt * (1. - 0.4 * puff.age / puff.life);
             t.rotation = camera.rotation;
-            t.scale = Vec3::splat(puff.size * (0.7 + 0.55 * puff.age / puff.life));
+            let size = puff.size * (0.8 + 0.6 * puff.age / puff.life);
+            t.scale = Vec3::new(size * 1.35, size * 0.76, 1.);
             *visibility = Visibility::Inherited;
             if let Some(mut m) = materials.get_mut(&material.0) {
                 let behind_m = player_pose.map_or(0., |player| {
@@ -573,10 +583,10 @@ mod tests {
     #[test]
     fn translucent_sand_dust_eases_in_and_out_without_a_first_frame_pop() {
         assert_eq!(dust_alpha(0., 1.6, 0.), 0.);
-        assert!(dust_alpha(0.05, 1.6, 0.) < 0.02);
-        assert!((0.16..=0.17).contains(&dust_alpha(0.6, 1.6, 0.)));
-        assert!(dust_alpha(1.5, 1.6, 0.) < 0.04);
-        assert!(dust_alpha(0.6, 1.6, 20.) < 0.04);
+        assert!(dust_alpha(0.01, 1.6, 0.) < 0.01);
+        assert!((0.27..=0.28).contains(&dust_alpha(0.6, 1.6, 0.)));
+        assert!(dust_alpha(1.5, 1.6, 0.) < 0.06);
+        assert!(dust_alpha(0.6, 1.6, 20.) < 0.06);
         assert_eq!(dust_alpha(0.6, 1.6, 24.), 0.);
         assert_eq!(dust_alpha(1.6, 1.6, 0.), 0.);
     }
