@@ -5012,3 +5012,14 @@ support. Ease sand rolling resistance and the powered speed limit in the
 shared surface policy. Give an off-carriageway rival in the opening city a
 paved escape target, retaining the existing swept clearance checks.
 [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
+
+## ADR205 — Hills deck continuity, rider landing contacts and distant scenery (2026-11-15)
+
+Keep the suspension asphalt and support continuous across the main span.
+Use actual contact and pre-solver vertical motion to eject the rider who
+lands. Increase lateral knockback from a landed kick by one quarter. Give failed
+escape searches back to ordinary traffic planning. Make the cattle paths
+more irregular while retaining their phase and cached ground, and use a
+six-triangle far tree profile to place denser woodland.
+[Evidence](testing/hills-contact-and-scenery/REPORT.md).

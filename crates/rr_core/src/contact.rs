@@ -232,3 +232,28 @@ mod polish_tests {
         assert!(downed_ride_over_velocity(2.9).is_none());
     }
 }
+
+/// Classify an actual upright-bike contact using signed height and relative descent.
+/// The return value identifies whether the second rider is the descending upper one.
+pub fn rider_landing(height: f32, first_vertical: f32, second_vertical: f32) -> Option<bool> {
+    let second_higher = height > 0.;
+    let (upper, lower) = if second_higher {
+        (second_vertical, first_vertical)
+    } else {
+        (first_vertical, second_vertical)
+    };
+    (height.abs() >= 0.42 && upper < -0.8 && upper - lower <= -1.3).then_some(second_higher)
+}
+
+#[cfg(test)]
+mod rider_landing_tests {
+    use super::rider_landing;
+    #[test]
+    fn upper_descending_contact_is_distinct_from_side_and_rising_contact() {
+        assert_eq!(rider_landing(0.56, 0., -3.), Some(true));
+        assert_eq!(rider_landing(-0.9, -3., 0.), Some(false));
+        assert_eq!(rider_landing(0.25, 0., -3.), None);
+        assert_eq!(rider_landing(0.9, 0., 3.), None);
+        assert_eq!(rider_landing(0.9, 3., 0.), None);
+    }
+}

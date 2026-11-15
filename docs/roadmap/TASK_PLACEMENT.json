@@ -257,7 +257,9 @@
         "HILLS-HERD-02",
         "AI-HILLS-CADENCE-01",
         "HILLS-HERD-01",
-        "HILLS-SAND-PACE-01"
+        "HILLS-SAND-PACE-01",
+        "RIDER-LANDING-01",
+        "COMBAT-KICK-PUSH-01"
       ]
     },
     "01": {
@@ -341,7 +343,8 @@
         "P04-014",
         "P06-006",
         "RACE-TIMING-LINES-01",
-        "HILLS-VERGE-ESCAPE-01"
+        "HILLS-VERGE-ESCAPE-01",
+        "HILLS-ESCAPE-RETRY-01"
       ]
     },
     "02": {
@@ -518,7 +521,10 @@
         "ENV-008",
         "P08-005",
         "HILLS-SURFACE-POLISH-01",
-        "HILLS-HERD-03"
+        "HILLS-HERD-03",
+        "HILLS-HERD-04",
+        "HILLS-BRIDGE-FLOOR-01",
+        "HILLS-TREE-LOD-02"
       ]
     },
     "07": {

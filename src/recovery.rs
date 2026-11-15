@@ -1609,12 +1609,31 @@ pub fn impacts(
                 let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) else {
                     continue;
                 };
-                let normal = (b.translation - a.translation)
-                    .with_y(0.0)
-                    .normalize_or_zero();
                 let other_velocity = bike_states
                     .get(other)
                     .map_or(other_rider.motion_velocity, |s| s.impact_velocity);
+                let separation = b.translation - a.translation;
+                if let Some(upper_is_other) =
+                    rr_core::contact::rider_landing(separation.y, velocity.y, other_velocity.y)
+                    && {
+                        if let Ok(ctx) = context.single()
+                            && let Some(pair) = ctx.contact_pair(bike, other)
+                        {
+                            pair.manifolds().any(|m| m.normal().y.abs() > 0.55)
+                        } else {
+                            separation.normalize_or_zero().y.abs() > 0.55
+                        }
+                    }
+                {
+                    let (landing, struck) = if upper_is_other {
+                        (other, bike)
+                    } else {
+                        (bike, other)
+                    };
+                    actions.push(Impact::Crash(landing, None, contact(landing, struck)));
+                    continue;
+                }
+                let normal = separation.with_y(0.).normalize_or_zero();
                 let forward_a = (a.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
                 let forward_b = (b.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
                 let closing = (velocity - other_velocity).dot(normal).max(0.0);

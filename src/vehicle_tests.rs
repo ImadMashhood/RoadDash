@@ -50,6 +50,52 @@ fn dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels() {
     }
 }
 #[test]
+fn landing_on_an_upright_bike_wipes_out_the_descending_rider() {
+    let mut app = app(1, 60);
+    let world = app.world_mut();
+    let upper = world
+        .query_filtered::<Entity, With<Rider>>()
+        .single(world)
+        .unwrap();
+    let (base, frame) = world.resource::<Track>().sample(40., -2.);
+    let mut lower_rider = Rider::new(1);
+    lower_rider.finished = Some(5.);
+    lower_rider.progress = 40.;
+    lower_rider.lane = -2.;
+    let lower = world
+        .spawn((
+            lower_rider,
+            Transform::from_translation(base).with_rotation(frame),
+            Visibility::Visible,
+            crate::recovery::bike_body(),
+        ))
+        .id();
+    {
+        let mut rider = world.get_mut::<Rider>(upper).unwrap();
+        rider.progress = 40.;
+        rider.lane = -2.;
+        rider.motion_velocity = -Vec3::Y * 5.;
+    }
+    world
+        .entity_mut(upper)
+        .insert(Transform::from_translation(base + Vec3::Y * 3.).with_rotation(frame));
+    for _ in 0..24 {
+        app.update();
+        if app.world().get::<Recovery>(upper).unwrap().stage == RecoveryStage::Falling {
+            break;
+        }
+    }
+    assert_eq!(
+        app.world().get::<Recovery>(upper).unwrap().stage,
+        RecoveryStage::Falling
+    );
+    assert_eq!(
+        app.world().get::<Recovery>(lower).unwrap().stage,
+        RecoveryStage::Riding
+    );
+}
+
+#[test]
 fn dynamic_physics_matches_at_render_rates() {
     let mut poses = vec![];
     for fps in [30, 60, 120] {

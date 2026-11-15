@@ -119,7 +119,10 @@ fn deck_skin(track: &Track, origin: Vec3) -> Mesh {
     let sections: Vec<_> = (0..=end)
         .map(|i| {
             let station = START - ABUTMENT_LENGTH + i as f32 * DECK_STEP;
-            deck_skin_section(track, station).map(|point| point - origin)
+            let mut section = deck_skin_section(track, station).map(|point| point - origin);
+            section[0].y -= 0.04;
+            section[5].y -= 0.04;
+            section
         })
         .collect();
     let mut vertices = Vec::new();
@@ -132,6 +135,16 @@ fn deck_skin(track: &Track, origin: Vec3) -> Mesh {
                 let v = first + 2 * i as u32;
                 indices.extend([[v, v + 2, v + 1], [v + 1, v + 2, v + 3]]);
             }
+        }
+    }
+    // Close the top of the structural shell just below the asphalt.
+    // This also covers the join if the road and side lips diverge on a bend.
+    let top = vertices.len() as u32;
+    for (i, section) in sections.iter().enumerate() {
+        vertices.extend([section[0], section[5]]);
+        if i < end {
+            let v = top + 2 * i as u32;
+            indices.extend([[v, v + 1, v + 2], [v + 1, v + 3, v + 2]]);
         }
     }
     for (section, reverse) in [(sections[0], false), (sections[end], true)] {
@@ -557,6 +570,38 @@ pub(super) mod tests {
             assert!(stations.iter().all(|h| (s - h).abs() >= 4.));
         }
     }
+    #[test]
+    fn asphalt_support_is_continuous_over_both_portals_and_old_chunk_joins() {
+        let mut app = scene();
+        app.world_mut()
+            .run_system_once(
+                |context: ReadRapierContext, track: Res<Track>, ground: Query<(), With<Ground>>| {
+                    let ctx = context.single().unwrap();
+                    let supports = |entity, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                        ground.contains(entity)
+                    };
+                    for step in -2..=((END - START) * 2.) as i32 + 2 {
+                        let station = START + step as f32 * 0.5;
+                        for lane in [-5.9, -3., 0., 3., 5.9] {
+                            let (p, _) = track.sample(station, lane);
+                            assert!(
+                                ctx.cast_ray(
+                                    p + Vec3::Y * 0.8,
+                                    Vec3::NEG_Y,
+                                    1.,
+                                    true,
+                                    QueryFilter::default().predicate(&supports)
+                                )
+                                .is_some(),
+                                "missing support at {station} m and lane {lane} m"
+                            );
+                        }
+                    }
+                },
+            )
+            .unwrap();
+    }
+
     #[test]
     fn suspended_deck_has_no_railings_and_square_solid_hangers() {
         let mut app = scene();

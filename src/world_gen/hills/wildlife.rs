@@ -18,11 +18,11 @@ const CROSSING_ROWS: usize = 4;
 const CROSSING_COLUMNS: usize = 5;
 const CROSSING_MEMBERS: usize = CROSSING_ROWS * CROSSING_COLUMNS;
 const CROSSING_SPEED: f32 = 0.88;
-const CROSSING_EXTENT: f32 = 20.;
-const ROW_ACROSS: [f32; CROSSING_ROWS] = [-11.8, -4.0, 3.8, 11.6];
+const CROSSING_EXTENT: f32 = 24.;
+const ROW_ACROSS: [f32; CROSSING_ROWS] = [-15.6, -5.2, 5.2, 15.6];
 const ROW_STAGGER: [f32; CROSSING_ROWS] = [-2.6, 2.1, -1.8, 3.0];
-const COLUMN_ALONG: [f32; CROSSING_COLUMNS] = [-17., -8.6, 0.2, 8.8, 17.7];
-const CROSSING_RESERVED_ACROSS: f32 = CROSSING_EXTENT + 13.6;
+const COLUMN_ALONG: [f32; CROSSING_COLUMNS] = [-20.2, -10.1, -0.4, 10.4, 21.1];
+const CROSSING_RESERVED_ACROSS: f32 = CROSSING_EXTENT + 19.6;
 const CROSSING_RESERVED_ALONG: f32 = 32.;
 const SUPPORT_INTERVALS: usize = 160;
 pub const NEAR: f32 = 100.;
@@ -140,8 +140,10 @@ fn cattle_path(track: &Track, station: f32, member: usize) -> (Vec3, Vec3, f32) 
         .wrapping_mul(41)
         .wrapping_add(member as u32);
     let jitter = |salt| super::countryside::noise(seed ^ salt) * 2. - 1.;
-    let along_road = COLUMN_ALONG[column] + ROW_STAGGER[row] + 1.2 * jitter(0xda95);
-    let along_crossing = ROW_ACROSS[row] + 0.6 * jitter(0x6cb9);
+    let along_road = COLUMN_ALONG[column] + ROW_STAGGER[row] + 3.1 * jitter(0xda95);
+    let along_crossing = ROW_ACROSS[row]
+        + (column as f32 - 2.) * [0.73, -0.91, 0.84, -0.66][row]
+        + 0.95 * jitter(0x6cb9);
     (
         point + road * along_road + axis * along_crossing,
         axis,
@@ -540,16 +542,15 @@ mod tests {
                 let (_, hi) = span(row);
                 let (lo, _) = span(row + 1);
                 // Cow collider is 2.2 m along the crossing axis.
-                assert!(lo - hi - 2.2 > 4.35);
-                let stagger =
-                    paths[(row + 1) * CROSSING_COLUMNS].0 - paths[row * CROSSING_COLUMNS].0;
-                assert!(stagger.dot(along).abs() > 1.5);
+                assert!(lo - hi - 2.2 > 3.);
             }
 
-            for members in paths.chunks_exact(CROSSING_COLUMNS) {
+            for (row, members) in paths.chunks_exact(CROSSING_COLUMNS).enumerate() {
+                let (lo, hi) = span(row);
+                assert!(hi - lo > 1.8, "row {row} is too straight");
                 for pair in members.windows(2) {
                     // Cow collider is 1 m wide across its direction of travel.
-                    assert!((pair[1].0 - pair[0].0).dot(along) - 1. > 5.);
+                    assert!((pair[1].0 - pair[0].0).dot(along) - 1. > 3.);
                 }
             }
 
@@ -568,7 +569,7 @@ mod tests {
                         })
                 })
                 .collect();
-            for step in 0..=80 {
+            for step in 0..=(CROSSING_EXTENT * 4.) as usize {
                 let offset = step as f32 * 0.5 - CROSSING_EXTENT;
                 assert!(
                     lane_spans

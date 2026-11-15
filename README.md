@@ -197,7 +197,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**252 verified tasks complete; 378 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**254 verified tasks complete; 382 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -215,15 +215,15 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 252 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 79 open |
-| [00](#part-00) | Completed and verified foundations | 252 verified complete |
-| [01](#part-01) | Remaining handling, crash response and runtime corrections | 79 open |
+| [00](#part-00) | Completed and verified foundations | 254 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
+| [00](#part-00) | Completed and verified foundations | 254 verified complete |
+| [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 57 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 60 open |
 | [07](#part-07) | Weapons and complete riding combat | 13 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -240,7 +240,11 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 ### Part 00 — Completed and verified foundations
 
 <details>
-<summary>Recent verification audit — 18 completed tasks</summary>
+<summary>Recent verification audit — 20 completed tasks</summary>
+
+- [x] **RIDER-LANDING-01** Wipe out a mounted rider who lands on another mounted rider. This Part 01 task builds on existing rear contacts and recovery. An actual descending contact must eject the upper rider while preserving ordinary side impacts. Verified through contact rules and a physical rig test. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
+
+- [x] **COMBAT-KICK-PUSH-01** Increase the sideways push of a landed kick by one quarter so the rider moves farther. This Part 07 task builds on authored melee and swept limb contacts. Combat tests verify the 25% higher velocity and the original hit range. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
 
 - [x] **HILLS-SAND-PACE-01** Raise usable Hills sand speed. Reason: sand slows riders more than requested; part: 06; dependencies: HILLS-SURFACE-POLISH-01 and shared surface policy; acceptance: higher terminal sand speed and retained sand coast, traction penalty, entry and reverse behavior in both adapters; verification: shared surface and real adapter tests. [Evidence](docs/testing/hills-herd-verge-tuning/REPORT.md).
 
@@ -762,6 +766,8 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
+
 - [ ] **HILLS-VERGE-ESCAPE-01** Recover Hills rivals stalled outside the opening city carriageway. Reason: Diamond stopped near 831 m with a zero-speed sidewalk plan; part: 01; dependencies: AI-HILLS-CADENCE-01 and swept escape; acceptance: reachable paved escape goal under a blocked sidewalk target and a native replay of the reported stop; verification: authored-track fixture and native replay. [Evidence](docs/testing/hills-herd-verge-tuning/REPORT.md).
 
 - [ ] **RACE-TIMING-LINES-01** Use decorated timing lines and preserve solid braking run-out. Reason: intermediate gates invalidated Hills finishes and completed bikes ghosted; part: 01; dependencies: RACE-FINISH-01 and current finish awards; acceptance: each built-in point-to-point course finishes from either valid route after crossing the start, with retained time, place and solid bike braking; verification: timing, rear contact and native smoke. [Evidence](docs/testing/hills-race-polish-and-planning/REPORT.md).
@@ -1134,6 +1140,12 @@ Repeat the reference → original textures/models → procedural placement → c
 <a id="part-06"></a>
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-HERD-04** Shape both cattle crossings into irregular diagonal bands so the formations look less uniform. This Part 06 task builds on HILLS-HERD-03. Verify varied per-cow spacing and drivable gaps through placement sampling and a native race. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-HERD-03** Widen and vary both Hills herd formations. Reason: full-field riders spend long periods near the crossings at low speed; part: 06; dependencies: HILLS-HERD-02; acceptance: both 20-cow crossings remain solid with driveable gaps and fewer native queues; verification: synchronized formation, physical contact and matched race logs. [Evidence](docs/testing/hills-herd-verge-tuning/REPORT.md).
 

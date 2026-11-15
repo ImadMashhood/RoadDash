@@ -282,9 +282,9 @@ pub(crate) fn melee(
         let mind = rider.combat_mind.clone();
         let police_attacker = rider.police;
         let kick_strength = if player {
-            8.0
+            10.0
         } else {
-            8.0 * rider.ai_profile.strength / 7.0
+            10.0 * rider.ai_profile.strength / 7.0
         };
         let origin = t.translation + Vec3::Y * 1.45;
         let forward = t.rotation * Vec3::Z;
@@ -703,7 +703,7 @@ mod tests {
                 assert!(
                     (app.world().get::<Velocity>(target).unwrap().linear
                         - if kicking {
-                            right * side * 8.0
+                            right * side * 10.0
                         } else {
                             Vec3::ZERO
                         })
@@ -1009,7 +1009,7 @@ mod tests {
                 .world_mut()
                 .spawn((
                     Rider::new(1),
-                    Transform::from_translation(t.translation + right * side * 6.0)
+                    Transform::from_translation(t.translation + right * side * 2.5)
                         .with_rotation(t.rotation),
                     Visibility::Visible,
                     Velocity::zero(),
@@ -1060,15 +1060,14 @@ mod tests {
             app.world_mut()
                 .write_message(AttackAttempt(owner, rr_core::AttackSide::Kick));
             app.world_mut().run_system_once(melee).unwrap();
-            assert!(
-                app.world()
-                    .get::<Velocity>(targets[0])
-                    .unwrap()
-                    .linear
-                    .dot(right)
-                    * side
-                    > 7.9
-            );
+            let lateral_push = app
+                .world()
+                .get::<Velocity>(targets[0])
+                .unwrap()
+                .linear
+                .dot(right)
+                * side;
+            assert!((lateral_push - 10.).abs() < 0.01);
             assert_eq!(
                 app.world().get::<Velocity>(targets[1]).unwrap().linear,
                 Vec3::ZERO

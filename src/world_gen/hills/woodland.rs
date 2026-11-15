@@ -81,7 +81,8 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
     batches
 }
 const BACKDROP_TILE: f32 = 160.;
-const BACKDROP_ROWS: u32 = 10;
+const BACKDROP_ROWS: u32 = 12;
+const SILHOUETTE_TRIANGLES: usize = 6;
 
 fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
     let min = track.bounds.0.xz() - Vec2::splat(320.);
@@ -142,6 +143,10 @@ fn simpler_tree(model: &mut Model, tree: Tree, origin: Vec3, green: [f32; 3]) {
     );
 }
 
+fn silhouette(model: &mut Model, tree: Tree, origin: Vec3, green: [f32; 3]) {
+    model.open_crown(tree.p - origin, tree.height * 0.23, tree.height, green);
+}
+
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -158,6 +163,7 @@ pub fn spawn(
         let origin = trees[trees.len() / 2].p;
         let mut model = Model::default();
         let mut middle = Model::default();
+        let mut far = Model::default();
         let mut trunks = vec![];
         for tree in trees {
             let p = tree.p - origin;
@@ -178,6 +184,8 @@ pub fn spawn(
                 );
             }
             simpler_tree(&mut middle, tree, origin, green);
+            silhouette(&mut far, tree, origin, green);
+            census.triangles += SILHOUETTE_TRIANGLES;
             census.middle_triangles += 12;
             census.triangles += 12;
             trunks.push((
@@ -214,11 +222,23 @@ pub fn spawn(
             NotShadowCaster,
             VisibilityRange {
                 start_margin: 280. ..340.,
-                end_margin: 850. ..1100.,
+                end_margin: 700. ..850.,
                 use_aabb: false,
             },
         ));
-        census.batches += 2;
+        commands.spawn((
+            Mesh3d(meshes.add(far.mesh())),
+            MeshMaterial3d(material.clone()),
+            Transform::from_translation(origin),
+            WoodlandBatch,
+            NotShadowCaster,
+            VisibilityRange {
+                start_margin: 700. ..850.,
+                end_margin: 1250. ..1550.,
+                use_aabb: false,
+            },
+        ));
+        census.batches += 3;
         census.middle_batches += 1;
     }
     for (origin, trees) in backdrop(track) {
@@ -227,11 +247,11 @@ pub fn spawn(
         census.backdrop_batches += 1;
         census.trees += trees.len();
         census.batches += 1;
-        census.triangles += trees.len() * 12;
+        census.triangles += trees.len() * SILHOUETTE_TRIANGLES;
         for tree in trees {
             let tint = noise(tree.seed + 5);
             let green = [0.095 + 0.06 * tint, 0.17 + 0.12 * tint, 0.075 + 0.06 * tint];
-            simpler_tree(&mut model, tree, origin, green);
+            silhouette(&mut model, tree, origin, green);
         }
         commands.spawn((
             Mesh3d(meshes.add(model.mesh())),
@@ -259,10 +279,11 @@ mod tests {
         println!(
             "Hills backdrop: {count} trees, {} batches, {} triangles",
             batches.len(),
-            count * 12
+            count * SILHOUETTE_TRIANGLES
         );
-        assert!((3000..=9000).contains(&count));
+        assert!((5000..=12000).contains(&count));
         assert!(batches.len() <= 160);
+        assert!(count * SILHOUETTE_TRIANGLES <= 72_000);
         for (_, trees) in &batches {
             assert!(trees.len() <= (BACKDROP_ROWS * BACKDROP_ROWS) as usize);
             for tree in trees {

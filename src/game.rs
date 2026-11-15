@@ -3074,10 +3074,9 @@ fn rival_escape_goal(
 ) -> Vec3 {
     let ahead = (progress + 22.).min(track.length);
     let street = track.street_offset(route, progress);
-    let off_hills_city_road = track.is_hills()
-        && (-300. ..1000.).contains(&progress)
-        && (lane - street).abs() > track.half_width(progress) + 0.35;
-    let goal_lane = if off_hills_city_road {
+    let off_hills_road =
+        track.is_hills() && (lane - street).abs() > track.half_width(progress) + 0.35;
+    let goal_lane = if off_hills_road {
         track.street_offset(route, ahead)
     } else {
         plan_lane

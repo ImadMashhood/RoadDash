@@ -1,5 +1,11 @@
 # Development progress
 
+2026-11-15 Hills contact, bridge and scenery (ADR205): verified
+RIDER-LANDING-01 and COMBAT-KICK-PUSH-01. Added four active requirements for
+escape fallback, cattle spacing, bridge continuity and woodland LOD.
+254 verified / 382 open.
+[Implementation and log evidence](testing/hills-contact-and-scenery/REPORT.md).
+
 2026-11-15 Hills herd, sand and city verge (ADR204): HILLS-HERD-03
 and HILLS-VERGE-ESCAPE-01 are open. HILLS-SAND-PACE-01 verified in both riding
 adapters. 252 verified / 378 open.
@@ -605,6 +611,10 @@ pending terrain and crossing verification gates.
 
 ### Part 00 — Completed and verified foundations
 
+- [x] **RIDER-LANDING-01** Wipe out a mounted rider who lands on another mounted rider. This Part 01 task builds on existing rear contacts and recovery. An actual descending contact must eject the upper rider while preserving ordinary side impacts. Verified through contact rules and a physical rig test. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [x] **COMBAT-KICK-PUSH-01** Increase the sideways push of a landed kick by one quarter so the rider moves farther. This Part 07 task builds on authored melee and swept limb contacts. Combat tests verify the 25% higher velocity and the original hit range. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
 - [x] **HILLS-SAND-PACE-01** Raise usable Hills sand speed. Reason: sand slows riders more than requested; part: 06; dependencies: HILLS-SURFACE-POLISH-01 and shared surface policy; acceptance: higher terminal sand speed and retained sand coast, traction penalty, entry and reverse behavior in both adapters; verification: shared surface and real adapter tests. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
 
 - [x] **AI-HILLS-CADENCE-01** Reduce expensive Hills passing searches while preserving physical passing. Reason: repeated scans consume fixed-tick time and stopped riders form queues; part: 01; dependencies: AI-SHARED-SCAN-01 and RACE-RIDEOVER-01; acceptance: safe two-rival pass, fixed-rate hazard response and reproducible 60/20/10 Hz native measurements; verification: physical regressions and native paired survey. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
@@ -1111,6 +1121,8 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
+- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
 - [ ] **HILLS-VERGE-ESCAPE-01** Recover Hills rivals stalled outside the opening city carriageway. Reason: Diamond stopped near 831 m with a zero-speed sidewalk plan; part: 01; dependencies: AI-HILLS-CADENCE-01 and swept escape; acceptance: reachable paved escape goal under a blocked sidewalk target and a native replay of the reported stop; verification: authored-track fixture and native replay. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
 
 - [ ] **RACE-TIMING-LINES-01** Use decorated timing lines and preserve solid braking run-out. Reason: intermediate gates invalidated Hills finishes and completed bikes ghosted; part: 01; dependencies: RACE-FINISH-01 and current finish awards; acceptance: each built-in point-to-point course finishes from either valid route after crossing the start, with retained time, place and solid bike braking; verification: timing, rear contact and native smoke. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
@@ -1472,6 +1484,12 @@ pending terrain and crossing verification gates.
 - [ ] **ENV-004** E3: place memorable landmarks plus interactive fences, cows, cars, rocks, and tractors; make encounters readable rather than unavoidable surprise spawns.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
+
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-HERD-04** Shape both cattle crossings into irregular diagonal bands so the formations look less uniform. This Part 06 task builds on HILLS-HERD-03. Verify varied per-cow spacing and drivable gaps through placement sampling and a native race. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-HERD-03** Widen and vary both Hills herd formations. Reason: full-field riders spend long periods near the crossings at low speed; part: 06; dependencies: HILLS-HERD-02; acceptance: both 20-cow crossings remain solid with driveable gaps and fewer native queues; verification: synchronized formation, physical contact and matched race logs. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
 

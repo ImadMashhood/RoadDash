@@ -1,5 +1,11 @@
 # Development history
 
+## 2026-11-15 — Hills contact, deck and scenery (ADR205)
+
+- Added descending rider contacts and increased lateral kick knockback.
+- Closed the deck floor and widened the cattle staggering.
+- Added a far woodland LOD and resumed ordinary traffic after failed escapes.
+
 ## 2026-11-15 — Hills herd spacing, sand pace and verge escape (ADR204)
 
 - Widened both solid cattle formations and varied the offsets per cow.

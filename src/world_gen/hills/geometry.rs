@@ -286,6 +286,10 @@ pub(super) fn spawn(
                     }
                 }
             }
+            if route == 0 && a == bridge::START {
+                // Keep the whole asphalt deck in one render and collision ribbon.
+                b = bridge::END;
+            }
             if route == 0 && a >= -300. && b <= 1000. {
                 // The imported Metropolis slice owns its exact asphalt/sidewalks.
                 a = b;
