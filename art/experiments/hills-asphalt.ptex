@@ -1,0 +1,98 @@
+{
+  "name": "Hills Asphalt",
+  "node_position": {
+    "x": 0,
+    "y": 0
+  },
+  "parameters": {},
+  "type": "graph",
+  "label": "Hills Asphalt",
+  "nodes": [
+    {
+      "name": "aggregate",
+      "node_position": {
+        "x": -300,
+        "y": 40
+      },
+      "parameters": {
+        "iterations": 3,
+        "persistence": 0.55,
+        "scale_x": 55,
+        "scale_y": 55
+      },
+      "type": "perlin"
+    },
+    {
+      "name": "repair_variation",
+      "node_position": {
+        "x": -300,
+        "y": 220
+      },
+      "parameters": {
+        "iterations": 3,
+        "persistence": 0.45,
+        "scale_x": 4,
+        "scale_y": 6
+      },
+      "type": "perlin"
+    },
+    {
+      "name": "normal",
+      "node_position": {
+        "x": 0,
+        "y": 40
+      },
+      "parameters": {
+        "amount": 0.32,
+        "param0": 11,
+        "param1": 0.11,
+        "param2": 0,
+        "param3": 0,
+        "param4": 1,
+        "size": 4
+      },
+      "type": "normal_map"
+    },
+    {
+      "name": "Material",
+      "node_position": {
+        "x": 280,
+        "y": 40
+      },
+      "parameters": {
+        "albedo_color": {
+          "r": 0.36,
+          "g": 0.36,
+          "b": 0.35,
+          "a": 1,
+          "type": "Color"
+        },
+        "size": 9,
+        "metallic": 0,
+        "roughness": 0.89,
+        "normal_scale": 1
+      },
+      "type": "material"
+    }
+  ],
+  "connections": [
+    {
+      "from": "aggregate",
+      "from_port": 0,
+      "to": "normal",
+      "to_port": 0
+    },
+    {
+      "from": "normal",
+      "from_port": 0,
+      "to": "Material",
+      "to_port": 4
+    },
+    {
+      "from": "repair_variation",
+      "from_port": 0,
+      "to": "Material",
+      "to_port": 2
+    }
+  ]
+}

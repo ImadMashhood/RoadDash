@@ -26,6 +26,7 @@ fn legacy_ability() -> rr_core::weapons::Ability {
         longitudinal_reach: 0.9,
         pickup_radius: 2.5,
         direct_hits: 1,
+        condition_damage: Default::default(),
     }
 }
 fn default_armed_fraction() -> f32 {
@@ -48,6 +49,8 @@ impl Weapons {
                 || !value.starting_armed_fraction.is_finite()
                 || !(0.0..=1.0).contains(&value.starting_armed_fraction)
                 || a.direct_hits != 1
+                || !(0.0..=25.0).contains(&a.condition_damage.bike)
+                || !(0.0..=25.0).contains(&a.condition_damage.rider)
                 || [
                     a.source_contact,
                     a.cooldown,
@@ -148,6 +151,26 @@ mod tests {
             assert!(Weapons::from_json(&broken.to_string()).is_err());
         }
     }
+    #[test]
+    fn condition_damage_is_optional_for_legacy_catalogs_and_bounded_for_new_catalogs() {
+        let mut json: serde_json::Value =
+            serde_json::from_str(include_str!("../../../content/weapons.json")).unwrap();
+        let arsenal = Weapons::from_json(&json.to_string()).unwrap();
+        assert!(arsenal.baseball_bat.condition_damage.rider > arsenal.whip.condition_damage.rider);
+        assert!(arsenal.chain.condition_damage.bike > arsenal.rolling_pin.condition_damage.bike);
+        json["baseball_bat"]["condition_damage"]["rider"] = serde_json::json!(101);
+        assert!(Weapons::from_json(&json.to_string()).is_err());
+        json["baseball_bat"]
+            .as_object_mut()
+            .unwrap()
+            .remove("condition_damage");
+        let legacy = Weapons::from_json(&json.to_string())
+            .unwrap()
+            .baseball_bat
+            .condition_damage;
+        assert_eq!((legacy.bike, legacy.rider), (5., 9.));
+    }
+
     #[test]
     fn old_club_only_catalog_remains_loadable_and_unknown_versions_fail() {
         let mut data = serde_json::from_str::<serde_json::Value>(include_str!(

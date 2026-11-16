@@ -146,7 +146,8 @@ impl Memory {
         let Some(next) = self.path.first().copied() else {
             self.heading = None;
             self.reverse = false;
-            return (self.stalled > threshold).then_some((false, false));
+            // Let the ordinary swept traffic plan resume if no escape route exists.
+            return None;
         };
         let d = distance(next, position).max(0.001);
         let direction = [(next[0] - position[0]) / d, (next[1] - position[1]) / d];
@@ -309,6 +310,26 @@ mod memory_tests {
             );
         }
         assert!(m.active());
+    }
+    #[test]
+    fn unavailable_escape_leaves_control_with_the_traffic_planner() {
+        let mut memory = Memory::default();
+        let mut budget = 1;
+        assert_eq!(
+            memory.tick(
+                11.,
+                [0., 0.],
+                20.,
+                [0., 1.],
+                [0., 22.],
+                false,
+                &mut budget,
+                |_, _| false
+            ),
+            None
+        );
+        assert_eq!(budget, 0);
+        assert!(!memory.active());
     }
     #[test]
     fn closing_obstacle_stops_motion_and_invalidates_cached_path() {

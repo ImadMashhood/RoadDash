@@ -1,5 +1,145 @@
 # Development history
 
+## 2026-11-15 — Hills tree clearance and tire spray (ADR215)
+
+- Added town and backdrop tree detail tiers and checked spacing and slope across layers.
+- Changed loose grass tire spray from green to a warm soil tint.
+
+## 2026-11-15 — Hills slope infill and default visuals (ADR214)
+
+- Planted the marked slopes, rebuilt the woodland LODs from authored shapes
+  and included the whole mesh in batch culling and distance fades.
+- Promoted the approved graphics and motorcycle feedback to the defaults.
+- Let Hills rivals find a swept escape route beside stopped trucks.
+
+## 2026-11-15 — Hills woodland tree families
+
+- Derived three batched LOD meshes from each of the ten detailed roadside tree variants.
+- Baked foliage and bark colors from the authored textures and shared placement transforms across LOD transitions.
+
+## 2026-11-15 — Restore Hills tree distribution (ADR212)
+
+- Restored the original tree distribution at roughly triple density across the verge, hillsides, and backdrop.
+
+## 2026-11-15 — Hills woodland and heat tuning (ADR211)
+
+- Thinned the mountain verge, roughly tripled the outer woodland density, and pushed backdrop silhouettes away from close views.
+- Softened ground shimmer and tied exhaust shimmer to RPM.
+
+## 2026-11-15 — Braking feedback (ADR210)
+
+- Added pooled asphalt skid marks and smoke at the local rider’s rear tire.
+
+## 2026-11-15 — Hills cloud placement (ADR209)
+
+- Spread Hills cumulus banks across the sky with varied altitudes and a distributed low-quality subset.
+
+## 2026-11-15 — Hills shimmer and race gauges (ADR208)
+
+- Replaced Hills heatwave sprites with soft scene refraction near the road.
+- Combined the digital speed arc and engine RPM bar in the race HUD.
+
+## 2026-11-15 — Graphics and motorcycle feedback experiments (ADR207)
+
+- Added selectable Hills asphalt normals and roughness, a daylight grade, peripheral speed streaks and local exhaust heat.
+- Added countdown revving through the existing mixer, pooled exhaust and restrained upshift or landing shake.
+- Added a matched capture fixture and an optional Hanabi GPU exhaust comparison.
+
+
+## 2026-11-15 — Hills road and shoulder thickness (ADR206)
+
+- Enclosed the asphalt and dirt shoulder edges below the existing riding surface.
+- Separated nearly coplanar road, shoulder, and terrain depth.
+
+## 2026-11-15 — Hills contact, deck and scenery (ADR205)
+
+- Added descending rider contacts and increased lateral kick knockback.
+- Closed the deck floor and widened the cattle staggering.
+- Added a far woodland LOD and resumed ordinary traffic after failed escapes.
+
+## 2026-11-15 — Hills herd spacing, sand pace and verge escape (ADR204)
+
+- Widened both solid cattle formations and varied the offsets per cow.
+- Raised the sand speed limit and reduced rolling resistance.
+- Routed stalled opening-city rivals toward pavement and added recovery state to race logs.
+
+## 2026-11-15 — Hills race timing, scenery contact and rival planning (ADR203)
+
+- Added decorated start and finish timing lines with solid braking run-out.
+- Spread the Hills planning work across fixed ticks and retained immediate hazard reaction.
+- Widened both cattle crossings and refined local dust, sand drag and bridge transitions.
+
+## 2026-11-15 — Shared rival obstacle scan
+
+- Share a conservative occupancy snapshot across static AI lane forecasts and retain exact casts where occupancy is uncertain.
+
+## 2026-11-15 — Race performance, difficulty and world follow-up
+
+- Preserved Medium pace and made Hard faster through bends. Added independent authored weapon condition damage.
+- Changed Hills crossings to slower staggered solid herds. Blended meadow coverage and added lighter scenery meshes and surface-colored dust.
+
+## 2026-11-14 — Hills woodland and offline race outcomes (ADR200)
+
+- Shortened the backoff decision for close stopped queues and added batched trees across distant Hills slopes.
+- Added cumulative bike and rider damage, terminal river wipeouts with a recorded spatial splash and standings with restart and spectating.
+
+## 2026-11-14 — Race polish follow-up (ADR199)
+
+- Shortened the built-in point-to-point races by one kilometre and replaced the race map and standings with a speedometer and signed nearby gap.
+- Reduced wind gain, added simulated low-RPM traffic voices, revised soft-target hits and early passing, and refined Hills roadside scenery.
+
+## 2026-11-14 — Parallel-twin engine restored (ADR198)
+
+- Restored the 689 cc parallel twin as the default motorcycle voice.
+
+## 2026-11-13 — Two Hills cattle crossings (ADR197)
+
+- Kept the two crossings shown in the encounter captures.
+
+## 2026-11-13 — Hills cattle and Western town scenes (ADR196)
+
+- Aligned crossing cattle with travel, added two herds, and staged three brawls and two shootouts in Western town.
+
+## 2026-11-13 — Normal rivals and recorded race audio (ADR195)
+
+- Added saved offline Normal and Hard presets and replaced synthesized race effects with sourced samples. Crashes and distinct rider and bike runovers play from the contact point.
+
+## 2026-11-13 — Western main street and AI lean (ADR194)
+
+- Added a left-right bend after the Hills town merge and bounded rival lean at low speed and during reversals.
+
+## 2026-11-13 — Rider roster and grid swaps (ADR193)
+
+- Renamed the City roster and added a one-for-one offline grid and palette swap when selecting a rival base suit.
+
+## 2026-11-13 — Two-color leather and faceted helmets (ADR192)
+
+- Colored the main leather separately across the City roster and matched the replacement helmets to the faceted rider style.
+
+## 2026-11-13 — Helmet shapes and suit sheet (ADR191)
+
+- Reworked the Apex and Rally shells and rendered all fifteen rider colorways.
+
+## 2026-11-13 — Original roster gear colorways (ADR190)
+
+- Exposed fifteen named Windows City suit colorways, recolored the helmets and added an isolated comparison renderer.
+
+## 2026-11-13 — Rider gear (ADR189)
+
+- Added Ember and Glacier suit finishes and independent Apex and Rally helmet models to the local Rider Gear settings.
+
+## 2026-11-13 — Hills frame profiling (ADR188)
+
+- Reduced repeated lane-clearance math and reused exact Hills terrain vertices for mounted hoof support.
+
+## 2026-11-13 — Softer daylight grade and Hills profiling (ADR187)
+
+- Softened the optional daylight curve and reused exact clear AI collision probes within each rider’s planning pass.
+
+## 2026-11-13 — Scenic skybox horizons (ADR186)
+
+- Added distant skyline and ridge layers and denser Hills meadow and woodland.
+
 ## 2026-11-13 — Six-slot offline map picker (ADR182)
 
 Show Metropolis and Hills in a three-column, two-row grid with four blank slots.
@@ -25,6 +165,18 @@ Try three recorded textures in the live gearbox-driven audio path. Set
 
 Add an original inline-four engine voice and retain the recorded-loop A/B
 control. AUDIO-008 remains open for listening acceptance.
+
+## 2026-11-13 — Visual depth pilot (ADR185)
+
+- Added opt-in contact shadows and daylight grading, and rebaked the BUSS4 facade finishes through the near/far pipeline.
+
+## 2026-11-13 — Course presentation polish (ADR184)
+
+- Restored the live entry-menu camera and polished Hills terrain transitions.
+- Added meadow coverage, adjusted Hills population and herds, and expanded
+  pedestrian crossings on all courses.
+- Audited the live checklist and collapsed verified entries. Reconciled the
+  pending demo/menu merge before building the integrated changes.
 
 ## 2026-11-13 — Demo combat, effects and audio (ADR175)
 

@@ -1,5 +1,80 @@
 # Development progress
 
+2026-11-15 Hills tree clearance and soil spray (ADR215). Applied crown spacing and slope checks across tree layers, supplied town and backdrop detail tiers, and corrected grass tire dust.
+[Evidence](testing/hills-tree-clearance/REPORT.md).
+
+2026-11-15 Hills slope infill and default visuals (ADR214). Rebuilt woodland meshes from source triangles, planted the marked slopes, and expanded batch bounds. The approved effects and Poly Haven asphalt are standard. Reviewed the stopped queue log and added a semitrailer regression.
+[Evidence](testing/hills-slope-infill/REPORT.md).
+
+2026-11-15 Hills tree families (ADR213). All three woodland LODs use silhouettes and palettes derived from the ten authored roadside variants. HILLS-TREE-LOD-02 retains the full-route performance gate.
+[Evidence](testing/hills-tree-families/REPORT.md).
+
+2026-11-15 Hills wooded slopes (ADR212). Restored the original distribution and scaled all three Hills tree layers. HILLS-TREE-LOD-02 retains the full-route performance gate.
+[Evidence](testing/hills-woodland-restored/REPORT.md).
+
+2026-11-15 Hills woodland and heat tuning (ADR211). HILLS-TREE-LOD-02, RFU-FX-01, and POLISH-POST-FX-01 retain full-route acceptance.
+[Evidence](testing/hills-woodland-heat/REPORT.md).
+
+2026-11-15 brake skid feedback (ADR210): FX-BRAKE-SKID-01 verified in the Hills comparison. 257 verified / 386 open.
+[Evidence](testing/brake-skids/REPORT.md).
+
+2026-11-15 Hills cloud placement (ADR209): broader spatial coverage, with a bounded low-quality subset. RFU-SKY-05 remains open for other maps and full-route measurements.
+[Evidence](testing/hills-cloud-field/REPORT.md).
+
+2026-11-15 Hills ground shimmer and race instruments (ADR208): HUD-INSTRUMENTS-01 verified.
+256 verified / 386 open. RFU-FX-01 retains full-route review.
+[Evidence](testing/hills-shimmer-hud/REPORT.md).
+
+2026-11-15 Hills road thickness (ADR206): HILLS-ROAD-DEPTH-01 verified.
+255 verified / 382 open. [Implementation and evidence](testing/hills-road-thickness/REPORT.md).
+
+2026-11-15 Hills contact, bridge and scenery (ADR205): verified
+RIDER-LANDING-01 and COMBAT-KICK-PUSH-01. Added four active requirements for
+escape fallback, cattle spacing, bridge continuity and woodland LOD.
+254 verified / 382 open.
+[Implementation and log evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+2026-11-15 Hills herd, sand and city verge (ADR204): HILLS-HERD-03
+and HILLS-VERGE-ESCAPE-01 are open. HILLS-SAND-PACE-01 verified in both riding
+adapters. 252 verified / 378 open.
+[Implementation and log evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
+2026-11-15 Hills timing, presentation and rival planning (ADR203): verified
+HILLS-HERD-01, HILLS-HERD-02 and AI-HILLS-CADENCE-01. RACE-TIMING-LINES-01 and
+HILLS-SURFACE-POLISH-01 are open. 251 verified / 376 open. The matched
+launch measured AI drive time at 1.914 ms/tick at 60 Hz and 0.914 ms/tick at
+10 Hz. The stopped-player Hills fixture clears both rivals without contact.
+[Implementation and evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+2026-11-15 shared static rival obstacle discovery (ADR202): AI-SHARED-SCAN-01
+added open. 248 verified / 375 open. The final Hills A/B matched rider outputs
+and reduced precise casts in the sampled busy interval. Timing remains open.
+[Implementation and evidence](testing/shared-rival-obstacles/REPORT.md).
+
+2026-11-15 race performance, difficulty and world follow-up (ADR201): 248 verified
+/ 374 open. AI-HARD-01, HILLS-HERD-01, HILLS-MEADOW-01, SCENERY-LOD-01,
+COMBAT-CONDITION-01 and FX-SAND-PLUME-01 added open. The final workspace pass
+recorded 755 passing tests and two existing Rapier failures. The Hills A/B
+removed 280 repeated collision casts and retained identical racer states.
+[Implementation and evidence](testing/race-performance-hard-world/REPORT.md).
+
+2026-11-14 Hills woodland and race outcomes (ADR200): 248 verified / 368 open.
+RFU-RACE-HEALTH-01, RFU-HILLS-WOODLAND-01 and RFU-RACE-RESULTS-01 added open.
+745 tests pass with two existing Rapier failures. Locked builds, strict linting,
+asset audit, native Hills/Metropolis smoke and paired Hills captures complete.
+[Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
+2026-11-14 race polish follow-up (ADR199): Two requirements verified and two remain open.
+248 verified / 365 open. [Implementation and evidence](testing/race-polish-followup/REPORT.md).
+
+2026-11-13 Hills cattle and Western town encounters (ADR196): HILLS-CATTLE-01
+and HILLS-TOWN-01 added open. 246 verified / 363 open.
+[Implementation and evidence](testing/hills-encounters/REPORT.md).
+
+2026-11-13 Normal rivals and recorded race audio (ADR195): AI-NORMAL-01 and
+AUDIO-IMPACT-01 added open. 246 verified / 361 open. See the
+[implementation and evidence](testing/normal-impact-audio/REPORT.md).
+
 2026-11-12 whole-body lean follow-up (ADR173 / FEEL-LEAN-01): user approves
 the prior presentation and requests shoulder/arm participation. Hierarchical
 pelvis bank, tuck yaw and down/forward settle implemented with held-contact
@@ -552,9 +627,59 @@ race sound. DEMO-FIGHT-01, DEMO-STRIKE-01 and DEMO-ROAD-FX-01 remain open
 for full-course gameplay and sound review. See
 [implementation and evidence](testing/demo-combat-effects-audio/REPORT.md).
 
+## 2026-11-13 — Course presentation polish
+
+ADR176 restores the live entry-menu backdrop, improves terrain transitions and
+meadow coverage, and updates crossing and herd populations. The checklist
+audit moved verified requirements into collapsed sections and retained the
+pending terrain and crossing verification gates.
+[Implementation and evidence](testing/course-presentation-polish/REPORT.md).
+
 <!-- GENERATED CHECKLIST INDEX -->
 
 ### Part 00 — Completed and verified foundations
+
+- [x] **HILLS-ROAD-DEPTH-01** Close visible gaps below the Hills asphalt and dirt shoulders. This Part 06 task builds on HILLS-BRIDGE-FLOOR-01 and the resident terrain mesh. Verify buried render walls, stable overlap ordering, and unchanged top geometry and collision in the dunes and on both routes. [Evidence](testing/hills-road-thickness/REPORT.md).
+
+- [x] **RIDER-LANDING-01** Wipe out a mounted rider who lands on another mounted rider. This Part 01 task builds on existing rear contacts and recovery. An actual descending contact must eject the upper rider while preserving ordinary side impacts. Verified through contact rules and a physical rig test. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [x] **COMBAT-KICK-PUSH-01** Increase the sideways push of a landed kick by one quarter so the rider moves farther. This Part 07 task builds on authored melee and swept limb contacts. Combat tests verify the 25% higher velocity and the original hit range. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [x] **HILLS-SAND-PACE-01** Raise usable Hills sand speed. Reason: sand slows riders more than requested; part: 06; dependencies: HILLS-SURFACE-POLISH-01 and shared surface policy; acceptance: higher terminal sand speed and retained sand coast, traction penalty, entry and reverse behavior in both adapters; verification: shared surface and real adapter tests. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
+- [x] **AI-HILLS-CADENCE-01** Reduce expensive Hills passing searches while preserving physical passing. Reason: repeated scans consume fixed-tick time and stopped riders form queues; part: 01; dependencies: AI-SHARED-SCAN-01 and RACE-RIDEOVER-01; acceptance: safe two-rival pass, fixed-rate hazard response and reproducible 60/20/10 Hz native measurements; verification: physical regressions and native paired survey. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **HILLS-HERD-02** Place two slower, drivable, staggered 4×5 cattle crossings. Reason: the previous formation was too small and regular; part: 06; dependencies: HILLS-POLISH-02 and solid herd contacts; acceptance: two groups of 20, safe individual gaps, ground support, whole-road traversal; verification: Hills wildlife and both collision adapters. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **HILLS-HERD-01** Keep two solid, staggered, slower Hills cattle crossings. Reason: herds cross too quickly in a grid; part: 06; dependencies: HILLS-03 and contact policy; acceptance: staggered groups occupy their road crossing and topple speeding riders on impact; verification: placement, grounded crossing and mounted contact tests. [Initial implementation](testing/race-performance-hard-world/REPORT.md). [Verification](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [x] **RACE-FINISH-01** Move each built-in point-to-point finish one kilometre earlier. Reason: shorten the races while retaining the physical roads; part: 01; dependencies: existing race intervals and ordered gates; acceptance: earlier finish on each course, retained split and shortcut checks; verification: route traversal tests and native smoke in the [race polish report](testing/race-polish-followup/REPORT.md).
+
+- [x] **RACE-RIDEOVER-01** Pass through soft targets with a hop and no contact speed loss, and pass a slow rider when a lane is clear. Reason: riders lose speed on soft impacts and rivals queue behind the player; part: 01; dependencies: existing crash, contact classification and passing planner; acceptance: preserve horizontal entry velocity, move targets, keep solid hazards, and pass the braking player when a safe line exists; verification: physical contact and passing regressions in the [race polish report](testing/race-polish-followup/REPORT.md).
+
+- [x] **HILLS-BEND-01** Curve the western main street and smooth low-speed AI lean. Reason: the merged western street was straight and slow rivals snapped into hard bank; part:06; dependencies: HILLS-01 and rival steering; acceptance: shared left-right road bend, flat town interior, bounded slow bank and gradual reversal in both adapters; verification: route and bank tests, native Hills revision survey and recovery smoke. [Evidence](testing/western-bends/REPORT.md).
+
+- [x] **GEAR-03** Rename the City roster and exchange offline grid slots on base suit selection. Reason: the player should be able to equip each named rider without duplicating their starting position or palette; part:12; dependencies: GEAR-02 and authored grid slots; acceptance: short race names, preserved palettes and slots, one-for-one exchange on start and retry, Classic palette matching and independent custom helmet finishes; verification: roster permutation, offline retry and gear material tests. [Evidence](testing/rider-gear/REPORT.md#named-roster-and-offline-grid-swaps).
+
+- [x] **GEAR-02** Expose the original Windows City roster’s fifteen named suit colorways and compare the three helmet models. Reason: user requests the original color variations and isolated helmet renders; part:12; dependencies: GEAR-01 and reference-informed rider palettes; acceptance: all fifteen colors on the existing suit, Classic helmet coordinated with the selected colorway, black Apex and white Rally, saved IDs supported and helmet-only renders; verification: gear selection regression and native preview. [Evidence](testing/rider-gear/REPORT.md#original-roster-colors). [Full two-color suit sheet and faceted helmets](testing/rider-gear/REPORT.md#two-color-leather-and-faceted-helmets).
+
+- [x] **GEAR-01** Add independently selectable player suit finishes and helmet meshes. Reason: establish the first equippable cosmetics for career mode; part:12; dependencies: authored rider UV atlas and preferences; acceptance: two new textures on the existing suit, two new helmet models, live local selection and saved defaults, with render-only gear through recovery; verification: settings and skin-swap tests and native recovery captures. [Evidence](testing/rider-gear/REPORT.md).
+
+- [x] **UI-FLYOVER-01** Show the live looping 3D flyover behind the entry menus. Reason: the entry screen shows an opaque background; part:15; dependencies: UI-CITY-TOUR-01 and existing course/camera lifecycle; acceptance: visible map and camera movement, seamless repeat, static-menu setting honored and race camera restored on entry; verification: camera loop fixture and native frontend walkthrough. [Evidence](testing/course-presentation-polish/REPORT.md).
+
+- [x] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: six offline map slots with Metropolis and Hills selectable and four blank reserved slots, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough. [Six-slot walkthrough](testing/demo-combat-effects-audio/REPORT.md#six-slot-map-picker).
+
+- [x] **DEMO-FIGHT-01** End AI exchanges on completion, a 40 km/h speed loss, the 40 km/h speed floor, or loss of safe contact. Reason: fighters should resume the race when a duel breaks down; part:01; dependencies: AI-ENGAGE-01; acceptance: captured entry speed, cooldown and natural in-race exchanges; verification: fixed rules and physical race fixtures. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md). [Verified evidence](testing/demo-combat-effects-audio/REPORT.md).
+
+- [x] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views. [Verified evidence](testing/hills-delivery/REPORT.md).
+
+- [x] **SKY-SUN-01** Make the visible sun distinct and coherent with separate volumetric clouds. Reason: user cannot see a real sun and rejects flat skybox-like clouds; part:06; dependencies:SKY-01 and HILLS-10; acceptance: clearly readable solar disc aligned with the directional light, spatial cloud depth separate from the display sky with bounded cost, consistent fog/exposure and other-map behavior; verification: sun-direction/cloud-volume tests and native sun/cloud views. [Verified evidence](testing/hills-delivery/REPORT.md).
+
+- [x] **DEMO-STRIKE-01** Register limb contact with the moving bike or rider throughout the active strike animation. Reason: the single strike instant misses late touches; part:07; dependencies: authored motion and authoritative simulation; acceptance: moving bike/body tests, one hit, obstruction and host ownership; verification: fixed-rate and native playtests. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md). [Verified evidence](testing/demo-combat-effects-audio/REPORT.md).
+
+- [x] **DEMO-SETTINGS-01** Extend the functional settings menu for the demo. Reason: comparison with shipped racing and multiplayer games identifies missing player controls; part:15; dependencies: SETTINGS-01 and existing audio/display/HUD/menu adapters; acceptance: saved engine/wind/effects levels, window size/shadows, speed units, optional minimap/standings and reduced menu motion; verification: legacy settings, live keyboard/save/reload and native viewport walkthrough. [Comparison and evidence](testing/demo-settings-voice/REPORT.md). [Verified evidence](testing/demo-settings-voice/REPORT.md).
+
+- [x] **SHADOW-RANGE-01** Extend readable city shadow coverage. Reason: user requests shadows farther through the city; part:15; dependencies:P15-004 and existing facade lifecycle; acceptance: broader bounded cascade coverage with preserved close contacts, no collision or facade-LOD regression, measured cost and a baseline comparison; verification: cascade policy tests, native city near/far views and matched timing. [Verified evidence](testing/hills-delivery/PERFORMANCE.md).
 
 - [x] **AI-HILLS-02** Use physical city gaps around paired oncoming cars. Reason: rivals brake instead of weaving through a usable middle or clear sidewalk; original part:01; verified in Part00; dependencies: AI-HILLS-01, physical forecasts and static sweeps; acceptance: early reachable middle/sidewalk choices with actual bike clearance, blocked/tight/late routes still brake, real two-car physical encounter and regressions pass; verification: [gap and startup report](testing/hills-weaving-startup/REPORT.md). Human full-course risk/fairness remains AI-11.
 
@@ -742,6 +867,8 @@ for full-course gameplay and sound review. See
 
 - [x] **P12-002** Test that a finished race pays once across subsequent updates. Evidence: `finish_awards_results_once_and_button_starts_next_race` in [game tests](../src/game.rs).
 
+- [x] **FX-BRAKE-SKID-01** Add visible rubber marks and smoke to hard paved braking for clearer traction feedback. Part 15, depends on brake input, rear tire contact, and map effects quality. Accept a grounded rear trail, short-lived smoke and fixed budgets. Verify hard braking, normal braking, reverse, and matched native views. [Evidence](testing/brake-skids/REPORT.md).
+
 - [x] **UI-01** Catalog original UI/media and deliver an editable artist skeleton. Reason: user will create replacement art and needs all source references, IDs and screen context first; originating part: 15; dependencies: P00-006 and the user-supplied local game/reference R01; acceptance: complete supplied IMAGES/embedded-icon inventory, original screen/popup/native-dialog geometry, external-only reference gallery, frozen IDs/dimensions/replacement briefs and functioning standalone preview/progress workflow; verification: [142 UI resources,29 populated screen entries,13 popups,7 unique Windows dialogs,28 draft pages,63 SVGs,17 Python tests and browser checks](ui/README.md). No original media shipped and no game UI replaced; artwork/Bevy integration remain UI-02/P15-006.
 
 - [x] **UI-03** Provide original-art generation prompts for every UI screen and source-image replacement. Reason: user will generate the art independently; originating part: 15; dependencies: UI-01 catalog and current rider/bike references; acceptance: all 28 proposed screens and 142 UI image IDs / 66 master families have specific subject, composition, quiet UI areas, aspect/export and identity/variant guidance without baked text or premature approval; verification: [screen and per-image prompts](ui/SCREEN_GENERATION_PROMPTS.md), machine-readable coverage and deterministic rebuild tests in [performance/UI evidence](testing/performance-ui-prompts/README.md). All production art and UI-02 integration gates remain open.
@@ -756,7 +883,7 @@ for full-course gameplay and sound review. See
 
 - [x] **P16-002** Build and run a local Linux release; smoke-check garage -> riding -> crash -> get up -> run -> remount -> results with active audio. Evidence: [verification script](../src/verification.rs).
 
-- [x] **AUDIO-014** Exclude proprietary original Road Rash music, voices, and sound files from the current build; current effects are synthesized in [sound](../src/sound.rs).
+- [x] **AUDIO-014** Exclude proprietary original Road Rash music, voices, and sound files from the current build; replacement sources are credited in the [recording ledger](third_party/IMPACT_RECORDINGS.md).
 
 - [x] **CITY-01** Add side-road grids and denser urban blocks; compare road/sidewalk/frontage proportions against the verified original disc. Evidence: [city/combat verification](testing/CITY_COMBAT.md), 657 solid buildings, native city captures and 9.56 ms p95 survey.
 
@@ -960,6 +1087,8 @@ for full-course gameplay and sound review. See
 
 - [x] **P06-021** Treat sidewalks as rideable support so low curb contact raises the bike instead of causing an obstacle wipeout. Evidence: [suspension](../src/vehicle.rs), [curb-transition test](../src/vehicle_tests.rs).
 
+- [x] **HUD-INSTRUMENTS-01** Consolidate speed and RPM in a bottom-right race cluster for easier reading. Part 15, depends on the race HUD and bike telemetry. Accept a speed arc with centered speed and configurable units, and an engine RPM bar that also responds to stationary countdown revs. Verify the native HUD and independent speed and RPM inputs. [Evidence](testing/hills-shimmer-hud/REPORT.md).
+
 - [x] **P07-001** Implement countdown, laps/progress standings, race clock, speed/armor/nitro readouts, minimap, results/payouts, and restart. Evidence: [race](../src/game.rs), [HUD](../src/ui.rs).
 
 - [x] **P07-002** Persist basic race count, wins, credits, and personal-best time; test one-time finish rewards and restarting. Evidence: [profile and finish tests](../src/game.rs).
@@ -1026,9 +1155,19 @@ for full-course gameplay and sound review. See
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
-- [ ] **DEMO-FIGHT-01** End AI exchanges on completion, a 40 km/h speed loss, the 40 km/h speed floor, or loss of safe contact. Reason: fighters should resume the race when a duel breaks down; part:01; dependencies: AI-ENGAGE-01; acceptance: captured entry speed, cooldown and natural in-race exchanges; verification: fixed rules and physical race fixtures. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
+- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Stopped semitrailer and rider log](testing/hills-slope-infill/REPORT.md). [Earlier evidence](testing/hills-contact-and-scenery/REPORT.md).
 
-- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, twice ballistic rise within existing energy and unchanged upright rear-contact/rig policy; verification: core height/energy tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
+- [ ] **HILLS-VERGE-ESCAPE-01** Recover Hills rivals stalled outside the opening city carriageway. Reason: Diamond stopped near 831 m with a zero-speed sidewalk plan; part: 01; dependencies: AI-HILLS-CADENCE-01 and swept escape; acceptance: reachable paved escape goal under a blocked sidewalk target and a native replay of the reported stop; verification: authored-track fixture and native replay. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
+- [ ] **RACE-TIMING-LINES-01** Use decorated timing lines and preserve solid braking run-out. Reason: intermediate gates invalidated Hills finishes and completed bikes ghosted; part: 01; dependencies: RACE-FINISH-01 and current finish awards; acceptance: each built-in point-to-point course finishes from either valid route after crossing the start, with retained time, place and solid bike braking; verification: timing, rear contact and native smoke. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [ ] **AI-SHARED-SCAN-01** Share static obstacle discovery across the race field. Reason: the busy Hills forecast makes hundreds of obstacle sweeps per fixed tick; part: 01; dependencies: RFU-AI-01 and PERF-08; acceptance: one shared discovery scan per active tick with conservative clearance and fewer exact casts; verification: geometry, physical queue and native matched reports. [Evidence](testing/shared-rival-obstacles/REPORT.md).
+
+- [ ] **AI-HARD-01** Preserve the former Normal rival pace as Medium and offer a faster Hard. Reason: Medium race ended with a 16-second lead; part: 01; dependencies: AI-NORMAL-01 and normal race controls; acceptance: saved preference migration and a competitive Hard field; verification: settings, bounded corner and matched human finish tests. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **RFU-RACE-HEALTH-01** Track bike and rider condition and handle Hills river wipeouts. Reason: repeated damage and river crashes need a terminal outcome; part: 01; dependencies: recoverable combat, crash rig and Hills river; acceptance: independent condition, restart reset, positioned splash and wasted outcome; verification: health, water contact and native review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
+- [ ] **FEEL-DOWNED-01** Broaden downed rider/wreck ride-over contact and double its hop height. Reason: user reports tight downed contacts and weak lift; part:01; dependencies: accepted ride-over response; acceptance: swept bounded margin, own-body/scenery exclusions, audible cooldown-limited contact, bounded arcade hop with preserved horizontal speed per ADR199 and unchanged upright rear-contact/rig policy; verification: core hop-height tests, physical contact/recovery regressions and native playtest. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
 - [ ] **AI-METRO-01** Share approved Hills rival traffic flow with Metropolis. Reason: user explicitly wants the same racing AI on both modern courses; part:01; dependencies: AI-HILLS-01/02, route-relative geometry and real car colliders; acceptance: identical local horizon, physical-gap/centre/sidewalk selection and ordered search, actual car bounds, physical two-car encounters at city entry/dense city, split-aware native race/recovery and existing regressions; verification: [Metropolis race-flow evidence](testing/metropolis-race-flow/REPORT.md). Partial: shared policy and physical cases pass; native rendered run is blocked by the NVIDIA driver/library mismatch. Full-course difficulty/combat/performance gates remain open.
 
@@ -1052,7 +1191,7 @@ for full-course gameplay and sound review. See
 
 - [ ] **RFU-NPC-02** Make drive-through contact with walking pedestrians dependable. Reason: rider sometimes visually passes through a walker without a hit; part:01; dependencies: NPC kinematic collider and Rapier event path; acceptance: body-sized contact, high-speed sweep coverage and one knockdown per physical hit while sidewalk near misses stay misses; verification: physical crossing/contact fixtures and native drive-through review.
 
-- [ ] **RFU-SKY-05** Put more spatial cloud banks into Hills, Metropolis and Valley. Reason: clouds look too sparse or remain in the flat backdrop; part:01; dependencies: shared WESL cloud material and RFU-SKY-04 budget; acceptance: moving-camera parallax and route-wide coverage with frustum-limited cost; verification: bank/height tests, three-map native views and matched release GPU/frame measurements.
+- [ ] **RFU-SKY-05** Put more spatial cloud banks into Hills, Metropolis and Valley. Reason: clouds look too sparse or remain in the flat backdrop; part:01; dependencies: shared WESL cloud material and RFU-SKY-04 budget; acceptance: moving-camera parallax and route-wide coverage with frustum-limited cost; verification: bank/height tests, three-map native views and matched release GPU/frame measurements. Partial: Hills banks now spread over both sides of the route at varied heights. [Hills evidence](testing/hills-cloud-field/REPORT.md).
 
 - [ ] **RFU-HILLS-02** Populate the imported Hills city kilometre with more walking pedestrians and varied curb props. Reason: this city section feels empty; part:01; dependencies: city-slice translation, walkable sidewalk polygons and NPC contacts; acceptance: supported non-overlapping furnishing, active walkers/crossings, unchanged source buildings and clear access; verification: source/placement census, physical walking/crossing and native street views.
 
@@ -1115,6 +1254,8 @@ for full-course gameplay and sound review. See
 - [ ] **CAST-AI-01** Use the approved portrait cast for race names, description-based equipment and distinct driving/combat traits. Reason: dossiers and race opponents were disconnected; part: 01; dependencies: AI-12, WEAPON-MODELS-01; acceptance: stable save IDs, fourteen distinct active opponents with matching dossier names/loadouts, bounded lane decisions, safe reverse recovery and obstacle-aware mounted/on-foot escapes; verification: cast/core tests, real dynamic reverse fixtures and native races; human balance remains open.
 
 - [ ] **FOOT-SPAWN-01** Validate collision-clear get-up origins without moving legitimate rooftop/car-supported riders. Reason: production GettingUp uses a centre support ray without building-interior/capsule-volume validation; an invalid native setup demonstrated a fully enclosed start, but ordinary-crash incidence is unverified; part: 01; dependencies: shared recovery, world navigation and FOOT-004; acceptance: reproduce actual invalid production placement, retain safe original origins, bound any nearby stand-up search, preserve roof/car support and solid walls, and explicitly handle deep invalid states without silent wreck teleport or indefinite recovery; verification: real-world closed-envelope/near-wall/roof/car and crash/run/remount tests. Deferred inspection finding from [road/walkability evidence](testing/roads-walkability/README.md); no placement/rescue policy changed in this pass.
+
+- [ ] **AI-NORMAL-01** Validate the Medium comeback window and comparative Hard pace. Reason: one early crash can end a player’s chance of catching the field; part: 01; dependencies: AI-PACE-01, AI-11 and saved settings; acceptance: default Medium and selectable Hard, reproducible post-remount gain and practical comeback on full courses; verification: preset, physical race fixture and human race evidence in the [balance report](testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AI-11** Review full-race role-free rider balance with human playtests. Reason: the new nearby-strike and incident fight-or-flee policy supersedes permanent racer/killer roles but does not yet establish fair aggression; part: 01; dependencies: RFU-AI-09/10/11 and historical AI-10; acceptance: completed races on both branches with visible free-line overtaking, readable nearby threats, practical escapes/recovery, no unavoidable spawn pileup and user-approved difficulty; verification: recorded human races and tuning feedback with crash/attack counts.
 
@@ -1278,6 +1419,8 @@ for full-course gameplay and sound review. See
 
 ### Part 04 — World A — facade study, original textures and procedural buildings
 
+- [ ] **VIS-DEPTH-02** Evaluate a deeper Metropolis storefront pilot. Reason: repeated shaded frontage reads flat; part:04; dependencies: MAT-03 and existing storey kit; acceptance: distinguish glass, cavity and trim across near/far detail and evaluate stronger recess geometry on a representative block; verification: material parity, regenerated atlas and native street comparison. [Evidence](testing/visual-depth/REPORT.md).
+
 - [ ] **ELEVATION-01** Make Metropolis elevation moderately more pronounced. Reason: user requests stronger terrain relief; part: 04; dependencies: METRO-01, LAYOUT-03 and shared elevation/support; acceptance: 20–25% greater longitudinal relief, smooth grades below4%, exact planar/identity/lane preservation, support and recovery on both branches; verification: [authoring/preservation/support receipts](testing/next-elevation/README.md), integrated native survey/recovery and user feel review.
 
 - [ ] **CITY-WIDTH-01** Preview a narrower Metropolis retaining all race-road frontage and removing about half of non-frontage blocks. Reason: the city is overbuilt laterally; part: 04; dependencies: METRO-01, CITY-CIVIC-01; acceptance: actual-source before/after map, explicit whole-block IDs/counts, both race branches and civic sites retained; runtime deletion is pending map selection; verification: read-only geometry/count audit, then source bake/navigation/recovery and measured native performance if implemented. [Proposal](testing/civic-greenery/README.md).
@@ -1376,6 +1519,36 @@ for full-course gameplay and sound review. See
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Poly Haven Asphalt Track is the selected default. Review road lighting and distance shimmer on the target GPU across a full run. [Evidence](testing/graphics-polish/REPORT.md)
+
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density. Roadside, town, and backdrop trees have three tiers. The planting pass applies crown spacing and slope checks across layers. [Tree clearance evidence](testing/hills-tree-clearance/REPORT.md). [Slope infill evidence](testing/hills-slope-infill/REPORT.md). [Tree family evidence](testing/hills-tree-families/REPORT.md). [Placement evidence](testing/hills-woodland-restored/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-HERD-04** Shape both cattle crossings into irregular diagonal bands so the formations look less uniform. This Part 06 task builds on HILLS-HERD-03. Verify varied per-cow spacing and drivable gaps through placement sampling and a native race. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+- [ ] **HILLS-HERD-03** Widen and vary both Hills herd formations. Reason: full-field riders spend long periods near the crossings at low speed; part: 06; dependencies: HILLS-HERD-02; acceptance: both 20-cow crossings remain solid with driveable gaps and fewer native queues; verification: synchronized formation, physical contact and matched race logs. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
+- [ ] **HILLS-SURFACE-POLISH-01** Refine player dust, sand slowdown and bridge shoulders. Reason: local tire dust disappeared and the deck shoulders showed exposed geometry; part: 06; dependencies: HILLS-POLISH-02 and the tire plume pool; acceptance: local dust in crowded scenes, gentler sand, closed abutment geometry and a close-up visual review; verification: pool, surface and bridge regressions plus native image review. [Evidence](testing/hills-race-polish-and-planning/REPORT.md).
+
+- [ ] **HILLS-MEADOW-01** Blend Hills city terrain and tuft density into the first open meadow. Reason: grass starts abruptly; part: 06; dependencies: HILLS-03 and existing terrain support; acceptance: coherent gradient at driving height; verification: coverage and native transition views. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **SCENERY-LOD-01** Add tiered tree, rock, and small scenery meshes. Reason: expand perceived depth within a stable frame budget; part: 06; dependencies: Hills and city dressing; acceptance: reduced far geometry with resident collision; verification: LOD geometry and representative native captures. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **RFU-HILLS-WOODLAND-01** Populate distant Hills slopes with batched woodland. Reason: sparse distant ridgelines in the Hills playtest; part: 06; dependencies: Hills terrain, route projection and existing woodland; acceptance: thousands of grounded distant trees with bounded render geometry and unchanged collision count; verification: placement tests, native screenshots and paired GPU frame timing. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
+- [ ] **SCENIC-HORIZON-01** Give the courses distant skylines and ridges, with fuller Hills meadow and woodland. Reason: the horizon and slopes feel empty; part:06; dependencies: SKY-01, HILLS-03 and existing placement budgets; acceptance: distinct urban and rural layers, coherent fog, clear roads and stable performance; verification: skybox tests, native urban and rural views, and matched frame cost. [Evidence](testing/scenic-horizon/REPORT.md).
+
+- [ ] **COURSE-TERRAIN-01** Smooth the Hills terrain transitions and increase grass on Hills, Metropolis and Valley. Reason: visible seams and sparse meadow in the current playtest; part:06; dependencies: RFU-WORLD-07 and existing terrain/grass batches; acceptance: continuous terrain lighting and road-edge color, more grounded vegetation with clear paths and unchanged terrain collision; verification: mip and geometry tests, native meadow/dune views and selector capture. [Evidence](testing/course-presentation-polish/REPORT.md).
+
+- [ ] **HILLS-POLISH-02** Improve Hills bridge approach, grass and mounted movement. Reason: repair the visible bridge seam and improve roadside presentation; part: 06; dependencies: HILLS-01 and HILLS-CATTLE-01; acceptance: closed visual join, bounded grass, slower cattle, animated mounted cowboy legs and measured cost; verification: geometry checks and native review in the [race polish report](testing/race-polish-followup/REPORT.md).
+
+- [ ] **HILLS-CATTLE-01** Correct the Hills cattle formation and heading at two crossing sites. Reason: the original cattle slide sideways in one row; part: 06; dependencies: COURSE-CROSSING-01 and cow patrols; acceptance: two groups of six, two rows of three, correct heading in both directions, usable ground and road contact; verification: formation test, native smoke and race-speed review in the [Hills encounters report](testing/hills-encounters/REPORT.md).
+
+- [ ] **HILLS-TOWN-01** Stage three brawls and two shootouts in Western town. Reason: add activity to the shared main street; part: 06; dependencies: HILLS-03 and pedestrian rigs; acceptance: two roadside brawls and one in the road, two roadside shootouts, alternating actions with localized sound and readable poses; verification: scene fixture, native smoke and race-speed review in the [Hills encounters report](testing/hills-encounters/REPORT.md).
+
+- [ ] **COURSE-CROSSING-01** Ground Hills cowboys, expand the Hills herds and increase pedestrian crossings on all four courses. Reason: partially buried mounts and sparse crossings; part:06; dependencies: RFU-HILLS-05, RFU-WILD-06 and shared pedestrian admission; acceptance: half the previous Hills city walker count rounded up, retained crossings, more staged walkers on each course, mounted shoulder clearance and five farm cows per parcel/six cattle per crossing herd; verification: authored census, support tests and native route walkthrough. [Evidence](testing/course-presentation-polish/REPORT.md).
+
 - [ ] **RFU-WILD-01** Add coherent moving wild horse herds to Hills. Reason: issue32 requests life beyond traffic; part:06; dependencies:HILLS-01, RFU-WILD-03/04; acceptance: distinct off-road regional herds, terrain-grounded continuous gait/group movement and no nearby frozen actors or population popping; verification: whole-path clearance/coherence tests and native near/mid/far/traversal motion captures. Partial integrated evidence: [issue #32 wildlife report](testing/wildlife/REPORT.md); remaining acceptance gates stay open.
 
 - [ ] **RFU-WILD-02** Add varied bounded bison herds to Hills. Reason: issue32 requests regional herd variety; part:06; dependencies:RFU-WILD-01/03/04; acceptance: readable original bison, varied group sizes, coherent motion and suitable mountain/arid-transition placement; verification: population/path/gait bounds and native motion/art review. Partial integrated evidence: [issue #32 wildlife report](testing/wildlife/REPORT.md); remaining acceptance gates stay open.
@@ -1422,10 +1595,6 @@ for full-course gameplay and sound review. See
 
 - [ ] **RFU-WORLD-07** Blend road, sand and grass without hiding physical classification. Reason: user reports barren Hills/western surroundings and low river in issue31; part:06; dependencies:issue29 sand boundary and HILLS-03; acceptance:consistent per-vertex material transition and physical biome classification; verification:boundary assertions and matched native road/grass/sand captures. Partial implementation and remaining gates: [world follow-up](testing/issue31-world/REPORT.md).
 
-- [ ] **HILLS-11** Add a visible river beneath the Hills suspension bridge. Reason: user requests a river in the canyon; part:06; dependencies:HILLS-08 and resident canyon terrain; acceptance: continuous original water surface seated in the canyon with readable banks and bounded presentation, no invisible bridge support or changes to accepted rider physics; verification: terrain/water bounds tests and native bridge/bank views.
-
-- [ ] **SKY-SUN-01** Make the visible sun distinct and coherent with separate volumetric clouds. Reason: user cannot see a real sun and rejects flat skybox-like clouds; part:06; dependencies:SKY-01 and HILLS-10; acceptance: clearly readable solar disc aligned with the directional light, spatial cloud depth separate from the display sky with bounded cost, consistent fog/exposure and other-map behavior; verification: sun-direction/cloud-volume tests and native sun/cloud views.
-
 - [ ] **HILLS-10** Add bounded volumetric clouds to Hills with measured cost. Reason: user requests volumetric clouds while prioritizing speed; part:06; dependencies:HILLS-04 and PERF-08; acceptance: visible spatial cloud depth, coherent daylight, fixed resource/step budgets and a measured low-cost option, no unverified FPS claim; verification: native cloud views, fixed-budget tests and matched release performance comparison.
 
 - [ ] **HILLS-07** Replace the plain Hills composition with a clearly urban opening, developed rolling-hill farms and giant rocks, and dense close western frontage. Reason: user rejected the sparse result and requested the earlier farm concept; part:06; dependencies:HILLS-01/03/06; acceptance: city before hills, no opening farms, supported farm parcels on hills, visibly denser buildings close to both town roads without blocking roads or mounted paths; verification: actual footprint/support tests, driving-height city/farm/town captures and full-course review. Partial implementation and current checks: [revision evidence](testing/hills-revision/REPORT.md); full acceptance remains open.
@@ -1440,7 +1609,7 @@ for full-course gameplay and sound review. See
 
 - [ ] **HILLS-06** Enrich Hills with original cacti, tree variation, rocks/deadwood and western street details. Reason: user grants agents room for environmental polish; part:06; dependencies:HILLS-03; acceptance: biome-specific original/reused assets, road-clear supported placement, bounded detail independent of solid collision and readable town/dunes; verification: actual-placement/support tests, provenance and native close/wide views. Final art and target-hardware performance remain open. Partial: implemented and technically checked in [Hills polish evidence](testing/hills-polish/README.md); final human acceptance remains open.
 
-- [ ] **HILLS-01** Add a separate12.5km Hills course with city opening, winding elevated hills, flat western town and dune finish. Reason: user map request/reference on2026-11-10; part:06; dependencies: existing track, road/terrain collision and race systems; acceptance: selectable course, strong supported relief/guardrails, preserved legacy maps/default, complete race/checkpoints/retry and both physical rigs; verification: route/content tests, locked regression suite and native Hills survey/recovery. Human full-course feel and hardware review remain open.
+- [ ] **HILLS-01** Add a separate12.5km Hills course with city opening, winding elevated hills, flat western town and dune finish. Reason: user map request/reference on2026-11-10; part:06; dependencies: existing track, road/terrain collision and race systems; acceptance: selectable course, strong supported relief/guardrails, preserved legacy maps/default, complete race/checkpoints/retry and both physical rigs; verification: route/content tests, locked regression suite and native Hills survey/recovery. Human full-course feel and hardware review remain open. [Western main street bend and AI bank](testing/western-bends/REPORT.md).
 
 - [ ] **HILLS-02** Split Hills at town entry and rejoin inside the town before its exit. Reason: user's explicit correction to the reference diagram; part:06; dependencies:HILLS-01 and existing branch navigation; acceptance: fork around5.5km, merge around7.4km with town continuing to8.5km, two supported race corridors, correct AI/traffic/minimap/checkpoints and no shortcut wins; verification: route projection/choice/gate tests and native both-branch coverage.
 
@@ -1474,7 +1643,7 @@ for full-course gameplay and sound review. See
 
 ### Part 07 — Weapons and complete riding combat
 
-- [ ] **DEMO-STRIKE-01** Register limb contact with the moving bike or rider throughout the active strike animation. Reason: the single strike instant misses late touches; part:07; dependencies: authored motion and authoritative simulation; acceptance: moving bike/body tests, one hit, obstruction and host ownership; verification: fixed-rate and native playtests. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
+- [ ] **COMBAT-CONDITION-01** Apply authored bike and rider condition damage to confirmed strikes. Reason: set up a tunable combat foundation; part: 07; dependencies: RFU-RACE-HEALTH-01 and active weapon catalog; acceptance: separate targets, compatible content, preserved hit timing; verification: data validation and live confirmed contact. [Evidence](testing/race-performance-hard-world/REPORT.md).
 
 - [ ] **FEEL-WEAPON-01** Keep both hands on grips and show weapons only during attacks. Reason: user rejects permanent armed ready pose; part:07; dependencies: V2-07-002; acceptance: inventory does not change idle grip pose, attack hand/weapon agree and idle/kick/recovery hide weapon; verification: animation/inventory regression tests and native left/right weapon review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
@@ -1594,7 +1763,7 @@ for full-course gameplay and sound review. See
 
 ### Part 11 — Remaining production-art integration and acceptance
 
-- [ ] **PERF-08** Profile and optimize the measured low-FPS bottleneck on the user's hardware. Reason: instrumentation and aggregate utilization alone do not establish root cause or60FPS; part: 11; dependencies: PERF-07, reproducible farm/edge/downtown and damaged-course logs; acceptance: identify dominant main/render/simulation/paging spans, capture GPU timestamps when needed, make justified focused optimizations and demonstrate target P95 frame budget without removing authoritative hazards; verification: before/after native logs, GPU profiler receipts when applicable and user hardware confirmation. Current user-authorized follow-up: controlled release profiling, collision-pair classification and cheaper pedestrian crossing admission on `codex/performance-profile-pass`; evidence and rejected experiments are recorded in [performance pass](testing/performance-pass/README.md). Partial: [ADR089 performance pass](testing/performance-ui-prompts/README.md) adds separate sync/step/writeback and catch-up diagnostics, stable render updates and exact semantic static-collider batching; full target-hardware city/crash frame-budget acceptance remains open. Sequential polish pass01 adds retained-only facade selection hysteresis and paired native profiling; see [pass01 evidence](testing/polish-12/pass01/README.md).
+- [ ] **PERF-08** Profile and optimize the measured low-FPS bottleneck on the user's hardware. Reason: instrumentation and aggregate utilization alone do not establish root cause or60FPS; part: 11; dependencies: PERF-07, reproducible farm/edge/downtown and damaged-course logs; acceptance: identify dominant main/render/simulation/paging spans, capture GPU timestamps when needed, make justified focused optimizations and demonstrate target P95 frame budget without removing authoritative hazards; verification: before/after native logs, GPU profiler receipts when applicable and user hardware confirmation. Current user-authorized follow-up: controlled release profiling, collision-pair classification and cheaper pedestrian crossing admission on `codex/performance-profile-pass`; evidence and rejected experiments are recorded in [performance pass](testing/performance-pass/README.md). Partial: [ADR089 performance pass](testing/performance-ui-prompts/README.md) adds separate sync/step/writeback and catch-up diagnostics, stable render updates and exact semantic static-collider batching; full target-hardware city/crash frame-budget acceptance remains open. Sequential polish pass01 adds retained-only facade selection hysteresis and paired native profiling; see [pass01 evidence](testing/polish-12/pass01/README.md). Hills follow-ups profile collision-probe reuse, traffic clearance math and mounted terrain sampling in native release fixtures. [Evidence](testing/visual-depth/REPORT.md).
 
 - [ ] **P11-009** Validate readable scenery at racing speed, zero missing material/texture references, provenance/credits, and asset swaps without gameplay changes.
 
@@ -1664,23 +1833,29 @@ for full-course gameplay and sound review. See
 
 ### Part 15 — Presentation, audio, UI and accessibility
 
-- [ ] **DEMO-ROAD-FX-01** Add surface-driven tire spray, location cues and recorded race sound. Reason: make surfaces, speed and impacts readable; part:15; dependencies: P15-003, wheel contact and mixer; acceptance: four engine bands, different surfaces, readable impacts and audible route identity; verification: provenance, native capture and human audio/visual tuning. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
+- [ ] **POLISH-GRID-01** Compare stationary grid revving, piped exhaust and shift or landing camera feedback for stronger motorcycle cues. Requires the race input and mixer. Verify held and released throttle, stationary position, anti-nausea behavior and rider comfort. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **DEMO-SETTINGS-01** Extend the functional settings menu for the demo. Reason: comparison with shipped racing and multiplayer games identifies missing player controls; part:15; dependencies: SETTINGS-01 and existing audio/display/HUD/menu adapters; acceptance: saved engine/wind/effects levels, window size/shadows, speed units, optional minimap/standings and reduced menu motion; verification: legacy settings, live keyboard/save/reload and native viewport walkthrough. [Comparison and evidence](testing/demo-settings-voice/REPORT.md).
+- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. Daylight grading, wind and exhaust shimmer are enabled by default. Exhaust strength follows engine RPM with a half-strength cap. [Tuning](testing/hills-woodland-heat/REPORT.md). [Evidence](testing/graphics-polish/REPORT.md)
+
+- [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](testing/graphics-polish/REPORT.md)
+
+- [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. Grass tire spray uses a warm soil tint. [Tree and dust follow-up](testing/hills-tree-clearance/REPORT.md). [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+- [ ] **RFU-RACE-RESULTS-01** Show all offline race standings and allow observing the remaining racers. Reason: players want current order, restart or continuation after finishing or being wasted; part: 15; dependencies: RFU-RACE-HEALTH-01 and frontend race flow; acceptance: correct sorted rows and red wasted strike, deterministic restart and no duplicate awards; verification: standings, lifecycle and native screen review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
+- [ ] **VIS-DEPTH-01** Evaluate contact shadows and a depth-oriented daylight grade. Reason: weak grounding and distance separation; part:15; dependencies: SKY-01 and P15-004; acceptance: readable shadows and hazards, coherent sky/fog and bounded cost; verification: matched Hills and Metropolis native views and frame measurements. The optional grade has been softened toward the baseline daylight curve. [Evidence](testing/visual-depth/REPORT.md).
+
+- [ ] **DEMO-ROAD-FX-01** Add surface-driven tire spray, location cues and recorded race sound. Reason: make surfaces, speed and impacts readable; part:15; dependencies: P15-003, wheel contact and mixer; acceptance: four engine bands, different surfaces, readable impacts and audible route identity; verification: provenance, native capture and human audio/visual tuning. [Implementation and verification](testing/demo-combat-effects-audio/REPORT.md).
 
 - [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
-- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: screen-space ground shimmer replaces the sprite approximation and runs at one fifth of the initial strength; visual and full-route GPU acceptance remain open. [Evidence](testing/hills-shimmer-hud/REPORT.md). [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
 - [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: terrain-seated feathered dust pool implemented; centered-chase visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
 - [ ] **RFU-FX-03** Add map-appropriate city shader/effects such as subtle vent steam, depth haze or a wet-road variation. Reason: requested city visual character; part:15; dependencies: RFU-PERF-06, RFU-SKY-01 and MAT-03; acceptance: coherent Metropolis/legacy-city presentation with restrained legibility, matching near/far material identity and opt-in quality budgets; verification: native views, source hash/provenance, GPU/frame comparison and visual review. Partial: bounded curb-steam pool implemented; native/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
 - [ ] **RFU-FX-04** Add a restrained original effect to Valley so every existing map has distinct air movement. Reason: issue #42 requests visual effects on every map, including Valley; part:15; dependencies: RFU-FX-01–03 and Valley route/content; acceptance: quality-controlled, off-road air motes remain legible and presentation-only across the full route; verification: native Valley before/after and temporal views, original source audit and CPU/GPU frame comparison. Partial: fixed-budget motes are implemented; native visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
-
-- [ ] **UI-COURSE-01** Select Metropolis and Hills from the native menu. Reason: user needs level access without command-line flags; part:15; dependencies:UI-02 and HILLS-01; acceptance: six offline map slots with Metropolis and Hills selectable and four blank reserved slots, preserved legacy maps, keyboard/controller/mouse navigation, selected course launches/retries correctly and preserves profiles/settings, online map changes not overridden by inherited CLI flags; verification: frontend/state/launch tests and native selection-to-race walkthrough.
-
-- [ ] **SHADOW-RANGE-01** Extend readable city shadow coverage. Reason: user requests shadows farther through the city; part:15; dependencies:P15-004 and existing facade lifecycle; acceptance: broader bounded cascade coverage with preserved close contacts, no collision or facade-LOD regression, measured cost and a baseline comparison; verification: cascade policy tests, native city near/far views and matched timing.
 
 - [ ] **UI-RETRO-BG-01** Clean the entry/lobby UI and use the user-provided original-game background pictures locally. Reason: explicit user art/UI direction; part: 15; dependencies: UI-02, ONLINE-PLAY-01 and the external reference kit; acceptance: readable keyboard/controller/mouse flows, correctly fitted original backgrounds with project-art fallback, functioning multiplayer actions and no retail image redistribution; verification: native screen captures and actual host/join/lobby navigation. In progress.
 
@@ -1723,6 +1898,10 @@ for full-course gameplay and sound review. See
 - [ ] **AUDIO-010** Blend town/farm/cliff/coast ambience; visible livestock/tractors must match their sounds; keep music on a separate licensed, duckable, streamer-safe bus.
 
 - [ ] **AUDIO-011** Evaluate Kira only if needed; if chosen, avoid running conflicting default Bevy audio and Kira backends.
+
+- [ ] **RACE-MIX-HUD-01** Replace the race HUD, soften wind, and add low-RPM traffic audio. Reason: keep race information readable and the traffic mix distinct; part: 15; dependencies: grouped settings and spatial audio; acceptance: speed and nearby-rival readouts, softer wind and spatial car and heavy vehicle voices; verification: HUD and audio checks plus human race review in the [race polish report](testing/race-polish-followup/REPORT.md).
+
+- [ ] **AUDIO-IMPACT-01** Verify the recorded impact mix and contact placement. Reason: the synthesized impacts lack weight and audible location; part: 15; dependencies: AUDIO-004, AUDIO-005 and AUDIO-009; acceptance: licensed distinct impact and runover sounds, one-shot at the confirmed contact, stereo readability next to and behind the player and usable loudness in a pack; verification: contact and wire regressions, native smoke and headphone playtest in the [audio report](testing/normal-impact-audio/REPORT.md).
 
 - [ ] **AUDIO-012** Validate no loop clicks/gaps/clipping from idle to redline, distinguishable location ambiences, and no doubled combat/crash sound after prediction correction.
 

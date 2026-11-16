@@ -10,7 +10,9 @@ use bevy::{
     shader::ShaderRef,
 };
 
-pub const BANKS: usize = 14;
+const CORRIDOR_BANKS: usize = 14;
+const HILLS_DEPTH_BANDS: usize = 8;
+const HILLS_BANKS_PER_BAND: usize = 3;
 pub const STEPS: u32 = 12;
 pub const RESOLUTION: usize = 48;
 #[derive(Component)]
@@ -88,8 +90,8 @@ fn density(uv: Vec3) -> f32 {
     ((envelope - (1. - n) * 0.25) * edge).clamp(0., 1.)
 }
 
-fn cloud_transform(track: &Track, index: usize) -> Transform {
-    let station = index as f32 * track.length / (BANKS - 1) as f32;
+fn corridor_transform(track: &Track, index: usize) -> Transform {
+    let station = index as f32 * track.length / (CORRIDOR_BANKS - 1) as f32;
     let (p, q) = track.sample_route(0, station, 0.);
     let side = if index.is_multiple_of(3) {
         0.
@@ -109,6 +111,51 @@ fn cloud_transform(track: &Track, index: usize) -> Transform {
     Transform::from_xyz(p.x, track.bounds.1.y + 360. + (index % 3) as f32 * 45., p.z)
         .with_scale(size)
         .with_rotation(Quat::from_rotation_y(index as f32 * 0.73))
+}
+
+fn hills_transform(track: &Track, band: usize, column: usize) -> Transform {
+    let seed = track
+        .definition
+        .scenery_seed
+        .wrapping_add((band * 997 + column * 211) as u32);
+    let random = |salt| super::countryside::noise(seed.wrapping_add(salt));
+    let span = track.bounds.1.z - track.bounds.0.z;
+    let center_x = (track.bounds.0.x + track.bounds.1.x) * 0.5;
+    // Jitter each cell independently across a broad world-space field. The
+    // clouds stay put when the road curves instead of tracing its centerline.
+    let x = center_x + (column as f32 - 1.) * 1730. + (random(1) - 0.5) * 1010.;
+    let z = track.bounds.0.z - 950.
+        + (span + 2500.) * (band as f32 + 0.18 + random(15) * 0.68) / HILLS_DEPTH_BANDS as f32;
+    let y = track.bounds.1.y + 385. + random(31) * 310.;
+    let width = 690. + random(42) * 530.;
+    let size = Vec3::new(
+        width,
+        245. + random(53) * 235.,
+        width * (0.68 + random(66) * 0.24),
+    );
+    Transform::from_xyz(x, y, z)
+        .with_scale(size)
+        .with_rotation(Quat::from_rotation_y(random(81) * std::f32::consts::TAU))
+}
+
+fn layout(track: &Track, steps: u32) -> Vec<Transform> {
+    if steps == 0 {
+        return Vec::new();
+    }
+    if !track.is_hills() {
+        return (0..CORRIDOR_BANKS)
+            .map(|index| corridor_transform(track, index))
+            .collect();
+    }
+    (0..HILLS_DEPTH_BANDS)
+        .flat_map(|band| {
+            (0..HILLS_BANKS_PER_BAND)
+                .filter(move |&column| {
+                    steps == STEPS || column != (band + 2) % HILLS_BANKS_PER_BAND
+                })
+                .map(move |column| hills_transform(track, band, column))
+        })
+        .collect()
 }
 
 fn texture() -> Image {
@@ -166,21 +213,22 @@ pub fn spawn(
     sun: Vec3,
     sky_nits: f32,
 ) {
+    let steps = steps();
+    let banks = layout(track, steps);
     commands.insert_resource(CloudBudget {
         volumetric: true,
-        banks: BANKS,
-        steps: steps(),
+        banks: banks.len(),
+        steps,
         density_bytes: RESOLUTION.pow(3),
     });
     let density = images.add(texture());
     let cube = meshes.add(Cuboid::default());
-    for i in 0..BANKS {
-        let transform = cloud_transform(track, i);
+    for (i, transform) in banks.into_iter().enumerate() {
         let material = materials.add(CloudMaterial {
             settings: CloudSettings {
                 local_from_world: transform.to_matrix().inverse(),
                 sun_direction: sun.extend(0.),
-                radiance: Vec4::new(sky_nits, steps() as f32, 0.012, 0.),
+                radiance: Vec4::new(sky_nits, steps as f32, 0.012, 0.),
             },
             density: density.clone(),
         });
@@ -247,20 +295,48 @@ mod tests {
     }
 
     #[test]
-    fn spatial_clouds_follow_each_course_length_with_bounded_depth_and_clear_air() {
-        for track in [Track::hills().unwrap(), Track::metropolis().unwrap()] {
-            for i in 0..BANKS {
-                let t = cloud_transform(&track, i);
-                assert!(t.translation.is_finite() && t.rotation.is_finite());
-                assert!(t.translation.y - t.scale.y * 0.5 > track.bounds.1.y + 120.);
-                assert!(t.scale.y / t.scale.x > 0.4);
-                assert!(t.scale.x <= 1050. && t.scale.y <= 460. && t.scale.z <= 780.);
-                let station = i as f32 * track.length / (BANKS - 1) as f32;
-                let expected = track.sample_route(0, station, 0.).0;
-                assert!((t.translation - expected).xz().length() <= 211.);
-            }
+    fn hills_clouds_cover_both_sides_at_multiple_depths_and_heights() {
+        let track = Track::hills().unwrap();
+        let full = layout(&track, STEPS);
+        let low = layout(&track, 6);
+        let center = (track.bounds.0.x + track.bounds.1.x) * 0.5;
+        assert_eq!(full.len(), 24);
+        assert_eq!(low.len(), 16);
+        assert!(layout(&track, 0).is_empty());
+        for group in full.chunks_exact(3) {
+            assert!(group[0].translation.x < center - 1200.);
+            assert!(group[2].translation.x > center + 1200.);
+            assert!(group.iter().all(|cloud| cloud.translation.is_finite()
+                && cloud.rotation.is_finite()
+                && cloud.translation.y - cloud.scale.y * 0.5 > track.bounds.1.y + 120.));
         }
-        assert_eq!(BANKS, 14);
-        assert_eq!(RESOLUTION.pow(3), 110592);
+        assert!(low.iter().all(|cloud| full.contains(cloud)));
+        let height = |a: &Transform, b: &Transform| a.translation.y.total_cmp(&b.translation.y);
+        let min = full
+            .iter()
+            .min_by(|a, b| height(a, b))
+            .unwrap()
+            .translation
+            .y;
+        let max = full
+            .iter()
+            .max_by(|a, b| height(a, b))
+            .unwrap()
+            .translation
+            .y;
+        assert!(max - min > 200.);
+        assert_eq!(full, layout(&track, STEPS));
+    }
+
+    #[test]
+    fn metropolis_retains_its_existing_cloud_corridor() {
+        let track = Track::metropolis().unwrap();
+        for (index, cloud) in layout(&track, STEPS).iter().enumerate() {
+            let station = index as f32 * track.length / (CORRIDOR_BANKS - 1) as f32;
+            let expected = track.sample_route(0, station, 0.).0;
+            assert!((cloud.translation - expected).xz().length() <= 211.);
+        }
+        assert_eq!(layout(&track, STEPS).len(), 14);
+        assert_eq!(layout(&track, 6).len(), 14);
     }
 }

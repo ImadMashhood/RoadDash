@@ -111,7 +111,7 @@ def facade_style(building, block, floors, palette):
     seed = int.from_bytes(hashlib.blake2b(building["id"].encode(), digest_size=4).digest(), "little")
     return palette["families"].index(pool[seed % len(pool)])
 
-def run():
+def run(crossings_only=False):
     source=ROOT/'docs/planning/farms-long-city/LAYOUT.json';d=json.loads(source.read_text())
     from metropolis_street_life import varied_floors, parked_cars, traffic_paths
     life=json.loads((ROOT/'content/world/metropolis_street_life.json').read_text())
@@ -178,6 +178,18 @@ def run():
     selected_crossings=crossing_routes(walkers,road,walk,walker_props,CONFIG['pedestrian_crossings'])
     assert selected_crossings, 'no clear sidewalk-to-sidewalk crossings'
     assert len(walkers)==CONFIG['pedestrians']
+    if crossings_only:
+        current = json.loads(OUT.read_text())
+        if current['source_layout_sha256'] != hashlib.sha256(source.read_bytes()).hexdigest():
+            raise ValueError('crossing-only bake requires the current approved layout')
+        def resident(walker):
+            return {k:v for k,v in walker.items() if k != 'crossing_end'}
+        if list(map(resident, current['pedestrians'])) != list(map(resident, walkers)):
+            raise ValueError('crossing-only bake would change the resident patrols')
+        current['pedestrians'] = walkers
+        OUT.write_text(json.dumps(current,separators=(',',':'))+'\n')
+        print(f'Rebaked {len(selected_crossings)} crossing routes; all other records preserved.')
+        return
     surfaces=[]
     # Clip to short tiles before triangulation: pavement follows the graded height field.
     courts=[]
@@ -317,4 +329,4 @@ if __name__=='__main__':
         bake_elevation(args.previous_layout)
     elif '--facades-only' in sys.argv:
         bake_facades(json.loads((ROOT/'content/world/metropolis_facades.json').read_text()))
-    else:run()
+    else:run(crossings_only="--crossings-only" in sys.argv)

@@ -10,6 +10,7 @@ pub mod biomechanics;
 pub mod combat;
 pub mod content;
 pub mod controls;
+mod course_lines;
 pub mod crash_behavior;
 pub mod destruction;
 pub mod diagnostics;
@@ -28,6 +29,7 @@ pub mod models;
 pub mod npc;
 pub mod offscreen_crash;
 pub mod original_crash;
+mod polish;
 pub mod props;
 pub mod recovery;
 #[cfg(test)]
@@ -72,7 +74,10 @@ pub fn build_app(smoke: bool) -> App {
         biomechanics::Settings::selected().expect("valid ragdoll arguments/configuration"),
     );
     biomechanics::install_debug(&mut app);
-    if !smoke {
+    if !smoke
+        || (std::env::args().any(|arg| arg == "--smoke-test")
+            && std::env::var_os("ROADDASH_SETTINGS").is_some())
+    {
         app.insert_resource(settings::Preferences::load(settings::Preferences::path()));
     }
     app.insert_resource(
@@ -163,6 +168,7 @@ pub fn build_app(smoke: bool) -> App {
         runtime::RoadAudioPlugin,
         diagnostics::RoadDiagnosticsPlugin,
     ));
+    polish::install(&mut app);
     crash_behavior::install_comparison(&mut app);
     #[cfg(feature = "debug_physics")]
     app.add_plugins(bevy_rapier3d::render::RapierDebugRenderPlugin::default());
@@ -172,7 +178,11 @@ pub fn build_app(smoke: bool) -> App {
             .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
                 std::time::Duration::from_secs_f64(1.0 / 60.0),
             ));
-        if std::env::var_os("ROADDASH_REVERSE_REVIEW").is_some() {
+        if std::env::var_os("ROADDASH_POLISH_CAPTURE").is_some()
+            || std::env::args().any(|a| a == "--polish-survey")
+        {
+            polish::survey::install(&mut app);
+        } else if std::env::var_os("ROADDASH_REVERSE_REVIEW").is_some() {
             app.add_systems(Update, verification::movement::review.after(ui::update_ui));
         } else if std::env::args().any(|a| a == "--racer-ai-survey") {
             game::racer_ai_survey::install(&mut app);
@@ -273,6 +283,7 @@ pub fn build_app(smoke: bool) -> App {
                     map_fx::survey::run
                         .after(game::camera)
                         .before(map_fx::animate)
+                        .before(polish::camera_effects)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
         } else if std::env::args().any(|a| a == "--hills-survey") {

@@ -766,3 +766,108 @@ fn patrol_presentation_is_exclusive_and_persists_on_wrecks_without_physics() {
         OFFICER_PALETTE
     );
 }
+
+#[test]
+fn local_gear_swaps_mesh_and_material_handles_through_recovery() {
+    use crate::models::gear::{Gear, Helmet, Suit};
+    use bevy::ecs::system::RunSystemOnce;
+
+    let mut app = crate::game::tests::simulation();
+    authored(&mut app);
+    let world = app.world_mut();
+    world.init_resource::<crate::settings::Preferences>();
+    world
+        .run_system_once(|mut commands: Commands, art: Res<world::Art>| {
+            let rider = world::bike(&mut commands, &art, 0, true);
+            commands.entity(rider).insert(crate::game::Rider::new(0));
+            let rival = world::bike(&mut commands, &art, 1, true);
+            commands.entity(rival).insert(crate::game::Rider::new(1));
+            let (runner, _) = world::runner(&mut commands, &art, 0);
+            commands.entity(runner).insert(crate::recovery::OwnedBody {
+                owner: rider,
+                kind: crate::recovery::BodyKind::Runner,
+            });
+            crate::recovery::humanoid(
+                &mut commands,
+                &art,
+                rider,
+                0,
+                Vec3::Y * 3.,
+                Quat::IDENTITY,
+                Vec3::ZERO,
+            );
+        })
+        .unwrap();
+
+    let parts: Vec<_> = world
+        .query::<&ConnectedRig>()
+        .iter(world)
+        .flat_map(|rig| rig.gear_parts.iter().copied())
+        .collect();
+    let originals: Vec<_> = parts
+        .into_iter()
+        .map(|(entity, index, _)| {
+            (
+                entity,
+                index,
+                world.get::<Mesh3d>(entity).unwrap().clone(),
+                world
+                    .get::<MeshMaterial3d<StandardMaterial>>(entity)
+                    .unwrap()
+                    .clone(),
+            )
+        })
+        .collect();
+    assert_eq!(originals.len(), 20);
+
+    for (suit, helmet) in Suit::ALL
+        .into_iter()
+        .map(|suit| (suit, Helmet::Classic))
+        .chain([
+            (Suit::Axle, Helmet::Apex),
+            (Suit::Axle, Helmet::Rally),
+            (Suit::Player, Helmet::Classic),
+        ])
+    {
+        let selected = Gear { suit, helmet };
+        world
+            .resource_mut::<crate::settings::Preferences>()
+            .file
+            .gear = selected;
+        world.run_system_once(gear::apply).unwrap();
+        let models = world.resource::<world::Art>().models.as_ref().unwrap();
+        let mut changed_suit = 0;
+        let mut changed_helmet = 0;
+        let mut changed_helmet_color = 0;
+        for (entity, index, mesh, material) in &originals {
+            let kind = models.parts[*index].gear.unwrap();
+            let current_mesh = world.get::<Mesh3d>(*entity).unwrap();
+            let current_material = world
+                .get::<MeshMaterial3d<StandardMaterial>>(*entity)
+                .unwrap();
+            match kind {
+                gear::PartKind::Suit => {
+                    assert_eq!(current_mesh, mesh);
+                    changed_suit += usize::from(current_material != material);
+                }
+                _ => {
+                    changed_helmet += usize::from(current_mesh != mesh);
+                    changed_helmet_color += usize::from(current_material != material);
+                }
+            }
+        }
+        assert_eq!(changed_suit, if suit == Suit::Player { 0 } else { 6 });
+        assert_eq!(
+            changed_helmet,
+            if helmet == Helmet::Classic { 0 } else { 6 }
+        );
+        assert_eq!(
+            changed_helmet_color,
+            match (helmet, suit) {
+                (Helmet::Classic, Suit::Player) => 0,
+                (Helmet::Classic, _) => 3,
+                _ => 6,
+            }
+        );
+    }
+}

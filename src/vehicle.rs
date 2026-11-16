@@ -8,6 +8,8 @@ use crate::{
 };
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
+pub(crate) const MAX_RPM: f32 = 10_500.;
+
 #[derive(Component)]
 pub struct RideableStep;
 #[derive(Resource, Default, Clone, Copy, Debug, PartialEq, Eq)]
@@ -61,6 +63,7 @@ pub struct BikeState {
     pub yaw_rate: f32,
     pub intent: rr_core::VehicleIntent,
     pub grounded: [bool; 2],
+    pub(crate) rear_contact: Option<(Vec3, Vec3)>,
     pub suspension: [f32; 2],
     pub rpm: f32,
     pub gear: usize,
@@ -130,6 +133,8 @@ pub fn attach(
         ));
     }
 }
+pub(crate) const FINISH_BRAKE_MPS2: f32 = 10.;
+
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub fn forces(
     time: Res<Time<Fixed>>,
@@ -139,6 +144,7 @@ pub fn forces(
     context: ReadRapierContext,
     ground: Query<(), With<Ground>>,
     supports: Query<(&Transform, &Collider, Option<&crate::recovery::OwnedBody>), Without<Rider>>,
+    soft_targets: crate::recovery::RideOverTargets,
     mut bikes: Query<(
         Entity,
         &mut Rider,
@@ -159,10 +165,17 @@ pub fn forces(
         &mut bikes
     {
         *force = default();
+        state.rear_contact = None;
         state.impact_velocity = v.linear;
+        let finished = r.finished.is_some();
+        // The results menu pauses Rapier. Keep the field's momentum for
+        // Keep Race Running, including the run-out of the rider who finished.
+        if race.phase == Phase::Finished {
+            continue;
+        }
         if recovery.stage != RecoveryStage::Riding
             || race.phase != Phase::Racing
-            || r.finished.is_some()
+            || r.wasted.is_some()
         {
             *body = RigidBody::KinematicPositionBased;
             *v = Velocity::zero();
@@ -202,7 +215,8 @@ pub fn forces(
         let speed = signed_speed.abs();
         let input = r.drive_intent;
         let player = r.human_controlled();
-        let at_end = !track.definition.closed && r.progress >= track.race_interval().finish - 0.1;
+        let at_end =
+            finished || (!track.definition.closed && r.progress >= track.race_interval().finish);
         let throttle = input.throttle && !at_end;
         let brake = input.brake || at_end;
         let nitro =
@@ -232,9 +246,7 @@ pub fn forces(
             let predicate = |hit, _: &bevy_rapier3d::rapier::geometry::Collider| {
                 ground.contains(hit)
                     || supports.get(hit).is_ok_and(|(pose, shape, owned)| {
-                        if owned.is_some_and(|o| {
-                            o.owner == e || o.kind == crate::recovery::BodyKind::Runner
-                        }) {
+                        if soft_targets.contains(e, hit) || owned.is_some_and(|o| o.owner == e) {
                             return false;
                         }
                         let (lo, hi) = crate::recovery::collider_bounds(pose, shape);
@@ -267,6 +279,9 @@ pub fn forces(
                 force.torque +=
                     (contact - (t.translation + t.rotation * Vec3::Y * 0.55)).cross(hit.normal * f);
                 state.grounded[i] = true;
+                if i == 0 {
+                    state.rear_contact = Some((contact, hit.normal));
+                }
                 state.suspension[i] = compression;
                 state.wheel_forces[i] = f;
                 normal += hit.normal;
@@ -290,7 +305,7 @@ pub fn forces(
             gear -= 1;
         }
         state.gear = gear;
-        state.rpm = rpm_for(gear).min(10500.0);
+        state.rpm = rpm_for(gear).min(MAX_RPM);
         let limit = if nitro { p.nitro_speed } else { p.top_speed };
         let limit = if player {
             limit
@@ -298,15 +313,21 @@ pub fn forces(
             limit.min(r.ai_profile.cruise_mps())
         } else {
             limit
-                .min(rr_core::pursuit::rival_drive_ceiling(
-                    r.ai_profile,
-                    rr_core::cast::character(r.id).map_or(1., |c| c.pace),
-                    p.top_speed,
-                    r.combat_mind.motor_request(p.top_speed),
-                ))
+                .min(
+                    race.rival_difficulty
+                        .adjust_pace(rr_core::pursuit::rival_drive_ceiling(
+                            r.ai_profile,
+                            rr_core::cast::character(r.id).map_or(1., |c| c.pace),
+                            p.top_speed,
+                            r.combat_mind.motor_request(p.top_speed),
+                        )),
+                )
                 .min(rr_core::pursuit::race_corner_speed(
                     track.curvature_route(r.route, r.progress),
-                    rr_core::pursuit::RACE_CURRENT_LATERAL_ACCEL_MPS2,
+                    race.rival_difficulty.corner_budget(
+                        rr_core::pursuit::RACE_CURRENT_LATERAL_ACCEL_MPS2,
+                        !r.networked,
+                    ),
                 ))
         };
         let surface = track.surface_route(r.route, r.progress, r.lane);
@@ -337,8 +358,8 @@ pub fn forces(
         let longitudinal = engine
             - if brake {
                 (v.linear.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
-                    -(p.dry_mass + rider_mass) * 10.0,
-                    (p.dry_mass + rider_mass) * 10.0,
+                    -(p.dry_mass + rider_mass) * FINISH_BRAKE_MPS2,
+                    (p.dry_mass + rider_mass) * FINISH_BRAKE_MPS2,
                 ) * if at_end { 1.0 } else { input.brake_strength() }
             } else if !throttle {
                 (v.linear.dot(forward) * (p.dry_mass + rider_mass) / dt.max(0.001)).clamp(
@@ -433,20 +454,22 @@ pub fn forces(
         // Positive roll leans toward camera-right (-local X).
         // Preserve player steering bank. Rivals also bank for the road-following
         // turn that their lane-centering input does not represent.
-        let target_lean = if speed > 0.5 {
-            if r.human_controlled() {
+        if r.human_controlled() {
+            let target = if speed > 0.5 {
                 rr_core::steering::visual_bank(steer)
             } else {
-                rr_core::steering::rival_visual_bank(
-                    steer,
-                    track.curvature_route(r.route, r.progress),
-                    speed,
-                )
-            }
+                0.0
+            };
+            state.lean += (target - state.lean) * (1.0 - (-dt * 16.0).exp());
         } else {
-            0.0
-        };
-        state.lean += (target_lean - state.lean) * (1.0 - (-dt * 16.0).exp());
+            state.lean = rr_core::steering::step_rival_bank(
+                state.lean,
+                steer,
+                track.curvature_route(r.route, r.progress),
+                speed,
+                dt,
+            );
+        }
         state.wheel_spin = (state.wheel_spin + speed / 0.4 * dt) % std::f32::consts::TAU;
     }
 }
@@ -466,7 +489,10 @@ pub fn readback(
             let (_, pitch, roll) = t.rotation.to_euler(EulerRot::YXZ);
             t.rotation = Quat::from_euler(EulerRot::YXZ, state.yaw, pitch, roll);
         }
-        if recovery.stage == RecoveryStage::Riding && race.phase == Phase::Racing {
+        if recovery.stage == RecoveryStage::Riding
+            && race.phase == Phase::Racing
+            && r.wasted.is_none()
+        {
             let previous = r.progress;
             r.route = track.choose_route(r.route, previous, t.translation, r.human_controlled());
             let (d, lane, _) = track.project_route(r.route, t.translation, previous);
@@ -476,8 +502,10 @@ pub fn readback(
                 d.min(track.length)
             };
             let route = r.route;
-            r.gates
-                .observe_route(&track, route, state.position, t.translation, previous, d);
+            if r.racing() {
+                r.gates
+                    .observe_race(&track, route, state.position, t.translation, previous, d);
+            }
             r.progress = d;
             r.lane = lane;
             r.speed = v.linear.with_y(0.0).length();

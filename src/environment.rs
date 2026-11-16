@@ -149,6 +149,14 @@ pub fn build(
     let brick = materials.add(Color::srgb(0.48, 0.25, 0.17));
     let concrete = materials.add(Color::srgb(0.45, 0.48, 0.48));
     let window = materials.add(Color::srgb(0.19, 0.36, 0.43));
+    let meadow_blades = layout.map(|_| {
+        materials.add(StandardMaterial {
+            base_color: Color::srgb(0.31, 0.42, 0.16),
+            perceptual_roughness: 1.,
+            cull_mode: None,
+            ..default()
+        })
+    });
     let mut rail_ground = crate::world_gen::hills::guardrails::GroundSamples::default();
     let mut render_triangles = 0;
     let mut collision_triangles = 0;
@@ -201,6 +209,15 @@ pub fn build(
     let margin = if layout.is_some() { 400.0 } else { 200.0 };
     let nx = ((max.x - min.x + margin * 2.0) / tile).ceil() as usize;
     let nz = ((max.z - min.z + margin * 2.0) / tile).ceil() as usize;
+    let terrain_plan = layout.map(|layout| {
+        let plan = crate::world_gen::WorldPlan::from_json(
+            crate::world_gen::WORLD_JSON,
+            crate::world_gen::ARCHETYPES_JSON,
+            track,
+        )
+        .expect("terrain plan");
+        (plan, layout)
+    });
     for tx in 0..nx {
         for tz in 0..nz {
             let origin = Vec2::new(
@@ -218,21 +235,18 @@ pub fn build(
             let center = Vec3::new(origin.x + tile * 0.5, 0.0, origin.y + tile * 0.5);
             let local_vertices: Vec<_> = vertices.iter().map(|p| *p - center).collect();
             let mut terrain_mesh = mesh(&local_vertices, &indices);
-            if let Some(layout) = layout {
-                let plan = crate::world_gen::WorldPlan::from_json(
-                    crate::world_gen::WORLD_JSON,
-                    crate::world_gen::ARCHETYPES_JSON,
-                    track,
-                )
-                .expect("terrain plan");
+            if let Some((plan, layout)) = &terrain_plan {
                 terrain_mesh.insert_attribute(
                     Mesh::ATTRIBUTE_COLOR,
                     vertices
                         .iter()
-                        .map(|p| {
-                            crate::world_gen::surfaces::terrain_color(&plan, layout, track, *p)
-                        })
+                        .map(|p| crate::world_gen::surfaces::terrain_color(plan, layout, track, *p))
                         .collect::<Vec<_>>(),
+                );
+            }
+            if let (Some(material), Some(layout)) = (&meadow_blades, layout) {
+                valley_grass(
+                    commands, meshes, track, layout, center, &vertices, &indices, material,
                 );
             }
             let terrain = commands
@@ -297,6 +311,19 @@ pub fn build(
     }
     if let Some(layout) = layout {
         crate::world_gen::surfaces::spawn(commands, meshes, materials, track, layout);
+        for (index, station) in (2850..4850).step_by(240).enumerate() {
+            let station = station as f32;
+            if !layout.settings.junction_at(station, 6.) {
+                crate::world_gen::metropolis::pedestrians::spawn_road_crossing(
+                    commands,
+                    art,
+                    track,
+                    station,
+                    track.half_width(station) + layout.settings.sidewalk_width_m * 0.5,
+                    index,
+                );
+            }
+        }
     }
     crate::world_gen::hills::guardrails::spawn_legacy(commands, art, track, &rail_ground, layout);
     let cone = meshes.add(Cone::new(1.0, 1.0).mesh().resolution(7));
@@ -662,42 +689,68 @@ pub fn build(
             }
         }
     }
-    for (i, gate) in track.definition.checkpoints.iter().enumerate() {
-        let (p, q) = track.sample(gate.fraction * track.length, 0.0);
-        for side in [-1.0, 1.0] {
-            block(
-                commands,
-                art,
-                if i == 0 {
-                    art.white.clone()
-                } else {
-                    yellow.clone()
-                },
-                p + q * Vec3::X * side * (track.half_width(gate.fraction * track.length) + 1.0)
-                    + Vec3::Y * 2.0,
-                Vec3::new(0.2, 4.0, 0.2),
-                q,
-                true,
-            );
-        }
-        if i == 0 {
-            block(
-                commands,
-                art,
-                art.dark.clone(),
-                p + Vec3::Y * 5.0,
-                Vec3::new(16.0, 0.7, 0.5),
-                q,
-                true,
-            );
-        }
-    }
     commands.insert_resource(TrackInspector {
         visible: false,
         render_triangles,
         collision_triangles,
     });
 }
+#[allow(clippy::too_many_arguments)]
+fn valley_grass(
+    commands: &mut Commands,
+    meshes: &mut Assets<Mesh>,
+    track: &Track,
+    layout: &crate::world_gen::layout::WorldLayout,
+    center: Vec3,
+    terrain: &[Vec3],
+    triangles: &[[u32; 3]],
+    material: &Handle<StandardMaterial>,
+) {
+    let mut vertices = Vec::new();
+    let mut indices = Vec::new();
+    for (index, tri) in triangles.iter().enumerate() {
+        let [a, b, c] = tri.map(|i| terrain[i as usize]);
+        let p = a * 0.46 + b * 0.33 + c * 0.21;
+        let (station, lane) = track.nearby_station(p.x, p.z);
+        if !matches!(track.sector(station), Sector::Farms | Sector::Hills)
+            || lane.abs() < track.half_width(station) + track.definition.verge_width + 3.
+            || lane.abs() > 72.
+            || (index % 2 == 1 && lane.abs() > 32.)
+            || layout
+                .road_reservations
+                .iter()
+                .chain(&layout.access_reservations)
+                .any(|r| r.contains(p.xz(), 0.5))
+            || layout.blockers().any(|r| r.contains(p.xz(), 0.5))
+            || (b - a).cross(c - a).normalize_or_zero().y < 0.75
+        {
+            continue;
+        }
+        let p = p - center;
+        let seed = (p.x * 1.7 + p.z * 3.1).sin();
+        let base = vertices.len() as u32;
+        let tip = p + Vec3::new(seed * 0.14, 0.36 + seed.abs() * 0.20, 0.06);
+        for side in [Vec3::X * 0.16, Vec3::Z * 0.16] {
+            vertices.extend([p - side, p + side, tip]);
+        }
+        indices.extend([[base, base + 1, base + 2], [base + 3, base + 4, base + 5]]);
+    }
+    if !indices.is_empty() {
+        commands.spawn((
+            Name::new("Valley meadow grass"),
+            Mesh3d(meshes.add(mesh(&vertices, &indices))),
+            MeshMaterial3d(material.clone()),
+            Transform::from_translation(center),
+            bevy::light::NotShadowCaster,
+            bevy::camera::visibility::VisibilityRange {
+                start_margin: 0. ..0.,
+                end_margin: 160. ..230.,
+                use_aabb: false,
+            },
+        ));
+    }
+}
+
 pub(crate) fn spawn_cow(commands: &mut Commands, art: &Art, p: Vec3, q: Quat) -> Entity {
     let root = commands
         .spawn((
@@ -868,7 +921,14 @@ pub fn patrol(
     race: Res<Race>,
     track: Res<Track>,
     mut actors: Query<
-        (&Patrol, &mut Transform, Option<&CrossTraffic>),
+        (
+            &Patrol,
+            &mut Transform,
+            Option<&CrossTraffic>,
+            Has<crate::world_gen::hills::HillsCowboy>,
+            Has<crate::world_gen::hills::wildlife::CrossingCow>,
+            Option<&crate::world_gen::hills::wildlife::CrossingGround>,
+        ),
         (
             Without<ColliderDisabled>,
             Without<crate::world_gen::metropolis::Crossing>,
@@ -879,7 +939,7 @@ pub fn patrol(
     if race.phase != Phase::Racing {
         return;
     }
-    for (path, mut t, car) in &mut actors {
+    for (path, mut t, car, cowboy, crossing_cow, crossing_ground) in &mut actors {
         let phase = (race.elapsed * path.speed / path.extent + path.phase).rem_euclid(4.0);
         let f = if path.one_way {
             phase.rem_euclid(2.0) - 1.0
@@ -890,7 +950,11 @@ pub fn patrol(
         };
         let p = path.center + path.axis * f * path.extent;
         t.translation = p;
-        if car.is_none() {
+        if let Some(ground) = crossing_ground {
+            t.translation.y = ground.at(f) + 0.015;
+        } else if cowboy || crossing_cow {
+            t.translation.y = crate::world_gen::hills::crossing_support(&track, p) + 0.015;
+        } else if car.is_none() {
             t.translation.y = track.terrain_height(p.x, p.z)
                 + if track.earthworks.is_some() {
                     0.04
@@ -903,8 +967,12 @@ pub fn patrol(
         } else {
             -1.0
         };
-        t.rotation =
-            Quat::from_rotation_y((path.axis.x * direction).atan2(path.axis.z * direction));
+        let heading = path.axis * direction;
+        t.rotation = if crossing_cow {
+            crate::world_gen::hills::wildlife::cattle_heading(heading)
+        } else {
+            Quat::from_rotation_y(heading.x.atan2(heading.z))
+        };
     }
 }
 pub fn inspector(
@@ -949,19 +1017,6 @@ pub fn inspector(
         Isometry3d::from_translation((min + max) * 0.5),
         Color::srgb(0.6, 0.4, 1.0),
     );
-    for gate in track
-        .definition
-        .checkpoints
-        .iter()
-        .filter(|_| track.metropolis.is_none())
-    {
-        let (p, q) = track.sample(gate.fraction * track.length, 0.0);
-        gizmos.line(
-            p - q * Vec3::X * 12.0 + Vec3::Y * 2.0,
-            p + q * Vec3::X * 12.0 + Vec3::Y * 2.0,
-            Color::srgb(1.0, 0.2, 0.2),
-        );
-    }
     for spawn in &track.definition.spawns {
         gizmos.sphere(
             Isometry3d::from_translation(
@@ -976,11 +1031,11 @@ pub fn inspector(
     }
 }
 
-pub fn animate_civilians(
+pub(crate) fn animate_civilians(
     time: Res<Time>,
     race: Res<Race>,
     visuals: Query<&crate::runtime::VisualRoot>,
-    npcs: Query<&crate::npc::Npc>,
+    npcs: Query<&crate::npc::Npc, Without<crate::world_gen::hills::encounters::Participant>>,
     mut limbs: Query<(&PedestrianLimb, &ChildOf, &mut Transform)>,
 ) {
     for (limb, parent, mut t) in &mut limbs {
@@ -1024,7 +1079,7 @@ pub fn animate_cow_legs(
             }
         });
         let pivot = Vec3::new(leg.rest.x, 0.85, leg.rest.z);
-        let turn = Quat::from_rotation_x(angle);
+        let turn = Quat::from_rotation_z(angle);
         t.translation = pivot + turn * (leg.rest - pivot);
         t.rotation = turn;
     }

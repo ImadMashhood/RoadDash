@@ -243,6 +243,7 @@ fn rider_physically_passes_in_opposite_lane_and_returns() {
 fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
     for (count, width, compressed) in [
         (1, 6.5, false),
+        (1, 6.5, true),
         (3, 6.5, false),
         (3, 3.0, false),
         (3, 3.0, true),
@@ -277,15 +278,18 @@ fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
                 ..default()
             },
         ));
+        let close_pair = count == 1 && compressed;
         let mut followers = Vec::new();
         for id in 1..=count {
             let mut r = Rider::new(id);
-            r.progress = if compressed {
+            r.progress = if close_pair {
+                97.26
+            } else if compressed {
                 100. - id as f32 * 4.7
             } else {
                 65. - id as f32 * 15.
             };
-            r.lane = lane;
+            r.lane = if close_pair { lane - 0.55 } else { lane };
             r.speed = if compressed { 0. } else { 20. };
             r.attack = 1000.; // Driving fixture; keep all physical bodies and contacts.
             let (p, q) = app.world().resource::<Track>().sample(r.progress, r.lane);
@@ -379,6 +383,13 @@ fn role_free_rider_chain_physically_passes_a_stationary_human_player() {
         );
         assert!(progress.iter().all(|p| *p > parked.progress + 30.));
         assert!(longest.iter().all(|ticks| *ticks < 300));
+        if close_pair {
+            assert!(longest[0] <= 45, "stopped for {} ticks", longest[0]);
+            assert!(
+                elapsed_ticks <= 480,
+                "close pass took {elapsed_ticks} ticks"
+            );
+        }
         if compressed {
             assert!(reverse_pulses.iter().all(|count| *count > 0 && *count <= 2));
         } else {
@@ -568,6 +579,75 @@ fn straight_rider(app: &mut App, id: usize, station: f32, lane: f32) -> Entity {
             recovery::bike_body(),
         ))
         .id()
+}
+
+#[test]
+fn medium_pace_recovers_more_ground_after_one_early_crash() {
+    use rr_core::pursuit::RivalDifficulty::{Hard, Medium};
+    let mut gaps = Vec::new();
+    for difficulty in [Hard, Medium] {
+        let mut app = straight_simulation();
+        app.world_mut().resource_mut::<Race>().rival_difficulty = difficulty;
+        let player = straight_rider(&mut app, 0, 200., -4.);
+        let rival = straight_rider(&mut app, 3, 220., 4.);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        let gap = |app: &App| {
+            app.world().get::<Rider>(rival).unwrap().progress
+                - app.world().get::<Rider>(player).unwrap().progress
+        };
+        for _ in 0..600 {
+            app.update();
+        }
+        let before = gap(&app);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .release(KeyCode::KeyW);
+        app.world_mut().get_mut::<Rider>(player).unwrap().health = 0.;
+        let mut saw_crash = false;
+        let mut remount = None;
+        for tick in 0..2400 {
+            app.update();
+            let stage = app.world().get::<Recovery>(player).unwrap().stage;
+            saw_crash |= stage == RecoveryStage::Falling;
+            if saw_crash && stage == RecoveryStage::Riding {
+                remount = Some((tick, gap(&app)));
+                break;
+            }
+        }
+        let recovery = app.world().get::<Recovery>(player).unwrap();
+        assert!(
+            remount.is_some(),
+            "{difficulty:?} failed to remount: saw crash {saw_crash}, stage {:?}",
+            recovery.stage,
+        );
+        let (tick, on_remount) = remount.unwrap();
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..1800 {
+            app.update();
+        }
+        let after = gap(&app);
+        for _ in 0..1800 {
+            app.update();
+        }
+        let later = gap(&app);
+        let player_state = app.world().get::<Rider>(player).unwrap();
+        let rival_state = app.world().get::<Rider>(rival).unwrap();
+        println!(
+            "RIVAL-PACE {difficulty:?}: before {before:.1}m, remount {:.2}s gap {on_remount:.1}m, +30s {after:.1}m, +60s {later:.1}m; player at {:.1}m lane {:.1}m speed {:.1}m/s, rival speed {:.1}m/s",
+            tick as f32 / 60.,
+            player_state.progress,
+            player_state.lane,
+            player_state.speed,
+            rival_state.speed,
+        );
+        gaps.push((on_remount, after, later));
+    }
+    assert!(gaps[1].0 - gaps[1].1 > gaps[0].0 - gaps[0].1 + 60.);
+    assert!(gaps[1].2 < gaps[1].1);
 }
 
 #[test]
@@ -882,6 +962,66 @@ fn launch_checks_a_stationary_rider_before_using_the_clear_road_fast_path() {
 }
 
 #[test]
+fn hills_two_close_rivals_pass_a_stationary_player_without_contact() {
+    let start = 1100.;
+    let mut app = straight_simulation();
+    install_course_support(&mut app, Track::hills().unwrap(), start);
+    let player = straight_rider(&mut app, 0, start, 2.);
+    let followers = [
+        straight_rider(&mut app, 1, start - 2.74, 1.45),
+        straight_rider(&mut app, 2, start - 7.44, 1.45),
+    ];
+    for owner in followers {
+        app.world_mut().get_mut::<Rider>(owner).unwrap().attack = 1000.;
+    }
+    let mut passed = None;
+    let mut retained = false;
+    let mut minimum = f32::MAX;
+    for tick in 0..720 {
+        app.update();
+        let human = app.world().get::<Rider>(player).unwrap();
+        assert!(human.speed.abs() < 0.5);
+        assert_eq!(human.health, 100.);
+        assert_eq!(
+            app.world().get::<Recovery>(player).unwrap().stage,
+            RecoveryStage::Riding
+        );
+        let player_position = app.world().get::<Transform>(player).unwrap().translation;
+        for owner in followers {
+            let position = app.world().get::<Transform>(owner).unwrap().translation;
+            minimum = minimum.min(position.xz().distance(player_position.xz()));
+            let rider = app.world().get::<Rider>(owner).unwrap();
+            assert_eq!(rider.health, 100.);
+            assert_eq!(
+                app.world().get::<Recovery>(owner).unwrap().stage,
+                RecoveryStage::Riding
+            );
+            retained |= rider.ai_held_plan.is_some_and(|plan| {
+                plan.tick + 1
+                    < app
+                        .world()
+                        .resource::<crate::runtime::SimulationClock>()
+                        .ticks
+            });
+        }
+        if followers.into_iter().all(|owner| {
+            let rider = app.world().get::<Rider>(owner).unwrap();
+            rider.progress > human.progress + 30. && rider.speed > 5.
+        }) {
+            passed = Some(tick);
+            break;
+        }
+    }
+    println!("Hills stopped-player pass ticks: {passed:?}");
+    assert!(passed.is_some());
+    assert!(minimum > 1.2, "rival passed within {minimum} m");
+    assert_eq!(
+        retained,
+        std::env::var("ROADDASH_AI_REPLAN_HZ").as_deref() != Ok("60")
+    );
+}
+
+#[test]
 fn hills_rival_physically_clears_two_solid_oncoming_cars() {
     physical_oncoming_pair(Track::hills().unwrap(), -100.);
 }
@@ -889,8 +1029,34 @@ fn hills_rival_physically_clears_two_solid_oncoming_cars() {
 #[test]
 fn metropolis_rival_physically_clears_two_solid_oncoming_cars() {
     // City entry approaching the split, and the dense city shared with Hills.
-    for start in [3250., 10400.] {
+    for start in [3250., 10000.] {
         physical_oncoming_pair(Track::metropolis().unwrap(), start);
+    }
+}
+
+fn install_course_support(app: &mut App, track: Track, start: f32) {
+    let mut vertices = vec![];
+    for station in ((start as i32 - 200)..=(start as i32 + 1100)).step_by(5) {
+        for lane in [-10., 10.] {
+            vertices.push(track.sample(station as f32, lane).0);
+        }
+    }
+    let mut triangles = vec![];
+    for i in 0..vertices.len() / 2 - 1 {
+        let a = (i * 2) as u32;
+        triangles.extend([[a, a + 2, a + 1], [a + 1, a + 2, a + 3]]);
+    }
+    app.insert_resource(track);
+    let world = app.world_mut();
+    let floors: Vec<_> = world
+        .query_filtered::<Entity, With<world::Ground>>()
+        .iter(world)
+        .collect();
+    for floor in floors {
+        world.entity_mut(floor).insert((
+            Collider::trimesh(vertices.clone(), triangles.clone()).unwrap(),
+            Transform::IDENTITY,
+        ));
     }
 }
 
@@ -913,30 +1079,8 @@ fn physical_oncoming_pair(track: Track, start: f32) {
         }
     }
     let mut app = straight_simulation();
-    let mut vertices = vec![];
-    for station in ((start as i32 - 200)..=(start as i32 + 1100)).step_by(5) {
-        for lane in [-10., 10.] {
-            vertices.push(track.sample(station as f32, lane).0);
-        }
-    }
-    let mut triangles = vec![];
-    for i in 0..vertices.len() / 2 - 1 {
-        let a = (i * 2) as u32;
-        triangles.extend([[a, a + 2, a + 1], [a + 1, a + 2, a + 3]]);
-    }
     let main_traffic = track.metropolis.is_some();
-    app.insert_resource(track);
-    let world = app.world_mut();
-    let floors: Vec<_> = world
-        .query_filtered::<Entity, With<world::Ground>>()
-        .iter(world)
-        .collect();
-    for floor in floors {
-        world.entity_mut(floor).insert((
-            Collider::trimesh(vertices.clone(), triangles.clone()).unwrap(),
-            Transform::IDENTITY,
-        ));
-    }
+    install_course_support(&mut app, track, start);
     // Start the Metropolis bike in the occupied incoming lane so this is a
     // real avoidance encounter, rather than simply cruising the empty side.
     let rider_lane = if main_traffic { 1.8 } else { -1.8 };
@@ -1054,4 +1198,80 @@ fn physical_oncoming_pair(track: Track, start: f32) {
         r.progress, r.speed, r.lane
     );
     assert!(passed && r.speed > 25. && max_bank > 0.01);
+}
+
+#[test]
+fn hills_rivals_get_out_from_behind_a_stopped_semitrailer() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = straight_simulation();
+    let start = 4360.;
+    let car_station = start + 15.;
+    install_course_support(&mut app, Track::hills().unwrap(), start);
+    let truck = app
+        .world_mut()
+        .run_system_once(
+            move |mut commands: Commands, art: Res<Art>, track: Res<Track>| {
+                let (position, rotation) = track.sample(car_station, -2.8);
+                let truck = commands
+                    .spawn((
+                        Traffic {
+                            route: 0,
+                            progress: car_station,
+                            lane: -2.8,
+                            speed: 0.,
+                        },
+                        TrafficYield {
+                            cruise: Some(0.),
+                            ..default()
+                        },
+                        Transform::from_translation(position).with_rotation(rotation),
+                        Visibility::Visible,
+                        RigidBody::KinematicPositionBased,
+                    ))
+                    .id();
+                crate::heavy_traffic::spawn(
+                    &mut commands,
+                    &art,
+                    truck,
+                    crate::heavy_traffic::Kind::Semi,
+                    27,
+                );
+                truck
+            },
+        )
+        .unwrap();
+    let riders = [
+        straight_rider(&mut app, 7, start, -2.8),
+        straight_rider(&mut app, 14, start - 5., -2.8),
+    ];
+    let mut maneuvered = false;
+    for _ in 0..1200 {
+        app.update();
+        maneuvered |= riders.iter().any(|&entity| {
+            let rider = app.world().get::<Rider>(entity).unwrap();
+            rider.ai_drive.reversing() || rider.ai_escape.active()
+        });
+        if riders
+            .iter()
+            .all(|&entity| app.world().get::<Rider>(entity).unwrap().progress > car_station + 10.)
+        {
+            break;
+        }
+    }
+    let end = riders.map(|e| {
+        let rider = app.world().get::<Rider>(e).unwrap();
+        (
+            rider.progress,
+            rider.speed,
+            rider.lane,
+            rider.ai_plan,
+            rider.health,
+        )
+    });
+    assert!(maneuvered, "no room made behind truck: {end:?}");
+    assert!(
+        end.iter().all(|r| r.0 > car_station + 10. && r.4 == 100.),
+        "queue stayed blocked: {end:?}"
+    );
+    assert!(app.world().get::<Traffic>(truck).unwrap().speed.abs() < 0.1);
 }

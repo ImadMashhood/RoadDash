@@ -1,0 +1,18 @@
+{
+  "original": {
+    "roadside": 1110,
+    "middle": 2803,
+    "backdrop": 8432,
+    "total": 12345,
+    "road_support_probes": 1506,
+    "maximum_support_error_m": 0.025834083557128906
+  },
+  "restored": {
+    "roadside": 3334,
+    "middle": 8495,
+    "backdrop": 25851,
+    "total": 37680,
+    "road_support_probes": 1506,
+    "maximum_support_error_m": 0.025834083557128906
+  }
+}

@@ -62,6 +62,7 @@ pub(super) fn equipment(
             materials: vec![material.clone()],
             officer_material: material.clone(),
             officer_hidden: false,
+            gear: None,
             group: "patrol-equipment".into(),
             rest: Transform::from_translation(pos)
                 .with_scale(scale)

@@ -4826,3 +4826,291 @@ identifiers and launch paths available for existing callers.
 Use coarser original asphalt aggregate, mottled grass and exposed stone
 on steep meadow faces. Keep the resident terrain and collision topology
 and the existing desert surface palette.
+
+## ADR184 — Live menu backdrop and course polish (2026-11-13)
+
+Composite the live camera beneath existing frontend gradients on cinematic
+pages. Use continuous Hills terrain normals across tiles and mipmapped grit
+without changing collision geometry. Keep vegetation render-only. Stage
+additional pedestrian crossings through the shared host admission rules and
+author Metropolis crossings from the approved source with a crossing-only
+rebake. Ground Hills mounted crossings on the road and shoulder profile.
+[Implementation and evidence](testing/course-presentation-polish/REPORT.md).
+
+## ADR185 — Visual depth pilot (2026-11-13)
+
+Offer independent opt-in startup comparisons for the display curve/Hills
+daylight and camera contact shadows. Pilot storefront depth through the
+existing BUSS4 geometry and source finishes. Rebake model-derived proxies
+with the authored finishes. [Evidence](testing/visual-depth/REPORT.md).
+
+## ADR186 — Scenic skybox horizons (2026-11-13)
+
+Generate course-specific distant silhouettes in the display cube while
+retaining the existing sky radiance for environment lighting. Increase
+Hills grass and woodland through the existing reserved placement and batch
+paths. [Implementation and evidence](testing/scenic-horizon/REPORT.md).
+
+## ADR187 — Softer daylight grade and exact AI probe reuse (2026-11-13)
+
+Soften the opt-in curve toward Reinhard and use the same pre-tone grade on
+the camera and procedural display sky. Cache clear static sphere casts
+for exact endpoints within one rider planning pass. Keep blocked casts
+available for hit diagnostics and use the existing AI cache fallback
+switch. [Evidence](testing/visual-depth/REPORT.md).
+
+## ADR188 — Reduce repeated clearance and hoof support work (2026-11-13)
+
+Evaluate the lane-clearance interval endpoints for steady lateral traffic.
+Keep the existing interior checks for moving crossings. Reuse exact terrain
+vertices across mounted updates while the Track is unchanged and share
+the terrain sample across both branches for crossing actors.
+[Native measurements](testing/visual-depth/REPORT.md#hills-frame-profiling).
+
+## ADR189 — Independent rider suit and helmet slots (2026-11-13)
+
+Store stable local gear IDs in existing versioned preferences. Use the
+original suit mesh and UV layout with two authored alternate albedo
+textures. Bind Apex and Rally shells and visors to the existing animated
+head and swap renderer assets on the local rider through recovery.
+[Implementation and evidence](testing/rider-gear/REPORT.md).
+
+## ADR190 — Windows City roster gear colorways
+
+Expose the fifteen existing rider palettes with the original names.
+Use the shared suit atlas and existing materials, and bind the Classic
+helmet shell tint to the selected palette. Use black Apex and white Rally
+shells. Accept the previous saved suit IDs as aliases.
+[Helmet comparison and verification](testing/rider-gear/REPORT.md#original-roster-colors).
+
+## ADR191 — Helmet eyeports and Rally peak
+
+Build the eyeport into both replacement shells and fit each visor to its
+opening. Give Apex a compact full-face chin bar and Rally an extended chin
+guard with a swept peak. Render every named suit on the shared game mesh
+for review. [Native renders](testing/rider-gear/REPORT.md#helmet-redesign-and-full-suit-sheet).
+
+## ADR192 — Full rider colorways and faceted helmets
+
+Give the main leather and accent panels independent palette tints based
+on the local Windows City reference sheet. Lift the existing rider albedo
+for the leather region so the secondary colors read while retaining seams.
+Use flat normals and fewer shell segments for Apex and Rally.
+[Updated previews](testing/rider-gear/REPORT.md#two-color-leather-and-faceted-helmets).
+
+## ADR193 — Named rider roster and offline grid exchange
+
+Keep controller IDs stable and use a separate roster slot for names,
+palette and authored grid placement. Apply the exchange on offline race
+start or retry. Keep previous custom names as source comments for possible
+reuse. Classic shares the base palette and custom helmets retain their
+materials. [Rider gear](testing/rider-gear/REPORT.md#named-roster-and-offline-grid-swaps).
+
+## ADR194 — Western main street bends and bounded AI bank
+
+Add a shared left-right bend to the flat Hills main street after the merge.
+Scale rival visual bank by speed and bound its rate in both adapters.
+Keep authored checkpoints and the player's steering response.
+[Implementation and evidence](testing/western-bends/REPORT.md).
+
+## ADR195 — Offline rival difficulty and recorded race audio (2026-11-13)
+
+Default offline races to Normal with a 12% lower rival pace budget. Retain
+the previous pace as Hard and keep it for online sessions. Capture the saved
+choice at start and retry. Recovery physics and the player bike stay the same.
+
+Use CC0 sound sources for impact, race cues and ambience. Default to the
+existing recorded street engine and retain the prior twin for comparison.
+Emit crash and runover sounds from confirmed world-space contacts. Preserve
+online event IDs and use a compatible fallback for older receivers.
+[Implementation and evidence](testing/normal-impact-audio/REPORT.md).
+
+## ADR196 — Hills cattle formations and Western town scenes (2026-11-13)
+
+Share one crossing clock per cattle herd and align its +X model and collider
+with actual travel. Add an earlier and a later crossing using the existing
+civilian contact system. Stage three local brawls and two shootouts on the
+Western town main street with pedestrian collisions and presentation-only
+strike and gunfire effects.
+[Implementation and evidence](testing/hills-encounters/REPORT.md).
+
+## ADR197 — Two Hills cattle crossings (2026-11-13)
+
+Retain the earlier and later cattle crossings at 8.87 and 11.80 km. Remove
+the two intermediate crossings and their placement reservations.
+
+## ADR198 — Restore the parallel-twin engine voice (2026-11-14)
+
+Restore the ADR179 parallel twin as the default at the user’s request.
+Keep the sourced street voice available for comparison via
+`ROADDASH_ENGINE_STREET=1` and retain the recorded impact and ambience mix.
+
+## ADR199 — Shorter race windows and race feedback (2026-11-14)
+
+Move active point-to-point finishes one kilometre earlier with unchanged
+physical routes and skip gates outside the active window. Replace the map and
+standings with speed, race position and the closest signed rival gap. Keep
+legacy settings readable and attenuate the existing wind recording. Suppress
+solver response on mounted bike contacts with soft targets and apply bounded
+knockdown or target momentum and vertical hop through gameplay. This replaces
+the earlier requirement to fund the hop from the attacking bike’s horizontal
+kinetic energy. Admit predicted moving leaders to the existing safe passing
+planner earlier.
+[Implementation and evidence](testing/race-polish-followup/REPORT.md).
+
+## ADR200 — Close passing, distant woodland and offline race elimination (2026-11-14)
+
+Limit the reduced backoff delay to a confirmed close queue and give a viable
+forward escape line control again. Add low-detail Hills trees in shared,
+non-solid mesh batches outside the physical woodland. Keep cumulative condition
+separate from temporary hit-chain health. Retire offline racers when either
+condition reaches zero or a body reaches the visible river surface. Keep the
+canyon floor and existing ragdoll, profile and network contracts. Reuse results
+as the pause point before optional live spectating.
+[Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
+
+## ADR201 — Medium pace, solid cattle crossings and budgeted world detail (2026-11-15)
+
+Preserve the shipped Normal speed policy as Medium and keep the saved value
+readable. Give Hard full bike-class pace and a bounded offline corner advantage.
+Centralize item-specific condition damage for confirmed bike and rider strikes.
+Treat mounted contact with the two Hills crossing herds as solid. Keep regular
+cows in the existing mounted ride-over path. Fade horizontal sand plumes with
+opacity and reuse a bounded pool for rear-wheel kickback. Keep scenery LOD and
+collision independent.
+[Implementation and evidence](testing/race-performance-hard-world/REPORT.md).
+
+## ADR202 — Shared static obstacle discovery per simulation tick (2026-11-15)
+
+Share a conservative snapshot for static passing forecasts. Build it lazily
+from one Rapier broad-phase lookup each tick that needs it. Reuse the bounded
+grid as long as the scanned set, shapes, poses and region match. Mesh
+hierarchies supply tighter bounds than whole city-block colliders. Preserve exact sweeps
+for occupied or uncovered cells and keep fixed-rate motion and contact.
+[Implementation and evidence](testing/shared-rival-obstacles/REPORT.md).
+
+
+## ADR203 — Physical timing lines and staggered Hills passing (2026-11-15)
+
+Built-in point-to-point races arm timing at the start and record results at
+the finish. Keep directional, lane and height checks on both planes. The
+decorations have no collision. A recorded finisher remains a solid chassis
+and uses service braking while the race runs. Preserve its timestamp and
+place while the local results screen waits for the braking run-out.
+
+Reuse shared route corridors and traffic forecasts, and stagger expensive
+non-emergency searches across the fixed loop. Keep imminent-hazard checks
+and motion at the fixed rate.
+[Implementation and verification](testing/hills-race-polish-and-planning/REPORT.md).
+
+
+## ADR204 — Wider cattle paths and paved Hills city escape targets (2026-11-15)
+
+Seed independent position offsets per cow, with spacing bounded through
+the synchronized turns. Keep both crossings solid and retain cached
+support. Ease sand rolling resistance and the powered speed limit in the
+shared surface policy. Give an off-carriageway rival in the opening city a
+paved escape target, retaining the existing swept clearance checks.
+[Evidence](testing/hills-herd-verge-tuning/REPORT.md).
+
+
+## ADR205 — Hills deck continuity, rider landing contacts and distant scenery (2026-11-15)
+
+Keep the suspension asphalt and support continuous across the main span.
+Use actual contact and pre-solver vertical motion to eject the rider who
+lands. Increase lateral knockback from a landed kick by one quarter. Give failed
+escape searches back to ordinary traffic planning. Make the cattle paths
+more irregular while retaining their phase and cached ground, and use a
+six-triangle far tree profile to place denser woodland.
+[Evidence](testing/hills-contact-and-scenery/REPORT.md).
+
+
+## ADR206 — Hills road and shoulder render thickness (2026-11-15)
+
+Extend exposed Hills road and shoulder edges downward into resident
+terrain. Use the original triangles for physics and preserve the
+riding surface height. Separate nearly coplanar layers with depth
+offsets and retain the suspension deck and imported city geometry.
+[Evidence](testing/hills-road-thickness/REPORT.md).
+
+
+## ADR207 — Opt-in graphics and motorcycle feedback comparisons (2026-11-15)
+
+Keep gameplay defaults as the control. Use the existing Hills road material
+installer for normal and roughness comparisons. Reuse the current engine mixer
+for stationary revs, the comfort setting for motion and distortion, and one
+fullscreen pass for the native grade, wind, and exhaust heat. Compare the
+bounded CPU exhaust pool with an optional Hanabi GPU emitter. Evaluate vkBasalt
+and Material Maker separately from the runtime dependency path.
+[Evidence](testing/graphics-polish/REPORT.md).
+
+
+## ADR208 — Ground refraction and unified race gauges (2026-11-15)
+
+Replace the route's alpha-band heat sprites with a soft, projected ground
+strip in the existing scene pass. Change the HUD camera's MSAA writeback
+only while a processed scene needs compositing. Respect map effects quality
+and the motion comfort setting. Use actual engine telemetry for the RPM bar
+below the speed arc.
+[Evidence](testing/hills-shimmer-hud/REPORT.md).
+
+
+## ADR209 — Wide Hills cloud field (2026-11-15)
+
+Lay out Hills clouds in world space across the route and surrounding terrain.
+Jitter position, altitude, and scale from the track scenery seed. Limit the
+existing shared volume renderer to 24 full-quality banks and 16 at low quality.
+[Evidence](testing/hills-cloud-field/REPORT.md).
+
+
+## ADR210 — Skid marks and smoke on hard paved braking (2026-11-15)
+
+Use the existing service brake and rear-wheel contact to feed a fixed
+presentation pool. Return a visual cue for fast full-brake applications
+and scale it with tire slip. Keep the tire-force calculation independent
+of the effects. [Evidence](testing/brake-skids/REPORT.md).
+
+
+## ADR211 — Hills woodland density and heat strength (2026-11-15)
+
+Grade mountain tree density by route distance and fade backdrop silhouettes
+in beyond close camera views. Scale ground refraction by 0.20 and drive
+exhaust refraction by engine RPM with a 0.50 ceiling.
+[Evidence](testing/hills-woodland-heat/REPORT.md).
+
+
+## ADR212 — Restore the Hills tree distribution at higher density (2026-11-15)
+
+Restore the original verge offsets and woodland clearings. Increase
+placement density across the existing roadside, middle, and backdrop
+footprints. The distant tier uses six-triangle silhouettes with a
+minimum viewing distance in the existing fade.
+[Evidence](testing/hills-woodland-restored/REPORT.md).
+
+
+## ADR213 — Derive Hills woodland LODs from the roadside tree families (2026-11-15)
+
+Bake three simplified meshes per authored tree family using its crown and
+trunk geometry and foliage and bark textures. Choose the family and orientation
+once per placement and share them across the batched LODs. Keep collision
+independent of the displayed mesh.
+[Evidence](testing/hills-tree-families/REPORT.md).
+
+
+## ADR214 — Preserve authored Hills trees and promote the approved visuals (2026-11-15)
+
+Use actual catalog trunk and canopy triangles for the closest woodland tier.
+Thin the authored vertex rings for the other tiers. Share conservative batch
+extents across crossfades. Plant the three marked areas within existing
+terrain, field and road reservations. Make the six selected effects and Poly
+Haven Hills road detail the runtime defaults. Treat a stopped Hills truck as
+a queue leader for clearance-checked bypass or backoff.
+[Evidence](testing/hills-slope-infill/REPORT.md).
+
+
+## ADR215 — Hills tree clearance and soil spray (2026-11-15)
+
+Reserve crowns across the combined tree placement layers. Reject steep terrain
+and add missing town and backdrop detail tiers from the authored families.
+Limit backdrop promotion to one tile per update. Use a warm soil tint for
+loose grass tire spray. [Evidence](testing/hills-tree-clearance/REPORT.md).

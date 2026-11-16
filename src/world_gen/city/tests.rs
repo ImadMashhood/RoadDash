@@ -115,8 +115,7 @@ fn every_building_and_start_grid_has_real_collision_and_recovery_clearance() {
 fn city_gates_cover_the_whole_open_course_and_preserve_last_place_grid() {
     let track = Track::from_json(include_str!("../../../content/tracks/city5300.json")).unwrap();
     let mut gates = crate::track::GateProgress::default();
-    for gate in track.definition.checkpoints.iter().skip(1) {
-        let d = gate.fraction * track.length;
+    for d in (1..track.definition.checkpoints.len()).filter_map(|i| track.gate_station(i)) {
         gates.observe(
             &track,
             track.sample(d - 1.0, 0.0).0,

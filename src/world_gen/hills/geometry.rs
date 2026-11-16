@@ -83,6 +83,92 @@ fn shoulders(track: &Track, route: usize, a: f32, b: f32) -> (Vec<Vec3>, Vec<[u3
     (v, ix)
 }
 
+/// Add a separate strip so vertical faces do not change the top normals.
+fn append_skirt(
+    edge: impl IntoIterator<Item = Vec3>,
+    ground: impl Fn(Vec3) -> f32,
+    reverse: bool,
+    vertices: &mut Vec<Vec3>,
+    triangles: &mut Vec<[u32; 3]>,
+) -> usize {
+    let start = vertices.len();
+    for (sample, top) in edge.into_iter().enumerate() {
+        let i = vertices.len() as u32;
+        vertices.extend([top, top.with_y(top.y.min(ground(top)) - 0.3)]);
+        if sample != 0 {
+            let mut faces = [[i - 2, i - 1, i], [i, i - 1, i + 1]];
+            if reverse {
+                for face in &mut faces {
+                    face.swap(1, 2);
+                }
+            }
+            triangles.extend(faces);
+        }
+    }
+    start
+}
+
+fn road_shell(
+    top: &[Vec3],
+    top_triangles: &[[u32; 3]],
+    ground: impl Fn(Vec3) -> f32,
+    cap_end: bool,
+) -> (Vec<Vec3>, Vec<[u32; 3]>) {
+    let mut vertices = top.to_vec();
+    let mut triangles = top_triangles.to_vec();
+    let [left, right] = [0, 1].map(|side| {
+        append_skirt(
+            top.iter().skip(side).step_by(2).copied(),
+            &ground,
+            side == 0,
+            &mut vertices,
+            &mut triangles,
+        ) as u32
+    });
+    for section in 0..(top.len() as u32 / 2 - 1) {
+        let l = left + section * 2 + 1;
+        let r = right + section * 2 + 1;
+        triangles.extend([[l, l + 2, r], [r, l + 2, r + 2]]);
+    }
+    if cap_end {
+        let last = top.len() as u32 - 2;
+        let l = left + last;
+        let r = right + last;
+        triangles.extend([[l, r, l + 1], [r, r + 1, l + 1]]);
+    }
+    (vertices, triangles)
+}
+
+/// Close the visible cut face where each shoulder meets the canyon. The road
+/// ribbon and shoulder collider still use their original physical topology.
+fn cap_bridge_shoulders(
+    track: &Track,
+    edge: &[Vec3],
+    entry: bool,
+    vertices: &mut Vec<Vec3>,
+    triangles: &mut Vec<[u32; 3]>,
+) {
+    const SEGMENTS: u32 = 12;
+    for (outer, inner) in [(edge[0], edge[1]), (edge[2], edge[3])] {
+        let first = vertices.len() as u32;
+        for step in 0..=SEGMENTS {
+            let top = outer.lerp(inner, step as f32 / SEGMENTS as f32);
+            let terrain = ground_height(track, top.x, top.z);
+            vertices.extend([top, top.with_y(top.y.min(terrain) - 0.15)]);
+            if step < SEGMENTS {
+                let i = first + step * 2;
+                let mut strip = [[i, i + 1, i + 2], [i + 2, i + 1, i + 3]];
+                if entry {
+                    for triangle in &mut strip {
+                        triangle.swap(1, 2);
+                    }
+                }
+                triangles.extend(strip);
+            }
+        }
+    }
+}
+
 fn terrain_vertex(track: &Track, x: f32, z: f32) -> Vec3 {
     super::terrain_cache::vertex(track, x, z, || terrain_vertex_uncached(track, x, z))
 }
@@ -120,13 +206,38 @@ pub(super) fn ground_height(track: &Track, x: f32, z: f32) -> f32 {
         d + (c - d) * (1. - t.x) + (b - d) * (1. - t.y)
     }
 }
+pub(super) fn crossing_support(track: &Track, route: usize, p: Vec3, near: f32) -> f32 {
+    let ground = ground_height(track, p.x, p.z);
+    ground.max(crossing_road_support(track, route, p, near))
+}
+
+pub(super) fn crossing_road_support(track: &Track, route: usize, p: Vec3, near: f32) -> f32 {
+    let (station, _, distance) = track.project_route(route, p, near);
+    if distance >= 30. || (route == 0 && bridge::on_deck(station)) {
+        return f32::NEG_INFINITY;
+    }
+    let (center, frame) = track.sample_route(route, station, 0.);
+    let side = ((center - p).dot((frame * Vec3::X).with_y(0.))).signum();
+    let half = track.half_width(station);
+    let (inner, iq) = track.sample_route(route, station, side * half);
+    let width = center.xz().distance(inner.xz());
+    if distance <= width {
+        let (road, q) = track.sample_route(route, station, side * half * distance / width);
+        (road + q * Vec3::Y * 0.025).y
+    } else {
+        let (outer, oq) = track.sample_route(route, station, side * 30.);
+        let outer_width = center.xz().distance(outer.xz());
+        let weight = ((distance - width) / (outer_width - width)).clamp(0., 1.);
+        (inner - iq * Vec3::Y * 0.08)
+            .y
+            .lerp((outer - oq * Vec3::Y * 0.08).y, weight)
+    }
+}
+
 /// The same authored sand palette drives terrain vertices and wheel dust.
 pub(super) fn sand_color(station: f32, x: f32, z: f32) -> Vec3 {
-    let base = if station < 8500. {
-        Vec3::new(0.69, 0.51, 0.29)
-    } else {
-        Vec3::new(0.76, 0.61, 0.38)
-    };
+    let t = ((station - 8250.) / 500.).clamp(0., 1.);
+    let base = Vec3::new(0.69, 0.51, 0.29).lerp(Vec3::new(0.76, 0.61, 0.38), t * t * (3. - 2. * t));
     let dune = (x * 0.019 + z * 0.013).sin() * (z * 0.026 - x * 0.009).sin();
     let grit = (x * 0.071 - z * 0.058).sin() * 0.25;
     let tint = dune * 0.055 + grit * 0.022;
@@ -135,11 +246,6 @@ pub(super) fn sand_color(station: f32, x: f32, z: f32) -> Vec3 {
 /// A small original, tileable grit field adds close-up sand detail without
 /// additional draw calls or runtime texture uploads.
 fn terrain_grit() -> Image {
-    use bevy::{
-        asset::RenderAssetUsages,
-        image::{ImageAddressMode, ImageSampler, ImageSamplerDescriptor},
-        render::render_resource::{Extent3d, TextureDimension, TextureFormat},
-    };
     const SIZE: usize = 64;
     let mut pixels = Vec::with_capacity(SIZE * SIZE * 4);
     for y in 0..SIZE {
@@ -155,47 +261,34 @@ fn terrain_grit() -> Image {
             pixels.extend([channel, channel, channel, 255]);
         }
     }
-    let mut image = Image::new(
-        Extent3d {
-            width: SIZE as u32,
-            height: SIZE as u32,
-            depth_or_array_layers: 1,
-        },
-        TextureDimension::D2,
-        pixels,
-        TextureFormat::Rgba8UnormSrgb,
-        RenderAssetUsages::default(),
-    );
-    image.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
-        address_mode_u: ImageAddressMode::Repeat,
-        address_mode_v: ImageAddressMode::Repeat,
-        ..ImageSamplerDescriptor::linear()
-    });
-    image
+    crate::road_detail::image(pixels, SIZE, true)
 }
-/// Mipped blocks read as coarse ground detail nearby and average out at speed.
-fn meadow_detail() -> Image {
-    let mut pixels = Vec::with_capacity(64 * 64 * 4);
-    for y in 0..64_u32 {
-        for x in 0..64_u32 {
-            let block = |x: u32, y: u32| {
-                let key = x.wrapping_mul(374_761_393) ^ y.wrapping_mul(668_265_263);
-                ((key ^ (key >> 13)).wrapping_mul(1_274_126_177) >> 26) as u8
-            };
-            let tone = 191 + block(x / 3, y / 2) * 3 / 4 + block(x, y) / 4;
-            pixels.extend([tone, tone, tone, 255]);
-        }
+// A visual-only ramp picks up grass in patches past the imported urban slice.
+pub(super) fn city_exit_meadow(station: f32, x: f32, z: f32) -> f32 {
+    let progress = ((station - 1000.) / 640.).clamp(0., 1.);
+    if progress == 0. || progress == 1. {
+        return progress;
     }
-    crate::road_detail::image(pixels, 64, true)
+    let footprint = (x * 0.061 + z * 0.039).sin() * (z * 0.094 - x * 0.018).sin();
+    let t = (progress + footprint * progress * (1. - progress) * 0.65).clamp(0., 1.);
+    t * t * (3. - 2. * t)
+}
+
+fn fringe_soil(station: f32, p: Vec3, meadow: f32, patches: f32) -> Vec3 {
+    let sand = sand_color(station, p.x, p.z);
+    let fringe = Vec3::new(0.42, 0.40, 0.34) + Vec3::splat(patches * 0.023);
+    fringe.lerp(sand, meadow)
 }
 
 fn hill_color(p: Vec3, station: f32, face_up: f32, canyon: f32) -> Vec3 {
-    let meadow = rr_core::surface::hills_meadow_weight(station);
+    let exit_meadow = city_exit_meadow(station, p.x, p.z);
+    let meadow = rr_core::surface::hills_meadow_weight(station) * exit_meadow;
     let patches = (p.x * 0.062 + p.z * 0.019).sin() * (p.z * 0.077).sin();
     let flecks = (p.x * 0.29 - p.z * 0.17).sin() * (p.z * 0.21).cos();
     let grass =
         Vec3::new(0.40, 0.49, 0.20) + Vec3::new(0.075, 0.070, 0.028) * (patches + flecks * 0.30);
-    let base = sand_color(station, p.x, p.z).lerp(grass, meadow);
+    let soil = fringe_soil(station, p, exit_meadow, patches);
+    let base = soil.lerp(grass, meadow);
 
     let strata = (p.y * 0.85 + p.x * 0.12 + p.z * 0.05).sin();
     let stone = Vec3::new(0.61, 0.52, 0.44)
@@ -204,60 +297,18 @@ fn hill_color(p: Vec3, station: f32, face_up: f32, canyon: f32) -> Vec3 {
     base.lerp(stone, (cut * meadow).max(canyon))
 }
 
-// Two original palette rows: sand and meadow. U is cross-shoulder distance,
-// so the gravel edge ends within3.5m; UVs change only, not mesh or collision.
-fn shoulder_material(images: Option<&mut Assets<Image>>) -> StandardMaterial {
-    use bevy::{
-        asset::RenderAssetUsages,
-        image::{ImageAddressMode, ImageSampler, ImageSamplerDescriptor},
-        render::render_resource::{Extent3d, TextureDimension, TextureFormat},
-    };
-    let Some(images) = images else {
-        return StandardMaterial {
-            base_color: Color::srgb(0.32, 0.37, 0.19),
-            ..default()
-        };
-    };
-    let sand = Vec3::new(0.69, 0.51, 0.29);
-    let grass = Vec3::new(0.32, 0.37, 0.19);
-    let mut pixels = Vec::new();
-    for row in 0..2 {
-        for x in 0..128 {
-            let weight = ((x as f32 / 127. - 0.035) / 0.11).clamp(0., 1.);
-            let c = if row == 0 {
-                sand
-            } else {
-                sand.lerp(grass, weight)
-            };
-            pixels.extend([
-                (c.x * 255.) as u8,
-                (c.y * 255.) as u8,
-                (c.z * 255.) as u8,
-                255,
-            ]);
-        }
-    }
-    let mut image = Image::new(
-        Extent3d {
-            width: 128,
-            height: 2,
-            depth_or_array_layers: 1,
-        },
-        TextureDimension::D2,
-        pixels,
-        TextureFormat::Rgba8UnormSrgb,
-        RenderAssetUsages::default(),
-    );
-    image.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
-        address_mode_u: ImageAddressMode::ClampToEdge,
-        address_mode_v: ImageAddressMode::ClampToEdge,
-        ..ImageSamplerDescriptor::linear()
-    });
-    StandardMaterial {
-        base_color_texture: Some(images.add(image)),
-        perceptual_roughness: 1.,
-        ..default()
-    }
+fn terrain_color(track: &Track, p: Vec3, normal: [f32; 3]) -> [f32; 4] {
+    let (station, _) = track.nearby_station(p.x, p.z);
+    let color = hill_color(p, station, normal[1], track.hills_canyon_weight(p.x, p.z));
+    Color::srgb(color.x, color.y, color.z)
+        .to_linear()
+        .to_f32_array()
+}
+fn terrain_normal(track: &Track, p: Vec3) -> [f32; 3] {
+    const STEP: f32 = 8.;
+    let dx = terrain_vertex(track, p.x + STEP, p.z).y - terrain_vertex(track, p.x - STEP, p.z).y;
+    let dz = terrain_vertex(track, p.x, p.z + STEP).y - terrain_vertex(track, p.x, p.z - STEP).y;
+    Vec3::new(-dx, 2. * STEP, -dz).normalize().to_array()
 }
 pub(super) fn spawn(
     commands: &mut Commands,
@@ -266,24 +317,32 @@ pub(super) fn spawn(
     art: &Art,
     track: &Track,
     census: &mut Census,
-    mut images: Option<&mut Assets<Image>>,
+    images: Option<&mut Assets<Image>>,
 ) {
     let mut rail_ground = super::guardrails::GroundSamples::default();
-    let asphalt = materials.add(Color::srgb(0.16, 0.16, 0.155));
-    let shoulder = materials.add(shoulder_material(images.as_deref_mut()));
+    let asphalt = materials.add(StandardMaterial {
+        base_color: Color::srgb(0.16, 0.16, 0.155),
+        depth_bias: 2.,
+        ..default()
+    });
+    let ground_material = StandardMaterial {
+        base_color_texture: images.map(|images| images.add(terrain_grit())),
+        perceptual_roughness: 1.,
+        ..default()
+    };
+    // Resolve near-coplanar joins without moving the riding or walking surfaces.
     let terrain_material = materials.add(StandardMaterial {
-        base_color_texture: images
-            .as_deref_mut()
-            .map(|images| images.add(terrain_grit())),
-        perceptual_roughness: 1.,
-        ..default()
+        depth_bias: -2.,
+        ..ground_material.clone()
     });
-    let meadow_material = materials.add(StandardMaterial {
-        base_color_texture: images.map(|images| images.add(meadow_detail())),
-        perceptual_roughness: 1.,
-        ..default()
-    });
-    for route in 0..2 {
+    let shoulder_materials = [
+        materials.add(ground_material.clone()),
+        materials.add(StandardMaterial {
+            depth_bias: 1.,
+            ..ground_material
+        }),
+    ];
+    for (route, shoulder_material) in shoulder_materials.into_iter().enumerate() {
         let (start, end) = if route == 0 {
             (-300., track.length + 60.)
         } else {
@@ -299,15 +358,28 @@ pub(super) fn spawn(
                     }
                 }
             }
+            if route == 0 && a == bridge::START {
+                // Keep the whole asphalt deck in one render and collision ribbon.
+                b = bridge::END;
+            }
             if route == 0 && a >= -300. && b <= 1000. {
                 // The imported Metropolis slice owns its exact asphalt/sidewalks.
                 a = b;
                 continue;
             }
             let (v, ix) = ribbon(track, route, a, b, track.half_width(a), 0.025);
-            surface(commands, meshes, asphalt.clone(), v, ix, true, None);
+            let bridge_deck = route == 0 && bridge::on_deck((a + b) * 0.5);
+            let resident_ground = |p: Vec3| ground_height(track, p.x, p.z);
+            let render = (!bridge_deck).then(|| {
+                let (shell, shell_triangles) =
+                    road_shell(&v, &ix, resident_ground, route == 0 && b == end);
+                let origin = v[v.len() / 2];
+                let local: Vec<_> = shell.into_iter().map(|p| p - origin).collect();
+                crate::environment::mesh(&local, &shell_triangles)
+            });
+            surface(commands, meshes, asphalt.clone(), v, ix, true, render);
             census.road_chunks += 1;
-            if route == 0 && bridge::on_deck((a + b) * 0.5) {
+            if bridge_deck {
                 // The canyon has no hidden thirty-metre shoulder shelf.
                 a = b;
                 continue;
@@ -317,23 +389,92 @@ pub(super) fn spawn(
                 rail_ground.add(&v, &ix);
             }
             let origin = v[v.len() / 2];
-            let local: Vec<_> = v.iter().map(|p| *p - origin).collect();
-            let mut render = crate::environment::mesh(&local, &ix);
-            let rows = v.len() / 4;
+            let mut render_vertices = std::borrow::Cow::Borrowed(v.as_slice());
+            let mut render_triangles = std::borrow::Cow::Borrowed(ix.as_slice());
+            let mut cap_uv_direction = Vec2::ZERO;
+            if route == 0 && (a == bridge::END || b == bridge::START) {
+                let edge = if a == bridge::END {
+                    &v[..4]
+                } else {
+                    &v[v.len() - 4..]
+                };
+                cap_uv_direction = (edge[3] - edge[0]).xz().perp().normalize_or_zero();
+                cap_bridge_shoulders(
+                    track,
+                    edge,
+                    b == bridge::START,
+                    render_vertices.to_mut(),
+                    render_triangles.to_mut(),
+                );
+            }
+            let skirt_start = render_vertices.len();
+            let skirt_uv_direction = (v[3] - v[0]).xz().normalize_or_zero();
+            for side in [0, 3] {
+                append_skirt(
+                    v.iter().skip(side).step_by(4).copied(),
+                    resident_ground,
+                    side == 0,
+                    render_vertices.to_mut(),
+                    render_triangles.to_mut(),
+                );
+            }
+            let local: Vec<_> = render_vertices.iter().map(|p| *p - origin).collect();
+            let mut render = crate::environment::mesh(&local, &render_triangles);
             render.insert_attribute(
                 Mesh::ATTRIBUTE_UV_0,
-                (0..rows)
-                    .flat_map(|i| {
-                        let station = a + (b - a) * i as f32 / (rows - 1) as f32;
-                        let green = rr_core::surface::hills_meadow_weight(station);
-                        [1., 0., 0., 1.].map(|u| [u, 0.25 + green * 0.5])
+                render_vertices
+                    .iter()
+                    .enumerate()
+                    .map(|(i, p)| {
+                        // Carry the shoulder UV over the lip, then unwrap down the cut face.
+                        let drop = if i >= v.len() && !(i - v.len()).is_multiple_of(2) {
+                            p.y - render_vertices[i - 1].y
+                        } else {
+                            0.
+                        };
+                        let direction = if i >= skirt_start {
+                            skirt_uv_direction
+                        } else {
+                            cap_uv_direction
+                        };
+                        ((p.xz() + direction * drop) * 0.18).to_array()
                     })
                     .collect::<Vec<_>>(),
             );
+            render.insert_attribute(
+                Mesh::ATTRIBUTE_COLOR,
+                render_vertices
+                    .iter()
+                    .enumerate()
+                    .map(|(i, &p)| {
+                        if i >= v.len() || matches!(i % 4, 0 | 3) {
+                            terrain_color(
+                                track,
+                                p.with_y(ground_height(track, p.x, p.z)),
+                                terrain_normal(track, p),
+                            )
+                        } else {
+                            let (station, _) = track.nearby_station(p.x, p.z);
+                            let meadow = city_exit_meadow(station, p.x, p.z);
+                            let c = fringe_soil(station, p, meadow, 0.) * 0.92;
+                            Color::srgb(c.x, c.y, c.z).to_linear().to_f32_array()
+                        }
+                    })
+                    .collect::<Vec<_>>(),
+            );
+            if let Some(bevy::mesh::VertexAttributeValues::Float32x3(normals)) =
+                render.attribute_mut(Mesh::ATTRIBUTE_NORMAL)
+            {
+                for (i, (normal, &p)) in normals.iter_mut().zip(&v).enumerate() {
+                    if matches!(i % 4, 0 | 3) {
+                        *normal = terrain_normal(track, p);
+                    }
+                }
+            }
             surface(
                 commands,
                 meshes,
-                shoulder.clone(),
+                shoulder_material.clone(),
                 v,
                 ix,
                 false,
@@ -395,33 +536,19 @@ pub(super) fn spawn(
                     .map(|p| [p.x * 0.18, p.z * 0.18])
                     .collect::<Vec<_>>(),
             );
-            let Some(bevy::mesh::VertexAttributeValues::Float32x3(normals)) =
-                render.attribute(Mesh::ATTRIBUTE_NORMAL)
-            else {
-                unreachable!("terrain mesh has computed normals");
-            };
-            let colors = v
+            // Sample both sides of the shared edge to keep tile lighting continuous.
+            let normals: Vec<_> = v.iter().map(|&p| terrain_normal(track, p)).collect();
+            let colors: Vec<_> = v
                 .iter()
-                .zip(normals)
-                .map(|(p, normal)| {
-                    let (station, _) = track.nearby_station(p.x, p.z);
-                    let color =
-                        hill_color(*p, station, normal[1], track.hills_canyon_weight(p.x, p.z));
-                    let linear = Color::srgb(color.x, color.y, color.z).to_linear();
-                    [linear.red, linear.green, linear.blue, linear.alpha]
-                })
-                .collect::<Vec<_>>();
+                .zip(&normals)
+                .map(|(&p, &normal)| terrain_color(track, p, normal))
+                .collect();
+            render.insert_attribute(Mesh::ATTRIBUTE_NORMAL, normals);
             render.insert_attribute(Mesh::ATTRIBUTE_COLOR, colors);
-            let (station, _) = track.nearby_station(origin.x, origin.z);
-            let material = if station < 5500. {
-                &meadow_material
-            } else {
-                &terrain_material
-            };
             surface(
                 commands,
                 meshes,
-                material.clone(),
+                terrain_material.clone(),
                 v,
                 ix,
                 false,
@@ -438,11 +565,144 @@ pub(super) fn spawn(
 mod tests {
     use super::*;
     #[test]
+    fn road_shell_keeps_the_original_top_and_covers_the_ground_below_it() {
+        let track = Track::hills().unwrap();
+        for (route, station) in [(0, 10878.), (0, 3920.), (1, 6820.)] {
+            let (top, indices) = ribbon(
+                &track,
+                route,
+                station,
+                station + 10.,
+                track.half_width(station),
+                0.025,
+            );
+            let ground = |p: Vec3| ground_height(&track, p.x, p.z);
+            let (shell, faces) = road_shell(&top, &indices, ground, true);
+            assert_eq!(&shell[..top.len()], &top);
+            assert_eq!(&faces[..indices.len()], &indices);
+            for (side, lip) in shell[top.len()..].chunks_exact(top.len()).enumerate() {
+                for (pair, edge) in lip.chunks_exact(2).zip(top.iter().skip(side).step_by(2)) {
+                    assert_eq!(pair[0], *edge);
+                    assert_eq!(pair[1].xz(), edge.xz());
+                    assert!(pair[1].y <= edge.y.min(ground(*edge)) - 0.299);
+                }
+                let [a, b, c] = faces[indices.len() * (side + 1)].map(|i| shell[i as usize]);
+                let outward = track.sample_route(route, station, 0.).1
+                    * Vec3::X
+                    * if side == 0 { 1. } else { -1. };
+                assert!((b - a).cross(c - a).dot(outward) > 0.);
+            }
+            let [a, b, c] = faces[indices.len() * 3].map(|i| shell[i as usize]);
+            assert!((b - a).cross(c - a).y < 0.);
+        }
+    }
+
+    #[test]
+    fn dune_shoulders_extend_below_the_old_visible_seam_without_changing_support() {
+        let track = Track::hills().unwrap();
+        let (top, indices) = shoulders(&track, 0, 10860., 10910.);
+        let mut vertices = top.clone();
+        let mut faces = indices.clone();
+        let ground = |p: Vec3| ground_height(&track, p.x, p.z);
+        let mut largest_old_gap = 0.0_f32;
+        for side in [0, 3] {
+            let start = append_skirt(
+                top.iter().skip(side).step_by(4).copied(),
+                ground,
+                side == 0,
+                &mut vertices,
+                &mut faces,
+            );
+            for pair in vertices[start..].chunks_exact(2) {
+                largest_old_gap = largest_old_gap.max(pair[0].y - ground(pair[0]));
+                assert_eq!(pair[0].xz(), pair[1].xz());
+                assert!(pair[1].y <= ground(pair[0]) - 0.299);
+            }
+        }
+        assert_eq!(&vertices[..top.len()], &top);
+        assert_eq!(&faces[..indices.len()], &indices);
+        println!("old exposed shoulder gap near the dunes: {largest_old_gap:.2} m");
+        assert!(largest_old_gap > 0.2);
+    }
+
+    #[test]
+    fn bridge_retaining_faces_join_the_exact_shoulder_lips_and_face_the_span() {
+        let track = Track::hills().unwrap();
+        for (station, entry) in [(bridge::START, true), (bridge::END, false)] {
+            let (physical, _) = if entry {
+                shoulders(&track, 0, station - 1.25, station)
+            } else {
+                shoulders(&track, 0, station, station + 1.25)
+            };
+            let edge = if entry {
+                &physical[4..]
+            } else {
+                &physical[..4]
+            };
+            let mut vertices = Vec::new();
+            let mut triangles = Vec::new();
+            cap_bridge_shoulders(&track, edge, entry, &mut vertices, &mut triangles);
+            assert_eq!(triangles.len(), 48);
+            assert_eq!(
+                [vertices[0], vertices[24], vertices[26], vertices[50]].as_slice(),
+                edge
+            );
+            let forward = track.sample(station, 0.).1 * Vec3::Z;
+            for triangle in triangles {
+                let [a, b, c] = triangle.map(|i| vertices[i as usize]);
+                let towards_span = if entry { forward } else { -forward };
+                assert!((b - a).cross(c - a).dot(towards_span) > 0.);
+            }
+            for pair in vertices.chunks_exact(2) {
+                assert!(pair[1].y <= ground_height(&track, pair[0].x, pair[0].z) - 0.149);
+            }
+        }
+    }
+
+    #[test]
+    fn city_exit_is_neutral_at_the_boundary_and_greens_gradually() {
+        let mut previous = 0.;
+        for station in (1000..=1640).step_by(8) {
+            let cover = city_exit_meadow(station as f32, 320., 130.);
+            assert!(cover >= previous);
+            assert!(cover - previous < 0.03);
+            previous = cover;
+        }
+        assert_eq!(city_exit_meadow(1000., 320., 130.), 0.);
+        assert_eq!(city_exit_meadow(1640., 320., 130.), 1.);
+        let neutral = hill_color(Vec3::ZERO, 1000., 1., 0.);
+        let meadow = hill_color(Vec3::ZERO, 1640., 1., 0.);
+        assert!(neutral.x > neutral.y && meadow.y > meadow.x);
+    }
+
+    #[test]
+    fn mounted_crossing_support_clears_recessed_shoulders() {
+        let track = Track::hills().unwrap();
+        for (route, station) in [(0, 6060.), (1, 6820.), (0, 7740.)] {
+            let (vertices, indices) = shoulders(&track, route, station - 2., station + 2.);
+            let mut shoulders = super::super::guardrails::GroundSamples::default();
+            shoulders.add(&vertices, &indices);
+            for lane in [-13., -10., 10., 13.] {
+                let (p, _) = track.sample_route(route, station, lane);
+                let expected = shoulders.height(&track, p);
+                let support = crossing_support(&track, route, p, station);
+                assert!(
+                    (support - expected).abs() < 0.12,
+                    "{route} {station} {lane}"
+                );
+            }
+        }
+    }
+
+    #[test]
     fn ground_grit_has_bounded_detail_and_sand_palette_covers_town_and_dunes() {
         let image = terrain_grit();
         let bytes = image.data.unwrap();
-        assert_eq!(bytes.len(), 64 * 64 * 4);
-        let values: Vec<_> = bytes.chunks_exact(4).map(|pixel| pixel[0]).collect();
+        assert_eq!(image.texture_descriptor.mip_level_count, 7);
+        let values: Vec<_> = bytes[..64 * 64 * 4]
+            .chunks_exact(4)
+            .map(|pixel| pixel[0])
+            .collect();
         assert!(values.iter().min().is_some_and(|v| *v >= 219));
         assert!(values.iter().max().is_some_and(|v| *v >= 250));
         assert!(*values.iter().max().unwrap() - *values.iter().min().unwrap() > 18);

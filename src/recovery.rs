@@ -70,6 +70,32 @@ pub struct OwnedBody {
     pub kind: BodyKind,
 }
 
+/// Targets that yield to a mounted chassis while retaining all other contacts.
+#[derive(bevy::ecs::system::SystemParam)]
+pub struct RideOverTargets<'w, 's> {
+    bodies: Query<'w, 's, &'static OwnedBody>,
+    actors: Query<'w, 's, (), With<crate::npc::Npc>>,
+    cows: Query<'w, 's, (), With<crate::environment::Cow>>,
+    disabled: Query<'w, 's, (), With<ColliderDisabled>>,
+    crossing_cattle: Query<'w, 's, (), With<crate::world_gen::hills::wildlife::CrossingCow>>,
+}
+impl RideOverTargets<'_, '_> {
+    pub(crate) fn contains(&self, rider: Entity, target: Entity) -> bool {
+        if self.crossing_cattle.contains(target) {
+            return false;
+        }
+        self.bodies
+            .get(target)
+            .is_ok_and(|body| body.owner != rider)
+            || self.actors.contains(target)
+            || self.cows.contains(target)
+    }
+
+    fn is_empty(&self) -> bool {
+        self.bodies.is_empty() && self.actors.is_empty() && self.cows.is_empty()
+    }
+}
+
 /// Share the unchanged capsule step/slope settings with physical regressions.
 pub(crate) fn runner_controller() -> KinematicCharacterController {
     KinematicCharacterController {
@@ -325,7 +351,7 @@ pub fn crash(
     context: &ReadRapierContext,
 ) {
     crash_with_response(
-        commands, art, owner, rider, recovery, origin, rotation, kick, context, None,
+        commands, art, owner, rider, recovery, origin, rotation, kick, context, None, origin,
     );
 }
 
@@ -341,10 +367,18 @@ fn crash_with_response(
     kick: Vec3,
     context: &ReadRapierContext,
     original: Option<(Vec3, Vec3)>,
+    contact: Vec3,
 ) {
-    if recovery.deferred.is_some()
-        || crate::offscreen_crash::start(commands, owner, rider, recovery, origin)
-    {
+    if recovery.deferred.is_some() {
+        return;
+    }
+    if !rider.police && !rider.networked && rider.racing() {
+        rider
+            .race_health
+            .crash(rider.speed.abs().max(rider.motion_velocity.length()));
+    }
+    commands.write_message(AudioCue::new(Cue::Crash, contact));
+    if crate::offscreen_crash::start(commands, owner, rider, recovery, origin) {
         return;
     }
     for part in recovery.parts.drain(..) {
@@ -511,6 +545,118 @@ fn crash_with_response(
     commands.entity(owner).insert(ColliderDisabled);
 }
 
+pub(crate) fn race_outcomes(
+    mut commands: Commands,
+    mut race: ResMut<Race>,
+    (art, track, river): (
+        Res<Art>,
+        Res<Track>,
+        Option<Res<crate::world_gen::hills::river::RiverSurface>>,
+    ),
+    context: ReadRapierContext,
+    mut riders: Query<(
+        Entity,
+        &mut Rider,
+        &mut Recovery,
+        &Transform,
+        &mut Visibility,
+    )>,
+    bodies: Query<&Transform, Without<Rider>>,
+) {
+    let active = race.phase == Phase::Racing;
+    if !active && race.phase != Phase::Finished {
+        return;
+    }
+    if active {
+        let river = river.as_deref().filter(|_| track.is_hills());
+        for (entity, mut rider, mut recovery, pose, mut visibility) in &mut riders {
+            if rider.police || rider.networked || !rider.racing() {
+                continue;
+            }
+            let splash = river.and_then(|river| {
+                if recovery.stage == RecoveryStage::Riding {
+                    return river.contact(pose.translation);
+                }
+                [recovery.torso, recovery.runner, recovery.wreck]
+                    .into_iter()
+                    .flatten()
+                    .filter_map(|body| bodies.get(body).ok())
+                    .find_map(|body| river.contact(body.translation))
+            });
+            let cause = splash
+                .map(|_| rr_core::race::WasteCause::River)
+                .or_else(|| rider.race_health.cause());
+            let Some(cause) = cause else { continue };
+            if recovery.stage == RecoveryStage::Riding || recovery.runner.is_some() {
+                recovery.defer_allowed = false;
+                let crash_pose = recovery
+                    .runner
+                    .and_then(|runner| bodies.get(runner).ok())
+                    .unwrap_or(pose);
+                crash(
+                    &mut commands,
+                    &art,
+                    entity,
+                    &mut rider,
+                    &mut recovery,
+                    crash_pose.translation,
+                    crash_pose.rotation,
+                    Vec3::ZERO,
+                    &context,
+                );
+            }
+            rider.wasted = Some(cause);
+            rider.speed = 0.;
+            if let Some(contact) = splash {
+                commands.write_message(AudioCue::new(Cue::RiverSplash, contact));
+            }
+            *visibility = Visibility::Hidden;
+            commands.entity(entity).insert(ColliderDisabled);
+            if rider.id == 0 {
+                race.player_wasted = Some((cause, race.elapsed));
+                race.message = "WASTED".into();
+                race.message_time = 2.;
+                race.shake = 0.8;
+            }
+        }
+    }
+    if active
+        && race.player_finish_runout.is_some_and(|deadline| {
+            race.elapsed >= deadline
+                || riders.iter().any(|(_, rider, recovery, _, _)| {
+                    rider.id == 0 && (rider.speed <= 0.5 || recovery.stage != RecoveryStage::Riding)
+                })
+        })
+    {
+        race.player_finish_runout = None;
+        race.phase = Phase::Finished;
+    }
+    if race.phase == Phase::Finished || race.player_wasted.is_some() || race.continued {
+        race.race_in_progress = riders
+            .iter()
+            .any(|(_, r, _, _, _)| !r.police && r.id != 0 && r.racing());
+    }
+    let settling_finisher = race.continued
+        && !race.race_in_progress
+        && riders.iter().any(|(_, rider, recovery, _, _)| {
+            recovery.stage == RecoveryStage::Riding
+                && rider.speed > 0.5
+                && rider.finished.is_some_and(|at| race.elapsed - at < 8.)
+        });
+    if active
+        && (race.continued && !race.race_in_progress && !settling_finisher
+            || !race.continued
+                && race
+                    .player_wasted
+                    .is_some_and(|(_, t)| race.elapsed - t >= 0.9))
+    {
+        race.phase = Phase::Finished;
+        if race.player_wasted.is_some() {
+            race.place = riders.iter().filter(|(_, r, _, _, _)| !r.police).count();
+        }
+    }
+}
+
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn recover(
     mut commands: Commands,
@@ -578,7 +724,7 @@ pub fn recover(
         let remote_input = network_inputs.as_ref().and_then(|n| n.get(rider.id));
         let input = remote_input.map_or(input, |i| Vec2::from_array(i.foot).clamp_length_max(1.));
         let interact = remote_input.map_or(interact, |i| i.interact);
-        if recovery.stage == RecoveryStage::Riding || rider.finished.is_some() {
+        if recovery.stage == RecoveryStage::Riding || !rider.racing() {
             continue;
         }
         *visibility = Visibility::Hidden;
@@ -712,7 +858,7 @@ pub fn recover(
                 let (progress, lane, _) =
                     track.project_route(rider.route, transform.translation, rider.progress);
                 let route = rider.route;
-                rider.gates.observe_route(
+                rider.gates.observe_race(
                     &track,
                     route,
                     previous - Vec3::Y * 0.95,
@@ -729,6 +875,7 @@ pub fn recover(
                     persistence.0,
                     1 + finishers,
                     true,
+                    false,
                 ) {
                     recovery.foot.mode = rr_core::recovery::FootMode::Finished;
                     if let Some(mut c) = controller {
@@ -1249,23 +1396,14 @@ fn contact_class(
 pub struct SweptContact(pub Entity, pub Entity);
 
 #[derive(Clone, Copy)]
-struct SoftHit {
-    owner: Entity,
-    target: Entity,
-    incoming: Vec3,
-    target_before: Vec3,
-    target_after: Vec3,
-    closing: f32,
-    target_mass: f32,
-}
-#[derive(Clone, Copy)]
 enum Impact {
-    Crash(Entity, Option<Vec3>),
+    Crash(Entity, Option<Vec3>, Vec3),
     Nudge(Entity, Vec3),
     Rear(Entity, Entity, Vec3, Vec3),
-    RideOver(Entity, Vec3, f32, Option<(Entity, Vec3)>),
-    Pedestrian(SoftHit),
-    Original(Entity, rr_core::original_crash::Contact, Quat),
+    RideOver(Entity, Option<f32>, AudioCue),
+    PushAside(Entity, Vec3),
+    KnockDownNpc(Entity, Vec3),
+    Original(Entity, rr_core::original_crash::Contact, Quat, Vec3),
 }
 
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
@@ -1284,10 +1422,13 @@ pub fn impacts(
         Res<crate::runtime::SimulationClock>,
         ResMut<crate::contact_telemetry::VehicleContacts>,
     ),
-    owned: Query<&OwnedBody>,
-    (cars, cows, cross_cars, npcs): (
+    (owned, soft_targets, mut ride_over_probe): (
+        Query<&OwnedBody>,
+        RideOverTargets,
+        Local<Option<Collider>>,
+    ),
+    (cars, cross_cars, npcs): (
         Query<&Traffic>,
-        Query<(), With<crate::environment::Cow>>,
         Query<Option<&crate::environment::Patrol>, With<crate::environment::CrossTraffic>>,
         Query<&crate::npc::Npc>,
     ),
@@ -1318,60 +1459,70 @@ pub fn impacts(
         })
         .collect();
     pairs.extend(swept.read().map(|c| (c.0, c.1)));
-    // A gentle initial touch can become a hard impact without a second Started
-    // event. Re-evaluate active rider/vehicle contacts using current pre-solver motion.
+    if race.phase != Phase::Racing {
+        return;
+    }
+    // A gentle touch can become a hard impact without a second Started event.
+    // Query each racer adjacency list, since other world pairs cannot enter this policy.
     if let Ok(ctx) = context.single() {
-        for pair in ctx
-            .simulation
-            .contact_pairs(ctx.colliders, ctx.rigidbody_set)
-        {
-            if pair.has_any_active_contact()
-                && let (Some(a), Some(b)) = (pair.collider1(), pair.collider2())
-            {
-                let vehicle = |e| cars.contains(e) || cross_cars.contains(e);
-                if (riders.contains(a) && vehicle(b)) || (riders.contains(b) && vehicle(a)) {
-                    pairs.push((a, b));
+        for rider in &rider_entities {
+            let Ok((actor, recovery, _)) = riders.get(rider) else {
+                continue;
+            };
+            if !actor.racing() || recovery.stage != RecoveryStage::Riding {
+                continue;
+            }
+            for pair in ctx.contact_pairs_with(rider) {
+                let (Some(a), Some(b)) = (pair.collider1(), pair.collider2()) else {
+                    continue;
+                };
+                let other = if a == rider { b } else { a };
+                if pair.has_any_active_contact()
+                    && (cars.contains(other)
+                        || cross_cars.contains(other)
+                        || soft_targets.crossing_cattle.contains(other))
+                {
+                    pairs.push((rider, other));
                 }
             }
         }
-    }
-
-    if race.phase != Phase::Racing {
-        return;
     }
     for (runner, output) in &controllers {
         for contact in &output.collisions {
             pairs.push((runner, contact.entity));
         }
     }
-    // Gameplay-only ride-over margin; physical rig/colliders remain unchanged.
-    // Sweep one fixed step to catch fast passes, with 25 cm extra side/end reach.
-    // Include solid scenery so the aid cannot reach through a wall.
-    if owned
-        .iter()
-        .any(|b| matches!(b.kind, BodyKind::Ragdoll | BodyKind::Wreck))
+    // Rapier excludes these pairs from its solver and CCD. Sweep up to the
+    // first real obstruction, with the existing 25 cm ride-over margin.
+    if !soft_targets.is_empty()
         && let Ok(ctx) = context.single()
     {
+        let shape = ride_over_probe.get_or_insert_with(|| Collider::cuboid(0.63, 0.65, 1.37));
         for owner in &rider_entities {
             let Ok((r, rec, _)) = riders.get(owner) else {
                 continue;
             };
-            if rec.stage != RecoveryStage::Riding || r.impact_cooldown > 0.0 {
+            if rec.stage != RecoveryStage::Riding || !r.racing() {
                 continue;
             }
             let Ok(t) = transforms.get(owner) else {
                 continue;
             };
-            let velocity = bike_states
+            let velocity = velocities
                 .get(owner)
-                .map_or(r.motion_velocity, |s| s.impact_velocity);
+                .map_or(r.motion_velocity, |v| v.linear);
+            if velocity.length_squared() <= 0.75_f32.powi(2) {
+                continue;
+            }
             let delta = velocity * time.delta_secs();
             let predicate = |e, _: &bevy_rapier3d::rapier::geometry::Collider| {
-                e != owner && !ground.contains(e) && !owned.get(e).is_ok_and(|b| b.owner == owner)
+                e != owner
+                    && !ground.contains(e)
+                    && !soft_targets.disabled.contains(e)
+                    && !owned.get(e).is_ok_and(|b| b.owner == owner)
             };
-            let shape = Collider::cuboid(0.63, 0.65, 1.37);
             let margin_hit = ctx.cast_shape(
-                t.translation + Vec3::Y * 0.65 - delta,
+                t.translation + Vec3::Y * 0.65,
                 t.rotation,
                 delta,
                 shape.raw.as_ref(),
@@ -1385,9 +1536,7 @@ pub fn impacts(
                     .predicate(&predicate),
             );
             if let Some((other, _)) = margin_hit
-                && owned
-                    .get(other)
-                    .is_ok_and(|b| matches!(b.kind, BodyKind::Ragdoll | BodyKind::Wreck))
+                && soft_targets.contains(owner, other)
             {
                 pairs.push((owner, other));
             }
@@ -1402,6 +1551,37 @@ pub fn impacts(
     pairs.dedup();
     let mut actions = Vec::new();
     for (a, b) in pairs {
+        let contact = |mover, target| {
+            if let Ok(ctx) = context.single()
+                && let Some(pair) = ctx.contact_pair(a, b)
+                && let Some(point) = pair.manifolds().find_map(|manifold| {
+                    manifold
+                        .solver_contacts()
+                        .map(|contact| contact.point())
+                        .find(|point| point.is_finite())
+                })
+            {
+                return point;
+            }
+            // Assisted sweeps may arrive before Rapier builds a manifold.
+            match (transforms.get(mover), transforms.get(target)) {
+                (Ok(mover), Ok(target_pose)) => {
+                    let sample = mover.translation + Vec3::Y;
+                    shapes.get(target).map_or(target_pose.translation, |shape| {
+                        shape
+                            .project_point(
+                                target_pose.translation,
+                                target_pose.rotation,
+                                sample,
+                                false,
+                            )
+                            .point
+                    })
+                }
+                (Ok(t), _) | (_, Ok(t)) => t.translation,
+                _ => Vec3::ZERO,
+            }
+        };
         for (bike, other) in [(a, b), (b, a)] {
             if breakable
                 .get(other)
@@ -1412,7 +1592,7 @@ pub fn impacts(
             let Ok((rider, recovery, _)) = riders.get(bike) else {
                 continue;
             };
-            if recovery.stage != RecoveryStage::Riding {
+            if recovery.stage != RecoveryStage::Riding || rider.wasted.is_some() {
                 continue;
             }
             let velocity = bike_states
@@ -1420,19 +1600,40 @@ pub fn impacts(
                 .map_or(rider.motion_velocity, |s| s.impact_velocity);
             let speed = velocity.length();
             if let Ok((other_rider, other_recovery, _)) = riders.get(other) {
-                if other_recovery.stage != RecoveryStage::Riding || bike.to_bits() > other.to_bits()
+                if other_recovery.stage != RecoveryStage::Riding
+                    || other_rider.wasted.is_some()
+                    || bike.to_bits() > other.to_bits()
                 {
                     continue;
                 }
                 let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) else {
                     continue;
                 };
-                let normal = (b.translation - a.translation)
-                    .with_y(0.0)
-                    .normalize_or_zero();
                 let other_velocity = bike_states
                     .get(other)
                     .map_or(other_rider.motion_velocity, |s| s.impact_velocity);
+                let separation = b.translation - a.translation;
+                if let Some(upper_is_other) =
+                    rr_core::contact::rider_landing(separation.y, velocity.y, other_velocity.y)
+                    && {
+                        if let Ok(ctx) = context.single()
+                            && let Some(pair) = ctx.contact_pair(bike, other)
+                        {
+                            pair.manifolds().any(|m| m.normal().y.abs() > 0.55)
+                        } else {
+                            separation.normalize_or_zero().y.abs() > 0.55
+                        }
+                    }
+                {
+                    let (landing, struck) = if upper_is_other {
+                        (other, bike)
+                    } else {
+                        (bike, other)
+                    };
+                    actions.push(Impact::Crash(landing, None, contact(landing, struck)));
+                    continue;
+                }
+                let normal = separation.with_y(0.).normalize_or_zero();
                 let forward_a = (a.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
                 let forward_b = (b.rotation * Vec3::Z).with_y(0.0).normalize_or_zero();
                 let closing = (velocity - other_velocity).dot(normal).max(0.0);
@@ -1452,7 +1653,7 @@ pub fn impacts(
                     actions.push(Impact::Rear(bike, other, va, vb));
                     if closing >= rr_core::contact::REAR_KNOCKOFF_MPS {
                         let (victim, response) = if along > 0.0 { (other, vb) } else { (bike, va) };
-                        actions.push(Impact::Crash(victim, Some(response)));
+                        actions.push(Impact::Crash(victim, Some(response), contact(bike, other)));
                     }
                     continue;
                 }
@@ -1465,7 +1666,12 @@ pub fn impacts(
                         false,
                         rider.original_condition,
                     );
-                    actions.push(Impact::Original(bike, response, frame));
+                    actions.push(Impact::Original(
+                        bike,
+                        response,
+                        frame,
+                        contact(bike, other),
+                    ));
                     let (response, frame) = crate::original_crash::contact_plan(
                         other_velocity,
                         velocity,
@@ -1474,7 +1680,12 @@ pub fn impacts(
                         false,
                         other_rider.original_condition,
                     );
-                    actions.push(Impact::Original(other, response, frame));
+                    actions.push(Impact::Original(
+                        other,
+                        response,
+                        frame,
+                        contact(bike, other),
+                    ));
                     continue;
                 }
                 let closing = (velocity - other_velocity).dot(normal).max(0.0);
@@ -1493,115 +1704,79 @@ pub fn impacts(
                     } else {
                         bike
                     };
-                    actions.push(Impact::Crash(victim, None));
+                    actions.push(Impact::Crash(victim, None, contact(bike, other)));
                 } else if closing > 0.05 {
                     let transfer = normal * (closing * 0.35).min(2.5);
                     actions.push(Impact::Nudge(bike, -transfer));
                     actions.push(Impact::Nudge(other, transfer));
                 }
-            } else if let Ok(body) = owned.get(other) {
-                if body.owner == bike {
+            } else if owned.get(other).is_ok_and(|body| body.owner == bike) {
+                continue;
+            } else if soft_targets.contains(bike, other) {
+                if npcs.get(other).is_ok_and(|npc| !npc.active()) {
                     continue;
                 }
-                // Original class 0: a detached rider or wreck is not a fresh
-                // mounted-bike crash. Rapier still resolves the solid contact.
-                if matches!(body.kind, BodyKind::Ragdoll | BodyKind::Wreck) {
-                    if let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) {
-                        let direction = (b.translation - a.translation)
-                            .with_y(0.0)
-                            .normalize_or_zero();
-                        // Both sides of the threshold must use the same pre-solver
-                        // sample. A solver push/bounce can otherwise hide a real
-                        // approach or turn a gentle touch into a scripted lift.
-                        let target_velocity = previous.get(other).map_or_else(
-                            |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linear),
-                            |v| v.0,
-                        );
-                        let closing = (velocity - target_velocity).dot(direction).max(0.0);
-                        if rr_core::contact::ride_over_velocity(closing).is_some()
-                            && b.translation.y < a.translation.y + 1.5
-                        {
-                            actions.push(Impact::RideOver(
-                                bike,
-                                velocity,
-                                closing,
-                                Some((other, target_velocity)),
-                            ));
-                        }
-                    }
+                let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) else {
                     continue;
-                }
-                if let (Ok(a), Ok(b)) = (transforms.get(bike), transforms.get(other)) {
-                    let normal = (b.translation - a.translation)
-                        .with_y(0.0)
-                        .normalize_or_zero();
-                    let other_velocity = controllers.get(other).map_or_else(
+                };
+                let normal = (b.translation - a.translation)
+                    .with_y(0.0)
+                    .normalize_or_zero();
+                let body = owned.get(other).ok();
+                let downed = body.is_some_and(|body| body.kind != BodyKind::Runner);
+                let target_velocity = if downed {
+                    previous.get(other).map_or_else(
+                        |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linear),
+                        |v| v.0,
+                    )
+                } else {
+                    controllers.get(other).map_or_else(
                         |_| velocities.get(other).map_or(Vec3::ZERO, |v| v.linear),
                         |(_, out)| out.effective_translation / time.delta_secs(),
-                    );
-                    let closing = (velocity - other_velocity).dot(normal).max(0.0);
-                    let shared = rr_core::contact::shared_normal_speed(
-                        velocity.dot(normal),
-                        other_velocity.dot(normal),
-                        rider.bike_mass + 70.0,
-                        70.0,
-                    );
-                    let source = velocity + normal * (shared - velocity.dot(normal));
-                    let target = other_velocity + normal * (shared - other_velocity.dot(normal));
-                    if closing > 0.75 {
-                        actions.push(Impact::Crash(body.owner, Some(target)));
-                    }
-                    if rr_core::contact::ride_over_velocity(closing).is_some() {
-                        actions.push(Impact::RideOver(bike, source, closing, None));
-                    }
-                }
-            } else if cows.contains(other) || npcs.get(other).is_ok_and(|npc| npc.active()) {
-                if speed > 0.75 {
-                    let target_mass = npcs.get(other).map_or(363.0, |npc| {
-                        if npc.kind == crate::npc::NpcKind::Cow {
-                            363.0
-                        } else {
-                            56.5
-                        }
-                    });
-                    let fraction =
-                        rr_core::crash::shared_speed_fraction(rider.bike_mass + 70.0, target_mass);
-                    if npcs
-                        .get(other)
-                        .is_ok_and(|npc| npc.kind == crate::npc::NpcKind::Pedestrian)
+                    )
+                };
+                let closing = (velocity - target_velocity).dot(normal).max(0.0);
+                let target_mass = match (body, npcs.get(other).ok().map(|npc| npc.kind)) {
+                    (Some(_), _) => 70.0,
+                    (_, Some(crate::npc::NpcKind::Pedestrian)) => 56.5,
+                    _ => 363.0,
+                };
+                let transfer = closing
+                    * rr_core::crash::shared_speed_fraction(rider.bike_mass + 70.0, target_mass);
+                let cue = if body.is_some_and(|body| body.kind == BodyKind::Wreck) {
+                    Cue::RunoverBike
+                } else {
+                    Cue::Runover
+                };
+                let contact = contact(bike, other);
+                if downed {
+                    if rider.impact_cooldown > 0.0
+                        || b.translation.y >= a.translation.y + 1.5
+                        || rr_core::contact::downed_ride_over_velocity(closing).is_none()
                     {
-                        let normal = transforms
-                            .get(bike)
-                            .ok()
-                            .zip(transforms.get(other).ok())
-                            .map_or(velocity.with_y(0.0).normalize_or_zero(), |(a, b)| {
-                                (b.translation - a.translation)
-                                    .with_y(0.0)
-                                    .normalize_or_zero()
-                            });
-                        let target_velocity =
-                            velocities.get(other).map_or(Vec3::ZERO, |v| v.linear);
-                        let closing = (velocity - target_velocity).dot(normal).max(0.0);
-                        let shared = rr_core::contact::shared_normal_speed(
-                            velocity.dot(normal),
-                            target_velocity.dot(normal),
-                            rider.bike_mass + 70.0,
-                            target_mass,
-                        );
-                        actions.push(Impact::Pedestrian(SoftHit {
-                            owner: bike,
-                            target: other,
-                            incoming: velocity,
-                            target_before: target_velocity,
-                            target_after: target_velocity
-                                + normal * (shared - target_velocity.dot(normal)),
-                            closing,
-                            target_mass,
-                        }));
-                    } else {
-                        actions.push(Impact::Crash(bike, Some(velocity * fraction)));
+                        continue;
+                    }
+                    actions.push(Impact::PushAside(
+                        other,
+                        velocity.with_y(0.0).normalize_or_zero() * (closing * 0.2).min(3.0),
+                    ));
+                } else {
+                    if closing <= 0.75 {
+                        continue;
+                    }
+                    let response = target_velocity + normal * transfer;
+                    if let Some(body) = body {
+                        actions.push(Impact::Crash(body.owner, Some(response), contact));
+                    } else if npcs.contains(other) {
+                        actions.push(Impact::KnockDownNpc(other, response));
                     }
                 }
+                let up = if downed {
+                    rr_core::contact::downed_ride_over_velocity(closing)
+                } else {
+                    rr_core::contact::ride_over_velocity(closing)
+                };
+                actions.push(Impact::RideOver(bike, up, AudioCue::new(cue, contact)));
             } else if cross_cars.contains(other)
                 || (!ground.contains(other) && obstacles.contains(other))
                 || cars
@@ -1735,7 +1910,12 @@ pub fn impacts(
                         true,
                         rider.original_condition,
                     );
-                    actions.push(Impact::Original(bike, response, frame));
+                    actions.push(Impact::Original(
+                        bike,
+                        response,
+                        frame,
+                        contact(bike, other),
+                    ));
                     continue;
                 }
                 let incoming = velocity.with_y(0.0);
@@ -1745,7 +1925,7 @@ pub fn impacts(
                 );
                 let response =
                     (incoming.normalize_or_zero() * retained).with_y(velocity.y.min(0.0));
-                actions.push(Impact::Crash(bike, Some(response)));
+                actions.push(Impact::Crash(bike, Some(response), contact(bike, other)));
             }
         }
         // A traffic car or moving wreck can knock an on-foot rider down again.
@@ -1778,14 +1958,14 @@ pub fn impacts(
                 if (is_car && object_velocity.length() > 3.0) || is_other_wreck {
                     // A solid moving object may knock the runner down; do not add
                     // a fixed 9 m/s impulse to the runner's existing movement.
-                    actions.push(Impact::Crash(body.owner, None));
+                    actions.push(Impact::Crash(body.owner, None, contact(person, object)));
                 }
             }
         }
     }
     for action in actions {
         match action {
-            Impact::Original(owner, response, frame) => {
+            Impact::Original(owner, response, frame, contact) => {
                 if let Ok((mut rider, mut recovery, mut visibility)) = riders.get_mut(owner)
                     && recovery.stage == RecoveryStage::Riding
                 {
@@ -1818,9 +1998,9 @@ pub fn impacts(
                             Vec3::ZERO,
                             &context,
                             Some((rider_velocity, bike_velocity)),
+                            contact,
                         );
                         *visibility = Visibility::Hidden;
-                        audio.write(AudioCue::new(Cue::Crash, t.translation));
                         if rider.id == 0 {
                             race.shake = 1.0;
                         }
@@ -1834,92 +2014,43 @@ pub fn impacts(
                     }
                 }
             }
-            Impact::Pedestrian(hit) => {
-                if let Ok((mut rider, recovery, _)) = riders.get_mut(hit.owner)
-                    && recovery.stage == RecoveryStage::Riding
-                {
-                    npc_hits.write(crate::combat::NpcHit(hit.target, hit.target_after, false));
-                    let hop = if rider.impact_cooldown <= 0.0 {
-                        rr_core::contact::ride_over_velocity(hit.closing)
-                    } else {
-                        None
-                    };
-                    let resolved = Vec3::from_array(
-                        rr_core::contact::ride_over_response(
-                            hit.incoming.to_array(),
-                            hit.target_before.to_array(),
-                            hit.target_after.to_array(),
-                            rider.bike_mass + 70.0,
-                            hit.target_mass,
-                            hop.unwrap_or(0.0),
-                        )
-                        .unwrap_or(hit.incoming.to_array()),
-                    );
-                    rider.motion_velocity = resolved;
-                    rider.speed = resolved.with_y(0.0).length();
-                    if hop.is_some() {
-                        rider.hop_velocity = rider.hop_velocity.max(resolved.y);
-                        rider.impact_cooldown = 0.35;
-                    }
-                    commands.queue(move |world: &mut World| {
-                        if let Some(mut velocity) = world.get_mut::<Velocity>(hit.owner) {
-                            velocity.linear = resolved;
-                        }
-                    });
-                }
+            Impact::KnockDownNpc(entity, velocity) => {
+                npc_hits.write(crate::combat::NpcHit(entity, velocity, false));
             }
-            Impact::RideOver(owner, incoming, closing, target) => {
+            Impact::PushAside(target, delta) => {
+                commands.queue(move |world: &mut World| {
+                    let Some(mut velocity) = world.get_mut::<Velocity>(target) else {
+                        return;
+                    };
+                    let before = velocity.linear;
+                    velocity.linear += delta;
+                    let after = velocity.linear;
+                    // This external shove is the only extra energy and reverse
+                    // momentum credited to the detached crash group.
+                    if let Some(mut envelope) = world.get_mut::<CrashEnvelope>(target) {
+                        envelope.credit_ride_over(before, after);
+                    }
+                });
+            }
+            Impact::RideOver(owner, up, cue) => {
                 if let Ok((mut rider, recovery, _)) = riders.get_mut(owner)
                     && recovery.stage == RecoveryStage::Riding
-                    && rider.impact_cooldown <= 0.0
-                    && let Some(up) = rr_core::contact::downed_ride_over_velocity(closing)
                 {
-                    if let Ok(t) = transforms.get(owner) {
-                        audio.write(AudioCue::new(Cue::Land, t.translation));
-                    }
+                    audio.write(cue);
+                    let Some(up) = up.filter(|_| rider.impact_cooldown <= 0.0) else {
+                        continue;
+                    };
                     if rider.human_controlled() {
                         race.shake = race.shake.max(0.18);
                         race.message = "RIDE OVER".into();
                         race.message_time = 0.7;
                     }
-                    let own_mass = rider.bike_mass + 70.0;
                     rider.hop_velocity = rider.hop_velocity.max(up);
-                    rider.motion_velocity = incoming.with_y(incoming.y.max(up));
+                    rider.motion_velocity.y = rider.motion_velocity.y.max(up);
                     rider.impact_cooldown = 0.35;
                     commands.queue(move |world: &mut World| {
-                        let mut before = Vec3::ZERO;
-                        let mut after = Vec3::ZERO;
-                        let mut mass = 0.0;
-                        if let Some((target, target_before)) = target {
-                            before = target_before;
-                            mass = world
-                                .get::<ReadMassProperties>(target)
-                                .map_or(20.0, |m| m.mass.max(0.25));
-                            let delta =
-                                incoming.with_y(0.0).normalize_or_zero() * (closing * 0.2).min(3.0);
-                            if let Some(mut velocity) = world.get_mut::<Velocity>(target) {
-                                velocity.linear += delta;
-                                after = velocity.linear;
-                            }
-                        }
-                        let adjusted = Vec3::from_array(
-                            rr_core::contact::downed_ride_over_response(
-                                incoming.to_array(),
-                                before.to_array(),
-                                after.to_array(),
-                                own_mass,
-                                mass,
-                                up,
-                            )
-                            .unwrap_or(incoming.to_array()),
-                        );
                         if let Some(mut velocity) = world.get_mut::<Velocity>(owner) {
-                            velocity.linear = adjusted;
-                        }
-                        if let Some(mut rider) = world.get_mut::<Rider>(owner) {
-                            rider.speed = adjusted.with_y(0.0).length();
-                            rider.motion_velocity = adjusted;
-                            rider.hop_velocity = adjusted.y.max(0.0);
+                            velocity.linear.y = velocity.linear.y.max(up);
                         }
                     });
                 }
@@ -1954,7 +2085,7 @@ pub fn impacts(
                     r.impact_cooldown = 0.15;
                 }
             }
-            Impact::Crash(owner, response) => {
+            Impact::Crash(owner, response, contact) => {
                 if let Ok((mut rider, mut recovery, mut visibility)) = riders.get_mut(owner)
                     && recovery.stage != RecoveryStage::Falling
                 {
@@ -2000,7 +2131,7 @@ pub fn impacts(
                         } else {
                             Vec3::ZERO
                         };
-                    crash(
+                    crash_with_response(
                         &mut commands,
                         &art,
                         owner,
@@ -2010,9 +2141,10 @@ pub fn impacts(
                         t.rotation,
                         Vec3::ZERO,
                         &context,
+                        None,
+                        contact,
                     );
                     *visibility = Visibility::Hidden;
-                    audio.write(AudioCue::new(Cue::Crash, origin));
                     if rider.id == 0 {
                         race.shake = 1.0;
                     }
@@ -2090,6 +2222,7 @@ pub(crate) struct CrashEnvelope {
     initial_rotation: Quat,
     forward: Vec3,
     allow_reverse: bool,
+    reverse_speed_credit: f32,
 }
 impl CrashEnvelope {
     pub(crate) fn new(
@@ -2105,7 +2238,12 @@ impl CrashEnvelope {
             initial_rotation,
             forward,
             allow_reverse: false,
+            reverse_speed_credit: 0.,
         }
+    }
+    fn credit_ride_over(&mut self, before: Vec3, after: Vec3) {
+        self.initial_speed_squared += (after.length_squared() - before.length_squared()).max(0.);
+        self.reverse_speed_credit += (before - after).dot(self.forward).max(0.);
     }
     pub(crate) fn with_angular_velocity(mut self, velocity: Vec3) -> Self {
         self.initial_angular_velocity = velocity;
@@ -2135,6 +2273,7 @@ pub(crate) fn constrain_crash_energy(
     struct Budget {
         mass: f64,
         momentum: bevy::math::DVec3,
+        reverse_momentum_credit: f64,
         kinetic: f64,
         available: f64,
         forward: Vec3,
@@ -2148,6 +2287,7 @@ pub(crate) fn constrain_crash_energy(
         let group = groups.entry(owner.owner).or_default();
         group.mass += mass.mass as f64;
         group.momentum += velocity.linear.as_dvec3() * mass.mass as f64;
+        group.reverse_momentum_credit += envelope.reverse_speed_credit as f64 * mass.mass as f64;
         group.forward = envelope.forward;
         group.allow_reverse |= envelope.allow_reverse;
         let angular =
@@ -2173,19 +2313,19 @@ pub(crate) fn constrain_crash_energy(
         let Some(group) = groups.get(&owner.owner) else {
             continue;
         };
-        let backward = if group.allow_reverse {
-            0.0
+        let along = (group.momentum / group.mass).dot(group.forward.as_dvec3());
+        let clipped = if group.allow_reverse {
+            0.
         } else {
-            (group.momentum / group.mass)
-                .dot(group.forward.as_dvec3())
-                .min(0.0)
+            (along + group.reverse_momentum_credit / group.mass).min(0.)
         };
-        // Remove only backwards centre-of-mass motion; individual limbs can still
-        // swing backwards relative to their connected body.
-        if biomechanical.is_none() || backward < -0.05 {
-            velocity.linear -= group.forward * backward as f32;
+        // Limit backwards centre-of-mass motion beyond external impact credit.
+        // Individual limbs can still swing relative to their connected body.
+        if biomechanical.is_none() || clipped < -0.05 {
+            velocity.linear -= group.forward * clipped as f32;
         }
-        let kinetic = (group.kinetic - group.mass * backward * backward).max(0.0);
+        let removed = group.mass * (along.powi(2) - (along - clipped).powi(2));
+        let kinetic = (group.kinetic - removed).max(0.);
         let scale = if kinetic > group.available.max(0.0) {
             (group.available.max(0.0) / kinetic).sqrt()
         } else {

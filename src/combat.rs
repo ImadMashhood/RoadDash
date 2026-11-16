@@ -102,7 +102,7 @@ pub fn schedule(
         let Ok((_, r, rec, t)) = riders.get(owner) else {
             continue;
         };
-        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
+        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || !r.racing() {
             continue;
         }
         if r.strike.is_some_and(|clock| clock.pending()) {
@@ -122,7 +122,7 @@ pub fn schedule(
                         && target_pose(other, state, pose, &positions, police_foot).is_some()
                         && state.stagger.is_none()
                         && other.immunity <= 0.0
-                        && other.finished.is_none()
+                        && other.racing()
                 })
                 .map(|(e, r, rec, t)| {
                     (
@@ -177,12 +177,12 @@ pub fn schedule(
     for (e, mut r, rec, pose) in &mut riders {
         if rec.stage != RecoveryStage::Riding
             || rec.stagger.is_some()
-            || r.finished.is_some()
+            || !r.racing()
             || r.hit_reaction.is_some_and(|hit| !hit.active(race.elapsed))
         {
             r.hit_reaction = None;
         }
-        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || r.finished.is_some() {
+        if rec.stage != RecoveryStage::Riding || rec.stagger.is_some() || !r.racing() {
             r.strike = None;
             continue;
         }
@@ -265,10 +265,7 @@ pub(crate) fn melee(
         let Ok((_, rider, state, t, _)) = riders.get(attacker) else {
             continue;
         };
-        if state.stage != RecoveryStage::Riding
-            || state.stagger.is_some()
-            || rider.finished.is_some()
-        {
+        if state.stage != RecoveryStage::Riding || state.stagger.is_some() || !rider.racing() {
             continue;
         }
         if chosen_side.is_some() && rider.strike.is_none_or(|clock| !clock.pending()) {
@@ -285,9 +282,9 @@ pub(crate) fn melee(
         let mind = rider.combat_mind.clone();
         let police_attacker = rider.police;
         let kick_strength = if player {
-            8.0
+            10.0
         } else {
-            8.0 * rider.ai_profile.strength / 7.0
+            10.0 * rider.ai_profile.strength / 7.0
         };
         let origin = t.translation + Vec3::Y * 1.45;
         let forward = t.rotation * Vec3::Z;
@@ -395,7 +392,7 @@ pub(crate) fn melee(
                 && target_pose(r, s, t, &positions, police_foot).is_some()
                 && s.stagger.is_none()
                 && r.immunity <= 0.0
-                && r.finished.is_none()
+                && r.racing()
                 && (chosen_side.is_some()
                     || (r.police && police_foot && s.stage == RecoveryStage::Running)
                     || (t.rotation * Vec3::Z).dot(forward) > 0.7)
@@ -501,10 +498,10 @@ pub(crate) fn melee(
             rider.attack_side = (p - origin).dot(right).signum();
         }
         audio.write(AudioCue::new(
-            if bike_hit {
-                Cue::BikeStrike
-            } else if kicking {
+            if kicking {
                 Cue::Kick
+            } else if bike_hit || weapon.is_some() {
+                Cue::BikeStrike
             } else {
                 Cue::Punch
             },
@@ -518,6 +515,7 @@ pub(crate) fn melee(
             continue;
         }
         if let Ok((_, mut r, mut state, t, mut visible)) = riders.get_mut(target) {
+            use rr_core::weapons::ConditionDamage;
             let foot = r.police && police_foot && state.stage == RecoveryStage::Running;
             let hit_pose = target_pose(&r, &state, t, &positions, police_foot).unwrap_or(*t);
             if r.police
@@ -525,6 +523,14 @@ pub(crate) fn melee(
             {
                 police.mind.interrupt_arrest();
                 police.contact_block_until = race.elapsed + 0.25;
+            }
+            if !r.police && !r.networked {
+                let damage = if kicking {
+                    ConditionDamage::KICK
+                } else {
+                    weapon.map_or(ConditionDamage::PUNCH, |ability| ability.condition_damage)
+                };
+                r.race_health.struck(bike_hit, damage);
             }
             if bike_hit {
                 let direction = (t.translation - origin).dot(right).signum();
@@ -606,7 +612,6 @@ pub(crate) fn melee(
                     );
                     *visible = Visibility::Hidden;
                 }
-                audio.write(AudioCue::new(Cue::Crash, t.translation));
                 if player {
                     commands.queue(move |world: &mut World| {
                         if let Some(mut r) = world.get_mut::<Rider>(attacker) {
@@ -668,8 +673,21 @@ mod tests {
                 } else {
                     rr_core::AttackSide::Right
                 };
+                let mut sounds = app
+                    .world()
+                    .resource::<Messages<AudioCue>>()
+                    .get_cursor_current();
                 app.world_mut().write_message(AttackAttempt(owner, action));
                 app.world_mut().run_system_once(melee).unwrap();
+                let mut contacts = sounds.read(app.world().resource::<Messages<AudioCue>>());
+                let contact = contacts.next().unwrap();
+                assert!(matches!(
+                    (kicking, contact.kind),
+                    (false, Cue::Punch) | (true, Cue::Kick)
+                ));
+                let target_position = app.world().get::<Transform>(target).unwrap().translation;
+                assert!(contact.position.distance(target_position + Vec3::Y * 1.45) < 1e-5);
+                assert!(contacts.next().is_none());
                 let hit = app
                     .world()
                     .get::<Rider>(target)
@@ -680,10 +698,12 @@ mod tests {
                 assert_eq!(hit.kicking, kicking);
                 let victim = app.world().get::<Rider>(target).unwrap();
                 assert_eq!(victim.hits.count, if kicking { 0 } else { 1 });
+                assert_eq!(victim.race_health.bike, 100.);
+                assert_eq!(victim.race_health.rider, if kicking { 95. } else { 91. });
                 assert!(
                     (app.world().get::<Velocity>(target).unwrap().linear
                         - if kicking {
-                            right * side * 8.0
+                            right * side * 10.0
                         } else {
                             Vec3::ZERO
                         })
@@ -989,7 +1009,7 @@ mod tests {
                 .world_mut()
                 .spawn((
                     Rider::new(1),
-                    Transform::from_translation(t.translation + right * side * 6.0)
+                    Transform::from_translation(t.translation + right * side * 2.5)
                         .with_rotation(t.rotation),
                     Visibility::Visible,
                     Velocity::zero(),
@@ -1040,15 +1060,14 @@ mod tests {
             app.world_mut()
                 .write_message(AttackAttempt(owner, rr_core::AttackSide::Kick));
             app.world_mut().run_system_once(melee).unwrap();
-            assert!(
-                app.world()
-                    .get::<Velocity>(targets[0])
-                    .unwrap()
-                    .linear
-                    .dot(right)
-                    * side
-                    > 7.9
-            );
+            let lateral_push = app
+                .world()
+                .get::<Velocity>(targets[0])
+                .unwrap()
+                .linear
+                .dot(right)
+                * side;
+            assert!((lateral_push - 10.).abs() < 0.01);
             assert_eq!(
                 app.world().get::<Velocity>(targets[1]).unwrap().linear,
                 Vec3::ZERO

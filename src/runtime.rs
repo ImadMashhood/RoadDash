@@ -321,6 +321,7 @@ impl Plugin for RoadSimulationPlugin {
                 (
                     crate::offscreen_crash::classify,
                     recovery::impacts,
+                    recovery::race_outcomes,
                     recovery::recover,
                     crate::weapons::inventory,
                     game::drive,
@@ -351,7 +352,13 @@ impl Plugin for RoadSimulationPlugin {
                     .after(SimSet::Gameplay)
                     .before(PhysicsSet::SyncBackend),
             )
-            .add_systems(Update, crate::world_gen::hills::river::animate)
+            .add_systems(
+                Update,
+                (
+                    crate::world_gen::hills::river::animate,
+                    crate::world_gen::hills::mounted::animate_rider_legs,
+                ),
+            )
             .add_systems(
                 PostUpdate,
                 crate::map_fx::animate
@@ -422,7 +429,14 @@ impl Plugin for RoadLifecyclePlugin {
                     .after(crate::tangent_detail::update)
                     .run_if(in_state(AppScreen::Loading)),
             )
-            .add_systems(Update, screen);
+            .add_systems(
+                Update,
+                (
+                    screen,
+                    crate::world_gen::hills::woodland::update_backdrop_lods
+                        .run_if(resource_exists::<Assets<Mesh>>),
+                ),
+            );
     }
 }
 pub struct RoadWorldPlugin;
@@ -534,11 +548,18 @@ impl Plugin for RoadPresentationPlugin {
                     world::animate_riders,
                     world::animate_runners,
                     crate::environment::animate_civilians,
+                    crate::world_gen::hills::encounters::animate,
                     crate::environment::animate_cow_legs,
                     game::camera_occlusion,
                     crate::ui::update_ui,
                 )
                     .chain(),
+            )
+            .add_systems(
+                FixedUpdate,
+                crate::map_fx::braking::update
+                    .after(SimSet::AfterPhysics)
+                    .run_if(resource_exists::<crate::map_fx::braking::BrakeFx>),
             )
             .add_systems(
                 PostUpdate,
@@ -554,7 +575,7 @@ impl Plugin for RoadAudioPlugin {
             .add_systems(Startup, crate::sound::setup.in_set(StartupSet::Audio))
             .add_systems(
                 PostUpdate,
-                crate::sound::update_bikes
+                (crate::sound::update_bikes, crate::sound::update_traffic)
                     .after(game::camera)
                     .before(bevy::transform::TransformSystems::Propagate),
             )

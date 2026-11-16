@@ -13,10 +13,18 @@ use bevy_rapier3d::prelude::*;
 pub const DUST_CAPACITY: usize = 96;
 pub const BIRD_COUNT: usize = 24;
 const EMISSION_INTERVAL: f32 = 0.08;
-fn dust_alpha(age: f32, life: f32, behind_m: f32) -> f32 {
+const PLAYER_DUST_SLOTS: usize = 8;
+const PLAYER_DUST_LIFE: f32 = 0.40;
+
+fn dust_alpha(age: f32, life: f32, behind_m: f32, player: bool) -> f32 {
     let ease = |x: f32| x * x * (3. - 2. * x);
-    0.17 * ease((age / 0.25).clamp(0., 1.))
-        * ease(((life - age) / 0.35).clamp(0., 1.))
+    let (peak, fade_in, fade_out) = if player {
+        (0.48, 0.036, 0.25)
+    } else {
+        (0.28, 0.12, 0.35)
+    };
+    peak * ease((age / fade_in).clamp(0., 1.))
+        * ease(((life - age) / fade_out).clamp(0., 1.))
         * ease(((24. - behind_m) / 15.).clamp(0., 1.))
 }
 #[derive(Component)]
@@ -26,6 +34,7 @@ pub struct DustPuff {
     drift: Vec3,
     tint: Vec3,
     size: f32,
+    player: bool,
 }
 #[derive(Component)]
 pub struct Bird {
@@ -192,14 +201,11 @@ pub fn spawn(
     track: &Track,
     images: Option<&mut Assets<Image>>,
 ) {
-    if !track.is_hills() && track.metropolis.is_none() {
-        return;
-    }
     commands.insert_resource(Atmosphere::default());
     if crate::map_fx::quality() > 0 {
         let texture = images.map(|images| images.add(sprite()));
         let quad = meshes.add(Rectangle::new(1., 1.));
-        for _ in 0..(DUST_CAPACITY * crate::map_fx::quality() / 2) {
+        for slot in 0..(DUST_CAPACITY * crate::map_fx::quality() / 2) {
             let material = materials.add(StandardMaterial {
                 base_color: Color::srgba(0.76, 0.61, 0.38, 0.),
                 base_color_texture: texture.clone(),
@@ -218,15 +224,20 @@ pub fn spawn(
                 bevy::light::NotShadowReceiver,
                 DustPuff {
                     age: 2.,
-                    life: 1.6,
+                    life: if slot < PLAYER_DUST_SLOTS {
+                        PLAYER_DUST_LIFE
+                    } else {
+                        1.6
+                    },
                     drift: Vec3::ZERO,
                     tint: Vec3::new(0.76, 0.61, 0.38),
                     size: 1.8,
+                    player: slot < PLAYER_DUST_SLOTS,
                 },
             ));
         }
     }
-    if !birds_enabled() {
+    if !birds_enabled() || (!track.is_hills() && track.metropolis.is_none()) {
         return;
     }
     let body = meshes.add(Sphere::new(1.).mesh().uv(8, 4));
@@ -324,6 +335,79 @@ fn active_delta(phase: crate::game::Phase, dt: f32) -> f32 {
         0.
     }
 }
+struct DustEmission {
+    position: Vec3,
+    drift: Vec3,
+    tint: Vec3,
+    size: f32,
+}
+
+fn rear_wheel_dust(
+    track: &Track,
+    pose: &Transform,
+    rider: &Rider,
+    bike: Option<&crate::vehicle::BikeState>,
+    player_side: Option<f32>,
+    ground_height: impl FnOnce(Vec3) -> Option<f32>,
+) -> Option<DustEmission> {
+    use rr_core::surface::Surface;
+
+    let origin = pose.transform_point(Vec3::new(0., 0.9, -0.78));
+    let (station, lane) = if player_side.is_some() {
+        let (station, lane, _) = track.project_route(rider.route, origin, rider.progress);
+        (station, lane)
+    } else {
+        (
+            rider.progress,
+            track.lane_at(rider.route, rider.progress, origin),
+        )
+    };
+    let surface = track.surface_route(rider.route, station, lane);
+    let strength = crate::map_fx::wheel_spray(
+        surface,
+        rider.speed,
+        rider.drive_intent.throttle_strength(),
+        bike,
+    );
+    if strength <= 0.05 {
+        return None;
+    }
+    let ground = origin.with_y(ground_height(origin)?);
+    let tint = match surface {
+        Surface::Grass => Vec3::new(0.54, 0.41, 0.28),
+        Surface::Sand if track.is_hills() => {
+            super::geometry::sand_color(station, ground.x, ground.z)
+        }
+        Surface::Sand => Vec3::new(0.76, 0.61, 0.38),
+        _ => Vec3::new(0.60, 0.47, 0.32),
+    };
+    let forward = (pose.rotation * Vec3::Z).with_y(0.).normalize_or_zero();
+    let lateral = Vec3::Y.cross(forward);
+    let signed_speed = rider.motion_velocity.dot(forward);
+    let (position, drift, size) = if let Some(side) = player_side {
+        // A short, low plume rises beside the tire within the chase camera's near view.
+        (
+            ground + Vec3::Y * 0.30 + lateral * side * 0.33,
+            lateral * side * (1.9 + strength) + Vec3::Y * 1.25
+                - forward * signed_speed.signum() * (1.2 + strength * 2.),
+            0.78 + strength * 1.6,
+        )
+    } else {
+        (
+            ground + Vec3::Y * 0.10,
+            lateral * 0.35 + Vec3::Y * (0.30 + strength * 0.65)
+                - forward * signed_speed.signum() * (1.8 + strength * 4.),
+            0.60 + strength * 1.8,
+        )
+    };
+    Some(DustEmission {
+        position,
+        drift,
+        tint,
+        size,
+    })
+}
+
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
 pub fn animate(
     time: Res<Time>,
@@ -392,6 +476,7 @@ pub fn animate(
     mut materials: ResMut<Assets<StandardMaterial>>,
     ground: Query<(), With<crate::world::Ground>>,
     physics: ReadRapierContext,
+    online: Option<Res<crate::online::NetState>>,
 ) {
     let Some(mut state) = state else { return };
     let Ok(camera) = cameras.single() else { return };
@@ -434,20 +519,46 @@ pub fn animate(
     if dust.is_empty() {
         return;
     }
-    let player_pose = vehicles
+    let local_slot = online.as_ref().map_or(0, |net| net.local_slot);
+    let player = vehicles
         .iter()
-        .find(|(_, rider, _, _)| rider.is_some_and(|r| r.id == 0))
-        .map(|(pose, _, _, _)| *pose);
+        .find(|(_, rider, _, _)| rider.is_some_and(|r| r.id == local_slot));
+    let player_pose = player.map(|(pose, _, _, _)| pose);
+    let mut player_emission = None;
     let mut emissions = Vec::new();
     if state.emission_clock >= EMISSION_INTERVAL {
         state.emission_clock %= EMISSION_INTERVAL;
         if let Ok(context) = physics.single() {
             let is_ground = |e, _: &bevy_rapier3d::rapier::geometry::Collider| ground.contains(e);
+            let wheel_ground = |origin: Vec3| {
+                context
+                    .cast_ray(
+                        origin,
+                        Vec3::NEG_Y,
+                        1.55,
+                        true,
+                        QueryFilter::default().predicate(&is_ground),
+                    )
+                    .map(|(_, toi)| origin.y - toi)
+            };
+            if let Some((pose, Some(rider), _, bike)) = player
+                && rider.racing()
+                && rider.crashed <= 0.
+            {
+                let side = if ((state.elapsed / EMISSION_INTERVAL) as u32).is_multiple_of(2) {
+                    1.
+                } else {
+                    -1.
+                };
+                player_emission =
+                    rear_wheel_dust(&track, pose, rider, bike, Some(side), wheel_ground);
+            }
             let mut near: Vec<_> = vehicles
                 .iter()
                 .filter(|(t, r, _, _)| {
                     t.translation.distance_squared(camera.translation) < 180f32.powi(2)
-                        && r.is_none_or(|r| r.crashed <= 0.)
+                        && (track.is_hills() || r.is_some())
+                        && r.is_none_or(|r| r.id != local_slot && r.racing() && r.crashed <= 0.)
                 })
                 .collect();
             near.sort_by(|a, b| {
@@ -462,37 +573,10 @@ pub fn animate(
                     |r| (r.route, r.progress),
                 );
                 if let Some(rider) = r {
-                    let rear = t.transform_point(Vec3::new(0., 0.15, -0.78));
-                    let surface = track.surface_route(route, s, track.lane_at(route, s, rear));
-                    let strength = crate::map_fx::wheel_spray(
-                        surface,
-                        speed,
-                        rider.drive_intent.throttle_strength(),
-                        bike,
-                    );
-                    if strength > 0.05
-                        && let Some((_, ground_gap)) = context.cast_ray(
-                            rear + Vec3::Y,
-                            Vec3::NEG_Y,
-                            1.6,
-                            true,
-                            QueryFilter::default().predicate(&is_ground),
-                        )
-                    {
-                        use rr_core::surface::Surface;
-                        let tint = match surface {
-                            Surface::Grass => Vec3::new(0.43, 0.52, 0.26),
-                            Surface::Sand => super::geometry::sand_color(s, rear.x, rear.z),
-                            _ => Vec3::new(0.60, 0.47, 0.32),
-                        };
-                        emissions.push((
-                            rear + Vec3::Y * (1.1 - ground_gap),
-                            t.rotation
-                                * Vec3::new(0.3, 0.35 + strength * 0.8, -0.9 - strength * 2.),
-                            tint,
-                            0.36 + strength * 1.25,
-                        ));
-                    }
+                    emissions.extend(rear_wheel_dust(&track, t, rider, bike, None, wheel_ground));
+                    continue;
+                }
+                if !track.is_hills() {
                     continue;
                 }
                 let a = track.lane_at(route, s, t.translation);
@@ -519,12 +603,13 @@ pub fn animate(
                     bike.map(|b| b.grounded),
                 ) {
                     let p = t.translation + Vec3::Y * (1. - toi + 0.3) - t.rotation * Vec3::Z * 0.8;
-                    emissions.push((
-                        p,
-                        -t.rotation * Vec3::Z * speed.signum() * 0.8 + Vec3::new(0.7, 0.7, 0.2),
-                        super::geometry::sand_color(s, p.x, p.z),
-                        1.8,
-                    ));
+                    emissions.push(DustEmission {
+                        position: p,
+                        drift: -t.rotation * Vec3::Z * speed.signum() * 0.8
+                            + Vec3::new(0.7, 0.7, 0.2),
+                        tint: super::geometry::sand_color(s, p.x, p.z),
+                        size: 1.8,
+                    });
                 }
             }
         }
@@ -534,20 +619,29 @@ pub fn animate(
     for (mut puff, mut t, mut visibility, material) in &mut dust {
         puff.age += dt;
         if puff.age >= puff.life
-            && let Some((p, drift, tint, size)) = next.next()
+            && let Some(emission) = if puff.player {
+                player_emission.take()
+            } else {
+                next.next()
+            }
         {
-            puff.age = 0.;
-            puff.drift = drift;
-            puff.tint = tint;
-            puff.size = size;
-            t.translation = p;
+            puff.age = if puff.player {
+                (dt * 0.5).min(0.025)
+            } else {
+                0.
+            };
+            puff.drift = emission.drift;
+            puff.tint = emission.tint;
+            puff.size = emission.size;
+            t.translation = emission.position;
             state.emitted += 1;
         }
         if puff.age < puff.life {
             active += 1;
             t.translation += puff.drift * dt * (1. - 0.4 * puff.age / puff.life);
             t.rotation = camera.rotation;
-            t.scale = Vec3::splat(puff.size * (0.7 + 0.55 * puff.age / puff.life));
+            let size = puff.size * (0.8 + 0.6 * puff.age / puff.life);
+            t.scale = Vec3::new(size * 1.35, size * 0.76, 1.);
             *visibility = Visibility::Inherited;
             if let Some(mut m) = materials.get_mut(&material.0) {
                 let behind_m = player_pose.map_or(0., |player| {
@@ -558,7 +652,7 @@ pub fn animate(
                     puff.tint.x,
                     puff.tint.y,
                     puff.tint.z,
-                    dust_alpha(puff.age, puff.life, behind_m),
+                    dust_alpha(puff.age, puff.life, behind_m, puff.player),
                 );
             }
         } else {
@@ -572,13 +666,13 @@ mod tests {
     use super::*;
     #[test]
     fn translucent_sand_dust_eases_in_and_out_without_a_first_frame_pop() {
-        assert_eq!(dust_alpha(0., 1.6, 0.), 0.);
-        assert!(dust_alpha(0.05, 1.6, 0.) < 0.02);
-        assert!((0.16..=0.17).contains(&dust_alpha(0.6, 1.6, 0.)));
-        assert!(dust_alpha(1.5, 1.6, 0.) < 0.04);
-        assert!(dust_alpha(0.6, 1.6, 20.) < 0.04);
-        assert_eq!(dust_alpha(0.6, 1.6, 24.), 0.);
-        assert_eq!(dust_alpha(1.6, 1.6, 0.), 0.);
+        assert_eq!(dust_alpha(0., 1.6, 0., false), 0.);
+        assert!(dust_alpha(0.01, 1.6, 0., false) < 0.01);
+        assert!((0.27..=0.28).contains(&dust_alpha(0.6, 1.6, 0., false)));
+        assert!(dust_alpha(1.5, 1.6, 0., false) < 0.06);
+        assert!(dust_alpha(0.6, 1.6, 20., false) < 0.06);
+        assert_eq!(dust_alpha(0.6, 1.6, 24., false), 0.);
+        assert_eq!(dust_alpha(1.6, 1.6, 0., false), 0.);
     }
     #[test]
     fn bird_range_uses_final_propagated_parented_camera_while_paused() {
@@ -751,6 +845,7 @@ mod tests {
                     drift: Vec3::ONE,
                     tint: Vec3::new(0.76, 0.61, 0.38),
                     size: 1.8,
+                    player: false,
                 },
                 Visibility::Inherited,
             ))
@@ -810,6 +905,132 @@ mod tests {
             Quat::IDENTITY
         );
     }
+    #[test]
+    fn player_wheel_dust_gets_a_visible_chase_puff_with_the_remote_pool_full() {
+        let track = Track::hills().unwrap();
+        let station = 8200.;
+        let (position, frame) = track.sample_route(0, station, 10.);
+        let heading = (frame * Vec3::Z).with_y(0.).normalize();
+        let pose = Transform::from_translation(position)
+            .with_rotation(Quat::from_rotation_arc(Vec3::Z, heading));
+        let eye = position - heading * 3.4 + Vec3::Y * 2.3;
+        let camera = Transform::from_translation(eye)
+            .looking_at(position + heading * 2. + Vec3::Y * 1.2, Vec3::Y);
+        let mut app = App::new();
+        app.add_plugins((
+            MinimalPlugins,
+            TransformPlugin,
+            RapierPhysicsPlugin::<NoUserData>::default().in_fixed_schedule(),
+        ))
+        .insert_resource(Time::<Fixed>::from_hz(60.))
+        .insert_resource(TimestepMode::Fixed {
+            dt: 1. / 60.,
+            substeps: 1,
+        })
+        .insert_resource(bevy::time::TimeUpdateStrategy::ManualDuration(
+            std::time::Duration::from_secs_f64(1. / 60.),
+        ))
+        .insert_resource(track)
+        .insert_resource(Atmosphere::default())
+        .insert_resource(crate::game::Race {
+            phase: crate::game::Phase::Racing,
+            ..default()
+        })
+        .init_resource::<Assets<StandardMaterial>>()
+        .add_systems(Update, animate);
+        let world = app.world_mut();
+        let mut rider = Rider::new(0);
+        rider.progress = station;
+        rider.lane = 10.;
+        rider.speed = 18.;
+        rider.motion_velocity = heading * 18.;
+        world.spawn((
+            rider,
+            pose,
+            crate::vehicle::BikeState {
+                grounded: [true, true],
+                ..default()
+            },
+        ));
+        world.spawn((crate::game::ChaseCamera, camera));
+        world.spawn((
+            crate::world::Ground,
+            RigidBody::Fixed,
+            Collider::cuboid(5., 0.5, 5.),
+            Transform::from_translation(position - Vec3::Y * 0.5),
+        ));
+        let remote_material = world
+            .resource_mut::<Assets<StandardMaterial>>()
+            .add(StandardMaterial::default());
+        let player_material = world
+            .resource_mut::<Assets<StandardMaterial>>()
+            .add(StandardMaterial::default());
+        for slot in 0..DUST_CAPACITY {
+            let player = slot == 0;
+            world.spawn((
+                DustPuff {
+                    age: if player { PLAYER_DUST_LIFE } else { 0.2 },
+                    life: if player { PLAYER_DUST_LIFE } else { 1.6 },
+                    drift: Vec3::ZERO,
+                    tint: Vec3::splat(0.6),
+                    size: 1.8,
+                    player,
+                },
+                MeshMaterial3d(if player {
+                    player_material.clone()
+                } else {
+                    remote_material.clone()
+                }),
+                Transform::from_translation(position),
+                Visibility::Hidden,
+            ));
+        }
+        for _ in 0..8 {
+            app.update();
+        }
+        let world = app.world_mut();
+        assert_eq!(world.resource::<Atmosphere>().emitted, 1);
+        let alpha = world
+            .resource::<Assets<StandardMaterial>>()
+            .get(&player_material)
+            .unwrap()
+            .base_color
+            .alpha();
+        assert!(alpha > 0.25, "expected readable alpha, got {alpha}");
+        let (puff, transform, visible) = world
+            .query::<(&DustPuff, &Transform, &Visibility)>()
+            .iter(world)
+            .find(|(puff, _, _)| puff.player)
+            .unwrap();
+        assert!(puff.drift.y >= 1.2);
+        assert_eq!(*visible, Visibility::Inherited);
+        let view = camera.rotation.inverse() * (transform.translation - eye);
+        assert!(-view.z > 2. && view.y.abs() < -view.z * 0.65, "{view:?}");
+    }
+    #[test]
+    fn hills_grass_tire_spray_is_warm_soil() {
+        let track = Track::hills().unwrap();
+        let station = 2500.;
+        let lane = (15..=80)
+            .map(|lane| lane as f32)
+            .find(|lane| track.surface_route(0, station, *lane) == rr_core::surface::Surface::Grass)
+            .expect("grass beside the mountain road");
+        let (point, frame) = track.sample_route(0, station, lane);
+        let mut rider = Rider::new(0);
+        rider.progress = station;
+        rider.speed = 18.;
+        let dust = rear_wheel_dust(
+            &track,
+            &Transform::from_translation(point).with_rotation(frame),
+            &rider,
+            None,
+            None,
+            |_| Some(point.y),
+        )
+        .unwrap();
+        assert!(dust.tint.x > dust.tint.y && dust.tint.y > dust.tint.z);
+    }
+
     #[test]
     fn original_dust_sprite_has_transparent_edges_and_bounded_payload() {
         let image = sprite();

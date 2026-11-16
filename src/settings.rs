@@ -14,6 +14,10 @@ use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
 };
+fn medium_rivals() -> rr_core::pursuit::RivalDifficulty {
+    rr_core::pursuit::RivalDifficulty::Medium
+}
+
 #[derive(Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct PreferencesFile {
@@ -21,6 +25,10 @@ pub struct PreferencesFile {
     pub(crate) voice: crate::online::voice::Preferences,
     #[serde(default)]
     pub mix: AudioMix,
+    #[serde(default)]
+    pub gear: crate::models::gear::Gear,
+    #[serde(default = "medium_rivals")]
+    pub rival_difficulty: rr_core::pursuit::RivalDifficulty,
     #[serde(default)]
     pub window_size: WindowSize,
     #[serde(default)]
@@ -92,6 +100,8 @@ impl Default for PreferencesFile {
             schema_version: 1,
             voice: default(),
             mix: default(),
+            gear: default(),
+            rival_difficulty: medium_rivals(),
             window_size: default(),
             imperial_speed: false,
             static_menu: false,
@@ -292,15 +302,17 @@ pub enum Section {
     Display,
     Accessibility,
     Voice,
+    Gear,
 }
 impl Section {
-    pub const ALL: [Self; 6] = [
+    pub const ALL: [Self; 7] = [
         Self::Camera,
         Self::Controls,
         Self::Audio,
         Self::Display,
         Self::Accessibility,
         Self::Voice,
+        Self::Gear,
     ];
     pub fn name(self) -> &'static str {
         match self {
@@ -310,6 +322,7 @@ impl Section {
             Self::Display => "Display",
             Self::Accessibility => "Accessibility",
             Self::Voice => "Voice Chat",
+            Self::Gear => "Rider Gear",
         }
     }
     pub fn rows(self) -> &'static [usize] {
@@ -318,8 +331,9 @@ impl Section {
             Self::Controls => &[6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 26, 27],
             Self::Audio => &[22, 25, 28, 29, 30],
             Self::Display => &[23, 24, 31, 42],
-            Self::Accessibility => &[32, 33, 43, 44],
+            Self::Accessibility => &[32, 33],
             Self::Voice => &[34, 35, 36, 37, 38, 39, 40, 41],
+            Self::Gear => &[45, 46, 47],
         }
     }
 }
@@ -355,7 +369,7 @@ impl SettingsPanel {
         self.selected = Section::Voice.rows()[0];
     }
 }
-pub const ROWS: usize = 45;
+pub const ROWS: usize = 48;
 pub const ACTIONS: [&str; 12] = [
     "throttle",
     "brake",
@@ -638,8 +652,22 @@ pub fn panel_input(
                 }
             }
             42 => prefs.file.shadows = !prefs.file.shadows,
-            43 => prefs.file.show_minimap = !prefs.file.show_minimap,
-            44 => prefs.file.show_standings = !prefs.file.show_standings,
+            45 => {
+                let suits = crate::models::gear::Suit::ALL;
+                prefs.file.gear.suit = suits[cycle(prefs.file.gear.suit as usize, suits.len(), d)];
+            }
+            46 => {
+                let helmets = crate::models::gear::Helmet::ALL;
+                prefs.file.gear.helmet =
+                    helmets[cycle(prefs.file.gear.helmet as usize, helmets.len(), d)];
+            }
+            47 => {
+                use rr_core::pursuit::RivalDifficulty;
+                prefs.file.rival_difficulty = match prefs.file.rival_difficulty {
+                    RivalDifficulty::Medium => RivalDifficulty::Hard,
+                    RivalDifficulty::Hard => RivalDifficulty::Medium,
+                };
+            }
             9 => {
                 prefs.status = match prefs.save() {
                     Ok(()) => "Settings saved".into(),
@@ -695,6 +723,13 @@ pub fn apply_preferences(
     mut applied_size: Local<WindowSize>,
     mut automatic_size: Local<Option<Vec2>>,
     mut sun: Query<&mut DirectionalLight, With<crate::world::CourseSun>>,
+    contact_shadows: Query<
+        (),
+        (
+            With<crate::game::ChaseCamera>,
+            With<bevy::pbr::ContactShadows>,
+        ),
+    >,
 ) {
     if let Some(ref mut m) = muted {
         if !*initialized {
@@ -708,6 +743,10 @@ pub fn apply_preferences(
         return;
     }
     for mut light in &mut sun {
+        let contact_enabled = prefs.file.shadows && !contact_shadows.is_empty();
+        if light.contact_shadows_enabled != contact_enabled {
+            light.contact_shadows_enabled = contact_enabled;
+        }
         if light.shadow_maps_enabled != prefs.file.shadows {
             light.shadow_maps_enabled = prefs.file.shadows;
         }
@@ -770,10 +809,15 @@ mod tests {
         std::fs::create_dir_all(&root).unwrap();
         let path = root.join("settings.json");
         let mut prefs = Preferences::load(path.clone());
+        prefs.file.gear = crate::models::gear::Gear {
+            suit: crate::models::gear::Suit::Axle,
+            helmet: crate::models::gear::Helmet::Rally,
+        };
         prefs.file.master_volume = 0.4;
         prefs.file.audio_muted = true;
         prefs.file.fullscreen = true;
         prefs.file.vsync = false;
+        prefs.file.rival_difficulty = rr_core::pursuit::RivalDifficulty::Hard;
         prefs.file.comfort.fov_degrees = 88.0;
         prefs.file.comfort.anti_nausea = true;
         prefs
@@ -792,6 +836,8 @@ mod tests {
             (0.4, true, true, false)
         );
         assert_eq!(loaded.file.comfort, prefs.file.comfort);
+        assert_eq!(loaded.file.gear, prefs.file.gear);
+        assert_eq!(loaded.file.rival_difficulty, prefs.file.rival_difficulty);
         assert_eq!(loaded.file.controller["nitro"], "RightTrigger");
         let original = "{\"schema_version\":99}";
         std::fs::write(&path, original).unwrap();
@@ -841,18 +887,36 @@ mod menu_tests {
             "window_size",
             "imperial_speed",
             "static_menu",
+            "gear",
+            "rival_difficulty",
             "shadows",
             "show_minimap",
             "show_standings",
         ] {
             v.as_object_mut().unwrap().remove(k);
         }
+        v["rival_difficulty"] = serde_json::json!("normal");
+        let legacy = PreferencesFile::parse(&v.to_string()).unwrap();
+        assert_eq!(
+            legacy.rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Medium
+        );
+        assert_eq!(
+            serde_json::to_value(legacy).unwrap()["rival_difficulty"],
+            "medium"
+        );
+        v.as_object_mut().unwrap().remove("rival_difficulty");
         let p = PreferencesFile::parse(&v.to_string()).unwrap();
         assert_eq!(p.master_volume, 1.);
         assert!(!p.audio_muted && p.vsync && !p.fullscreen);
         assert!(p.voice.enabled && !p.voice.microphone);
         assert_eq!(p.voice.mode, crate::online::voice::Mode::Activation);
         assert!(p.shadows && !p.static_menu && !p.imperial_speed);
+        assert_eq!(p.gear, default());
+        assert_eq!(
+            p.rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Medium
+        );
         assert_eq!((p.mix.engine, p.mix.ambience, p.mix.effects), (1., 1., 1.));
         let mut p = p;
         p.master_volume = f32::NAN;
@@ -869,6 +933,21 @@ mod menu_tests {
         assert_eq!(
             app.world().resource::<crate::game::Race>().phase,
             crate::game::Phase::Paused
+        );
+        click(&mut app, SettingsAction::Tab(Section::Gear));
+        click(&mut app, SettingsAction::Adjust(45, 1));
+        click(&mut app, SettingsAction::Adjust(46, -1));
+        click(&mut app, SettingsAction::Adjust(47, 1));
+        assert_eq!(
+            app.world().resource::<Preferences>().file.rival_difficulty,
+            rr_core::pursuit::RivalDifficulty::Hard,
+        );
+        assert_eq!(
+            app.world().resource::<Preferences>().file.gear,
+            crate::models::gear::Gear {
+                suit: crate::models::gear::Suit::Mike,
+                helmet: crate::models::gear::Helmet::Rally,
+            }
         );
         click(&mut app, SettingsAction::Tab(Section::Audio));
         assert_eq!(app.world().resource::<SettingsPanel>().selected, 22);

@@ -1,0 +1,10 @@
+{
+  "roadside_trees": 2116,
+  "mountain_trees": 4359,
+  "infill_trees": 644,
+  "backdrop_trees": 12530,
+  "backdrop_batches": 109,
+  "road_support_probes": 1506,
+  "screenshots_completed": 11,
+  "maximum_support_error_m": 0.025834083557128906
+}

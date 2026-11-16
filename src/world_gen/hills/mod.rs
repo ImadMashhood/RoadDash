@@ -6,12 +6,13 @@ pub use countryside::HillsFarm;
 pub mod bridge;
 mod countryside;
 pub mod dressing;
+pub(crate) mod encounters;
 mod geometry;
 pub mod guardrails;
 pub mod mounted;
 mod props;
 pub mod river;
-mod terrain_cache;
+pub(crate) mod terrain_cache;
 pub mod wildlife;
 pub mod woodland;
 use crate::{track::Track, world::Art};
@@ -20,6 +21,12 @@ use bevy::prelude::*;
 /// Height of the resident Hills terrain mesh at an off-road effect anchor.
 pub(crate) fn rendered_ground_height(track: &Track, x: f32, z: f32) -> f32 {
     geometry::ground_height(track, x, z)
+}
+
+pub(crate) fn crossing_support(track: &Track, p: Vec3) -> f32 {
+    (0..2)
+        .map(|route| geometry::crossing_road_support(track, route, p, 0.))
+        .fold(geometry::ground_height(track, p.x, p.z), f32::max)
 }
 
 #[derive(Component)]
@@ -59,6 +66,7 @@ pub fn spawn(
     let _load_span = crate::diagnostics::loading::Span::new("hills_generation");
     let _terrain_cache = terrain_cache::Scope::new(track);
     let mut census = Census::default();
+    let mut trees = woodland::TreeSpacing::default();
     {
         let _span = crate::diagnostics::loading::Span::new("hills_geometry");
         geometry::spawn(
@@ -81,15 +89,32 @@ pub fn spawn(
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_props");
-        props::spawn(commands, meshes, materials, art, track, &mut census);
+        props::spawn(
+            commands,
+            meshes,
+            materials,
+            art,
+            track,
+            &mut census,
+            &mut trees,
+        );
+        encounters::spawn(commands, meshes, materials, art, track);
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_countryside");
-        countryside::spawn(commands, meshes, materials, art, track, &mut census);
+        countryside::spawn(
+            commands,
+            meshes,
+            materials,
+            art,
+            track,
+            &mut census,
+            &mut trees,
+        );
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_woodland");
-        woodland::spawn(commands, meshes, materials, track);
+        woodland::spawn(commands, meshes, materials, track, &mut trees);
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_dressing");
@@ -108,6 +133,17 @@ pub fn spawn(
     {
         let _span = crate::diagnostics::loading::Span::new("hills_atmosphere");
         atmosphere::spawn(commands, meshes, materials, track, images);
+    }
+    for (index, station) in [
+        1260., 1840., 2740., 3910., 5740., 8130., 8770., 10030., 11910.,
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let lane = track.half_width(station) + 3.;
+        crate::world_gen::metropolis::pedestrians::spawn_road_crossing(
+            commands, art, track, station, lane, index,
+        );
     }
     commands.insert_resource(census);
 }

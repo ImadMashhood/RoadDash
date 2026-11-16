@@ -13,6 +13,11 @@ pub const HANGER_SPACING: f32 = 8.;
 const HANGER_LANE: f32 = 9.2;
 const GIRDER_DROP: f32 = 0.95;
 const HANGER_FOOT_DROP: f32 = 0.45;
+const DECK_DEPTH: f32 = 0.78;
+const ABUTMENT_LENGTH: f32 = 10.;
+const DECK_STEP: f32 = 1.25;
+const DECK_SECTIONS: usize = ((END - START) / DECK_STEP) as usize;
+const ABUTMENT_SECTIONS: usize = (ABUTMENT_LENGTH / DECK_STEP) as usize;
 // Ordinary spaces between the regular hangers, used by the physical fall fixtures.
 pub const GAP_STATIONS: [f32; 2] = [4_684., 4_796.];
 pub const GAP_HALF_LENGTH: f32 = 3.5;
@@ -75,15 +80,87 @@ fn cable_point(track: &Track, station: f32, side: f32) -> Vec3 {
 fn hanger_foot(track: &Track, station: f32, side: f32) -> Vec3 {
     deck_sample(track, station, side * HANGER_LANE).0 - Vec3::Y * HANGER_FOOT_DROP
 }
-fn beam(
-    commands: &mut Commands,
-    art: &Art,
-    material: Handle<StandardMaterial>,
-    a: Vec3,
-    b: Vec3,
-    width: f32,
-    depth: f32,
-) -> Entity {
+fn deck_skin_section(track: &Track, station: f32) -> [Vec3; 6] {
+    let inland = (START - station).max(station - END).max(0.);
+    let bearing = (inland / ABUTMENT_LENGTH).clamp(0., 1.);
+    // Taper the visible steel lip into the landward shoulder. Beyond the
+    // portal it becomes a narrow vertical edge below the asphalt.
+    let apron = (inland / 2.5).clamp(0., 1.);
+    let apron = apron * apron * (3. - 2. * apron);
+    let [(left_road, left_lip), (right_road, right_lip)] = [-1., 1.].map(|side| {
+        let half = track.half_width(station);
+        let (road, q) = track.sample(station, side * half);
+        let widening = (HALF_DECK - half).max(0.1) * (1. - apron);
+        let lip = road - q * Vec3::X * side * widening - Vec3::Y * (0.105 + 0.15 * apron);
+        (road + q * Vec3::Y * 0.025, lip)
+    });
+    let [bottom_left, bottom_right] = [left_lip, right_lip].map(|top| {
+        let deck_bottom = top.y - (DECK_DEPTH - 0.105);
+        if bearing == 0. {
+            top.with_y(deck_bottom)
+        } else {
+            let buried = canyon_ground_height(track, top.x, top.z) - 0.35;
+            top.with_y(deck_bottom.lerp(deck_bottom.min(buried), bearing))
+        }
+    });
+    [
+        left_road,
+        left_lip,
+        bottom_left,
+        bottom_right,
+        right_lip,
+        right_road,
+    ]
+}
+fn deck_skin(track: &Track, origin: Vec3) -> Mesh {
+    // Shared sections keep the bottom and fascias watertight through bends.
+    // The existing asphalt ribbon forms the top and remains the riding surface.
+    let end = DECK_SECTIONS + 2 * ABUTMENT_SECTIONS;
+    let sections: Vec<_> = (0..=end)
+        .map(|i| {
+            let station = START - ABUTMENT_LENGTH + i as f32 * DECK_STEP;
+            let mut section = deck_skin_section(track, station).map(|point| point - origin);
+            section[0].y -= 0.04;
+            section[5].y -= 0.04;
+            section
+        })
+        .collect();
+    let mut vertices = Vec::new();
+    let mut indices = Vec::new();
+    for side in 0..5 {
+        let first = vertices.len() as u32;
+        for (i, section) in sections.iter().enumerate() {
+            vertices.extend([section[side], section[side + 1]]);
+            if i < end {
+                let v = first + 2 * i as u32;
+                indices.extend([[v, v + 2, v + 1], [v + 1, v + 2, v + 3]]);
+            }
+        }
+    }
+    // Close the top of the structural shell just below the asphalt.
+    // This also covers the join if the road and side lips diverge on a bend.
+    let top = vertices.len() as u32;
+    for (i, section) in sections.iter().enumerate() {
+        vertices.extend([section[0], section[5]]);
+        if i < end {
+            let v = top + 2 * i as u32;
+            indices.extend([[v, v + 1, v + 2], [v + 1, v + 3, v + 2]]);
+        }
+    }
+    for (section, reverse) in [(sections[0], false), (sections[end], true)] {
+        let first = vertices.len() as u32;
+        vertices.extend(section);
+        for point in 1..5 {
+            let mut face = [first, first + point, first + point + 1];
+            if reverse {
+                face.swap(1, 2);
+            }
+            indices.push(face);
+        }
+    }
+    crate::environment::mesh(&vertices, &indices)
+}
+fn beam_transform(a: Vec3, b: Vec3, width: f32, depth: f32) -> Transform {
     let edge = b - a;
     let forward = edge.normalize();
     let horizontal_side = Vec3::Y.cross(forward);
@@ -96,21 +173,32 @@ fn beam(
     } else {
         Quat::from_rotation_arc(Vec3::Z, forward)
     };
-    let e = crate::world::part(
-        commands,
-        art.cube.clone(),
-        material,
-        (a + b) * 0.5,
-        Vec3::new(width, depth, edge.length() + 0.04),
+    Transform {
+        translation: (a + b) * 0.5,
         rotation,
-    );
-    commands.entity(e).insert((
-        RigidBody::Fixed,
-        Collider::cuboid(0.5, 0.5, 0.5),
-        HillsSolid,
-        Obstacle,
-    ));
-    e
+        scale: Vec3::new(width, depth, edge.length() + 0.04),
+    }
+}
+fn beam(
+    commands: &mut Commands,
+    art: &Art,
+    material: Handle<StandardMaterial>,
+    a: Vec3,
+    b: Vec3,
+    width: f32,
+    depth: f32,
+) -> Entity {
+    commands
+        .spawn((
+            Mesh3d(art.cube.clone()),
+            MeshMaterial3d(material),
+            beam_transform(a, b, width, depth),
+            RigidBody::Fixed,
+            Collider::cuboid(0.5, 0.5, 0.5),
+            HillsSolid,
+            Obstacle,
+        ))
+        .id()
 }
 pub fn spawn(
     commands: &mut Commands,
@@ -134,23 +222,33 @@ pub fn spawn(
     });
     let (origin, _) = track.sample(CENTER, 0.);
     let mut cable = Model::default();
-    // Short solid deck ribs sit below the continuously tessellated asphalt.
+    commands.spawn((
+        Name::new("Hills continuous bridge underside and abutments"),
+        Mesh3d(meshes.add(deck_skin(track, origin))),
+        MeshMaterial3d(deck.clone()),
+        Transform::from_translation(origin),
+    ));
+    // Keep the original deck contacts under the continuous render mesh.
     for d in (START as usize..END as usize).step_by(4) {
         let (a, _) = track.sample(d as f32, 0.);
         let (b, _) = track.sample(d as f32 + 4., 0.);
         // Adjacent chord slabs need extra longitudinal overlap at their outer
         // corners, where the road's changing tangent otherwise leaves seams.
         let overlap = (b - a).normalize() * 0.1;
-        let e = beam(
-            commands,
-            art,
-            deck.clone(),
-            a - overlap - Vec3::Y * 0.43,
-            b + overlap - Vec3::Y * 0.43,
-            HALF_DECK * 2.,
-            0.7,
-        );
-        commands.entity(e).insert((BridgeDeck, Ground));
+        commands.spawn((
+            beam_transform(
+                a - overlap - Vec3::Y * 0.43,
+                b + overlap - Vec3::Y * 0.43,
+                HALF_DECK * 2.,
+                0.7,
+            ),
+            RigidBody::Fixed,
+            Collider::cuboid(0.5, 0.5, 0.5),
+            HillsSolid,
+            Obstacle,
+            BridgeDeck,
+            Ground,
+        ));
     }
     // The user requested completely open deck edges. No rail or low post
     // geometry/collider is placed; square suspension members stand outboard.
@@ -320,6 +418,28 @@ pub fn spawn(
 pub(super) mod tests {
     use super::*;
     use bevy::ecs::system::RunSystemOnce;
+
+    #[test]
+    fn continuous_deck_follows_the_asphalt_and_buries_both_abutments() {
+        let track = Track::hills().unwrap();
+        let (road, _) =
+            super::super::geometry::ribbon(&track, 0, START, END, track.half_width(START), 0.025);
+        assert_eq!(road.len(), 2 * (DECK_SECTIONS + 1));
+        for (i, across) in road.chunks_exact(2).enumerate() {
+            let station = START + i as f32 * DECK_STEP;
+            let section = deck_skin_section(&track, station);
+            assert!(section[0].distance(across[0]) < 0.001);
+            assert!(section[5].distance(across[1]) < 0.001);
+            assert!((section[1].xz().distance(section[4].xz()) - HALF_DECK * 2.).abs() < 0.001);
+        }
+        for station in [START - ABUTMENT_LENGTH, END + ABUTMENT_LENGTH] {
+            let section = deck_skin_section(&track, station);
+            for bottom in &section[2..4] {
+                assert!(bottom.y < canyon_ground_height(&track, bottom.x, bottom.z) - 0.3);
+            }
+        }
+    }
+
     pub(crate) fn scene() -> App {
         let mut app = App::new();
         app.add_plugins((
@@ -392,6 +512,7 @@ pub(super) mod tests {
         let girders = boxes::<BridgeGirder>(app);
         let outriggers = boxes::<BridgeOutrigger>(app);
         let deck = boxes::<BridgeDeck>(app);
+        assert_eq!(deck.len(), ((END - START) / 4.) as usize);
         let track = app.world().resource::<Track>();
         for slab in &deck {
             assert!(
@@ -449,6 +570,38 @@ pub(super) mod tests {
             assert!(stations.iter().all(|h| (s - h).abs() >= 4.));
         }
     }
+    #[test]
+    fn asphalt_support_is_continuous_over_both_portals_and_old_chunk_joins() {
+        let mut app = scene();
+        app.world_mut()
+            .run_system_once(
+                |context: ReadRapierContext, track: Res<Track>, ground: Query<(), With<Ground>>| {
+                    let ctx = context.single().unwrap();
+                    let supports = |entity, _: &bevy_rapier3d::rapier::geometry::Collider| {
+                        ground.contains(entity)
+                    };
+                    for step in -2..=((END - START) * 2.) as i32 + 2 {
+                        let station = START + step as f32 * 0.5;
+                        for lane in [-5.9, -3., 0., 3., 5.9] {
+                            let (p, _) = track.sample(station, lane);
+                            assert!(
+                                ctx.cast_ray(
+                                    p + Vec3::Y * 0.8,
+                                    Vec3::NEG_Y,
+                                    1.,
+                                    true,
+                                    QueryFilter::default().predicate(&supports)
+                                )
+                                .is_some(),
+                                "missing support at {station} m and lane {lane} m"
+                            );
+                        }
+                    }
+                },
+            )
+            .unwrap();
+    }
+
     #[test]
     fn suspended_deck_has_no_railings_and_square_solid_hangers() {
         let mut app = scene();

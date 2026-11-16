@@ -72,7 +72,7 @@ def pedestrians(data,paths,walk,props,budget=480):
 
 def crossing_routes(walkers,road,walk,props,budget=24):
     """Occasional full sidewalk-to-sidewalk capsule corridors, never through props."""
-    assert 0 <= budget <= 24
+    assert 0 <= budget <= 40
     occupied=unary_union([footprint(p['position'],p['heading'],p['size'][0],p['size'][2]).buffer(.5) for p in props])
     support=road.union(walk)
     endpoints=walk.buffer(-.42)
@@ -82,7 +82,7 @@ def crossing_routes(walkers,road,walk,props,budget=24):
     # its own geometric separation. Runtime admission keeps one global clock.
     for a in sorted(walkers,key=lambda p:-p['route']):
         if len(picked)>=budget:break
-        if any(abs(a['station']-s)<180 for s in picked_by_route[a['route']]):continue
+        if any(abs(a['station']-s)<125 for s in picked_by_route[a['route']]):continue
         for b in walkers:
             if a is b or a['route']!=b['route'] or abs(a['station']-b['station'])>16:continue
             line=LineString([a['position'],b['position']])

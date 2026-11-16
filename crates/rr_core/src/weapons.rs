@@ -42,6 +42,31 @@ impl Weapon {
         Self::ALL[(mixed % Self::ALL.len() as u64) as usize]
     }
 }
+/// Cumulative condition damage after a confirmed hit on one target.
+#[derive(Clone, Copy, Debug, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ConditionDamage {
+    pub bike: f32,
+    pub rider: f32,
+}
+
+impl ConditionDamage {
+    pub const PUNCH: Self = Self {
+        bike: 5.,
+        rider: 9.,
+    };
+    pub const KICK: Self = Self {
+        bike: 9.,
+        rider: 5.,
+    };
+}
+
+impl Default for ConditionDamage {
+    fn default() -> Self {
+        Self::PUNCH
+    }
+}
+
 #[derive(Clone, Copy, Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct Ability {
@@ -53,6 +78,8 @@ pub struct Ability {
     pub pickup_radius: f32,
     /// Direct-hit count remains one; the existing three-hit rule owns knockoffs.
     pub direct_hits: u8,
+    #[serde(default)]
+    pub condition_damage: ConditionDamage,
 }
 impl Ability {
     pub fn reaches(self, lateral: f32, longitudinal: f32, height: f32, side: f32) -> bool {

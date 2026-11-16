@@ -12,7 +12,7 @@ fn foot_scene(distance: f32, bike_offset: f32) -> (App, Entity, Entity, Entity, 
         .unwrap();
     let track = app.world().resource::<Track>();
     let d = if distance < 0.0 {
-        track.length + distance
+        track.race_interval().finish + distance
     } else {
         distance
     };
@@ -219,11 +219,11 @@ fn bike_and_foot_finish_attempts_share_exactly_one_award() {
     let mut p = crate::game::Profile::default();
     let n = p.races;
     assert!(crate::game::finish_rider(
-        &mut r, &mut race, &mut p, false, 1, true
+        &mut r, &mut race, &mut p, false, 1, true, false
     ));
     let credits = p.credits;
     assert!(!crate::game::finish_rider(
-        &mut r, &mut race, &mut p, false, 1, false
+        &mut r, &mut race, &mut p, false, 1, false, false
     ));
     assert_eq!(p.races, n + 1);
     assert_eq!(p.credits, credits);
@@ -261,7 +261,7 @@ fn actual_crash_five_meters_before_finish_allows_a_manual_foot_finish() {
         let (p, last) = {
             let t = app.world().resource::<Track>();
             (
-                t.sample(t.length - 5.0, 0.0).0,
+                t.sample(t.race_interval().finish - 5.0, 0.0).0,
                 t.definition.checkpoints.len() - 1,
             )
         };

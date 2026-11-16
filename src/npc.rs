@@ -167,6 +167,7 @@ pub fn knockdowns(
     mut events: MessageReader<CollisionEvent>,
     mut sweeps: MessageReader<recovery::SweptContact>,
     mut npcs: Query<(Entity, &mut Npc, &mut Transform, &mut Visibility)>,
+    crossing_cattle: Query<(), With<crate::world_gen::hills::wildlife::CrossingCow>>,
     sources: Query<
         (
             Option<&Rider>,
@@ -192,7 +193,7 @@ pub fn knockdowns(
         return;
     }
     let dt = time.delta_secs();
-    let mut requests: Vec<_> = hits.read().map(|h| (h.0, h.1, h.2)).collect();
+    let mut requests: Vec<_> = hits.read().map(|h| (h.0, h.1, h.2, false)).collect();
     for (a, b) in events
         .read()
         .filter_map(|e| match e {
@@ -202,7 +203,7 @@ pub fn knockdowns(
         .chain(sweeps.read().map(|c| (c.0, c.1)))
     {
         for (target, source) in [(a, b), (b, a)] {
-            if !npcs.contains(target) {
+            if !npcs.contains(target) || crossing_cattle.contains(target) {
                 continue;
             }
             if let Ok((rider, car, v, patrol, bike, t)) = sources.get(source) {
@@ -230,13 +231,17 @@ pub fn knockdowns(
                         target,
                         velocity * rr_core::crash::shared_speed_fraction(source_mass, target_mass),
                         false,
+                        rider.is_none(),
                     ));
                 }
             }
         }
     }
     let mut active = npcs.iter().filter(|(_, n, _, _)| !n.active()).count();
-    for (entity, velocity, direct) in requests {
+    for (entity, velocity, direct, traffic_impact) in requests {
+        if crossing_cattle.contains(entity) {
+            continue;
+        }
         let Ok((_, mut npc, t, mut visible)) = npcs.get_mut(entity) else {
             continue;
         };
@@ -267,10 +272,16 @@ pub fn knockdowns(
                     appearance,
                 ),
             };
-            audio.write(crate::sound::AudioCue::new(
-                crate::sound::Cue::Crash,
-                t.translation,
-            ));
+            let cue = if direct || npc.kind == NpcKind::Cow {
+                Some(crate::sound::Cue::Land)
+            } else if traffic_impact {
+                Some(crate::sound::Cue::Runover)
+            } else {
+                None
+            };
+            if let Some(cue) = cue {
+                audio.write(crate::sound::AudioCue::new(cue, t.translation));
+            }
             *visible = Visibility::Hidden;
             commands.entity(entity).insert(ColliderDisabled);
             active += 1;

@@ -5,6 +5,35 @@ use serde::{Deserialize, Serialize};
 /// dropping drive force earlier than the lookahead planner requested.
 pub const RACE_LOOKAHEAD_LATERAL_ACCEL_MPS2: f32 = 14.0;
 pub const RACE_CURRENT_LATERAL_ACCEL_MPS2: f32 = 16.0;
+/// Offline pace presets. A saved Normal selection keeps the same pace under Medium.
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum RivalDifficulty {
+    #[serde(alias = "normal")]
+    Medium,
+    #[default]
+    Hard,
+}
+
+impl RivalDifficulty {
+    pub fn adjust_pace(self, pace: f32) -> f32 {
+        match self {
+            Self::Medium => pace * 0.88,
+            Self::Hard => pace,
+        }
+    }
+
+    /// Hard carries slightly more speed through clear bends. Its speed
+    /// request still goes through the ordinary surface, tire and traffic limits.
+    pub fn corner_budget(self, baseline: f32, offline_rival: bool) -> f32 {
+        if self == Self::Hard && offline_rival {
+            baseline * 1.05
+        } else {
+            baseline
+        }
+    }
+}
+
 /// Rival differences stay inside the selected unboosted bike class. Race place
 /// never enters this calculation: nearby combat uses ordinary engine drive.
 pub fn rival_race_pace(profile: Profile, character_pace: f32, player_top_mps: f32) -> f32 {
@@ -136,6 +165,20 @@ pub fn calm(ratings: &mut [f32; 10], profile: Profile, dt: f32) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn hard_uses_bike_class_pace_and_a_bounded_offline_corner_budget() {
+        let medium = RivalDifficulty::Medium;
+        let hard = RivalDifficulty::Hard;
+        assert_eq!(medium.adjust_pace(50.), 44.);
+        assert_eq!(hard.adjust_pace(50.), 50.);
+        assert_eq!(medium.corner_budget(14., true), 14.);
+        assert_eq!(hard.corner_budget(14., false), 14.);
+        let hard_corner_speed = race_corner_speed(0.025, hard.corner_budget(14., true));
+        let medium_corner_speed = race_corner_speed(0.025, medium.corner_budget(14., true));
+        assert!(hard_corner_speed > medium_corner_speed);
+        assert!(hard_corner_speed < medium_corner_speed * 1.03);
+    }
+
     #[test]
     fn relationships_distinguish_racing_following_and_hostile_downed_hunts() {
         let me = Target {

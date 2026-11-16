@@ -133,6 +133,7 @@ pub fn setup_world(
     mut track: ResMut<Track>,
     plan: Option<Res<crate::world_gen::WorldPlan>>,
     server: Option<Res<AssetServer>>,
+    polish: Option<Res<crate::polish::Options>>,
     mut binds: Option<ResMut<Assets<bevy::mesh::skinning::SkinnedMeshInverseBindposes>>>,
 ) {
     let _load_span = crate::diagnostics::loading::Span::new("world_setup");
@@ -249,6 +250,12 @@ pub fn setup_world(
             &track,
         );
     }
+    if polish.is_some_and(|options| options.exhaust)
+        && let Some(images) = images.as_deref_mut()
+    {
+        crate::polish::spawn_exhaust(&mut commands, &mut meshes, &mut materials, images);
+    }
+    crate::course_lines::spawn(&mut commands, &mut meshes, &mut materials, &track, &art);
     if track.is_hills() {
         crate::world_gen::hills::spawn(
             &mut commands,
@@ -273,14 +280,16 @@ pub fn setup_world(
         commands.insert_resource(art);
         return;
     }
-    if track.metropolis.is_some() {
+    if server.is_some() || track.metropolis.is_some() {
         crate::world_gen::hills::atmosphere::spawn(
             &mut commands,
             &mut meshes,
             &mut materials,
             &track,
-            None,
+            images.as_deref_mut(),
         );
+    }
+    if track.metropolis.is_some() {
         crate::world_gen::metropolis::spawn(
             &mut commands,
             &mut meshes,

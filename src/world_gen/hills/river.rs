@@ -1,5 +1,5 @@
 //! Original shallow canyon river reach, seated on the resident collision terrain.
-//! Water is presentation only: the canyon floor and accepted fall physics remain.
+//! The visible water footprint also supplies contact tests without a physics floor.
 use super::{Track, bridge, geometry};
 use crate::game::{Phase, Race};
 use bevy::{
@@ -35,6 +35,61 @@ pub struct RiverFlow {
     material: Handle<StandardMaterial>,
     phase: f32,
 }
+#[derive(Resource)]
+pub(crate) struct RiverSurface {
+    level: f32,
+    min: Vec2,
+    max: Vec2,
+    edges: Vec<[Vec2; 2]>,
+}
+
+impl RiverSurface {
+    fn from_strip(water: &Strip) -> Self {
+        let edges: Vec<_> = water
+            .vertices
+            .chunks_exact(LANES + 1)
+            .map(|row| [row[0].xz(), row[LANES].xz()])
+            .collect();
+        let min = edges
+            .iter()
+            .flatten()
+            .copied()
+            .fold(Vec2::splat(f32::INFINITY), Vec2::min);
+        let max = edges
+            .iter()
+            .flatten()
+            .copied()
+            .fold(Vec2::splat(f32::NEG_INFINITY), Vec2::max);
+        Self {
+            level: water.vertices[0].y,
+            min,
+            max,
+            edges,
+        }
+    }
+
+    pub(crate) fn contact(&self, position: Vec3) -> Option<Vec3> {
+        let p = position.xz();
+        if position.y > self.level || !p.cmpge(self.min).all() || !p.cmple(self.max).all() {
+            return None;
+        }
+        let inside = |a: Vec2, b: Vec2, c: Vec2| {
+            let x = (b - a).perp_dot(p - a);
+            let y = (c - b).perp_dot(p - b);
+            let z = (a - c).perp_dot(p - c);
+            (x >= 0. && y >= 0. && z >= 0.) || (x <= 0. && y <= 0. && z <= 0.)
+        };
+        self.edges
+            .windows(2)
+            .any(|rows| {
+                let [a, b] = rows[0];
+                let [c, d] = rows[1];
+                inside(a, b, c) || inside(b, d, c)
+            })
+            .then(|| position.with_y(self.level))
+    }
+}
+
 struct Strip {
     vertices: Vec<Vec3>,
     triangles: Vec<[u32; 3]>,
@@ -225,6 +280,7 @@ pub fn spawn(
     track: &Track,
 ) {
     let (water, banks, census) = plan(track);
+    commands.insert_resource(RiverSurface::from_strip(&water));
     let origin = bridge::deck_sample(track, bridge::CENTER, 0.).0;
     let material = materials.add(StandardMaterial {
         base_color: Color::srgba(0.11, 0.43, 0.49, 0.94),
@@ -283,6 +339,68 @@ pub fn animate(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn river_contact_ejects_rider_and_emits_one_positioned_splash() {
+        use crate::{
+            game::Rider,
+            recovery::Recovery,
+            sound::{AudioCue, Cue},
+        };
+        use bevy::ecs::system::RunSystemOnce;
+
+        let mut app = crate::game::tests::simulation();
+        let track = Track::hills().unwrap();
+        let (water, _, _) = plan(&track);
+        let river = RiverSurface::from_strip(&water);
+        let waterline = bridge::deck_sample(&track, bridge::CENTER, 0.)
+            .0
+            .with_y(river.level);
+        app.insert_resource(track).insert_resource(river);
+        let world = app.world_mut();
+        world.resource_mut::<Race>().phase = Phase::Racing;
+        let rider = world
+            .query::<(Entity, &Rider)>()
+            .iter(world)
+            .find(|(_, r)| r.id == 0)
+            .unwrap()
+            .0;
+        world.get_mut::<Transform>(rider).unwrap().translation = waterline - Vec3::Y * 0.1;
+        let mut cursor = world.resource::<Messages<AudioCue>>().get_cursor_current();
+        world
+            .run_system_once(crate::recovery::race_outcomes)
+            .unwrap();
+        world
+            .run_system_once(crate::recovery::race_outcomes)
+            .unwrap();
+        assert_eq!(
+            world.get::<Rider>(rider).unwrap().wasted,
+            Some(rr_core::race::WasteCause::River)
+        );
+        assert!(world.get::<Recovery>(rider).unwrap().torso.is_some());
+        let splashes: Vec<_> = cursor
+            .read(world.resource::<Messages<AudioCue>>())
+            .filter(|cue| matches!(cue.kind, Cue::RiverSplash))
+            .collect();
+        assert_eq!(splashes.len(), 1);
+        assert_eq!(splashes[0].position, waterline);
+    }
+
+    #[test]
+    fn river_contact_matches_rendered_water_and_excludes_the_bridge_deck() {
+        let track = Track::hills().unwrap();
+        let (water, _, _) = plan(&track);
+        let river = RiverSurface::from_strip(&water);
+        for triangle in water.triangles.iter().step_by(29) {
+            let [a, b, c] = triangle.map(|i| water.vertices[i as usize]);
+            let point = ((a + b + c) / 3.).with_y(river.level - 0.1);
+            assert_eq!(river.contact(point), Some(point.with_y(river.level)));
+        }
+        let deck = bridge::deck_sample(&track, bridge::CENTER, 0.).0;
+        assert!(river.contact(deck).is_none());
+        assert!(river.contact(deck.with_y(river.level - 0.1)).is_some());
+        assert!(river.contact(deck + Vec3::new(400., -100., 400.)).is_none());
+    }
+
     #[test]
     fn river_reach_fills_half_the_canyon_without_a_hidden_support_plane() {
         let track = Track::hills().unwrap();

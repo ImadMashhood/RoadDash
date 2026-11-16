@@ -38,5 +38,15 @@ def coordinate(identity, material):
     elif base == 'gold':
         pbr['metallicFactor'] = .72
         pbr['roughnessFactor'] = .38
+    if identity == 'BUSS4':
+        # Pilot the optical separation on a family that already has recessed
+        # glass, physical mullions and pale masonry surrounds.
+        if base == 'glass':
+            factor = [.016, .040, .058, factor[3]]
+            pbr['roughnessFactor'] = .19
+        elif base == 'interior':
+            factor = [.005, .008, .010, factor[3]]
+        elif base == 'ivory':
+            factor[:3] = [v * .97 for v in factor[:3]]
     pbr['baseColorFactor'] = factor
     return result

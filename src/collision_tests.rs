@@ -582,7 +582,8 @@ fn capture_mounted(mut capture: ResMut<MountedContact>, riders: Query<(&Recovery
     }
 }
 #[test]
-fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
+fn pedestrian_runner_and_wreck_contacts_apply_vertical_only_chassis_response() {
+    use crate::sound::{AudioCue, Cue};
     for kind in ["pedestrian", "runner", "wreck"] {
         let mut app = game::tests::simulation();
         for _ in 0..3 {
@@ -607,7 +608,7 @@ fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
                 impact_velocity: forward * 30.0,
                 ..default()
             },
-            Velocity::zero(),
+            Velocity::linear(forward * 30.0),
         ));
         let point = pose.translation + forward * 2.5;
         let mut walking_owner = None;
@@ -674,12 +675,30 @@ fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
                     .before(PhysicsSet::SyncBackend),
             );
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let mut sounds = app
+            .world()
+            .resource::<Messages<AudioCue>>()
+            .get_cursor_current();
         app.world_mut()
             .write_message(recovery::SweptContact(owner, target));
         app.update();
+        let runovers: Vec<_> = sounds
+            .read(app.world().resource::<Messages<AudioCue>>())
+            .filter(|cue| matches!(cue.kind, Cue::Runover | Cue::RunoverBike))
+            .collect();
+        assert_eq!(runovers.len(), 1, "{kind}");
+        assert_eq!(
+            matches!(runovers[0].kind, Cue::RunoverBike),
+            kind == "wreck"
+        );
+        assert!(runovers[0].position.distance(point) < 2.0, "{kind}");
         let result = app.world().resource::<MountedContact>();
         assert!(result.3, "{kind} ejected rider");
-        assert!(result.2 > 20.0, "{kind} stopped bike: {}", result.2);
+        assert!(
+            (result.2 - 30.).abs() < 0.5,
+            "{kind} changed forward speed: {}",
+            result.2
+        );
         assert!(
             app.world().get::<Rider>(owner).unwrap().hop_velocity > 0.0,
             "{kind} missed ride-over lift"
@@ -699,6 +718,7 @@ fn pedestrian_runner_and_wreck_contacts_keep_entry_motion_after_solver_stop() {
 
 #[test]
 fn static_wall_uses_normal_closing_speed_instead_of_touch_or_total_speed() {
+    use crate::sound::{AudioCue, Cue};
     for (along, across, crashes) in [
         (1.0 / 3.6, 0.0, false),
         (0.2, 30.0, false),
@@ -737,9 +757,22 @@ fn static_wall_uses_normal_closing_speed_instead_of_touch_or_total_speed() {
             ))
             .id();
         app.world_mut().resource_mut::<Race>().phase = Phase::Racing;
+        let mut sounds = app
+            .world()
+            .resource::<Messages<AudioCue>>()
+            .get_cursor_current();
         app.world_mut()
             .write_message(recovery::SweptContact(owner, wall));
         app.update();
+        let impacts: Vec<_> = sounds
+            .read(app.world().resource::<Messages<AudioCue>>())
+            .filter(|cue| matches!(cue.kind, Cue::Crash))
+            .collect();
+        assert_eq!(impacts.len(), usize::from(crashes));
+        if let Some(impact) = impacts.first() {
+            let longitudinal = (impact.position - t.translation).dot(forward);
+            assert!((2.7..=3.2).contains(&longitudinal), "{longitudinal}");
+        }
         assert_eq!(
             app.world().get::<Recovery>(owner).unwrap().stage == RecoveryStage::Falling,
             crashes,

@@ -135,7 +135,7 @@ pub(super) fn sample(
     clock: Res<SimulationClock>,
     render: Res<RenderTimes>,
     race: Option<Res<crate::game::Race>>,
-    riders: Query<&crate::game::Rider>,
+    riders: Query<(&crate::game::Rider, Option<&crate::recovery::Recovery>)>,
     meshes: Option<Res<Assets<Mesh>>>,
     materials: Option<Res<Assets<StandardMaterial>>>,
     views: Query<&ViewVisibility, With<Mesh3d>>,
@@ -224,14 +224,16 @@ pub(super) fn sample(
             "note": "instantaneous graph census, not per-substep timing or GPU profiling"
         })
     });
-    let player = riders.iter().find(|r| r.id == 0);
+    let player = riders.iter().map(|(r, _)| r).find(|r| r.id == 0);
     let rider_pace: Vec<_> = riders
         .iter()
-        .filter(|r| !r.police)
-        .map(|r| {
+        .filter(|(r, _)| !r.police)
+        .map(|(r, recovery)| {
             serde_json::json!({
                 "id":r.id,"route":r.route,"progress_m":r.progress,"speed_mps":r.speed,
-                "lane_m":r.lane,"finished":r.finished,"throttle":r.drive_intent.throttle,
+                "lane_m":r.lane,"finished":r.finished,"wasted":r.wasted.map(|cause| format!("{cause:?}")),
+                "recovery_stage":recovery.map(|r| format!("{:?}",r.stage)),
+                "throttle":r.drive_intent.throttle,
                 "brake":r.drive_intent.brake,"plan_speed_mps":r.ai_plan.map(|p|p.speed),
                 "plan_avoiding":r.ai_plan.map(|p|p.avoiding),
                 "plan_lane_m":r.ai_plan.map(|p|p.lane),

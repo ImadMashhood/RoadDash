@@ -50,6 +50,52 @@ fn dynamic_chassis_accelerates_and_brakes_with_two_supported_wheels() {
     }
 }
 #[test]
+fn landing_on_an_upright_bike_wipes_out_the_descending_rider() {
+    let mut app = app(1, 60);
+    let world = app.world_mut();
+    let upper = world
+        .query_filtered::<Entity, With<Rider>>()
+        .single(world)
+        .unwrap();
+    let (base, frame) = world.resource::<Track>().sample(40., -2.);
+    let mut lower_rider = Rider::new(1);
+    lower_rider.finished = Some(5.);
+    lower_rider.progress = 40.;
+    lower_rider.lane = -2.;
+    let lower = world
+        .spawn((
+            lower_rider,
+            Transform::from_translation(base).with_rotation(frame),
+            Visibility::Visible,
+            crate::recovery::bike_body(),
+        ))
+        .id();
+    {
+        let mut rider = world.get_mut::<Rider>(upper).unwrap();
+        rider.progress = 40.;
+        rider.lane = -2.;
+        rider.motion_velocity = -Vec3::Y * 5.;
+    }
+    world
+        .entity_mut(upper)
+        .insert(Transform::from_translation(base + Vec3::Y * 3.).with_rotation(frame));
+    for _ in 0..24 {
+        app.update();
+        if app.world().get::<Recovery>(upper).unwrap().stage == RecoveryStage::Falling {
+            break;
+        }
+    }
+    assert_eq!(
+        app.world().get::<Recovery>(upper).unwrap().stage,
+        RecoveryStage::Falling
+    );
+    assert_eq!(
+        app.world().get::<Recovery>(lower).unwrap().stage,
+        RecoveryStage::Riding
+    );
+}
+
+#[test]
 fn dynamic_physics_matches_at_render_rates() {
     let mut poses = vec![];
     for fps in [30, 60, 120] {
@@ -454,66 +500,230 @@ fn analog_trigger_values_reach_the_chassis_force_model() {
 }
 
 #[test]
-fn pedestrians_stay_mounted_while_cows_keep_existing_crash_entry() {
-    for preset in 0..3 {
-        for kind in [crate::npc::NpcKind::Cow, crate::npc::NpcKind::Pedestrian] {
-            let mut app = app(preset, 60);
+fn finished_bikes_brake_to_a_solid_stop() {
+    for adapter in [
+        VehiclePhysicsAdapter::Dynamic,
+        VehiclePhysicsAdapter::Assisted,
+    ] {
+        let mut app = app(1, 60);
+        app.insert_resource(adapter);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..240 {
+            app.update();
+        }
+        let world = app.world_mut();
+        let rider = world
+            .query_filtered::<Entity, With<Rider>>()
+            .single(world)
+            .unwrap();
+        let initial = world.get::<Rider>(rider).unwrap().speed;
+        let initial_position = world.get::<Transform>(rider).unwrap().translation;
+        assert!(initial > 16.);
+        world.get_mut::<Rider>(rider).unwrap().finished = Some(4.);
+        app.update();
+        assert!(app.world().get::<Rider>(rider).unwrap().speed > initial - 2.);
+        for _ in 0..300 {
+            app.update();
+        }
+        let world = app.world();
+        assert!(
+            world.get::<Rider>(rider).unwrap().speed < 0.3,
+            "{adapter:?}"
+        );
+        assert!(initial_position.distance(world.get::<Transform>(rider).unwrap().translation) > 8.);
+        assert!(world.get::<Collider>(rider).is_some());
+        assert!(world.get::<ColliderDisabled>(rider).is_none());
+    }
+}
+
+#[test]
+fn herd_cattle_knock_fast_approaches_off_both_adapters() {
+    use crate::{
+        npc::{Npc, NpcKind},
+        world_gen::hills::wildlife::CrossingCow,
+    };
+    for adapter in [
+        VehiclePhysicsAdapter::Assisted,
+        VehiclePhysicsAdapter::Dynamic,
+    ] {
+        let mut app = app(1, 60);
+        app.insert_resource(adapter);
+        app.world_mut()
+            .resource_mut::<ButtonInput<KeyCode>>()
+            .press(KeyCode::KeyW);
+        for _ in 0..240 {
+            app.update();
+        }
+        let owner = app
+            .world_mut()
+            .query_filtered::<Entity, With<Rider>>()
+            .single(app.world())
+            .unwrap();
+        let rider = app.world().get::<Rider>(owner).unwrap();
+        let direction = rider.motion_velocity.with_y(0.).normalize();
+        assert!(
+            rider.speed > rr_core::contact::REAR_KNOCKOFF_MPS,
+            "{adapter:?} approach speed {}",
+            rider.speed
+        );
+        let position = app.world().get::<Transform>(owner).unwrap().translation;
+        let pose = Transform::from_translation((position + direction * 4.).with_y(0.));
+        let cow = app
+            .world_mut()
+            .spawn((
+                CrossingCow,
+                crate::environment::Cow,
+                crate::world::Obstacle,
+                Npc::new(NpcKind::Cow, pose),
+                pose,
+                Visibility::Visible,
+                RigidBody::KinematicPositionBased,
+                ActiveCollisionTypes::all(),
+                ActiveEvents::COLLISION_EVENTS,
+                Collider::compound(vec![(
+                    Vec3::Y * 0.9,
+                    Quat::IDENTITY,
+                    Collider::cuboid(1.1, 0.7, 0.5),
+                )]),
+            ))
+            .id();
+        for _ in 0..24 {
+            app.update();
+        }
+        assert_eq!(
+            app.world().get::<Recovery>(owner).unwrap().stage,
+            RecoveryStage::Falling,
+            "{adapter:?}"
+        );
+        assert!(app.world().get::<Npc>(cow).unwrap().active(), "{adapter:?}");
+    }
+}
+
+#[test]
+fn mounted_bikes_jump_soft_targets_without_horizontal_collision_loss() {
+    use crate::{
+        npc::{Npc, NpcKind},
+        recovery::{BodyKind, OwnedBody},
+    };
+    for adapter in [
+        VehiclePhysicsAdapter::Assisted,
+        VehiclePhysicsAdapter::Dynamic,
+    ] {
+        for (npc, body) in [
+            (Some(NpcKind::Cow), None),
+            (Some(NpcKind::Pedestrian), None),
+            (None, Some(BodyKind::Ragdoll)),
+            (None, Some(BodyKind::Wreck)),
+        ] {
+            let label = format!(
+                "{adapter:?} {npc:?} wreck={}",
+                body == Some(BodyKind::Wreck)
+            );
+            let mut app = app(1, 60);
+            app.insert_resource(adapter);
             app.world_mut()
                 .resource_mut::<ButtonInput<KeyCode>>()
                 .press(KeyCode::KeyW);
             for _ in 0..120 {
                 app.update();
             }
-            let (_, p, state) = snapshot(&mut app);
-            let incoming = state.velocity;
-            let height = if kind == crate::npc::NpcKind::Cow {
-                1.7
-            } else {
-                crate::human::HEIGHT
-            };
-            let transform =
-                Transform::from_translation((p + incoming.normalize() * 3.0).with_y(0.0));
-            let actor = app
-                .world_mut()
-                .spawn((
-                    crate::npc::Npc::new(kind, transform),
-                    transform,
-                    Visibility::default(),
-                    RigidBody::Fixed,
-                    Collider::compound(vec![(
-                        Vec3::Y * height * 0.5,
-                        Quat::IDENTITY,
-                        Collider::cuboid(0.8, height * 0.5, 0.6),
-                    )]),
-                    ActiveEvents::COLLISION_EVENTS,
-                    ActiveCollisionTypes::all(),
-                ))
-                .id();
             let owner = app
                 .world_mut()
                 .query_filtered::<Entity, With<Rider>>()
                 .single(app.world())
                 .unwrap();
-            let mut crashed = false;
-            for _ in 0..60 {
+            let r = app.world().get::<Rider>(owner).unwrap();
+            let forward = r.motion_velocity.with_y(0.).normalize();
+            let position = app.world().get::<Transform>(owner).unwrap().translation;
+            let point = (position + forward * 4.).with_y(0.);
+            let actor = if let Some(kind) = npc {
+                let height = if kind == NpcKind::Cow {
+                    1.7
+                } else {
+                    crate::human::HEIGHT
+                };
+                let t = Transform::from_translation(point);
+                app.world_mut()
+                    .spawn((
+                        Npc::new(kind, t),
+                        t,
+                        Visibility::Visible,
+                        RigidBody::Fixed,
+                        Collider::compound(vec![(
+                            Vec3::Y * height * 0.5,
+                            Quat::IDENTITY,
+                            Collider::cuboid(0.8, height * 0.5, 0.6),
+                        )]),
+                    ))
+                    .id()
+            } else {
+                let foreign = app.world_mut().spawn_empty().id();
+                app.world_mut()
+                    .spawn((
+                        OwnedBody {
+                            owner: foreign,
+                            kind: body.unwrap(),
+                        },
+                        Transform::from_translation(point.with_y(0.35)),
+                        RigidBody::Dynamic,
+                        Collider::cuboid(0.6, 0.35, 0.6),
+                        Ccd::enabled(),
+                        ColliderMassProperties::Mass(75.),
+                        ReadMassProperties::default(),
+                        crate::recovery::CrashEnvelope::new(
+                            Vec3::ZERO,
+                            point.with_y(0.35),
+                            Quat::IDENTITY,
+                            -forward,
+                        ),
+                        Velocity::zero(),
+                    ))
+                    .id()
+            };
+            let mut hopped = false;
+            let mut peak = position.y;
+            for _ in 0..24 {
+                let before = app.world().get::<Rider>(owner).unwrap().motion_velocity;
                 app.update();
-                if kind == crate::npc::NpcKind::Cow {
-                    assert_eq!(app.world().get::<Rider>(owner).unwrap().hop_velocity, 0.0);
-                }
-                if app.world().get::<Recovery>(owner).unwrap().stage == RecoveryStage::Falling {
-                    crashed = true;
-                    break;
+                peak = peak.max(app.world().get::<Transform>(owner).unwrap().translation.y);
+                let r = app.world().get::<Rider>(owner).unwrap();
+                assert_eq!(
+                    app.world().get::<Recovery>(owner).unwrap().stage,
+                    RecoveryStage::Riding,
+                    "{label}"
+                );
+                if r.hop_velocity > 0. && !hopped {
+                    assert!(
+                        r.motion_velocity.dot(forward) >= before.dot(forward) - 0.3,
+                        "{label} lost entry speed: before={before:?} after={:?}",
+                        r.motion_velocity
+                    );
+                    hopped = true;
                 }
             }
-            assert_eq!(
-                crashed,
-                kind == crate::npc::NpcKind::Cow,
-                "class {preset} {kind:?} unexpected crash state"
+            assert!(
+                hopped && peak - position.y > 0.15,
+                "{label} missed lift: {peak}"
             );
-            if kind == crate::npc::NpcKind::Pedestrian {
-                assert!(snapshot(&mut app).0 > 2.0, "pedestrian stopped bike");
+            let after = app.world().get::<Transform>(owner).unwrap().translation;
+            assert!(
+                (after - point).dot(forward) > 1.0,
+                "{label} did not ride over"
+            );
+            if npc.is_some() {
+                assert!(
+                    !app.world().get::<Npc>(actor).unwrap().active(),
+                    "{label} NPC stayed up"
+                );
+            } else {
+                let displaced = app.world().get::<Transform>(actor).unwrap().translation;
+                assert!(
+                    (displaced - point).dot(forward) > 0.1,
+                    "{label} target did not move"
+                );
             }
-            assert!(!app.world().get::<crate::npc::Npc>(actor).unwrap().active());
         }
     }
 }
@@ -1407,7 +1617,11 @@ fn sand_coasting_and_ai_traversal_use_live_shared_adapter_rules() {
         }
         let world = app.world_mut();
         let rider = world.query::<&Rider>().single(world).unwrap();
-        assert!(rider.speed > 2. && rider.speed < 18. && rider.crashed == 0.);
+        assert!(
+            rider.speed > 2.
+                && rider.speed < Surface::Sand.speed_limit(f32::INFINITY)
+                && rider.crashed == 0.
+        );
     }
 }
 

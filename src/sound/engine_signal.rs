@@ -1,5 +1,7 @@
 //! Original four-stroke, inline-four exhaust voice driven by crank speed.
+mod traffic;
 mod twin;
+pub(crate) use traffic::{TrafficEngine, TrafficEngineKind};
 pub(crate) use twin::TwinEngine;
 pub const RATE: u32 = 48_000;
 

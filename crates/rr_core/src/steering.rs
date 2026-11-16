@@ -174,10 +174,24 @@ mod pose_tests {
 
 /// Presentation only: lane steering omits the road-following turn of assisted AI.
 pub fn rival_visual_bank(steer: f32, curvature: f32, speed: f32) -> f32 {
-    if !curvature.is_finite() || !speed.is_finite() {
-        return visual_bank(steer);
+    if !speed.is_finite() {
+        return 0.0;
     }
-    (visual_bank(steer) - (curvature * speed * speed / 9.81).atan()).clamp(-0.65, 0.65)
+    let speed = speed.max(0.0);
+    let road_bank = if curvature.is_finite() {
+        (curvature * speed * speed / 9.81).atan()
+    } else {
+        0.0
+    };
+    let blend = (speed / SteeringTuning::default().full_speed_mps).clamp(0.0, 1.0);
+    (visual_bank(steer) - road_bank).clamp(-0.65, 0.65) * blend
+}
+
+/// Limit visible roll rate on sudden lane changes and left/right reversals.
+pub fn step_rival_bank(previous: f32, steer: f32, curvature: f32, speed: f32, dt: f32) -> f32 {
+    let target = rival_visual_bank(steer, curvature, speed);
+    let max_delta = 1.8 * dt;
+    previous + ((target - previous) * (1.0 - (-dt * 16.0).exp())).clamp(-max_delta, max_delta)
 }
 
 #[cfg(test)]
@@ -190,5 +204,23 @@ mod rival_bank_tests {
         assert_eq!(bank(0., 0.004, 50.), -bank(0., -0.004, 50.));
         assert_eq!(bank(0., 0.004, 0.), 0.);
         assert!(bank(-1., 1., 200.).abs() <= 0.65);
+        assert_eq!(bank(1., 0., 0.), 0.);
+        assert!(bank(1., 0., 3.) < 0.17);
+    }
+
+    #[test]
+    fn bank_reversal_passes_gradually_through_upright() {
+        let dt = 1. / 60.;
+        let mut lean = 0.65;
+        for _ in 0..10 {
+            let next = super::step_rival_bank(lean, -1., 0., 3., dt);
+            assert!(next < lean && next >= lean - 0.031);
+            lean = next;
+        }
+        assert!(lean > 0.);
+        for _ in 0..60 {
+            lean = super::step_rival_bank(lean, -1., 0., 3., dt);
+        }
+        assert!((-0.17..-0.15).contains(&lean));
     }
 }

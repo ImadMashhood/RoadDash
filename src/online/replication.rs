@@ -416,10 +416,7 @@ pub(super) fn receive(world: &mut World) {
             if event.id > state.last_audio {
                 world
                     .resource_mut::<Messages<crate::sound::AudioCue>>()
-                    .write(crate::sound::AudioCue::new(
-                        event.cue,
-                        Vec3::from_array(event.position),
-                    ));
+                    .write(event.audio());
                 state.last_audio = event.id;
             }
         }

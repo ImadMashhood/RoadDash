@@ -1,11 +1,49 @@
 # Known issues and remaining acceptance
 
+- HILLS-ESCAPE-RETRY-01, HILLS-HERD-04 and HILLS-TREE-LOD-02: Replay Rachel’s
+  exact queue, check the formation at race speed and measure end-to-end
+  performance with the clearance-filtered trees, backdrop promotions and default effects. The latest Hills
+  telemetry identifies a stopped pair but omits the vehicle ahead.
+  [Queue evidence](testing/hills-slope-infill/REPORT.md).
+
+- HILLS-HERD-03 and HILLS-VERGE-ESCAPE-01: Full-field queue times at both
+  crossings and a replay of Diamond’s exact stop still need native evidence.
+
+- AI-HILLS-CADENCE-01: The planner work budget and whole-frame performance
+  are measured separately. End-to-end fluidity still needs a matched native
+  display and representative Hills race, including the heavy Western segment.
+- HILLS-SURFACE-POLISH-01: The bridge shoulder geometry is covered by a
+  regression test. Keep detailed race-speed visual review open.
+
+- RACE-MIX-HUD-01 and HILLS-POLISH-02: Headphone and race-speed review,
+  including the far bridge underside, and a matched frame-time comparison
+  remain open after the race polish follow-up.
+
+- HILLS-TOWN-01: Human review of scene readability and traffic interaction
+  at full race speed remains open.
+
+- AI-NORMAL-01 / AUDIO-IMPACT-01: Full-course human comeback and headphone
+  acceptance of the new recorded impact mix remain open.
+
 - AUDIO-009 / ADR180: network rider load is estimated from replicated speed.
   Headphone balance and multiplayer audio mix need a listening pass.
 
-- AUDIO-008 / ADR179: the 689 cc player voice uses simulated dyno captures.
+- AUDIO-008 / ADR179: the optional 689 cc twin voice uses simulated dyno captures.
   Closed throttle above 7,500 RPM uses the top coast sample. Full-course mix
   and loop audibility still need listening review.
+
+## Visual depth pilot (ADR185)
+
+The optional contact-shadow pass only reinforces direct light and adds a depth
+prepass. Fully shaded storefronts still need local ambient occlusion or more
+authored depth. The BUSS4 finish pilot leaves the physical recess redesign and
+production performance review open.
+
+## Course presentation polish (ADR184)
+
+Matched frame-cost measurements and full-course human review remain open.
+Added pedestrian paths wait for nearby riders, clearance and a traffic gap.
+The existing Bevy 0.20 Rapier parity failures remain tracked independently.
 
 - ADR175 demo combat/audio: natural exchange frequency and audible mix still
   need human full-course review. Limb volumes approximate the animated mesh,
@@ -122,6 +160,7 @@ missing features, architectural debt and unverified platforms.
 - RFU-MOVE-01/02: new run/terrain presentation passes scripted native cases but requires user visual acceptance; broad terrain/steps, performance and hardware gates remain open. No recovery speed change. See testing/issue-28-movement/README.md.
 
 - RFU-WILD-01..05: Hills scenic wild herds are original procedural meshes with no contacts. Native close bison/horse and four matched release cost runs pass, with frame differences inside run variation. Mid/far animal readability, full-course movement, both-rig native recovery, user art and broad GPU/hardware acceptance remain open; retained cow/mounted contacts need final integrated native regression receipts. See testing/wildlife/REPORT.md.
+- PERF-08 / VIS-DEPTH-01: Hills still needs sustained release frame-budget verification and the softer grade needs visual acceptance. See [Hills profiling](testing/visual-depth/REPORT.md#softer-grade-and-hills-profiling).
 - PERF-08/P16-003: release crossing-admission optimization lowers gameplay work, but matched survey total frame times remain about25ms and differences overlap run variation. Physics remains about11ms/fixed step. No60FPS/GPU/full-race/hardware acceptance; evidence in testing/performance-pass.
 
 - ONLINE-PLAY-01: listen-host/UI/discovery is implemented and locally verified on
@@ -1415,3 +1454,50 @@ integration and combined release/hardware performance gates remain open.
   testing/feedback-animals/REPORT.md.
 
 - RFU-GROUND-03 / RFU-HILLS-05: the Bevy 0.20 candidate now has procedural terrain grit, local sand-tinted fixed-size dust, and half as many imported Hills city walkers. Texture repetition, fade timing, walking encounters, and whether "peds pop" means spawn distance need native user review. Matched release frame/GPU cost is unmeasured; see ADR167 and testing/feedback-sand-crowd/REPORT.md.
+
+## Hills race-outcome follow-up (2026-11-14 / ADR200)
+
+The close-queue regression covers the reported gap and a clear passing
+corridor. Full-route traffic combinations remain under RFU-AI-01. The new
+woodland has a measured geometry budget. Target-hardware frame timing and
+visual review remain RFU-HILLS-WOODLAND-01. Offline elimination and standings
+are implemented under RFU-RACE-HEALTH-01 and RFU-RACE-RESULTS-01. Balance across
+full human races and network adoption remain open.
+
+## Race performance, difficulty and world follow-up (2026-11-15 / ADR201)
+
+Local Hills traces show main-world CPU pressure. The AI sweep optimization
+and scenery LODs reduce specific work, while clean full-course frame timing
+and Hard finish margins remain open. Verify temporary frame spikes separately
+from steady pacing. Review the new grassy city transition, both cattle
+encounters and the dust in a human race. The two existing Rapier test failures
+remain tracked. [Evidence](testing/race-performance-hard-world/REPORT.md).
+
+## Shared rival obstacle scan (2026-11-15 / ADR202)
+
+Static discovery uses at most one scan per active tick. Precise sweeps still
+depend on obstacle density. Full-course timing and any future cap on exact
+sweeps stay open under AI-SHARED-SCAN-01 and PERF-08.
+
+
+## Graphics comparisons (2026-11-15 / ADR207)
+
+These are opt-in Hills experiments. Visual preference, reduced-motion comfort
+and steady-state GPU performance remain open. The Material Maker Linux export
+crashes in the isolated capture session, including with a stock project.
+[Evidence](testing/graphics-polish/REPORT.md).
+
+
+## Hills ground shimmer (2026-11-15 / ADR208)
+
+The strip is projected to screen space. Distant objects inside its mask can
+refract slightly. Full-route hazard readability and performance acceptance
+remain open under RFU-FX-01.
+[Evidence](testing/hills-shimmer-hud/REPORT.md).
+
+
+## Hills cloud coverage (2026-11-15 / ADR209)
+
+Local Hills sky coverage is addressed. RFU-SKY-05 retains the wider map scope
+and the release GPU and frame-time gate.
+[Evidence](testing/hills-cloud-field/REPORT.md).

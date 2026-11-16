@@ -39,12 +39,12 @@ impl Surface {
     pub fn speed_limit(self, road_limit: f32) -> f32 {
         match self {
             Self::Grass => road_limit.min(32.0),
-            Self::Sand => road_limit.min(18.0),
+            Self::Sand => road_limit.min(30.0),
             _ => road_limit,
         }
     }
     pub fn drive_scale(self) -> f32 {
-        if self == Self::Sand { 0.55 } else { 1.0 }
+        if self == Self::Sand { 0.82 } else { 1.0 }
     }
     /// Budget resistance after the already requested tyre/aero acceleration.
     /// Two independently stop-bounded forces must not add up to reverse motion.
@@ -62,7 +62,7 @@ impl Surface {
         if self != Self::Sand || dt <= 0.0 {
             return 0.0;
         }
-        -speed.signum() * (1.8 + 0.14 * speed.abs()).min(speed.abs() / dt)
+        -speed.signum() * (0.95 + 0.079 * speed.abs()).min(speed.abs() / dt)
     }
 }
 

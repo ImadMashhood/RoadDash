@@ -16,6 +16,8 @@ pub struct ReleaseGrace {
 pub struct ReleaseHooks<'w, 's> {
     bodies: Query<'w, 's, &'static OwnedBody>,
     grace: Query<'w, 's, &'static ReleaseGrace>,
+    mounted: Query<'w, 's, &'static Recovery, With<Rider>>,
+    ride_over_targets: crate::recovery::RideOverTargets<'w, 's>,
 }
 impl BevyPhysicsHooks for ReleaseHooks<'_, '_> {
     fn filter_contact_pair(
@@ -37,6 +39,16 @@ impl BevyPhysicsHooks for ReleaseHooks<'_, '_> {
             {
                 return None;
             }
+        }
+        // Reject the whole pair so Rapier's continuous collision pass cannot
+        // clamp the mounted bike either. The fixed ride-over sweep reports it.
+        if [(a, b), (b, a)].into_iter().any(|(bike, target)| {
+            self.mounted
+                .get(bike)
+                .is_ok_and(|state| state.stage == RecoveryStage::Riding)
+                && self.ride_over_targets.contains(bike, target)
+        }) {
+            return None;
         }
         Some(SolverFlags::COMPUTE_RIGID_IMPULSES)
     }

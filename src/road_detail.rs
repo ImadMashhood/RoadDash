@@ -143,6 +143,7 @@ pub fn install(
     images: Option<ResMut<Assets<Image>>>,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    track: Option<Res<crate::track::Track>>,
     roads: Query<(
         Entity,
         &Mesh3d,
@@ -158,7 +159,11 @@ pub fn install(
     }) {
         return;
     }
-    let material = materials.add(asphalt(&mut images));
+    let mut material = asphalt(&mut images);
+    if track.as_ref().is_some_and(|track| track.is_hills()) {
+        crate::polish::road::apply(&mut images, &mut material);
+    }
+    let material = materials.add(material);
     for (entity, handle, road, surface) in &roads {
         if road.is_none() && !surface.is_some_and(|s| matches!(s.0, "junction" | "grid_road")) {
             continue;

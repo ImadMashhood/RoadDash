@@ -87,7 +87,7 @@ pub fn run(
     let (road, rotation) = track.sample_route(0, station, 0.);
     let side = rotation * Vec3::X;
     let sign = if map == "city" { 1. } else { -1. };
-    let (eye, target) = if map == "hills" && stage >= 2 {
+    let (eye, target) = if map == "hills" && stage != 1 {
         let (behind, _) = track.sample_route(0, station - 25., 0.);
         (behind + Vec3::Y * 2.6, road + Vec3::Y * 1.4)
     } else if map == "metro" || map == "city" {
@@ -112,9 +112,9 @@ pub fn run(
     // The two pairs hold one camera/anchor and only change the race-time phase.
     let (name, elapsed) = if track.is_hills() {
         if frame < 45 {
-            ("heat-small", 2.56)
+            ("desert-shimmer-a", 2.56)
         } else if frame < 90 {
-            ("heat-large", 1.04)
+            ("desert-shimmer-b", 1.04)
         } else if frame < 110 {
             ("sand-small", 1.70)
         } else if frame < 150 {
@@ -194,7 +194,7 @@ pub fn run(
             .iter()
             .filter(|(_, v)| **v == Visibility::Inherited)
             .count();
-        let counts = [Kind::Sand, Kind::Heat, Kind::Steam, Kind::Pollen]
+        let counts = [Kind::Sand, Kind::Steam, Kind::Pollen]
             .map(|kind| sprites.iter().filter(|(s, _)| s.kind == kind).count());
         let quality = match quality() {
             0 => "off",
@@ -212,12 +212,12 @@ pub fn run(
             .filter_map(|d| d.value().map(|value| (d.path().as_str().to_owned(), value)))
             .collect();
         std::fs::write(path, serde_json::to_vec_pretty(&serde_json::json!({
-            "map":map,"quality":quality,"captures":survey.captures,"pool_counts":{"sand":counts[0],"heat":counts[1],"steam":counts[2],"pollen":counts[3]},"active_in_final_view":active_visible,
+            "map":map,"quality":quality,"captures":survey.captures,"pool_counts":{"sand":counts[0],"heat":0,"steam":counts[1],"pollen":counts[2]},"active_in_final_view":active_visible,
             "steady_paused_view_wall_frames":steady,
             "steady_active_simulation_wall_frames":active_frames,
             "latest_render_diagnostics":render_diagnostics,
             "metrics":metrics.evidence(&clock),
-            "limits":"Native fixed/chase camera comparison. Active window runs fixed simulation with no player input; wall-frame samples are not GPU timings or a full-race performance certificate. Effects are transparent-texture cues, not refraction."
+            "limits":"Native fixed/chase camera comparison. Active window runs fixed simulation with no player input; wall-frame samples are not GPU timings or a full-race performance certificate. Hills ground shimmer samples the rendered scene."
         })).expect("serialize map FX report")).expect("write map FX report");
         exit.write(AppExit::Success);
     }

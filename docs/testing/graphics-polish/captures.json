@@ -1,0 +1,198 @@
+{
+  "baseline-road": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  },
+  "asphalt-procedural": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  },
+  "asphalt-ambient": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  },
+  "asphalt-poly": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  },
+  "native-grade": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": [
+      1.0,
+      0.0,
+      0.0,
+      3.9666666984558105
+    ],
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  },
+  "baseline-grid": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "grid",
+    "speed_mps": 0.0,
+    "station": -176.0
+  },
+  "grid-rev": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": 7443.95068359375,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "grid",
+    "speed_mps": 0.0,
+    "station": -176.0
+  },
+  "exhaust": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 5,
+    "rev_rpm": 7443.95068359375,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "grid",
+    "speed_mps": 0.0,
+    "station": -176.0
+  },
+  "gpu-exhaust": {
+    "hanabi": true,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": 7443.95068359375,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "grid",
+    "speed_mps": 0.0,
+    "station": -176.0
+  },
+  "heat": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": 7443.95068359375,
+    "shader_weights": [
+      0.0,
+      0.0,
+      1.0,
+      4.366666793823242
+    ],
+    "shake": 0.0,
+    "shot": "grid",
+    "speed_mps": 0.0,
+    "station": -176.0
+  },
+  "baseline-speed": {
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "speed",
+    "speed_mps": 48.11090850830078,
+    "station": 10534.8134765625
+  },
+  "speed-wind": {
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": [
+      0.0,
+      0.9744207262992859,
+      0.0,
+      4.1666669845581055
+    ],
+    "shake": 0.0,
+    "shot": "speed",
+    "speed_mps": 48.11090850830078,
+    "station": 10534.8134765625
+  },
+  "upshift-shake": {
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.12999999523162842,
+    "shot": "speed",
+    "speed_mps": 48.11090850830078,
+    "station": 10534.8134765625
+  },
+  "combined": {
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": 1450.0,
+    "shader_weights": [
+      1.0,
+      0.9744207262992859,
+      1.0,
+      4.016666889190674
+    ],
+    "shake": 0.12999999523162842,
+    "shot": "speed",
+    "speed_mps": 48.11090850830078,
+    "station": 10534.8134765625
+  },
+  "baseline-vulkan": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  },
+  "vkbasalt": {
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": null,
+    "shake": 0.0,
+    "shot": "road",
+    "speed_mps": 0.0,
+    "station": 4835.0
+  }
+}

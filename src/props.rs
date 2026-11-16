@@ -73,6 +73,7 @@ impl PropArt {
                     id: prop.id.clone(),
                     files: prop.files.clone(),
                     lod: 2,
+                    lod_range: LodRange::for_builder(&prop.builder),
                     family,
                 },
                 WorldAssetRoot(self.scene(path)),
@@ -106,8 +107,7 @@ impl PropArt {
         )
     }
     pub fn vehicle(&self, commands: &mut Commands, seed: usize) -> Entity {
-        let models = ["hatchback", "sedan", "sports_car", "taxi", "van", "pickup"];
-        let p = self.choose(models[seed % models.len()], seed / models.len());
+        let p = self.choose(vehicle_kind(seed), seed / TRAFFIC_VEHICLE_MODELS.len());
         self.fitted(
             commands,
             p,
@@ -140,8 +140,48 @@ pub struct PropVisual {
     pub id: String,
     files: [String; 3],
     lod: usize,
+    lod_range: LodRange,
     pub family: &'static str,
 }
+#[derive(Clone, Copy)]
+struct LodRange {
+    high: f32,
+    middle: f32,
+    limit: f32,
+}
+impl LodRange {
+    fn for_builder(builder: &str) -> Self {
+        let (high, middle, limit) = match builder {
+            "broadleaf" | "conifer" | "bare_tree" | "palm" => (27., 76., 470.),
+            "rock_cluster" | "rubble_pile" | "shrub" | "stump" | "log_stack" => (23., 65., 350.),
+            _ => (32., 95., 500.),
+        };
+        Self {
+            high,
+            middle,
+            limit,
+        }
+    }
+
+    fn select(self, current: usize, distance_squared: f32) -> Option<usize> {
+        let next = if distance_squared < self.high.powi(2) {
+            0
+        } else if distance_squared < self.middle.powi(2) {
+            1
+        } else {
+            2
+        };
+        let change = match (current, next) {
+            (0, next) if next > 0 => distance_squared > (self.high + 4.).powi(2),
+            (1, 0) => distance_squared < (self.high - 4.).powi(2),
+            (1, 2) => distance_squared > (self.middle + 10.).powi(2),
+            (2, next) if next < 2 => distance_squared < (self.middle - 10.).powi(2),
+            _ => false,
+        };
+        change.then_some(next)
+    }
+}
+
 #[derive(Component, Clone)]
 pub struct ActorAppearance(pub String);
 #[derive(Component)]
@@ -183,8 +223,11 @@ fn lods(
     stats.rendered = props.iter().count();
     stats.skins = bindings.iter().count();
     for (transform, mut prop, mut scene, mut visible, frozen) in &mut props {
-        let distance = transform.translation().distance(camera.translation());
-        visible.set_if_neq(if distance > 500.0 {
+        let distance_squared = transform
+            .translation()
+            .distance_squared(camera.translation());
+        let outside = distance_squared > prop.lod_range.limit.powi(2);
+        visible.set_if_neq(if outside {
             Visibility::Hidden
         } else {
             Visibility::Inherited
@@ -192,25 +235,9 @@ fn lods(
         if frozen.is_some() {
             continue;
         }
-        let next = if distance < 32.0 {
-            0
-        } else if distance < 95.0 {
-            1
-        } else {
-            2
-        };
-        let boundary = match (prop.lod, next) {
-            (0, _) => 36.0,
-            (1, 0) => 28.0,
-            (1, _) => 105.0,
-            (2, _) => 85.0,
-            _ => 95.0,
-        };
-        let change =
-            next < prop.lod && distance < boundary || next > prop.lod && distance > boundary;
-        if !change {
+        let Some(next) = prop.lod_range.select(prop.lod, distance_squared) else {
             continue;
-        }
+        };
         let path = format!("props://{}#Scene0", prop.files[next]);
         let handle = cache
             .0
@@ -536,4 +563,15 @@ pub fn dress_city(commands: &mut Commands, art: &PropArt, city: &rr_content::cit
             .id();
         commands.entity(owner).add_child(visual);
     }
+}
+
+const TRAFFIC_VEHICLE_MODELS: [&str; 6] =
+    ["hatchback", "sedan", "sports_car", "taxi", "van", "pickup"];
+
+fn vehicle_kind(seed: usize) -> &'static str {
+    TRAFFIC_VEHICLE_MODELS[seed % TRAFFIC_VEHICLE_MODELS.len()]
+}
+
+pub(crate) fn vehicle_is_pickup(seed: usize) -> bool {
+    vehicle_kind(seed) == "pickup"
 }

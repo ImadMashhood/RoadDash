@@ -333,7 +333,7 @@ impl Metropolis {
                 .iter()
                 .filter(|p| p.crossing_end.is_some())
                 .count()
-                > 24
+                > 40
             || self.pedestrians.iter().any(|p| {
                 p.crossing_end.is_some_and(|end| {
                     !end.iter().all(|v| v.is_finite())
@@ -356,7 +356,8 @@ impl Metropolis {
         }
         self.track.validate()?;
         // The race interval uses absolute route chainage; authoring keeps both
-        // physical tails and the original grid offsets intact.
+        // physical tails and the original grid offsets intact. Authored checks
+        // in the finish-side tail remain valid for the full route.
         let race = rr_core::race::RaceInterval::METROPOLIS;
         if self
             .track
@@ -364,7 +365,7 @@ impl Metropolis {
             .iter()
             .skip(1)
             .take(self.track.checkpoints.len() - 2)
-            .any(|g| !(race.start..race.finish).contains(&(g.fraction * 12000.)))
+            .any(|g| !(race.start..12000.).contains(&(g.fraction * 12000.)))
             || self
                 .track
                 .spawns
@@ -624,7 +625,7 @@ mod tests {
                 .iter()
                 .filter(|p| p.crossing_end.is_some())
                 .count(),
-            13
+            16
         );
         let i = m
             .pedestrians

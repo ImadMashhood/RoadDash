@@ -1,6 +1,6 @@
 {
-  "source_manifest_sha256": "96603cab97c100a7503a6a0676b772c4beb235adab08ae9549551d2b8d421dfd",
-  "packed_sha256": "4c0bbe2bf449f134db8117518b42870d14022b0e36285f68e3aed6dcf68aeee3",
+  "source_manifest_sha256": "d853a3127523d15192960fcbc3d8ee3c58293fbe7902704a809b366340e935b1",
+  "packed_sha256": "6f42adabc85306eef4a1ee5bb8e89c4369441707a73fcea6b51501a7fe4cc2e4",
   "packed_channels": "linear R=unused G=perceptual roughness B=metallic A=opaque",
   "palette_sha256": "c6a50dca9492d77e5b12629be58cfe304672b2d883da76c19b26bc5a2ac60d9f",
   "atlas_columns": 8,
@@ -30,7 +30,7 @@
       "design": "BUSS4",
       "source_design": "BUSS4",
       "band": 0,
-      "source_sha256": "22da8bdbde4d37b5419096e15d8964844d0c8912bc5193d185810ee6d0fe99a8"
+      "source_sha256": "c8b74d09bf9fa0025c35584d216844031e905f884a30b9e26c7527c07f743311"
     },
     {
       "design": "BUSS4",
@@ -42,7 +42,7 @@
       "design": "BUSS4",
       "source_design": "BUSS4",
       "band": 2,
-      "source_sha256": "22da8bdbde4d37b5419096e15d8964844d0c8912bc5193d185810ee6d0fe99a8"
+      "source_sha256": "c8b74d09bf9fa0025c35584d216844031e905f884a30b9e26c7527c07f743311"
     },
     {
       "design": "CHINA12",
@@ -442,5 +442,5 @@
     }
   ],
   "modifications": "Crop original model-derived storey albedo/mips; flatten transparent gaps to opaque masonry; no original game media.",
-  "sha256": "dacdff044c074fce6587efb1d1fac0fcf53a2fb6fb42f1181cf9037fb0ff67d3"
+  "sha256": "6252ef6a9fa52dcdd714cefc83a92e5665e8faaa42ca30c4398a4e74634f7cb8"
 }

@@ -291,7 +291,7 @@ pub(super) fn farm_sites(track: &Track) -> Vec<(Vec3, Quat)> {
     }
     sites
 }
-fn noise(n: u32) -> f32 {
+pub(super) fn noise(n: u32) -> f32 {
     let n = n.wrapping_mul(747796405).wrapping_add(2891336453);
     let n = ((n >> ((n >> 28) + 4)) ^ n).wrapping_mul(277803737);
     ((n >> 22) ^ n) as f32 / u32::MAX as f32
@@ -302,41 +302,49 @@ pub(super) fn field_clear(p: Vec3, farms: &[(Vec3, Quat)]) -> bool {
         local.x.abs() > 35. || local.z.abs() > 95.
     })
 }
+const GRASS_SPACING: f32 = 1.1;
+const GRASS_ROWS: u32 = 24;
+const DENSE_GRASS_ROWS: u32 = 6;
+
 fn grass_positions(
     track: &Track,
     start: f32,
     end: f32,
     farms: &[(Vec3, Quat)],
-) -> Vec<(Vec3, f32)> {
+) -> Vec<(Vec3, f32, u32)> {
     let mut out = vec![];
-    for i in 0..((end - start) / 1.6) as u32 {
-        let s = start + i as f32 * 1.6;
+    for i in 0..((end - start) / GRASS_SPACING) as u32 {
+        let s = start + i as f32 * GRASS_SPACING;
         for side in [-1., 1.] {
-            for row in 0..24_u32 {
+            for row in 0..GRASS_ROWS {
                 let seed = (s as u32)
                     .wrapping_mul(97)
                     .wrapping_add(row * 31)
                     .wrapping_add(u32::from(side > 0.) * 17);
-                if noise(seed) < 0.18 + 0.16 * (s * 0.023 + row as f32 * 0.7).sin() {
+                if noise(seed) < 0.12 + 0.16 * (s * 0.023 + row as f32 * 0.7).sin() {
                     continue;
                 }
-                let lane = side
-                    * (if s >= 8000. { 100. } else { 18. }
-                        + row as f32 * 4.0
-                        + noise(seed + 1) * 3.);
+                let verge = if s >= 8000. { 42. } else { 12. };
+                let spread = if row < 12 {
+                    row as f32 * 1.7
+                } else {
+                    24. + (row - 12) as f32 * 6.6
+                };
+                let lane = side * (verge + spread + noise(seed + 1) * 1.6);
                 let Some((p, _)) =
-                    super::props::site(track, 0, s + noise(seed + 2) * 1.5, lane, 1.1)
+                    super::props::site(track, 0, s + noise(seed + 2) * GRASS_SPACING, lane, 1.1)
                 else {
                     continue;
                 };
-                if super::bridge::reserved(track, p, 1.1)
+                if noise(seed + 7) > super::geometry::city_exit_meadow(s, p.x, p.z)
+                    || super::bridge::reserved(track, p, 1.1)
                     || (super::mounted::reserved(track, p, 1.1)
                         || super::wildlife::reserved(track, p, 1.1))
                     || !field_clear(p, farms)
                 {
                     continue;
                 }
-                out.push((p, noise(seed + 3)));
+                out.push((p, noise(seed + 3), 2 + u32::from(row < DENSE_GRASS_ROWS)));
             }
         }
     }
@@ -511,6 +519,7 @@ pub(super) fn spawn(
     art: &Art,
     track: &Track,
     census: &mut Census,
+    spacing: &mut woodland::TreeSpacing,
 ) {
     let white = materials.add(StandardMaterial {
         base_color: Color::WHITE,
@@ -631,7 +640,7 @@ pub(super) fn spawn(
                 ));
             }
         }
-        for z in [-12., 0., 12.] {
+        for z in [-18., -9., 0., 9., 18.] {
             let mut cow = p + q * Vec3::new(-14., 0., z);
             cow.y = super::geometry::ground_height(track, cow.x, cow.z);
             crate::environment::spawn_cow(commands, art, cow, q);
@@ -675,8 +684,8 @@ pub(super) fn spawn(
     }
     reuse_metropolis_farm_materials(commands);
     // Forest groups follow mountain switchbacks, with isolated outskirts trees.
-    for (start, end, spacing) in [(1500, 5350, 18), (8000, 8450, 65)] {
-        for s in (start..end).step_by(spacing) {
+    for (start, end, step) in [(1500, 5350, 6), (8000, 8450, 22)] {
+        for s in (start..end).step_by(step) {
             for side in [-1., 1.] {
                 for row in 0..3_u32 {
                     let seed = s as u32 + row * 773 + u32::from(side > 0.) * 19;
@@ -694,6 +703,10 @@ pub(super) fn spawn(
                     {
                         continue;
                     }
+                    let width = if row == 0 { 4. } else { 6. };
+                    let Some(p) = spacing.plant(track, p, width * 0.51) else {
+                        continue;
+                    };
                     let height = 6. + noise(seed + 7) * 4.;
                     let root = commands
                         .spawn((
@@ -712,46 +725,29 @@ pub(super) fn spawn(
                             HillsTree,
                         ))
                         .id();
+                    let conifers = woodland::tree_lods::CONIFERS;
+                    let broadleaves = woodland::tree_lods::BROADLEAVES;
+                    let variant = (seed as usize / 7) % conifers.len();
+                    let family = if row == 0 && s < 5200 {
+                        conifers[variant]
+                    } else {
+                        broadleaves[variant]
+                    };
+                    let size = Vec3::new(width, height, width);
                     if let Some(props) = &art.props {
-                        let conifers = ["TREE4A2", "TREE4B2", "TREE5A2", "TREEF2", "TREEU12"];
-                        let broadleaves = ["TREEH2", "TREOAKA2", "TREOAKB2", "TREEK2", "TREEL2"];
-                        let variant = (seed as usize / 7) % conifers.len();
-                        let name = if row == 0 && s < 5200 {
-                            conifers[variant]
-                        } else {
-                            broadleaves[variant]
-                        };
                         let visual = props.fitted(
                             commands,
-                            props.named(name),
+                            props.named(family),
                             Vec3::ZERO,
                             Quat::IDENTITY,
-                            Vec3::new(
-                                if row == 0 { 4. } else { 6. },
-                                height,
-                                if row == 0 { 4. } else { 6. },
-                            ),
+                            size,
                             "hills-tree",
                         );
                         commands.entity(root).add_child(visual);
                     } else {
-                        let trunk = crate::world::part(
-                            commands,
-                            art.cube.clone(),
-                            materials.add(Color::srgb(0.28, 0.19, 0.10)),
-                            Vec3::Y * height / 2.,
-                            Vec3::new(0.5, height, 0.5),
-                            Quat::IDENTITY,
+                        woodland::single_tree_lods(
+                            commands, meshes, &white, spacing, root, family, size,
                         );
-                        let crown = crate::world::part(
-                            commands,
-                            art.sphere.clone(),
-                            materials.add(Color::srgb(0.20, 0.32, 0.12)),
-                            Vec3::Y * height * 0.7,
-                            Vec3::new(2.5, height * 0.4, 2.5),
-                            Quat::IDENTITY,
-                        );
-                        commands.entity(root).add_children(&[trunk, crown]);
                     }
                     census.trees += 1;
                 }
@@ -764,7 +760,7 @@ pub(super) fn spawn(
         perceptual_roughness: 1.,
         ..default()
     });
-    for (start, end) in [(1500_f32, 5350_f32), (8000_f32, 8450_f32)] {
+    for (start, end) in [(1000_f32, 1500_f32), (1500., 5350.), (8000., 8450.)] {
         let mut a = start;
         while a < end {
             let b = (a + 64.).min(end);
@@ -777,10 +773,13 @@ pub(super) fn spawn(
             let mut vertices = vec![];
             let mut indices = vec![];
             let mut colors = vec![];
-            for (p, seed) in placements {
-                for blade in 0..3 {
+            let mut far_vertices = vec![];
+            let mut far_indices = vec![];
+            let mut far_colors = vec![];
+            for (p, seed, blades) in placements {
+                for blade in 0..blades {
                     let angle = seed * std::f32::consts::TAU + blade as f32 * 2.1;
-                    let side = Vec3::new(angle.cos(), 0., angle.sin()) * 0.14;
+                    let side = Vec3::new(angle.cos(), 0., angle.sin()) * (0.19 + seed * 0.03);
                     let bend = Vec3::new(angle.sin(), 0., angle.cos()) * 0.16;
                     let h = 0.39 + seed * 0.41;
                     let k = vertices.len() as u32;
@@ -797,6 +796,16 @@ pub(super) fn spawn(
                         1.,
                     ];
                     colors.extend([c; 3]);
+                    if blade == 0 {
+                        let k = far_vertices.len() as u32;
+                        far_vertices.extend([
+                            p - side * 1.45 - origin,
+                            p + side * 1.45 - origin,
+                            p + Vec3::Y * h + bend - origin,
+                        ]);
+                        far_indices.push([k, k + 1, k + 2]);
+                        far_colors.extend([c; 3]);
+                    }
                 }
                 census.grass_tufts += 1;
             }
@@ -810,11 +819,25 @@ pub(super) fn spawn(
                 NotShadowCaster,
                 VisibilityRange {
                     start_margin: 0.0..0.0,
+                    end_margin: 70.0..95.0,
+                    use_aabb: false,
+                },
+            ));
+            let mut far_mesh = crate::environment::mesh(&far_vertices, &far_indices);
+            far_mesh.insert_attribute(Mesh::ATTRIBUTE_COLOR, far_colors);
+            commands.spawn((
+                Mesh3d(meshes.add(far_mesh)),
+                MeshMaterial3d(grass_material.clone()),
+                Transform::from_translation(origin),
+                HillsGrass,
+                NotShadowCaster,
+                VisibilityRange {
+                    start_margin: 70.0..95.0,
                     end_margin: 170.0..240.0,
                     use_aabb: false,
                 },
             ));
-            census.grass_batches += 1;
+            census.grass_batches += 2;
             a = b;
         }
     }
@@ -823,6 +846,35 @@ pub(super) fn spawn(
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn city_exit_seeds_sparse_grass_before_the_meadow_fills_in() {
+        let track = Track::hills().unwrap();
+        let early = grass_positions(&track, 1000., 1064., &[]);
+        let middle = grass_positions(&track, 1270., 1334., &[]);
+        let meadow = grass_positions(&track, 1640., 1704., &[]);
+        assert!(!early.is_empty());
+        assert!(early.len() * 3 < middle.len());
+        assert!(middle.len() < meadow.len());
+    }
+
+    #[test]
+    fn denser_grass_keeps_near_and_far_rows_under_the_old_triangle_ceiling() {
+        let track = Track::hills().unwrap();
+        let placements = grass_positions(&track, 1500., 1564., &[]);
+        let old_batch_triangle_ceiling = (64. / 1.3) as usize * 2 * 24 * 3;
+        let triangles: usize = placements
+            .iter()
+            .map(|(_, _, blades)| *blades as usize)
+            .sum();
+        assert!(triangles < old_batch_triangle_ceiling);
+        assert!(placements.iter().any(|(_, _, blades)| *blades == 3));
+        assert!(placements.iter().any(|(_, _, blades)| *blades == 2));
+        for (point, _, _) in placements {
+            let (station, _, distance) = track.project_route(0, point, 1500.);
+            assert!(distance >= track.half_width(station) + 4.1);
+        }
+    }
+
     #[test]
     fn reused_metropolis_farm_props_are_bounded_supported_and_road_clear() {
         let track = Track::hills().unwrap();

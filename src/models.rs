@@ -1,6 +1,7 @@
 //! Authored meshes driven by existing visual joints. No physics systems or components.
 use crate::{human, world};
 mod articulation;
+pub mod gear;
 pub mod hands;
 mod patrol;
 use bevy::{
@@ -41,11 +42,13 @@ struct Part {
     officer_material: Handle<StandardMaterial>,
     officer_hidden: bool,
     group: String,
+    gear: Option<gear::PartKind>,
     rest: Transform,
     glove: bool,
 }
 pub struct AuthoredModels {
     parts: Vec<Part>,
+    helmets: [[gear::HelmetModel; 2]; 2],
     hand_contacts: rr_content::hand_contacts::HandContacts,
     standing_bind: Handle<SkinnedMeshInverseBindposes>,
     seated_bind: Handle<SkinnedMeshInverseBindposes>,
@@ -86,6 +89,7 @@ impl AuthoredModels {
         let decoded =
             rr_content::riding_model::decode(BUNDLE).expect("validated authored visual bundle");
         let base = server.map(|s| s.load("textures/rider-base.png"));
+        let leather = server.map(|s| s.load("textures/rider-leather.png"));
         let officer_base = server.map(|s| s.load("textures/officer-base.png"));
         let normal = server.map(|s| {
             s.load_builder()
@@ -179,23 +183,30 @@ impl AuthoredModels {
                 mesh.set_morph_targets(targets);
             }
             let region = &data.material.region;
-            let variants = if matches!(region.as_str(), "shirt" | "helmet" | "paint") {
-                15
-            } else {
-                1
-            };
+            let painted_leather = skinned && region == "body" && !has_glove;
+            let variants =
+                if painted_leather || matches!(region.as_str(), "shirt" | "helmet" | "paint") {
+                    15
+                } else {
+                    1
+                };
             let mut palette = Vec::new();
             for color in 0..variants {
                 let tint = match region.as_str() {
-                    "shirt" => world::shirt_color(color),
+                    "shirt" => swatch(gear::PANELS[color]),
                     "helmet" => swatch(world::HELMET_COLORS[color]),
                     "paint" => swatch(world::BIKE_COLORS[color]),
+                    _ if painted_leather => swatch(gear::LEATHER[color]),
                     _ => Color::WHITE,
                 };
                 let mat = if skinned {
                     StandardMaterial {
                         base_color: tint,
-                        base_color_texture: base.clone(),
+                        base_color_texture: if painted_leather {
+                            leather.clone()
+                        } else {
+                            base.clone()
+                        },
                         normal_map_texture: normal.clone(),
                         metallic_roughness_texture: roughness.clone(),
                         metallic: if region == "visor" { 0.9 } else { 0.12 },
@@ -235,6 +246,11 @@ impl AuthoredModels {
             }
             parts.push(Part {
                 officer_material: materials.add(officer),
+                gear: skinned.then_some(match region.as_str() {
+                    "helmet" => gear::PartKind::Shell,
+                    "visor" => gear::PartKind::Visor,
+                    _ => gear::PartKind::Suit,
+                }),
                 officer_hidden: data.name.contains("Smoked windscreen"),
                 mesh: meshes.add(mesh),
                 materials: palette,
@@ -246,8 +262,12 @@ impl AuthoredModels {
         parts.extend(patrol::equipment(meshes, materials));
         Self {
             parts,
+            helmets: [standing_frames[1], seated_frames[1]].map(|head| {
+                [gear::Helmet::Apex, gear::Helmet::Rally]
+                    .map(|helmet| gear::HelmetModel::build(meshes, materials, head, helmet))
+            }),
             hand_contacts,
-            textures: [base, normal, roughness, officer_base]
+            textures: [base, leather, normal, roughness, officer_base]
                 .into_iter()
                 .flatten()
                 .collect(),
@@ -276,6 +296,57 @@ impl AuthoredModels {
             self.standing_frames,
             Some(physical),
         ))
+    }
+    /// The same standing shell and visor used by the rider, centered for inspection.
+    pub fn helmet_display(
+        &self,
+        meshes: &mut Assets<Mesh>,
+        helmet: gear::Helmet,
+    ) -> [(Mesh3d, MeshMaterial3d<StandardMaterial>); 2] {
+        let parts = match helmet {
+            gear::Helmet::Classic => [gear::PartKind::Shell, gear::PartKind::Visor].map(|kind| {
+                let part = self
+                    .parts
+                    .iter()
+                    .find(|p| p.group == "standing" && p.gear == Some(kind))
+                    .expect("classic helmet shell and visor");
+                (&part.mesh, &part.materials[0])
+            }),
+            gear::Helmet::Apex | gear::Helmet::Rally => {
+                let model = &self.helmets[0][helmet as usize - 1];
+                [
+                    (&model.shell, &model.shell_material),
+                    (&model.visor, &model.visor_material),
+                ]
+            }
+        };
+        parts.map(|(mesh, material)| {
+            let mut mesh = meshes.get(mesh).expect("resident helmet mesh").clone();
+            mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
+            mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
+            mesh.translate_by(-self.standing_frames[1].translation - Vec3::Y * 0.16);
+            (Mesh3d(meshes.add(mesh)), MeshMaterial3d(material.clone()))
+        })
+    }
+    pub fn suit_display(
+        &self,
+        meshes: &mut Assets<Mesh>,
+    ) -> Vec<(Mesh3d, [MeshMaterial3d<StandardMaterial>; 15])> {
+        self.parts
+            .iter()
+            .filter(|part| part.group == "standing")
+            .map(|part| {
+                let mut mesh = meshes.get(&part.mesh).expect("resident rider mesh").clone();
+                mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_INDEX);
+                mesh.remove_attribute(Mesh::ATTRIBUTE_JOINT_WEIGHT);
+                (
+                    Mesh3d(meshes.add(mesh)),
+                    std::array::from_fn(|palette| {
+                        MeshMaterial3d(part.materials[palette % part.materials.len()].clone())
+                    }),
+                )
+            })
+            .collect()
     }
     pub fn ready(&self, server: &AssetServer) -> bool {
         self.textures.iter().all(|h| {
@@ -333,12 +404,16 @@ impl AuthoredModels {
                 legacy,
                 bind,
                 seated,
+                gear_parts: Vec::new(),
+                gear: default(),
             });
         hands::sockets(commands, &skin_joints, seated, &self.hand_contacts);
-        for p in self
+        let mut gear_parts = Vec::new();
+        for (index, p) in self
             .parts
             .iter()
-            .filter(|p| p.group == if seated { "seated" } else { "standing" })
+            .enumerate()
+            .filter(|(_, p)| p.group == if seated { "seated" } else { "standing" })
         {
             let mesh = commands
                 .spawn((
@@ -363,10 +438,21 @@ impl AuthoredModels {
                     },
                 ))
                 .id();
+            if color != OFFICER_PALETTE && p.gear.is_some() {
+                gear_parts.push((mesh, index, color % p.materials.len()));
+            }
             if p.glove {
                 hands::attach(commands, mesh, root);
             }
             commands.entity(root).add_child(mesh);
+        }
+        if !gear_parts.is_empty() {
+            commands
+                .entity(root)
+                .entry::<ConnectedRig>()
+                .and_modify(move |mut rig| {
+                    rig.gear_parts = gear_parts;
+                });
         }
         vec![root]
     }
@@ -434,6 +520,8 @@ struct ConnectedRig {
     legacy: [Transform; 11],
     bind: [Transform; 16],
     seated: bool,
+    gear_parts: Vec<(Entity, usize, usize)>,
+    gear: (Option<usize>, gear::Helmet),
 }
 const RIG_ORDER: [usize; 11] = [2, 0, 1, 3, 4, 5, 6, 7, 8, 9, 10];
 /// Source-anatomy forward kinematics: driver rotations, never disconnected driver translations.
@@ -588,6 +676,10 @@ impl Plugin for RoadModelPlugin {
         app.add_plugins(crate::animation::MotionPlugin)
             .add_plugins(crate::weapons::WeaponVisualPlugin)
             .add_systems(Update, wheels.after(crate::vehicle::visuals))
+            .add_systems(
+                PostUpdate,
+                gear::apply.before(bevy::camera::visibility::VisibilitySystems::CheckVisibility),
+            )
             .add_systems(
                 PostUpdate,
                 hands::animate.before(bevy::transform::TransformSystems::Propagate),
