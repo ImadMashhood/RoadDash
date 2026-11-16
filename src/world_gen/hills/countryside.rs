@@ -519,6 +519,7 @@ pub(super) fn spawn(
     art: &Art,
     track: &Track,
     census: &mut Census,
+    spacing: &mut woodland::TreeSpacing,
 ) {
     let white = materials.add(StandardMaterial {
         base_color: Color::WHITE,
@@ -683,8 +684,8 @@ pub(super) fn spawn(
     }
     reuse_metropolis_farm_materials(commands);
     // Forest groups follow mountain switchbacks, with isolated outskirts trees.
-    for (start, end, spacing) in [(1500, 5350, 6), (8000, 8450, 22)] {
-        for s in (start..end).step_by(spacing) {
+    for (start, end, step) in [(1500, 5350, 6), (8000, 8450, 22)] {
+        for s in (start..end).step_by(step) {
             for side in [-1., 1.] {
                 for row in 0..3_u32 {
                     let seed = s as u32 + row * 773 + u32::from(side > 0.) * 19;
@@ -702,6 +703,10 @@ pub(super) fn spawn(
                     {
                         continue;
                     }
+                    let width = if row == 0 { 4. } else { 6. };
+                    let Some(p) = spacing.plant(track, p, width * 0.51) else {
+                        continue;
+                    };
                     let height = 6. + noise(seed + 7) * 4.;
                     let root = commands
                         .spawn((
@@ -720,46 +725,29 @@ pub(super) fn spawn(
                             HillsTree,
                         ))
                         .id();
+                    let conifers = woodland::tree_lods::CONIFERS;
+                    let broadleaves = woodland::tree_lods::BROADLEAVES;
+                    let variant = (seed as usize / 7) % conifers.len();
+                    let family = if row == 0 && s < 5200 {
+                        conifers[variant]
+                    } else {
+                        broadleaves[variant]
+                    };
+                    let size = Vec3::new(width, height, width);
                     if let Some(props) = &art.props {
-                        let conifers = super::woodland::tree_lods::CONIFERS;
-                        let broadleaves = super::woodland::tree_lods::BROADLEAVES;
-                        let variant = (seed as usize / 7) % conifers.len();
-                        let name = if row == 0 && s < 5200 {
-                            conifers[variant]
-                        } else {
-                            broadleaves[variant]
-                        };
                         let visual = props.fitted(
                             commands,
-                            props.named(name),
+                            props.named(family),
                             Vec3::ZERO,
                             Quat::IDENTITY,
-                            Vec3::new(
-                                if row == 0 { 4. } else { 6. },
-                                height,
-                                if row == 0 { 4. } else { 6. },
-                            ),
+                            size,
                             "hills-tree",
                         );
                         commands.entity(root).add_child(visual);
                     } else {
-                        let trunk = crate::world::part(
-                            commands,
-                            art.cube.clone(),
-                            materials.add(Color::srgb(0.28, 0.19, 0.10)),
-                            Vec3::Y * height / 2.,
-                            Vec3::new(0.5, height, 0.5),
-                            Quat::IDENTITY,
+                        woodland::single_tree_lods(
+                            commands, meshes, &white, spacing, root, family, size,
                         );
-                        let crown = crate::world::part(
-                            commands,
-                            art.sphere.clone(),
-                            materials.add(Color::srgb(0.20, 0.32, 0.12)),
-                            Vec3::Y * height * 0.7,
-                            Vec3::new(2.5, height * 0.4, 2.5),
-                            Quat::IDENTITY,
-                        );
-                        commands.entity(root).add_children(&[trunk, crown]);
                     }
                     census.trees += 1;
                 }

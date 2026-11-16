@@ -2,7 +2,7 @@
 
 - HILLS-ESCAPE-RETRY-01, HILLS-HERD-04 and HILLS-TREE-LOD-02: Replay Rachel’s
   exact queue, check the formation at race speed and measure end-to-end
-  performance with the new woodland LODs and default effects. The latest Hills
+  performance with the clearance-filtered trees, backdrop promotions and default effects. The latest Hills
   telemetry identifies a stopped pair but omits the vehicle ahead.
   [Queue evidence](testing/hills-slope-infill/REPORT.md).
 

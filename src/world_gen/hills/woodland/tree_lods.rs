@@ -35,6 +35,14 @@ fn families() -> &'static [Family] {
     })
 }
 
+pub(super) fn named(name: &str) -> &'static [Template; 3] {
+    &families()
+        .iter()
+        .find(|family| family.name == name)
+        .expect("authored Hills tree")
+        .tiers
+}
+
 pub(super) fn fitted(
     seed: u32,
     height: f32,

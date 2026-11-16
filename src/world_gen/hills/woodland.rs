@@ -39,7 +39,48 @@ fn noise(seed: u32) -> f32 {
     let h = ((h >> ((h >> 28) + 4)) ^ h).wrapping_mul(277803737);
     ((h >> 22) ^ h) as f32 / u32::MAX as f32
 }
-fn plan(track: &Track) -> Vec<Vec<Tree>> {
+#[derive(Default)]
+pub(super) struct TreeSpacing {
+    occupied: HashMap<IVec2, Vec<(Vec2, f32)>>,
+    individual_meshes: HashMap<(&'static str, usize), Handle<Mesh>>,
+}
+
+impl TreeSpacing {
+    pub(super) fn plant(&mut self, track: &Track, point: Vec3, radius: f32) -> Option<Vec3> {
+        let cell = (point.xz() / 8.).floor().as_ivec2();
+        let overlaps = (-2..=2).any(|x| {
+            (-2..=2).any(|z| {
+                self.occupied
+                    .get(&(cell + IVec2::new(x, z)))
+                    .is_some_and(|trees| {
+                        trees.iter().any(|(center, other)| {
+                            point.xz().distance_squared(*center) < (radius + other).powi(2)
+                        })
+                    })
+            })
+        });
+        if overlaps {
+            return None;
+        }
+        let point = rooted(track, point)?;
+        self.occupied
+            .entry(cell)
+            .or_default()
+            .push((point.xz(), radius));
+        Some(point)
+    }
+}
+
+fn canopy_radius(tree: Tree) -> f32 {
+    tree.height
+        * if tree.seed.is_multiple_of(3) {
+            0.25
+        } else {
+            0.375
+        }
+}
+
+fn plan(track: &Track, spacing: &mut TreeSpacing) -> Vec<Vec<Tree>> {
     let farms = countryside::farm_sites(track);
     let mut batches = vec![];
     for start in (1600..5200).step_by(128) {
@@ -65,14 +106,15 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
                     {
                         continue;
                     }
-                    let Some(base) = rooted(track, p) else {
-                        continue;
-                    };
-                    trees.push(Tree {
-                        p: base,
+                    let mut tree = Tree {
+                        p,
                         height: 7. + noise(seed + 7) * 8.,
                         seed,
-                    });
+                    };
+                    if let Some(base) = spacing.plant(track, tree.p, canopy_radius(tree)) {
+                        tree.p = base;
+                        trees.push(tree);
+                    }
                 }
             }
             if !trees.is_empty() {
@@ -82,17 +124,17 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
     }
     batches
 }
-fn rooted(track: &Track, mut p: Vec3) -> Option<Vec3> {
-    let mut low = p.y;
-    let mut high = p.y;
-    for offset in [Vec3::X, -Vec3::X, Vec3::Z, -Vec3::Z] {
-        let q = p + offset * 0.5;
-        let y = geometry::ground_height(track, q.x, q.z);
-        low = low.min(y);
-        high = high.max(y);
-    }
-    p.y = low - 0.15;
-    (high - low <= 1.8).then_some(p)
+fn rooted(track: &Track, p: Vec3) -> Option<Vec3> {
+    const RUN: f32 = 2.;
+    const MAX_GRADE: f32 = 0.62;
+    let height = |q: Vec3| geometry::ground_height(track, q.x, q.z);
+    let base = height(p);
+    let grade = [Vec3::X, Vec3::Z].map(|axis| {
+        let before = height(p - axis * RUN);
+        let after = height(p + axis * RUN);
+        (after - base).abs().max((before - base).abs()) / RUN
+    });
+    (Vec2::from_array(grade).length() <= MAX_GRADE).then_some(p.with_y(base - 0.12))
 }
 
 // Three stands trace the marked slopes around the mountain farm and bridge approach.
@@ -102,17 +144,10 @@ const INFILL_STANDS: [(Vec2, Vec2); 3] = [
     (Vec2::new(-804., 3515.), Vec2::new(132., 160.)),
 ];
 
-fn slope_infill(track: &Track, middle: &[Vec<Tree>]) -> Vec<Vec<Tree>> {
+fn slope_infill(track: &Track, spacing: &mut TreeSpacing) -> Vec<Vec<Tree>> {
     const SPACING: f32 = 8.;
     let cell = |p: Vec2| (p / SPACING).floor().as_ivec2();
     let farms = countryside::farm_sites(track);
-    let mut occupied = HashMap::<IVec2, Vec<Vec2>>::new();
-    for tree in middle.iter().flatten() {
-        occupied
-            .entry(cell(tree.p.xz()))
-            .or_default()
-            .push(tree.p.xz());
-    }
     let mut batches = BTreeMap::<(i32, i32), Vec<Tree>>::new();
     for (stand, (center, radii)) in INFILL_STANDS.into_iter().enumerate() {
         let min = cell(center - radii);
@@ -125,16 +160,6 @@ fn slope_infill(track: &Track, middle: &[Vec<Tree>]) -> Vec<Vec<Tree>> {
                 let p = Vec2::new(x as f32 + noise(seed), z as f32 + noise(seed + 1)) * SPACING;
                 let edge = ((p - center) / radii).length_squared();
                 if edge > 1. || noise(seed + 2) < 0.13 + edge * 0.32 {
-                    continue;
-                }
-                let overlaps = (x - 1..=x + 1).any(|a| {
-                    (z - 1..=z + 1).any(|b| {
-                        occupied
-                            .get(&IVec2::new(a, b))
-                            .is_some_and(|trees| trees.iter().any(|q| p.distance_squared(*q) < 25.))
-                    })
-                });
-                if overlaps {
                     continue;
                 }
                 let point = Vec3::new(p.x, 0., p.y);
@@ -150,21 +175,18 @@ fn slope_infill(track: &Track, middle: &[Vec<Tree>]) -> Vec<Vec<Tree>> {
                 {
                     continue;
                 }
-                let Some(base) = rooted(
-                    track,
-                    point.with_y(geometry::ground_height(track, p.x, p.y)),
-                ) else {
-                    continue;
+                let mut tree = Tree {
+                    p: point,
+                    height: 7. + noise(seed + 7) * 8.,
+                    seed,
                 };
-                occupied.entry(cell(p)).or_default().push(p);
-                batches
-                    .entry((x.div_euclid(12), z.div_euclid(12)))
-                    .or_default()
-                    .push(Tree {
-                        p: base,
-                        height: 7. + noise(seed + 7) * 8.,
-                        seed,
-                    });
+                if let Some(base) = spacing.plant(track, tree.p, canopy_radius(tree)) {
+                    tree.p = base;
+                    batches
+                        .entry((x.div_euclid(12), z.div_euclid(12)))
+                        .or_default()
+                        .push(tree);
+                }
             }
         }
     }
@@ -174,11 +196,12 @@ fn slope_infill(track: &Track, middle: &[Vec<Tree>]) -> Vec<Vec<Tree>> {
 const BACKDROP_TILE: f32 = 160.;
 const BACKDROP_ROWS: u32 = 21;
 
-fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
+fn backdrop(track: &Track, clearance: &mut TreeSpacing) -> Vec<(Vec3, Vec<Tree>)> {
     let min = track.bounds.0.xz() - Vec2::splat(320.);
     let max = track.bounds.1.xz() + Vec2::splat(320.);
     let size = ((max - min) / BACKDROP_TILE).ceil().as_uvec2();
     let spacing = BACKDROP_TILE / BACKDROP_ROWS as f32;
+    let farms = countryside::farm_sites(track);
     let mut batches = Vec::new();
     for x in 0..size.x {
         for z in 0..size.y {
@@ -205,12 +228,19 @@ fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
                     {
                         continue;
                     }
-                    let y = geometry::ground_height(track, p.x, p.z);
-                    trees.push(Tree {
-                        p: p.with_y(y - 0.5),
+                    if super::bridge::reserved(track, p, 5.) || !countryside::field_clear(p, &farms)
+                    {
+                        continue;
+                    }
+                    let mut tree = Tree {
+                        p,
                         height: 8. + noise(seed + 7) * 9.,
                         seed,
-                    });
+                    };
+                    if let Some(base) = clearance.plant(track, tree.p, canopy_radius(tree)) {
+                        tree.p = base;
+                        trees.push(tree);
+                    }
                 }
             }
             if !trees.is_empty() {
@@ -239,11 +269,121 @@ fn outer_fade(bounds: Aabb) -> std::ops::Range<f32> {
     (1250. + radius)..(1550. + radius)
 }
 
-pub fn spawn(
+// The original far mesh stays resident. Only nearby tiles allocate higher tiers.
+#[derive(Component)]
+pub(crate) struct BackdropLod {
+    far: Handle<Mesh>,
+    trees: Vec<Tree>,
+    tier: usize,
+}
+
+fn backdrop_tier(distance: f32, current: usize) -> usize {
+    if distance < if current == 0 { 90. } else { 64. } {
+        0
+    } else if distance < if current <= 1 { 200. } else { 170. } {
+        1
+    } else {
+        2
+    }
+}
+
+pub(crate) fn update_backdrop_lods(
+    cameras: Query<&GlobalTransform, With<crate::game::ChaseCamera>>,
+    mut tiles: Query<(Entity, &Transform, &Aabb, &mut Mesh3d, &mut BackdropLod)>,
+    mut meshes: ResMut<Assets<Mesh>>,
+) {
+    let Some(camera) = cameras.iter().next() else {
+        return;
+    };
+    let mut detail = Vec::new();
+    for (entity, origin, bounds, mut mesh, mut lod) in &mut tiles {
+        let local = camera.translation() - origin.translation;
+        let distance = local.distance(local.clamp(bounds.min().into(), bounds.max().into()));
+        let tier = backdrop_tier(distance, lod.tier);
+        if tier == lod.tier {
+            continue;
+        }
+        if tier == 2 {
+            mesh.0 = lod.far.clone();
+            lod.tier = tier;
+        } else {
+            detail.push((distance, entity, tier));
+        }
+    }
+    if let Some((_, entity, tier)) = detail.into_iter().min_by(|a, b| a.0.total_cmp(&b.0))
+        && let Ok((_, origin, _, mut mesh, mut lod)) = tiles.get_mut(entity)
+    {
+        let mut model = Model::default();
+        for tree in &lod.trees {
+            let (templates, transform) =
+                tree_lods::fitted(tree.seed, tree.height, tree.p - origin.translation);
+            let template = &templates[tier];
+            model.append(
+                &template.positions,
+                &template.colors,
+                &template.triangles,
+                transform,
+            );
+        }
+        mesh.0 = meshes.add(model.mesh());
+        lod.tier = tier;
+    }
+}
+
+pub(super) fn single_tree_lods(
+    commands: &mut Commands,
+    meshes: &mut Assets<Mesh>,
+    material: &Handle<StandardMaterial>,
+    spacing: &mut TreeSpacing,
+    parent: Entity,
+    family: &'static str,
+    size: Vec3,
+) {
+    let templates = tree_lods::named(family);
+    for (tier, (start_margin, end_margin)) in [
+        (0. ..0., 27. ..35.),
+        (27. ..35., 70. ..85.),
+        (70. ..85., 420. ..480.),
+    ]
+    .into_iter()
+    .enumerate()
+    {
+        let mesh = spacing
+            .individual_meshes
+            .entry((family, tier))
+            .or_insert_with(|| {
+                let template = &templates[tier];
+                let mut model = Model::default();
+                model.append(
+                    &template.positions,
+                    &template.colors,
+                    &template.triangles,
+                    Transform::IDENTITY,
+                );
+                meshes.add(model.mesh())
+            });
+        let child = commands
+            .spawn((
+                Mesh3d(mesh.clone()),
+                MeshMaterial3d(material.clone()),
+                Transform::from_scale(size),
+                VisibilityRange {
+                    start_margin,
+                    end_margin,
+                    use_aabb: false,
+                },
+            ))
+            .id();
+        commands.entity(parent).add_child(child);
+    }
+}
+
+pub(super) fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
     materials: &mut Assets<StandardMaterial>,
     track: &Track,
+    spacing: &mut TreeSpacing,
 ) {
     let material = materials.add(StandardMaterial {
         base_color: Color::WHITE,
@@ -251,8 +391,8 @@ pub fn spawn(
         metallic: 0.08,
         ..default()
     });
-    let middle = plan(track);
-    let infill = slope_infill(track, &middle);
+    let middle = plan(track, spacing);
+    let infill = slope_infill(track, spacing);
     let mut census = WoodlandCensus {
         infill_trees: infill.iter().map(Vec::len).sum(),
         ..default()
@@ -317,22 +457,33 @@ pub fn spawn(
         census.batches += 3;
         census.middle_batches += 1;
     }
-    for (origin, trees) in backdrop(track) {
+    for (origin, trees) in backdrop(track, spacing) {
         let mut model = Model::default();
         census.backdrop_trees += trees.len();
         census.backdrop_batches += 1;
         census.trees += trees.len();
         census.batches += 1;
-        for tree in trees {
+        for tree in &trees {
             let (templates, transform) = tree_lods::fitted(tree.seed, tree.height, tree.p - origin);
             let far = &templates[2];
             model.append(&far.positions, &far.colors, &far.triangles, transform);
             census.triangles += far.triangles.len();
         }
         let mesh = model.mesh();
-        let bounds = shared_bounds(std::slice::from_ref(&mesh));
+        let far_bounds = shared_bounds(std::slice::from_ref(&mesh));
+        // The detailed crowns can extend slightly beyond their far proxies.
+        let bounds = Aabb::from_min_max(
+            (far_bounds.min() - Vec3A::splat(7.)).into(),
+            (far_bounds.max() + Vec3A::splat(7.)).into(),
+        );
+        let far = meshes.add(mesh);
         commands.spawn((
-            Mesh3d(meshes.add(mesh)),
+            Mesh3d(far.clone()),
+            BackdropLod {
+                far,
+                trees,
+                tier: 2,
+            },
             MeshMaterial3d(material.clone()),
             Transform::from_translation(origin),
             bounds,
@@ -353,7 +504,7 @@ mod tests {
     #[test]
     fn backdrop_places_thousands_of_grounded_trees_with_bounded_geometry() {
         let track = Track::hills().unwrap();
-        let batches = backdrop(&track);
+        let batches = backdrop(&track, &mut TreeSpacing::default());
         let count: usize = batches.iter().map(|(_, trees)| trees.len()).sum();
         let triangles: usize = batches
             .iter()
@@ -369,7 +520,7 @@ mod tests {
             batches.len(),
             triangles
         );
-        assert!((23_000..=28_000).contains(&count));
+        assert!((10_000..=28_000).contains(&count));
         assert!(batches.len() <= 160);
         assert!(triangles <= 1_300_000);
         for (_, trees) in &batches {
@@ -377,7 +528,7 @@ mod tests {
             for tree in trees {
                 assert!(track.scenery_fits(tree.p, 5., 140.));
                 assert!(
-                    (geometry::ground_height(&track, tree.p.x, tree.p.z) - tree.p.y - 0.5).abs()
+                    (geometry::ground_height(&track, tree.p.x, tree.p.z) - tree.p.y - 0.12).abs()
                         < 0.001
                 );
             }
@@ -387,13 +538,13 @@ mod tests {
     #[test]
     fn distant_woodland_has_supported_clear_placed_geometry_and_bounded_batches() {
         let track = Track::hills().unwrap();
-        let batches = plan(&track);
+        let batches = plan(&track, &mut TreeSpacing::default());
         let count: usize = batches.iter().map(Vec::len).sum();
         println!(
             "Hills middle woodland: {count} trees in {} batches",
             batches.len()
         );
-        assert!((4_000..=12_000).contains(&count), "trees: {count}");
+        assert!((3_000..=12_000).contains(&count), "trees: {count}");
         assert!(batches.len() <= 58);
         for tree in batches.iter().flatten() {
             assert!((tree.p.y - geometry::ground_height(&track, tree.p.x, tree.p.z)).abs() < 2.);
@@ -402,7 +553,7 @@ mod tests {
                 assert!(distance > track.half_width(s) + 7.);
             }
         }
-        let repeat = plan(&track);
+        let repeat = plan(&track, &mut TreeSpacing::default());
         assert!(
             batches
                 .iter()
@@ -414,7 +565,9 @@ mod tests {
     #[test]
     fn targeted_stands_add_grounded_trees_away_from_farms_and_bridge() {
         let track = Track::hills().unwrap();
-        let batches = slope_infill(&track, &plan(&track));
+        let mut spacing = TreeSpacing::default();
+        let _ = plan(&track, &mut spacing);
+        let batches = slope_infill(&track, &mut spacing);
         let farms = countryside::farm_sites(&track);
         let total = batches.iter().map(Vec::len).sum::<usize>();
         println!(
@@ -444,5 +597,16 @@ mod tests {
         let bounds = Aabb::from_min_max(Vec3::new(-90., -5., -6.), Vec3::new(10., 18., 6.));
         assert!(outer_fade(bounds).start >= 1340.);
         assert!(outer_fade(bounds).end >= 1640.);
+    }
+    #[test]
+    fn tree_spacing_rejects_overlaps_and_backdrop_supports_all_tiers() {
+        let track = Track::hills().unwrap();
+        let mut spacing = TreeSpacing::default();
+        let tree = plan(&track, &mut spacing)[0][0];
+        assert!(spacing.plant(&track, tree.p + Vec3::X * 0.5, 3.).is_none());
+        assert_eq!(backdrop_tier(40., 2), 0);
+        assert_eq!(backdrop_tier(80., 0), 0);
+        assert_eq!(backdrop_tier(100., 0), 1);
+        assert_eq!(backdrop_tier(300., 1), 2);
     }
 }

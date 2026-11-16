@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-15 — Hills tree clearance and tire spray (ADR215)
+
+- Added town and backdrop tree detail tiers and checked spacing and slope across layers.
+- Changed loose grass tire spray from green to a warm soil tint.
+
 ## 2026-11-15 — Hills slope infill and default visuals (ADR214)
 
 - Planted the marked slopes, rebuilt the woodland LODs from authored shapes

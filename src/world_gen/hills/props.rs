@@ -995,6 +995,7 @@ fn central_ranches(
     track: &Track,
     occupied: &mut Vec<(Vec3, f32)>,
     census: &mut TownDetailCensus,
+    tree_spacing: &mut super::woodland::TreeSpacing,
 ) {
     // These are derived from the two actual road branches, not guessed offsets.
     for (index, station) in (5700..7310).step_by(75).enumerate() {
@@ -1102,18 +1103,15 @@ fn central_ranches(
             );
             for x in [-7., -3., 1.] {
                 for z in [-6., 0., 6., 12.] {
-                    let c = q.inverse() * (at(x, z) - p);
-                    m.rod(c, c + Vec3::Y * 2.7, 0.16, [0.32, 0.22, 0.12]);
-                    solids.push((
-                        c + Vec3::Y * 1.3,
-                        Quat::IDENTITY,
-                        Collider::cylinder(1.3, 0.17),
-                    ));
-                    m.ellipsoid(
-                        c + Vec3::Y * 3.,
-                        Vec3::new(1.7, 1.8, 1.7),
-                        [0.24, 0.35, 0.14],
-                        0.5,
+                    spawn_town_tree(
+                        commands,
+                        meshes,
+                        material,
+                        track,
+                        tree_spacing,
+                        at(x, z),
+                        index,
+                        Vec3::new(3.4, 4.8, 3.4),
                     );
                 }
             }
@@ -1193,6 +1191,46 @@ fn central_ranches(
 }
 
 #[allow(clippy::too_many_arguments)]
+fn spawn_town_tree(
+    commands: &mut Commands,
+    meshes: &mut Assets<Mesh>,
+    material: &Handle<StandardMaterial>,
+    track: &Track,
+    spacing: &mut super::woodland::TreeSpacing,
+    site: Vec3,
+    index: usize,
+    size: Vec3,
+) {
+    let Some(p) = spacing.plant(track, site, size.x * 0.51) else {
+        return;
+    };
+    let tree = commands
+        .spawn((
+            Transform::from_translation(p),
+            Visibility::Inherited,
+            RigidBody::Fixed,
+            Collider::compound(vec![(
+                Vec3::Y * size.y * 0.3,
+                Quat::IDENTITY,
+                Collider::cylinder(size.y * 0.3, 0.22),
+            )]),
+            Obstacle,
+            HillsSolid,
+            super::countryside::HillsTree,
+        ))
+        .id();
+    let families = super::woodland::tree_lods::BROADLEAVES;
+    super::woodland::single_tree_lods(
+        commands,
+        meshes,
+        material,
+        spacing,
+        tree,
+        families[index % families.len()],
+        size,
+    );
+}
+
 fn median_courtyards(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -1200,6 +1238,7 @@ fn median_courtyards(
     track: &Track,
     occupied: &mut Vec<(Vec3, f32)>,
     census: &mut TownDetailCensus,
+    tree_spacing: &mut super::woodland::TreeSpacing,
 ) {
     for (index, station) in (5710..7330).step_by(23).enumerate() {
         let (a, qa) = track.sample_route(0, station as f32, 0.);
@@ -1344,18 +1383,15 @@ fn median_courtyards(
                 _ => {
                     // Shade courtyard with broad trees, timber seats and herb beds.
                     for (x, z) in [(-2., -1.5), (2., 1.5)] {
-                        let c = at(x, z);
-                        m.rod(c, c + Vec3::Y * 3.4, 0.22, [0.35, 0.24, 0.13]);
-                        solids.push((
-                            c + Vec3::Y * 1.7,
-                            Quat::IDENTITY,
-                            Collider::cylinder(1.7, 0.23),
-                        ));
-                        m.ellipsoid(
-                            c + Vec3::Y * 4.,
-                            Vec3::new(2., 2.4, 2.),
-                            [0.30, 0.40, 0.17],
-                            0.6,
+                        spawn_town_tree(
+                            commands,
+                            meshes,
+                            material,
+                            track,
+                            tree_spacing,
+                            p + q * at(x, z),
+                            index,
+                            Vec3::new(4., 5.8, 4.),
                         );
                     }
                     for z in [-3., 3.] {
@@ -1397,6 +1433,7 @@ fn outer_fields(
     track: &Track,
     occupied: &[(Vec3, f32)],
     census: &mut TownDetailCensus,
+    tree_spacing: &mut super::woodland::TreeSpacing,
 ) {
     let maximum_half_width = track
         .distances
@@ -1429,7 +1466,6 @@ fn outer_fields(
             let mut triangles = vec![];
             let mut uv = vec![];
             let mut m = Model::default();
-            let mut solids = vec![];
             for iz in -9_i32..9 {
                 for ix in -12_i32..12 {
                     // Rounded irregular field perimeter, with larger acreage than the yards.
@@ -1477,17 +1513,15 @@ fn outer_fields(
                     let w = p + q * Vec3::new(x + 2., 0., z + 2.);
                     let c = Vec3::new(w.x, height(w), w.z) - p;
                     if tree {
-                        m.rod(c, c + Vec3::Y * 2.8, 0.18, [0.34, 0.25, 0.13]);
-                        solids.push((
-                            c + Vec3::Y * 1.4,
-                            Quat::IDENTITY,
-                            Collider::cylinder(1.4, 0.19),
-                        ));
-                        m.ellipsoid(
-                            c + Vec3::Y * 3.3,
-                            Vec3::new(2., 2.2, 2.),
-                            [0.29, 0.39, 0.14],
-                            0.5,
+                        spawn_town_tree(
+                            commands,
+                            meshes,
+                            material,
+                            track,
+                            tree_spacing,
+                            w,
+                            index,
+                            Vec3::new(4., 5.4, 4.),
                         );
                     } else if seed % 3 == 0 {
                         // Broad low-poly crop clusters stay in one mesh per field.
@@ -1517,19 +1551,12 @@ fn outer_fields(
                 Transform::from_translation(p),
             ));
             if !m.vertices.is_empty() {
-                let e = commands
-                    .spawn((
-                        Name::new("Hills batched field orchard/crops"),
-                        Mesh3d(meshes.add(m.mesh())),
-                        MeshMaterial3d(material.clone()),
-                        Transform::from_translation(p),
-                    ))
-                    .id();
-                if !solids.is_empty() {
-                    commands
-                        .entity(e)
-                        .insert((Collider::compound(solids), Obstacle, HillsSolid));
-                }
+                commands.spawn((
+                    Name::new("Hills batched field crops"),
+                    Mesh3d(meshes.add(m.mesh())),
+                    MeshMaterial3d(material.clone()),
+                    Transform::from_translation(p),
+                ));
             }
         }
     }
@@ -1543,6 +1570,7 @@ fn town_infill(
     art: &Art,
     track: &Track,
     occupied: &mut Vec<(Vec3, f32)>,
+    tree_spacing: &mut super::woodland::TreeSpacing,
 ) {
     let mut census = TownDetailCensus::default();
     central_ranches(
@@ -1553,8 +1581,17 @@ fn town_infill(
         track,
         occupied,
         &mut census,
+        tree_spacing,
     );
-    median_courtyards(commands, meshes, material, track, occupied, &mut census);
+    median_courtyards(
+        commands,
+        meshes,
+        material,
+        track,
+        occupied,
+        &mut census,
+        tree_spacing,
+    );
     for route in 0..2 {
         for (index, station) in (5640..8370).step_by(113).enumerate() {
             if route == 1 && station > 7320 {
@@ -1933,7 +1970,15 @@ fn town_infill(
             }
         }
     }
-    outer_fields(commands, meshes, material, track, occupied, &mut census);
+    outer_fields(
+        commands,
+        meshes,
+        material,
+        track,
+        occupied,
+        &mut census,
+        tree_spacing,
+    );
     town_materials(commands);
     commands.insert_resource(census);
 }
@@ -1945,6 +1990,7 @@ pub(super) fn spawn(
     art: &Art,
     track: &Track,
     census: &mut Census,
+    tree_spacing: &mut super::woodland::TreeSpacing,
 ) {
     let material = materials.add(StandardMaterial {
         base_color: Color::WHITE,
@@ -2130,7 +2176,15 @@ pub(super) fn spawn(
             }
         }
     }
-    town_infill(commands, meshes, &material, art, track, &mut occupied);
+    town_infill(
+        commands,
+        meshes,
+        &material,
+        art,
+        track,
+        &mut occupied,
+        tree_spacing,
+    );
 }
 
 #[cfg(test)]

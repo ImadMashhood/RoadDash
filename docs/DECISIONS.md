@@ -5106,3 +5106,11 @@ terrain, field and road reservations. Make the six selected effects and Poly
 Haven Hills road detail the runtime defaults. Treat a stopped Hills truck as
 a queue leader for clearance-checked bypass or backoff.
 [Evidence](testing/hills-slope-infill/REPORT.md).
+
+
+## ADR215 — Hills tree clearance and soil spray (2026-11-15)
+
+Reserve crowns across the combined tree placement layers. Reject steep terrain
+and add missing town and backdrop detail tiers from the authored families.
+Limit backdrop promotion to one tile per update. Use a warm soil tint for
+loose grass tire spray. [Evidence](testing/hills-tree-clearance/REPORT.md).

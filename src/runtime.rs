@@ -429,7 +429,14 @@ impl Plugin for RoadLifecyclePlugin {
                     .after(crate::tangent_detail::update)
                     .run_if(in_state(AppScreen::Loading)),
             )
-            .add_systems(Update, screen);
+            .add_systems(
+                Update,
+                (
+                    screen,
+                    crate::world_gen::hills::woodland::update_backdrop_lods
+                        .run_if(resource_exists::<Assets<Mesh>>),
+                ),
+            );
     }
 }
 pub struct RoadWorldPlugin;

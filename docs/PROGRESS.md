@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 Hills tree clearance and soil spray (ADR215). Applied crown spacing and slope checks across tree layers, supplied town and backdrop detail tiers, and corrected grass tire dust.
+[Evidence](testing/hills-tree-clearance/REPORT.md).
+
 2026-11-15 Hills slope infill and default visuals (ADR214). Rebuilt woodland meshes from source triangles, planted the marked slopes, and expanded batch bounds. The approved effects and Poly Haven asphalt are standard. Reviewed the stopped queue log and added a semitrailer regression.
 [Evidence](testing/hills-slope-infill/REPORT.md).
 
@@ -1518,7 +1521,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Poly Haven Asphalt Track is the selected default. Review road lighting and distance shimmer on the target GPU across a full run. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density. The three woodland LODs keep the original catalog silhouettes and texture palettes, including the new plantings near the bridge. [Slope infill evidence](testing/hills-slope-infill/REPORT.md). [Tree family evidence](testing/hills-tree-families/REPORT.md). [Placement evidence](testing/hills-woodland-restored/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density. Roadside, town, and backdrop trees have three tiers. The planting pass applies crown spacing and slope checks across layers. [Tree clearance evidence](testing/hills-tree-clearance/REPORT.md). [Slope infill evidence](testing/hills-slope-infill/REPORT.md). [Tree family evidence](testing/hills-tree-families/REPORT.md). [Placement evidence](testing/hills-woodland-restored/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 
@@ -1836,7 +1839,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. [Evidence](testing/race-performance-hard-world/REPORT.md).
+- [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. Grass tire spray uses a warm soil tint. [Tree and dust follow-up](testing/hills-tree-clearance/REPORT.md). [Evidence](testing/race-performance-hard-world/REPORT.md).
 
 - [ ] **RFU-RACE-RESULTS-01** Show all offline race standings and allow observing the remaining racers. Reason: players want current order, restart or continuation after finishing or being wasted; part: 15; dependencies: RFU-RACE-HEALTH-01 and frontend race flow; acceptance: correct sorted rows and red wasted strike, deterministic restart and no duplicate awards; verification: standings, lifecycle and native screen review. [Implementation and evidence](testing/hills-race-outcomes/REPORT.md).
 

@@ -66,6 +66,7 @@ pub fn spawn(
     let _load_span = crate::diagnostics::loading::Span::new("hills_generation");
     let _terrain_cache = terrain_cache::Scope::new(track);
     let mut census = Census::default();
+    let mut trees = woodland::TreeSpacing::default();
     {
         let _span = crate::diagnostics::loading::Span::new("hills_geometry");
         geometry::spawn(
@@ -88,16 +89,32 @@ pub fn spawn(
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_props");
-        props::spawn(commands, meshes, materials, art, track, &mut census);
+        props::spawn(
+            commands,
+            meshes,
+            materials,
+            art,
+            track,
+            &mut census,
+            &mut trees,
+        );
         encounters::spawn(commands, meshes, materials, art, track);
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_countryside");
-        countryside::spawn(commands, meshes, materials, art, track, &mut census);
+        countryside::spawn(
+            commands,
+            meshes,
+            materials,
+            art,
+            track,
+            &mut census,
+            &mut trees,
+        );
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_woodland");
-        woodland::spawn(commands, meshes, materials, track);
+        woodland::spawn(commands, meshes, materials, track, &mut trees);
     }
     {
         let _span = crate::diagnostics::loading::Span::new("hills_dressing");

@@ -374,7 +374,7 @@ fn rear_wheel_dust(
     }
     let ground = origin.with_y(ground_height(origin)?);
     let tint = match surface {
-        Surface::Grass => Vec3::new(0.43, 0.52, 0.26),
+        Surface::Grass => Vec3::new(0.54, 0.41, 0.28),
         Surface::Sand if track.is_hills() => {
             super::geometry::sand_color(station, ground.x, ground.z)
         }
@@ -1007,6 +1007,30 @@ mod tests {
         let view = camera.rotation.inverse() * (transform.translation - eye);
         assert!(-view.z > 2. && view.y.abs() < -view.z * 0.65, "{view:?}");
     }
+    #[test]
+    fn hills_grass_tire_spray_is_warm_soil() {
+        let track = Track::hills().unwrap();
+        let station = 2500.;
+        let lane = (15..=80)
+            .map(|lane| lane as f32)
+            .find(|lane| track.surface_route(0, station, *lane) == rr_core::surface::Surface::Grass)
+            .expect("grass beside the mountain road");
+        let (point, frame) = track.sample_route(0, station, lane);
+        let mut rider = Rider::new(0);
+        rider.progress = station;
+        rider.speed = 18.;
+        let dust = rear_wheel_dust(
+            &track,
+            &Transform::from_translation(point).with_rotation(frame),
+            &rider,
+            None,
+            None,
+            |_| Some(point.y),
+        )
+        .unwrap();
+        assert!(dust.tint.x > dust.tint.y && dust.tint.y > dust.tint.z);
+    }
+
     #[test]
     fn original_dust_sprite_has_transparent_edges_and_bounded_payload() {
         let image = sprite();
