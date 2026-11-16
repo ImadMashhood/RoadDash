@@ -5032,3 +5032,14 @@ terrain. Use the original triangles for physics and preserve the
 riding surface height. Separate nearly coplanar layers with depth
 offsets and retain the suspension deck and imported city geometry.
 [Evidence](testing/hills-road-thickness/REPORT.md).
+
+
+## ADR207 — Opt-in graphics and motorcycle feedback comparisons (2026-11-15)
+
+Keep gameplay defaults as the control. Use the existing Hills road material
+installer for normal and roughness comparisons. Reuse the current engine mixer
+for stationary revs, the comfort setting for motion and distortion, and one
+fullscreen pass for the native grade, wind, and exhaust heat. Compare the
+bounded CPU exhaust pool with an optional Hanabi GPU emitter. Evaluate vkBasalt
+and Material Maker separately from the runtime dependency path.
+[Evidence](testing/graphics-polish/REPORT.md).

@@ -1,5 +1,12 @@
 # Development history
 
+## 2026-11-15 — Graphics and motorcycle feedback experiments (ADR207)
+
+- Added selectable Hills asphalt normals and roughness, a daylight grade, peripheral speed streaks and local exhaust heat.
+- Added countdown revving through the existing mixer, pooled exhaust and restrained upshift or landing shake.
+- Added a matched capture fixture and an optional Hanabi GPU exhaust comparison.
+
+
 ## 2026-11-15 — Hills road and shoulder thickness (ADR206)
 
 - Enclosed the asphalt and dirt shoulder edges below the existing riding surface.

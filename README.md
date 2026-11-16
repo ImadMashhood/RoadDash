@@ -34,6 +34,8 @@ Latest local integration: the gameplay/graphics, AI and civic work is merged int
 
 [Course menu and landscape follow-up](docs/testing/hills-delivery/REPORT.md): choose **Thrash → Hills or Metropolis → Ride**; legacy courses remain available. Bridge hangers now connect to deck supports, a river runs beneath the span, six farms use gentler parcels, spatial cumulus clouds and a visible sun replace the flat cloud presentation, and city shadows extend to 500 m. Verification, timing and remaining acceptance gates are recorded in the report. [Grid, passing and road-edge corrections](docs/testing/hills-grid/REPORT.md) address the rear Hills spawn, false AI stops/passing failures at Metropolis bends, and the thin green asphalt seam. Existing HILLS-01/AI-QUEUE-02/CITY-CIVIC-01 acceptance remains open for broader review.
 
+[Opt-in graphics and motorcycle feedback comparisons](docs/testing/graphics-polish/REPORT.md) cover Hills asphalt, native post-processing, countdown revs, exhaust and camera shake.
+
 ## Run
 
 Install [Rust](https://rustup.rs/) (the migration branch pins Rust 1.97.1), then run from the repository directory:
@@ -197,7 +199,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**255 verified tasks complete; 382 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**255 verified tasks complete; 386 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -223,7 +225,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
 | [04](#part-04) | World A — facade study, original textures and procedural buildings | 34 open |
 | [05](#part-05) | World B — props, materials and procedural dressing | 14 open |
-| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 60 open |
+| [06](#part-06) | World C — NPCs first, then sky/terrain/landscape art | 61 open |
 | [07](#part-07) | Weapons and complete riding combat | 13 open |
 | [08](#part-08) | Police, pursuit and arrest/escape loop | 11 open |
 | [09](#part-09) | Vertical-slice playtest gate | 22 open |
@@ -232,7 +234,7 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 | [12](#part-12) | Garage, economy, progression and saves | 7 open |
 | [13](#part-13) | Authoritative online races and lobbies | 12 open |
 | [14](#part-14) | Content expansion and modes | 9 open |
-| [15](#part-15) | Presentation, audio, UI and accessibility | 34 open |
+| [15](#part-15) | Presentation, audio, UI and accessibility | 37 open |
 | [16](#part-16) | QA, performance, platform, dependency and release gates | 26 open |
 
 <a id="part-00"></a>
@@ -1143,6 +1145,8 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Review matched captures, road lighting and distance shimmer on the target GPU before choosing a material. [Evidence](docs/testing/graphics-polish/REPORT.md)
+
 - [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
@@ -1436,6 +1440,12 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 <a id="part-15"></a>
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **POLISH-GRID-01** Compare stationary grid revving, piped exhaust and shift or landing camera feedback for stronger motorcycle cues. Requires the race input and mixer. Verify held and released throttle, stationary position, anti-nausea behavior and rider comfort. [Evidence](docs/testing/graphics-polish/REPORT.md)
+
+- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. [Evidence](docs/testing/graphics-polish/REPORT.md)
+
+- [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](docs/testing/graphics-polish/REPORT.md)
 
 - [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. [Evidence](docs/testing/race-performance-hard-world/REPORT.md).
 

@@ -242,7 +242,10 @@ pub(crate) fn update(
     mut last_phase: Local<Option<Phase>>,
     online: Option<Res<crate::online::NetState>>,
     track: Res<crate::track::Track>,
-    listener: Query<&Transform, With<bevy::audio::SpatialListener>>,
+    (listener, grid_engine): (
+        Query<&Transform, With<bevy::audio::SpatialListener>>,
+        Option<Res<crate::polish::GridEngine>>,
+    ),
 ) {
     let Some((player, recovery, player_transform)) = riders
         .iter()
@@ -258,8 +261,14 @@ pub(crate) fn update(
         .iter()
         .find(|(r, _)| r.id == player.id)
         .map(|(_, bike)| bike);
-    let rpm = bike.map_or(1500. + player.speed * 145., |b| b.rpm);
-    let load = if online.as_ref().is_some_and(|state| state.local_slot != 0) {
+    let grid_rev = grid_engine
+        .as_deref()
+        .filter(|_| race.phase == Phase::Countdown && recovery.stage == RecoveryStage::Riding);
+    let rpm = grid_rev.map_or_else(
+        || bike.map_or(1500. + player.speed * 145., |b| b.rpm),
+        |rev| rev.0,
+    );
+    let load = if grid_rev.is_some() || online.as_ref().is_some_and(|state| state.local_slot != 0) {
         controls.buffer.held.throttle_strength()
     } else {
         player.drive_intent.throttle_strength()
@@ -306,7 +315,7 @@ pub(crate) fn update(
             } else {
                 0.
             }
-        } else if !riding {
+        } else if !riding && !(grid_rev.is_some() && matches!(loop_sound, LoopSound::Engine(_))) {
             0.0
         } else {
             match loop_sound {

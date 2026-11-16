@@ -1490,6 +1490,8 @@ pending terrain and crossing verification gates.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
+- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Review matched captures, road lighting and distance shimmer on the target GPU before choosing a material. [Evidence](testing/graphics-polish/REPORT.md)
+
 - [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
@@ -1801,6 +1803,12 @@ pending terrain and crossing verification gates.
 - [ ] **AI-03** Extend original AI parity to all career levels, full three-axis relationships/events, seeded career speed jitter and rubber-band tables. Reason: normalized current-level rules do not prove full original behavior; part: future AI/career; dependencies: AI-02 and career/difficulty authoring; acceptance: independently implemented per-level scenarios and documented unit/random calibration; verification: pinned-reference scenario comparisons and human difficulty tests.
 
 ### Part 15 — Presentation, audio, UI and accessibility
+
+- [ ] **POLISH-GRID-01** Compare stationary grid revving, piped exhaust and shift or landing camera feedback for stronger motorcycle cues. Requires the race input and mixer. Verify held and released throttle, stationary position, anti-nausea behavior and rider comfort. [Evidence](testing/graphics-polish/REPORT.md)
+
+- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. [Evidence](testing/graphics-polish/REPORT.md)
+
+- [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](testing/graphics-polish/REPORT.md)
 
 - [ ] **FX-SAND-PLUME-01** Fade horizontally drifting sand and show rear-wheel kickback on loose surfaces. Reason: neutral shrinking clouds and weak dust; part: 15; dependencies: map FX and surface rules; acceptance: warm opacity-driven plumes and bounded wheel dust; verification: motion, contact and native art checks. [Evidence](testing/race-performance-hard-world/REPORT.md).
 

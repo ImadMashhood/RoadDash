@@ -70,7 +70,7 @@ pub fn quality() -> usize {
     }
 }
 
-fn soft_sprite() -> Image {
+pub(crate) fn soft_sprite() -> Image {
     let n = 64usize;
     let mut rgba = Vec::with_capacity(n * n * 4);
     for y in 0..n {

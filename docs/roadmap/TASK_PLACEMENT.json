@@ -466,6 +466,7 @@
     "06": {
       "title": "World C — NPCs first, then sky/terrain/landscape art",
       "task_ids": [
+        "POLISH-ROAD-01",
         "HILLS-MEADOW-01",
         "SCENERY-LOD-01",
         "RFU-HILLS-WOODLAND-01",
@@ -658,6 +659,9 @@
     "15": {
       "title": "Presentation, audio, UI and accessibility",
       "task_ids": [
+        "POLISH-GRID-01",
+        "POLISH-POST-FX-01",
+        "POLISH-EXTERNAL-01",
         "FX-SAND-PLUME-01",
         "RFU-RACE-RESULTS-01",
         "DEMO-ROAD-FX-01",

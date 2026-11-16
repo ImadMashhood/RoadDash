@@ -1476,3 +1476,11 @@ remain tracked. [Evidence](testing/race-performance-hard-world/REPORT.md).
 Static discovery uses at most one scan per active tick. Precise sweeps still
 depend on obstacle density. Full-course timing and any future cap on exact
 sweeps stay open under AI-SHARED-SCAN-01 and PERF-08.
+
+
+## Graphics comparisons (2026-11-15 / ADR207)
+
+These are opt-in Hills experiments. Visual preference, reduced-motion comfort
+and steady-state GPU performance remain open. The Material Maker Linux export
+crashes in the isolated capture session, including with a stock project.
+[Evidence](testing/graphics-polish/REPORT.md).

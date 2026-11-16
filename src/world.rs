@@ -249,6 +249,14 @@ pub fn setup_world(
             &track,
         );
     }
+    if std::env::var("ROADDASH_POLISH").is_ok_and(|flags| {
+        flags
+            .split(',')
+            .any(|flag| matches!(flag.trim(), "all" | "exhaust"))
+    }) && let Some(images) = images.as_deref_mut()
+    {
+        crate::polish::spawn_exhaust(&mut commands, &mut meshes, &mut materials, images);
+    }
     crate::course_lines::spawn(&mut commands, &mut meshes, &mut materials, &track, &art);
     if track.is_hills() {
         crate::world_gen::hills::spawn(
