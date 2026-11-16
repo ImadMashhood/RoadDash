@@ -1492,3 +1492,10 @@ The strip is projected to screen space. Distant objects inside its mask can
 refract slightly. Full-route hazard readability and performance acceptance
 remain open under RFU-FX-01.
 [Evidence](testing/hills-shimmer-hud/REPORT.md).
+
+
+## Hills cloud coverage (2026-11-15 / ADR209)
+
+Local Hills sky coverage is addressed. RFU-SKY-05 retains the wider map scope
+and the release GPU and frame-time gate.
+[Evidence](testing/hills-cloud-field/REPORT.md).

@@ -5053,3 +5053,11 @@ only while a processed scene needs compositing. Respect map effects quality
 and the motion comfort setting. Use actual engine telemetry for the RPM bar
 below the speed arc.
 [Evidence](testing/hills-shimmer-hud/REPORT.md).
+
+
+## ADR209 — Wide Hills cloud field (2026-11-15)
+
+Lay out Hills clouds in world space across the route and surrounding terrain.
+Jitter position, altitude, and scale from the track scenery seed. Limit the
+existing shared volume renderer to 24 full-quality banks and 16 at low quality.
+[Evidence](testing/hills-cloud-field/REPORT.md).

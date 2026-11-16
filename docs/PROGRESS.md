@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 Hills cloud placement (ADR209): broader spatial coverage, with a bounded low-quality subset. RFU-SKY-05 remains open for other maps and full-route measurements.
+[Evidence](testing/hills-cloud-field/REPORT.md).
+
 2026-11-15 Hills ground shimmer and race instruments (ADR208): HUD-INSTRUMENTS-01 verified.
 256 verified / 386 open. RFU-FX-01 retains full-route review.
 [Evidence](testing/hills-shimmer-hud/REPORT.md).
@@ -1168,7 +1171,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **RFU-NPC-02** Make drive-through contact with walking pedestrians dependable. Reason: rider sometimes visually passes through a walker without a hit; part:01; dependencies: NPC kinematic collider and Rapier event path; acceptance: body-sized contact, high-speed sweep coverage and one knockdown per physical hit while sidewalk near misses stay misses; verification: physical crossing/contact fixtures and native drive-through review.
 
-- [ ] **RFU-SKY-05** Put more spatial cloud banks into Hills, Metropolis and Valley. Reason: clouds look too sparse or remain in the flat backdrop; part:01; dependencies: shared WESL cloud material and RFU-SKY-04 budget; acceptance: moving-camera parallax and route-wide coverage with frustum-limited cost; verification: bank/height tests, three-map native views and matched release GPU/frame measurements.
+- [ ] **RFU-SKY-05** Put more spatial cloud banks into Hills, Metropolis and Valley. Reason: clouds look too sparse or remain in the flat backdrop; part:01; dependencies: shared WESL cloud material and RFU-SKY-04 budget; acceptance: moving-camera parallax and route-wide coverage with frustum-limited cost; verification: bank/height tests, three-map native views and matched release GPU/frame measurements. Partial: Hills banks now spread over both sides of the route at varied heights. [Hills evidence](testing/hills-cloud-field/REPORT.md).
 
 - [ ] **RFU-HILLS-02** Populate the imported Hills city kilometre with more walking pedestrians and varied curb props. Reason: this city section feels empty; part:01; dependencies: city-slice translation, walkable sidewalk polygons and NPC contacts; acceptance: supported non-overlapping furnishing, active walkers/crossings, unchanged source buildings and clear access; verification: source/placement census, physical walking/crossing and native street views.
 

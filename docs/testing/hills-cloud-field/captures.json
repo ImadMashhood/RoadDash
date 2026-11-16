@@ -1,0 +1,32 @@
+{
+  "before": {
+    "map": "hills-01",
+    "captures": 6,
+    "clouds": {
+      "banks": 14,
+      "density_bytes": 110592,
+      "steps": 12,
+      "volumetric": true
+    }
+  },
+  "after": {
+    "map": "hills-01",
+    "captures": 6,
+    "clouds": {
+      "banks": 24,
+      "density_bytes": 110592,
+      "steps": 12,
+      "volumetric": true
+    }
+  },
+  "low": {
+    "map": "hills-01",
+    "captures": 6,
+    "clouds": {
+      "banks": 16,
+      "density_bytes": 110592,
+      "steps": 6,
+      "volumetric": true
+    }
+  }
+}

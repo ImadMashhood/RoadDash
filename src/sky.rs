@@ -823,14 +823,14 @@ mod tests {
                 clouds.volumetric,
                 crate::world_gen::hills::clouds::enabled()
             );
-            assert_eq!(
-                clouds.banks,
-                if clouds.volumetric {
-                    crate::world_gen::hills::clouds::BANKS
-                } else {
-                    0
-                }
-            );
+            let banks = clouds.banks;
+            let placed = app
+                .world_mut()
+                .query_filtered::<Entity, With<crate::world_gen::hills::clouds::HillsCloud>>()
+                .iter(app.world())
+                .count();
+            assert_eq!(banks, placed);
+            assert_eq!(banks > 0, crate::world_gen::hills::clouds::enabled());
         }
     }
     #[test]

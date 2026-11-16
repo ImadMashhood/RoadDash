@@ -1,5 +1,9 @@
 # Development history
 
+## 2026-11-15 — Hills cloud placement (ADR209)
+
+- Spread Hills cumulus banks across the sky with varied altitudes and a distributed low-quality subset.
+
 ## 2026-11-15 — Hills shimmer and race gauges (ADR208)
 
 - Replaced Hills heatwave sprites with soft scene refraction near the road.
