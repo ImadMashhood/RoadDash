@@ -1,0 +1,50 @@
+{
+  "backdrop": {
+    "trees": 36126,
+    "batches": 109,
+    "triangles": 216756
+  },
+  "grid": {
+    "brake_marks": 0,
+    "brake_smoke": 0,
+    "ground_shimmer": 0.0,
+    "hanabi": false,
+    "phase": "Countdown",
+    "puffs": 0,
+    "rev_rpm": 7443.95068359375,
+    "shader_weights": [
+      0.0,
+      0.0,
+      0.34079766273498535,
+      3.450000047683716
+    ],
+    "shake": 0.0,
+    "shot": "grid",
+    "speed_mps": 0.0,
+    "station": -176.0
+  },
+  "dunes": {
+    "brake_marks": 0,
+    "brake_smoke": 0,
+    "ground_shimmer": 0.20000000298023224,
+    "hanabi": false,
+    "phase": "Racing",
+    "puffs": 0,
+    "rev_rpm": null,
+    "shader_weights": [
+      0.0,
+      0.0,
+      0.0,
+      3.3000001907348633
+    ],
+    "shake": 0.0,
+    "shot": "speed",
+    "speed_mps": 48.11090850830078,
+    "station": 10534.8134765625
+  },
+  "initial_graded_backdrop": {
+    "trees": 11752,
+    "batches": 107,
+    "triangles": 70512
+  }
+}

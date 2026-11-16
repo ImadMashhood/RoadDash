@@ -688,8 +688,13 @@ pub(super) fn spawn(
             for side in [-1., 1.] {
                 for row in 0..3_u32 {
                     let seed = s as u32 + row * 773 + u32::from(side > 0.) * 19;
+                    // Leave intermittent stands along the verge, with more trees up the slope.
+                    let density = [0.32, 0.58, 0.85][row as usize];
+                    if s < 5350 && noise(seed + 53) > density {
+                        continue;
+                    }
                     let lane = side
-                        * (if s >= 8000 { 125. } else { 30. }
+                        * (if s >= 8000 { 125. } else { 36. }
                             + row as f32 * 24.
                             + noise(seed) * 15.);
                     let Some((p, q)) = super::props::site(track, 0, s as f32, lane, 5.) else {

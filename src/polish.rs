@@ -136,8 +136,12 @@ fn ground_band(
     let width = (edge.x - uv.x).abs().clamp(0.03, 0.31);
     let height = (top.y - uv.y).abs().clamp(0.004, 0.029);
     let dunes = ((station - TOWN_END) / 280.).clamp(0., 1.);
-    let strength = blend * (0.52 + 0.48 * dunes) * (quality as f32 * 0.5);
+    let strength = 0.20 * blend * (0.52 + 0.48 * dunes) * (quality as f32 * 0.5);
     (Vec4::new(uv.x, uv.y, width, height), strength)
+}
+
+fn exhaust_heat(rpm: f32) -> f32 {
+    0.5 * ((rpm - 900.) / (crate::vehicle::MAX_RPM - 900.)).clamp(0., 1.)
 }
 
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
@@ -150,9 +154,9 @@ pub(crate) fn camera_effects(
     race: Res<Race>,
     screen: Res<State<AppScreen>>,
     preferences: Res<crate::settings::Preferences>,
-    controls: Res<Controls>,
+    grid_engine: Option<Res<GridEngine>>,
     online: Option<Res<crate::online::NetState>>,
-    riders: Query<(&Rider, &Recovery, &Transform), Without<ChaseCamera>>,
+    riders: Query<(&Rider, &Recovery, &Transform, Option<&BikeState>), Without<ChaseCamera>>,
     mut cameras: Query<(Entity, &Camera, &Transform, Option<&mut RoadEffects>), With<ChaseCamera>>,
     mut overlays: Query<&mut Camera, (With<Camera2d>, Without<ChaseCamera>)>,
 ) {
@@ -162,7 +166,7 @@ pub(crate) fn camera_effects(
         .then(|| {
             riders
                 .iter()
-                .find(|(r, _, _)| r.id == local_id(online.as_deref()))
+                .find(|(r, _, _, _)| r.id == local_id(online.as_deref()))
         })
         .flatten();
     let comfort = &preferences.file.comfort;
@@ -174,7 +178,7 @@ pub(crate) fn camera_effects(
             && !matches!(race.phase, Phase::Paused | Phase::Garage | Phase::Finished)
         {
             weights.x = f32::from(options.grade);
-            if let Some((rider, recovery, pose)) = found
+            if let Some((rider, recovery, pose, bike)) = found
                 && !comfort.anti_nausea
                 && recovery.stage == RecoveryStage::Riding
             {
@@ -188,12 +192,12 @@ pub(crate) fn camera_effects(
                     let uv = Vec2::new(ndc.x * 0.5 + 0.5, 0.5 - ndc.y * 0.5);
                     if ndc.z >= 0. && uv.cmpge(Vec2::ZERO).all() && uv.cmple(Vec2::ONE).all() {
                         heat_center = uv.extend(0.).extend(0.);
-                        let throttle = if race.phase == Phase::Countdown {
-                            controls.buffer.held.throttle_strength()
+                        let rpm = if race.phase == Phase::Countdown {
+                            grid_engine.as_ref().map_or(IDLE_RPM, |engine| engine.0)
                         } else {
-                            rider.drive_intent.throttle_strength()
+                            bike.map_or(IDLE_RPM + rider.speed.abs() * 145., |bike| bike.rpm)
                         };
-                        weights.z = throttle;
+                        weights.z = exhaust_heat(rpm);
                     }
                 }
             }
@@ -206,7 +210,7 @@ pub(crate) fn camera_effects(
                     track.nearby_station(transform.translation.x, transform.translation.z);
                 Some((0, station))
             } else {
-                found.map(|(rider, _, _)| (rider.route, rider.progress))
+                found.map(|(rider, _, _, _)| (rider.route, rider.progress))
             };
             if let Some((route, station)) = sample {
                 (band, strength) = ground_band(
@@ -468,6 +472,13 @@ pub(crate) mod survey;
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn exhaust_heat_follows_rpm_and_caps_at_half_strength() {
+        assert_eq!(exhaust_heat(0.), 0.);
+        assert!(exhaust_heat(IDLE_RPM) < exhaust_heat(7450.));
+        assert_eq!(exhaust_heat(crate::vehicle::MAX_RPM), 0.5);
+        assert_eq!(exhaust_heat(15_000.), 0.5);
+    }
 
     #[test]
     fn free_rev_rises_and_releases_independently_of_wheel_speed() {

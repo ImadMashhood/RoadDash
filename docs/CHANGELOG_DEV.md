@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-15 — Hills woodland and heat tuning (ADR211)
+
+- Thinned the mountain verge, roughly tripled the outer woodland density, and pushed backdrop silhouettes away from close views.
+- Softened ground shimmer and tied exhaust shimmer to RPM.
+
 ## 2026-11-15 — Braking feedback (ADR210)
 
 - Added pooled asphalt skid marks and smoke at the local rider’s rear tire.

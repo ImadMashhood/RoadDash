@@ -5069,3 +5069,11 @@ Use the existing service brake and rear-wheel contact to feed a fixed
 presentation pool. Return a visual cue for fast full-brake applications
 and scale it with tire slip. Keep the tire-force calculation independent
 of the effects. [Evidence](testing/brake-skids/REPORT.md).
+
+
+## ADR211 — Hills woodland density and heat strength (2026-11-15)
+
+Grade mountain tree density by route distance and fade backdrop silhouettes
+in beyond close camera views. Scale ground refraction by 0.20 and drive
+exhaust refraction by engine RPM with a 0.50 ceiling.
+[Evidence](testing/hills-woodland-heat/REPORT.md).

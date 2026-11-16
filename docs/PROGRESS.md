@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 Hills woodland and heat tuning (ADR211). HILLS-TREE-LOD-02, RFU-FX-01, and POLISH-POST-FX-01 retain full-route acceptance.
+[Evidence](testing/hills-woodland-heat/REPORT.md).
+
 2026-11-15 brake skid feedback (ADR210): FX-BRAKE-SKID-01 verified in the Hills comparison. 257 verified / 386 open.
 [Evidence](testing/brake-skids/REPORT.md).
 
@@ -1506,7 +1509,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Review matched captures, road lighting and distance shimmer on the target GPU before choosing a material. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. The Hills verge now grades into denser outer woodland, with roughly triple the distant sampling density and a minimum camera distance for backdrop silhouettes. [Placement evidence](testing/hills-woodland-heat/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 
@@ -1820,7 +1823,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **POLISH-GRID-01** Compare stationary grid revving, piped exhaust and shift or landing camera feedback for stronger motorcycle cues. Requires the race input and mixer. Verify held and released throttle, stationary position, anti-nausea behavior and rider comfort. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. [Evidence](testing/graphics-polish/REPORT.md)
+- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. Exhaust strength now follows engine RPM with a half-strength cap. [Tuning](testing/hills-woodland-heat/REPORT.md). [Evidence](testing/graphics-polish/REPORT.md)
 
 - [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](testing/graphics-polish/REPORT.md)
 
@@ -1834,7 +1837,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
-- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: screen-space ground shimmer replaces the sprite approximation; visual and full-route GPU acceptance remain open. [Evidence](testing/hills-shimmer-hud/REPORT.md). [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: screen-space ground shimmer replaces the sprite approximation and runs at one fifth of the initial strength; visual and full-route GPU acceptance remain open. [Evidence](testing/hills-shimmer-hud/REPORT.md). [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
 - [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: terrain-seated feathered dust pool implemented; centered-chase visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
