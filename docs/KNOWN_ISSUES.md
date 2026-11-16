@@ -2,7 +2,9 @@
 
 - HILLS-ESCAPE-RETRY-01, HILLS-HERD-04 and HILLS-TREE-LOD-02: Replay Rachel’s
   exact queue, check the formation at race speed and measure end-to-end
-  performance with denser tree placement.
+  performance with the new woodland LODs and default effects. The latest Hills
+  telemetry identifies a stopped pair but omits the vehicle ahead.
+  [Queue evidence](testing/hills-slope-infill/REPORT.md).
 
 - HILLS-HERD-03 and HILLS-VERGE-ESCAPE-01: Full-field queue times at both
   crossings and a replay of Diamond’s exact stop still need native evidence.

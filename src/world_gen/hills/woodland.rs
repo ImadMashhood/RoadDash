@@ -2,8 +2,17 @@
 //! resident trunk compounds are independent of render distance and visibility.
 use super::{HillsSolid, countryside, geometry, props::Model};
 use crate::{track::Track, world::Obstacle};
-use bevy::{camera::visibility::VisibilityRange, light::NotShadowCaster, prelude::*};
+use bevy::math::Vec3A;
+use bevy::{
+    camera::{
+        primitives::{Aabb, MeshAabb},
+        visibility::VisibilityRange,
+    },
+    light::NotShadowCaster,
+    prelude::*,
+};
 use bevy_rapier3d::prelude::*;
+use std::collections::{BTreeMap, HashMap};
 pub(super) mod tree_lods;
 
 #[derive(Component)]
@@ -17,6 +26,7 @@ pub struct WoodlandCensus {
     pub backdrop_batches: usize,
     pub middle_batches: usize,
     pub middle_triangles: usize,
+    pub infill_trees: usize,
 }
 #[derive(Clone, Copy)]
 struct Tree {
@@ -46,7 +56,7 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
                         continue;
                     }
                     let lane = side * (110. + (row as f32 + noise(seed + 2) * 0.81) * 10.5);
-                    let Some((mut p, _)) = super::props::site(track, 0, s, lane, 4.) else {
+                    let Some((p, _)) = super::props::site(track, 0, s, lane, 4.) else {
                         continue;
                     };
                     if super::bridge::reserved(track, p, 5.)
@@ -55,20 +65,11 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
                     {
                         continue;
                     }
-                    let mut low = p.y;
-                    let mut high = p.y;
-                    for offset in [Vec3::X, -Vec3::X, Vec3::Z, -Vec3::Z] {
-                        let q = p + offset * 0.5;
-                        let y = geometry::ground_height(track, q.x, q.z);
-                        low = low.min(y);
-                        high = high.max(y);
-                    }
-                    if high - low > 1.8 {
+                    let Some(base) = rooted(track, p) else {
                         continue;
-                    }
-                    p.y = low - 0.15;
+                    };
                     trees.push(Tree {
-                        p,
+                        p: base,
                         height: 7. + noise(seed + 7) * 8.,
                         seed,
                     });
@@ -81,6 +82,95 @@ fn plan(track: &Track) -> Vec<Vec<Tree>> {
     }
     batches
 }
+fn rooted(track: &Track, mut p: Vec3) -> Option<Vec3> {
+    let mut low = p.y;
+    let mut high = p.y;
+    for offset in [Vec3::X, -Vec3::X, Vec3::Z, -Vec3::Z] {
+        let q = p + offset * 0.5;
+        let y = geometry::ground_height(track, q.x, q.z);
+        low = low.min(y);
+        high = high.max(y);
+    }
+    p.y = low - 0.15;
+    (high - low <= 1.8).then_some(p)
+}
+
+// Three stands trace the marked slopes around the mountain farm and bridge approach.
+const INFILL_STANDS: [(Vec2, Vec2); 3] = [
+    (Vec2::new(-156., 3340.), Vec2::new(98., 182.)),
+    (Vec2::new(-282., 3118.), Vec2::new(181., 115.)),
+    (Vec2::new(-804., 3515.), Vec2::new(132., 160.)),
+];
+
+fn slope_infill(track: &Track, middle: &[Vec<Tree>]) -> Vec<Vec<Tree>> {
+    const SPACING: f32 = 8.;
+    let cell = |p: Vec2| (p / SPACING).floor().as_ivec2();
+    let farms = countryside::farm_sites(track);
+    let mut occupied = HashMap::<IVec2, Vec<Vec2>>::new();
+    for tree in middle.iter().flatten() {
+        occupied
+            .entry(cell(tree.p.xz()))
+            .or_default()
+            .push(tree.p.xz());
+    }
+    let mut batches = BTreeMap::<(i32, i32), Vec<Tree>>::new();
+    for (stand, (center, radii)) in INFILL_STANDS.into_iter().enumerate() {
+        let min = cell(center - radii);
+        let max = cell(center + radii);
+        for x in min.x..=max.x {
+            for z in min.y..=max.y {
+                let seed = (stand as u32 * 433_505)
+                    .wrapping_add((x as u32).wrapping_mul(23_981))
+                    .wrapping_add((z as u32).wrapping_mul(7_919));
+                let p = Vec2::new(x as f32 + noise(seed), z as f32 + noise(seed + 1)) * SPACING;
+                let edge = ((p - center) / radii).length_squared();
+                if edge > 1. || noise(seed + 2) < 0.13 + edge * 0.32 {
+                    continue;
+                }
+                let overlaps = (x - 1..=x + 1).any(|a| {
+                    (z - 1..=z + 1).any(|b| {
+                        occupied
+                            .get(&IVec2::new(a, b))
+                            .is_some_and(|trees| trees.iter().any(|q| p.distance_squared(*q) < 25.))
+                    })
+                });
+                if overlaps {
+                    continue;
+                }
+                let point = Vec3::new(p.x, 0., p.y);
+                // Blend into the middle woodland. The separate backdrop
+                // lattice already owns the region beyond 325 m.
+                let (_, _, distance) = track.project(point, 4300.);
+                if !(102. ..325.).contains(&distance)
+                    || !track.scenery_fits(point, 5., 70.)
+                    || super::bridge::reserved(track, point, 5.)
+                    || super::mounted::reserved(track, point, 5.)
+                    || super::wildlife::reserved(track, point, 5.)
+                    || !countryside::field_clear(point, &farms)
+                {
+                    continue;
+                }
+                let Some(base) = rooted(
+                    track,
+                    point.with_y(geometry::ground_height(track, p.x, p.y)),
+                ) else {
+                    continue;
+                };
+                occupied.entry(cell(p)).or_default().push(p);
+                batches
+                    .entry((x.div_euclid(12), z.div_euclid(12)))
+                    .or_default()
+                    .push(Tree {
+                        p: base,
+                        height: 7. + noise(seed + 7) * 8.,
+                        seed,
+                    });
+            }
+        }
+    }
+    batches.into_values().collect()
+}
+
 const BACKDROP_TILE: f32 = 160.;
 const BACKDROP_ROWS: u32 = 21;
 
@@ -132,6 +222,23 @@ fn backdrop(track: &Track) -> Vec<(Vec3, Vec<Tree>)> {
     batches
 }
 
+fn shared_bounds(meshes: &[Mesh]) -> Aabb {
+    let (min, max) = meshes.iter().filter_map(MeshAabb::get_aabb).fold(
+        (Vec3A::splat(f32::INFINITY), Vec3A::splat(f32::NEG_INFINITY)),
+        |(min, max), bounds| (min.min(bounds.min()), max.max(bounds.max())),
+    );
+    // Share the full extents across crossfading tiers. Pad for numerical
+    // tolerance at the edge of the view.
+    Aabb::from_min_max((min - Vec3A::ONE).into(), (max + Vec3A::ONE).into())
+}
+
+fn outer_fade(bounds: Aabb) -> std::ops::Range<f32> {
+    let radius = bounds.min().abs().max(bounds.max().abs()).length();
+    // Bevy fades using the entity origin. Include the furthest possible
+    // extent so some trees can't disappear just because their origin is distant.
+    (1250. + radius)..(1550. + radius)
+}
+
 pub fn spawn(
     commands: &mut Commands,
     meshes: &mut Assets<Mesh>,
@@ -144,8 +251,13 @@ pub fn spawn(
         metallic: 0.08,
         ..default()
     });
-    let mut census = WoodlandCensus::default();
-    for trees in plan(track) {
+    let middle = plan(track);
+    let infill = slope_infill(track, &middle);
+    let mut census = WoodlandCensus {
+        infill_trees: infill.iter().map(Vec::len).sum(),
+        ..default()
+    };
+    for trees in middle.into_iter().chain(infill) {
         let origin = trees[trees.len() / 2].p;
         let mut model = Model::default();
         let mut middle = Model::default();
@@ -180,42 +292,28 @@ pub fn spawn(
             Obstacle,
             HillsSolid,
         ));
-        commands.spawn((
-            Mesh3d(meshes.add(model.mesh())),
-            MeshMaterial3d(material.clone()),
-            Transform::from_translation(origin),
-            WoodlandBatch,
-            NotShadowCaster,
-            VisibilityRange {
-                start_margin: 0. ..0.,
-                end_margin: 280. ..340.,
-                use_aabb: false,
-            },
-        ));
-        commands.spawn((
-            Mesh3d(meshes.add(middle.mesh())),
-            MeshMaterial3d(material.clone()),
-            Transform::from_translation(origin),
-            WoodlandBatch,
-            NotShadowCaster,
-            VisibilityRange {
-                start_margin: 280. ..340.,
-                end_margin: 700. ..850.,
-                use_aabb: false,
-            },
-        ));
-        commands.spawn((
-            Mesh3d(meshes.add(far.mesh())),
-            MeshMaterial3d(material.clone()),
-            Transform::from_translation(origin),
-            WoodlandBatch,
-            NotShadowCaster,
-            VisibilityRange {
-                start_margin: 700. ..850.,
-                end_margin: 1250. ..1550.,
-                use_aabb: false,
-            },
-        ));
+        let meshes_for_batch = [model.mesh(), middle.mesh(), far.mesh()];
+        let bounds = shared_bounds(&meshes_for_batch);
+        let end = outer_fade(bounds);
+        for (mesh, (start_margin, end_margin)) in meshes_for_batch.into_iter().zip([
+            (0. ..0., 155. ..210.),
+            (155. ..210., 380. ..470.),
+            (380. ..470., end),
+        ]) {
+            commands.spawn((
+                Mesh3d(meshes.add(mesh)),
+                MeshMaterial3d(material.clone()),
+                Transform::from_translation(origin),
+                bounds,
+                WoodlandBatch,
+                NotShadowCaster,
+                VisibilityRange {
+                    start_margin,
+                    end_margin,
+                    use_aabb: false,
+                },
+            ));
+        }
         census.batches += 3;
         census.middle_batches += 1;
     }
@@ -231,16 +329,18 @@ pub fn spawn(
             model.append(&far.positions, &far.colors, &far.triangles, transform);
             census.triangles += far.triangles.len();
         }
+        let mesh = model.mesh();
+        let bounds = shared_bounds(std::slice::from_ref(&mesh));
         commands.spawn((
-            Mesh3d(meshes.add(model.mesh())),
+            Mesh3d(meshes.add(mesh)),
             MeshMaterial3d(material.clone()),
             Transform::from_translation(origin),
+            bounds,
             WoodlandBatch,
             NotShadowCaster,
             VisibilityRange {
-                // The closest tree can be a tile radius nearer than the batch origin.
-                start_margin: 305. ..365.,
-                end_margin: 1250. ..1550.,
+                start_margin: 0. ..0.,
+                end_margin: outer_fade(bounds),
                 use_aabb: false,
             },
         ));
@@ -271,7 +371,7 @@ mod tests {
         );
         assert!((23_000..=28_000).contains(&count));
         assert!(batches.len() <= 160);
-        assert!(triangles <= 616_000);
+        assert!(triangles <= 1_300_000);
         for (_, trees) in &batches {
             assert!(trees.len() <= (BACKDROP_ROWS * BACKDROP_ROWS) as usize);
             for tree in trees {
@@ -310,5 +410,39 @@ mod tests {
                 .zip(repeat.iter().flatten())
                 .all(|(a, b)| a.p == b.p && a.height == b.height)
         );
+    }
+    #[test]
+    fn targeted_stands_add_grounded_trees_away_from_farms_and_bridge() {
+        let track = Track::hills().unwrap();
+        let batches = slope_infill(&track, &plan(&track));
+        let farms = countryside::farm_sites(&track);
+        let total = batches.iter().map(Vec::len).sum::<usize>();
+        println!(
+            "Hills slope infill: {total} trees in {} batches",
+            batches.len()
+        );
+        assert!((350..=1500).contains(&total));
+        for (center, radii) in INFILL_STANDS {
+            assert!(
+                batches
+                    .iter()
+                    .flatten()
+                    .filter(|t| ((t.p.xz() - center) / radii).length() < 1.)
+                    .count()
+                    > 40
+            );
+        }
+        for tree in batches.iter().flatten() {
+            assert!(track.scenery_fits(tree.p, 5., 70.));
+            assert!(countryside::field_clear(tree.p, &farms));
+            assert!(!super::super::bridge::reserved(&track, tree.p, 5.));
+        }
+    }
+
+    #[test]
+    fn range_keeps_a_batch_whose_near_edge_is_still_in_range() {
+        let bounds = Aabb::from_min_max(Vec3::new(-90., -5., -6.), Vec3::new(10., 18., 6.));
+        assert!(outer_fade(bounds).start >= 1340.);
+        assert!(outer_fade(bounds).end >= 1640.);
     }
 }

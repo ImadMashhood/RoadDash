@@ -133,6 +133,7 @@ pub fn setup_world(
     mut track: ResMut<Track>,
     plan: Option<Res<crate::world_gen::WorldPlan>>,
     server: Option<Res<AssetServer>>,
+    polish: Option<Res<crate::polish::Options>>,
     mut binds: Option<ResMut<Assets<bevy::mesh::skinning::SkinnedMeshInverseBindposes>>>,
 ) {
     let _load_span = crate::diagnostics::loading::Span::new("world_setup");
@@ -249,11 +250,8 @@ pub fn setup_world(
             &track,
         );
     }
-    if std::env::var("ROADDASH_POLISH").is_ok_and(|flags| {
-        flags
-            .split(',')
-            .any(|flag| matches!(flag.trim(), "all" | "exhaust"))
-    }) && let Some(images) = images.as_deref_mut()
+    if polish.is_some_and(|options| options.exhaust)
+        && let Some(images) = images.as_deref_mut()
     {
         crate::polish::spawn_exhaust(&mut commands, &mut meshes, &mut materials, images);
     }

@@ -8,6 +8,11 @@ if [[ ! -x "$game_binary" ]]; then
     exit 1
 fi
 
+# An unqualified playtest opens Hills. Explicit arguments and track overrides win.
+if (( $# == 0 )) && [[ ! -v ROADDASH_TRACK ]]; then
+    set -- --hills
+fi
+
 cd "$game_root"
 export ROADDASH_SAVE_DIR="${ROADDASH_SAVE_DIR:-$HOME/.local/share/roaddash-bevy20-playtest}"
 export ROADDASH_LOG_DIR="${ROADDASH_LOG_DIR:-$HOME/.local/state/roaddash-bevy20-playtest}"

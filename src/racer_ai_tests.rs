@@ -1199,3 +1199,79 @@ fn physical_oncoming_pair(track: Track, start: f32) {
     );
     assert!(passed && r.speed > 25. && max_bank > 0.01);
 }
+
+#[test]
+fn hills_rivals_get_out_from_behind_a_stopped_semitrailer() {
+    use bevy::ecs::system::RunSystemOnce;
+    let mut app = straight_simulation();
+    let start = 4360.;
+    let car_station = start + 15.;
+    install_course_support(&mut app, Track::hills().unwrap(), start);
+    let truck = app
+        .world_mut()
+        .run_system_once(
+            move |mut commands: Commands, art: Res<Art>, track: Res<Track>| {
+                let (position, rotation) = track.sample(car_station, -2.8);
+                let truck = commands
+                    .spawn((
+                        Traffic {
+                            route: 0,
+                            progress: car_station,
+                            lane: -2.8,
+                            speed: 0.,
+                        },
+                        TrafficYield {
+                            cruise: Some(0.),
+                            ..default()
+                        },
+                        Transform::from_translation(position).with_rotation(rotation),
+                        Visibility::Visible,
+                        RigidBody::KinematicPositionBased,
+                    ))
+                    .id();
+                crate::heavy_traffic::spawn(
+                    &mut commands,
+                    &art,
+                    truck,
+                    crate::heavy_traffic::Kind::Semi,
+                    27,
+                );
+                truck
+            },
+        )
+        .unwrap();
+    let riders = [
+        straight_rider(&mut app, 7, start, -2.8),
+        straight_rider(&mut app, 14, start - 5., -2.8),
+    ];
+    let mut maneuvered = false;
+    for _ in 0..1200 {
+        app.update();
+        maneuvered |= riders.iter().any(|&entity| {
+            let rider = app.world().get::<Rider>(entity).unwrap();
+            rider.ai_drive.reversing() || rider.ai_escape.active()
+        });
+        if riders
+            .iter()
+            .all(|&entity| app.world().get::<Rider>(entity).unwrap().progress > car_station + 10.)
+        {
+            break;
+        }
+    }
+    let end = riders.map(|e| {
+        let rider = app.world().get::<Rider>(e).unwrap();
+        (
+            rider.progress,
+            rider.speed,
+            rider.lane,
+            rider.ai_plan,
+            rider.health,
+        )
+    });
+    assert!(maneuvered, "no room made behind truck: {end:?}");
+    assert!(
+        end.iter().all(|r| r.0 > car_station + 10. && r.4 == 100.),
+        "queue stayed blocked: {end:?}"
+    );
+    assert!(app.world().get::<Traffic>(truck).unwrap().speed.abs() < 0.1);
+}

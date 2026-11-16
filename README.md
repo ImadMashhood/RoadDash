@@ -34,7 +34,7 @@ Latest local integration: the gameplay/graphics, AI and civic work is merged int
 
 [Course menu and landscape follow-up](docs/testing/hills-delivery/REPORT.md): choose **Thrash → Hills or Metropolis → Ride**; legacy courses remain available. Bridge hangers now connect to deck supports, a river runs beneath the span, six farms use gentler parcels, spatial cumulus clouds and a visible sun replace the flat cloud presentation, and city shadows extend to 500 m. Verification, timing and remaining acceptance gates are recorded in the report. [Grid, passing and road-edge corrections](docs/testing/hills-grid/REPORT.md) address the rear Hills spawn, false AI stops/passing failures at Metropolis bends, and the thin green asphalt seam. Existing HILLS-01/AI-QUEUE-02/CITY-CIVIC-01 acceptance remains open for broader review.
 
-[Opt-in graphics and motorcycle feedback comparisons](docs/testing/graphics-polish/REPORT.md) cover Hills asphalt, native post-processing, countdown revs, exhaust and camera shake.
+[Graphics and motorcycle feedback comparisons](docs/testing/graphics-polish/REPORT.md) cover Hills asphalt, native post-processing, countdown revs, exhaust and camera shake.
 
 ## Run
 
@@ -52,6 +52,11 @@ performance/rider logs go to `~/.local/state/roaddash-bevy20-playtest/`; set
 `ROADDASH_LOG_DIR` to choose another directory. This candidate includes current
 main content and rider AI but remains outside main while physics parity is
 evaluated. See [migration evidence](docs/testing/issue37-bevy20/REPORT.md).
+
+Build the release binary with `cargo build --release --locked`, then use
+`./play-bevy20.sh` for the standard Hills playtest. Countdown revs, exhaust,
+camera shake, daylight grading, wind, heat shimmer and Poly Haven Hills asphalt
+are enabled by default. Use `ROADDASH_TRACK=metro ./play-bevy20.sh` for Metropolis.
 
 First compilation builds the engine and can take several minutes. A desktop GPU with Vulkan, Metal, or DirectX 12 support is recommended. There are no assets to download or extract.
 
@@ -772,7 +777,7 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
-- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Stopped semitrailer and rider log](docs/testing/hills-slope-infill/REPORT.md). [Earlier evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-VERGE-ESCAPE-01** Recover Hills rivals stalled outside the opening city carriageway. Reason: Diamond stopped near 831 m with a zero-speed sidewalk plan; part: 01; dependencies: AI-HILLS-CADENCE-01 and swept escape; acceptance: reachable paved escape goal under a blocked sidewalk target and a native replay of the reported stop; verification: authored-track fixture and native replay. [Evidence](docs/testing/hills-herd-verge-tuning/REPORT.md).
 
@@ -1147,9 +1152,9 @@ Repeat the reference → original textures/models → procedural placement → c
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
-- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Review matched captures, road lighting and distance shimmer on the target GPU before choosing a material. [Evidence](docs/testing/graphics-polish/REPORT.md)
+- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Poly Haven Asphalt Track is the selected default. Review road lighting and distance shimmer on the target GPU across a full run. [Evidence](docs/testing/graphics-polish/REPORT.md)
 
-- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density and a minimum camera distance for backdrop silhouettes. All three woodland LODs use the ten authored roadside families and their texture-derived palettes. [Tree family evidence](docs/testing/hills-tree-families/REPORT.md). [Placement evidence](docs/testing/hills-woodland-restored/REPORT.md). [Earlier work](docs/testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density. The three woodland LODs keep the original catalog silhouettes and texture palettes, including the new plantings near the bridge. [Slope infill evidence](docs/testing/hills-slope-infill/REPORT.md). [Tree family evidence](docs/testing/hills-tree-families/REPORT.md). [Placement evidence](docs/testing/hills-woodland-restored/REPORT.md). [Earlier work](docs/testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](docs/testing/hills-contact-and-scenery/REPORT.md).
 
@@ -1445,7 +1450,7 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 
 - [ ] **POLISH-GRID-01** Compare stationary grid revving, piped exhaust and shift or landing camera feedback for stronger motorcycle cues. Requires the race input and mixer. Verify held and released throttle, stationary position, anti-nausea behavior and rider comfort. [Evidence](docs/testing/graphics-polish/REPORT.md)
 
-- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. Exhaust strength now follows engine RPM with a half-strength cap. [Tuning](docs/testing/hills-woodland-heat/REPORT.md). [Evidence](docs/testing/graphics-polish/REPORT.md)
+- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. Daylight grading, wind and exhaust shimmer are enabled by default. Exhaust strength follows engine RPM with a half-strength cap. [Tuning](docs/testing/hills-woodland-heat/REPORT.md). [Evidence](docs/testing/graphics-polish/REPORT.md)
 
 - [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](docs/testing/graphics-polish/REPORT.md)
 

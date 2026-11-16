@@ -61,17 +61,19 @@ def bake(prop):
 
     offset = list(prop["center"])
     offset[1] -= prop["size"][1] * .5
-    trunk = []
-    crowns = []
+    def fitted(position):
+        return tuple((axis - center) / size for axis, center, size in zip(position, offset, prop["size"]))
+
+    parts = []
     for node in gltf["nodes"]:
         part = node["extras"]["semantic_part"]
-        if part not in {"trunk", "layered_conifer_crown", "leaf_crown"}:
+        if part not in {"trunk", "branch", "layered_conifer_crown", "leaf_crown"}:
             continue
         assert set(node).isdisjoint({"matrix", "rotation", "scale", "translation"}), path
         for primitive in gltf["meshes"][node["mesh"]]["primitives"]:
             points = accessor(primitive["attributes"]["POSITION"], "<fff")
-            # Exported hard-normal and UV seams duplicate vertices. Weld only
-            # for component discovery, keeping separate crowns separate.
+            # Weld the export's flat-normal and UV splits only for component
+            # discovery. The closest tier retains its original face topology.
             keys = [tuple(round(v, 5) for v in pos) for pos in points]
             parents = {key: key for key in keys}
 
@@ -83,83 +85,123 @@ def bake(prop):
 
             indices = primitive["indices"]
             fmt = {5123: "<H", 5125: "<I"}[gltf["accessors"][indices]["componentType"]]
-            indexed = [keys[i] for (i,) in accessor(indices, fmt)]
-            for a, b, c in zip(indexed[::3], indexed[1::3], indexed[2::3]):
-                parents[root(b)] = parents[root(a)]
-                parents[root(c)] = parents[root(a)]
+            values = [i for (i,) in accessor(indices, fmt)]
+            faces = list(zip(values[::3], values[1::3], values[2::3]))
+            for a, b, c in faces:
+                parents[root(keys[b])] = parents[root(keys[a])]
+                parents[root(keys[c])] = parents[root(keys[a])]
             components = defaultdict(list)
-            for p in parents:
-                components[root(p)].append(tuple((x - t) / s for x, t, s in zip(p, offset, prop["size"])))
-            for vertices in components.values():
-                if len(vertices) >= 4:
-                    bounds = tuple((min(axis), max(axis)) for axis in zip(*vertices))
-                    (trunk if part == "trunk" else crowns).append((bounds, color(primitive["material"])))
+            for face in faces:
+                components[root(keys[face[0]])].append(face)
+            for faces in components.values():
+                vertices = dict.fromkeys(i for face in faces for i in face)
+                parts.append((part, [fitted(points[i]) for i in vertices], list(faces),
+                              dict(zip(vertices, range(len(vertices)))), color(primitive["material"])))
 
-    assert len(trunk) == 1 and crowns, path
     return {
         "name": prop["name"], "source_sha256": hashlib.sha256(data).hexdigest(),
-        "tiers": [template(trunk[0], crowns, prop["builder"] == "conifer", level)
-                  for level in range(3)],
+        "tiers": [template(parts, level) for level in range(3)],
     }
 
 
-def template(trunk, crowns, conifer, level):
-    xyz = []
-    rgb = []
-    indices = []
+def source_rings(vertices):
+    rings = defaultdict(dict)
+    for x, y, z in vertices:
+        rings[round(y, 5)][round(x, 5), round(z, 5)] = (x, y, z)
+    return [list(ring.values()) for _, ring in sorted(rings.items())]
 
-    def shell(bounds, color, sides, profile):
-        (x0, x1), (y0, y1), (z0, z1) = bounds
-        rings = []
-        for height, scale in profile:
-            rings.append(list(range(len(xyz), len(xyz) + (sides if scale else 1))))
-            for side in range(sides if scale else 1):
-                angle = math.tau * (side + .125) / sides
-                xyz.append([
-                    (x0 + x1 + math.cos(angle) * (x1 - x0) * scale) / 2,
-                    y0 + (y1 - y0) * height,
-                    (z0 + z1 + math.sin(angle) * (z1 - z0) * scale) / 2,
-                ])
-                rgb.append(color)
-        for low, high in zip(rings, rings[1:]):
+
+def ring_center(ring):
+    return tuple(sum(p[axis] for p in ring) / len(ring) for axis in range(3))
+
+
+def resample(ring, sides):
+    if len(ring) < 2:
+        return ring
+    sides = min(sides, len(ring))
+    x, _, z = ring_center(ring)
+    ordered = sorted(ring, key=lambda p: math.atan2(p[2] - z, p[0] - x))
+    return [ordered[(i * len(ordered) + sides // 2) // sides] for i in range(sides)]
+
+
+def template(parts, level):
+    xyz, rgb, triangles = [], [], []
+
+    def append(vertices, faces, color):
+        start = len(xyz)
+        xyz.extend(vertices)
+        rgb.extend([color] * len(vertices))
+        triangles.extend([[start + i for i in face] for face in faces])
+
+    def append_face(vertices, color):
+        append(vertices, [(0, i, i + 1) for i in range(1, len(vertices) - 1)], color)
+
+    def join(rings, color, flat=False):
+        offsets = []
+        vertices = []
+        for ring in rings:
+            offsets.append(list(range(len(vertices), len(vertices) + len(ring))))
+            vertices.extend(ring)
+        faces = []
+        for low, high in zip(offsets, offsets[1:]):
+            sides = max(len(low), len(high))
             for i in range(sides):
                 j = (i + 1) % sides
-                if len(low) > 1:
-                    indices.append([low[i], high[i % len(high)], low[j]])
-                if len(high) > 1:
-                    indices.append([low[j % len(low)], high[i], high[j]])
+                face = list(dict.fromkeys([low[i % len(low)], high[i % len(high)],
+                                           high[j % len(high)], low[j % len(low)]]))
+                faces.append(face)
+        for ring, reverse in ((offsets[0], False), (offsets[-1], True)):
+            if len(ring) > 1:
+                faces.append(list(reversed(ring)) if reverse else ring)
+        if flat:
+            for face in faces:
+                append_face([vertices[i] for i in face], color)
+        else:
+            append(vertices, [(face[0], face[i], face[i + 1]) for face in faces
+                              for i in range(1, len(face) - 1)], color)
 
-    shell(*trunk, (5, 4, 3)[level], [(0, 1), (1, .48)])
-    crowns = sorted(crowns, key=lambda part: part[0][1][0])
-    if conifer:
-        # Retain the original stepped skirt heights and their alternating greens.
-        if level != 0:
-            crowns = [crowns[i] for i in [0, len(crowns) // 2, len(crowns) - 1]]
-        for bounds, color in crowns:
-            shell(bounds, color, (6, 5, 4)[level], [(0, 0), (.03, 1), (1, 0)] if level < 2 else [(0, 1), (1, 0)])
-    elif level == 2:
-        # Coalesce the crown lobes into a small rounded shell with the authored silhouette bounds.
-        bounds = tuple((min(p[0][i][0] for p in crowns), max(p[0][i][1] for p in crowns)) for i in range(3))
-        volume = lambda part: math.prod(high - low for low, high in part[0])
-        weights = [volume(part) for part in crowns]
-        color = [sum(p[1][i] * w for p, w in zip(crowns, weights)) / sum(weights) for i in range(3)]
-        shell(bounds, color, 4, [(0, 0), (.33, .94), (.70, 1), (1, 0)])
-    else:
-        if level == 1:
-            # Keep spread across the crown by selecting the lobes nearest each horizontal extreme.
-            bounds_x = [p[0][0] for p in crowns]
-            bounds_z = [p[0][2] for p in crowns]
-            keep = {min(range(len(crowns)), key=lambda i: bounds_x[i][0]),
-                    max(range(len(crowns)), key=lambda i: bounds_x[i][1]),
-                    min(range(len(crowns)), key=lambda i: bounds_z[i][0]),
-                    max(range(len(crowns)), key=lambda i: bounds_z[i][1]),
-                    len(crowns) - 1}
-            crowns = [p for i, p in enumerate(crowns) if i in keep]
-        for bounds, color in crowns:
-            shell(bounds, color, (5, 4)[level], [(0, 0), (.52, 1), (1, 0)])
+    leaves = [part for part in parts if part[0] == "leaf_crown"]
+    if level == 2 and leaves:
+        # Retain the central/top crown and the most widely spread outer lobes.
+        centers = [ring_center(part[1]) for part in leaves]
+        kept = [max(range(len(leaves)), key=lambda i: centers[i][1])]
+        for _ in range(3):
+            kept.append(max((i for i in range(len(leaves)) if i not in kept),
+                            key=lambda i: min(math.dist(centers[i], centers[j]) for j in kept)))
+        leaves = [leaves[i] for i in kept]
+
+    for part in parts:
+        name, vertices, faces, remap, color = part
+        if level == 0 and name != "branch" or level == 1 and name == "trunk":
+            append(vertices, [[remap[i] for i in face] for face in faces], color)
+        elif name == "branch":
+            continue
+        elif name == "leaf_crown":
+            if not any(part is leaf for leaf in leaves):
+                continue
+            rings = source_rings(vertices)
+            # Keep the upper and lower shoulder rings. The previous proxies
+            # discarded these and made rounded leaves read as diamonds.
+            if level == 2:
+                rings = [rings[0], rings[1], rings[-2], rings[-1]]
+            rings = [resample(ring, 3 if level == 2 else 4) for ring in rings]
+            join(rings, color)
+        elif name == "layered_conifer_crown":
+            rings = source_rings(vertices)
+            # Every skirt remains present at every distance, at its real
+            # height and taper. Collapse only its tiny far-away upper rim.
+            lower = resample(rings[0], 4 if level == 1 else 3)
+            upper = resample(rings[1], 4) if level == 1 else [ring_center(rings[1])]
+            join([lower, upper], color, flat=True)
+        else:
+            # The authored trunk leans slightly, so its two ends have
+            # distinct Y coordinates within each end ring.
+            ranked = sorted(set(vertices), key=lambda p: p[1])
+            half = len(ranked) // 2
+            join([resample(ranked[:half], 3), resample(ranked[half:], 3)], color, flat=True)
 
     return {"positions": [[round(x, 6) for x in p] for p in xyz],
-            "colors": [[round(x, 6) for x in c] for c in rgb], "triangles": indices}
+            "colors": [[round(x, 6) for x in c] for c in rgb], "triangles": triangles}
 
 
 def main():

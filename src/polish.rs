@@ -1,4 +1,4 @@
-//! Opt-in visual and audio comparisons. These systems only read the race.
+//! Standard race presentation and optional comparison effects.
 use crate::{
     controls::Controls,
     game::{ChaseCamera, Phase, Race, Rider},
@@ -14,8 +14,10 @@ use bevy::{
     shader::ShaderRef,
 };
 
+const STANDARD_FLAGS: &str = "rev,exhaust,shake,grade,wind,heat";
+
 #[derive(Resource, Default)]
-pub(crate) struct Options {
+pub struct Options {
     pub(crate) rev: bool,
     pub(crate) exhaust: bool,
     pub(crate) shake: bool,
@@ -427,7 +429,8 @@ fn shake(
 }
 
 pub(crate) fn install(app: &mut App) {
-    let options = Options::from_flags(&std::env::var("ROADDASH_POLISH").unwrap_or_default());
+    let flags = std::env::var("ROADDASH_POLISH");
+    let options = Options::from_flags(flags.as_deref().unwrap_or(STANDARD_FLAGS));
     if options.rev {
         app.init_resource::<GridEngine>()
             .add_systems(FixedUpdate, grid_engine.after(crate::game::drive));
@@ -472,6 +475,16 @@ pub(crate) mod survey;
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn standard_preset_enables_the_six_approved_effects() {
+        let standard = Options::from_flags(STANDARD_FLAGS);
+        assert!(standard.rev && standard.exhaust && standard.shake);
+        assert!(standard.grade && standard.wind && standard.heat);
+        assert!(!standard.hanabi);
+        let comparison = Options::from_flags("grade");
+        assert!(comparison.grade && !comparison.exhaust && !comparison.heat);
+    }
+
     #[test]
     fn exhaust_heat_follows_rpm_and_caps_at_half_strength() {
         assert_eq!(exhaust_heat(0.), 0.);

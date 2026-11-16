@@ -73,7 +73,7 @@ mod tests {
                     .windows(2)
                     .all(|pair| pair[0].triangles.len() > pair[1].triangles.len())
             );
-            for (tier, limit) in family.tiers.iter().zip([80, 48, 22]) {
+            for (tier, limit) in family.tiers.iter().zip([272, 188, 56]) {
                 assert!(tier.triangles.len() <= limit);
                 assert_eq!(tier.positions.len(), tier.colors.len());
                 assert!(tier.positions.iter().any(|p| p[1].abs() < 0.02));

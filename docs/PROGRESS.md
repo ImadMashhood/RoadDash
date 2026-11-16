@@ -1,5 +1,8 @@
 # Development progress
 
+2026-11-15 Hills slope infill and default visuals (ADR214). Rebuilt woodland meshes from source triangles, planted the marked slopes, and expanded batch bounds. The approved effects and Poly Haven asphalt are standard. Reviewed the stopped queue log and added a semitrailer regression.
+[Evidence](testing/hills-slope-infill/REPORT.md).
+
 2026-11-15 Hills tree families (ADR213). All three woodland LODs use silhouettes and palettes derived from the ten authored roadside variants. HILLS-TREE-LOD-02 retains the full-route performance gate.
 [Evidence](testing/hills-tree-families/REPORT.md).
 
@@ -1149,7 +1152,7 @@ pending terrain and crossing verification gates.
 
 ### Part 01 — Remaining handling, crash response and runtime corrections
 
-- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-ESCAPE-RETRY-01** Return an unavailable escape to the ordinary race planner so a stalled rider can resume driving when traffic clears. This Part 01 task builds on HILLS-VERGE-ESCAPE-01 and traffic snapshots. Verify that a failed escape yields control and replay a queued racer in a native session. [Stopped semitrailer and rider log](testing/hills-slope-infill/REPORT.md). [Earlier evidence](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-VERGE-ESCAPE-01** Recover Hills rivals stalled outside the opening city carriageway. Reason: Diamond stopped near 831 m with a zero-speed sidewalk plan; part: 01; dependencies: AI-HILLS-CADENCE-01 and swept escape; acceptance: reachable paved escape goal under a blocked sidewalk target and a native replay of the reported stop; verification: authored-track fixture and native replay. [Evidence](testing/hills-herd-verge-tuning/REPORT.md).
 
@@ -1513,9 +1516,9 @@ pending terrain and crossing verification gates.
 
 ### Part 06 — World C — NPCs first, then sky/terrain/landscape art
 
-- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Review matched captures, road lighting and distance shimmer on the target GPU before choosing a material. [Evidence](testing/graphics-polish/REPORT.md)
+- [ ] **POLISH-ROAD-01** Compare render-only Hills asphalt materials for readable road texture at speed. Requires HILLS-ROAD-DEPTH-01. Poly Haven Asphalt Track is the selected default. Review road lighting and distance shimmer on the target GPU across a full run. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density and a minimum camera distance for backdrop silhouettes. All three woodland LODs use the ten authored roadside families and their texture-derived palettes. [Tree family evidence](testing/hills-tree-families/REPORT.md). [Placement evidence](testing/hills-woodland-restored/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
+- [ ] **HILLS-TREE-LOD-02** Add denser distant trees and a far woodland tier. This Part 06 task builds on SCENERY-LOD-01. Verify a larger grounded population with bounded triangles and independent collision through a placed census and a native benchmark. Hills uses its original woodland distribution with roughly triple the roadside, middle, and backdrop placement density. The three woodland LODs keep the original catalog silhouettes and texture palettes, including the new plantings near the bridge. [Slope infill evidence](testing/hills-slope-infill/REPORT.md). [Tree family evidence](testing/hills-tree-families/REPORT.md). [Placement evidence](testing/hills-woodland-restored/REPORT.md). [Earlier work](testing/hills-contact-and-scenery/REPORT.md).
 
 - [ ] **HILLS-BRIDGE-FLOOR-01** Close gaps visible through the bridge floor at race speed. This Part 06 task builds on HILLS-SURFACE-POLISH-01. Verify support across the span and approaches and inspect the deck in a close-up native ride. [Evidence](testing/hills-contact-and-scenery/REPORT.md).
 
@@ -1829,7 +1832,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **POLISH-GRID-01** Compare stationary grid revving, piped exhaust and shift or landing camera feedback for stronger motorcycle cues. Requires the race input and mixer. Verify held and released throttle, stationary position, anti-nausea behavior and rider comfort. [Evidence](testing/graphics-polish/REPORT.md)
 
-- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. Exhaust strength now follows engine RPM with a half-strength cap. [Tuning](testing/hills-woodland-heat/REPORT.md). [Evidence](testing/graphics-polish/REPORT.md)
+- [ ] **POLISH-POST-FX-01** Compare daylight grading, peripheral wind and exhaust heat for visual depth and speed. Requires VIS-DEPTH-01. Verify matched frames, reduced-motion behavior, hazard visibility and frame cost on the target GPU. Daylight grading, wind and exhaust shimmer are enabled by default. Exhaust strength follows engine RPM with a half-strength cap. [Tuning](testing/hills-woodland-heat/REPORT.md). [Evidence](testing/graphics-polish/REPORT.md)
 
 - [ ] **POLISH-EXTERNAL-01** Evaluate portable vkBasalt, Material Maker and Hanabi as optional graphics tools. Requires POLISH-ROAD-01 and POLISH-POST-FX-01. Verify runnable comparisons, provenance, target-device budgets and a Material Maker export. [Evidence](testing/graphics-polish/REPORT.md)
 

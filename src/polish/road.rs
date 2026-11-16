@@ -1,4 +1,4 @@
-//! Experimental asphalt surface comparisons keep the authored road color.
+//! Hills asphalt detail and optional surface comparisons.
 use bevy::{
     asset::RenderAssetUsages,
     image::{CompressedImageFormats, ImageSampler, ImageType},
@@ -8,9 +8,7 @@ use bevy::{
 const SIZE: usize = 512;
 
 pub(crate) fn apply(images: &mut Assets<Image>, material: &mut StandardMaterial) {
-    let Ok(variant) = std::env::var("ROADDASH_POLISH_ROAD") else {
-        return;
-    };
+    let variant = std::env::var("ROADDASH_POLISH_ROAD").unwrap_or_else(|_| "poly".into());
     let bytes: &[u8] = match variant.as_str() {
         "ambient" => include_bytes!("../../assets/textures/polish/asphalt004.png"),
         "poly" => include_bytes!("../../assets/textures/polish/asphalt_track.png"),

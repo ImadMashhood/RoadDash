@@ -5095,3 +5095,14 @@ trunk geometry and foliage and bark textures. Choose the family and orientation
 once per placement and share them across the batched LODs. Keep collision
 independent of the displayed mesh.
 [Evidence](testing/hills-tree-families/REPORT.md).
+
+
+## ADR214 — Preserve authored Hills trees and promote the approved visuals (2026-11-15)
+
+Use actual catalog trunk and canopy triangles for the closest woodland tier.
+Thin the authored vertex rings for the other tiers. Share conservative batch
+extents across crossfades. Plant the three marked areas within existing
+terrain, field and road reservations. Make the six selected effects and Poly
+Haven Hills road detail the runtime defaults. Treat a stopped Hills truck as
+a queue leader for clearance-checked bypass or backoff.
+[Evidence](testing/hills-slope-infill/REPORT.md).

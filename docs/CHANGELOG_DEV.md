@@ -1,5 +1,12 @@
 # Development history
 
+## 2026-11-15 — Hills slope infill and default visuals (ADR214)
+
+- Planted the marked slopes, rebuilt the woodland LODs from authored shapes
+  and included the whole mesh in batch culling and distance fades.
+- Promoted the approved graphics and motorcycle feedback to the defaults.
+- Let Hills rivals find a swept escape route beside stopped trucks.
+
 ## 2026-11-15 — Hills woodland tree families
 
 - Derived three batched LOD meshes from each of the ten detailed roadside tree variants.

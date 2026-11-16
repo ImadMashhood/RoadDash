@@ -1330,6 +1330,7 @@ pub fn drive(
             }
             let mut queue_launch_deficit = 0.0_f32;
             let mut quick_player_queue = false;
+            let mut truck_escape_lane = None;
             let traffic_plan = (!is_player).then(|| {
                 let offset = track.street_offset(r.route, r.progress);
                 let width = track
@@ -1389,6 +1390,25 @@ pub fn drive(
                     })
                     .collect();
                 let main_proxy_count = cars.len();
+                let truck_launch_deficit = if track.is_hills() {
+                    cars.iter()
+                        .filter(|car| car.half_length > 3. && (0. ..0.65).contains(&car.speed))
+                        .map(|car| (rr_core::traffic_avoidance::queue_launch_deficit(r.lane - offset, *car), car))
+                        .max_by(|a, b| a.0.total_cmp(&b.0))
+                        .map_or(0., |(deficit, truck)| {
+                            if deficit > 0.5 {
+                                let center = truck.lane + offset;
+                                let clearance = truck.half_width + 2.;
+                                truck_escape_lane = [center - clearance, center + clearance]
+                                    .into_iter()
+                                    .filter(|lane| (bounds.0..=bounds.1).contains(lane))
+                                    .min_by(|a, b| (a - r.lane).abs().total_cmp(&(b - r.lane).abs()));
+                            }
+                            deficit
+                        })
+                } else {
+                    0.
+                };
                 let (_, road) = track.sample_route(r.route, r.progress, r.lane);
                 let forward = (road * Vec3::Z).with_y(0.0).normalize();
                 let lateral = (road * Vec3::NEG_X).with_y(0.0).normalize();
@@ -1454,7 +1474,7 @@ pub fn drive(
                 let lane = r.lane - offset;
                 queue_launch_deficit = riders.iter().map(|other| {
                     rr_core::traffic_avoidance::queue_launch_deficit(lane, *other)
-                }).fold(0.0_f32, f32::max);
+                }).fold(truck_launch_deficit, f32::max);
                 let desired = desired - offset;
                 let bounds = (bounds.0 - offset, bounds.1 - offset);
                 let in_race_frame = |mut plan: rr_core::traffic_avoidance::Plan| {
@@ -1666,22 +1686,25 @@ pub fn drive(
             let reposition_queue = queue_launch_deficit > 0.5
                 && stalled_speed.abs() < 0.65
                 && traffic_plan.is_some_and(|p| p.avoiding && p.speed < 0.1);
-            if reposition_queue {
+            // With a usable lane beside the truck, the swept escape can move
+            // sideways even when a follower blocks a straight reverse.
+            let truck_queue = truck_escape_lane.is_some()
+                && stalled_speed.abs() < 2.
+                && traffic_plan.is_some_and(|p| p.avoiding && p.speed < 4.);
+            if reposition_queue && !truck_queue {
                 // Re-anchor escape progress after deliberate backing; the old
                 // pre-backoff station would otherwise look like another stall.
                 r.ai_escape = default();
             }
+            let escape_committed = r.ai_escape.active();
             let backing = !is_player
                 && r.ai_drive.step_with_queue(
                     dt,
                     stalled_speed,
                     race.elapsed > 5. && target > 4. && throttle,
                     rear_clear,
-                    (race.elapsed > 5. && reposition_queue).then_some(if quick_player_queue {
-                        0.45
-                    } else {
-                        2.5
-                    }),
+                    (race.elapsed > 5. && reposition_queue && !truck_queue && !escape_committed)
+                        .then_some(if quick_player_queue { 0.45 } else { 2.5 }),
                     queue_launch_deficit > 0.
                         && (!quick_player_queue
                             || traffic_plan.is_none_or(|p| !p.avoiding || p.speed < 1.)),
@@ -1830,7 +1853,7 @@ pub fn drive(
             if !is_player
                 && dynamic
                 && race.elapsed > 5.
-                && !reposition_queue
+                && (!reposition_queue || truck_queue)
                 && !backing
                 && let Ok(ctx) = context.single()
             {
@@ -1857,16 +1880,13 @@ pub fn drive(
                     )
                     .is_none()
                 };
-                let goal = rival_escape_goal(
-                    &track,
-                    r.route,
-                    r.progress,
-                    r.lane,
-                    traffic_plan.map_or(0., |plan| plan.lane),
-                );
+                let escape_lane = truck_escape_lane
+                    .filter(|_| truck_queue)
+                    .unwrap_or_else(|| traffic_plan.map_or(0., |plan| plan.lane));
+                let goal = rival_escape_goal(&track, r.route, r.progress, r.lane, escape_lane);
                 let position = transform.translation.xz();
                 let goal = position + (goal.xz() - position).clamp_length_max(65.);
-                let wants = target > 4.0 && r.drive_intent.throttle;
+                let wants = truck_queue || (target > 4.0 && r.drive_intent.throttle);
                 let progress = r.progress;
                 if let Some((go, reverse)) = r.ai_escape.tick(
                     dt,

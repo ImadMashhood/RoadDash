@@ -1,6 +1,8 @@
 # Hills graphics and motorcycle feedback experiments
 
-The options default to off. Hills road variants use the existing road installer
+The six approved effects and Poly Haven road detail are now the defaults.
+[Default preset and overrides](../hills-slope-infill/REPORT.md).
+Hills road variants use the existing road installer
 and collision. Countdown revs use the existing engine recordings and keep the
 bike stationary. The accessibility setting for anti-nausea suppresses
 experimental wind and heat as well as the camera shake.
@@ -11,7 +13,7 @@ Run the combined native trial from the repository directory.
 ROADDASH_POLISH=all ROADDASH_POLISH_ROAD=ambient ./play-bevy20.sh --hills
 ```
 
-Set `ROADDASH_POLISH` to a comma-separated subset of
+Set `ROADDASH_POLISH=off` to disable the six effects or use a comma-separated subset of
 `grade,wind,heat,rev,exhaust,shake`. Set `ROADDASH_POLISH_ROAD` to
 `ambient`, `poly`, or `procedural`. The procedural comparison uses the
 existing normal and roughness with a flat albedo. The imported comparisons
