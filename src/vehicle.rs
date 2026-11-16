@@ -8,6 +8,8 @@ use crate::{
 };
 use bevy::prelude::*;
 use bevy_rapier3d::prelude::*;
+pub(crate) const MAX_RPM: f32 = 10_500.;
+
 #[derive(Component)]
 pub struct RideableStep;
 #[derive(Resource, Default, Clone, Copy, Debug, PartialEq, Eq)]
@@ -298,7 +300,7 @@ pub fn forces(
             gear -= 1;
         }
         state.gear = gear;
-        state.rpm = rpm_for(gear).min(10500.0);
+        state.rpm = rpm_for(gear).min(MAX_RPM);
         let limit = if nitro { p.nitro_speed } else { p.top_speed };
         let limit = if player {
             limit

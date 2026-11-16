@@ -5043,3 +5043,13 @@ fullscreen pass for the native grade, wind, and exhaust heat. Compare the
 bounded CPU exhaust pool with an optional Hanabi GPU emitter. Evaluate vkBasalt
 and Material Maker separately from the runtime dependency path.
 [Evidence](testing/graphics-polish/REPORT.md).
+
+
+## ADR208 — Ground refraction and unified race gauges (2026-11-15)
+
+Replace the route's alpha-band heat sprites with a soft, projected ground
+strip in the existing scene pass. Change the HUD camera's MSAA writeback
+only while a processed scene needs compositing. Respect map effects quality
+and the motion comfort setting. Use actual engine telemetry for the RPM bar
+below the speed arc.
+[Evidence](testing/hills-shimmer-hud/REPORT.md).

@@ -22,6 +22,7 @@ pub(crate) struct Options {
     grade: bool,
     wind: bool,
     heat: bool,
+    ground_heat_quality: usize,
     pub(crate) hanabi: bool,
 }
 
@@ -36,6 +37,7 @@ impl Options {
             grade: all || has("grade"),
             wind: all || has("wind"),
             heat: all || has("heat"),
+            ground_heat_quality: crate::map_fx::quality(),
             hanabi: has("hanabi"),
         }
     }
@@ -44,7 +46,7 @@ impl Options {
 #[derive(Resource)]
 pub(crate) struct GridEngine(pub(crate) f32);
 
-const IDLE_RPM: f32 = 1450.;
+pub(crate) const IDLE_RPM: f32 = 1450.;
 
 impl Default for GridEngine {
     fn default() -> Self {
@@ -75,45 +77,6 @@ fn grid_engine(
     }
 }
 
-#[derive(Component)]
-struct GridTachometer;
-
-fn tachometer(
-    mut commands: Commands,
-    race: Res<Race>,
-    screen: Res<State<AppScreen>>,
-    engine: Res<GridEngine>,
-    mut labels: Query<(Entity, &mut Text), With<GridTachometer>>,
-) {
-    let visible = *screen.get() == AppScreen::Race && race.phase == Phase::Countdown;
-    let value = format!("{:.0} RPM", engine.0);
-    if let Ok((entity, mut text)) = labels.single_mut() {
-        if visible {
-            if text.0 != value {
-                text.0 = value;
-            }
-        } else {
-            commands.entity(entity).despawn();
-        }
-    } else if visible {
-        commands.spawn((
-            GridTachometer,
-            Text::new(value),
-            TextFont {
-                font_size: FontSize::Px(21.),
-                ..default()
-            },
-            TextColor(Color::srgb(0.87, 0.94, 0.92)),
-            Node {
-                position_type: PositionType::Absolute,
-                right: Val::Px(40.),
-                bottom: Val::Px(204.),
-                ..default()
-            },
-        ));
-    }
-}
-
 fn local_id(online: Option<&crate::online::NetState>) -> usize {
     online.map_or(0, |state| state.local_slot)
 }
@@ -124,9 +87,11 @@ fn tail(pose: &Transform) -> Vec3 {
 
 #[derive(Component, ExtractComponent, Clone, Copy, Default, ShaderType)]
 #[extract_app(RenderApp)]
-struct RoadEffects {
+pub(crate) struct RoadEffects {
     weights: Vec4,
     heat_center: Vec4,
+    ground_band: Vec4,
+    ground_strength: Vec4,
 }
 
 impl FullscreenMaterial for RoadEffects {
@@ -135,11 +100,53 @@ impl FullscreenMaterial for RoadEffects {
     }
 }
 
+fn ground_band(
+    track: &crate::track::Track,
+    route: usize,
+    station: f32,
+    camera: &Camera,
+    view: &GlobalTransform,
+    quality: usize,
+) -> (Vec4, f32) {
+    use crate::track::hills::{SPLIT, TOWN_END};
+    let blend = ((station - SPLIT) / 280.).clamp(0., 1.);
+    if blend == 0. || quality == 0 {
+        return (Vec4::ZERO, 0.);
+    }
+    let (ground, heading) = track.sample_route(route, station + 72., 0.);
+    let center = ground + Vec3::Y * 0.60;
+    let project = |point: Vec3| {
+        camera
+            .world_to_ndc(view, point)
+            .filter(|ndc| ndc.is_finite() && (0. ..=1.).contains(&ndc.z))
+            .map(|ndc| ndc.xy() * Vec2::new(0.5, -0.5) + Vec2::splat(0.5))
+    };
+    let Some(uv) = project(center) else {
+        return (Vec4::ZERO, 0.);
+    };
+    if !(-0.15..=1.15).contains(&uv.x) || !(0.10..=0.90).contains(&uv.y) {
+        return (Vec4::ZERO, 0.);
+    }
+    let Some(edge) = project(center + heading * Vec3::X * 17.) else {
+        return (Vec4::ZERO, 0.);
+    };
+    let Some(top) = project(center + Vec3::Y * 1.6) else {
+        return (Vec4::ZERO, 0.);
+    };
+    let width = (edge.x - uv.x).abs().clamp(0.03, 0.31);
+    let height = (top.y - uv.y).abs().clamp(0.004, 0.029);
+    let dunes = ((station - TOWN_END) / 280.).clamp(0., 1.);
+    let strength = blend * (0.52 + 0.48 * dunes) * (quality as f32 * 0.5);
+    (Vec4::new(uv.x, uv.y, width, height), strength)
+}
+
 #[allow(clippy::too_many_arguments, clippy::type_complexity)]
-fn camera_effects(
+pub(crate) fn camera_effects(
     mut commands: Commands,
     time: Res<Time>,
     options: Res<Options>,
+    track: Res<crate::track::Track>,
+    survey: Option<Res<crate::map_fx::survey::Survey>>,
     race: Res<Race>,
     screen: Res<State<AppScreen>>,
     preferences: Res<crate::settings::Preferences>,
@@ -147,11 +154,19 @@ fn camera_effects(
     online: Option<Res<crate::online::NetState>>,
     riders: Query<(&Rider, &Recovery, &Transform), Without<ChaseCamera>>,
     mut cameras: Query<(Entity, &Camera, &Transform, Option<&mut RoadEffects>), With<ChaseCamera>>,
+    mut overlays: Query<&mut Camera, (With<Camera2d>, Without<ChaseCamera>)>,
 ) {
-    let found = riders
-        .iter()
-        .find(|(r, _, _)| r.id == local_id(online.as_deref()));
+    let racing = *screen.get() == AppScreen::Race && race.phase.simulating();
+    let map_heat = track.is_hills() && options.ground_heat_quality != 0;
+    let found = (racing && (options.wind || options.heat || map_heat))
+        .then(|| {
+            riders
+                .iter()
+                .find(|(r, _, _)| r.id == local_id(online.as_deref()))
+        })
+        .flatten();
     let comfort = &preferences.file.comfort;
+    let mut processed_scene = false;
     for (entity, camera, transform, current) in &mut cameras {
         let mut weights = Vec4::ZERO;
         let mut heat_center = Vec4::ZERO;
@@ -183,12 +198,40 @@ fn camera_effects(
                 }
             }
         }
-        let active = weights.truncate() != Vec3::ZERO;
-        weights.w = time.elapsed_secs();
+        let mut band = Vec4::ZERO;
+        let mut strength = 0.;
+        if map_heat && !comfort.anti_nausea && (racing || survey.is_some()) {
+            let sample = if survey.is_some() {
+                let (station, _) =
+                    track.nearby_station(transform.translation.x, transform.translation.z);
+                Some((0, station))
+            } else {
+                found.map(|(rider, _, _)| (rider.route, rider.progress))
+            };
+            if let Some((route, station)) = sample {
+                (band, strength) = ground_band(
+                    &track,
+                    route,
+                    station,
+                    camera,
+                    &GlobalTransform::from(*transform),
+                    options.ground_heat_quality,
+                );
+            }
+        }
+        let active = weights.truncate() != Vec3::ZERO || strength > 0.;
+        weights.w = if survey.is_some() {
+            race.elapsed
+        } else {
+            time.elapsed_secs()
+        };
         if active {
+            processed_scene |= camera.is_active;
             let effect = RoadEffects {
                 weights,
                 heat_center,
+                ground_band: band,
+                ground_strength: Vec4::splat(strength),
             };
             if let Some(mut current) = current {
                 *current = effect;
@@ -197,6 +240,17 @@ fn camera_effects(
             }
         } else if current.is_some() {
             commands.entity(entity).remove::<RoadEffects>();
+        }
+    }
+    // The 2D HUD only needs an MSAA writeback when it composites a processed scene.
+    let writeback = if processed_scene {
+        bevy::camera::MsaaWriteback::Auto
+    } else {
+        bevy::camera::MsaaWriteback::Off
+    };
+    for mut camera in &mut overlays {
+        if camera.msaa_writeback != writeback {
+            camera.msaa_writeback = writeback;
         }
     }
 }
@@ -372,8 +426,7 @@ pub(crate) fn install(app: &mut App) {
     let options = Options::from_flags(&std::env::var("ROADDASH_POLISH").unwrap_or_default());
     if options.rev {
         app.init_resource::<GridEngine>()
-            .add_systems(FixedUpdate, grid_engine.after(crate::game::drive))
-            .add_systems(Update, tachometer);
+            .add_systems(FixedUpdate, grid_engine.after(crate::game::drive));
     }
     if options.exhaust {
         app.add_systems(
@@ -384,7 +437,7 @@ pub(crate) fn install(app: &mut App) {
                 .before(bevy::transform::TransformSystems::Propagate),
         );
     }
-    if options.grade || options.wind || options.heat {
+    if options.grade || options.wind || options.heat || options.ground_heat_quality != 0 {
         // Preserve the processed scene when the separate MSAA HUD camera renders.
         app.add_plugins((
             bevy_post_process::msaa_writeback::MsaaWritebackPlugin,

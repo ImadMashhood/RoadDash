@@ -1,5 +1,9 @@
 # Development progress
 
+2026-11-15 Hills ground shimmer and race instruments (ADR208): HUD-INSTRUMENTS-01 verified.
+256 verified / 386 open. RFU-FX-01 retains full-route review.
+[Evidence](testing/hills-shimmer-hud/REPORT.md).
+
 2026-11-15 Hills road thickness (ADR206): HILLS-ROAD-DEPTH-01 verified.
 255 verified / 382 open. [Implementation and evidence](testing/hills-road-thickness/REPORT.md).
 
@@ -1060,6 +1064,8 @@ pending terrain and crossing verification gates.
 
 - [x] **P06-021** Treat sidewalks as rideable support so low curb contact raises the bike instead of causing an obstacle wipeout. Evidence: [suspension](../src/vehicle.rs), [curb-transition test](../src/vehicle_tests.rs).
 
+- [x] **HUD-INSTRUMENTS-01** Consolidate speed and RPM in a bottom-right race cluster for easier reading. Part 15, depends on the race HUD and bike telemetry. Accept a speed arc with centered speed and configurable units, and an engine RPM bar that also responds to stationary countdown revs. Verify the native HUD and independent speed and RPM inputs. [Evidence](testing/hills-shimmer-hud/REPORT.md).
+
 - [x] **P07-001** Implement countdown, laps/progress standings, race clock, speed/armor/nitro readouts, minimap, results/payouts, and restart. Evidence: [race](../src/game.rs), [HUD](../src/ui.rs).
 
 - [x] **P07-002** Persist basic race count, wins, credits, and personal-best time; test one-time finish rewards and restarting. Evidence: [profile and finish tests](../src/game.rs).
@@ -1820,7 +1826,7 @@ pending terrain and crossing verification gates.
 
 - [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](testing/menu-combat-polish/REPORT.md).
 
-- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: screen-space ground shimmer replaces the sprite approximation; visual and full-route GPU acceptance remain open. [Evidence](testing/hills-shimmer-hud/REPORT.md). [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 
 - [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: terrain-seated feathered dust pool implemented; centered-chase visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 

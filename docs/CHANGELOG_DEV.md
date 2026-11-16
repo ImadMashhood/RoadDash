@@ -1,5 +1,10 @@
 # Development history
 
+## 2026-11-15 — Hills shimmer and race gauges (ADR208)
+
+- Replaced Hills heatwave sprites with soft scene refraction near the road.
+- Combined the digital speed arc and engine RPM bar in the race HUD.
+
 ## 2026-11-15 — Graphics and motorcycle feedback experiments (ADR207)
 
 - Added selectable Hills asphalt normals and roughness, a daylight grade, peripheral speed streaks and local exhaust heat.

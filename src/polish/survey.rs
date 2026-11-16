@@ -168,6 +168,7 @@ fn capture(
             "rev_rpm":rev.as_ref().map(|rev| rev.0),
             "puffs":puffs.iter().filter(|visibility| **visibility != Visibility::Hidden).count(),
             "shader_weights":effects.iter().map(|effect| effect.weights.to_array()).next(),
+            "ground_shimmer":effects.iter().map(|effect| effect.ground_strength.x).next().unwrap_or(0.),
             "hanabi":options.hanabi,
             "shake":race.shake,
         });

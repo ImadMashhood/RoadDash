@@ -17,7 +17,12 @@ pub struct Readout(pub u8);
 #[derive(Component)]
 pub(crate) struct RivalArrow;
 #[derive(Component)]
-pub(crate) struct SpeedFill;
+pub(crate) struct RpmFill;
+#[derive(Component)]
+pub(crate) struct SpeedTick(usize);
+
+const SPEED_TICKS: usize = 21;
+const SPEED_SCALE_MPS: f32 = 75.;
 #[derive(Component)]
 pub struct StartButton;
 
@@ -128,42 +133,7 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
     let lap = label(&mut commands, "", 17.0, WHITE, 34.0, 84.0);
     commands.entity(lap).insert(Readout(1));
     kids.push(lap);
-    let speed = commands
-        .spawn((
-            Text::new("000"),
-            TextFont {
-                font_size: FontSize::Px(80.0),
-                ..default()
-            },
-            TextColor(WHITE),
-            Node {
-                position_type: PositionType::Absolute,
-                right: px(36),
-                bottom: px(85),
-                ..default()
-            },
-            Readout(2),
-        ))
-        .id();
-    kids.push(speed);
-    let units = commands
-        .spawn((
-            Text::new("KM/H   /   6-SPEED"),
-            Readout(12),
-            TextFont {
-                font_size: FontSize::Px(13.0),
-                ..default()
-            },
-            TextColor(MINT),
-            Node {
-                position_type: PositionType::Absolute,
-                right: px(38),
-                bottom: px(68),
-                ..default()
-            },
-        ))
-        .id();
-    kids.push(units);
+    kids.push(instruments(&mut commands));
     let voice = commands
         .spawn((
             Text::default(),
@@ -237,32 +207,6 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
         ))
         .id();
     kids.push(message);
-    let meter = commands
-        .spawn((
-            Node {
-                position_type: PositionType::Absolute,
-                bottom: px(50),
-                right: px(38),
-                width: px(152),
-                height: px(5),
-                ..default()
-            },
-            BackgroundColor(INK.with_alpha(0.83)),
-        ))
-        .id();
-    let fill = commands
-        .spawn((
-            Node {
-                width: percent(0),
-                height: percent(100),
-                ..default()
-            },
-            BackgroundColor(MINT),
-            SpeedFill,
-        ))
-        .id();
-    commands.entity(meter).add_child(fill);
-    kids.push(meter);
     commands.entity(hud).add_children(&kids);
 
     let overlay = commands
@@ -338,6 +282,96 @@ pub fn setup_ui(mut commands: Commands, track: Res<Track>) {
     commands.entity(overlay).add_children(&menu);
 }
 
+fn instruments(commands: &mut Commands) -> Entity {
+    let panel = commands
+        .spawn((
+            Node {
+                position_type: PositionType::Absolute,
+                right: px(36),
+                bottom: px(51),
+                width: px(212),
+                height: px(149),
+                border_radius: BorderRadius::all(px(14)),
+                ..default()
+            },
+            BackgroundColor(INK.with_alpha(0.85)),
+        ))
+        .id();
+    commands.entity(panel).with_children(|panel| {
+        for tick in 0..SPEED_TICKS {
+            let angle = (195. + 150. * tick as f32 / (SPEED_TICKS - 1) as f32).to_radians();
+            let (sine, cosine) = angle.sin_cos();
+            panel.spawn((
+                Node {
+                    position_type: PositionType::Absolute,
+                    top: px(106. + 86. * sine - 5.),
+                    left: px(106. + 86. * cosine - 2.),
+                    width: px(4),
+                    height: px(10),
+                    border_radius: BorderRadius::all(px(2)),
+                    ..default()
+                },
+                UiTransform::from_rotation(Rot2::radians(angle + std::f32::consts::FRAC_PI_2)),
+                BackgroundColor(MUTED.with_alpha(0.48)),
+                SpeedTick(tick),
+            ));
+        }
+
+        for (name, size, top, color, readout) in [
+            ("000", 54., 40., WHITE, Some(2)),
+            ("KM/H", 12., 94., MINT, Some(12)),
+            ("RPM", 11., 120., WHITE, None),
+        ] {
+            let mut text = panel.spawn((
+                Text::new(name),
+                TextLayout::justify(Justify::Center),
+                TextFont {
+                    font_size: FontSize::Px(size),
+                    ..default()
+                },
+                TextColor(color),
+                Node {
+                    position_type: PositionType::Absolute,
+                    top: px(top),
+                    left: px(if readout.is_some() { 0. } else { 12. }),
+                    width: if readout.is_some() {
+                        percent(100)
+                    } else {
+                        px(33.)
+                    },
+                    ..default()
+                },
+            ));
+            if let Some(readout) = readout {
+                text.insert(Readout(readout));
+            }
+        }
+        panel.spawn((
+            Node {
+                position_type: PositionType::Absolute,
+                left: px(51),
+                right: px(16),
+                top: px(124),
+                height: px(7),
+                border_radius: BorderRadius::all(px(3)),
+                overflow: Overflow::clip(),
+                ..default()
+            },
+            BackgroundColor(MUTED.with_alpha(0.38)),
+            children![(
+                Node {
+                    width: percent(0),
+                    height: percent(100),
+                    ..default()
+                },
+                BackgroundColor(MINT),
+                RpmFill
+            )],
+        ));
+    });
+    panel
+}
+
 #[allow(clippy::type_complexity, clippy::too_many_arguments)]
 pub(crate) fn update_ui(
     race: Res<Race>,
@@ -354,14 +388,22 @@ pub(crate) fn update_ui(
         (
             Or<(With<Hud>, With<Overlay>)>,
             Without<RivalArrow>,
-            Without<SpeedFill>,
+            Without<RpmFill>,
         ),
     >,
     mut arrows: Query<
         (&mut Node, &mut BorderColor, &mut UiTransform),
-        (With<RivalArrow>, Without<SpeedFill>),
+        (With<RivalArrow>, Without<RpmFill>),
     >,
-    mut speed_fills: Query<&mut Node, (With<SpeedFill>, Without<RivalArrow>)>,
+    (mut rpm_fills, mut speed_ticks, bikes, grid_engine): (
+        Query<
+            (&mut Node, &mut BackgroundColor),
+            (With<RpmFill>, Without<RivalArrow>, Without<SpeedTick>),
+        >,
+        Query<(&SpeedTick, &mut BackgroundColor), Without<RpmFill>>,
+        Query<(&Rider, &crate::vehicle::BikeState)>,
+        Option<Res<crate::polish::GridEngine>>,
+    ),
     panel: Res<crate::settings::SettingsPanel>,
     police: Res<crate::police::Police>,
     frontend: Option<Res<crate::frontend::Frontend>>,
@@ -445,11 +487,44 @@ pub(crate) fn update_ui(
             })));
         }
     }
-    for mut fill in &mut speed_fills {
-        let width = percent(100. * (player.speed / 75.).clamp(0., 1.));
+    let lit = (player.speed.abs() / SPEED_SCALE_MPS * SPEED_TICKS as f32).round() as usize;
+    for (tick, mut color) in &mut speed_ticks {
+        color.set_if_neq(BackgroundColor(if tick.0 < lit {
+            MINT
+        } else {
+            MUTED.with_alpha(0.48)
+        }));
+    }
+    let riding = recoveries.iter().any(|(rider, recovery)| {
+        rider.id == player.id && recovery.stage == crate::recovery::RecoveryStage::Riding
+    });
+    let rpm = if riding {
+        let engine = bikes
+            .iter()
+            .find(|(rider, _)| rider.id == player.id)
+            .map(|(_, bike)| bike.rpm);
+        if race.phase == Phase::Countdown && player.id == local_slot {
+            grid_engine
+                .as_ref()
+                .map_or(crate::polish::IDLE_RPM, |rev| rev.0)
+        } else {
+            engine
+                .unwrap_or_else(|| crate::polish::IDLE_RPM + player.speed.abs() * 145.)
+                .max(crate::polish::IDLE_RPM)
+        }
+    } else {
+        0.
+    };
+    for (mut fill, mut color) in &mut rpm_fills {
+        let width = percent(100. * (rpm / crate::vehicle::MAX_RPM).clamp(0., 1.));
         if fill.width != width {
             fill.width = width;
         }
+        color.set_if_neq(BackgroundColor(if rpm >= 7600. {
+            Color::srgb(1., 0.57, 0.25)
+        } else {
+            MINT
+        }));
     }
     for (field, mut text) in &mut readouts {
         let next = match field.0 {
@@ -459,9 +534,9 @@ pub(crate) fn update_ui(
             1 => format!("LAP {:02} / {:02}    {:02}:{:05.2}", ((player.progress.max(0.0) / track.length) as u32 + 1).min(LAPS), LAPS, (race.elapsed / 60.0) as u32, race.elapsed % 60.0),
             2 => {
                 let multiplier = if prefs.file.imperial_speed { 2.236_936 } else { 3.6 };
-                format!("{:03}", (player.speed * multiplier) as u32)
+                format!("{:03}", (player.speed.abs() * multiplier) as u32)
             }
-            12 => if prefs.file.imperial_speed { "MPH   /   6-SPEED" } else { "KM/H   /   6-SPEED" }.into(),
+            12 => if prefs.file.imperial_speed { "MPH" } else { "KM/H" }.into(),
             13 => online_ui.as_ref().map_or_else(String::new, |o| o.voice_status.clone()),
             3 => {
                 let condition = if player.networked {
@@ -595,6 +670,36 @@ mod tests {
                 UiTransform::from_rotation(Rot2::radians(rotation.to_radians())),
             );
         }
+    }
+
+    #[test]
+    fn instrument_bar_uses_engine_rpm_and_countdown_rev_at_zero_speed() {
+        use bevy::ecs::system::RunSystemOnce;
+        let mut app = crate::game::tests::simulation();
+        let world = app.world_mut();
+        let player = world
+            .query_filtered::<Entity, With<Rider>>()
+            .single(world)
+            .unwrap();
+        world.entity_mut(player).insert(crate::vehicle::BikeState {
+            rpm: 5250.,
+            ..default()
+        });
+        world.run_system_once(setup_ui).unwrap();
+        world.resource_mut::<Race>().phase = Phase::Racing;
+        world.run_system_once(update_ui).unwrap();
+        let mut fill = world.query_filtered::<&Node, With<RpmFill>>();
+        assert_eq!(fill.single(world).unwrap().width, percent(50));
+
+        world.resource_mut::<Race>().phase = Phase::Countdown;
+        world.insert_resource(crate::polish::GridEngine(7350.));
+        world.run_system_once(update_ui).unwrap();
+        let Val::Percent(width) = fill.single(world).unwrap().width else {
+            panic!("expected RPM fraction")
+        };
+        assert!((width - 70.).abs() < 0.01);
+        let mut ticks = world.query_filtered::<&BackgroundColor, With<SpeedTick>>();
+        assert!(ticks.iter(world).all(|color| color.0 != MINT));
     }
 
     #[test]

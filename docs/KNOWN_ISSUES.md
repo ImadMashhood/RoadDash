@@ -1484,3 +1484,11 @@ These are opt-in Hills experiments. Visual preference, reduced-motion comfort
 and steady-state GPU performance remain open. The Material Maker Linux export
 crashes in the isolated capture session, including with a stock project.
 [Evidence](testing/graphics-polish/REPORT.md).
+
+
+## Hills ground shimmer (2026-11-15 / ADR208)
+
+The strip is projected to screen space. Distant objects inside its mask can
+refract slightly. Full-route hazard readability and performance acceptance
+remain open under RFU-FX-01.
+[Evidence](testing/hills-shimmer-hud/REPORT.md).

@@ -199,7 +199,7 @@ This is an arcade prototype, not a finished commercial remake. Native riding now
 
 ## Development roadmap — completed first, remaining work in order
 
-**255 verified tasks complete; 386 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
+**256 verified tasks complete; 386 tasks remain open.** Part 00 contains all completed work. Parts 01–08 follow the requested fixes → animation study → animation implementation → buildings → props → NPCs/landscape → weapons → police sequence. Then continue with the existing Parts 09/10, followed by the remaining production requirements.
 
 **One live checklist:** every task is now in this README, exactly once. Stable IDs retain their historical numbers; their current section determines execution order. An old `P06` ID under Part 03 does not mean work must wait for Part 06. The [historical blueprint checklist](docs/roadmap/BLUEPRINT_PARTS_01_08.md) is a frozen reference, not a second live backlog. [Progress](docs/PROGRESS.md) is generated from this README.
 
@@ -217,9 +217,9 @@ This migration branch pins **Rust 1.97.1, Bevy 0.20.1, bevy_rapier3d 0.37.0 and 
 
 | Part | Work | Status |
 | --- | --- | --- |
-| [00](#part-00) | Completed and verified foundations | 255 verified complete |
+| [00](#part-00) | Completed and verified foundations | 256 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
-| [00](#part-00) | Completed and verified foundations | 255 verified complete |
+| [00](#part-00) | Completed and verified foundations | 256 verified complete |
 | [01](#part-01) | Remaining handling, crash response and runtime corrections | 80 open |
 | [02](#part-02) | Animation A — reference study, labeled keyframes and pose approval | 15 open |
 | [03](#part-03) | Animation B — interpolation, terrain locomotion and active recovery | 32 open |
@@ -676,8 +676,9 @@ Historical note: P06-022 records the earlier verified clearance-jump request. Th
 </details>
 
 <details>
-<summary>Race rules, HUD, and results — 2 verified tasks</summary>
+<summary>Race rules, HUD, and results — 3 verified tasks</summary>
 
+- [x] **HUD-INSTRUMENTS-01** Consolidate speed and RPM in a bottom-right race cluster for easier reading. Part 15, depends on the race HUD and bike telemetry. Accept a speed arc with centered speed and configurable units, and an engine RPM bar that also responds to stationary countdown revs. Verify the native HUD and independent speed and RPM inputs. [Evidence](docs/testing/hills-shimmer-hud/REPORT.md).
 - [x] **P07-001** Implement countdown, laps/progress standings, race clock, speed/armor/nitro readouts, minimap, results/payouts, and restart. Evidence: [race](src/game.rs), [HUD](src/ui.rs).
 - [x] **P07-002** Persist basic race count, wins, credits, and personal-best time; test one-time finish rewards and restarting. Evidence: [profile and finish tests](src/game.rs).
 
@@ -1459,7 +1460,7 @@ Retain these unfinished original blueprint requirements and acceptance gates. Sc
 
 - [ ] **UI-CITY-TOUR-01** Add a tinted live city fly-through and passing motorcycles behind polished entry choices. Reason: requested menu presentation; part:15; dependencies: UI-POLISH-01 and ready world/model lifecycle; acceptance: bounded visual-only motorcycles, readable responsive menus, preserved navigation/race/save state and reduced-motion support; verification: menu lifecycle tests, native viewport/navigation captures and human art review. In progress: [implementation and evidence](docs/testing/menu-combat-polish/REPORT.md).
 
-- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: original ground-heat band approximation implemented; native visual/refraction/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
+- [ ] **RFU-FX-01** Add localized Hills western-town/desert heat shimmer. Reason: requested biome identity; part:15; dependencies: Hills world content, RFU-PERF-06 and Bevy migration decision; acceptance: bounded effect near hot ground without distorting UI/traffic silhouettes or visibility; verification: native town/desert/other-biome comparisons and supported GPU/frame measures. Partial: screen-space ground shimmer replaces the sprite approximation; visual and full-route GPU acceptance remain open. [Evidence](docs/testing/hills-shimmer-hud/REPORT.md). [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 - [ ] **RFU-FX-02** Add deterministic wind-driven blowing sand in Hills desert and western approaches. Reason: requested environmental movement; part:15; dependencies: RFU-FX-01 and authored sand surface; acceptance: readable bounded gusts, appropriate quality control, no physics/material classification change or late mesh spawn; verification: native temporal captures, source/rights and quality/performance receipts. Partial: terrain-seated feathered dust pool implemented; centered-chase visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 - [ ] **RFU-FX-03** Add map-appropriate city shader/effects such as subtle vent steam, depth haze or a wet-road variation. Reason: requested city visual character; part:15; dependencies: RFU-PERF-06, RFU-SKY-01 and MAT-03; acceptance: coherent Metropolis/legacy-city presentation with restrained legibility, matching near/far material identity and opt-in quality budgets; verification: native views, source hash/provenance, GPU/frame comparison and visual review. Partial: bounded curb-steam pool implemented; native/GPU review remains open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).
 - [ ] **RFU-FX-04** Add a restrained original effect to Valley so every existing map has distinct air movement. Reason: issue #42 requests visual effects on every map, including Valley; part:15; dependencies: RFU-FX-01–03 and Valley route/content; acceptance: quality-controlled, off-road air motes remain legible and presentation-only across the full route; verification: native Valley before/after and temporal views, original source audit and CPU/GPU frame comparison. Partial: fixed-budget motes are implemented; native visual and performance review remain open. [Issue](https://github.com/ImadMashhood/RoadDash/issues/42).

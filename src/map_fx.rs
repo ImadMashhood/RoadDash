@@ -30,16 +30,13 @@ pub(crate) fn wheel_spray(
 }
 
 const SAND_COUNT: usize = 48;
-const HEAT_COUNT: usize = 16;
 const STEAM_COUNT: usize = 16;
 const POLLEN_COUNT: usize = 16;
 const SAND_START: f32 = 6500.;
-const HEAT_STATIONS: [f32; 8] = [5900., 6500., 7100., 7900., 8900., 9900., 10900., 11800.];
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 enum Kind {
     Sand,
-    Heat,
     Steam,
     Pollen,
 }
@@ -155,37 +152,9 @@ fn steam_sprite() -> Image {
     )
 }
 
-fn heat_sprite() -> Image {
-    let n = 64usize;
-    let mut rgba = Vec::with_capacity(n * n * 4);
-    for y in 0..n {
-        for x in 0..n {
-            let u = (x as f32 + 0.5) / n as f32 * 2. - 1.;
-            let v = (y as f32 + 0.5) / n as f32 * 2. - 1.;
-            // Thin, uneven horizontal air bands rise past one another. This is
-            // a light-scattering cue, not a screen-colour refraction pass.
-            let ripple = (v * 9. + (u * 5. + v * 3.).sin() * 0.9).sin().abs().powi(3);
-            let envelope = (1. - u * u).max(0.).powi(2) * (1. - v * v).max(0.);
-            rgba.extend([255, 250, 226, (ripple * envelope * 255.) as u8]);
-        }
-    }
-    Image::new(
-        Extent3d {
-            width: n as u32,
-            height: n as u32,
-            depth_or_array_layers: 1,
-        },
-        TextureDimension::D2,
-        rgba,
-        TextureFormat::Rgba8UnormSrgb,
-        RenderAssetUsages::default(),
-    )
-}
-
 fn budget(kind: Kind, quality: usize) -> usize {
     let full = match kind {
         Kind::Sand => SAND_COUNT,
-        Kind::Heat => HEAT_COUNT,
         Kind::Steam => STEAM_COUNT,
         Kind::Pollen => POLLEN_COUNT,
     };
@@ -213,14 +182,9 @@ pub fn spawn(
     } else {
         None
     };
-    let heat_texture = if is_hills {
-        Some(images.add(heat_sprite()))
-    } else {
-        None
-    };
     let quad = meshes.add(Rectangle::new(1., 1.));
     let kinds: &[Kind] = if is_hills {
-        &[Kind::Sand, Kind::Heat]
+        &[Kind::Sand]
     } else if city {
         &[Kind::Steam]
     } else {
@@ -229,13 +193,11 @@ pub fn spawn(
     for &kind in kinds {
         let color = match kind {
             Kind::Sand => Color::srgba(0.76, 0.57, 0.35, 0.0),
-            Kind::Heat => Color::srgba(0.98, 0.94, 0.85, 0.52),
             Kind::Steam => Color::srgba(0.72, 0.76, 0.78, 0.48),
             Kind::Pollen => Color::srgba(0.78, 0.83, 0.61, 0.35),
         };
         let image = match kind {
             Kind::Sand => dust_texture.clone().unwrap(),
-            Kind::Heat => heat_texture.clone().unwrap(),
             Kind::Steam | Kind::Pollen => texture.clone(),
         };
         let template = StandardMaterial {
@@ -267,7 +229,6 @@ pub fn spawn(
                         + (i as f32 + 0.5) * (track.length - SAND_START)
                             / budget(kind, level) as f32
                 }
-                Kind::Heat => HEAT_STATIONS[i % 8] + (i / 8) as f32 * 12.,
                 Kind::Steam if track.metropolis.is_some() => {
                     8300. + (i % 8) as f32 * 330. + (i / 8) as f32 * 12.
                 }
@@ -285,8 +246,6 @@ pub fn spawn(
             let side = if i % 2 == 0 { 1. } else { -1. };
             let offset = match kind {
                 Kind::Sand => 7.2 + (i % 3) as f32 * 0.5,
-                Kind::Heat if station < crate::track::hills::TOWN_END => 7.8 + (i % 2) as f32,
-                Kind::Heat => 14. + (i % 3) as f32 * 3.,
                 Kind::Steam => track.half_width(station) + 0.7,
                 Kind::Pollen => 13. + (i % 3) as f32 * 5.,
             };
@@ -297,14 +256,12 @@ pub fn spawn(
                 track.terrain_height(anchor.x, anchor.z)
             } + match kind {
                 Kind::Sand => 2.7,
-                Kind::Heat => 1.45,
                 Kind::Steam => 0.75,
                 Kind::Pollen => 0.5,
             };
             commands.spawn((
                 Name::new(match kind {
                     Kind::Sand => "Blowing sand",
-                    Kind::Heat => "Ground heat cue",
                     Kind::Steam => "City vent steam",
                     Kind::Pollen => "Valley air motes",
                 }),
@@ -342,11 +299,6 @@ fn visual(kind: Kind, time: f32, phase: f32) -> (Vec3, Vec3, f32) {
                 0.18 * fade,
             )
         }
-        Kind::Heat => (
-            Vec3::new((wave * 1.3).sin() * 0.35, (wave * 0.13).fract() * 0.9, 0.),
-            Vec3::new(5.5, 2.6, 1.),
-            0.13 + 0.05 * (wave * 3.1).sin().abs(),
-        ),
         Kind::Steam => {
             let cycle = (wave * 0.17).fract();
             (
@@ -391,7 +343,6 @@ pub fn animate(
     for (sprite, mut transform, mut visibility, mut material) in &mut sprites {
         let range = match sprite.kind {
             Kind::Sand => 125.,
-            Kind::Heat => 115.,
             Kind::Steam => 100.,
             Kind::Pollen => 90.,
         };
@@ -420,7 +371,6 @@ pub fn animate(
         }
         let peak = match sprite.kind {
             Kind::Sand => 0.18,
-            Kind::Heat => 0.18,
             Kind::Steam => 0.13,
             Kind::Pollen => 0.15,
         };
@@ -472,10 +422,9 @@ mod tests {
     #[test]
     fn fixed_budgets_and_temporal_envelopes() {
         assert_eq!(budget(Kind::Sand, 2), 48);
-        assert_eq!(budget(Kind::Heat, 1), 8);
         assert_eq!(budget(Kind::Steam, 0), 0);
         assert_eq!(budget(Kind::Pollen, 2), 16);
-        for kind in [Kind::Sand, Kind::Heat, Kind::Steam, Kind::Pollen] {
+        for kind in [Kind::Sand, Kind::Steam, Kind::Pollen] {
             for tick in 0..1000 {
                 let (offset, scale, alpha) = visual(kind, tick as f32 / 60., 1.4);
                 assert!(offset.is_finite() && scale.is_finite());
@@ -485,6 +434,5 @@ mod tests {
         assert_eq!(soft_sprite().data.unwrap().len(), 64 * 64 * 4);
         assert_eq!(dust_sprite().data.unwrap().len(), 64 * 64 * 4);
         assert_eq!(steam_sprite().data.unwrap().len(), 64 * 64 * 4);
-        assert_eq!(heat_sprite().data.unwrap().len(), 64 * 64 * 4);
     }
 }

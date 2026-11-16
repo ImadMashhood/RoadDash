@@ -283,6 +283,7 @@ pub fn build_app(smoke: bool) -> App {
                     map_fx::survey::run
                         .after(game::camera)
                         .before(map_fx::animate)
+                        .before(polish::camera_effects)
                         .before(bevy::transform::TransformSystems::Propagate),
                 );
         } else if std::env::args().any(|a| a == "--hills-survey") {

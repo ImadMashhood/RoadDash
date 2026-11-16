@@ -4,6 +4,8 @@
 struct RoadEffects {
     weights: vec4<f32>,
     heat_center: vec4<f32>,
+    ground_band: vec4<f32>,
+    ground_strength: vec4<f32>,
 }
 
 @group(0) @binding(2) var<uniform> effect: RoadEffects;
@@ -18,6 +20,19 @@ fn fragment(@location(0) uv: vec2<f32>) -> @location(0) vec4<f32> {
         if heat > 0.0 {
             let ripple = vec2<f32>(sin(uv.y * 200.0 + seconds * 21.0), cos(uv.x * 152.0 - seconds * 17.0));
             source = clamp(uv + ripple * heat * 0.0025, vec2<f32>(0.0), vec2<f32>(1.0));
+        }
+    }
+    if effect.ground_strength.x > 0.0 {
+        let band = effect.ground_band;
+        let distance = (uv - band.xy) / max(band.zw, vec2<f32>(0.001));
+        let envelope = (1.0 - smoothstep(0.15, 1.0, abs(distance.x)))
+            * (1.0 - smoothstep(0.05, 1.0, abs(distance.y)));
+        if envelope > 0.0 {
+            let drift = uv.y * 435.0 + seconds * 13.0;
+            let fold = sin(uv.x * 67.0 - seconds * 3.1);
+            let ripple = vec2<f32>(sin(drift + fold * 2.4), sin(drift * 0.72 - fold));
+            source = clamp(source + ripple * vec2<f32>(0.0021, 0.00115)
+                * envelope * effect.ground_strength.x, vec2<f32>(0.0), vec2<f32>(1.0));
         }
     }
     let sampled = textureSample(scene, scene_sampler, source);
